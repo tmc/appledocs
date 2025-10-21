@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,36 @@ func NewMTRBridgedDeviceBasicInformationClusterProductAppearanceStruct() MTRBrid
 	return getMTRBridgedDeviceBasicInformationClusterProductAppearanceStructClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrbridgeddevicebasicinformationclusterproductappearancestruct/primarycolor
+func (m_ MTRBridgedDeviceBasicInformationClusterProductAppearanceStruct) PrimaryColor() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("primaryColor"))
+	return rv
+}
+
+
+// SetPrimaryColor sets the value of the primaryColor property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrbridgeddevicebasicinformationclusterproductappearancestruct/primarycolor
+func (m_ MTRBridgedDeviceBasicInformationClusterProductAppearanceStruct) SetPrimaryColor(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPrimaryColor:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrbridgeddevicebasicinformationclusterproductappearancestruct/finish
+func (m_ MTRBridgedDeviceBasicInformationClusterProductAppearanceStruct) Finish() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("finish"))
+	return rv
+}
+
+
+// SetFinish sets the value of the finish property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrbridgeddevicebasicinformationclusterproductappearancestruct/finish
+func (m_ MTRBridgedDeviceBasicInformationClusterProductAppearanceStruct) SetFinish(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setFinish:"), value)
+}
 
 
 

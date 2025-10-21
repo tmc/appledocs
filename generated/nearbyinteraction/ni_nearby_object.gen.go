@@ -80,6 +80,60 @@ func NewNINearbyObject() NINearbyObject {
 }
 
 
+// An angle in radians that indicates the azimuthal direction to the nearby object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/ninearbyobject/horizontalangle-hsg
+func (n_ NINearbyObject) HorizontalAngle() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("horizontalAngle"))
+	return rv
+}
+
+
+// SetHorizontalAngle sets the value of the horizontalAngle property.
+// An angle in radians that indicates the azimuthal direction to the nearby object.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/ninearbyobject/horizontalangle-hsg
+func (n_ NINearbyObject) SetHorizontalAngle(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setHorizontalAngle:"), value)
+}
+
+// A vector that points from the user’s device in the direction of the peer device.
+//
+// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/ninearbyobject/direction-4qh5w
+func (n_ NINearbyObject) Direction() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("direction"))
+	return rv
+}
+
+
+// SetDirection sets the value of the direction property.
+// A vector that points from the user’s device in the direction of the peer device.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/ninearbyobject/direction-4qh5w
+func (n_ NINearbyObject) SetDirection(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setDirection:"), value)
+}
+
+// The distance from the user’s device to the peer device in meters.
+//
+// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/ninearbyobject/distance-676dm
+func (n_ NINearbyObject) Distance() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("distance"))
+	return rv
+}
+
+
+// SetDistance sets the value of the distance property.
+// The distance from the user’s device to the peer device in meters.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/ninearbyobject/distance-676dm
+func (n_ NINearbyObject) SetDistance(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setDistance:"), value)
+}
+
 // A unique identifier for a peer device in the session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NINearbyObject/discoveryToken

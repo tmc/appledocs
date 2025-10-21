@@ -305,5 +305,23 @@ func (s_ SplitView) SetVertical(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setVertical:"), value)
 }
 
+// A Boolean value that determines the geometric orientation of the split view’s dividers.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitview/isvertical
+func (s_ SplitView) IsVertical() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("isVertical"))
+	return rv
+}
+
+
+// SetIsVertical sets the value of the isVertical property.
+// A Boolean value that determines the geometric orientation of the split view’s dividers.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitview/isvertical
+func (s_ SplitView) SetIsVertical(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setIsVertical:"), value)
+}
+
 
 

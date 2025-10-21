@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -33,7 +34,7 @@ type ISDataStore interface {
 	CompleteAllAssignedActivitiesMatching(contextPath unsafe.Pointer)
 	ContextsMatchingPredicateCompletion(predicate unsafe.Pointer, completion unsafe.Pointer)
 	ContextsMatchingIdentifierPathCompletion(identifierPath unsafe.Pointer, completion unsafe.Pointer)
-	FetchActivityForURLCompletion(url unsafe.Pointer, completion unsafe.Pointer)
+	FetchActivityForURLCompletion(url foundation.URL, completion unsafe.Pointer)
 	RemoveContext(context unsafe.Pointer)
 	SaveWithCompletion(completion unsafe.Pointer)
 }
@@ -117,7 +118,7 @@ func (s_ SDataStore) ContextsMatchingIdentifierPathCompletion(identifierPath uns
 // Fetches an activity for a given document so you can record progress on the associated task.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSDataStore/fetchActivity(for:completion:)
-func (s_ SDataStore) FetchActivityForURLCompletion(url unsafe.Pointer, completion unsafe.Pointer) {
+func (s_ SDataStore) FetchActivityForURLCompletion(url foundation.URL, completion unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("fetchActivityForURL:completion:"), url, completion)
 }
 

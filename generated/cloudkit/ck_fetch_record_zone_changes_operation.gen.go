@@ -106,6 +106,36 @@ func NewCKFetchRecordZoneChangesOperationWithRecordZoneIDsOptionsByRecordZoneID(
 }
 
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordzonechangesoperation/recordzonefetchresultblock
+func (c_ CKFetchRecordZoneChangesOperation) RecordZoneFetchResultBlock() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("recordZoneFetchResultBlock"))
+	return rv
+}
+
+
+// SetRecordZoneFetchResultBlock sets the value of the recordZoneFetchResultBlock property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordzonechangesoperation/recordzonefetchresultblock
+func (c_ CKFetchRecordZoneChangesOperation) SetRecordZoneFetchResultBlock(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordZoneFetchResultBlock:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordzonechangesoperation/fetchrecordzonechangesresultblock
+func (c_ CKFetchRecordZoneChangesOperation) FetchRecordZoneChangesResultBlock() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("fetchRecordZoneChangesResultBlock"))
+	return rv
+}
+
+
+// SetFetchRecordZoneChangesResultBlock sets the value of the fetchRecordZoneChangesResultBlock property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordzonechangesoperation/fetchrecordzonechangesresultblock
+func (c_ CKFetchRecordZoneChangesOperation) SetFetchRecordZoneChangesResultBlock(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setFetchRecordZoneChangesResultBlock:"), value)
+}
+
 // A dictionary of configurations for fetching change operations by zone identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZoneChangesOperation/configurationsByRecordZoneID

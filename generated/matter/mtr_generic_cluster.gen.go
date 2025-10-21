@@ -76,5 +76,20 @@ func NewMTRGenericCluster() MTRGenericCluster {
 }
 
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgenericcluster/device
+func (m_ MTRGenericCluster) Device() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("device"))
+	return rv
+}
+
+
+// SetDevice sets the value of the device property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgenericcluster/device
+func (m_ MTRGenericCluster) SetDevice(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDevice:"), value)
+}
+
 
 

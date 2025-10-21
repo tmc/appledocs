@@ -78,5 +78,23 @@ func NewMusicPlayerPlayParameters() MusicPlayerPlayParameters {
 }
 
 
+// The information returned from a MusicKit query and stored in a play parameters object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmusicplayerplayparameters/dictionary
+func (m_ MusicPlayerPlayParameters) Dictionary() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("dictionary"))
+	return rv
+}
+
+
+// SetDictionary sets the value of the dictionary property.
+// The information returned from a MusicKit query and stored in a play parameters object.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmusicplayerplayparameters/dictionary
+func (m_ MusicPlayerPlayParameters) SetDictionary(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDictionary:"), objc.String(value))
+}
+
 
 

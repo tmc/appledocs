@@ -80,6 +80,24 @@ func NewStorefront() Storefront {
 }
 
 
+// A value defined by Apple that uniquely identifies an App Store storefront.
+//
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skstorefront/identifier
+func (s_ Storefront) Identifier() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("identifier"))
+	return rv
+}
+
+
+// SetIdentifier sets the value of the identifier property.
+// A value defined by Apple that uniquely identifies an App Store storefront.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skstorefront/identifier
+func (s_ Storefront) SetIdentifier(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+}
+
 // The three-letter code representing the country or region associated with the App Store storefront.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKStorefront/countryCode

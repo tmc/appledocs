@@ -90,6 +90,75 @@ func (p_ PreviewController) RefreshCurrentPreviewItem() {
 	objc.Send[objc.ID](p_.ID, objc.Sel("refreshCurrentPreviewItem"))
 }
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/quicklook/qlpreviewitem/previewitemtitle
+func (p_ PreviewController) PreviewItemTitle() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("previewItemTitle"))
+	return rv
+}
+
+
+// SetPreviewItemTitle sets the value of the previewItemTitle property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/quicklook/qlpreviewitem/previewitemtitle
+func (p_ PreviewController) SetPreviewItemTitle(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPreviewItemTitle:"), objc.String(value))
+}
+
+// The preview controller’s delegate object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/quicklook/qlpreviewcontroller/delegate
+func (p_ PreviewController) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+
+// SetDelegate sets the value of the delegate property.
+// The preview controller’s delegate object.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/quicklook/qlpreviewcontroller/delegate
+func (p_ PreviewController) SetDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setDelegate:"), value)
+}
+
+// The index within the preview item navigation list of the item displaying in the Quick Look preview controller.
+//
+// [Full Topic]: https://developer.apple.com/documentation/quicklook/qlpreviewcontroller/currentpreviewitemindex
+func (p_ PreviewController) CurrentPreviewItemIndex() int {
+	rv := objc.Send[int](p_.ID, objc.Sel("currentPreviewItemIndex"))
+	return rv
+}
+
+
+// SetCurrentPreviewItemIndex sets the value of the currentPreviewItemIndex property.
+// The index within the preview item navigation list of the item displaying in the Quick Look preview controller.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/quicklook/qlpreviewcontroller/currentpreviewitemindex
+func (p_ PreviewController) SetCurrentPreviewItemIndex(value int) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setCurrentPreviewItemIndex:"), value)
+}
+
+// The preview controller’s data source.
+//
+// [Full Topic]: https://developer.apple.com/documentation/quicklook/qlpreviewcontroller/datasource
+func (p_ PreviewController) DataSource() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("dataSource"))
+	return rv
+}
+
+
+// SetDataSource sets the value of the dataSource property.
+// The preview controller’s data source.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/quicklook/qlpreviewcontroller/datasource
+func (p_ PreviewController) SetDataSource(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setDataSource:"), value)
+}
+
 // The item displaying in the Quick Look preview controller.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuickLook/QLPreviewController/currentPreviewItem

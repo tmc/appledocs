@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [HKLiveWorkoutBuilder] class.
@@ -128,8 +129,8 @@ func (h_ HKLiveWorkoutBuilder) SetDelegate(value objc.ID) {
 // The elapsed time for the workout based on the builder’s current contents, including pauses.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKLiveWorkoutBuilder/elapsedTime
-func (h_ HKLiveWorkoutBuilder) ElapsedTime() TimeInterval {
-	rv := objc.Send[TimeInterval](h_.ID, objc.Sel("elapsedTime"))
+func (h_ HKLiveWorkoutBuilder) ElapsedTime() foundation.TimeInterval {
+	rv := objc.Send[foundation.TimeInterval](h_.ID, objc.Sel("elapsedTime"))
 	return rv
 }
 

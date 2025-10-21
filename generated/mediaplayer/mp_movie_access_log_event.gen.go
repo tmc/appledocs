@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -80,11 +82,119 @@ func NewMovieAccessLogEvent() MovieAccessLogEvent {
 }
 
 
+// A Boolean value that indicates whether the route button is visible in the volume view.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpvolumeview/showsroutebutton
+func (m_ MovieAccessLogEvent) ShowsRouteButton() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("showsRouteButton"))
+	return rv
+}
+
+
+// SetShowsRouteButton sets the value of the showsRouteButton property.
+// A Boolean value that indicates whether the route button is visible in the volume view.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpvolumeview/showsroutebutton
+func (m_ MovieAccessLogEvent) SetShowsRouteButton(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setShowsRouteButton:"), value)
+}
+
+// The throughput required to play the stream, as advertised by the web server, in bits per second.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieaccesslogevent/indicatedbitrate
+func (m_ MovieAccessLogEvent) IndicatedBitrate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("indicatedBitrate"))
+	return rv
+}
+
+
+// SetIndicatedBitrate sets the value of the indicatedBitrate property.
+// The throughput required to play the stream, as advertised by the web server, in bits per second.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieaccesslogevent/indicatedbitrate
+func (m_ MovieAccessLogEvent) SetIndicatedBitrate(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIndicatedBitrate:"), value)
+}
+
+// The URI of the playback item.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieaccesslogevent/uri
+func (m_ MovieAccessLogEvent) Uri() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("uri"))
+	return rv
+}
+
+
+// SetUri sets the value of the uri property.
+// The URI of the playback item.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieaccesslogevent/uri
+func (m_ MovieAccessLogEvent) SetUri(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setUri:"), objc.String(value))
+}
+
+// A GUID that identifies the playback session to use in HTTP requests.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieaccesslogevent/playbacksessionid
+func (m_ MovieAccessLogEvent) PlaybackSessionID() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("playbackSessionID"))
+	return rv
+}
+
+
+// SetPlaybackSessionID sets the value of the playbackSessionID property.
+// A GUID that identifies the playback session to use in HTTP requests.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieaccesslogevent/playbacksessionid
+func (m_ MovieAccessLogEvent) SetPlaybackSessionID(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPlaybackSessionID:"), objc.String(value))
+}
+
+// The empirical throughput across all media downloaded for the movie player, in bits per second.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieaccesslogevent/observedbitrate
+func (m_ MovieAccessLogEvent) ObservedBitrate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("observedBitrate"))
+	return rv
+}
+
+
+// SetObservedBitrate sets the value of the observedBitrate property.
+// The empirical throughput across all media downloaded for the movie player, in bits per second.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieaccesslogevent/observedbitrate
+func (m_ MovieAccessLogEvent) SetObservedBitrate(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setObservedBitrate:"), value)
+}
+
+// The bounds, in points, of the content area for the full size image associated with the media item artwork.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitemartwork/imagecroprect
+func (m_ MovieAccessLogEvent) ImageCropRect() coregraphics.CGRect {
+	rv := objc.Send[coregraphics.CGRect](m_.ID, objc.Sel("imageCropRect"))
+	return rv
+}
+
+
+// SetImageCropRect sets the value of the imageCropRect property.
+// The bounds, in points, of the content area for the full size image associated with the media item artwork.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitemartwork/imagecroprect
+func (m_ MovieAccessLogEvent) SetImageCropRect(value coregraphics.CGRect) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setImageCropRect:"), value)
+}
+
 // The accumulated duration of the media played, in seconds.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMovieAccessLogEvent/durationWatched
-func (m_ MovieAccessLogEvent) DurationWatched() TimeInterval {
-	rv := objc.Send[TimeInterval](m_.ID, objc.Sel("durationWatched"))
+func (m_ MovieAccessLogEvent) DurationWatched() foundation.TimeInterval {
+	rv := objc.Send[foundation.TimeInterval](m_.ID, objc.Sel("durationWatched"))
 	return rv
 }
 
@@ -139,16 +249,16 @@ func (m_ MovieAccessLogEvent) PlaybackStartDate() unsafe.Pointer {
 // An offset into the playlist where the last uninterrupted period of playback began, in seconds.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMovieAccessLogEvent/playbackStartOffset
-func (m_ MovieAccessLogEvent) PlaybackStartOffset() TimeInterval {
-	rv := objc.Send[TimeInterval](m_.ID, objc.Sel("playbackStartOffset"))
+func (m_ MovieAccessLogEvent) PlaybackStartOffset() foundation.TimeInterval {
+	rv := objc.Send[foundation.TimeInterval](m_.ID, objc.Sel("playbackStartOffset"))
 	return rv
 }
 
 // The accumulated duration of the media downloaded, in seconds.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMovieAccessLogEvent/segmentsDownloadedDuration
-func (m_ MovieAccessLogEvent) SegmentsDownloadedDuration() TimeInterval {
-	rv := objc.Send[TimeInterval](m_.ID, objc.Sel("segmentsDownloadedDuration"))
+func (m_ MovieAccessLogEvent) SegmentsDownloadedDuration() foundation.TimeInterval {
+	rv := objc.Send[foundation.TimeInterval](m_.ID, objc.Sel("segmentsDownloadedDuration"))
 	return rv
 }
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PathCell] class.
@@ -80,6 +81,240 @@ func NewPathCell() PathCell {
 	return getPathCellClass().New()
 }
 
+
+// The size of the cell.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/controlsize
+func (p_ PathCell) ControlSize() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("controlSize"))
+	return rv
+}
+
+
+// SetControlSize sets the value of the controlSize property.
+// The size of the cell.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/controlsize
+func (p_ PathCell) SetControlSize(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setControlSize:"), value)
+}
+
+// A Boolean value indicating whether the cell is editable.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/iseditable
+func (p_ PathCell) IsEditable() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isEditable"))
+	return rv
+}
+
+
+// SetIsEditable sets the value of the isEditable property.
+// A Boolean value indicating whether the cell is editable.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/iseditable
+func (p_ PathCell) SetIsEditable(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsEditable:"), value)
+}
+
+// A Boolean value indicating whether the cell’s text can be selected.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/isselectable
+func (p_ PathCell) IsSelectable() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isSelectable"))
+	return rv
+}
+
+
+// SetIsSelectable sets the value of the isSelectable property.
+// A Boolean value indicating whether the cell’s text can be selected.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/isselectable
+func (p_ PathCell) SetIsSelectable(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsSelectable:"), value)
+}
+
+// Sets the component types allowed in the path when the cell is editable.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcell/allowedtypes
+func (p_ PathCell) AllowedTypes() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("allowedTypes"))
+	return rv
+}
+
+
+// SetAllowedTypes sets the value of the allowedTypes property.
+// Sets the component types allowed in the path when the cell is editable.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcell/allowedtypes
+func (p_ PathCell) SetAllowedTypes(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setAllowedTypes:"), objc.String(value))
+}
+
+// Returns the current background color of the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcell/backgroundcolor
+func (p_ PathCell) BackgroundColor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("backgroundColor"))
+	return rv
+}
+
+
+// SetBackgroundColor sets the value of the backgroundColor property.
+// Returns the current background color of the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcell/backgroundcolor
+func (p_ PathCell) SetBackgroundColor(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setBackgroundColor:"), value)
+}
+
+// Sets the value of the path displayed by the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcell/clickedpathcomponentcell
+func (p_ PathCell) ClickedPathComponentCell() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("clickedPathComponentCell"))
+	return rv
+}
+
+
+// SetClickedPathComponentCell sets the value of the clickedPathComponentCell property.
+// Sets the value of the path displayed by the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcell/clickedpathcomponentcell
+func (p_ PathCell) SetClickedPathComponentCell(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setClickedPathComponentCell:"), value)
+}
+
+// Sets the receiver’s delegate.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcell/delegate
+func (p_ PathCell) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+
+// SetDelegate sets the value of the delegate property.
+// Sets the receiver’s delegate.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcell/delegate
+func (p_ PathCell) SetDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setDelegate:"), value)
+}
+
+// Sets the receiver’s double-click action.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcell/doubleaction
+func (p_ PathCell) DoubleAction() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("doubleAction"))
+	return rv
+}
+
+
+// SetDoubleAction sets the value of the doubleAction property.
+// Sets the receiver’s double-click action.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcell/doubleaction
+func (p_ PathCell) SetDoubleAction(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setDoubleAction:"), value)
+}
+
+// Sets the array of
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcell/pathcomponentcells
+func (p_ PathCell) PathComponentCells() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("pathComponentCells"))
+	return rv
+}
+
+
+// SetPathComponentCells sets the value of the pathComponentCells property.
+// Sets the array of
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcell/pathcomponentcells
+func (p_ PathCell) SetPathComponentCells(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPathComponentCells:"), value)
+}
+
+// Sets the receiver’s path style.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcell/pathstyle
+func (p_ PathCell) PathStyle() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("pathStyle"))
+	return rv
+}
+
+
+// SetPathStyle sets the value of the pathStyle property.
+// Sets the receiver’s path style.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcell/pathstyle
+func (p_ PathCell) SetPathStyle(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPathStyle:"), value)
+}
+
+// Sets the value of the placeholder attributed string.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcell/placeholderattributedstring
+func (p_ PathCell) PlaceholderAttributedString() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("placeholderAttributedString"))
+	return rv
+}
+
+
+// SetPlaceholderAttributedString sets the value of the placeholderAttributedString property.
+// Sets the value of the placeholder attributed string.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcell/placeholderattributedstring
+func (p_ PathCell) SetPlaceholderAttributedString(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPlaceholderAttributedString:"), value)
+}
+
+// Returns the placeholder string.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcell/placeholderstring
+func (p_ PathCell) PlaceholderString() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("placeholderString"))
+	return rv
+}
+
+
+// SetPlaceholderString sets the value of the placeholderString property.
+// Returns the placeholder string.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcell/placeholderstring
+func (p_ PathCell) SetPlaceholderString(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPlaceholderString:"), objc.String(value))
+}
+
+// Returns the path displayed by the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcell/url
+func (p_ PathCell) Url() foundation.URL {
+	rv := objc.Send[foundation.URL](p_.ID, objc.Sel("url"))
+	return rv
+}
+
+
+// SetUrl sets the value of the url property.
+// Returns the path displayed by the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcell/url
+func (p_ PathCell) SetUrl(value foundation.URL) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setUrl:"), value)
+}
 
 
 

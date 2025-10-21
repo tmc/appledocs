@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MTROtaSoftwareUpdateRequestorClusterAnnounceOtaProviderParams] class.
@@ -75,6 +76,84 @@ func NewMTROtaSoftwareUpdateRequestorClusterAnnounceOtaProviderParams() MTROtaSo
 	return getMTROtaSoftwareUpdateRequestorClusterAnnounceOtaProviderParamsClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterannounceotaproviderparams-1ucwe/metadatafornode
+func (m_ MTROtaSoftwareUpdateRequestorClusterAnnounceOtaProviderParams) MetadataForNode() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("metadataForNode"))
+	return rv
+}
+
+
+// SetMetadataForNode sets the value of the metadataForNode property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterannounceotaproviderparams-1ucwe/metadatafornode
+func (m_ MTROtaSoftwareUpdateRequestorClusterAnnounceOtaProviderParams) SetMetadataForNode(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMetadataForNode:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterannounceotaproviderparams-1ucwe/timedinvoketimeoutms
+func (m_ MTROtaSoftwareUpdateRequestorClusterAnnounceOtaProviderParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+	return rv
+}
+
+
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterannounceotaproviderparams-1ucwe/timedinvoketimeoutms
+func (m_ MTROtaSoftwareUpdateRequestorClusterAnnounceOtaProviderParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterannounceotaproviderparams-1ucwe/announcementreason
+func (m_ MTROtaSoftwareUpdateRequestorClusterAnnounceOtaProviderParams) AnnouncementReason() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("announcementReason"))
+	return rv
+}
+
+
+// SetAnnouncementReason sets the value of the announcementReason property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterannounceotaproviderparams-1ucwe/announcementreason
+func (m_ MTROtaSoftwareUpdateRequestorClusterAnnounceOtaProviderParams) SetAnnouncementReason(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAnnouncementReason:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterannounceotaproviderparams-1ucwe/endpoint
+func (m_ MTROtaSoftwareUpdateRequestorClusterAnnounceOtaProviderParams) Endpoint() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("endpoint"))
+	return rv
+}
+
+
+// SetEndpoint sets the value of the endpoint property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterannounceotaproviderparams-1ucwe/endpoint
+func (m_ MTROtaSoftwareUpdateRequestorClusterAnnounceOtaProviderParams) SetEndpoint(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setEndpoint:"), value)
+}
+
+// Controls how much time, in seconds, we will allow for the server to process the command.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterannounceotaproviderparams-1ucwe/serversideprocessingtimeout
+func (m_ MTROtaSoftwareUpdateRequestorClusterAnnounceOtaProviderParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+	return rv
+}
+
+
+// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
+// Controls how much time, in seconds, we will allow for the server to process the command.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterannounceotaproviderparams-1ucwe/serversideprocessingtimeout
+func (m_ MTROtaSoftwareUpdateRequestorClusterAnnounceOtaProviderParams) SetServerSideProcessingTimeout(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
+}
 
 
 

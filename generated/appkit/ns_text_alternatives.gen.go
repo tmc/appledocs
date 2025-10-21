@@ -88,5 +88,23 @@ func (t_ TextAlternatives) PrimaryString() string {
 	return rv
 }
 
+// An array of alternative possible interpretations that the user might select.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextalternatives/alternativestrings
+func (t_ TextAlternatives) AlternativeStrings() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("alternativeStrings"))
+	return rv
+}
+
+
+// SetAlternativeStrings sets the value of the alternativeStrings property.
+// An array of alternative possible interpretations that the user might select.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextalternatives/alternativestrings
+func (t_ TextAlternatives) SetAlternativeStrings(value string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setAlternativeStrings:"), objc.String(value))
+}
+
 
 

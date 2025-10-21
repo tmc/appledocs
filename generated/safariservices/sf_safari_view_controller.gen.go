@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [SFSafariViewController] class.
@@ -87,7 +88,7 @@ func NewSFSafariViewController() SFSafariViewController {
 // Initializes a Safari view controller that loads the specified URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariViewController/init(url:)
-func NewSFSafariViewControllerWithURL(URL unsafe.Pointer) SFSafariViewController {
+func NewSFSafariViewControllerWithURL(URL foundation.URL) SFSafariViewController {
 	instance := getSFSafariViewControllerClass().Alloc()
 	rv := objc.Send[SFSafariViewController](instance.ID, objc.Sel("initWithURL:"), URL)
 	rv.Autorelease()
@@ -99,7 +100,7 @@ func NewSFSafariViewControllerWithURL(URL unsafe.Pointer) SFSafariViewController
 // Initializes and configures a Safari view controller that loads the specified URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariViewController/init(url:configuration:)
-func NewSFSafariViewControllerWithURLConfiguration(URL unsafe.Pointer, configuration unsafe.Pointer) SFSafariViewController {
+func NewSFSafariViewControllerWithURLConfiguration(URL foundation.URL, configuration unsafe.Pointer) SFSafariViewController {
 	instance := getSFSafariViewControllerClass().Alloc()
 	rv := objc.Send[SFSafariViewController](instance.ID, objc.Sel("initWithURL:configuration:"), URL, configuration)
 	rv.Autorelease()
@@ -111,7 +112,7 @@ func NewSFSafariViewControllerWithURLConfiguration(URL unsafe.Pointer, configura
 // Initializes a Safari view controller that will load the specified URL, entering Reader mode if Reader mode is requested and available.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariViewController/init(url:entersReaderIfAvailable:)
-func NewSFSafariViewControllerWithURLEntersReaderIfAvailable(URL unsafe.Pointer, entersReaderIfAvailable bool) SFSafariViewController {
+func NewSFSafariViewControllerWithURLEntersReaderIfAvailable(URL foundation.URL, entersReaderIfAvailable bool) SFSafariViewController {
 	instance := getSFSafariViewControllerClass().Alloc()
 	rv := objc.Send[SFSafariViewController](instance.ID, objc.Sel("initWithURL:entersReaderIfAvailable:"), URL, entersReaderIfAvailable)
 	rv.Autorelease()
@@ -124,6 +125,24 @@ func NewSFSafariViewControllerWithURLEntersReaderIfAvailable(URL unsafe.Pointer,
 func (sc _SFSafariViewControllerClass) PrewarmConnectionsToURLs(URLs unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("prewarmConnectionsToURLs:"), URLs)
 	return rv
+}
+
+// An object you use to send tap event attribution data to the browser for Private Click Measurement.
+//
+// [Full Topic]: https://developer.apple.com/documentation/safariservices/sfsafariviewcontroller/configuration-swift.class/eventattribution
+func (s_ SFSafariViewController) EventAttribution() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("eventAttribution"))
+	return rv
+}
+
+
+// SetEventAttribution sets the value of the eventAttribution property.
+// An object you use to send tap event attribution data to the browser for Private Click Measurement.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/safariservices/sfsafariviewcontroller/configuration-swift.class/eventattribution
+func (s_ SFSafariViewController) SetEventAttribution(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setEventAttribution:"), value)
 }
 
 // A copy of the Safari view controller’s initialized configuration.

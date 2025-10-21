@@ -10,21 +10,43 @@ import (
 // Fallback type aliases for undefined types
 // These types are referenced in method signatures but not fully documented.
 // Using unsafe.Pointer as fallback to allow code generation.
+type AVAssetCache unsafe.Pointer
+
+type AVAssetDownloadContentConfiguration unsafe.Pointer
+
 type AVAssetDownloadedAssetEvictionPriority unsafe.Pointer
 
 type AVAssetReferenceRestrictions unsafe.Pointer
 
+type AVAssetResourceLoaderDelegate unsafe.Pointer
+
+type AVAssetSegmentTrackReport unsafe.Pointer
+
+type AVAssetSegmentType unsafe.Pointer
+
+type AVAssetTrackGroupOutputHandling unsafe.Pointer
+
+type AVAssetVariant unsafe.Pointer
+
 type AVAssetWriterInputGroup unsafe.Pointer
 
-type AVAudioSessionPortDescription unsafe.Pointer
+type AVAssetWriterInputPassDescription unsafe.Pointer
 
 type AVAudioSpatializationFormats unsafe.Pointer
 
+type AVCaptionRegion unsafe.Pointer
+
 type AVCaptureAspectRatio unsafe.Pointer
+
+type AVCaptureAudioDataOutputSampleBufferDelegate unsafe.Pointer
+
+type AVCaptureBracketedStillImageSettings unsafe.Pointer
 
 type AVCaptureCameraLensSmudgeDetectionStatus unsafe.Pointer
 
 type AVCaptureControl unsafe.Pointer
+
+type AVCaptureDataOutputSynchronizerDelegate unsafe.Pointer
 
 type AVCaptureDeviceFormat unsafe.Pointer
 
@@ -34,23 +56,37 @@ type AVCaptureDeviceType unsafe.Pointer
 
 type AVCaptureExposureMode unsafe.Pointer
 
-type AVCaptureFileOutputRecordingDelegate unsafe.Pointer
+type AVCaptureFileOutputDelegate unsafe.Pointer
 
 type AVCaptureFocusMode unsafe.Pointer
+
+type AVCaptureMetadataOutputObjectsDelegate unsafe.Pointer
 
 type AVCaptureMicrophoneMode unsafe.Pointer
 
 type AVCaptureMultichannelAudioMode unsafe.Pointer
 
-type AVCaptureSessionPreset unsafe.Pointer
+type AVCaptureTimecode unsafe.Pointer
+
+type AVCaptureTimecodeGeneratorDelegate unsafe.Pointer
 
 type AVCaptureTimecodeSource unsafe.Pointer
 
 type AVCaptureVideoOrientation unsafe.Pointer
 
+type AVCaptureVideoStabilizationMode unsafe.Pointer
+
 type AVCaptureWhiteBalanceGains unsafe.Pointer
 
+type AVCompositionTrackFormatDescriptionReplacement unsafe.Pointer
+
+type AVContentAuthorizationStatus unsafe.Pointer
+
+type AVContentKeySystem unsafe.Pointer
+
 type AVContentProposal unsafe.Pointer
+
+type AVCoordinatedPlaybackSuspension unsafe.Pointer
 
 type AVCoordinatedPlaybackSuspensionReason unsafe.Pointer
 
@@ -58,83 +94,61 @@ type AVCustomMediaSelectionScheme unsafe.Pointer
 
 type AVExternalSyncDevice unsafe.Pointer
 
-type AVFileType unsafe.Pointer
-
-type AVInterstitialTimeRange unsafe.Pointer
-
-type AVLayerVideoGravity unsafe.Pointer
+type AVFragmentedMovieTrack unsafe.Pointer
 
 type AVMediaCharacteristic unsafe.Pointer
 
 type AVMediaExtensionProperties unsafe.Pointer
 
-type AVMediaPresentationSelector unsafe.Pointer
+type AVMetadataExtraAttributeKey unsafe.Pointer
 
-type AVMediaType unsafe.Pointer
+type AVMetadataItemFilter unsafe.Pointer
 
-type AVMetadataFormat unsafe.Pointer
+type AVMetadataKeySpace unsafe.Pointer
 
-type AVMetadataIdentifier unsafe.Pointer
-
-type AVMetadataObjectType unsafe.Pointer
-
-type AVNavigationMarkersGroup unsafe.Pointer
+type AVMutableCompositionTrack unsafe.Pointer
 
 type AVPlaybackCoordinationMedium unsafe.Pointer
+
+type AVPlayerItemIntegratedTimelineSnapshot unsafe.Pointer
+
+type AVPlayerItemMediaDataCollector unsafe.Pointer
+
+type AVPlayerItemOutput unsafe.Pointer
+
+type AVPlayerItemRenderedLegibleOutputPushDelegate unsafe.Pointer
 
 type AVPlayerMediaSelectionCriteria unsafe.Pointer
 
 type AVPlayerVideoOutput unsafe.Pointer
 
-type AVPlayerWaitingReason unsafe.Pointer
+type AVQueuedSampleBufferRendering unsafe.Pointer
+
+type AVQueuedSampleBufferRenderingStatus unsafe.Pointer
+
+type AVSampleCursorAudioDependencyInfo unsafe.Pointer
+
+type AVSampleCursorChunkInfo unsafe.Pointer
+
+type AVSampleCursorDependencyInfo unsafe.Pointer
+
+type AVSampleCursorStorageRange unsafe.Pointer
+
+type AVSampleCursorSyncInfo unsafe.Pointer
 
 type AVSemanticSegmentationMatteType unsafe.Pointer
 
-type AVTrackAssociationType unsafe.Pointer
+type AVSpatialVideoConfiguration unsafe.Pointer
 
-type AVVideoCodecType unsafe.Pointer
+type AVTextStyleRule unsafe.Pointer
 
-type AVVideoCompositionInstruction unsafe.Pointer
+type AVVariantPreferences unsafe.Pointer
 
-type AVVideoCompositionValidationHandling unsafe.Pointer
+type AVVideoApertureMode unsafe.Pointer
 
-type CALayer unsafe.Pointer
+type AVVideoCompositionCoreAnimationTool unsafe.Pointer
 
-type CASpatialAudioExperience unsafe.Pointer
-
-type CGImageRef unsafe.Pointer
-
-type CMClockRef unsafe.Pointer
-
-type CMFormatDescriptionRef unsafe.Pointer
-
-type CMPersistentTrackID unsafe.Pointer
-
-type CMSampleBufferRef unsafe.Pointer
-
-type CMTime unsafe.Pointer
-
-type CMTimeMapping unsafe.Pointer
-
-type CMTimeRange unsafe.Pointer
-
-type CMTimeScale unsafe.Pointer
-
-type CMVideoDimensions unsafe.Pointer
-
-type CVPixelBufferRef unsafe.Pointer
-
-type Class unsafe.Pointer
-
-type NSError unsafe.Pointer
-
-type NSLocale unsafe.Pointer
-
-type NSUUID unsafe.Pointer
-
-type NSValue unsafe.Pointer
-
-type OSStatus unsafe.Pointer
+type AVVideoFieldMode unsafe.Pointer
 
 
 

@@ -80,5 +80,23 @@ func NewMKPointOfInterestFilter() MKPointOfInterestFilter {
 }
 
 
+// The filter to use for determining the points of interest that appear on the map.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/pointofinterestfilter
+func (m_ MKPointOfInterestFilter) PointOfInterestFilter() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("pointOfInterestFilter"))
+	return rv
+}
+
+
+// SetPointOfInterestFilter sets the value of the pointOfInterestFilter property.
+// The filter to use for determining the points of interest that appear on the map.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/pointofinterestfilter
+func (m_ MKPointOfInterestFilter) SetPointOfInterestFilter(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPointOfInterestFilter:"), value)
+}
+
 
 

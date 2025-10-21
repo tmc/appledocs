@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [DDMatchLink] class.
@@ -84,8 +85,8 @@ func NewDDMatchLink() DDMatchLink {
 // An address for a web resource, such as a webpage or image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchLink/url
-func (d_ DDMatchLink) URL() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("URL"))
+func (d_ DDMatchLink) URL() foundation.URL {
+	rv := objc.Send[foundation.URL](d_.ID, objc.Sel("URL"))
 	return rv
 }
 

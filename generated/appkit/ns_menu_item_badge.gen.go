@@ -88,5 +88,56 @@ func (m_ MenuItemBadge) Type() unsafe.Pointer {
 	return rv
 }
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitem/badge
+func (m_ MenuItemBadge) Badge() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("badge"))
+	return rv
+}
+
+
+// SetBadge sets the value of the badge property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitem/badge
+func (m_ MenuItemBadge) SetBadge(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setBadge:"), value)
+}
+
+// The number of items the badge displays.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitembadge/itemcount
+func (m_ MenuItemBadge) ItemCount() int {
+	rv := objc.Send[int](m_.ID, objc.Sel("itemCount"))
+	return rv
+}
+
+
+// SetItemCount sets the value of the itemCount property.
+// The number of items the badge displays.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitembadge/itemcount
+func (m_ MenuItemBadge) SetItemCount(value int) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setItemCount:"), value)
+}
+
+// The string representation of the badge as it would appear when
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitembadge/stringvalue-32sbt
+func (m_ MenuItemBadge) StringValue() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("stringValue"))
+	return rv
+}
+
+
+// SetStringValue sets the value of the stringValue property.
+// The string representation of the badge as it would appear when
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitembadge/stringvalue-32sbt
+func (m_ MenuItemBadge) SetStringValue(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setStringValue:"), objc.String(value))
+}
+
 
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,36 @@ func NewMTRTargetNavigatorClusterTargetInfoStruct() MTRTargetNavigatorClusterTar
 	return getMTRTargetNavigatorClusterTargetInfoStructClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtargetnavigatorclustertargetinfostruct/name
+func (m_ MTRTargetNavigatorClusterTargetInfoStruct) Name() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("name"))
+	return rv
+}
+
+
+// SetName sets the value of the name property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtargetnavigatorclustertargetinfostruct/name
+func (m_ MTRTargetNavigatorClusterTargetInfoStruct) SetName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtargetnavigatorclustertargetinfostruct/identifier
+func (m_ MTRTargetNavigatorClusterTargetInfoStruct) Identifier() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("identifier"))
+	return rv
+}
+
+
+// SetIdentifier sets the value of the identifier property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtargetnavigatorclustertargetinfostruct/identifier
+func (m_ MTRTargetNavigatorClusterTargetInfoStruct) SetIdentifier(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIdentifier:"), value)
+}
 
 
 

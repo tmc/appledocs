@@ -80,5 +80,23 @@ func NewINSpeakableString() INSpeakableString {
 }
 
 
+// The identifier associated with the string in your app’s custom vocabulary file.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inspeakable/identifier
+func (i_ INSpeakableString) Identifier() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("identifier"))
+	return rv
+}
+
+
+// SetIdentifier sets the value of the identifier property.
+// The identifier associated with the string in your app’s custom vocabulary file.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inspeakable/identifier
+func (i_ INSpeakableString) SetIdentifier(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+}
+
 
 

@@ -81,5 +81,23 @@ func NewHKDocumentSample() HKDocumentSample {
 }
 
 
+// The type of document represented by the sample.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdocumentsample/documenttype
+func (h_ HKDocumentSample) DocumentType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("documentType"))
+	return rv
+}
+
+
+// SetDocumentType sets the value of the documentType property.
+// The type of document represented by the sample.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdocumentsample/documenttype
+func (h_ HKDocumentSample) SetDocumentType(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setDocumentType:"), value)
+}
+
 
 

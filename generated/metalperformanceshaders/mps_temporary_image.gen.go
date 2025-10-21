@@ -81,5 +81,41 @@ func NewTemporaryImage() TemporaryImage {
 }
 
 
+// The underlying texture.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimage/texture
+func (t_ TemporaryImage) Texture() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("texture"))
+	return rv
+}
+
+
+// SetTexture sets the value of the texture property.
+// The underlying texture.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimage/texture
+func (t_ TemporaryImage) SetTexture(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setTexture:"), value)
+}
+
+// The number of times a temporary image may be read by a CNN kernel before its contents become undefined.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpstemporaryimage/readcount
+func (t_ TemporaryImage) ReadCount() int {
+	rv := objc.Send[int](t_.ID, objc.Sel("readCount"))
+	return rv
+}
+
+
+// SetReadCount sets the value of the readCount property.
+// The number of times a temporary image may be read by a CNN kernel before its contents become undefined.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpstemporaryimage/readcount
+func (t_ TemporaryImage) SetReadCount(value int) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setReadCount:"), value)
+}
+
 
 

@@ -100,6 +100,42 @@ func (uc _UNLocationNotificationTriggerClass) TriggerWithRegionRepeats(region un
 	return rv
 }
 
+// A Boolean indicating that notifications are generated upon entry into the region.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLRegion/notifyOnEntry
+func (u_ UNLocationNotificationTrigger) NotifyOnEntry() bool {
+	rv := objc.Send[bool](u_.ID, objc.Sel("notifyOnEntry"))
+	return rv
+}
+
+
+// SetNotifyOnEntry sets the value of the notifyOnEntry property.
+// A Boolean indicating that notifications are generated upon entry into the region.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLRegion/notifyOnEntry
+func (u_ UNLocationNotificationTrigger) SetNotifyOnEntry(value bool) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setNotifyOnEntry:"), value)
+}
+
+// A Boolean indicating that notifications are generated upon exit from the region.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLRegion/notifyOnExit
+func (u_ UNLocationNotificationTrigger) NotifyOnExit() bool {
+	rv := objc.Send[bool](u_.ID, objc.Sel("notifyOnExit"))
+	return rv
+}
+
+
+// SetNotifyOnExit sets the value of the notifyOnExit property.
+// A Boolean indicating that notifications are generated upon exit from the region.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLRegion/notifyOnExit
+func (u_ UNLocationNotificationTrigger) SetNotifyOnExit(value bool) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setNotifyOnExit:"), value)
+}
+
 // The region used to determine when the system sends the notification.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNLocationNotificationTrigger/region

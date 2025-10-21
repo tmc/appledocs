@@ -80,5 +80,41 @@ func NewVZBridgedNetworkInterface() VZBridgedNetworkInterface {
 }
 
 
+// The unique BSD name of this network interface.
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzbridgednetworkinterface/identifier
+func (v_ VZBridgedNetworkInterface) Identifier() string {
+	rv := objc.Send[string](v_.ID, objc.Sel("identifier"))
+	return rv
+}
+
+
+// SetIdentifier sets the value of the identifier property.
+// The unique BSD name of this network interface.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzbridgednetworkinterface/identifier
+func (v_ VZBridgedNetworkInterface) SetIdentifier(value string) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+}
+
+// A user-visible name for the network interface.
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzbridgednetworkinterface/localizeddisplayname
+func (v_ VZBridgedNetworkInterface) LocalizedDisplayName() string {
+	rv := objc.Send[string](v_.ID, objc.Sel("localizedDisplayName"))
+	return rv
+}
+
+
+// SetLocalizedDisplayName sets the value of the localizedDisplayName property.
+// A user-visible name for the network interface.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzbridgednetworkinterface/localizeddisplayname
+func (v_ VZBridgedNetworkInterface) SetLocalizedDisplayName(value string) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setLocalizedDisplayName:"), objc.String(value))
+}
+
 
 

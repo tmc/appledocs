@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MTRClusterServiceArea] class.
@@ -40,8 +41,8 @@ type IMTRClusterServiceArea interface {
 	ReadAttributeSelectedAreasWithParams(params unsafe.Pointer) unsafe.Pointer
 	ReadAttributeSupportedAreasWithParams(params unsafe.Pointer) unsafe.Pointer
 	ReadAttributeSupportedMapsWithParams(params unsafe.Pointer) unsafe.Pointer
-	SelectAreasWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, completion unsafe.Pointer)
-	SkipAreaWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, completion unsafe.Pointer)
+	SelectAreasWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer)
+	SkipAreaWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer)
 }
 
 // Cluster Service Area The Service Area cluster provides an interface for controlling the areas where a device should operate, and for querying the current area being serviced.
@@ -97,7 +98,7 @@ func NewMTRClusterServiceArea() MTRClusterServiceArea {
 // For all instance methods that take a completion (i.e. command invocations), the completion will be called on the provided queue.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterServiceArea/init(device:endpointID:queue:)
-func NewMTRClusterServiceAreaWithDeviceEndpointIDQueue(device unsafe.Pointer, endpointID unsafe.Pointer, queue unsafe.Pointer) MTRClusterServiceArea {
+func NewMTRClusterServiceAreaWithDeviceEndpointIDQueue(device unsafe.Pointer, endpointID foundation.Number, queue unsafe.Pointer) MTRClusterServiceArea {
 	instance := getMTRClusterServiceAreaClass().Alloc()
 	rv := objc.Send[MTRClusterServiceArea](instance.ID, objc.Sel("initWithDevice:endpointID:queue:"), device, endpointID, queue)
 	rv.Autorelease()
@@ -184,13 +185,13 @@ func (m_ MTRClusterServiceArea) ReadAttributeSupportedMapsWithParams(params unsa
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterServiceArea/selectAreas(with:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterServiceArea) SelectAreasWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, completion unsafe.Pointer) {
+func (m_ MTRClusterServiceArea) SelectAreasWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("selectAreasWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterServiceArea/skip(with:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterServiceArea) SkipAreaWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, completion unsafe.Pointer) {
+func (m_ MTRClusterServiceArea) SkipAreaWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("skipAreaWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
 }
 

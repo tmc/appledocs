@@ -80,6 +80,42 @@ func NewMonteCarloStrategist() MonteCarloStrategist {
 }
 
 
+// A randomizer object to be used when the strategist randomly selects a move.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gameplaykit/gkstrategist/randomsource
+func (m_ MonteCarloStrategist) RandomSource() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("randomSource"))
+	return rv
+}
+
+
+// SetRandomSource sets the value of the randomSource property.
+// A randomizer object to be used when the strategist randomly selects a move.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gameplaykit/gkstrategist/randomsource
+func (m_ MonteCarloStrategist) SetRandomSource(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setRandomSource:"), value)
+}
+
+// The model representing the current state of the game.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gameplaykit/gkstrategist/gamemodel
+func (m_ MonteCarloStrategist) GameModel() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("gameModel"))
+	return rv
+}
+
+
+// SetGameModel sets the value of the gameModel property.
+// The model representing the current state of the game.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gameplaykit/gkstrategist/gamemodel
+func (m_ MonteCarloStrategist) SetGameModel(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setGameModel:"), value)
+}
+
 // The maximum number of game model states the strategist will examine when searching for a move.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKMonteCarloStrategist/budget

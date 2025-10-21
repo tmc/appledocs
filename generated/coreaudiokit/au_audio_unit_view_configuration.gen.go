@@ -91,6 +91,24 @@ func NewAudioUnitViewConfigurationWithWidthHeightHostHasController(width float64
 }
 
 
+// A Boolean value that indicates whether the host shows its own control surface in this view configuration.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreaudiokit/auaudiounitviewconfiguration/hosthascontroller
+func (a_ AudioUnitViewConfiguration) HostHasController() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("hostHasController"))
+	return rv
+}
+
+
+// SetHostHasController sets the value of the hostHasController property.
+// A Boolean value that indicates whether the host shows its own control surface in this view configuration.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreaudiokit/auaudiounitviewconfiguration/hosthascontroller
+func (a_ AudioUnitViewConfiguration) SetHostHasController(value bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setHostHasController:"), value)
+}
+
 // The configured height.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/AUAudioUnitViewConfiguration/height

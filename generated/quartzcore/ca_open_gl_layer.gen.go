@@ -133,6 +133,24 @@ func (o_ OpenGLLayer) ReleaseCGLPixelFormat(pf unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("releaseCGLPixelFormat:"), pf)
 }
 
+// Determines when the contents of the layer are updated.
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/caopengllayer/isasynchronous
+func (o_ OpenGLLayer) IsAsynchronous() bool {
+	rv := objc.Send[bool](o_.ID, objc.Sel("isAsynchronous"))
+	return rv
+}
+
+
+// SetIsAsynchronous sets the value of the isAsynchronous property.
+// Determines when the contents of the layer are updated.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/caopengllayer/isasynchronous
+func (o_ OpenGLLayer) SetIsAsynchronous(value bool) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setIsAsynchronous:"), value)
+}
+
 // The layer’s colorspace in Core Graphics.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAOpenGLLayer/colorspace

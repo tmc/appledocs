@@ -78,5 +78,80 @@ func NewFilterNode() FilterNode {
 }
 
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnfilternode/resultstate
+func (f_ FilterNode) ResultState() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("resultState"))
+	return rv
+}
+
+
+// SetResultState sets the value of the resultState property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnfilternode/resultstate
+func (f_ FilterNode) SetResultState(value unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setResultState:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnfilternode/label
+func (f_ FilterNode) Label() string {
+	rv := objc.Send[string](f_.ID, objc.Sel("label"))
+	return rv
+}
+
+
+// SetLabel sets the value of the label property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnfilternode/label
+func (f_ FilterNode) SetLabel(value string) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setLabel:"), objc.String(value))
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnfilternode/resultimage
+func (f_ FilterNode) ResultImage() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("resultImage"))
+	return rv
+}
+
+
+// SetResultImage sets the value of the resultImage property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnfilternode/resultimage
+func (f_ FilterNode) SetResultImage(value unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setResultImage:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnfilternode/paddingpolicy
+func (f_ FilterNode) PaddingPolicy() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("paddingPolicy"))
+	return rv
+}
+
+
+// SetPaddingPolicy sets the value of the paddingPolicy property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnfilternode/paddingpolicy
+func (f_ FilterNode) SetPaddingPolicy(value unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setPaddingPolicy:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnfilternode/resultstates
+func (f_ FilterNode) ResultStates() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("resultStates"))
+	return rv
+}
+
+
+// SetResultStates sets the value of the resultStates property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnfilternode/resultstates
+func (f_ FilterNode) SetResultStates(value unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setResultStates:"), value)
+}
+
 
 

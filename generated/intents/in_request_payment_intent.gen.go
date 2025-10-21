@@ -81,5 +81,59 @@ func NewINRequestPaymentIntent() INRequestPaymentIntent {
 }
 
 
+// The amount of the payment.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inrequestpaymentintent/currencyamount
+func (i_ INRequestPaymentIntent) CurrencyAmount() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("currencyAmount"))
+	return rv
+}
+
+
+// SetCurrencyAmount sets the value of the currencyAmount property.
+// The amount of the payment.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inrequestpaymentintent/currencyamount
+func (i_ INRequestPaymentIntent) SetCurrencyAmount(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setCurrencyAmount:"), value)
+}
+
+// A note associated with the request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inrequestpaymentintent/note
+func (i_ INRequestPaymentIntent) Note() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("note"))
+	return rv
+}
+
+
+// SetNote sets the value of the note property.
+// A note associated with the request.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inrequestpaymentintent/note
+func (i_ INRequestPaymentIntent) SetNote(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setNote:"), objc.String(value))
+}
+
+// The recipient of the payment request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inrequestpaymentintent/payer
+func (i_ INRequestPaymentIntent) Payer() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("payer"))
+	return rv
+}
+
+
+// SetPayer sets the value of the payer property.
+// The recipient of the payment request.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inrequestpaymentintent/payer
+func (i_ INRequestPaymentIntent) SetPayer(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setPayer:"), value)
+}
+
 
 

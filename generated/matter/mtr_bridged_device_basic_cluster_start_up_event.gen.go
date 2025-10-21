@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MTRBridgedDeviceBasicClusterStartUpEvent] class.
@@ -75,6 +76,21 @@ func NewMTRBridgedDeviceBasicClusterStartUpEvent() MTRBridgedDeviceBasicClusterS
 	return getMTRBridgedDeviceBasicClusterStartUpEventClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrbridgeddevicebasicclusterstartupevent/softwareversion
+func (m_ MTRBridgedDeviceBasicClusterStartUpEvent) SoftwareVersion() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("softwareVersion"))
+	return rv
+}
+
+
+// SetSoftwareVersion sets the value of the softwareVersion property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrbridgeddevicebasicclusterstartupevent/softwareversion
+func (m_ MTRBridgedDeviceBasicClusterStartUpEvent) SetSoftwareVersion(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSoftwareVersion:"), value)
+}
 
 
 

@@ -80,5 +80,59 @@ func NewINCallRecordFilter() INCallRecordFilter {
 }
 
 
+// An indicator of whether the call supports audio or video.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/incallrecordfilter/callcapability
+func (i_ INCallRecordFilter) CallCapability() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("callCapability"))
+	return rv
+}
+
+
+// SetCallCapability sets the value of the callCapability property.
+// An indicator of whether the call supports audio or video.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/incallrecordfilter/callcapability
+func (i_ INCallRecordFilter) SetCallCapability(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setCallCapability:"), value)
+}
+
+// The various call options that the user can requests.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/incallrecordfilter/calltypes
+func (i_ INCallRecordFilter) CallTypes() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("callTypes"))
+	return rv
+}
+
+
+// SetCallTypes sets the value of the callTypes property.
+// The various call options that the user can requests.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/incallrecordfilter/calltypes
+func (i_ INCallRecordFilter) SetCallTypes(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setCallTypes:"), value)
+}
+
+// The recipient of the user’s call request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/incallrecordfilter/participants
+func (i_ INCallRecordFilter) Participants() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("participants"))
+	return rv
+}
+
+
+// SetParticipants sets the value of the participants property.
+// The recipient of the user’s call request.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/incallrecordfilter/participants
+func (i_ INCallRecordFilter) SetParticipants(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setParticipants:"), value)
+}
+
 
 

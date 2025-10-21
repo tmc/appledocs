@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -90,8 +91,8 @@ func NewMTRGeneralDiagnosticsClusterTimeSnapshotResponseParamsWithResponseValueE
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralDiagnosticsClusterTimeSnapshotResponseParams/posixTimeMs
-func (m_ MTRGeneralDiagnosticsClusterTimeSnapshotResponseParams) PosixTimeMs() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("posixTimeMs"))
+func (m_ MTRGeneralDiagnosticsClusterTimeSnapshotResponseParams) PosixTimeMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("posixTimeMs"))
 	return rv
 }
 
@@ -99,14 +100,14 @@ func (m_ MTRGeneralDiagnosticsClusterTimeSnapshotResponseParams) PosixTimeMs() u
 // SetPosixTimeMs sets the value of the posixTimeMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralDiagnosticsClusterTimeSnapshotResponseParams/posixTimeMs
-func (m_ MTRGeneralDiagnosticsClusterTimeSnapshotResponseParams) SetPosixTimeMs(value unsafe.Pointer) {
+func (m_ MTRGeneralDiagnosticsClusterTimeSnapshotResponseParams) SetPosixTimeMs(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPosixTimeMs:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralDiagnosticsClusterTimeSnapshotResponseParams/systemTimeMs
-func (m_ MTRGeneralDiagnosticsClusterTimeSnapshotResponseParams) SystemTimeMs() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("systemTimeMs"))
+func (m_ MTRGeneralDiagnosticsClusterTimeSnapshotResponseParams) SystemTimeMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("systemTimeMs"))
 	return rv
 }
 
@@ -114,7 +115,7 @@ func (m_ MTRGeneralDiagnosticsClusterTimeSnapshotResponseParams) SystemTimeMs() 
 // SetSystemTimeMs sets the value of the systemTimeMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralDiagnosticsClusterTimeSnapshotResponseParams/systemTimeMs
-func (m_ MTRGeneralDiagnosticsClusterTimeSnapshotResponseParams) SetSystemTimeMs(value unsafe.Pointer) {
+func (m_ MTRGeneralDiagnosticsClusterTimeSnapshotResponseParams) SetSystemTimeMs(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSystemTimeMs:"), value)
 }
 

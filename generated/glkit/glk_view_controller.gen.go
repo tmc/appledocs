@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [GLKViewController] class.
@@ -81,6 +82,24 @@ func NewGLKViewController() GLKViewController {
 	return getGLKViewControllerClass().New()
 }
 
+
+// A Boolean value that indicates whether the rendering loop is paused.
+//
+// [Full Topic]: https://developer.apple.com/documentation/glkit/glkviewcontroller/ispaused
+func (g_ GLKViewController) IsPaused() bool {
+	rv := objc.Send[bool](g_.ID, objc.Sel("isPaused"))
+	return rv
+}
+
+
+// SetIsPaused sets the value of the isPaused property.
+// A Boolean value that indicates whether the rendering loop is paused.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/glkit/glkviewcontroller/ispaused
+func (g_ GLKViewController) SetIsPaused(value bool) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setIsPaused:"), value)
+}
 
 // The view controller’s delegate.
 //
@@ -191,32 +210,32 @@ func (g_ GLKViewController) SetResumeOnDidBecomeActive(value bool) {
 // The amount of time that has passed since first time the view controller resumed sending update events.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKViewController/timeSinceFirstResume
-func (g_ GLKViewController) TimeSinceFirstResume() TimeInterval {
-	rv := objc.Send[TimeInterval](g_.ID, objc.Sel("timeSinceFirstResume"))
+func (g_ GLKViewController) TimeSinceFirstResume() foundation.TimeInterval {
+	rv := objc.Send[foundation.TimeInterval](g_.ID, objc.Sel("timeSinceFirstResume"))
 	return rv
 }
 
 // The amount of time that has passed since the last time the view controller called the view’s method.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKViewController/timeSinceLastDraw
-func (g_ GLKViewController) TimeSinceLastDraw() TimeInterval {
-	rv := objc.Send[TimeInterval](g_.ID, objc.Sel("timeSinceLastDraw"))
+func (g_ GLKViewController) TimeSinceLastDraw() foundation.TimeInterval {
+	rv := objc.Send[foundation.TimeInterval](g_.ID, objc.Sel("timeSinceLastDraw"))
 	return rv
 }
 
 // The amount of time that has passed since the last time the view controller resumed sending update events.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKViewController/timeSinceLastResume
-func (g_ GLKViewController) TimeSinceLastResume() TimeInterval {
-	rv := objc.Send[TimeInterval](g_.ID, objc.Sel("timeSinceLastResume"))
+func (g_ GLKViewController) TimeSinceLastResume() foundation.TimeInterval {
+	rv := objc.Send[foundation.TimeInterval](g_.ID, objc.Sel("timeSinceLastResume"))
 	return rv
 }
 
 // The amount of time that has passed since the last time the view controller called the delegate’s method.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKViewController/timeSinceLastUpdate
-func (g_ GLKViewController) TimeSinceLastUpdate() TimeInterval {
-	rv := objc.Send[TimeInterval](g_.ID, objc.Sel("timeSinceLastUpdate"))
+func (g_ GLKViewController) TimeSinceLastUpdate() foundation.TimeInterval {
+	rv := objc.Send[foundation.TimeInterval](g_.ID, objc.Sel("timeSinceLastUpdate"))
 	return rv
 }
 

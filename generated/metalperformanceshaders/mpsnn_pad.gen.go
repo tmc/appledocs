@@ -86,6 +86,36 @@ func NewPadWithCoderDevice(aDecoder unsafe.Pointer, device objc.ID) Pad {
 
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpad/fillvalue
+func (p_ Pad) FillValue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("fillValue"))
+	return rv
+}
+
+
+// SetFillValue sets the value of the fillValue property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpad/fillvalue
+func (p_ Pad) SetFillValue(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setFillValue:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpad/paddingsizeafter
+func (p_ Pad) PaddingSizeAfter() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("paddingSizeAfter"))
+	return rv
+}
+
+
+// SetPaddingSizeAfter sets the value of the paddingSizeAfter property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpad/paddingsizeafter
+func (p_ Pad) SetPaddingSizeAfter(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPaddingSizeAfter:"), value)
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNPad/paddingSizeBefore
 func (p_ Pad) PaddingSizeBefore() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("paddingSizeBefore"))

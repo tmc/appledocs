@@ -117,6 +117,24 @@ func (n_ NowPlayingSession) RemovePlayer(player unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("removePlayer:"), player)
 }
 
+// A Boolean value that indicates whether the session is the app’s active Now Playing session.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpnowplayingsession/isactive
+func (n_ NowPlayingSession) IsActive() bool {
+	rv := objc.Send[bool](n_.ID, objc.Sel("isActive"))
+	return rv
+}
+
+
+// SetIsActive sets the value of the isActive property.
+// A Boolean value that indicates whether the session is the app’s active Now Playing session.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpnowplayingsession/isactive
+func (n_ NowPlayingSession) SetIsActive(value bool) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setIsActive:"), value)
+}
+
 // A Boolean that indicates whether Now Playing info automatically publishes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPNowPlayingSession/automaticallyPublishesNowPlayingInfo

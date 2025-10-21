@@ -94,5 +94,23 @@ func (a_ AssetTrackSegment) TimeMapping() unsafe.Pointer {
 	return rv
 }
 
+// A Boolean value that indicates whether the segment is empty.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettracksegment/isempty
+func (a_ AssetTrackSegment) IsEmpty() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("isEmpty"))
+	return rv
+}
+
+
+// SetIsEmpty sets the value of the isEmpty property.
+// A Boolean value that indicates whether the segment is empty.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettracksegment/isempty
+func (a_ AssetTrackSegment) SetIsEmpty(value bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setIsEmpty:"), value)
+}
+
 
 

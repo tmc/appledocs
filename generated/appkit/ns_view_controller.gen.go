@@ -247,4 +247,286 @@ func (v_ ViewController) SetView(value unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setView:"), value)
 }
 
+// An array of view controllers that are hierarchical children of the view controller.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsviewcontroller/children
+func (v_ ViewController) Children() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("children"))
+	return rv
+}
+
+
+// SetChildren sets the value of the children property.
+// An array of view controllers that are hierarchical children of the view controller.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsviewcontroller/children
+func (v_ ViewController) SetChildren(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setChildren:"), value)
+}
+
+// For a view controller that is part of an app extension, the app extension context.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsviewcontroller/extensioncontext
+func (v_ ViewController) ExtensionContext() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("extensionContext"))
+	return rv
+}
+
+
+// SetExtensionContext sets the value of the extensionContext property.
+// For a view controller that is part of an app extension, the app extension context.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsviewcontroller/extensioncontext
+func (v_ ViewController) SetExtensionContext(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setExtensionContext:"), value)
+}
+
+// A Boolean value indicating whether the view controller’s view is loaded into memory.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsviewcontroller/isviewloaded
+func (v_ ViewController) IsViewLoaded() bool {
+	rv := objc.Send[bool](v_.ID, objc.Sel("isViewLoaded"))
+	return rv
+}
+
+
+// SetIsViewLoaded sets the value of the isViewLoaded property.
+// A Boolean value indicating whether the view controller’s view is loaded into memory.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsviewcontroller/isviewloaded
+func (v_ ViewController) SetIsViewLoaded(value bool) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setIsViewLoaded:"), value)
+}
+
+// The nib bundle to be loaded to instantiate the receiver’s primary view.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsviewcontroller/nibbundle
+func (v_ ViewController) NibBundle() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("nibBundle"))
+	return rv
+}
+
+
+// SetNibBundle sets the value of the nibBundle property.
+// The nib bundle to be loaded to instantiate the receiver’s primary view.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsviewcontroller/nibbundle
+func (v_ ViewController) SetNibBundle(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setNibBundle:"), value)
+}
+
+// The name of the nib file to be loaded to instantiate the receiver’s primary view.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsviewcontroller/nibname
+func (v_ ViewController) NibName() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("nibName"))
+	return rv
+}
+
+
+// SetNibName sets the value of the nibName property.
+// The name of the nib file to be loaded to instantiate the receiver’s primary view.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsviewcontroller/nibname
+func (v_ ViewController) SetNibName(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setNibName:"), value)
+}
+
+// The immediate ancestor view controller of the view controller.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsviewcontroller/parent
+func (v_ ViewController) Parent() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("parent"))
+	return rv
+}
+
+
+// SetParent sets the value of the parent property.
+// The immediate ancestor view controller of the view controller.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsviewcontroller/parent
+func (v_ ViewController) SetParent(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setParent:"), value)
+}
+
+// The desired size of the view controller’s view, in screen units.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsviewcontroller/preferredcontentsize
+func (v_ ViewController) PreferredContentSize() coregraphics.CGSize {
+	rv := objc.Send[coregraphics.CGSize](v_.ID, objc.Sel("preferredContentSize"))
+	return rv
+}
+
+
+// SetPreferredContentSize sets the value of the preferredContentSize property.
+// The desired size of the view controller’s view, in screen units.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsviewcontroller/preferredcontentsize
+func (v_ ViewController) SetPreferredContentSize(value coregraphics.CGSize) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setPreferredContentSize:"), value)
+}
+
+// For a view controller that is part of an app extension, the largest allowable size for the app extension’s primary view, in screen units.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsviewcontroller/preferredmaximumsize
+func (v_ ViewController) PreferredMaximumSize() coregraphics.CGSize {
+	rv := objc.Send[coregraphics.CGSize](v_.ID, objc.Sel("preferredMaximumSize"))
+	return rv
+}
+
+
+// SetPreferredMaximumSize sets the value of the preferredMaximumSize property.
+// For a view controller that is part of an app extension, the largest allowable size for the app extension’s primary view, in screen units.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsviewcontroller/preferredmaximumsize
+func (v_ ViewController) SetPreferredMaximumSize(value coregraphics.CGSize) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setPreferredMaximumSize:"), value)
+}
+
+// For a view controller that is part of an app extension, the preferred screen origin.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsviewcontroller/preferredscreenorigin
+func (v_ ViewController) PreferredScreenOrigin() coregraphics.CGPoint {
+	rv := objc.Send[coregraphics.CGPoint](v_.ID, objc.Sel("preferredScreenOrigin"))
+	return rv
+}
+
+
+// SetPreferredScreenOrigin sets the value of the preferredScreenOrigin property.
+// For a view controller that is part of an app extension, the preferred screen origin.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsviewcontroller/preferredscreenorigin
+func (v_ ViewController) SetPreferredScreenOrigin(value coregraphics.CGPoint) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setPreferredScreenOrigin:"), value)
+}
+
+// The view controllers, if any, that are currently presented by the view controller.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsviewcontroller/presentedviewcontrollers
+func (v_ ViewController) PresentedViewControllers() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("presentedViewControllers"))
+	return rv
+}
+
+
+// SetPresentedViewControllers sets the value of the presentedViewControllers property.
+// The view controllers, if any, that are currently presented by the view controller.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsviewcontroller/presentedviewcontrollers
+func (v_ ViewController) SetPresentedViewControllers(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setPresentedViewControllers:"), value)
+}
+
+// The view controller that presented the view controller or that presented its farthest ancestor view controller.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsviewcontroller/presentingviewcontroller
+func (v_ ViewController) PresentingViewController() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("presentingViewController"))
+	return rv
+}
+
+
+// SetPresentingViewController sets the value of the presentingViewController property.
+// The view controller that presented the view controller or that presented its farthest ancestor view controller.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsviewcontroller/presentingviewcontroller
+func (v_ ViewController) SetPresentingViewController(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setPresentingViewController:"), value)
+}
+
+// The object whose value is presented in the receiver’s primary view.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsviewcontroller/representedobject
+func (v_ ViewController) RepresentedObject() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("representedObject"))
+	return rv
+}
+
+
+// SetRepresentedObject sets the value of the representedObject property.
+// The object whose value is presented in the receiver’s primary view.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsviewcontroller/representedobject
+func (v_ ViewController) SetRepresentedObject(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setRepresentedObject:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsviewcontroller/sourceitemview
+func (v_ ViewController) SourceItemView() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("sourceItemView"))
+	return rv
+}
+
+
+// SetSourceItemView sets the value of the sourceItemView property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsviewcontroller/sourceitemview
+func (v_ ViewController) SetSourceItemView(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setSourceItemView:"), value)
+}
+
+// The storyboard from which the view controller was loaded.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsviewcontroller/storyboard
+func (v_ ViewController) Storyboard() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("storyboard"))
+	return rv
+}
+
+
+// SetStoryboard sets the value of the storyboard property.
+// The storyboard from which the view controller was loaded.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsviewcontroller/storyboard
+func (v_ ViewController) SetStoryboard(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setStoryboard:"), value)
+}
+
+// The localized title of the receiver’s primary view.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsviewcontroller/title
+func (v_ ViewController) Title() string {
+	rv := objc.Send[string](v_.ID, objc.Sel("title"))
+	return rv
+}
+
+
+// SetTitle sets the value of the title property.
+// The localized title of the receiver’s primary view.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsviewcontroller/title
+func (v_ ViewController) SetTitle(value string) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setTitle:"), objc.String(value))
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsviewcontroller/viewifloaded
+func (v_ ViewController) ViewIfLoaded() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("viewIfLoaded"))
+	return rv
+}
+
+
+// SetViewIfLoaded sets the value of the viewIfLoaded property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsviewcontroller/viewifloaded
+func (v_ ViewController) SetViewIfLoaded(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setViewIfLoaded:"), value)
+}
+
 

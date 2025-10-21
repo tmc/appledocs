@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PathComponentCell] class.
@@ -80,6 +81,42 @@ func NewPathComponentCell() PathComponentCell {
 	return getPathComponentCellClass().New()
 }
 
+
+// The image displayed for this component cell.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcomponentcell/image
+func (p_ PathComponentCell) Image() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("image"))
+	return rv
+}
+
+
+// SetImage sets the value of the image property.
+// The image displayed for this component cell.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcomponentcell/image
+func (p_ PathComponentCell) SetImage(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setImage:"), value)
+}
+
+// The portion of the path from the root through the component represented by the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcomponentcell/url
+func (p_ PathComponentCell) Url() foundation.URL {
+	rv := objc.Send[foundation.URL](p_.ID, objc.Sel("url"))
+	return rv
+}
+
+
+// SetUrl sets the value of the url property.
+// The portion of the path from the root through the component represented by the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcomponentcell/url
+func (p_ PathComponentCell) SetUrl(value foundation.URL) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setUrl:"), value)
+}
 
 
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [EKAlarm] class.
@@ -96,7 +97,7 @@ func NewEKAlarmWithAbsoluteDate(date unsafe.Pointer) EKAlarm {
 // Creates and returns an alarm with a relative offset.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKAlarm/init(relativeOffset:)
-func NewEKAlarmWithRelativeOffset(offset TimeInterval) EKAlarm {
+func NewEKAlarmWithRelativeOffset(offset foundation.TimeInterval) EKAlarm {
 	rv := objc.Send[EKAlarm](objc.ID(getEKAlarmClass().class), objc.Sel("alarmWithRelativeOffset:"), offset)
 	return rv
 }
@@ -113,7 +114,7 @@ func (ec _EKAlarmClass) AlarmWithAbsoluteDate(date unsafe.Pointer) unsafe.Pointe
 // Creates and returns an alarm with a relative offset.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKAlarm/init(relativeOffset:)
-func (ec _EKAlarmClass) AlarmWithRelativeOffset(offset TimeInterval) unsafe.Pointer {
+func (ec _EKAlarmClass) AlarmWithRelativeOffset(offset foundation.TimeInterval) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ec.class), objc.Sel("alarmWithRelativeOffset:"), offset)
 	return rv
 }
@@ -175,8 +176,8 @@ func (e_ EKAlarm) SetProximity(value unsafe.Pointer) {
 // The offset from the start of an event, at which the alarm fires.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKAlarm/relativeOffset
-func (e_ EKAlarm) RelativeOffset() TimeInterval {
-	rv := objc.Send[TimeInterval](e_.ID, objc.Sel("relativeOffset"))
+func (e_ EKAlarm) RelativeOffset() foundation.TimeInterval {
+	rv := objc.Send[foundation.TimeInterval](e_.ID, objc.Sel("relativeOffset"))
 	return rv
 }
 
@@ -186,7 +187,7 @@ func (e_ EKAlarm) RelativeOffset() TimeInterval {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKAlarm/relativeOffset
-func (e_ EKAlarm) SetRelativeOffset(value TimeInterval) {
+func (e_ EKAlarm) SetRelativeOffset(value foundation.TimeInterval) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setRelativeOffset:"), value)
 }
 
@@ -237,8 +238,8 @@ func (e_ EKAlarm) Type() unsafe.Pointer {
 // The URL to open when the alarm triggers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKAlarm/url
-func (e_ EKAlarm) Url() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("url"))
+func (e_ EKAlarm) Url() foundation.URL {
+	rv := objc.Send[foundation.URL](e_.ID, objc.Sel("url"))
 	return rv
 }
 
@@ -248,7 +249,7 @@ func (e_ EKAlarm) Url() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKAlarm/url
-func (e_ EKAlarm) SetUrl(value unsafe.Pointer) {
+func (e_ EKAlarm) SetUrl(value foundation.URL) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setUrl:"), value)
 }
 

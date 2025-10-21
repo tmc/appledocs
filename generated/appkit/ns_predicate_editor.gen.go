@@ -84,8 +84,8 @@ func NewPredicateEditor() PredicateEditor {
 // The row templates for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPredicateEditor/rowTemplates
-func (p_ PredicateEditor) RowTemplates() []NSPredicateEditorRowTemplate {
-	rv := objc.Send[[]NSPredicateEditorRowTemplate](p_.ID, objc.Sel("rowTemplates"))
+func (p_ PredicateEditor) RowTemplates() []unsafe.Pointer {
+	rv := objc.Send[[]unsafe.Pointer](p_.ID, objc.Sel("rowTemplates"))
 	return rv
 }
 
@@ -95,7 +95,7 @@ func (p_ PredicateEditor) RowTemplates() []NSPredicateEditorRowTemplate {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPredicateEditor/rowTemplates
-func (p_ PredicateEditor) SetRowTemplates(value []NSPredicateEditorRowTemplate) {
+func (p_ PredicateEditor) SetRowTemplates(value []unsafe.Pointer) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -107,6 +107,24 @@ func (p_ PredicateEditor) SetRowTemplates(value []NSPredicateEditorRowTemplate) 
 		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
 	}
 	objc.Send[objc.ID](p_.ID, objc.Sel("setRowTemplates:"), nsArray)
+}
+
+// The value of the receiver’s cell as an Objective-C object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/objectvalue
+func (p_ PredicateEditor) ObjectValue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("objectValue"))
+	return rv
+}
+
+
+// SetObjectValue sets the value of the objectValue property.
+// The value of the receiver’s cell as an Objective-C object.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/objectvalue
+func (p_ PredicateEditor) SetObjectValue(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setObjectValue:"), value)
 }
 
 

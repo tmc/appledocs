@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,96 @@ func NewMTRDoorLockClusterSetHolidayScheduleParams() MTRDoorLockClusterSetHolida
 	return getMTRDoorLockClusterSetHolidayScheduleParamsClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetholidayscheduleparams/serversideprocessingtimeout
+func (m_ MTRDoorLockClusterSetHolidayScheduleParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+	return rv
+}
+
+
+// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetholidayscheduleparams/serversideprocessingtimeout
+func (m_ MTRDoorLockClusterSetHolidayScheduleParams) SetServerSideProcessingTimeout(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetholidayscheduleparams/localstarttime
+func (m_ MTRDoorLockClusterSetHolidayScheduleParams) LocalStartTime() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("localStartTime"))
+	return rv
+}
+
+
+// SetLocalStartTime sets the value of the localStartTime property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetholidayscheduleparams/localstarttime
+func (m_ MTRDoorLockClusterSetHolidayScheduleParams) SetLocalStartTime(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLocalStartTime:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetholidayscheduleparams/holidayindex
+func (m_ MTRDoorLockClusterSetHolidayScheduleParams) HolidayIndex() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("holidayIndex"))
+	return rv
+}
+
+
+// SetHolidayIndex sets the value of the holidayIndex property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetholidayscheduleparams/holidayindex
+func (m_ MTRDoorLockClusterSetHolidayScheduleParams) SetHolidayIndex(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setHolidayIndex:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetholidayscheduleparams/localendtime
+func (m_ MTRDoorLockClusterSetHolidayScheduleParams) LocalEndTime() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("localEndTime"))
+	return rv
+}
+
+
+// SetLocalEndTime sets the value of the localEndTime property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetholidayscheduleparams/localendtime
+func (m_ MTRDoorLockClusterSetHolidayScheduleParams) SetLocalEndTime(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLocalEndTime:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetholidayscheduleparams/operatingmode
+func (m_ MTRDoorLockClusterSetHolidayScheduleParams) OperatingMode() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("operatingMode"))
+	return rv
+}
+
+
+// SetOperatingMode sets the value of the operatingMode property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetholidayscheduleparams/operatingmode
+func (m_ MTRDoorLockClusterSetHolidayScheduleParams) SetOperatingMode(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setOperatingMode:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetholidayscheduleparams/timedinvoketimeoutms
+func (m_ MTRDoorLockClusterSetHolidayScheduleParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+	return rv
+}
+
+
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetholidayscheduleparams/timedinvoketimeoutms
+func (m_ MTRDoorLockClusterSetHolidayScheduleParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+}
 
 
 

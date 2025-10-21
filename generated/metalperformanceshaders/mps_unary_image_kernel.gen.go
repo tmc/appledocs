@@ -98,6 +98,60 @@ func (u_ UnaryImageKernel) SourceRegionForDestinationSize(destinationSize unsafe
 	return rv
 }
 
+// An optional clip rectangle to use when writing data. Only the pixels in the rectangle will be overwritten.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsunaryimagekernel/cliprect
+func (u_ UnaryImageKernel) ClipRect() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("clipRect"))
+	return rv
+}
+
+
+// SetClipRect sets the value of the clipRect property.
+// An optional clip rectangle to use when writing data. Only the pixels in the rectangle will be overwritten.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsunaryimagekernel/cliprect
+func (u_ UnaryImageKernel) SetClipRect(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setClipRect:"), value)
+}
+
+// The position of the destination clip rectangle origin relative to the source buffer.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsunaryimagekernel/offset
+func (u_ UnaryImageKernel) Offset() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("offset"))
+	return rv
+}
+
+
+// SetOffset sets the value of the offset property.
+// The position of the destination clip rectangle origin relative to the source buffer.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsunaryimagekernel/offset
+func (u_ UnaryImageKernel) SetOffset(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setOffset:"), value)
+}
+
+// The edge mode to use when texture reads stray off the edge of an image.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsunaryimagekernel/edgemode
+func (u_ UnaryImageKernel) EdgeMode() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("edgeMode"))
+	return rv
+}
+
+
+// SetEdgeMode sets the value of the edgeMode property.
+// The edge mode to use when texture reads stray off the edge of an image.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsunaryimagekernel/edgemode
+func (u_ UnaryImageKernel) SetEdgeMode(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setEdgeMode:"), value)
+}
+
 
 
 

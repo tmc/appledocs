@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,8 +78,8 @@ func NewMTRTimeSynchronizationClusterTrustedTimeSourceStruct() MTRTimeSynchroniz
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterTrustedTimeSourceStruct/endpoint
-func (m_ MTRTimeSynchronizationClusterTrustedTimeSourceStruct) Endpoint() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("endpoint"))
+func (m_ MTRTimeSynchronizationClusterTrustedTimeSourceStruct) Endpoint() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("endpoint"))
 	return rv
 }
 
@@ -86,14 +87,14 @@ func (m_ MTRTimeSynchronizationClusterTrustedTimeSourceStruct) Endpoint() unsafe
 // SetEndpoint sets the value of the endpoint property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterTrustedTimeSourceStruct/endpoint
-func (m_ MTRTimeSynchronizationClusterTrustedTimeSourceStruct) SetEndpoint(value unsafe.Pointer) {
+func (m_ MTRTimeSynchronizationClusterTrustedTimeSourceStruct) SetEndpoint(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEndpoint:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterTrustedTimeSourceStruct/fabricIndex
-func (m_ MTRTimeSynchronizationClusterTrustedTimeSourceStruct) FabricIndex() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("fabricIndex"))
+func (m_ MTRTimeSynchronizationClusterTrustedTimeSourceStruct) FabricIndex() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("fabricIndex"))
 	return rv
 }
 
@@ -101,14 +102,14 @@ func (m_ MTRTimeSynchronizationClusterTrustedTimeSourceStruct) FabricIndex() uns
 // SetFabricIndex sets the value of the fabricIndex property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterTrustedTimeSourceStruct/fabricIndex
-func (m_ MTRTimeSynchronizationClusterTrustedTimeSourceStruct) SetFabricIndex(value unsafe.Pointer) {
+func (m_ MTRTimeSynchronizationClusterTrustedTimeSourceStruct) SetFabricIndex(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterTrustedTimeSourceStruct/nodeID
-func (m_ MTRTimeSynchronizationClusterTrustedTimeSourceStruct) NodeID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("nodeID"))
+func (m_ MTRTimeSynchronizationClusterTrustedTimeSourceStruct) NodeID() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("nodeID"))
 	return rv
 }
 
@@ -116,7 +117,7 @@ func (m_ MTRTimeSynchronizationClusterTrustedTimeSourceStruct) NodeID() unsafe.P
 // SetNodeID sets the value of the nodeID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterTrustedTimeSourceStruct/nodeID
-func (m_ MTRTimeSynchronizationClusterTrustedTimeSourceStruct) SetNodeID(value unsafe.Pointer) {
+func (m_ MTRTimeSynchronizationClusterTrustedTimeSourceStruct) SetNodeID(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNodeID:"), value)
 }
 

@@ -80,6 +80,24 @@ func NewNIAlgorithmConvergence() NIAlgorithmConvergence {
 }
 
 
+// A Boolean value that combines the spatial awareness of ARKit with Nearby Interaction to improve the accuracy of a nearby object’s position.
+//
+// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/ninearbypeerconfiguration/iscameraassistanceenabled
+func (n_ NIAlgorithmConvergence) IsCameraAssistanceEnabled() bool {
+	rv := objc.Send[bool](n_.ID, objc.Sel("isCameraAssistanceEnabled"))
+	return rv
+}
+
+
+// SetIsCameraAssistanceEnabled sets the value of the isCameraAssistanceEnabled property.
+// A Boolean value that combines the spatial awareness of ARKit with Nearby Interaction to improve the accuracy of a nearby object’s position.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/ninearbypeerconfiguration/iscameraassistanceenabled
+func (n_ NIAlgorithmConvergence) SetIsCameraAssistanceEnabled(value bool) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setIsCameraAssistanceEnabled:"), value)
+}
+
 // The current state of the framework’s Camera Assistance feature.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NIAlgorithmConvergence/status-j61c

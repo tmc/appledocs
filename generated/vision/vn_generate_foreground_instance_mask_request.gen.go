@@ -79,5 +79,31 @@ func NewGenerateForegroundInstanceMaskRequest() GenerateForegroundInstanceMaskRe
 }
 
 
+// The instance masks the request observes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vngenerateforegroundinstancemaskrequest/results
+func (g_ GenerateForegroundInstanceMaskRequest) Results() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("results"))
+	return rv
+}
+
+
+// SetResults sets the value of the results property.
+// The instance masks the request observes.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vngenerateforegroundinstancemaskrequest/results
+func (g_ GenerateForegroundInstanceMaskRequest) SetResults(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setResults:"), value)
+}
+
+// A constant for specifying the first revision of the foreground instance mask request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vngenerateforegroundinstancemaskrequestrevision1
+func (g_ GenerateForegroundInstanceMaskRequest) VNGenerateForegroundInstanceMaskRequestRevision1() int {
+	rv := objc.Send[int](g_.ID, objc.Sel("VNGenerateForegroundInstanceMaskRequestRevision1"))
+	return rv
+}
+
 
 

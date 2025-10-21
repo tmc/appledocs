@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -35,22 +36,22 @@ type IFileProviderExtension interface {
 	DeleteItemWithIdentifierCompletionHandler(itemIdentifier unsafe.Pointer, completionHandler unsafe.Pointer)
 	EnumeratorForContainerItemIdentifierError(containerItemIdentifier unsafe.Pointer, error_ unsafe.Pointer) objc.ID
 	FetchThumbnailsForItemIdentifiersRequestedSizePerThumbnailCompletionHandlerCompletionHandler(itemIdentifiers unsafe.Pointer, size coregraphics.CGSize, perThumbnailCompletionHandler unsafe.Pointer, completionHandler unsafe.Pointer) unsafe.Pointer
-	ImportDocumentAtURLToParentItemIdentifierCompletionHandler(fileURL unsafe.Pointer, parentItemIdentifier unsafe.Pointer, completionHandler unsafe.Pointer)
+	ImportDocumentAtURLToParentItemIdentifierCompletionHandler(fileURL foundation.URL, parentItemIdentifier unsafe.Pointer, completionHandler unsafe.Pointer)
 	ItemForIdentifierError(identifier unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer
-	ItemChangedAtURL(url unsafe.Pointer)
-	PersistentIdentifierForItemAtURL(url unsafe.Pointer) unsafe.Pointer
-	ProvidePlaceholderAtURLCompletionHandler(url unsafe.Pointer, completionHandler unsafe.Pointer)
+	ItemChangedAtURL(url foundation.URL)
+	PersistentIdentifierForItemAtURL(url foundation.URL) unsafe.Pointer
+	ProvidePlaceholderAtURLCompletionHandler(url foundation.URL, completionHandler unsafe.Pointer)
 	RenameItemWithIdentifierToNameCompletionHandler(itemIdentifier unsafe.Pointer, itemName string, completionHandler unsafe.Pointer)
 	ReparentItemWithIdentifierToParentItemWithIdentifierNewNameCompletionHandler(itemIdentifier unsafe.Pointer, parentItemIdentifier unsafe.Pointer, newName string, completionHandler unsafe.Pointer)
-	SetFavoriteRankForItemIdentifierCompletionHandler(favoriteRank unsafe.Pointer, itemIdentifier unsafe.Pointer, completionHandler unsafe.Pointer)
+	SetFavoriteRankForItemIdentifierCompletionHandler(favoriteRank foundation.Number, itemIdentifier unsafe.Pointer, completionHandler unsafe.Pointer)
 	SetLastUsedDateForItemIdentifierCompletionHandler(lastUsedDate unsafe.Pointer, itemIdentifier unsafe.Pointer, completionHandler unsafe.Pointer)
 	SetTagDataForItemIdentifierCompletionHandler(tagData unsafe.Pointer, itemIdentifier unsafe.Pointer, completionHandler unsafe.Pointer)
-	StartProvidingItemAtURLCompletionHandler(url unsafe.Pointer, completionHandler unsafe.Pointer)
-	StopProvidingItemAtURL(url unsafe.Pointer)
+	StartProvidingItemAtURLCompletionHandler(url foundation.URL, completionHandler unsafe.Pointer)
+	StopProvidingItemAtURL(url foundation.URL)
 	SupportedServiceSourcesForItemIdentifierError(itemIdentifier unsafe.Pointer, error_ unsafe.Pointer) []objc.ID
 	TrashItemWithIdentifierCompletionHandler(itemIdentifier unsafe.Pointer, completionHandler unsafe.Pointer)
 	UntrashItemWithIdentifierToParentItemIdentifierCompletionHandler(itemIdentifier unsafe.Pointer, parentItemIdentifier unsafe.Pointer, completionHandler unsafe.Pointer)
-	URLForItemWithPersistentIdentifier(identifier unsafe.Pointer) unsafe.Pointer
+	URLForItemWithPersistentIdentifier(identifier unsafe.Pointer) foundation.URL
 }
 
 // The principal class for the nonreplicated File Provider extension.
@@ -104,15 +105,15 @@ func NewFileProviderExtension() FileProviderExtension {
 // Returns a placeholder URL for a given document URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderExtension/placeholderURL(for:)
-func (fc _FileProviderExtensionClass) PlaceholderURLForURL(url unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("placeholderURLForURL:"), url)
+func (fc _FileProviderExtensionClass) PlaceholderURLForURL(url foundation.URL) foundation.URL {
+	rv := objc.Send[foundation.URL](objc.ID(fc.class), objc.Sel("placeholderURLForURL:"), url)
 	return rv
 }
 
 // Writes a document placeholder with the provided metadata.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderExtension/writePlaceholder(at:withMetadata:)
-func (fc _FileProviderExtensionClass) WritePlaceholderAtURLWithMetadataError(placeholderURL unsafe.Pointer, metadata unsafe.Pointer, error_ unsafe.Pointer) bool {
+func (fc _FileProviderExtensionClass) WritePlaceholderAtURLWithMetadataError(placeholderURL foundation.URL, metadata unsafe.Pointer, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](objc.ID(fc.class), objc.Sel("writePlaceholderAtURL:withMetadata:error:"), placeholderURL, metadata, error_)
 	return rv
 }
@@ -150,7 +151,7 @@ func (f_ FileProviderExtension) FetchThumbnailsForItemIdentifiersRequestedSizePe
 // Imports a file or package into the given parent directory.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderExtension/importDocument(at:toParentItemIdentifier:completionHandler:)
-func (f_ FileProviderExtension) ImportDocumentAtURLToParentItemIdentifierCompletionHandler(fileURL unsafe.Pointer, parentItemIdentifier unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (f_ FileProviderExtension) ImportDocumentAtURLToParentItemIdentifierCompletionHandler(fileURL foundation.URL, parentItemIdentifier unsafe.Pointer, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("importDocumentAtURL:toParentItemIdentifier:completionHandler:"), fileURL, parentItemIdentifier, completionHandler)
 }
 
@@ -165,14 +166,14 @@ func (f_ FileProviderExtension) ItemForIdentifierError(identifier unsafe.Pointer
 // Tells the File Provider extension that a document has changed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderExtension/itemChanged(at:)
-func (f_ FileProviderExtension) ItemChangedAtURL(url unsafe.Pointer) {
+func (f_ FileProviderExtension) ItemChangedAtURL(url foundation.URL) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("itemChangedAtURL:"), url)
 }
 
 // Returns a unique identifier for the given URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderExtension/persistentIdentifierForItem(at:)
-func (f_ FileProviderExtension) PersistentIdentifierForItemAtURL(url unsafe.Pointer) unsafe.Pointer {
+func (f_ FileProviderExtension) PersistentIdentifierForItemAtURL(url foundation.URL) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("persistentIdentifierForItemAtURL:"), url)
 	return rv
 }
@@ -180,7 +181,7 @@ func (f_ FileProviderExtension) PersistentIdentifierForItemAtURL(url unsafe.Poin
 // Triggers the creation of a placeholder for the given URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderExtension/providePlaceholder(at:completionHandler:)
-func (f_ FileProviderExtension) ProvidePlaceholderAtURLCompletionHandler(url unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (f_ FileProviderExtension) ProvidePlaceholderAtURLCompletionHandler(url foundation.URL, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("providePlaceholderAtURL:completionHandler:"), url, completionHandler)
 }
 
@@ -201,7 +202,7 @@ func (f_ FileProviderExtension) ReparentItemWithIdentifierToParentItemWithIdenti
 // Marks a directory as a favorite and sets its relative order in the Favorites list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderExtension/setFavoriteRank(_:forItemIdentifier:completionHandler:)
-func (f_ FileProviderExtension) SetFavoriteRankForItemIdentifierCompletionHandler(favoriteRank unsafe.Pointer, itemIdentifier unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (f_ FileProviderExtension) SetFavoriteRankForItemIdentifierCompletionHandler(favoriteRank foundation.Number, itemIdentifier unsafe.Pointer, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setFavoriteRank:forItemIdentifier:completionHandler:"), favoriteRank, itemIdentifier, completionHandler)
 }
 
@@ -222,14 +223,14 @@ func (f_ FileProviderExtension) SetTagDataForItemIdentifierCompletionHandler(tag
 // Provides an actual file on disk for a placeholder.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderExtension/startProvidingItem(at:completionHandler:)
-func (f_ FileProviderExtension) StartProvidingItemAtURLCompletionHandler(url unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (f_ FileProviderExtension) StartProvidingItemAtURLCompletionHandler(url foundation.URL, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("startProvidingItemAtURL:completionHandler:"), url, completionHandler)
 }
 
 // Tells the File Provider extension that a given document is no longer being accessed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderExtension/stopProvidingItem(at:)
-func (f_ FileProviderExtension) StopProvidingItemAtURL(url unsafe.Pointer) {
+func (f_ FileProviderExtension) StopProvidingItemAtURL(url foundation.URL) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("stopProvidingItemAtURL:"), url)
 }
 
@@ -258,16 +259,16 @@ func (f_ FileProviderExtension) UntrashItemWithIdentifierToParentItemIdentifierC
 // Returns the URL for a given persistent identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderExtension/urlForItem(withPersistentIdentifier:)
-func (f_ FileProviderExtension) URLForItemWithPersistentIdentifier(identifier unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("URLForItemWithPersistentIdentifier:"), identifier)
+func (f_ FileProviderExtension) URLForItemWithPersistentIdentifier(identifier unsafe.Pointer) foundation.URL {
+	rv := objc.Send[foundation.URL](f_.ID, objc.Sel("URLForItemWithPersistentIdentifier:"), identifier)
 	return rv
 }
 
 // The root URL for all shared documents.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderExtension/documentStorageURL
-func (f_ FileProviderExtension) DocumentStorageURL() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("documentStorageURL"))
+func (f_ FileProviderExtension) DocumentStorageURL() foundation.URL {
+	rv := objc.Send[foundation.URL](f_.ID, objc.Sel("documentStorageURL"))
 	return rv
 }
 

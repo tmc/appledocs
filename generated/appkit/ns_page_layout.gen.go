@@ -105,5 +105,23 @@ func (p_ PageLayout) AccessoryControllers() []ViewController {
 	return rv
 }
 
+// The printing information object used when the page layout panel is run.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspagelayout/printinfo
+func (p_ PageLayout) PrintInfo() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("printInfo"))
+	return rv
+}
+
+
+// SetPrintInfo sets the value of the printInfo property.
+// The printing information object used when the page layout panel is run.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspagelayout/printinfo
+func (p_ PageLayout) SetPrintInfo(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPrintInfo:"), value)
+}
+
 
 

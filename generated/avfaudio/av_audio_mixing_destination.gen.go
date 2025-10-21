@@ -80,5 +80,23 @@ func NewAudioMixingDestination() AudioMixingDestination {
 }
 
 
+// The underlying mixer connection point.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiomixingdestination/connectionpoint
+func (a_ AudioMixingDestination) ConnectionPoint() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("connectionPoint"))
+	return rv
+}
+
+
+// SetConnectionPoint sets the value of the connectionPoint property.
+// The underlying mixer connection point.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiomixingdestination/connectionpoint
+func (a_ AudioMixingDestination) SetConnectionPoint(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setConnectionPoint:"), value)
+}
+
 
 

@@ -81,5 +81,41 @@ func NewNIDLTDOAConfiguration() NIDLTDOAConfiguration {
 }
 
 
+// A unique identifier for a Downlink Time-Difference-of-Arrival network.
+//
+// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nidltdoaconfiguration/networkidentifier
+func (n_ NIDLTDOAConfiguration) NetworkIdentifier() int {
+	rv := objc.Send[int](n_.ID, objc.Sel("networkIdentifier"))
+	return rv
+}
+
+
+// SetNetworkIdentifier sets the value of the networkIdentifier property.
+// A unique identifier for a Downlink Time-Difference-of-Arrival network.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nidltdoaconfiguration/networkidentifier
+func (n_ NIDLTDOAConfiguration) SetNetworkIdentifier(value int) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setNetworkIdentifier:"), value)
+}
+
+// A property that indicates if the device supports Downlink Time-Difference-of-Arrival ranging.
+//
+// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nidevicecapability/supportsdltdoameasurement
+func (n_ NIDLTDOAConfiguration) SupportsDLTDOAMeasurement() bool {
+	rv := objc.Send[bool](n_.ID, objc.Sel("supportsDLTDOAMeasurement"))
+	return rv
+}
+
+
+// SetSupportsDLTDOAMeasurement sets the value of the supportsDLTDOAMeasurement property.
+// A property that indicates if the device supports Downlink Time-Difference-of-Arrival ranging.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nidevicecapability/supportsdltdoameasurement
+func (n_ NIDLTDOAConfiguration) SetSupportsDLTDOAMeasurement(value bool) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setSupportsDLTDOAMeasurement:"), value)
+}
+
 
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -92,6 +93,42 @@ func NewDDDeviceWithDisplayNameCategoryProtocolTypeIdentifier(displayName string
 	return rv
 }
 
+
+// A dictionary of metadata for the device that the extension communicates with over the local network.
+//
+// [Full Topic]: https://developer.apple.com/documentation/devicediscoveryextension/dddevice/txtrecord
+func (d_ DDDevice) TxtRecord() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("txtRecord"))
+	return rv
+}
+
+
+// SetTxtRecord sets the value of the txtRecord property.
+// A dictionary of metadata for the device that the extension communicates with over the local network.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/devicediscoveryextension/dddevice/txtrecord
+func (d_ DDDevice) SetTxtRecord(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setTxtRecord:"), value)
+}
+
+// The manner in which the system applies your app’s device discovery extension.
+//
+// [Full Topic]: https://developer.apple.com/documentation/devicediscoveryextension/dddevice/protocol-swift.property
+func (d_ DDDevice) `protocol`() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("`protocol`"))
+	return rv
+}
+
+
+// Set`protocol` sets the value of the `protocol` property.
+// The manner in which the system applies your app’s device discovery extension.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/devicediscoveryextension/dddevice/protocol-swift.property
+func (d_ DDDevice) Set`protocol`(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("set`protocol`:"), value)
+}
 
 // An identifier to communicate with the device through Bluetooth wireless technology.
 //
@@ -375,8 +412,8 @@ func (d_ DDDevice) SetTxtRecordData(value unsafe.Pointer) {
 // A resource locator for the simple service discovery protocol.
 //
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDevice/url
-func (d_ DDDevice) Url() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("url"))
+func (d_ DDDevice) Url() foundation.URL {
+	rv := objc.Send[foundation.URL](d_.ID, objc.Sel("url"))
 	return rv
 }
 
@@ -386,7 +423,7 @@ func (d_ DDDevice) Url() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDevice/url
-func (d_ DDDevice) SetUrl(value unsafe.Pointer) {
+func (d_ DDDevice) SetUrl(value foundation.URL) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setUrl:"), value)
 }
 

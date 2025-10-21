@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -79,6 +80,114 @@ func NewNEIPv6Settings() NEIPv6Settings {
 	return getNEIPv6SettingsClass().New()
 }
 
+
+// The tunnel IP version 6 settings.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nepackettunnelnetworksettings/ipv6settings
+func (n_ NEIPv6Settings) Ipv6Settings() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("ipv6Settings"))
+	return rv
+}
+
+
+// SetIpv6Settings sets the value of the ipv6Settings property.
+// The tunnel IP version 6 settings.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nepackettunnelnetworksettings/ipv6settings
+func (n_ NEIPv6Settings) SetIpv6Settings(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setIpv6Settings:"), value)
+}
+
+// The size of the maximum trasnmission unit, in bytes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nepackettunnelnetworksettings/mtu
+func (n_ NEIPv6Settings) Mtu() foundation.Number {
+	rv := objc.Send[foundation.Number](n_.ID, objc.Sel("mtu"))
+	return rv
+}
+
+
+// SetMtu sets the value of the mtu property.
+// The size of the maximum trasnmission unit, in bytes.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nepackettunnelnetworksettings/mtu
+func (n_ NEIPv6Settings) SetMtu(value foundation.Number) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setMtu:"), value)
+}
+
+// The IPv6 addresses to assign to the TUN interface.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/neipv6settings/addresses
+func (n_ NEIPv6Settings) Addresses() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("addresses"))
+	return rv
+}
+
+
+// SetAddresses sets the value of the addresses property.
+// The IPv6 addresses to assign to the TUN interface.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/neipv6settings/addresses
+func (n_ NEIPv6Settings) SetAddresses(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setAddresses:"), objc.String(value))
+}
+
+// The IPv6 network prefix lengths to assign to the TUN interface.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/neipv6settings/networkprefixlengths
+func (n_ NEIPv6Settings) NetworkPrefixLengths() foundation.Number {
+	rv := objc.Send[foundation.Number](n_.ID, objc.Sel("networkPrefixLengths"))
+	return rv
+}
+
+
+// SetNetworkPrefixLengths sets the value of the networkPrefixLengths property.
+// The IPv6 network prefix lengths to assign to the TUN interface.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/neipv6settings/networkprefixlengths
+func (n_ NEIPv6Settings) SetNetworkPrefixLengths(value foundation.Number) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setNetworkPrefixLengths:"), value)
+}
+
+// The tunnel IP version 4 settings.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nepackettunnelnetworksettings/ipv4settings
+func (n_ NEIPv6Settings) Ipv4Settings() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("ipv4Settings"))
+	return rv
+}
+
+
+// SetIpv4Settings sets the value of the ipv4Settings property.
+// The tunnel IP version 4 settings.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nepackettunnelnetworksettings/ipv4settings
+func (n_ NEIPv6Settings) SetIpv4Settings(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setIpv4Settings:"), value)
+}
+
+// The number of bytes added to each tunneled packet for storing tunneling protocol headers.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nepackettunnelnetworksettings/tunneloverheadbytes
+func (n_ NEIPv6Settings) TunnelOverheadBytes() foundation.Number {
+	rv := objc.Send[foundation.Number](n_.ID, objc.Sel("tunnelOverheadBytes"))
+	return rv
+}
+
+
+// SetTunnelOverheadBytes sets the value of the tunnelOverheadBytes property.
+// The number of bytes added to each tunneled packet for storing tunneling protocol headers.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nepackettunnelnetworksettings/tunneloverheadbytes
+func (n_ NEIPv6Settings) SetTunnelOverheadBytes(value foundation.Number) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setTunnelOverheadBytes:"), value)
+}
 
 // The IPv6 network traffic that the system routes to the primary physical interface, not the TUN interface.
 //

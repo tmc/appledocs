@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,81 @@ func NewMTRDistinguishedNameInfo() MTRDistinguishedNameInfo {
 	return getMTRDistinguishedNameInfoClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdistinguishednameinfo/intermediatecacertificateid
+func (m_ MTRDistinguishedNameInfo) IntermediateCACertificateID() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("intermediateCACertificateID"))
+	return rv
+}
+
+
+// SetIntermediateCACertificateID sets the value of the intermediateCACertificateID property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdistinguishednameinfo/intermediatecacertificateid
+func (m_ MTRDistinguishedNameInfo) SetIntermediateCACertificateID(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIntermediateCACertificateID:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdistinguishednameinfo/nodeid
+func (m_ MTRDistinguishedNameInfo) NodeID() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("nodeID"))
+	return rv
+}
+
+
+// SetNodeID sets the value of the nodeID property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdistinguishednameinfo/nodeid
+func (m_ MTRDistinguishedNameInfo) SetNodeID(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setNodeID:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdistinguishednameinfo/fabricid
+func (m_ MTRDistinguishedNameInfo) FabricID() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("fabricID"))
+	return rv
+}
+
+
+// SetFabricID sets the value of the fabricID property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdistinguishednameinfo/fabricid
+func (m_ MTRDistinguishedNameInfo) SetFabricID(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricID:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdistinguishednameinfo/rootcacertificateid
+func (m_ MTRDistinguishedNameInfo) RootCACertificateID() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("rootCACertificateID"))
+	return rv
+}
+
+
+// SetRootCACertificateID sets the value of the rootCACertificateID property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdistinguishednameinfo/rootcacertificateid
+func (m_ MTRDistinguishedNameInfo) SetRootCACertificateID(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setRootCACertificateID:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdistinguishednameinfo/caseauthenticatedtags
+func (m_ MTRDistinguishedNameInfo) CaseAuthenticatedTags() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("caseAuthenticatedTags"))
+	return rv
+}
+
+
+// SetCaseAuthenticatedTags sets the value of the caseAuthenticatedTags property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdistinguishednameinfo/caseauthenticatedtags
+func (m_ MTRDistinguishedNameInfo) SetCaseAuthenticatedTags(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCaseAuthenticatedTags:"), value)
+}
 
 
 

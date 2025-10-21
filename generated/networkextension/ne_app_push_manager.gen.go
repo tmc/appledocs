@@ -80,6 +80,122 @@ func NewNEAppPushManager() NEAppPushManager {
 }
 
 
+// A property you use to toggle enabling the configuration.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/neapppushmanager/isenabled
+func (n_ NEAppPushManager) IsEnabled() bool {
+	rv := objc.Send[bool](n_.ID, objc.Sel("isEnabled"))
+	return rv
+}
+
+
+// SetIsEnabled sets the value of the isEnabled property.
+// A property you use to toggle enabling the configuration.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/neapppushmanager/isenabled
+func (n_ NEAppPushManager) SetIsEnabled(value bool) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setIsEnabled:"), value)
+}
+
+// A property that indicates Ethernet support for Local Push Connectivity.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/neapppushmanager/matchethernet
+func (n_ NEAppPushManager) MatchEthernet() bool {
+	rv := objc.Send[bool](n_.ID, objc.Sel("matchEthernet"))
+	return rv
+}
+
+
+// SetMatchEthernet sets the value of the matchEthernet property.
+// A property that indicates Ethernet support for Local Push Connectivity.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/neapppushmanager/matchethernet
+func (n_ NEAppPushManager) SetMatchEthernet(value bool) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setMatchEthernet:"), value)
+}
+
+// A Boolean value that indicates whether a configuration is in use.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/neapppushmanager/isactive
+func (n_ NEAppPushManager) IsActive() bool {
+	rv := objc.Send[bool](n_.ID, objc.Sel("isActive"))
+	return rv
+}
+
+
+// SetIsActive sets the value of the isActive property.
+// A Boolean value that indicates whether a configuration is in use.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/neapppushmanager/isactive
+func (n_ NEAppPushManager) SetIsActive(value bool) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setIsActive:"), value)
+}
+
+// A dictionary that contains vendor-specific key-value pairs, that you use to configure a provider.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/neapppushmanager/providerconfiguration
+func (n_ NEAppPushManager) ProviderConfiguration() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("providerConfiguration"))
+	return rv
+}
+
+
+// SetProviderConfiguration sets the value of the providerConfiguration property.
+// A dictionary that contains vendor-specific key-value pairs, that you use to configure a provider.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/neapppushmanager/providerconfiguration
+func (n_ NEAppPushManager) SetProviderConfiguration(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setProviderConfiguration:"), objc.String(value))
+}
+
+// A string that contains the localized description of the app push manager.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/neapppushmanager/localizeddescription
+func (n_ NEAppPushManager) LocalizedDescription() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("localizedDescription"))
+	return rv
+}
+
+
+// SetLocalizedDescription sets the value of the localizedDescription property.
+// A string that contains the localized description of the app push manager.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/neapppushmanager/localizeddescription
+func (n_ NEAppPushManager) SetLocalizedDescription(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setLocalizedDescription:"), objc.String(value))
+}
+
+// The error domain string for local push errors.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/neapppusherrordomain
+func (n_ NEAppPushManager) NEAppPushErrorDomain() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("NEAppPushErrorDomain"))
+	return rv
+}
+
+// An array of private LTE networks that the system matches for local push activation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/neapppushmanager/matchprivateltenetworks
+func (n_ NEAppPushManager) MatchPrivateLTENetworks() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("matchPrivateLTENetworks"))
+	return rv
+}
+
+
+// SetMatchPrivateLTENetworks sets the value of the matchPrivateLTENetworks property.
+// An array of private LTE networks that the system matches for local push activation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/neapppushmanager/matchprivateltenetworks
+func (n_ NEAppPushManager) SetMatchPrivateLTENetworks(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setMatchPrivateLTENetworks:"), value)
+}
+
 // A delegate that receives incoming call information from the provider.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppPushManager/delegate

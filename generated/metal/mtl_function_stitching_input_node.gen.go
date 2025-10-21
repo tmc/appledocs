@@ -80,5 +80,23 @@ func NewFunctionStitchingInputNode() FunctionStitchingInputNode {
 }
 
 
+// The index in the command’s buffer argument table that declares which data to read for this input node.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlfunctionstitchinginputnode/argumentindex
+func (f_ FunctionStitchingInputNode) ArgumentIndex() int {
+	rv := objc.Send[int](f_.ID, objc.Sel("argumentIndex"))
+	return rv
+}
+
+
+// SetArgumentIndex sets the value of the argumentIndex property.
+// The index in the command’s buffer argument table that declares which data to read for this input node.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlfunctionstitchinginputnode/argumentindex
+func (f_ FunctionStitchingInputNode) SetArgumentIndex(value int) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setArgumentIndex:"), value)
+}
+
 
 

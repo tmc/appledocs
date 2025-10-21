@@ -88,5 +88,23 @@ func (a_ AuthorizationAppleIDProvider) GetCredentialStateForUserIDCompletion(use
 	objc.Send[objc.ID](a_.ID, objc.Sel("getCredentialStateForUserID:completion:"), objc.String(userID), completion)
 }
 
+// An identifier for the authenticated user.
+//
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential/user
+func (a_ AuthorizationAppleIDProvider) User() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("user"))
+	return rv
+}
+
+
+// SetUser sets the value of the user property.
+// An identifier for the authenticated user.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential/user
+func (a_ AuthorizationAppleIDProvider) SetUser(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setUser:"), objc.String(value))
+}
+
 
 

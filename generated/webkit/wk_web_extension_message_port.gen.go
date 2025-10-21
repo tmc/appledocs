@@ -80,5 +80,77 @@ func NewWebExtensionMessagePort() WebExtensionMessagePort {
 }
 
 
+// Indicates whether the message port is disconnected.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/messageport/isdisconnected
+func (w_ WebExtensionMessagePort) IsDisconnected() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("isDisconnected"))
+	return rv
+}
+
+
+// SetIsDisconnected sets the value of the isDisconnected property.
+// Indicates whether the message port is disconnected.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/messageport/isdisconnected
+func (w_ WebExtensionMessagePort) SetIsDisconnected(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setIsDisconnected:"), value)
+}
+
+// The unique identifier for the app to which this port should be connected.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/messageport/applicationidentifier
+func (w_ WebExtensionMessagePort) ApplicationIdentifier() string {
+	rv := objc.Send[string](w_.ID, objc.Sel("applicationIdentifier"))
+	return rv
+}
+
+
+// SetApplicationIdentifier sets the value of the applicationIdentifier property.
+// The unique identifier for the app to which this port should be connected.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/messageport/applicationidentifier
+func (w_ WebExtensionMessagePort) SetApplicationIdentifier(value string) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setApplicationIdentifier:"), objc.String(value))
+}
+
+// The block to be executed when the port disconnects.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/messageport/disconnecthandler
+func (w_ WebExtensionMessagePort) DisconnectHandler() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("disconnectHandler"))
+	return rv
+}
+
+
+// SetDisconnectHandler sets the value of the disconnectHandler property.
+// The block to be executed when the port disconnects.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/messageport/disconnecthandler
+func (w_ WebExtensionMessagePort) SetDisconnectHandler(value unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setDisconnectHandler:"), value)
+}
+
+// The block to be executed when a message is received from the web extension.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/messageport/messagehandler
+func (w_ WebExtensionMessagePort) MessageHandler() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("messageHandler"))
+	return rv
+}
+
+
+// SetMessageHandler sets the value of the messageHandler property.
+// The block to be executed when a message is received from the web extension.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/messageport/messagehandler
+func (w_ WebExtensionMessagePort) SetMessageHandler(value unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setMessageHandler:"), value)
+}
+
 
 

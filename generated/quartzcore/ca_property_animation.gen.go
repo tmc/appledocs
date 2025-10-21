@@ -102,6 +102,42 @@ func (pc _PropertyAnimationClass) AnimationWithKeyPath(path string) unsafe.Point
 
 // Determines if the value specified by the animation is added to the current render tree value to produce the new render tree value.
 //
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/capropertyanimation/isadditive
+func (p_ PropertyAnimation) IsAdditive() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isAdditive"))
+	return rv
+}
+
+
+// SetIsAdditive sets the value of the isAdditive property.
+// Determines if the value specified by the animation is added to the current render tree value to produce the new render tree value.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/capropertyanimation/isadditive
+func (p_ PropertyAnimation) SetIsAdditive(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsAdditive:"), value)
+}
+
+// Determines if the value of the property is the value at the end of the previous repeat cycle, plus the value of the current repeat cycle.
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/capropertyanimation/iscumulative
+func (p_ PropertyAnimation) IsCumulative() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isCumulative"))
+	return rv
+}
+
+
+// SetIsCumulative sets the value of the isCumulative property.
+// Determines if the value of the property is the value at the end of the previous repeat cycle, plus the value of the current repeat cycle.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/capropertyanimation/iscumulative
+func (p_ PropertyAnimation) SetIsCumulative(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsCumulative:"), value)
+}
+
+// Determines if the value specified by the animation is added to the current render tree value to produce the new render tree value.
+//
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAPropertyAnimation/isAdditive
 func (p_ PropertyAnimation) Additive() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("additive"))

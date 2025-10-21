@@ -78,6 +78,39 @@ func NewMEFileInfo() MEFileInfo {
 }
 
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaextension/mefileinfo/sidecarfilename
+func (m_ MEFileInfo) SidecarFileName() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("sidecarFileName"))
+	return rv
+}
+
+
+// SetSidecarFileName sets the value of the sidecarFileName property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaextension/mefileinfo/sidecarfilename
+func (m_ MEFileInfo) SetSidecarFileName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSidecarFileName:"), objc.String(value))
+}
+
+// The duration of the media asset, if available.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaextension/mefileinfo/duration
+func (m_ MEFileInfo) Duration() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("duration"))
+	return rv
+}
+
+
+// SetDuration sets the value of the duration property.
+// The duration of the media asset, if available.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaextension/mefileinfo/duration
+func (m_ MEFileInfo) SetDuration(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDuration:"), value)
+}
+
 // Indicates if the media asset contains fragments or is extendable by fragments.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaExtension/MEFileInfo/fragmentsStatus-swift.property

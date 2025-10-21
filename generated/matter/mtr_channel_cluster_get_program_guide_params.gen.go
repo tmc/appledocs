@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -107,8 +108,8 @@ func (m_ MTRChannelClusterGetProgramGuideParams) SetData(value unsafe.Pointer) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterGetProgramGuideParams/endTime
-func (m_ MTRChannelClusterGetProgramGuideParams) EndTime() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("endTime"))
+func (m_ MTRChannelClusterGetProgramGuideParams) EndTime() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("endTime"))
 	return rv
 }
 
@@ -116,7 +117,7 @@ func (m_ MTRChannelClusterGetProgramGuideParams) EndTime() unsafe.Pointer {
 // SetEndTime sets the value of the endTime property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterGetProgramGuideParams/endTime
-func (m_ MTRChannelClusterGetProgramGuideParams) SetEndTime(value unsafe.Pointer) {
+func (m_ MTRChannelClusterGetProgramGuideParams) SetEndTime(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEndTime:"), value)
 }
 
@@ -137,8 +138,8 @@ func (m_ MTRChannelClusterGetProgramGuideParams) SetPageToken(value unsafe.Point
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterGetProgramGuideParams/recordingFlag
-func (m_ MTRChannelClusterGetProgramGuideParams) RecordingFlag() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("recordingFlag"))
+func (m_ MTRChannelClusterGetProgramGuideParams) RecordingFlag() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("recordingFlag"))
 	return rv
 }
 
@@ -146,15 +147,15 @@ func (m_ MTRChannelClusterGetProgramGuideParams) RecordingFlag() unsafe.Pointer 
 // SetRecordingFlag sets the value of the recordingFlag property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterGetProgramGuideParams/recordingFlag
-func (m_ MTRChannelClusterGetProgramGuideParams) SetRecordingFlag(value unsafe.Pointer) {
+func (m_ MTRChannelClusterGetProgramGuideParams) SetRecordingFlag(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRecordingFlag:"), value)
 }
 
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterGetProgramGuideParams/serverSideProcessingTimeout
-func (m_ MTRChannelClusterGetProgramGuideParams) ServerSideProcessingTimeout() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRChannelClusterGetProgramGuideParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
@@ -164,14 +165,14 @@ func (m_ MTRChannelClusterGetProgramGuideParams) ServerSideProcessingTimeout() u
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterGetProgramGuideParams/serverSideProcessingTimeout
-func (m_ MTRChannelClusterGetProgramGuideParams) SetServerSideProcessingTimeout(value unsafe.Pointer) {
+func (m_ MTRChannelClusterGetProgramGuideParams) SetServerSideProcessingTimeout(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterGetProgramGuideParams/startTime
-func (m_ MTRChannelClusterGetProgramGuideParams) StartTime() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("startTime"))
+func (m_ MTRChannelClusterGetProgramGuideParams) StartTime() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("startTime"))
 	return rv
 }
 
@@ -179,15 +180,15 @@ func (m_ MTRChannelClusterGetProgramGuideParams) StartTime() unsafe.Pointer {
 // SetStartTime sets the value of the startTime property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterGetProgramGuideParams/startTime
-func (m_ MTRChannelClusterGetProgramGuideParams) SetStartTime(value unsafe.Pointer) {
+func (m_ MTRChannelClusterGetProgramGuideParams) SetStartTime(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStartTime:"), value)
 }
 
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterGetProgramGuideParams/timedInvokeTimeoutMs
-func (m_ MTRChannelClusterGetProgramGuideParams) TimedInvokeTimeoutMs() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRChannelClusterGetProgramGuideParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
@@ -197,7 +198,7 @@ func (m_ MTRChannelClusterGetProgramGuideParams) TimedInvokeTimeoutMs() unsafe.P
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterGetProgramGuideParams/timedInvokeTimeoutMs
-func (m_ MTRChannelClusterGetProgramGuideParams) SetTimedInvokeTimeoutMs(value unsafe.Pointer) {
+func (m_ MTRChannelClusterGetProgramGuideParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

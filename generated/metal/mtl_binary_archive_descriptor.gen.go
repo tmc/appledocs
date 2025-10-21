@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,6 +78,32 @@ func NewBinaryArchiveDescriptor() BinaryArchiveDescriptor {
 	return getBinaryArchiveDescriptorClass().New()
 }
 
+
+// A URL to a Metal binary archive file.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlbinaryarchivedescriptor/url
+func (b_ BinaryArchiveDescriptor) Url() foundation.URL {
+	rv := objc.Send[foundation.URL](b_.ID, objc.Sel("url"))
+	return rv
+}
+
+
+// SetUrl sets the value of the url property.
+// A URL to a Metal binary archive file.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlbinaryarchivedescriptor/url
+func (b_ BinaryArchiveDescriptor) SetUrl(value foundation.URL) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setUrl:"), value)
+}
+
+// The domain for Metal binary archive errors.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlbinaryarchivedomain
+func (b_ BinaryArchiveDescriptor) MTLBinaryArchiveDomain() string {
+	rv := objc.Send[string](b_.ID, objc.Sel("MTLBinaryArchiveDomain"))
+	return rv
+}
 
 
 

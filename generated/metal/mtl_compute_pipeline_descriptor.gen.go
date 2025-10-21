@@ -80,6 +80,255 @@ func NewComputePipelineDescriptor() ComputePipelineDescriptor {
 }
 
 
+// The buffer mutability options to apply to the next kernel call.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlcomputepipelinedescriptor/buffers
+func (c_ ComputePipelineDescriptor) Buffers() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("buffers"))
+	return rv
+}
+
+
+// SetBuffers sets the value of the buffers property.
+// The buffer mutability options to apply to the next kernel call.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlcomputepipelinedescriptor/buffers
+func (c_ ComputePipelineDescriptor) SetBuffers(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setBuffers:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlcomputepipelinedescriptor/requiredthreadsperthreadgroup
+func (c_ ComputePipelineDescriptor) RequiredThreadsPerThreadgroup() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("requiredThreadsPerThreadgroup"))
+	return rv
+}
+
+
+// SetRequiredThreadsPerThreadgroup sets the value of the requiredThreadsPerThreadgroup property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlcomputepipelinedescriptor/requiredthreadsperthreadgroup
+func (c_ ComputePipelineDescriptor) SetRequiredThreadsPerThreadgroup(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setRequiredThreadsPerThreadgroup:"), value)
+}
+
+// The binary archives that contain any precompiled shader functions to link.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlcomputepipelinedescriptor/binaryarchives
+func (c_ ComputePipelineDescriptor) BinaryArchives() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("binaryArchives"))
+	return rv
+}
+
+
+// SetBinaryArchives sets the value of the binaryArchives property.
+// The binary archives that contain any precompiled shader functions to link.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlcomputepipelinedescriptor/binaryarchives
+func (c_ ComputePipelineDescriptor) SetBinaryArchives(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setBinaryArchives:"), value)
+}
+
+// The dynamic libraries that contain precompiled shader functions you want to link.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlcomputepipelinedescriptor/insertlibraries
+func (c_ ComputePipelineDescriptor) InsertLibraries() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("insertLibraries"))
+	return rv
+}
+
+
+// SetInsertLibraries sets the value of the insertLibraries property.
+// The dynamic libraries that contain precompiled shader functions you want to link.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlcomputepipelinedescriptor/insertlibraries
+func (c_ ComputePipelineDescriptor) SetInsertLibraries(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setInsertLibraries:"), value)
+}
+
+// A Boolean value that indicates whether you can encode commands that reference the pipeline state object into an indirect command buffer.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlcomputepipelinedescriptor/supportindirectcommandbuffers
+func (c_ ComputePipelineDescriptor) SupportIndirectCommandBuffers() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("supportIndirectCommandBuffers"))
+	return rv
+}
+
+
+// SetSupportIndirectCommandBuffers sets the value of the supportIndirectCommandBuffers property.
+// A Boolean value that indicates whether you can encode commands that reference the pipeline state object into an indirect command buffer.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlcomputepipelinedescriptor/supportindirectcommandbuffers
+func (c_ ComputePipelineDescriptor) SetSupportIndirectCommandBuffers(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setSupportIndirectCommandBuffers:"), value)
+}
+
+// The dynamic libraries that contain precompiled shader functions you want to link.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlcomputepipelinedescriptor/preloadedlibraries
+func (c_ ComputePipelineDescriptor) PreloadedLibraries() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("preloadedLibraries"))
+	return rv
+}
+
+
+// SetPreloadedLibraries sets the value of the preloadedLibraries property.
+// The dynamic libraries that contain precompiled shader functions you want to link.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlcomputepipelinedescriptor/preloadedlibraries
+func (c_ ComputePipelineDescriptor) SetPreloadedLibraries(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setPreloadedLibraries:"), value)
+}
+
+// The maximum number of threads in a threadgroup that you can dispatch to the compute function.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlcomputepipelinedescriptor/maxtotalthreadsperthreadgroup
+func (c_ ComputePipelineDescriptor) MaxTotalThreadsPerThreadgroup() int {
+	rv := objc.Send[int](c_.ID, objc.Sel("maxTotalThreadsPerThreadgroup"))
+	return rv
+}
+
+
+// SetMaxTotalThreadsPerThreadgroup sets the value of the maxTotalThreadsPerThreadgroup property.
+// The maximum number of threads in a threadgroup that you can dispatch to the compute function.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlcomputepipelinedescriptor/maxtotalthreadsperthreadgroup
+func (c_ ComputePipelineDescriptor) SetMaxTotalThreadsPerThreadgroup(value int) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setMaxTotalThreadsPerThreadgroup:"), value)
+}
+
+// The maximum recursive call depth for dynamic library, visible, and intersection functions.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlcomputepipelinedescriptor/maxcallstackdepth
+func (c_ ComputePipelineDescriptor) MaxCallStackDepth() int {
+	rv := objc.Send[int](c_.ID, objc.Sel("maxCallStackDepth"))
+	return rv
+}
+
+
+// SetMaxCallStackDepth sets the value of the maxCallStackDepth property.
+// The maximum recursive call depth for dynamic library, visible, and intersection functions.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlcomputepipelinedescriptor/maxcallstackdepth
+func (c_ ComputePipelineDescriptor) SetMaxCallStackDepth(value int) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setMaxCallStackDepth:"), value)
+}
+
+// The organization of input and output data for the next kernel call.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlcomputepipelinedescriptor/stageinputdescriptor
+func (c_ ComputePipelineDescriptor) StageInputDescriptor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("stageInputDescriptor"))
+	return rv
+}
+
+
+// SetStageInputDescriptor sets the value of the stageInputDescriptor property.
+// The organization of input and output data for the next kernel call.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlcomputepipelinedescriptor/stageinputdescriptor
+func (c_ ComputePipelineDescriptor) SetStageInputDescriptor(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setStageInputDescriptor:"), value)
+}
+
+// A value that enables or disables shader validation for the pipeline.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlcomputepipelinedescriptor/shadervalidation
+func (c_ ComputePipelineDescriptor) ShaderValidation() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("shaderValidation"))
+	return rv
+}
+
+
+// SetShaderValidation sets the value of the shaderValidation property.
+// A value that enables or disables shader validation for the pipeline.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlcomputepipelinedescriptor/shadervalidation
+func (c_ ComputePipelineDescriptor) SetShaderValidation(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setShaderValidation:"), value)
+}
+
+// The compute kernel the pipeline calls.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlcomputepipelinedescriptor/computefunction
+func (c_ ComputePipelineDescriptor) ComputeFunction() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("computeFunction"))
+	return rv
+}
+
+
+// SetComputeFunction sets the value of the computeFunction property.
+// The compute kernel the pipeline calls.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlcomputepipelinedescriptor/computefunction
+func (c_ ComputePipelineDescriptor) SetComputeFunction(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setComputeFunction:"), value)
+}
+
+// A Boolean value that indicates whether you can use the pipeline to create new pipelines by adding binary functions to its callable functions list.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlcomputepipelinedescriptor/supportaddingbinaryfunctions
+func (c_ ComputePipelineDescriptor) SupportAddingBinaryFunctions() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("supportAddingBinaryFunctions"))
+	return rv
+}
+
+
+// SetSupportAddingBinaryFunctions sets the value of the supportAddingBinaryFunctions property.
+// A Boolean value that indicates whether you can use the pipeline to create new pipelines by adding binary functions to its callable functions list.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlcomputepipelinedescriptor/supportaddingbinaryfunctions
+func (c_ ComputePipelineDescriptor) SetSupportAddingBinaryFunctions(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setSupportAddingBinaryFunctions:"), value)
+}
+
+// The functions with available function pointers for the next kernel call.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlcomputepipelinedescriptor/linkedfunctions
+func (c_ ComputePipelineDescriptor) LinkedFunctions() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("linkedFunctions"))
+	return rv
+}
+
+
+// SetLinkedFunctions sets the value of the linkedFunctions property.
+// The functions with available function pointers for the next kernel call.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlcomputepipelinedescriptor/linkedfunctions
+func (c_ ComputePipelineDescriptor) SetLinkedFunctions(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setLinkedFunctions:"), value)
+}
+
+// A Boolean value that indicates whether the threadgroup size is always a multiple of the thread execution width.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlcomputepipelinedescriptor/threadgroupsizeismultipleofthreadexecutionwidth
+func (c_ ComputePipelineDescriptor) ThreadGroupSizeIsMultipleOfThreadExecutionWidth() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("threadGroupSizeIsMultipleOfThreadExecutionWidth"))
+	return rv
+}
+
+
+// SetThreadGroupSizeIsMultipleOfThreadExecutionWidth sets the value of the threadGroupSizeIsMultipleOfThreadExecutionWidth property.
+// A Boolean value that indicates whether the threadgroup size is always a multiple of the thread execution width.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlcomputepipelinedescriptor/threadgroupsizeismultipleofthreadexecutionwidth
+func (c_ ComputePipelineDescriptor) SetThreadGroupSizeIsMultipleOfThreadExecutionWidth(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setThreadGroupSizeIsMultipleOfThreadExecutionWidth:"), value)
+}
+
 // A string that identifies the instance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLComputePipelineDescriptor/label

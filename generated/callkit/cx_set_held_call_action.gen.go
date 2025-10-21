@@ -108,6 +108,24 @@ func NewCXSetHeldCallActionWithCoder(aDecoder unsafe.Pointer) CXSetHeldCallActio
 
 // A Boolean value that indicates whether the call is placed on hold.
 //
+// [Full Topic]: https://developer.apple.com/documentation/callkit/cxsetheldcallaction/isonhold
+func (c_ CXSetHeldCallAction) IsOnHold() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isOnHold"))
+	return rv
+}
+
+
+// SetIsOnHold sets the value of the isOnHold property.
+// A Boolean value that indicates whether the call is placed on hold.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/callkit/cxsetheldcallaction/isonhold
+func (c_ CXSetHeldCallAction) SetIsOnHold(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsOnHold:"), value)
+}
+
+// A Boolean value that indicates whether the call is placed on hold.
+//
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetHeldCallAction/isOnHold
 func (c_ CXSetHeldCallAction) OnHold() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("onHold"))

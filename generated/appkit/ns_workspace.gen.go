@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,10 +32,10 @@ type _WorkspaceClass struct {
 type IWorkspace interface {
 	objectivec.IObject
 	HideOtherApplications()
-	LaunchApplicationAtURLOptionsConfigurationError(url unsafe.Pointer, options unsafe.Pointer, configuration unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer
-	OpenURL(url unsafe.Pointer) bool
-	OpenURLConfigurationCompletionHandler(url unsafe.Pointer, configuration unsafe.Pointer, completionHandler unsafe.Pointer)
-	OpenURLsWithApplicationAtURLConfigurationCompletionHandler(urls unsafe.Pointer, applicationURL unsafe.Pointer, configuration unsafe.Pointer, completionHandler unsafe.Pointer)
+	LaunchApplicationAtURLOptionsConfigurationError(url foundation.URL, options unsafe.Pointer, configuration unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer
+	OpenURL(url foundation.URL) bool
+	OpenURLConfigurationCompletionHandler(url foundation.URL, configuration unsafe.Pointer, completionHandler unsafe.Pointer)
+	OpenURLsWithApplicationAtURLConfigurationCompletionHandler(urls unsafe.Pointer, applicationURL foundation.URL, configuration unsafe.Pointer, completionHandler unsafe.Pointer)
 	RequestAuthorizationOfTypeCompletionHandler(type_ unsafe.Pointer, completionHandler unsafe.Pointer)
 }
 
@@ -103,7 +104,7 @@ func (w_ Workspace) HideOtherApplications() {
 // Launches the app at the specified URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/launchApplication(at:options:configuration:)
-func (w_ Workspace) LaunchApplicationAtURLOptionsConfigurationError(url unsafe.Pointer, options unsafe.Pointer, configuration unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func (w_ Workspace) LaunchApplicationAtURLOptionsConfigurationError(url foundation.URL, options unsafe.Pointer, configuration unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("launchApplicationAtURL:options:configuration:error:"), url, options, configuration, error_)
 	return rv
 }
@@ -111,7 +112,7 @@ func (w_ Workspace) LaunchApplicationAtURLOptionsConfigurationError(url unsafe.P
 // Opens the location at the specified URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/open(_:)
-func (w_ Workspace) OpenURL(url unsafe.Pointer) bool {
+func (w_ Workspace) OpenURL(url foundation.URL) bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("openURL:"), url)
 	return rv
 }
@@ -119,14 +120,14 @@ func (w_ Workspace) OpenURL(url unsafe.Pointer) bool {
 // Opens a URL asynchronously using the provided options.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/open(_:configuration:completionHandler:)
-func (w_ Workspace) OpenURLConfigurationCompletionHandler(url unsafe.Pointer, configuration unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (w_ Workspace) OpenURLConfigurationCompletionHandler(url foundation.URL, configuration unsafe.Pointer, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("openURL:configuration:completionHandler:"), url, configuration, completionHandler)
 }
 
 // Opens one or more URLs asynchronously in the specified app using the provided options.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/open(_:withApplicationAt:configuration:completionHandler:)
-func (w_ Workspace) OpenURLsWithApplicationAtURLConfigurationCompletionHandler(urls unsafe.Pointer, applicationURL unsafe.Pointer, configuration unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (w_ Workspace) OpenURLsWithApplicationAtURLConfigurationCompletionHandler(urls unsafe.Pointer, applicationURL foundation.URL, configuration unsafe.Pointer, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("openURLs:withApplicationAtURL:configuration:completionHandler:"), urls, applicationURL, configuration, completionHandler)
 }
 
@@ -159,6 +160,204 @@ func (w_ Workspace) RunningApplications() []RunningApplication {
 func (w_ Workspace) SharedWorkspace() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("sharedWorkspace"))
 	return rv
+}
+
+// A Boolean value that indicates whether the app avoids conveying information through color alone.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsworkspace/accessibilitydisplayshoulddifferentiatewithoutcolor
+func (w_ Workspace) AccessibilityDisplayShouldDifferentiateWithoutColor() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("accessibilityDisplayShouldDifferentiateWithoutColor"))
+	return rv
+}
+
+
+// SetAccessibilityDisplayShouldDifferentiateWithoutColor sets the value of the accessibilityDisplayShouldDifferentiateWithoutColor property.
+// A Boolean value that indicates whether the app avoids conveying information through color alone.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsworkspace/accessibilitydisplayshoulddifferentiatewithoutcolor
+func (w_ Workspace) SetAccessibilityDisplayShouldDifferentiateWithoutColor(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setAccessibilityDisplayShouldDifferentiateWithoutColor:"), value)
+}
+
+// A Boolean value that indicates whether the app presents a high-contrast user interface.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsworkspace/accessibilitydisplayshouldincreasecontrast
+func (w_ Workspace) AccessibilityDisplayShouldIncreaseContrast() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("accessibilityDisplayShouldIncreaseContrast"))
+	return rv
+}
+
+
+// SetAccessibilityDisplayShouldIncreaseContrast sets the value of the accessibilityDisplayShouldIncreaseContrast property.
+// A Boolean value that indicates whether the app presents a high-contrast user interface.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsworkspace/accessibilitydisplayshouldincreasecontrast
+func (w_ Workspace) SetAccessibilityDisplayShouldIncreaseContrast(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setAccessibilityDisplayShouldIncreaseContrast:"), value)
+}
+
+// A Boolean value that indicates whether the accessibility option to invert colors is in an enabled state.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsworkspace/accessibilitydisplayshouldinvertcolors
+func (w_ Workspace) AccessibilityDisplayShouldInvertColors() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("accessibilityDisplayShouldInvertColors"))
+	return rv
+}
+
+
+// SetAccessibilityDisplayShouldInvertColors sets the value of the accessibilityDisplayShouldInvertColors property.
+// A Boolean value that indicates whether the accessibility option to invert colors is in an enabled state.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsworkspace/accessibilitydisplayshouldinvertcolors
+func (w_ Workspace) SetAccessibilityDisplayShouldInvertColors(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setAccessibilityDisplayShouldInvertColors:"), value)
+}
+
+// A Boolean value that indicates whether the accessibility option to reduce motion is in an enabled state.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsworkspace/accessibilitydisplayshouldreducemotion
+func (w_ Workspace) AccessibilityDisplayShouldReduceMotion() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("accessibilityDisplayShouldReduceMotion"))
+	return rv
+}
+
+
+// SetAccessibilityDisplayShouldReduceMotion sets the value of the accessibilityDisplayShouldReduceMotion property.
+// A Boolean value that indicates whether the accessibility option to reduce motion is in an enabled state.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsworkspace/accessibilitydisplayshouldreducemotion
+func (w_ Workspace) SetAccessibilityDisplayShouldReduceMotion(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setAccessibilityDisplayShouldReduceMotion:"), value)
+}
+
+// A Boolean value that indicates whether the app avoids using semitransparent backgrounds.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsworkspace/accessibilitydisplayshouldreducetransparency
+func (w_ Workspace) AccessibilityDisplayShouldReduceTransparency() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("accessibilityDisplayShouldReduceTransparency"))
+	return rv
+}
+
+
+// SetAccessibilityDisplayShouldReduceTransparency sets the value of the accessibilityDisplayShouldReduceTransparency property.
+// A Boolean value that indicates whether the app avoids using semitransparent backgrounds.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsworkspace/accessibilitydisplayshouldreducetransparency
+func (w_ Workspace) SetAccessibilityDisplayShouldReduceTransparency(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setAccessibilityDisplayShouldReduceTransparency:"), value)
+}
+
+// The array of colors for the file labels.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsworkspace/filelabelcolors
+func (w_ Workspace) FileLabelColors() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("fileLabelColors"))
+	return rv
+}
+
+
+// SetFileLabelColors sets the value of the fileLabelColors property.
+// The array of colors for the file labels.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsworkspace/filelabelcolors
+func (w_ Workspace) SetFileLabelColors(value unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setFileLabelColors:"), value)
+}
+
+// The array of file labels, returned as strings.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsworkspace/filelabels
+func (w_ Workspace) FileLabels() string {
+	rv := objc.Send[string](w_.ID, objc.Sel("fileLabels"))
+	return rv
+}
+
+
+// SetFileLabels sets the value of the fileLabels property.
+// The array of file labels, returned as strings.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsworkspace/filelabels
+func (w_ Workspace) SetFileLabels(value string) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setFileLabels:"), objc.String(value))
+}
+
+// Returns the frontmost app, which is the app that receives key events.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsworkspace/frontmostapplication
+func (w_ Workspace) FrontmostApplication() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("frontmostApplication"))
+	return rv
+}
+
+
+// SetFrontmostApplication sets the value of the frontmostApplication property.
+// Returns the frontmost app, which is the app that receives key events.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsworkspace/frontmostapplication
+func (w_ Workspace) SetFrontmostApplication(value unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setFrontmostApplication:"), value)
+}
+
+// A Boolean value that indicates whether Switch Control is currently running.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsworkspace/isswitchcontrolenabled
+func (w_ Workspace) IsSwitchControlEnabled() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("isSwitchControlEnabled"))
+	return rv
+}
+
+
+// SetIsSwitchControlEnabled sets the value of the isSwitchControlEnabled property.
+// A Boolean value that indicates whether Switch Control is currently running.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsworkspace/isswitchcontrolenabled
+func (w_ Workspace) SetIsSwitchControlEnabled(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setIsSwitchControlEnabled:"), value)
+}
+
+// A Boolean value that indicates whether VoiceOver is currently running.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsworkspace/isvoiceoverenabled
+func (w_ Workspace) IsVoiceOverEnabled() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("isVoiceOverEnabled"))
+	return rv
+}
+
+
+// SetIsVoiceOverEnabled sets the value of the isVoiceOverEnabled property.
+// A Boolean value that indicates whether VoiceOver is currently running.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsworkspace/isvoiceoverenabled
+func (w_ Workspace) SetIsVoiceOverEnabled(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setIsVoiceOverEnabled:"), value)
+}
+
+// Returns the app that owns the currently displayed menu bar.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsworkspace/menubarowningapplication
+func (w_ Workspace) MenuBarOwningApplication() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("menuBarOwningApplication"))
+	return rv
+}
+
+
+// SetMenuBarOwningApplication sets the value of the menuBarOwningApplication property.
+// Returns the app that owns the currently displayed menu bar.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsworkspace/menubarowningapplication
+func (w_ Workspace) SetMenuBarOwningApplication(value unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setMenuBarOwningApplication:"), value)
 }
 
 

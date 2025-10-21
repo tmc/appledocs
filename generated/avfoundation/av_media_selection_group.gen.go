@@ -86,5 +86,59 @@ func (m_ MediaSelectionGroup) AllowsEmptySelection() bool {
 	return rv
 }
 
+// For content that has been authored with the express intent of offering an alternative selection interface for AVMediaSelectionOptions, AVCustomMediaSelectionScheme provides a collection of custom settings for controlling the presentation of the media.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselectiongroup/custommediaselectionscheme
+func (m_ MediaSelectionGroup) CustomMediaSelectionScheme() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("customMediaSelectionScheme"))
+	return rv
+}
+
+
+// SetCustomMediaSelectionScheme sets the value of the customMediaSelectionScheme property.
+// For content that has been authored with the express intent of offering an alternative selection interface for AVMediaSelectionOptions, AVCustomMediaSelectionScheme provides a collection of custom settings for controlling the presentation of the media.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselectiongroup/custommediaselectionscheme
+func (m_ MediaSelectionGroup) SetCustomMediaSelectionScheme(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCustomMediaSelectionScheme:"), value)
+}
+
+// The default option in the group.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselectiongroup/defaultoption
+func (m_ MediaSelectionGroup) DefaultOption() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("defaultOption"))
+	return rv
+}
+
+
+// SetDefaultOption sets the value of the defaultOption property.
+// The default option in the group.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselectiongroup/defaultoption
+func (m_ MediaSelectionGroup) SetDefaultOption(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDefaultOption:"), value)
+}
+
+// A collection of mutually exclusive media selection options
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselectiongroup/options
+func (m_ MediaSelectionGroup) Options() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("options"))
+	return rv
+}
+
+
+// SetOptions sets the value of the options property.
+// A collection of mutually exclusive media selection options
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselectiongroup/options
+func (m_ MediaSelectionGroup) SetOptions(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setOptions:"), value)
+}
+
 
 

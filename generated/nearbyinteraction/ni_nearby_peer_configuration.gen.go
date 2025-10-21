@@ -83,6 +83,42 @@ func NewNINearbyPeerConfiguration() NINearbyPeerConfiguration {
 
 // A Boolean value that combines the spatial awareness of ARKit with Nearby Interaction to improve the accuracy of a nearby object’s position.
 //
+// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/ninearbypeerconfiguration/iscameraassistanceenabled
+func (n_ NINearbyPeerConfiguration) IsCameraAssistanceEnabled() bool {
+	rv := objc.Send[bool](n_.ID, objc.Sel("isCameraAssistanceEnabled"))
+	return rv
+}
+
+
+// SetIsCameraAssistanceEnabled sets the value of the isCameraAssistanceEnabled property.
+// A Boolean value that combines the spatial awareness of ARKit with Nearby Interaction to improve the accuracy of a nearby object’s position.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/ninearbypeerconfiguration/iscameraassistanceenabled
+func (n_ NINearbyPeerConfiguration) SetIsCameraAssistanceEnabled(value bool) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setIsCameraAssistanceEnabled:"), value)
+}
+
+// A Boolean value that indicates whether both peers can use extended distance measurement for this Nearby Interaction session instance.
+//
+// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/ninearbypeerconfiguration/isextendeddistancemeasurementenabled
+func (n_ NINearbyPeerConfiguration) IsExtendedDistanceMeasurementEnabled() bool {
+	rv := objc.Send[bool](n_.ID, objc.Sel("isExtendedDistanceMeasurementEnabled"))
+	return rv
+}
+
+
+// SetIsExtendedDistanceMeasurementEnabled sets the value of the isExtendedDistanceMeasurementEnabled property.
+// A Boolean value that indicates whether both peers can use extended distance measurement for this Nearby Interaction session instance.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/ninearbypeerconfiguration/isextendeddistancemeasurementenabled
+func (n_ NINearbyPeerConfiguration) SetIsExtendedDistanceMeasurementEnabled(value bool) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setIsExtendedDistanceMeasurementEnabled:"), value)
+}
+
+// A Boolean value that combines the spatial awareness of ARKit with Nearby Interaction to improve the accuracy of a nearby object’s position.
+//
 // [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NINearbyPeerConfiguration/isCameraAssistanceEnabled
 func (n_ NINearbyPeerConfiguration) CameraAssistanceEnabled() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("cameraAssistanceEnabled"))

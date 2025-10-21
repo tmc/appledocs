@@ -283,6 +283,42 @@ func (a_ AudioSession) SetPrefersNoInterruptionsFromSystemAlertsError(inValue bo
 	return rv
 }
 
+// A Boolean value that indicates whether audio output is in a muted state.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosession/isoutputmuted
+func (a_ AudioSession) IsOutputMuted() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("isOutputMuted"))
+	return rv
+}
+
+
+// SetIsOutputMuted sets the value of the isOutputMuted property.
+// A Boolean value that indicates whether audio output is in a muted state.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosession/isoutputmuted
+func (a_ AudioSession) SetIsOutputMuted(value bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setIsOutputMuted:"), value)
+}
+
+// A Boolean value that indicates whether another app is playing audio.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosession/isotheraudioplaying
+func (a_ AudioSession) IsOtherAudioPlaying() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("isOtherAudioPlaying"))
+	return rv
+}
+
+
+// SetIsOtherAudioPlaying sets the value of the isOtherAudioPlaying property.
+// A Boolean value that indicates whether another app is playing audio.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosession/isotheraudioplaying
+func (a_ AudioSession) SetIsOtherAudioPlaying(value bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setIsOtherAudioPlaying:"), value)
+}
+
 // A Boolean value that indicates whether system sounds and haptics play while recording from audio input.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/allowHapticsAndSystemSoundsDuringRecording

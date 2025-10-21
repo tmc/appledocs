@@ -78,5 +78,77 @@ func NewMKLookAroundSceneRequest() MKLookAroundSceneRequest {
 }
 
 
+// A Boolean value that indicates if the cancellation of a scene request was successful.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mklookaroundscenerequest/iscancelled
+func (m_ MKLookAroundSceneRequest) IsCancelled() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("isCancelled"))
+	return rv
+}
+
+
+// SetIsCancelled sets the value of the isCancelled property.
+// A Boolean value that indicates if the cancellation of a scene request was successful.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mklookaroundscenerequest/iscancelled
+func (m_ MKLookAroundSceneRequest) SetIsCancelled(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIsCancelled:"), value)
+}
+
+// A Boolean value that indicates whether a scene request is loading.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mklookaroundscenerequest/isloading
+func (m_ MKLookAroundSceneRequest) IsLoading() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("isLoading"))
+	return rv
+}
+
+
+// SetIsLoading sets the value of the isLoading property.
+// A Boolean value that indicates whether a scene request is loading.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mklookaroundscenerequest/isloading
+func (m_ MKLookAroundSceneRequest) SetIsLoading(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIsLoading:"), value)
+}
+
+// A map item that describes the location of the LookAround scene.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mklookaroundscenerequest/mapitem
+func (m_ MKLookAroundSceneRequest) MapItem() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("mapItem"))
+	return rv
+}
+
+
+// SetMapItem sets the value of the mapItem property.
+// A map item that describes the location of the LookAround scene.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mklookaroundscenerequest/mapitem
+func (m_ MKLookAroundSceneRequest) SetMapItem(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMapItem:"), value)
+}
+
+// A coordinate value that describes the location of the LookAround scene.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mklookaroundscenerequest/coordinate
+func (m_ MKLookAroundSceneRequest) Coordinate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("coordinate"))
+	return rv
+}
+
+
+// SetCoordinate sets the value of the coordinate property.
+// A coordinate value that describes the location of the LookAround scene.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mklookaroundscenerequest/coordinate
+func (m_ MKLookAroundSceneRequest) SetCoordinate(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCoordinate:"), value)
+}
+
 
 

@@ -75,5 +75,125 @@ func NewMTRDeviceAttestationInfo() MTRDeviceAttestationInfo {
 }
 
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationinfo/challenge
+func (m_ MTRDeviceAttestationInfo) Challenge() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("challenge"))
+	return rv
+}
+
+
+// SetChallenge sets the value of the challenge property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationinfo/challenge
+func (m_ MTRDeviceAttestationInfo) SetChallenge(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setChallenge:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationinfo/firmwareinfo
+func (m_ MTRDeviceAttestationInfo) FirmwareInfo() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("firmwareInfo"))
+	return rv
+}
+
+
+// SetFirmwareInfo sets the value of the firmwareInfo property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationinfo/firmwareinfo
+func (m_ MTRDeviceAttestationInfo) SetFirmwareInfo(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setFirmwareInfo:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationinfo/elementstlv
+func (m_ MTRDeviceAttestationInfo) ElementsTLV() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("elementsTLV"))
+	return rv
+}
+
+
+// SetElementsTLV sets the value of the elementsTLV property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationinfo/elementstlv
+func (m_ MTRDeviceAttestationInfo) SetElementsTLV(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setElementsTLV:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationinfo/certificationdeclaration
+func (m_ MTRDeviceAttestationInfo) CertificationDeclaration() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("certificationDeclaration"))
+	return rv
+}
+
+
+// SetCertificationDeclaration sets the value of the certificationDeclaration property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationinfo/certificationdeclaration
+func (m_ MTRDeviceAttestationInfo) SetCertificationDeclaration(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCertificationDeclaration:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationinfo/nonce
+func (m_ MTRDeviceAttestationInfo) Nonce() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("nonce"))
+	return rv
+}
+
+
+// SetNonce sets the value of the nonce property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationinfo/nonce
+func (m_ MTRDeviceAttestationInfo) SetNonce(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setNonce:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationinfo/elementssignature
+func (m_ MTRDeviceAttestationInfo) ElementsSignature() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("elementsSignature"))
+	return rv
+}
+
+
+// SetElementsSignature sets the value of the elementsSignature property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationinfo/elementssignature
+func (m_ MTRDeviceAttestationInfo) SetElementsSignature(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setElementsSignature:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationinfo/deviceattestationcertificate
+func (m_ MTRDeviceAttestationInfo) DeviceAttestationCertificate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("deviceAttestationCertificate"))
+	return rv
+}
+
+
+// SetDeviceAttestationCertificate sets the value of the deviceAttestationCertificate property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationinfo/deviceattestationcertificate
+func (m_ MTRDeviceAttestationInfo) SetDeviceAttestationCertificate(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDeviceAttestationCertificate:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationinfo/productattestationintermediatecertificate
+func (m_ MTRDeviceAttestationInfo) ProductAttestationIntermediateCertificate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("productAttestationIntermediateCertificate"))
+	return rv
+}
+
+
+// SetProductAttestationIntermediateCertificate sets the value of the productAttestationIntermediateCertificate property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationinfo/productattestationintermediatecertificate
+func (m_ MTRDeviceAttestationInfo) SetProductAttestationIntermediateCertificate(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setProductAttestationIntermediateCertificate:"), value)
+}
+
 
 

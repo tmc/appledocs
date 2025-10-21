@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,51 @@ func NewMTRMediaInputClusterSelectInputParams() MTRMediaInputClusterSelectInputP
 	return getMTRMediaInputClusterSelectInputParamsClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediainputclusterselectinputparams/serversideprocessingtimeout
+func (m_ MTRMediaInputClusterSelectInputParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+	return rv
+}
+
+
+// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediainputclusterselectinputparams/serversideprocessingtimeout
+func (m_ MTRMediaInputClusterSelectInputParams) SetServerSideProcessingTimeout(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediainputclusterselectinputparams/index
+func (m_ MTRMediaInputClusterSelectInputParams) Index() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("index"))
+	return rv
+}
+
+
+// SetIndex sets the value of the index property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediainputclusterselectinputparams/index
+func (m_ MTRMediaInputClusterSelectInputParams) SetIndex(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIndex:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediainputclusterselectinputparams/timedinvoketimeoutms
+func (m_ MTRMediaInputClusterSelectInputParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+	return rv
+}
+
+
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediainputclusterselectinputparams/timedinvoketimeoutms
+func (m_ MTRMediaInputClusterSelectInputParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+}
 
 
 

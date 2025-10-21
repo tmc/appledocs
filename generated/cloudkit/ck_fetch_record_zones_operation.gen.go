@@ -102,6 +102,54 @@ func (cc _CKFetchRecordZonesOperationClass) FetchAllRecordZonesOperation() unsaf
 	return rv
 }
 
+// The block to execute after the operation’s main task is completed.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/completionBlock
+func (c_ CKFetchRecordZonesOperation) CompletionBlock() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("completionBlock"))
+	return rv
+}
+
+
+// SetCompletionBlock sets the value of the completionBlock property.
+// The block to execute after the operation’s main task is completed.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/completionBlock
+func (c_ CKFetchRecordZonesOperation) SetCompletionBlock(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setCompletionBlock:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordzonesoperation/perrecordzoneresultblock
+func (c_ CKFetchRecordZonesOperation) PerRecordZoneResultBlock() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("perRecordZoneResultBlock"))
+	return rv
+}
+
+
+// SetPerRecordZoneResultBlock sets the value of the perRecordZoneResultBlock property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordzonesoperation/perrecordzoneresultblock
+func (c_ CKFetchRecordZonesOperation) SetPerRecordZoneResultBlock(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setPerRecordZoneResultBlock:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordzonesoperation/fetchrecordzonesresultblock
+func (c_ CKFetchRecordZonesOperation) FetchRecordZonesResultBlock() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("fetchRecordZonesResultBlock"))
+	return rv
+}
+
+
+// SetFetchRecordZonesResultBlock sets the value of the fetchRecordZonesResultBlock property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordzonesoperation/fetchrecordzonesresultblock
+func (c_ CKFetchRecordZonesOperation) SetFetchRecordZonesResultBlock(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setFetchRecordZonesResultBlock:"), value)
+}
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZonesOperation/perRecordZoneCompletionBlock
 func (c_ CKFetchRecordZonesOperation) PerRecordZoneCompletionBlock() unsafe.Pointer {

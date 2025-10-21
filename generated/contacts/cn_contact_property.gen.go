@@ -80,6 +80,68 @@ func NewCNContactProperty() CNContactProperty {
 }
 
 
+// The given name of the contact.
+//
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cnmutablecontact/givenname
+func (c_ CNContactProperty) GivenName() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("givenName"))
+	return rv
+}
+
+
+// SetGivenName sets the value of the givenName property.
+// The given name of the contact.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cnmutablecontact/givenname
+func (c_ CNContactProperty) SetGivenName(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setGivenName:"), objc.String(value))
+}
+
+// An array of labeled phone numbers for a contact.
+//
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cncontact/phonenumbers
+func (c_ CNContactProperty) PhoneNumbers() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("phoneNumbers"))
+	return rv
+}
+
+
+// SetPhoneNumbers sets the value of the phoneNumbers property.
+// An array of labeled phone numbers for a contact.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cncontact/phonenumbers
+func (c_ CNContactProperty) SetPhoneNumbers(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setPhoneNumbers:"), value)
+}
+
+// Exception thrown when an accessed property was not fetched.
+//
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cncontactpropertynotfetchedexceptionname
+func (c_ CNContactProperty) CNContactPropertyNotFetchedExceptionName() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CNContactPropertyNotFetchedExceptionName"))
+	return rv
+}
+
+// The contact’s job title.
+//
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cncontact/jobtitle
+func (c_ CNContactProperty) JobTitle() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("jobTitle"))
+	return rv
+}
+
+
+// SetJobTitle sets the value of the jobTitle property.
+// The contact’s job title.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cncontact/jobtitle
+func (c_ CNContactProperty) SetJobTitle(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setJobTitle:"), objc.String(value))
+}
+
 // The associated contact.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactProperty/contact

@@ -80,5 +80,59 @@ func NewOpenGLLayer() OpenGLLayer {
 }
 
 
+// The layer’s OpenGL context.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsopengllayer/openglcontext
+func (o_ OpenGLLayer) OpenGLContext() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("openGLContext"))
+	return rv
+}
+
+
+// SetOpenGLContext sets the value of the openGLContext property.
+// The layer’s OpenGL context.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsopengllayer/openglcontext
+func (o_ OpenGLLayer) SetOpenGLContext(value unsafe.Pointer) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setOpenGLContext:"), value)
+}
+
+// Provides access to the layer’s associated OpenGL pixel format.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsopengllayer/openglpixelformat
+func (o_ OpenGLLayer) OpenGLPixelFormat() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("openGLPixelFormat"))
+	return rv
+}
+
+
+// SetOpenGLPixelFormat sets the value of the openGLPixelFormat property.
+// Provides access to the layer’s associated OpenGL pixel format.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsopengllayer/openglpixelformat
+func (o_ OpenGLLayer) SetOpenGLPixelFormat(value unsafe.Pointer) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setOpenGLPixelFormat:"), value)
+}
+
+// Returns the view associated with the layer.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsopengllayer/view
+func (o_ OpenGLLayer) View() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("view"))
+	return rv
+}
+
+
+// SetView sets the value of the view property.
+// Returns the view associated with the layer.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsopengllayer/view
+func (o_ OpenGLLayer) SetView(value unsafe.Pointer) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setView:"), value)
+}
+
 
 

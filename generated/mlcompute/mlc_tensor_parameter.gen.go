@@ -80,5 +80,41 @@ func NewCTensorParameter() CTensorParameter {
 }
 
 
+// The underlying tensor.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlctensorparameter/tensor
+func (c_ CTensorParameter) Tensor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("tensor"))
+	return rv
+}
+
+
+// SetTensor sets the value of the tensor property.
+// The underlying tensor.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlctensorparameter/tensor
+func (c_ CTensorParameter) SetTensor(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setTensor:"), value)
+}
+
+// A Boolean that indicates whether this tensor parameter is updatable.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlctensorparameter/isupdatable
+func (c_ CTensorParameter) IsUpdatable() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isUpdatable"))
+	return rv
+}
+
+
+// SetIsUpdatable sets the value of the isUpdatable property.
+// A Boolean that indicates whether this tensor parameter is updatable.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlctensorparameter/isupdatable
+func (c_ CTensorParameter) SetIsUpdatable(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsUpdatable:"), value)
+}
+
 
 

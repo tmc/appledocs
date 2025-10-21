@@ -161,5 +161,113 @@ func (c_ ColorPickerTouchBarItem) SetEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setEnabled:"), value)
 }
 
+// The selector on the target object that is invoked when a user interacts with the color picker.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorpickertouchbaritem/action
+func (c_ ColorPickerTouchBarItem) Action() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("action"))
+	return rv
+}
+
+
+// SetAction sets the value of the action property.
+// The selector on the target object that is invoked when a user interacts with the color picker.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorpickertouchbaritem/action
+func (c_ ColorPickerTouchBarItem) SetAction(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setAction:"), value)
+}
+
+// The picker’s currently selected color.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorpickertouchbaritem/color
+func (c_ ColorPickerTouchBarItem) Color() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("color"))
+	return rv
+}
+
+
+// SetColor sets the value of the color property.
+// The picker’s currently selected color.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorpickertouchbaritem/color
+func (c_ ColorPickerTouchBarItem) SetColor(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setColor:"), value)
+}
+
+// The user-visible string identifying this item during touch bar customization.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorpickertouchbaritem/customizationlabel
+func (c_ ColorPickerTouchBarItem) CustomizationLabel() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("customizationLabel"))
+	return rv
+}
+
+
+// SetCustomizationLabel sets the value of the customizationLabel property.
+// The user-visible string identifying this item during touch bar customization.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorpickertouchbaritem/customizationlabel
+func (c_ ColorPickerTouchBarItem) SetCustomizationLabel(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setCustomizationLabel:"), objc.String(value))
+}
+
+// A Boolean value that determines whether the color picker is enabled.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorpickertouchbaritem/isenabled
+func (c_ ColorPickerTouchBarItem) IsEnabled() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isEnabled"))
+	return rv
+}
+
+
+// SetIsEnabled sets the value of the isEnabled property.
+// A Boolean value that determines whether the color picker is enabled.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorpickertouchbaritem/isenabled
+func (c_ ColorPickerTouchBarItem) SetIsEnabled(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsEnabled:"), value)
+}
+
+// A Boolean value that controls whether the color picker allows picking of colors with alpha values other than
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorpickertouchbaritem/showsalpha
+func (c_ ColorPickerTouchBarItem) ShowsAlpha() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("showsAlpha"))
+	return rv
+}
+
+
+// SetShowsAlpha sets the value of the showsAlpha property.
+// A Boolean value that controls whether the color picker allows picking of colors with alpha values other than
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorpickertouchbaritem/showsalpha
+func (c_ ColorPickerTouchBarItem) SetShowsAlpha(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setShowsAlpha:"), value)
+}
+
+// An object that is notified when a user interacts with the color picker.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorpickertouchbaritem/target
+func (c_ ColorPickerTouchBarItem) Target() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("target"))
+	return rv
+}
+
+
+// SetTarget sets the value of the target property.
+// An object that is notified when a user interacts with the color picker.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorpickertouchbaritem/target
+func (c_ ColorPickerTouchBarItem) SetTarget(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setTarget:"), value)
+}
+
 
 

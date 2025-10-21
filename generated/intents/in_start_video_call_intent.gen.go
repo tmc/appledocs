@@ -81,5 +81,23 @@ func NewINStartVideoCallIntent() INStartVideoCallIntent {
 }
 
 
+// The users to call.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/instartvideocallintent/contacts
+func (i_ INStartVideoCallIntent) Contacts() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("contacts"))
+	return rv
+}
+
+
+// SetContacts sets the value of the contacts property.
+// The users to call.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/instartvideocallintent/contacts
+func (i_ INStartVideoCallIntent) SetContacts(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setContacts:"), value)
+}
+
 
 

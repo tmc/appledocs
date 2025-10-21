@@ -81,5 +81,23 @@ func NewMetadataBodyObject() MetadataBodyObject {
 }
 
 
+// An integer value that defines the unique identifier of an object in a picture.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadatabodyobject/bodyid
+func (m_ MetadataBodyObject) BodyID() int {
+	rv := objc.Send[int](m_.ID, objc.Sel("bodyID"))
+	return rv
+}
+
+
+// SetBodyID sets the value of the bodyID property.
+// An integer value that defines the unique identifier of an object in a picture.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadatabodyobject/bodyid
+func (m_ MetadataBodyObject) SetBodyID(value int) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setBodyID:"), value)
+}
+
 
 

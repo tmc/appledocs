@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -117,6 +118,204 @@ func (sc _SharingServiceClass) SharingServiceNamed(serviceName unsafe.Pointer) u
 func (sc _SharingServiceClass) SharingServicesForItems(items objc.ID) []SharingService {
 	rv := objc.Send[[]SharingService](objc.ID(sc.class), objc.Sel("sharingServicesForItems:"), items)
 	return rv
+}
+
+// The account name used for posting on Twitter or Sina Weibo.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservice/accountname
+func (s_ SharingService) AccountName() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("accountName"))
+	return rv
+}
+
+
+// SetAccountName sets the value of the accountName property.
+// The account name used for posting on Twitter or Sina Weibo.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservice/accountname
+func (s_ SharingService) SetAccountName(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setAccountName:"), objc.String(value))
+}
+
+// The alternate image representing the sharing service.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservice/alternateimage
+func (s_ SharingService) AlternateImage() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("alternateImage"))
+	return rv
+}
+
+
+// SetAlternateImage sets the value of the alternateImage property.
+// The alternate image representing the sharing service.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservice/alternateimage
+func (s_ SharingService) SetAlternateImage(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setAlternateImage:"), value)
+}
+
+// An array of NSURL objects representing the files that were shared.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservice/attachmentfileurls
+func (s_ SharingService) AttachmentFileURLs() foundation.URL {
+	rv := objc.Send[foundation.URL](s_.ID, objc.Sel("attachmentFileURLs"))
+	return rv
+}
+
+
+// SetAttachmentFileURLs sets the value of the attachmentFileURLs property.
+// An array of NSURL objects representing the files that were shared.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservice/attachmentfileurls
+func (s_ SharingService) SetAttachmentFileURLs(value foundation.URL) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setAttachmentFileURLs:"), value)
+}
+
+// Specifies the delegate of the sharing service.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservice/delegate
+func (s_ SharingService) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+
+// SetDelegate sets the value of the delegate property.
+// Specifies the delegate of the sharing service.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservice/delegate
+func (s_ SharingService) SetDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setDelegate:"), value)
+}
+
+// The primary image representing the sharing service.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservice/image
+func (s_ SharingService) Image() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("image"))
+	return rv
+}
+
+
+// SetImage sets the value of the image property.
+// The primary image representing the sharing service.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservice/image
+func (s_ SharingService) SetImage(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setImage:"), value)
+}
+
+// The title of the service in the Share menu.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservice/menuitemtitle
+func (s_ SharingService) MenuItemTitle() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("menuItemTitle"))
+	return rv
+}
+
+
+// SetMenuItemTitle sets the value of the menuItemTitle property.
+// The title of the service in the Share menu.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservice/menuitemtitle
+func (s_ SharingService) SetMenuItemTitle(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setMenuItemTitle:"), objc.String(value))
+}
+
+// The message body as a string.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservice/messagebody
+func (s_ SharingService) MessageBody() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("messageBody"))
+	return rv
+}
+
+
+// SetMessageBody sets the value of the messageBody property.
+// The message body as a string.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservice/messagebody
+func (s_ SharingService) SetMessageBody(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setMessageBody:"), objc.String(value))
+}
+
+// A permanent URL (permalink) that your app can use to access the post.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservice/permanentlink
+func (s_ SharingService) PermanentLink() foundation.URL {
+	rv := objc.Send[foundation.URL](s_.ID, objc.Sel("permanentLink"))
+	return rv
+}
+
+
+// SetPermanentLink sets the value of the permanentLink property.
+// A permanent URL (permalink) that your app can use to access the post.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservice/permanentlink
+func (s_ SharingService) SetPermanentLink(value foundation.URL) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setPermanentLink:"), value)
+}
+
+// An array containing the user handles of the desired recipients.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservice/recipients
+func (s_ SharingService) Recipients() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("recipients"))
+	return rv
+}
+
+
+// SetRecipients sets the value of the recipients property.
+// An array containing the user handles of the desired recipients.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservice/recipients
+func (s_ SharingService) SetRecipients(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setRecipients:"), objc.String(value))
+}
+
+// The subject of the post.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservice/subject
+func (s_ SharingService) Subject() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("subject"))
+	return rv
+}
+
+
+// SetSubject sets the value of the subject property.
+// The subject of the post.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservice/subject
+func (s_ SharingService) SetSubject(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setSubject:"), objc.String(value))
+}
+
+// The title of the sharing service.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservice/title
+func (s_ SharingService) Title() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("title"))
+	return rv
+}
+
+
+// SetTitle sets the value of the title property.
+// The title of the sharing service.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservice/title
+func (s_ SharingService) SetTitle(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
 
 

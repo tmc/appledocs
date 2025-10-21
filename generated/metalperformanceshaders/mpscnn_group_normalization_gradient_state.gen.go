@@ -77,6 +77,36 @@ func NewCNNGroupNormalizationGradientState() CNNGroupNormalizationGradientState 
 
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnngroupnormalizationgradientstate/groupnormalization
+func (c_ CNNGroupNormalizationGradientState) GroupNormalization() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("groupNormalization"))
+	return rv
+}
+
+
+// SetGroupNormalization sets the value of the groupNormalization property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnngroupnormalizationgradientstate/groupnormalization
+func (c_ CNNGroupNormalizationGradientState) SetGroupNormalization(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setGroupNormalization:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnngroupnormalizationgradientstate/gamma
+func (c_ CNNGroupNormalizationGradientState) Gamma() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("gamma"))
+	return rv
+}
+
+
+// SetGamma sets the value of the gamma property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnngroupnormalizationgradientstate/gamma
+func (c_ CNNGroupNormalizationGradientState) SetGamma(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setGamma:"), value)
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNGroupNormalizationGradientState/beta
 func (c_ CNNGroupNormalizationGradientState) Beta() objc.ID {
 	rv := objc.Send[objc.ID](c_.ID, objc.Sel("beta"))

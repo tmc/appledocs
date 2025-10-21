@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [SActivity] class.
@@ -121,6 +122,24 @@ func (s_ SActivity) Stop() {
 	objc.Send[objc.ID](s_.ID, objc.Sel("stop"))
 }
 
+// A Boolean that indicates whether an activity is running.
+//
+// [Full Topic]: https://developer.apple.com/documentation/classkit/clsactivity/isstarted
+func (s_ SActivity) IsStarted() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("isStarted"))
+	return rv
+}
+
+
+// SetIsStarted sets the value of the isStarted property.
+// A Boolean that indicates whether an activity is running.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/classkit/clsactivity/isstarted
+func (s_ SActivity) SetIsStarted(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setIsStarted:"), value)
+}
+
 // The list of activity items associated with an activity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSActivity/additionalActivityItems
@@ -132,8 +151,8 @@ func (s_ SActivity) AdditionalActivityItems() []SActivityItem {
 // The cumulative time in seconds that an activity has been active.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSActivity/duration
-func (s_ SActivity) Duration() TimeInterval {
-	rv := objc.Send[TimeInterval](s_.ID, objc.Sel("duration"))
+func (s_ SActivity) Duration() foundation.TimeInterval {
+	rv := objc.Send[foundation.TimeInterval](s_.ID, objc.Sel("duration"))
 	return rv
 }
 

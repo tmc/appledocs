@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,8 +78,8 @@ func NewMTRServiceAreaClusterProgressStruct() MTRServiceAreaClusterProgressStruc
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterProgressStruct/areaID
-func (m_ MTRServiceAreaClusterProgressStruct) AreaID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("areaID"))
+func (m_ MTRServiceAreaClusterProgressStruct) AreaID() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("areaID"))
 	return rv
 }
 
@@ -86,14 +87,14 @@ func (m_ MTRServiceAreaClusterProgressStruct) AreaID() unsafe.Pointer {
 // SetAreaID sets the value of the areaID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterProgressStruct/areaID
-func (m_ MTRServiceAreaClusterProgressStruct) SetAreaID(value unsafe.Pointer) {
+func (m_ MTRServiceAreaClusterProgressStruct) SetAreaID(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAreaID:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterProgressStruct/status
-func (m_ MTRServiceAreaClusterProgressStruct) Status() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("status"))
+func (m_ MTRServiceAreaClusterProgressStruct) Status() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("status"))
 	return rv
 }
 
@@ -101,14 +102,14 @@ func (m_ MTRServiceAreaClusterProgressStruct) Status() unsafe.Pointer {
 // SetStatus sets the value of the status property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterProgressStruct/status
-func (m_ MTRServiceAreaClusterProgressStruct) SetStatus(value unsafe.Pointer) {
+func (m_ MTRServiceAreaClusterProgressStruct) SetStatus(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStatus:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterProgressStruct/totalOperationalTime
-func (m_ MTRServiceAreaClusterProgressStruct) TotalOperationalTime() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("totalOperationalTime"))
+func (m_ MTRServiceAreaClusterProgressStruct) TotalOperationalTime() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("totalOperationalTime"))
 	return rv
 }
 
@@ -116,7 +117,7 @@ func (m_ MTRServiceAreaClusterProgressStruct) TotalOperationalTime() unsafe.Poin
 // SetTotalOperationalTime sets the value of the totalOperationalTime property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterProgressStruct/totalOperationalTime
-func (m_ MTRServiceAreaClusterProgressStruct) SetTotalOperationalTime(value unsafe.Pointer) {
+func (m_ MTRServiceAreaClusterProgressStruct) SetTotalOperationalTime(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTotalOperationalTime:"), value)
 }
 

@@ -85,4 +85,34 @@ func NewPredicateWithDevice(device objc.ID) Predicate {
 }
 
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpspredicate/predicatebuffer
+func (p_ Predicate) PredicateBuffer() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("predicateBuffer"))
+	return rv
+}
+
+
+// SetPredicateBuffer sets the value of the predicateBuffer property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpspredicate/predicatebuffer
+func (p_ Predicate) SetPredicateBuffer(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPredicateBuffer:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpspredicate/predicateoffset
+func (p_ Predicate) PredicateOffset() int {
+	rv := objc.Send[int](p_.ID, objc.Sel("predicateOffset"))
+	return rv
+}
+
+
+// SetPredicateOffset sets the value of the predicateOffset property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpspredicate/predicateoffset
+func (p_ Predicate) SetPredicateOffset(value int) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPredicateOffset:"), value)
+}
+
 

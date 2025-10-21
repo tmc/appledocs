@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -80,6 +81,42 @@ func NewSnapshotConfiguration() SnapshotConfiguration {
 	return getSnapshotConfigurationClass().New()
 }
 
+
+// The width of the captured image, in points.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wksnapshotconfiguration/snapshotwidth
+func (s_ SnapshotConfiguration) SnapshotWidth() foundation.Number {
+	rv := objc.Send[foundation.Number](s_.ID, objc.Sel("snapshotWidth"))
+	return rv
+}
+
+
+// SetSnapshotWidth sets the value of the snapshotWidth property.
+// The width of the captured image, in points.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wksnapshotconfiguration/snapshotwidth
+func (s_ SnapshotConfiguration) SetSnapshotWidth(value foundation.Number) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setSnapshotWidth:"), value)
+}
+
+// A Boolean value that indicates whether to take the snapshot after incorporating any pending screen updates.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wksnapshotconfiguration/afterscreenupdates
+func (s_ SnapshotConfiguration) AfterScreenUpdates() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("afterScreenUpdates"))
+	return rv
+}
+
+
+// SetAfterScreenUpdates sets the value of the afterScreenUpdates property.
+// A Boolean value that indicates whether to take the snapshot after incorporating any pending screen updates.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wksnapshotconfiguration/afterscreenupdates
+func (s_ SnapshotConfiguration) SetAfterScreenUpdates(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setAfterScreenUpdates:"), value)
+}
 
 // The portion of your web view to capture, specified as a rectangle in the view’s coordinate system.
 //

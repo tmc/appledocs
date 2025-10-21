@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -80,6 +81,24 @@ func NewPHContentEditingInput() PHContentEditingInput {
 }
 
 
+// The output of an asset content editing session.
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phassetchangerequest/contenteditingoutput
+func (p_ PHContentEditingInput) ContentEditingOutput() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("contentEditingOutput"))
+	return rv
+}
+
+
+// SetContentEditingOutput sets the value of the contentEditingOutput property.
+// The output of an asset content editing session.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phassetchangerequest/contenteditingoutput
+func (p_ PHContentEditingInput) SetContentEditingOutput(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setContentEditingOutput:"), value)
+}
+
 // An object that describes the most recent edit to the asset’s content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHContentEditingInput/adjustmentData
@@ -139,8 +158,8 @@ func (p_ PHContentEditingInput) FullSizeImageOrientation() unsafe.Pointer {
 // The URL to a file that contains the full-sized image data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHContentEditingInput/fullSizeImageURL
-func (p_ PHContentEditingInput) FullSizeImageURL() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("fullSizeImageURL"))
+func (p_ PHContentEditingInput) FullSizeImageURL() foundation.URL {
+	rv := objc.Send[foundation.URL](p_.ID, objc.Sel("fullSizeImageURL"))
 	return rv
 }
 

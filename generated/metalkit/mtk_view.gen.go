@@ -122,6 +122,24 @@ func (v_ View) ReleaseDrawables() {
 	objc.Send[objc.ID](v_.ID, objc.Sel("releaseDrawables"))
 }
 
+// A Boolean value that indicates whether the draw loop is paused.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalkit/mtkview/ispaused
+func (v_ View) IsPaused() bool {
+	rv := objc.Send[bool](v_.ID, objc.Sel("isPaused"))
+	return rv
+}
+
+
+// SetIsPaused sets the value of the isPaused property.
+// A Boolean value that indicates whether the draw loop is paused.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalkit/mtkview/ispaused
+func (v_ View) SetIsPaused(value bool) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setIsPaused:"), value)
+}
+
 // A Boolean value that controls whether to resize the drawable as the view changes size.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKView/autoResizeDrawable

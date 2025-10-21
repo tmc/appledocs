@@ -88,5 +88,41 @@ func (c_ CaptureDataOutputSynchronizer) DelegateCallbackQueue() unsafe.Pointer {
 	return rv
 }
 
+// The list of data outputs governed by this data output synchronizer.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedataoutputsynchronizer/dataoutputs
+func (c_ CaptureDataOutputSynchronizer) DataOutputs() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("dataOutputs"))
+	return rv
+}
+
+
+// SetDataOutputs sets the value of the dataOutputs property.
+// The list of data outputs governed by this data output synchronizer.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedataoutputsynchronizer/dataoutputs
+func (c_ CaptureDataOutputSynchronizer) SetDataOutputs(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setDataOutputs:"), value)
+}
+
+// A delegate object that receives synchronized capture data.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedataoutputsynchronizer/delegate
+func (c_ CaptureDataOutputSynchronizer) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+
+// SetDelegate sets the value of the delegate property.
+// A delegate object that receives synchronized capture data.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedataoutputsynchronizer/delegate
+func (c_ CaptureDataOutputSynchronizer) SetDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setDelegate:"), value)
+}
+
 
 

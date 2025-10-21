@@ -79,6 +79,40 @@ func NewDetectHumanRectanglesRequest() DetectHumanRectanglesRequest {
 }
 
 
+// The results of the request to find rectangular regions that contain people in an image.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetecthumanrectanglesrequest/results
+func (d_ DetectHumanRectanglesRequest) Results() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("results"))
+	return rv
+}
+
+
+// SetResults sets the value of the results property.
+// The results of the request to find rectangular regions that contain people in an image.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetecthumanrectanglesrequest/results
+func (d_ DetectHumanRectanglesRequest) SetResults(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setResults:"), value)
+}
+
+// A constant for specifying revision 1 of the human rectangles detection request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetecthumanrectanglesrequestrevision1
+func (d_ DetectHumanRectanglesRequest) VNDetectHumanRectanglesRequestRevision1() int {
+	rv := objc.Send[int](d_.ID, objc.Sel("VNDetectHumanRectanglesRequestRevision1"))
+	return rv
+}
+
+// A constant for specifying revision 2 of the human rectangles detection request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetecthumanrectanglesrequestrevision2
+func (d_ DetectHumanRectanglesRequest) VNDetectHumanRectanglesRequestRevision2() int {
+	rv := objc.Send[int](d_.ID, objc.Sel("VNDetectHumanRectanglesRequestRevision2"))
+	return rv
+}
+
 // A Boolean value that indicates whether the request requires detecting a full body or upper body only to produce a result.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectHumanRectanglesRequest/upperBodyOnly

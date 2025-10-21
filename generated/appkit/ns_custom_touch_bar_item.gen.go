@@ -97,5 +97,41 @@ func (c_ CustomTouchBarItem) SetViewController(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setViewController:"), value)
 }
 
+// The user-visible string identifying this item during bar customization.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscustomtouchbaritem/customizationlabel
+func (c_ CustomTouchBarItem) CustomizationLabel() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("customizationLabel"))
+	return rv
+}
+
+
+// SetCustomizationLabel sets the value of the customizationLabel property.
+// The user-visible string identifying this item during bar customization.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscustomtouchbaritem/customizationlabel
+func (c_ CustomTouchBarItem) SetCustomizationLabel(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setCustomizationLabel:"), objc.String(value))
+}
+
+// The view displayed in the bar to represent this item.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscustomtouchbaritem/view
+func (c_ CustomTouchBarItem) View() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("view"))
+	return rv
+}
+
+
+// SetView sets the value of the view property.
+// The view displayed in the bar to represent this item.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscustomtouchbaritem/view
+func (c_ CustomTouchBarItem) SetView(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setView:"), value)
+}
+
 
 

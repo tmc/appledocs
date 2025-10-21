@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -33,8 +34,8 @@ type IThumbnailGenerator interface {
 	CancelRequest(request unsafe.Pointer)
 	GenerateBestRepresentationForRequestCompletionHandler(request unsafe.Pointer, completionHandler unsafe.Pointer)
 	GenerateRepresentationsForRequestUpdateHandler(request unsafe.Pointer, updateHandler unsafe.Pointer)
-	SaveBestRepresentationForRequestToFileAtURLAsContentTypeCompletionHandler(request unsafe.Pointer, fileURL unsafe.Pointer, contentType unsafe.Pointer, completionHandler unsafe.Pointer)
-	SaveBestRepresentationForRequestToFileAtURLWithContentTypeCompletionHandler(request unsafe.Pointer, fileURL unsafe.Pointer, contentType string, completionHandler unsafe.Pointer)
+	SaveBestRepresentationForRequestToFileAtURLAsContentTypeCompletionHandler(request unsafe.Pointer, fileURL foundation.URL, contentType unsafe.Pointer, completionHandler unsafe.Pointer)
+	SaveBestRepresentationForRequestToFileAtURLWithContentTypeCompletionHandler(request unsafe.Pointer, fileURL foundation.URL, contentType string, completionHandler unsafe.Pointer)
 }
 
 // An object that generates thumbnail images based on provided requirements.
@@ -114,14 +115,14 @@ func (t_ ThumbnailGenerator) GenerateRepresentationsForRequestUpdateHandler(requ
 // Saves a thumbnail for the request on disk at fileURL. The file saved at fileURL has to be deleted when it is not used anymore. This is primarily intended for file provider extensions which need to upload thumbnails and have a small memory limit.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuickLookThumbnailing/QLThumbnailGenerator/saveBestRepresentation(for:to:as:completion:)
-func (t_ ThumbnailGenerator) SaveBestRepresentationForRequestToFileAtURLAsContentTypeCompletionHandler(request unsafe.Pointer, fileURL unsafe.Pointer, contentType unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (t_ ThumbnailGenerator) SaveBestRepresentationForRequestToFileAtURLAsContentTypeCompletionHandler(request unsafe.Pointer, fileURL foundation.URL, contentType unsafe.Pointer, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("saveBestRepresentationForRequest:toFileAtURL:asContentType:completionHandler:"), request, fileURL, contentType, completionHandler)
 }
 
 // Saves the best representation of thumbnail for a specific request to the specified URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuickLookThumbnailing/QLThumbnailGenerator/saveBestRepresentation(for:to:contentType:completion:)
-func (t_ ThumbnailGenerator) SaveBestRepresentationForRequestToFileAtURLWithContentTypeCompletionHandler(request unsafe.Pointer, fileURL unsafe.Pointer, contentType string, completionHandler unsafe.Pointer) {
+func (t_ ThumbnailGenerator) SaveBestRepresentationForRequestToFileAtURLWithContentTypeCompletionHandler(request unsafe.Pointer, fileURL foundation.URL, contentType string, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("saveBestRepresentationForRequest:toFileAtURL:withContentType:completionHandler:"), request, fileURL, objc.String(contentType), completionHandler)
 }
 

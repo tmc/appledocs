@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -35,7 +36,7 @@ type IMCSession interface {
 	Disconnect()
 	NearbyConnectionDataForPeerWithCompletionHandler(peerID unsafe.Pointer, completionHandler unsafe.Pointer)
 	SendDataToPeersWithModeError(data unsafe.Pointer, peerIDs unsafe.Pointer, mode unsafe.Pointer, error_ unsafe.Pointer) bool
-	SendResourceAtURLWithNameToPeerWithCompletionHandler(resourceURL unsafe.Pointer, resourceName string, peerID unsafe.Pointer, completionHandler unsafe.Pointer) unsafe.Pointer
+	SendResourceAtURLWithNameToPeerWithCompletionHandler(resourceURL foundation.URL, resourceName string, peerID unsafe.Pointer, completionHandler unsafe.Pointer) unsafe.Pointer
 	StartStreamWithNameToPeerError(streamName string, peerID unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer
 }
 
@@ -149,7 +150,7 @@ func (m_ MCSession) SendDataToPeersWithModeError(data unsafe.Pointer, peerIDs un
 // Sends the contents of a URL to a peer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCSession/sendResource(at:withName:toPeer:withCompletionHandler:)
-func (m_ MCSession) SendResourceAtURLWithNameToPeerWithCompletionHandler(resourceURL unsafe.Pointer, resourceName string, peerID unsafe.Pointer, completionHandler unsafe.Pointer) unsafe.Pointer {
+func (m_ MCSession) SendResourceAtURLWithNameToPeerWithCompletionHandler(resourceURL foundation.URL, resourceName string, peerID unsafe.Pointer, completionHandler unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("sendResourceAtURL:withName:toPeer:withCompletionHandler:"), resourceURL, objc.String(resourceName), peerID, completionHandler)
 	return rv
 }
@@ -159,6 +160,14 @@ func (m_ MCSession) SendResourceAtURLWithNameToPeerWithCompletionHandler(resourc
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCSession/startStream(withName:toPeer:)
 func (m_ MCSession) StartStreamWithNameToPeerError(streamName string, peerID unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("startStreamWithName:toPeer:error:"), objc.String(streamName), peerID, error_)
+	return rv
+}
+
+// The
+//
+// [Full Topic]: https://developer.apple.com/documentation/multipeerconnectivity/mcerrordomain
+func (m_ MCSession) MCErrorDomain() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("MCErrorDomain"))
 	return rv
 }
 

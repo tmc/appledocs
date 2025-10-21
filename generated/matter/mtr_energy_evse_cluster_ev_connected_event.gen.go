@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,8 +78,8 @@ func NewMTREnergyEVSEClusterEVConnectedEvent() MTREnergyEVSEClusterEVConnectedEv
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEVConnectedEvent/sessionID
-func (m_ MTREnergyEVSEClusterEVConnectedEvent) SessionID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("sessionID"))
+func (m_ MTREnergyEVSEClusterEVConnectedEvent) SessionID() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("sessionID"))
 	return rv
 }
 
@@ -86,7 +87,7 @@ func (m_ MTREnergyEVSEClusterEVConnectedEvent) SessionID() unsafe.Pointer {
 // SetSessionID sets the value of the sessionID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEVConnectedEvent/sessionID
-func (m_ MTREnergyEVSEClusterEVConnectedEvent) SetSessionID(value unsafe.Pointer) {
+func (m_ MTREnergyEVSEClusterEVConnectedEvent) SetSessionID(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSessionID:"), value)
 }
 

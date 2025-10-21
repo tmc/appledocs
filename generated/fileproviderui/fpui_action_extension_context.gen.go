@@ -95,6 +95,24 @@ func (f_ FPUIActionExtensionContext) CompleteRequest() {
 	objc.Send[objc.ID](f_.ID, objc.Sel("completeRequest"))
 }
 
+// The extension context provided by the host app.
+//
+// [Full Topic]: https://developer.apple.com/documentation/fileproviderui/fpuiactionextensionviewcontroller/extensioncontext
+func (f_ FPUIActionExtensionContext) ExtensionContext() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("extensionContext"))
+	return rv
+}
+
+
+// SetExtensionContext sets the value of the extensionContext property.
+// The extension context provided by the host app.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/fileproviderui/fpuiactionextensionviewcontroller/extensioncontext
+func (f_ FPUIActionExtensionContext) SetExtensionContext(value unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setExtensionContext:"), value)
+}
+
 // The identifier for the domain managed by the current file provider.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProviderUI/FPUIActionExtensionContext/domainIdentifier

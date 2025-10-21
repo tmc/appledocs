@@ -78,5 +78,95 @@ func NewImageNode() ImageNode {
 }
 
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnimagenode/imageallocator
+func (i_ ImageNode) ImageAllocator() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("imageAllocator"))
+	return rv
+}
+
+
+// SetImageAllocator sets the value of the imageAllocator property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnimagenode/imageallocator
+func (i_ ImageNode) SetImageAllocator(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setImageAllocator:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnimagenode/handle
+func (i_ ImageNode) Handle() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("handle"))
+	return rv
+}
+
+
+// SetHandle sets the value of the handle property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnimagenode/handle
+func (i_ ImageNode) SetHandle(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setHandle:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnimagenode/exportfromgraph
+func (i_ ImageNode) ExportFromGraph() bool {
+	rv := objc.Send[bool](i_.ID, objc.Sel("exportFromGraph"))
+	return rv
+}
+
+
+// SetExportFromGraph sets the value of the exportFromGraph property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnimagenode/exportfromgraph
+func (i_ ImageNode) SetExportFromGraph(value bool) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setExportFromGraph:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnimagenode/stopgradient
+func (i_ ImageNode) StopGradient() bool {
+	rv := objc.Send[bool](i_.ID, objc.Sel("stopGradient"))
+	return rv
+}
+
+
+// SetStopGradient sets the value of the stopGradient property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnimagenode/stopgradient
+func (i_ ImageNode) SetStopGradient(value bool) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setStopGradient:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnimagenode/synchronizeresource
+func (i_ ImageNode) SynchronizeResource() bool {
+	rv := objc.Send[bool](i_.ID, objc.Sel("synchronizeResource"))
+	return rv
+}
+
+
+// SetSynchronizeResource sets the value of the synchronizeResource property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnimagenode/synchronizeresource
+func (i_ ImageNode) SetSynchronizeResource(value bool) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setSynchronizeResource:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnimagenode/format
+func (i_ ImageNode) Format() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("format"))
+	return rv
+}
+
+
+// SetFormat sets the value of the format property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnimagenode/format
+func (i_ ImageNode) SetFormat(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setFormat:"), value)
+}
+
 
 

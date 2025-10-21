@@ -80,6 +80,129 @@ func NewNavigationAction() NavigationAction {
 }
 
 
+// The frame that requested the navigation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wknavigationaction/sourceframe
+func (n_ NavigationAction) SourceFrame() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("sourceFrame"))
+	return rv
+}
+
+
+// SetSourceFrame sets the value of the sourceFrame property.
+// The frame that requested the navigation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wknavigationaction/sourceframe
+func (n_ NavigationAction) SetSourceFrame(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setSourceFrame:"), value)
+}
+
+// The modifier keys that were pressed at the time of the navigation request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wknavigationaction/modifierflags
+func (n_ NavigationAction) ModifierFlags() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("modifierFlags"))
+	return rv
+}
+
+
+// SetModifierFlags sets the value of the modifierFlags property.
+// The modifier keys that were pressed at the time of the navigation request.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wknavigationaction/modifierflags
+func (n_ NavigationAction) SetModifierFlags(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setModifierFlags:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wknavigationaction/iscontentrulelistredirect
+func (n_ NavigationAction) IsContentRuleListRedirect() bool {
+	rv := objc.Send[bool](n_.ID, objc.Sel("isContentRuleListRedirect"))
+	return rv
+}
+
+
+// SetIsContentRuleListRedirect sets the value of the isContentRuleListRedirect property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wknavigationaction/iscontentrulelistredirect
+func (n_ NavigationAction) SetIsContentRuleListRedirect(value bool) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setIsContentRuleListRedirect:"), value)
+}
+
+// A Boolean value that indicates whether the web content provided an attribute that indicates a download.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wknavigationaction/shouldperformdownload
+func (n_ NavigationAction) ShouldPerformDownload() bool {
+	rv := objc.Send[bool](n_.ID, objc.Sel("shouldPerformDownload"))
+	return rv
+}
+
+
+// SetShouldPerformDownload sets the value of the shouldPerformDownload property.
+// A Boolean value that indicates whether the web content provided an attribute that indicates a download.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wknavigationaction/shouldperformdownload
+func (n_ NavigationAction) SetShouldPerformDownload(value bool) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setShouldPerformDownload:"), value)
+}
+
+// The URL request object associated with the navigation action.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wknavigationaction/request
+func (n_ NavigationAction) Request() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("request"))
+	return rv
+}
+
+
+// SetRequest sets the value of the request property.
+// The URL request object associated with the navigation action.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wknavigationaction/request
+func (n_ NavigationAction) SetRequest(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setRequest:"), value)
+}
+
+// The type of action that triggered the navigation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wknavigationaction/navigationtype
+func (n_ NavigationAction) NavigationType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("navigationType"))
+	return rv
+}
+
+
+// SetNavigationType sets the value of the navigationType property.
+// The type of action that triggered the navigation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wknavigationaction/navigationtype
+func (n_ NavigationAction) SetNavigationType(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setNavigationType:"), value)
+}
+
+// The number of the mouse button that caused the navigation request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wknavigationaction/buttonnumber
+func (n_ NavigationAction) ButtonNumber() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("buttonNumber"))
+	return rv
+}
+
+
+// SetButtonNumber sets the value of the buttonNumber property.
+// The number of the mouse button that caused the navigation request.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wknavigationaction/buttonnumber
+func (n_ NavigationAction) SetButtonNumber(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setButtonNumber:"), value)
+}
+
 // The frame in which to display the new content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKNavigationAction/targetFrame

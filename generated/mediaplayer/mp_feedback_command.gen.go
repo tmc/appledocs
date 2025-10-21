@@ -81,5 +81,59 @@ func NewFeedbackCommand() FeedbackCommand {
 }
 
 
+// A Boolean value that indicates whether the feedback’s action is on or off.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpfeedbackcommand/isactive
+func (f_ FeedbackCommand) IsActive() bool {
+	rv := objc.Send[bool](f_.ID, objc.Sel("isActive"))
+	return rv
+}
+
+
+// SetIsActive sets the value of the isActive property.
+// A Boolean value that indicates whether the feedback’s action is on or off.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpfeedbackcommand/isactive
+func (f_ FeedbackCommand) SetIsActive(value bool) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setIsActive:"), value)
+}
+
+// A shortened version of the string used to describe the context of a command.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpfeedbackcommand/localizedshorttitle
+func (f_ FeedbackCommand) LocalizedShortTitle() string {
+	rv := objc.Send[string](f_.ID, objc.Sel("localizedShortTitle"))
+	return rv
+}
+
+
+// SetLocalizedShortTitle sets the value of the localizedShortTitle property.
+// A shortened version of the string used to describe the context of a command.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpfeedbackcommand/localizedshorttitle
+func (f_ FeedbackCommand) SetLocalizedShortTitle(value string) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setLocalizedShortTitle:"), objc.String(value))
+}
+
+// A localized string used to describe the context of a command.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpfeedbackcommand/localizedtitle
+func (f_ FeedbackCommand) LocalizedTitle() string {
+	rv := objc.Send[string](f_.ID, objc.Sel("localizedTitle"))
+	return rv
+}
+
+
+// SetLocalizedTitle sets the value of the localizedTitle property.
+// A localized string used to describe the context of a command.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpfeedbackcommand/localizedtitle
+func (f_ FeedbackCommand) SetLocalizedTitle(value string) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setLocalizedTitle:"), objc.String(value))
+}
+
 
 

@@ -80,5 +80,95 @@ func NewCKQueryCursor() CKQueryCursor {
 }
 
 
+// The fields of the records to fetch.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckqueryoperation/desiredkeys-7qrse
+func (c_ CKQueryCursor) DesiredKeys() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("desiredKeys"))
+	return rv
+}
+
+
+// SetDesiredKeys sets the value of the desiredKeys property.
+// The fields of the records to fetch.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckqueryoperation/desiredkeys-7qrse
+func (c_ CKQueryCursor) SetDesiredKeys(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setDesiredKeys:"), value)
+}
+
+// The ID of the record zone that contains the records to search.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckqueryoperation/zoneid
+func (c_ CKQueryCursor) ZoneID() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("zoneID"))
+	return rv
+}
+
+
+// SetZoneID sets the value of the zoneID property.
+// The ID of the record zone that contains the records to search.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckqueryoperation/zoneid
+func (c_ CKQueryCursor) SetZoneID(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setZoneID:"), value)
+}
+
+// The maximum number of records to return at one time.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckqueryoperation/resultslimit
+func (c_ CKQueryCursor) ResultsLimit() int {
+	rv := objc.Send[int](c_.ID, objc.Sel("resultsLimit"))
+	return rv
+}
+
+
+// SetResultsLimit sets the value of the resultsLimit property.
+// The maximum number of records to return at one time.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckqueryoperation/resultslimit
+func (c_ CKQueryCursor) SetResultsLimit(value int) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setResultsLimit:"), value)
+}
+
+// The query for the search.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckqueryoperation/query
+func (c_ CKQueryCursor) Query() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("query"))
+	return rv
+}
+
+
+// SetQuery sets the value of the query property.
+// The query for the search.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckqueryoperation/query
+func (c_ CKQueryCursor) SetQuery(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setQuery:"), value)
+}
+
+// The cursor for continuing the search.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckqueryoperation/cursor-swift.property
+func (c_ CKQueryCursor) Cursor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("cursor"))
+	return rv
+}
+
+
+// SetCursor sets the value of the cursor property.
+// The cursor for continuing the search.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckqueryoperation/cursor-swift.property
+func (c_ CKQueryCursor) SetCursor(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setCursor:"), value)
+}
+
 
 

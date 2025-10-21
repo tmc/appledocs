@@ -108,5 +108,173 @@ func (s_ SegmentedControl) SetSelectedSegmentBezelColor(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSelectedSegmentBezelColor:"), value)
 }
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/activecompressionoptions
+func (s_ SegmentedControl) ActiveCompressionOptions() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("activeCompressionOptions"))
+	return rv
+}
+
+
+// SetActiveCompressionOptions sets the value of the activeCompressionOptions property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/activecompressionoptions
+func (s_ SegmentedControl) SetActiveCompressionOptions(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setActiveCompressionOptions:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/bordershape
+func (s_ SegmentedControl) BorderShape() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("borderShape"))
+	return rv
+}
+
+
+// SetBorderShape sets the value of the borderShape property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/bordershape
+func (s_ SegmentedControl) SetBorderShape(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setBorderShape:"), value)
+}
+
+// When the tracking mode for the control is set to use a momentary accelerator, returns a value for the selected segment.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/doublevalueforselectedsegment
+func (s_ SegmentedControl) DoubleValueForSelectedSegment() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("doubleValueForSelectedSegment"))
+	return rv
+}
+
+
+// SetDoubleValueForSelectedSegment sets the value of the doubleValueForSelectedSegment property.
+// When the tracking mode for the control is set to use a momentary accelerator, returns a value for the selected segment.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/doublevalueforselectedsegment
+func (s_ SegmentedControl) SetDoubleValueForSelectedSegment(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setDoubleValueForSelectedSegment:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/indexofselecteditem
+func (s_ SegmentedControl) IndexOfSelectedItem() int {
+	rv := objc.Send[int](s_.ID, objc.Sel("indexOfSelectedItem"))
+	return rv
+}
+
+
+// SetIndexOfSelectedItem sets the value of the indexOfSelectedItem property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/indexofselecteditem
+func (s_ SegmentedControl) SetIndexOfSelectedItem(value int) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setIndexOfSelectedItem:"), value)
+}
+
+// A Boolean value that indicates whether spring loading is enabled for the control.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/isspringloaded
+func (s_ SegmentedControl) IsSpringLoaded() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("isSpringLoaded"))
+	return rv
+}
+
+
+// SetIsSpringLoaded sets the value of the isSpringLoaded property.
+// A Boolean value that indicates whether spring loading is enabled for the control.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/isspringloaded
+func (s_ SegmentedControl) SetIsSpringLoaded(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setIsSpringLoaded:"), value)
+}
+
+// The number of segments in the control.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/segmentcount
+func (s_ SegmentedControl) SegmentCount() int {
+	rv := objc.Send[int](s_.ID, objc.Sel("segmentCount"))
+	return rv
+}
+
+
+// SetSegmentCount sets the value of the segmentCount property.
+// The number of segments in the control.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/segmentcount
+func (s_ SegmentedControl) SetSegmentCount(value int) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setSegmentCount:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/segmentdistribution
+func (s_ SegmentedControl) SegmentDistribution() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("segmentDistribution"))
+	return rv
+}
+
+
+// SetSegmentDistribution sets the value of the segmentDistribution property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/segmentdistribution
+func (s_ SegmentedControl) SetSegmentDistribution(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setSegmentDistribution:"), value)
+}
+
+// The visual style used to display the control.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/segmentstyle
+func (s_ SegmentedControl) SegmentStyle() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("segmentStyle"))
+	return rv
+}
+
+
+// SetSegmentStyle sets the value of the segmentStyle property.
+// The visual style used to display the control.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/segmentstyle
+func (s_ SegmentedControl) SetSegmentStyle(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setSegmentStyle:"), value)
+}
+
+// The index of the selected segment of the control, or
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/selectedsegment
+func (s_ SegmentedControl) SelectedSegment() int {
+	rv := objc.Send[int](s_.ID, objc.Sel("selectedSegment"))
+	return rv
+}
+
+
+// SetSelectedSegment sets the value of the selectedSegment property.
+// The index of the selected segment of the control, or
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/selectedsegment
+func (s_ SegmentedControl) SetSelectedSegment(value int) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setSelectedSegment:"), value)
+}
+
+// The type of tracking behavior the control exhibits.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/trackingmode
+func (s_ SegmentedControl) TrackingMode() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("trackingMode"))
+	return rv
+}
+
+
+// SetTrackingMode sets the value of the trackingMode property.
+// The type of tracking behavior the control exhibits.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/trackingmode
+func (s_ SegmentedControl) SetTrackingMode(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setTrackingMode:"), value)
+}
+
 
 

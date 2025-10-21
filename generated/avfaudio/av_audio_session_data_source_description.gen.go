@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -87,6 +88,132 @@ func NewAudioSessionDataSourceDescription() AudioSessionDataSourceDescription {
 func (a_ AudioSessionDataSourceDescription) SetPreferredPolarPatternError(pattern unsafe.Pointer, outError unsafe.Pointer) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("setPreferredPolarPattern:error:"), pattern, outError)
 	return rv
+}
+
+// The system-assigned identifier for the data source.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessiondatasourcedescription/datasourceid
+func (a_ AudioSessionDataSourceDescription) DataSourceID() foundation.Number {
+	rv := objc.Send[foundation.Number](a_.ID, objc.Sel("dataSourceID"))
+	return rv
+}
+
+
+// SetDataSourceID sets the value of the dataSourceID property.
+// The system-assigned identifier for the data source.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessiondatasourcedescription/datasourceid
+func (a_ AudioSessionDataSourceDescription) SetDataSourceID(value foundation.Number) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setDataSourceID:"), value)
+}
+
+// The location of the data source on the device.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessiondatasourcedescription/location
+func (a_ AudioSessionDataSourceDescription) Location() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("location"))
+	return rv
+}
+
+
+// SetLocation sets the value of the location property.
+// The location of the data source on the device.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessiondatasourcedescription/location
+func (a_ AudioSessionDataSourceDescription) SetLocation(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setLocation:"), value)
+}
+
+// The available data sources for the port.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/datasources
+func (a_ AudioSessionDataSourceDescription) DataSources() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("dataSources"))
+	return rv
+}
+
+
+// SetDataSources sets the value of the dataSources property.
+// The available data sources for the port.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/datasources
+func (a_ AudioSessionDataSourceDescription) SetDataSources(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setDataSources:"), value)
+}
+
+// The orientation of the data source relative to the device’s natural orientation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessiondatasourcedescription/orientation
+func (a_ AudioSessionDataSourceDescription) Orientation() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("orientation"))
+	return rv
+}
+
+
+// SetOrientation sets the value of the orientation property.
+// The orientation of the data source relative to the device’s natural orientation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessiondatasourcedescription/orientation
+func (a_ AudioSessionDataSourceDescription) SetOrientation(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setOrientation:"), value)
+}
+
+// A human-readable name for the data source.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessiondatasourcedescription/datasourcename
+func (a_ AudioSessionDataSourceDescription) DataSourceName() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("dataSourceName"))
+	return rv
+}
+
+
+// SetDataSourceName sets the value of the dataSourceName property.
+// A human-readable name for the data source.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessiondatasourcedescription/datasourcename
+func (a_ AudioSessionDataSourceDescription) SetDataSourceName(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setDataSourceName:"), objc.String(value))
+}
+
+// An array of available output data sources for the current audio route.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosession/outputdatasources
+func (a_ AudioSessionDataSourceDescription) OutputDataSources() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("outputDataSources"))
+	return rv
+}
+
+
+// SetOutputDataSources sets the value of the outputDataSources property.
+// An array of available output data sources for the current audio route.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosession/outputdatasources
+func (a_ AudioSessionDataSourceDescription) SetOutputDataSources(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setOutputDataSources:"), value)
+}
+
+// The currently selected output data source.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosession/outputdatasource
+func (a_ AudioSessionDataSourceDescription) OutputDataSource() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("outputDataSource"))
+	return rv
+}
+
+
+// SetOutputDataSource sets the value of the outputDataSource property.
+// The currently selected output data source.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosession/outputdatasource
+func (a_ AudioSessionDataSourceDescription) SetOutputDataSource(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setOutputDataSource:"), value)
 }
 
 // The preferred directivity configuration for the data source.

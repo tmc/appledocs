@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [INRestaurantReservation] class.
@@ -84,13 +85,49 @@ func NewINRestaurantReservation() INRestaurantReservation {
 // Creates a new restaurant reservation with the provided information.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INRestaurantReservation/initWithItemReference:reservationNumber:bookingTime:reservationStatus:reservationHolderName:actions:reservationDuration:partySize:restaurantLocation:
-func NewINRestaurantReservationWithItemReferenceReservationNumberBookingTimeReservationStatusReservationHolderNameActionsReservationDurationPartySizeRestaurantLocation(itemReference unsafe.Pointer, reservationNumber string, bookingTime unsafe.Pointer, reservationStatus unsafe.Pointer, reservationHolderName string, actions unsafe.Pointer, reservationDuration unsafe.Pointer, partySize unsafe.Pointer, restaurantLocation unsafe.Pointer) INRestaurantReservation {
+func NewINRestaurantReservationWithItemReferenceReservationNumberBookingTimeReservationStatusReservationHolderNameActionsReservationDurationPartySizeRestaurantLocation(itemReference unsafe.Pointer, reservationNumber string, bookingTime unsafe.Pointer, reservationStatus unsafe.Pointer, reservationHolderName string, actions unsafe.Pointer, reservationDuration unsafe.Pointer, partySize foundation.Number, restaurantLocation unsafe.Pointer) INRestaurantReservation {
 	instance := getINRestaurantReservationClass().Alloc()
 	rv := objc.Send[INRestaurantReservation](instance.ID, objc.Sel("initWithItemReference:reservationNumber:bookingTime:reservationStatus:reservationHolderName:actions:reservationDuration:partySize:restaurantLocation:"), itemReference, objc.String(reservationNumber), bookingTime, reservationStatus, objc.String(reservationHolderName), actions, reservationDuration, partySize, restaurantLocation)
 	rv.Autorelease()
 	return rv
 }
 
+
+// The date and time range that defines beginning and end of the restaurant reservation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inrestaurantreservation/reservationduration
+func (i_ INRestaurantReservation) ReservationDuration() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("reservationDuration"))
+	return rv
+}
+
+
+// SetReservationDuration sets the value of the reservationDuration property.
+// The date and time range that defines beginning and end of the restaurant reservation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inrestaurantreservation/reservationduration
+func (i_ INRestaurantReservation) SetReservationDuration(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setReservationDuration:"), value)
+}
+
+// The number of people in the party.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inrestaurantreservation/partysize-9ux0p
+func (i_ INRestaurantReservation) PartySize() int {
+	rv := objc.Send[int](i_.ID, objc.Sel("partySize"))
+	return rv
+}
+
+
+// SetPartySize sets the value of the partySize property.
+// The number of people in the party.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inrestaurantreservation/partysize-9ux0p
+func (i_ INRestaurantReservation) SetPartySize(value int) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setPartySize:"), value)
+}
 
 // The name and location of the restaurant.
 //

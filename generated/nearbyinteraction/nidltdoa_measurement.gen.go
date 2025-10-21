@@ -80,5 +80,149 @@ func NewNIDLTDOAMeasurement() NIDLTDOAMeasurement {
 }
 
 
+// A value that uniquely identifies an anchor in a tracked area.
+//
+// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nidltdoameasurement/address
+func (n_ NIDLTDOAMeasurement) Address() int {
+	rv := objc.Send[int](n_.ID, objc.Sel("address"))
+	return rv
+}
+
+
+// SetAddress sets the value of the address property.
+// A value that uniquely identifies an anchor in a tracked area.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nidltdoameasurement/address
+func (n_ NIDLTDOAMeasurement) SetAddress(value int) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setAddress:"), value)
+}
+
+// A timestamp, in seconds, for the time that the device receives the measurement.
+//
+// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nidltdoameasurement/receivetime
+func (n_ NIDLTDOAMeasurement) ReceiveTime() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("receiveTime"))
+	return rv
+}
+
+
+// SetReceiveTime sets the value of the receiveTime property.
+// A timestamp, in seconds, for the time that the device receives the measurement.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nidltdoameasurement/receivetime
+func (n_ NIDLTDOAMeasurement) SetReceiveTime(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setReceiveTime:"), value)
+}
+
+// A triplet that represents the location in 3D space of the anchor that provides the measurement.
+//
+// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nidltdoameasurement/coordinates
+func (n_ NIDLTDOAMeasurement) Coordinates() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("coordinates"))
+	return rv
+}
+
+
+// SetCoordinates sets the value of the coordinates property.
+// A triplet that represents the location in 3D space of the anchor that provides the measurement.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nidltdoameasurement/coordinates
+func (n_ NIDLTDOAMeasurement) SetCoordinates(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setCoordinates:"), value)
+}
+
+// A value that represents the signal strength, in dBm, to the anchor that provides the measurement.
+//
+// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nidltdoameasurement/signalstrength
+func (n_ NIDLTDOAMeasurement) SignalStrength() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("signalStrength"))
+	return rv
+}
+
+
+// SetSignalStrength sets the value of the signalStrength property.
+// A value that represents the signal strength, in dBm, to the anchor that provides the measurement.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nidltdoameasurement/signalstrength
+func (n_ NIDLTDOAMeasurement) SetSignalStrength(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setSignalStrength:"), value)
+}
+
+// The type of coordinate system that the measurement conforms to.
+//
+// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nidltdoameasurement/coordinatestype
+func (n_ NIDLTDOAMeasurement) CoordinatesType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("coordinatesType"))
+	return rv
+}
+
+
+// SetCoordinatesType sets the value of the coordinatesType property.
+// The type of coordinate system that the measurement conforms to.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nidltdoameasurement/coordinatestype
+func (n_ NIDLTDOAMeasurement) SetCoordinatesType(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setCoordinatesType:"), value)
+}
+
+// A timestamp, in seconds, for the elapsed message transmission time.
+//
+// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nidltdoameasurement/transmittime
+func (n_ NIDLTDOAMeasurement) TransmitTime() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("transmitTime"))
+	return rv
+}
+
+
+// SetTransmitTime sets the value of the transmitTime property.
+// A timestamp, in seconds, for the elapsed message transmission time.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nidltdoameasurement/transmittime
+func (n_ NIDLTDOAMeasurement) SetTransmitTime(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setTransmitTime:"), value)
+}
+
+// The type of anchor message that the measurement derives from.
+//
+// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nidltdoameasurement/measurementtype
+func (n_ NIDLTDOAMeasurement) MeasurementType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("measurementType"))
+	return rv
+}
+
+
+// SetMeasurementType sets the value of the measurementType property.
+// The type of anchor message that the measurement derives from.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nidltdoameasurement/measurementtype
+func (n_ NIDLTDOAMeasurement) SetMeasurementType(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setMeasurementType:"), value)
+}
+
+// The drift, as a ratio, across the frequencies of the receiver and the anchor.
+//
+// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nidltdoameasurement/carrierfrequencyoffset
+func (n_ NIDLTDOAMeasurement) CarrierFrequencyOffset() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("carrierFrequencyOffset"))
+	return rv
+}
+
+
+// SetCarrierFrequencyOffset sets the value of the carrierFrequencyOffset property.
+// The drift, as a ratio, across the frequencies of the receiver and the anchor.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nidltdoameasurement/carrierfrequencyoffset
+func (n_ NIDLTDOAMeasurement) SetCarrierFrequencyOffset(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setCarrierFrequencyOffset:"), value)
+}
+
 
 

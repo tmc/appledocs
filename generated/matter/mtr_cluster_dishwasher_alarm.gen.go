@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MTRClusterDishwasherAlarm] class.
@@ -29,7 +30,7 @@ type _MTRClusterDishwasherAlarmClass struct {
 // An interface definition for the [MTRClusterDishwasherAlarm] class.
 type IMTRClusterDishwasherAlarm interface {
 	IMTRGenericCluster
-	ModifyEnabledAlarmsWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, completion unsafe.Pointer)
+	ModifyEnabledAlarmsWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer)
 	ReadAttributeAcceptedCommandListWithParams(params unsafe.Pointer) unsafe.Pointer
 	ReadAttributeAttributeListWithParams(params unsafe.Pointer) unsafe.Pointer
 	ReadAttributeClusterRevisionWithParams(params unsafe.Pointer) unsafe.Pointer
@@ -39,7 +40,7 @@ type IMTRClusterDishwasherAlarm interface {
 	ReadAttributeMaskWithParams(params unsafe.Pointer) unsafe.Pointer
 	ReadAttributeStateWithParams(params unsafe.Pointer) unsafe.Pointer
 	ReadAttributeSupportedWithParams(params unsafe.Pointer) unsafe.Pointer
-	ResetWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, completion unsafe.Pointer)
+	ResetWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer)
 }
 
 // Cluster Dishwasher Alarm Attributes and commands for configuring the Dishwasher alarm.
@@ -95,7 +96,7 @@ func NewMTRClusterDishwasherAlarm() MTRClusterDishwasherAlarm {
 // For all instance methods that take a completion (i.e. command invocations), the completion will be called on the provided queue.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterDishwasherAlarm/init(device:endpointID:queue:)
-func NewMTRClusterDishwasherAlarmWithDeviceEndpointIDQueue(device unsafe.Pointer, endpointID unsafe.Pointer, queue unsafe.Pointer) MTRClusterDishwasherAlarm {
+func NewMTRClusterDishwasherAlarmWithDeviceEndpointIDQueue(device unsafe.Pointer, endpointID foundation.Number, queue unsafe.Pointer) MTRClusterDishwasherAlarm {
 	instance := getMTRClusterDishwasherAlarmClass().Alloc()
 	rv := objc.Send[MTRClusterDishwasherAlarm](instance.ID, objc.Sel("initWithDevice:endpointID:queue:"), device, endpointID, queue)
 	rv.Autorelease()
@@ -105,7 +106,7 @@ func NewMTRClusterDishwasherAlarmWithDeviceEndpointIDQueue(device unsafe.Pointer
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterDishwasherAlarm/modifyEnabledAlarms(with:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterDishwasherAlarm) ModifyEnabledAlarmsWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, completion unsafe.Pointer) {
+func (m_ MTRClusterDishwasherAlarm) ModifyEnabledAlarmsWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("modifyEnabledAlarmsWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
 }
 
@@ -174,7 +175,7 @@ func (m_ MTRClusterDishwasherAlarm) ReadAttributeSupportedWithParams(params unsa
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterDishwasherAlarm/reset(with:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterDishwasherAlarm) ResetWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, completion unsafe.Pointer) {
+func (m_ MTRClusterDishwasherAlarm) ResetWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("resetWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
 }
 

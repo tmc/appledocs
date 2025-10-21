@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CompositionTrackSegment] class.
@@ -80,6 +81,60 @@ func NewCompositionTrackSegment() CompositionTrackSegment {
 	return getCompositionTrackSegmentClass().New()
 }
 
+
+// A Boolean value that indicates whether the segment is empty.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontracksegment/isempty
+func (c_ CompositionTrackSegment) IsEmpty() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isEmpty"))
+	return rv
+}
+
+
+// SetIsEmpty sets the value of the isEmpty property.
+// A Boolean value that indicates whether the segment is empty.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontracksegment/isempty
+func (c_ CompositionTrackSegment) SetIsEmpty(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsEmpty:"), value)
+}
+
+// An identifier of a track in the container file whose media this track segment presents.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontracksegment/sourcetrackid
+func (c_ CompositionTrackSegment) SourceTrackID() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("sourceTrackID"))
+	return rv
+}
+
+
+// SetSourceTrackID sets the value of the sourceTrackID property.
+// An identifier of a track in the container file whose media this track segment presents.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontracksegment/sourcetrackid
+func (c_ CompositionTrackSegment) SetSourceTrackID(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setSourceTrackID:"), value)
+}
+
+// A URL of the container file whose media this track segment presents.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontracksegment/sourceurl
+func (c_ CompositionTrackSegment) SourceURL() foundation.URL {
+	rv := objc.Send[foundation.URL](c_.ID, objc.Sel("sourceURL"))
+	return rv
+}
+
+
+// SetSourceURL sets the value of the sourceURL property.
+// A URL of the container file whose media this track segment presents.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontracksegment/sourceurl
+func (c_ CompositionTrackSegment) SetSourceURL(value foundation.URL) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setSourceURL:"), value)
+}
 
 
 

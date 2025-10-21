@@ -16,18 +16,3 @@ type SecIdentityRef unsafe.Pointer
 
 
 
-// Fallback type aliases for undefined types
-// These types are referenced in method signatures but not fully documented.
-// Using unsafe.Pointer as fallback to allow code generation.
-type CFArrayRef unsafe.Pointer
-
-type NSError unsafe.Pointer
-
-type NSOrderedSet unsafe.Pointer
-
-type OSStatus unsafe.Pointer
-
-type SFAuthorization unsafe.Pointer
-
-
-

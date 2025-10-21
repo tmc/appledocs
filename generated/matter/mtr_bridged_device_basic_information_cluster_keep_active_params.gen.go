@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -78,8 +79,8 @@ func NewMTRBridgedDeviceBasicInformationClusterKeepActiveParams() MTRBridgedDevi
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBridgedDeviceBasicInformationClusterKeepActiveParams/serverSideProcessingTimeout
-func (m_ MTRBridgedDeviceBasicInformationClusterKeepActiveParams) ServerSideProcessingTimeout() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRBridgedDeviceBasicInformationClusterKeepActiveParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
@@ -89,14 +90,14 @@ func (m_ MTRBridgedDeviceBasicInformationClusterKeepActiveParams) ServerSideProc
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBridgedDeviceBasicInformationClusterKeepActiveParams/serverSideProcessingTimeout
-func (m_ MTRBridgedDeviceBasicInformationClusterKeepActiveParams) SetServerSideProcessingTimeout(value unsafe.Pointer) {
+func (m_ MTRBridgedDeviceBasicInformationClusterKeepActiveParams) SetServerSideProcessingTimeout(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBridgedDeviceBasicInformationClusterKeepActiveParams/stayActiveDuration
-func (m_ MTRBridgedDeviceBasicInformationClusterKeepActiveParams) StayActiveDuration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("stayActiveDuration"))
+func (m_ MTRBridgedDeviceBasicInformationClusterKeepActiveParams) StayActiveDuration() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("stayActiveDuration"))
 	return rv
 }
 
@@ -104,15 +105,15 @@ func (m_ MTRBridgedDeviceBasicInformationClusterKeepActiveParams) StayActiveDura
 // SetStayActiveDuration sets the value of the stayActiveDuration property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBridgedDeviceBasicInformationClusterKeepActiveParams/stayActiveDuration
-func (m_ MTRBridgedDeviceBasicInformationClusterKeepActiveParams) SetStayActiveDuration(value unsafe.Pointer) {
+func (m_ MTRBridgedDeviceBasicInformationClusterKeepActiveParams) SetStayActiveDuration(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStayActiveDuration:"), value)
 }
 
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBridgedDeviceBasicInformationClusterKeepActiveParams/timedInvokeTimeoutMs
-func (m_ MTRBridgedDeviceBasicInformationClusterKeepActiveParams) TimedInvokeTimeoutMs() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRBridgedDeviceBasicInformationClusterKeepActiveParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
@@ -122,14 +123,14 @@ func (m_ MTRBridgedDeviceBasicInformationClusterKeepActiveParams) TimedInvokeTim
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBridgedDeviceBasicInformationClusterKeepActiveParams/timedInvokeTimeoutMs
-func (m_ MTRBridgedDeviceBasicInformationClusterKeepActiveParams) SetTimedInvokeTimeoutMs(value unsafe.Pointer) {
+func (m_ MTRBridgedDeviceBasicInformationClusterKeepActiveParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBridgedDeviceBasicInformationClusterKeepActiveParams/timeoutMs
-func (m_ MTRBridgedDeviceBasicInformationClusterKeepActiveParams) TimeoutMs() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("timeoutMs"))
+func (m_ MTRBridgedDeviceBasicInformationClusterKeepActiveParams) TimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timeoutMs"))
 	return rv
 }
 
@@ -137,7 +138,7 @@ func (m_ MTRBridgedDeviceBasicInformationClusterKeepActiveParams) TimeoutMs() un
 // SetTimeoutMs sets the value of the timeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBridgedDeviceBasicInformationClusterKeepActiveParams/timeoutMs
-func (m_ MTRBridgedDeviceBasicInformationClusterKeepActiveParams) SetTimeoutMs(value unsafe.Pointer) {
+func (m_ MTRBridgedDeviceBasicInformationClusterKeepActiveParams) SetTimeoutMs(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimeoutMs:"), value)
 }
 

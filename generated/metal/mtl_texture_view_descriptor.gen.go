@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,72 @@ func NewTextureViewDescriptor() TextureViewDescriptor {
 	return getTextureViewDescriptorClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtltextureviewdescriptor/swizzle
+func (t_ TextureViewDescriptor) Swizzle() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("swizzle"))
+	return rv
+}
+
+
+// SetSwizzle sets the value of the swizzle property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtltextureviewdescriptor/swizzle
+func (t_ TextureViewDescriptor) SetSwizzle(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setSwizzle:"), value)
+}
+
+// A desired range of mip levels of a texture view.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtltextureviewdescriptor/levelrange-55q8m
+func (t_ TextureViewDescriptor) LevelRange() foundation.Range {
+	rv := objc.Send[foundation.Range](t_.ID, objc.Sel("levelRange"))
+	return rv
+}
+
+
+// SetLevelRange sets the value of the levelRange property.
+// A desired range of mip levels of a texture view.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtltextureviewdescriptor/levelrange-55q8m
+func (t_ TextureViewDescriptor) SetLevelRange(value foundation.Range) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setLevelRange:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtltextureviewdescriptor/pixelformat
+func (t_ TextureViewDescriptor) PixelFormat() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("pixelFormat"))
+	return rv
+}
+
+
+// SetPixelFormat sets the value of the pixelFormat property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtltextureviewdescriptor/pixelformat
+func (t_ TextureViewDescriptor) SetPixelFormat(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setPixelFormat:"), value)
+}
+
+// A desired range of slices of a texture view.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtltextureviewdescriptor/slicerange-6nq6v
+func (t_ TextureViewDescriptor) SliceRange() foundation.Range {
+	rv := objc.Send[foundation.Range](t_.ID, objc.Sel("sliceRange"))
+	return rv
+}
+
+
+// SetSliceRange sets the value of the sliceRange property.
+// A desired range of slices of a texture view.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtltextureviewdescriptor/slicerange-6nq6v
+func (t_ TextureViewDescriptor) SetSliceRange(value foundation.Range) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setSliceRange:"), value)
+}
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTextureViewDescriptor/textureType

@@ -79,5 +79,23 @@ func NewCGatherLayer() CGatherLayer {
 }
 
 
+// The dimension to index.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcgatherlayer/dimension
+func (c_ CGatherLayer) Dimension() int {
+	rv := objc.Send[int](c_.ID, objc.Sel("dimension"))
+	return rv
+}
+
+
+// SetDimension sets the value of the dimension property.
+// The dimension to index.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcgatherlayer/dimension
+func (c_ CGatherLayer) SetDimension(value int) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setDimension:"), value)
+}
+
 
 

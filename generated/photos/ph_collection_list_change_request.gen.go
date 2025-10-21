@@ -175,6 +175,24 @@ func (p_ PHCollectionListChangeRequest) ReplaceChildCollectionsAtIndexesWithChil
 	objc.Send[objc.ID](p_.ID, objc.Sel("replaceChildCollectionsAtIndexes:withChildCollections:"), indexes, collections)
 }
 
+// The displayed name of the collection list.
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phcollectionlistchangerequest/title
+func (p_ PHCollectionListChangeRequest) Title() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("title"))
+	return rv
+}
+
+
+// SetTitle sets the value of the title property.
+// The displayed name of the collection list.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phcollectionlistchangerequest/title
+func (p_ PHCollectionListChangeRequest) SetTitle(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setTitle:"), objc.String(value))
+}
+
 // A placeholder object for the collection list that the change request creates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHCollectionListChangeRequest/placeholderForCreatedCollectionList

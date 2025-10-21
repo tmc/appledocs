@@ -50,8 +50,8 @@ type IFileProviderManager interface {
 	RunTestingOperationsError(operations unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer
 	SignalEnumeratorForContainerItemIdentifierCompletionHandler(containerItemIdentifier unsafe.Pointer, completion unsafe.Pointer)
 	SignalErrorResolvedCompletionHandler(error_ unsafe.Pointer, completionHandler unsafe.Pointer)
-	StateDirectoryURLWithError(error_ unsafe.Pointer) unsafe.Pointer
-	TemporaryDirectoryURLWithError(error_ unsafe.Pointer) unsafe.Pointer
+	StateDirectoryURLWithError(error_ unsafe.Pointer) foundation.URL
+	TemporaryDirectoryURLWithError(error_ unsafe.Pointer) foundation.URL
 	WaitForChangesOnItemsBelowItemWithIdentifierCompletionHandler(itemIdentifier unsafe.Pointer, completionHandler unsafe.Pointer)
 	WaitForStabilizationWithCompletionHandler(completionHandler unsafe.Pointer)
 }
@@ -123,7 +123,7 @@ func (fc _FileProviderManagerClass) AddDomainCompletionHandler(domain unsafe.Poi
 // Check if a URL is eligible for storing a domain.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderManager/checkDomainsCanBeStored:onVolumeAtURL:unsupportedReason:error:
-func (fc _FileProviderManagerClass) CheckDomainsCanBeStoredOnVolumeAtURLUnsupportedReasonError(eligible unsafe.Pointer, url unsafe.Pointer, unsupportedReason unsafe.Pointer, error_ unsafe.Pointer) bool {
+func (fc _FileProviderManagerClass) CheckDomainsCanBeStoredOnVolumeAtURLUnsupportedReasonError(eligible unsafe.Pointer, url foundation.URL, unsupportedReason unsafe.Pointer, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](objc.ID(fc.class), objc.Sel("checkDomainsCanBeStored:onVolumeAtURL:unsupportedReason:error:"), eligible, url, unsupportedReason, error_)
 	return rv
 }
@@ -138,14 +138,14 @@ func (fc _FileProviderManagerClass) GetDomainsWithCompletionHandler(completionHa
 // Returns the identifier and domain for a user-visible URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderManager/getIdentifierForUserVisibleFile(at:completionHandler:)
-func (fc _FileProviderManagerClass) GetIdentifierForUserVisibleFileAtURLCompletionHandler(url unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (fc _FileProviderManagerClass) GetIdentifierForUserVisibleFileAtURLCompletionHandler(url foundation.URL, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(fc.class), objc.Sel("getIdentifierForUserVisibleFileAtURL:completionHandler:"), url, completionHandler)
 }
 
 // Creates a new domain that takes ownership of on-disk data that your app previously managed without a file provider.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderManager/import(_:fromDirectoryAt:completionHandler:)
-func (fc _FileProviderManagerClass) ImportDomainFromDirectoryAtURLCompletionHandler(domain unsafe.Pointer, url unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (fc _FileProviderManagerClass) ImportDomainFromDirectoryAtURLCompletionHandler(domain unsafe.Pointer, url foundation.URL, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(fc.class), objc.Sel("importDomain:fromDirectoryAtURL:completionHandler:"), domain, url, completionHandler)
 }
 
@@ -160,8 +160,8 @@ func (fc _FileProviderManagerClass) ManagerForDomain(domain unsafe.Pointer) unsa
 // Returns a placeholder URL for a given document URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderManager/placeholderURL(for:)
-func (fc _FileProviderManagerClass) PlaceholderURLForURL(url unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("placeholderURLForURL:"), url)
+func (fc _FileProviderManagerClass) PlaceholderURLForURL(url foundation.URL) foundation.URL {
+	rv := objc.Send[foundation.URL](objc.ID(fc.class), objc.Sel("placeholderURLForURL:"), url)
 	return rv
 }
 
@@ -189,7 +189,7 @@ func (fc _FileProviderManagerClass) RemoveAllDomainsWithCompletionHandler(comple
 // Writes a document placeholder with the provided metadata.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderManager/writePlaceholder(at:withMetadata:)
-func (fc _FileProviderManagerClass) WritePlaceholderAtURLWithMetadataError(placeholderURL unsafe.Pointer, metadata unsafe.Pointer, error_ unsafe.Pointer) bool {
+func (fc _FileProviderManagerClass) WritePlaceholderAtURLWithMetadataError(placeholderURL foundation.URL, metadata unsafe.Pointer, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](objc.ID(fc.class), objc.Sel("writePlaceholderAtURL:withMetadata:error:"), placeholderURL, metadata, error_)
 	return rv
 }
@@ -339,16 +339,16 @@ func (f_ FileProviderManager) SignalErrorResolvedCompletionHandler(error_ unsafe
 // Returns a URL for a directory for storing state information for the domain.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderManager/stateDirectoryURL()
-func (f_ FileProviderManager) StateDirectoryURLWithError(error_ unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("stateDirectoryURLWithError:"), error_)
+func (f_ FileProviderManager) StateDirectoryURLWithError(error_ unsafe.Pointer) foundation.URL {
+	rv := objc.Send[foundation.URL](f_.ID, objc.Sel("stateDirectoryURLWithError:"), error_)
 	return rv
 }
 
 // Returns the URL of a directory that the File Provider extension can use to temporarily store files before passing them to the system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderManager/temporaryDirectoryURL()
-func (f_ FileProviderManager) TemporaryDirectoryURLWithError(error_ unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("temporaryDirectoryURLWithError:"), error_)
+func (f_ FileProviderManager) TemporaryDirectoryURLWithError(error_ unsafe.Pointer) foundation.URL {
+	rv := objc.Send[foundation.URL](f_.ID, objc.Sel("temporaryDirectoryURLWithError:"), error_)
 	return rv
 }
 
@@ -377,8 +377,8 @@ func (f_ FileProviderManager) DefaultManager() unsafe.Pointer {
 // The root URL for all shared documents.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderManager/documentStorageURL
-func (f_ FileProviderManager) DocumentStorageURL() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("documentStorageURL"))
+func (f_ FileProviderManager) DocumentStorageURL() foundation.URL {
+	rv := objc.Send[foundation.URL](f_.ID, objc.Sel("documentStorageURL"))
 	return rv
 }
 

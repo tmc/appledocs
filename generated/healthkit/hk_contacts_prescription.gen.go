@@ -81,5 +81,59 @@ func NewHKContactsPrescription() HKContactsPrescription {
 }
 
 
+// The name of the prescribed brand, based on the contact lens fitting.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcontactsprescription/brand
+func (h_ HKContactsPrescription) Brand() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("brand"))
+	return rv
+}
+
+
+// SetBrand sets the value of the brand property.
+// The name of the prescribed brand, based on the contact lens fitting.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcontactsprescription/brand
+func (h_ HKContactsPrescription) SetBrand(value string) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setBrand:"), objc.String(value))
+}
+
+// The lens specification for the left eye.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcontactsprescription/lefteye
+func (h_ HKContactsPrescription) LeftEye() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("leftEye"))
+	return rv
+}
+
+
+// SetLeftEye sets the value of the leftEye property.
+// The lens specification for the left eye.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcontactsprescription/lefteye
+func (h_ HKContactsPrescription) SetLeftEye(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setLeftEye:"), value)
+}
+
+// The lens specification for the right eye.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcontactsprescription/righteye
+func (h_ HKContactsPrescription) RightEye() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("rightEye"))
+	return rv
+}
+
+
+// SetRightEye sets the value of the rightEye property.
+// The lens specification for the right eye.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcontactsprescription/righteye
+func (h_ HKContactsPrescription) SetRightEye(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setRightEye:"), value)
+}
+
 
 

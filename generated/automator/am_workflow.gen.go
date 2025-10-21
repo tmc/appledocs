@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -36,7 +37,7 @@ type IAMWorkflow interface {
 	RemoveAction(action unsafe.Pointer)
 	SetValueForVariableWithName(value objc.ID, variableName string) bool
 	ValueForVariableWithName(variableName string) objc.ID
-	WriteToURLError(fileURL unsafe.Pointer, outError unsafe.Pointer) bool
+	WriteToURLError(fileURL foundation.URL, outError unsafe.Pointer) bool
 }
 
 // An object that lets you use an Automator workflow in your app.
@@ -92,7 +93,7 @@ func NewAMWorkflow() AMWorkflow {
 // Creates and initializes a workflow based on the contents of the specified file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflow/init(contentsOf:)
-func NewAMWorkflowWithContentsOfURLError(fileURL unsafe.Pointer, outError unsafe.Pointer) AMWorkflow {
+func NewAMWorkflowWithContentsOfURLError(fileURL foundation.URL, outError unsafe.Pointer) AMWorkflow {
 	instance := getAMWorkflowClass().Alloc()
 	rv := objc.Send[AMWorkflow](instance.ID, objc.Sel("initWithContentsOfURL:error:"), fileURL, outError)
 	rv.Autorelease()
@@ -103,7 +104,7 @@ func NewAMWorkflowWithContentsOfURLError(fileURL unsafe.Pointer, outError unsafe
 // Loads and runs the specified workflow file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflow/run(at:withInput:)
-func (ac _AMWorkflowClass) RunWorkflowAtURLWithInputError(fileURL unsafe.Pointer, input objc.ID, error_ unsafe.Pointer) objc.ID {
+func (ac _AMWorkflowClass) RunWorkflowAtURLWithInputError(fileURL foundation.URL, input objc.ID, error_ unsafe.Pointer) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(ac.class), objc.Sel("runWorkflowAtURL:withInput:error:"), fileURL, input, error_)
 	return rv
 }
@@ -155,7 +156,7 @@ func (a_ AMWorkflow) ValueForVariableWithName(variableName string) objc.ID {
 // Writes the workflow to the specified file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflow/write(to:)
-func (a_ AMWorkflow) WriteToURLError(fileURL unsafe.Pointer, outError unsafe.Pointer) bool {
+func (a_ AMWorkflow) WriteToURLError(fileURL foundation.URL, outError unsafe.Pointer) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("writeToURL:error:"), fileURL, outError)
 	return rv
 }
@@ -171,8 +172,8 @@ func (a_ AMWorkflow) Actions() []AMAction {
 // A URL that specifies the location of the workflow file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflow/fileURL
-func (a_ AMWorkflow) FileURL() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("fileURL"))
+func (a_ AMWorkflow) FileURL() foundation.URL {
+	rv := objc.Send[foundation.URL](a_.ID, objc.Sel("fileURL"))
 	return rv
 }
 

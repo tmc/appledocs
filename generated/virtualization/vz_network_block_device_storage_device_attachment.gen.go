@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [VZNetworkBlockDeviceStorageDeviceAttachment] class.
@@ -86,7 +87,7 @@ func NewVZNetworkBlockDeviceStorageDeviceAttachment() VZNetworkBlockDeviceStorag
 // Creates a new network block device (NBD) storage attachment from an NDB Uniform Resource Indicator (URI) represented as a URL that you provide.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZNetworkBlockDeviceStorageDeviceAttachment/init(url:)
-func NewVZNetworkBlockDeviceStorageDeviceAttachmentWithURLError(URL unsafe.Pointer, error_ unsafe.Pointer) VZNetworkBlockDeviceStorageDeviceAttachment {
+func NewVZNetworkBlockDeviceStorageDeviceAttachmentWithURLError(URL foundation.URL, error_ unsafe.Pointer) VZNetworkBlockDeviceStorageDeviceAttachment {
 	instance := getVZNetworkBlockDeviceStorageDeviceAttachmentClass().Alloc()
 	rv := objc.Send[VZNetworkBlockDeviceStorageDeviceAttachment](instance.ID, objc.Sel("initWithURL:error:"), URL, error_)
 	rv.Autorelease()
@@ -98,7 +99,7 @@ func NewVZNetworkBlockDeviceStorageDeviceAttachmentWithURLError(URL unsafe.Point
 // Creates a new network block device storage attachment from an NBD Uniform Resource Indicator (URI) represented as a URL, timeout value, and read-only and synchronization modes that you provide.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZNetworkBlockDeviceStorageDeviceAttachment/init(url:timeout:isForcedReadOnly:synchronizationMode:)
-func NewVZNetworkBlockDeviceStorageDeviceAttachmentWithURLTimeoutForcedReadOnlySynchronizationModeError(URL unsafe.Pointer, timeout TimeInterval, forcedReadOnly bool, synchronizationMode unsafe.Pointer, error_ unsafe.Pointer) VZNetworkBlockDeviceStorageDeviceAttachment {
+func NewVZNetworkBlockDeviceStorageDeviceAttachmentWithURLTimeoutForcedReadOnlySynchronizationModeError(URL foundation.URL, timeout foundation.TimeInterval, forcedReadOnly bool, synchronizationMode unsafe.Pointer, error_ unsafe.Pointer) VZNetworkBlockDeviceStorageDeviceAttachment {
 	instance := getVZNetworkBlockDeviceStorageDeviceAttachmentClass().Alloc()
 	rv := objc.Send[VZNetworkBlockDeviceStorageDeviceAttachment](instance.ID, objc.Sel("initWithURL:timeout:forcedReadOnly:synchronizationMode:error:"), URL, timeout, forcedReadOnly, synchronizationMode, error_)
 	rv.Autorelease()
@@ -109,9 +110,81 @@ func NewVZNetworkBlockDeviceStorageDeviceAttachmentWithURLTimeoutForcedReadOnlyS
 // Checks if the URL is a valid network block device URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZNetworkBlockDeviceStorageDeviceAttachment/validate(_:)
-func (vc _VZNetworkBlockDeviceStorageDeviceAttachmentClass) ValidateURLError(URL unsafe.Pointer, error_ unsafe.Pointer) bool {
+func (vc _VZNetworkBlockDeviceStorageDeviceAttachmentClass) ValidateURLError(URL foundation.URL, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](objc.ID(vc.class), objc.Sel("validateURL:error:"), URL, error_)
 	return rv
+}
+
+// The timeout value in seconds for the connection between the client and server.
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vznetworkblockdevicestoragedeviceattachment/timeout
+func (v_ VZNetworkBlockDeviceStorageDeviceAttachment) Timeout() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("timeout"))
+	return rv
+}
+
+
+// SetTimeout sets the value of the timeout property.
+// The timeout value in seconds for the connection between the client and server.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vznetworkblockdevicestoragedeviceattachment/timeout
+func (v_ VZNetworkBlockDeviceStorageDeviceAttachment) SetTimeout(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setTimeout:"), value)
+}
+
+// The URL that refers to the NBD server to which the NBD client will connect.
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vznetworkblockdevicestoragedeviceattachment/url
+func (v_ VZNetworkBlockDeviceStorageDeviceAttachment) Url() foundation.URL {
+	rv := objc.Send[foundation.URL](v_.ID, objc.Sel("url"))
+	return rv
+}
+
+
+// SetUrl sets the value of the url property.
+// The URL that refers to the NBD server to which the NBD client will connect.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vznetworkblockdevicestoragedeviceattachment/url
+func (v_ VZNetworkBlockDeviceStorageDeviceAttachment) SetUrl(value foundation.URL) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setUrl:"), value)
+}
+
+// Returns a Boolean value that indicates whether the underlying disk attachment network is in a read-only state.
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vznetworkblockdevicestoragedeviceattachment/isforcedreadonly
+func (v_ VZNetworkBlockDeviceStorageDeviceAttachment) IsForcedReadOnly() bool {
+	rv := objc.Send[bool](v_.ID, objc.Sel("isForcedReadOnly"))
+	return rv
+}
+
+
+// SetIsForcedReadOnly sets the value of the isForcedReadOnly property.
+// Returns a Boolean value that indicates whether the underlying disk attachment network is in a read-only state.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vznetworkblockdevicestoragedeviceattachment/isforcedreadonly
+func (v_ VZNetworkBlockDeviceStorageDeviceAttachment) SetIsForcedReadOnly(value bool) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setIsForcedReadOnly:"), value)
+}
+
+// The mode in which the NBD client synchronizes data with the NBD server.
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vznetworkblockdevicestoragedeviceattachment/synchronizationmode
+func (v_ VZNetworkBlockDeviceStorageDeviceAttachment) SynchronizationMode() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("synchronizationMode"))
+	return rv
+}
+
+
+// SetSynchronizationMode sets the value of the synchronizationMode property.
+// The mode in which the NBD client synchronizes data with the NBD server.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vznetworkblockdevicestoragedeviceattachment/synchronizationmode
+func (v_ VZNetworkBlockDeviceStorageDeviceAttachment) SetSynchronizationMode(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setSynchronizationMode:"), value)
 }
 
 // The object that receives messages about changes to the network block device attachment.

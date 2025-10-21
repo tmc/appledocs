@@ -79,5 +79,59 @@ func NewNEDNSOverTLSSettings() NEDNSOverTLSSettings {
 }
 
 
+// A list of domain strings used to determine which DNS queries will use the DNS resolver settings contained in this object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nednssettings/matchdomains
+func (n_ NEDNSOverTLSSettings) MatchDomains() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("matchDomains"))
+	return rv
+}
+
+
+// SetMatchDomains sets the value of the matchDomains property.
+// A list of domain strings used to determine which DNS queries will use the DNS resolver settings contained in this object.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nednssettings/matchdomains
+func (n_ NEDNSOverTLSSettings) SetMatchDomains(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setMatchDomains:"), objc.String(value))
+}
+
+// A persistent keychain reference to a keychain item containing the certificate and private key components of the DNS client credential.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nednsovertlssettings/identityreference
+func (n_ NEDNSOverTLSSettings) IdentityReference() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("identityReference"))
+	return rv
+}
+
+
+// SetIdentityReference sets the value of the identityReference property.
+// A persistent keychain reference to a keychain item containing the certificate and private key components of the DNS client credential.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nednsovertlssettings/identityreference
+func (n_ NEDNSOverTLSSettings) SetIdentityReference(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setIdentityReference:"), value)
+}
+
+// The TLS name of a DNS-over-TLS server.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nednsovertlssettings/servername
+func (n_ NEDNSOverTLSSettings) ServerName() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("serverName"))
+	return rv
+}
+
+
+// SetServerName sets the value of the serverName property.
+// The TLS name of a DNS-over-TLS server.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nednsovertlssettings/servername
+func (n_ NEDNSOverTLSSettings) SetServerName(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setServerName:"), objc.String(value))
+}
+
 
 

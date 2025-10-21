@@ -81,6 +81,60 @@ func NewGraphOperation() GraphOperation {
 }
 
 
+// The set of operations guaranteed to execute before this operation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphoperation/controldependencies
+func (g_ GraphOperation) ControlDependencies() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("controlDependencies"))
+	return rv
+}
+
+
+// SetControlDependencies sets the value of the controlDependencies property.
+// The set of operations guaranteed to execute before this operation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphoperation/controldependencies
+func (g_ GraphOperation) SetControlDependencies(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setControlDependencies:"), value)
+}
+
+// The output tensors of the operation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphoperation/outputtensors
+func (g_ GraphOperation) OutputTensors() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("outputTensors"))
+	return rv
+}
+
+
+// SetOutputTensors sets the value of the outputTensors property.
+// The output tensors of the operation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphoperation/outputtensors
+func (g_ GraphOperation) SetOutputTensors(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setOutputTensors:"), value)
+}
+
+// The input tensors of the operation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphoperation/inputtensors
+func (g_ GraphOperation) InputTensors() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("inputTensors"))
+	return rv
+}
+
+
+// SetInputTensors sets the value of the inputTensors property.
+// The input tensors of the operation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphoperation/inputtensors
+func (g_ GraphOperation) SetInputTensors(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setInputTensors:"), value)
+}
+
 // The graph on which the operation is defined.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphOperation/graph

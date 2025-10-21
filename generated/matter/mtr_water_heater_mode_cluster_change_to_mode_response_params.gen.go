@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -90,8 +91,8 @@ func NewMTRWaterHeaterModeClusterChangeToModeResponseParamsWithResponseValueErro
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterModeClusterChangeToModeResponseParams/status
-func (m_ MTRWaterHeaterModeClusterChangeToModeResponseParams) Status() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("status"))
+func (m_ MTRWaterHeaterModeClusterChangeToModeResponseParams) Status() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("status"))
 	return rv
 }
 
@@ -99,7 +100,7 @@ func (m_ MTRWaterHeaterModeClusterChangeToModeResponseParams) Status() unsafe.Po
 // SetStatus sets the value of the status property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterModeClusterChangeToModeResponseParams/status
-func (m_ MTRWaterHeaterModeClusterChangeToModeResponseParams) SetStatus(value unsafe.Pointer) {
+func (m_ MTRWaterHeaterModeClusterChangeToModeResponseParams) SetStatus(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStatus:"), value)
 }
 

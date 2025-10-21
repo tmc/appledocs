@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -85,6 +86,24 @@ func NewAuthorizationSingleSignOnProvider() AuthorizationSingleSignOnProvider {
 func (a_ AuthorizationSingleSignOnProvider) CreateRequest() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("createRequest"))
 	return rv
+}
+
+// The URL of the identity provider.
+//
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsinglesignonprovider/url
+func (a_ AuthorizationSingleSignOnProvider) Url() foundation.URL {
+	rv := objc.Send[foundation.URL](a_.ID, objc.Sel("url"))
+	return rv
+}
+
+
+// SetUrl sets the value of the url property.
+// The URL of the identity provider.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsinglesignonprovider/url
+func (a_ AuthorizationSingleSignOnProvider) SetUrl(value foundation.URL) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setUrl:"), value)
 }
 
 // A Boolean value that indicates if the provider is capable of performing authorization within a given configuration.

@@ -89,5 +89,59 @@ func (s_ SearchToolbarItem) BeginSearchInteraction() {
 	objc.Send[objc.ID](s_.ID, objc.Sel("beginSearchInteraction"))
 }
 
+// The preferred width for the toolbar item when it has keyboard focus.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssearchtoolbaritem/preferredwidthforsearchfield
+func (s_ SearchToolbarItem) PreferredWidthForSearchField() float64 {
+	rv := objc.Send[float64](s_.ID, objc.Sel("preferredWidthForSearchField"))
+	return rv
+}
+
+
+// SetPreferredWidthForSearchField sets the value of the preferredWidthForSearchField property.
+// The preferred width for the toolbar item when it has keyboard focus.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssearchtoolbaritem/preferredwidthforsearchfield
+func (s_ SearchToolbarItem) SetPreferredWidthForSearchField(value float64) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setPreferredWidthForSearchField:"), value)
+}
+
+// A Boolean value that enables the cancel button in the search field to resign the first responder in addition to clearing the contents.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssearchtoolbaritem/resignsfirstresponderwithcancel
+func (s_ SearchToolbarItem) ResignsFirstResponderWithCancel() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("resignsFirstResponderWithCancel"))
+	return rv
+}
+
+
+// SetResignsFirstResponderWithCancel sets the value of the resignsFirstResponderWithCancel property.
+// A Boolean value that enables the cancel button in the search field to resign the first responder in addition to clearing the contents.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssearchtoolbaritem/resignsfirstresponderwithcancel
+func (s_ SearchToolbarItem) SetResignsFirstResponderWithCancel(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setResignsFirstResponderWithCancel:"), value)
+}
+
+// The search field inside the toolbar item.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssearchtoolbaritem/searchfield
+func (s_ SearchToolbarItem) SearchField() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("searchField"))
+	return rv
+}
+
+
+// SetSearchField sets the value of the searchField property.
+// The search field inside the toolbar item.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssearchtoolbaritem/searchfield
+func (s_ SearchToolbarItem) SetSearchField(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setSearchField:"), value)
+}
+
 
 

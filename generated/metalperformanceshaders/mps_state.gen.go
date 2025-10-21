@@ -80,5 +80,80 @@ func NewState() State {
 }
 
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsstate/istemporary
+func (s_ State) IsTemporary() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("isTemporary"))
+	return rv
+}
+
+
+// SetIsTemporary sets the value of the isTemporary property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsstate/istemporary
+func (s_ State) SetIsTemporary(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setIsTemporary:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsstate/readcount
+func (s_ State) ReadCount() int {
+	rv := objc.Send[int](s_.ID, objc.Sel("readCount"))
+	return rv
+}
+
+
+// SetReadCount sets the value of the readCount property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsstate/readcount
+func (s_ State) SetReadCount(value int) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setReadCount:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsstate/resource
+func (s_ State) Resource() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("resource"))
+	return rv
+}
+
+
+// SetResource sets the value of the resource property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsstate/resource
+func (s_ State) SetResource(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setResource:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsstate/resourcecount
+func (s_ State) ResourceCount() int {
+	rv := objc.Send[int](s_.ID, objc.Sel("resourceCount"))
+	return rv
+}
+
+
+// SetResourceCount sets the value of the resourceCount property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsstate/resourcecount
+func (s_ State) SetResourceCount(value int) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setResourceCount:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsstate/label
+func (s_ State) Label() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("label"))
+	return rv
+}
+
+
+// SetLabel sets the value of the label property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsstate/label
+func (s_ State) SetLabel(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setLabel:"), objc.String(value))
+}
+
 
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -88,7 +89,7 @@ func NewMIDIPlayer() MIDIPlayer {
 // Creates a player to play a MIDI file with the specified soundbank.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVMIDIPlayer/init(contentsOf:soundBankURL:)
-func NewMIDIPlayerWithContentsOfURLSoundBankURLError(inURL unsafe.Pointer, bankURL unsafe.Pointer, outError unsafe.Pointer) MIDIPlayer {
+func NewMIDIPlayerWithContentsOfURLSoundBankURLError(inURL foundation.URL, bankURL foundation.URL, outError unsafe.Pointer) MIDIPlayer {
 	instance := getMIDIPlayerClass().Alloc()
 	rv := objc.Send[MIDIPlayer](instance.ID, objc.Sel("initWithContentsOfURL:soundBankURL:error:"), inURL, bankURL, outError)
 	rv.Autorelease()
@@ -100,7 +101,7 @@ func NewMIDIPlayerWithContentsOfURLSoundBankURLError(inURL unsafe.Pointer, bankU
 // Creates a player to play MIDI data with the specified soundbank.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVMIDIPlayer/init(data:soundBankURL:)
-func NewMIDIPlayerWithDataSoundBankURLError(data unsafe.Pointer, bankURL unsafe.Pointer, outError unsafe.Pointer) MIDIPlayer {
+func NewMIDIPlayerWithDataSoundBankURLError(data unsafe.Pointer, bankURL foundation.URL, outError unsafe.Pointer) MIDIPlayer {
 	instance := getMIDIPlayerClass().Alloc()
 	rv := objc.Send[MIDIPlayer](instance.ID, objc.Sel("initWithData:soundBankURL:error:"), data, bankURL, outError)
 	rv.Autorelease()
@@ -129,11 +130,29 @@ func (m_ MIDIPlayer) Stop() {
 	objc.Send[objc.ID](m_.ID, objc.Sel("stop"))
 }
 
+// A Boolean value that indicates whether the sequence is playing.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avmidiplayer/isplaying
+func (m_ MIDIPlayer) IsPlaying() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("isPlaying"))
+	return rv
+}
+
+
+// SetIsPlaying sets the value of the isPlaying property.
+// A Boolean value that indicates whether the sequence is playing.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avmidiplayer/isplaying
+func (m_ MIDIPlayer) SetIsPlaying(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIsPlaying:"), value)
+}
+
 // The current playback position, in seconds.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVMIDIPlayer/currentPosition
-func (m_ MIDIPlayer) CurrentPosition() TimeInterval {
-	rv := objc.Send[TimeInterval](m_.ID, objc.Sel("currentPosition"))
+func (m_ MIDIPlayer) CurrentPosition() foundation.TimeInterval {
+	rv := objc.Send[foundation.TimeInterval](m_.ID, objc.Sel("currentPosition"))
 	return rv
 }
 
@@ -143,15 +162,15 @@ func (m_ MIDIPlayer) CurrentPosition() TimeInterval {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVMIDIPlayer/currentPosition
-func (m_ MIDIPlayer) SetCurrentPosition(value TimeInterval) {
+func (m_ MIDIPlayer) SetCurrentPosition(value foundation.TimeInterval) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCurrentPosition:"), value)
 }
 
 // The duration, in seconds, of the currently loaded file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVMIDIPlayer/duration
-func (m_ MIDIPlayer) Duration() TimeInterval {
-	rv := objc.Send[TimeInterval](m_.ID, objc.Sel("duration"))
+func (m_ MIDIPlayer) Duration() foundation.TimeInterval {
+	rv := objc.Send[foundation.TimeInterval](m_.ID, objc.Sel("duration"))
 	return rv
 }
 

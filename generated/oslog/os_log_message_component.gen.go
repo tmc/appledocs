@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -80,6 +81,24 @@ func NewOSLogMessageComponent() OSLogMessageComponent {
 }
 
 
+// The argument passed into the message component.
+//
+// [Full Topic]: https://developer.apple.com/documentation/oslog/oslogmessagecomponent/argument-swift.property
+func (o_ OSLogMessageComponent) Argument() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("argument"))
+	return rv
+}
+
+
+// SetArgument sets the value of the argument property.
+// The argument passed into the message component.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/oslog/oslogmessagecomponent/argument-swift.property
+func (o_ OSLogMessageComponent) SetArgument(value unsafe.Pointer) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setArgument:"), value)
+}
+
 // The type of argument that corresponds to the placeholder.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogMessageComponent/argumentCategory-swift.property
@@ -115,8 +134,8 @@ func (o_ OSLogMessageComponent) ArgumentInt64Value() unsafe.Pointer {
 // The argument formatted as a number.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogMessageComponent/argumentNumberValue
-func (o_ OSLogMessageComponent) ArgumentNumberValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("argumentNumberValue"))
+func (o_ OSLogMessageComponent) ArgumentNumberValue() foundation.Number {
+	rv := objc.Send[foundation.Number](o_.ID, objc.Sel("argumentNumberValue"))
 	return rv
 }
 

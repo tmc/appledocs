@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [Window] class.
@@ -146,9 +147,6 @@ type IWindow interface {
 	SetFrameTopLeftPoint(point coregraphics.CGPoint)
 	SetFrameUsingName(name unsafe.Pointer) bool
 	SetFrameUsingNameForce(name unsafe.Pointer, force bool) bool
-	SetIsMiniaturized(flag bool)
-	SetIsVisible(flag bool)
-	SetIsZoomed(flag bool)
 	SetTitleWithRepresentedFilename(filename string)
 	StandardWindowButton(b unsafe.Pointer) unsafe.Pointer
 	ToggleFullScreen(sender objc.ID)
@@ -330,8 +328,8 @@ func (wc _WindowClass) WindowNumberAtPointBelowWindowWithWindowNumber(point core
 // Returns the window numbers for all visible windows satisfying the specified options.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/windowNumbers(options:)
-func (wc _WindowClass) WindowNumbersWithOptions(options unsafe.Pointer) []NSNumber {
-	rv := objc.Send[[]NSNumber](objc.ID(wc.class), objc.Sel("windowNumbersWithOptions:"), options)
+func (wc _WindowClass) WindowNumbersWithOptions(options unsafe.Pointer) []foundation.Number {
+	rv := objc.Send[[]foundation.Number](objc.ID(wc.class), objc.Sel("windowNumbersWithOptions:"), options)
 	return rv
 }
 
@@ -1196,27 +1194,6 @@ func (w_ Window) SetFrameUsingName(name unsafe.Pointer) bool {
 func (w_ Window) SetFrameUsingNameForce(name unsafe.Pointer, force bool) bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("setFrameUsingName:force:"), name, force)
 	return rv
-}
-
-// Sets the window’s miniaturized state to the value you specify.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/setIsMiniaturized(_:)
-func (w_ Window) SetIsMiniaturized(flag bool) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setIsMiniaturized:"), flag)
-}
-
-// Sets the window’s visible state to the value you specify.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/setIsVisible(_:)
-func (w_ Window) SetIsVisible(flag bool) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setIsVisible:"), flag)
-}
-
-// Sets the window’s zoomed state to the value you specify.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/setIsZoomed(_:)
-func (w_ Window) SetIsZoomed(flag bool) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setIsZoomed:"), flag)
 }
 
 // Sets a given path as the window’s title, formatting it as a file-system path, and records this path as the window’s associated file.
@@ -2596,8 +2573,8 @@ func (w_ Window) SetRepresentedFilename(value string) {
 // The URL of the file the window represents.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/representedURL
-func (w_ Window) RepresentedURL() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("representedURL"))
+func (w_ Window) RepresentedURL() foundation.URL {
+	rv := objc.Send[foundation.URL](w_.ID, objc.Sel("representedURL"))
 	return rv
 }
 
@@ -2607,7 +2584,7 @@ func (w_ Window) RepresentedURL() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/representedURL
-func (w_ Window) SetRepresentedURL(value unsafe.Pointer) {
+func (w_ Window) SetRepresentedURL(value foundation.URL) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setRepresentedURL:"), value)
 }
 
@@ -3031,6 +3008,510 @@ func (w_ Window) WindowTitlebarLayoutDirection() unsafe.Pointer {
 func (w_ Window) WorksWhenModal() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("worksWhenModal"))
 	return rv
+}
+
+// Returns the number of color components in the specified color space.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorspacename/numberofcolorcomponents
+func (w_ Window) NumberOfColorComponents() int {
+	rv := objc.Send[int](w_.ID, objc.Sel("numberOfColorComponents"))
+	return rv
+}
+
+
+// SetNumberOfColorComponents sets the value of the numberOfColorComponents property.
+// Returns the number of color components in the specified color space.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorspacename/numberofcolorcomponents
+func (w_ Window) SetNumberOfColorComponents(value int) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setNumberOfColorComponents:"), value)
+}
+
+// Returns the bits per pixel for the specified window depth.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/depth/bitsperpixel
+func (w_ Window) BitsPerPixel() int {
+	rv := objc.Send[int](w_.ID, objc.Sel("bitsPerPixel"))
+	return rv
+}
+
+
+// SetBitsPerPixel sets the value of the bitsPerPixel property.
+// Returns the bits per pixel for the specified window depth.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/depth/bitsperpixel
+func (w_ Window) SetBitsPerPixel(value int) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setBitsPerPixel:"), value)
+}
+
+// Returns the bits per sample for the specified window depth.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/depth/bitspersample
+func (w_ Window) BitsPerSample() int {
+	rv := objc.Send[int](w_.ID, objc.Sel("bitsPerSample"))
+	return rv
+}
+
+
+// SetBitsPerSample sets the value of the bitsPerSample property.
+// Returns the bits per sample for the specified window depth.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/depth/bitspersample
+func (w_ Window) SetBitsPerSample(value int) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setBitsPerSample:"), value)
+}
+
+// Returns the name of the color space corresponding to the passed window depth.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/depth/colorspacename
+func (w_ Window) ColorSpaceName() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("colorSpaceName"))
+	return rv
+}
+
+
+// SetColorSpaceName sets the value of the colorSpaceName property.
+// Returns the name of the color space corresponding to the passed window depth.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/depth/colorspacename
+func (w_ Window) SetColorSpaceName(value unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setColorSpaceName:"), value)
+}
+
+// Returns whether the specified window depth is planar.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/depth/isplanar
+func (w_ Window) IsPlanar() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("isPlanar"))
+	return rv
+}
+
+
+// SetIsPlanar sets the value of the isPlanar property.
+// Returns whether the specified window depth is planar.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/depth/isplanar
+func (w_ Window) SetIsPlanar(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setIsPlanar:"), value)
+}
+
+// A Boolean value that indicates whether the window can become the key window.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/canbecomekey
+func (w_ Window) CanBecomeKey() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("canBecomeKey"))
+	return rv
+}
+
+
+// SetCanBecomeKey sets the value of the canBecomeKey property.
+// A Boolean value that indicates whether the window can become the key window.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/canbecomekey
+func (w_ Window) SetCanBecomeKey(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setCanBecomeKey:"), value)
+}
+
+// A Boolean value that indicates whether the window can become the application’s main window.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/canbecomemain
+func (w_ Window) CanBecomeMain() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("canBecomeMain"))
+	return rv
+}
+
+
+// SetCanBecomeMain sets the value of the canBecomeMain property.
+// A Boolean value that indicates whether the window can become the application’s main window.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/canbecomemain
+func (w_ Window) SetCanBecomeMain(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setCanBecomeMain:"), value)
+}
+
+// A string representation of the window’s frame rectangle.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/framedescriptor
+func (w_ Window) FrameDescriptor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("frameDescriptor"))
+	return rv
+}
+
+
+// SetFrameDescriptor sets the value of the frameDescriptor property.
+// A string representation of the window’s frame rectangle.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/framedescriptor
+func (w_ Window) SetFrameDescriptor(value unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setFrameDescriptor:"), value)
+}
+
+// A Boolean value that indicates whether the window’s document has been edited.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/isdocumentedited
+func (w_ Window) IsDocumentEdited() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("isDocumentEdited"))
+	return rv
+}
+
+
+// SetIsDocumentEdited sets the value of the isDocumentEdited property.
+// A Boolean value that indicates whether the window’s document has been edited.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/isdocumentedited
+func (w_ Window) SetIsDocumentEdited(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setIsDocumentEdited:"), value)
+}
+
+// A Boolean value that indicates whether the window is excluded from the application’s Windows menu.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/isexcludedfromwindowsmenu
+func (w_ Window) IsExcludedFromWindowsMenu() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("isExcludedFromWindowsMenu"))
+	return rv
+}
+
+
+// SetIsExcludedFromWindowsMenu sets the value of the isExcludedFromWindowsMenu property.
+// A Boolean value that indicates whether the window is excluded from the application’s Windows menu.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/isexcludedfromwindowsmenu
+func (w_ Window) SetIsExcludedFromWindowsMenu(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setIsExcludedFromWindowsMenu:"), value)
+}
+
+// A Boolean value that indicates whether the window is a floating panel.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/isfloatingpanel
+func (w_ Window) IsFloatingPanel() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("isFloatingPanel"))
+	return rv
+}
+
+
+// SetIsFloatingPanel sets the value of the isFloatingPanel property.
+// A Boolean value that indicates whether the window is a floating panel.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/isfloatingpanel
+func (w_ Window) SetIsFloatingPanel(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setIsFloatingPanel:"), value)
+}
+
+// A Boolean value that indicates whether the window is the key window for the application.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/iskeywindow
+func (w_ Window) IsKeyWindow() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("isKeyWindow"))
+	return rv
+}
+
+
+// SetIsKeyWindow sets the value of the isKeyWindow property.
+// A Boolean value that indicates whether the window is the key window for the application.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/iskeywindow
+func (w_ Window) SetIsKeyWindow(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setIsKeyWindow:"), value)
+}
+
+// A Boolean value that indicates whether the window is the application’s main window.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/ismainwindow
+func (w_ Window) IsMainWindow() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("isMainWindow"))
+	return rv
+}
+
+
+// SetIsMainWindow sets the value of the isMainWindow property.
+// A Boolean value that indicates whether the window is the application’s main window.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/ismainwindow
+func (w_ Window) SetIsMainWindow(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setIsMainWindow:"), value)
+}
+
+// A Boolean value that indicates whether the window can minimize.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/isminiaturizable
+func (w_ Window) IsMiniaturizable() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("isMiniaturizable"))
+	return rv
+}
+
+
+// SetIsMiniaturizable sets the value of the isMiniaturizable property.
+// A Boolean value that indicates whether the window can minimize.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/isminiaturizable
+func (w_ Window) SetIsMiniaturizable(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setIsMiniaturizable:"), value)
+}
+
+// A Boolean value that indicates whether the window is minimized.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/isminiaturized
+func (w_ Window) IsMiniaturized() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("isMiniaturized"))
+	return rv
+}
+
+
+// SetIsMiniaturized sets the value of the isMiniaturized property.
+// A Boolean value that indicates whether the window is minimized.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/isminiaturized
+func (w_ Window) SetIsMiniaturized(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setIsMiniaturized:"), value)
+}
+
+// A Boolean value that indicates whether the window is a modal panel.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/ismodalpanel
+func (w_ Window) IsModalPanel() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("isModalPanel"))
+	return rv
+}
+
+
+// SetIsModalPanel sets the value of the isModalPanel property.
+// A Boolean value that indicates whether the window is a modal panel.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/ismodalpanel
+func (w_ Window) SetIsModalPanel(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setIsModalPanel:"), value)
+}
+
+// A Boolean value that indicates whether the window can be dragged by clicking in its title bar or background.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/ismovable
+func (w_ Window) IsMovable() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("isMovable"))
+	return rv
+}
+
+
+// SetIsMovable sets the value of the isMovable property.
+// A Boolean value that indicates whether the window can be dragged by clicking in its title bar or background.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/ismovable
+func (w_ Window) SetIsMovable(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setIsMovable:"), value)
+}
+
+// A Boolean value that indicates whether the window is movable by clicking and dragging anywhere in its background.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/ismovablebywindowbackground
+func (w_ Window) IsMovableByWindowBackground() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("isMovableByWindowBackground"))
+	return rv
+}
+
+
+// SetIsMovableByWindowBackground sets the value of the isMovableByWindowBackground property.
+// A Boolean value that indicates whether the window is movable by clicking and dragging anywhere in its background.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/ismovablebywindowbackground
+func (w_ Window) SetIsMovableByWindowBackground(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setIsMovableByWindowBackground:"), value)
+}
+
+// A Boolean value that indicates whether the window is on the currently active space.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/isonactivespace
+func (w_ Window) IsOnActiveSpace() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("isOnActiveSpace"))
+	return rv
+}
+
+
+// SetIsOnActiveSpace sets the value of the isOnActiveSpace property.
+// A Boolean value that indicates whether the window is on the currently active space.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/isonactivespace
+func (w_ Window) SetIsOnActiveSpace(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setIsOnActiveSpace:"), value)
+}
+
+// A Boolean value that indicates whether the window is opaque.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/isopaque
+func (w_ Window) IsOpaque() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("isOpaque"))
+	return rv
+}
+
+
+// SetIsOpaque sets the value of the isOpaque property.
+// A Boolean value that indicates whether the window is opaque.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/isopaque
+func (w_ Window) SetIsOpaque(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setIsOpaque:"), value)
+}
+
+// A Boolean value that indicates whether the window is released when it receives the
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/isreleasedwhenclosed
+func (w_ Window) IsReleasedWhenClosed() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("isReleasedWhenClosed"))
+	return rv
+}
+
+
+// SetIsReleasedWhenClosed sets the value of the isReleasedWhenClosed property.
+// A Boolean value that indicates whether the window is released when it receives the
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/isreleasedwhenclosed
+func (w_ Window) SetIsReleasedWhenClosed(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setIsReleasedWhenClosed:"), value)
+}
+
+// A Boolean value that indicates if the user can resize the window.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/isresizable
+func (w_ Window) IsResizable() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("isResizable"))
+	return rv
+}
+
+
+// SetIsResizable sets the value of the isResizable property.
+// A Boolean value that indicates if the user can resize the window.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/isresizable
+func (w_ Window) SetIsResizable(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setIsResizable:"), value)
+}
+
+// A Boolean value indicating whether the window configuration is preserved between application launches.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/isrestorable
+func (w_ Window) IsRestorable() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("isRestorable"))
+	return rv
+}
+
+
+// SetIsRestorable sets the value of the isRestorable property.
+// A Boolean value indicating whether the window configuration is preserved between application launches.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/isrestorable
+func (w_ Window) SetIsRestorable(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setIsRestorable:"), value)
+}
+
+// A Boolean value that indicates whether the window has ever run as a modal sheet.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/issheet
+func (w_ Window) IsSheet() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("isSheet"))
+	return rv
+}
+
+
+// SetIsSheet sets the value of the isSheet property.
+// A Boolean value that indicates whether the window has ever run as a modal sheet.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/issheet
+func (w_ Window) SetIsSheet(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setIsSheet:"), value)
+}
+
+// A Boolean value that indicates whether the window is visible onscreen (even when it’s obscured by other windows).
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/isvisible
+func (w_ Window) IsVisible() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("isVisible"))
+	return rv
+}
+
+
+// SetIsVisible sets the value of the isVisible property.
+// A Boolean value that indicates whether the window is visible onscreen (even when it’s obscured by other windows).
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/isvisible
+func (w_ Window) SetIsVisible(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setIsVisible:"), value)
+}
+
+// A Boolean value that indicates whether the window allows zooming.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/iszoomable
+func (w_ Window) IsZoomable() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("isZoomable"))
+	return rv
+}
+
+
+// SetIsZoomable sets the value of the isZoomable property.
+// A Boolean value that indicates whether the window allows zooming.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/iszoomable
+func (w_ Window) SetIsZoomable(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setIsZoomable:"), value)
+}
+
+// A Boolean value that indicates whether the window is in a zoomed state.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/iszoomed
+func (w_ Window) IsZoomed() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("isZoomed"))
+	return rv
+}
+
+
+// SetIsZoomed sets the value of the isZoomed property.
+// A Boolean value that indicates whether the window is in a zoomed state.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/iszoomed
+func (w_ Window) SetIsZoomed(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setIsZoomed:"), value)
+}
+
+// The parent window to which the window is attached as a child.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/parent
+func (w_ Window) Parent() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("parent"))
+	return rv
+}
+
+
+// SetParent sets the value of the parent property.
+// The parent window to which the window is attached as a child.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/parent
+func (w_ Window) SetParent(value unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setParent:"), value)
 }
 
 

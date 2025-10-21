@@ -118,4 +118,30 @@ func NewHKAnchoredObjectQueryWithTypePredicateAnchorLimitResultsHandler(type_ un
 }
 
 
+// Handler for monitoring updates to the HealthKit store.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkanchoredobjectquery/updatehandler
+func (h_ HKAnchoredObjectQuery) UpdateHandler() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("updateHandler"))
+	return rv
+}
+
+
+// SetUpdateHandler sets the value of the updateHandler property.
+// Handler for monitoring updates to the HealthKit store.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkanchoredobjectquery/updatehandler
+func (h_ HKAnchoredObjectQuery) SetUpdateHandler(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setUpdateHandler:"), value)
+}
+
+// A value indicating that the query returns all the matching samples in the HealthKit store.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkobjectquerynolimit
+func (h_ HKAnchoredObjectQuery) HKObjectQueryNoLimit() int {
+	rv := objc.Send[int](h_.ID, objc.Sel("HKObjectQueryNoLimit"))
+	return rv
+}
+
 

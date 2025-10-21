@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -159,8 +160,8 @@ func (a_ AssetExportSession) SetCanPerformMultiplePassesOverSourceMediaData(valu
 // A directory suitable to store temporary files that the export process generates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetExportSession/directoryForTemporaryFiles
-func (a_ AssetExportSession) DirectoryForTemporaryFiles() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("directoryForTemporaryFiles"))
+func (a_ AssetExportSession) DirectoryForTemporaryFiles() foundation.URL {
+	rv := objc.Send[foundation.URL](a_.ID, objc.Sel("directoryForTemporaryFiles"))
 	return rv
 }
 
@@ -170,7 +171,7 @@ func (a_ AssetExportSession) DirectoryForTemporaryFiles() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetExportSession/directoryForTemporaryFiles
-func (a_ AssetExportSession) SetDirectoryForTemporaryFiles(value unsafe.Pointer) {
+func (a_ AssetExportSession) SetDirectoryForTemporaryFiles(value foundation.URL) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDirectoryForTemporaryFiles:"), value)
 }
 
@@ -213,8 +214,8 @@ func (a_ AssetExportSession) SetOutputFileType(value unsafe.Pointer) {
 // A URL where an asset export session writes its output.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetExportSession/outputURL
-func (a_ AssetExportSession) OutputURL() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("outputURL"))
+func (a_ AssetExportSession) OutputURL() foundation.URL {
+	rv := objc.Send[foundation.URL](a_.ID, objc.Sel("outputURL"))
 	return rv
 }
 
@@ -224,7 +225,7 @@ func (a_ AssetExportSession) OutputURL() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetExportSession/outputURL
-func (a_ AssetExportSession) SetOutputURL(value unsafe.Pointer) {
+func (a_ AssetExportSession) SetOutputURL(value foundation.URL) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setOutputURL:"), value)
 }
 
@@ -270,6 +271,258 @@ func (a_ AssetExportSession) TimeRange() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetExportSession/timeRange
 func (a_ AssetExportSession) SetTimeRange(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setTimeRange:"), value)
+}
+
+// An asset that a session exports.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/asset
+func (a_ AssetExportSession) Asset() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("asset"))
+	return rv
+}
+
+
+// SetAsset sets the value of the asset property.
+// An asset that a session exports.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/asset
+func (a_ AssetExportSession) SetAsset(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAsset:"), value)
+}
+
+// The parameters for audio mixing and an indication of whether to enable nondefault audio mixing for export.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/audiomix
+func (a_ AssetExportSession) AudioMix() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("audioMix"))
+	return rv
+}
+
+
+// SetAudioMix sets the value of the audioMix property.
+// The parameters for audio mixing and an indication of whether to enable nondefault audio mixing for export.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/audiomix
+func (a_ AssetExportSession) SetAudioMix(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAudioMix:"), value)
+}
+
+// A processing algorithm for managing audio pitch for scaled audio edits.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/audiotimepitchalgorithm
+func (a_ AssetExportSession) AudioTimePitchAlgorithm() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("audioTimePitchAlgorithm"))
+	return rv
+}
+
+
+// SetAudioTimePitchAlgorithm sets the value of the audioTimePitchAlgorithm property.
+// A processing algorithm for managing audio pitch for scaled audio edits.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/audiotimepitchalgorithm
+func (a_ AssetExportSession) SetAudioTimePitchAlgorithm(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAudioTimePitchAlgorithm:"), value)
+}
+
+// A policy that defines how the session exports alternate audio tracks.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/audiotrackgrouphandling
+func (a_ AssetExportSession) AudioTrackGroupHandling() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("audioTrackGroupHandling"))
+	return rv
+}
+
+
+// SetAudioTrackGroupHandling sets the value of the audioTrackGroupHandling property.
+// A policy that defines how the session exports alternate audio tracks.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/audiotrackgrouphandling
+func (a_ AssetExportSession) SetAudioTrackGroupHandling(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAudioTrackGroupHandling:"), value)
+}
+
+// An optional custom object to use when compositing video frames.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/customvideocompositor
+func (a_ AssetExportSession) CustomVideoCompositor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("customVideoCompositor"))
+	return rv
+}
+
+
+// SetCustomVideoCompositor sets the value of the customVideoCompositor property.
+// An optional custom object to use when compositing video frames.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/customvideocompositor
+func (a_ AssetExportSession) SetCustomVideoCompositor(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setCustomVideoCompositor:"), value)
+}
+
+// An optional error object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/error
+func (a_ AssetExportSession) Error() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("error"))
+	return rv
+}
+
+
+// SetError sets the value of the error property.
+// An optional error object.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/error
+func (a_ AssetExportSession) SetError(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setError:"), value)
+}
+
+// The estimated length of the exported file, in bytes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/estimatedoutputfilelength
+func (a_ AssetExportSession) EstimatedOutputFileLength() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("estimatedOutputFileLength"))
+	return rv
+}
+
+
+// SetEstimatedOutputFileLength sets the value of the estimatedOutputFileLength property.
+// The estimated length of the exported file, in bytes.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/estimatedoutputfilelength
+func (a_ AssetExportSession) SetEstimatedOutputFileLength(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setEstimatedOutputFileLength:"), value)
+}
+
+// Provides an estimate of the maximum duration of the exported media.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/maxduration
+func (a_ AssetExportSession) MaxDuration() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("maxDuration"))
+	return rv
+}
+
+
+// SetMaxDuration sets the value of the maxDuration property.
+// Provides an estimate of the maximum duration of the exported media.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/maxduration
+func (a_ AssetExportSession) SetMaxDuration(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setMaxDuration:"), value)
+}
+
+// The metadata an export session writes to the output container file.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/metadata
+func (a_ AssetExportSession) Metadata() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("metadata"))
+	return rv
+}
+
+
+// SetMetadata sets the value of the metadata property.
+// The metadata an export session writes to the output container file.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/metadata
+func (a_ AssetExportSession) SetMetadata(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setMetadata:"), value)
+}
+
+// An object the export session uses to filter the metadata items it transfers to the output asset.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/metadataitemfilter
+func (a_ AssetExportSession) MetadataItemFilter() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("metadataItemFilter"))
+	return rv
+}
+
+
+// SetMetadataItemFilter sets the value of the metadataItemFilter property.
+// An object the export session uses to filter the metadata items it transfers to the output asset.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/metadataitemfilter
+func (a_ AssetExportSession) SetMetadataItemFilter(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setMetadataItemFilter:"), value)
+}
+
+// The name of the preset that the asset export session uses.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/presetname
+func (a_ AssetExportSession) PresetName() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("presetName"))
+	return rv
+}
+
+
+// SetPresetName sets the value of the presetName property.
+// The name of the preset that the asset export session uses.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/presetname
+func (a_ AssetExportSession) SetPresetName(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setPresetName:"), objc.String(value))
+}
+
+// A value that indicates the progress of the export.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/progress
+func (a_ AssetExportSession) Progress() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("progress"))
+	return rv
+}
+
+
+// SetProgress sets the value of the progress property.
+// A value that indicates the progress of the export.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/progress
+func (a_ AssetExportSession) SetProgress(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setProgress:"), value)
+}
+
+// The status of the export session.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/status-swift.property
+func (a_ AssetExportSession) Status() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("status"))
+	return rv
+}
+
+
+// SetStatus sets the value of the status property.
+// The status of the export session.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/status-swift.property
+func (a_ AssetExportSession) SetStatus(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setStatus:"), value)
+}
+
+// An optional object that provides instructions for how to composite frames of video.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/videocomposition
+func (a_ AssetExportSession) VideoComposition() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("videoComposition"))
+	return rv
+}
+
+
+// SetVideoComposition sets the value of the videoComposition property.
+// An optional object that provides instructions for how to composite frames of video.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/videocomposition
+func (a_ AssetExportSession) SetVideoComposition(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setVideoComposition:"), value)
 }
 
 

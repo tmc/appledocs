@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -79,6 +80,60 @@ func NewSequence() Sequence {
 	return getSequenceClass().New()
 }
 
+
+// The underlying type of the sequence’s elements.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlsequence/type
+func (s_ Sequence) Type() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("type"))
+	return rv
+}
+
+
+// SetType sets the value of the type property.
+// The underlying type of the sequence’s elements.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlsequence/type
+func (s_ Sequence) SetType(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setType:"), value)
+}
+
+// An array of 64-bit integers in the sequence.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlsequence/int64values
+func (s_ Sequence) Int64Values() foundation.Number {
+	rv := objc.Send[foundation.Number](s_.ID, objc.Sel("int64Values"))
+	return rv
+}
+
+
+// SetInt64Values sets the value of the int64Values property.
+// An array of 64-bit integers in the sequence.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlsequence/int64values
+func (s_ Sequence) SetInt64Values(value foundation.Number) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setInt64Values:"), value)
+}
+
+// An array of strings in the sequence.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlsequence/stringvalues
+func (s_ Sequence) StringValues() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("stringValues"))
+	return rv
+}
+
+
+// SetStringValues sets the value of the stringValues property.
+// An array of strings in the sequence.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlsequence/stringvalues
+func (s_ Sequence) SetStringValues(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setStringValues:"), objc.String(value))
+}
 
 
 

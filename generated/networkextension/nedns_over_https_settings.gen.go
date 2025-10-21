@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [NEDNSOverHTTPSSettings] class.
@@ -78,6 +79,60 @@ func NewNEDNSOverHTTPSSettings() NEDNSOverHTTPSSettings {
 	return getNEDNSOverHTTPSSettingsClass().New()
 }
 
+
+// A persistent keychain reference to a keychain item containing the certificate and private key components of the DNS client credential.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nednsoverhttpssettings/identityreference
+func (n_ NEDNSOverHTTPSSettings) IdentityReference() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("identityReference"))
+	return rv
+}
+
+
+// SetIdentityReference sets the value of the identityReference property.
+// A persistent keychain reference to a keychain item containing the certificate and private key components of the DNS client credential.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nednsoverhttpssettings/identityreference
+func (n_ NEDNSOverHTTPSSettings) SetIdentityReference(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setIdentityReference:"), value)
+}
+
+// The URL of a DNS-over-HTTPS server.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nednsoverhttpssettings/serverurl
+func (n_ NEDNSOverHTTPSSettings) ServerURL() foundation.URL {
+	rv := objc.Send[foundation.URL](n_.ID, objc.Sel("serverURL"))
+	return rv
+}
+
+
+// SetServerURL sets the value of the serverURL property.
+// The URL of a DNS-over-HTTPS server.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nednsoverhttpssettings/serverurl
+func (n_ NEDNSOverHTTPSSettings) SetServerURL(value foundation.URL) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setServerURL:"), value)
+}
+
+// A list of domain strings used to determine which DNS queries will use the DNS resolver settings contained in this object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nednssettings/matchdomains
+func (n_ NEDNSOverHTTPSSettings) MatchDomains() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("matchDomains"))
+	return rv
+}
+
+
+// SetMatchDomains sets the value of the matchDomains property.
+// A list of domain strings used to determine which DNS queries will use the DNS resolver settings contained in this object.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nednssettings/matchdomains
+func (n_ NEDNSOverHTTPSSettings) SetMatchDomains(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setMatchDomains:"), objc.String(value))
+}
 
 
 

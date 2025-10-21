@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,8 +78,8 @@ func NewMTRDeviceEnergyManagementClusterModifyForecastRequestParams() MTRDeviceE
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterModifyForecastRequestParams/cause
-func (m_ MTRDeviceEnergyManagementClusterModifyForecastRequestParams) Cause() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("cause"))
+func (m_ MTRDeviceEnergyManagementClusterModifyForecastRequestParams) Cause() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("cause"))
 	return rv
 }
 
@@ -86,14 +87,14 @@ func (m_ MTRDeviceEnergyManagementClusterModifyForecastRequestParams) Cause() un
 // SetCause sets the value of the cause property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterModifyForecastRequestParams/cause
-func (m_ MTRDeviceEnergyManagementClusterModifyForecastRequestParams) SetCause(value unsafe.Pointer) {
+func (m_ MTRDeviceEnergyManagementClusterModifyForecastRequestParams) SetCause(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCause:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterModifyForecastRequestParams/forecastID
-func (m_ MTRDeviceEnergyManagementClusterModifyForecastRequestParams) ForecastID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("forecastID"))
+func (m_ MTRDeviceEnergyManagementClusterModifyForecastRequestParams) ForecastID() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("forecastID"))
 	return rv
 }
 
@@ -101,15 +102,15 @@ func (m_ MTRDeviceEnergyManagementClusterModifyForecastRequestParams) ForecastID
 // SetForecastID sets the value of the forecastID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterModifyForecastRequestParams/forecastID
-func (m_ MTRDeviceEnergyManagementClusterModifyForecastRequestParams) SetForecastID(value unsafe.Pointer) {
+func (m_ MTRDeviceEnergyManagementClusterModifyForecastRequestParams) SetForecastID(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setForecastID:"), value)
 }
 
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterModifyForecastRequestParams/serverSideProcessingTimeout
-func (m_ MTRDeviceEnergyManagementClusterModifyForecastRequestParams) ServerSideProcessingTimeout() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRDeviceEnergyManagementClusterModifyForecastRequestParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
@@ -119,7 +120,7 @@ func (m_ MTRDeviceEnergyManagementClusterModifyForecastRequestParams) ServerSide
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterModifyForecastRequestParams/serverSideProcessingTimeout
-func (m_ MTRDeviceEnergyManagementClusterModifyForecastRequestParams) SetServerSideProcessingTimeout(value unsafe.Pointer) {
+func (m_ MTRDeviceEnergyManagementClusterModifyForecastRequestParams) SetServerSideProcessingTimeout(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -141,8 +142,8 @@ func (m_ MTRDeviceEnergyManagementClusterModifyForecastRequestParams) SetSlotAdj
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterModifyForecastRequestParams/timedInvokeTimeoutMs
-func (m_ MTRDeviceEnergyManagementClusterModifyForecastRequestParams) TimedInvokeTimeoutMs() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRDeviceEnergyManagementClusterModifyForecastRequestParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
@@ -152,7 +153,7 @@ func (m_ MTRDeviceEnergyManagementClusterModifyForecastRequestParams) TimedInvok
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterModifyForecastRequestParams/timedInvokeTimeoutMs
-func (m_ MTRDeviceEnergyManagementClusterModifyForecastRequestParams) SetTimedInvokeTimeoutMs(value unsafe.Pointer) {
+func (m_ MTRDeviceEnergyManagementClusterModifyForecastRequestParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

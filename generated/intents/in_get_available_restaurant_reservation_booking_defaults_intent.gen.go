@@ -81,5 +81,23 @@ func NewINGetAvailableRestaurantReservationBookingDefaultsIntent() INGetAvailabl
 }
 
 
+// The restaurant to use when determining any default values.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/ingetavailablerestaurantreservationbookingdefaultsintent/restaurant
+func (i_ INGetAvailableRestaurantReservationBookingDefaultsIntent) Restaurant() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("restaurant"))
+	return rv
+}
+
+
+// SetRestaurant sets the value of the restaurant property.
+// The restaurant to use when determining any default values.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/ingetavailablerestaurantreservationbookingdefaultsintent/restaurant
+func (i_ INGetAvailableRestaurantReservationBookingDefaultsIntent) SetRestaurant(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setRestaurant:"), value)
+}
+
 
 

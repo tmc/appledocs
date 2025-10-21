@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -79,6 +80,24 @@ func NewPDFConfiguration() PDFConfiguration {
 	return getPDFConfigurationClass().New()
 }
 
+
+// The portion of your web view to capture, specified as a rectangle in the view’s coordinate system.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkpdfconfiguration/rect-2a0vp
+func (p_ PDFConfiguration) Rect() coregraphics.CGRect {
+	rv := objc.Send[coregraphics.CGRect](p_.ID, objc.Sel("rect"))
+	return rv
+}
+
+
+// SetRect sets the value of the rect property.
+// The portion of your web view to capture, specified as a rectangle in the view’s coordinate system.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkpdfconfiguration/rect-2a0vp
+func (p_ PDFConfiguration) SetRect(value coregraphics.CGRect) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setRect:"), value)
+}
 
 // A Boolean value that indicates whether the PDF may have a transparent background.
 //

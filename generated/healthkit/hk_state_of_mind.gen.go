@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [HKStateOfMind] class.
@@ -92,8 +93,8 @@ func (hc _HKStateOfMindClass) StateOfMindWithDateKindValenceLabelsAssociationsMe
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKStateOfMind/associations-5vfw8
-func (h_ HKStateOfMind) Associations() []NSNumber {
-	rv := objc.Send[[]NSNumber](h_.ID, objc.Sel("associations"))
+func (h_ HKStateOfMind) Associations() []foundation.Number {
+	rv := objc.Send[[]foundation.Number](h_.ID, objc.Sel("associations"))
 	return rv
 }
 
@@ -106,8 +107,8 @@ func (h_ HKStateOfMind) Kind() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKStateOfMind/labels-11jl3
-func (h_ HKStateOfMind) Labels() []NSNumber {
-	rv := objc.Send[[]NSNumber](h_.ID, objc.Sel("labels"))
+func (h_ HKStateOfMind) Labels() []foundation.Number {
+	rv := objc.Send[[]foundation.Number](h_.ID, objc.Sel("labels"))
 	return rv
 }
 

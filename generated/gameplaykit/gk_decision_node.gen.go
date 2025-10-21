@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,7 +32,7 @@ type _DecisionNodeClass struct {
 type IDecisionNode interface {
 	objectivec.IObject
 	CreateBranchWithPredicateAttribute(predicate unsafe.Pointer, attribute objc.ID) unsafe.Pointer
-	CreateBranchWithValueAttribute(value unsafe.Pointer, attribute objc.ID) unsafe.Pointer
+	CreateBranchWithValueAttribute(value foundation.Number, attribute objc.ID) unsafe.Pointer
 	CreateBranchWithWeightAttribute(weight int, attribute objc.ID) unsafe.Pointer
 }
 
@@ -94,7 +95,7 @@ func (d_ DecisionNode) CreateBranchWithPredicateAttribute(predicate unsafe.Point
 // Creates a child node that the decision tree should use when the current node’s attribute has the specified value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKDecisionNode/createBranch(value:attribute:)
-func (d_ DecisionNode) CreateBranchWithValueAttribute(value unsafe.Pointer, attribute objc.ID) unsafe.Pointer {
+func (d_ DecisionNode) CreateBranchWithValueAttribute(value foundation.Number, attribute objc.ID) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("createBranchWithValue:attribute:"), value, attribute)
 	return rv
 }

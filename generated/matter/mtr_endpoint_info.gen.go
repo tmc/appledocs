@@ -96,15 +96,15 @@ func (m_ MTREndpointInfo) DeviceTypes() []MTRDeviceTypeRevision {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREndpointInfo/endpointID
-func (m_ MTREndpointInfo) EndpointID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("endpointID"))
+func (m_ MTREndpointInfo) EndpointID() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("endpointID"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREndpointInfo/partsList
-func (m_ MTREndpointInfo) PartsList() []foundation.NSNumber {
-	rv := objc.Send[[]foundation.NSNumber](m_.ID, objc.Sel("partsList"))
+func (m_ MTREndpointInfo) PartsList() []foundation.Number {
+	rv := objc.Send[[]foundation.Number](m_.ID, objc.Sel("partsList"))
 	return rv
 }
 

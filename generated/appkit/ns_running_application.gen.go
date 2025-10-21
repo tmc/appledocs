@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -79,6 +80,276 @@ func NewRunningApplication() RunningApplication {
 	return getRunningApplicationClass().New()
 }
 
+
+// Indicates the activation policy of the application.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsrunningapplication/activationpolicy
+func (r_ RunningApplication) ActivationPolicy() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("activationPolicy"))
+	return rv
+}
+
+
+// SetActivationPolicy sets the value of the activationPolicy property.
+// Indicates the activation policy of the application.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsrunningapplication/activationpolicy
+func (r_ RunningApplication) SetActivationPolicy(value unsafe.Pointer) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setActivationPolicy:"), value)
+}
+
+// Indicates the
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsrunningapplication/bundleidentifier
+func (r_ RunningApplication) BundleIdentifier() string {
+	rv := objc.Send[string](r_.ID, objc.Sel("bundleIdentifier"))
+	return rv
+}
+
+
+// SetBundleIdentifier sets the value of the bundleIdentifier property.
+// Indicates the
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsrunningapplication/bundleidentifier
+func (r_ RunningApplication) SetBundleIdentifier(value string) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setBundleIdentifier:"), objc.String(value))
+}
+
+// Indicates the URL to the application’s bundle.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsrunningapplication/bundleurl
+func (r_ RunningApplication) BundleURL() foundation.URL {
+	rv := objc.Send[foundation.URL](r_.ID, objc.Sel("bundleURL"))
+	return rv
+}
+
+
+// SetBundleURL sets the value of the bundleURL property.
+// Indicates the URL to the application’s bundle.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsrunningapplication/bundleurl
+func (r_ RunningApplication) SetBundleURL(value foundation.URL) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setBundleURL:"), value)
+}
+
+// Indicates the executing processor architecture for the application.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsrunningapplication/executablearchitecture
+func (r_ RunningApplication) ExecutableArchitecture() int {
+	rv := objc.Send[int](r_.ID, objc.Sel("executableArchitecture"))
+	return rv
+}
+
+
+// SetExecutableArchitecture sets the value of the executableArchitecture property.
+// Indicates the executing processor architecture for the application.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsrunningapplication/executablearchitecture
+func (r_ RunningApplication) SetExecutableArchitecture(value int) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setExecutableArchitecture:"), value)
+}
+
+// Indicates the URL to the application’s executable.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsrunningapplication/executableurl
+func (r_ RunningApplication) ExecutableURL() foundation.URL {
+	rv := objc.Send[foundation.URL](r_.ID, objc.Sel("executableURL"))
+	return rv
+}
+
+
+// SetExecutableURL sets the value of the executableURL property.
+// Indicates the URL to the application’s executable.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsrunningapplication/executableurl
+func (r_ RunningApplication) SetExecutableURL(value foundation.URL) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setExecutableURL:"), value)
+}
+
+// Returns the icon for the receiver’s application.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsrunningapplication/icon
+func (r_ RunningApplication) Icon() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("icon"))
+	return rv
+}
+
+
+// SetIcon sets the value of the icon property.
+// Returns the icon for the receiver’s application.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsrunningapplication/icon
+func (r_ RunningApplication) SetIcon(value unsafe.Pointer) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setIcon:"), value)
+}
+
+// Indicates whether the application is currently frontmost.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsrunningapplication/isactive
+func (r_ RunningApplication) IsActive() bool {
+	rv := objc.Send[bool](r_.ID, objc.Sel("isActive"))
+	return rv
+}
+
+
+// SetIsActive sets the value of the isActive property.
+// Indicates whether the application is currently frontmost.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsrunningapplication/isactive
+func (r_ RunningApplication) SetIsActive(value bool) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setIsActive:"), value)
+}
+
+// A Boolean value that determines whether the receiver’s process has finished launching.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsrunningapplication/isfinishedlaunching
+func (r_ RunningApplication) IsFinishedLaunching() bool {
+	rv := objc.Send[bool](r_.ID, objc.Sel("isFinishedLaunching"))
+	return rv
+}
+
+
+// SetIsFinishedLaunching sets the value of the isFinishedLaunching property.
+// A Boolean value that determines whether the receiver’s process has finished launching.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsrunningapplication/isfinishedlaunching
+func (r_ RunningApplication) SetIsFinishedLaunching(value bool) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setIsFinishedLaunching:"), value)
+}
+
+// Indicates whether the application is currently hidden.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsrunningapplication/ishidden
+func (r_ RunningApplication) IsHidden() bool {
+	rv := objc.Send[bool](r_.ID, objc.Sel("isHidden"))
+	return rv
+}
+
+
+// SetIsHidden sets the value of the isHidden property.
+// Indicates whether the application is currently hidden.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsrunningapplication/ishidden
+func (r_ RunningApplication) SetIsHidden(value bool) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setIsHidden:"), value)
+}
+
+// Indicates that the receiver’s application has terminated.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsrunningapplication/isterminated
+func (r_ RunningApplication) IsTerminated() bool {
+	rv := objc.Send[bool](r_.ID, objc.Sel("isTerminated"))
+	return rv
+}
+
+
+// SetIsTerminated sets the value of the isTerminated property.
+// Indicates that the receiver’s application has terminated.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsrunningapplication/isterminated
+func (r_ RunningApplication) SetIsTerminated(value bool) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setIsTerminated:"), value)
+}
+
+// Indicates the date when the application was launched.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsrunningapplication/launchdate
+func (r_ RunningApplication) LaunchDate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("launchDate"))
+	return rv
+}
+
+
+// SetLaunchDate sets the value of the launchDate property.
+// Indicates the date when the application was launched.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsrunningapplication/launchdate
+func (r_ RunningApplication) SetLaunchDate(value unsafe.Pointer) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setLaunchDate:"), value)
+}
+
+// Indicates the localized name of the application.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsrunningapplication/localizedname
+func (r_ RunningApplication) LocalizedName() string {
+	rv := objc.Send[string](r_.ID, objc.Sel("localizedName"))
+	return rv
+}
+
+
+// SetLocalizedName sets the value of the localizedName property.
+// Indicates the localized name of the application.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsrunningapplication/localizedname
+func (r_ RunningApplication) SetLocalizedName(value string) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setLocalizedName:"), objc.String(value))
+}
+
+// Returns whether the application owns the current menu bar.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsrunningapplication/ownsmenubar
+func (r_ RunningApplication) OwnsMenuBar() bool {
+	rv := objc.Send[bool](r_.ID, objc.Sel("ownsMenuBar"))
+	return rv
+}
+
+
+// SetOwnsMenuBar sets the value of the ownsMenuBar property.
+// Returns whether the application owns the current menu bar.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsrunningapplication/ownsmenubar
+func (r_ RunningApplication) SetOwnsMenuBar(value bool) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setOwnsMenuBar:"), value)
+}
+
+// Indicates the process identifier (pid) of the application.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsrunningapplication/processidentifier
+func (r_ RunningApplication) ProcessIdentifier() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("processIdentifier"))
+	return rv
+}
+
+
+// SetProcessIdentifier sets the value of the processIdentifier property.
+// Indicates the process identifier (pid) of the application.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsrunningapplication/processidentifier
+func (r_ RunningApplication) SetProcessIdentifier(value unsafe.Pointer) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setProcessIdentifier:"), value)
+}
+
+// Returns an array of running apps.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsworkspace/runningapplications
+func (r_ RunningApplication) RunningApplications() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("runningApplications"))
+	return rv
+}
+
+
+// SetRunningApplications sets the value of the runningApplications property.
+// Returns an array of running apps.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsworkspace/runningapplications
+func (r_ RunningApplication) SetRunningApplications(value unsafe.Pointer) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setRunningApplications:"), value)
+}
 
 
 

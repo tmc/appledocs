@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,51 @@ func NewMTRTimeSynchronizationClusterTimeZoneStruct() MTRTimeSynchronizationClus
 	return getMTRTimeSynchronizationClusterTimeZoneStructClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtimesynchronizationclustertimezonestruct/offset
+func (m_ MTRTimeSynchronizationClusterTimeZoneStruct) Offset() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("offset"))
+	return rv
+}
+
+
+// SetOffset sets the value of the offset property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtimesynchronizationclustertimezonestruct/offset
+func (m_ MTRTimeSynchronizationClusterTimeZoneStruct) SetOffset(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setOffset:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtimesynchronizationclustertimezonestruct/name
+func (m_ MTRTimeSynchronizationClusterTimeZoneStruct) Name() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("name"))
+	return rv
+}
+
+
+// SetName sets the value of the name property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtimesynchronizationclustertimezonestruct/name
+func (m_ MTRTimeSynchronizationClusterTimeZoneStruct) SetName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtimesynchronizationclustertimezonestruct/validat
+func (m_ MTRTimeSynchronizationClusterTimeZoneStruct) ValidAt() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("validAt"))
+	return rv
+}
+
+
+// SetValidAt sets the value of the validAt property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtimesynchronizationclustertimezonestruct/validat
+func (m_ MTRTimeSynchronizationClusterTimeZoneStruct) SetValidAt(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setValidAt:"), value)
+}
 
 
 

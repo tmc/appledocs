@@ -82,6 +82,162 @@ func NewGraph() Graph {
 
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnngraph/sourceimagehandles
+func (g_ Graph) SourceImageHandles() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("sourceImageHandles"))
+	return rv
+}
+
+
+// SetSourceImageHandles sets the value of the sourceImageHandles property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnngraph/sourceimagehandles
+func (g_ Graph) SetSourceImageHandles(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setSourceImageHandles:"), value)
+}
+
+// The position of the destination image’s clip rectangle origin, relative to the source image.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnkernel/offset
+func (g_ Graph) Offset() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("offset"))
+	return rv
+}
+
+
+// SetOffset sets the value of the offset property.
+// The position of the destination image’s clip rectangle origin, relative to the source image.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnkernel/offset
+func (g_ Graph) SetOffset(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setOffset:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnngraph/destinationimageallocator
+func (g_ Graph) DestinationImageAllocator() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("destinationImageAllocator"))
+	return rv
+}
+
+
+// SetDestinationImageAllocator sets the value of the destinationImageAllocator property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnngraph/destinationimageallocator
+func (g_ Graph) SetDestinationImageAllocator(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setDestinationImageAllocator:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnngraph/sourcestatehandles
+func (g_ Graph) SourceStateHandles() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("sourceStateHandles"))
+	return rv
+}
+
+
+// SetSourceStateHandles sets the value of the sourceStateHandles property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnngraph/sourcestatehandles
+func (g_ Graph) SetSourceStateHandles(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setSourceStateHandles:"), value)
+}
+
+// The number of channels in the destination image to skip before writing output data.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnkernel/destinationfeaturechanneloffset
+func (g_ Graph) DestinationFeatureChannelOffset() int {
+	rv := objc.Send[int](g_.ID, objc.Sel("destinationFeatureChannelOffset"))
+	return rv
+}
+
+
+// SetDestinationFeatureChannelOffset sets the value of the destinationFeatureChannelOffset property.
+// The number of channels in the destination image to skip before writing output data.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnkernel/destinationfeaturechanneloffset
+func (g_ Graph) SetDestinationFeatureChannelOffset(value int) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setDestinationFeatureChannelOffset:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnngraph/intermediateimagehandles
+func (g_ Graph) IntermediateImageHandles() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("intermediateImageHandles"))
+	return rv
+}
+
+
+// SetIntermediateImageHandles sets the value of the intermediateImageHandles property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnngraph/intermediateimagehandles
+func (g_ Graph) SetIntermediateImageHandles(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setIntermediateImageHandles:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnngraph/outputstateistemporary
+func (g_ Graph) OutputStateIsTemporary() bool {
+	rv := objc.Send[bool](g_.ID, objc.Sel("outputStateIsTemporary"))
+	return rv
+}
+
+
+// SetOutputStateIsTemporary sets the value of the outputStateIsTemporary property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnngraph/outputstateistemporary
+func (g_ Graph) SetOutputStateIsTemporary(value bool) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setOutputStateIsTemporary:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnngraph/format
+func (g_ Graph) Format() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("format"))
+	return rv
+}
+
+
+// SetFormat sets the value of the format property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnngraph/format
+func (g_ Graph) SetFormat(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setFormat:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnngraph/resulthandle
+func (g_ Graph) ResultHandle() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("resultHandle"))
+	return rv
+}
+
+
+// SetResultHandle sets the value of the resultHandle property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnngraph/resulthandle
+func (g_ Graph) SetResultHandle(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setResultHandle:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnngraph/resultimageisneeded
+func (g_ Graph) ResultImageIsNeeded() bool {
+	rv := objc.Send[bool](g_.ID, objc.Sel("resultImageIsNeeded"))
+	return rv
+}
+
+
+// SetResultImageIsNeeded sets the value of the resultImageIsNeeded property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnngraph/resultimageisneeded
+func (g_ Graph) SetResultImageIsNeeded(value bool) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setResultImageIsNeeded:"), value)
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNGraph/resultStateHandles
 func (g_ Graph) ResultStateHandles() []objc.ID {
 	rv := objc.Send[[]objc.ID](g_.ID, objc.Sel("resultStateHandles"))

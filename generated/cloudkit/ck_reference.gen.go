@@ -107,6 +107,42 @@ func NewCKReferenceWithRecordIDAction(recordID unsafe.Pointer, action unsafe.Poi
 
 // The ownership behavior for the records.
 //
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/reference/action-swift.property
+func (c_ CKReference) Action() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("action"))
+	return rv
+}
+
+
+// SetAction sets the value of the action property.
+// The ownership behavior for the records.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/reference/action-swift.property
+func (c_ CKReference) SetAction(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setAction:"), value)
+}
+
+// The server change token for the record.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/recordchangetag
+func (c_ CKReference) RecordChangeTag() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("recordChangeTag"))
+	return rv
+}
+
+
+// SetRecordChangeTag sets the value of the recordChangeTag property.
+// The server change token for the record.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/recordchangetag
+func (c_ CKReference) SetRecordChangeTag(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordChangeTag:"), objc.String(value))
+}
+
+// The ownership behavior for the records.
+//
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/Reference/action-swift.property
 func (c_ CKReference) ReferenceAction() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("referenceAction"))

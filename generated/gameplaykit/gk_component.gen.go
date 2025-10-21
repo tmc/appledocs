@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,7 +32,7 @@ type _ComponentClass struct {
 type IComponent interface {
 	objectivec.IObject
 	DidAddToEntity()
-	UpdateWithDeltaTime(seconds TimeInterval)
+	UpdateWithDeltaTime(seconds foundation.TimeInterval)
 	WillRemoveFromEntity()
 }
 
@@ -93,7 +94,7 @@ func (c_ Component) DidAddToEntity() {
 // Performs any custom periodic actions defined by the component subclass.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKComponent/update(deltaTime:)
-func (c_ Component) UpdateWithDeltaTime(seconds TimeInterval) {
+func (c_ Component) UpdateWithDeltaTime(seconds foundation.TimeInterval) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("updateWithDeltaTime:"), seconds)
 }
 

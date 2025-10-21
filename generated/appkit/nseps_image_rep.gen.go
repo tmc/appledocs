@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [EPSImageRep] class.
@@ -85,6 +86,42 @@ func NewEPSImageRep() EPSImageRep {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEPSImageRep/prepareGState()
 func (e_ EPSImageRep) PrepareGState() {
 	objc.Send[objc.ID](e_.ID, objc.Sel("prepareGState"))
+}
+
+// The rectangle that bounds the image representation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsepsimagerep/boundingbox
+func (e_ EPSImageRep) BoundingBox() coregraphics.CGRect {
+	rv := objc.Send[coregraphics.CGRect](e_.ID, objc.Sel("boundingBox"))
+	return rv
+}
+
+
+// SetBoundingBox sets the value of the boundingBox property.
+// The rectangle that bounds the image representation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsepsimagerep/boundingbox
+func (e_ EPSImageRep) SetBoundingBox(value coregraphics.CGRect) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setBoundingBox:"), value)
+}
+
+// The EPS representation of the image representation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsepsimagerep/epsrepresentation
+func (e_ EPSImageRep) EpsRepresentation() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("epsRepresentation"))
+	return rv
+}
+
+
+// SetEpsRepresentation sets the value of the epsRepresentation property.
+// The EPS representation of the image representation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsepsimagerep/epsrepresentation
+func (e_ EPSImageRep) SetEpsRepresentation(value unsafe.Pointer) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setEpsRepresentation:"), value)
 }
 
 

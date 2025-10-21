@@ -778,5 +778,41 @@ func (c_ CollectionView) SetSelectionIndexes(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSelectionIndexes:"), value)
 }
 
+// A Boolean value indicating whether the collection view is the first responder.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionview/isfirstresponder
+func (c_ CollectionView) IsFirstResponder() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isFirstResponder"))
+	return rv
+}
+
+
+// SetIsFirstResponder sets the value of the isFirstResponder property.
+// A Boolean value indicating whether the collection view is the first responder.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionview/isfirstresponder
+func (c_ CollectionView) SetIsFirstResponder(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsFirstResponder:"), value)
+}
+
+// A Boolean value that indicates whether the user may select items in the collection view.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionview/isselectable
+func (c_ CollectionView) IsSelectable() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isSelectable"))
+	return rv
+}
+
+
+// SetIsSelectable sets the value of the isSelectable property.
+// A Boolean value that indicates whether the user may select items in the collection view.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionview/isselectable
+func (c_ CollectionView) SetIsSelectable(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsSelectable:"), value)
+}
+
 
 

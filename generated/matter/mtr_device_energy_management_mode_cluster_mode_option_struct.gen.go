@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -92,8 +93,8 @@ func (m_ MTRDeviceEnergyManagementModeClusterModeOptionStruct) SetLabel(value st
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementModeClusterModeOptionStruct/mode
-func (m_ MTRDeviceEnergyManagementModeClusterModeOptionStruct) Mode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("mode"))
+func (m_ MTRDeviceEnergyManagementModeClusterModeOptionStruct) Mode() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("mode"))
 	return rv
 }
 
@@ -101,7 +102,7 @@ func (m_ MTRDeviceEnergyManagementModeClusterModeOptionStruct) Mode() unsafe.Poi
 // SetMode sets the value of the mode property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementModeClusterModeOptionStruct/mode
-func (m_ MTRDeviceEnergyManagementModeClusterModeOptionStruct) SetMode(value unsafe.Pointer) {
+func (m_ MTRDeviceEnergyManagementModeClusterModeOptionStruct) SetMode(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMode:"), value)
 }
 

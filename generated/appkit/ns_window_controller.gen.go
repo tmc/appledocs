@@ -112,4 +112,199 @@ func (w_ WindowController) SetWindow(value unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setWindow:"), value)
 }
 
+// The view controller for the window’s content view.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindowcontroller/contentviewcontroller
+func (w_ WindowController) ContentViewController() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("contentViewController"))
+	return rv
+}
+
+
+// SetContentViewController sets the value of the contentViewController property.
+// The view controller for the window’s content view.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindowcontroller/contentviewcontroller
+func (w_ WindowController) SetContentViewController(value unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setContentViewController:"), value)
+}
+
+// The document associated with the window controller.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindowcontroller/document
+func (w_ WindowController) Document() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("document"))
+	return rv
+}
+
+
+// SetDocument sets the value of the document property.
+// The document associated with the window controller.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindowcontroller/document
+func (w_ WindowController) SetDocument(value unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setDocument:"), value)
+}
+
+// A Boolean value that indicates whether the nib file containing the receiver’s window has been loaded.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindowcontroller/iswindowloaded
+func (w_ WindowController) IsWindowLoaded() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("isWindowLoaded"))
+	return rv
+}
+
+
+// SetIsWindowLoaded sets the value of the isWindowLoaded property.
+// A Boolean value that indicates whether the nib file containing the receiver’s window has been loaded.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindowcontroller/iswindowloaded
+func (w_ WindowController) SetIsWindowLoaded(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setIsWindowLoaded:"), value)
+}
+
+// The owner of the nib file containing the window managed by the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindowcontroller/owner
+func (w_ WindowController) Owner() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("owner"))
+	return rv
+}
+
+
+// SetOwner sets the value of the owner property.
+// The owner of the nib file containing the window managed by the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindowcontroller/owner
+func (w_ WindowController) SetOwner(value unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setOwner:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindowcontroller/previewrepresentableactivityitems
+func (w_ WindowController) PreviewRepresentableActivityItems() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("previewRepresentableActivityItems"))
+	return rv
+}
+
+
+// SetPreviewRepresentableActivityItems sets the value of the previewRepresentableActivityItems property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindowcontroller/previewrepresentableactivityitems
+func (w_ WindowController) SetPreviewRepresentableActivityItems(value unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setPreviewRepresentableActivityItems:"), value)
+}
+
+// A Boolean value that indicates whether the window will cascade in relation to other document windows when it is displayed.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindowcontroller/shouldcascadewindows
+func (w_ WindowController) ShouldCascadeWindows() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("shouldCascadeWindows"))
+	return rv
+}
+
+
+// SetShouldCascadeWindows sets the value of the shouldCascadeWindows property.
+// A Boolean value that indicates whether the window will cascade in relation to other document windows when it is displayed.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindowcontroller/shouldcascadewindows
+func (w_ WindowController) SetShouldCascadeWindows(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setShouldCascadeWindows:"), value)
+}
+
+// A Boolean value that indicates whether the receiver necessarily closes the associated document when the window it manages is closed.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindowcontroller/shouldclosedocument
+func (w_ WindowController) ShouldCloseDocument() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("shouldCloseDocument"))
+	return rv
+}
+
+
+// SetShouldCloseDocument sets the value of the shouldCloseDocument property.
+// A Boolean value that indicates whether the receiver necessarily closes the associated document when the window it manages is closed.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindowcontroller/shouldclosedocument
+func (w_ WindowController) SetShouldCloseDocument(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setShouldCloseDocument:"), value)
+}
+
+// The storyboard file from which the window controller was loaded.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindowcontroller/storyboard
+func (w_ WindowController) Storyboard() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("storyboard"))
+	return rv
+}
+
+
+// SetStoryboard sets the value of the storyboard property.
+// The storyboard file from which the window controller was loaded.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindowcontroller/storyboard
+func (w_ WindowController) SetStoryboard(value unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setStoryboard:"), value)
+}
+
+// The name under which the frame rectangle of the window owned by the receiver is stored in the defaults database.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindowcontroller/windowframeautosavename
+func (w_ WindowController) WindowFrameAutosaveName() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("windowFrameAutosaveName"))
+	return rv
+}
+
+
+// SetWindowFrameAutosaveName sets the value of the windowFrameAutosaveName property.
+// The name under which the frame rectangle of the window owned by the receiver is stored in the defaults database.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindowcontroller/windowframeautosavename
+func (w_ WindowController) SetWindowFrameAutosaveName(value unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setWindowFrameAutosaveName:"), value)
+}
+
+// The name of the nib file that stores the window associated with the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindowcontroller/windownibname
+func (w_ WindowController) WindowNibName() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("windowNibName"))
+	return rv
+}
+
+
+// SetWindowNibName sets the value of the windowNibName property.
+// The name of the nib file that stores the window associated with the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindowcontroller/windownibname
+func (w_ WindowController) SetWindowNibName(value unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setWindowNibName:"), value)
+}
+
+// The full path of the nib file that stores the window associated with the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindowcontroller/windownibpath
+func (w_ WindowController) WindowNibPath() string {
+	rv := objc.Send[string](w_.ID, objc.Sel("windowNibPath"))
+	return rv
+}
+
+
+// SetWindowNibPath sets the value of the windowNibPath property.
+// The full path of the nib file that stores the window associated with the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindowcontroller/windownibpath
+func (w_ WindowController) SetWindowNibPath(value string) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setWindowNibPath:"), objc.String(value))
+}
+
 

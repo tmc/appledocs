@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MTRAttributePath] class.
@@ -75,6 +76,21 @@ func NewMTRAttributePath() MTRAttributePath {
 	return getMTRAttributePathClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrattributepath/attribute
+func (m_ MTRAttributePath) Attribute() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("attribute"))
+	return rv
+}
+
+
+// SetAttribute sets the value of the attribute property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrattributepath/attribute
+func (m_ MTRAttributePath) SetAttribute(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAttribute:"), value)
+}
 
 
 

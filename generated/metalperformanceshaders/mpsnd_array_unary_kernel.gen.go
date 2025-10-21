@@ -85,6 +85,51 @@ func (n_ NDArrayUnaryKernel) EncodeToCommandBufferSourceArray(cmdBuf objc.ID, so
 }
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarrayunarykernel/offsets
+func (n_ NDArrayUnaryKernel) Offsets() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("offsets"))
+	return rv
+}
+
+
+// SetOffsets sets the value of the offsets property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarrayunarykernel/offsets
+func (n_ NDArrayUnaryKernel) SetOffsets(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setOffsets:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarrayunarykernel/kernelsizes
+func (n_ NDArrayUnaryKernel) KernelSizes() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("kernelSizes"))
+	return rv
+}
+
+
+// SetKernelSizes sets the value of the kernelSizes property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarrayunarykernel/kernelsizes
+func (n_ NDArrayUnaryKernel) SetKernelSizes(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setKernelSizes:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarrayunarykernel/dilationrates
+func (n_ NDArrayUnaryKernel) DilationRates() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("dilationRates"))
+	return rv
+}
+
+
+// SetDilationRates sets the value of the dilationRates property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarrayunarykernel/dilationrates
+func (n_ NDArrayUnaryKernel) SetDilationRates(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setDilationRates:"), value)
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayUnaryKernel/edgeMode
 func (n_ NDArrayUnaryKernel) EdgeMode() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("edgeMode"))

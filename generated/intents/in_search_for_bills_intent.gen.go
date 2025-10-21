@@ -94,6 +94,60 @@ func NewINSearchForBillsIntentWithBillPayeePaymentDateRangeBillTypeStatusDueDate
 }
 
 
+// The recipient of the payment.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchforbillsintent/billpayee
+func (i_ INSearchForBillsIntent) BillPayee() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("billPayee"))
+	return rv
+}
+
+
+// SetBillPayee sets the value of the billPayee property.
+// The recipient of the payment.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchforbillsintent/billpayee
+func (i_ INSearchForBillsIntent) SetBillPayee(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setBillPayee:"), value)
+}
+
+// The range of payment dates in which to search for bills.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchforbillsintent/paymentdaterange
+func (i_ INSearchForBillsIntent) PaymentDateRange() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("paymentDateRange"))
+	return rv
+}
+
+
+// SetPaymentDateRange sets the value of the paymentDateRange property.
+// The range of payment dates in which to search for bills.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchforbillsintent/paymentdaterange
+func (i_ INSearchForBillsIntent) SetPaymentDateRange(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setPaymentDateRange:"), value)
+}
+
+// The status of the bill.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchforbillsintent/status
+func (i_ INSearchForBillsIntent) Status() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("status"))
+	return rv
+}
+
+
+// SetStatus sets the value of the status property.
+// The status of the bill.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchforbillsintent/status
+func (i_ INSearchForBillsIntent) SetStatus(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setStatus:"), value)
+}
+
 // The type of the bill.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSearchForBillsIntent/billType

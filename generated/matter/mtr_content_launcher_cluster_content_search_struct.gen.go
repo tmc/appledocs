@@ -75,5 +75,20 @@ func NewMTRContentLauncherClusterContentSearchStruct() MTRContentLauncherCluster
 }
 
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclustercontentsearchstruct/parameterlist
+func (m_ MTRContentLauncherClusterContentSearchStruct) ParameterList() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("parameterList"))
+	return rv
+}
+
+
+// SetParameterList sets the value of the parameterList property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclustercontentsearchstruct/parameterlist
+func (m_ MTRContentLauncherClusterContentSearchStruct) SetParameterList(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setParameterList:"), value)
+}
+
 
 

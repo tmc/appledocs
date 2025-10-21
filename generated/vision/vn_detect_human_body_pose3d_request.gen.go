@@ -81,5 +81,59 @@ func NewDetectHumanBodyPose3DRequest() DetectHumanBodyPose3DRequest {
 }
 
 
+// Returns the joint group names the request supports.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetecthumanbodypose3drequest/supportedjointnames
+func (d_ DetectHumanBodyPose3DRequest) SupportedJointNames() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("supportedJointNames"))
+	return rv
+}
+
+
+// SetSupportedJointNames sets the value of the supportedJointNames property.
+// Returns the joint group names the request supports.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetecthumanbodypose3drequest/supportedjointnames
+func (d_ DetectHumanBodyPose3DRequest) SetSupportedJointNames(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setSupportedJointNames:"), value)
+}
+
+// The 3D body pose the request observes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetecthumanbodypose3drequest/results
+func (d_ DetectHumanBodyPose3DRequest) Results() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("results"))
+	return rv
+}
+
+
+// SetResults sets the value of the results property.
+// The 3D body pose the request observes.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetecthumanbodypose3drequest/results
+func (d_ DetectHumanBodyPose3DRequest) SetResults(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setResults:"), value)
+}
+
+// Returns the joint names the request supports.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetecthumanbodypose3drequest/supportedjointsgroupnames
+func (d_ DetectHumanBodyPose3DRequest) SupportedJointsGroupNames() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("supportedJointsGroupNames"))
+	return rv
+}
+
+
+// SetSupportedJointsGroupNames sets the value of the supportedJointsGroupNames property.
+// Returns the joint names the request supports.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetecthumanbodypose3drequest/supportedjointsgroupnames
+func (d_ DetectHumanBodyPose3DRequest) SetSupportedJointsGroupNames(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setSupportedJointsGroupNames:"), value)
+}
+
 
 

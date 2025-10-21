@@ -81,6 +81,24 @@ func NewParameterGroup() ParameterGroup {
 }
 
 
+// A non-localized, permanent name for the parameter node.
+//
+// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auparameternode/identifier
+func (p_ ParameterGroup) Identifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("identifier"))
+	return rv
+}
+
+
+// SetIdentifier sets the value of the identifier property.
+// A non-localized, permanent name for the parameter node.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auparameternode/identifier
+func (p_ ParameterGroup) SetIdentifier(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+}
+
 // Returns a flat array of all parameters in the group, including those in child groups.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterGroup/allParameters

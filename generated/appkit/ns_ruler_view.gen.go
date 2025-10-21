@@ -382,4 +382,58 @@ func (r_ RulerView) SetScrollView(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setScrollView:"), value)
 }
 
+// A Boolean that indicates if the ruler view’s coordinate system is flipped.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsrulerview/isflipped
+func (r_ RulerView) IsFlipped() bool {
+	rv := objc.Send[bool](r_.ID, objc.Sel("isFlipped"))
+	return rv
+}
+
+
+// SetIsFlipped sets the value of the isFlipped property.
+// A Boolean that indicates if the ruler view’s coordinate system is flipped.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsrulerview/isflipped
+func (r_ RulerView) SetIsFlipped(value bool) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setIsFlipped:"), value)
+}
+
+// A Boolean that indicates whether the scroll view keeps a horizontal ruler object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrollview/hashorizontalruler
+func (r_ RulerView) HasHorizontalRuler() bool {
+	rv := objc.Send[bool](r_.ID, objc.Sel("hasHorizontalRuler"))
+	return rv
+}
+
+
+// SetHasHorizontalRuler sets the value of the hasHorizontalRuler property.
+// A Boolean that indicates whether the scroll view keeps a horizontal ruler object.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrollview/hashorizontalruler
+func (r_ RulerView) SetHasHorizontalRuler(value bool) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setHasHorizontalRuler:"), value)
+}
+
+// A Boolean that indicates whether the scroll view keeps a vertical ruler object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrollview/hasverticalruler
+func (r_ RulerView) HasVerticalRuler() bool {
+	rv := objc.Send[bool](r_.ID, objc.Sel("hasVerticalRuler"))
+	return rv
+}
+
+
+// SetHasVerticalRuler sets the value of the hasVerticalRuler property.
+// A Boolean that indicates whether the scroll view keeps a vertical ruler object.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrollview/hasverticalruler
+func (r_ RulerView) SetHasVerticalRuler(value bool) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setHasVerticalRuler:"), value)
+}
+
 

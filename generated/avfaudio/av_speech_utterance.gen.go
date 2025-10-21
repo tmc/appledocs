@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -88,6 +89,56 @@ func (sc _SpeechUtteranceClass) SpeechUtteranceWithAttributedString(string_ unsa
 	return rv
 }
 
+// The maximum rate the speech synthesizer uses when speaking an utterance.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechutterancemaximumspeechrate
+func (s_ SpeechUtterance) AVSpeechUtteranceMaximumSpeechRate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("AVSpeechUtteranceMaximumSpeechRate"))
+	return rv
+}
+
+// The minimum rate the speech synthesizer uses when speaking an utterance.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechutteranceminimumspeechrate
+func (s_ SpeechUtterance) AVSpeechUtteranceMinimumSpeechRate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("AVSpeechUtteranceMinimumSpeechRate"))
+	return rv
+}
+
+// The default rate the speech synthesizer uses when speaking an utterance.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechutterancedefaultspeechrate
+func (s_ SpeechUtterance) AVSpeechUtteranceDefaultSpeechRate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("AVSpeechUtteranceDefaultSpeechRate"))
+	return rv
+}
+
+// A string that contains International Phonetic Alphabet (IPA) symbols the speech synthesizer uses to control pronunciation of certain words or phrases.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisipanotationattribute
+func (s_ SpeechUtterance) AVSpeechSynthesisIPANotationAttribute() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("AVSpeechSynthesisIPANotationAttribute"))
+	return rv
+}
+
+// A Boolean that specifies whether assistive technology settings take precedence over the property values of this utterance.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechutterance/prefersassistivetechnologysettings
+func (s_ SpeechUtterance) PrefersAssistiveTechnologySettings() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("prefersAssistiveTechnologySettings"))
+	return rv
+}
+
+
+// SetPrefersAssistiveTechnologySettings sets the value of the prefersAssistiveTechnologySettings property.
+// A Boolean that specifies whether assistive technology settings take precedence over the property values of this utterance.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechutterance/prefersassistivetechnologysettings
+func (s_ SpeechUtterance) SetPrefersAssistiveTechnologySettings(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setPrefersAssistiveTechnologySettings:"), value)
+}
+
 // An attributed string that contains the text for speech synthesis.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechUtterance/attributedSpeechString
@@ -117,8 +168,8 @@ func (s_ SpeechUtterance) SetPitchMultiplier(value unsafe.Pointer) {
 // The amount of time the speech synthesizer pauses after speaking an utterance before handling the next utterance in the queue.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechUtterance/postUtteranceDelay
-func (s_ SpeechUtterance) PostUtteranceDelay() TimeInterval {
-	rv := objc.Send[TimeInterval](s_.ID, objc.Sel("postUtteranceDelay"))
+func (s_ SpeechUtterance) PostUtteranceDelay() foundation.TimeInterval {
+	rv := objc.Send[foundation.TimeInterval](s_.ID, objc.Sel("postUtteranceDelay"))
 	return rv
 }
 
@@ -128,15 +179,15 @@ func (s_ SpeechUtterance) PostUtteranceDelay() TimeInterval {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechUtterance/postUtteranceDelay
-func (s_ SpeechUtterance) SetPostUtteranceDelay(value TimeInterval) {
+func (s_ SpeechUtterance) SetPostUtteranceDelay(value foundation.TimeInterval) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setPostUtteranceDelay:"), value)
 }
 
 // The amount of time the speech synthesizer pauses before speaking the utterance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechUtterance/preUtteranceDelay
-func (s_ SpeechUtterance) PreUtteranceDelay() TimeInterval {
-	rv := objc.Send[TimeInterval](s_.ID, objc.Sel("preUtteranceDelay"))
+func (s_ SpeechUtterance) PreUtteranceDelay() foundation.TimeInterval {
+	rv := objc.Send[foundation.TimeInterval](s_.ID, objc.Sel("preUtteranceDelay"))
 	return rv
 }
 
@@ -146,7 +197,7 @@ func (s_ SpeechUtterance) PreUtteranceDelay() TimeInterval {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechUtterance/preUtteranceDelay
-func (s_ SpeechUtterance) SetPreUtteranceDelay(value TimeInterval) {
+func (s_ SpeechUtterance) SetPreUtteranceDelay(value foundation.TimeInterval) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setPreUtteranceDelay:"), value)
 }
 

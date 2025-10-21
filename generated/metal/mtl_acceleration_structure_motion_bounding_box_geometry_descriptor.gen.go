@@ -79,5 +79,59 @@ func NewAccelerationStructureMotionBoundingBoxGeometryDescriptor() AccelerationS
 }
 
 
+// The stride, in bytes, between bounding boxes in each buffer.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotionboundingboxgeometrydescriptor/boundingboxstride
+func (a_ AccelerationStructureMotionBoundingBoxGeometryDescriptor) BoundingBoxStride() int {
+	rv := objc.Send[int](a_.ID, objc.Sel("boundingBoxStride"))
+	return rv
+}
+
+
+// SetBoundingBoxStride sets the value of the boundingBoxStride property.
+// The stride, in bytes, between bounding boxes in each buffer.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotionboundingboxgeometrydescriptor/boundingboxstride
+func (a_ AccelerationStructureMotionBoundingBoxGeometryDescriptor) SetBoundingBoxStride(value int) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setBoundingBoxStride:"), value)
+}
+
+// A array of motion keyframes, each containing bounding box data.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotionboundingboxgeometrydescriptor/boundingboxbuffers
+func (a_ AccelerationStructureMotionBoundingBoxGeometryDescriptor) BoundingBoxBuffers() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("boundingBoxBuffers"))
+	return rv
+}
+
+
+// SetBoundingBoxBuffers sets the value of the boundingBoxBuffers property.
+// A array of motion keyframes, each containing bounding box data.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotionboundingboxgeometrydescriptor/boundingboxbuffers
+func (a_ AccelerationStructureMotionBoundingBoxGeometryDescriptor) SetBoundingBoxBuffers(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setBoundingBoxBuffers:"), value)
+}
+
+// The number of bounding boxes in each bounding box buffer.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotionboundingboxgeometrydescriptor/boundingboxcount
+func (a_ AccelerationStructureMotionBoundingBoxGeometryDescriptor) BoundingBoxCount() int {
+	rv := objc.Send[int](a_.ID, objc.Sel("boundingBoxCount"))
+	return rv
+}
+
+
+// SetBoundingBoxCount sets the value of the boundingBoxCount property.
+// The number of bounding boxes in each bounding box buffer.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotionboundingboxgeometrydescriptor/boundingboxcount
+func (a_ AccelerationStructureMotionBoundingBoxGeometryDescriptor) SetBoundingBoxCount(value int) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setBoundingBoxCount:"), value)
+}
+
 
 

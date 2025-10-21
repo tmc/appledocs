@@ -150,5 +150,41 @@ func (t_ TextContentStorage) SetIncludesTextListMarkers(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIncludesTextListMarkers:"), value)
 }
 
+// The delegate for the content storage object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontentstorage/delegate
+func (t_ TextContentStorage) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+
+// SetDelegate sets the value of the delegate property.
+// The delegate for the content storage object.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontentstorage/delegate
+func (t_ TextContentStorage) SetDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setDelegate:"), value)
+}
+
+// Describes the starting and ending locations for the document.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextelementprovider/documentrange
+func (t_ TextContentStorage) DocumentRange() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("documentRange"))
+	return rv
+}
+
+
+// SetDocumentRange sets the value of the documentRange property.
+// Describes the starting and ending locations for the document.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextelementprovider/documentrange
+func (t_ TextContentStorage) SetDocumentRange(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setDocumentRange:"), value)
+}
+
 
 

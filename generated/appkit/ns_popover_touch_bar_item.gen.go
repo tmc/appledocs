@@ -212,5 +212,23 @@ func (p_ PopoverTouchBarItem) SetPressAndHoldTouchBar(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPressAndHoldTouchBar:"), value)
 }
 
+// A Boolean value that determines whether a close button should be shown on the popover bar.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspopovertouchbaritem/showsclosebutton
+func (p_ PopoverTouchBarItem) ShowsCloseButton() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("showsCloseButton"))
+	return rv
+}
+
+
+// SetShowsCloseButton sets the value of the showsCloseButton property.
+// A Boolean value that determines whether a close button should be shown on the popover bar.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspopovertouchbaritem/showsclosebutton
+func (p_ PopoverTouchBarItem) SetShowsCloseButton(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setShowsCloseButton:"), value)
+}
+
 
 

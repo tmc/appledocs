@@ -96,5 +96,92 @@ func (wc _WebsiteDataStoreClass) NonPersistentDataStore() unsafe.Pointer {
 	return rv
 }
 
+// A Boolean value that indicates whether this object stores data to disk.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebsitedatastore/ispersistent
+func (w_ WebsiteDataStore) IsPersistent() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("isPersistent"))
+	return rv
+}
+
+
+// SetIsPersistent sets the value of the isPersistent property.
+// A Boolean value that indicates whether this object stores data to disk.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebsitedatastore/ispersistent
+func (w_ WebsiteDataStore) SetIsPersistent(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setIsPersistent:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebsitedatastore/proxyconfigurations-cdc1
+func (w_ WebsiteDataStore) ProxyConfigurations() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("proxyConfigurations"))
+	return rv
+}
+
+
+// SetProxyConfigurations sets the value of the proxyConfigurations property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebsitedatastore/proxyconfigurations-cdc1
+func (w_ WebsiteDataStore) SetProxyConfigurations(value unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setProxyConfigurations:"), value)
+}
+
+// The object that manages the HTTP cookies for your website.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebsitedatastore/httpcookiestore
+func (w_ WebsiteDataStore) HttpCookieStore() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("httpCookieStore"))
+	return rv
+}
+
+
+// SetHttpCookieStore sets the value of the httpCookieStore property.
+// The object that manages the HTTP cookies for your website.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebsitedatastore/httpcookiestore
+func (w_ WebsiteDataStore) SetHttpCookieStore(value unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setHttpCookieStore:"), value)
+}
+
+// The object you use to get and set the site’s cookies and to track the cached data objects.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/websitedatastore
+func (w_ WebsiteDataStore) WebsiteDataStore() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("websiteDataStore"))
+	return rv
+}
+
+
+// SetWebsiteDataStore sets the value of the websiteDataStore property.
+// The object you use to get and set the site’s cookies and to track the cached data objects.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/websitedatastore
+func (w_ WebsiteDataStore) SetWebsiteDataStore(value unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setWebsiteDataStore:"), value)
+}
+
+// An identifier that uniquely identifies a data store.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebsitedatastore/identifier
+func (w_ WebsiteDataStore) Identifier() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("identifier"))
+	return rv
+}
+
+
+// SetIdentifier sets the value of the identifier property.
+// An identifier that uniquely identifies a data store.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebsitedatastore/identifier
+func (w_ WebsiteDataStore) SetIdentifier(value unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setIdentifier:"), value)
+}
+
 
 

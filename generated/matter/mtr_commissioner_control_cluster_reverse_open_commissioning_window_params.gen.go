@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -90,8 +91,8 @@ func NewMTRCommissionerControlClusterReverseOpenCommissioningWindowParamsWithRes
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterReverseOpenCommissioningWindowParams/commissioningTimeout
-func (m_ MTRCommissionerControlClusterReverseOpenCommissioningWindowParams) CommissioningTimeout() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("commissioningTimeout"))
+func (m_ MTRCommissionerControlClusterReverseOpenCommissioningWindowParams) CommissioningTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("commissioningTimeout"))
 	return rv
 }
 
@@ -99,14 +100,14 @@ func (m_ MTRCommissionerControlClusterReverseOpenCommissioningWindowParams) Comm
 // SetCommissioningTimeout sets the value of the commissioningTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterReverseOpenCommissioningWindowParams/commissioningTimeout
-func (m_ MTRCommissionerControlClusterReverseOpenCommissioningWindowParams) SetCommissioningTimeout(value unsafe.Pointer) {
+func (m_ MTRCommissionerControlClusterReverseOpenCommissioningWindowParams) SetCommissioningTimeout(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCommissioningTimeout:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterReverseOpenCommissioningWindowParams/discriminator
-func (m_ MTRCommissionerControlClusterReverseOpenCommissioningWindowParams) Discriminator() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("discriminator"))
+func (m_ MTRCommissionerControlClusterReverseOpenCommissioningWindowParams) Discriminator() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("discriminator"))
 	return rv
 }
 
@@ -114,14 +115,14 @@ func (m_ MTRCommissionerControlClusterReverseOpenCommissioningWindowParams) Disc
 // SetDiscriminator sets the value of the discriminator property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterReverseOpenCommissioningWindowParams/discriminator
-func (m_ MTRCommissionerControlClusterReverseOpenCommissioningWindowParams) SetDiscriminator(value unsafe.Pointer) {
+func (m_ MTRCommissionerControlClusterReverseOpenCommissioningWindowParams) SetDiscriminator(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDiscriminator:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterReverseOpenCommissioningWindowParams/iterations
-func (m_ MTRCommissionerControlClusterReverseOpenCommissioningWindowParams) Iterations() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("iterations"))
+func (m_ MTRCommissionerControlClusterReverseOpenCommissioningWindowParams) Iterations() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("iterations"))
 	return rv
 }
 
@@ -129,7 +130,7 @@ func (m_ MTRCommissionerControlClusterReverseOpenCommissioningWindowParams) Iter
 // SetIterations sets the value of the iterations property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterReverseOpenCommissioningWindowParams/iterations
-func (m_ MTRCommissionerControlClusterReverseOpenCommissioningWindowParams) SetIterations(value unsafe.Pointer) {
+func (m_ MTRCommissionerControlClusterReverseOpenCommissioningWindowParams) SetIterations(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIterations:"), value)
 }
 

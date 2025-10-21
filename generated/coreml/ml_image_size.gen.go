@@ -78,5 +78,59 @@ func NewImageSize() ImageSize {
 }
 
 
+// The height of an image feature in pixels.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlimagesize/pixelshigh
+func (i_ ImageSize) PixelsHigh() int {
+	rv := objc.Send[int](i_.ID, objc.Sel("pixelsHigh"))
+	return rv
+}
+
+
+// SetPixelsHigh sets the value of the pixelsHigh property.
+// The height of an image feature in pixels.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlimagesize/pixelshigh
+func (i_ ImageSize) SetPixelsHigh(value int) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setPixelsHigh:"), value)
+}
+
+// The width of an image feature in pixels.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlimagesize/pixelswide
+func (i_ ImageSize) PixelsWide() int {
+	rv := objc.Send[int](i_.ID, objc.Sel("pixelsWide"))
+	return rv
+}
+
+
+// SetPixelsWide sets the value of the pixelsWide property.
+// The width of an image feature in pixels.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlimagesize/pixelswide
+func (i_ ImageSize) SetPixelsWide(value int) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setPixelsWide:"), value)
+}
+
+// An array of image sizes a model’s image feature accepts as input or produces as output.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlimagesizeconstraint/enumeratedimagesizes
+func (i_ ImageSize) EnumeratedImageSizes() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("enumeratedImageSizes"))
+	return rv
+}
+
+
+// SetEnumeratedImageSizes sets the value of the enumeratedImageSizes property.
+// An array of image sizes a model’s image feature accepts as input or produces as output.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlimagesizeconstraint/enumeratedimagesizes
+func (i_ ImageSize) SetEnumeratedImageSizes(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setEnumeratedImageSizes:"), value)
+}
+
 
 

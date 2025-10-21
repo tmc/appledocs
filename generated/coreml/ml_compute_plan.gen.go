@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -86,7 +87,7 @@ func NewComputePlan() ComputePlan {
 // Construct the compute plan of a model asynchronously given the location of its on-disk representation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLComputePlan-85vdw/loadContentsOfURL:configuration:completionHandler:
-func (cc _ComputePlanClass) LoadContentsOfURLConfigurationCompletionHandler(url unsafe.Pointer, configuration unsafe.Pointer, handler unsafe.Pointer) {
+func (cc _ComputePlanClass) LoadContentsOfURLConfigurationCompletionHandler(url foundation.URL, configuration unsafe.Pointer, handler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("loadContentsOfURL:configuration:completionHandler:"), url, configuration, handler)
 }
 

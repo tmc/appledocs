@@ -81,5 +81,149 @@ func NewDictionaryController() DictionaryController {
 }
 
 
+// An array containing the receiver’s content objects arranged using
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/arrangedobjects
+func (d_ DictionaryController) ArrangedObjects() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("arrangedObjects"))
+	return rv
+}
+
+
+// SetArrangedObjects sets the value of the arrangedObjects property.
+// An array containing the receiver’s content objects arranged using
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/arrangedobjects
+func (d_ DictionaryController) SetArrangedObjects(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setArrangedObjects:"), value)
+}
+
+// The key names that are never displayed in the user interface items bound to the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdictionarycontroller/excludedkeys
+func (d_ DictionaryController) ExcludedKeys() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("excludedKeys"))
+	return rv
+}
+
+
+// SetExcludedKeys sets the value of the excludedKeys property.
+// The key names that are never displayed in the user interface items bound to the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdictionarycontroller/excludedkeys
+func (d_ DictionaryController) SetExcludedKeys(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setExcludedKeys:"), objc.String(value))
+}
+
+// The key names that are represented by a key-value pair, even if they are not present in the receiver’s content dictionary.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdictionarycontroller/includedkeys
+func (d_ DictionaryController) IncludedKeys() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("includedKeys"))
+	return rv
+}
+
+
+// SetIncludedKeys sets the value of the includedKeys property.
+// The key names that are represented by a key-value pair, even if they are not present in the receiver’s content dictionary.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdictionarycontroller/includedkeys
+func (d_ DictionaryController) SetIncludedKeys(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setIncludedKeys:"), objc.String(value))
+}
+
+// The string used as the initial key name for a newly inserted item.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdictionarycontroller/initialkey
+func (d_ DictionaryController) InitialKey() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("initialKey"))
+	return rv
+}
+
+
+// SetInitialKey sets the value of the initialKey property.
+// The string used as the initial key name for a newly inserted item.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdictionarycontroller/initialkey
+func (d_ DictionaryController) SetInitialKey(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setInitialKey:"), objc.String(value))
+}
+
+// The string used as the initial value for a newly inserted item.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdictionarycontroller/initialvalue
+func (d_ DictionaryController) InitialValue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("initialValue"))
+	return rv
+}
+
+
+// SetInitialValue sets the value of the initialValue property.
+// The string used as the initial value for a newly inserted item.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdictionarycontroller/initialvalue
+func (d_ DictionaryController) SetInitialValue(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setInitialValue:"), value)
+}
+
+// The localized key names that are displayed by the receiver in place of the key names.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdictionarycontroller/localizedkeydictionary
+func (d_ DictionaryController) LocalizedKeyDictionary() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("localizedKeyDictionary"))
+	return rv
+}
+
+
+// SetLocalizedKeyDictionary sets the value of the localizedKeyDictionary property.
+// The localized key names that are displayed by the receiver in place of the key names.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdictionarycontroller/localizedkeydictionary
+func (d_ DictionaryController) SetLocalizedKeyDictionary(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setLocalizedKeyDictionary:"), objc.String(value))
+}
+
+// the strings file used to localize key names.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdictionarycontroller/localizedkeytable
+func (d_ DictionaryController) LocalizedKeyTable() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("localizedKeyTable"))
+	return rv
+}
+
+
+// SetLocalizedKeyTable sets the value of the localizedKeyTable property.
+// the strings file used to localize key names.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdictionarycontroller/localizedkeytable
+func (d_ DictionaryController) SetLocalizedKeyTable(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setLocalizedKeyTable:"), objc.String(value))
+}
+
+// The receiver’s content object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsobjectcontroller/content
+func (d_ DictionaryController) Content() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("content"))
+	return rv
+}
+
+
+// SetContent sets the value of the content property.
+// The receiver’s content object.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsobjectcontroller/content
+func (d_ DictionaryController) SetContent(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setContent:"), value)
+}
+
 
 

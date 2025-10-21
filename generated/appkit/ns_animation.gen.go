@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -96,6 +97,168 @@ func (a_ Animation) CurrentProgress() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAnimation/currentProgress
 func (a_ Animation) SetCurrentProgress(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCurrentProgress:"), value)
+}
+
+// The blocking mode of the animation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimation/animationblockingmode
+func (a_ Animation) AnimationBlockingMode() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("animationBlockingMode"))
+	return rv
+}
+
+
+// SetAnimationBlockingMode sets the value of the animationBlockingMode property.
+// The blocking mode of the animation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimation/animationblockingmode
+func (a_ Animation) SetAnimationBlockingMode(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAnimationBlockingMode:"), value)
+}
+
+// The timing curve for the animation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimation/animationcurve
+func (a_ Animation) AnimationCurve() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("animationCurve"))
+	return rv
+}
+
+
+// SetAnimationCurve sets the value of the animationCurve property.
+// The timing curve for the animation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimation/animationcurve
+func (a_ Animation) SetAnimationCurve(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAnimationCurve:"), value)
+}
+
+// The current value of the animation effect, based on the current progress
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimation/currentvalue
+func (a_ Animation) CurrentValue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("currentValue"))
+	return rv
+}
+
+
+// SetCurrentValue sets the value of the currentValue property.
+// The current value of the animation effect, based on the current progress
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimation/currentvalue
+func (a_ Animation) SetCurrentValue(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setCurrentValue:"), value)
+}
+
+// The animation delegate.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimation/delegate
+func (a_ Animation) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+
+// SetDelegate sets the value of the delegate property.
+// The animation delegate.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimation/delegate
+func (a_ Animation) SetDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setDelegate:"), value)
+}
+
+// The duration of the animation, in seconds.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimation/duration
+func (a_ Animation) Duration() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("duration"))
+	return rv
+}
+
+
+// SetDuration sets the value of the duration property.
+// The duration of the animation, in seconds.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimation/duration
+func (a_ Animation) SetDuration(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setDuration:"), value)
+}
+
+// The number of frame updates per second to generate for the animation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimation/framerate
+func (a_ Animation) FrameRate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("frameRate"))
+	return rv
+}
+
+
+// SetFrameRate sets the value of the frameRate property.
+// The number of frame updates per second to generate for the animation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimation/framerate
+func (a_ Animation) SetFrameRate(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setFrameRate:"), value)
+}
+
+// A Boolean value indicating whether the animation is in progress.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimation/isanimating
+func (a_ Animation) IsAnimating() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("isAnimating"))
+	return rv
+}
+
+
+// SetIsAnimating sets the value of the isAnimating property.
+// A Boolean value indicating whether the animation is in progress.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimation/isanimating
+func (a_ Animation) SetIsAnimating(value bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setIsAnimating:"), value)
+}
+
+// An array of floating-point numbers representing current progress marks.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimation/progressmarks
+func (a_ Animation) ProgressMarks() foundation.Number {
+	rv := objc.Send[foundation.Number](a_.ID, objc.Sel("progressMarks"))
+	return rv
+}
+
+
+// SetProgressMarks sets the value of the progressMarks property.
+// An array of floating-point numbers representing current progress marks.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimation/progressmarks
+func (a_ Animation) SetProgressMarks(value foundation.Number) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setProgressMarks:"), value)
+}
+
+// An array of strings representing the run loop modes in which the animation can run.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimation/runloopmodesforanimating
+func (a_ Animation) RunLoopModesForAnimating() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("runLoopModesForAnimating"))
+	return rv
+}
+
+
+// SetRunLoopModesForAnimating sets the value of the runLoopModesForAnimating property.
+// An array of strings representing the run loop modes in which the animation can run.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimation/runloopmodesforanimating
+func (a_ Animation) SetRunLoopModesForAnimating(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setRunLoopModesForAnimating:"), value)
 }
 
 

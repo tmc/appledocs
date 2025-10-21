@@ -336,5 +336,59 @@ func (p_ ProgressIndicator) SetUsesThreadedAnimation(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setUsesThreadedAnimation:"), value)
 }
 
+// A Boolean that indicates whether the progress indicator’s frame has a three-dimensional bezel.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsprogressindicator/isbezeled
+func (p_ ProgressIndicator) IsBezeled() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isBezeled"))
+	return rv
+}
+
+
+// SetIsBezeled sets the value of the isBezeled property.
+// A Boolean that indicates whether the progress indicator’s frame has a three-dimensional bezel.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsprogressindicator/isbezeled
+func (p_ ProgressIndicator) SetIsBezeled(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsBezeled:"), value)
+}
+
+// A Boolean that indicates whether the progress indicator hides itself when it isn’t animating.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsprogressindicator/isdisplayedwhenstopped
+func (p_ ProgressIndicator) IsDisplayedWhenStopped() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isDisplayedWhenStopped"))
+	return rv
+}
+
+
+// SetIsDisplayedWhenStopped sets the value of the isDisplayedWhenStopped property.
+// A Boolean that indicates whether the progress indicator hides itself when it isn’t animating.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsprogressindicator/isdisplayedwhenstopped
+func (p_ ProgressIndicator) SetIsDisplayedWhenStopped(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsDisplayedWhenStopped:"), value)
+}
+
+// A Boolean that indicates whether the progress indicator is indeterminate.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsprogressindicator/isindeterminate
+func (p_ ProgressIndicator) IsIndeterminate() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isIndeterminate"))
+	return rv
+}
+
+
+// SetIsIndeterminate sets the value of the isIndeterminate property.
+// A Boolean that indicates whether the progress indicator is indeterminate.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsprogressindicator/isindeterminate
+func (p_ ProgressIndicator) SetIsIndeterminate(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsIndeterminate:"), value)
+}
+
 
 

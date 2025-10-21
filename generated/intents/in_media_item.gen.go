@@ -78,5 +78,95 @@ func NewINMediaItem() INMediaItem {
 }
 
 
+// The media item type.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inmediaitem/type
+func (i_ INMediaItem) Type() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("type"))
+	return rv
+}
+
+
+// SetType sets the value of the type property.
+// The media item type.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inmediaitem/type
+func (i_ INMediaItem) SetType(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setType:"), value)
+}
+
+// The artist associated with the media item.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inmediaitem/artist
+func (i_ INMediaItem) Artist() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("artist"))
+	return rv
+}
+
+
+// SetArtist sets the value of the artist property.
+// The artist associated with the media item.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inmediaitem/artist
+func (i_ INMediaItem) SetArtist(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setArtist:"), objc.String(value))
+}
+
+// Artwork for the media item.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inmediaitem/artwork
+func (i_ INMediaItem) Artwork() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("artwork"))
+	return rv
+}
+
+
+// SetArtwork sets the value of the artwork property.
+// Artwork for the media item.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inmediaitem/artwork
+func (i_ INMediaItem) SetArtwork(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setArtwork:"), value)
+}
+
+// The value your app uses to identify the media item.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inmediaitem/identifier
+func (i_ INMediaItem) Identifier() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("identifier"))
+	return rv
+}
+
+
+// SetIdentifier sets the value of the identifier property.
+// The value your app uses to identify the media item.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inmediaitem/identifier
+func (i_ INMediaItem) SetIdentifier(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+}
+
+// The media item title.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inmediaitem/title
+func (i_ INMediaItem) Title() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("title"))
+	return rv
+}
+
+
+// SetTitle sets the value of the title property.
+// The media item title.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inmediaitem/title
+func (i_ INMediaItem) SetTitle(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setTitle:"), objc.String(value))
+}
+
 
 

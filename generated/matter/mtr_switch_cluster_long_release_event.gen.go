@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,21 @@ func NewMTRSwitchClusterLongReleaseEvent() MTRSwitchClusterLongReleaseEvent {
 	return getMTRSwitchClusterLongReleaseEventClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrswitchclusterlongreleaseevent/previousposition
+func (m_ MTRSwitchClusterLongReleaseEvent) PreviousPosition() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("previousPosition"))
+	return rv
+}
+
+
+// SetPreviousPosition sets the value of the previousPosition property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrswitchclusterlongreleaseevent/previousposition
+func (m_ MTRSwitchClusterLongReleaseEvent) SetPreviousPosition(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPreviousPosition:"), value)
+}
 
 
 

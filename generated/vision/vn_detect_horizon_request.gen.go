@@ -79,5 +79,31 @@ func NewDetectHorizonRequest() DetectHorizonRequest {
 }
 
 
+// A constant for specifying revision 1 of the horizon detection request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetecthorizonrequestrevision1
+func (d_ DetectHorizonRequest) VNDetectHorizonRequestRevision1() int {
+	rv := objc.Send[int](d_.ID, objc.Sel("VNDetectHorizonRequestRevision1"))
+	return rv
+}
+
+// The results of the horizon detection request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetecthorizonrequest/results
+func (d_ DetectHorizonRequest) Results() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("results"))
+	return rv
+}
+
+
+// SetResults sets the value of the results property.
+// The results of the horizon detection request.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetecthorizonrequest/results
+func (d_ DetectHorizonRequest) SetResults(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setResults:"), value)
+}
+
 
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,7 +32,7 @@ type _SensorRecorderClass struct {
 type ISensorRecorder interface {
 	objectivec.IObject
 	AccelerometerDataFromDateToDate(fromDate unsafe.Pointer, toDate unsafe.Pointer) unsafe.Pointer
-	RecordAccelerometerForDuration(duration TimeInterval)
+	RecordAccelerometerForDuration(duration foundation.TimeInterval)
 }
 
 // An object that gathers and retrieves accelerometer data from a device.
@@ -117,7 +118,7 @@ func (s_ SensorRecorder) AccelerometerDataFromDateToDate(fromDate unsafe.Pointer
 // Begins recording accelerometer data for the specified period of time.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMSensorRecorder/recordAccelerometer(forDuration:)
-func (s_ SensorRecorder) RecordAccelerometerForDuration(duration TimeInterval) {
+func (s_ SensorRecorder) RecordAccelerometerForDuration(duration foundation.TimeInterval) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("recordAccelerometerForDuration:"), duration)
 }
 

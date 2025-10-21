@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -90,8 +91,8 @@ func NewMTRAccessControlClusterReviewFabricRestrictionsResponseParamsWithRespons
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterReviewFabricRestrictionsResponseParams/token
-func (m_ MTRAccessControlClusterReviewFabricRestrictionsResponseParams) Token() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("token"))
+func (m_ MTRAccessControlClusterReviewFabricRestrictionsResponseParams) Token() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("token"))
 	return rv
 }
 
@@ -99,7 +100,7 @@ func (m_ MTRAccessControlClusterReviewFabricRestrictionsResponseParams) Token() 
 // SetToken sets the value of the token property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterReviewFabricRestrictionsResponseParams/token
-func (m_ MTRAccessControlClusterReviewFabricRestrictionsResponseParams) SetToken(value unsafe.Pointer) {
+func (m_ MTRAccessControlClusterReviewFabricRestrictionsResponseParams) SetToken(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setToken:"), value)
 }
 

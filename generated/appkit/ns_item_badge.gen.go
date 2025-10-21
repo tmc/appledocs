@@ -112,5 +112,146 @@ func (i_ ItemBadge) Text() string {
 	return rv
 }
 
+// A Boolean value that indicates whether the toolbar item has a bordered style.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/isbordered
+func (i_ ItemBadge) IsBordered() bool {
+	rv := objc.Send[bool](i_.ID, objc.Sel("isBordered"))
+	return rv
+}
+
+
+// SetIsBordered sets the value of the isBordered property.
+// A Boolean value that indicates whether the toolbar item has a bordered style.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/isbordered
+func (i_ ItemBadge) SetIsBordered(value bool) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setIsBordered:"), value)
+}
+
+// A Boolean value that indicates whether the item is enabled.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/isenabled
+func (i_ ItemBadge) IsEnabled() bool {
+	rv := objc.Send[bool](i_.ID, objc.Sel("isEnabled"))
+	return rv
+}
+
+
+// SetIsEnabled sets the value of the isEnabled property.
+// A Boolean value that indicates whether the item is enabled.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/isenabled
+func (i_ ItemBadge) SetIsEnabled(value bool) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setIsEnabled:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/ishidden
+func (i_ ItemBadge) IsHidden() bool {
+	rv := objc.Send[bool](i_.ID, objc.Sel("isHidden"))
+	return rv
+}
+
+
+// SetIsHidden sets the value of the isHidden property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/ishidden
+func (i_ ItemBadge) SetIsHidden(value bool) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setIsHidden:"), value)
+}
+
+// A Boolean value that indicates whether the item behaves as a navigation item in the toolbar.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/isnavigational
+func (i_ ItemBadge) IsNavigational() bool {
+	rv := objc.Send[bool](i_.ID, objc.Sel("isNavigational"))
+	return rv
+}
+
+
+// SetIsNavigational sets the value of the isNavigational property.
+// A Boolean value that indicates whether the item behaves as a navigation item in the toolbar.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/isnavigational
+func (i_ ItemBadge) SetIsNavigational(value bool) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setIsNavigational:"), value)
+}
+
+// A Boolean value that indicates whether the item is currently visible in the toolbar, and not in the overflow menu.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/isvisible
+func (i_ ItemBadge) IsVisible() bool {
+	rv := objc.Send[bool](i_.ID, objc.Sel("isVisible"))
+	return rv
+}
+
+
+// SetIsVisible sets the value of the isVisible property.
+// A Boolean value that indicates whether the item is currently visible in the toolbar, and not in the overflow menu.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/isvisible
+func (i_ ItemBadge) SetIsVisible(value bool) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setIsVisible:"), value)
+}
+
+// Defines the toolbar item’s appearance. The default style is plain.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/style-swift.property
+func (i_ ItemBadge) Style() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("style"))
+	return rv
+}
+
+
+// SetStyle sets the value of the style property.
+// Defines the toolbar item’s appearance. The default style is plain.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/style-swift.property
+func (i_ ItemBadge) SetStyle(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setStyle:"), value)
+}
+
+// An integer tag you can use to identify the toolbar item.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/tag
+func (i_ ItemBadge) Tag() int {
+	rv := objc.Send[int](i_.ID, objc.Sel("tag"))
+	return rv
+}
+
+
+// SetTag sets the value of the tag property.
+// An integer tag you can use to identify the toolbar item.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/tag
+func (i_ ItemBadge) SetTag(value int) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setTag:"), value)
+}
+
+// The display priority associated with the toolbar item.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/visibilitypriority-swift.property
+func (i_ ItemBadge) VisibilityPriority() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("visibilityPriority"))
+	return rv
+}
+
+
+// SetVisibilityPriority sets the value of the visibilityPriority property.
+// The display priority associated with the toolbar item.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/visibilitypriority-swift.property
+func (i_ ItemBadge) SetVisibilityPriority(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setVisibilityPriority:"), value)
+}
+
 
 

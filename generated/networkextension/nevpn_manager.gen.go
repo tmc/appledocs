@@ -119,6 +119,67 @@ func (n_ NEVPNManager) SetAuthorization(authorization unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setAuthorization:"), authorization)
 }
 
+// An
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnmanager/protocol
+func (n_ NEVPNManager) `protocol`() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("`protocol`"))
+	return rv
+}
+
+
+// Set`protocol` sets the value of the `protocol` property.
+// An
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnmanager/protocol
+func (n_ NEVPNManager) Set`protocol`(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("set`protocol`:"), value)
+}
+
+// A Boolean used to toggle the Connect On Demand capability.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnmanager/isondemandenabled
+func (n_ NEVPNManager) IsOnDemandEnabled() bool {
+	rv := objc.Send[bool](n_.ID, objc.Sel("isOnDemandEnabled"))
+	return rv
+}
+
+
+// SetIsOnDemandEnabled sets the value of the isOnDemandEnabled property.
+// A Boolean used to toggle the Connect On Demand capability.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnmanager/isondemandenabled
+func (n_ NEVPNManager) SetIsOnDemandEnabled(value bool) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setIsOnDemandEnabled:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnerrordomain
+func (n_ NEVPNManager) NEVPNErrorDomain() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("NEVPNErrorDomain"))
+	return rv
+}
+
+// A Boolean used to toggle the enabled state of the VPN configuration.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnmanager/isenabled
+func (n_ NEVPNManager) IsEnabled() bool {
+	rv := objc.Send[bool](n_.ID, objc.Sel("isEnabled"))
+	return rv
+}
+
+
+// SetIsEnabled sets the value of the isEnabled property.
+// A Boolean used to toggle the enabled state of the VPN configuration.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnmanager/isenabled
+func (n_ NEVPNManager) SetIsEnabled(value bool) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setIsEnabled:"), value)
+}
+
 // An object that is used to control the VPN tunnel specified by the VPN configuration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNManager/connection

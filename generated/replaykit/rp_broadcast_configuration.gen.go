@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -81,8 +82,8 @@ func NewRPBroadcastConfiguration() RPBroadcastConfiguration {
 // The duration of movie clips sent the to the movie clip handler extension.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPBroadcastConfiguration/clipDuration
-func (r_ RPBroadcastConfiguration) ClipDuration() TimeInterval {
-	rv := objc.Send[TimeInterval](r_.ID, objc.Sel("clipDuration"))
+func (r_ RPBroadcastConfiguration) ClipDuration() foundation.TimeInterval {
+	rv := objc.Send[foundation.TimeInterval](r_.ID, objc.Sel("clipDuration"))
 	return rv
 }
 
@@ -92,7 +93,7 @@ func (r_ RPBroadcastConfiguration) ClipDuration() TimeInterval {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPBroadcastConfiguration/clipDuration
-func (r_ RPBroadcastConfiguration) SetClipDuration(value TimeInterval) {
+func (r_ RPBroadcastConfiguration) SetClipDuration(value foundation.TimeInterval) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setClipDuration:"), value)
 }
 

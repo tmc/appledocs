@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [SBApplication] class.
@@ -112,7 +113,7 @@ func NewSBApplicationWithProcessIdentifier(pid unsafe.Pointer) SBApplication {
 // Returns an instance of an subclass that represents the target application identified by the given URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScriptingBridge/SBApplication/init(url:)
-func NewSBApplicationWithURL(url unsafe.Pointer) SBApplication {
+func NewSBApplicationWithURL(url foundation.URL) SBApplication {
 	instance := getSBApplicationClass().Alloc()
 	rv := objc.Send[SBApplication](instance.ID, objc.Sel("initWithURL:"), url)
 	rv.Autorelease()
@@ -139,7 +140,7 @@ func (sc _SBApplicationClass) ApplicationWithProcessIdentifier(pid unsafe.Pointe
 // Returns the shared instance representing a target application specified by the given URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScriptingBridge/SBApplication/applicationWithURL:
-func (sc _SBApplicationClass) ApplicationWithURL(url unsafe.Pointer) unsafe.Pointer {
+func (sc _SBApplicationClass) ApplicationWithURL(url foundation.URL) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("applicationWithURL:"), url)
 	return rv
 }
@@ -157,6 +158,24 @@ func (s_ SBApplication) Activate() {
 func (s_ SBApplication) ClassForScriptingClass(className string) objc.Class {
 	rv := objc.Send[objc.Class](s_.ID, objc.Sel("classForScriptingClass:"), objc.String(className))
 	return rv
+}
+
+// A Boolean that indicates whether the target application represented by the
+//
+// [Full Topic]: https://developer.apple.com/documentation/scriptingbridge/sbapplication/isrunning
+func (s_ SBApplication) IsRunning() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("isRunning"))
+	return rv
+}
+
+
+// SetIsRunning sets the value of the isRunning property.
+// A Boolean that indicates whether the target application represented by the
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/scriptingbridge/sbapplication/isrunning
+func (s_ SBApplication) SetIsRunning(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setIsRunning:"), value)
 }
 
 // The error-handling delegate of the receiver.

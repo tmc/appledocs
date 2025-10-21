@@ -79,5 +79,41 @@ func NewINBoatReservation() INBoatReservation {
 }
 
 
+// The passenger’s seat on a boat reservation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inboatreservation/reservedseat
+func (i_ INBoatReservation) ReservedSeat() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("reservedSeat"))
+	return rv
+}
+
+
+// SetReservedSeat sets the value of the reservedSeat property.
+// The passenger’s seat on a boat reservation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inboatreservation/reservedseat
+func (i_ INBoatReservation) SetReservedSeat(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setReservedSeat:"), value)
+}
+
+// Information describing a voyage.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inboatreservation/boattrip
+func (i_ INBoatReservation) BoatTrip() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("boatTrip"))
+	return rv
+}
+
+
+// SetBoatTrip sets the value of the boatTrip property.
+// Information describing a voyage.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inboatreservation/boattrip
+func (i_ INBoatReservation) SetBoatTrip(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setBoatTrip:"), value)
+}
+
 
 

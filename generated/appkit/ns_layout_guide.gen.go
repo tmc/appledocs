@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -112,6 +113,201 @@ func (l_ LayoutGuide) SetIdentifier(value unsafe.Pointer) {
 func (l_ LayoutGuide) LeadingAnchor() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("leadingAnchor"))
 	return rv
+}
+
+// A layout anchor representing the horizontal center of the layout guide’s frame.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutguide/centerxanchor
+func (l_ LayoutGuide) CenterXAnchor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("centerXAnchor"))
+	return rv
+}
+
+
+// SetCenterXAnchor sets the value of the centerXAnchor property.
+// A layout anchor representing the horizontal center of the layout guide’s frame.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutguide/centerxanchor
+func (l_ LayoutGuide) SetCenterXAnchor(value unsafe.Pointer) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setCenterXAnchor:"), value)
+}
+
+// A layout anchor representing the vertical center of the layout guide’s frame.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutguide/centeryanchor
+func (l_ LayoutGuide) CenterYAnchor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("centerYAnchor"))
+	return rv
+}
+
+
+// SetCenterYAnchor sets the value of the centerYAnchor property.
+// A layout anchor representing the vertical center of the layout guide’s frame.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutguide/centeryanchor
+func (l_ LayoutGuide) SetCenterYAnchor(value unsafe.Pointer) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setCenterYAnchor:"), value)
+}
+
+// The layout guide’s frame in its owning view’s coordinate system.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutguide/frame
+func (l_ LayoutGuide) Frame() coregraphics.CGRect {
+	rv := objc.Send[coregraphics.CGRect](l_.ID, objc.Sel("frame"))
+	return rv
+}
+
+
+// SetFrame sets the value of the frame property.
+// The layout guide’s frame in its owning view’s coordinate system.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutguide/frame
+func (l_ LayoutGuide) SetFrame(value coregraphics.CGRect) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setFrame:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutguide/hasambiguouslayout
+func (l_ LayoutGuide) HasAmbiguousLayout() bool {
+	rv := objc.Send[bool](l_.ID, objc.Sel("hasAmbiguousLayout"))
+	return rv
+}
+
+
+// SetHasAmbiguousLayout sets the value of the hasAmbiguousLayout property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutguide/hasambiguouslayout
+func (l_ LayoutGuide) SetHasAmbiguousLayout(value bool) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setHasAmbiguousLayout:"), value)
+}
+
+// A layout anchor representing the height of the layout guide’s frame.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutguide/heightanchor
+func (l_ LayoutGuide) HeightAnchor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("heightAnchor"))
+	return rv
+}
+
+
+// SetHeightAnchor sets the value of the heightAnchor property.
+// A layout anchor representing the height of the layout guide’s frame.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutguide/heightanchor
+func (l_ LayoutGuide) SetHeightAnchor(value unsafe.Pointer) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setHeightAnchor:"), value)
+}
+
+// A layout anchor representing the left edge of the layout guide’s frame.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutguide/leftanchor
+func (l_ LayoutGuide) LeftAnchor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("leftAnchor"))
+	return rv
+}
+
+
+// SetLeftAnchor sets the value of the leftAnchor property.
+// A layout anchor representing the left edge of the layout guide’s frame.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutguide/leftanchor
+func (l_ LayoutGuide) SetLeftAnchor(value unsafe.Pointer) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setLeftAnchor:"), value)
+}
+
+// The view that owns this layout guide.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutguide/owningview
+func (l_ LayoutGuide) OwningView() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("owningView"))
+	return rv
+}
+
+
+// SetOwningView sets the value of the owningView property.
+// The view that owns this layout guide.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutguide/owningview
+func (l_ LayoutGuide) SetOwningView(value unsafe.Pointer) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setOwningView:"), value)
+}
+
+// A layout anchor representing the right edge of the layout guide’s frame.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutguide/rightanchor
+func (l_ LayoutGuide) RightAnchor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("rightAnchor"))
+	return rv
+}
+
+
+// SetRightAnchor sets the value of the rightAnchor property.
+// A layout anchor representing the right edge of the layout guide’s frame.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutguide/rightanchor
+func (l_ LayoutGuide) SetRightAnchor(value unsafe.Pointer) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setRightAnchor:"), value)
+}
+
+// A layout anchor representing the top edge of the layout guide’s frame.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutguide/topanchor
+func (l_ LayoutGuide) TopAnchor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("topAnchor"))
+	return rv
+}
+
+
+// SetTopAnchor sets the value of the topAnchor property.
+// A layout anchor representing the top edge of the layout guide’s frame.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutguide/topanchor
+func (l_ LayoutGuide) SetTopAnchor(value unsafe.Pointer) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setTopAnchor:"), value)
+}
+
+// A layout anchor representing the trailing edge of the layout guide’s frame.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutguide/trailinganchor
+func (l_ LayoutGuide) TrailingAnchor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("trailingAnchor"))
+	return rv
+}
+
+
+// SetTrailingAnchor sets the value of the trailingAnchor property.
+// A layout anchor representing the trailing edge of the layout guide’s frame.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutguide/trailinganchor
+func (l_ LayoutGuide) SetTrailingAnchor(value unsafe.Pointer) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setTrailingAnchor:"), value)
+}
+
+// A layout anchor representing the width of the layout guide’s frame.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutguide/widthanchor
+func (l_ LayoutGuide) WidthAnchor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("widthAnchor"))
+	return rv
+}
+
+
+// SetWidthAnchor sets the value of the widthAnchor property.
+// A layout anchor representing the width of the layout guide’s frame.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutguide/widthanchor
+func (l_ LayoutGuide) SetWidthAnchor(value unsafe.Pointer) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setWidthAnchor:"), value)
 }
 
 

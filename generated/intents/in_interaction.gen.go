@@ -104,6 +104,78 @@ func (i_ INInteraction) ParameterValueForParameter(parameter unsafe.Pointer) obj
 	return rv
 }
 
+// The response object that your app created in response to the request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/ininteraction/intentresponse
+func (i_ INInteraction) IntentResponse() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("intentResponse"))
+	return rv
+}
+
+
+// SetIntentResponse sets the value of the intentResponse property.
+// The response object that your app created in response to the request.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/ininteraction/intentresponse
+func (i_ INInteraction) SetIntentResponse(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setIntentResponse:"), value)
+}
+
+// The intent object that describes the user’s request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/ininteraction/intent
+func (i_ INInteraction) Intent() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("intent"))
+	return rv
+}
+
+
+// SetIntent sets the value of the intent property.
+// The intent object that describes the user’s request.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/ininteraction/intent
+func (i_ INInteraction) SetIntent(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setIntent:"), value)
+}
+
+// The direction in which information flowed to or from the device.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/ininteraction/direction
+func (i_ INInteraction) Direction() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("direction"))
+	return rv
+}
+
+
+// SetDirection sets the value of the direction property.
+// The direction in which information flowed to or from the device.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/ininteraction/direction
+func (i_ INInteraction) SetDirection(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setDirection:"), value)
+}
+
+// The time at which the interaction started and its duration.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/ininteraction/dateinterval
+func (i_ INInteraction) DateInterval() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("dateInterval"))
+	return rv
+}
+
+
+// SetDateInterval sets the value of the dateInterval property.
+// The time at which the interaction started and its duration.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/ininteraction/dateinterval
+func (i_ INInteraction) SetDateInterval(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setDateInterval:"), value)
+}
+
 // The unique identifier of the interaction’s group.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INInteraction/groupIdentifier

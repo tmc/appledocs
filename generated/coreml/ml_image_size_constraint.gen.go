@@ -81,6 +81,60 @@ func NewImageSizeConstraint() ImageSizeConstraint {
 }
 
 
+// The model’s default width for an image feature.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlimageconstraint/pixelswide
+func (i_ ImageSizeConstraint) PixelsWide() int {
+	rv := objc.Send[int](i_.ID, objc.Sel("pixelsWide"))
+	return rv
+}
+
+
+// SetPixelsWide sets the value of the pixelsWide property.
+// The model’s default width for an image feature.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlimageconstraint/pixelswide
+func (i_ ImageSizeConstraint) SetPixelsWide(value int) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setPixelsWide:"), value)
+}
+
+// The model’s default height for an image feature.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlimageconstraint/pixelshigh
+func (i_ ImageSizeConstraint) PixelsHigh() int {
+	rv := objc.Send[int](i_.ID, objc.Sel("pixelsHigh"))
+	return rv
+}
+
+
+// SetPixelsHigh sets the value of the pixelsHigh property.
+// The model’s default height for an image feature.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlimageconstraint/pixelshigh
+func (i_ ImageSizeConstraint) SetPixelsHigh(value int) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setPixelsHigh:"), value)
+}
+
+// Additional sizes this image feature supports.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlimageconstraint/sizeconstraint
+func (i_ ImageSizeConstraint) SizeConstraint() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("sizeConstraint"))
+	return rv
+}
+
+
+// SetSizeConstraint sets the value of the sizeConstraint property.
+// Additional sizes this image feature supports.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlimageconstraint/sizeconstraint
+func (i_ ImageSizeConstraint) SetSizeConstraint(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setSizeConstraint:"), value)
+}
+
 // An array of image sizes a model’s image feature accepts as input or produces as output.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLImageSizeConstraint/enumeratedImageSizes

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -152,8 +153,8 @@ func (m_ MTRChannelClusterProgramStruct) SetDescriptionString(value string) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterProgramStruct/endTime
-func (m_ MTRChannelClusterProgramStruct) EndTime() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("endTime"))
+func (m_ MTRChannelClusterProgramStruct) EndTime() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("endTime"))
 	return rv
 }
 
@@ -161,7 +162,7 @@ func (m_ MTRChannelClusterProgramStruct) EndTime() unsafe.Pointer {
 // SetEndTime sets the value of the endTime property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterProgramStruct/endTime
-func (m_ MTRChannelClusterProgramStruct) SetEndTime(value unsafe.Pointer) {
+func (m_ MTRChannelClusterProgramStruct) SetEndTime(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEndTime:"), value)
 }
 
@@ -212,8 +213,8 @@ func (m_ MTRChannelClusterProgramStruct) SetRatings(value unsafe.Pointer) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterProgramStruct/recordingFlag
-func (m_ MTRChannelClusterProgramStruct) RecordingFlag() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("recordingFlag"))
+func (m_ MTRChannelClusterProgramStruct) RecordingFlag() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("recordingFlag"))
 	return rv
 }
 
@@ -221,7 +222,7 @@ func (m_ MTRChannelClusterProgramStruct) RecordingFlag() unsafe.Pointer {
 // SetRecordingFlag sets the value of the recordingFlag property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterProgramStruct/recordingFlag
-func (m_ MTRChannelClusterProgramStruct) SetRecordingFlag(value unsafe.Pointer) {
+func (m_ MTRChannelClusterProgramStruct) SetRecordingFlag(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRecordingFlag:"), value)
 }
 
@@ -257,8 +258,8 @@ func (m_ MTRChannelClusterProgramStruct) SetSeriesInfo(value unsafe.Pointer) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterProgramStruct/startTime
-func (m_ MTRChannelClusterProgramStruct) StartTime() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("startTime"))
+func (m_ MTRChannelClusterProgramStruct) StartTime() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("startTime"))
 	return rv
 }
 
@@ -266,7 +267,7 @@ func (m_ MTRChannelClusterProgramStruct) StartTime() unsafe.Pointer {
 // SetStartTime sets the value of the startTime property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterProgramStruct/startTime
-func (m_ MTRChannelClusterProgramStruct) SetStartTime(value unsafe.Pointer) {
+func (m_ MTRChannelClusterProgramStruct) SetStartTime(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStartTime:"), value)
 }
 

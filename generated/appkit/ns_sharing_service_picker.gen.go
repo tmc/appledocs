@@ -107,5 +107,23 @@ func (s_ SharingServicePicker) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDelegate:"), value)
 }
 
+// A menu item suitable to display the picker for the specified items.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservicepicker/standardsharemenuitem
+func (s_ SharingServicePicker) StandardShareMenuItem() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("standardShareMenuItem"))
+	return rv
+}
+
+
+// SetStandardShareMenuItem sets the value of the standardShareMenuItem property.
+// A menu item suitable to display the picker for the specified items.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservicepicker/standardsharemenuitem
+func (s_ SharingServicePicker) SetStandardShareMenuItem(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setStandardShareMenuItem:"), value)
+}
+
 
 

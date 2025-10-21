@@ -81,5 +81,149 @@ func NewCaptureDepthDataOutput() CaptureDepthDataOutput {
 }
 
 
+// A Boolean value that determines whether the capture output should discard any depth data that is not processed before the next depth data is captured.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedepthdataoutput/alwaysdiscardslatedepthdata
+func (c_ CaptureDepthDataOutput) AlwaysDiscardsLateDepthData() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("alwaysDiscardsLateDepthData"))
+	return rv
+}
+
+
+// SetAlwaysDiscardsLateDepthData sets the value of the alwaysDiscardsLateDepthData property.
+// A Boolean value that determines whether the capture output should discard any depth data that is not processed before the next depth data is captured.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedepthdataoutput/alwaysdiscardslatedepthdata
+func (c_ CaptureDepthDataOutput) SetAlwaysDiscardsLateDepthData(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setAlwaysDiscardsLateDepthData:"), value)
+}
+
+// A delegate object that receives depth data.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedepthdataoutput/delegate
+func (c_ CaptureDepthDataOutput) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+
+// SetDelegate sets the value of the delegate property.
+// A delegate object that receives depth data.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedepthdataoutput/delegate
+func (c_ CaptureDepthDataOutput) SetDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setDelegate:"), value)
+}
+
+// A dispatch queue for delivering depth data.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedepthdataoutput/delegatecallbackqueue
+func (c_ CaptureDepthDataOutput) DelegateCallbackQueue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("delegateCallbackQueue"))
+	return rv
+}
+
+
+// SetDelegateCallbackQueue sets the value of the delegateCallbackQueue property.
+// A dispatch queue for delivering depth data.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedepthdataoutput/delegatecallbackqueue
+func (c_ CaptureDepthDataOutput) SetDelegateCallbackQueue(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setDelegateCallbackQueue:"), value)
+}
+
+// A Boolean value that determines whether the depth data output should filter depth data to smooth out noise and fill invalid values.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedepthdataoutput/isfilteringenabled
+func (c_ CaptureDepthDataOutput) IsFilteringEnabled() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isFilteringEnabled"))
+	return rv
+}
+
+
+// SetIsFilteringEnabled sets the value of the isFilteringEnabled property.
+// A Boolean value that determines whether the depth data output should filter depth data to smooth out noise and fill invalid values.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedepthdataoutput/isfilteringenabled
+func (c_ CaptureDepthDataOutput) SetIsFilteringEnabled(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsFilteringEnabled:"), value)
+}
+
+// The list of data formats compatible with this video format.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/supporteddepthdataformats
+func (c_ CaptureDepthDataOutput) SupportedDepthDataFormats() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("supportedDepthDataFormats"))
+	return rv
+}
+
+
+// SetSupportedDepthDataFormats sets the value of the supportedDepthDataFormats property.
+// The list of data formats compatible with this video format.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/supporteddepthdataformats
+func (c_ CaptureDepthDataOutput) SetSupportedDepthDataFormats(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setSupportedDepthDataFormats:"), value)
+}
+
+// The currently active depth data format of the capture device.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/activedepthdataformat
+func (c_ CaptureDepthDataOutput) ActiveDepthDataFormat() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("activeDepthDataFormat"))
+	return rv
+}
+
+
+// SetActiveDepthDataFormat sets the value of the activeDepthDataFormat property.
+// The currently active depth data format of the capture device.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/activedepthdataformat
+func (c_ CaptureDepthDataOutput) SetActiveDepthDataFormat(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setActiveDepthDataFormat:"), value)
+}
+
+// The capture format in use by the device.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/activeformat
+func (c_ CaptureDepthDataOutput) ActiveFormat() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("activeFormat"))
+	return rv
+}
+
+
+// SetActiveFormat sets the value of the activeFormat property.
+// The capture format in use by the device.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/activeformat
+func (c_ CaptureDepthDataOutput) SetActiveFormat(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setActiveFormat:"), value)
+}
+
+// A Boolean value that determines whether the photo output captures depth data along with the photo.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotosettings/isdepthdatadeliveryenabled
+func (c_ CaptureDepthDataOutput) IsDepthDataDeliveryEnabled() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isDepthDataDeliveryEnabled"))
+	return rv
+}
+
+
+// SetIsDepthDataDeliveryEnabled sets the value of the isDepthDataDeliveryEnabled property.
+// A Boolean value that determines whether the photo output captures depth data along with the photo.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotosettings/isdepthdatadeliveryenabled
+func (c_ CaptureDepthDataOutput) SetIsDepthDataDeliveryEnabled(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsDepthDataDeliveryEnabled:"), value)
+}
+
 
 

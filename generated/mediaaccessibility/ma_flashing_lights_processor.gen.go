@@ -98,5 +98,13 @@ func (m_ MAFlashingLightsProcessor) ProcessSurfaceOutSurfaceTimestampOptions(inS
 	return rv
 }
 
+// A notification that posts when a person changes the flashing lights setting on the device.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaaccessibility/kmadimflashinglightschangednotification
+func (m_ MAFlashingLightsProcessor) KMADimFlashingLightsChangedNotification() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("kMADimFlashingLightsChangedNotification"))
+	return rv
+}
+
 
 

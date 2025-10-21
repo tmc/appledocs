@@ -279,5 +279,113 @@ func (s_ Screen) SupportedWindowDepths() unsafe.Pointer {
 	return rv
 }
 
+// The unobscured portion of the top-left corner of the screen.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscreen/auxiliarytopleftarea-uglc
+func (s_ Screen) AuxiliaryTopLeftArea() coregraphics.CGRect {
+	rv := objc.Send[coregraphics.CGRect](s_.ID, objc.Sel("auxiliaryTopLeftArea"))
+	return rv
+}
+
+
+// SetAuxiliaryTopLeftArea sets the value of the auxiliaryTopLeftArea property.
+// The unobscured portion of the top-left corner of the screen.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscreen/auxiliarytopleftarea-uglc
+func (s_ Screen) SetAuxiliaryTopLeftArea(value coregraphics.CGRect) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setAuxiliaryTopLeftArea:"), value)
+}
+
+// The unobscured portion of the top-right corner of the screen.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscreen/auxiliarytoprightarea-gr2n
+func (s_ Screen) AuxiliaryTopRightArea() coregraphics.CGRect {
+	rv := objc.Send[coregraphics.CGRect](s_.ID, objc.Sel("auxiliaryTopRightArea"))
+	return rv
+}
+
+
+// SetAuxiliaryTopRightArea sets the value of the auxiliaryTopRightArea property.
+// The unobscured portion of the top-right corner of the screen.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscreen/auxiliarytoprightarea-gr2n
+func (s_ Screen) SetAuxiliaryTopRightArea(value coregraphics.CGRect) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setAuxiliaryTopRightArea:"), value)
+}
+
+// The backing store pixel scale factor for the screen.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscreen/backingscalefactor
+func (s_ Screen) BackingScaleFactor() float64 {
+	rv := objc.Send[float64](s_.ID, objc.Sel("backingScaleFactor"))
+	return rv
+}
+
+
+// SetBackingScaleFactor sets the value of the backingScaleFactor property.
+// The backing store pixel scale factor for the screen.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscreen/backingscalefactor
+func (s_ Screen) SetBackingScaleFactor(value float64) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setBackingScaleFactor:"), value)
+}
+
+// The number of seconds between the screen’s supported update rates, for screens that support fixed update rates.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscreen/displayupdategranularity
+func (s_ Screen) DisplayUpdateGranularity() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("displayUpdateGranularity"))
+	return rv
+}
+
+
+// SetDisplayUpdateGranularity sets the value of the displayUpdateGranularity property.
+// The number of seconds between the screen’s supported update rates, for screens that support fixed update rates.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscreen/displayupdategranularity
+func (s_ Screen) SetDisplayUpdateGranularity(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setDisplayUpdateGranularity:"), value)
+}
+
+// The largest refresh interval that the screen supports.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscreen/maximumrefreshinterval
+func (s_ Screen) MaximumRefreshInterval() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("maximumRefreshInterval"))
+	return rv
+}
+
+
+// SetMaximumRefreshInterval sets the value of the maximumRefreshInterval property.
+// The largest refresh interval that the screen supports.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscreen/maximumrefreshinterval
+func (s_ Screen) SetMaximumRefreshInterval(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setMaximumRefreshInterval:"), value)
+}
+
+// The current location and dimensions of the visible screen.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscreen/visibleframe
+func (s_ Screen) VisibleFrame() coregraphics.CGRect {
+	rv := objc.Send[coregraphics.CGRect](s_.ID, objc.Sel("visibleFrame"))
+	return rv
+}
+
+
+// SetVisibleFrame sets the value of the visibleFrame property.
+// The current location and dimensions of the visible screen.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscreen/visibleframe
+func (s_ Screen) SetVisibleFrame(value coregraphics.CGRect) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setVisibleFrame:"), value)
+}
+
 
 

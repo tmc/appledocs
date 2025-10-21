@@ -117,5 +117,23 @@ func (p_ PanGestureRecognizer) SetNumberOfTouchesRequired(value int) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setNumberOfTouchesRequired:"), value)
 }
 
+// A Boolean value that indicates whether primary mouse button events are delivered only after gesture recognition fails.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsgesturerecognizer/delaysprimarymousebuttonevents
+func (p_ PanGestureRecognizer) DelaysPrimaryMouseButtonEvents() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("delaysPrimaryMouseButtonEvents"))
+	return rv
+}
+
+
+// SetDelaysPrimaryMouseButtonEvents sets the value of the delaysPrimaryMouseButtonEvents property.
+// A Boolean value that indicates whether primary mouse button events are delivered only after gesture recognition fails.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsgesturerecognizer/delaysprimarymousebuttonevents
+func (p_ PanGestureRecognizer) SetDelaysPrimaryMouseButtonEvents(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setDelaysPrimaryMouseButtonEvents:"), value)
+}
+
 
 

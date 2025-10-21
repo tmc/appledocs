@@ -126,6 +126,57 @@ func (h_ HeadphoneMotionManager) StopDeviceMotionUpdates() {
 	objc.Send[objc.ID](h_.ID, objc.Sel("stopDeviceMotionUpdates"))
 }
 
+// A Boolean value that indicates whether the headphone motion manager is active.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coremotion/cmheadphonemotionmanager/isdevicemotionactive
+func (h_ HeadphoneMotionManager) IsDeviceMotionActive() bool {
+	rv := objc.Send[bool](h_.ID, objc.Sel("isDeviceMotionActive"))
+	return rv
+}
+
+
+// SetIsDeviceMotionActive sets the value of the isDeviceMotionActive property.
+// A Boolean value that indicates whether the headphone motion manager is active.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coremotion/cmheadphonemotionmanager/isdevicemotionactive
+func (h_ HeadphoneMotionManager) SetIsDeviceMotionActive(value bool) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setIsDeviceMotionActive:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coremotion/cmheadphonemotionmanager/isconnectionstatusactive
+func (h_ HeadphoneMotionManager) IsConnectionStatusActive() bool {
+	rv := objc.Send[bool](h_.ID, objc.Sel("isConnectionStatusActive"))
+	return rv
+}
+
+
+// SetIsConnectionStatusActive sets the value of the isConnectionStatusActive property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coremotion/cmheadphonemotionmanager/isconnectionstatusactive
+func (h_ HeadphoneMotionManager) SetIsConnectionStatusActive(value bool) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setIsConnectionStatusActive:"), value)
+}
+
+// A Boolean value that indicates whether the current device supports the headphone motion manager.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coremotion/cmheadphonemotionmanager/isdevicemotionavailable
+func (h_ HeadphoneMotionManager) IsDeviceMotionAvailable() bool {
+	rv := objc.Send[bool](h_.ID, objc.Sel("isDeviceMotionAvailable"))
+	return rv
+}
+
+
+// SetIsDeviceMotionAvailable sets the value of the isDeviceMotionAvailable property.
+// A Boolean value that indicates whether the current device supports the headphone motion manager.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coremotion/cmheadphonemotionmanager/isdevicemotionavailable
+func (h_ HeadphoneMotionManager) SetIsDeviceMotionAvailable(value bool) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setIsDeviceMotionAvailable:"), value)
+}
+
 // The object that receives headphone motion manager events.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMHeadphoneMotionManager/delegate

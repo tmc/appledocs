@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,66 @@ func NewMTRChannelClusterLineupInfoStruct() MTRChannelClusterLineupInfoStruct {
 	return getMTRChannelClusterLineupInfoStructClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterlineupinfostruct/operatorname
+func (m_ MTRChannelClusterLineupInfoStruct) OperatorName() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("operatorName"))
+	return rv
+}
+
+
+// SetOperatorName sets the value of the operatorName property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterlineupinfostruct/operatorname
+func (m_ MTRChannelClusterLineupInfoStruct) SetOperatorName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setOperatorName:"), objc.String(value))
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterlineupinfostruct/lineupname
+func (m_ MTRChannelClusterLineupInfoStruct) LineupName() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("lineupName"))
+	return rv
+}
+
+
+// SetLineupName sets the value of the lineupName property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterlineupinfostruct/lineupname
+func (m_ MTRChannelClusterLineupInfoStruct) SetLineupName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLineupName:"), objc.String(value))
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterlineupinfostruct/lineupinfotype
+func (m_ MTRChannelClusterLineupInfoStruct) LineupInfoType() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("lineupInfoType"))
+	return rv
+}
+
+
+// SetLineupInfoType sets the value of the lineupInfoType property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterlineupinfostruct/lineupinfotype
+func (m_ MTRChannelClusterLineupInfoStruct) SetLineupInfoType(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLineupInfoType:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterlineupinfostruct/postalcode
+func (m_ MTRChannelClusterLineupInfoStruct) PostalCode() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("postalCode"))
+	return rv
+}
+
+
+// SetPostalCode sets the value of the postalCode property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterlineupinfostruct/postalcode
+func (m_ MTRChannelClusterLineupInfoStruct) SetPostalCode(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPostalCode:"), objc.String(value))
+}
 
 
 

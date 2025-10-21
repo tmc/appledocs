@@ -79,5 +79,23 @@ func NewNEFilterNewFlowVerdict() NEFilterNewFlowVerdict {
 }
 
 
+// The frequency at which the data provider receives reports.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilternewflowverdict/statisticsreportfrequency
+func (n_ NEFilterNewFlowVerdict) StatisticsReportFrequency() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("statisticsReportFrequency"))
+	return rv
+}
+
+
+// SetStatisticsReportFrequency sets the value of the statisticsReportFrequency property.
+// The frequency at which the data provider receives reports.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilternewflowverdict/statisticsreportfrequency
+func (n_ NEFilterNewFlowVerdict) SetStatisticsReportFrequency(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setStatisticsReportFrequency:"), value)
+}
+
 
 

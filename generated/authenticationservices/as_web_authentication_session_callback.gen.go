@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,7 +31,7 @@ type _WebAuthenticationSessionCallbackClass struct {
 // An interface definition for the [WebAuthenticationSessionCallback] class.
 type IWebAuthenticationSessionCallback interface {
 	objectivec.IObject
-	MatchesURL(url unsafe.Pointer) bool
+	MatchesURL(url foundation.URL) bool
 }
 
 //
@@ -92,7 +93,7 @@ func (wc _WebAuthenticationSessionCallbackClass) CallbackWithHTTPSHostPath(host 
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASWebAuthenticationSession/Callback/matchesURL(_:)
-func (w_ WebAuthenticationSessionCallback) MatchesURL(url unsafe.Pointer) bool {
+func (w_ WebAuthenticationSessionCallback) MatchesURL(url foundation.URL) bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("matchesURL:"), url)
 	return rv
 }

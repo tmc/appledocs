@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,8 +78,8 @@ func NewMTREnergyEVSEClusterEnableChargingParams() MTREnergyEVSEClusterEnableCha
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEnableChargingParams/chargingEnabledUntil
-func (m_ MTREnergyEVSEClusterEnableChargingParams) ChargingEnabledUntil() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("chargingEnabledUntil"))
+func (m_ MTREnergyEVSEClusterEnableChargingParams) ChargingEnabledUntil() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("chargingEnabledUntil"))
 	return rv
 }
 
@@ -86,14 +87,14 @@ func (m_ MTREnergyEVSEClusterEnableChargingParams) ChargingEnabledUntil() unsafe
 // SetChargingEnabledUntil sets the value of the chargingEnabledUntil property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEnableChargingParams/chargingEnabledUntil
-func (m_ MTREnergyEVSEClusterEnableChargingParams) SetChargingEnabledUntil(value unsafe.Pointer) {
+func (m_ MTREnergyEVSEClusterEnableChargingParams) SetChargingEnabledUntil(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setChargingEnabledUntil:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEnableChargingParams/maximumChargeCurrent
-func (m_ MTREnergyEVSEClusterEnableChargingParams) MaximumChargeCurrent() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("maximumChargeCurrent"))
+func (m_ MTREnergyEVSEClusterEnableChargingParams) MaximumChargeCurrent() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("maximumChargeCurrent"))
 	return rv
 }
 
@@ -101,14 +102,14 @@ func (m_ MTREnergyEVSEClusterEnableChargingParams) MaximumChargeCurrent() unsafe
 // SetMaximumChargeCurrent sets the value of the maximumChargeCurrent property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEnableChargingParams/maximumChargeCurrent
-func (m_ MTREnergyEVSEClusterEnableChargingParams) SetMaximumChargeCurrent(value unsafe.Pointer) {
+func (m_ MTREnergyEVSEClusterEnableChargingParams) SetMaximumChargeCurrent(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMaximumChargeCurrent:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEnableChargingParams/minimumChargeCurrent
-func (m_ MTREnergyEVSEClusterEnableChargingParams) MinimumChargeCurrent() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("minimumChargeCurrent"))
+func (m_ MTREnergyEVSEClusterEnableChargingParams) MinimumChargeCurrent() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("minimumChargeCurrent"))
 	return rv
 }
 
@@ -116,15 +117,15 @@ func (m_ MTREnergyEVSEClusterEnableChargingParams) MinimumChargeCurrent() unsafe
 // SetMinimumChargeCurrent sets the value of the minimumChargeCurrent property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEnableChargingParams/minimumChargeCurrent
-func (m_ MTREnergyEVSEClusterEnableChargingParams) SetMinimumChargeCurrent(value unsafe.Pointer) {
+func (m_ MTREnergyEVSEClusterEnableChargingParams) SetMinimumChargeCurrent(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMinimumChargeCurrent:"), value)
 }
 
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEnableChargingParams/serverSideProcessingTimeout
-func (m_ MTREnergyEVSEClusterEnableChargingParams) ServerSideProcessingTimeout() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTREnergyEVSEClusterEnableChargingParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
@@ -134,15 +135,15 @@ func (m_ MTREnergyEVSEClusterEnableChargingParams) ServerSideProcessingTimeout()
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEnableChargingParams/serverSideProcessingTimeout
-func (m_ MTREnergyEVSEClusterEnableChargingParams) SetServerSideProcessingTimeout(value unsafe.Pointer) {
+func (m_ MTREnergyEVSEClusterEnableChargingParams) SetServerSideProcessingTimeout(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEnableChargingParams/timedInvokeTimeoutMs
-func (m_ MTREnergyEVSEClusterEnableChargingParams) TimedInvokeTimeoutMs() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTREnergyEVSEClusterEnableChargingParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
@@ -152,7 +153,7 @@ func (m_ MTREnergyEVSEClusterEnableChargingParams) TimedInvokeTimeoutMs() unsafe
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEnableChargingParams/timedInvokeTimeoutMs
-func (m_ MTREnergyEVSEClusterEnableChargingParams) SetTimedInvokeTimeoutMs(value unsafe.Pointer) {
+func (m_ MTREnergyEVSEClusterEnableChargingParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

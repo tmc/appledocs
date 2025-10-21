@@ -78,6 +78,114 @@ func NewModelDescription() ModelDescription {
 }
 
 
+// A dictionary of the training input feature descriptions, which the model keys by the input’s name.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodeldescription/traininginputdescriptionsbyname
+func (m_ ModelDescription) TrainingInputDescriptionsByName() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("trainingInputDescriptionsByName"))
+	return rv
+}
+
+
+// SetTrainingInputDescriptionsByName sets the value of the trainingInputDescriptionsByName property.
+// A dictionary of the training input feature descriptions, which the model keys by the input’s name.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodeldescription/traininginputdescriptionsbyname
+func (m_ ModelDescription) SetTrainingInputDescriptionsByName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTrainingInputDescriptionsByName:"), objc.String(value))
+}
+
+// A Boolean value that indicates whether you can update the model with additional training.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodeldescription/isupdatable
+func (m_ ModelDescription) IsUpdatable() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("isUpdatable"))
+	return rv
+}
+
+
+// SetIsUpdatable sets the value of the isUpdatable property.
+// A Boolean value that indicates whether you can update the model with additional training.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodeldescription/isupdatable
+func (m_ ModelDescription) SetIsUpdatable(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIsUpdatable:"), value)
+}
+
+// An array of labels, which can be either strings or a numbers, for classifier models.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodeldescription/classlabels
+func (m_ ModelDescription) ClassLabels() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("classLabels"))
+	return rv
+}
+
+
+// SetClassLabels sets the value of the classLabels property.
+// An array of labels, which can be either strings or a numbers, for classifier models.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodeldescription/classlabels
+func (m_ ModelDescription) SetClassLabels(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setClassLabels:"), value)
+}
+
+// Model information you use at runtime during development, which Xcode also displays in its Core ML model editor view.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodel/modeldescription
+func (m_ ModelDescription) ModelDescription() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("modelDescription"))
+	return rv
+}
+
+
+// SetModelDescription sets the value of the modelDescription property.
+// Model information you use at runtime during development, which Xcode also displays in its Core ML model editor view.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodel/modeldescription
+func (m_ ModelDescription) SetModelDescription(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setModelDescription:"), value)
+}
+
+// The configuration of the model set during initialization.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodel/configuration
+func (m_ ModelDescription) Configuration() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("configuration"))
+	return rv
+}
+
+
+// SetConfiguration sets the value of the configuration property.
+// The configuration of the model set during initialization.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodel/configuration
+func (m_ ModelDescription) SetConfiguration(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setConfiguration:"), value)
+}
+
+// A dictionary of the descriptions for the model’s parameters.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodeldescription/parameterdescriptionsbykey
+func (m_ ModelDescription) ParameterDescriptionsByKey() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("parameterDescriptionsByKey"))
+	return rv
+}
+
+
+// SetParameterDescriptionsByKey sets the value of the parameterDescriptionsByKey property.
+// A dictionary of the descriptions for the model’s parameters.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodeldescription/parameterdescriptionsbykey
+func (m_ ModelDescription) SetParameterDescriptionsByKey(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setParameterDescriptionsByKey:"), value)
+}
+
 // A dictionary of input feature descriptions, which the model keys by the input’s name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelDescription/inputDescriptionsByName

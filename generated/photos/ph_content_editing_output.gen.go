@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -80,6 +81,54 @@ func NewPHContentEditingOutput() PHContentEditingOutput {
 }
 
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phcontenteditingoutput/supportedrenderedcontenttypes
+func (p_ PHContentEditingOutput) SupportedRenderedContentTypes() UTType {
+	rv := objc.Send[UTType](p_.ID, objc.Sel("supportedRenderedContentTypes"))
+	return rv
+}
+
+
+// SetSupportedRenderedContentTypes sets the value of the supportedRenderedContentTypes property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phcontenteditingoutput/supportedrenderedcontenttypes
+func (p_ PHContentEditingOutput) SetSupportedRenderedContentTypes(value UTType) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setSupportedRenderedContentTypes:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phcontenteditingoutput/defaultrenderedcontenttype
+func (p_ PHContentEditingOutput) DefaultRenderedContentType() UTType {
+	rv := objc.Send[UTType](p_.ID, objc.Sel("defaultRenderedContentType"))
+	return rv
+}
+
+
+// SetDefaultRenderedContentType sets the value of the defaultRenderedContentType property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phcontenteditingoutput/defaultrenderedcontenttype
+func (p_ PHContentEditingOutput) SetDefaultRenderedContentType(value UTType) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setDefaultRenderedContentType:"), value)
+}
+
+// The output of an asset content editing session.
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phassetchangerequest/contenteditingoutput
+func (p_ PHContentEditingOutput) ContentEditingOutput() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("contentEditingOutput"))
+	return rv
+}
+
+
+// SetContentEditingOutput sets the value of the contentEditingOutput property.
+// The output of an asset content editing session.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phassetchangerequest/contenteditingoutput
+func (p_ PHContentEditingOutput) SetContentEditingOutput(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setContentEditingOutput:"), value)
+}
+
 // An object describing the changes made to the asset.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHContentEditingOutput/adjustmentData
@@ -101,8 +150,8 @@ func (p_ PHContentEditingOutput) SetAdjustmentData(value unsafe.Pointer) {
 // The URL at which to write a file containing edited asset content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHContentEditingOutput/renderedContentURL
-func (p_ PHContentEditingOutput) RenderedContentURL() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("renderedContentURL"))
+func (p_ PHContentEditingOutput) RenderedContentURL() foundation.URL {
+	rv := objc.Send[foundation.URL](p_.ID, objc.Sel("renderedContentURL"))
 	return rv
 }
 

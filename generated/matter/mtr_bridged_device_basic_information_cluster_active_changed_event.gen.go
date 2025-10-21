@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,8 +78,8 @@ func NewMTRBridgedDeviceBasicInformationClusterActiveChangedEvent() MTRBridgedDe
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBridgedDeviceBasicInformationClusterActiveChangedEvent/promisedActiveDuration
-func (m_ MTRBridgedDeviceBasicInformationClusterActiveChangedEvent) PromisedActiveDuration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("promisedActiveDuration"))
+func (m_ MTRBridgedDeviceBasicInformationClusterActiveChangedEvent) PromisedActiveDuration() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("promisedActiveDuration"))
 	return rv
 }
 
@@ -86,7 +87,7 @@ func (m_ MTRBridgedDeviceBasicInformationClusterActiveChangedEvent) PromisedActi
 // SetPromisedActiveDuration sets the value of the promisedActiveDuration property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBridgedDeviceBasicInformationClusterActiveChangedEvent/promisedActiveDuration
-func (m_ MTRBridgedDeviceBasicInformationClusterActiveChangedEvent) SetPromisedActiveDuration(value unsafe.Pointer) {
+func (m_ MTRBridgedDeviceBasicInformationClusterActiveChangedEvent) SetPromisedActiveDuration(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPromisedActiveDuration:"), value)
 }
 

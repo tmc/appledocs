@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -92,8 +93,8 @@ func (m_ MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams) Se
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams/breadcrumb
-func (m_ MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams) Breadcrumb() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("breadcrumb"))
+func (m_ MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams) Breadcrumb() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("breadcrumb"))
 	return rv
 }
 
@@ -101,15 +102,15 @@ func (m_ MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams) Br
 // SetBreadcrumb sets the value of the breadcrumb property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams/breadcrumb
-func (m_ MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams) SetBreadcrumb(value unsafe.Pointer) {
+func (m_ MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams) SetBreadcrumb(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBreadcrumb:"), value)
 }
 
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams/serverSideProcessingTimeout
-func (m_ MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams) ServerSideProcessingTimeout() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
@@ -119,15 +120,15 @@ func (m_ MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams) Se
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams/serverSideProcessingTimeout
-func (m_ MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams) SetServerSideProcessingTimeout(value unsafe.Pointer) {
+func (m_ MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams) SetServerSideProcessingTimeout(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams/timedInvokeTimeoutMs
-func (m_ MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams) TimedInvokeTimeoutMs() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
@@ -137,7 +138,7 @@ func (m_ MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams) Ti
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams/timedInvokeTimeoutMs
-func (m_ MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams) SetTimedInvokeTimeoutMs(value unsafe.Pointer) {
+func (m_ MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

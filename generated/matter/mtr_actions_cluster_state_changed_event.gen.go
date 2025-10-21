@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,51 @@ func NewMTRActionsClusterStateChangedEvent() MTRActionsClusterStateChangedEvent 
 	return getMTRActionsClusterStateChangedEventClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterstatechangedevent/actionid
+func (m_ MTRActionsClusterStateChangedEvent) ActionID() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("actionID"))
+	return rv
+}
+
+
+// SetActionID sets the value of the actionID property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterstatechangedevent/actionid
+func (m_ MTRActionsClusterStateChangedEvent) SetActionID(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setActionID:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterstatechangedevent/newstate
+func (m_ MTRActionsClusterStateChangedEvent) NewState() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("newState"))
+	return rv
+}
+
+
+// SetNewState sets the value of the newState property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterstatechangedevent/newstate
+func (m_ MTRActionsClusterStateChangedEvent) SetNewState(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setNewState:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterstatechangedevent/invokeid
+func (m_ MTRActionsClusterStateChangedEvent) InvokeID() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("invokeID"))
+	return rv
+}
+
+
+// SetInvokeID sets the value of the invokeID property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterstatechangedevent/invokeid
+func (m_ MTRActionsClusterStateChangedEvent) SetInvokeID(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setInvokeID:"), value)
+}
 
 
 

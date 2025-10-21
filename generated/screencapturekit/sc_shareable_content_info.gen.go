@@ -79,6 +79,24 @@ func NewShareableContentInfo() ShareableContentInfo {
 }
 
 
+// The scaling from points to output pixel resolution for the stream.
+//
+// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scshareablecontentinfo/pointpixelscale
+func (s_ ShareableContentInfo) PointPixelScale() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("pointPixelScale"))
+	return rv
+}
+
+
+// SetPointPixelScale sets the value of the pointPixelScale property.
+// The scaling from points to output pixel resolution for the stream.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scshareablecontentinfo/pointpixelscale
+func (s_ ShareableContentInfo) SetPointPixelScale(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setPointPixelScale:"), value)
+}
+
 // The size and location of content for the stream.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCShareableContentInfo/contentRect

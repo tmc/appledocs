@@ -81,6 +81,50 @@ func NewDetectHumanBodyPoseRequest() DetectHumanBodyPoseRequest {
 }
 
 
+// A constant for specifying revision 1 of the body pose detection request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetecthumanbodyposerequestrevision1
+func (d_ DetectHumanBodyPoseRequest) VNDetectHumanBodyPoseRequestRevision1() int {
+	rv := objc.Send[int](d_.ID, objc.Sel("VNDetectHumanBodyPoseRequestRevision1"))
+	return rv
+}
+
+// Retrieves the supported joint group names.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetecthumanbodyposerequest/supportedjointsgroupnames
+func (d_ DetectHumanBodyPoseRequest) SupportedJointsGroupNames() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("supportedJointsGroupNames"))
+	return rv
+}
+
+
+// SetSupportedJointsGroupNames sets the value of the supportedJointsGroupNames property.
+// Retrieves the supported joint group names.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetecthumanbodyposerequest/supportedjointsgroupnames
+func (d_ DetectHumanBodyPoseRequest) SetSupportedJointsGroupNames(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setSupportedJointsGroupNames:"), value)
+}
+
+// Retrieves the supported joint names.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetecthumanbodyposerequest/supportedjointnames
+func (d_ DetectHumanBodyPoseRequest) SupportedJointNames() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("supportedJointNames"))
+	return rv
+}
+
+
+// SetSupportedJointNames sets the value of the supportedJointNames property.
+// Retrieves the supported joint names.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetecthumanbodyposerequest/supportedjointnames
+func (d_ DetectHumanBodyPoseRequest) SetSupportedJointNames(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setSupportedJointNames:"), value)
+}
+
 // The observed body poses.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectHumanBodyPoseRequest/results

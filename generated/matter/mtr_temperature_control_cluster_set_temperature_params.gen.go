@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -78,8 +79,8 @@ func NewMTRTemperatureControlClusterSetTemperatureParams() MTRTemperatureControl
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTemperatureControlClusterSetTemperatureParams/serverSideProcessingTimeout
-func (m_ MTRTemperatureControlClusterSetTemperatureParams) ServerSideProcessingTimeout() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRTemperatureControlClusterSetTemperatureParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
@@ -89,14 +90,14 @@ func (m_ MTRTemperatureControlClusterSetTemperatureParams) ServerSideProcessingT
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTemperatureControlClusterSetTemperatureParams/serverSideProcessingTimeout
-func (m_ MTRTemperatureControlClusterSetTemperatureParams) SetServerSideProcessingTimeout(value unsafe.Pointer) {
+func (m_ MTRTemperatureControlClusterSetTemperatureParams) SetServerSideProcessingTimeout(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTemperatureControlClusterSetTemperatureParams/targetTemperature
-func (m_ MTRTemperatureControlClusterSetTemperatureParams) TargetTemperature() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("targetTemperature"))
+func (m_ MTRTemperatureControlClusterSetTemperatureParams) TargetTemperature() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("targetTemperature"))
 	return rv
 }
 
@@ -104,14 +105,14 @@ func (m_ MTRTemperatureControlClusterSetTemperatureParams) TargetTemperature() u
 // SetTargetTemperature sets the value of the targetTemperature property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTemperatureControlClusterSetTemperatureParams/targetTemperature
-func (m_ MTRTemperatureControlClusterSetTemperatureParams) SetTargetTemperature(value unsafe.Pointer) {
+func (m_ MTRTemperatureControlClusterSetTemperatureParams) SetTargetTemperature(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTargetTemperature:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTemperatureControlClusterSetTemperatureParams/targetTemperatureLevel
-func (m_ MTRTemperatureControlClusterSetTemperatureParams) TargetTemperatureLevel() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("targetTemperatureLevel"))
+func (m_ MTRTemperatureControlClusterSetTemperatureParams) TargetTemperatureLevel() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("targetTemperatureLevel"))
 	return rv
 }
 
@@ -119,15 +120,15 @@ func (m_ MTRTemperatureControlClusterSetTemperatureParams) TargetTemperatureLeve
 // SetTargetTemperatureLevel sets the value of the targetTemperatureLevel property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTemperatureControlClusterSetTemperatureParams/targetTemperatureLevel
-func (m_ MTRTemperatureControlClusterSetTemperatureParams) SetTargetTemperatureLevel(value unsafe.Pointer) {
+func (m_ MTRTemperatureControlClusterSetTemperatureParams) SetTargetTemperatureLevel(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTargetTemperatureLevel:"), value)
 }
 
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTemperatureControlClusterSetTemperatureParams/timedInvokeTimeoutMs
-func (m_ MTRTemperatureControlClusterSetTemperatureParams) TimedInvokeTimeoutMs() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRTemperatureControlClusterSetTemperatureParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
@@ -137,7 +138,7 @@ func (m_ MTRTemperatureControlClusterSetTemperatureParams) TimedInvokeTimeoutMs(
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTemperatureControlClusterSetTemperatureParams/timedInvokeTimeoutMs
-func (m_ MTRTemperatureControlClusterSetTemperatureParams) SetTimedInvokeTimeoutMs(value unsafe.Pointer) {
+func (m_ MTRTemperatureControlClusterSetTemperatureParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

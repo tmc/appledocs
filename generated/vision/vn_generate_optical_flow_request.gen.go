@@ -81,5 +81,93 @@ func NewGenerateOpticalFlowRequest() GenerateOpticalFlowRequest {
 }
 
 
+// A constant for specifying revision 2 of the optical flow generation request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vngenerateopticalflowrequestrevision2
+func (g_ GenerateOpticalFlowRequest) VNGenerateOpticalFlowRequestRevision2() int {
+	rv := objc.Send[int](g_.ID, objc.Sel("VNGenerateOpticalFlowRequestRevision2"))
+	return rv
+}
+
+// The results of the request to generate optical flow.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vngenerateopticalflowrequest/results
+func (g_ GenerateOpticalFlowRequest) Results() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("results"))
+	return rv
+}
+
+
+// SetResults sets the value of the results property.
+// The results of the request to generate optical flow.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vngenerateopticalflowrequest/results
+func (g_ GenerateOpticalFlowRequest) SetResults(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setResults:"), value)
+}
+
+// A constant for specifying revision 1 of the optical flow generation request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vngenerateopticalflowrequestrevision1
+func (g_ GenerateOpticalFlowRequest) VNGenerateOpticalFlowRequestRevision1() int {
+	rv := objc.Send[int](g_.ID, objc.Sel("VNGenerateOpticalFlowRequestRevision1"))
+	return rv
+}
+
+// A Boolean value that indicates whether to keep the raw pixel buffer coming from the machine learning network.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vngenerateopticalflowrequest/keepnetworkoutput
+func (g_ GenerateOpticalFlowRequest) KeepNetworkOutput() bool {
+	rv := objc.Send[bool](g_.ID, objc.Sel("keepNetworkOutput"))
+	return rv
+}
+
+
+// SetKeepNetworkOutput sets the value of the keepNetworkOutput property.
+// A Boolean value that indicates whether to keep the raw pixel buffer coming from the machine learning network.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vngenerateopticalflowrequest/keepnetworkoutput
+func (g_ GenerateOpticalFlowRequest) SetKeepNetworkOutput(value bool) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setKeepNetworkOutput:"), value)
+}
+
+// The output buffer’s pixel format.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vngenerateopticalflowrequest/outputpixelformat
+func (g_ GenerateOpticalFlowRequest) OutputPixelFormat() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("outputPixelFormat"))
+	return rv
+}
+
+
+// SetOutputPixelFormat sets the value of the outputPixelFormat property.
+// The output buffer’s pixel format.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vngenerateopticalflowrequest/outputpixelformat
+func (g_ GenerateOpticalFlowRequest) SetOutputPixelFormat(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setOutputPixelFormat:"), value)
+}
+
+// The accuracy level for computing optical flow.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vngenerateopticalflowrequest/computationaccuracy-swift.property
+func (g_ GenerateOpticalFlowRequest) ComputationAccuracy() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("computationAccuracy"))
+	return rv
+}
+
+
+// SetComputationAccuracy sets the value of the computationAccuracy property.
+// The accuracy level for computing optical flow.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vngenerateopticalflowrequest/computationaccuracy-swift.property
+func (g_ GenerateOpticalFlowRequest) SetComputationAccuracy(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setComputationAccuracy:"), value)
+}
+
 
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [SkipIntervalCommand] class.
@@ -80,6 +81,24 @@ func NewSkipIntervalCommand() SkipIntervalCommand {
 	return getSkipIntervalCommandClass().New()
 }
 
+
+// The available skip intervals, in seconds, for a media item.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpskipintervalcommand/preferredintervals
+func (s_ SkipIntervalCommand) PreferredIntervals() foundation.Number {
+	rv := objc.Send[foundation.Number](s_.ID, objc.Sel("preferredIntervals"))
+	return rv
+}
+
+
+// SetPreferredIntervals sets the value of the preferredIntervals property.
+// The available skip intervals, in seconds, for a media item.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpskipintervalcommand/preferredintervals
+func (s_ SkipIntervalCommand) SetPreferredIntervals(value foundation.Number) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setPreferredIntervals:"), value)
+}
 
 
 

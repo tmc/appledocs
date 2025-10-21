@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -86,7 +87,7 @@ func NewContentRuleListStore() ContentRuleListStore {
 // Creates a new content rule list store in the specified directory.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKContentRuleListStore/init(url:)
-func NewContentRuleListStoreWithURL(url unsafe.Pointer) ContentRuleListStore {
+func NewContentRuleListStoreWithURL(url foundation.URL) ContentRuleListStore {
 	rv := objc.Send[ContentRuleListStore](objc.ID(getContentRuleListStoreClass().class), objc.Sel("storeWithURL:"), url)
 	return rv
 }
@@ -95,7 +96,7 @@ func NewContentRuleListStoreWithURL(url unsafe.Pointer) ContentRuleListStore {
 // Creates a new content rule list store in the specified directory.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKContentRuleListStore/init(url:)
-func (cc _ContentRuleListStoreClass) StoreWithURL(url unsafe.Pointer) unsafe.Pointer {
+func (cc _ContentRuleListStoreClass) StoreWithURL(url foundation.URL) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("storeWithURL:"), url)
 	return rv
 }

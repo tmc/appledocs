@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,51 @@ func NewMTRAccessGrant() MTRAccessGrant {
 	return getMTRAccessGrantClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtraccessgrant/authenticationmode
+func (m_ MTRAccessGrant) AuthenticationMode() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("authenticationMode"))
+	return rv
+}
+
+
+// SetAuthenticationMode sets the value of the authenticationMode property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtraccessgrant/authenticationmode
+func (m_ MTRAccessGrant) SetAuthenticationMode(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAuthenticationMode:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtraccessgrant/grantedprivilege
+func (m_ MTRAccessGrant) GrantedPrivilege() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("grantedPrivilege"))
+	return rv
+}
+
+
+// SetGrantedPrivilege sets the value of the grantedPrivilege property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtraccessgrant/grantedprivilege
+func (m_ MTRAccessGrant) SetGrantedPrivilege(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setGrantedPrivilege:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtraccessgrant/subjectid
+func (m_ MTRAccessGrant) SubjectID() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("subjectID"))
+	return rv
+}
+
+
+// SetSubjectID sets the value of the subjectID property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtraccessgrant/subjectid
+func (m_ MTRAccessGrant) SetSubjectID(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSubjectID:"), value)
+}
 
 
 

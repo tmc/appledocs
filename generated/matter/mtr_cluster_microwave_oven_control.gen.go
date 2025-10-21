@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MTRClusterMicrowaveOvenControl] class.
@@ -29,7 +30,7 @@ type _MTRClusterMicrowaveOvenControlClass struct {
 // An interface definition for the [MTRClusterMicrowaveOvenControl] class.
 type IMTRClusterMicrowaveOvenControl interface {
 	IMTRGenericCluster
-	AddMoreTimeWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, completion unsafe.Pointer)
+	AddMoreTimeWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer)
 	ReadAttributeAcceptedCommandListWithParams(params unsafe.Pointer) unsafe.Pointer
 	ReadAttributeAttributeListWithParams(params unsafe.Pointer) unsafe.Pointer
 	ReadAttributeClusterRevisionWithParams(params unsafe.Pointer) unsafe.Pointer
@@ -42,8 +43,8 @@ type IMTRClusterMicrowaveOvenControl interface {
 	ReadAttributePowerSettingWithParams(params unsafe.Pointer) unsafe.Pointer
 	ReadAttributePowerStepWithParams(params unsafe.Pointer) unsafe.Pointer
 	ReadAttributeWattRatingWithParams(params unsafe.Pointer) unsafe.Pointer
-	SetCookingParametersWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, completion unsafe.Pointer)
-	SetCookingParametersWithExpectedValuesExpectedValueIntervalCompletion(expectedValues unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, completion unsafe.Pointer)
+	SetCookingParametersWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer)
+	SetCookingParametersWithExpectedValuesExpectedValueIntervalCompletion(expectedValues unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer)
 }
 
 // Cluster Microwave Oven Control Attributes and commands for configuring the microwave oven control, and reporting cooking stats.
@@ -99,7 +100,7 @@ func NewMTRClusterMicrowaveOvenControl() MTRClusterMicrowaveOvenControl {
 // For all instance methods that take a completion (i.e. command invocations), the completion will be called on the provided queue.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterMicrowaveOvenControl/init(device:endpointID:queue:)
-func NewMTRClusterMicrowaveOvenControlWithDeviceEndpointIDQueue(device unsafe.Pointer, endpointID unsafe.Pointer, queue unsafe.Pointer) MTRClusterMicrowaveOvenControl {
+func NewMTRClusterMicrowaveOvenControlWithDeviceEndpointIDQueue(device unsafe.Pointer, endpointID foundation.Number, queue unsafe.Pointer) MTRClusterMicrowaveOvenControl {
 	instance := getMTRClusterMicrowaveOvenControlClass().Alloc()
 	rv := objc.Send[MTRClusterMicrowaveOvenControl](instance.ID, objc.Sel("initWithDevice:endpointID:queue:"), device, endpointID, queue)
 	rv.Autorelease()
@@ -109,7 +110,7 @@ func NewMTRClusterMicrowaveOvenControlWithDeviceEndpointIDQueue(device unsafe.Po
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterMicrowaveOvenControl/addMoreTime(with:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterMicrowaveOvenControl) AddMoreTimeWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, completion unsafe.Pointer) {
+func (m_ MTRClusterMicrowaveOvenControl) AddMoreTimeWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("addMoreTimeWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
 }
 
@@ -199,13 +200,13 @@ func (m_ MTRClusterMicrowaveOvenControl) ReadAttributeWattRatingWithParams(param
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterMicrowaveOvenControl/setCookingParametersWith(_:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterMicrowaveOvenControl) SetCookingParametersWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, completion unsafe.Pointer) {
+func (m_ MTRClusterMicrowaveOvenControl) SetCookingParametersWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCookingParametersWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterMicrowaveOvenControl/setCookingParametersWithExpectedValues(_:expectedValueInterval:completion:)
-func (m_ MTRClusterMicrowaveOvenControl) SetCookingParametersWithExpectedValuesExpectedValueIntervalCompletion(expectedValues unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, completion unsafe.Pointer) {
+func (m_ MTRClusterMicrowaveOvenControl) SetCookingParametersWithExpectedValuesExpectedValueIntervalCompletion(expectedValues unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCookingParametersWithExpectedValues:expectedValueInterval:completion:"), expectedValues, expectedValueIntervalMs, completion)
 }
 

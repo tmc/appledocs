@@ -81,5 +81,131 @@ func NewINPayBillIntent() INPayBillIntent {
 }
 
 
+// The amount to transfer from the user to the payee.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inpaybillintent/transactionamount
+func (i_ INPayBillIntent) TransactionAmount() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("transactionAmount"))
+	return rv
+}
+
+
+// SetTransactionAmount sets the value of the transactionAmount property.
+// The amount to transfer from the user to the payee.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inpaybillintent/transactionamount
+func (i_ INPayBillIntent) SetTransactionAmount(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setTransactionAmount:"), value)
+}
+
+// The user account containing the funds for the payment.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inpaybillintent/fromaccount
+func (i_ INPayBillIntent) FromAccount() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("fromAccount"))
+	return rv
+}
+
+
+// SetFromAccount sets the value of the fromAccount property.
+// The user account containing the funds for the payment.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inpaybillintent/fromaccount
+func (i_ INPayBillIntent) SetFromAccount(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setFromAccount:"), value)
+}
+
+// The recipient of the payment.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inpaybillintent/billpayee
+func (i_ INPayBillIntent) BillPayee() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("billPayee"))
+	return rv
+}
+
+
+// SetBillPayee sets the value of the billPayee property.
+// The recipient of the payment.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inpaybillintent/billpayee
+func (i_ INPayBillIntent) SetBillPayee(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setBillPayee:"), value)
+}
+
+// The type of the bill.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inpaybillintent/billtype
+func (i_ INPayBillIntent) BillType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("billType"))
+	return rv
+}
+
+
+// SetBillType sets the value of the billType property.
+// The type of the bill.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inpaybillintent/billtype
+func (i_ INPayBillIntent) SetBillType(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setBillType:"), value)
+}
+
+// The due date of the payment.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inpaybillintent/duedate
+func (i_ INPayBillIntent) DueDate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("dueDate"))
+	return rv
+}
+
+
+// SetDueDate sets the value of the dueDate property.
+// The due date of the payment.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inpaybillintent/duedate
+func (i_ INPayBillIntent) SetDueDate(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setDueDate:"), value)
+}
+
+// The scheduled date for the payment, as requested by the user.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inpaybillintent/transactionscheduleddate
+func (i_ INPayBillIntent) TransactionScheduledDate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("transactionScheduledDate"))
+	return rv
+}
+
+
+// SetTransactionScheduledDate sets the value of the transactionScheduledDate property.
+// The scheduled date for the payment, as requested by the user.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inpaybillintent/transactionscheduleddate
+func (i_ INPayBillIntent) SetTransactionScheduledDate(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setTransactionScheduledDate:"), value)
+}
+
+// A note to associate with the payment transaction.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inpaybillintent/transactionnote
+func (i_ INPayBillIntent) TransactionNote() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("transactionNote"))
+	return rv
+}
+
+
+// SetTransactionNote sets the value of the transactionNote property.
+// A note to associate with the payment transaction.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inpaybillintent/transactionnote
+func (i_ INPayBillIntent) SetTransactionNote(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setTransactionNote:"), objc.String(value))
+}
+
 
 

@@ -75,5 +75,53 @@ func NewAccelerationStructurePassSampleBufferAttachmentDescriptor() Acceleration
 }
 
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructurepasssamplebufferattachmentdescriptor/startofencodersampleindex
+func (a_ AccelerationStructurePassSampleBufferAttachmentDescriptor) StartOfEncoderSampleIndex() int {
+	rv := objc.Send[int](a_.ID, objc.Sel("startOfEncoderSampleIndex"))
+	return rv
+}
+
+
+// SetStartOfEncoderSampleIndex sets the value of the startOfEncoderSampleIndex property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructurepasssamplebufferattachmentdescriptor/startofencodersampleindex
+func (a_ AccelerationStructurePassSampleBufferAttachmentDescriptor) SetStartOfEncoderSampleIndex(value int) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setStartOfEncoderSampleIndex:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructurepasssamplebufferattachmentdescriptor/endofencodersampleindex
+func (a_ AccelerationStructurePassSampleBufferAttachmentDescriptor) EndOfEncoderSampleIndex() int {
+	rv := objc.Send[int](a_.ID, objc.Sel("endOfEncoderSampleIndex"))
+	return rv
+}
+
+
+// SetEndOfEncoderSampleIndex sets the value of the endOfEncoderSampleIndex property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructurepasssamplebufferattachmentdescriptor/endofencodersampleindex
+func (a_ AccelerationStructurePassSampleBufferAttachmentDescriptor) SetEndOfEncoderSampleIndex(value int) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setEndOfEncoderSampleIndex:"), value)
+}
+
+// A specialized memory buffer that the GPU uses to store its counter data during the acceleration structure pass.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructurepasssamplebufferattachmentdescriptor/samplebuffer
+func (a_ AccelerationStructurePassSampleBufferAttachmentDescriptor) SampleBuffer() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("sampleBuffer"))
+	return rv
+}
+
+
+// SetSampleBuffer sets the value of the sampleBuffer property.
+// A specialized memory buffer that the GPU uses to store its counter data during the acceleration structure pass.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructurepasssamplebufferattachmentdescriptor/samplebuffer
+func (a_ AccelerationStructurePassSampleBufferAttachmentDescriptor) SetSampleBuffer(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setSampleBuffer:"), value)
+}
+
 
 

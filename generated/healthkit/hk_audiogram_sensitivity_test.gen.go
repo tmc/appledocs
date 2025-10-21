@@ -75,5 +75,80 @@ func NewHKAudiogramSensitivityTest() HKAudiogramSensitivityTest {
 }
 
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkaudiogramsensitivitytest/side
+func (h_ HKAudiogramSensitivityTest) Side() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("side"))
+	return rv
+}
+
+
+// SetSide sets the value of the side property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkaudiogramsensitivitytest/side
+func (h_ HKAudiogramSensitivityTest) SetSide(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setSide:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkaudiogramsensitivitytest/sensitivity
+func (h_ HKAudiogramSensitivityTest) Sensitivity() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("sensitivity"))
+	return rv
+}
+
+
+// SetSensitivity sets the value of the sensitivity property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkaudiogramsensitivitytest/sensitivity
+func (h_ HKAudiogramSensitivityTest) SetSensitivity(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setSensitivity:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkaudiogramsensitivitytest/type
+func (h_ HKAudiogramSensitivityTest) Type() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("type"))
+	return rv
+}
+
+
+// SetType sets the value of the type property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkaudiogramsensitivitytest/type
+func (h_ HKAudiogramSensitivityTest) SetType(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setType:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkaudiogramsensitivitytest/masked
+func (h_ HKAudiogramSensitivityTest) Masked() bool {
+	rv := objc.Send[bool](h_.ID, objc.Sel("masked"))
+	return rv
+}
+
+
+// SetMasked sets the value of the masked property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkaudiogramsensitivitytest/masked
+func (h_ HKAudiogramSensitivityTest) SetMasked(value bool) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setMasked:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkaudiogramsensitivitytest/clampingrange
+func (h_ HKAudiogramSensitivityTest) ClampingRange() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("clampingRange"))
+	return rv
+}
+
+
+// SetClampingRange sets the value of the clampingRange property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkaudiogramsensitivitytest/clampingrange
+func (h_ HKAudiogramSensitivityTest) SetClampingRange(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setClampingRange:"), value)
+}
+
 
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,51 @@ func NewMTRMediaPlaybackClusterRewindParams() MTRMediaPlaybackClusterRewindParam
 	return getMTRMediaPlaybackClusterRewindParamsClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterrewindparams/audioadvanceunmuted
+func (m_ MTRMediaPlaybackClusterRewindParams) AudioAdvanceUnmuted() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("audioAdvanceUnmuted"))
+	return rv
+}
+
+
+// SetAudioAdvanceUnmuted sets the value of the audioAdvanceUnmuted property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterrewindparams/audioadvanceunmuted
+func (m_ MTRMediaPlaybackClusterRewindParams) SetAudioAdvanceUnmuted(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAudioAdvanceUnmuted:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterrewindparams/serversideprocessingtimeout
+func (m_ MTRMediaPlaybackClusterRewindParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+	return rv
+}
+
+
+// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterrewindparams/serversideprocessingtimeout
+func (m_ MTRMediaPlaybackClusterRewindParams) SetServerSideProcessingTimeout(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterrewindparams/timedinvoketimeoutms
+func (m_ MTRMediaPlaybackClusterRewindParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+	return rv
+}
+
+
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterrewindparams/timedinvoketimeoutms
+func (m_ MTRMediaPlaybackClusterRewindParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+}
 
 
 

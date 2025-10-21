@@ -94,6 +94,98 @@ func NewCKFetchShareParticipantsOperationWithUserIdentityLookupInfos(userIdentit
 }
 
 
+// A Boolean value that indicates whether the user has an iCloud account.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckuseridentity/hasicloudaccount
+func (c_ CKFetchShareParticipantsOperation) HasiCloudAccount() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("hasiCloudAccount"))
+	return rv
+}
+
+
+// SetHasiCloudAccount sets the value of the hasiCloudAccount property.
+// A Boolean value that indicates whether the user has an iCloud account.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckuseridentity/hasicloudaccount
+func (c_ CKFetchShareParticipantsOperation) SetHasiCloudAccount(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setHasiCloudAccount:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchshareparticipantsoperation/fetchshareparticipantsresultblock
+func (c_ CKFetchShareParticipantsOperation) FetchShareParticipantsResultBlock() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("fetchShareParticipantsResultBlock"))
+	return rv
+}
+
+
+// SetFetchShareParticipantsResultBlock sets the value of the fetchShareParticipantsResultBlock property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchshareparticipantsoperation/fetchshareparticipantsresultblock
+func (c_ CKFetchShareParticipantsOperation) SetFetchShareParticipantsResultBlock(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setFetchShareParticipantsResultBlock:"), value)
+}
+
+// The key to retrieve partial errors.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckpartialerrorsbyitemidkey
+func (c_ CKFetchShareParticipantsOperation) CKPartialErrorsByItemIDKey() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CKPartialErrorsByItemIDKey"))
+	return rv
+}
+
+// The user info dictionary.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/userInfo
+func (c_ CKFetchShareParticipantsOperation) UserInfo() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("userInfo"))
+	return rv
+}
+
+
+// SetUserInfo sets the value of the userInfo property.
+// The user info dictionary.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/userInfo
+func (c_ CKFetchShareParticipantsOperation) SetUserInfo(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setUserInfo:"), objc.String(value))
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchshareparticipantsoperation/pershareparticipantresultblock
+func (c_ CKFetchShareParticipantsOperation) PerShareParticipantResultBlock() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("perShareParticipantResultBlock"))
+	return rv
+}
+
+
+// SetPerShareParticipantResultBlock sets the value of the perShareParticipantResultBlock property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchshareparticipantsoperation/pershareparticipantresultblock
+func (c_ CKFetchShareParticipantsOperation) SetPerShareParticipantResultBlock(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setPerShareParticipantResultBlock:"), value)
+}
+
+// The identity of the participant.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckshare/participant/useridentity
+func (c_ CKFetchShareParticipantsOperation) UserIdentity() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("userIdentity"))
+	return rv
+}
+
+
+// SetUserIdentity sets the value of the userIdentity property.
+// The identity of the participant.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckshare/participant/useridentity
+func (c_ CKFetchShareParticipantsOperation) SetUserIdentity(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setUserIdentity:"), value)
+}
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchShareParticipantsOperation/perShareParticipantCompletionBlock
 func (c_ CKFetchShareParticipantsOperation) PerShareParticipantCompletionBlock() unsafe.Pointer {

@@ -81,6 +81,114 @@ func NewAttributeDescription() AttributeDescription {
 }
 
 
+// The name of the transformer to use for the attribute value.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsattributedescription/valuetransformername
+func (a_ AttributeDescription) ValueTransformerName() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("valueTransformerName"))
+	return rv
+}
+
+
+// SetValueTransformerName sets the value of the valueTransformerName property.
+// The name of the transformer to use for the attribute value.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsattributedescription/valuetransformername
+func (a_ AttributeDescription) SetValueTransformerName(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setValueTransformerName:"), objc.String(value))
+}
+
+// The attribute’s type.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsattributedescription/type
+func (a_ AttributeDescription) Type() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("type"))
+	return rv
+}
+
+
+// SetType sets the value of the type property.
+// The attribute’s type.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsattributedescription/type
+func (a_ AttributeDescription) SetType(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setType:"), value)
+}
+
+// The class name that represents the attribute’s value.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsattributedescription/attributevalueclassname
+func (a_ AttributeDescription) AttributeValueClassName() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("attributeValueClassName"))
+	return rv
+}
+
+
+// SetAttributeValueClassName sets the value of the attributeValueClassName property.
+// The class name that represents the attribute’s value.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsattributedescription/attributevalueclassname
+func (a_ AttributeDescription) SetAttributeValueClassName(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAttributeValueClassName:"), objc.String(value))
+}
+
+// The default value of the attribute.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsattributedescription/defaultvalue
+func (a_ AttributeDescription) DefaultValue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("defaultValue"))
+	return rv
+}
+
+
+// SetDefaultValue sets the value of the defaultValue property.
+// The default value of the attribute.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsattributedescription/defaultvalue
+func (a_ AttributeDescription) SetDefaultValue(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setDefaultValue:"), value)
+}
+
+// A Boolean value that indicates whether the attribute records its value in the persistent history transaction for a managed object’s deletion.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsattributedescription/preservesvalueinhistoryondeletion
+func (a_ AttributeDescription) PreservesValueInHistoryOnDeletion() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("preservesValueInHistoryOnDeletion"))
+	return rv
+}
+
+
+// SetPreservesValueInHistoryOnDeletion sets the value of the preservesValueInHistoryOnDeletion property.
+// A Boolean value that indicates whether the attribute records its value in the persistent history transaction for a managed object’s deletion.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsattributedescription/preservesvalueinhistoryondeletion
+func (a_ AttributeDescription) SetPreservesValueInHistoryOnDeletion(value bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setPreservesValueInHistoryOnDeletion:"), value)
+}
+
+// The version hash for the attribute.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsattributedescription/versionhash
+func (a_ AttributeDescription) VersionHash() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("versionHash"))
+	return rv
+}
+
+
+// SetVersionHash sets the value of the versionHash property.
+// The version hash for the attribute.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsattributedescription/versionhash
+func (a_ AttributeDescription) SetVersionHash(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setVersionHash:"), value)
+}
+
 // A Boolean value that determines whether to encrypt the attribute’s value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAttributeDescription/allowsCloudEncryption

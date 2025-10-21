@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [ScrubberFlowLayout] class.
@@ -87,6 +88,42 @@ func NewScrubberFlowLayout() ScrubberFlowLayout {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberFlowLayout/invalidateLayoutForItems(at:)
 func (s_ ScrubberFlowLayout) InvalidateLayoutForItemsAtIndexes(invalidItemIndexes unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("invalidateLayoutForItemsAtIndexes:"), invalidItemIndexes)
+}
+
+// The frame size for each item in the scrubber.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberflowlayout/itemsize
+func (s_ ScrubberFlowLayout) ItemSize() coregraphics.CGSize {
+	rv := objc.Send[coregraphics.CGSize](s_.ID, objc.Sel("itemSize"))
+	return rv
+}
+
+
+// SetItemSize sets the value of the itemSize property.
+// The frame size for each item in the scrubber.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberflowlayout/itemsize
+func (s_ ScrubberFlowLayout) SetItemSize(value coregraphics.CGSize) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setItemSize:"), value)
+}
+
+// The horizontal spacing between items, specified in points.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberflowlayout/itemspacing
+func (s_ ScrubberFlowLayout) ItemSpacing() float64 {
+	rv := objc.Send[float64](s_.ID, objc.Sel("itemSpacing"))
+	return rv
+}
+
+
+// SetItemSpacing sets the value of the itemSpacing property.
+// The horizontal spacing between items, specified in points.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberflowlayout/itemspacing
+func (s_ ScrubberFlowLayout) SetItemSpacing(value float64) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setItemSpacing:"), value)
 }
 
 

@@ -86,6 +86,36 @@ func NewMEDecodedMessageBannerWithTitlePrimaryActionTitleDismissable(title strin
 
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/mailkit/medecodedmessagebanner/isdismissable
+func (m_ MEDecodedMessageBanner) IsDismissable() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("isDismissable"))
+	return rv
+}
+
+
+// SetIsDismissable sets the value of the isDismissable property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mailkit/medecodedmessagebanner/isdismissable
+func (m_ MEDecodedMessageBanner) SetIsDismissable(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIsDismissable:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mailkit/medecodedmessagebanner/title
+func (m_ MEDecodedMessageBanner) Title() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("title"))
+	return rv
+}
+
+
+// SetTitle sets the value of the title property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mailkit/medecodedmessagebanner/title
+func (m_ MEDecodedMessageBanner) SetTitle(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTitle:"), objc.String(value))
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/MailKit/MEDecodedMessageBanner/isDismissable
 func (m_ MEDecodedMessageBanner) Dismissable() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("dismissable"))

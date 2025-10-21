@@ -161,5 +161,167 @@ func (s_ Slider) SetTrackFillColor(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setTrackFillColor:"), value)
 }
 
+// A Boolean value that indicates whether the slider fixes its values to those values represented by its tick marks.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslider/allowstickmarkvaluesonly
+func (s_ Slider) AllowsTickMarkValuesOnly() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("allowsTickMarkValuesOnly"))
+	return rv
+}
+
+
+// SetAllowsTickMarkValuesOnly sets the value of the allowsTickMarkValuesOnly property.
+// A Boolean value that indicates whether the slider fixes its values to those values represented by its tick marks.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslider/allowstickmarkvaluesonly
+func (s_ Slider) SetAllowsTickMarkValuesOnly(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setAllowsTickMarkValuesOnly:"), value)
+}
+
+// The amount by which the slider changes its value when the user Option-drags the slider knob.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslider/altincrementvalue
+func (s_ Slider) AltIncrementValue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("altIncrementValue"))
+	return rv
+}
+
+
+// SetAltIncrementValue sets the value of the altIncrementValue property.
+// The amount by which the slider changes its value when the user Option-drags the slider knob.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslider/altincrementvalue
+func (s_ Slider) SetAltIncrementValue(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setAltIncrementValue:"), value)
+}
+
+// An integer indicating the orientation (horizontal or vertical) of the slider.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslider/isvertical
+func (s_ Slider) IsVertical() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("isVertical"))
+	return rv
+}
+
+
+// SetIsVertical sets the value of the isVertical property.
+// An integer indicating the orientation (horizontal or vertical) of the slider.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslider/isvertical
+func (s_ Slider) SetIsVertical(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setIsVertical:"), value)
+}
+
+// The minimum value the slider can send to its target.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslider/minvalue
+func (s_ Slider) MinValue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("minValue"))
+	return rv
+}
+
+
+// SetMinValue sets the value of the minValue property.
+// The minimum value the slider can send to its target.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslider/minvalue
+func (s_ Slider) SetMinValue(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setMinValue:"), value)
+}
+
+// The value this slider will be filled from. This slider will be filled from its
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslider/neutralvalue
+func (s_ Slider) NeutralValue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("neutralValue"))
+	return rv
+}
+
+
+// SetNeutralValue sets the value of the neutralValue property.
+// The value this slider will be filled from. This slider will be filled from its
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslider/neutralvalue
+func (s_ Slider) SetNeutralValue(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setNeutralValue:"), value)
+}
+
+// The number of tick marks associated with the slider.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslider/numberoftickmarks
+func (s_ Slider) NumberOfTickMarks() int {
+	rv := objc.Send[int](s_.ID, objc.Sel("numberOfTickMarks"))
+	return rv
+}
+
+
+// SetNumberOfTickMarks sets the value of the numberOfTickMarks property.
+// The number of tick marks associated with the slider.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslider/numberoftickmarks
+func (s_ Slider) SetNumberOfTickMarks(value int) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setNumberOfTickMarks:"), value)
+}
+
+// The type of the slider, such as vertical or circular.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslider/slidertype-swift.property
+func (s_ Slider) SliderType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("sliderType"))
+	return rv
+}
+
+
+// SetSliderType sets the value of the sliderType property.
+// The type of the slider, such as vertical or circular.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslider/slidertype-swift.property
+func (s_ Slider) SetSliderType(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setSliderType:"), value)
+}
+
+// Determines where the slider’s tick marks are displayed.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslider/tickmarkposition-swift.property
+func (s_ Slider) TickMarkPosition() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("tickMarkPosition"))
+	return rv
+}
+
+
+// SetTickMarkPosition sets the value of the tickMarkPosition property.
+// Determines where the slider’s tick marks are displayed.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslider/tickmarkposition-swift.property
+func (s_ Slider) SetTickMarkPosition(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setTickMarkPosition:"), value)
+}
+
+// The tint prominence of the slider. The automatic behavior for a regular slider tints its track fill, while a slider with tick marks is untinted. Setting the tint prominence will override this default behavior and choose an explicit track fill tint behavior. See
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslider/tintprominence
+func (s_ Slider) TintProminence() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("tintProminence"))
+	return rv
+}
+
+
+// SetTintProminence sets the value of the tintProminence property.
+// The tint prominence of the slider. The automatic behavior for a regular slider tints its track fill, while a slider with tick marks is untinted. Setting the tint prominence will override this default behavior and choose an explicit track fill tint behavior. See
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslider/tintprominence
+func (s_ Slider) SetTintProminence(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setTintProminence:"), value)
+}
+
 
 

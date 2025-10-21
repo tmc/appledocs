@@ -137,6 +137,32 @@ func (c_ CXCallDirectoryExtensionContext) RemoveIdentificationEntryWithPhoneNumb
 	objc.Send[objc.ID](c_.ID, objc.Sel("removeIdentificationEntryWithPhoneNumber:"), phoneNumber)
 }
 
+// A Boolean value that indicates whether the request provides data incrementally.
+//
+// [Full Topic]: https://developer.apple.com/documentation/callkit/cxcalldirectoryextensioncontext/isincremental
+func (c_ CXCallDirectoryExtensionContext) IsIncremental() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isIncremental"))
+	return rv
+}
+
+
+// SetIsIncremental sets the value of the isIncremental property.
+// A Boolean value that indicates whether the request provides data incrementally.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/callkit/cxcalldirectoryextensioncontext/isincremental
+func (c_ CXCallDirectoryExtensionContext) SetIsIncremental(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsIncremental:"), value)
+}
+
+// The maximum allowable value for a phone number.
+//
+// [Full Topic]: https://developer.apple.com/documentation/callkit/cxcalldirectoryphonenumbermax
+func (c_ CXCallDirectoryExtensionContext) CXCallDirectoryPhoneNumberMax() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("CXCallDirectoryPhoneNumberMax"))
+	return rv
+}
+
 // Sets a delegate that can handle request failures for the Call Directory extension context object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallDirectoryExtensionContext/delegate

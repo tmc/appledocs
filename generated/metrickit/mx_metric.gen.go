@@ -96,5 +96,13 @@ func (m_ MXMetric) JSONRepresentation() unsafe.Pointer {
 	return rv
 }
 
+// Error domain for error values from app metrics.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metrickit/mxerrordomain
+func (m_ MXMetric) MXErrorDomain() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("MXErrorDomain"))
+	return rv
+}
+
 
 

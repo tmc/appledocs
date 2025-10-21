@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,21 @@ func NewMTRValveConfigurationAndControlClusterValveFaultEvent() MTRValveConfigur
 	return getMTRValveConfigurationAndControlClusterValveFaultEventClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrvalveconfigurationandcontrolclustervalvefaultevent/valvefault
+func (m_ MTRValveConfigurationAndControlClusterValveFaultEvent) ValveFault() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("valveFault"))
+	return rv
+}
+
+
+// SetValveFault sets the value of the valveFault property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrvalveconfigurationandcontrolclustervalvefaultevent/valvefault
+func (m_ MTRValveConfigurationAndControlClusterValveFaultEvent) SetValveFault(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setValveFault:"), value)
+}
 
 
 

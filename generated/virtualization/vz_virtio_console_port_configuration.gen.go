@@ -82,6 +82,24 @@ func NewVZVirtioConsolePortConfiguration() VZVirtioConsolePortConfiguration {
 
 
 
+// The array of console devices that you expose to the guest operating system.
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/consoledevices
+func (v_ VZVirtioConsolePortConfiguration) ConsoleDevices() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("consoleDevices"))
+	return rv
+}
+
+
+// SetConsoleDevices sets the value of the consoleDevices property.
+// The array of console devices that you expose to the guest operating system.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/consoledevices
+func (v_ VZVirtioConsolePortConfiguration) SetConsoleDevices(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setConsoleDevices:"), value)
+}
+
 // A Boolean value that indicates whether this port is a console.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioConsolePortConfiguration/isConsole

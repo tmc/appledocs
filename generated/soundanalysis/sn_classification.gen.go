@@ -80,6 +80,60 @@ func NewSNClassification() SNClassification {
 }
 
 
+// The time span that corresponds to the result’s classifications.
+//
+// [Full Topic]: https://developer.apple.com/documentation/soundanalysis/snclassificationresult/timerange
+func (s_ SNClassification) TimeRange() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("timeRange"))
+	return rv
+}
+
+
+// SetTimeRange sets the value of the timeRange property.
+// The time span that corresponds to the result’s classifications.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/soundanalysis/snclassificationresult/timerange
+func (s_ SNClassification) SetTimeRange(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setTimeRange:"), value)
+}
+
+// The confidence value the model has in its prediction.
+//
+// [Full Topic]: https://developer.apple.com/documentation/soundanalysis/snclassification/confidence
+func (s_ SNClassification) Confidence() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("confidence"))
+	return rv
+}
+
+
+// SetConfidence sets the value of the confidence property.
+// The confidence value the model has in its prediction.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/soundanalysis/snclassification/confidence
+func (s_ SNClassification) SetConfidence(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setConfidence:"), value)
+}
+
+// A sorted array of the request’s top classification candidates.
+//
+// [Full Topic]: https://developer.apple.com/documentation/soundanalysis/snclassificationresult/classifications
+func (s_ SNClassification) Classifications() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("classifications"))
+	return rv
+}
+
+
+// SetClassifications sets the value of the classifications property.
+// A sorted array of the request’s top classification candidates.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/soundanalysis/snclassificationresult/classifications
+func (s_ SNClassification) SetClassifications(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setClassifications:"), value)
+}
+
 // A prediction label that’s one of the classifications a sound classifier’s underlying model defines.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SoundAnalysis/SNClassification/identifier

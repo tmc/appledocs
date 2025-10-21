@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MTROtaSoftwareUpdateProviderClusterApplyUpdateRequestParams] class.
@@ -75,6 +76,66 @@ func NewMTROtaSoftwareUpdateProviderClusterApplyUpdateRequestParams() MTROtaSoft
 	return getMTROtaSoftwareUpdateProviderClusterApplyUpdateRequestParamsClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterapplyupdaterequestparams-1mlcr/newversion
+func (m_ MTROtaSoftwareUpdateProviderClusterApplyUpdateRequestParams) NewVersion() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("newVersion"))
+	return rv
+}
+
+
+// SetNewVersion sets the value of the newVersion property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterapplyupdaterequestparams-1mlcr/newversion
+func (m_ MTROtaSoftwareUpdateProviderClusterApplyUpdateRequestParams) SetNewVersion(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setNewVersion:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterapplyupdaterequestparams-5k4nj/updatetoken
+func (m_ MTROtaSoftwareUpdateProviderClusterApplyUpdateRequestParams) UpdateToken() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("updateToken"))
+	return rv
+}
+
+
+// SetUpdateToken sets the value of the updateToken property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterapplyupdaterequestparams-5k4nj/updatetoken
+func (m_ MTROtaSoftwareUpdateProviderClusterApplyUpdateRequestParams) SetUpdateToken(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setUpdateToken:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterapplyupdaterequestparams-1mlcr/timedinvoketimeoutms
+func (m_ MTROtaSoftwareUpdateProviderClusterApplyUpdateRequestParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+	return rv
+}
+
+
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterapplyupdaterequestparams-1mlcr/timedinvoketimeoutms
+func (m_ MTROtaSoftwareUpdateProviderClusterApplyUpdateRequestParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterapplyupdaterequestparams-5k4nj/serversideprocessingtimeout
+func (m_ MTROtaSoftwareUpdateProviderClusterApplyUpdateRequestParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+	return rv
+}
+
+
+// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterapplyupdaterequestparams-5k4nj/serversideprocessingtimeout
+func (m_ MTROtaSoftwareUpdateProviderClusterApplyUpdateRequestParams) SetServerSideProcessingTimeout(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
+}
 
 
 

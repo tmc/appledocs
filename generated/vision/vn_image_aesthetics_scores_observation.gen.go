@@ -79,6 +79,42 @@ func NewImageAestheticsScoresObservation() ImageAestheticsScoresObservation {
 }
 
 
+// The results of the aesthetics request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vncalculateimageaestheticsscoresrequest/results
+func (i_ ImageAestheticsScoresObservation) Results() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("results"))
+	return rv
+}
+
+
+// SetResults sets the value of the results property.
+// The results of the aesthetics request.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vncalculateimageaestheticsscoresrequest/results
+func (i_ ImageAestheticsScoresObservation) SetResults(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setResults:"), value)
+}
+
+// A Boolean value that represents images that are not necessarily of poor image quality, but may not have memorable or exciting content.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnimageaestheticsscoresobservation/isutility
+func (i_ ImageAestheticsScoresObservation) IsUtility() bool {
+	rv := objc.Send[bool](i_.ID, objc.Sel("isUtility"))
+	return rv
+}
+
+
+// SetIsUtility sets the value of the isUtility property.
+// A Boolean value that represents images that are not necessarily of poor image quality, but may not have memorable or exciting content.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnimageaestheticsscoresobservation/isutility
+func (i_ ImageAestheticsScoresObservation) SetIsUtility(value bool) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setIsUtility:"), value)
+}
+
 // A score which incorporates aesthetic score, failure score, and utility labels.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNImageAestheticsScoresObservation/overallScore

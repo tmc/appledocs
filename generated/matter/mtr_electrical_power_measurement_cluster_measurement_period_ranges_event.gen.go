@@ -75,5 +75,20 @@ func NewMTRElectricalPowerMeasurementClusterMeasurementPeriodRangesEvent() MTREl
 }
 
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementperiodrangesevent/ranges
+func (m_ MTRElectricalPowerMeasurementClusterMeasurementPeriodRangesEvent) Ranges() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("ranges"))
+	return rv
+}
+
+
+// SetRanges sets the value of the ranges property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementperiodrangesevent/ranges
+func (m_ MTRElectricalPowerMeasurementClusterMeasurementPeriodRangesEvent) SetRanges(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setRanges:"), value)
+}
+
 
 

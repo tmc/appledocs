@@ -80,5 +80,23 @@ func NewGCKeyboard() GCKeyboard {
 }
 
 
+// The controller profile for the keyboard.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gckeyboard/keyboardinput
+func (g_ GCKeyboard) KeyboardInput() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("keyboardInput"))
+	return rv
+}
+
+
+// SetKeyboardInput sets the value of the keyboardInput property.
+// The controller profile for the keyboard.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gckeyboard/keyboardinput
+func (g_ GCKeyboard) SetKeyboardInput(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setKeyboardInput:"), value)
+}
+
 
 

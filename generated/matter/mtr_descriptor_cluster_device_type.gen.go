@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MTRDescriptorClusterDeviceType] class.
@@ -75,6 +76,21 @@ func NewMTRDescriptorClusterDeviceType() MTRDescriptorClusterDeviceType {
 	return getMTRDescriptorClusterDeviceTypeClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdescriptorclusterdevicetype/revision
+func (m_ MTRDescriptorClusterDeviceType) Revision() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("revision"))
+	return rv
+}
+
+
+// SetRevision sets the value of the revision property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdescriptorclusterdevicetype/revision
+func (m_ MTRDescriptorClusterDeviceType) SetRevision(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setRevision:"), value)
+}
 
 
 

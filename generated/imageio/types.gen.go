@@ -52,18 +52,3 @@ type CGMutableImageMetadataRef unsafe.Pointer
 
 
 
-// Fallback type aliases for undefined types
-// These types are referenced in method signatures but not fully documented.
-// Using unsafe.Pointer as fallback to allow code generation.
-type CFErrorRef unsafe.Pointer
-
-type CFTypeID unsafe.Pointer
-
-type CGImageMetadataTagBlock unsafe.Pointer
-
-type CGImageSourceAnimationBlock unsafe.Pointer
-
-type OSStatus unsafe.Pointer
-
-
-

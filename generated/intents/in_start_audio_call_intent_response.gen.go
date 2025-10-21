@@ -81,5 +81,23 @@ func NewINStartAudioCallIntentResponse() INStartAudioCallIntentResponse {
 }
 
 
+// The code indicating whether you successfully handled the intent.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/instartaudiocallintentresponse/code
+func (i_ INStartAudioCallIntentResponse) Code() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("code"))
+	return rv
+}
+
+
+// SetCode sets the value of the code property.
+// The code indicating whether you successfully handled the intent.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/instartaudiocallintentresponse/code
+func (i_ INStartAudioCallIntentResponse) SetCode(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setCode:"), value)
+}
+
 
 

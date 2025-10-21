@@ -80,5 +80,59 @@ func NewCaptureOutput() CaptureOutput {
 }
 
 
+// The capture output object’s connections.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureoutput/connections
+func (c_ CaptureOutput) Connections() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("connections"))
+	return rv
+}
+
+
+// SetConnections sets the value of the connections property.
+// The capture output object’s connections.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureoutput/connections
+func (c_ CaptureOutput) SetConnections(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setConnections:"), value)
+}
+
+// A Boolean value that indicates whether to defer starting this capture output.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureoutput/isdeferredstartenabled
+func (c_ CaptureOutput) IsDeferredStartEnabled() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isDeferredStartEnabled"))
+	return rv
+}
+
+
+// SetIsDeferredStartEnabled sets the value of the isDeferredStartEnabled property.
+// A Boolean value that indicates whether to defer starting this capture output.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureoutput/isdeferredstartenabled
+func (c_ CaptureOutput) SetIsDeferredStartEnabled(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsDeferredStartEnabled:"), value)
+}
+
+// A
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureoutput/isdeferredstartsupported
+func (c_ CaptureOutput) IsDeferredStartSupported() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isDeferredStartSupported"))
+	return rv
+}
+
+
+// SetIsDeferredStartSupported sets the value of the isDeferredStartSupported property.
+// A
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureoutput/isdeferredstartsupported
+func (c_ CaptureOutput) SetIsDeferredStartSupported(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsDeferredStartSupported:"), value)
+}
+
 
 

@@ -82,6 +82,42 @@ func NewILClassificationUIExtensionContext() ILClassificationUIExtensionContext 
 
 // A Boolean value that determines whether the extension has enough information to complete the report.
 //
+// [Full Topic]: https://developer.apple.com/documentation/identitylookupui/ilclassificationuiextensioncontext/isreadyforclassificationresponse
+func (i_ ILClassificationUIExtensionContext) IsReadyForClassificationResponse() bool {
+	rv := objc.Send[bool](i_.ID, objc.Sel("isReadyForClassificationResponse"))
+	return rv
+}
+
+
+// SetIsReadyForClassificationResponse sets the value of the isReadyForClassificationResponse property.
+// A Boolean value that determines whether the extension has enough information to complete the report.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/identitylookupui/ilclassificationuiextensioncontext/isreadyforclassificationresponse
+func (i_ ILClassificationUIExtensionContext) SetIsReadyForClassificationResponse(value bool) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setIsReadyForClassificationResponse:"), value)
+}
+
+// The context for the current request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/identitylookupui/ilclassificationuiextensionviewcontroller/extensioncontext
+func (i_ ILClassificationUIExtensionContext) ExtensionContext() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("extensionContext"))
+	return rv
+}
+
+
+// SetExtensionContext sets the value of the extensionContext property.
+// The context for the current request.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/identitylookupui/ilclassificationuiextensionviewcontroller/extensioncontext
+func (i_ ILClassificationUIExtensionContext) SetExtensionContext(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setExtensionContext:"), value)
+}
+
+// A Boolean value that determines whether the extension has enough information to complete the report.
+//
 // [Full Topic]: https://developer.apple.com/documentation/IdentityLookupUI/ILClassificationUIExtensionContext/isReadyForClassificationResponse
 func (i_ ILClassificationUIExtensionContext) ReadyForClassificationResponse() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("readyForClassificationResponse"))

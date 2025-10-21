@@ -81,5 +81,41 @@ func NewAudioOutputNode() AudioOutputNode {
 }
 
 
+// The render format of the engine in manual rendering mode.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioengine/manualrenderingformat
+func (a_ AudioOutputNode) ManualRenderingFormat() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("manualRenderingFormat"))
+	return rv
+}
+
+
+// SetManualRenderingFormat sets the value of the manualRenderingFormat property.
+// The render format of the engine in manual rendering mode.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioengine/manualrenderingformat
+func (a_ AudioOutputNode) SetManualRenderingFormat(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setManualRenderingFormat:"), value)
+}
+
+// The AVAudioOutputNode’s intended
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiooutputnode/intendedspatialexperience-3ts59
+func (a_ AudioOutputNode) IntendedSpatialExperience() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("intendedSpatialExperience"))
+	return rv
+}
+
+
+// SetIntendedSpatialExperience sets the value of the intendedSpatialExperience property.
+// The AVAudioOutputNode’s intended
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiooutputnode/intendedspatialexperience-3ts59
+func (a_ AudioOutputNode) SetIntendedSpatialExperience(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setIntendedSpatialExperience:"), value)
+}
+
 
 

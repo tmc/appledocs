@@ -89,6 +89,24 @@ func (m_ MTL4MeshRenderPipelineDescriptor) Reset() {
 	objc.Send[objc.ID](m_.ID, objc.Sel("reset"))
 }
 
+// Determines whether the pipeline rasterizes primitives.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4meshrenderpipelinedescriptor/israsterizationenabled
+func (m_ MTL4MeshRenderPipelineDescriptor) IsRasterizationEnabled() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("isRasterizationEnabled"))
+	return rv
+}
+
+
+// SetIsRasterizationEnabled sets the value of the isRasterizationEnabled property.
+// Determines whether the pipeline rasterizes primitives.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4meshrenderpipelinedescriptor/israsterizationenabled
+func (m_ MTL4MeshRenderPipelineDescriptor) SetIsRasterizationEnabled(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIsRasterizationEnabled:"), value)
+}
+
 // Indicates whether to read and use the alpha channel fragment output of color attachments to compute a sample coverage mask.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4MeshRenderPipelineDescriptor/alphaToCoverageState

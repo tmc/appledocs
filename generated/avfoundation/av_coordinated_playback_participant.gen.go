@@ -80,5 +80,77 @@ func NewCoordinatedPlaybackParticipant() CoordinatedPlaybackParticipant {
 }
 
 
+// A unique identifier for the participant.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcoordinatedplaybackparticipant/identifier
+func (c_ CoordinatedPlaybackParticipant) Identifier() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("identifier"))
+	return rv
+}
+
+
+// SetIdentifier sets the value of the identifier property.
+// A unique identifier for the participant.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcoordinatedplaybackparticipant/identifier
+func (c_ CoordinatedPlaybackParticipant) SetIdentifier(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIdentifier:"), value)
+}
+
+// A Boolean value that indicates whether the participant is ready to start coordinated playback.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcoordinatedplaybackparticipant/isreadytoplay
+func (c_ CoordinatedPlaybackParticipant) IsReadyToPlay() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isReadyToPlay"))
+	return rv
+}
+
+
+// SetIsReadyToPlay sets the value of the isReadyToPlay property.
+// A Boolean value that indicates whether the participant is ready to start coordinated playback.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcoordinatedplaybackparticipant/isreadytoplay
+func (c_ CoordinatedPlaybackParticipant) SetIsReadyToPlay(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsReadyToPlay:"), value)
+}
+
+// The reasons a participant isn’t currently participating in coordinated playback.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcoordinatedplaybackparticipant/suspensionreasons
+func (c_ CoordinatedPlaybackParticipant) SuspensionReasons() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("suspensionReasons"))
+	return rv
+}
+
+
+// SetSuspensionReasons sets the value of the suspensionReasons property.
+// The reasons a participant isn’t currently participating in coordinated playback.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcoordinatedplaybackparticipant/suspensionreasons
+func (c_ CoordinatedPlaybackParticipant) SetSuspensionReasons(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setSuspensionReasons:"), value)
+}
+
+// The identifiers of the other participants in a group.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplaybackcoordinator/otherparticipants
+func (c_ CoordinatedPlaybackParticipant) OtherParticipants() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("otherParticipants"))
+	return rv
+}
+
+
+// SetOtherParticipants sets the value of the otherParticipants property.
+// The identifiers of the other participants in a group.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplaybackcoordinator/otherparticipants
+func (c_ CoordinatedPlaybackParticipant) SetOtherParticipants(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setOtherParticipants:"), value)
+}
+
 
 

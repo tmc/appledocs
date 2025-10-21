@@ -82,4 +82,22 @@ func NewVZVirtioConsoleDeviceSerialPortConfiguration() VZVirtioConsoleDeviceSeri
 
 
 
+// The object that defines how the configuration of the virtual machine’s serial port interfaces.
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzserialportconfiguration/attachment
+func (v_ VZVirtioConsoleDeviceSerialPortConfiguration) Attachment() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("attachment"))
+	return rv
+}
+
+
+// SetAttachment sets the value of the attachment property.
+// The object that defines how the configuration of the virtual machine’s serial port interfaces.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzserialportconfiguration/attachment
+func (v_ VZVirtioConsoleDeviceSerialPortConfiguration) SetAttachment(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setAttachment:"), value)
+}
+
 

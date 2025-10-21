@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -86,6 +87,60 @@ func NewMediaLibraryBrowserController() MediaLibraryBrowserController {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMediaLibraryBrowserController/togglePanel(_:)
 func (m_ MediaLibraryBrowserController) TogglePanel(sender objc.ID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("togglePanel:"), sender)
+}
+
+// The frame, in global coordinates, used to display the Media Library Browser panel.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmedialibrarybrowsercontroller/frame
+func (m_ MediaLibraryBrowserController) Frame() coregraphics.CGRect {
+	rv := objc.Send[coregraphics.CGRect](m_.ID, objc.Sel("frame"))
+	return rv
+}
+
+
+// SetFrame sets the value of the frame property.
+// The frame, in global coordinates, used to display the Media Library Browser panel.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmedialibrarybrowsercontroller/frame
+func (m_ MediaLibraryBrowserController) SetFrame(value coregraphics.CGRect) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setFrame:"), value)
+}
+
+// A Boolean value that determines whether the Media Library Browser panel is visible.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmedialibrarybrowsercontroller/isvisible
+func (m_ MediaLibraryBrowserController) IsVisible() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("isVisible"))
+	return rv
+}
+
+
+// SetIsVisible sets the value of the isVisible property.
+// A Boolean value that determines whether the Media Library Browser panel is visible.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmedialibrarybrowsercontroller/isvisible
+func (m_ MediaLibraryBrowserController) SetIsVisible(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIsVisible:"), value)
+}
+
+// The media library that is in use.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmedialibrarybrowsercontroller/medialibraries
+func (m_ MediaLibraryBrowserController) MediaLibraries() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("mediaLibraries"))
+	return rv
+}
+
+
+// SetMediaLibraries sets the value of the mediaLibraries property.
+// The media library that is in use.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmedialibrarybrowsercontroller/medialibraries
+func (m_ MediaLibraryBrowserController) SetMediaLibraries(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMediaLibraries:"), value)
 }
 
 

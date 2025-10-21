@@ -81,5 +81,41 @@ func NewINSearchForBillsIntentResponse() INSearchForBillsIntentResponse {
 }
 
 
+// The bills found during the search.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchforbillsintentresponse/bills
+func (i_ INSearchForBillsIntentResponse) Bills() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("bills"))
+	return rv
+}
+
+
+// SetBills sets the value of the bills property.
+// The bills found during the search.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchforbillsintentresponse/bills
+func (i_ INSearchForBillsIntentResponse) SetBills(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setBills:"), value)
+}
+
+// The code indicating whether you successfully handled the intent.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchforbillsintentresponse/code
+func (i_ INSearchForBillsIntentResponse) Code() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("code"))
+	return rv
+}
+
+
+// SetCode sets the value of the code property.
+// The code indicating whether you successfully handled the intent.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchforbillsintentresponse/code
+func (i_ INSearchForBillsIntentResponse) SetCode(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setCode:"), value)
+}
+
 
 

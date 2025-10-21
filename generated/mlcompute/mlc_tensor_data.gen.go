@@ -78,5 +78,41 @@ func NewCTensorData() CTensorData {
 }
 
 
+// A buffer that conains data.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlctensordata/bytes
+func (c_ CTensorData) Bytes() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("bytes"))
+	return rv
+}
+
+
+// SetBytes sets the value of the bytes property.
+// A buffer that conains data.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlctensordata/bytes
+func (c_ CTensorData) SetBytes(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setBytes:"), value)
+}
+
+// The number of bytes you choose to hold for this tensor data instance.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlctensordata/length
+func (c_ CTensorData) Length() int {
+	rv := objc.Send[int](c_.ID, objc.Sel("length"))
+	return rv
+}
+
+
+// SetLength sets the value of the length property.
+// The number of bytes you choose to hold for this tensor data instance.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlctensordata/length
+func (c_ CTensorData) SetLength(value int) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setLength:"), value)
+}
+
 
 

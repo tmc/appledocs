@@ -106,6 +106,14 @@ func (i_ InstanceMaskObservation) GenerateScaledMaskForImageForInstancesFromRequ
 	return rv
 }
 
+// A constant for specifying the first revision of the foreground instance mask request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vngenerateforegroundinstancemaskrequestrevision1
+func (i_ InstanceMaskObservation) VNGenerateForegroundInstanceMaskRequestRevision1() int {
+	rv := objc.Send[int](i_.ID, objc.Sel("VNGenerateForegroundInstanceMaskRequestRevision1"))
+	return rv
+}
+
 // The collection that contains all instances, excluding the background.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNInstanceMaskObservation/allInstances

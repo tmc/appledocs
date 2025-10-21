@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/uniformtypeidentifiers"
 )
 
@@ -278,8 +279,8 @@ func (s_ SavePanel) SetDelegate(value objc.ID) {
 // The current directory shown in the panel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/directoryURL
-func (s_ SavePanel) DirectoryURL() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("directoryURL"))
+func (s_ SavePanel) DirectoryURL() foundation.URL {
+	rv := objc.Send[foundation.URL](s_.ID, objc.Sel("directoryURL"))
 	return rv
 }
 
@@ -289,7 +290,7 @@ func (s_ SavePanel) DirectoryURL() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/directoryURL
-func (s_ SavePanel) SetDirectoryURL(value unsafe.Pointer) {
+func (s_ SavePanel) SetDirectoryURL(value foundation.URL) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDirectoryURL:"), value)
 }
 
@@ -527,9 +528,45 @@ func (s_ SavePanel) SetTreatsFilePackagesAsDirectories(value bool) {
 // A URL that contains the fully specified location of the targeted file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/url
-func (s_ SavePanel) URL() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("URL"))
+func (s_ SavePanel) URL() foundation.URL {
+	rv := objc.Send[foundation.URL](s_.ID, objc.Sel("URL"))
 	return rv
+}
+
+// A Boolean value that indicates whether whether the panel is expanded.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssavepanel/isexpanded
+func (s_ SavePanel) IsExpanded() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("isExpanded"))
+	return rv
+}
+
+
+// SetIsExpanded sets the value of the isExpanded property.
+// A Boolean value that indicates whether whether the panel is expanded.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssavepanel/isexpanded
+func (s_ SavePanel) SetIsExpanded(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setIsExpanded:"), value)
+}
+
+// A Boolean value that indicates whether to display filename extensions.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssavepanel/isextensionhidden
+func (s_ SavePanel) IsExtensionHidden() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("isExtensionHidden"))
+	return rv
+}
+
+
+// SetIsExtensionHidden sets the value of the isExtensionHidden property.
+// A Boolean value that indicates whether to display filename extensions.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssavepanel/isextensionhidden
+func (s_ SavePanel) SetIsExtensionHidden(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setIsExtensionHidden:"), value)
 }
 
 

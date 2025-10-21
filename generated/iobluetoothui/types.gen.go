@@ -16,26 +16,3 @@ type IOBluetoothPairingControllerRef unsafe.Pointer
 
 
 
-// Fallback type aliases for undefined types
-// These types are referenced in method signatures but not fully documented.
-// Using unsafe.Pointer as fallback to allow code generation.
-type IOBluetoothDevice unsafe.Pointer
-
-type IOBluetoothDeviceSearchAttributes unsafe.Pointer
-
-type IOBluetoothSDPServiceRecord unsafe.Pointer
-
-type IOBluetoothSDPUUID unsafe.Pointer
-
-type IOBluetoothServiceBrowserControllerOptions unsafe.Pointer
-
-type IOReturn unsafe.Pointer
-
-type NSImage unsafe.Pointer
-
-type NSWindow unsafe.Pointer
-
-type SEL unsafe.Pointer
-
-
-

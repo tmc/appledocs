@@ -81,6 +81,50 @@ func NewGeneratePersonSegmentationRequest() GeneratePersonSegmentationRequest {
 }
 
 
+// A value that indicates how the request balances accuracy and performance.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vngeneratepersonsegmentationrequest/qualitylevel-swift.property
+func (g_ GeneratePersonSegmentationRequest) QualityLevel() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("qualityLevel"))
+	return rv
+}
+
+
+// SetQualityLevel sets the value of the qualityLevel property.
+// A value that indicates how the request balances accuracy and performance.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vngeneratepersonsegmentationrequest/qualitylevel-swift.property
+func (g_ GeneratePersonSegmentationRequest) SetQualityLevel(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setQualityLevel:"), value)
+}
+
+// The results of the segmentation request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vngeneratepersonsegmentationrequest/results
+func (g_ GeneratePersonSegmentationRequest) Results() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("results"))
+	return rv
+}
+
+
+// SetResults sets the value of the results property.
+// The results of the segmentation request.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vngeneratepersonsegmentationrequest/results
+func (g_ GeneratePersonSegmentationRequest) SetResults(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setResults:"), value)
+}
+
+// A constant for specifying revision 1 of the person segmentation generation request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vngeneratepersonsegmentationrequestrevision1
+func (g_ GeneratePersonSegmentationRequest) VNGeneratePersonSegmentationRequestRevision1() int {
+	rv := objc.Send[int](g_.ID, objc.Sel("VNGeneratePersonSegmentationRequestRevision1"))
+	return rv
+}
+
 // The pixel format of the output image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNGeneratePersonSegmentationRequest/outputPixelFormat

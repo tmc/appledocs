@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,8 +78,8 @@ func NewMTREnergyEVSEClusterEVNotDetectedEvent() MTREnergyEVSEClusterEVNotDetect
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEVNotDetectedEvent/sessionDuration
-func (m_ MTREnergyEVSEClusterEVNotDetectedEvent) SessionDuration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("sessionDuration"))
+func (m_ MTREnergyEVSEClusterEVNotDetectedEvent) SessionDuration() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("sessionDuration"))
 	return rv
 }
 
@@ -86,14 +87,14 @@ func (m_ MTREnergyEVSEClusterEVNotDetectedEvent) SessionDuration() unsafe.Pointe
 // SetSessionDuration sets the value of the sessionDuration property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEVNotDetectedEvent/sessionDuration
-func (m_ MTREnergyEVSEClusterEVNotDetectedEvent) SetSessionDuration(value unsafe.Pointer) {
+func (m_ MTREnergyEVSEClusterEVNotDetectedEvent) SetSessionDuration(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSessionDuration:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEVNotDetectedEvent/sessionEnergyCharged
-func (m_ MTREnergyEVSEClusterEVNotDetectedEvent) SessionEnergyCharged() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("sessionEnergyCharged"))
+func (m_ MTREnergyEVSEClusterEVNotDetectedEvent) SessionEnergyCharged() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("sessionEnergyCharged"))
 	return rv
 }
 
@@ -101,14 +102,14 @@ func (m_ MTREnergyEVSEClusterEVNotDetectedEvent) SessionEnergyCharged() unsafe.P
 // SetSessionEnergyCharged sets the value of the sessionEnergyCharged property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEVNotDetectedEvent/sessionEnergyCharged
-func (m_ MTREnergyEVSEClusterEVNotDetectedEvent) SetSessionEnergyCharged(value unsafe.Pointer) {
+func (m_ MTREnergyEVSEClusterEVNotDetectedEvent) SetSessionEnergyCharged(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSessionEnergyCharged:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEVNotDetectedEvent/sessionID
-func (m_ MTREnergyEVSEClusterEVNotDetectedEvent) SessionID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("sessionID"))
+func (m_ MTREnergyEVSEClusterEVNotDetectedEvent) SessionID() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("sessionID"))
 	return rv
 }
 
@@ -116,14 +117,14 @@ func (m_ MTREnergyEVSEClusterEVNotDetectedEvent) SessionID() unsafe.Pointer {
 // SetSessionID sets the value of the sessionID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEVNotDetectedEvent/sessionID
-func (m_ MTREnergyEVSEClusterEVNotDetectedEvent) SetSessionID(value unsafe.Pointer) {
+func (m_ MTREnergyEVSEClusterEVNotDetectedEvent) SetSessionID(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSessionID:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEVNotDetectedEvent/state
-func (m_ MTREnergyEVSEClusterEVNotDetectedEvent) State() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("state"))
+func (m_ MTREnergyEVSEClusterEVNotDetectedEvent) State() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("state"))
 	return rv
 }
 
@@ -131,7 +132,7 @@ func (m_ MTREnergyEVSEClusterEVNotDetectedEvent) State() unsafe.Pointer {
 // SetState sets the value of the state property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEVNotDetectedEvent/state
-func (m_ MTREnergyEVSEClusterEVNotDetectedEvent) SetState(value unsafe.Pointer) {
+func (m_ MTREnergyEVSEClusterEVNotDetectedEvent) SetState(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setState:"), value)
 }
 

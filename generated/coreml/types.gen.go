@@ -10,21 +10,9 @@ import (
 // Fallback type aliases for undefined types
 // These types are referenced in method signatures but not fully documented.
 // Using unsafe.Pointer as fallback to allow code generation.
-type CGImagePropertyOrientation unsafe.Pointer
+type MLModelMetadataKey unsafe.Pointer
 
-type CGImageRef unsafe.Pointer
-
-type CVPixelBufferRef unsafe.Pointer
-
-type MTLDevice unsafe.Pointer
-
-type NSError unsafe.Pointer
-
-type NSProgress unsafe.Pointer
-
-type NSRange unsafe.Pointer
-
-type OSType unsafe.Pointer
+type MLMultiArrayShapeConstraintType unsafe.Pointer
 
 
 

@@ -82,4 +82,22 @@ func NewVZVirtioSocketDeviceConfiguration() VZVirtioSocketDeviceConfiguration {
 
 
 
+// The socket device that you use to implement port-based communication with the guest operating system.
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/socketdevices
+func (v_ VZVirtioSocketDeviceConfiguration) SocketDevices() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("socketDevices"))
+	return rv
+}
+
+
+// SetSocketDevices sets the value of the socketDevices property.
+// The socket device that you use to implement port-based communication with the guest operating system.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/socketdevices
+func (v_ VZVirtioSocketDeviceConfiguration) SetSocketDevices(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setSocketDevices:"), value)
+}
+
 

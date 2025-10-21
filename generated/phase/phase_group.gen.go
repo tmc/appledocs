@@ -157,6 +157,42 @@ func (p_ PHASEGroup) Unsolo() {
 	objc.Send[objc.ID](p_.ID, objc.Sel("unsolo"))
 }
 
+// A Boolean value that indicates whether the app silences the group.
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasegroup/ismuted
+func (p_ PHASEGroup) IsMuted() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isMuted"))
+	return rv
+}
+
+
+// SetIsMuted sets the value of the isMuted property.
+// A Boolean value that indicates whether the app silences the group.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasegroup/ismuted
+func (p_ PHASEGroup) SetIsMuted(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsMuted:"), value)
+}
+
+// A Boolean value that indicates whether the app silences all groups other than this group.
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasegroup/issoloed
+func (p_ PHASEGroup) IsSoloed() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isSoloed"))
+	return rv
+}
+
+
+// SetIsSoloed sets the value of the isSoloed property.
+// A Boolean value that indicates whether the app silences all groups other than this group.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasegroup/issoloed
+func (p_ PHASEGroup) SetIsSoloed(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsSoloed:"), value)
+}
+
 // Modifies the volume of the group’s sounds.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEGroup/gain

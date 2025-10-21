@@ -76,6 +76,96 @@ func NewPolygonBuffer() PolygonBuffer {
 
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpspolygonbuffer/maskbuffer
+func (p_ PolygonBuffer) MaskBuffer() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("maskBuffer"))
+	return rv
+}
+
+
+// SetMaskBuffer sets the value of the maskBuffer property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpspolygonbuffer/maskbuffer
+func (p_ PolygonBuffer) SetMaskBuffer(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setMaskBuffer:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpspolygonbuffer/vertexbufferoffset
+func (p_ PolygonBuffer) VertexBufferOffset() int {
+	rv := objc.Send[int](p_.ID, objc.Sel("vertexBufferOffset"))
+	return rv
+}
+
+
+// SetVertexBufferOffset sets the value of the vertexBufferOffset property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpspolygonbuffer/vertexbufferoffset
+func (p_ PolygonBuffer) SetVertexBufferOffset(value int) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setVertexBufferOffset:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpspolygonbuffer/maskbufferoffset
+func (p_ PolygonBuffer) MaskBufferOffset() int {
+	rv := objc.Send[int](p_.ID, objc.Sel("maskBufferOffset"))
+	return rv
+}
+
+
+// SetMaskBufferOffset sets the value of the maskBufferOffset property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpspolygonbuffer/maskbufferoffset
+func (p_ PolygonBuffer) SetMaskBufferOffset(value int) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setMaskBufferOffset:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpspolygonbuffer/vertexbuffer
+func (p_ PolygonBuffer) VertexBuffer() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("vertexBuffer"))
+	return rv
+}
+
+
+// SetVertexBuffer sets the value of the vertexBuffer property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpspolygonbuffer/vertexbuffer
+func (p_ PolygonBuffer) SetVertexBuffer(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setVertexBuffer:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpspolygonbuffer/indexbuffer
+func (p_ PolygonBuffer) IndexBuffer() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("indexBuffer"))
+	return rv
+}
+
+
+// SetIndexBuffer sets the value of the indexBuffer property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpspolygonbuffer/indexbuffer
+func (p_ PolygonBuffer) SetIndexBuffer(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIndexBuffer:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpspolygonbuffer/polygoncount
+func (p_ PolygonBuffer) PolygonCount() int {
+	rv := objc.Send[int](p_.ID, objc.Sel("polygonCount"))
+	return rv
+}
+
+
+// SetPolygonCount sets the value of the polygonCount property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpspolygonbuffer/polygoncount
+func (p_ PolygonBuffer) SetPolygonCount(value int) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPolygonCount:"), value)
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSPolygonBuffer/indexBufferOffset
 func (p_ PolygonBuffer) IndexBufferOffset() uint {
 	rv := objc.Send[uint](p_.ID, objc.Sel("indexBufferOffset"))

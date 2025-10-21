@@ -80,6 +80,60 @@ func NewNIDiscoveryToken() NIDiscoveryToken {
 }
 
 
+// The configuration run by the session.
+//
+// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nisession/configuration
+func (n_ NIDiscoveryToken) Configuration() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("configuration"))
+	return rv
+}
+
+
+// SetConfiguration sets the value of the configuration property.
+// The configuration run by the session.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nisession/configuration
+func (n_ NIDiscoveryToken) SetConfiguration(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setConfiguration:"), value)
+}
+
+// A temporary, random identifier for a device.
+//
+// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nisession/discoverytoken
+func (n_ NIDiscoveryToken) DiscoveryToken() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("discoveryToken"))
+	return rv
+}
+
+
+// SetDiscoveryToken sets the value of the discoveryToken property.
+// A temporary, random identifier for a device.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nisession/discoverytoken
+func (n_ NIDiscoveryToken) SetDiscoveryToken(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setDiscoveryToken:"), value)
+}
+
+// The dispatch queue on which the session invokes delegate callbacks.
+//
+// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nisession/delegatequeue
+func (n_ NIDiscoveryToken) DelegateQueue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("delegateQueue"))
+	return rv
+}
+
+
+// SetDelegateQueue sets the value of the delegateQueue property.
+// The dispatch queue on which the session invokes delegate callbacks.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nisession/delegatequeue
+func (n_ NIDiscoveryToken) SetDelegateQueue(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setDelegateQueue:"), value)
+}
+
 // A protocol object that describes the nearby interaction capabilities of a person’s device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NIDiscoveryToken/deviceCapabilities

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,81 @@ func NewMTRFanControlClusterStepParams() MTRFanControlClusterStepParams {
 	return getMTRFanControlClusterStepParamsClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrfancontrolclusterstepparams/serversideprocessingtimeout
+func (m_ MTRFanControlClusterStepParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+	return rv
+}
+
+
+// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrfancontrolclusterstepparams/serversideprocessingtimeout
+func (m_ MTRFanControlClusterStepParams) SetServerSideProcessingTimeout(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrfancontrolclusterstepparams/lowestoff
+func (m_ MTRFanControlClusterStepParams) LowestOff() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("lowestOff"))
+	return rv
+}
+
+
+// SetLowestOff sets the value of the lowestOff property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrfancontrolclusterstepparams/lowestoff
+func (m_ MTRFanControlClusterStepParams) SetLowestOff(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLowestOff:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrfancontrolclusterstepparams/timedinvoketimeoutms
+func (m_ MTRFanControlClusterStepParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+	return rv
+}
+
+
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrfancontrolclusterstepparams/timedinvoketimeoutms
+func (m_ MTRFanControlClusterStepParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrfancontrolclusterstepparams/direction
+func (m_ MTRFanControlClusterStepParams) Direction() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("direction"))
+	return rv
+}
+
+
+// SetDirection sets the value of the direction property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrfancontrolclusterstepparams/direction
+func (m_ MTRFanControlClusterStepParams) SetDirection(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDirection:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrfancontrolclusterstepparams/wrap
+func (m_ MTRFanControlClusterStepParams) Wrap() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("wrap"))
+	return rv
+}
+
+
+// SetWrap sets the value of the wrap property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrfancontrolclusterstepparams/wrap
+func (m_ MTRFanControlClusterStepParams) SetWrap(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setWrap:"), value)
+}
 
 
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -79,6 +80,114 @@ func NewMKTileOverlay() MKTileOverlay {
 	return getMKTileOverlayClass().New()
 }
 
+
+// The minimum zoom level that the tiles of this overlay object support.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mktileoverlay/minimumz
+func (m_ MKTileOverlay) MinimumZ() int {
+	rv := objc.Send[int](m_.ID, objc.Sel("minimumZ"))
+	return rv
+}
+
+
+// SetMinimumZ sets the value of the minimumZ property.
+// The minimum zoom level that the tiles of this overlay object support.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mktileoverlay/minimumz
+func (m_ MKTileOverlay) SetMinimumZ(value int) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMinimumZ:"), value)
+}
+
+// The maximum zoom level that the tiles of this overlay object support.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mktileoverlay/maximumz
+func (m_ MKTileOverlay) MaximumZ() int {
+	rv := objc.Send[int](m_.ID, objc.Sel("maximumZ"))
+	return rv
+}
+
+
+// SetMaximumZ sets the value of the maximumZ property.
+// The maximum zoom level that the tiles of this overlay object support.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mktileoverlay/maximumz
+func (m_ MKTileOverlay) SetMaximumZ(value int) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMaximumZ:"), value)
+}
+
+// A Boolean value that indicates the orientation of tile indexes along the y-axis.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mktileoverlay/isgeometryflipped
+func (m_ MKTileOverlay) IsGeometryFlipped() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("isGeometryFlipped"))
+	return rv
+}
+
+
+// SetIsGeometryFlipped sets the value of the isGeometryFlipped property.
+// A Boolean value that indicates the orientation of tile indexes along the y-axis.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mktileoverlay/isgeometryflipped
+func (m_ MKTileOverlay) SetIsGeometryFlipped(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIsGeometryFlipped:"), value)
+}
+
+// The template for generating tile image URLs.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mktileoverlay/urltemplate
+func (m_ MKTileOverlay) UrlTemplate() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("urlTemplate"))
+	return rv
+}
+
+
+// SetUrlTemplate sets the value of the urlTemplate property.
+// The template for generating tile image URLs.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mktileoverlay/urltemplate
+func (m_ MKTileOverlay) SetUrlTemplate(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setUrlTemplate:"), objc.String(value))
+}
+
+// A Boolean value that indicates whether the tile content is fully opaque.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mktileoverlay/canreplacemapcontent
+func (m_ MKTileOverlay) CanReplaceMapContent() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("canReplaceMapContent"))
+	return rv
+}
+
+
+// SetCanReplaceMapContent sets the value of the canReplaceMapContent property.
+// A Boolean value that indicates whether the tile content is fully opaque.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mktileoverlay/canreplacemapcontent
+func (m_ MKTileOverlay) SetCanReplaceMapContent(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCanReplaceMapContent:"), value)
+}
+
+// The size (in pixels) of your tile images.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mktileoverlay/tilesize
+func (m_ MKTileOverlay) TileSize() coregraphics.CGSize {
+	rv := objc.Send[coregraphics.CGSize](m_.ID, objc.Sel("tileSize"))
+	return rv
+}
+
+
+// SetTileSize sets the value of the tileSize property.
+// The size (in pixels) of your tile images.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mktileoverlay/tilesize
+func (m_ MKTileOverlay) SetTileSize(value coregraphics.CGSize) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTileSize:"), value)
+}
 
 
 

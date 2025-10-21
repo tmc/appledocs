@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -110,7 +111,7 @@ func NewFilterWithImageDataOptions(data unsafe.Pointer, options unsafe.Pointer) 
 // Creates a filter that allows the processing of RAW images.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/init(imageURL:options:)
-func NewFilterWithImageURLOptions(url unsafe.Pointer, options unsafe.Pointer) Filter {
+func NewFilterWithImageURLOptions(url foundation.URL, options unsafe.Pointer) Filter {
 	rv := objc.Send[Filter](objc.ID(getFilterClass().class), objc.Sel("filterWithImageURL:options:"), url, options)
 	return rv
 }
@@ -1134,7 +1135,7 @@ func (fc _FilterClass) FilterWithImageDataOptions(data unsafe.Pointer, options u
 // Creates a filter that allows the processing of RAW images.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/init(imageURL:options:)
-func (fc _FilterClass) FilterWithImageURLOptions(url unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
+func (fc _FilterClass) FilterWithImageURLOptions(url foundation.URL, options unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("filterWithImageURL:options:"), url, options)
 	return rv
 }
@@ -1318,8 +1319,8 @@ func (fc _FilterClass) LocalizedNameForFilterName(filterName string) string {
 // Returns the location of the localized reference documentation that describes the filter.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/localizedReferenceDocumentation(forFilterName:)
-func (fc _FilterClass) LocalizedReferenceDocumentationForFilterName(filterName string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("localizedReferenceDocumentationForFilterName:"), objc.String(filterName))
+func (fc _FilterClass) LocalizedReferenceDocumentationForFilterName(filterName string) foundation.URL {
+	rv := objc.Send[foundation.URL](objc.ID(fc.class), objc.Sel("localizedReferenceDocumentationForFilterName:"), objc.String(filterName))
 	return rv
 }
 
@@ -2193,6 +2194,24 @@ func (f_ Filter) SetDefaults() {
 func (f_ Filter) ViewForUIConfigurationExcludedKeys(inUIConfiguration objc.ID, inKeys objc.ID) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("viewForUIConfiguration:excludedKeys:"), inUIConfiguration, inKeys)
 	return rv
+}
+
+// A Boolean value that determines whether the filter is enabled. Animatable.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreimage/cifilter-swift.class/isenabled
+func (f_ Filter) IsEnabled() bool {
+	rv := objc.Send[bool](f_.ID, objc.Sel("isEnabled"))
+	return rv
+}
+
+
+// SetIsEnabled sets the value of the isEnabled property.
+// A Boolean value that determines whether the filter is enabled. Animatable.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreimage/cifilter-swift.class/isenabled
+func (f_ Filter) SetIsEnabled(value bool) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setIsEnabled:"), value)
 }
 
 // A dictionary of key-value pairs that describe the filter.

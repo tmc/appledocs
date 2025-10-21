@@ -78,5 +78,48 @@ func NewMTL4CommandQueueDescriptor() MTL4CommandQueueDescriptor {
 }
 
 
+// Assigns a dispatch queue to which Metal submits feedback notification blocks.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4commandqueuedescriptor/feedbackqueue
+func (m_ MTL4CommandQueueDescriptor) FeedbackQueue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("feedbackQueue"))
+	return rv
+}
+
+
+// SetFeedbackQueue sets the value of the feedbackQueue property.
+// Assigns a dispatch queue to which Metal submits feedback notification blocks.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4commandqueuedescriptor/feedbackqueue
+func (m_ MTL4CommandQueueDescriptor) SetFeedbackQueue(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setFeedbackQueue:"), value)
+}
+
+// Assigns an optional label to the command queue instance for debugging purposes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4commandqueuedescriptor/label
+func (m_ MTL4CommandQueueDescriptor) Label() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("label"))
+	return rv
+}
+
+
+// SetLabel sets the value of the label property.
+// Assigns an optional label to the command queue instance for debugging purposes.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4commandqueuedescriptor/label
+func (m_ MTL4CommandQueueDescriptor) SetLabel(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), objc.String(value))
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4commandqueueerrordomain
+func (m_ MTL4CommandQueueDescriptor) MTL4CommandQueueErrorDomain() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("MTL4CommandQueueErrorDomain"))
+	return rv
+}
+
 
 

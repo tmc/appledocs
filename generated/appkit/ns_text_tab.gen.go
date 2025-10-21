@@ -80,5 +80,77 @@ func NewTextTab() TextTab {
 }
 
 
+// The text alignment of the text tab.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstexttab/alignment
+func (t_ TextTab) Alignment() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("alignment"))
+	return rv
+}
+
+
+// SetAlignment sets the value of the alignment property.
+// The text alignment of the text tab.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstexttab/alignment
+func (t_ TextTab) SetAlignment(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setAlignment:"), value)
+}
+
+// The text tab’s ruler location relative to the back margin.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstexttab/location
+func (t_ TextTab) Location() float64 {
+	rv := objc.Send[float64](t_.ID, objc.Sel("location"))
+	return rv
+}
+
+
+// SetLocation sets the value of the location property.
+// The text tab’s ruler location relative to the back margin.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstexttab/location
+func (t_ TextTab) SetLocation(value float64) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setLocation:"), value)
+}
+
+// The dictionary of attributes for the text tab.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstexttab/options
+func (t_ TextTab) Options() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("options"))
+	return rv
+}
+
+
+// SetOptions sets the value of the options property.
+// The dictionary of attributes for the text tab.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstexttab/options
+func (t_ TextTab) SetOptions(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setOptions:"), value)
+}
+
+// The text tab’s type of tab stop.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstexttab/tabstoptype
+func (t_ TextTab) TabStopType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("tabStopType"))
+	return rv
+}
+
+
+// SetTabStopType sets the value of the tabStopType property.
+// The text tab’s type of tab stop.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstexttab/tabstoptype
+func (t_ TextTab) SetTabStopType(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setTabStopType:"), value)
+}
+
 
 

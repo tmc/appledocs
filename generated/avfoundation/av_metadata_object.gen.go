@@ -145,5 +145,23 @@ func (m_ MetadataObject) Type() unsafe.Pointer {
 	return rv
 }
 
+// A BOOL indicating whether this metadata object represents a fixed focus.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataobject/isfixedfocus
+func (m_ MetadataObject) IsFixedFocus() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("isFixedFocus"))
+	return rv
+}
+
+
+// SetIsFixedFocus sets the value of the isFixedFocus property.
+// A BOOL indicating whether this metadata object represents a fixed focus.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataobject/isfixedfocus
+func (m_ MetadataObject) SetIsFixedFocus(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIsFixedFocus:"), value)
+}
+
 
 

@@ -95,6 +95,24 @@ func (o_ OSSystemExtensionManager) SubmitRequest(request unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("submitRequest:"), request)
 }
 
+// A delegate to receive updates about the progress of a request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/systemextensions/ossystemextensionrequest/delegate
+func (o_ OSSystemExtensionManager) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+
+// SetDelegate sets the value of the delegate property.
+// A delegate to receive updates about the progress of a request.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/systemextensions/ossystemextensionrequest/delegate
+func (o_ OSSystemExtensionManager) SetDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setDelegate:"), value)
+}
+
 // The shared instance of the extension manager.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SystemExtensions/OSSystemExtensionManager/shared

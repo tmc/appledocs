@@ -78,5 +78,77 @@ func NewAssetDownloadConfiguration() AssetDownloadConfiguration {
 }
 
 
+// A data value that represents the asset’s artwork.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetdownloadconfiguration/artworkdata
+func (a_ AssetDownloadConfiguration) ArtworkData() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("artworkData"))
+	return rv
+}
+
+
+// SetArtworkData sets the value of the artworkData property.
+// A data value that represents the asset’s artwork.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetdownloadconfiguration/artworkdata
+func (a_ AssetDownloadConfiguration) SetArtworkData(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setArtworkData:"), value)
+}
+
+// The configuration for the auxiliary content that the task downloads.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetdownloadconfiguration/auxiliarycontentconfigurations
+func (a_ AssetDownloadConfiguration) AuxiliaryContentConfigurations() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("auxiliaryContentConfigurations"))
+	return rv
+}
+
+
+// SetAuxiliaryContentConfigurations sets the value of the auxiliaryContentConfigurations property.
+// The configuration for the auxiliary content that the task downloads.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetdownloadconfiguration/auxiliarycontentconfigurations
+func (a_ AssetDownloadConfiguration) SetAuxiliaryContentConfigurations(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAuxiliaryContentConfigurations:"), value)
+}
+
+// A Boolean value that indicates whether the task optimizes auxiliary content selection.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetdownloadconfiguration/optimizesauxiliarycontentconfigurations
+func (a_ AssetDownloadConfiguration) OptimizesAuxiliaryContentConfigurations() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("optimizesAuxiliaryContentConfigurations"))
+	return rv
+}
+
+
+// SetOptimizesAuxiliaryContentConfigurations sets the value of the optimizesAuxiliaryContentConfigurations property.
+// A Boolean value that indicates whether the task optimizes auxiliary content selection.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetdownloadconfiguration/optimizesauxiliarycontentconfigurations
+func (a_ AssetDownloadConfiguration) SetOptimizesAuxiliaryContentConfigurations(value bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setOptimizesAuxiliaryContentConfigurations:"), value)
+}
+
+// The configuration for the primary content that the task downloads.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetdownloadconfiguration/primarycontentconfiguration
+func (a_ AssetDownloadConfiguration) PrimaryContentConfiguration() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("primaryContentConfiguration"))
+	return rv
+}
+
+
+// SetPrimaryContentConfiguration sets the value of the primaryContentConfiguration property.
+// The configuration for the primary content that the task downloads.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetdownloadconfiguration/primarycontentconfiguration
+func (a_ AssetDownloadConfiguration) SetPrimaryContentConfiguration(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setPrimaryContentConfiguration:"), value)
+}
+
 
 

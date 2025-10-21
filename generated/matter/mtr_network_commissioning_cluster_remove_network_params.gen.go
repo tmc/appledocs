@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,66 @@ func NewMTRNetworkCommissioningClusterRemoveNetworkParams() MTRNetworkCommission
 	return getMTRNetworkCommissioningClusterRemoveNetworkParamsClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterremovenetworkparams/serversideprocessingtimeout
+func (m_ MTRNetworkCommissioningClusterRemoveNetworkParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+	return rv
+}
+
+
+// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterremovenetworkparams/serversideprocessingtimeout
+func (m_ MTRNetworkCommissioningClusterRemoveNetworkParams) SetServerSideProcessingTimeout(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterremovenetworkparams/networkid
+func (m_ MTRNetworkCommissioningClusterRemoveNetworkParams) NetworkID() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("networkID"))
+	return rv
+}
+
+
+// SetNetworkID sets the value of the networkID property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterremovenetworkparams/networkid
+func (m_ MTRNetworkCommissioningClusterRemoveNetworkParams) SetNetworkID(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setNetworkID:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterremovenetworkparams/breadcrumb
+func (m_ MTRNetworkCommissioningClusterRemoveNetworkParams) Breadcrumb() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("breadcrumb"))
+	return rv
+}
+
+
+// SetBreadcrumb sets the value of the breadcrumb property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterremovenetworkparams/breadcrumb
+func (m_ MTRNetworkCommissioningClusterRemoveNetworkParams) SetBreadcrumb(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setBreadcrumb:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterremovenetworkparams/timedinvoketimeoutms
+func (m_ MTRNetworkCommissioningClusterRemoveNetworkParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+	return rv
+}
+
+
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterremovenetworkparams/timedinvoketimeoutms
+func (m_ MTRNetworkCommissioningClusterRemoveNetworkParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+}
 
 
 

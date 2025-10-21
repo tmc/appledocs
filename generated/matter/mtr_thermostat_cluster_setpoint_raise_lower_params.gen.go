@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,66 @@ func NewMTRThermostatClusterSetpointRaiseLowerParams() MTRThermostatClusterSetpo
 	return getMTRThermostatClusterSetpointRaiseLowerParamsClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclustersetpointraiselowerparams/mode
+func (m_ MTRThermostatClusterSetpointRaiseLowerParams) Mode() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("mode"))
+	return rv
+}
+
+
+// SetMode sets the value of the mode property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclustersetpointraiselowerparams/mode
+func (m_ MTRThermostatClusterSetpointRaiseLowerParams) SetMode(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMode:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclustersetpointraiselowerparams/timedinvoketimeoutms
+func (m_ MTRThermostatClusterSetpointRaiseLowerParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+	return rv
+}
+
+
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclustersetpointraiselowerparams/timedinvoketimeoutms
+func (m_ MTRThermostatClusterSetpointRaiseLowerParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclustersetpointraiselowerparams/amount
+func (m_ MTRThermostatClusterSetpointRaiseLowerParams) Amount() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("amount"))
+	return rv
+}
+
+
+// SetAmount sets the value of the amount property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclustersetpointraiselowerparams/amount
+func (m_ MTRThermostatClusterSetpointRaiseLowerParams) SetAmount(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAmount:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclustersetpointraiselowerparams/serversideprocessingtimeout
+func (m_ MTRThermostatClusterSetpointRaiseLowerParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+	return rv
+}
+
+
+// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclustersetpointraiselowerparams/serversideprocessingtimeout
+func (m_ MTRThermostatClusterSetpointRaiseLowerParams) SetServerSideProcessingTimeout(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
+}
 
 
 

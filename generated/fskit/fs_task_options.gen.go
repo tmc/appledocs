@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,7 +31,7 @@ type _FSTaskOptionsClass struct {
 // An interface definition for the [FSTaskOptions] class.
 type IFSTaskOptions interface {
 	objectivec.IObject
-	UrlForOption(option string) unsafe.Pointer
+	UrlForOption(option string) foundation.URL
 }
 
 // A class that passes command options to a task, optionally providing security-scoped URLs.
@@ -82,8 +83,8 @@ func NewFSTaskOptions() FSTaskOptions {
 // Retrieves a URL for a given option.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSTaskOptions/url(forOption:)
-func (f_ FSTaskOptions) UrlForOption(option string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("urlForOption:"), objc.String(option))
+func (f_ FSTaskOptions) UrlForOption(option string) foundation.URL {
+	rv := objc.Send[foundation.URL](f_.ID, objc.Sel("urlForOption:"), objc.String(option))
 	return rv
 }
 

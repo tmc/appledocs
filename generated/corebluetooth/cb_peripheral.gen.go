@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CBPeripheral] class.
@@ -223,8 +224,8 @@ func (c_ CBPeripheral) Name() string {
 // The Received Signal Strength Indicator (RSSI), in decibels, of the peripheral.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBPeripheral/rssi
-func (c_ CBPeripheral) RSSI() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("RSSI"))
+func (c_ CBPeripheral) RSSI() foundation.Number {
+	rv := objc.Send[foundation.Number](c_.ID, objc.Sel("RSSI"))
 	return rv
 }
 

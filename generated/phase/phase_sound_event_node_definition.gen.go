@@ -81,6 +81,42 @@ func NewPHASESoundEventNodeDefinition() PHASESoundEventNodeDefinition {
 }
 
 
+// The object’s meta parameters.
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasesoundevent/metaparameters
+func (p_ PHASESoundEventNodeDefinition) MetaParameters() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("metaParameters"))
+	return rv
+}
+
+
+// SetMetaParameters sets the value of the metaParameters property.
+// The object’s meta parameters.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasesoundevent/metaparameters
+func (p_ PHASESoundEventNodeDefinition) SetMetaParameters(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setMetaParameters:"), objc.String(value))
+}
+
+// A unique name for the definition.
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasedefinition/identifier
+func (p_ PHASESoundEventNodeDefinition) Identifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("identifier"))
+	return rv
+}
+
+
+// SetIdentifier sets the value of the identifier property.
+// A unique name for the definition.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasedefinition/identifier
+func (p_ PHASESoundEventNodeDefinition) SetIdentifier(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+}
+
 // An array of child sound event nodes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESoundEventNodeDefinition/children

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,51 @@ func NewMTRMetricData() MTRMetricData {
 	return getMTRMetricDataClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmetricdata/duration
+func (m_ MTRMetricData) Duration() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("duration"))
+	return rv
+}
+
+
+// SetDuration sets the value of the duration property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmetricdata/duration
+func (m_ MTRMetricData) SetDuration(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDuration:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmetricdata/value
+func (m_ MTRMetricData) Value() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("value"))
+	return rv
+}
+
+
+// SetValue sets the value of the value property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmetricdata/value
+func (m_ MTRMetricData) SetValue(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmetricdata/errorcode
+func (m_ MTRMetricData) ErrorCode() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("errorCode"))
+	return rv
+}
+
+
+// SetErrorCode sets the value of the errorCode property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmetricdata/errorcode
+func (m_ MTRMetricData) SetErrorCode(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setErrorCode:"), value)
+}
 
 
 

@@ -81,6 +81,32 @@ func NewHKCategorySample() HKCategorySample {
 }
 
 
+// The category value for this sample.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcategorysample/value
+func (h_ HKCategorySample) Value() int {
+	rv := objc.Send[int](h_.ID, objc.Sel("value"))
+	return rv
+}
+
+
+// SetValue sets the value of the value property.
+// The category value for this sample.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcategorysample/value
+func (h_ HKCategorySample) SetValue(value int) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setValue:"), value)
+}
+
+// The key path for accessing the category sample’s value.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathcategoryvalue
+func (h_ HKCategorySample) HKPredicateKeyPathCategoryValue() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathCategoryValue"))
+	return rv
+}
+
 // The category type for this sample.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKCategorySample/categoryType

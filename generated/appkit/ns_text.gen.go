@@ -704,4 +704,130 @@ func (t_ Text) SetUsesFontPanel(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setUsesFontPanel:"), value)
 }
 
+// A Boolean that controls whether the receiver allows the user to edit its text.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstext/iseditable
+func (t_ Text) IsEditable() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("isEditable"))
+	return rv
+}
+
+
+// SetIsEditable sets the value of the isEditable property.
+// A Boolean that controls whether the receiver allows the user to edit its text.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstext/iseditable
+func (t_ Text) SetIsEditable(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setIsEditable:"), value)
+}
+
+// A Boolean that controls whether the receiver interprets Tab, Shift-Tab, and Return (Enter) as cues to end editing and possibly to change the first responder.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstext/isfieldeditor
+func (t_ Text) IsFieldEditor() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("isFieldEditor"))
+	return rv
+}
+
+
+// SetIsFieldEditor sets the value of the isFieldEditor property.
+// A Boolean that controls whether the receiver interprets Tab, Shift-Tab, and Return (Enter) as cues to end editing and possibly to change the first responder.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstext/isfieldeditor
+func (t_ Text) SetIsFieldEditor(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setIsFieldEditor:"), value)
+}
+
+// A Boolean that controls whether the receiver changes its width to fit the width of its text.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstext/ishorizontallyresizable
+func (t_ Text) IsHorizontallyResizable() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("isHorizontallyResizable"))
+	return rv
+}
+
+
+// SetIsHorizontallyResizable sets the value of the isHorizontallyResizable property.
+// A Boolean that controls whether the receiver changes its width to fit the width of its text.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstext/ishorizontallyresizable
+func (t_ Text) SetIsHorizontallyResizable(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setIsHorizontallyResizable:"), value)
+}
+
+// A Boolean that controls whether the receiver allows the user to apply attributes to specific ranges of the text.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstext/isrichtext
+func (t_ Text) IsRichText() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("isRichText"))
+	return rv
+}
+
+
+// SetIsRichText sets the value of the isRichText property.
+// A Boolean that controls whether the receiver allows the user to apply attributes to specific ranges of the text.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstext/isrichtext
+func (t_ Text) SetIsRichText(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setIsRichText:"), value)
+}
+
+// A Boolean value that indicates whether the receiver’s enclosing scroll view shows its ruler.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstext/isrulervisible
+func (t_ Text) IsRulerVisible() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("isRulerVisible"))
+	return rv
+}
+
+
+// SetIsRulerVisible sets the value of the isRulerVisible property.
+// A Boolean value that indicates whether the receiver’s enclosing scroll view shows its ruler.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstext/isrulervisible
+func (t_ Text) SetIsRulerVisible(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setIsRulerVisible:"), value)
+}
+
+// A Boolean that controls whether the receiver allows the user to select its text.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstext/isselectable
+func (t_ Text) IsSelectable() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("isSelectable"))
+	return rv
+}
+
+
+// SetIsSelectable sets the value of the isSelectable property.
+// A Boolean that controls whether the receiver allows the user to select its text.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstext/isselectable
+func (t_ Text) SetIsSelectable(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setIsSelectable:"), value)
+}
+
+// A Boolean that controls whether the receiver changes its height to fit the height of its text.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstext/isverticallyresizable
+func (t_ Text) IsVerticallyResizable() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("isVerticallyResizable"))
+	return rv
+}
+
+
+// SetIsVerticallyResizable sets the value of the isVerticallyResizable property.
+// A Boolean that controls whether the receiver changes its height to fit the height of its text.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstext/isverticallyresizable
+func (t_ Text) SetIsVerticallyResizable(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setIsVerticallyResizable:"), value)
+}
+
 

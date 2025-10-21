@@ -102,6 +102,24 @@ func (t_ ToolPickerCustomItem) ReloadImage() {
 	objc.Send[objc.ID](t_.ID, objc.Sel("reloadImage"))
 }
 
+// A closure to provide an image that represents the custom tool item.
+//
+// [Full Topic]: https://developer.apple.com/documentation/pencilkit/pktoolpickercustomitem/configuration-swift.struct/imageprovider
+func (t_ ToolPickerCustomItem) ImageProvider() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("imageProvider"))
+	return rv
+}
+
+
+// SetImageProvider sets the value of the imageProvider property.
+// A closure to provide an image that represents the custom tool item.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/pencilkit/pktoolpickercustomitem/configuration-swift.struct/imageprovider
+func (t_ ToolPickerCustomItem) SetImageProvider(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setImageProvider:"), value)
+}
+
 // Present color selection UI to the user. Defaults to the value set in .
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerCustomItem/allowsColorSelection

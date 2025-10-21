@@ -78,5 +78,23 @@ func NewHKBloodTypeObject() HKBloodTypeObject {
 }
 
 
+// The blood type.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkbloodtypeobject/bloodtype
+func (h_ HKBloodTypeObject) BloodType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("bloodType"))
+	return rv
+}
+
+
+// SetBloodType sets the value of the bloodType property.
+// The blood type.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkbloodtypeobject/bloodtype
+func (h_ HKBloodTypeObject) SetBloodType(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setBloodType:"), value)
+}
+
 
 

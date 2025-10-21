@@ -78,6 +78,60 @@ func NewMXForegroundExitData() MXForegroundExitData {
 }
 
 
+// The metrics for the foreground app exits.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metrickit/mxappexitmetric/foregroundexitdata
+func (m_ MXForegroundExitData) ForegroundExitData() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("foregroundExitData"))
+	return rv
+}
+
+
+// SetForegroundExitData sets the value of the foregroundExitData property.
+// The metrics for the foreground app exits.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metrickit/mxappexitmetric/foregroundexitdata
+func (m_ MXForegroundExitData) SetForegroundExitData(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setForegroundExitData:"), value)
+}
+
+// The number of times the app exited abnormally from the foreground.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metrickit/mxforegroundexitdata/cumulativeabnormalexitcount
+func (m_ MXForegroundExitData) CumulativeAbnormalExitCount() int {
+	rv := objc.Send[int](m_.ID, objc.Sel("cumulativeAbnormalExitCount"))
+	return rv
+}
+
+
+// SetCumulativeAbnormalExitCount sets the value of the cumulativeAbnormalExitCount property.
+// The number of times the app exited abnormally from the foreground.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metrickit/mxforegroundexitdata/cumulativeabnormalexitcount
+func (m_ MXForegroundExitData) SetCumulativeAbnormalExitCount(value int) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCumulativeAbnormalExitCount:"), value)
+}
+
+// The number of times the system watchdog terminated the app from the foreground.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metrickit/mxforegroundexitdata/cumulativeappwatchdogexitcount
+func (m_ MXForegroundExitData) CumulativeAppWatchdogExitCount() int {
+	rv := objc.Send[int](m_.ID, objc.Sel("cumulativeAppWatchdogExitCount"))
+	return rv
+}
+
+
+// SetCumulativeAppWatchdogExitCount sets the value of the cumulativeAppWatchdogExitCount property.
+// The number of times the system watchdog terminated the app from the foreground.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metrickit/mxforegroundexitdata/cumulativeappwatchdogexitcount
+func (m_ MXForegroundExitData) SetCumulativeAppWatchdogExitCount(value int) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCumulativeAppWatchdogExitCount:"), value)
+}
+
 // The number of times the system terminated the app from the foreground for attempting an invalid memory access.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXForegroundExitData/cumulativeBadAccessExitCount

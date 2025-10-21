@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,51 @@ func NewMTRContentLauncherClusterLauncherResponseParams() MTRContentLauncherClus
 	return getMTRContentLauncherClusterLauncherResponseParamsClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlauncherresponseparams/data
+func (m_ MTRContentLauncherClusterLauncherResponseParams) Data() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("data"))
+	return rv
+}
+
+
+// SetData sets the value of the data property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlauncherresponseparams/data
+func (m_ MTRContentLauncherClusterLauncherResponseParams) SetData(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setData:"), objc.String(value))
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlauncherresponseparams/timedinvoketimeoutms
+func (m_ MTRContentLauncherClusterLauncherResponseParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+	return rv
+}
+
+
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlauncherresponseparams/timedinvoketimeoutms
+func (m_ MTRContentLauncherClusterLauncherResponseParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlauncherresponseparams/status
+func (m_ MTRContentLauncherClusterLauncherResponseParams) Status() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("status"))
+	return rv
+}
+
+
+// SetStatus sets the value of the status property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlauncherresponseparams/status
+func (m_ MTRContentLauncherClusterLauncherResponseParams) SetStatus(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setStatus:"), value)
+}
 
 
 

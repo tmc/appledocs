@@ -75,5 +75,65 @@ func NewCSRInfo() CSRInfo {
 }
 
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/csrinfo/elements
+func (c_ CSRInfo) Elements() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("elements"))
+	return rv
+}
+
+
+// SetElements sets the value of the elements property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/csrinfo/elements
+func (c_ CSRInfo) SetElements(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setElements:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/csrinfo/elementssignature
+func (c_ CSRInfo) ElementsSignature() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("elementsSignature"))
+	return rv
+}
+
+
+// SetElementsSignature sets the value of the elementsSignature property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/csrinfo/elementssignature
+func (c_ CSRInfo) SetElementsSignature(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setElementsSignature:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/csrinfo/csr
+func (c_ CSRInfo) Csr() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("csr"))
+	return rv
+}
+
+
+// SetCsr sets the value of the csr property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/csrinfo/csr
+func (c_ CSRInfo) SetCsr(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setCsr:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/csrinfo/nonce
+func (c_ CSRInfo) Nonce() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("nonce"))
+	return rv
+}
+
+
+// SetNonce sets the value of the nonce property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/csrinfo/nonce
+func (c_ CSRInfo) SetNonce(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setNonce:"), value)
+}
+
 
 

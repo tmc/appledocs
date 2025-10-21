@@ -80,5 +80,59 @@ func NewAssetReaderOutput() AssetReaderOutput {
 }
 
 
+// A Boolean value that indicates whether the output vends copied sample data.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreaderoutput/alwayscopiessampledata
+func (a_ AssetReaderOutput) AlwaysCopiesSampleData() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("alwaysCopiesSampleData"))
+	return rv
+}
+
+
+// SetAlwaysCopiesSampleData sets the value of the alwaysCopiesSampleData property.
+// A Boolean value that indicates whether the output vends copied sample data.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreaderoutput/alwayscopiessampledata
+func (a_ AssetReaderOutput) SetAlwaysCopiesSampleData(value bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAlwaysCopiesSampleData:"), value)
+}
+
+// The media type of samples that the output reads.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreaderoutput/mediatype
+func (a_ AssetReaderOutput) MediaType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("mediaType"))
+	return rv
+}
+
+
+// SetMediaType sets the value of the mediaType property.
+// The media type of samples that the output reads.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreaderoutput/mediatype
+func (a_ AssetReaderOutput) SetMediaType(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setMediaType:"), value)
+}
+
+// A Boolean value that indicates whether the output supports reconfiguring the time ranges it reads.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreaderoutput/supportsrandomaccess
+func (a_ AssetReaderOutput) SupportsRandomAccess() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("supportsRandomAccess"))
+	return rv
+}
+
+
+// SetSupportsRandomAccess sets the value of the supportsRandomAccess property.
+// A Boolean value that indicates whether the output supports reconfiguring the time ranges it reads.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreaderoutput/supportsrandomaccess
+func (a_ AssetReaderOutput) SetSupportsRandomAccess(value bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setSupportsRandomAccess:"), value)
+}
+
 
 

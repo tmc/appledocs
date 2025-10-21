@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MTRClusterEnergyEVSE] class.
@@ -29,13 +30,13 @@ type _MTRClusterEnergyEVSEClass struct {
 // An interface definition for the [MTRClusterEnergyEVSE] class.
 type IMTRClusterEnergyEVSE interface {
 	IMTRGenericCluster
-	ClearTargetsWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, completion unsafe.Pointer)
-	ClearTargetsWithExpectedValuesExpectedValueIntervalCompletion(expectedValues unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, completion unsafe.Pointer)
-	DisableWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, completion unsafe.Pointer)
-	DisableWithExpectedValuesExpectedValueIntervalCompletion(expectedValues unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, completion unsafe.Pointer)
-	EnableChargingWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, completion unsafe.Pointer)
-	GetTargetsWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, completion unsafe.Pointer)
-	GetTargetsWithExpectedValuesExpectedValueIntervalCompletion(expectedValues unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, completion unsafe.Pointer)
+	ClearTargetsWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer)
+	ClearTargetsWithExpectedValuesExpectedValueIntervalCompletion(expectedValues unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer)
+	DisableWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer)
+	DisableWithExpectedValuesExpectedValueIntervalCompletion(expectedValues unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer)
+	EnableChargingWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer)
+	GetTargetsWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer)
+	GetTargetsWithExpectedValuesExpectedValueIntervalCompletion(expectedValues unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer)
 	ReadAttributeAcceptedCommandListWithParams(params unsafe.Pointer) unsafe.Pointer
 	ReadAttributeApproximateEVEfficiencyWithParams(params unsafe.Pointer) unsafe.Pointer
 	ReadAttributeAttributeListWithParams(params unsafe.Pointer) unsafe.Pointer
@@ -58,15 +59,15 @@ type IMTRClusterEnergyEVSE interface {
 	ReadAttributeStateWithParams(params unsafe.Pointer) unsafe.Pointer
 	ReadAttributeSupplyStateWithParams(params unsafe.Pointer) unsafe.Pointer
 	ReadAttributeUserMaximumChargeCurrentWithParams(params unsafe.Pointer) unsafe.Pointer
-	SetTargetsWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, completion unsafe.Pointer)
-	StartDiagnosticsWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, completion unsafe.Pointer)
-	StartDiagnosticsWithExpectedValuesExpectedValueIntervalCompletion(expectedValues unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, completion unsafe.Pointer)
-	WriteAttributeApproximateEVEfficiencyWithValueExpectedValueInterval(dataValueDictionary unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer)
-	WriteAttributeApproximateEVEfficiencyWithValueExpectedValueIntervalParams(dataValueDictionary unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, params unsafe.Pointer)
-	WriteAttributeRandomizationDelayWindowWithValueExpectedValueInterval(dataValueDictionary unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer)
-	WriteAttributeRandomizationDelayWindowWithValueExpectedValueIntervalParams(dataValueDictionary unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, params unsafe.Pointer)
-	WriteAttributeUserMaximumChargeCurrentWithValueExpectedValueInterval(dataValueDictionary unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer)
-	WriteAttributeUserMaximumChargeCurrentWithValueExpectedValueIntervalParams(dataValueDictionary unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, params unsafe.Pointer)
+	SetTargetsWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer)
+	StartDiagnosticsWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer)
+	StartDiagnosticsWithExpectedValuesExpectedValueIntervalCompletion(expectedValues unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer)
+	WriteAttributeApproximateEVEfficiencyWithValueExpectedValueInterval(dataValueDictionary unsafe.Pointer, expectedValueIntervalMs foundation.Number)
+	WriteAttributeApproximateEVEfficiencyWithValueExpectedValueIntervalParams(dataValueDictionary unsafe.Pointer, expectedValueIntervalMs foundation.Number, params unsafe.Pointer)
+	WriteAttributeRandomizationDelayWindowWithValueExpectedValueInterval(dataValueDictionary unsafe.Pointer, expectedValueIntervalMs foundation.Number)
+	WriteAttributeRandomizationDelayWindowWithValueExpectedValueIntervalParams(dataValueDictionary unsafe.Pointer, expectedValueIntervalMs foundation.Number, params unsafe.Pointer)
+	WriteAttributeUserMaximumChargeCurrentWithValueExpectedValueInterval(dataValueDictionary unsafe.Pointer, expectedValueIntervalMs foundation.Number)
+	WriteAttributeUserMaximumChargeCurrentWithValueExpectedValueIntervalParams(dataValueDictionary unsafe.Pointer, expectedValueIntervalMs foundation.Number, params unsafe.Pointer)
 }
 
 // Cluster Energy EVSE Electric Vehicle Supply Equipment (EVSE) is equipment used to charge an Electric Vehicle (EV) or Plug-In Hybrid Electric Vehicle. This cluster provides an interface to the functionality of Electric Vehicle Supply Equipment (EVSE) management.
@@ -122,7 +123,7 @@ func NewMTRClusterEnergyEVSE() MTRClusterEnergyEVSE {
 // For all instance methods that take a completion (i.e. command invocations), the completion will be called on the provided queue.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterEnergyEVSE/init(device:endpointID:queue:)
-func NewMTRClusterEnergyEVSEWithDeviceEndpointIDQueue(device unsafe.Pointer, endpointID unsafe.Pointer, queue unsafe.Pointer) MTRClusterEnergyEVSE {
+func NewMTRClusterEnergyEVSEWithDeviceEndpointIDQueue(device unsafe.Pointer, endpointID foundation.Number, queue unsafe.Pointer) MTRClusterEnergyEVSE {
 	instance := getMTRClusterEnergyEVSEClass().Alloc()
 	rv := objc.Send[MTRClusterEnergyEVSE](instance.ID, objc.Sel("initWithDevice:endpointID:queue:"), device, endpointID, queue)
 	rv.Autorelease()
@@ -132,43 +133,43 @@ func NewMTRClusterEnergyEVSEWithDeviceEndpointIDQueue(device unsafe.Pointer, end
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterEnergyEVSE/clearTargets(with:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterEnergyEVSE) ClearTargetsWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, completion unsafe.Pointer) {
+func (m_ MTRClusterEnergyEVSE) ClearTargetsWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("clearTargetsWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterEnergyEVSE/clearTargets(withExpectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterEnergyEVSE) ClearTargetsWithExpectedValuesExpectedValueIntervalCompletion(expectedValues unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, completion unsafe.Pointer) {
+func (m_ MTRClusterEnergyEVSE) ClearTargetsWithExpectedValuesExpectedValueIntervalCompletion(expectedValues unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("clearTargetsWithExpectedValues:expectedValueInterval:completion:"), expectedValues, expectedValueIntervalMs, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterEnergyEVSE/disable(with:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterEnergyEVSE) DisableWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, completion unsafe.Pointer) {
+func (m_ MTRClusterEnergyEVSE) DisableWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("disableWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterEnergyEVSE/disable(withExpectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterEnergyEVSE) DisableWithExpectedValuesExpectedValueIntervalCompletion(expectedValues unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, completion unsafe.Pointer) {
+func (m_ MTRClusterEnergyEVSE) DisableWithExpectedValuesExpectedValueIntervalCompletion(expectedValues unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("disableWithExpectedValues:expectedValueInterval:completion:"), expectedValues, expectedValueIntervalMs, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterEnergyEVSE/enableCharging(with:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterEnergyEVSE) EnableChargingWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, completion unsafe.Pointer) {
+func (m_ MTRClusterEnergyEVSE) EnableChargingWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("enableChargingWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterEnergyEVSE/getTargetsWith(_:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterEnergyEVSE) GetTargetsWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, completion unsafe.Pointer) {
+func (m_ MTRClusterEnergyEVSE) GetTargetsWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("getTargetsWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterEnergyEVSE/getTargetsWithExpectedValues(_:expectedValueInterval:completion:)
-func (m_ MTRClusterEnergyEVSE) GetTargetsWithExpectedValuesExpectedValueIntervalCompletion(expectedValues unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, completion unsafe.Pointer) {
+func (m_ MTRClusterEnergyEVSE) GetTargetsWithExpectedValuesExpectedValueIntervalCompletion(expectedValues unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("getTargetsWithExpectedValues:expectedValueInterval:completion:"), expectedValues, expectedValueIntervalMs, completion)
 }
 
@@ -328,55 +329,55 @@ func (m_ MTRClusterEnergyEVSE) ReadAttributeUserMaximumChargeCurrentWithParams(p
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterEnergyEVSE/setTargetsWith(_:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterEnergyEVSE) SetTargetsWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, completion unsafe.Pointer) {
+func (m_ MTRClusterEnergyEVSE) SetTargetsWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTargetsWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterEnergyEVSE/startDiagnostics(with:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterEnergyEVSE) StartDiagnosticsWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, completion unsafe.Pointer) {
+func (m_ MTRClusterEnergyEVSE) StartDiagnosticsWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("startDiagnosticsWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterEnergyEVSE/startDiagnostics(withExpectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterEnergyEVSE) StartDiagnosticsWithExpectedValuesExpectedValueIntervalCompletion(expectedValues unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, completion unsafe.Pointer) {
+func (m_ MTRClusterEnergyEVSE) StartDiagnosticsWithExpectedValuesExpectedValueIntervalCompletion(expectedValues unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("startDiagnosticsWithExpectedValues:expectedValueInterval:completion:"), expectedValues, expectedValueIntervalMs, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterEnergyEVSE/writeAttributeApproximateEVEfficiency(withValue:expectedValueInterval:)
-func (m_ MTRClusterEnergyEVSE) WriteAttributeApproximateEVEfficiencyWithValueExpectedValueInterval(dataValueDictionary unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer) {
+func (m_ MTRClusterEnergyEVSE) WriteAttributeApproximateEVEfficiencyWithValueExpectedValueInterval(dataValueDictionary unsafe.Pointer, expectedValueIntervalMs foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("writeAttributeApproximateEVEfficiencyWithValue:expectedValueInterval:"), dataValueDictionary, expectedValueIntervalMs)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterEnergyEVSE/writeAttributeApproximateEVEfficiency(withValue:expectedValueInterval:params:)
-func (m_ MTRClusterEnergyEVSE) WriteAttributeApproximateEVEfficiencyWithValueExpectedValueIntervalParams(dataValueDictionary unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, params unsafe.Pointer) {
+func (m_ MTRClusterEnergyEVSE) WriteAttributeApproximateEVEfficiencyWithValueExpectedValueIntervalParams(dataValueDictionary unsafe.Pointer, expectedValueIntervalMs foundation.Number, params unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("writeAttributeApproximateEVEfficiencyWithValue:expectedValueInterval:params:"), dataValueDictionary, expectedValueIntervalMs, params)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterEnergyEVSE/writeAttributeRandomizationDelayWindow(withValue:expectedValueInterval:)
-func (m_ MTRClusterEnergyEVSE) WriteAttributeRandomizationDelayWindowWithValueExpectedValueInterval(dataValueDictionary unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer) {
+func (m_ MTRClusterEnergyEVSE) WriteAttributeRandomizationDelayWindowWithValueExpectedValueInterval(dataValueDictionary unsafe.Pointer, expectedValueIntervalMs foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("writeAttributeRandomizationDelayWindowWithValue:expectedValueInterval:"), dataValueDictionary, expectedValueIntervalMs)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterEnergyEVSE/writeAttributeRandomizationDelayWindow(withValue:expectedValueInterval:params:)
-func (m_ MTRClusterEnergyEVSE) WriteAttributeRandomizationDelayWindowWithValueExpectedValueIntervalParams(dataValueDictionary unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, params unsafe.Pointer) {
+func (m_ MTRClusterEnergyEVSE) WriteAttributeRandomizationDelayWindowWithValueExpectedValueIntervalParams(dataValueDictionary unsafe.Pointer, expectedValueIntervalMs foundation.Number, params unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("writeAttributeRandomizationDelayWindowWithValue:expectedValueInterval:params:"), dataValueDictionary, expectedValueIntervalMs, params)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterEnergyEVSE/writeAttributeUserMaximumChargeCurrent(withValue:expectedValueInterval:)
-func (m_ MTRClusterEnergyEVSE) WriteAttributeUserMaximumChargeCurrentWithValueExpectedValueInterval(dataValueDictionary unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer) {
+func (m_ MTRClusterEnergyEVSE) WriteAttributeUserMaximumChargeCurrentWithValueExpectedValueInterval(dataValueDictionary unsafe.Pointer, expectedValueIntervalMs foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("writeAttributeUserMaximumChargeCurrentWithValue:expectedValueInterval:"), dataValueDictionary, expectedValueIntervalMs)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterEnergyEVSE/writeAttributeUserMaximumChargeCurrent(withValue:expectedValueInterval:params:)
-func (m_ MTRClusterEnergyEVSE) WriteAttributeUserMaximumChargeCurrentWithValueExpectedValueIntervalParams(dataValueDictionary unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, params unsafe.Pointer) {
+func (m_ MTRClusterEnergyEVSE) WriteAttributeUserMaximumChargeCurrentWithValueExpectedValueIntervalParams(dataValueDictionary unsafe.Pointer, expectedValueIntervalMs foundation.Number, params unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("writeAttributeUserMaximumChargeCurrentWithValue:expectedValueInterval:params:"), dataValueDictionary, expectedValueIntervalMs, params)
 }
 

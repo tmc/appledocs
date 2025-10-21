@@ -118,5 +118,380 @@ func (m_ Menu) PopUpMenuPositioningItemAtLocationInView(item unsafe.Pointer, loc
 	return rv
 }
 
+// Indicates whether the pop-up menu allows appending of contextual menu plug-in items.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/allowscontextmenuplugins
+func (m_ Menu) AllowsContextMenuPlugIns() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("allowsContextMenuPlugIns"))
+	return rv
+}
+
+
+// SetAllowsContextMenuPlugIns sets the value of the allowsContextMenuPlugIns property.
+// Indicates whether the pop-up menu allows appending of contextual menu plug-in items.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/allowscontextmenuplugins
+func (m_ Menu) SetAllowsContextMenuPlugIns(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAllowsContextMenuPlugIns:"), value)
+}
+
+// Indicates whether the menu automatically enables and disables its menu items.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/autoenablesitems
+func (m_ Menu) AutoenablesItems() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("autoenablesItems"))
+	return rv
+}
+
+
+// SetAutoenablesItems sets the value of the autoenablesItems property.
+// Indicates whether the menu automatically enables and disables its menu items.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/autoenablesitems
+func (m_ Menu) SetAutoenablesItems(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAutoenablesItems:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/automaticallyinsertswritingtoolsitems
+func (m_ Menu) AutomaticallyInsertsWritingToolsItems() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("automaticallyInsertsWritingToolsItems"))
+	return rv
+}
+
+
+// SetAutomaticallyInsertsWritingToolsItems sets the value of the automaticallyInsertsWritingToolsItems property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/automaticallyinsertswritingtoolsitems
+func (m_ Menu) SetAutomaticallyInsertsWritingToolsItems(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAutomaticallyInsertsWritingToolsItems:"), value)
+}
+
+// The delegate of the menu.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/delegate
+func (m_ Menu) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+
+// SetDelegate sets the value of the delegate property.
+// The delegate of the menu.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/delegate
+func (m_ Menu) SetDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDelegate:"), value)
+}
+
+// The font of the menu and its submenus.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/font
+func (m_ Menu) Font() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("font"))
+	return rv
+}
+
+
+// SetFont sets the value of the font property.
+// The font of the menu and its submenus.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/font
+func (m_ Menu) SetFont(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setFont:"), value)
+}
+
+// Indicates the currently highlighted item in the menu.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/highlighteditem
+func (m_ Menu) HighlightedItem() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("highlightedItem"))
+	return rv
+}
+
+
+// SetHighlightedItem sets the value of the highlightedItem property.
+// Indicates the currently highlighted item in the menu.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/highlighteditem
+func (m_ Menu) SetHighlightedItem(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setHighlightedItem:"), value)
+}
+
+// Indicates whether the menu is offscreen or attached to another menu (or if it’s the main menu).
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/istornoff
+func (m_ Menu) IsTornOff() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("isTornOff"))
+	return rv
+}
+
+
+// SetIsTornOff sets the value of the isTornOff property.
+// Indicates whether the menu is offscreen or attached to another menu (or if it’s the main menu).
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/istornoff
+func (m_ Menu) SetIsTornOff(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIsTornOff:"), value)
+}
+
+// An array containing the menu items in the menu.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/items
+func (m_ Menu) Items() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("items"))
+	return rv
+}
+
+
+// SetItems sets the value of the items property.
+// An array containing the menu items in the menu.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/items
+func (m_ Menu) SetItems(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setItems:"), value)
+}
+
+// The menu bar height for the main menu in pixels.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/menubarheight
+func (m_ Menu) MenuBarHeight() float64 {
+	rv := objc.Send[float64](m_.ID, objc.Sel("menuBarHeight"))
+	return rv
+}
+
+
+// SetMenuBarHeight sets the value of the menuBarHeight property.
+// The menu bar height for the main menu in pixels.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/menubarheight
+func (m_ Menu) SetMenuBarHeight(value float64) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMenuBarHeight:"), value)
+}
+
+// Indicates whether messages are sent to the application’s windows each time the menu changes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/menuchangedmessagesenabled
+func (m_ Menu) MenuChangedMessagesEnabled() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("menuChangedMessagesEnabled"))
+	return rv
+}
+
+
+// SetMenuChangedMessagesEnabled sets the value of the menuChangedMessagesEnabled property.
+// Indicates whether messages are sent to the application’s windows each time the menu changes.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/menuchangedmessagesenabled
+func (m_ Menu) SetMenuChangedMessagesEnabled(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMenuChangedMessagesEnabled:"), value)
+}
+
+// The minimum width of the menu in screen coordinates.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/minimumwidth
+func (m_ Menu) MinimumWidth() float64 {
+	rv := objc.Send[float64](m_.ID, objc.Sel("minimumWidth"))
+	return rv
+}
+
+
+// SetMinimumWidth sets the value of the minimumWidth property.
+// The minimum width of the menu in screen coordinates.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/minimumwidth
+func (m_ Menu) SetMinimumWidth(value float64) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMinimumWidth:"), value)
+}
+
+// The number of menu items in the menu, including separator items.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/numberofitems
+func (m_ Menu) NumberOfItems() int {
+	rv := objc.Send[int](m_.ID, objc.Sel("numberOfItems"))
+	return rv
+}
+
+
+// SetNumberOfItems sets the value of the numberOfItems property.
+// The number of menu items in the menu, including separator items.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/numberofitems
+func (m_ Menu) SetNumberOfItems(value int) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setNumberOfItems:"), value)
+}
+
+// The presentation style of the menu.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/presentationstyle-swift.property
+func (m_ Menu) PresentationStyle() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("presentationStyle"))
+	return rv
+}
+
+
+// SetPresentationStyle sets the value of the presentationStyle property.
+// The presentation style of the menu.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/presentationstyle-swift.property
+func (m_ Menu) SetPresentationStyle(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPresentationStyle:"), value)
+}
+
+// The available properties for the menu.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/propertiestoupdate
+func (m_ Menu) PropertiesToUpdate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("propertiesToUpdate"))
+	return rv
+}
+
+
+// SetPropertiesToUpdate sets the value of the propertiesToUpdate property.
+// The available properties for the menu.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/propertiestoupdate
+func (m_ Menu) SetPropertiesToUpdate(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPropertiesToUpdate:"), value)
+}
+
+// The menu items that are currently selected.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/selecteditems
+func (m_ Menu) SelectedItems() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("selectedItems"))
+	return rv
+}
+
+
+// SetSelectedItems sets the value of the selectedItems property.
+// The menu items that are currently selected.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/selecteditems
+func (m_ Menu) SetSelectedItems(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSelectedItems:"), value)
+}
+
+// The selection mode of the menu.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/selectionmode-swift.property
+func (m_ Menu) SelectionMode() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("selectionMode"))
+	return rv
+}
+
+
+// SetSelectionMode sets the value of the selectionMode property.
+// The selection mode of the menu.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/selectionmode-swift.property
+func (m_ Menu) SetSelectionMode(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSelectionMode:"), value)
+}
+
+// Indicates whether the menu displays the state column.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/showsstatecolumn
+func (m_ Menu) ShowsStateColumn() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("showsStateColumn"))
+	return rv
+}
+
+
+// SetShowsStateColumn sets the value of the showsStateColumn property.
+// Indicates whether the menu displays the state column.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/showsstatecolumn
+func (m_ Menu) SetShowsStateColumn(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setShowsStateColumn:"), value)
+}
+
+// The size of the menu in screen coordinates
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/size
+func (m_ Menu) Size() coregraphics.CGSize {
+	rv := objc.Send[coregraphics.CGSize](m_.ID, objc.Sel("size"))
+	return rv
+}
+
+
+// SetSize sets the value of the size property.
+// The size of the menu in screen coordinates
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/size
+func (m_ Menu) SetSize(value coregraphics.CGSize) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSize:"), value)
+}
+
+// The parent menu that contains the menu as a submenu.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/supermenu
+func (m_ Menu) Supermenu() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("supermenu"))
+	return rv
+}
+
+
+// SetSupermenu sets the value of the supermenu property.
+// The parent menu that contains the menu as a submenu.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/supermenu
+func (m_ Menu) SetSupermenu(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSupermenu:"), value)
+}
+
+// The title of the menu.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/title
+func (m_ Menu) Title() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("title"))
+	return rv
+}
+
+
+// SetTitle sets the value of the title property.
+// The title of the menu.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/title
+func (m_ Menu) SetTitle(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTitle:"), objc.String(value))
+}
+
+// Configures the layout direction of menu items in the menu.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/userinterfacelayoutdirection
+func (m_ Menu) UserInterfaceLayoutDirection() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("userInterfaceLayoutDirection"))
+	return rv
+}
+
+
+// SetUserInterfaceLayoutDirection sets the value of the userInterfaceLayoutDirection property.
+// Configures the layout direction of menu items in the menu.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/userinterfacelayoutdirection
+func (m_ Menu) SetUserInterfaceLayoutDirection(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setUserInterfaceLayoutDirection:"), value)
+}
+
 
 

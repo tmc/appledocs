@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -33,8 +32,8 @@ type IQuadtree interface {
 	objectivec.IObject
 	AddElementWithPoint(element unsafe.Pointer, point unsafe.Pointer) unsafe.Pointer
 	AddElementWithQuad(element unsafe.Pointer, quad unsafe.Pointer) unsafe.Pointer
-	ElementsAtPoint(point unsafe.Pointer) []foundation.NSObject
-	ElementsInQuad(quad unsafe.Pointer) []foundation.NSObject
+	ElementsAtPoint(point unsafe.Pointer) []unsafe.Pointer
+	ElementsInQuad(quad unsafe.Pointer) []unsafe.Pointer
 	RemoveElement(element unsafe.Pointer) bool
 	RemoveElementWithNode(data unsafe.Pointer, node unsafe.Pointer) bool
 }
@@ -127,16 +126,16 @@ func (q_ Quadtree) AddElementWithQuad(element unsafe.Pointer, quad unsafe.Pointe
 // Returns all objects whose corresponding locations overlap the specified point.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKQuadtree/elements(at:)
-func (q_ Quadtree) ElementsAtPoint(point unsafe.Pointer) []foundation.NSObject {
-	rv := objc.Send[[]foundation.NSObject](q_.ID, objc.Sel("elementsAtPoint:"), point)
+func (q_ Quadtree) ElementsAtPoint(point unsafe.Pointer) []unsafe.Pointer {
+	rv := objc.Send[[]unsafe.Pointer](q_.ID, objc.Sel("elementsAtPoint:"), point)
 	return rv
 }
 
 // Returns all objects whose corresponding locations overlap the specified region.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKQuadtree/elements(in:)
-func (q_ Quadtree) ElementsInQuad(quad unsafe.Pointer) []foundation.NSObject {
-	rv := objc.Send[[]foundation.NSObject](q_.ID, objc.Sel("elementsInQuad:"), quad)
+func (q_ Quadtree) ElementsInQuad(quad unsafe.Pointer) []unsafe.Pointer {
+	rv := objc.Send[[]unsafe.Pointer](q_.ID, objc.Sel("elementsInQuad:"), quad)
 	return rv
 }
 

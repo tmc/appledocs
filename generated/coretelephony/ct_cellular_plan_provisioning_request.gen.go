@@ -80,6 +80,96 @@ func NewCellularPlanProvisioningRequest() CellularPlanProvisioningRequest {
 }
 
 
+// The provisioning request’s Object Identifier (OID).
+//
+// [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctcellularplanprovisioningrequest/oid
+func (c_ CellularPlanProvisioningRequest) Oid() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("oid"))
+	return rv
+}
+
+
+// SetOid sets the value of the oid property.
+// The provisioning request’s Object Identifier (OID).
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctcellularplanprovisioningrequest/oid
+func (c_ CellularPlanProvisioningRequest) SetOid(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setOid:"), objc.String(value))
+}
+
+// The provisioning request’s confirmation code, provided by the network operator when initiating an eSIM download.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctcellularplanprovisioningrequest/confirmationcode
+func (c_ CellularPlanProvisioningRequest) ConfirmationCode() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("confirmationCode"))
+	return rv
+}
+
+
+// SetConfirmationCode sets the value of the confirmationCode property.
+// The provisioning request’s confirmation code, provided by the network operator when initiating an eSIM download.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctcellularplanprovisioningrequest/confirmationcode
+func (c_ CellularPlanProvisioningRequest) SetConfirmationCode(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setConfirmationCode:"), objc.String(value))
+}
+
+// The provisioning request’s eUICC identifier (EID).
+//
+// [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctcellularplanprovisioningrequest/eid
+func (c_ CellularPlanProvisioningRequest) Eid() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("eid"))
+	return rv
+}
+
+
+// SetEid sets the value of the eid property.
+// The provisioning request’s eUICC identifier (EID).
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctcellularplanprovisioningrequest/eid
+func (c_ CellularPlanProvisioningRequest) SetEid(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setEid:"), objc.String(value))
+}
+
+// The provisioning request’s matching identifier (MatchingID).
+//
+// [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctcellularplanprovisioningrequest/matchingid
+func (c_ CellularPlanProvisioningRequest) MatchingID() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("matchingID"))
+	return rv
+}
+
+
+// SetMatchingID sets the value of the matchingID property.
+// The provisioning request’s matching identifier (MatchingID).
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctcellularplanprovisioningrequest/matchingid
+func (c_ CellularPlanProvisioningRequest) SetMatchingID(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setMatchingID:"), objc.String(value))
+}
+
+// The provisioning request’s Integrated Circuit Card Identifier (ICCID).
+//
+// [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctcellularplanprovisioningrequest/iccid
+func (c_ CellularPlanProvisioningRequest) Iccid() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("iccid"))
+	return rv
+}
+
+
+// SetIccid sets the value of the iccid property.
+// The provisioning request’s Integrated Circuit Card Identifier (ICCID).
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctcellularplanprovisioningrequest/iccid
+func (c_ CellularPlanProvisioningRequest) SetIccid(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIccid:"), objc.String(value))
+}
+
 // The address of the carrier network’s eSIM server.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCellularPlanProvisioningRequest/address

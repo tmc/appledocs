@@ -81,5 +81,59 @@ func NewINSendPaymentIntent() INSendPaymentIntent {
 }
 
 
+// A note associated with the payment.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insendpaymentintent/note
+func (i_ INSendPaymentIntent) Note() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("note"))
+	return rv
+}
+
+
+// SetNote sets the value of the note property.
+// A note associated with the payment.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insendpaymentintent/note
+func (i_ INSendPaymentIntent) SetNote(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setNote:"), objc.String(value))
+}
+
+// The recipient of the payment.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insendpaymentintent/payee
+func (i_ INSendPaymentIntent) Payee() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("payee"))
+	return rv
+}
+
+
+// SetPayee sets the value of the payee property.
+// The recipient of the payment.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insendpaymentintent/payee
+func (i_ INSendPaymentIntent) SetPayee(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setPayee:"), value)
+}
+
+// The amount of the payment.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insendpaymentintent/currencyamount
+func (i_ INSendPaymentIntent) CurrencyAmount() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("currencyAmount"))
+	return rv
+}
+
+
+// SetCurrencyAmount sets the value of the currencyAmount property.
+// The amount of the payment.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insendpaymentintent/currencyamount
+func (i_ INSendPaymentIntent) SetCurrencyAmount(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setCurrencyAmount:"), value)
+}
+
 
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -86,7 +87,7 @@ func NewPersistentStore() PersistentStore {
 // Returns a store initialized with the given arguments.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStore/init(persistentStoreCoordinator:configurationName:at:options:)
-func NewPersistentStoreWithPersistentStoreCoordinatorConfigurationNameURLOptions(root unsafe.Pointer, name string, url unsafe.Pointer, options objc.ID) PersistentStore {
+func NewPersistentStoreWithPersistentStoreCoordinatorConfigurationNameURLOptions(root unsafe.Pointer, name string, url foundation.URL, options objc.ID) PersistentStore {
 	instance := getPersistentStoreClass().Alloc()
 	rv := objc.Send[PersistentStore](instance.ID, objc.Sel("initWithPersistentStoreCoordinator:configurationName:URL:options:"), root, objc.String(name), url, options)
 	rv.Autorelease()
@@ -97,7 +98,7 @@ func NewPersistentStoreWithPersistentStoreCoordinatorConfigurationNameURLOptions
 // Returns the metadata from the persistent store at the given URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStore/metadataForPersistentStore(with:)
-func (pc _PersistentStoreClass) MetadataForPersistentStoreWithURLError(url unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func (pc _PersistentStoreClass) MetadataForPersistentStoreWithURLError(url foundation.URL, error_ unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("metadataForPersistentStoreWithURL:error:"), url, error_)
 	return rv
 }
@@ -113,7 +114,7 @@ func (pc _PersistentStoreClass) MigrationManagerClass() objc.Class {
 // Sets the metadata for the store at a given URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStore/setMetadata(_:forPersistentStoreAt:)
-func (pc _PersistentStoreClass) SetMetadataForPersistentStoreWithURLError(metadata unsafe.Pointer, url unsafe.Pointer, error_ unsafe.Pointer) bool {
+func (pc _PersistentStoreClass) SetMetadataForPersistentStoreWithURLError(metadata unsafe.Pointer, url foundation.URL, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](objc.ID(pc.class), objc.Sel("setMetadata:forPersistentStoreWithURL:error:"), metadata, url, error_)
 	return rv
 }
@@ -124,6 +125,96 @@ func (pc _PersistentStoreClass) SetMetadataForPersistentStoreWithURLError(metada
 func (p_ PersistentStore) LoadMetadata(error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("loadMetadata:"), error_)
 	return rv
+}
+
+// The spotlight exporter associated with this persistent store.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstore/corespotlightexporter
+func (p_ PersistentStore) CoreSpotlightExporter() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("coreSpotlightExporter"))
+	return rv
+}
+
+
+// SetCoreSpotlightExporter sets the value of the coreSpotlightExporter property.
+// The spotlight exporter associated with this persistent store.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstore/corespotlightexporter
+func (p_ PersistentStore) SetCoreSpotlightExporter(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setCoreSpotlightExporter:"), value)
+}
+
+// The unique identifier for the persistent store.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstore/identifier
+func (p_ PersistentStore) Identifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("identifier"))
+	return rv
+}
+
+
+// SetIdentifier sets the value of the identifier property.
+// The unique identifier for the persistent store.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstore/identifier
+func (p_ PersistentStore) SetIdentifier(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+}
+
+// The name of the managed object model configuration that creates the persistent store.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstore/configurationname
+func (p_ PersistentStore) ConfigurationName() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("configurationName"))
+	return rv
+}
+
+
+// SetConfigurationName sets the value of the configurationName property.
+// The name of the managed object model configuration that creates the persistent store.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstore/configurationname
+func (p_ PersistentStore) SetConfigurationName(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setConfigurationName:"), objc.String(value))
+}
+
+// The URL for the persistent store.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstore/url
+func (p_ PersistentStore) Url() foundation.URL {
+	rv := objc.Send[foundation.URL](p_.ID, objc.Sel("url"))
+	return rv
+}
+
+
+// SetUrl sets the value of the url property.
+// The URL for the persistent store.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstore/url
+func (p_ PersistentStore) SetUrl(value foundation.URL) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setUrl:"), value)
+}
+
+// A Boolean value that indicates whether the persistent store is read-only.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstore/isreadonly
+func (p_ PersistentStore) IsReadOnly() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isReadOnly"))
+	return rv
+}
+
+
+// SetIsReadOnly sets the value of the isReadOnly property.
+// A Boolean value that indicates whether the persistent store is read-only.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstore/isreadonly
+func (p_ PersistentStore) SetIsReadOnly(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsReadOnly:"), value)
 }
 
 // A Boolean value that indicates whether the persistent store is read-only.

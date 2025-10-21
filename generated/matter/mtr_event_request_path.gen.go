@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,51 @@ func NewMTREventRequestPath() MTREventRequestPath {
 	return getMTREventRequestPathClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtreventrequestpath/event
+func (m_ MTREventRequestPath) Event() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("event"))
+	return rv
+}
+
+
+// SetEvent sets the value of the event property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtreventrequestpath/event
+func (m_ MTREventRequestPath) SetEvent(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setEvent:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtreventrequestpath/cluster
+func (m_ MTREventRequestPath) Cluster() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("cluster"))
+	return rv
+}
+
+
+// SetCluster sets the value of the cluster property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtreventrequestpath/cluster
+func (m_ MTREventRequestPath) SetCluster(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCluster:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtreventrequestpath/endpoint
+func (m_ MTREventRequestPath) Endpoint() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("endpoint"))
+	return rv
+}
+
+
+// SetEndpoint sets the value of the endpoint property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtreventrequestpath/endpoint
+func (m_ MTREventRequestPath) SetEndpoint(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setEndpoint:"), value)
+}
 
 
 

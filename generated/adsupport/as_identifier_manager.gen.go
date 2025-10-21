@@ -86,6 +86,24 @@ func (ic _IdentifierManagerClass) SharedManager() unsafe.Pointer {
 	return rv
 }
 
+// A Boolean value that indicates whether the user has limited ad tracking
+//
+// [Full Topic]: https://developer.apple.com/documentation/adsupport/asidentifiermanager/isadvertisingtrackingenabled
+func (i_ IdentifierManager) IsAdvertisingTrackingEnabled() bool {
+	rv := objc.Send[bool](i_.ID, objc.Sel("isAdvertisingTrackingEnabled"))
+	return rv
+}
+
+
+// SetIsAdvertisingTrackingEnabled sets the value of the isAdvertisingTrackingEnabled property.
+// A Boolean value that indicates whether the user has limited ad tracking
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/adsupport/asidentifiermanager/isadvertisingtrackingenabled
+func (i_ IdentifierManager) SetIsAdvertisingTrackingEnabled(value bool) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setIsAdvertisingTrackingEnabled:"), value)
+}
+
 // The UUID that is specific to a device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AdSupport/ASIdentifierManager/advertisingIdentifier

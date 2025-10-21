@@ -1432,4 +1432,166 @@ func (c_ Cell) SetWraps(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setWraps:"), value)
 }
 
+// A Boolean value indicating whether the cell has a bezeled border.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/isbezeled
+func (c_ Cell) IsBezeled() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isBezeled"))
+	return rv
+}
+
+
+// SetIsBezeled sets the value of the isBezeled property.
+// A Boolean value indicating whether the cell has a bezeled border.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/isbezeled
+func (c_ Cell) SetIsBezeled(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsBezeled:"), value)
+}
+
+// A Boolean value indicating whether the cell draws itself outlined with a plain border.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/isbordered
+func (c_ Cell) IsBordered() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isBordered"))
+	return rv
+}
+
+
+// SetIsBordered sets the value of the isBordered property.
+// A Boolean value indicating whether the cell draws itself outlined with a plain border.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/isbordered
+func (c_ Cell) SetIsBordered(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsBordered:"), value)
+}
+
+// A Boolean value indicating whether the cell sends its action message continuously during mouse tracking.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/iscontinuous
+func (c_ Cell) IsContinuous() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isContinuous"))
+	return rv
+}
+
+
+// SetIsContinuous sets the value of the isContinuous property.
+// A Boolean value indicating whether the cell sends its action message continuously during mouse tracking.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/iscontinuous
+func (c_ Cell) SetIsContinuous(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsContinuous:"), value)
+}
+
+// A Boolean value indicating whether the cell is editable.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/iseditable
+func (c_ Cell) IsEditable() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isEditable"))
+	return rv
+}
+
+
+// SetIsEditable sets the value of the isEditable property.
+// A Boolean value indicating whether the cell is editable.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/iseditable
+func (c_ Cell) SetIsEditable(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsEditable:"), value)
+}
+
+// A Boolean value indicating whether the cell is currently enabled.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/isenabled
+func (c_ Cell) IsEnabled() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isEnabled"))
+	return rv
+}
+
+
+// SetIsEnabled sets the value of the isEnabled property.
+// A Boolean value indicating whether the cell is currently enabled.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/isenabled
+func (c_ Cell) SetIsEnabled(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsEnabled:"), value)
+}
+
+// A Boolean value indicating whether the cell has a highlighted appearance.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/ishighlighted
+func (c_ Cell) IsHighlighted() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isHighlighted"))
+	return rv
+}
+
+
+// SetIsHighlighted sets the value of the isHighlighted property.
+// A Boolean value indicating whether the cell has a highlighted appearance.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/ishighlighted
+func (c_ Cell) SetIsHighlighted(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsHighlighted:"), value)
+}
+
+// A Boolean value indicating whether the cell is completely opaque.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/isopaque
+func (c_ Cell) IsOpaque() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isOpaque"))
+	return rv
+}
+
+
+// SetIsOpaque sets the value of the isOpaque property.
+// A Boolean value indicating whether the cell is completely opaque.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/isopaque
+func (c_ Cell) SetIsOpaque(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsOpaque:"), value)
+}
+
+// A Boolean value indicating whether excess text scrolls past the cell’s bounds.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/isscrollable
+func (c_ Cell) IsScrollable() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isScrollable"))
+	return rv
+}
+
+
+// SetIsScrollable sets the value of the isScrollable property.
+// A Boolean value indicating whether excess text scrolls past the cell’s bounds.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/isscrollable
+func (c_ Cell) SetIsScrollable(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsScrollable:"), value)
+}
+
+// A Boolean value indicating whether the cell’s text can be selected.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/isselectable
+func (c_ Cell) IsSelectable() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isSelectable"))
+	return rv
+}
+
+
+// SetIsSelectable sets the value of the isSelectable property.
+// A Boolean value indicating whether the cell’s text can be selected.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/isselectable
+func (c_ Cell) SetIsSelectable(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsSelectable:"), value)
+}
+
 

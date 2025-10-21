@@ -81,5 +81,23 @@ func NewAudioUnitGenerator() AudioUnitGenerator {
 }
 
 
+// The bypass state of the audio unit.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitgenerator/bypass
+func (a_ AudioUnitGenerator) Bypass() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("bypass"))
+	return rv
+}
+
+
+// SetBypass sets the value of the bypass property.
+// The bypass state of the audio unit.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitgenerator/bypass
+func (a_ AudioUnitGenerator) SetBypass(value bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setBypass:"), value)
+}
+
 
 

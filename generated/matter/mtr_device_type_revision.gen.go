@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,54 @@ func NewMTRDeviceTypeRevision() MTRDeviceTypeRevision {
 	return getMTRDeviceTypeRevisionClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicetyperevision/devicetypeid
+func (m_ MTRDeviceTypeRevision) DeviceTypeID() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("deviceTypeID"))
+	return rv
+}
+
+
+// SetDeviceTypeID sets the value of the deviceTypeID property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicetyperevision/devicetypeid
+func (m_ MTRDeviceTypeRevision) SetDeviceTypeID(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDeviceTypeID:"), value)
+}
+
+// Returns the MTRDeviceType corresponding to deviceTypeID,
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicetyperevision/typeinformation
+func (m_ MTRDeviceTypeRevision) TypeInformation() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("typeInformation"))
+	return rv
+}
+
+
+// SetTypeInformation sets the value of the typeInformation property.
+// Returns the MTRDeviceType corresponding to deviceTypeID,
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicetyperevision/typeinformation
+func (m_ MTRDeviceTypeRevision) SetTypeInformation(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTypeInformation:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicetyperevision/devicetyperevision
+func (m_ MTRDeviceTypeRevision) DeviceTypeRevision() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("deviceTypeRevision"))
+	return rv
+}
+
+
+// SetDeviceTypeRevision sets the value of the deviceTypeRevision property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicetyperevision/devicetyperevision
+func (m_ MTRDeviceTypeRevision) SetDeviceTypeRevision(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDeviceTypeRevision:"), value)
+}
 
 
 

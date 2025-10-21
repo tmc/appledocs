@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -98,42 +99,42 @@ func (mc _MTRCertificatesClass) CreateCertificateSigningRequestError(keypair obj
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCertificates/createIntermediateCertificate(_:rootCertificate:intermediatePublicKey:issuerID:fabricID:)
-func (mc _MTRCertificatesClass) CreateIntermediateCertificateRootCertificateIntermediatePublicKeyIssuerIDFabricIDError(rootKeypair objc.ID, rootCertificate unsafe.Pointer, intermediatePublicKey unsafe.Pointer, issuerID unsafe.Pointer, fabricID unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func (mc _MTRCertificatesClass) CreateIntermediateCertificateRootCertificateIntermediatePublicKeyIssuerIDFabricIDError(rootKeypair objc.ID, rootCertificate unsafe.Pointer, intermediatePublicKey unsafe.Pointer, issuerID foundation.Number, fabricID foundation.Number, error_ unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("createIntermediateCertificate:rootCertificate:intermediatePublicKey:issuerID:fabricID:error:"), rootKeypair, rootCertificate, intermediatePublicKey, issuerID, fabricID, error_)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCertificates/createIntermediateCertificate(_:rootCertificate:intermediatePublicKey:issuerID:fabricID:validityPeriod:)
-func (mc _MTRCertificatesClass) CreateIntermediateCertificateRootCertificateIntermediatePublicKeyIssuerIDFabricIDValidityPeriodError(rootKeypair objc.ID, rootCertificate unsafe.Pointer, intermediatePublicKey unsafe.Pointer, issuerID unsafe.Pointer, fabricID unsafe.Pointer, validityPeriod unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func (mc _MTRCertificatesClass) CreateIntermediateCertificateRootCertificateIntermediatePublicKeyIssuerIDFabricIDValidityPeriodError(rootKeypair objc.ID, rootCertificate unsafe.Pointer, intermediatePublicKey unsafe.Pointer, issuerID foundation.Number, fabricID foundation.Number, validityPeriod unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("createIntermediateCertificate:rootCertificate:intermediatePublicKey:issuerID:fabricID:validityPeriod:error:"), rootKeypair, rootCertificate, intermediatePublicKey, issuerID, fabricID, validityPeriod, error_)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCertificates/createOperationalCertificate(_:signingCertificate:operationalPublicKey:fabricID:nodeID:caseAuthenticatedTags:)
-func (mc _MTRCertificatesClass) CreateOperationalCertificateSigningCertificateOperationalPublicKeyFabricIDNodeIDCaseAuthenticatedTagsError(signingKeypair objc.ID, signingCertificate unsafe.Pointer, operationalPublicKey unsafe.Pointer, fabricID unsafe.Pointer, nodeID unsafe.Pointer, caseAuthenticatedTags unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func (mc _MTRCertificatesClass) CreateOperationalCertificateSigningCertificateOperationalPublicKeyFabricIDNodeIDCaseAuthenticatedTagsError(signingKeypair objc.ID, signingCertificate unsafe.Pointer, operationalPublicKey unsafe.Pointer, fabricID foundation.Number, nodeID foundation.Number, caseAuthenticatedTags unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("createOperationalCertificate:signingCertificate:operationalPublicKey:fabricID:nodeID:caseAuthenticatedTags:error:"), signingKeypair, signingCertificate, operationalPublicKey, fabricID, nodeID, caseAuthenticatedTags, error_)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCertificates/createOperationalCertificate(_:signingCertificate:operationalPublicKey:fabricID:nodeID:caseAuthenticatedTags:validityPeriod:)
-func (mc _MTRCertificatesClass) CreateOperationalCertificateSigningCertificateOperationalPublicKeyFabricIDNodeIDCaseAuthenticatedTagsValidityPeriodError(signingKeypair objc.ID, signingCertificate unsafe.Pointer, operationalPublicKey unsafe.Pointer, fabricID unsafe.Pointer, nodeID unsafe.Pointer, caseAuthenticatedTags unsafe.Pointer, validityPeriod unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func (mc _MTRCertificatesClass) CreateOperationalCertificateSigningCertificateOperationalPublicKeyFabricIDNodeIDCaseAuthenticatedTagsValidityPeriodError(signingKeypair objc.ID, signingCertificate unsafe.Pointer, operationalPublicKey unsafe.Pointer, fabricID foundation.Number, nodeID foundation.Number, caseAuthenticatedTags unsafe.Pointer, validityPeriod unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("createOperationalCertificate:signingCertificate:operationalPublicKey:fabricID:nodeID:caseAuthenticatedTags:validityPeriod:error:"), signingKeypair, signingCertificate, operationalPublicKey, fabricID, nodeID, caseAuthenticatedTags, validityPeriod, error_)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCertificates/createRootCertificate(_:issuerID:fabricID:)
-func (mc _MTRCertificatesClass) CreateRootCertificateIssuerIDFabricIDError(keypair objc.ID, issuerID unsafe.Pointer, fabricID unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func (mc _MTRCertificatesClass) CreateRootCertificateIssuerIDFabricIDError(keypair objc.ID, issuerID foundation.Number, fabricID foundation.Number, error_ unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("createRootCertificate:issuerID:fabricID:error:"), keypair, issuerID, fabricID, error_)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCertificates/createRootCertificate(_:issuerID:fabricID:validityPeriod:)
-func (mc _MTRCertificatesClass) CreateRootCertificateIssuerIDFabricIDValidityPeriodError(keypair objc.ID, issuerID unsafe.Pointer, fabricID unsafe.Pointer, validityPeriod unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func (mc _MTRCertificatesClass) CreateRootCertificateIssuerIDFabricIDValidityPeriodError(keypair objc.ID, issuerID foundation.Number, fabricID foundation.Number, validityPeriod unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("createRootCertificate:issuerID:fabricID:validityPeriod:error:"), keypair, issuerID, fabricID, validityPeriod, error_)
 	return rv
 }
@@ -147,21 +148,21 @@ func (mc _MTRCertificatesClass) GenerateCertificateSigningRequestError(keypair o
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCertificates/generateIntermediateCertificate(_:rootCertificate:intermediatePublicKey:issuerId:fabricId:)
-func (mc _MTRCertificatesClass) GenerateIntermediateCertificateRootCertificateIntermediatePublicKeyIssuerIdFabricIdError(rootKeypair objc.ID, rootCertificate unsafe.Pointer, intermediatePublicKey unsafe.Pointer, issuerId unsafe.Pointer, fabricId unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func (mc _MTRCertificatesClass) GenerateIntermediateCertificateRootCertificateIntermediatePublicKeyIssuerIdFabricIdError(rootKeypair objc.ID, rootCertificate unsafe.Pointer, intermediatePublicKey unsafe.Pointer, issuerId foundation.Number, fabricId foundation.Number, error_ unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("generateIntermediateCertificate:rootCertificate:intermediatePublicKey:issuerId:fabricId:error:"), rootKeypair, rootCertificate, intermediatePublicKey, issuerId, fabricId, error_)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCertificates/generateOperationalCertificate(_:signingCertificate:operationalPublicKey:fabricId:nodeId:caseAuthenticatedTags:)
-func (mc _MTRCertificatesClass) GenerateOperationalCertificateSigningCertificateOperationalPublicKeyFabricIdNodeIdCaseAuthenticatedTagsError(signingKeypair objc.ID, signingCertificate unsafe.Pointer, operationalPublicKey unsafe.Pointer, fabricId unsafe.Pointer, nodeId unsafe.Pointer, caseAuthenticatedTags unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func (mc _MTRCertificatesClass) GenerateOperationalCertificateSigningCertificateOperationalPublicKeyFabricIdNodeIdCaseAuthenticatedTagsError(signingKeypair objc.ID, signingCertificate unsafe.Pointer, operationalPublicKey unsafe.Pointer, fabricId foundation.Number, nodeId foundation.Number, caseAuthenticatedTags unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("generateOperationalCertificate:signingCertificate:operationalPublicKey:fabricId:nodeId:caseAuthenticatedTags:error:"), signingKeypair, signingCertificate, operationalPublicKey, fabricId, nodeId, caseAuthenticatedTags, error_)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCertificates/generateRootCertificate(_:issuerId:fabricId:)
-func (mc _MTRCertificatesClass) GenerateRootCertificateIssuerIdFabricIdError(keypair objc.ID, issuerId unsafe.Pointer, fabricId unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func (mc _MTRCertificatesClass) GenerateRootCertificateIssuerIdFabricIdError(keypair objc.ID, issuerId foundation.Number, fabricId foundation.Number, error_ unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("generateRootCertificate:issuerId:fabricId:error:"), keypair, issuerId, fabricId, error_)
 	return rv
 }

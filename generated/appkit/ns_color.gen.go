@@ -528,4 +528,202 @@ func (c_ Color) YellowComponent() float64 {
 	return rv
 }
 
+// The alpha (opacity) component value of the color.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolor/alphacomponent
+func (c_ Color) AlphaComponent() float64 {
+	rv := objc.Send[float64](c_.ID, objc.Sel("alphaComponent"))
+	return rv
+}
+
+
+// SetAlphaComponent sets the value of the alphaComponent property.
+// The alpha (opacity) component value of the color.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolor/alphacomponent
+func (c_ Color) SetAlphaComponent(value float64) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setAlphaComponent:"), value)
+}
+
+// The blue component value of the color.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolor/bluecomponent
+func (c_ Color) BlueComponent() float64 {
+	rv := objc.Send[float64](c_.ID, objc.Sel("blueComponent"))
+	return rv
+}
+
+
+// SetBlueComponent sets the value of the blueComponent property.
+// The blue component value of the color.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolor/bluecomponent
+func (c_ Color) SetBlueComponent(value float64) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setBlueComponent:"), value)
+}
+
+// The Core Graphics color object corresponding to the color.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolor/cgcolor
+func (c_ Color) CgColor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("cgColor"))
+	return rv
+}
+
+
+// SetCgColor sets the value of the cgColor property.
+// The Core Graphics color object corresponding to the color.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolor/cgcolor
+func (c_ Color) SetCgColor(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setCgColor:"), value)
+}
+
+// The name of the color.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolor/colornamecomponent
+func (c_ Color) ColorNameComponent() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("colorNameComponent"))
+	return rv
+}
+
+
+// SetColorNameComponent sets the value of the colorNameComponent property.
+// The name of the color.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolor/colornamecomponent
+func (c_ Color) SetColorNameComponent(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setColorNameComponent:"), value)
+}
+
+// The name of the color space associated with the color.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolor/colorspacename
+func (c_ Color) ColorSpaceName() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("colorSpaceName"))
+	return rv
+}
+
+
+// SetColorSpaceName sets the value of the colorSpaceName property.
+// The name of the color space associated with the color.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolor/colorspacename
+func (c_ Color) SetColorSpaceName(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setColorSpaceName:"), value)
+}
+
+// The green component value of the color.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolor/greencomponent
+func (c_ Color) GreenComponent() float64 {
+	rv := objc.Send[float64](c_.ID, objc.Sel("greenComponent"))
+	return rv
+}
+
+
+// SetGreenComponent sets the value of the greenComponent property.
+// The green component value of the color.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolor/greencomponent
+func (c_ Color) SetGreenComponent(value float64) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setGreenComponent:"), value)
+}
+
+// For HDR colors, the linear brightness multiplier that was applied when generating the color. Colors created with an exposure by NSColor create CGColors that are tagged with a contentHeadroom value. While CGColors created without a contentHeadroom tag will return 0 from CGColorGetHeadroom, NSColors generated in a similar fashion return a linearExposure of 1.0.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolor/linearexposure
+func (c_ Color) LinearExposure() float64 {
+	rv := objc.Send[float64](c_.ID, objc.Sel("linearExposure"))
+	return rv
+}
+
+
+// SetLinearExposure sets the value of the linearExposure property.
+// For HDR colors, the linear brightness multiplier that was applied when generating the color. Colors created with an exposure by NSColor create CGColors that are tagged with a contentHeadroom value. While CGColors created without a contentHeadroom tag will return 0 from CGColorGetHeadroom, NSColors generated in a similar fashion return a linearExposure of 1.0.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolor/linearexposure
+func (c_ Color) SetLinearExposure(value float64) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setLinearExposure:"), value)
+}
+
+// The localized version of the color name.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolor/localizedcolornamecomponent
+func (c_ Color) LocalizedColorNameComponent() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("localizedColorNameComponent"))
+	return rv
+}
+
+
+// SetLocalizedColorNameComponent sets the value of the localizedColorNameComponent property.
+// The localized version of the color name.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolor/localizedcolornamecomponent
+func (c_ Color) SetLocalizedColorNameComponent(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setLocalizedColorNameComponent:"), objc.String(value))
+}
+
+// The magenta component value of the color.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolor/magentacomponent
+func (c_ Color) MagentaComponent() float64 {
+	rv := objc.Send[float64](c_.ID, objc.Sel("magentaComponent"))
+	return rv
+}
+
+
+// SetMagentaComponent sets the value of the magentaComponent property.
+// The magenta component value of the color.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolor/magentacomponent
+func (c_ Color) SetMagentaComponent(value float64) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setMagentaComponent:"), value)
+}
+
+// In some cases it is useful to recover the color that was base the SDR color that was exposed to generate an HDR color. If a color’s
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolor/standarddynamicrange
+func (c_ Color) StandardDynamicRange() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("standardDynamicRange"))
+	return rv
+}
+
+
+// SetStandardDynamicRange sets the value of the standardDynamicRange property.
+// In some cases it is useful to recover the color that was base the SDR color that was exposed to generate an HDR color. If a color’s
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolor/standarddynamicrange
+func (c_ Color) SetStandardDynamicRange(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setStandardDynamicRange:"), value)
+}
+
+// The white component value of the color.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolor/whitecomponent
+func (c_ Color) WhiteComponent() float64 {
+	rv := objc.Send[float64](c_.ID, objc.Sel("whiteComponent"))
+	return rv
+}
+
+
+// SetWhiteComponent sets the value of the whiteComponent property.
+// The white component value of the color.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolor/whitecomponent
+func (c_ Color) SetWhiteComponent(value float64) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setWhiteComponent:"), value)
+}
+
 

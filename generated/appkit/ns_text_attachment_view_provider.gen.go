@@ -80,5 +80,95 @@ func NewTextAttachmentViewProvider() TextAttachmentViewProvider {
 }
 
 
+// The location that indicates the start of the text attachment.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextattachmentviewprovider/location
+func (t_ TextAttachmentViewProvider) Location() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("location"))
+	return rv
+}
+
+
+// SetLocation sets the value of the location property.
+// The location that indicates the start of the text attachment.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextattachmentviewprovider/location
+func (t_ TextAttachmentViewProvider) SetLocation(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setLocation:"), value)
+}
+
+// The text attachment for this view.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextattachmentviewprovider/textattachment
+func (t_ TextAttachmentViewProvider) TextAttachment() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("textAttachment"))
+	return rv
+}
+
+
+// SetTextAttachment sets the value of the textAttachment property.
+// The text attachment for this view.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextattachmentviewprovider/textattachment
+func (t_ TextAttachmentViewProvider) SetTextAttachment(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setTextAttachment:"), value)
+}
+
+// The text layout manager for this view.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextattachmentviewprovider/textlayoutmanager
+func (t_ TextAttachmentViewProvider) TextLayoutManager() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("textLayoutManager"))
+	return rv
+}
+
+
+// SetTextLayoutManager sets the value of the textLayoutManager property.
+// The text layout manager for this view.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextattachmentviewprovider/textlayoutmanager
+func (t_ TextAttachmentViewProvider) SetTextLayoutManager(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setTextLayoutManager:"), value)
+}
+
+// A Boolean value that determines the text attachment’s bounds policy.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextattachmentviewprovider/trackstextattachmentviewbounds
+func (t_ TextAttachmentViewProvider) TracksTextAttachmentViewBounds() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("tracksTextAttachmentViewBounds"))
+	return rv
+}
+
+
+// SetTracksTextAttachmentViewBounds sets the value of the tracksTextAttachmentViewBounds property.
+// A Boolean value that determines the text attachment’s bounds policy.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextattachmentviewprovider/trackstextattachmentviewbounds
+func (t_ TextAttachmentViewProvider) SetTracksTextAttachmentViewBounds(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setTracksTextAttachmentViewBounds:"), value)
+}
+
+// The text attachment’s view.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextattachmentviewprovider/view
+func (t_ TextAttachmentViewProvider) View() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("view"))
+	return rv
+}
+
+
+// SetView sets the value of the view property.
+// The text attachment’s view.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextattachmentviewprovider/view
+func (t_ TextAttachmentViewProvider) SetView(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setView:"), value)
+}
+
 
 

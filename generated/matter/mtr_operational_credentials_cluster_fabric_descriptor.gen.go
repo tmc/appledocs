@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MTROperationalCredentialsClusterFabricDescriptor] class.
@@ -75,6 +76,51 @@ func NewMTROperationalCredentialsClusterFabricDescriptor() MTROperationalCredent
 	return getMTROperationalCredentialsClusterFabricDescriptorClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterfabricdescriptor/fabricindex
+func (m_ MTROperationalCredentialsClusterFabricDescriptor) FabricIndex() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("fabricIndex"))
+	return rv
+}
+
+
+// SetFabricIndex sets the value of the fabricIndex property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterfabricdescriptor/fabricindex
+func (m_ MTROperationalCredentialsClusterFabricDescriptor) SetFabricIndex(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterfabricdescriptor/rootpublickey
+func (m_ MTROperationalCredentialsClusterFabricDescriptor) RootPublicKey() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("rootPublicKey"))
+	return rv
+}
+
+
+// SetRootPublicKey sets the value of the rootPublicKey property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterfabricdescriptor/rootpublickey
+func (m_ MTROperationalCredentialsClusterFabricDescriptor) SetRootPublicKey(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setRootPublicKey:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterfabricdescriptor/label
+func (m_ MTROperationalCredentialsClusterFabricDescriptor) Label() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("label"))
+	return rv
+}
+
+
+// SetLabel sets the value of the label property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterfabricdescriptor/label
+func (m_ MTROperationalCredentialsClusterFabricDescriptor) SetLabel(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), objc.String(value))
+}
 
 
 

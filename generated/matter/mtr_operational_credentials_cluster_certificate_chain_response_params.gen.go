@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,36 @@ func NewMTROperationalCredentialsClusterCertificateChainResponseParams() MTROper
 	return getMTROperationalCredentialsClusterCertificateChainResponseParamsClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclustercertificatechainresponseparams/certificate
+func (m_ MTROperationalCredentialsClusterCertificateChainResponseParams) Certificate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("certificate"))
+	return rv
+}
+
+
+// SetCertificate sets the value of the certificate property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclustercertificatechainresponseparams/certificate
+func (m_ MTROperationalCredentialsClusterCertificateChainResponseParams) SetCertificate(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCertificate:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclustercertificatechainresponseparams/timedinvoketimeoutms
+func (m_ MTROperationalCredentialsClusterCertificateChainResponseParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+	return rv
+}
+
+
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclustercertificatechainresponseparams/timedinvoketimeoutms
+func (m_ MTROperationalCredentialsClusterCertificateChainResponseParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+}
 
 
 

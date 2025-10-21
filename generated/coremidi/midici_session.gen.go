@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -93,6 +94,104 @@ func NewMIDICISessionWithDiscoveredNodeDataReadyHandlerDisconnectHandler(discove
 }
 
 
+// A constant value that indicates to use all channels of the port.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coremidi/midichannelswholeport
+func (m_ MIDICISession) MIDIChannelsWholePort() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("MIDIChannelsWholePort"))
+	return rv
+}
+
+// A Boolean value that indicates whether the entity supports the MIDI-CI profile’s capability.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coremidi/midicisession/supportsprofilecapability
+func (m_ MIDICISession) SupportsProfileCapability() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("supportsProfileCapability"))
+	return rv
+}
+
+
+// SetSupportsProfileCapability sets the value of the supportsProfileCapability property.
+// A Boolean value that indicates whether the entity supports the MIDI-CI profile’s capability.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coremidi/midicisession/supportsprofilecapability
+func (m_ MIDICISession) SetSupportsProfileCapability(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSupportsProfileCapability:"), value)
+}
+
+// The maximum number of simultaneous property exchange requests, if supported.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coremidi/midicisession/maxpropertyrequests
+func (m_ MIDICISession) MaxPropertyRequests() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("maxPropertyRequests"))
+	return rv
+}
+
+
+// SetMaxPropertyRequests sets the value of the maxPropertyRequests property.
+// The maximum number of simultaneous property exchange requests, if supported.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coremidi/midicisession/maxpropertyrequests
+func (m_ MIDICISession) SetMaxPropertyRequests(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMaxPropertyRequests:"), value)
+}
+
+// A Boolean value that indicates whether the entity supports the MIDI-CI property exchange capability.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coremidi/midicisession/supportspropertycapability
+func (m_ MIDICISession) SupportsPropertyCapability() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("supportsPropertyCapability"))
+	return rv
+}
+
+
+// SetSupportsPropertyCapability sets the value of the supportsPropertyCapability property.
+// A Boolean value that indicates whether the entity supports the MIDI-CI property exchange capability.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coremidi/midicisession/supportspropertycapability
+func (m_ MIDICISession) SetSupportsPropertyCapability(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSupportsPropertyCapability:"), value)
+}
+
+// An optional block the system calls after it enables or disables a profile.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coremidi/midicisession/profilechangedcallback
+func (m_ MIDICISession) ProfileChangedCallback() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("profileChangedCallback"))
+	return rv
+}
+
+
+// SetProfileChangedCallback sets the value of the profileChangedCallback property.
+// An optional block the system calls after it enables or disables a profile.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coremidi/midicisession/profilechangedcallback
+func (m_ MIDICISession) SetProfileChangedCallback(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setProfileChangedCallback:"), value)
+}
+
+// An optional block the system calls when a device sends profile-specific data to the session.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coremidi/midicisession/profilespecificdatahandler
+func (m_ MIDICISession) ProfileSpecificDataHandler() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("profileSpecificDataHandler"))
+	return rv
+}
+
+
+// SetProfileSpecificDataHandler sets the value of the profileSpecificDataHandler property.
+// An optional block the system calls when a device sends profile-specific data to the session.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coremidi/midicisession/profilespecificdatahandler
+func (m_ MIDICISession) SetProfileSpecificDataHandler(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setProfileSpecificDataHandler:"), value)
+}
+
 // Information about a MIDI-CI device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICISession/deviceInfo
@@ -104,8 +203,8 @@ func (m_ MIDICISession) DeviceInfo() unsafe.Pointer {
 // The maximum size of System Exclusive (SysEx) messages.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICISession/maxSysExSize
-func (m_ MIDICISession) MaxSysExSize() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("maxSysExSize"))
+func (m_ MIDICISession) MaxSysExSize() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("maxSysExSize"))
 	return rv
 }
 

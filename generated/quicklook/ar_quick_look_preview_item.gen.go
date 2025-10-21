@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -80,7 +81,7 @@ func NewQuickLookPreviewItem() QuickLookPreviewItem {
 // Creates an object representing the 3D content that will be previewed in AR Quick Look.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuickLook/ARQuickLookPreviewItem/init(fileAt:)
-func NewQuickLookPreviewItemWithFileAtURL(url unsafe.Pointer) QuickLookPreviewItem {
+func NewQuickLookPreviewItemWithFileAtURL(url foundation.URL) QuickLookPreviewItem {
 	instance := getQuickLookPreviewItemClass().Alloc()
 	rv := objc.Send[QuickLookPreviewItem](instance.ID, objc.Sel("initWithFileAtURL:"), url)
 	rv.Autorelease()
@@ -109,8 +110,8 @@ func (q_ QuickLookPreviewItem) SetAllowsContentScaling(value bool) {
 // An optional canonical web page URL for the 3D content that will be shared.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuickLook/ARQuickLookPreviewItem/canonicalWebPageURL
-func (q_ QuickLookPreviewItem) CanonicalWebPageURL() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](q_.ID, objc.Sel("canonicalWebPageURL"))
+func (q_ QuickLookPreviewItem) CanonicalWebPageURL() foundation.URL {
+	rv := objc.Send[foundation.URL](q_.ID, objc.Sel("canonicalWebPageURL"))
 	return rv
 }
 
@@ -120,7 +121,7 @@ func (q_ QuickLookPreviewItem) CanonicalWebPageURL() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuickLook/ARQuickLookPreviewItem/canonicalWebPageURL
-func (q_ QuickLookPreviewItem) SetCanonicalWebPageURL(value unsafe.Pointer) {
+func (q_ QuickLookPreviewItem) SetCanonicalWebPageURL(value foundation.URL) {
 	objc.Send[objc.ID](q_.ID, objc.Sel("setCanonicalWebPageURL:"), value)
 }
 

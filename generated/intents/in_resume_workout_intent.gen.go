@@ -81,5 +81,23 @@ func NewINResumeWorkoutIntent() INResumeWorkoutIntent {
 }
 
 
+// The name of the workout.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inresumeworkoutintent/workoutname
+func (i_ INResumeWorkoutIntent) WorkoutName() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("workoutName"))
+	return rv
+}
+
+
+// SetWorkoutName sets the value of the workoutName property.
+// The name of the workout.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inresumeworkoutintent/workoutname
+func (i_ INResumeWorkoutIntent) SetWorkoutName(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setWorkoutName:"), value)
+}
+
 
 

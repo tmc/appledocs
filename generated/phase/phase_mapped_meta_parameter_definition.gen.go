@@ -94,4 +94,40 @@ func NewPHASEMappedMetaParameterDefinitionWithInputMetaParameterDefinitionEnvelo
 }
 
 
+// A collection of line segments that curve and connect to form a graph.
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasemappedmetaparameterdefinition/envelope
+func (p_ PHASEMappedMetaParameterDefinition) Envelope() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("envelope"))
+	return rv
+}
+
+
+// SetEnvelope sets the value of the envelope property.
+// A collection of line segments that curve and connect to form a graph.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasemappedmetaparameterdefinition/envelope
+func (p_ PHASEMappedMetaParameterDefinition) SetEnvelope(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setEnvelope:"), value)
+}
+
+// A linear input value to plot on a curve.
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasemappedmetaparameterdefinition/inputmetaparameterdefinition
+func (p_ PHASEMappedMetaParameterDefinition) InputMetaParameterDefinition() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("inputMetaParameterDefinition"))
+	return rv
+}
+
+
+// SetInputMetaParameterDefinition sets the value of the inputMetaParameterDefinition property.
+// A linear input value to plot on a curve.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasemappedmetaparameterdefinition/inputmetaparameterdefinition
+func (p_ PHASEMappedMetaParameterDefinition) SetInputMetaParameterDefinition(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setInputMetaParameterDefinition:"), value)
+}
+
 

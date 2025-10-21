@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,51 @@ func NewMTRMediaPlaybackClusterPlaybackResponseParams() MTRMediaPlaybackClusterP
 	return getMTRMediaPlaybackClusterPlaybackResponseParamsClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterplaybackresponseparams/status
+func (m_ MTRMediaPlaybackClusterPlaybackResponseParams) Status() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("status"))
+	return rv
+}
+
+
+// SetStatus sets the value of the status property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterplaybackresponseparams/status
+func (m_ MTRMediaPlaybackClusterPlaybackResponseParams) SetStatus(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setStatus:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterplaybackresponseparams/data
+func (m_ MTRMediaPlaybackClusterPlaybackResponseParams) Data() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("data"))
+	return rv
+}
+
+
+// SetData sets the value of the data property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterplaybackresponseparams/data
+func (m_ MTRMediaPlaybackClusterPlaybackResponseParams) SetData(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setData:"), objc.String(value))
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterplaybackresponseparams/timedinvoketimeoutms
+func (m_ MTRMediaPlaybackClusterPlaybackResponseParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+	return rv
+}
+
+
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterplaybackresponseparams/timedinvoketimeoutms
+func (m_ MTRMediaPlaybackClusterPlaybackResponseParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+}
 
 
 

@@ -94,4 +94,12 @@ func NewTrackRectangleRequestWithRectangleObservationCompletionHandler(observati
 }
 
 
+// A constant for specifying revision 1 of the rectangling tracking request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vntrackrectanglerequestrevision1
+func (t_ TrackRectangleRequest) VNTrackRectangleRequestRevision1() int {
+	rv := objc.Send[int](t_.ID, objc.Sel("VNTrackRectangleRequestRevision1"))
+	return rv
+}
+
 

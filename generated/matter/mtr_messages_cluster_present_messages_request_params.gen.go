@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,8 +78,8 @@ func NewMTRMessagesClusterPresentMessagesRequestParams() MTRMessagesClusterPrese
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterPresentMessagesRequestParams/duration
-func (m_ MTRMessagesClusterPresentMessagesRequestParams) Duration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("duration"))
+func (m_ MTRMessagesClusterPresentMessagesRequestParams) Duration() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("duration"))
 	return rv
 }
 
@@ -86,14 +87,14 @@ func (m_ MTRMessagesClusterPresentMessagesRequestParams) Duration() unsafe.Point
 // SetDuration sets the value of the duration property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterPresentMessagesRequestParams/duration
-func (m_ MTRMessagesClusterPresentMessagesRequestParams) SetDuration(value unsafe.Pointer) {
+func (m_ MTRMessagesClusterPresentMessagesRequestParams) SetDuration(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDuration:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterPresentMessagesRequestParams/messageControl
-func (m_ MTRMessagesClusterPresentMessagesRequestParams) MessageControl() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("messageControl"))
+func (m_ MTRMessagesClusterPresentMessagesRequestParams) MessageControl() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("messageControl"))
 	return rv
 }
 
@@ -101,7 +102,7 @@ func (m_ MTRMessagesClusterPresentMessagesRequestParams) MessageControl() unsafe
 // SetMessageControl sets the value of the messageControl property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterPresentMessagesRequestParams/messageControl
-func (m_ MTRMessagesClusterPresentMessagesRequestParams) SetMessageControl(value unsafe.Pointer) {
+func (m_ MTRMessagesClusterPresentMessagesRequestParams) SetMessageControl(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMessageControl:"), value)
 }
 
@@ -137,8 +138,8 @@ func (m_ MTRMessagesClusterPresentMessagesRequestParams) SetMessageText(value st
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterPresentMessagesRequestParams/priority
-func (m_ MTRMessagesClusterPresentMessagesRequestParams) Priority() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("priority"))
+func (m_ MTRMessagesClusterPresentMessagesRequestParams) Priority() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("priority"))
 	return rv
 }
 
@@ -146,7 +147,7 @@ func (m_ MTRMessagesClusterPresentMessagesRequestParams) Priority() unsafe.Point
 // SetPriority sets the value of the priority property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterPresentMessagesRequestParams/priority
-func (m_ MTRMessagesClusterPresentMessagesRequestParams) SetPriority(value unsafe.Pointer) {
+func (m_ MTRMessagesClusterPresentMessagesRequestParams) SetPriority(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPriority:"), value)
 }
 
@@ -168,8 +169,8 @@ func (m_ MTRMessagesClusterPresentMessagesRequestParams) SetResponses(value unsa
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterPresentMessagesRequestParams/serverSideProcessingTimeout
-func (m_ MTRMessagesClusterPresentMessagesRequestParams) ServerSideProcessingTimeout() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRMessagesClusterPresentMessagesRequestParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
@@ -179,14 +180,14 @@ func (m_ MTRMessagesClusterPresentMessagesRequestParams) ServerSideProcessingTim
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterPresentMessagesRequestParams/serverSideProcessingTimeout
-func (m_ MTRMessagesClusterPresentMessagesRequestParams) SetServerSideProcessingTimeout(value unsafe.Pointer) {
+func (m_ MTRMessagesClusterPresentMessagesRequestParams) SetServerSideProcessingTimeout(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterPresentMessagesRequestParams/startTime
-func (m_ MTRMessagesClusterPresentMessagesRequestParams) StartTime() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("startTime"))
+func (m_ MTRMessagesClusterPresentMessagesRequestParams) StartTime() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("startTime"))
 	return rv
 }
 
@@ -194,15 +195,15 @@ func (m_ MTRMessagesClusterPresentMessagesRequestParams) StartTime() unsafe.Poin
 // SetStartTime sets the value of the startTime property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterPresentMessagesRequestParams/startTime
-func (m_ MTRMessagesClusterPresentMessagesRequestParams) SetStartTime(value unsafe.Pointer) {
+func (m_ MTRMessagesClusterPresentMessagesRequestParams) SetStartTime(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStartTime:"), value)
 }
 
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterPresentMessagesRequestParams/timedInvokeTimeoutMs
-func (m_ MTRMessagesClusterPresentMessagesRequestParams) TimedInvokeTimeoutMs() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRMessagesClusterPresentMessagesRequestParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
@@ -212,7 +213,7 @@ func (m_ MTRMessagesClusterPresentMessagesRequestParams) TimedInvokeTimeoutMs() 
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterPresentMessagesRequestParams/timedInvokeTimeoutMs
-func (m_ MTRMessagesClusterPresentMessagesRequestParams) SetTimedInvokeTimeoutMs(value unsafe.Pointer) {
+func (m_ MTRMessagesClusterPresentMessagesRequestParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

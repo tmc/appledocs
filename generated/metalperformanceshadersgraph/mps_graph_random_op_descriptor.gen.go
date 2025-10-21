@@ -79,6 +79,132 @@ func NewGraphRandomOpDescriptor() GraphRandomOpDescriptor {
 }
 
 
+// The sampling method of the distribution.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphrandomopdescriptor/samplingmethod
+func (g_ GraphRandomOpDescriptor) SamplingMethod() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("samplingMethod"))
+	return rv
+}
+
+
+// SetSamplingMethod sets the value of the samplingMethod property.
+// The sampling method of the distribution.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphrandomopdescriptor/samplingmethod
+func (g_ GraphRandomOpDescriptor) SetSamplingMethod(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setSamplingMethod:"), value)
+}
+
+// The mean of the distribution.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphrandomopdescriptor/mean
+func (g_ GraphRandomOpDescriptor) Mean() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("mean"))
+	return rv
+}
+
+
+// SetMean sets the value of the mean property.
+// The mean of the distribution.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphrandomopdescriptor/mean
+func (g_ GraphRandomOpDescriptor) SetMean(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setMean:"), value)
+}
+
+// The upper range of the distribution.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphrandomopdescriptor/max
+func (g_ GraphRandomOpDescriptor) Max() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("max"))
+	return rv
+}
+
+
+// SetMax sets the value of the max property.
+// The upper range of the distribution.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphrandomopdescriptor/max
+func (g_ GraphRandomOpDescriptor) SetMax(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setMax:"), value)
+}
+
+// The lower range of the distribution.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphrandomopdescriptor/min
+func (g_ GraphRandomOpDescriptor) Min() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("min"))
+	return rv
+}
+
+
+// SetMin sets the value of the min property.
+// The lower range of the distribution.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphrandomopdescriptor/min
+func (g_ GraphRandomOpDescriptor) SetMin(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setMin:"), value)
+}
+
+// The upper range of the distribution.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphrandomopdescriptor/maxinteger
+func (g_ GraphRandomOpDescriptor) MaxInteger() int {
+	rv := objc.Send[int](g_.ID, objc.Sel("maxInteger"))
+	return rv
+}
+
+
+// SetMaxInteger sets the value of the maxInteger property.
+// The upper range of the distribution.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphrandomopdescriptor/maxinteger
+func (g_ GraphRandomOpDescriptor) SetMaxInteger(value int) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setMaxInteger:"), value)
+}
+
+// The standard deviation of the distribution.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphrandomopdescriptor/standarddeviation
+func (g_ GraphRandomOpDescriptor) StandardDeviation() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("standardDeviation"))
+	return rv
+}
+
+
+// SetStandardDeviation sets the value of the standardDeviation property.
+// The standard deviation of the distribution.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphrandomopdescriptor/standarddeviation
+func (g_ GraphRandomOpDescriptor) SetStandardDeviation(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setStandardDeviation:"), value)
+}
+
+// The lower range of the distribution.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphrandomopdescriptor/mininteger
+func (g_ GraphRandomOpDescriptor) MinInteger() int {
+	rv := objc.Send[int](g_.ID, objc.Sel("minInteger"))
+	return rv
+}
+
+
+// SetMinInteger sets the value of the minInteger property.
+// The lower range of the distribution.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphrandomopdescriptor/mininteger
+func (g_ GraphRandomOpDescriptor) SetMinInteger(value int) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setMinInteger:"), value)
+}
+
 // The data type of the generated result values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphRandomOpDescriptor/dataType

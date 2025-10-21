@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MTRBaseClusterServiceArea] class.
@@ -110,7 +111,7 @@ func NewMTRBaseClusterServiceArea() MTRBaseClusterServiceArea {
 // For all instance methods (reads, writes, commands) that take a completion, the completion will be called on the provided queue.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterServiceArea/init(device:endpointID:queue:)
-func NewMTRBaseClusterServiceAreaWithDeviceEndpointIDQueue(device unsafe.Pointer, endpointID unsafe.Pointer, queue unsafe.Pointer) MTRBaseClusterServiceArea {
+func NewMTRBaseClusterServiceAreaWithDeviceEndpointIDQueue(device unsafe.Pointer, endpointID foundation.Number, queue unsafe.Pointer) MTRBaseClusterServiceArea {
 	instance := getMTRBaseClusterServiceAreaClass().Alloc()
 	rv := objc.Send[MTRBaseClusterServiceArea](instance.ID, objc.Sel("initWithDevice:endpointID:queue:"), device, endpointID, queue)
 	rv.Autorelease()
@@ -120,67 +121,67 @@ func NewMTRBaseClusterServiceAreaWithDeviceEndpointIDQueue(device unsafe.Pointer
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterServiceArea/readAttributeAcceptedCommandList(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterServiceAreaClass) ReadAttributeAcceptedCommandListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint unsafe.Pointer, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterServiceAreaClass) ReadAttributeAcceptedCommandListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeAcceptedCommandListWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterServiceArea/readAttributeAttributeList(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterServiceAreaClass) ReadAttributeAttributeListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint unsafe.Pointer, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterServiceAreaClass) ReadAttributeAttributeListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeAttributeListWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterServiceArea/readAttributeClusterRevision(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterServiceAreaClass) ReadAttributeClusterRevisionWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint unsafe.Pointer, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterServiceAreaClass) ReadAttributeClusterRevisionWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeClusterRevisionWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterServiceArea/readAttributeCurrentArea(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterServiceAreaClass) ReadAttributeCurrentAreaWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint unsafe.Pointer, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterServiceAreaClass) ReadAttributeCurrentAreaWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeCurrentAreaWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterServiceArea/readAttributeEstimatedEndTime(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterServiceAreaClass) ReadAttributeEstimatedEndTimeWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint unsafe.Pointer, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterServiceAreaClass) ReadAttributeEstimatedEndTimeWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeEstimatedEndTimeWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterServiceArea/readAttributeFeatureMap(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterServiceAreaClass) ReadAttributeFeatureMapWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint unsafe.Pointer, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterServiceAreaClass) ReadAttributeFeatureMapWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeFeatureMapWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterServiceArea/readAttributeGeneratedCommandList(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterServiceAreaClass) ReadAttributeGeneratedCommandListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint unsafe.Pointer, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterServiceAreaClass) ReadAttributeGeneratedCommandListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeGeneratedCommandListWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterServiceArea/readAttributeProgress(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterServiceAreaClass) ReadAttributeProgressWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint unsafe.Pointer, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterServiceAreaClass) ReadAttributeProgressWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeProgressWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterServiceArea/readAttributeSelectedAreas(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterServiceAreaClass) ReadAttributeSelectedAreasWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint unsafe.Pointer, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterServiceAreaClass) ReadAttributeSelectedAreasWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeSelectedAreasWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterServiceArea/readAttributeSupportedAreas(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterServiceAreaClass) ReadAttributeSupportedAreasWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint unsafe.Pointer, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterServiceAreaClass) ReadAttributeSupportedAreasWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeSupportedAreasWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterServiceArea/readAttributeSupportedMaps(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterServiceAreaClass) ReadAttributeSupportedMapsWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint unsafe.Pointer, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterServiceAreaClass) ReadAttributeSupportedMapsWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeSupportedMapsWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 

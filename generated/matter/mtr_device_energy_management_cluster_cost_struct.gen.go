@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,8 +78,8 @@ func NewMTRDeviceEnergyManagementClusterCostStruct() MTRDeviceEnergyManagementCl
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterCostStruct/costType
-func (m_ MTRDeviceEnergyManagementClusterCostStruct) CostType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("costType"))
+func (m_ MTRDeviceEnergyManagementClusterCostStruct) CostType() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("costType"))
 	return rv
 }
 
@@ -86,14 +87,14 @@ func (m_ MTRDeviceEnergyManagementClusterCostStruct) CostType() unsafe.Pointer {
 // SetCostType sets the value of the costType property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterCostStruct/costType
-func (m_ MTRDeviceEnergyManagementClusterCostStruct) SetCostType(value unsafe.Pointer) {
+func (m_ MTRDeviceEnergyManagementClusterCostStruct) SetCostType(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCostType:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterCostStruct/currency
-func (m_ MTRDeviceEnergyManagementClusterCostStruct) Currency() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("currency"))
+func (m_ MTRDeviceEnergyManagementClusterCostStruct) Currency() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("currency"))
 	return rv
 }
 
@@ -101,14 +102,14 @@ func (m_ MTRDeviceEnergyManagementClusterCostStruct) Currency() unsafe.Pointer {
 // SetCurrency sets the value of the currency property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterCostStruct/currency
-func (m_ MTRDeviceEnergyManagementClusterCostStruct) SetCurrency(value unsafe.Pointer) {
+func (m_ MTRDeviceEnergyManagementClusterCostStruct) SetCurrency(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCurrency:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterCostStruct/decimalPoints
-func (m_ MTRDeviceEnergyManagementClusterCostStruct) DecimalPoints() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("decimalPoints"))
+func (m_ MTRDeviceEnergyManagementClusterCostStruct) DecimalPoints() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("decimalPoints"))
 	return rv
 }
 
@@ -116,14 +117,14 @@ func (m_ MTRDeviceEnergyManagementClusterCostStruct) DecimalPoints() unsafe.Poin
 // SetDecimalPoints sets the value of the decimalPoints property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterCostStruct/decimalPoints
-func (m_ MTRDeviceEnergyManagementClusterCostStruct) SetDecimalPoints(value unsafe.Pointer) {
+func (m_ MTRDeviceEnergyManagementClusterCostStruct) SetDecimalPoints(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDecimalPoints:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterCostStruct/value
-func (m_ MTRDeviceEnergyManagementClusterCostStruct) Value() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("value"))
+func (m_ MTRDeviceEnergyManagementClusterCostStruct) Value() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("value"))
 	return rv
 }
 
@@ -131,7 +132,7 @@ func (m_ MTRDeviceEnergyManagementClusterCostStruct) Value() unsafe.Pointer {
 // SetValue sets the value of the value property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterCostStruct/value
-func (m_ MTRDeviceEnergyManagementClusterCostStruct) SetValue(value unsafe.Pointer) {
+func (m_ MTRDeviceEnergyManagementClusterCostStruct) SetValue(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), value)
 }
 

@@ -81,5 +81,95 @@ func NewINSetRadioStationIntent() INSetRadioStationIntent {
 }
 
 
+// The programmable preset assigned to the station.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insetradiostationintent/presetnumber-2dub4
+func (i_ INSetRadioStationIntent) PresetNumber() int {
+	rv := objc.Send[int](i_.ID, objc.Sel("presetNumber"))
+	return rv
+}
+
+
+// SetPresetNumber sets the value of the presetNumber property.
+// The programmable preset assigned to the station.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insetradiostationintent/presetnumber-2dub4
+func (i_ INSetRadioStationIntent) SetPresetNumber(value int) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setPresetNumber:"), value)
+}
+
+// The name associated with the radio station.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insetradiostationintent/stationname
+func (i_ INSetRadioStationIntent) StationName() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("stationName"))
+	return rv
+}
+
+
+// SetStationName sets the value of the stationName property.
+// The name associated with the radio station.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insetradiostationintent/stationname
+func (i_ INSetRadioStationIntent) SetStationName(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setStationName:"), objc.String(value))
+}
+
+// The type of radio tuner to use.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insetradiostationintent/radiotype
+func (i_ INSetRadioStationIntent) RadioType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("radioType"))
+	return rv
+}
+
+
+// SetRadioType sets the value of the radioType property.
+// The type of radio tuner to use.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insetradiostationintent/radiotype
+func (i_ INSetRadioStationIntent) SetRadioType(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setRadioType:"), value)
+}
+
+// The channel number of the station.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insetradiostationintent/channel
+func (i_ INSetRadioStationIntent) Channel() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("channel"))
+	return rv
+}
+
+
+// SetChannel sets the value of the channel property.
+// The channel number of the station.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insetradiostationintent/channel
+func (i_ INSetRadioStationIntent) SetChannel(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setChannel:"), objc.String(value))
+}
+
+// The broadcast frequency of the radio station.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insetradiostationintent/frequency-2ctw6
+func (i_ INSetRadioStationIntent) Frequency() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("frequency"))
+	return rv
+}
+
+
+// SetFrequency sets the value of the frequency property.
+// The broadcast frequency of the radio station.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insetradiostationintent/frequency-2ctw6
+func (i_ INSetRadioStationIntent) SetFrequency(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setFrequency:"), value)
+}
+
 
 

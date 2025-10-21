@@ -80,5 +80,41 @@ func NewINCurrencyAmount() INCurrencyAmount {
 }
 
 
+// The monetary amount associated with the currency.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/incurrencyamount/amount
+func (i_ INCurrencyAmount) Amount() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("amount"))
+	return rv
+}
+
+
+// SetAmount sets the value of the amount property.
+// The monetary amount associated with the currency.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/incurrencyamount/amount
+func (i_ INCurrencyAmount) SetAmount(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setAmount:"), value)
+}
+
+// The ISO 4217 currency code that applies to the monetary amount.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/incurrencyamount/currencycode
+func (i_ INCurrencyAmount) CurrencyCode() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("currencyCode"))
+	return rv
+}
+
+
+// SetCurrencyCode sets the value of the currencyCode property.
+// The ISO 4217 currency code that applies to the monetary amount.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/incurrencyamount/currencycode
+func (i_ INCurrencyAmount) SetCurrencyCode(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setCurrencyCode:"), objc.String(value))
+}
+
 
 

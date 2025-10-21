@@ -80,5 +80,23 @@ func NewAuthorizationPlatformPublicKeyCredentialProvider() AuthorizationPlatform
 }
 
 
+// The domain name of the service to register or authorize against.
+//
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationplatformpublickeycredentialprovider/relyingpartyidentifier
+func (a_ AuthorizationPlatformPublicKeyCredentialProvider) RelyingPartyIdentifier() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("relyingPartyIdentifier"))
+	return rv
+}
+
+
+// SetRelyingPartyIdentifier sets the value of the relyingPartyIdentifier property.
+// The domain name of the service to register or authorize against.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationplatformpublickeycredentialprovider/relyingpartyidentifier
+func (a_ AuthorizationPlatformPublicKeyCredentialProvider) SetRelyingPartyIdentifier(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setRelyingPartyIdentifier:"), objc.String(value))
+}
+
 
 

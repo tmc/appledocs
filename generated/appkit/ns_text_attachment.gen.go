@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -79,6 +80,168 @@ func NewTextAttachment() TextAttachment {
 	return getTextAttachmentClass().New()
 }
 
+
+// A Boolean value that determines whether the text attachment uses text attachment views.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextattachment/allowstextattachmentview
+func (t_ TextAttachment) AllowsTextAttachmentView() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("allowsTextAttachmentView"))
+	return rv
+}
+
+
+// SetAllowsTextAttachmentView sets the value of the allowsTextAttachmentView property.
+// A Boolean value that determines whether the text attachment uses text attachment views.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextattachment/allowstextattachmentview
+func (t_ TextAttachment) SetAllowsTextAttachmentView(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setAllowsTextAttachmentView:"), value)
+}
+
+// The object that draws the icon for the text attachment and handles mouse events.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextattachment/attachmentcell
+func (t_ TextAttachment) AttachmentCell() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("attachmentCell"))
+	return rv
+}
+
+
+// SetAttachmentCell sets the value of the attachmentCell property.
+// The object that draws the icon for the text attachment and handles mouse events.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextattachment/attachmentcell
+func (t_ TextAttachment) SetAttachmentCell(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setAttachmentCell:"), value)
+}
+
+// The layout bounds of the text attachment’s graphical representation in the text coordinate system.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextattachment/bounds
+func (t_ TextAttachment) Bounds() coregraphics.CGRect {
+	rv := objc.Send[coregraphics.CGRect](t_.ID, objc.Sel("bounds"))
+	return rv
+}
+
+
+// SetBounds sets the value of the bounds property.
+// The layout bounds of the text attachment’s graphical representation in the text coordinate system.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextattachment/bounds
+func (t_ TextAttachment) SetBounds(value coregraphics.CGRect) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setBounds:"), value)
+}
+
+// The contents for the text attachment.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextattachment/contents
+func (t_ TextAttachment) Contents() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("contents"))
+	return rv
+}
+
+
+// SetContents sets the value of the contents property.
+// The contents for the text attachment.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextattachment/contents
+func (t_ TextAttachment) SetContents(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setContents:"), value)
+}
+
+// The file type of the contents for the text attachment.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextattachment/filetype
+func (t_ TextAttachment) FileType() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("fileType"))
+	return rv
+}
+
+
+// SetFileType sets the value of the fileType property.
+// The file type of the contents for the text attachment.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextattachment/filetype
+func (t_ TextAttachment) SetFileType(value string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setFileType:"), objc.String(value))
+}
+
+// The text attachment’s file wrapper.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextattachment/filewrapper
+func (t_ TextAttachment) FileWrapper() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("fileWrapper"))
+	return rv
+}
+
+
+// SetFileWrapper sets the value of the fileWrapper property.
+// The text attachment’s file wrapper.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextattachment/filewrapper
+func (t_ TextAttachment) SetFileWrapper(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setFileWrapper:"), value)
+}
+
+// An instance of the relevant image class that represents the contents of the text attachment object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextattachment/image
+func (t_ TextAttachment) Image() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("image"))
+	return rv
+}
+
+
+// SetImage sets the value of the image property.
+// An instance of the relevant image class that represents the contents of the text attachment object.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextattachment/image
+func (t_ TextAttachment) SetImage(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setImage:"), value)
+}
+
+// The layout padding before and after the text attachment bounds.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextattachment/linelayoutpadding
+func (t_ TextAttachment) LineLayoutPadding() float64 {
+	rv := objc.Send[float64](t_.ID, objc.Sel("lineLayoutPadding"))
+	return rv
+}
+
+
+// SetLineLayoutPadding sets the value of the lineLayoutPadding property.
+// The layout padding before and after the text attachment bounds.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextattachment/linelayoutpadding
+func (t_ TextAttachment) SetLineLayoutPadding(value float64) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setLineLayoutPadding:"), value)
+}
+
+// A Boolean value that indicates whether the text attachment uses text attachment views.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextattachment/usestextattachmentview
+func (t_ TextAttachment) UsesTextAttachmentView() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("usesTextAttachmentView"))
+	return rv
+}
+
+
+// SetUsesTextAttachmentView sets the value of the usesTextAttachmentView property.
+// A Boolean value that indicates whether the text attachment uses text attachment views.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextattachment/usestextattachmentview
+func (t_ TextAttachment) SetUsesTextAttachmentView(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setUsesTextAttachmentView:"), value)
+}
 
 
 

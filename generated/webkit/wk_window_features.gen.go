@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -80,11 +81,137 @@ func NewWindowFeatures() WindowFeatures {
 }
 
 
+// A Boolean value that indicates whether the webpage requested a visible status bar.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwindowfeatures/statusbarvisibility
+func (w_ WindowFeatures) StatusBarVisibility() foundation.Number {
+	rv := objc.Send[foundation.Number](w_.ID, objc.Sel("statusBarVisibility"))
+	return rv
+}
+
+
+// SetStatusBarVisibility sets the value of the statusBarVisibility property.
+// A Boolean value that indicates whether the webpage requested a visible status bar.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwindowfeatures/statusbarvisibility
+func (w_ WindowFeatures) SetStatusBarVisibility(value foundation.Number) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setStatusBarVisibility:"), value)
+}
+
+// A Boolean value that indicates whether the webpage requests a visible menu bar.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwindowfeatures/menubarvisibility
+func (w_ WindowFeatures) MenuBarVisibility() foundation.Number {
+	rv := objc.Send[foundation.Number](w_.ID, objc.Sel("menuBarVisibility"))
+	return rv
+}
+
+
+// SetMenuBarVisibility sets the value of the menuBarVisibility property.
+// A Boolean value that indicates whether the webpage requests a visible menu bar.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwindowfeatures/menubarvisibility
+func (w_ WindowFeatures) SetMenuBarVisibility(value foundation.Number) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setMenuBarVisibility:"), value)
+}
+
+// The requested y-coordinate of the containing window.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwindowfeatures/y
+func (w_ WindowFeatures) Y() foundation.Number {
+	rv := objc.Send[foundation.Number](w_.ID, objc.Sel("y"))
+	return rv
+}
+
+
+// SetY sets the value of the y property.
+// The requested y-coordinate of the containing window.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwindowfeatures/y
+func (w_ WindowFeatures) SetY(value foundation.Number) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setY:"), value)
+}
+
+// The requested x-coordinate of the containing window.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwindowfeatures/x
+func (w_ WindowFeatures) X() foundation.Number {
+	rv := objc.Send[foundation.Number](w_.ID, objc.Sel("x"))
+	return rv
+}
+
+
+// SetX sets the value of the x property.
+// The requested x-coordinate of the containing window.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwindowfeatures/x
+func (w_ WindowFeatures) SetX(value foundation.Number) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setX:"), value)
+}
+
+// The requested width of the containing window.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwindowfeatures/width
+func (w_ WindowFeatures) Width() foundation.Number {
+	rv := objc.Send[foundation.Number](w_.ID, objc.Sel("width"))
+	return rv
+}
+
+
+// SetWidth sets the value of the width property.
+// The requested width of the containing window.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwindowfeatures/width
+func (w_ WindowFeatures) SetWidth(value foundation.Number) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setWidth:"), value)
+}
+
+// A Boolean value that indicates whether the webpage requested a visible toolbar.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwindowfeatures/toolbarsvisibility
+func (w_ WindowFeatures) ToolbarsVisibility() foundation.Number {
+	rv := objc.Send[foundation.Number](w_.ID, objc.Sel("toolbarsVisibility"))
+	return rv
+}
+
+
+// SetToolbarsVisibility sets the value of the toolbarsVisibility property.
+// A Boolean value that indicates whether the webpage requested a visible toolbar.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwindowfeatures/toolbarsvisibility
+func (w_ WindowFeatures) SetToolbarsVisibility(value foundation.Number) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setToolbarsVisibility:"), value)
+}
+
+// A Boolean value that indicates whether to make the containing window window resizable.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwindowfeatures/allowsresizing
+func (w_ WindowFeatures) AllowsResizing() foundation.Number {
+	rv := objc.Send[foundation.Number](w_.ID, objc.Sel("allowsResizing"))
+	return rv
+}
+
+
+// SetAllowsResizing sets the value of the allowsResizing property.
+// A Boolean value that indicates whether to make the containing window window resizable.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwindowfeatures/allowsresizing
+func (w_ WindowFeatures) SetAllowsResizing(value foundation.Number) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setAllowsResizing:"), value)
+}
+
 // The requested height of the containing window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWindowFeatures/height
-func (w_ WindowFeatures) Height() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("height"))
+func (w_ WindowFeatures) Height() foundation.Number {
+	rv := objc.Send[foundation.Number](w_.ID, objc.Sel("height"))
 	return rv
 }
 

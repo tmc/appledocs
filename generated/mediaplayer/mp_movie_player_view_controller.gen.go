@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [MoviePlayerViewController] class.
@@ -81,6 +82,60 @@ func NewMoviePlayerViewController() MoviePlayerViewController {
 	return getMoviePlayerViewControllerClass().New()
 }
 
+
+// A Boolean value that indicates whether the route button is visible in the volume view.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpvolumeview/showsroutebutton
+func (m_ MoviePlayerViewController) ShowsRouteButton() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("showsRouteButton"))
+	return rv
+}
+
+
+// SetShowsRouteButton sets the value of the showsRouteButton property.
+// A Boolean value that indicates whether the route button is visible in the volume view.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpvolumeview/showsroutebutton
+func (m_ MoviePlayerViewController) SetShowsRouteButton(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setShowsRouteButton:"), value)
+}
+
+// The bounds, in points, of the content area for the full size image associated with the media item artwork.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitemartwork/imagecroprect
+func (m_ MoviePlayerViewController) ImageCropRect() coregraphics.CGRect {
+	rv := objc.Send[coregraphics.CGRect](m_.ID, objc.Sel("imageCropRect"))
+	return rv
+}
+
+
+// SetImageCropRect sets the value of the imageCropRect property.
+// The bounds, in points, of the content area for the full size image associated with the media item artwork.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitemartwork/imagecroprect
+func (m_ MoviePlayerViewController) SetImageCropRect(value coregraphics.CGRect) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setImageCropRect:"), value)
+}
+
+// The movie player controller object used to present the movie.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieplayerviewcontroller/movieplayer
+func (m_ MoviePlayerViewController) MoviePlayer() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("moviePlayer"))
+	return rv
+}
+
+
+// SetMoviePlayer sets the value of the moviePlayer property.
+// The movie player controller object used to present the movie.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieplayerviewcontroller/movieplayer
+func (m_ MoviePlayerViewController) SetMoviePlayer(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMoviePlayer:"), value)
+}
 
 
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MTRClusterLaundryDryerControls] class.
@@ -36,8 +37,8 @@ type IMTRClusterLaundryDryerControls interface {
 	ReadAttributeGeneratedCommandListWithParams(params unsafe.Pointer) unsafe.Pointer
 	ReadAttributeSelectedDrynessLevelWithParams(params unsafe.Pointer) unsafe.Pointer
 	ReadAttributeSupportedDrynessLevelsWithParams(params unsafe.Pointer) unsafe.Pointer
-	WriteAttributeSelectedDrynessLevelWithValueExpectedValueInterval(dataValueDictionary unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer)
-	WriteAttributeSelectedDrynessLevelWithValueExpectedValueIntervalParams(dataValueDictionary unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, params unsafe.Pointer)
+	WriteAttributeSelectedDrynessLevelWithValueExpectedValueInterval(dataValueDictionary unsafe.Pointer, expectedValueIntervalMs foundation.Number)
+	WriteAttributeSelectedDrynessLevelWithValueExpectedValueIntervalParams(dataValueDictionary unsafe.Pointer, expectedValueIntervalMs foundation.Number, params unsafe.Pointer)
 }
 
 // Cluster Laundry Dryer Controls This cluster provides a way to access options associated with the operation of a laundry dryer device type.
@@ -93,7 +94,7 @@ func NewMTRClusterLaundryDryerControls() MTRClusterLaundryDryerControls {
 // The queue is currently unused, but may be used in the future for calling completions for command invocations if commands are added to this cluster.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterLaundryDryerControls/init(device:endpointID:queue:)
-func NewMTRClusterLaundryDryerControlsWithDeviceEndpointIDQueue(device unsafe.Pointer, endpointID unsafe.Pointer, queue unsafe.Pointer) MTRClusterLaundryDryerControls {
+func NewMTRClusterLaundryDryerControlsWithDeviceEndpointIDQueue(device unsafe.Pointer, endpointID foundation.Number, queue unsafe.Pointer) MTRClusterLaundryDryerControls {
 	instance := getMTRClusterLaundryDryerControlsClass().Alloc()
 	rv := objc.Send[MTRClusterLaundryDryerControls](instance.ID, objc.Sel("initWithDevice:endpointID:queue:"), device, endpointID, queue)
 	rv.Autorelease()
@@ -152,13 +153,13 @@ func (m_ MTRClusterLaundryDryerControls) ReadAttributeSupportedDrynessLevelsWith
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterLaundryDryerControls/writeAttributeSelectedDrynessLevel(withValue:expectedValueInterval:)
-func (m_ MTRClusterLaundryDryerControls) WriteAttributeSelectedDrynessLevelWithValueExpectedValueInterval(dataValueDictionary unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer) {
+func (m_ MTRClusterLaundryDryerControls) WriteAttributeSelectedDrynessLevelWithValueExpectedValueInterval(dataValueDictionary unsafe.Pointer, expectedValueIntervalMs foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("writeAttributeSelectedDrynessLevelWithValue:expectedValueInterval:"), dataValueDictionary, expectedValueIntervalMs)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterLaundryDryerControls/writeAttributeSelectedDrynessLevel(withValue:expectedValueInterval:params:)
-func (m_ MTRClusterLaundryDryerControls) WriteAttributeSelectedDrynessLevelWithValueExpectedValueIntervalParams(dataValueDictionary unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, params unsafe.Pointer) {
+func (m_ MTRClusterLaundryDryerControls) WriteAttributeSelectedDrynessLevelWithValueExpectedValueIntervalParams(dataValueDictionary unsafe.Pointer, expectedValueIntervalMs foundation.Number, params unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("writeAttributeSelectedDrynessLevelWithValue:expectedValueInterval:params:"), dataValueDictionary, expectedValueIntervalMs, params)
 }
 

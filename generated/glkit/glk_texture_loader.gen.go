@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,11 +31,11 @@ type _GLKTextureLoaderClass struct {
 // An interface definition for the [GLKTextureLoader] class.
 type IGLKTextureLoader interface {
 	objectivec.IObject
-	CubeMapWithContentsOfURLOptionsQueueCompletionHandler(url unsafe.Pointer, options unsafe.Pointer, queue unsafe.Pointer, block unsafe.Pointer)
+	CubeMapWithContentsOfURLOptionsQueueCompletionHandler(url foundation.URL, options unsafe.Pointer, queue unsafe.Pointer, block unsafe.Pointer)
 	CubeMapWithContentsOfFileOptionsQueueCompletionHandler(path string, options unsafe.Pointer, queue unsafe.Pointer, block unsafe.Pointer)
 	CubeMapWithContentsOfFilesOptionsQueueCompletionHandler(paths unsafe.Pointer, options unsafe.Pointer, queue unsafe.Pointer, block unsafe.Pointer)
 	TextureWithCGImageOptionsQueueCompletionHandler(cgImage CGImageRef, options unsafe.Pointer, queue unsafe.Pointer, block unsafe.Pointer)
-	TextureWithContentsOfURLOptionsQueueCompletionHandler(url unsafe.Pointer, options unsafe.Pointer, queue unsafe.Pointer, block unsafe.Pointer)
+	TextureWithContentsOfURLOptionsQueueCompletionHandler(url foundation.URL, options unsafe.Pointer, queue unsafe.Pointer, block unsafe.Pointer)
 	TextureWithContentsOfDataOptionsQueueCompletionHandler(data unsafe.Pointer, options unsafe.Pointer, queue unsafe.Pointer, block unsafe.Pointer)
 	TextureWithContentsOfFileOptionsQueueCompletionHandler(path string, options unsafe.Pointer, queue unsafe.Pointer, block unsafe.Pointer)
 	TextureWithNameScaleFactorBundleOptionsQueueCompletionHandler(name string, scaleFactor float64, bundle unsafe.Pointer, options unsafe.Pointer, queue unsafe.Pointer, block unsafe.Pointer)
@@ -116,7 +117,7 @@ func NewGLKTextureLoaderWithSharegroup(sharegroup unsafe.Pointer) GLKTextureLoad
 // Loads a cube map texture image from a single URL and creates a new texture from the data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKTextureLoader/cubeMap(withContentsOf:options:)
-func (gc _GLKTextureLoaderClass) CubeMapWithContentsOfURLOptionsError(url unsafe.Pointer, options unsafe.Pointer, outError unsafe.Pointer) unsafe.Pointer {
+func (gc _GLKTextureLoaderClass) CubeMapWithContentsOfURLOptionsError(url foundation.URL, options unsafe.Pointer, outError unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(gc.class), objc.Sel("cubeMapWithContentsOfURL:options:error:"), url, options, outError)
 	return rv
 }
@@ -156,7 +157,7 @@ func (gc _GLKTextureLoaderClass) TextureWithContentsOfDataOptionsError(data unsa
 // Loads a 2D texture image from a URL and creates a new texture from the data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKTextureLoader/texture(withContentsOf:options:)-708ft
-func (gc _GLKTextureLoaderClass) TextureWithContentsOfURLOptionsError(url unsafe.Pointer, options unsafe.Pointer, outError unsafe.Pointer) unsafe.Pointer {
+func (gc _GLKTextureLoaderClass) TextureWithContentsOfURLOptionsError(url foundation.URL, options unsafe.Pointer, outError unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(gc.class), objc.Sel("textureWithContentsOfURL:options:error:"), url, options, outError)
 	return rv
 }
@@ -179,7 +180,7 @@ func (gc _GLKTextureLoaderClass) TextureWithNameScaleFactorBundleOptionsError(na
 // Asynchronously loads a cube map texture image from a single URL and creates a new texture from the data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKTextureLoader/cubeMap(withContentsOf:options:queue:completionHandler:)
-func (g_ GLKTextureLoader) CubeMapWithContentsOfURLOptionsQueueCompletionHandler(url unsafe.Pointer, options unsafe.Pointer, queue unsafe.Pointer, block unsafe.Pointer) {
+func (g_ GLKTextureLoader) CubeMapWithContentsOfURLOptionsQueueCompletionHandler(url foundation.URL, options unsafe.Pointer, queue unsafe.Pointer, block unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("cubeMapWithContentsOfURL:options:queue:completionHandler:"), url, options, queue, block)
 }
 
@@ -207,7 +208,7 @@ func (g_ GLKTextureLoader) TextureWithCGImageOptionsQueueCompletionHandler(cgIma
 // Asynchronously loads a 2D texture image from a URL and creates a new texture from the data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKTextureLoader/texture(withContentsOf:options:queue:completionHandler:)-55187
-func (g_ GLKTextureLoader) TextureWithContentsOfURLOptionsQueueCompletionHandler(url unsafe.Pointer, options unsafe.Pointer, queue unsafe.Pointer, block unsafe.Pointer) {
+func (g_ GLKTextureLoader) TextureWithContentsOfURLOptionsQueueCompletionHandler(url foundation.URL, options unsafe.Pointer, queue unsafe.Pointer, block unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("textureWithContentsOfURL:options:queue:completionHandler:"), url, options, queue, block)
 }
 

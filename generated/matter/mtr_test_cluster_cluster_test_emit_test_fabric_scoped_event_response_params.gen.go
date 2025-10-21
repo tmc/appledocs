@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MTRTestClusterClusterTestEmitTestFabricScopedEventResponseParams] class.
@@ -75,6 +76,36 @@ func NewMTRTestClusterClusterTestEmitTestFabricScopedEventResponseParams() MTRTe
 	return getMTRTestClusterClusterTestEmitTestFabricScopedEventResponseParamsClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestemittestfabricscopedeventresponseparams/value
+func (m_ MTRTestClusterClusterTestEmitTestFabricScopedEventResponseParams) Value() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("value"))
+	return rv
+}
+
+
+// SetValue sets the value of the value property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestemittestfabricscopedeventresponseparams/value
+func (m_ MTRTestClusterClusterTestEmitTestFabricScopedEventResponseParams) SetValue(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestemittestfabricscopedeventresponseparams/timedinvoketimeoutms
+func (m_ MTRTestClusterClusterTestEmitTestFabricScopedEventResponseParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+	return rv
+}
+
+
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestemittestfabricscopedeventresponseparams/timedinvoketimeoutms
+func (m_ MTRTestClusterClusterTestEmitTestFabricScopedEventResponseParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+}
 
 
 

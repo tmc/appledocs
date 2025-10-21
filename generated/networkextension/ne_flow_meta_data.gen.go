@@ -80,6 +80,24 @@ func NewNEFlowMetaData() NEFlowMetaData {
 }
 
 
+// The method by which network traffic is routed to the tunnel.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/netunnelprovider/routingmethod
+func (n_ NEFlowMetaData) RoutingMethod() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("routingMethod"))
+	return rv
+}
+
+
+// SetRoutingMethod sets the value of the routingMethod property.
+// The method by which network traffic is routed to the tunnel.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/netunnelprovider/routingmethod
+func (n_ NEFlowMetaData) SetRoutingMethod(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setRoutingMethod:"), value)
+}
+
 // The identifier of the content filter flow corresponding to this flow.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEFlowMetaData/filterFlowIdentifier

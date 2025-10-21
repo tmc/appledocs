@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MTRChannelClusterChannelInfo] class.
@@ -75,6 +76,81 @@ func NewMTRChannelClusterChannelInfo() MTRChannelClusterChannelInfo {
 	return getMTRChannelClusterChannelInfoClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfo/callsign
+func (m_ MTRChannelClusterChannelInfo) CallSign() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("callSign"))
+	return rv
+}
+
+
+// SetCallSign sets the value of the callSign property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfo/callsign
+func (m_ MTRChannelClusterChannelInfo) SetCallSign(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCallSign:"), objc.String(value))
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfo/name
+func (m_ MTRChannelClusterChannelInfo) Name() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("name"))
+	return rv
+}
+
+
+// SetName sets the value of the name property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfo/name
+func (m_ MTRChannelClusterChannelInfo) SetName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfo/affiliatecallsign
+func (m_ MTRChannelClusterChannelInfo) AffiliateCallSign() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("affiliateCallSign"))
+	return rv
+}
+
+
+// SetAffiliateCallSign sets the value of the affiliateCallSign property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfo/affiliatecallsign
+func (m_ MTRChannelClusterChannelInfo) SetAffiliateCallSign(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAffiliateCallSign:"), objc.String(value))
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfo/majornumber
+func (m_ MTRChannelClusterChannelInfo) MajorNumber() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("majorNumber"))
+	return rv
+}
+
+
+// SetMajorNumber sets the value of the majorNumber property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfo/majornumber
+func (m_ MTRChannelClusterChannelInfo) SetMajorNumber(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMajorNumber:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfo/minornumber
+func (m_ MTRChannelClusterChannelInfo) MinorNumber() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("minorNumber"))
+	return rv
+}
+
+
+// SetMinorNumber sets the value of the minorNumber property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfo/minornumber
+func (m_ MTRChannelClusterChannelInfo) SetMinorNumber(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMinorNumber:"), value)
+}
 
 
 

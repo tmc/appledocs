@@ -135,5 +135,23 @@ func (p_ Panel) SetWorksWhenModal(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setWorksWhenModal:"), value)
 }
 
+// A Boolean value that indicates whether the receiver is a floating panel.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspanel/isfloatingpanel
+func (p_ Panel) IsFloatingPanel() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isFloatingPanel"))
+	return rv
+}
+
+
+// SetIsFloatingPanel sets the value of the isFloatingPanel property.
+// A Boolean value that indicates whether the receiver is a floating panel.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspanel/isfloatingpanel
+func (p_ Panel) SetIsFloatingPanel(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsFloatingPanel:"), value)
+}
+
 
 

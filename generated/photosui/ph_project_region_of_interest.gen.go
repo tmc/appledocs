@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -79,6 +80,42 @@ func NewPHProjectRegionOfInterest() PHProjectRegionOfInterest {
 	return getPHProjectRegionOfInterestClass().New()
 }
 
+
+// The rectangle representing the region’s location.
+//
+// [Full Topic]: https://developer.apple.com/documentation/photosui/phprojectregionofinterest/rect
+func (p_ PHProjectRegionOfInterest) Rect() coregraphics.CGRect {
+	rv := objc.Send[coregraphics.CGRect](p_.ID, objc.Sel("rect"))
+	return rv
+}
+
+
+// SetRect sets the value of the rect property.
+// The rectangle representing the region’s location.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/photosui/phprojectregionofinterest/rect
+func (p_ PHProjectRegionOfInterest) SetRect(value coregraphics.CGRect) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setRect:"), value)
+}
+
+// The region’s unique identifier.
+//
+// [Full Topic]: https://developer.apple.com/documentation/photosui/phprojectregionofinterest/identifier-swift.property
+func (p_ PHProjectRegionOfInterest) Identifier() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("identifier"))
+	return rv
+}
+
+
+// SetIdentifier sets the value of the identifier property.
+// The region’s unique identifier.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/photosui/phprojectregionofinterest/identifier-swift.property
+func (p_ PHProjectRegionOfInterest) SetIdentifier(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIdentifier:"), value)
+}
 
 // The region’s quality.
 //

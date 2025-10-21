@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [BeaconIdentityConstraint] class.
@@ -80,6 +81,60 @@ func NewBeaconIdentityConstraint() BeaconIdentityConstraint {
 	return getBeaconIdentityConstraintClass().New()
 }
 
+
+// The UUID that the observed beacon transmitted.
+//
+// [Full Topic]: https://developer.apple.com/documentation/corelocation/clbeacon/uuid
+func (b_ BeaconIdentityConstraint) Uuid() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("uuid"))
+	return rv
+}
+
+
+// SetUuid sets the value of the uuid property.
+// The UUID that the observed beacon transmitted.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/corelocation/clbeacon/uuid
+func (b_ BeaconIdentityConstraint) SetUuid(value unsafe.Pointer) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setUuid:"), value)
+}
+
+// The major value that the observed beacon transmitted.
+//
+// [Full Topic]: https://developer.apple.com/documentation/corelocation/clbeacon/major
+func (b_ BeaconIdentityConstraint) Major() foundation.Number {
+	rv := objc.Send[foundation.Number](b_.ID, objc.Sel("major"))
+	return rv
+}
+
+
+// SetMajor sets the value of the major property.
+// The major value that the observed beacon transmitted.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/corelocation/clbeacon/major
+func (b_ BeaconIdentityConstraint) SetMajor(value foundation.Number) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setMajor:"), value)
+}
+
+// The minor value that the observed beacon transmitted.
+//
+// [Full Topic]: https://developer.apple.com/documentation/corelocation/clbeacon/minor
+func (b_ BeaconIdentityConstraint) Minor() foundation.Number {
+	rv := objc.Send[foundation.Number](b_.ID, objc.Sel("minor"))
+	return rv
+}
+
+
+// SetMinor sets the value of the minor property.
+// The minor value that the observed beacon transmitted.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/corelocation/clbeacon/minor
+func (b_ BeaconIdentityConstraint) SetMinor(value foundation.Number) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setMinor:"), value)
+}
 
 
 

@@ -79,5 +79,41 @@ func NewHumanBodyRecognizedPoint3D() HumanBodyRecognizedPoint3D {
 }
 
 
+// The three-dimensional position.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnhumanbodyrecognizedpoint3d/localposition
+func (h_ HumanBodyRecognizedPoint3D) LocalPosition() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("localPosition"))
+	return rv
+}
+
+
+// SetLocalPosition sets the value of the localPosition property.
+// The three-dimensional position.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnhumanbodyrecognizedpoint3d/localposition
+func (h_ HumanBodyRecognizedPoint3D) SetLocalPosition(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setLocalPosition:"), value)
+}
+
+// The parent joint in the observation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnhumanbodyrecognizedpoint3d/parentjoint
+func (h_ HumanBodyRecognizedPoint3D) ParentJoint() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("parentJoint"))
+	return rv
+}
+
+
+// SetParentJoint sets the value of the parentJoint property.
+// The parent joint in the observation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnhumanbodyrecognizedpoint3d/parentjoint
+func (h_ HumanBodyRecognizedPoint3D) SetParentJoint(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setParentJoint:"), value)
+}
+
 
 

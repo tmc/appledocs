@@ -92,6 +92,96 @@ func (u_ USBHostCIPortStateMachine) UpdateLinkStateSpeedInhibitLinkStateChangeEr
 }
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostciportstatemachine/controllerinterface
+func (u_ USBHostCIPortStateMachine) ControllerInterface() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("controllerInterface"))
+	return rv
+}
+
+
+// SetControllerInterface sets the value of the controllerInterface property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostciportstatemachine/controllerinterface
+func (u_ USBHostCIPortStateMachine) SetControllerInterface(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setControllerInterface:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostciportstatemachine/powered
+func (u_ USBHostCIPortStateMachine) Powered() bool {
+	rv := objc.Send[bool](u_.ID, objc.Sel("powered"))
+	return rv
+}
+
+
+// SetPowered sets the value of the powered property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostciportstatemachine/powered
+func (u_ USBHostCIPortStateMachine) SetPowered(value bool) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setPowered:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostciportstatemachine/portstate
+func (u_ USBHostCIPortStateMachine) PortState() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("portState"))
+	return rv
+}
+
+
+// SetPortState sets the value of the portState property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostciportstatemachine/portstate
+func (u_ USBHostCIPortStateMachine) SetPortState(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setPortState:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostciportstatemachine/linkstate
+func (u_ USBHostCIPortStateMachine) LinkState() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("linkState"))
+	return rv
+}
+
+
+// SetLinkState sets the value of the linkState property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostciportstatemachine/linkstate
+func (u_ USBHostCIPortStateMachine) SetLinkState(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setLinkState:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostciportstatemachine/connected
+func (u_ USBHostCIPortStateMachine) Connected() bool {
+	rv := objc.Send[bool](u_.ID, objc.Sel("connected"))
+	return rv
+}
+
+
+// SetConnected sets the value of the connected property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostciportstatemachine/connected
+func (u_ USBHostCIPortStateMachine) SetConnected(value bool) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setConnected:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostciportstatemachine/portnumber
+func (u_ USBHostCIPortStateMachine) PortNumber() int {
+	rv := objc.Send[int](u_.ID, objc.Sel("portNumber"))
+	return rv
+}
+
+
+// SetPortNumber sets the value of the portNumber property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostciportstatemachine/portnumber
+func (u_ USBHostCIPortStateMachine) SetPortNumber(value int) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setPortNumber:"), value)
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostCIPortStateMachine/overcurrent
 func (u_ USBHostCIPortStateMachine) Overcurrent() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("overcurrent"))

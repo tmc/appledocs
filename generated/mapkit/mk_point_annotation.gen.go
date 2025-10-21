@@ -81,5 +81,23 @@ func NewMKPointAnnotation() MKPointAnnotation {
 }
 
 
+// The coordinate point of the annotation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkpointannotation/coordinate
+func (m_ MKPointAnnotation) Coordinate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("coordinate"))
+	return rv
+}
+
+
+// SetCoordinate sets the value of the coordinate property.
+// The coordinate point of the annotation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkpointannotation/coordinate
+func (m_ MKPointAnnotation) SetCoordinate(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCoordinate:"), value)
+}
+
 
 

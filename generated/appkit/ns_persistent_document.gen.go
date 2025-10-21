@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PersistentDocument] class.
@@ -29,7 +30,7 @@ type _PersistentDocumentClass struct {
 // An interface definition for the [PersistentDocument] class.
 type IPersistentDocument interface {
 	IDocument
-	ConfigurePersistentStoreCoordinatorForURLOfTypeModelConfigurationStoreOptionsError(url unsafe.Pointer, fileType string, configuration string, storeOptions unsafe.Pointer, error_ unsafe.Pointer) bool
+	ConfigurePersistentStoreCoordinatorForURLOfTypeModelConfigurationStoreOptionsError(url foundation.URL, fileType string, configuration string, storeOptions unsafe.Pointer, error_ unsafe.Pointer) bool
 }
 
 // A document object that can integrate with Core Data.
@@ -85,9 +86,99 @@ func NewPersistentDocument() PersistentDocument {
 // Configures the receiver’s persistent store coordinator with the appropriate stores for a given URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPersistentDocument/configurePersistentStoreCoordinator(for:ofType:modelConfiguration:storeOptions:)
-func (p_ PersistentDocument) ConfigurePersistentStoreCoordinatorForURLOfTypeModelConfigurationStoreOptionsError(url unsafe.Pointer, fileType string, configuration string, storeOptions unsafe.Pointer, error_ unsafe.Pointer) bool {
+func (p_ PersistentDocument) ConfigurePersistentStoreCoordinatorForURLOfTypeModelConfigurationStoreOptionsError(url foundation.URL, fileType string, configuration string, storeOptions unsafe.Pointer, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("configurePersistentStoreCoordinatorForURL:ofType:modelConfiguration:storeOptions:error:"), url, objc.String(fileType), objc.String(configuration), storeOptions, error_)
 	return rv
+}
+
+// A Boolean value that indicates whether the document owns an undo manager object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocument/hasundomanager
+func (p_ PersistentDocument) HasUndoManager() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("hasUndoManager"))
+	return rv
+}
+
+
+// SetHasUndoManager sets the value of the hasUndoManager property.
+// A Boolean value that indicates whether the document owns an undo manager object.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocument/hasundomanager
+func (p_ PersistentDocument) SetHasUndoManager(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setHasUndoManager:"), value)
+}
+
+// A Boolean value that indicates whether the document has unsaved changes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocument/isdocumentedited
+func (p_ PersistentDocument) IsDocumentEdited() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isDocumentEdited"))
+	return rv
+}
+
+
+// SetIsDocumentEdited sets the value of the isDocumentEdited property.
+// A Boolean value that indicates whether the document has unsaved changes.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocument/isdocumentedited
+func (p_ PersistentDocument) SetIsDocumentEdited(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsDocumentEdited:"), value)
+}
+
+// The object that the document uses to support undo/redo operations.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocument/undomanager
+func (p_ PersistentDocument) UndoManager() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("undoManager"))
+	return rv
+}
+
+
+// SetUndoManager sets the value of the undoManager property.
+// The object that the document uses to support undo/redo operations.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocument/undomanager
+func (p_ PersistentDocument) SetUndoManager(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setUndoManager:"), value)
+}
+
+// The managed object context for the document.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspersistentdocument/managedobjectcontext
+func (p_ PersistentDocument) ManagedObjectContext() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("managedObjectContext"))
+	return rv
+}
+
+
+// SetManagedObjectContext sets the value of the managedObjectContext property.
+// The managed object context for the document.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspersistentdocument/managedobjectcontext
+func (p_ PersistentDocument) SetManagedObjectContext(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setManagedObjectContext:"), value)
+}
+
+// The managed object model of the document.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspersistentdocument/managedobjectmodel
+func (p_ PersistentDocument) ManagedObjectModel() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("managedObjectModel"))
+	return rv
+}
+
+
+// SetManagedObjectModel sets the value of the managedObjectModel property.
+// The managed object model of the document.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspersistentdocument/managedobjectmodel
+func (p_ PersistentDocument) SetManagedObjectModel(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setManagedObjectModel:"), value)
 }
 
 

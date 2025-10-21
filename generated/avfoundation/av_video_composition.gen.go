@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -119,6 +120,186 @@ func (v_ VideoComposition) Instructions() []objc.ID {
 func (v_ VideoComposition) RenderScale() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("renderScale"))
 	return rv
+}
+
+// A video composition tool to use with Core Animation in offline rendering.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avvideocomposition/animationtool
+func (v_ VideoComposition) AnimationTool() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("animationTool"))
+	return rv
+}
+
+
+// SetAnimationTool sets the value of the animationTool property.
+// A video composition tool to use with Core Animation in offline rendering.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avvideocomposition/animationtool
+func (v_ VideoComposition) SetAnimationTool(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setAnimationTool:"), value)
+}
+
+// The color primaries used for video composition.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avvideocomposition/colorprimaries
+func (v_ VideoComposition) ColorPrimaries() string {
+	rv := objc.Send[string](v_.ID, objc.Sel("colorPrimaries"))
+	return rv
+}
+
+
+// SetColorPrimaries sets the value of the colorPrimaries property.
+// The color primaries used for video composition.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avvideocomposition/colorprimaries
+func (v_ VideoComposition) SetColorPrimaries(value string) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setColorPrimaries:"), objc.String(value))
+}
+
+// The transfer function used for video composition.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avvideocomposition/colortransferfunction
+func (v_ VideoComposition) ColorTransferFunction() string {
+	rv := objc.Send[string](v_.ID, objc.Sel("colorTransferFunction"))
+	return rv
+}
+
+
+// SetColorTransferFunction sets the value of the colorTransferFunction property.
+// The transfer function used for video composition.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avvideocomposition/colortransferfunction
+func (v_ VideoComposition) SetColorTransferFunction(value string) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setColorTransferFunction:"), objc.String(value))
+}
+
+// The YCbCr matrix used for video composition.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avvideocomposition/colorycbcrmatrix
+func (v_ VideoComposition) ColorYCbCrMatrix() string {
+	rv := objc.Send[string](v_.ID, objc.Sel("colorYCbCrMatrix"))
+	return rv
+}
+
+
+// SetColorYCbCrMatrix sets the value of the colorYCbCrMatrix property.
+// The YCbCr matrix used for video composition.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avvideocomposition/colorycbcrmatrix
+func (v_ VideoComposition) SetColorYCbCrMatrix(value string) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setColorYCbCrMatrix:"), objc.String(value))
+}
+
+// The output buffers of the video composition can be specified with the outputBufferDescription. The value is an array of an array of CMTag objects that describes the output buffers.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avvideocomposition/outputbufferdescription-3ayt8
+func (v_ VideoComposition) OutputBufferDescription() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("outputBufferDescription"))
+	return rv
+}
+
+
+// SetOutputBufferDescription sets the value of the outputBufferDescription property.
+// The output buffers of the video composition can be specified with the outputBufferDescription. The value is an array of an array of CMTag objects that describes the output buffers.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avvideocomposition/outputbufferdescription-3ayt8
+func (v_ VideoComposition) SetOutputBufferDescription(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setOutputBufferDescription:"), value)
+}
+
+// The policy for display of HDR display metadata on the rendered frame.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avvideocomposition/perframehdrdisplaymetadatapolicy-swift.property
+func (v_ VideoComposition) PerFrameHDRDisplayMetadataPolicy() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("perFrameHDRDisplayMetadataPolicy"))
+	return rv
+}
+
+
+// SetPerFrameHDRDisplayMetadataPolicy sets the value of the perFrameHDRDisplayMetadataPolicy property.
+// The policy for display of HDR display metadata on the rendered frame.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avvideocomposition/perframehdrdisplaymetadatapolicy-swift.property
+func (v_ VideoComposition) SetPerFrameHDRDisplayMetadataPolicy(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setPerFrameHDRDisplayMetadataPolicy:"), value)
+}
+
+// The size at which the video composition should render.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avvideocomposition/rendersize
+func (v_ VideoComposition) RenderSize() coregraphics.CGSize {
+	rv := objc.Send[coregraphics.CGSize](v_.ID, objc.Sel("renderSize"))
+	return rv
+}
+
+
+// SetRenderSize sets the value of the renderSize property.
+// The size at which the video composition should render.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avvideocomposition/rendersize
+func (v_ VideoComposition) SetRenderSize(value coregraphics.CGSize) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setRenderSize:"), value)
+}
+
+// The identifiers of source sample data tracks in the composition that the object requires to compose frames.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avvideocomposition/sourcesampledatatrackids-2hgue
+func (v_ VideoComposition) SourceSampleDataTrackIDs() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("sourceSampleDataTrackIDs"))
+	return rv
+}
+
+
+// SetSourceSampleDataTrackIDs sets the value of the sourceSampleDataTrackIDs property.
+// The identifiers of source sample data tracks in the composition that the object requires to compose frames.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avvideocomposition/sourcesampledatatrackids-2hgue
+func (v_ VideoComposition) SetSourceSampleDataTrackIDs(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setSourceSampleDataTrackIDs:"), value)
+}
+
+// An identifier of the source track from which the video composition derives frame timing.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avvideocomposition/sourcetrackidforframetiming
+func (v_ VideoComposition) SourceTrackIDForFrameTiming() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("sourceTrackIDForFrameTiming"))
+	return rv
+}
+
+
+// SetSourceTrackIDForFrameTiming sets the value of the sourceTrackIDForFrameTiming property.
+// An identifier of the source track from which the video composition derives frame timing.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avvideocomposition/sourcetrackidforframetiming
+func (v_ VideoComposition) SetSourceTrackIDForFrameTiming(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setSourceTrackIDForFrameTiming:"), value)
+}
+
+// Indicates the spatial configurations that are available to associate with the output of the video composition.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avvideocomposition/spatialvideoconfigurations-80iab
+func (v_ VideoComposition) SpatialVideoConfigurations() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("spatialVideoConfigurations"))
+	return rv
+}
+
+
+// SetSpatialVideoConfigurations sets the value of the spatialVideoConfigurations property.
+// Indicates the spatial configurations that are available to associate with the output of the video composition.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avvideocomposition/spatialvideoconfigurations-80iab
+func (v_ VideoComposition) SetSpatialVideoConfigurations(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setSpatialVideoConfigurations:"), value)
 }
 
 

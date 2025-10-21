@@ -97,5 +97,41 @@ func (a_ AnimalBodyPoseObservation) RecognizedPointsForJointsGroupNameError(join
 	return rv
 }
 
+// The names of the available joints in the observation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnanimalbodyposeobservation/availablejointnames
+func (a_ AnimalBodyPoseObservation) AvailableJointNames() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("availableJointNames"))
+	return rv
+}
+
+
+// SetAvailableJointNames sets the value of the availableJointNames property.
+// The names of the available joints in the observation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnanimalbodyposeobservation/availablejointnames
+func (a_ AnimalBodyPoseObservation) SetAvailableJointNames(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAvailableJointNames:"), value)
+}
+
+// The available joint group names in the observation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnanimalbodyposeobservation/availablejointgroupnames
+func (a_ AnimalBodyPoseObservation) AvailableJointGroupNames() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("availableJointGroupNames"))
+	return rv
+}
+
+
+// SetAvailableJointGroupNames sets the value of the availableJointGroupNames property.
+// The available joint group names in the observation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnanimalbodyposeobservation/availablejointgroupnames
+func (a_ AnimalBodyPoseObservation) SetAvailableJointGroupNames(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAvailableJointGroupNames:"), value)
+}
+
 
 

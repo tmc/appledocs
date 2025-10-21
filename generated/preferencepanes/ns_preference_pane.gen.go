@@ -166,6 +166,24 @@ func (p_ PreferencePane) WillUnselect() {
 	objc.Send[objc.ID](p_.ID, objc.Sel("willUnselect"))
 }
 
+// A Boolean value that indicates whether the preference pane is currently selected.
+//
+// [Full Topic]: https://developer.apple.com/documentation/preferencepanes/nspreferencepane/isselected
+func (p_ PreferencePane) IsSelected() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isSelected"))
+	return rv
+}
+
+
+// SetIsSelected sets the value of the isSelected property.
+// A Boolean value that indicates whether the preference pane is currently selected.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/preferencepanes/nspreferencepane/isselected
+func (p_ PreferencePane) SetIsSelected(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsSelected:"), value)
+}
+
 // A Boolean value that indicates whether text fields save their values before changing preference panes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PreferencePanes/NSPreferencePane/autoSaveTextFields

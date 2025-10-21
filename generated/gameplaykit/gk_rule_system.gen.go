@@ -180,6 +180,24 @@ func (r_ RuleSystem) RetractFactGrade(fact objc.ID, grade unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("retractFact:grade:"), fact, grade)
 }
 
+// The importance of the rule relative to others in a rule system’s agenda.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gameplaykit/gkrule/salience
+func (r_ RuleSystem) Salience() int {
+	rv := objc.Send[int](r_.ID, objc.Sel("salience"))
+	return rv
+}
+
+
+// SetSalience sets the value of the salience property.
+// The importance of the rule relative to others in a rule system’s agenda.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gameplaykit/gkrule/salience
+func (r_ RuleSystem) SetSalience(value int) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setSalience:"), value)
+}
+
 // The list of rules to be considered when evaluating the system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRuleSystem/agenda

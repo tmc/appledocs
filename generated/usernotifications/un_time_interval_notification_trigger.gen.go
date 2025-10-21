@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [UNTimeIntervalNotificationTrigger] class.
@@ -87,7 +88,7 @@ func NewUNTimeIntervalNotificationTrigger() UNTimeIntervalNotificationTrigger {
 // Creates a time interval trigger using the time value parameter.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNTimeIntervalNotificationTrigger/init(timeInterval:repeats:)
-func NewUNTimeIntervalNotificationTriggerWithTimeIntervalRepeats(timeInterval TimeInterval, repeats bool) UNTimeIntervalNotificationTrigger {
+func NewUNTimeIntervalNotificationTriggerWithTimeIntervalRepeats(timeInterval foundation.TimeInterval, repeats bool) UNTimeIntervalNotificationTrigger {
 	rv := objc.Send[UNTimeIntervalNotificationTrigger](objc.ID(getUNTimeIntervalNotificationTriggerClass().class), objc.Sel("triggerWithTimeInterval:repeats:"), timeInterval, repeats)
 	return rv
 }
@@ -96,7 +97,7 @@ func NewUNTimeIntervalNotificationTriggerWithTimeIntervalRepeats(timeInterval Ti
 // Creates a time interval trigger using the time value parameter.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNTimeIntervalNotificationTrigger/init(timeInterval:repeats:)
-func (uc _UNTimeIntervalNotificationTriggerClass) TriggerWithTimeIntervalRepeats(timeInterval TimeInterval, repeats bool) unsafe.Pointer {
+func (uc _UNTimeIntervalNotificationTriggerClass) TriggerWithTimeIntervalRepeats(timeInterval foundation.TimeInterval, repeats bool) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("triggerWithTimeInterval:repeats:"), timeInterval, repeats)
 	return rv
 }
@@ -112,8 +113,8 @@ func (u_ UNTimeIntervalNotificationTrigger) NextTriggerDate() unsafe.Pointer {
 // The time interval to create the trigger.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNTimeIntervalNotificationTrigger/timeInterval
-func (u_ UNTimeIntervalNotificationTrigger) TimeInterval() TimeInterval {
-	rv := objc.Send[TimeInterval](u_.ID, objc.Sel("timeInterval"))
+func (u_ UNTimeIntervalNotificationTrigger) TimeInterval() foundation.TimeInterval {
+	rv := objc.Send[foundation.TimeInterval](u_.ID, objc.Sel("timeInterval"))
 	return rv
 }
 

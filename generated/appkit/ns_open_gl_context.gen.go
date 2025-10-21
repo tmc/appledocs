@@ -122,5 +122,41 @@ func (o_ OpenGLContext) SetCurrentVirtualScreen(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setCurrentVirtualScreen:"), value)
 }
 
+// The pixel format of the OpenGL context.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenglcontext/pixelformat
+func (o_ OpenGLContext) PixelFormat() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("pixelFormat"))
+	return rv
+}
+
+
+// SetPixelFormat sets the value of the pixelFormat property.
+// The pixel format of the OpenGL context.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenglcontext/pixelformat
+func (o_ OpenGLContext) SetPixelFormat(value unsafe.Pointer) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setPixelFormat:"), value)
+}
+
+// Returns the OpenGL context’s view.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenglcontext/view
+func (o_ OpenGLContext) View() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("view"))
+	return rv
+}
+
+
+// SetView sets the value of the view property.
+// Returns the OpenGL context’s view.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenglcontext/view
+func (o_ OpenGLContext) SetView(value unsafe.Pointer) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setView:"), value)
+}
+
 
 

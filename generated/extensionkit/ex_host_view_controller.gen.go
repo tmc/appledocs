@@ -90,6 +90,24 @@ func (e_ EXHostViewController) MakeXPCConnection() {
 	objc.Send[objc.ID](e_.ID, objc.Sel("makeXPCConnection"))
 }
 
+// The information the host view controller uses to fetch the appropriate scene
+//
+// [Full Topic]: https://developer.apple.com/documentation/extensionkit/exhostviewcontroller/configuration-swift.property
+func (e_ EXHostViewController) Configuration() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("configuration"))
+	return rv
+}
+
+
+// SetConfiguration sets the value of the configuration property.
+// The information the host view controller uses to fetch the appropriate scene
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/extensionkit/exhostviewcontroller/configuration-swift.property
+func (e_ EXHostViewController) SetConfiguration(value unsafe.Pointer) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setConfiguration:"), value)
+}
+
 
 
 

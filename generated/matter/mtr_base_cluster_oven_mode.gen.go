@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MTRBaseClusterOvenMode] class.
@@ -101,7 +102,7 @@ func NewMTRBaseClusterOvenMode() MTRBaseClusterOvenMode {
 // For all instance methods (reads, writes, commands) that take a completion, the completion will be called on the provided queue.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterOvenMode/init(device:endpointID:queue:)
-func NewMTRBaseClusterOvenModeWithDeviceEndpointIDQueue(device unsafe.Pointer, endpointID unsafe.Pointer, queue unsafe.Pointer) MTRBaseClusterOvenMode {
+func NewMTRBaseClusterOvenModeWithDeviceEndpointIDQueue(device unsafe.Pointer, endpointID foundation.Number, queue unsafe.Pointer) MTRBaseClusterOvenMode {
 	instance := getMTRBaseClusterOvenModeClass().Alloc()
 	rv := objc.Send[MTRBaseClusterOvenMode](instance.ID, objc.Sel("initWithDevice:endpointID:queue:"), device, endpointID, queue)
 	rv.Autorelease()
@@ -111,43 +112,43 @@ func NewMTRBaseClusterOvenModeWithDeviceEndpointIDQueue(device unsafe.Pointer, e
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterOvenMode/readAttributeAcceptedCommandList(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterOvenModeClass) ReadAttributeAcceptedCommandListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint unsafe.Pointer, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterOvenModeClass) ReadAttributeAcceptedCommandListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeAcceptedCommandListWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterOvenMode/readAttributeAttributeList(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterOvenModeClass) ReadAttributeAttributeListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint unsafe.Pointer, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterOvenModeClass) ReadAttributeAttributeListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeAttributeListWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterOvenMode/readAttributeClusterRevision(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterOvenModeClass) ReadAttributeClusterRevisionWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint unsafe.Pointer, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterOvenModeClass) ReadAttributeClusterRevisionWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeClusterRevisionWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterOvenMode/readAttributeCurrentMode(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterOvenModeClass) ReadAttributeCurrentModeWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint unsafe.Pointer, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterOvenModeClass) ReadAttributeCurrentModeWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeCurrentModeWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterOvenMode/readAttributeFeatureMap(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterOvenModeClass) ReadAttributeFeatureMapWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint unsafe.Pointer, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterOvenModeClass) ReadAttributeFeatureMapWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeFeatureMapWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterOvenMode/readAttributeGeneratedCommandList(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterOvenModeClass) ReadAttributeGeneratedCommandListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint unsafe.Pointer, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterOvenModeClass) ReadAttributeGeneratedCommandListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeGeneratedCommandListWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterOvenMode/readAttributeSupportedModes(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterOvenModeClass) ReadAttributeSupportedModesWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint unsafe.Pointer, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterOvenModeClass) ReadAttributeSupportedModesWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeSupportedModesWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 

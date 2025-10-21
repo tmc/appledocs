@@ -95,5 +95,23 @@ func (c_ CaptureSynchronizedSampleBufferData) SampleBufferWasDropped() bool {
 	return rv
 }
 
+// The depth data captured at this synchronization point.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesynchronizedsamplebufferdata/samplebuffer
+func (c_ CaptureSynchronizedSampleBufferData) SampleBuffer() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("sampleBuffer"))
+	return rv
+}
+
+
+// SetSampleBuffer sets the value of the sampleBuffer property.
+// The depth data captured at this synchronization point.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesynchronizedsamplebufferdata/samplebuffer
+func (c_ CaptureSynchronizedSampleBufferData) SetSampleBuffer(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setSampleBuffer:"), value)
+}
+
 
 

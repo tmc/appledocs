@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,8 +78,8 @@ func NewMTRThermostatClusterPresetTypeStruct() MTRThermostatClusterPresetTypeStr
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterPresetTypeStruct/numberOfPresets
-func (m_ MTRThermostatClusterPresetTypeStruct) NumberOfPresets() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("numberOfPresets"))
+func (m_ MTRThermostatClusterPresetTypeStruct) NumberOfPresets() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("numberOfPresets"))
 	return rv
 }
 
@@ -86,14 +87,14 @@ func (m_ MTRThermostatClusterPresetTypeStruct) NumberOfPresets() unsafe.Pointer 
 // SetNumberOfPresets sets the value of the numberOfPresets property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterPresetTypeStruct/numberOfPresets
-func (m_ MTRThermostatClusterPresetTypeStruct) SetNumberOfPresets(value unsafe.Pointer) {
+func (m_ MTRThermostatClusterPresetTypeStruct) SetNumberOfPresets(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNumberOfPresets:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterPresetTypeStruct/presetScenario
-func (m_ MTRThermostatClusterPresetTypeStruct) PresetScenario() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("presetScenario"))
+func (m_ MTRThermostatClusterPresetTypeStruct) PresetScenario() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("presetScenario"))
 	return rv
 }
 
@@ -101,14 +102,14 @@ func (m_ MTRThermostatClusterPresetTypeStruct) PresetScenario() unsafe.Pointer {
 // SetPresetScenario sets the value of the presetScenario property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterPresetTypeStruct/presetScenario
-func (m_ MTRThermostatClusterPresetTypeStruct) SetPresetScenario(value unsafe.Pointer) {
+func (m_ MTRThermostatClusterPresetTypeStruct) SetPresetScenario(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPresetScenario:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterPresetTypeStruct/presetTypeFeatures
-func (m_ MTRThermostatClusterPresetTypeStruct) PresetTypeFeatures() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("presetTypeFeatures"))
+func (m_ MTRThermostatClusterPresetTypeStruct) PresetTypeFeatures() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("presetTypeFeatures"))
 	return rv
 }
 
@@ -116,7 +117,7 @@ func (m_ MTRThermostatClusterPresetTypeStruct) PresetTypeFeatures() unsafe.Point
 // SetPresetTypeFeatures sets the value of the presetTypeFeatures property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterPresetTypeStruct/presetTypeFeatures
-func (m_ MTRThermostatClusterPresetTypeStruct) SetPresetTypeFeatures(value unsafe.Pointer) {
+func (m_ MTRThermostatClusterPresetTypeStruct) SetPresetTypeFeatures(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPresetTypeFeatures:"), value)
 }
 

@@ -79,5 +79,77 @@ func NewMovieTrack() MovieTrack {
 }
 
 
+// A value that identifies the track as a member of a particular alternate group.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmovietrack/alternategroupid
+func (m_ MovieTrack) AlternateGroupID() int {
+	rv := objc.Send[int](m_.ID, objc.Sel("alternateGroupID"))
+	return rv
+}
+
+
+// SetAlternateGroupID sets the value of the alternateGroupID property.
+// A value that identifies the track as a member of a particular alternate group.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmovietrack/alternategroupid
+func (m_ MovieTrack) SetAlternateGroupID(value int) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAlternateGroupID:"), value)
+}
+
+// The storage container for media data added to a track.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmovietrack/mediadatastorage
+func (m_ MovieTrack) MediaDataStorage() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("mediaDataStorage"))
+	return rv
+}
+
+
+// SetMediaDataStorage sets the value of the mediaDataStorage property.
+// The storage container for media data added to a track.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmovietrack/mediadatastorage
+func (m_ MovieTrack) SetMediaDataStorage(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMediaDataStorage:"), value)
+}
+
+// A range of decode times for the track’s media.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmovietrack/mediadecodetimerange
+func (m_ MovieTrack) MediaDecodeTimeRange() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("mediaDecodeTimeRange"))
+	return rv
+}
+
+
+// SetMediaDecodeTimeRange sets the value of the mediaDecodeTimeRange property.
+// A range of decode times for the track’s media.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmovietrack/mediadecodetimerange
+func (m_ MovieTrack) SetMediaDecodeTimeRange(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMediaDecodeTimeRange:"), value)
+}
+
+// A range of presentation times for the track’s media.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmovietrack/mediapresentationtimerange
+func (m_ MovieTrack) MediaPresentationTimeRange() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("mediaPresentationTimeRange"))
+	return rv
+}
+
+
+// SetMediaPresentationTimeRange sets the value of the mediaPresentationTimeRange property.
+// A range of presentation times for the track’s media.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmovietrack/mediapresentationtimerange
+func (m_ MovieTrack) SetMediaPresentationTimeRange(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMediaPresentationTimeRange:"), value)
+}
+
 
 

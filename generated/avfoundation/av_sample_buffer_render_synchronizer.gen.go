@@ -97,5 +97,95 @@ func (s_ SampleBufferRenderSynchronizer) SetRateTime(rate unsafe.Pointer, time u
 	objc.Send[objc.ID](s_.ID, objc.Sel("setRate:time:"), rate, time)
 }
 
+// A Boolean value that Indicates whether the playback should start immediately on rate change requests.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferrendersynchronizer/delaysratechangeuntilhassufficientmediadata
+func (s_ SampleBufferRenderSynchronizer) DelaysRateChangeUntilHasSufficientMediaData() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("delaysRateChangeUntilHasSufficientMediaData"))
+	return rv
+}
+
+
+// SetDelaysRateChangeUntilHasSufficientMediaData sets the value of the delaysRateChangeUntilHasSufficientMediaData property.
+// A Boolean value that Indicates whether the playback should start immediately on rate change requests.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferrendersynchronizer/delaysratechangeuntilhassufficientmediadata
+func (s_ SampleBufferRenderSynchronizer) SetDelaysRateChangeUntilHasSufficientMediaData(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setDelaysRateChangeUntilHasSufficientMediaData:"), value)
+}
+
+// The synchronizer’s intended Spatial Audio experience.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferrendersynchronizer/intendedspatialaudioexperience-3z7d3
+func (s_ SampleBufferRenderSynchronizer) IntendedSpatialAudioExperience() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("intendedSpatialAudioExperience"))
+	return rv
+}
+
+
+// SetIntendedSpatialAudioExperience sets the value of the intendedSpatialAudioExperience property.
+// The synchronizer’s intended Spatial Audio experience.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferrendersynchronizer/intendedspatialaudioexperience-3z7d3
+func (s_ SampleBufferRenderSynchronizer) SetIntendedSpatialAudioExperience(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setIntendedSpatialAudioExperience:"), value)
+}
+
+// The current playback rate.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferrendersynchronizer/rate
+func (s_ SampleBufferRenderSynchronizer) Rate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("rate"))
+	return rv
+}
+
+
+// SetRate sets the value of the rate property.
+// The current playback rate.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferrendersynchronizer/rate
+func (s_ SampleBufferRenderSynchronizer) SetRate(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setRate:"), value)
+}
+
+// An array of queued sample buffer renderers currently attached to the synchronizer.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferrendersynchronizer/renderers
+func (s_ SampleBufferRenderSynchronizer) Renderers() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("renderers"))
+	return rv
+}
+
+
+// SetRenderers sets the value of the renderers property.
+// An array of queued sample buffer renderers currently attached to the synchronizer.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferrendersynchronizer/renderers
+func (s_ SampleBufferRenderSynchronizer) SetRenderers(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setRenderers:"), value)
+}
+
+// The synchronizer’s rendering timebase which determines how it interprets timestamps.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferrendersynchronizer/timebase
+func (s_ SampleBufferRenderSynchronizer) Timebase() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("timebase"))
+	return rv
+}
+
+
+// SetTimebase sets the value of the timebase property.
+// The synchronizer’s rendering timebase which determines how it interprets timestamps.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferrendersynchronizer/timebase
+func (s_ SampleBufferRenderSynchronizer) SetTimebase(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setTimebase:"), value)
+}
+
 
 

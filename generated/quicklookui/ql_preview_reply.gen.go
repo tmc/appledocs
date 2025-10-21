@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -113,13 +114,31 @@ func NewPreviewReplyWithDataOfContentTypeContentSizeDataCreationBlock(contentTyp
 // Creates a preview reply from an existing file URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuickLookUI/QLPreviewReply/init(fileURL:)
-func NewPreviewReplyWithFileURL(fileURL unsafe.Pointer) PreviewReply {
+func NewPreviewReplyWithFileURL(fileURL foundation.URL) PreviewReply {
 	instance := getPreviewReplyClass().Alloc()
 	rv := objc.Send[PreviewReply](instance.ID, objc.Sel("initWithFileURL:"), fileURL)
 	rv.Autorelease()
 	return rv
 }
 
+
+// The title for the system to display with the preview.
+//
+// [Full Topic]: https://developer.apple.com/documentation/quicklookui/qlpreviewreply/title
+func (p_ PreviewReply) Title() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("title"))
+	return rv
+}
+
+
+// SetTitle sets the value of the title property.
+// The title for the system to display with the preview.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/quicklookui/qlpreviewreply/title
+func (p_ PreviewReply) SetTitle(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setTitle:"), objc.String(value))
+}
 
 // The attachments for a preview reply that provide additional data for the system to display the preview.
 //

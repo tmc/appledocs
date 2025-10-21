@@ -80,5 +80,59 @@ func NewINVoiceShortcut() INVoiceShortcut {
 }
 
 
+// The unique identifier for the shortcut.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/invoiceshortcut/identifier
+func (i_ INVoiceShortcut) Identifier() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("identifier"))
+	return rv
+}
+
+
+// SetIdentifier sets the value of the identifier property.
+// The unique identifier for the shortcut.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/invoiceshortcut/identifier
+func (i_ INVoiceShortcut) SetIdentifier(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setIdentifier:"), value)
+}
+
+// The shortcut Siri invokes when the user speaks the invocation phrase.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/invoiceshortcut/shortcut
+func (i_ INVoiceShortcut) Shortcut() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("shortcut"))
+	return rv
+}
+
+
+// SetShortcut sets the value of the shortcut property.
+// The shortcut Siri invokes when the user speaks the invocation phrase.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/invoiceshortcut/shortcut
+func (i_ INVoiceShortcut) SetShortcut(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setShortcut:"), value)
+}
+
+// The phrase the user speaks to invoke the shortcut.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/invoiceshortcut/invocationphrase
+func (i_ INVoiceShortcut) InvocationPhrase() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("invocationPhrase"))
+	return rv
+}
+
+
+// SetInvocationPhrase sets the value of the invocationPhrase property.
+// The phrase the user speaks to invoke the shortcut.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/invoiceshortcut/invocationphrase
+func (i_ INVoiceShortcut) SetInvocationPhrase(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setInvocationPhrase:"), objc.String(value))
+}
+
 
 

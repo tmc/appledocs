@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,36 @@ func NewMTRSwitchClusterMultiPressOngoingEvent() MTRSwitchClusterMultiPressOngoi
 	return getMTRSwitchClusterMultiPressOngoingEventClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrswitchclustermultipressongoingevent/newposition
+func (m_ MTRSwitchClusterMultiPressOngoingEvent) NewPosition() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("newPosition"))
+	return rv
+}
+
+
+// SetNewPosition sets the value of the newPosition property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrswitchclustermultipressongoingevent/newposition
+func (m_ MTRSwitchClusterMultiPressOngoingEvent) SetNewPosition(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setNewPosition:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrswitchclustermultipressongoingevent/currentnumberofpressescounted
+func (m_ MTRSwitchClusterMultiPressOngoingEvent) CurrentNumberOfPressesCounted() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("currentNumberOfPressesCounted"))
+	return rv
+}
+
+
+// SetCurrentNumberOfPressesCounted sets the value of the currentNumberOfPressesCounted property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrswitchclustermultipressongoingevent/currentnumberofpressescounted
+func (m_ MTRSwitchClusterMultiPressOngoingEvent) SetCurrentNumberOfPressesCounted(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCurrentNumberOfPressesCounted:"), value)
+}
 
 
 

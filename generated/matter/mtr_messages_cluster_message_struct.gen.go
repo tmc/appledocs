@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,8 +78,8 @@ func NewMTRMessagesClusterMessageStruct() MTRMessagesClusterMessageStruct {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageStruct/duration
-func (m_ MTRMessagesClusterMessageStruct) Duration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("duration"))
+func (m_ MTRMessagesClusterMessageStruct) Duration() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("duration"))
 	return rv
 }
 
@@ -86,14 +87,14 @@ func (m_ MTRMessagesClusterMessageStruct) Duration() unsafe.Pointer {
 // SetDuration sets the value of the duration property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageStruct/duration
-func (m_ MTRMessagesClusterMessageStruct) SetDuration(value unsafe.Pointer) {
+func (m_ MTRMessagesClusterMessageStruct) SetDuration(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDuration:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageStruct/messageControl
-func (m_ MTRMessagesClusterMessageStruct) MessageControl() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("messageControl"))
+func (m_ MTRMessagesClusterMessageStruct) MessageControl() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("messageControl"))
 	return rv
 }
 
@@ -101,7 +102,7 @@ func (m_ MTRMessagesClusterMessageStruct) MessageControl() unsafe.Pointer {
 // SetMessageControl sets the value of the messageControl property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageStruct/messageControl
-func (m_ MTRMessagesClusterMessageStruct) SetMessageControl(value unsafe.Pointer) {
+func (m_ MTRMessagesClusterMessageStruct) SetMessageControl(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMessageControl:"), value)
 }
 
@@ -137,8 +138,8 @@ func (m_ MTRMessagesClusterMessageStruct) SetMessageText(value string) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageStruct/priority
-func (m_ MTRMessagesClusterMessageStruct) Priority() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("priority"))
+func (m_ MTRMessagesClusterMessageStruct) Priority() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("priority"))
 	return rv
 }
 
@@ -146,7 +147,7 @@ func (m_ MTRMessagesClusterMessageStruct) Priority() unsafe.Pointer {
 // SetPriority sets the value of the priority property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageStruct/priority
-func (m_ MTRMessagesClusterMessageStruct) SetPriority(value unsafe.Pointer) {
+func (m_ MTRMessagesClusterMessageStruct) SetPriority(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPriority:"), value)
 }
 
@@ -167,8 +168,8 @@ func (m_ MTRMessagesClusterMessageStruct) SetResponses(value unsafe.Pointer) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageStruct/startTime
-func (m_ MTRMessagesClusterMessageStruct) StartTime() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("startTime"))
+func (m_ MTRMessagesClusterMessageStruct) StartTime() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("startTime"))
 	return rv
 }
 
@@ -176,7 +177,7 @@ func (m_ MTRMessagesClusterMessageStruct) StartTime() unsafe.Pointer {
 // SetStartTime sets the value of the startTime property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageStruct/startTime
-func (m_ MTRMessagesClusterMessageStruct) SetStartTime(value unsafe.Pointer) {
+func (m_ MTRMessagesClusterMessageStruct) SetStartTime(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStartTime:"), value)
 }
 

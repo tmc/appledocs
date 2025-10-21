@@ -81,5 +81,59 @@ func NewMTL4AccelerationStructureBoundingBoxGeometryDescriptor() MTL4Acceleratio
 }
 
 
+// References a buffer containing bounding box data in
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructureboundingboxgeometrydescriptor/boundingboxbuffer
+func (m_ MTL4AccelerationStructureBoundingBoxGeometryDescriptor) BoundingBoxBuffer() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("boundingBoxBuffer"))
+	return rv
+}
+
+
+// SetBoundingBoxBuffer sets the value of the boundingBoxBuffer property.
+// References a buffer containing bounding box data in
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructureboundingboxgeometrydescriptor/boundingboxbuffer
+func (m_ MTL4AccelerationStructureBoundingBoxGeometryDescriptor) SetBoundingBoxBuffer(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setBoundingBoxBuffer:"), value)
+}
+
+// Describes the number of bounding boxes the
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructureboundingboxgeometrydescriptor/boundingboxcount
+func (m_ MTL4AccelerationStructureBoundingBoxGeometryDescriptor) BoundingBoxCount() int {
+	rv := objc.Send[int](m_.ID, objc.Sel("boundingBoxCount"))
+	return rv
+}
+
+
+// SetBoundingBoxCount sets the value of the boundingBoxCount property.
+// Describes the number of bounding boxes the
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructureboundingboxgeometrydescriptor/boundingboxcount
+func (m_ MTL4AccelerationStructureBoundingBoxGeometryDescriptor) SetBoundingBoxCount(value int) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setBoundingBoxCount:"), value)
+}
+
+// Assigns the stride, in bytes, between bounding boxes in the bounding box buffer
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructureboundingboxgeometrydescriptor/boundingboxstride
+func (m_ MTL4AccelerationStructureBoundingBoxGeometryDescriptor) BoundingBoxStride() int {
+	rv := objc.Send[int](m_.ID, objc.Sel("boundingBoxStride"))
+	return rv
+}
+
+
+// SetBoundingBoxStride sets the value of the boundingBoxStride property.
+// Assigns the stride, in bytes, between bounding boxes in the bounding box buffer
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructureboundingboxgeometrydescriptor/boundingboxstride
+func (m_ MTL4AccelerationStructureBoundingBoxGeometryDescriptor) SetBoundingBoxStride(value int) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setBoundingBoxStride:"), value)
+}
+
 
 

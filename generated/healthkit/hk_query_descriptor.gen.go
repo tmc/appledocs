@@ -80,5 +80,41 @@ func NewHKQueryDescriptor() HKQueryDescriptor {
 }
 
 
+// The predicate that filters samples matching this descriptor.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquerydescriptor/predicate
+func (h_ HKQueryDescriptor) Predicate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("predicate"))
+	return rv
+}
+
+
+// SetPredicate sets the value of the predicate property.
+// The predicate that filters samples matching this descriptor.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquerydescriptor/predicate
+func (h_ HKQueryDescriptor) SetPredicate(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setPredicate:"), value)
+}
+
+// The data type of samples that match this descriptor.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquerydescriptor/sampletype
+func (h_ HKQueryDescriptor) SampleType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("sampleType"))
+	return rv
+}
+
+
+// SetSampleType sets the value of the sampleType property.
+// The data type of samples that match this descriptor.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquerydescriptor/sampletype
+func (h_ HKQueryDescriptor) SetSampleType(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setSampleType:"), value)
+}
+
 
 

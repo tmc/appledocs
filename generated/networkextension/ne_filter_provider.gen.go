@@ -81,5 +81,31 @@ func NewNEFilterProvider() NEFilterProvider {
 }
 
 
+// An
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterprovider/filterconfiguration
+func (n_ NEFilterProvider) FilterConfiguration() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("filterConfiguration"))
+	return rv
+}
+
+
+// SetFilterConfiguration sets the value of the filterConfiguration property.
+// An
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterprovider/filterconfiguration
+func (n_ NEFilterProvider) SetFilterConfiguration(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setFilterConfiguration:"), value)
+}
+
+// The domain for errors resulting from calls to the filter manager.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltererrordomain
+func (n_ NEFilterProvider) NEFilterErrorDomain() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("NEFilterErrorDomain"))
+	return rv
+}
+
 
 

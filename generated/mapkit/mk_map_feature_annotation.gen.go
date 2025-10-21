@@ -78,6 +78,24 @@ func NewMKMapFeatureAnnotation() MKMapFeatureAnnotation {
 }
 
 
+// The feature annotation’s point of interest category.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapfeatureannotation/pointofinterestcategory
+func (m_ MKMapFeatureAnnotation) PointOfInterestCategory() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("pointOfInterestCategory"))
+	return rv
+}
+
+
+// SetPointOfInterestCategory sets the value of the pointOfInterestCategory property.
+// The feature annotation’s point of interest category.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapfeatureannotation/pointofinterestcategory
+func (m_ MKMapFeatureAnnotation) SetPointOfInterestCategory(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPointOfInterestCategory:"), value)
+}
+
 // The type of map feature this annotation represents.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapFeatureAnnotation/featureType-swift.property

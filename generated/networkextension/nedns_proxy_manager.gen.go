@@ -80,5 +80,67 @@ func NewNEDNSProxyManager() NEDNSProxyManager {
 }
 
 
+// The status of a DNS proxy.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nednsproxymanager/isenabled
+func (n_ NEDNSProxyManager) IsEnabled() bool {
+	rv := objc.Send[bool](n_.ID, objc.Sel("isEnabled"))
+	return rv
+}
+
+
+// SetIsEnabled sets the value of the isEnabled property.
+// The status of a DNS proxy.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nednsproxymanager/isenabled
+func (n_ NEDNSProxyManager) SetIsEnabled(value bool) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setIsEnabled:"), value)
+}
+
+// The DNS proxy error domain.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nednsproxyerrordomain
+func (n_ NEDNSProxyManager) NEDNSProxyErrorDomain() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("NEDNSProxyErrorDomain"))
+	return rv
+}
+
+// A description of the DNS proxy.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nednsproxymanager/localizeddescription
+func (n_ NEDNSProxyManager) LocalizedDescription() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("localizedDescription"))
+	return rv
+}
+
+
+// SetLocalizedDescription sets the value of the localizedDescription property.
+// A description of the DNS proxy.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nednsproxymanager/localizeddescription
+func (n_ NEDNSProxyManager) SetLocalizedDescription(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setLocalizedDescription:"), objc.String(value))
+}
+
+// The provider-specific portion of the DNS proxy configuration.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nednsproxymanager/providerprotocol
+func (n_ NEDNSProxyManager) ProviderProtocol() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("providerProtocol"))
+	return rv
+}
+
+
+// SetProviderProtocol sets the value of the providerProtocol property.
+// The provider-specific portion of the DNS proxy configuration.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nednsproxymanager/providerprotocol
+func (n_ NEDNSProxyManager) SetProviderProtocol(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setProviderProtocol:"), value)
+}
+
 
 

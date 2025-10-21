@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,66 @@ func NewMTRGroupsClusterRemoveGroupParams() MTRGroupsClusterRemoveGroupParams {
 	return getMTRGroupsClusterRemoveGroupParamsClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusterremovegroupparams/serversideprocessingtimeout
+func (m_ MTRGroupsClusterRemoveGroupParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+	return rv
+}
+
+
+// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusterremovegroupparams/serversideprocessingtimeout
+func (m_ MTRGroupsClusterRemoveGroupParams) SetServerSideProcessingTimeout(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusterremovegroupparams/groupid-44m5l
+func (m_ MTRGroupsClusterRemoveGroupParams) GroupID() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("groupID"))
+	return rv
+}
+
+
+// SetGroupID sets the value of the groupID property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusterremovegroupparams/groupid-44m5l
+func (m_ MTRGroupsClusterRemoveGroupParams) SetGroupID(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupID:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusterremovegroupparams/timedinvoketimeoutms
+func (m_ MTRGroupsClusterRemoveGroupParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+	return rv
+}
+
+
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusterremovegroupparams/timedinvoketimeoutms
+func (m_ MTRGroupsClusterRemoveGroupParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusterremovegroupparams/groupid-44m4p
+func (m_ MTRGroupsClusterRemoveGroupParams) GroupId() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("groupId"))
+	return rv
+}
+
+
+// SetGroupId sets the value of the groupId property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusterremovegroupparams/groupid-44m4p
+func (m_ MTRGroupsClusterRemoveGroupParams) SetGroupId(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupId:"), value)
+}
 
 
 

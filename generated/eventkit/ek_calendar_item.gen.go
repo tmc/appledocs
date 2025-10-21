@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [EKCalendarItem] class.
@@ -334,8 +335,8 @@ func (e_ EKCalendarItem) SetTitle(value string) {
 // The URL for the calendar item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/url
-func (e_ EKCalendarItem) URL() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("URL"))
+func (e_ EKCalendarItem) URL() foundation.URL {
+	rv := objc.Send[foundation.URL](e_.ID, objc.Sel("URL"))
 	return rv
 }
 
@@ -345,7 +346,7 @@ func (e_ EKCalendarItem) URL() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/url
-func (e_ EKCalendarItem) SetURL(value unsafe.Pointer) {
+func (e_ EKCalendarItem) SetURL(value foundation.URL) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setURL:"), value)
 }
 

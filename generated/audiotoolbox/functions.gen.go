@@ -358,8 +358,8 @@ var (
 	_NewMusicPlayer func(unsafe.Pointer) unsafe.Pointer
 	_NewMusicSequence func(unsafe.Pointer) unsafe.Pointer
 	_NewMusicTrackFrom func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_SetAudioUnitParameterDisplayType func(unsafe.Pointer) unsafe.Pointer
 	_GetAudioUnitParameterDisplayType func(unsafe.Pointer) unsafe.Pointer
+	_SetAudioUnitParameterDisplayType func(unsafe.Pointer) unsafe.Pointer
 )
 
 func init() {
@@ -710,8 +710,8 @@ func init() {
 	tryRegister(&_NewMusicPlayer, lib, "NewMusicPlayer")
 	tryRegister(&_NewMusicSequence, lib, "NewMusicSequence")
 	tryRegister(&_NewMusicTrackFrom, lib, "NewMusicTrackFrom")
-	tryRegister(&_SetAudioUnitParameterDisplayType, lib, "SetAudioUnitParameterDisplayType")
 	tryRegister(&_GetAudioUnitParameterDisplayType, lib, "GetAudioUnitParameterDisplayType")
+	tryRegister(&_SetAudioUnitParameterDisplayType, lib, "SetAudioUnitParameterDisplayType")
 }
 
 // tryRegister attempts to register a function, silently ignoring failures.
@@ -4200,19 +4200,19 @@ func NewMusicTrackFrom(inSourceTrack unsafe.Pointer, inSourceStartTime unsafe.Po
 	}
 
 
-// SetAudioUnitParameterDisplayType is a AudioToolbox function. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/SetAudioUnitParameterDisplayType(_:_:)
-func SetAudioUnitParameterDisplayType(p0 unsafe.Pointer) unsafe.Pointer {
-	return _SetAudioUnitParameterDisplayType(p0)
-	}
-
-
 // GetAudioUnitParameterDisplayType is a AudioToolbox function. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/GetAudioUnitParameterDisplayType(_:)
 func GetAudioUnitParameterDisplayType(p0 unsafe.Pointer) unsafe.Pointer {
 	return _GetAudioUnitParameterDisplayType(p0)
+	}
+
+
+// SetAudioUnitParameterDisplayType is a AudioToolbox function. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/SetAudioUnitParameterDisplayType(_:_:)
+func SetAudioUnitParameterDisplayType(p0 unsafe.Pointer) unsafe.Pointer {
+	return _SetAudioUnitParameterDisplayType(p0)
 	}
 
 

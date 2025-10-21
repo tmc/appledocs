@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CKShare] class.
@@ -146,6 +147,230 @@ func (c_ CKShare) RemoveParticipant(participant unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("removeParticipant:"), participant)
 }
 
+// A reference to the share object that determines the share status of the record.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/share
+func (c_ CKShare) Share() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("share"))
+	return rv
+}
+
+
+// SetShare sets the value of the share property.
+// A reference to the share object that determines the share status of the record.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/share
+func (c_ CKShare) SetShare(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setShare:"), value)
+}
+
+// A reference to the record’s parent record.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/parent
+func (c_ CKShare) Parent() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("parent"))
+	return rv
+}
+
+
+// SetParent sets the value of the parent property.
+// A reference to the record’s parent record.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/parent
+func (c_ CKShare) SetParent(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setParent:"), value)
+}
+
+// The name of a share record that manages a shared record zone.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecordnamezonewideshare
+func (c_ CKShare) CKRecordNameZoneWideShare() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CKRecordNameZoneWideShare"))
+	return rv
+}
+
+// The participant that represents the share’s owner.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckshare/owner
+func (c_ CKShare) Owner() cloudkit.CKShare {
+	rv := objc.Send[cloudkit.CKShare](c_.ID, objc.Sel("owner"))
+	return rv
+}
+
+
+// SetOwner sets the value of the owner property.
+// The participant that represents the share’s owner.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckshare/owner
+func (c_ CKShare) SetOwner(value cloudkit.CKShare) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setOwner:"), value)
+}
+
+// A Boolean value that indicates whether the user has an iCloud account.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckuseridentity/hasicloudaccount
+func (c_ CKShare) HasiCloudAccount() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("hasiCloudAccount"))
+	return rv
+}
+
+
+// SetHasiCloudAccount sets the value of the hasiCloudAccount property.
+// A Boolean value that indicates whether the user has an iCloud account.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckuseridentity/hasicloudaccount
+func (c_ CKShare) SetHasiCloudAccount(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setHasiCloudAccount:"), value)
+}
+
+// A list of users blocked from requesting access to this share.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckshare/blockedidentities
+func (c_ CKShare) BlockedIdentities() cloudkit.CKShare {
+	rv := objc.Send[cloudkit.CKShare](c_.ID, objc.Sel("blockedIdentities"))
+	return rv
+}
+
+
+// SetBlockedIdentities sets the value of the blockedIdentities property.
+// A list of users blocked from requesting access to this share.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckshare/blockedidentities
+func (c_ CKShare) SetBlockedIdentities(value cloudkit.CKShare) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setBlockedIdentities:"), value)
+}
+
+// Indicates whether uninvited users can request access to this share.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckshare/allowsaccessrequests
+func (c_ CKShare) AllowsAccessRequests() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("allowsAccessRequests"))
+	return rv
+}
+
+
+// SetAllowsAccessRequests sets the value of the allowsAccessRequests property.
+// Indicates whether uninvited users can request access to this share.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckshare/allowsaccessrequests
+func (c_ CKShare) SetAllowsAccessRequests(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setAllowsAccessRequests:"), value)
+}
+
+// A list of all uninvited users who have requested access to this share.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckshare/requesters
+func (c_ CKShare) Requesters() cloudkit.CKShare {
+	rv := objc.Send[cloudkit.CKShare](c_.ID, objc.Sel("requesters"))
+	return rv
+}
+
+
+// SetRequesters sets the value of the requesters property.
+// A list of all uninvited users who have requested access to this share.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckshare/requesters
+func (c_ CKShare) SetRequesters(value cloudkit.CKShare) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setRequesters:"), value)
+}
+
+// An array that contains the share’s participants.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckshare/participants
+func (c_ CKShare) Participants() cloudkit.CKShare {
+	rv := objc.Send[cloudkit.CKShare](c_.ID, objc.Sel("participants"))
+	return rv
+}
+
+
+// SetParticipants sets the value of the participants property.
+// An array that contains the share’s participants.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckshare/participants
+func (c_ CKShare) SetParticipants(value cloudkit.CKShare) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setParticipants:"), value)
+}
+
+// The unique ID of the record.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/recordid
+func (c_ CKShare) RecordID() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("recordID"))
+	return rv
+}
+
+
+// SetRecordID sets the value of the recordID property.
+// The unique ID of the record.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/recordid
+func (c_ CKShare) SetRecordID(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordID:"), value)
+}
+
+// The participant that represents the current user.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckshare/currentuserparticipant
+func (c_ CKShare) CurrentUserParticipant() cloudkit.CKShare {
+	rv := objc.Send[cloudkit.CKShare](c_.ID, objc.Sel("currentUserParticipant"))
+	return rv
+}
+
+
+// SetCurrentUserParticipant sets the value of the currentUserParticipant property.
+// The participant that represents the current user.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckshare/currentuserparticipant
+func (c_ CKShare) SetCurrentUserParticipant(value cloudkit.CKShare) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setCurrentUserParticipant:"), value)
+}
+
+// The identity of the participant.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckshare/participant/useridentity
+func (c_ CKShare) UserIdentity() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("userIdentity"))
+	return rv
+}
+
+
+// SetUserIdentity sets the value of the userIdentity property.
+// The identity of the participant.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckshare/participant/useridentity
+func (c_ CKShare) SetUserIdentity(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setUserIdentity:"), value)
+}
+
+// The unique name of the record.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/id/recordname
+func (c_ CKShare) RecordName() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("recordName"))
+	return rv
+}
+
+
+// SetRecordName sets the value of the recordName property.
+// The unique name of the record.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/id/recordname
+func (c_ CKShare) SetRecordName(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordName:"), objc.String(value))
+}
+
 // The permission for anyone with access to the share’s URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/publicPermission
@@ -167,8 +392,8 @@ func (c_ CKShare) SetPublicPermission(value unsafe.Pointer) {
 // The URL for inviting participants to the share.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/url
-func (c_ CKShare) URL() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("URL"))
+func (c_ CKShare) URL() foundation.URL {
+	rv := objc.Send[foundation.URL](c_.ID, objc.Sel("URL"))
 	return rv
 }
 

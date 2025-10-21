@@ -81,5 +81,23 @@ func NewVZVmnetNetworkDeviceAttachment() VZVmnetNetworkDeviceAttachment {
 }
 
 
+// The network object that the you initialize the attachment with.
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvmnetnetworkdeviceattachment/network
+func (v_ VZVmnetNetworkDeviceAttachment) Network() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("network"))
+	return rv
+}
+
+
+// SetNetwork sets the value of the network property.
+// The network object that the you initialize the attachment with.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvmnetnetworkdeviceattachment/network
+func (v_ VZVmnetNetworkDeviceAttachment) SetNetwork(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setNetwork:"), value)
+}
+
 
 

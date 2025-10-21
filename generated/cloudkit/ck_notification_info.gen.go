@@ -80,6 +80,24 @@ func NewCKNotificationInfo() CKNotificationInfo {
 }
 
 
+// The configuration for a subscription’s push notifications.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.property
+func (c_ CKNotificationInfo) NotificationInfo() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("notificationInfo"))
+	return rv
+}
+
+
+// SetNotificationInfo sets the value of the notificationInfo property.
+// The configuration for a subscription’s push notifications.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.property
+func (c_ CKNotificationInfo) SetNotificationInfo(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setNotificationInfo:"), value)
+}
+
 // The fields for building a notification’s alert.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKNotificationInfo/alertLocalizationArgs

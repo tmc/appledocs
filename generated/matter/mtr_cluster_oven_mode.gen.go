@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MTRClusterOvenMode] class.
@@ -29,7 +30,7 @@ type _MTRClusterOvenModeClass struct {
 // An interface definition for the [MTRClusterOvenMode] class.
 type IMTRClusterOvenMode interface {
 	IMTRGenericCluster
-	ChangeToModeWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, completion unsafe.Pointer)
+	ChangeToModeWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer)
 	ReadAttributeAcceptedCommandListWithParams(params unsafe.Pointer) unsafe.Pointer
 	ReadAttributeAttributeListWithParams(params unsafe.Pointer) unsafe.Pointer
 	ReadAttributeClusterRevisionWithParams(params unsafe.Pointer) unsafe.Pointer
@@ -92,7 +93,7 @@ func NewMTRClusterOvenMode() MTRClusterOvenMode {
 // For all instance methods that take a completion (i.e. command invocations), the completion will be called on the provided queue.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterOvenMode/init(device:endpointID:queue:)
-func NewMTRClusterOvenModeWithDeviceEndpointIDQueue(device unsafe.Pointer, endpointID unsafe.Pointer, queue unsafe.Pointer) MTRClusterOvenMode {
+func NewMTRClusterOvenModeWithDeviceEndpointIDQueue(device unsafe.Pointer, endpointID foundation.Number, queue unsafe.Pointer) MTRClusterOvenMode {
 	instance := getMTRClusterOvenModeClass().Alloc()
 	rv := objc.Send[MTRClusterOvenMode](instance.ID, objc.Sel("initWithDevice:endpointID:queue:"), device, endpointID, queue)
 	rv.Autorelease()
@@ -102,7 +103,7 @@ func NewMTRClusterOvenModeWithDeviceEndpointIDQueue(device unsafe.Pointer, endpo
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterOvenMode/changeToMode(with:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterOvenMode) ChangeToModeWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, completion unsafe.Pointer) {
+func (m_ MTRClusterOvenMode) ChangeToModeWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("changeToModeWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
 }
 

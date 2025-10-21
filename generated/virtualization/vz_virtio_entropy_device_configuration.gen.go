@@ -82,4 +82,22 @@ func NewVZVirtioEntropyDeviceConfiguration() VZVirtioEntropyDeviceConfiguration 
 
 
 
+// The array of randomization devices that you expose to the guest operating system.
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/entropydevices
+func (v_ VZVirtioEntropyDeviceConfiguration) EntropyDevices() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("entropyDevices"))
+	return rv
+}
+
+
+// SetEntropyDevices sets the value of the entropyDevices property.
+// The array of randomization devices that you expose to the guest operating system.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/entropydevices
+func (v_ VZVirtioEntropyDeviceConfiguration) SetEntropyDevices(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setEntropyDevices:"), value)
+}
+
 

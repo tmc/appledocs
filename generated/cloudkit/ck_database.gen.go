@@ -184,6 +184,24 @@ func (c_ CKDatabase) SaveSubscriptionCompletionHandler(subscription unsafe.Point
 	objc.Send[objc.ID](c_.ID, objc.Sel("saveSubscription:completionHandler:"), subscription, completionHandler)
 }
 
+// The priority that the system uses when it allocates resources to the operations that use this configuration.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckoperation/configuration-swift.class/qualityofservice
+func (c_ CKDatabase) QualityOfService() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("qualityOfService"))
+	return rv
+}
+
+
+// SetQualityOfService sets the value of the qualityOfService property.
+// The priority that the system uses when it allocates resources to the operations that use this configuration.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckoperation/configuration-swift.class/qualityofservice
+func (c_ CKDatabase) SetQualityOfService(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setQualityOfService:"), value)
+}
+
 // The type of database.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKDatabase/databaseScope

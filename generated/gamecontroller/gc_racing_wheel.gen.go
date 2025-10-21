@@ -97,6 +97,60 @@ func (g_ GCRacingWheel) RelinquishDevice() {
 
 // A Boolean value that indicates whether the racing wheel sends events to the app.
 //
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcracingwheel/isacquired
+func (g_ GCRacingWheel) IsAcquired() bool {
+	rv := objc.Send[bool](g_.ID, objc.Sel("isAcquired"))
+	return rv
+}
+
+
+// SetIsAcquired sets the value of the isAcquired property.
+// A Boolean value that indicates whether the racing wheel sends events to the app.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcracingwheel/isacquired
+func (g_ GCRacingWheel) SetIsAcquired(value bool) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setIsAcquired:"), value)
+}
+
+// A Boolean value that indicates whether the object is a snapshot of a racing wheel.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcracingwheel/issnapshot
+func (g_ GCRacingWheel) IsSnapshot() bool {
+	rv := objc.Send[bool](g_.ID, objc.Sel("isSnapshot"))
+	return rv
+}
+
+
+// SetIsSnapshot sets the value of the isSnapshot property.
+// A Boolean value that indicates whether the object is a snapshot of a racing wheel.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcracingwheel/issnapshot
+func (g_ GCRacingWheel) SetIsSnapshot(value bool) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setIsSnapshot:"), value)
+}
+
+// The physical input profile for the racing wheel.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcracingwheel/wheelinput
+func (g_ GCRacingWheel) WheelInput() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("wheelInput"))
+	return rv
+}
+
+
+// SetWheelInput sets the value of the wheelInput property.
+// The physical input profile for the racing wheel.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcracingwheel/wheelinput
+func (g_ GCRacingWheel) SetWheelInput(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setWheelInput:"), value)
+}
+
+// A Boolean value that indicates whether the racing wheel sends events to the app.
+//
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCRacingWheel/isAcquired
 func (g_ GCRacingWheel) Acquired() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("acquired"))

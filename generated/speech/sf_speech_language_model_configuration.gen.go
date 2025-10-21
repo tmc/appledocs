@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -85,7 +86,7 @@ func NewSFSpeechLanguageModelConfiguration() SFSpeechLanguageModelConfiguration 
 // Creates a configuration with the location of a language model file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Speech/SFSpeechLanguageModel/Configuration/init(languageModel:)
-func NewSFSpeechLanguageModelConfigurationWithLanguageModel(languageModel unsafe.Pointer) SFSpeechLanguageModelConfiguration {
+func NewSFSpeechLanguageModelConfigurationWithLanguageModel(languageModel foundation.URL) SFSpeechLanguageModelConfiguration {
 	instance := getSFSpeechLanguageModelConfigurationClass().Alloc()
 	rv := objc.Send[SFSpeechLanguageModelConfiguration](instance.ID, objc.Sel("initWithLanguageModel:"), languageModel)
 	rv.Autorelease()
@@ -97,7 +98,7 @@ func NewSFSpeechLanguageModelConfigurationWithLanguageModel(languageModel unsafe
 // Creates a configuration with the locations of language model and vocabulary files.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Speech/SFSpeechLanguageModel/Configuration/init(languageModel:vocabulary:)
-func NewSFSpeechLanguageModelConfigurationWithLanguageModelVocabulary(languageModel unsafe.Pointer, vocabulary unsafe.Pointer) SFSpeechLanguageModelConfiguration {
+func NewSFSpeechLanguageModelConfigurationWithLanguageModelVocabulary(languageModel foundation.URL, vocabulary foundation.URL) SFSpeechLanguageModelConfiguration {
 	instance := getSFSpeechLanguageModelConfigurationClass().Alloc()
 	rv := objc.Send[SFSpeechLanguageModelConfiguration](instance.ID, objc.Sel("initWithLanguageModel:vocabulary:"), languageModel, vocabulary)
 	rv.Autorelease()
@@ -109,7 +110,7 @@ func NewSFSpeechLanguageModelConfigurationWithLanguageModelVocabulary(languageMo
 // Creates a configuration with the locations of language model and vocabulary files, and custom weight.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Speech/SFSpeechLanguageModel/Configuration/init(languageModel:vocabulary:weight:)
-func NewSFSpeechLanguageModelConfigurationWithLanguageModelVocabularyWeight(languageModel unsafe.Pointer, vocabulary unsafe.Pointer, weight unsafe.Pointer) SFSpeechLanguageModelConfiguration {
+func NewSFSpeechLanguageModelConfigurationWithLanguageModelVocabularyWeight(languageModel foundation.URL, vocabulary foundation.URL, weight foundation.Number) SFSpeechLanguageModelConfiguration {
 	instance := getSFSpeechLanguageModelConfigurationClass().Alloc()
 	rv := objc.Send[SFSpeechLanguageModelConfiguration](instance.ID, objc.Sel("initWithLanguageModel:vocabulary:weight:"), languageModel, vocabulary, weight)
 	rv.Autorelease()
@@ -117,27 +118,42 @@ func NewSFSpeechLanguageModelConfigurationWithLanguageModelVocabularyWeight(lang
 }
 
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionrequest/customizedlanguagemodel
+func (s_ SFSpeechLanguageModelConfiguration) CustomizedLanguageModel() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("customizedLanguageModel"))
+	return rv
+}
+
+
+// SetCustomizedLanguageModel sets the value of the customizedLanguageModel property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionrequest/customizedlanguagemodel
+func (s_ SFSpeechLanguageModelConfiguration) SetCustomizedLanguageModel(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setCustomizedLanguageModel:"), value)
+}
+
 // The location of a compiled language model file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Speech/SFSpeechLanguageModel/Configuration/languageModel
-func (s_ SFSpeechLanguageModelConfiguration) LanguageModel() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("languageModel"))
+func (s_ SFSpeechLanguageModelConfiguration) LanguageModel() foundation.URL {
+	rv := objc.Send[foundation.URL](s_.ID, objc.Sel("languageModel"))
 	return rv
 }
 
 // The location of a compiled vocabulary file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Speech/SFSpeechLanguageModel/Configuration/vocabulary
-func (s_ SFSpeechLanguageModelConfiguration) Vocabulary() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("vocabulary"))
+func (s_ SFSpeechLanguageModelConfiguration) Vocabulary() foundation.URL {
+	rv := objc.Send[foundation.URL](s_.ID, objc.Sel("vocabulary"))
 	return rv
 }
 
 // The relative weight of the language model customization. Value must be between 0.0 and 1.0 inclusive.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Speech/SFSpeechLanguageModel/Configuration/weight
-func (s_ SFSpeechLanguageModelConfiguration) Weight() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("weight"))
+func (s_ SFSpeechLanguageModelConfiguration) Weight() foundation.Number {
+	rv := objc.Send[foundation.Number](s_.ID, objc.Sel("weight"))
 	return rv
 }
 

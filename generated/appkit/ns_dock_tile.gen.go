@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -79,6 +80,132 @@ func NewDockTile() DockTile {
 	return getDockTileClass().New()
 }
 
+
+// The image used for the app’s icon.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/applicationiconimage
+func (d_ DockTile) ApplicationIconImage() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("applicationIconImage"))
+	return rv
+}
+
+
+// SetApplicationIconImage sets the value of the applicationIconImage property.
+// The image used for the app’s icon.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/applicationiconimage
+func (d_ DockTile) SetApplicationIconImage(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setApplicationIconImage:"), value)
+}
+
+// The string to be displayed in the tile’s badging area.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocktile/badgelabel
+func (d_ DockTile) BadgeLabel() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("badgeLabel"))
+	return rv
+}
+
+
+// SetBadgeLabel sets the value of the badgeLabel property.
+// The string to be displayed in the tile’s badging area.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocktile/badgelabel
+func (d_ DockTile) SetBadgeLabel(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setBadgeLabel:"), objc.String(value))
+}
+
+// The view to use for drawing the dock tile contents.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocktile/contentview
+func (d_ DockTile) ContentView() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("contentView"))
+	return rv
+}
+
+
+// SetContentView sets the value of the contentView property.
+// The view to use for drawing the dock tile contents.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocktile/contentview
+func (d_ DockTile) SetContentView(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setContentView:"), value)
+}
+
+// The object represented by the dock tile.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocktile/owner
+func (d_ DockTile) Owner() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("owner"))
+	return rv
+}
+
+
+// SetOwner sets the value of the owner property.
+// The object represented by the dock tile.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocktile/owner
+func (d_ DockTile) SetOwner(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setOwner:"), value)
+}
+
+// A Boolean showing whether the tile is badged with the application’s icon
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocktile/showsapplicationbadge
+func (d_ DockTile) ShowsApplicationBadge() bool {
+	rv := objc.Send[bool](d_.ID, objc.Sel("showsApplicationBadge"))
+	return rv
+}
+
+
+// SetShowsApplicationBadge sets the value of the showsApplicationBadge property.
+// A Boolean showing whether the tile is badged with the application’s icon
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocktile/showsapplicationbadge
+func (d_ DockTile) SetShowsApplicationBadge(value bool) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setShowsApplicationBadge:"), value)
+}
+
+// The size of the tile.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocktile/size
+func (d_ DockTile) Size() coregraphics.CGSize {
+	rv := objc.Send[coregraphics.CGSize](d_.ID, objc.Sel("size"))
+	return rv
+}
+
+
+// SetSize sets the value of the size property.
+// The size of the tile.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocktile/size
+func (d_ DockTile) SetSize(value coregraphics.CGSize) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setSize:"), value)
+}
+
+// The application’s Dock tile.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/docktile
+func (d_ DockTile) DockTile() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("dockTile"))
+	return rv
+}
+
+
+// SetDockTile sets the value of the dockTile property.
+// The application’s Dock tile.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/docktile
+func (d_ DockTile) SetDockTile(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setDockTile:"), value)
+}
 
 
 

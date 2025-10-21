@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,51 @@ func NewMTROperationalCredentialsClusterCSRResponseParams() MTROperationalCreden
 	return getMTROperationalCredentialsClusterCSRResponseParamsClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclustercsrresponseparams/nocsrelements
+func (m_ MTROperationalCredentialsClusterCSRResponseParams) NocsrElements() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("nocsrElements"))
+	return rv
+}
+
+
+// SetNocsrElements sets the value of the nocsrElements property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclustercsrresponseparams/nocsrelements
+func (m_ MTROperationalCredentialsClusterCSRResponseParams) SetNocsrElements(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setNocsrElements:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclustercsrresponseparams/attestationsignature
+func (m_ MTROperationalCredentialsClusterCSRResponseParams) AttestationSignature() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("attestationSignature"))
+	return rv
+}
+
+
+// SetAttestationSignature sets the value of the attestationSignature property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclustercsrresponseparams/attestationsignature
+func (m_ MTROperationalCredentialsClusterCSRResponseParams) SetAttestationSignature(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAttestationSignature:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclustercsrresponseparams/timedinvoketimeoutms
+func (m_ MTROperationalCredentialsClusterCSRResponseParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+	return rv
+}
+
+
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclustercsrresponseparams/timedinvoketimeoutms
+func (m_ MTROperationalCredentialsClusterCSRResponseParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+}
 
 
 

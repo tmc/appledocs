@@ -82,6 +82,24 @@ func NewPHAssetResourceRequestOptions() PHAssetResourceRequestOptions {
 
 // A Boolean value that specifies whether Photos can download the requested asset resource data from iCloud.
 //
+// [Full Topic]: https://developer.apple.com/documentation/photos/phassetresourcerequestoptions/isnetworkaccessallowed
+func (p_ PHAssetResourceRequestOptions) IsNetworkAccessAllowed() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isNetworkAccessAllowed"))
+	return rv
+}
+
+
+// SetIsNetworkAccessAllowed sets the value of the isNetworkAccessAllowed property.
+// A Boolean value that specifies whether Photos can download the requested asset resource data from iCloud.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phassetresourcerequestoptions/isnetworkaccessallowed
+func (p_ PHAssetResourceRequestOptions) SetIsNetworkAccessAllowed(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsNetworkAccessAllowed:"), value)
+}
+
+// A Boolean value that specifies whether Photos can download the requested asset resource data from iCloud.
+//
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetResourceRequestOptions/isNetworkAccessAllowed
 func (p_ PHAssetResourceRequestOptions) NetworkAccessAllowed() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("networkAccessAllowed"))

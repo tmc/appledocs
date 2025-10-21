@@ -80,5 +80,41 @@ func NewMotionKeyframeData() MotionKeyframeData {
 }
 
 
+// The buffer that holds the geometry data.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlmotionkeyframedata/buffer
+func (m_ MotionKeyframeData) Buffer() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("buffer"))
+	return rv
+}
+
+
+// SetBuffer sets the value of the buffer property.
+// The buffer that holds the geometry data.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlmotionkeyframedata/buffer
+func (m_ MotionKeyframeData) SetBuffer(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setBuffer:"), value)
+}
+
+// The offset, in bytes, to the keyframe data.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlmotionkeyframedata/offset
+func (m_ MotionKeyframeData) Offset() int {
+	rv := objc.Send[int](m_.ID, objc.Sel("offset"))
+	return rv
+}
+
+
+// SetOffset sets the value of the offset property.
+// The offset, in bytes, to the keyframe data.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlmotionkeyframedata/offset
+func (m_ MotionKeyframeData) SetOffset(value int) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setOffset:"), value)
+}
+
 
 

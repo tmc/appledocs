@@ -81,5 +81,77 @@ func NewSwitch() Switch {
 }
 
 
+// The default action-message selector associated with the control.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/action
+func (s_ Switch) Action() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("action"))
+	return rv
+}
+
+
+// SetAction sets the value of the action property.
+// The default action-message selector associated with the control.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/action
+func (s_ Switch) SetAction(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setAction:"), value)
+}
+
+// The receiver’s cell object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/cell
+func (s_ Switch) Cell() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("cell"))
+	return rv
+}
+
+
+// SetCell sets the value of the cell property.
+// The receiver’s cell object.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/cell
+func (s_ Switch) SetCell(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setCell:"), value)
+}
+
+// A Boolean value indicating whether the receiver’s cell sends its action message continuously to its target during mouse tracking.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/iscontinuous
+func (s_ Switch) IsContinuous() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("isContinuous"))
+	return rv
+}
+
+
+// SetIsContinuous sets the value of the isContinuous property.
+// A Boolean value indicating whether the receiver’s cell sends its action message continuously to its target during mouse tracking.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/iscontinuous
+func (s_ Switch) SetIsContinuous(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setIsContinuous:"), value)
+}
+
+// The current position of the switch.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsswitch/state
+func (s_ Switch) State() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("state"))
+	return rv
+}
+
+
+// SetState sets the value of the state property.
+// The current position of the switch.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsswitch/state
+func (s_ Switch) SetState(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setState:"), value)
+}
+
 
 

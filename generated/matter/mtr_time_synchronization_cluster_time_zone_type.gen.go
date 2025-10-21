@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MTRTimeSynchronizationClusterTimeZoneType] class.
@@ -75,6 +76,51 @@ func NewMTRTimeSynchronizationClusterTimeZoneType() MTRTimeSynchronizationCluste
 	return getMTRTimeSynchronizationClusterTimeZoneTypeClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtimesynchronizationclustertimezonetype/validat
+func (m_ MTRTimeSynchronizationClusterTimeZoneType) ValidAt() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("validAt"))
+	return rv
+}
+
+
+// SetValidAt sets the value of the validAt property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtimesynchronizationclustertimezonetype/validat
+func (m_ MTRTimeSynchronizationClusterTimeZoneType) SetValidAt(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setValidAt:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtimesynchronizationclustertimezonetype/offset
+func (m_ MTRTimeSynchronizationClusterTimeZoneType) Offset() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("offset"))
+	return rv
+}
+
+
+// SetOffset sets the value of the offset property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtimesynchronizationclustertimezonetype/offset
+func (m_ MTRTimeSynchronizationClusterTimeZoneType) SetOffset(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setOffset:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtimesynchronizationclustertimezonetype/name
+func (m_ MTRTimeSynchronizationClusterTimeZoneType) Name() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("name"))
+	return rv
+}
+
+
+// SetName sets the value of the name property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtimesynchronizationclustertimezonetype/name
+func (m_ MTRTimeSynchronizationClusterTimeZoneType) SetName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
+}
 
 
 

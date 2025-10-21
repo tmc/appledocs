@@ -81,5 +81,59 @@ func NewINAddMediaIntent() INAddMediaIntent {
 }
 
 
+// The location for the media to add.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inaddmediaintent/mediadestination
+func (i_ INAddMediaIntent) MediaDestination() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("mediaDestination"))
+	return rv
+}
+
+
+// SetMediaDestination sets the value of the mediaDestination property.
+// The location for the media to add.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inaddmediaintent/mediadestination
+func (i_ INAddMediaIntent) SetMediaDestination(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setMediaDestination:"), value)
+}
+
+// The media content to add.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inaddmediaintent/mediaitems
+func (i_ INAddMediaIntent) MediaItems() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("mediaItems"))
+	return rv
+}
+
+
+// SetMediaItems sets the value of the mediaItems property.
+// The media content to add.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inaddmediaintent/mediaitems
+func (i_ INAddMediaIntent) SetMediaItems(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setMediaItems:"), value)
+}
+
+// The location to search for the media item to add.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inaddmediaintent/mediasearch
+func (i_ INAddMediaIntent) MediaSearch() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("mediaSearch"))
+	return rv
+}
+
+
+// SetMediaSearch sets the value of the mediaSearch property.
+// The location to search for the media item to add.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inaddmediaintent/mediasearch
+func (i_ INAddMediaIntent) SetMediaSearch(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setMediaSearch:"), value)
+}
+
 
 

@@ -80,5 +80,77 @@ func NewSFSpeechRecognitionTask() SFSpeechRecognitionTask {
 }
 
 
+// An error object that specifies the error that occurred during a speech recognition task.
+//
+// [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitiontask/error
+func (s_ SFSpeechRecognitionTask) Error() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("error"))
+	return rv
+}
+
+
+// SetError sets the value of the error property.
+// An error object that specifies the error that occurred during a speech recognition task.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitiontask/error
+func (s_ SFSpeechRecognitionTask) SetError(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setError:"), value)
+}
+
+// A Boolean value that indicates whether the speech recognition task was canceled.
+//
+// [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitiontask/iscancelled
+func (s_ SFSpeechRecognitionTask) IsCancelled() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("isCancelled"))
+	return rv
+}
+
+
+// SetIsCancelled sets the value of the isCancelled property.
+// A Boolean value that indicates whether the speech recognition task was canceled.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitiontask/iscancelled
+func (s_ SFSpeechRecognitionTask) SetIsCancelled(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setIsCancelled:"), value)
+}
+
+// A Boolean value that indicates whether audio input has stopped.
+//
+// [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitiontask/isfinishing
+func (s_ SFSpeechRecognitionTask) IsFinishing() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("isFinishing"))
+	return rv
+}
+
+
+// SetIsFinishing sets the value of the isFinishing property.
+// A Boolean value that indicates whether audio input has stopped.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitiontask/isfinishing
+func (s_ SFSpeechRecognitionTask) SetIsFinishing(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setIsFinishing:"), value)
+}
+
+// The current state of the speech recognition task.
+//
+// [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitiontask/state
+func (s_ SFSpeechRecognitionTask) State() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("state"))
+	return rv
+}
+
+
+// SetState sets the value of the state property.
+// The current state of the speech recognition task.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitiontask/state
+func (s_ SFSpeechRecognitionTask) SetState(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setState:"), value)
+}
+
 
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -92,8 +93,8 @@ func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) SetLab
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterRequestCommissioningApprovalParams/productID
-func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) ProductID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("productID"))
+func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) ProductID() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("productID"))
 	return rv
 }
 
@@ -101,14 +102,14 @@ func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) Produc
 // SetProductID sets the value of the productID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterRequestCommissioningApprovalParams/productID
-func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) SetProductID(value unsafe.Pointer) {
+func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) SetProductID(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setProductID:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterRequestCommissioningApprovalParams/requestID
-func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) RequestID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("requestID"))
+func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) RequestID() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("requestID"))
 	return rv
 }
 
@@ -116,15 +117,15 @@ func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) Reques
 // SetRequestID sets the value of the requestID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterRequestCommissioningApprovalParams/requestID
-func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) SetRequestID(value unsafe.Pointer) {
+func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) SetRequestID(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRequestID:"), value)
 }
 
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterRequestCommissioningApprovalParams/serverSideProcessingTimeout
-func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) ServerSideProcessingTimeout() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
@@ -134,15 +135,15 @@ func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) Server
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterRequestCommissioningApprovalParams/serverSideProcessingTimeout
-func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) SetServerSideProcessingTimeout(value unsafe.Pointer) {
+func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) SetServerSideProcessingTimeout(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterRequestCommissioningApprovalParams/timedInvokeTimeoutMs
-func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) TimedInvokeTimeoutMs() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
@@ -152,14 +153,14 @@ func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) TimedI
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterRequestCommissioningApprovalParams/timedInvokeTimeoutMs
-func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) SetTimedInvokeTimeoutMs(value unsafe.Pointer) {
+func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterRequestCommissioningApprovalParams/vendorID
-func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) VendorID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("vendorID"))
+func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) VendorID() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("vendorID"))
 	return rv
 }
 
@@ -167,7 +168,7 @@ func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) Vendor
 // SetVendorID sets the value of the vendorID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterRequestCommissioningApprovalParams/vendorID
-func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) SetVendorID(value unsafe.Pointer) {
+func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) SetVendorID(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setVendorID:"), value)
 }
 

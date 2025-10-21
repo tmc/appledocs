@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -108,8 +109,8 @@ func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) SetGroupResolvingKey(valu
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDoorLockClusterSetAliroReaderConfigParams/serverSideProcessingTimeout
-func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) ServerSideProcessingTimeout() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
@@ -119,7 +120,7 @@ func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) ServerSideProcessingTimeo
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDoorLockClusterSetAliroReaderConfigParams/serverSideProcessingTimeout
-func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) SetServerSideProcessingTimeout(value unsafe.Pointer) {
+func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) SetServerSideProcessingTimeout(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -141,8 +142,8 @@ func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) SetSigningKey(value unsaf
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDoorLockClusterSetAliroReaderConfigParams/timedInvokeTimeoutMs
-func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) TimedInvokeTimeoutMs() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
@@ -152,7 +153,7 @@ func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) TimedInvokeTimeoutMs() un
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDoorLockClusterSetAliroReaderConfigParams/timedInvokeTimeoutMs
-func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) SetTimedInvokeTimeoutMs(value unsafe.Pointer) {
+func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

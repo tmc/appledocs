@@ -82,6 +82,24 @@ func NewTextLayer() TextLayer {
 }
 
 
+// Determines whether the text is wrapped to fit within the receiver’s bounds.
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/catextlayer/iswrapped
+func (t_ TextLayer) IsWrapped() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("isWrapped"))
+	return rv
+}
+
+
+// SetIsWrapped sets the value of the isWrapped property.
+// Determines whether the text is wrapped to fit within the receiver’s bounds.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/catextlayer/iswrapped
+func (t_ TextLayer) SetIsWrapped(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setIsWrapped:"), value)
+}
+
 // Determines how individual lines of text are horizontally aligned within the receiver’s bounds.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATextLayer/alignmentMode

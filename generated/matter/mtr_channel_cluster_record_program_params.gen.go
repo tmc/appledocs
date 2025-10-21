@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -108,8 +109,8 @@ func (m_ MTRChannelClusterRecordProgramParams) SetProgramIdentifier(value string
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterRecordProgramParams/serverSideProcessingTimeout
-func (m_ MTRChannelClusterRecordProgramParams) ServerSideProcessingTimeout() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRChannelClusterRecordProgramParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
@@ -119,14 +120,14 @@ func (m_ MTRChannelClusterRecordProgramParams) ServerSideProcessingTimeout() uns
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterRecordProgramParams/serverSideProcessingTimeout
-func (m_ MTRChannelClusterRecordProgramParams) SetServerSideProcessingTimeout(value unsafe.Pointer) {
+func (m_ MTRChannelClusterRecordProgramParams) SetServerSideProcessingTimeout(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterRecordProgramParams/shouldRecordSeries
-func (m_ MTRChannelClusterRecordProgramParams) ShouldRecordSeries() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("shouldRecordSeries"))
+func (m_ MTRChannelClusterRecordProgramParams) ShouldRecordSeries() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("shouldRecordSeries"))
 	return rv
 }
 
@@ -134,15 +135,15 @@ func (m_ MTRChannelClusterRecordProgramParams) ShouldRecordSeries() unsafe.Point
 // SetShouldRecordSeries sets the value of the shouldRecordSeries property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterRecordProgramParams/shouldRecordSeries
-func (m_ MTRChannelClusterRecordProgramParams) SetShouldRecordSeries(value unsafe.Pointer) {
+func (m_ MTRChannelClusterRecordProgramParams) SetShouldRecordSeries(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShouldRecordSeries:"), value)
 }
 
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterRecordProgramParams/timedInvokeTimeoutMs
-func (m_ MTRChannelClusterRecordProgramParams) TimedInvokeTimeoutMs() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRChannelClusterRecordProgramParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
@@ -152,7 +153,7 @@ func (m_ MTRChannelClusterRecordProgramParams) TimedInvokeTimeoutMs() unsafe.Poi
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterRecordProgramParams/timedInvokeTimeoutMs
-func (m_ MTRChannelClusterRecordProgramParams) SetTimedInvokeTimeoutMs(value unsafe.Pointer) {
+func (m_ MTRChannelClusterRecordProgramParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

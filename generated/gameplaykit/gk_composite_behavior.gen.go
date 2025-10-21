@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CompositeBehavior] class.
@@ -31,9 +32,9 @@ type ICompositeBehavior interface {
 	IBehavior
 	RemoveBehavior(behavior unsafe.Pointer)
 	RemoveAllBehaviors()
-	SetObjectForKeyedSubscript(weight unsafe.Pointer, behavior unsafe.Pointer)
+	SetObjectForKeyedSubscript(weight foundation.Number, behavior unsafe.Pointer)
 	SetWeightForBehavior(weight unsafe.Pointer, behavior unsafe.Pointer)
-	ObjectForKeyedSubscript(behavior unsafe.Pointer) unsafe.Pointer
+	ObjectForKeyedSubscript(behavior unsafe.Pointer) foundation.Number
 	ObjectAtIndexedSubscript(idx uint) unsafe.Pointer
 	WeightForBehavior(behavior unsafe.Pointer) unsafe.Pointer
 }
@@ -142,7 +143,7 @@ func (c_ CompositeBehavior) RemoveAllBehaviors() {
 // Sets the weight for the behavior specified by subscript syntax.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCompositeBehavior/setObject:forKeyedSubscript:
-func (c_ CompositeBehavior) SetObjectForKeyedSubscript(weight unsafe.Pointer, behavior unsafe.Pointer) {
+func (c_ CompositeBehavior) SetObjectForKeyedSubscript(weight foundation.Number, behavior unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setObject:forKeyedSubscript:"), weight, behavior)
 }
 
@@ -156,8 +157,8 @@ func (c_ CompositeBehavior) SetWeightForBehavior(weight unsafe.Pointer, behavior
 // Returns the weight associated with the behavior specified by subscript syntax.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCompositeBehavior/subscript(_:)-6jng9
-func (c_ CompositeBehavior) ObjectForKeyedSubscript(behavior unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("objectForKeyedSubscript:"), behavior)
+func (c_ CompositeBehavior) ObjectForKeyedSubscript(behavior unsafe.Pointer) foundation.Number {
+	rv := objc.Send[foundation.Number](c_.ID, objc.Sel("objectForKeyedSubscript:"), behavior)
 	return rv
 }
 
@@ -175,6 +176,24 @@ func (c_ CompositeBehavior) ObjectAtIndexedSubscript(idx uint) unsafe.Pointer {
 func (c_ CompositeBehavior) WeightForBehavior(behavior unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("weightForBehavior:"), behavior)
 	return rv
+}
+
+// A weighted collection of goals that influence the agent’s movement.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gameplaykit/gkagent/behavior
+func (c_ CompositeBehavior) Behavior() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("behavior"))
+	return rv
+}
+
+
+// SetBehavior sets the value of the behavior property.
+// A weighted collection of goals that influence the agent’s movement.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gameplaykit/gkagent/behavior
+func (c_ CompositeBehavior) SetBehavior(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setBehavior:"), value)
 }
 
 // The number of individual behaviors in the composite behavior.

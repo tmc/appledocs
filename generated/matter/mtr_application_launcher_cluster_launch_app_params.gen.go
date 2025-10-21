@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,66 @@ func NewMTRApplicationLauncherClusterLaunchAppParams() MTRApplicationLauncherClu
 	return getMTRApplicationLauncherClusterLaunchAppParamsClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterlaunchappparams/serversideprocessingtimeout
+func (m_ MTRApplicationLauncherClusterLaunchAppParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+	return rv
+}
+
+
+// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterlaunchappparams/serversideprocessingtimeout
+func (m_ MTRApplicationLauncherClusterLaunchAppParams) SetServerSideProcessingTimeout(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterlaunchappparams/data
+func (m_ MTRApplicationLauncherClusterLaunchAppParams) Data() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("data"))
+	return rv
+}
+
+
+// SetData sets the value of the data property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterlaunchappparams/data
+func (m_ MTRApplicationLauncherClusterLaunchAppParams) SetData(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setData:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterlaunchappparams/timedinvoketimeoutms
+func (m_ MTRApplicationLauncherClusterLaunchAppParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+	return rv
+}
+
+
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterlaunchappparams/timedinvoketimeoutms
+func (m_ MTRApplicationLauncherClusterLaunchAppParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterlaunchappparams/application
+func (m_ MTRApplicationLauncherClusterLaunchAppParams) Application() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("application"))
+	return rv
+}
+
+
+// SetApplication sets the value of the application property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterlaunchappparams/application
+func (m_ MTRApplicationLauncherClusterLaunchAppParams) SetApplication(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setApplication:"), value)
+}
 
 
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -90,8 +91,8 @@ func NewMTRTimeSynchronizationClusterSetTimeZoneResponseParamsWithResponseValueE
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterSetTimeZoneResponseParams/dstOffsetRequired
-func (m_ MTRTimeSynchronizationClusterSetTimeZoneResponseParams) DstOffsetRequired() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("dstOffsetRequired"))
+func (m_ MTRTimeSynchronizationClusterSetTimeZoneResponseParams) DstOffsetRequired() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("dstOffsetRequired"))
 	return rv
 }
 
@@ -99,7 +100,7 @@ func (m_ MTRTimeSynchronizationClusterSetTimeZoneResponseParams) DstOffsetRequir
 // SetDstOffsetRequired sets the value of the dstOffsetRequired property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterSetTimeZoneResponseParams/dstOffsetRequired
-func (m_ MTRTimeSynchronizationClusterSetTimeZoneResponseParams) SetDstOffsetRequired(value unsafe.Pointer) {
+func (m_ MTRTimeSynchronizationClusterSetTimeZoneResponseParams) SetDstOffsetRequired(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDstOffsetRequired:"), value)
 }
 

@@ -105,6 +105,24 @@ func (r_ RenderPassDescriptor) SetSamplePositionsCount(positions unsafe.Pointer,
 	objc.Send[objc.ID](r_.ID, objc.Sel("setSamplePositions:count:"), positions, count)
 }
 
+// Options that determine how you can use the texture.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtltexturedescriptor/usage
+func (r_ RenderPassDescriptor) Usage() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("usage"))
+	return rv
+}
+
+
+// SetUsage sets the value of the usage property.
+// Options that determine how you can use the texture.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtltexturedescriptor/usage
+func (r_ RenderPassDescriptor) SetUsage(value unsafe.Pointer) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setUsage:"), value)
+}
+
 // An array of state information for attachments that store color data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPassDescriptor/colorAttachments

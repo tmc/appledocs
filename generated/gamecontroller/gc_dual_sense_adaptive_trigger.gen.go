@@ -89,5 +89,59 @@ func (g_ GCDualSenseAdaptiveTrigger) SetModeVibrationWithAmplitudesFrequency(pos
 	objc.Send[objc.ID](g_.ID, objc.Sel("setModeVibrationWithAmplitudes:frequency:"), positionalAmplitudes, frequency)
 }
 
+// The current status of the adaptive trigger and whether it’s applying effects.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcdualsenseadaptivetrigger/status-swift.property
+func (g_ GCDualSenseAdaptiveTrigger) Status() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("status"))
+	return rv
+}
+
+
+// SetStatus sets the value of the status property.
+// The current status of the adaptive trigger and whether it’s applying effects.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcdualsenseadaptivetrigger/status-swift.property
+func (g_ GCDualSenseAdaptiveTrigger) SetStatus(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setStatus:"), value)
+}
+
+// The position of the trigger’s arm.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcdualsenseadaptivetrigger/armposition
+func (g_ GCDualSenseAdaptiveTrigger) ArmPosition() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("armPosition"))
+	return rv
+}
+
+
+// SetArmPosition sets the value of the armPosition property.
+// The position of the trigger’s arm.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcdualsenseadaptivetrigger/armposition
+func (g_ GCDualSenseAdaptiveTrigger) SetArmPosition(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setArmPosition:"), value)
+}
+
+// The current configuration of the adaptive trigger.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcdualsenseadaptivetrigger/mode-swift.property
+func (g_ GCDualSenseAdaptiveTrigger) Mode() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("mode"))
+	return rv
+}
+
+
+// SetMode sets the value of the mode property.
+// The current configuration of the adaptive trigger.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcdualsenseadaptivetrigger/mode-swift.property
+func (g_ GCDualSenseAdaptiveTrigger) SetMode(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setMode:"), value)
+}
+
 
 

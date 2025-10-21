@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,21 @@ func NewMTRSmokeCOAlarmClusterLowBatteryEvent() MTRSmokeCOAlarmClusterLowBattery
 	return getMTRSmokeCOAlarmClusterLowBatteryEventClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrsmokecoalarmclusterlowbatteryevent/alarmseveritylevel
+func (m_ MTRSmokeCOAlarmClusterLowBatteryEvent) AlarmSeverityLevel() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("alarmSeverityLevel"))
+	return rv
+}
+
+
+// SetAlarmSeverityLevel sets the value of the alarmSeverityLevel property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrsmokecoalarmclusterlowbatteryevent/alarmseveritylevel
+func (m_ MTRSmokeCOAlarmClusterLowBatteryEvent) SetAlarmSeverityLevel(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAlarmSeverityLevel:"), value)
+}
 
 
 

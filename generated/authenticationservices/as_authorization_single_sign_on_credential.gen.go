@@ -78,6 +78,78 @@ func NewAuthorizationSingleSignOnCredential() AuthorizationSingleSignOnCredentia
 }
 
 
+// An arbitrary string that your app provided to the request that generated this credential.
+//
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsinglesignoncredential/state
+func (a_ AuthorizationSingleSignOnCredential) State() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("state"))
+	return rv
+}
+
+
+// SetState sets the value of the state property.
+// An arbitrary string that your app provided to the request that generated this credential.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsinglesignoncredential/state
+func (a_ AuthorizationSingleSignOnCredential) SetState(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setState:"), objc.String(value))
+}
+
+// An access token used to get an identity token.
+//
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsinglesignoncredential/accesstoken
+func (a_ AuthorizationSingleSignOnCredential) AccessToken() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("accessToken"))
+	return rv
+}
+
+
+// SetAccessToken sets the value of the accessToken property.
+// An access token used to get an identity token.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsinglesignoncredential/accesstoken
+func (a_ AuthorizationSingleSignOnCredential) SetAccessToken(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAccessToken:"), value)
+}
+
+// The complete response authentication, including technology-specific values.
+//
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsinglesignoncredential/authenticatedresponse
+func (a_ AuthorizationSingleSignOnCredential) AuthenticatedResponse() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("authenticatedResponse"))
+	return rv
+}
+
+
+// SetAuthenticatedResponse sets the value of the authenticatedResponse property.
+// The complete response authentication, including technology-specific values.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsinglesignoncredential/authenticatedresponse
+func (a_ AuthorizationSingleSignOnCredential) SetAuthenticatedResponse(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAuthenticatedResponse:"), value)
+}
+
+// A JSON Web Token (JWT) that securely communicates information about the user to your app.
+//
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsinglesignoncredential/identitytoken
+func (a_ AuthorizationSingleSignOnCredential) IdentityToken() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("identityToken"))
+	return rv
+}
+
+
+// SetIdentityToken sets the value of the identityToken property.
+// A JSON Web Token (JWT) that securely communicates information about the user to your app.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsinglesignoncredential/identitytoken
+func (a_ AuthorizationSingleSignOnCredential) SetIdentityToken(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setIdentityToken:"), value)
+}
+
 // The contact information the user authorized your app to access.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationSingleSignOnCredential/authorizedScopes

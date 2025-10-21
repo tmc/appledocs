@@ -106,6 +106,68 @@ func NewCoreMLRequestWithModelCompletionHandler(model unsafe.Pointer, completion
 }
 
 
+// Model information you use at runtime during development, which Xcode also displays in its Core ML model editor view.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/modelDescription
+func (c_ CoreMLRequest) ModelDescription() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("modelDescription"))
+	return rv
+}
+
+
+// SetModelDescription sets the value of the modelDescription property.
+// Model information you use at runtime during development, which Xcode also displays in its Core ML model editor view.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/modelDescription
+func (c_ CoreMLRequest) SetModelDescription(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setModelDescription:"), value)
+}
+
+// The name of the primary prediction feature output description.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelDescription/predictedFeatureName
+func (c_ CoreMLRequest) PredictedFeatureName() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("predictedFeatureName"))
+	return rv
+}
+
+
+// SetPredictedFeatureName sets the value of the predictedFeatureName property.
+// The name of the primary prediction feature output description.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelDescription/predictedFeatureName
+func (c_ CoreMLRequest) SetPredictedFeatureName(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setPredictedFeatureName:"), objc.String(value))
+}
+
+// The level of confidence in the observation’s accuracy.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnobservation/confidence
+func (c_ CoreMLRequest) Confidence() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("confidence"))
+	return rv
+}
+
+
+// SetConfidence sets the value of the confidence property.
+// The level of confidence in the observation’s accuracy.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnobservation/confidence
+func (c_ CoreMLRequest) SetConfidence(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setConfidence:"), value)
+}
+
+// A constant for specifying revision 1 of a Core ML request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vncoremlrequestrevision1
+func (c_ CoreMLRequest) VNCoreMLRequestRevision1() int {
+	rv := objc.Send[int](c_.ID, objc.Sel("VNCoreMLRequestRevision1"))
+	return rv
+}
+
 // An optional setting that tells the Vision algorithm how to scale an input image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNCoreMLRequest/imageCropAndScaleOption

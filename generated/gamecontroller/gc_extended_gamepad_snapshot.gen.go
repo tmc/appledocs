@@ -81,5 +81,37 @@ func NewGCExtendedGamepadSnapshot() GCExtendedGamepadSnapshot {
 }
 
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccurrentextendedgamepadsnapshotdataversion
+func (g_ GCExtendedGamepadSnapshot) GCCurrentExtendedGamepadSnapshotDataVersion() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("GCCurrentExtendedGamepadSnapshotDataVersion"))
+	return rv
+}
+
+// Flattens a snapshot into an archivable memory representation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepadsnapshot/snapshotdata
+func (g_ GCExtendedGamepadSnapshot) SnapshotData() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("snapshotData"))
+	return rv
+}
+
+
+// SetSnapshotData sets the value of the snapshotData property.
+// Flattens a snapshot into an archivable memory representation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepadsnapshot/snapshotdata
+func (g_ GCExtendedGamepadSnapshot) SetSnapshotData(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setSnapshotData:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccurrentmicrogamepadsnapshotdataversion
+func (g_ GCExtendedGamepadSnapshot) GCCurrentMicroGamepadSnapshotDataVersion() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("GCCurrentMicroGamepadSnapshotDataVersion"))
+	return rv
+}
+
 
 

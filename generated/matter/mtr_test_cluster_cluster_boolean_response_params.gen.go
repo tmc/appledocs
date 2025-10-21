@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MTRTestClusterClusterBooleanResponseParams] class.
@@ -75,6 +76,36 @@ func NewMTRTestClusterClusterBooleanResponseParams() MTRTestClusterClusterBoolea
 	return getMTRTestClusterClusterBooleanResponseParamsClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusterbooleanresponseparams/value
+func (m_ MTRTestClusterClusterBooleanResponseParams) Value() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("value"))
+	return rv
+}
+
+
+// SetValue sets the value of the value property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusterbooleanresponseparams/value
+func (m_ MTRTestClusterClusterBooleanResponseParams) SetValue(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusterbooleanresponseparams/timedinvoketimeoutms
+func (m_ MTRTestClusterClusterBooleanResponseParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+	return rv
+}
+
+
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusterbooleanresponseparams/timedinvoketimeoutms
+func (m_ MTRTestClusterClusterBooleanResponseParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+}
 
 
 

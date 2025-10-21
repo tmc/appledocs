@@ -105,6 +105,78 @@ func (p_ PlayerViewController) SelectSpeed(speed unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("selectSpeed:"), speed)
 }
 
+// The experience controller for this view controller.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avkit/avplayerviewcontroller/experiencecontroller
+func (p_ PlayerViewController) ExperienceController() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("experienceController"))
+	return rv
+}
+
+
+// SetExperienceController sets the value of the experienceController property.
+// The experience controller for this view controller.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avkit/avplayerviewcontroller/experiencecontroller
+func (p_ PlayerViewController) SetExperienceController(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setExperienceController:"), value)
+}
+
+// A Boolean value that indicates whether forward-skipping is available.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avkit/avplayerviewcontroller/isskipforwardenabled
+func (p_ PlayerViewController) IsSkipForwardEnabled() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isSkipForwardEnabled"))
+	return rv
+}
+
+
+// SetIsSkipForwardEnabled sets the value of the isSkipForwardEnabled property.
+// A Boolean value that indicates whether forward-skipping is available.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avkit/avplayerviewcontroller/isskipforwardenabled
+func (p_ PlayerViewController) SetIsSkipForwardEnabled(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsSkipForwardEnabled:"), value)
+}
+
+// A Boolean value that indicates whether the player item’s first video frame is ready for display.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avkit/avplayerviewcontroller/isreadyfordisplay
+func (p_ PlayerViewController) IsReadyForDisplay() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isReadyForDisplay"))
+	return rv
+}
+
+
+// SetIsReadyForDisplay sets the value of the isReadyForDisplay property.
+// A Boolean value that indicates whether the player item’s first video frame is ready for display.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avkit/avplayerviewcontroller/isreadyfordisplay
+func (p_ PlayerViewController) SetIsReadyForDisplay(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsReadyForDisplay:"), value)
+}
+
+// A Boolean value that indicates whether backward-skipping is available.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avkit/avplayerviewcontroller/isskipbackwardenabled
+func (p_ PlayerViewController) IsSkipBackwardEnabled() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isSkipBackwardEnabled"))
+	return rv
+}
+
+
+// SetIsSkipBackwardEnabled sets the value of the isSkipBackwardEnabled property.
+// A Boolean value that indicates whether backward-skipping is available.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avkit/avplayerviewcontroller/isskipbackwardenabled
+func (p_ PlayerViewController) SetIsSkipBackwardEnabled(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsSkipBackwardEnabled:"), value)
+}
+
 // An array of language codes that restrict the set of subtitle languages available to the user.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/allowedSubtitleOptionLanguages

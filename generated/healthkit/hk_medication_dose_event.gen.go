@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [HKMedicationDoseEvent] class.
@@ -79,8 +80,8 @@ func NewHKMedicationDoseEvent() HKMedicationDoseEvent {
 // The dose quantity the person reports as taken.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKMedicationDoseEvent/doseQuantity-52hxr
-func (h_ HKMedicationDoseEvent) DoseQuantity() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("doseQuantity"))
+func (h_ HKMedicationDoseEvent) DoseQuantity() foundation.Number {
+	rv := objc.Send[foundation.Number](h_.ID, objc.Sel("doseQuantity"))
 	return rv
 }
 
@@ -127,8 +128,8 @@ func (h_ HKMedicationDoseEvent) ScheduledDate() unsafe.Pointer {
 // The dose quantity a person is expected to take based on their medication schedule.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKMedicationDoseEvent/scheduledDoseQuantity-7ffhr
-func (h_ HKMedicationDoseEvent) ScheduledDoseQuantity() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("scheduledDoseQuantity"))
+func (h_ HKMedicationDoseEvent) ScheduledDoseQuantity() foundation.Number {
+	rv := objc.Send[foundation.Number](h_.ID, objc.Sel("scheduledDoseQuantity"))
 	return rv
 }
 

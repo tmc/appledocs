@@ -80,5 +80,66 @@ func NewAudioChannelLayout() AudioChannelLayout {
 }
 
 
+// The audio channel’s underlying layout tag.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiochannellayout/layouttag
+func (a_ AudioChannelLayout) LayoutTag() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("layoutTag"))
+	return rv
+}
+
+
+// SetLayoutTag sets the value of the layoutTag property.
+// The audio channel’s underlying layout tag.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiochannellayout/layouttag
+func (a_ AudioChannelLayout) SetLayoutTag(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setLayoutTag:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avchannellayoutkey
+func (a_ AudioChannelLayout) AVChannelLayoutKey() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("AVChannelLayoutKey"))
+	return rv
+}
+
+// The underlying audio channel layout.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiochannellayout/layout
+func (a_ AudioChannelLayout) Layout() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("layout"))
+	return rv
+}
+
+
+// SetLayout sets the value of the layout property.
+// The underlying audio channel layout.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiochannellayout/layout
+func (a_ AudioChannelLayout) SetLayout(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setLayout:"), value)
+}
+
+// The number of channels of audio data.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiochannellayout/channelcount
+func (a_ AudioChannelLayout) ChannelCount() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("channelCount"))
+	return rv
+}
+
+
+// SetChannelCount sets the value of the channelCount property.
+// The number of channels of audio data.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiochannellayout/channelcount
+func (a_ AudioChannelLayout) SetChannelCount(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setChannelCount:"), value)
+}
+
 
 

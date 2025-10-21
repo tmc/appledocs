@@ -76,5 +76,20 @@ func NewMTRTestClusterClusterDoubleNestedStructList() MTRTestClusterClusterDoubl
 }
 
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusterdoublenestedstructlist/a
+func (m_ MTRTestClusterClusterDoubleNestedStructList) A() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("a"))
+	return rv
+}
+
+
+// SetA sets the value of the a property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusterdoublenestedstructlist/a
+func (m_ MTRTestClusterClusterDoubleNestedStructList) SetA(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setA:"), value)
+}
+
 
 

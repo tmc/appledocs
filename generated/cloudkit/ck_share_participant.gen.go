@@ -80,6 +80,93 @@ func NewCKShareParticipant() CKShareParticipant {
 }
 
 
+// The date and time when the participant was added to the share.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckshare/participant/dateaddedtoshare
+func (c_ CKShareParticipant) DateAddedToShare() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("dateAddedToShare"))
+	return rv
+}
+
+
+// SetDateAddedToShare sets the value of the dateAddedToShare property.
+// The date and time when the participant was added to the share.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckshare/participant/dateaddedtoshare
+func (c_ CKShareParticipant) SetDateAddedToShare(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setDateAddedToShare:"), value)
+}
+
+// The permission for anyone with access to the share’s URL.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckshare/publicpermission
+func (c_ CKShareParticipant) PublicPermission() cloudkit.CKShare {
+	rv := objc.Send[cloudkit.CKShare](c_.ID, objc.Sel("publicPermission"))
+	return rv
+}
+
+
+// SetPublicPermission sets the value of the publicPermission property.
+// The permission for anyone with access to the share’s URL.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckshare/publicpermission
+func (c_ CKShareParticipant) SetPublicPermission(value cloudkit.CKShare) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setPublicPermission:"), value)
+}
+
+// Indicates whether the participant was originally a requester who was approved to join the share.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckshare/participant/isapprovedrequester
+func (c_ CKShareParticipant) IsApprovedRequester() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isApprovedRequester"))
+	return rv
+}
+
+
+// SetIsApprovedRequester sets the value of the isApprovedRequester property.
+// Indicates whether the participant was originally a requester who was approved to join the share.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckshare/participant/isapprovedrequester
+func (c_ CKShareParticipant) SetIsApprovedRequester(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsApprovedRequester:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckshare/participant/participantid
+func (c_ CKShareParticipant) ParticipantID() cloudkit.CKShare {
+	rv := objc.Send[cloudkit.CKShare](c_.ID, objc.Sel("participantID"))
+	return rv
+}
+
+
+// SetParticipantID sets the value of the participantID property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckshare/participant/participantid
+func (c_ CKShareParticipant) SetParticipantID(value cloudkit.CKShare) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setParticipantID:"), value)
+}
+
+// An array that contains the share’s participants.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckshare/participants
+func (c_ CKShareParticipant) Participants() cloudkit.CKShare {
+	rv := objc.Send[cloudkit.CKShare](c_.ID, objc.Sel("participants"))
+	return rv
+}
+
+
+// SetParticipants sets the value of the participants property.
+// An array that contains the share’s participants.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckshare/participants
+func (c_ CKShareParticipant) SetParticipants(value cloudkit.CKShare) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setParticipants:"), value)
+}
+
 // The current state of the user’s acceptance of the share.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/Participant/acceptanceStatus-swift.property

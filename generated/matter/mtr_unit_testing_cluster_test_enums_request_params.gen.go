@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,66 @@ func NewMTRUnitTestingClusterTestEnumsRequestParams() MTRUnitTestingClusterTestE
 	return getMTRUnitTestingClusterTestEnumsRequestParamsClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestenumsrequestparams/arg1
+func (m_ MTRUnitTestingClusterTestEnumsRequestParams) Arg1() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("arg1"))
+	return rv
+}
+
+
+// SetArg1 sets the value of the arg1 property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestenumsrequestparams/arg1
+func (m_ MTRUnitTestingClusterTestEnumsRequestParams) SetArg1(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setArg1:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestenumsrequestparams/arg2
+func (m_ MTRUnitTestingClusterTestEnumsRequestParams) Arg2() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("arg2"))
+	return rv
+}
+
+
+// SetArg2 sets the value of the arg2 property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestenumsrequestparams/arg2
+func (m_ MTRUnitTestingClusterTestEnumsRequestParams) SetArg2(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setArg2:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestenumsrequestparams/timedinvoketimeoutms
+func (m_ MTRUnitTestingClusterTestEnumsRequestParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+	return rv
+}
+
+
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestenumsrequestparams/timedinvoketimeoutms
+func (m_ MTRUnitTestingClusterTestEnumsRequestParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestenumsrequestparams/serversideprocessingtimeout
+func (m_ MTRUnitTestingClusterTestEnumsRequestParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+	return rv
+}
+
+
+// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestenumsrequestparams/serversideprocessingtimeout
+func (m_ MTRUnitTestingClusterTestEnumsRequestParams) SetServerSideProcessingTimeout(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
+}
 
 
 

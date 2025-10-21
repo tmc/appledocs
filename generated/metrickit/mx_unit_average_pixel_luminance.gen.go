@@ -80,5 +80,23 @@ func NewMXUnitAveragePixelLuminance() MXUnitAveragePixelLuminance {
 }
 
 
+// The average amount of luminosity of the pixels on an OLED display.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metrickit/mxdisplaymetric/averagepixelluminance
+func (m_ MXUnitAveragePixelLuminance) AveragePixelLuminance() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("averagePixelLuminance"))
+	return rv
+}
+
+
+// SetAveragePixelLuminance sets the value of the averagePixelLuminance property.
+// The average amount of luminosity of the pixels on an OLED display.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metrickit/mxdisplaymetric/averagepixelluminance
+func (m_ MXUnitAveragePixelLuminance) SetAveragePixelLuminance(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAveragePixelLuminance:"), value)
+}
+
 
 

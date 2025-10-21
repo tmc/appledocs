@@ -78,5 +78,23 @@ func NewHKFitzpatrickSkinTypeObject() HKFitzpatrickSkinTypeObject {
 }
 
 
+// The user’s skin type.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkfitzpatrickskintypeobject/skintype
+func (h_ HKFitzpatrickSkinTypeObject) SkinType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("skinType"))
+	return rv
+}
+
+
+// SetSkinType sets the value of the skinType property.
+// The user’s skin type.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkfitzpatrickskintypeobject/skintype
+func (h_ HKFitzpatrickSkinTypeObject) SetSkinType(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setSkinType:"), value)
+}
+
 
 

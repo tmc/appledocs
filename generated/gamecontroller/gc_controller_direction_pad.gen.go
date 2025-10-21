@@ -81,6 +81,96 @@ func NewGCControllerDirectionPad() GCControllerDirectionPad {
 }
 
 
+// The button element that changes the positive y-axis.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerdirectionpad/up
+func (g_ GCControllerDirectionPad) Up() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("up"))
+	return rv
+}
+
+
+// SetUp sets the value of the up property.
+// The button element that changes the positive y-axis.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerdirectionpad/up
+func (g_ GCControllerDirectionPad) SetUp(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setUp:"), value)
+}
+
+// The button element used for the negative y-axis direction.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerdirectionpad/down
+func (g_ GCControllerDirectionPad) Down() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("down"))
+	return rv
+}
+
+
+// SetDown sets the value of the down property.
+// The button element used for the negative y-axis direction.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerdirectionpad/down
+func (g_ GCControllerDirectionPad) SetDown(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setDown:"), value)
+}
+
+// The block that the directional pad calls when the user changes its values.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerdirectionpad/valuechangedhandler
+func (g_ GCControllerDirectionPad) ValueChangedHandler() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("valueChangedHandler"))
+	return rv
+}
+
+
+// SetValueChangedHandler sets the value of the valueChangedHandler property.
+// The block that the directional pad calls when the user changes its values.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerdirectionpad/valuechangedhandler
+func (g_ GCControllerDirectionPad) SetValueChangedHandler(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setValueChangedHandler:"), value)
+}
+
+// The button element that changes the negative x-axis.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerdirectionpad/left
+func (g_ GCControllerDirectionPad) Left() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("left"))
+	return rv
+}
+
+
+// SetLeft sets the value of the left property.
+// The button element that changes the negative x-axis.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerdirectionpad/left
+func (g_ GCControllerDirectionPad) SetLeft(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setLeft:"), value)
+}
+
+// The button element that changes the positive x-axis.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerdirectionpad/right
+func (g_ GCControllerDirectionPad) Right() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("right"))
+	return rv
+}
+
+
+// SetRight sets the value of the right property.
+// The button element that changes the positive x-axis.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerdirectionpad/right
+func (g_ GCControllerDirectionPad) SetRight(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setRight:"), value)
+}
+
 // The x-axis element of the directional pad.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCControllerDirectionPad/xAxis

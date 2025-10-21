@@ -83,8 +83,8 @@ func NewTextObservation() TextObservation {
 // An array of detected individual character bounding boxes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNTextObservation/characterBoxes
-func (t_ TextObservation) CharacterBoxes() []VNRectangleObservation {
-	rv := objc.Send[[]VNRectangleObservation](t_.ID, objc.Sel("characterBoxes"))
+func (t_ TextObservation) CharacterBoxes() []unsafe.Pointer {
+	rv := objc.Send[[]unsafe.Pointer](t_.ID, objc.Sel("characterBoxes"))
 	return rv
 }
 

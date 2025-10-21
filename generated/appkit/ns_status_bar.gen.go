@@ -103,5 +103,41 @@ func (s_ StatusBar) SystemStatusBar() unsafe.Pointer {
 	return rv
 }
 
+// A Boolean value indicating whether the status bar has a vertical orientation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsstatusbar/isvertical
+func (s_ StatusBar) IsVertical() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("isVertical"))
+	return rv
+}
+
+
+// SetIsVertical sets the value of the isVertical property.
+// A Boolean value indicating whether the status bar has a vertical orientation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsstatusbar/isvertical
+func (s_ StatusBar) SetIsVertical(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setIsVertical:"), value)
+}
+
+// The thickness of the status bar, in pixels.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsstatusbar/thickness
+func (s_ StatusBar) Thickness() float64 {
+	rv := objc.Send[float64](s_.ID, objc.Sel("thickness"))
+	return rv
+}
+
+
+// SetThickness sets the value of the thickness property.
+// The thickness of the status bar, in pixels.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsstatusbar/thickness
+func (s_ StatusBar) SetThickness(value float64) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setThickness:"), value)
+}
+
 
 

@@ -131,6 +131,24 @@ func (a_ AEAssessmentSession) UpdateToConfiguration(configuration unsafe.Pointer
 	objc.Send[objc.ID](a_.ID, objc.Sel("updateToConfiguration:"), configuration)
 }
 
+// A Boolean that indicates whether an assessment session is running.
+//
+// [Full Topic]: https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentsession/isactive
+func (a_ AEAssessmentSession) IsActive() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("isActive"))
+	return rv
+}
+
+
+// SetIsActive sets the value of the isActive property.
+// A Boolean that indicates whether an assessment session is running.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentsession/isactive
+func (a_ AEAssessmentSession) SetIsActive(value bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setIsActive:"), value)
+}
+
 // The current configuration of the session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentSession/configuration

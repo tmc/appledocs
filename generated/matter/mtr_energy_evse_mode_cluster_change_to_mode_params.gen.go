@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,8 +78,8 @@ func NewMTREnergyEVSEModeClusterChangeToModeParams() MTREnergyEVSEModeClusterCha
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEModeClusterChangeToModeParams/newMode
-func (m_ MTREnergyEVSEModeClusterChangeToModeParams) NewMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("newMode"))
+func (m_ MTREnergyEVSEModeClusterChangeToModeParams) NewMode() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("newMode"))
 	return rv
 }
 
@@ -86,15 +87,15 @@ func (m_ MTREnergyEVSEModeClusterChangeToModeParams) NewMode() unsafe.Pointer {
 // SetNewMode sets the value of the newMode property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEModeClusterChangeToModeParams/newMode
-func (m_ MTREnergyEVSEModeClusterChangeToModeParams) SetNewMode(value unsafe.Pointer) {
+func (m_ MTREnergyEVSEModeClusterChangeToModeParams) SetNewMode(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNewMode:"), value)
 }
 
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEModeClusterChangeToModeParams/serverSideProcessingTimeout
-func (m_ MTREnergyEVSEModeClusterChangeToModeParams) ServerSideProcessingTimeout() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTREnergyEVSEModeClusterChangeToModeParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
@@ -104,15 +105,15 @@ func (m_ MTREnergyEVSEModeClusterChangeToModeParams) ServerSideProcessingTimeout
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEModeClusterChangeToModeParams/serverSideProcessingTimeout
-func (m_ MTREnergyEVSEModeClusterChangeToModeParams) SetServerSideProcessingTimeout(value unsafe.Pointer) {
+func (m_ MTREnergyEVSEModeClusterChangeToModeParams) SetServerSideProcessingTimeout(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEModeClusterChangeToModeParams/timedInvokeTimeoutMs
-func (m_ MTREnergyEVSEModeClusterChangeToModeParams) TimedInvokeTimeoutMs() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTREnergyEVSEModeClusterChangeToModeParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
@@ -122,7 +123,7 @@ func (m_ MTREnergyEVSEModeClusterChangeToModeParams) TimedInvokeTimeoutMs() unsa
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEModeClusterChangeToModeParams/timedInvokeTimeoutMs
-func (m_ MTREnergyEVSEModeClusterChangeToModeParams) SetTimedInvokeTimeoutMs(value unsafe.Pointer) {
+func (m_ MTREnergyEVSEModeClusterChangeToModeParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

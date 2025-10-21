@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,7 +33,7 @@ type IPHAssetResourceManager interface {
 	objectivec.IObject
 	CancelDataRequest(requestID unsafe.Pointer)
 	RequestDataForAssetResourceOptionsDataReceivedHandlerCompletionHandler(resource unsafe.Pointer, options unsafe.Pointer, handler unsafe.Pointer, completionHandler unsafe.Pointer) unsafe.Pointer
-	WriteDataForAssetResourceToFileOptionsCompletionHandler(resource unsafe.Pointer, fileURL unsafe.Pointer, options unsafe.Pointer, completionHandler unsafe.Pointer)
+	WriteDataForAssetResourceToFileOptionsCompletionHandler(resource unsafe.Pointer, fileURL foundation.URL, options unsafe.Pointer, completionHandler unsafe.Pointer)
 }
 
 // A resource manager for the data storage underlying a Photos asset.
@@ -109,7 +110,7 @@ func (p_ PHAssetResourceManager) RequestDataForAssetResourceOptionsDataReceivedH
 // Requests the underlying data for the specified asset resource, to be asynchronously written to a local file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetResourceManager/writeData(for:toFile:options:completionHandler:)
-func (p_ PHAssetResourceManager) WriteDataForAssetResourceToFileOptionsCompletionHandler(resource unsafe.Pointer, fileURL unsafe.Pointer, options unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (p_ PHAssetResourceManager) WriteDataForAssetResourceToFileOptionsCompletionHandler(resource unsafe.Pointer, fileURL foundation.URL, options unsafe.Pointer, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("writeDataForAssetResource:toFile:options:completionHandler:"), resource, fileURL, options, completionHandler)
 }
 

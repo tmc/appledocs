@@ -167,6 +167,60 @@ func (p_ PictureInPictureController) StopPictureInPicture() {
 	objc.Send[objc.ID](p_.ID, objc.Sel("stopPictureInPicture"))
 }
 
+// A Boolean value that indicates whether the Picture in Picture window is onscreen.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avkit/avpictureinpicturecontroller/ispictureinpictureactive
+func (p_ PictureInPictureController) IsPictureInPictureActive() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isPictureInPictureActive"))
+	return rv
+}
+
+
+// SetIsPictureInPictureActive sets the value of the isPictureInPictureActive property.
+// A Boolean value that indicates whether the Picture in Picture window is onscreen.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avkit/avpictureinpicturecontroller/ispictureinpictureactive
+func (p_ PictureInPictureController) SetIsPictureInPictureActive(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsPictureInPictureActive:"), value)
+}
+
+// A Boolean value that indicates whether Picture in Picture playback is currently possible.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avkit/avpictureinpicturecontroller/ispictureinpicturepossible
+func (p_ PictureInPictureController) IsPictureInPicturePossible() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isPictureInPicturePossible"))
+	return rv
+}
+
+
+// SetIsPictureInPicturePossible sets the value of the isPictureInPicturePossible property.
+// A Boolean value that indicates whether Picture in Picture playback is currently possible.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avkit/avpictureinpicturecontroller/ispictureinpicturepossible
+func (p_ PictureInPictureController) SetIsPictureInPicturePossible(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsPictureInPicturePossible:"), value)
+}
+
+// A Boolean value that indicates whether the system suspends the controller’s Picture in Picture window.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avkit/avpictureinpicturecontroller/ispictureinpicturesuspended
+func (p_ PictureInPictureController) IsPictureInPictureSuspended() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isPictureInPictureSuspended"))
+	return rv
+}
+
+
+// SetIsPictureInPictureSuspended sets the value of the isPictureInPictureSuspended property.
+// A Boolean value that indicates whether the system suspends the controller’s Picture in Picture window.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avkit/avpictureinpicturecontroller/ispictureinpicturesuspended
+func (p_ PictureInPictureController) SetIsPictureInPictureSuspended(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsPictureInPictureSuspended:"), value)
+}
+
 // A Boolean value that indicates whether Picture in Picture starts automatically when the controller embeds its content inline and the app transitions to the background.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPictureInPictureController/canStartPictureInPictureAutomaticallyFromInline

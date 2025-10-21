@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -89,7 +90,7 @@ func NewAudioFile() AudioFile {
 // Opens a file for reading using the specified processing format.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioFile/init(forReading:commonFormat:interleaved:)
-func NewAudioFileForReadingCommonFormatInterleavedError(fileURL unsafe.Pointer, format unsafe.Pointer, interleaved bool, outError unsafe.Pointer) AudioFile {
+func NewAudioFileForReadingCommonFormatInterleavedError(fileURL foundation.URL, format unsafe.Pointer, interleaved bool, outError unsafe.Pointer) AudioFile {
 	instance := getAudioFileClass().Alloc()
 	rv := objc.Send[AudioFile](instance.ID, objc.Sel("initForReading:commonFormat:interleaved:error:"), fileURL, format, interleaved, outError)
 	rv.Autorelease()
@@ -101,7 +102,7 @@ func NewAudioFileForReadingCommonFormatInterleavedError(fileURL unsafe.Pointer, 
 // Opens a file for reading using the standard, deinterleaved floating point format.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioFile/init(forReading:)
-func NewAudioFileForReadingError(fileURL unsafe.Pointer, outError unsafe.Pointer) AudioFile {
+func NewAudioFileForReadingError(fileURL foundation.URL, outError unsafe.Pointer) AudioFile {
 	instance := getAudioFileClass().Alloc()
 	rv := objc.Send[AudioFile](instance.ID, objc.Sel("initForReading:error:"), fileURL, outError)
 	rv.Autorelease()
@@ -113,7 +114,7 @@ func NewAudioFileForReadingError(fileURL unsafe.Pointer, outError unsafe.Pointer
 // Opens a file for writing using a specified processing format and settings.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioFile/init(forWriting:settings:commonFormat:interleaved:)
-func NewAudioFileForWritingSettingsCommonFormatInterleavedError(fileURL unsafe.Pointer, settings unsafe.Pointer, format unsafe.Pointer, interleaved bool, outError unsafe.Pointer) AudioFile {
+func NewAudioFileForWritingSettingsCommonFormatInterleavedError(fileURL foundation.URL, settings unsafe.Pointer, format unsafe.Pointer, interleaved bool, outError unsafe.Pointer) AudioFile {
 	instance := getAudioFileClass().Alloc()
 	rv := objc.Send[AudioFile](instance.ID, objc.Sel("initForWriting:settings:commonFormat:interleaved:error:"), fileURL, settings, format, interleaved, outError)
 	rv.Autorelease()
@@ -125,7 +126,7 @@ func NewAudioFileForWritingSettingsCommonFormatInterleavedError(fileURL unsafe.P
 // Opens a file for writing using the specified settings.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioFile/init(forWriting:settings:)
-func NewAudioFileForWritingSettingsError(fileURL unsafe.Pointer, settings unsafe.Pointer, outError unsafe.Pointer) AudioFile {
+func NewAudioFileForWritingSettingsError(fileURL foundation.URL, settings unsafe.Pointer, outError unsafe.Pointer) AudioFile {
 	instance := getAudioFileClass().Alloc()
 	rv := objc.Send[AudioFile](instance.ID, objc.Sel("initForWriting:settings:error:"), fileURL, settings, outError)
 	rv.Autorelease()
@@ -161,6 +162,14 @@ func (a_ AudioFile) ReadIntoBufferFrameCountError(buffer unsafe.Pointer, frames 
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioFile/write(from:)
 func (a_ AudioFile) WriteFromBufferError(buffer unsafe.Pointer, outError unsafe.Pointer) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("writeFromBuffer:error:"), buffer, outError)
+	return rv
+}
+
+// A string that indicates the audio file type.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiofiletypekey
+func (a_ AudioFile) AVAudioFileTypeKey() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("AVAudioFileTypeKey"))
 	return rv
 }
 
@@ -217,8 +226,8 @@ func (a_ AudioFile) ProcessingFormat() unsafe.Pointer {
 // The location of the audio file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioFile/url
-func (a_ AudioFile) Url() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("url"))
+func (a_ AudioFile) Url() foundation.URL {
+	rv := objc.Send[foundation.URL](a_.ID, objc.Sel("url"))
 	return rv
 }
 

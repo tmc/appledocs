@@ -245,5 +245,161 @@ func (g_ GestureRecognizer) SetDelaysSecondaryMouseButtonEvents(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDelaysSecondaryMouseButtonEvents:"), value)
 }
 
+// The action method to call when the gesture is recognized.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsgesturerecognizer/action
+func (g_ GestureRecognizer) Action() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("action"))
+	return rv
+}
+
+
+// SetAction sets the value of the action property.
+// The action method to call when the gesture is recognized.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsgesturerecognizer/action
+func (g_ GestureRecognizer) SetAction(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setAction:"), value)
+}
+
+// The delegate of the gesture recognizer.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsgesturerecognizer/delegate
+func (g_ GestureRecognizer) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+
+// SetDelegate sets the value of the delegate property.
+// The delegate of the gesture recognizer.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsgesturerecognizer/delegate
+func (g_ GestureRecognizer) SetDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setDelegate:"), value)
+}
+
+// A Boolean value indicating whether the gesture recognizer is able to handle events.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsgesturerecognizer/isenabled
+func (g_ GestureRecognizer) IsEnabled() bool {
+	rv := objc.Send[bool](g_.ID, objc.Sel("isEnabled"))
+	return rv
+}
+
+
+// SetIsEnabled sets the value of the isEnabled property.
+// A Boolean value indicating whether the gesture recognizer is able to handle events.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsgesturerecognizer/isenabled
+func (g_ GestureRecognizer) SetIsEnabled(value bool) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setIsEnabled:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsgesturerecognizer/modifierflags
+func (g_ GestureRecognizer) ModifierFlags() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("modifierFlags"))
+	return rv
+}
+
+
+// SetModifierFlags sets the value of the modifierFlags property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsgesturerecognizer/modifierflags
+func (g_ GestureRecognizer) SetModifierFlags(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setModifierFlags:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsgesturerecognizer/name
+func (g_ GestureRecognizer) Name() string {
+	rv := objc.Send[string](g_.ID, objc.Sel("name"))
+	return rv
+}
+
+
+// SetName sets the value of the name property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsgesturerecognizer/name
+func (g_ GestureRecognizer) SetName(value string) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setName:"), objc.String(value))
+}
+
+// Configures the behavior and progression of the Force Touch trackpad when responding to recognized pressure gestures.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsgesturerecognizer/pressureconfiguration
+func (g_ GestureRecognizer) PressureConfiguration() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("pressureConfiguration"))
+	return rv
+}
+
+
+// SetPressureConfiguration sets the value of the pressureConfiguration property.
+// Configures the behavior and progression of the Force Touch trackpad when responding to recognized pressure gestures.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsgesturerecognizer/pressureconfiguration
+func (g_ GestureRecognizer) SetPressureConfiguration(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setPressureConfiguration:"), value)
+}
+
+// The current state of the gesture recognizer.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsgesturerecognizer/state-swift.property
+func (g_ GestureRecognizer) State() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("state"))
+	return rv
+}
+
+
+// SetState sets the value of the state property.
+// The current state of the gesture recognizer.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsgesturerecognizer/state-swift.property
+func (g_ GestureRecognizer) SetState(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setState:"), value)
+}
+
+// The object that implements the action method.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsgesturerecognizer/target
+func (g_ GestureRecognizer) Target() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("target"))
+	return rv
+}
+
+
+// SetTarget sets the value of the target property.
+// The object that implements the action method.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsgesturerecognizer/target
+func (g_ GestureRecognizer) SetTarget(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setTarget:"), value)
+}
+
+// The view to which the gesture recognizer is attached.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsgesturerecognizer/view
+func (g_ GestureRecognizer) View() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("view"))
+	return rv
+}
+
+
+// SetView sets the value of the view property.
+// The view to which the gesture recognizer is attached.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsgesturerecognizer/view
+func (g_ GestureRecognizer) SetView(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setView:"), value)
+}
+
 
 

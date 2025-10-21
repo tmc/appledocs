@@ -89,5 +89,23 @@ func (c_ ComputePassSampleBufferAttachmentDescriptorArray) ObjectAtIndexedSubscr
 	return rv
 }
 
+// The counter sets supported by the device object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtldevice/countersets
+func (c_ ComputePassSampleBufferAttachmentDescriptorArray) CounterSets() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("counterSets"))
+	return rv
+}
+
+
+// SetCounterSets sets the value of the counterSets property.
+// The counter sets supported by the device object.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtldevice/countersets
+func (c_ ComputePassSampleBufferAttachmentDescriptorArray) SetCounterSets(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setCounterSets:"), value)
+}
+
 
 

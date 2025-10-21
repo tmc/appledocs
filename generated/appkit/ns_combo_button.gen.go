@@ -81,5 +81,131 @@ func NewComboButton() ComboButton {
 }
 
 
+// The image that the button displays.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscombobutton/image
+func (c_ ComboButton) Image() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("image"))
+	return rv
+}
+
+
+// SetImage sets the value of the image property.
+// The image that the button displays.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscombobutton/image
+func (c_ ComboButton) SetImage(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setImage:"), value)
+}
+
+// The scaling behavior to apply to the button’s image.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscombobutton/imagescaling
+func (c_ ComboButton) ImageScaling() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("imageScaling"))
+	return rv
+}
+
+
+// SetImageScaling sets the value of the imageScaling property.
+// The scaling behavior to apply to the button’s image.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscombobutton/imagescaling
+func (c_ ComboButton) SetImageScaling(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setImageScaling:"), value)
+}
+
+// The menu that contains the button’s alternate actions.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscombobutton/menu
+func (c_ ComboButton) Menu() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("menu"))
+	return rv
+}
+
+
+// SetMenu sets the value of the menu property.
+// The menu that contains the button’s alternate actions.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscombobutton/menu
+func (c_ ComboButton) SetMenu(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setMenu:"), value)
+}
+
+// The appearance setting that determines how the button presents its menu .
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscombobutton/style-swift.property
+func (c_ ComboButton) Style() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("style"))
+	return rv
+}
+
+
+// SetStyle sets the value of the style property.
+// The appearance setting that determines how the button presents its menu .
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscombobutton/style-swift.property
+func (c_ ComboButton) SetStyle(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setStyle:"), value)
+}
+
+// The localized string that the button displays.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscombobutton/title
+func (c_ ComboButton) Title() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("title"))
+	return rv
+}
+
+
+// SetTitle sets the value of the title property.
+// The localized string that the button displays.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscombobutton/title
+func (c_ ComboButton) SetTitle(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setTitle:"), objc.String(value))
+}
+
+// The default action-message selector associated with the control.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/action
+func (c_ ComboButton) Action() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("action"))
+	return rv
+}
+
+
+// SetAction sets the value of the action property.
+// The default action-message selector associated with the control.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/action
+func (c_ ComboButton) SetAction(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setAction:"), value)
+}
+
+// The target object that receives action messages from the cell.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/target
+func (c_ ComboButton) Target() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("target"))
+	return rv
+}
+
+
+// SetTarget sets the value of the target property.
+// The target object that receives action messages from the cell.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/target
+func (c_ ComboButton) SetTarget(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setTarget:"), value)
+}
+
 
 

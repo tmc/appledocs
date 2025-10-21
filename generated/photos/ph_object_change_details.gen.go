@@ -80,5 +80,95 @@ func NewPHObjectChangeDetails() PHObjectChangeDetails {
 }
 
 
+// The indexes of objects in the fetch result whose content or metadata have been updated.
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phfetchresultchangedetails/changedindexes
+func (p_ PHObjectChangeDetails) ChangedIndexes() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("changedIndexes"))
+	return rv
+}
+
+
+// SetChangedIndexes sets the value of the changedIndexes property.
+// The indexes of objects in the fetch result whose content or metadata have been updated.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phfetchresultchangedetails/changedindexes
+func (p_ PHObjectChangeDetails) SetChangedIndexes(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setChangedIndexes:"), value)
+}
+
+// An object that reflects the original state of the asset or collection it represents.
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phobjectchangedetails/objectbeforechanges
+func (p_ PHObjectChangeDetails) ObjectBeforeChanges() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("objectBeforeChanges"))
+	return rv
+}
+
+
+// SetObjectBeforeChanges sets the value of the objectBeforeChanges property.
+// An object that reflects the original state of the asset or collection it represents.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phobjectchangedetails/objectbeforechanges
+func (p_ PHObjectChangeDetails) SetObjectBeforeChanges(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setObjectBeforeChanges:"), value)
+}
+
+// A Boolean value that indicates whether the asset’s photo or video content has changed.
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phobjectchangedetails/assetcontentchanged
+func (p_ PHObjectChangeDetails) AssetContentChanged() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("assetContentChanged"))
+	return rv
+}
+
+
+// SetAssetContentChanged sets the value of the assetContentChanged property.
+// A Boolean value that indicates whether the asset’s photo or video content has changed.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phobjectchangedetails/assetcontentchanged
+func (p_ PHObjectChangeDetails) SetAssetContentChanged(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setAssetContentChanged:"), value)
+}
+
+// An object that reflects the current state of the asset or collection it represents.
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phobjectchangedetails/objectafterchanges
+func (p_ PHObjectChangeDetails) ObjectAfterChanges() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("objectAfterChanges"))
+	return rv
+}
+
+
+// SetObjectAfterChanges sets the value of the objectAfterChanges property.
+// An object that reflects the current state of the asset or collection it represents.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phobjectchangedetails/objectafterchanges
+func (p_ PHObjectChangeDetails) SetObjectAfterChanges(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setObjectAfterChanges:"), value)
+}
+
+// A Boolean value that indicates whether the object has been deleted from the Photos library.
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phobjectchangedetails/objectwasdeleted
+func (p_ PHObjectChangeDetails) ObjectWasDeleted() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("objectWasDeleted"))
+	return rv
+}
+
+
+// SetObjectWasDeleted sets the value of the objectWasDeleted property.
+// A Boolean value that indicates whether the object has been deleted from the Photos library.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phobjectchangedetails/objectwasdeleted
+func (p_ PHObjectChangeDetails) SetObjectWasDeleted(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setObjectWasDeleted:"), value)
+}
+
 
 

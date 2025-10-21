@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MTRContentLauncherClusterParameter] class.
@@ -75,6 +76,51 @@ func NewMTRContentLauncherClusterParameter() MTRContentLauncherClusterParameter 
 	return getMTRContentLauncherClusterParameterClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterparameter/externalidlist
+func (m_ MTRContentLauncherClusterParameter) ExternalIDList() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("externalIDList"))
+	return rv
+}
+
+
+// SetExternalIDList sets the value of the externalIDList property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterparameter/externalidlist
+func (m_ MTRContentLauncherClusterParameter) SetExternalIDList(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setExternalIDList:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterparameter/type
+func (m_ MTRContentLauncherClusterParameter) Type() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("type"))
+	return rv
+}
+
+
+// SetType sets the value of the type property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterparameter/type
+func (m_ MTRContentLauncherClusterParameter) SetType(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setType:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterparameter/value
+func (m_ MTRContentLauncherClusterParameter) Value() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("value"))
+	return rv
+}
+
+
+// SetValue sets the value of the value property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterparameter/value
+func (m_ MTRContentLauncherClusterParameter) SetValue(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), objc.String(value))
+}
 
 
 

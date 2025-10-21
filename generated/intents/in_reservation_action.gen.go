@@ -78,5 +78,59 @@ func NewINReservationAction() INReservationAction {
 }
 
 
+// The date and time range that the action is valid.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inreservationaction/validduration
+func (i_ INReservationAction) ValidDuration() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("validDuration"))
+	return rv
+}
+
+
+// SetValidDuration sets the value of the validDuration property.
+// The date and time range that the action is valid.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inreservationaction/validduration
+func (i_ INReservationAction) SetValidDuration(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setValidDuration:"), value)
+}
+
+// The user activity object used when launching your app.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inreservationaction/useractivity
+func (i_ INReservationAction) UserActivity() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("userActivity"))
+	return rv
+}
+
+
+// SetUserActivity sets the value of the userActivity property.
+// The user activity object used when launching your app.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inreservationaction/useractivity
+func (i_ INReservationAction) SetUserActivity(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setUserActivity:"), value)
+}
+
+// The type of action for the reservation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inreservationaction/type
+func (i_ INReservationAction) Type() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("type"))
+	return rv
+}
+
+
+// SetType sets the value of the type property.
+// The type of action for the reservation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inreservationaction/type
+func (i_ INReservationAction) SetType(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setType:"), value)
+}
+
 
 

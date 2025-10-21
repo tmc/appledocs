@@ -89,5 +89,13 @@ func (h_ HKWorkoutRouteBuilder) FinishRouteWithWorkoutMetadataCompletion(workout
 	objc.Send[objc.ID](h_.ID, objc.Sel("finishRouteWithWorkout:metadata:completion:"), workout, metadata, completion)
 }
 
+// A series sample containing location data that defines the route the user took during a workout.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutroutetypeidentifier
+func (h_ HKWorkoutRouteBuilder) HKWorkoutRouteTypeIdentifier() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("HKWorkoutRouteTypeIdentifier"))
+	return rv
+}
+
 
 

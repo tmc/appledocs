@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,51 @@ func NewMTRRVCOperationalStateClusterErrorStateStruct() MTRRVCOperationalStateCl
 	return getMTRRVCOperationalStateClusterErrorStateStructClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcoperationalstateclustererrorstatestruct/errorstatedetails
+func (m_ MTRRVCOperationalStateClusterErrorStateStruct) ErrorStateDetails() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("errorStateDetails"))
+	return rv
+}
+
+
+// SetErrorStateDetails sets the value of the errorStateDetails property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcoperationalstateclustererrorstatestruct/errorstatedetails
+func (m_ MTRRVCOperationalStateClusterErrorStateStruct) SetErrorStateDetails(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setErrorStateDetails:"), objc.String(value))
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcoperationalstateclustererrorstatestruct/errorstatelabel
+func (m_ MTRRVCOperationalStateClusterErrorStateStruct) ErrorStateLabel() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("errorStateLabel"))
+	return rv
+}
+
+
+// SetErrorStateLabel sets the value of the errorStateLabel property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcoperationalstateclustererrorstatestruct/errorstatelabel
+func (m_ MTRRVCOperationalStateClusterErrorStateStruct) SetErrorStateLabel(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setErrorStateLabel:"), objc.String(value))
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcoperationalstateclustererrorstatestruct/errorstateid
+func (m_ MTRRVCOperationalStateClusterErrorStateStruct) ErrorStateID() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("errorStateID"))
+	return rv
+}
+
+
+// SetErrorStateID sets the value of the errorStateID property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcoperationalstateclustererrorstatestruct/errorstateid
+func (m_ MTRRVCOperationalStateClusterErrorStateStruct) SetErrorStateID(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setErrorStateID:"), value)
+}
 
 
 

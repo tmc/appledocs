@@ -80,6 +80,86 @@ func NewMKMapCameraZoomRange() MKMapCameraZoomRange {
 }
 
 
+// The zoom range to apply to the map view.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/camerazoomrange-swift.property
+func (m_ MKMapCameraZoomRange) CameraZoomRange() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("cameraZoomRange"))
+	return rv
+}
+
+
+// SetCameraZoomRange sets the value of the cameraZoomRange property.
+// The zoom range to apply to the map view.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/camerazoomrange-swift.property
+func (m_ MKMapCameraZoomRange) SetCameraZoomRange(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCameraZoomRange:"), value)
+}
+
+// The minimum distance of the camera to the center of the map, measured in meters.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/camerazoomrange-swift.class/mincentercoordinatedistance
+func (m_ MKMapCameraZoomRange) MinCenterCoordinateDistance() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("minCenterCoordinateDistance"))
+	return rv
+}
+
+
+// SetMinCenterCoordinateDistance sets the value of the minCenterCoordinateDistance property.
+// The minimum distance of the camera to the center of the map, measured in meters.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/camerazoomrange-swift.class/mincentercoordinatedistance
+func (m_ MKMapCameraZoomRange) SetMinCenterCoordinateDistance(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMinCenterCoordinateDistance:"), value)
+}
+
+// The boundary of the area within which the map view’s center needs to remain.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/cameraboundary-swift.property
+func (m_ MKMapCameraZoomRange) CameraBoundary() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("cameraBoundary"))
+	return rv
+}
+
+
+// SetCameraBoundary sets the value of the cameraBoundary property.
+// The boundary of the area within which the map view’s center needs to remain.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/cameraboundary-swift.property
+func (m_ MKMapCameraZoomRange) SetCameraBoundary(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCameraBoundary:"), value)
+}
+
+// The maximum distance of the camera to the center of the map, measured in meters.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/camerazoomrange-swift.class/maxcentercoordinatedistance
+func (m_ MKMapCameraZoomRange) MaxCenterCoordinateDistance() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("maxCenterCoordinateDistance"))
+	return rv
+}
+
+
+// SetMaxCenterCoordinateDistance sets the value of the maxCenterCoordinateDistance property.
+// The maximum distance of the camera to the center of the map, measured in meters.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/camerazoomrange-swift.class/maxcentercoordinatedistance
+func (m_ MKMapCameraZoomRange) SetMaxCenterCoordinateDistance(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMaxCenterCoordinateDistance:"), value)
+}
+
+// A constant value used to represent the default value for zooming in or out on a map.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapcamerazoomdefault
+func (m_ MKMapCameraZoomRange) MKMapCameraZoomDefault() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("MKMapCameraZoomDefault"))
+	return rv
+}
+
 
 
 

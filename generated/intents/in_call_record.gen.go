@@ -80,5 +80,167 @@ func NewINCallRecord() INCallRecord {
 }
 
 
+// The date and time at which the call was initiated.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/incallrecord/datecreated
+func (i_ INCallRecord) DateCreated() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("dateCreated"))
+	return rv
+}
+
+
+// SetDateCreated sets the value of the dateCreated property.
+// The date and time at which the call was initiated.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/incallrecord/datecreated
+func (i_ INCallRecord) SetDateCreated(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setDateCreated:"), value)
+}
+
+// A unique string that you can use to locate the call in your app.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/incallrecord/identifier
+func (i_ INCallRecord) Identifier() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("identifier"))
+	return rv
+}
+
+
+// SetIdentifier sets the value of the identifier property.
+// A unique string that you can use to locate the call in your app.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/incallrecord/identifier
+func (i_ INCallRecord) SetIdentifier(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+}
+
+// A Boolean value indicating whether the user has seen the call.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/incallrecord/unseen-2m7sz
+func (i_ INCallRecord) Unseen() bool {
+	rv := objc.Send[bool](i_.ID, objc.Sel("unseen"))
+	return rv
+}
+
+
+// SetUnseen sets the value of the unseen property.
+// A Boolean value indicating whether the user has seen the call.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/incallrecord/unseen-2m7sz
+func (i_ INCallRecord) SetUnseen(value bool) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setUnseen:"), value)
+}
+
+// The audio and video capabilities of the call.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/incallrecord/callcapability
+func (i_ INCallRecord) CallCapability() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("callCapability"))
+	return rv
+}
+
+
+// SetCallCapability sets the value of the callCapability property.
+// The audio and video capabilities of the call.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/incallrecord/callcapability
+func (i_ INCallRecord) SetCallCapability(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setCallCapability:"), value)
+}
+
+// The type of call that resulted from the attempt.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/incallrecord/callrecordtype
+func (i_ INCallRecord) CallRecordType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("callRecordType"))
+	return rv
+}
+
+
+// SetCallRecordType sets the value of the callRecordType property.
+// The type of call that resulted from the attempt.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/incallrecord/callrecordtype
+func (i_ INCallRecord) SetCallRecordType(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setCallRecordType:"), value)
+}
+
+// The recipient of the user’s call request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/incallrecord/participants
+func (i_ INCallRecord) Participants() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("participants"))
+	return rv
+}
+
+
+// SetParticipants sets the value of the participants property.
+// The recipient of the user’s call request.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/incallrecord/participants
+func (i_ INCallRecord) SetParticipants(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setParticipants:"), value)
+}
+
+// The number of calls in the call record.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/incallrecord/numberofcalls-r8kl
+func (i_ INCallRecord) NumberOfCalls() int {
+	rv := objc.Send[int](i_.ID, objc.Sel("numberOfCalls"))
+	return rv
+}
+
+
+// SetNumberOfCalls sets the value of the numberOfCalls property.
+// The number of calls in the call record.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/incallrecord/numberofcalls-r8kl
+func (i_ INCallRecord) SetNumberOfCalls(value int) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setNumberOfCalls:"), value)
+}
+
+// The person who participated in the call with the current user.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/incallrecord/caller
+func (i_ INCallRecord) Caller() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("caller"))
+	return rv
+}
+
+
+// SetCaller sets the value of the caller property.
+// The person who participated in the call with the current user.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/incallrecord/caller
+func (i_ INCallRecord) SetCaller(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setCaller:"), value)
+}
+
+// The duration (measured in seconds) of the call.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/incallrecord/callduration-47iud
+func (i_ INCallRecord) CallDuration() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("callDuration"))
+	return rv
+}
+
+
+// SetCallDuration sets the value of the callDuration property.
+// The duration (measured in seconds) of the call.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/incallrecord/callduration-47iud
+func (i_ INCallRecord) SetCallDuration(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setCallDuration:"), value)
+}
+
 
 

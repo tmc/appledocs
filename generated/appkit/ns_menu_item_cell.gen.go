@@ -79,5 +79,149 @@ func NewMenuItemCell() MenuItemCell {
 }
 
 
+// The width of the image associated with the menu item.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitemcell/imagewidth
+func (m_ MenuItemCell) ImageWidth() float64 {
+	rv := objc.Send[float64](m_.ID, objc.Sel("imageWidth"))
+	return rv
+}
+
+
+// SetImageWidth sets the value of the imageWidth property.
+// The width of the image associated with the menu item.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitemcell/imagewidth
+func (m_ MenuItemCell) SetImageWidth(value float64) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setImageWidth:"), value)
+}
+
+// The width of the menu item’s key equivalent string.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitemcell/keyequivalentwidth
+func (m_ MenuItemCell) KeyEquivalentWidth() float64 {
+	rv := objc.Send[float64](m_.ID, objc.Sel("keyEquivalentWidth"))
+	return rv
+}
+
+
+// SetKeyEquivalentWidth sets the value of the keyEquivalentWidth property.
+// The width of the menu item’s key equivalent string.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitemcell/keyequivalentwidth
+func (m_ MenuItemCell) SetKeyEquivalentWidth(value float64) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setKeyEquivalentWidth:"), value)
+}
+
+// The menu item object associated with the cell.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitemcell/menuitem
+func (m_ MenuItemCell) MenuItem() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("menuItem"))
+	return rv
+}
+
+
+// SetMenuItem sets the value of the menuItem property.
+// The menu item object associated with the cell.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitemcell/menuitem
+func (m_ MenuItemCell) SetMenuItem(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMenuItem:"), value)
+}
+
+// A Boolean value indicating whether the menu item needs to be displayed.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitemcell/needsdisplay
+func (m_ MenuItemCell) NeedsDisplay() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("needsDisplay"))
+	return rv
+}
+
+
+// SetNeedsDisplay sets the value of the needsDisplay property.
+// A Boolean value indicating whether the menu item needs to be displayed.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitemcell/needsdisplay
+func (m_ MenuItemCell) SetNeedsDisplay(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setNeedsDisplay:"), value)
+}
+
+// A Boolean value indicating whether the size of the menu needs to be calculated.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitemcell/needssizing
+func (m_ MenuItemCell) NeedsSizing() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("needsSizing"))
+	return rv
+}
+
+
+// SetNeedsSizing sets the value of the needsSizing property.
+// A Boolean value indicating whether the size of the menu needs to be calculated.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitemcell/needssizing
+func (m_ MenuItemCell) SetNeedsSizing(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setNeedsSizing:"), value)
+}
+
+// The width of the image used to indicate the state of the menu item.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitemcell/stateimagewidth
+func (m_ MenuItemCell) StateImageWidth() float64 {
+	rv := objc.Send[float64](m_.ID, objc.Sel("stateImageWidth"))
+	return rv
+}
+
+
+// SetStateImageWidth sets the value of the stateImageWidth property.
+// The width of the image used to indicate the state of the menu item.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitemcell/stateimagewidth
+func (m_ MenuItemCell) SetStateImageWidth(value float64) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setStateImageWidth:"), value)
+}
+
+// The integer tag of the selected menu item.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitemcell/tag
+func (m_ MenuItemCell) Tag() int {
+	rv := objc.Send[int](m_.ID, objc.Sel("tag"))
+	return rv
+}
+
+
+// SetTag sets the value of the tag property.
+// The integer tag of the selected menu item.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitemcell/tag
+func (m_ MenuItemCell) SetTag(value int) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTag:"), value)
+}
+
+// The width of the menu item’s text, measured in points.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitemcell/titlewidth
+func (m_ MenuItemCell) TitleWidth() float64 {
+	rv := objc.Send[float64](m_.ID, objc.Sel("titleWidth"))
+	return rv
+}
+
+
+// SetTitleWidth sets the value of the titleWidth property.
+// The width of the menu item’s text, measured in points.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitemcell/titlewidth
+func (m_ MenuItemCell) SetTitleWidth(value float64) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTitleWidth:"), value)
+}
+
 
 

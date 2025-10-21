@@ -78,5 +78,185 @@ func NewContour() Contour {
 }
 
 
+// The total number of detected contours.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vncontoursobservation/contourcount
+func (c_ Contour) ContourCount() int {
+	rv := objc.Send[int](c_.ID, objc.Sel("contourCount"))
+	return rv
+}
+
+
+// SetContourCount sets the value of the contourCount property.
+// The total number of detected contours.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vncontoursobservation/contourcount
+func (c_ Contour) SetContourCount(value int) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setContourCount:"), value)
+}
+
+// An array of contours that don’t have another contour enclosing them.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vncontoursobservation/toplevelcontours
+func (c_ Contour) TopLevelContours() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("topLevelContours"))
+	return rv
+}
+
+
+// SetTopLevelContours sets the value of the topLevelContours property.
+// An array of contours that don’t have another contour enclosing them.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vncontoursobservation/toplevelcontours
+func (c_ Contour) SetTopLevelContours(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setTopLevelContours:"), value)
+}
+
+// The contour’s number of points.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vncontour/pointcount
+func (c_ Contour) PointCount() int {
+	rv := objc.Send[int](c_.ID, objc.Sel("pointCount"))
+	return rv
+}
+
+
+// SetPointCount sets the value of the pointCount property.
+// The contour’s number of points.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vncontour/pointcount
+func (c_ Contour) SetPointCount(value int) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setPointCount:"), value)
+}
+
+// The aspect ratio of the contour.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vncontour/aspectratio
+func (c_ Contour) AspectRatio() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("aspectRatio"))
+	return rv
+}
+
+
+// SetAspectRatio sets the value of the aspectRatio property.
+// The aspect ratio of the contour.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vncontour/aspectratio
+func (c_ Contour) SetAspectRatio(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setAspectRatio:"), value)
+}
+
+// The contour object’s index path.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vncontour/indexpath
+func (c_ Contour) IndexPath() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("indexPath"))
+	return rv
+}
+
+
+// SetIndexPath sets the value of the indexPath property.
+// The contour object’s index path.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vncontour/indexpath
+func (c_ Contour) SetIndexPath(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIndexPath:"), value)
+}
+
+// The total number of detected top-level contours.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vncontoursobservation/toplevelcontourcount
+func (c_ Contour) TopLevelContourCount() int {
+	rv := objc.Send[int](c_.ID, objc.Sel("topLevelContourCount"))
+	return rv
+}
+
+
+// SetTopLevelContourCount sets the value of the topLevelContourCount property.
+// The total number of detected top-level contours.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vncontoursobservation/toplevelcontourcount
+func (c_ Contour) SetTopLevelContourCount(value int) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setTopLevelContourCount:"), value)
+}
+
+// An array of contours that this contour encloses.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vncontour/childcontours
+func (c_ Contour) ChildContours() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("childContours"))
+	return rv
+}
+
+
+// SetChildContours sets the value of the childContours property.
+// An array of contours that this contour encloses.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vncontour/childcontours
+func (c_ Contour) SetChildContours(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setChildContours:"), value)
+}
+
+// The contour object as a path in normalized coordinates.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vncontour/normalizedpath
+func (c_ Contour) NormalizedPath() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("normalizedPath"))
+	return rv
+}
+
+
+// SetNormalizedPath sets the value of the normalizedPath property.
+// The contour object as a path in normalized coordinates.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vncontour/normalizedpath
+func (c_ Contour) SetNormalizedPath(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setNormalizedPath:"), value)
+}
+
+// The total number of detected child contours.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vncontour/childcontourcount
+func (c_ Contour) ChildContourCount() int {
+	rv := objc.Send[int](c_.ID, objc.Sel("childContourCount"))
+	return rv
+}
+
+
+// SetChildContourCount sets the value of the childContourCount property.
+// The total number of detected child contours.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vncontour/childcontourcount
+func (c_ Contour) SetChildContourCount(value int) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setChildContourCount:"), value)
+}
+
+// The contour’s array of points in normalized coordinates.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vncontour/normalizedpoints-8n2s5
+func (c_ Contour) NormalizedPoints() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("normalizedPoints"))
+	return rv
+}
+
+
+// SetNormalizedPoints sets the value of the normalizedPoints property.
+// The contour’s array of points in normalized coordinates.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vncontour/normalizedpoints-8n2s5
+func (c_ Contour) SetNormalizedPoints(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setNormalizedPoints:"), value)
+}
+
 
 

@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -45,7 +46,7 @@ type IContext interface {
 	DepthBlurEffectFilterForImageDisparityImagePortraitEffectsMatteHairSemanticSegmentationOrientationOptions(image unsafe.Pointer, disparityImage unsafe.Pointer, portraitEffectsMatte unsafe.Pointer, hairSemanticSegmentation unsafe.Pointer, orientation unsafe.Pointer, options objc.ID) unsafe.Pointer
 	DepthBlurEffectFilterForImageDisparityImagePortraitEffectsMatteOrientationOptions(image unsafe.Pointer, disparityImage unsafe.Pointer, portraitEffectsMatte unsafe.Pointer, orientation unsafe.Pointer, options objc.ID) unsafe.Pointer
 	DepthBlurEffectFilterForImageDataOptions(data unsafe.Pointer, options objc.ID) unsafe.Pointer
-	DepthBlurEffectFilterForImageURLOptions(url unsafe.Pointer, options objc.ID) unsafe.Pointer
+	DepthBlurEffectFilterForImageURLOptions(url foundation.URL, options objc.ID) unsafe.Pointer
 	DrawImageAtPointFromRect(image unsafe.Pointer, atPoint coregraphics.CGPoint, fromRect coregraphics.CGRect)
 	DrawImageInRectFromRect(image unsafe.Pointer, inRect coregraphics.CGRect, fromRect coregraphics.CGRect)
 	HEIF10RepresentationOfImageColorSpaceOptionsError(image unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef, options unsafe.Pointer, errorPtr unsafe.Pointer) unsafe.Pointer
@@ -66,12 +67,12 @@ type IContext interface {
 	StartTaskToRenderFromRectToDestinationAtPointError(image unsafe.Pointer, fromRect coregraphics.CGRect, destination unsafe.Pointer, atPoint coregraphics.CGPoint, error_ unsafe.Pointer) unsafe.Pointer
 	StartTaskToRenderToDestinationError(image unsafe.Pointer, destination unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer
 	TIFFRepresentationOfImageFormatColorSpaceOptions(image unsafe.Pointer, format unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef, options unsafe.Pointer) unsafe.Pointer
-	WriteHEIF10RepresentationOfImageToURLColorSpaceOptionsError(image unsafe.Pointer, url unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef, options unsafe.Pointer, errorPtr unsafe.Pointer) bool
-	WriteHEIFRepresentationOfImageToURLFormatColorSpaceOptionsError(image unsafe.Pointer, url unsafe.Pointer, format unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef, options unsafe.Pointer, errorPtr unsafe.Pointer) bool
-	WriteJPEGRepresentationOfImageToURLColorSpaceOptionsError(image unsafe.Pointer, url unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef, options unsafe.Pointer, errorPtr unsafe.Pointer) bool
-	WriteOpenEXRRepresentationOfImageToURLOptionsError(image unsafe.Pointer, url unsafe.Pointer, options unsafe.Pointer, errorPtr unsafe.Pointer) bool
-	WritePNGRepresentationOfImageToURLFormatColorSpaceOptionsError(image unsafe.Pointer, url unsafe.Pointer, format unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef, options unsafe.Pointer, errorPtr unsafe.Pointer) bool
-	WriteTIFFRepresentationOfImageToURLFormatColorSpaceOptionsError(image unsafe.Pointer, url unsafe.Pointer, format unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef, options unsafe.Pointer, errorPtr unsafe.Pointer) bool
+	WriteHEIF10RepresentationOfImageToURLColorSpaceOptionsError(image unsafe.Pointer, url foundation.URL, colorSpace coregraphics.CGColorSpaceRef, options unsafe.Pointer, errorPtr unsafe.Pointer) bool
+	WriteHEIFRepresentationOfImageToURLFormatColorSpaceOptionsError(image unsafe.Pointer, url foundation.URL, format unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef, options unsafe.Pointer, errorPtr unsafe.Pointer) bool
+	WriteJPEGRepresentationOfImageToURLColorSpaceOptionsError(image unsafe.Pointer, url foundation.URL, colorSpace coregraphics.CGColorSpaceRef, options unsafe.Pointer, errorPtr unsafe.Pointer) bool
+	WriteOpenEXRRepresentationOfImageToURLOptionsError(image unsafe.Pointer, url foundation.URL, options unsafe.Pointer, errorPtr unsafe.Pointer) bool
+	WritePNGRepresentationOfImageToURLFormatColorSpaceOptionsError(image unsafe.Pointer, url foundation.URL, format unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef, options unsafe.Pointer, errorPtr unsafe.Pointer) bool
+	WriteTIFFRepresentationOfImageToURLFormatColorSpaceOptionsError(image unsafe.Pointer, url foundation.URL, format unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef, options unsafe.Pointer, errorPtr unsafe.Pointer) bool
 }
 
 // The Core Image context class provides an evaluation context for Core Image processing with Metal, OpenGL, or OpenCL.
@@ -446,7 +447,7 @@ func (c_ Context) DepthBlurEffectFilterForImageDataOptions(data unsafe.Pointer, 
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/depthBlurEffectFilter(forImageURL:options:)
-func (c_ Context) DepthBlurEffectFilterForImageURLOptions(url unsafe.Pointer, options objc.ID) unsafe.Pointer {
+func (c_ Context) DepthBlurEffectFilterForImageURLOptions(url foundation.URL, options objc.ID) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("depthBlurEffectFilterForImageURL:options:"), url, options)
 	return rv
 }
@@ -606,7 +607,7 @@ func (c_ Context) TIFFRepresentationOfImageFormatColorSpaceOptions(image unsafe.
 // Renders the image and exports the resulting image data as a file in HEIF10 format.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/writeHEIF10Representation(of:to:colorSpace:options:)
-func (c_ Context) WriteHEIF10RepresentationOfImageToURLColorSpaceOptionsError(image unsafe.Pointer, url unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef, options unsafe.Pointer, errorPtr unsafe.Pointer) bool {
+func (c_ Context) WriteHEIF10RepresentationOfImageToURLColorSpaceOptionsError(image unsafe.Pointer, url foundation.URL, colorSpace coregraphics.CGColorSpaceRef, options unsafe.Pointer, errorPtr unsafe.Pointer) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("writeHEIF10RepresentationOfImage:toURL:colorSpace:options:error:"), image, url, colorSpace, options, errorPtr)
 	return rv
 }
@@ -614,7 +615,7 @@ func (c_ Context) WriteHEIF10RepresentationOfImageToURLColorSpaceOptionsError(im
 // Renders the image and exports the resulting image data as a file in HEIF format.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/writeHEIFRepresentation(of:to:format:colorSpace:options:)
-func (c_ Context) WriteHEIFRepresentationOfImageToURLFormatColorSpaceOptionsError(image unsafe.Pointer, url unsafe.Pointer, format unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef, options unsafe.Pointer, errorPtr unsafe.Pointer) bool {
+func (c_ Context) WriteHEIFRepresentationOfImageToURLFormatColorSpaceOptionsError(image unsafe.Pointer, url foundation.URL, format unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef, options unsafe.Pointer, errorPtr unsafe.Pointer) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("writeHEIFRepresentationOfImage:toURL:format:colorSpace:options:error:"), image, url, format, colorSpace, options, errorPtr)
 	return rv
 }
@@ -622,7 +623,7 @@ func (c_ Context) WriteHEIFRepresentationOfImageToURLFormatColorSpaceOptionsErro
 // Renders the image and exports the resulting image data as a file in JPEG format.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/writeJPEGRepresentation(of:to:colorSpace:options:)
-func (c_ Context) WriteJPEGRepresentationOfImageToURLColorSpaceOptionsError(image unsafe.Pointer, url unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef, options unsafe.Pointer, errorPtr unsafe.Pointer) bool {
+func (c_ Context) WriteJPEGRepresentationOfImageToURLColorSpaceOptionsError(image unsafe.Pointer, url foundation.URL, colorSpace coregraphics.CGColorSpaceRef, options unsafe.Pointer, errorPtr unsafe.Pointer) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("writeJPEGRepresentationOfImage:toURL:colorSpace:options:error:"), image, url, colorSpace, options, errorPtr)
 	return rv
 }
@@ -630,7 +631,7 @@ func (c_ Context) WriteJPEGRepresentationOfImageToURLColorSpaceOptionsError(imag
 // Renders the image and exports the resulting image data as a file in open EXR format.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/writeOpenEXRRepresentation(of:to:options:)
-func (c_ Context) WriteOpenEXRRepresentationOfImageToURLOptionsError(image unsafe.Pointer, url unsafe.Pointer, options unsafe.Pointer, errorPtr unsafe.Pointer) bool {
+func (c_ Context) WriteOpenEXRRepresentationOfImageToURLOptionsError(image unsafe.Pointer, url foundation.URL, options unsafe.Pointer, errorPtr unsafe.Pointer) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("writeOpenEXRRepresentationOfImage:toURL:options:error:"), image, url, options, errorPtr)
 	return rv
 }
@@ -638,7 +639,7 @@ func (c_ Context) WriteOpenEXRRepresentationOfImageToURLOptionsError(image unsaf
 // Renders the image and exports the resulting image data as a file in PNG format.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/writePNGRepresentation(of:to:format:colorSpace:options:)
-func (c_ Context) WritePNGRepresentationOfImageToURLFormatColorSpaceOptionsError(image unsafe.Pointer, url unsafe.Pointer, format unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef, options unsafe.Pointer, errorPtr unsafe.Pointer) bool {
+func (c_ Context) WritePNGRepresentationOfImageToURLFormatColorSpaceOptionsError(image unsafe.Pointer, url foundation.URL, format unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef, options unsafe.Pointer, errorPtr unsafe.Pointer) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("writePNGRepresentationOfImage:toURL:format:colorSpace:options:error:"), image, url, format, colorSpace, options, errorPtr)
 	return rv
 }
@@ -646,9 +647,27 @@ func (c_ Context) WritePNGRepresentationOfImageToURLFormatColorSpaceOptionsError
 // Renders the image and exports the resulting image data as a file in TIFF format.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/writeTIFFRepresentation(of:to:format:colorSpace:options:)
-func (c_ Context) WriteTIFFRepresentationOfImageToURLFormatColorSpaceOptionsError(image unsafe.Pointer, url unsafe.Pointer, format unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef, options unsafe.Pointer, errorPtr unsafe.Pointer) bool {
+func (c_ Context) WriteTIFFRepresentationOfImageToURLFormatColorSpaceOptionsError(image unsafe.Pointer, url foundation.URL, format unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef, options unsafe.Pointer, errorPtr unsafe.Pointer) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("writeTIFFRepresentationOfImage:toURL:format:colorSpace:options:error:"), image, url, format, colorSpace, options, errorPtr)
 	return rv
+}
+
+// The render destination’s representation of alpha (transparency) values.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreimage/cirenderdestination/alphamode
+func (c_ Context) AlphaMode() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("alphaMode"))
+	return rv
+}
+
+
+// SetAlphaMode sets the value of the alphaMode property.
+// The render destination’s representation of alpha (transparency) values.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreimage/cirenderdestination/alphamode
+func (c_ Context) SetAlphaMode(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setAlphaMode:"), value)
 }
 
 // The working color space of the Core Image context.

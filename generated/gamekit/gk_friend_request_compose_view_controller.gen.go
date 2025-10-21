@@ -82,5 +82,41 @@ func NewFriendRequestComposeViewController() FriendRequestComposeViewController 
 }
 
 
+// The delegate for the event handler.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedeventhandler/delegate
+func (f_ FriendRequestComposeViewController) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+
+// SetDelegate sets the value of the delegate property.
+// The delegate for the event handler.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedeventhandler/delegate
+func (f_ FriendRequestComposeViewController) SetDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setDelegate:"), value)
+}
+
+// The view controller’s delegate
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkfriendrequestcomposeviewcontroller/composeviewdelegate
+func (f_ FriendRequestComposeViewController) ComposeViewDelegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("composeViewDelegate"))
+	return rv
+}
+
+
+// SetComposeViewDelegate sets the value of the composeViewDelegate property.
+// The view controller’s delegate
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkfriendrequestcomposeviewcontroller/composeviewdelegate
+func (f_ FriendRequestComposeViewController) SetComposeViewDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setComposeViewDelegate:"), value)
+}
+
 
 

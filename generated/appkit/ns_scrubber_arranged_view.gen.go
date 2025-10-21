@@ -123,5 +123,41 @@ func (s_ ScrubberArrangedView) SetSelected(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSelected:"), value)
 }
 
+// A Boolean value that specifies whether the view is currently highlighted.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberarrangedview/ishighlighted
+func (s_ ScrubberArrangedView) IsHighlighted() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("isHighlighted"))
+	return rv
+}
+
+
+// SetIsHighlighted sets the value of the isHighlighted property.
+// A Boolean value that specifies whether the view is currently highlighted.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberarrangedview/ishighlighted
+func (s_ ScrubberArrangedView) SetIsHighlighted(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setIsHighlighted:"), value)
+}
+
+// A Boolean value that specifies whether the current view is selected.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberarrangedview/isselected
+func (s_ ScrubberArrangedView) IsSelected() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("isSelected"))
+	return rv
+}
+
+
+// SetIsSelected sets the value of the isSelected property.
+// A Boolean value that specifies whether the current view is selected.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberarrangedview/isselected
+func (s_ ScrubberArrangedView) SetIsSelected(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setIsSelected:"), value)
+}
+
 
 

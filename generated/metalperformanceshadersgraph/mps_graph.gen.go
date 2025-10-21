@@ -243,5 +243,41 @@ func (g_ Graph) SingleGateRNNWithSourceTensorRecurrentWeightInputWeightBiasInitS
 	return rv
 }
 
+// Options for the graph.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraph/options
+func (g_ Graph) Options() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("options"))
+	return rv
+}
+
+
+// SetOptions sets the value of the options property.
+// Options for the graph.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraph/options
+func (g_ Graph) SetOptions(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setOptions:"), value)
+}
+
+// Array of all the placeholder tensors.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraph/placeholdertensors
+func (g_ Graph) PlaceholderTensors() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("placeholderTensors"))
+	return rv
+}
+
+
+// SetPlaceholderTensors sets the value of the placeholderTensors property.
+// Array of all the placeholder tensors.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraph/placeholdertensors
+func (g_ Graph) SetPlaceholderTensors(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setPlaceholderTensors:"), value)
+}
+
 
 

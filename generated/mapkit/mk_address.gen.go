@@ -91,4 +91,40 @@ func NewMKAddressWithFullAddressShortAddress(fullAddress string, shortAddress st
 }
 
 
+// A string that represents a place’s full address
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkaddress/fulladdress
+func (m_ MKAddress) FullAddress() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("fullAddress"))
+	return rv
+}
+
+
+// SetFullAddress sets the value of the fullAddress property.
+// A string that represents a place’s full address
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkaddress/fulladdress
+func (m_ MKAddress) SetFullAddress(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setFullAddress:"), objc.String(value))
+}
+
+// A string that represents the short address of a location, such as it’s street address and city.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkaddress/shortaddress
+func (m_ MKAddress) ShortAddress() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("shortAddress"))
+	return rv
+}
+
+
+// SetShortAddress sets the value of the shortAddress property.
+// A string that represents the short address of a location, such as it’s street address and city.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkaddress/shortaddress
+func (m_ MKAddress) SetShortAddress(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setShortAddress:"), objc.String(value))
+}
+
 

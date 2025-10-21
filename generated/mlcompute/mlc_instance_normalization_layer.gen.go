@@ -79,5 +79,167 @@ func NewCInstanceNormalizationLayer() CInstanceNormalizationLayer {
 }
 
 
+// The running variance tensor.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcinstancenormalizationlayer/variance
+func (c_ CInstanceNormalizationLayer) Variance() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("variance"))
+	return rv
+}
+
+
+// SetVariance sets the value of the variance property.
+// The running variance tensor.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcinstancenormalizationlayer/variance
+func (c_ CInstanceNormalizationLayer) SetVariance(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setVariance:"), value)
+}
+
+// The variance epsilon you use for numerical stability.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcinstancenormalizationlayer/varianceepsilon
+func (c_ CInstanceNormalizationLayer) VarianceEpsilon() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("varianceEpsilon"))
+	return rv
+}
+
+
+// SetVarianceEpsilon sets the value of the varianceEpsilon property.
+// The variance epsilon you use for numerical stability.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcinstancenormalizationlayer/varianceepsilon
+func (c_ CInstanceNormalizationLayer) SetVarianceEpsilon(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setVarianceEpsilon:"), value)
+}
+
+// The gamma tensor.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcinstancenormalizationlayer/gamma
+func (c_ CInstanceNormalizationLayer) Gamma() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("gamma"))
+	return rv
+}
+
+
+// SetGamma sets the value of the gamma property.
+// The gamma tensor.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcinstancenormalizationlayer/gamma
+func (c_ CInstanceNormalizationLayer) SetGamma(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setGamma:"), value)
+}
+
+// The momentum value for the running mean and variance computation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcinstancenormalizationlayer/momentum
+func (c_ CInstanceNormalizationLayer) Momentum() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("momentum"))
+	return rv
+}
+
+
+// SetMomentum sets the value of the momentum property.
+// The momentum value for the running mean and variance computation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcinstancenormalizationlayer/momentum
+func (c_ CInstanceNormalizationLayer) SetMomentum(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setMomentum:"), value)
+}
+
+// The number of feature channels.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcinstancenormalizationlayer/featurechannelcount
+func (c_ CInstanceNormalizationLayer) FeatureChannelCount() int {
+	rv := objc.Send[int](c_.ID, objc.Sel("featureChannelCount"))
+	return rv
+}
+
+
+// SetFeatureChannelCount sets the value of the featureChannelCount property.
+// The number of feature channels.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcinstancenormalizationlayer/featurechannelcount
+func (c_ CInstanceNormalizationLayer) SetFeatureChannelCount(value int) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setFeatureChannelCount:"), value)
+}
+
+// The gamma tensor parameter you use for optimizer updates.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcinstancenormalizationlayer/gammaparameter
+func (c_ CInstanceNormalizationLayer) GammaParameter() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("gammaParameter"))
+	return rv
+}
+
+
+// SetGammaParameter sets the value of the gammaParameter property.
+// The gamma tensor parameter you use for optimizer updates.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcinstancenormalizationlayer/gammaparameter
+func (c_ CInstanceNormalizationLayer) SetGammaParameter(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setGammaParameter:"), value)
+}
+
+// The running mean tensor.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcinstancenormalizationlayer/mean
+func (c_ CInstanceNormalizationLayer) Mean() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("mean"))
+	return rv
+}
+
+
+// SetMean sets the value of the mean property.
+// The running mean tensor.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcinstancenormalizationlayer/mean
+func (c_ CInstanceNormalizationLayer) SetMean(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setMean:"), value)
+}
+
+// The beta tensor.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcinstancenormalizationlayer/beta
+func (c_ CInstanceNormalizationLayer) Beta() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("beta"))
+	return rv
+}
+
+
+// SetBeta sets the value of the beta property.
+// The beta tensor.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcinstancenormalizationlayer/beta
+func (c_ CInstanceNormalizationLayer) SetBeta(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setBeta:"), value)
+}
+
+// The beta tensor parameter you use for optimizer updates.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcinstancenormalizationlayer/betaparameter
+func (c_ CInstanceNormalizationLayer) BetaParameter() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("betaParameter"))
+	return rv
+}
+
+
+// SetBetaParameter sets the value of the betaParameter property.
+// The beta tensor parameter you use for optimizer updates.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcinstancenormalizationlayer/betaparameter
+func (c_ CInstanceNormalizationLayer) SetBetaParameter(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setBetaParameter:"), value)
+}
+
 
 

@@ -80,5 +80,41 @@ func NewPortraitEffectsMatte() PortraitEffectsMatte {
 }
 
 
+// The portrait effects matte’s internal image, formatted as a pixel buffer.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avportraiteffectsmatte/mattingimage
+func (p_ PortraitEffectsMatte) MattingImage() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("mattingImage"))
+	return rv
+}
+
+
+// SetMattingImage sets the value of the mattingImage property.
+// The portrait effects matte’s internal image, formatted as a pixel buffer.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avportraiteffectsmatte/mattingimage
+func (p_ PortraitEffectsMatte) SetMattingImage(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setMattingImage:"), value)
+}
+
+// The pixel format type of this portrait effects matte’s internal image.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avportraiteffectsmatte/pixelformattype
+func (p_ PortraitEffectsMatte) PixelFormatType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("pixelFormatType"))
+	return rv
+}
+
+
+// SetPixelFormatType sets the value of the pixelFormatType property.
+// The pixel format type of this portrait effects matte’s internal image.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avportraiteffectsmatte/pixelformattype
+func (p_ PortraitEffectsMatte) SetPixelFormatType(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPixelFormatType:"), value)
+}
+
 
 

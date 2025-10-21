@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [Popover] class.
@@ -157,6 +158,132 @@ func (p_ Popover) SetHasFullSizeContent(value bool) {
 func (p_ Popover) Shown() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("shown"))
 	return rv
+}
+
+// Specifies if the popover is to be animated.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspopover/animates
+func (p_ Popover) Animates() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("animates"))
+	return rv
+}
+
+
+// SetAnimates sets the value of the animates property.
+// Specifies if the popover is to be animated.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspopover/animates
+func (p_ Popover) SetAnimates(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setAnimates:"), value)
+}
+
+// The appearance of the popover.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspopover/appearance-swift.property
+func (p_ Popover) Appearance() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("appearance"))
+	return rv
+}
+
+
+// SetAppearance sets the value of the appearance property.
+// The appearance of the popover.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspopover/appearance-swift.property
+func (p_ Popover) SetAppearance(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setAppearance:"), value)
+}
+
+// The content size of the popover.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspopover/contentsize
+func (p_ Popover) ContentSize() coregraphics.CGSize {
+	rv := objc.Send[coregraphics.CGSize](p_.ID, objc.Sel("contentSize"))
+	return rv
+}
+
+
+// SetContentSize sets the value of the contentSize property.
+// The content size of the popover.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspopover/contentsize
+func (p_ Popover) SetContentSize(value coregraphics.CGSize) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setContentSize:"), value)
+}
+
+// The delegate of the popover.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspopover/delegate
+func (p_ Popover) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+
+// SetDelegate sets the value of the delegate property.
+// The delegate of the popover.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspopover/delegate
+func (p_ Popover) SetDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setDelegate:"), value)
+}
+
+// A Boolean value that indicates whether the window created by a popover’s detachment is automatically created.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspopover/isdetached
+func (p_ Popover) IsDetached() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isDetached"))
+	return rv
+}
+
+
+// SetIsDetached sets the value of the isDetached property.
+// A Boolean value that indicates whether the window created by a popover’s detachment is automatically created.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspopover/isdetached
+func (p_ Popover) SetIsDetached(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsDetached:"), value)
+}
+
+// The display state of the popover.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspopover/isshown
+func (p_ Popover) IsShown() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isShown"))
+	return rv
+}
+
+
+// SetIsShown sets the value of the isShown property.
+// The display state of the popover.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspopover/isshown
+func (p_ Popover) SetIsShown(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsShown:"), value)
+}
+
+// The rectangle within the positioning view relative to which the popover should be positioned.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspopover/positioningrect
+func (p_ Popover) PositioningRect() coregraphics.CGRect {
+	rv := objc.Send[coregraphics.CGRect](p_.ID, objc.Sel("positioningRect"))
+	return rv
+}
+
+
+// SetPositioningRect sets the value of the positioningRect property.
+// The rectangle within the positioning view relative to which the popover should be positioned.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspopover/positioningrect
+func (p_ Popover) SetPositioningRect(value coregraphics.CGRect) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPositioningRect:"), value)
 }
 
 

@@ -81,5 +81,23 @@ func NewSaliencyImageObservation() SaliencyImageObservation {
 }
 
 
+// A collection of objects describing the distinct areas of the saliency heat map.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnsaliencyimageobservation/salientobjects
+func (s_ SaliencyImageObservation) SalientObjects() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("salientObjects"))
+	return rv
+}
+
+
+// SetSalientObjects sets the value of the salientObjects property.
+// A collection of objects describing the distinct areas of the saliency heat map.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnsaliencyimageobservation/salientobjects
+func (s_ SaliencyImageObservation) SetSalientObjects(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setSalientObjects:"), value)
+}
+
 
 

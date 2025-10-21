@@ -94,6 +94,24 @@ func NewPHASEEnvelopeDistanceModelParametersWithEnvelope(envelope unsafe.Pointer
 }
 
 
+// A value that fades specific frequencies over a distance.
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasegeometricspreadingdistancemodelparameters/rollofffactor
+func (p_ PHASEEnvelopeDistanceModelParameters) RolloffFactor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("rolloffFactor"))
+	return rv
+}
+
+
+// SetRolloffFactor sets the value of the rolloffFactor property.
+// A value that fades specific frequencies over a distance.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasegeometricspreadingdistancemodelparameters/rollofffactor
+func (p_ PHASEEnvelopeDistanceModelParameters) SetRolloffFactor(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setRolloffFactor:"), value)
+}
+
 // An envelope that shapes sound dissipation over distance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEEnvelopeDistanceModelParameters/envelope

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [USBHostPipe] class.
@@ -31,9 +32,9 @@ type IUSBHostPipe interface {
 	IUSBHostIOSource
 	CopyStreamWithStreamIDError(streamID uint, error_ unsafe.Pointer) unsafe.Pointer
 	EnableStreamsWithError(error_ unsafe.Pointer) bool
-	EnqueueControlRequestDataCompletionTimeoutErrorCompletionHandler(request unsafe.Pointer, data unsafe.Pointer, completionTimeout TimeInterval, error_ unsafe.Pointer, completionHandler unsafe.Pointer) bool
+	EnqueueControlRequestDataCompletionTimeoutErrorCompletionHandler(request unsafe.Pointer, data unsafe.Pointer, completionTimeout foundation.TimeInterval, error_ unsafe.Pointer, completionHandler unsafe.Pointer) bool
 	SendControlRequestError(request unsafe.Pointer, error_ unsafe.Pointer) bool
-	SendIORequestWithDataBytesTransferredCompletionTimeoutError(data unsafe.Pointer, bytesTransferred unsafe.Pointer, completionTimeout TimeInterval, error_ unsafe.Pointer) bool
+	SendIORequestWithDataBytesTransferredCompletionTimeoutError(data unsafe.Pointer, bytesTransferred unsafe.Pointer, completionTimeout foundation.TimeInterval, error_ unsafe.Pointer) bool
 }
 
 // The class that sends control, bulk, interrupt, and isochronous input/output requests for function drivers, and manages stream capabilities.
@@ -105,7 +106,7 @@ func (u_ USBHostPipe) EnableStreamsWithError(error_ unsafe.Pointer) bool {
 // Enqueues a request on a control endpoint.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostPipe/enqueueControlRequest:data:completionTimeout:error:completionHandler:
-func (u_ USBHostPipe) EnqueueControlRequestDataCompletionTimeoutErrorCompletionHandler(request unsafe.Pointer, data unsafe.Pointer, completionTimeout TimeInterval, error_ unsafe.Pointer, completionHandler unsafe.Pointer) bool {
+func (u_ USBHostPipe) EnqueueControlRequestDataCompletionTimeoutErrorCompletionHandler(request unsafe.Pointer, data unsafe.Pointer, completionTimeout foundation.TimeInterval, error_ unsafe.Pointer, completionHandler unsafe.Pointer) bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("enqueueControlRequest:data:completionTimeout:error:completionHandler:"), request, data, completionTimeout, error_, completionHandler)
 	return rv
 }
@@ -121,9 +122,71 @@ func (u_ USBHostPipe) SendControlRequestError(request unsafe.Pointer, error_ uns
 // Sends an input/output request on the pipe.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostPipe/sendIORequestWithData:bytesTransferred:completionTimeout:error:
-func (u_ USBHostPipe) SendIORequestWithDataBytesTransferredCompletionTimeoutError(data unsafe.Pointer, bytesTransferred unsafe.Pointer, completionTimeout TimeInterval, error_ unsafe.Pointer) bool {
+func (u_ USBHostPipe) SendIORequestWithDataBytesTransferredCompletionTimeoutError(data unsafe.Pointer, bytesTransferred unsafe.Pointer, completionTimeout foundation.TimeInterval, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("sendIORequestWithData:bytesTransferred:completionTimeout:error:"), data, bytesTransferred, completionTimeout, error_)
 	return rv
+}
+
+// A property that retrieves the original endpoint descriptors from the pipe at the point of creation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostpipe/originaldescriptors
+func (u_ USBHostPipe) OriginalDescriptors() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("originalDescriptors"))
+	return rv
+}
+
+
+// SetOriginalDescriptors sets the value of the originalDescriptors property.
+// A property that retrieves the original endpoint descriptors from the pipe at the point of creation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostpipe/originaldescriptors
+func (u_ USBHostPipe) SetOriginalDescriptors(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setOriginalDescriptors:"), value)
+}
+
+// A property that retrieves the current idle suspend timeout.
+//
+// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostpipe/idletimeout
+func (u_ USBHostPipe) IdleTimeout() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("idleTimeout"))
+	return rv
+}
+
+
+// SetIdleTimeout sets the value of the idleTimeout property.
+// A property that retrieves the current idle suspend timeout.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostpipe/idletimeout
+func (u_ USBHostPipe) SetIdleTimeout(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setIdleTimeout:"), value)
+}
+
+// The default completion timeout for input/output requests.
+//
+// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostdefaultcontrolcompletiontimeout
+func (u_ USBHostPipe) IOUSBHostDefaultControlCompletionTimeout() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("IOUSBHostDefaultControlCompletionTimeout"))
+	return rv
+}
+
+// A property that retrieves the current endpoint descriptors controlling the endpoint.
+//
+// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostpipe/descriptors
+func (u_ USBHostPipe) Descriptors() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("descriptors"))
+	return rv
+}
+
+
+// SetDescriptors sets the value of the descriptors property.
+// A property that retrieves the current endpoint descriptors controlling the endpoint.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostpipe/descriptors
+func (u_ USBHostPipe) SetDescriptors(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setDescriptors:"), value)
 }
 
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MTRTimeSynchronizationClusterDstOffsetType] class.
@@ -75,6 +76,51 @@ func NewMTRTimeSynchronizationClusterDstOffsetType() MTRTimeSynchronizationClust
 	return getMTRTimeSynchronizationClusterDstOffsetTypeClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtimesynchronizationclusterdstoffsettype/offset
+func (m_ MTRTimeSynchronizationClusterDstOffsetType) Offset() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("offset"))
+	return rv
+}
+
+
+// SetOffset sets the value of the offset property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtimesynchronizationclusterdstoffsettype/offset
+func (m_ MTRTimeSynchronizationClusterDstOffsetType) SetOffset(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setOffset:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtimesynchronizationclusterdstoffsettype/validuntil
+func (m_ MTRTimeSynchronizationClusterDstOffsetType) ValidUntil() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("validUntil"))
+	return rv
+}
+
+
+// SetValidUntil sets the value of the validUntil property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtimesynchronizationclusterdstoffsettype/validuntil
+func (m_ MTRTimeSynchronizationClusterDstOffsetType) SetValidUntil(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setValidUntil:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtimesynchronizationclusterdstoffsettype/validstarting
+func (m_ MTRTimeSynchronizationClusterDstOffsetType) ValidStarting() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("validStarting"))
+	return rv
+}
+
+
+// SetValidStarting sets the value of the validStarting property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtimesynchronizationclusterdstoffsettype/validstarting
+func (m_ MTRTimeSynchronizationClusterDstOffsetType) SetValidStarting(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setValidStarting:"), value)
+}
 
 
 

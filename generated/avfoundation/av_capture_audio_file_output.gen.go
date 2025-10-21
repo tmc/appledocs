@@ -81,5 +81,41 @@ func NewCaptureAudioFileOutput() CaptureAudioFileOutput {
 }
 
 
+// The settings used to decode or re-encode audio before it is output by the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureaudiofileoutput/audiosettings
+func (c_ CaptureAudioFileOutput) AudioSettings() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("audioSettings"))
+	return rv
+}
+
+
+// SetAudioSettings sets the value of the audioSettings property.
+// The settings used to decode or re-encode audio before it is output by the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureaudiofileoutput/audiosettings
+func (c_ CaptureAudioFileOutput) SetAudioSettings(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setAudioSettings:"), objc.String(value))
+}
+
+// A collection of metadata to be written to the receiver’s output files.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureaudiofileoutput/metadata
+func (c_ CaptureAudioFileOutput) Metadata() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("metadata"))
+	return rv
+}
+
+
+// SetMetadata sets the value of the metadata property.
+// A collection of metadata to be written to the receiver’s output files.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureaudiofileoutput/metadata
+func (c_ CaptureAudioFileOutput) SetMetadata(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setMetadata:"), value)
+}
+
 
 

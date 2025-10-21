@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,8 +78,8 @@ func NewMTRDeviceEnergyManagementClusterConstraintsStruct() MTRDeviceEnergyManag
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterConstraintsStruct/duration
-func (m_ MTRDeviceEnergyManagementClusterConstraintsStruct) Duration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("duration"))
+func (m_ MTRDeviceEnergyManagementClusterConstraintsStruct) Duration() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("duration"))
 	return rv
 }
 
@@ -86,14 +87,14 @@ func (m_ MTRDeviceEnergyManagementClusterConstraintsStruct) Duration() unsafe.Po
 // SetDuration sets the value of the duration property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterConstraintsStruct/duration
-func (m_ MTRDeviceEnergyManagementClusterConstraintsStruct) SetDuration(value unsafe.Pointer) {
+func (m_ MTRDeviceEnergyManagementClusterConstraintsStruct) SetDuration(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDuration:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterConstraintsStruct/loadControl
-func (m_ MTRDeviceEnergyManagementClusterConstraintsStruct) LoadControl() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("loadControl"))
+func (m_ MTRDeviceEnergyManagementClusterConstraintsStruct) LoadControl() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("loadControl"))
 	return rv
 }
 
@@ -101,14 +102,14 @@ func (m_ MTRDeviceEnergyManagementClusterConstraintsStruct) LoadControl() unsafe
 // SetLoadControl sets the value of the loadControl property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterConstraintsStruct/loadControl
-func (m_ MTRDeviceEnergyManagementClusterConstraintsStruct) SetLoadControl(value unsafe.Pointer) {
+func (m_ MTRDeviceEnergyManagementClusterConstraintsStruct) SetLoadControl(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLoadControl:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterConstraintsStruct/maximumEnergy
-func (m_ MTRDeviceEnergyManagementClusterConstraintsStruct) MaximumEnergy() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("maximumEnergy"))
+func (m_ MTRDeviceEnergyManagementClusterConstraintsStruct) MaximumEnergy() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("maximumEnergy"))
 	return rv
 }
 
@@ -116,14 +117,14 @@ func (m_ MTRDeviceEnergyManagementClusterConstraintsStruct) MaximumEnergy() unsa
 // SetMaximumEnergy sets the value of the maximumEnergy property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterConstraintsStruct/maximumEnergy
-func (m_ MTRDeviceEnergyManagementClusterConstraintsStruct) SetMaximumEnergy(value unsafe.Pointer) {
+func (m_ MTRDeviceEnergyManagementClusterConstraintsStruct) SetMaximumEnergy(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMaximumEnergy:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterConstraintsStruct/nominalPower
-func (m_ MTRDeviceEnergyManagementClusterConstraintsStruct) NominalPower() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("nominalPower"))
+func (m_ MTRDeviceEnergyManagementClusterConstraintsStruct) NominalPower() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("nominalPower"))
 	return rv
 }
 
@@ -131,14 +132,14 @@ func (m_ MTRDeviceEnergyManagementClusterConstraintsStruct) NominalPower() unsaf
 // SetNominalPower sets the value of the nominalPower property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterConstraintsStruct/nominalPower
-func (m_ MTRDeviceEnergyManagementClusterConstraintsStruct) SetNominalPower(value unsafe.Pointer) {
+func (m_ MTRDeviceEnergyManagementClusterConstraintsStruct) SetNominalPower(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNominalPower:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterConstraintsStruct/startTime
-func (m_ MTRDeviceEnergyManagementClusterConstraintsStruct) StartTime() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("startTime"))
+func (m_ MTRDeviceEnergyManagementClusterConstraintsStruct) StartTime() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("startTime"))
 	return rv
 }
 
@@ -146,7 +147,7 @@ func (m_ MTRDeviceEnergyManagementClusterConstraintsStruct) StartTime() unsafe.P
 // SetStartTime sets the value of the startTime property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterConstraintsStruct/startTime
-func (m_ MTRDeviceEnergyManagementClusterConstraintsStruct) SetStartTime(value unsafe.Pointer) {
+func (m_ MTRDeviceEnergyManagementClusterConstraintsStruct) SetStartTime(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStartTime:"), value)
 }
 

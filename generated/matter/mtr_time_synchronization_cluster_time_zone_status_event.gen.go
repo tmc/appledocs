@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -92,8 +93,8 @@ func (m_ MTRTimeSynchronizationClusterTimeZoneStatusEvent) SetName(value string)
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterTimeZoneStatusEvent/offset
-func (m_ MTRTimeSynchronizationClusterTimeZoneStatusEvent) Offset() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("offset"))
+func (m_ MTRTimeSynchronizationClusterTimeZoneStatusEvent) Offset() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("offset"))
 	return rv
 }
 
@@ -101,7 +102,7 @@ func (m_ MTRTimeSynchronizationClusterTimeZoneStatusEvent) Offset() unsafe.Point
 // SetOffset sets the value of the offset property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterTimeZoneStatusEvent/offset
-func (m_ MTRTimeSynchronizationClusterTimeZoneStatusEvent) SetOffset(value unsafe.Pointer) {
+func (m_ MTRTimeSynchronizationClusterTimeZoneStatusEvent) SetOffset(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOffset:"), value)
 }
 

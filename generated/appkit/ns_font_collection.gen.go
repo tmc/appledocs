@@ -80,5 +80,59 @@ func NewFontCollection() FontCollection {
 }
 
 
+// A list of query font descriptors whose matching results are excluded from the list of matching descriptors.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontcollection/exclusiondescriptors
+func (f_ FontCollection) ExclusionDescriptors() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("exclusionDescriptors"))
+	return rv
+}
+
+
+// SetExclusionDescriptors sets the value of the exclusionDescriptors property.
+// A list of query font descriptors whose matching results are excluded from the list of matching descriptors.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontcollection/exclusiondescriptors
+func (f_ FontCollection) SetExclusionDescriptors(value unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setExclusionDescriptors:"), value)
+}
+
+// An array of font descriptors matching the logical descriptors.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontcollection/matchingdescriptors
+func (f_ FontCollection) MatchingDescriptors() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("matchingDescriptors"))
+	return rv
+}
+
+
+// SetMatchingDescriptors sets the value of the matchingDescriptors property.
+// An array of font descriptors matching the logical descriptors.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontcollection/matchingdescriptors
+func (f_ FontCollection) SetMatchingDescriptors(value unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setMatchingDescriptors:"), value)
+}
+
+// An array of font descriptors whose matching results produce the collection’s matching descriptors.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontcollection/querydescriptors
+func (f_ FontCollection) QueryDescriptors() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("queryDescriptors"))
+	return rv
+}
+
+
+// SetQueryDescriptors sets the value of the queryDescriptors property.
+// An array of font descriptors whose matching results produce the collection’s matching descriptors.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontcollection/querydescriptors
+func (f_ FontCollection) SetQueryDescriptors(value unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setQueryDescriptors:"), value)
+}
+
 
 

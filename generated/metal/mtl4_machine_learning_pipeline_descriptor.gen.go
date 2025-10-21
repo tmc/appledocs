@@ -79,5 +79,41 @@ func NewMTL4MachineLearningPipelineDescriptor() MTL4MachineLearningPipelineDescr
 }
 
 
+// Assigns an optional string that helps identify pipeline states you create from this descriptor.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4machinelearningpipelinedescriptor/label
+func (m_ MTL4MachineLearningPipelineDescriptor) Label() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("label"))
+	return rv
+}
+
+
+// SetLabel sets the value of the label property.
+// Assigns an optional string that helps identify pipeline states you create from this descriptor.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4machinelearningpipelinedescriptor/label
+func (m_ MTL4MachineLearningPipelineDescriptor) SetLabel(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), objc.String(value))
+}
+
+// Assigns the function that the machine learning pipeline you create from this descriptor executes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4machinelearningpipelinedescriptor/machinelearningfunctiondescriptor
+func (m_ MTL4MachineLearningPipelineDescriptor) MachineLearningFunctionDescriptor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("machineLearningFunctionDescriptor"))
+	return rv
+}
+
+
+// SetMachineLearningFunctionDescriptor sets the value of the machineLearningFunctionDescriptor property.
+// Assigns the function that the machine learning pipeline you create from this descriptor executes.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4machinelearningpipelinedescriptor/machinelearningfunctiondescriptor
+func (m_ MTL4MachineLearningPipelineDescriptor) SetMachineLearningFunctionDescriptor(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMachineLearningFunctionDescriptor:"), value)
+}
+
 
 

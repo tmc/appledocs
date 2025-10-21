@@ -111,6 +111,24 @@ func (c_ CXAction) Fulfill() {
 
 // A Boolean value that indicates whether the action has been performed by the provider.
 //
+// [Full Topic]: https://developer.apple.com/documentation/callkit/cxaction/iscomplete
+func (c_ CXAction) IsComplete() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isComplete"))
+	return rv
+}
+
+
+// SetIsComplete sets the value of the isComplete property.
+// A Boolean value that indicates whether the action has been performed by the provider.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/callkit/cxaction/iscomplete
+func (c_ CXAction) SetIsComplete(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsComplete:"), value)
+}
+
+// A Boolean value that indicates whether the action has been performed by the provider.
+//
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXAction/isComplete
 func (c_ CXAction) Complete() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("complete"))

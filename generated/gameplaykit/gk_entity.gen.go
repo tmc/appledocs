@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -33,7 +34,7 @@ type IEntity interface {
 	AddComponent(component unsafe.Pointer)
 	ComponentForClass(componentClass objc.Class) unsafe.Pointer
 	RemoveComponentForClass(componentClass objc.Class)
-	UpdateWithDeltaTime(seconds TimeInterval)
+	UpdateWithDeltaTime(seconds foundation.TimeInterval)
 }
 
 // An object relevant to gameplay, with functionality entirely provided by a collection of component objects.
@@ -118,7 +119,7 @@ func (e_ Entity) RemoveComponentForClass(componentClass objc.Class) {
 // Performs periodic updates for each of the entity’s components.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKEntity/update(deltaTime:)
-func (e_ Entity) UpdateWithDeltaTime(seconds TimeInterval) {
+func (e_ Entity) UpdateWithDeltaTime(seconds foundation.TimeInterval) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("updateWithDeltaTime:"), seconds)
 }
 

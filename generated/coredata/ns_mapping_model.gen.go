@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -93,7 +94,7 @@ func NewMappingModelFromBundlesForSourceModelDestinationModel(bundles unsafe.Poi
 // Returns a mapping model initialized from a given URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMappingModel/init(contentsOf:)
-func NewMappingModelWithContentsOfURL(url unsafe.Pointer) MappingModel {
+func NewMappingModelWithContentsOfURL(url foundation.URL) MappingModel {
 	instance := getMappingModelClass().Alloc()
 	rv := objc.Send[MappingModel](instance.ID, objc.Sel("initWithContentsOfURL:"), url)
 	rv.Autorelease()
@@ -115,6 +116,24 @@ func (mc _MappingModelClass) InferredMappingModelForSourceModelDestinationModelE
 func (mc _MappingModelClass) MappingModelFromBundlesForSourceModelDestinationModel(bundles unsafe.Pointer, sourceModel unsafe.Pointer, destinationModel unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("mappingModelFromBundles:forSourceModel:destinationModel:"), bundles, sourceModel, destinationModel)
 	return rv
+}
+
+// The entity mappings for the mapping model.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmappingmodel/entitymappings
+func (m_ MappingModel) EntityMappings() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("entityMappings"))
+	return rv
+}
+
+
+// SetEntityMappings sets the value of the entityMappings property.
+// The entity mappings for the mapping model.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmappingmodel/entitymappings
+func (m_ MappingModel) SetEntityMappings(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setEntityMappings:"), value)
 }
 
 // The entity mappings for the mapping model, keyed by name.

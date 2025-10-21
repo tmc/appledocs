@@ -80,5 +80,77 @@ func NewHKLensSpecification() HKLensSpecification {
 }
 
 
+// The correction for nearsightedness.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hklensspecification/addpower
+func (h_ HKLensSpecification) AddPower() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("addPower"))
+	return rv
+}
+
+
+// SetAddPower sets the value of the addPower property.
+// The correction for nearsightedness.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hklensspecification/addpower
+func (h_ HKLensSpecification) SetAddPower(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setAddPower:"), value)
+}
+
+// Part of the correction for astigmatism that measures the strength of the correction.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hklensspecification/cylinder
+func (h_ HKLensSpecification) Cylinder() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("cylinder"))
+	return rv
+}
+
+
+// SetCylinder sets the value of the cylinder property.
+// Part of the correction for astigmatism that measures the strength of the correction.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hklensspecification/cylinder
+func (h_ HKLensSpecification) SetCylinder(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setCylinder:"), value)
+}
+
+// Part of the correction for astigmatism that measures the orientation fo the correction.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hklensspecification/axis
+func (h_ HKLensSpecification) Axis() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("axis"))
+	return rv
+}
+
+
+// SetAxis sets the value of the axis property.
+// Part of the correction for astigmatism that measures the orientation fo the correction.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hklensspecification/axis
+func (h_ HKLensSpecification) SetAxis(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setAxis:"), value)
+}
+
+// The correction for farsightedness.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hklensspecification/sphere
+func (h_ HKLensSpecification) Sphere() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("sphere"))
+	return rv
+}
+
+
+// SetSphere sets the value of the sphere property.
+// The correction for farsightedness.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hklensspecification/sphere
+func (h_ HKLensSpecification) SetSphere(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setSphere:"), value)
+}
+
 
 

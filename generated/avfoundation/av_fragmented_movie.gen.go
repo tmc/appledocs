@@ -79,5 +79,23 @@ func NewFragmentedMovie() FragmentedMovie {
 }
 
 
+// The tracks that a movie contains.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avfragmentedmovie/tracks
+func (f_ FragmentedMovie) Tracks() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("tracks"))
+	return rv
+}
+
+
+// SetTracks sets the value of the tracks property.
+// The tracks that a movie contains.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avfragmentedmovie/tracks
+func (f_ FragmentedMovie) SetTracks(value unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setTracks:"), value)
+}
+
 
 

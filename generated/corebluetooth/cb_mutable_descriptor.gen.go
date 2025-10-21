@@ -94,4 +94,20 @@ func NewCBMutableDescriptorWithTypeValue(UUID unsafe.Pointer, value objc.ID) CBM
 }
 
 
+// The UUID for the User Description descriptor, as a string.
+//
+// [Full Topic]: https://developer.apple.com/documentation/corebluetooth/cbuuidcharacteristicuserdescriptionstring
+func (c_ CBMutableDescriptor) CBUUIDCharacteristicUserDescriptionString() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CBUUIDCharacteristicUserDescriptionString"))
+	return rv
+}
+
+// The UUID for the Presentation Format descriptor, as a string.
+//
+// [Full Topic]: https://developer.apple.com/documentation/corebluetooth/cbuuidcharacteristicformatstring
+func (c_ CBMutableDescriptor) CBUUIDCharacteristicFormatString() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CBUUIDCharacteristicFormatString"))
+	return rv
+}
+
 

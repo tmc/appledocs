@@ -80,6 +80,50 @@ func NewMXHistogram() MXHistogram {
 }
 
 
+// The value of the starting measurement for the bucket.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metrickit/mxhistogrambucket/bucketstart
+func (m_ MXHistogram) BucketStart() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("bucketStart"))
+	return rv
+}
+
+
+// SetBucketStart sets the value of the bucketStart property.
+// The value of the starting measurement for the bucket.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metrickit/mxhistogrambucket/bucketstart
+func (m_ MXHistogram) SetBucketStart(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setBucketStart:"), value)
+}
+
+// Error domain for error values from app metrics.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metrickit/mxerrordomain
+func (m_ MXHistogram) MXErrorDomain() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("MXErrorDomain"))
+	return rv
+}
+
+// The value of the ending measurement for the bucket.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metrickit/mxhistogrambucket/bucketend
+func (m_ MXHistogram) BucketEnd() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("bucketEnd"))
+	return rv
+}
+
+
+// SetBucketEnd sets the value of the bucketEnd property.
+// The value of the ending measurement for the bucket.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metrickit/mxhistogrambucket/bucketend
+func (m_ MXHistogram) SetBucketEnd(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setBucketEnd:"), value)
+}
+
 // An enumerator for the buckets containing the data in the histogram.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXHistogram/bucketEnumerator

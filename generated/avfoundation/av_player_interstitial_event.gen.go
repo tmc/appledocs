@@ -88,5 +88,347 @@ func (p_ PlayerInterstitialEvent) UserDefinedAttributes() unsafe.Pointer {
 	return rv
 }
 
+// A Boolean value that indicates whether the resumption time of primary playback should snap to a segment boundary of the primary asset.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/alignsresumptionwithprimarysegmentboundary
+func (p_ PlayerInterstitialEvent) AlignsResumptionWithPrimarySegmentBoundary() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("alignsResumptionWithPrimarySegmentBoundary"))
+	return rv
+}
+
+
+// SetAlignsResumptionWithPrimarySegmentBoundary sets the value of the alignsResumptionWithPrimarySegmentBoundary property.
+// A Boolean value that indicates whether the resumption time of primary playback should snap to a segment boundary of the primary asset.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/alignsresumptionwithprimarysegmentboundary
+func (p_ PlayerInterstitialEvent) SetAlignsResumptionWithPrimarySegmentBoundary(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setAlignsResumptionWithPrimarySegmentBoundary:"), value)
+}
+
+// A Boolean value that indicates whether the start time of interstitial playback should snap to a segment boundary of the primary asset.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/alignsstartwithprimarysegmentboundary
+func (p_ PlayerInterstitialEvent) AlignsStartWithPrimarySegmentBoundary() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("alignsStartWithPrimarySegmentBoundary"))
+	return rv
+}
+
+
+// SetAlignsStartWithPrimarySegmentBoundary sets the value of the alignsStartWithPrimarySegmentBoundary property.
+// A Boolean value that indicates whether the start time of interstitial playback should snap to a segment boundary of the primary asset.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/alignsstartwithprimarysegmentboundary
+func (p_ PlayerInterstitialEvent) SetAlignsStartWithPrimarySegmentBoundary(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setAlignsStartWithPrimarySegmentBoundary:"), value)
+}
+
+// The asset list JSON response as a dictionary.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/assetlistresponse
+func (p_ PlayerInterstitialEvent) AssetListResponse() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("assetListResponse"))
+	return rv
+}
+
+
+// SetAssetListResponse sets the value of the assetListResponse property.
+// The asset list JSON response as a dictionary.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/assetlistresponse
+func (p_ PlayerInterstitialEvent) SetAssetListResponse(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setAssetListResponse:"), value)
+}
+
+// A Boolean value that indicates whether an event’s content is dynamic and the server may respond with different interstitial assets for other participants in a coordinated playback session.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/contentmayvary
+func (p_ PlayerInterstitialEvent) ContentMayVary() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("contentMayVary"))
+	return rv
+}
+
+
+// SetContentMayVary sets the value of the contentMayVary property.
+// A Boolean value that indicates whether an event’s content is dynamic and the server may respond with different interstitial assets for other participants in a coordinated playback session.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/contentmayvary
+func (p_ PlayerInterstitialEvent) SetContentMayVary(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setContentMayVary:"), value)
+}
+
+// A cue to schedule interstitial event playback at a predefined position during primary playback.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/cue-swift.property
+func (p_ PlayerInterstitialEvent) Cue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("cue"))
+	return rv
+}
+
+
+// SetCue sets the value of the cue property.
+// A cue to schedule interstitial event playback at a predefined position during primary playback.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/cue-swift.property
+func (p_ PlayerInterstitialEvent) SetCue(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setCue:"), value)
+}
+
+// A date within the date range of the primary content that playback of interstitial content begins.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/date
+func (p_ PlayerInterstitialEvent) Date() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("date"))
+	return rv
+}
+
+
+// SetDate sets the value of the date property.
+// A date within the date range of the primary content that playback of interstitial content begins.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/date
+func (p_ PlayerInterstitialEvent) SetDate(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setDate:"), value)
+}
+
+// An identifier for the event.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/identifier
+func (p_ PlayerInterstitialEvent) Identifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("identifier"))
+	return rv
+}
+
+
+// SetIdentifier sets the value of the identifier property.
+// An identifier for the event.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/identifier
+func (p_ PlayerInterstitialEvent) SetIdentifier(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+}
+
+// The planned duration of the event.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/plannedduration
+func (p_ PlayerInterstitialEvent) PlannedDuration() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("plannedDuration"))
+	return rv
+}
+
+
+// SetPlannedDuration sets the value of the plannedDuration property.
+// The planned duration of the event.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/plannedduration
+func (p_ PlayerInterstitialEvent) SetPlannedDuration(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPlannedDuration:"), value)
+}
+
+// The time offset at which playback of the interstitial ends.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/playoutlimit
+func (p_ PlayerInterstitialEvent) PlayoutLimit() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("playoutLimit"))
+	return rv
+}
+
+
+// SetPlayoutLimit sets the value of the playoutLimit property.
+// The time offset at which playback of the interstitial ends.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/playoutlimit
+func (p_ PlayerInterstitialEvent) SetPlayoutLimit(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPlayoutLimit:"), value)
+}
+
+// The player item that represents the primary content.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/primaryitem
+func (p_ PlayerInterstitialEvent) PrimaryItem() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("primaryItem"))
+	return rv
+}
+
+
+// SetPrimaryItem sets the value of the primaryItem property.
+// The player item that represents the primary content.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/primaryitem
+func (p_ PlayerInterstitialEvent) SetPrimaryItem(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPrimaryItem:"), value)
+}
+
+// The restrictions the event imposes on the playback of interstitial content.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/restrictions-swift.property
+func (p_ PlayerInterstitialEvent) Restrictions() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("restrictions"))
+	return rv
+}
+
+
+// SetRestrictions sets the value of the restrictions property.
+// The restrictions the event imposes on the playback of interstitial content.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/restrictions-swift.property
+func (p_ PlayerInterstitialEvent) SetRestrictions(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setRestrictions:"), value)
+}
+
+// A time offset at which playback of primary content resumes after interstitial content finishes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/resumptionoffset
+func (p_ PlayerInterstitialEvent) ResumptionOffset() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("resumptionOffset"))
+	return rv
+}
+
+
+// SetResumptionOffset sets the value of the resumptionOffset property.
+// A time offset at which playback of primary content resumes after interstitial content finishes.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/resumptionoffset
+func (p_ PlayerInterstitialEvent) SetResumptionOffset(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setResumptionOffset:"), value)
+}
+
+// The key defined in the AVPlayerInterstitialEventController’s localizedStringsBundle that points to the localized label for the skip button.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/skipcontrollocalizedlabelbundlekey
+func (p_ PlayerInterstitialEvent) SkipControlLocalizedLabelBundleKey() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("skipControlLocalizedLabelBundleKey"))
+	return rv
+}
+
+
+// SetSkipControlLocalizedLabelBundleKey sets the value of the skipControlLocalizedLabelBundleKey property.
+// The key defined in the AVPlayerInterstitialEventController’s localizedStringsBundle that points to the localized label for the skip button.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/skipcontrollocalizedlabelbundlekey
+func (p_ PlayerInterstitialEvent) SetSkipControlLocalizedLabelBundleKey(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setSkipControlLocalizedLabelBundleKey:"), objc.String(value))
+}
+
+// The time range within the duration of the interstitial event for which a skip button should be displayed.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/skipcontroltimerange
+func (p_ PlayerInterstitialEvent) SkipControlTimeRange() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("skipControlTimeRange"))
+	return rv
+}
+
+
+// SetSkipControlTimeRange sets the value of the skipControlTimeRange property.
+// The time range within the duration of the interstitial event for which a skip button should be displayed.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/skipcontroltimerange
+func (p_ PlayerInterstitialEvent) SetSkipControlTimeRange(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setSkipControlTimeRange:"), value)
+}
+
+// A Boolean value that indicates whether an event supplements the primary content and should present with the primary item.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/supplementsprimarycontent
+func (p_ PlayerInterstitialEvent) SupplementsPrimaryContent() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("supplementsPrimaryContent"))
+	return rv
+}
+
+
+// SetSupplementsPrimaryContent sets the value of the supplementsPrimaryContent property.
+// A Boolean value that indicates whether an event supplements the primary content and should present with the primary item.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/supplementsprimarycontent
+func (p_ PlayerInterstitialEvent) SetSupplementsPrimaryContent(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setSupplementsPrimaryContent:"), value)
+}
+
+// An array of player item configurations to use as templates for player items that play interstitial content.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/templateitems
+func (p_ PlayerInterstitialEvent) TemplateItems() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("templateItems"))
+	return rv
+}
+
+
+// SetTemplateItems sets the value of the templateItems property.
+// An array of player item configurations to use as templates for player items that play interstitial content.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/templateitems
+func (p_ PlayerInterstitialEvent) SetTemplateItems(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setTemplateItems:"), value)
+}
+
+// A time within the timeline of the primary content that playback of interstitial content begins.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/time
+func (p_ PlayerInterstitialEvent) Time() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("time"))
+	return rv
+}
+
+
+// SetTime sets the value of the time property.
+// A time within the timeline of the primary content that playback of interstitial content begins.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/time
+func (p_ PlayerInterstitialEvent) SetTime(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setTime:"), value)
+}
+
+// An event’s occupancy on the integrated timeline.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/timelineoccupancy-swift.property
+func (p_ PlayerInterstitialEvent) TimelineOccupancy() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("timelineOccupancy"))
+	return rv
+}
+
+
+// SetTimelineOccupancy sets the value of the timelineOccupancy property.
+// An event’s occupancy on the integrated timeline.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/timelineoccupancy-swift.property
+func (p_ PlayerInterstitialEvent) SetTimelineOccupancy(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setTimelineOccupancy:"), value)
+}
+
+// A Boolean value that indicates whether to schedule this event one time only and suppress subsequent replay.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/willplayonce
+func (p_ PlayerInterstitialEvent) WillPlayOnce() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("willPlayOnce"))
+	return rv
+}
+
+
+// SetWillPlayOnce sets the value of the willPlayOnce property.
+// A Boolean value that indicates whether to schedule this event one time only and suppress subsequent replay.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/willplayonce
+func (p_ PlayerInterstitialEvent) SetWillPlayOnce(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setWillPlayOnce:"), value)
+}
+
 
 

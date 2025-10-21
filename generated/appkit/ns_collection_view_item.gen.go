@@ -107,5 +107,113 @@ func (c_ CollectionViewItem) SetTextField(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setTextField:"), value)
 }
 
+// The receiver’s collection view item prototype.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionview/itemprototype
+func (c_ CollectionViewItem) ItemPrototype() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("itemPrototype"))
+	return rv
+}
+
+
+// SetItemPrototype sets the value of the itemPrototype property.
+// The receiver’s collection view item prototype.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionview/itemprototype
+func (c_ CollectionViewItem) SetItemPrototype(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setItemPrototype:"), value)
+}
+
+// Dragging images for multi-image drag and drop support.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewitem/draggingimagecomponents
+func (c_ CollectionViewItem) DraggingImageComponents() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("draggingImageComponents"))
+	return rv
+}
+
+
+// SetDraggingImageComponents sets the value of the draggingImageComponents property.
+// Dragging images for multi-image drag and drop support.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewitem/draggingimagecomponents
+func (c_ CollectionViewItem) SetDraggingImageComponents(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setDraggingImageComponents:"), value)
+}
+
+// The highlight state currently applied to the item.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewitem/highlightstate-swift.property
+func (c_ CollectionViewItem) HighlightState() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("highlightState"))
+	return rv
+}
+
+
+// SetHighlightState sets the value of the highlightState property.
+// The highlight state currently applied to the item.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewitem/highlightstate-swift.property
+func (c_ CollectionViewItem) SetHighlightState(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setHighlightState:"), value)
+}
+
+// An image view outlet that you can use to display images.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewitem/imageview
+func (c_ CollectionViewItem) ImageView() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("imageView"))
+	return rv
+}
+
+
+// SetImageView sets the value of the imageView property.
+// An image view outlet that you can use to display images.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewitem/imageview
+func (c_ CollectionViewItem) SetImageView(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setImageView:"), value)
+}
+
+// A Boolean indicating whether the item is currently selected.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewitem/isselected
+func (c_ CollectionViewItem) IsSelected() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isSelected"))
+	return rv
+}
+
+
+// SetIsSelected sets the value of the isSelected property.
+// A Boolean indicating whether the item is currently selected.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewitem/isselected
+func (c_ CollectionViewItem) SetIsSelected(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsSelected:"), value)
+}
+
+// The view controller’s primary view.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsviewcontroller/view
+func (c_ CollectionViewItem) View() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("view"))
+	return rv
+}
+
+
+// SetView sets the value of the view property.
+// The view controller’s primary view.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsviewcontroller/view
+func (c_ CollectionViewItem) SetView(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setView:"), value)
+}
+
 
 

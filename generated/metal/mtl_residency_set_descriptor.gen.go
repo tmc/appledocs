@@ -80,6 +80,24 @@ func NewResidencySetDescriptor() ResidencySetDescriptor {
 }
 
 
+// The number of allocations a new residency set can store without reallocating memory.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlresidencysetdescriptor/initialcapacity
+func (r_ ResidencySetDescriptor) InitialCapacity() int {
+	rv := objc.Send[int](r_.ID, objc.Sel("initialCapacity"))
+	return rv
+}
+
+
+// SetInitialCapacity sets the value of the initialCapacity property.
+// The number of allocations a new residency set can store without reallocating memory.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlresidencysetdescriptor/initialcapacity
+func (r_ ResidencySetDescriptor) SetInitialCapacity(value int) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setInitialCapacity:"), value)
+}
+
 // An optional name that can help you identify a residency set you create with the descriptor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLResidencySetDescriptor/label

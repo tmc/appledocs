@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -108,7 +109,7 @@ func NewModelAssetWithSpecificationDataError(specificationData unsafe.Pointer, e
 // Constructs a ModelAsset from a compiled model URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelAsset/init(url:)
-func NewModelAssetWithURLError(compiledModelURL unsafe.Pointer, error_ unsafe.Pointer) ModelAsset {
+func NewModelAssetWithURLError(compiledModelURL foundation.URL, error_ unsafe.Pointer) ModelAsset {
 	rv := objc.Send[ModelAsset](objc.ID(getModelAssetClass().class), objc.Sel("modelAssetWithURL:error:"), compiledModelURL, error_)
 	return rv
 }
@@ -133,7 +134,7 @@ func (mc _ModelAssetClass) ModelAssetWithSpecificationDataBlobMappingError(speci
 // Constructs a ModelAsset from a compiled model URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelAsset/init(url:)
-func (mc _ModelAssetClass) ModelAssetWithURLError(compiledModelURL unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func (mc _ModelAssetClass) ModelAssetWithURLError(compiledModelURL foundation.URL, error_ unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("modelAssetWithURL:error:"), compiledModelURL, error_)
 	return rv
 }

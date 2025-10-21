@@ -80,6 +80,13 @@ func NewVertexAttributeDescriptor() VertexAttributeDescriptor {
 }
 
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlbufferlayoutstridedynamic
+func (v_ VertexAttributeDescriptor) MTLBufferLayoutStrideDynamic() int {
+	rv := objc.Send[int](v_.ID, objc.Sel("MTLBufferLayoutStrideDynamic"))
+	return rv
+}
+
 // The index in the argument table for the associated vertex buffer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLVertexAttributeDescriptor/bufferIndex

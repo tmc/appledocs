@@ -81,5 +81,23 @@ func NewMKMultiPoint() MKMultiPoint {
 }
 
 
+// The number of points associated with the shape.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmultipoint/pointcount
+func (m_ MKMultiPoint) PointCount() int {
+	rv := objc.Send[int](m_.ID, objc.Sel("pointCount"))
+	return rv
+}
+
+
+// SetPointCount sets the value of the pointCount property.
+// The number of points associated with the shape.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmultipoint/pointcount
+func (m_ MKMultiPoint) SetPointCount(value int) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPointCount:"), value)
+}
+
 
 

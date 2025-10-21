@@ -79,4 +79,22 @@ func NewController() Controller {
 
 
 
+// A Boolean value indicating if any editors are registered with the controller.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontroller/isediting
+func (c_ Controller) IsEditing() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isEditing"))
+	return rv
+}
+
+
+// SetIsEditing sets the value of the isEditing property.
+// A Boolean value indicating if any editors are registered with the controller.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontroller/isediting
+func (c_ Controller) SetIsEditing(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsEditing:"), value)
+}
+
 

@@ -81,5 +81,23 @@ func NewCGramMatrixLayer() CGramMatrixLayer {
 }
 
 
+// The scaling factor.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcgrammatrixlayer/scale
+func (c_ CGramMatrixLayer) Scale() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("scale"))
+	return rv
+}
+
+
+// SetScale sets the value of the scale property.
+// The scaling factor.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcgrammatrixlayer/scale
+func (c_ CGramMatrixLayer) SetScale(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setScale:"), value)
+}
+
 
 

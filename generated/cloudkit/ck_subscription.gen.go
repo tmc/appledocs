@@ -80,6 +80,42 @@ func NewCKSubscription() CKSubscription {
 }
 
 
+// The names of fields to include in the push notification’s payload.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.class/desiredkeys
+func (c_ CKSubscription) DesiredKeys() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("desiredKeys"))
+	return rv
+}
+
+
+// SetDesiredKeys sets the value of the desiredKeys property.
+// The names of fields to include in the push notification’s payload.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.class/desiredkeys
+func (c_ CKSubscription) SetDesiredKeys(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setDesiredKeys:"), value)
+}
+
+// The subscription’s unique identifier.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/subscriptionid-6fp3j
+func (c_ CKSubscription) SubscriptionID() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("subscriptionID"))
+	return rv
+}
+
+
+// SetSubscriptionID sets the value of the subscriptionID property.
+// The subscription’s unique identifier.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/subscriptionid-6fp3j
+func (c_ CKSubscription) SetSubscriptionID(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setSubscriptionID:"), value)
+}
+
 // The configuration for a subscription’s push notifications.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSubscription/notificationInfo-swift.property

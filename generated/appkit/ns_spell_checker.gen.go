@@ -31,7 +31,7 @@ type _SpellCheckerClass struct {
 // An interface definition for the [SpellChecker] class.
 type ISpellChecker interface {
 	objectivec.IObject
-	CheckStringRangeTypesOptionsInSpellDocumentWithTagOrthographyWordCount(stringToCheck string, range_ foundation.Range, checkingTypes unsafe.Pointer, options unsafe.Pointer, tag int, orthography unsafe.Pointer, wordCount unsafe.Pointer) []NSTextCheckingResult
+	CheckStringRangeTypesOptionsInSpellDocumentWithTagOrthographyWordCount(stringToCheck string, range_ foundation.Range, checkingTypes unsafe.Pointer, options unsafe.Pointer, tag int, orthography unsafe.Pointer, wordCount unsafe.Pointer) []unsafe.Pointer
 	CheckGrammarOfStringStartingAtLanguageWrapInSpellDocumentWithTagDetails(stringToCheck string, startingOffset int, language string, wrapFlag bool, tag int, details unsafe.Pointer) foundation.Range
 	CheckSpellingOfStringStartingAt(stringToCheck string, startingOffset int) foundation.Range
 	CheckSpellingOfStringStartingAtLanguageWrapInSpellDocumentWithTagWordCount(stringToCheck string, startingOffset int, language string, wrapFlag bool, tag int, wordCount unsafe.Pointer) foundation.Range
@@ -93,8 +93,8 @@ func NewSpellChecker() SpellChecker {
 // Requests unified text checking for the given range of the given string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpellChecker/check(_:range:types:options:inSpellDocumentWithTag:orthography:wordCount:)
-func (s_ SpellChecker) CheckStringRangeTypesOptionsInSpellDocumentWithTagOrthographyWordCount(stringToCheck string, range_ foundation.Range, checkingTypes unsafe.Pointer, options unsafe.Pointer, tag int, orthography unsafe.Pointer, wordCount unsafe.Pointer) []NSTextCheckingResult {
-	rv := objc.Send[[]NSTextCheckingResult](s_.ID, objc.Sel("checkString:range:types:options:inSpellDocumentWithTag:orthography:wordCount:"), objc.String(stringToCheck), range_, checkingTypes, options, tag, orthography, wordCount)
+func (s_ SpellChecker) CheckStringRangeTypesOptionsInSpellDocumentWithTagOrthographyWordCount(stringToCheck string, range_ foundation.Range, checkingTypes unsafe.Pointer, options unsafe.Pointer, tag int, orthography unsafe.Pointer, wordCount unsafe.Pointer) []unsafe.Pointer {
+	rv := objc.Send[[]unsafe.Pointer](s_.ID, objc.Sel("checkString:range:types:options:inSpellDocumentWithTag:orthography:wordCount:"), objc.String(stringToCheck), range_, checkingTypes, options, tag, orthography, wordCount)
 	return rv
 }
 
@@ -159,6 +159,150 @@ func (s_ SpellChecker) RequestCandidatesForSelectedRangeInStringTypesOptionsInSp
 func (s_ SpellChecker) RequestCheckingOfStringRangeTypesOptionsInSpellDocumentWithTagCompletionHandler(stringToCheck string, range_ foundation.Range, checkingTypes unsafe.Pointer, options unsafe.Pointer, tag int, completionHandler unsafe.Pointer) int {
 	rv := objc.Send[int](s_.ID, objc.Sel("requestCheckingOfString:range:types:options:inSpellDocumentWithTag:completionHandler:"), objc.String(stringToCheck), range_, checkingTypes, options, tag, completionHandler)
 	return rv
+}
+
+// Makes a view an accessory of the Spelling panel by making it a subview of the panel’s content view.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsspellchecker/accessoryview
+func (s_ SpellChecker) AccessoryView() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("accessoryView"))
+	return rv
+}
+
+
+// SetAccessoryView sets the value of the accessoryView property.
+// Makes a view an accessory of the Spelling panel by making it a subview of the panel’s content view.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsspellchecker/accessoryview
+func (s_ SpellChecker) SetAccessoryView(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setAccessoryView:"), value)
+}
+
+// Sets whether the spell checker will automatically identify languages.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsspellchecker/automaticallyidentifieslanguages
+func (s_ SpellChecker) AutomaticallyIdentifiesLanguages() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("automaticallyIdentifiesLanguages"))
+	return rv
+}
+
+
+// SetAutomaticallyIdentifiesLanguages sets the value of the automaticallyIdentifiesLanguages property.
+// Sets whether the spell checker will automatically identify languages.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsspellchecker/automaticallyidentifieslanguages
+func (s_ SpellChecker) SetAutomaticallyIdentifiesLanguages(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setAutomaticallyIdentifiesLanguages:"), value)
+}
+
+// Provides a list of all available languages.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsspellchecker/availablelanguages
+func (s_ SpellChecker) AvailableLanguages() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("availableLanguages"))
+	return rv
+}
+
+
+// SetAvailableLanguages sets the value of the availableLanguages property.
+// Provides a list of all available languages.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsspellchecker/availablelanguages
+func (s_ SpellChecker) SetAvailableLanguages(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setAvailableLanguages:"), objc.String(value))
+}
+
+// Returns the spell checker’s panel.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsspellchecker/spellingpanel
+func (s_ SpellChecker) SpellingPanel() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("spellingPanel"))
+	return rv
+}
+
+
+// SetSpellingPanel sets the value of the spellingPanel property.
+// Returns the spell checker’s panel.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsspellchecker/spellingpanel
+func (s_ SpellChecker) SetSpellingPanel(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setSpellingPanel:"), value)
+}
+
+// Returns the substitutions panel.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsspellchecker/substitutionspanel
+func (s_ SpellChecker) SubstitutionsPanel() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("substitutionsPanel"))
+	return rv
+}
+
+
+// SetSubstitutionsPanel sets the value of the substitutionsPanel property.
+// Returns the substitutions panel.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsspellchecker/substitutionspanel
+func (s_ SpellChecker) SetSubstitutionsPanel(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setSubstitutionsPanel:"), value)
+}
+
+// Sets the substitutions panel’s accessory view.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsspellchecker/substitutionspanelaccessoryviewcontroller
+func (s_ SpellChecker) SubstitutionsPanelAccessoryViewController() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("substitutionsPanelAccessoryViewController"))
+	return rv
+}
+
+
+// SetSubstitutionsPanelAccessoryViewController sets the value of the substitutionsPanelAccessoryViewController property.
+// Sets the substitutions panel’s accessory view.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsspellchecker/substitutionspanelaccessoryviewcontroller
+func (s_ SpellChecker) SetSubstitutionsPanelAccessoryViewController(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setSubstitutionsPanelAccessoryViewController:"), value)
+}
+
+// Provides a subset of the available languages to be used for spell checking.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsspellchecker/userpreferredlanguages
+func (s_ SpellChecker) UserPreferredLanguages() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("userPreferredLanguages"))
+	return rv
+}
+
+
+// SetUserPreferredLanguages sets the value of the userPreferredLanguages property.
+// Provides a subset of the available languages to be used for spell checking.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsspellchecker/userpreferredlanguages
+func (s_ SpellChecker) SetUserPreferredLanguages(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setUserPreferredLanguages:"), objc.String(value))
+}
+
+// Returns the dictionary used when replacing words.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsspellchecker/userreplacementsdictionary
+func (s_ SpellChecker) UserReplacementsDictionary() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("userReplacementsDictionary"))
+	return rv
+}
+
+
+// SetUserReplacementsDictionary sets the value of the userReplacementsDictionary property.
+// Returns the dictionary used when replacing words.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsspellchecker/userreplacementsdictionary
+func (s_ SpellChecker) SetUserReplacementsDictionary(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setUserReplacementsDictionary:"), objc.String(value))
 }
 
 

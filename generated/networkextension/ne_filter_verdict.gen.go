@@ -80,5 +80,23 @@ func NewNEFilterVerdict() NEFilterVerdict {
 }
 
 
+// A Boolean value that indicates whether to send a report to the control provider when processing this verdict.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterverdict/shouldreport
+func (n_ NEFilterVerdict) ShouldReport() bool {
+	rv := objc.Send[bool](n_.ID, objc.Sel("shouldReport"))
+	return rv
+}
+
+
+// SetShouldReport sets the value of the shouldReport property.
+// A Boolean value that indicates whether to send a report to the control provider when processing this verdict.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterverdict/shouldreport
+func (n_ NEFilterVerdict) SetShouldReport(value bool) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setShouldReport:"), value)
+}
+
 
 

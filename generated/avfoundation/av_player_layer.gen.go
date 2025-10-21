@@ -181,4 +181,40 @@ func (p_ PlayerLayer) VideoRect() coregraphics.CGRect {
 	return rv
 }
 
+// A Boolean value that indicates whether the first video frame of the player’s current item is ready for display.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerlayer/isreadyfordisplay
+func (p_ PlayerLayer) IsReadyForDisplay() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isReadyForDisplay"))
+	return rv
+}
+
+
+// SetIsReadyForDisplay sets the value of the isReadyForDisplay property.
+// A Boolean value that indicates whether the first video frame of the player’s current item is ready for display.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerlayer/isreadyfordisplay
+func (p_ PlayerLayer) SetIsReadyForDisplay(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsReadyForDisplay:"), value)
+}
+
+// An object that provides the contents of the layer. Animatable.
+//
+// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/contents
+func (p_ PlayerLayer) Contents() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("contents"))
+	return rv
+}
+
+
+// SetContents sets the value of the contents property.
+// An object that provides the contents of the layer. Animatable.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/contents
+func (p_ PlayerLayer) SetContents(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setContents:"), value)
+}
+
 

@@ -79,5 +79,95 @@ func NewRNNMatrixTrainingLayer() RNNMatrixTrainingLayer {
 }
 
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixtraininglayer/inputfeaturechannels
+func (r_ RNNMatrixTrainingLayer) InputFeatureChannels() int {
+	rv := objc.Send[int](r_.ID, objc.Sel("inputFeatureChannels"))
+	return rv
+}
+
+
+// SetInputFeatureChannels sets the value of the inputFeatureChannels property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixtraininglayer/inputfeaturechannels
+func (r_ RNNMatrixTrainingLayer) SetInputFeatureChannels(value int) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setInputFeatureChannels:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixtraininglayer/recurrentoutputistemporary
+func (r_ RNNMatrixTrainingLayer) RecurrentOutputIsTemporary() bool {
+	rv := objc.Send[bool](r_.ID, objc.Sel("recurrentOutputIsTemporary"))
+	return rv
+}
+
+
+// SetRecurrentOutputIsTemporary sets the value of the recurrentOutputIsTemporary property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixtraininglayer/recurrentoutputistemporary
+func (r_ RNNMatrixTrainingLayer) SetRecurrentOutputIsTemporary(value bool) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setRecurrentOutputIsTemporary:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixtraininglayer/storeallintermediatestates
+func (r_ RNNMatrixTrainingLayer) StoreAllIntermediateStates() bool {
+	rv := objc.Send[bool](r_.ID, objc.Sel("storeAllIntermediateStates"))
+	return rv
+}
+
+
+// SetStoreAllIntermediateStates sets the value of the storeAllIntermediateStates property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixtraininglayer/storeallintermediatestates
+func (r_ RNNMatrixTrainingLayer) SetStoreAllIntermediateStates(value bool) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setStoreAllIntermediateStates:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixtraininglayer/trainingstateistemporary
+func (r_ RNNMatrixTrainingLayer) TrainingStateIsTemporary() bool {
+	rv := objc.Send[bool](r_.ID, objc.Sel("trainingStateIsTemporary"))
+	return rv
+}
+
+
+// SetTrainingStateIsTemporary sets the value of the trainingStateIsTemporary property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixtraininglayer/trainingstateistemporary
+func (r_ RNNMatrixTrainingLayer) SetTrainingStateIsTemporary(value bool) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setTrainingStateIsTemporary:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixtraininglayer/outputfeaturechannels
+func (r_ RNNMatrixTrainingLayer) OutputFeatureChannels() int {
+	rv := objc.Send[int](r_.ID, objc.Sel("outputFeatureChannels"))
+	return rv
+}
+
+
+// SetOutputFeatureChannels sets the value of the outputFeatureChannels property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixtraininglayer/outputfeaturechannels
+func (r_ RNNMatrixTrainingLayer) SetOutputFeatureChannels(value int) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setOutputFeatureChannels:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixtraininglayer/accumulateweightgradients
+func (r_ RNNMatrixTrainingLayer) AccumulateWeightGradients() bool {
+	rv := objc.Send[bool](r_.ID, objc.Sel("accumulateWeightGradients"))
+	return rv
+}
+
+
+// SetAccumulateWeightGradients sets the value of the accumulateWeightGradients property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixtraininglayer/accumulateweightgradients
+func (r_ RNNMatrixTrainingLayer) SetAccumulateWeightGradients(value bool) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setAccumulateWeightGradients:"), value)
+}
+
 
 

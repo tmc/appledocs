@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,51 @@ func NewMTRGroupsClusterGetGroupMembershipResponseParams() MTRGroupsClusterGetGr
 	return getMTRGroupsClusterGetGroupMembershipResponseParamsClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclustergetgroupmembershipresponseparams/capacity
+func (m_ MTRGroupsClusterGetGroupMembershipResponseParams) Capacity() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("capacity"))
+	return rv
+}
+
+
+// SetCapacity sets the value of the capacity property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclustergetgroupmembershipresponseparams/capacity
+func (m_ MTRGroupsClusterGetGroupMembershipResponseParams) SetCapacity(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCapacity:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclustergetgroupmembershipresponseparams/grouplist
+func (m_ MTRGroupsClusterGetGroupMembershipResponseParams) GroupList() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("groupList"))
+	return rv
+}
+
+
+// SetGroupList sets the value of the groupList property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclustergetgroupmembershipresponseparams/grouplist
+func (m_ MTRGroupsClusterGetGroupMembershipResponseParams) SetGroupList(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupList:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclustergetgroupmembershipresponseparams/timedinvoketimeoutms
+func (m_ MTRGroupsClusterGetGroupMembershipResponseParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+	return rv
+}
+
+
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclustergetgroupmembershipresponseparams/timedinvoketimeoutms
+func (m_ MTRGroupsClusterGetGroupMembershipResponseParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+}
 
 
 

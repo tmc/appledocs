@@ -80,6 +80,24 @@ func NewWebsiteDataRecord() WebsiteDataRecord {
 }
 
 
+// The display name for the data record.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebsitedatarecord/displayname
+func (w_ WebsiteDataRecord) DisplayName() string {
+	rv := objc.Send[string](w_.ID, objc.Sel("displayName"))
+	return rv
+}
+
+
+// SetDisplayName sets the value of the displayName property.
+// The display name for the data record.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebsitedatarecord/displayname
+func (w_ WebsiteDataRecord) SetDisplayName(value string) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setDisplayName:"), objc.String(value))
+}
+
 // The types of data associated with the record.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebsiteDataRecord/dataTypes

@@ -98,5 +98,95 @@ func (a_ AssetReader) StartReading() bool {
 	return rv
 }
 
+// The asset from which to read media data.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreader/asset
+func (a_ AssetReader) Asset() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("asset"))
+	return rv
+}
+
+
+// SetAsset sets the value of the asset property.
+// The asset from which to read media data.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreader/asset
+func (a_ AssetReader) SetAsset(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAsset:"), value)
+}
+
+// An error that describes the reason for a failure.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreader/error
+func (a_ AssetReader) Error() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("error"))
+	return rv
+}
+
+
+// SetError sets the value of the error property.
+// An error that describes the reason for a failure.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreader/error
+func (a_ AssetReader) SetError(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setError:"), value)
+}
+
+// The outputs from which you read media data.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreader/outputs
+func (a_ AssetReader) Outputs() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("outputs"))
+	return rv
+}
+
+
+// SetOutputs sets the value of the outputs property.
+// The outputs from which you read media data.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreader/outputs
+func (a_ AssetReader) SetOutputs(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setOutputs:"), value)
+}
+
+// The status of reading sample buffers from the asset.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreader/status-swift.property
+func (a_ AssetReader) Status() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("status"))
+	return rv
+}
+
+
+// SetStatus sets the value of the status property.
+// The status of reading sample buffers from the asset.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreader/status-swift.property
+func (a_ AssetReader) SetStatus(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setStatus:"), value)
+}
+
+// The time range within the asset to read.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreader/timerange
+func (a_ AssetReader) TimeRange() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("timeRange"))
+	return rv
+}
+
+
+// SetTimeRange sets the value of the timeRange property.
+// The time range within the asset to read.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreader/timerange
+func (a_ AssetReader) SetTimeRange(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setTimeRange:"), value)
+}
+
 
 

@@ -93,4 +93,22 @@ func NewMKPlacemarkWithCoordinate(coordinate unsafe.Pointer) MKPlacemark {
 }
 
 
+// The abbreviated country or region name.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkplacemark/countrycode
+func (m_ MKPlacemark) CountryCode() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("countryCode"))
+	return rv
+}
+
+
+// SetCountryCode sets the value of the countryCode property.
+// The abbreviated country or region name.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkplacemark/countrycode
+func (m_ MKPlacemark) SetCountryCode(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCountryCode:"), objc.String(value))
+}
+
 

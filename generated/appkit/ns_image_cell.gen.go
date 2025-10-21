@@ -81,5 +81,77 @@ func NewImageCell() ImageCell {
 }
 
 
+// The cell’s value as an Objective-C object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/objectvalue
+func (i_ ImageCell) ObjectValue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("objectValue"))
+	return rv
+}
+
+
+// SetObjectValue sets the value of the objectValue property.
+// The cell’s value as an Objective-C object.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/objectvalue
+func (i_ ImageCell) SetObjectValue(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setObjectValue:"), value)
+}
+
+// The alignment of the receiver’s image relative to its frame.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimagecell/imagealignment
+func (i_ ImageCell) ImageAlignment() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("imageAlignment"))
+	return rv
+}
+
+
+// SetImageAlignment sets the value of the imageAlignment property.
+// The alignment of the receiver’s image relative to its frame.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimagecell/imagealignment
+func (i_ ImageCell) SetImageAlignment(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setImageAlignment:"), value)
+}
+
+// The style of the frame that borders the image.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimagecell/imageframestyle
+func (i_ ImageCell) ImageFrameStyle() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("imageFrameStyle"))
+	return rv
+}
+
+
+// SetImageFrameStyle sets the value of the imageFrameStyle property.
+// The style of the frame that borders the image.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimagecell/imageframestyle
+func (i_ ImageCell) SetImageFrameStyle(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setImageFrameStyle:"), value)
+}
+
+// The scaling mode used to fit the receiver’s image into the frame.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimagecell/imagescaling
+func (i_ ImageCell) ImageScaling() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("imageScaling"))
+	return rv
+}
+
+
+// SetImageScaling sets the value of the imageScaling property.
+// The scaling mode used to fit the receiver’s image into the frame.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimagecell/imagescaling
+func (i_ ImageCell) SetImageScaling(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setImageScaling:"), value)
+}
+
 
 

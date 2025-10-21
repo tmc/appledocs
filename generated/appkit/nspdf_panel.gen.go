@@ -88,5 +88,59 @@ func (pc _PDFPanelClass) Panel() unsafe.Pointer {
 	return rv
 }
 
+// A view controller for the accessory view that the panel can present.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfpanel/accessorycontroller
+func (p_ PDFPanel) AccessoryController() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("accessoryController"))
+	return rv
+}
+
+
+// SetAccessoryController sets the value of the accessoryController property.
+// A view controller for the accessory view that the panel can present.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfpanel/accessorycontroller
+func (p_ PDFPanel) SetAccessoryController(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setAccessoryController:"), value)
+}
+
+// The initial value for the user-editable filename shown in the name field of the PDF panel.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfpanel/defaultfilename
+func (p_ PDFPanel) DefaultFileName() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("defaultFileName"))
+	return rv
+}
+
+
+// SetDefaultFileName sets the value of the defaultFileName property.
+// The initial value for the user-editable filename shown in the name field of the PDF panel.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfpanel/defaultfilename
+func (p_ PDFPanel) SetDefaultFileName(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setDefaultFileName:"), objc.String(value))
+}
+
+// A set of configuration options that determine the accessory views the PDF panel should display.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfpanel/options-swift.property
+func (p_ PDFPanel) Options() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("options"))
+	return rv
+}
+
+
+// SetOptions sets the value of the options property.
+// A set of configuration options that determine the accessory views the PDF panel should display.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfpanel/options-swift.property
+func (p_ PDFPanel) SetOptions(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setOptions:"), value)
+}
+
 
 

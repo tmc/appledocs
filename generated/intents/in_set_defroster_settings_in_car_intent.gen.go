@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [INSetDefrosterSettingsInCarIntent] class.
@@ -81,11 +82,47 @@ func NewINSetDefrosterSettingsInCarIntent() INSetDefrosterSettingsInCarIntent {
 }
 
 
+// The name of the car you applied the settings to.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insetdefrostersettingsincarintent/carname
+func (i_ INSetDefrosterSettingsInCarIntent) CarName() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("carName"))
+	return rv
+}
+
+
+// SetCarName sets the value of the carName property.
+// The name of the car you applied the settings to.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insetdefrostersettingsincarintent/carname
+func (i_ INSetDefrosterSettingsInCarIntent) SetCarName(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setCarName:"), value)
+}
+
+// The defroster to enable or disable.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insetdefrostersettingsincarintent/defroster
+func (i_ INSetDefrosterSettingsInCarIntent) Defroster() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("defroster"))
+	return rv
+}
+
+
+// SetDefroster sets the value of the defroster property.
+// The defroster to enable or disable.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insetdefrostersettingsincarintent/defroster
+func (i_ INSetDefrosterSettingsInCarIntent) SetDefroster(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setDefroster:"), value)
+}
+
 // A Boolean indicating whether to enable or disable the defroster.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSetDefrosterSettingsInCarIntent/enable-8tf0i
-func (i_ INSetDefrosterSettingsInCarIntent) Enable() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("enable"))
+func (i_ INSetDefrosterSettingsInCarIntent) Enable() foundation.Number {
+	rv := objc.Send[foundation.Number](i_.ID, objc.Sel("enable"))
 	return rv
 }
 

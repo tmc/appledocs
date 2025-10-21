@@ -81,6 +81,24 @@ func NewINSendPaymentIntentResponse() INSendPaymentIntentResponse {
 }
 
 
+// The details of the payment transaction.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insendpaymentintentresponse/paymentrecord
+func (i_ INSendPaymentIntentResponse) PaymentRecord() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("paymentRecord"))
+	return rv
+}
+
+
+// SetPaymentRecord sets the value of the paymentRecord property.
+// The details of the payment transaction.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insendpaymentintentresponse/paymentrecord
+func (i_ INSendPaymentIntentResponse) SetPaymentRecord(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setPaymentRecord:"), value)
+}
+
 // The code indicating whether you successfully handled the intent.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSendPaymentIntentResponse/code

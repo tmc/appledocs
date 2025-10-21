@@ -80,6 +80,42 @@ func NewPHASECardioidDirectivityModelSubbandParameters() PHASECardioidDirectivit
 }
 
 
+// The amount that the shape overlaps with bordering subbands.
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasecardioiddirectivitymodelsubbandparameters/sharpness
+func (p_ PHASECardioidDirectivityModelSubbandParameters) Sharpness() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("sharpness"))
+	return rv
+}
+
+
+// SetSharpness sets the value of the sharpness property.
+// The amount that the shape overlaps with bordering subbands.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasecardioiddirectivitymodelsubbandparameters/sharpness
+func (p_ PHASECardioidDirectivityModelSubbandParameters) SetSharpness(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setSharpness:"), value)
+}
+
+// A shape that determines the direction of sound.
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasecardioiddirectivitymodelsubbandparameters/pattern
+func (p_ PHASECardioidDirectivityModelSubbandParameters) Pattern() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("pattern"))
+	return rv
+}
+
+
+// SetPattern sets the value of the pattern property.
+// A shape that determines the direction of sound.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasecardioiddirectivitymodelsubbandparameters/pattern
+func (p_ PHASECardioidDirectivityModelSubbandParameters) SetPattern(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPattern:"), value)
+}
+
 // A frequency in the audio spectrum where the pattern and sharpness resonate most.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASECardioidDirectivityModelSubbandParameters/frequency

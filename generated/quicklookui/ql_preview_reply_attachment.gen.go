@@ -93,6 +93,24 @@ func NewPreviewReplyAttachmentWithDataContentType(data unsafe.Pointer, contentTy
 }
 
 
+// The attachments for a preview reply that provide additional data for the system to display the preview.
+//
+// [Full Topic]: https://developer.apple.com/documentation/quicklookui/qlpreviewreply/attachments
+func (p_ PreviewReplyAttachment) Attachments() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("attachments"))
+	return rv
+}
+
+
+// SetAttachments sets the value of the attachments property.
+// The attachments for a preview reply that provide additional data for the system to display the preview.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/quicklookui/qlpreviewreply/attachments
+func (p_ PreviewReplyAttachment) SetAttachments(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setAttachments:"), objc.String(value))
+}
+
 // The content type of the preview attachment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuickLookUI/QLPreviewReplyAttachment/contentType

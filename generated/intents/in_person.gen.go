@@ -80,5 +80,257 @@ func NewINPerson() INPerson {
 }
 
 
+// The individual components of the person’s full name.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inperson/namecomponents
+func (i_ INPerson) NameComponents() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("nameComponents"))
+	return rv
+}
+
+
+// SetNameComponents sets the value of the nameComponents property.
+// The individual components of the person’s full name.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inperson/namecomponents
+func (i_ INPerson) SetNameComponents(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setNameComponents:"), value)
+}
+
+// The list of matches Siri provides for you to resolve or disambiguate.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inperson/sirimatches
+func (i_ INPerson) SiriMatches() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("siriMatches"))
+	return rv
+}
+
+
+// SetSiriMatches sets the value of the siriMatches property.
+// The list of matches Siri provides for you to resolve or disambiguate.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inperson/sirimatches
+func (i_ INPerson) SetSiriMatches(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setSiriMatches:"), value)
+}
+
+// The unique handle that your app assigns to the person.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inperson/personhandle
+func (i_ INPerson) PersonHandle() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("personHandle"))
+	return rv
+}
+
+
+// SetPersonHandle sets the value of the personHandle property.
+// The unique handle that your app assigns to the person.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inperson/personhandle
+func (i_ INPerson) SetPersonHandle(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setPersonHandle:"), value)
+}
+
+// The additional handles that Siri may use to identify the person.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inperson/aliases
+func (i_ INPerson) Aliases() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("aliases"))
+	return rv
+}
+
+
+// SetAliases sets the value of the aliases property.
+// The additional handles that Siri may use to identify the person.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inperson/aliases
+func (i_ INPerson) SetAliases(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setAliases:"), value)
+}
+
+// The unique identifier that your app uses to identify the person.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inperson/customidentifier
+func (i_ INPerson) CustomIdentifier() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("customIdentifier"))
+	return rv
+}
+
+
+// SetCustomIdentifier sets the value of the customIdentifier property.
+// The unique identifier that your app uses to identify the person.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inperson/customidentifier
+func (i_ INPerson) SetCustomIdentifier(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setCustomIdentifier:"), objc.String(value))
+}
+
+// The phrase identified by Siri.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inspeakable/spokenphrase
+func (i_ INPerson) SpokenPhrase() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("spokenPhrase"))
+	return rv
+}
+
+
+// SetSpokenPhrase sets the value of the spokenPhrase property.
+// The phrase identified by Siri.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inspeakable/spokenphrase
+func (i_ INPerson) SetSpokenPhrase(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setSpokenPhrase:"), objc.String(value))
+}
+
+// The unique identifier that your app assigned to the user.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inperson/handle
+func (i_ INPerson) Handle() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("handle"))
+	return rv
+}
+
+
+// SetHandle sets the value of the handle property.
+// The unique identifier that your app assigned to the user.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inperson/handle
+func (i_ INPerson) SetHandle(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setHandle:"), objc.String(value))
+}
+
+// The relationship between this person and the person using the device.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inperson/relationship
+func (i_ INPerson) Relationship() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("relationship"))
+	return rv
+}
+
+
+// SetRelationship sets the value of the relationship property.
+// The relationship between this person and the person using the device.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inperson/relationship
+func (i_ INPerson) SetRelationship(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setRelationship:"), value)
+}
+
+// The type of contact information to donate with interactions.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inperson/suggestiontype
+func (i_ INPerson) SuggestionType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("suggestionType"))
+	return rv
+}
+
+
+// SetSuggestionType sets the value of the suggestionType property.
+// The type of contact information to donate with interactions.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inperson/suggestiontype
+func (i_ INPerson) SetSuggestionType(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setSuggestionType:"), value)
+}
+
+// An image of the person.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inperson/image
+func (i_ INPerson) Image() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("image"))
+	return rv
+}
+
+
+// SetImage sets the value of the image property.
+// An image of the person.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inperson/image
+func (i_ INPerson) SetImage(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setImage:"), value)
+}
+
+// The Contacts database identifier for the person.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inperson/contactidentifier
+func (i_ INPerson) ContactIdentifier() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("contactIdentifier"))
+	return rv
+}
+
+
+// SetContactIdentifier sets the value of the contactIdentifier property.
+// The Contacts database identifier for the person.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inperson/contactidentifier
+func (i_ INPerson) SetContactIdentifier(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setContactIdentifier:"), objc.String(value))
+}
+
+// A Boolean value indicating whether the person is the user of the device.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inperson/isme
+func (i_ INPerson) IsMe() bool {
+	rv := objc.Send[bool](i_.ID, objc.Sel("isMe"))
+	return rv
+}
+
+
+// SetIsMe sets the value of the isMe property.
+// A Boolean value indicating whether the person is the user of the device.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inperson/isme
+func (i_ INPerson) SetIsMe(value bool) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setIsMe:"), value)
+}
+
+// The person’s formatted name.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inperson/displayname
+func (i_ INPerson) DisplayName() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("displayName"))
+	return rv
+}
+
+
+// SetDisplayName sets the value of the displayName property.
+// The person’s formatted name.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inperson/displayname
+func (i_ INPerson) SetDisplayName(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setDisplayName:"), objc.String(value))
+}
+
+// A Boolean value that indicates whether the person is a contact suggestion.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inperson/iscontactsuggestion
+func (i_ INPerson) IsContactSuggestion() bool {
+	rv := objc.Send[bool](i_.ID, objc.Sel("isContactSuggestion"))
+	return rv
+}
+
+
+// SetIsContactSuggestion sets the value of the isContactSuggestion property.
+// A Boolean value that indicates whether the person is a contact suggestion.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inperson/iscontactsuggestion
+func (i_ INPerson) SetIsContactSuggestion(value bool) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setIsContactSuggestion:"), value)
+}
+
 
 

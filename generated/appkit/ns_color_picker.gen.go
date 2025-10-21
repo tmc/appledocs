@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -110,6 +111,42 @@ func (c_ ColorPicker) ColorPanel() unsafe.Pointer {
 func (c_ ColorPicker) ProvideNewButtonImage() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("provideNewButtonImage"))
 	return rv
+}
+
+// The tool tip that is shown when the mouse cursor is over the color picker’s button image.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorpicker/buttontooltip
+func (c_ ColorPicker) ButtonToolTip() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("buttonToolTip"))
+	return rv
+}
+
+
+// SetButtonToolTip sets the value of the buttonToolTip property.
+// The tool tip that is shown when the mouse cursor is over the color picker’s button image.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorpicker/buttontooltip
+func (c_ ColorPicker) SetButtonToolTip(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setButtonToolTip:"), objc.String(value))
+}
+
+// The minimum content size.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorpicker/mincontentsize
+func (c_ ColorPicker) MinContentSize() coregraphics.CGSize {
+	rv := objc.Send[coregraphics.CGSize](c_.ID, objc.Sel("minContentSize"))
+	return rv
+}
+
+
+// SetMinContentSize sets the value of the minContentSize property.
+// The minimum content size.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorpicker/mincontentsize
+func (c_ ColorPicker) SetMinContentSize(value coregraphics.CGSize) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setMinContentSize:"), value)
 }
 
 

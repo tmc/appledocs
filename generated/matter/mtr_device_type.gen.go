@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,7 +84,7 @@ func NewMTRDeviceType() MTRDeviceType {
 // Returns an MTRDeviceType for the given ID, if the ID is known. Returns nil for unknown IDs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceType/init(forID:)
-func NewMTRDeviceTypeForID(deviceTypeID unsafe.Pointer) MTRDeviceType {
+func NewMTRDeviceTypeForID(deviceTypeID foundation.Number) MTRDeviceType {
 	rv := objc.Send[MTRDeviceType](objc.ID(getMTRDeviceTypeClass().class), objc.Sel("deviceTypeForID:"), deviceTypeID)
 	return rv
 }
@@ -92,7 +93,7 @@ func NewMTRDeviceTypeForID(deviceTypeID unsafe.Pointer) MTRDeviceType {
 // Returns an MTRDeviceType for the given ID, if the ID is known. Returns nil for unknown IDs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceType/init(forID:)
-func (mc _MTRDeviceTypeClass) DeviceTypeForID(deviceTypeID unsafe.Pointer) unsafe.Pointer {
+func (mc _MTRDeviceTypeClass) DeviceTypeForID(deviceTypeID foundation.Number) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("deviceTypeForID:"), deviceTypeID)
 	return rv
 }
@@ -100,8 +101,8 @@ func (mc _MTRDeviceTypeClass) DeviceTypeForID(deviceTypeID unsafe.Pointer) unsaf
 // The identifier of the device type (32-bit unsigned integer).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceType/id
-func (m_ MTRDeviceType) Id() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("id"))
+func (m_ MTRDeviceType) Id() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("id"))
 	return rv
 }
 

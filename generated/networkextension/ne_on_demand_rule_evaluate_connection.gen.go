@@ -81,5 +81,23 @@ func NewNEOnDemandRuleEvaluateConnection() NEOnDemandRuleEvaluateConnection {
 }
 
 
+// An array of
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/neondemandruleevaluateconnection/connectionrules
+func (n_ NEOnDemandRuleEvaluateConnection) ConnectionRules() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("connectionRules"))
+	return rv
+}
+
+
+// SetConnectionRules sets the value of the connectionRules property.
+// An array of
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/neondemandruleevaluateconnection/connectionrules
+func (n_ NEOnDemandRuleEvaluateConnection) SetConnectionRules(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setConnectionRules:"), value)
+}
+
 
 

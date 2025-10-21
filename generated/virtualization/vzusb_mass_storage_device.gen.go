@@ -81,5 +81,23 @@ func NewVZUSBMassStorageDevice() VZUSBMassStorageDevice {
 }
 
 
+// The list of attached USB devices for the controller.
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzusbcontroller/usbdevices
+func (v_ VZUSBMassStorageDevice) UsbDevices() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("usbDevices"))
+	return rv
+}
+
+
+// SetUsbDevices sets the value of the usbDevices property.
+// The list of attached USB devices for the controller.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzusbcontroller/usbdevices
+func (v_ VZUSBMassStorageDevice) SetUsbDevices(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setUsbDevices:"), value)
+}
+
 
 

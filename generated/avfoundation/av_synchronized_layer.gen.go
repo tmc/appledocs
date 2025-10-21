@@ -82,5 +82,49 @@ func NewSynchronizedLayer() SynchronizedLayer {
 }
 
 
+// A value that sets an animation begin time to
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcoreanimationbegintimeatzero
+func (s_ SynchronizedLayer) AVCoreAnimationBeginTimeAtZero() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("AVCoreAnimationBeginTimeAtZero"))
+	return rv
+}
+
+// The player item to which the timing of the layer is synchronized.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsynchronizedlayer/playeritem
+func (s_ SynchronizedLayer) PlayerItem() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("playerItem"))
+	return rv
+}
+
+
+// SetPlayerItem sets the value of the playerItem property.
+// The player item to which the timing of the layer is synchronized.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsynchronizedlayer/playeritem
+func (s_ SynchronizedLayer) SetPlayerItem(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setPlayerItem:"), value)
+}
+
+// Specifies the begin time of the receiver in relation to its parent object, if applicable.
+//
+// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAMediaTiming/beginTime
+func (s_ SynchronizedLayer) BeginTime() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("beginTime"))
+	return rv
+}
+
+
+// SetBeginTime sets the value of the beginTime property.
+// Specifies the begin time of the receiver in relation to its parent object, if applicable.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAMediaTiming/beginTime
+func (s_ SynchronizedLayer) SetBeginTime(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setBeginTime:"), value)
+}
+
 
 

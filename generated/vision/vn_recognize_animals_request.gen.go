@@ -81,5 +81,39 @@ func NewRecognizeAnimalsRequest() RecognizeAnimalsRequest {
 }
 
 
+// A constant for specifying revision 1 of the animal recognition request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnrecognizeanimalsrequestrevision1
+func (r_ RecognizeAnimalsRequest) VNRecognizeAnimalsRequestRevision1() int {
+	rv := objc.Send[int](r_.ID, objc.Sel("VNRecognizeAnimalsRequestRevision1"))
+	return rv
+}
+
+// A constant for specifying revision 2 of the animal recognition request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnrecognizeanimalsrequestrevision2
+func (r_ RecognizeAnimalsRequest) VNRecognizeAnimalsRequestRevision2() int {
+	rv := objc.Send[int](r_.ID, objc.Sel("VNRecognizeAnimalsRequestRevision2"))
+	return rv
+}
+
+// The results of the request to recognize animals.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnrecognizeanimalsrequest/results
+func (r_ RecognizeAnimalsRequest) Results() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("results"))
+	return rv
+}
+
+
+// SetResults sets the value of the results property.
+// The results of the request to recognize animals.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnrecognizeanimalsrequest/results
+func (r_ RecognizeAnimalsRequest) SetResults(value unsafe.Pointer) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setResults:"), value)
+}
+
 
 

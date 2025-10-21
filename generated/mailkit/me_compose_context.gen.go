@@ -76,6 +76,81 @@ func NewMEComposeContext() MEComposeContext {
 
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/mailkit/mecomposecontext/shouldencrypt
+func (m_ MEComposeContext) ShouldEncrypt() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("shouldEncrypt"))
+	return rv
+}
+
+
+// SetShouldEncrypt sets the value of the shouldEncrypt property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mailkit/mecomposecontext/shouldencrypt
+func (m_ MEComposeContext) SetShouldEncrypt(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setShouldEncrypt:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mailkit/mecomposecontext/issigned
+func (m_ MEComposeContext) IsSigned() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("isSigned"))
+	return rv
+}
+
+
+// SetIsSigned sets the value of the isSigned property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mailkit/mecomposecontext/issigned
+func (m_ MEComposeContext) SetIsSigned(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIsSigned:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mailkit/mecomposecontext/contextid
+func (m_ MEComposeContext) ContextID() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("contextID"))
+	return rv
+}
+
+
+// SetContextID sets the value of the contextID property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mailkit/mecomposecontext/contextid
+func (m_ MEComposeContext) SetContextID(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setContextID:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mailkit/mecomposecontext/shouldsign
+func (m_ MEComposeContext) ShouldSign() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("shouldSign"))
+	return rv
+}
+
+
+// SetShouldSign sets the value of the shouldSign property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mailkit/mecomposecontext/shouldsign
+func (m_ MEComposeContext) SetShouldSign(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setShouldSign:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mailkit/mecomposecontext/isencrypted
+func (m_ MEComposeContext) IsEncrypted() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("isEncrypted"))
+	return rv
+}
+
+
+// SetIsEncrypted sets the value of the isEncrypted property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mailkit/mecomposecontext/isencrypted
+func (m_ MEComposeContext) SetIsEncrypted(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIsEncrypted:"), value)
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/MailKit/MEComposeContext/action
 func (m_ MEComposeContext) Action() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("action"))

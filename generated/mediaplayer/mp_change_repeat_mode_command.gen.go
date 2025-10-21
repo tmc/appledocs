@@ -79,5 +79,23 @@ func NewChangeRepeatModeCommand() ChangeRepeatModeCommand {
 }
 
 
+// The current repeat option for a media item.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpchangerepeatmodecommand/currentrepeattype
+func (c_ ChangeRepeatModeCommand) CurrentRepeatType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("currentRepeatType"))
+	return rv
+}
+
+
+// SetCurrentRepeatType sets the value of the currentRepeatType property.
+// The current repeat option for a media item.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpchangerepeatmodecommand/currentrepeattype
+func (c_ ChangeRepeatModeCommand) SetCurrentRepeatType(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setCurrentRepeatType:"), value)
+}
+
 
 

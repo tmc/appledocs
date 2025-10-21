@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,8 +78,8 @@ func NewMTRThermostatClusterScheduleStruct() MTRThermostatClusterScheduleStruct 
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleStruct/builtIn
-func (m_ MTRThermostatClusterScheduleStruct) BuiltIn() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("builtIn"))
+func (m_ MTRThermostatClusterScheduleStruct) BuiltIn() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("builtIn"))
 	return rv
 }
 
@@ -86,7 +87,7 @@ func (m_ MTRThermostatClusterScheduleStruct) BuiltIn() unsafe.Pointer {
 // SetBuiltIn sets the value of the builtIn property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleStruct/builtIn
-func (m_ MTRThermostatClusterScheduleStruct) SetBuiltIn(value unsafe.Pointer) {
+func (m_ MTRThermostatClusterScheduleStruct) SetBuiltIn(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBuiltIn:"), value)
 }
 
@@ -137,8 +138,8 @@ func (m_ MTRThermostatClusterScheduleStruct) SetScheduleHandle(value unsafe.Poin
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleStruct/systemMode
-func (m_ MTRThermostatClusterScheduleStruct) SystemMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("systemMode"))
+func (m_ MTRThermostatClusterScheduleStruct) SystemMode() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("systemMode"))
 	return rv
 }
 
@@ -146,7 +147,7 @@ func (m_ MTRThermostatClusterScheduleStruct) SystemMode() unsafe.Pointer {
 // SetSystemMode sets the value of the systemMode property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleStruct/systemMode
-func (m_ MTRThermostatClusterScheduleStruct) SetSystemMode(value unsafe.Pointer) {
+func (m_ MTRThermostatClusterScheduleStruct) SetSystemMode(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSystemMode:"), value)
 }
 

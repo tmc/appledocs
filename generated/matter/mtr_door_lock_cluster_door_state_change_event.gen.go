@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,21 @@ func NewMTRDoorLockClusterDoorStateChangeEvent() MTRDoorLockClusterDoorStateChan
 	return getMTRDoorLockClusterDoorStateChangeEventClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterdoorstatechangeevent/doorstate
+func (m_ MTRDoorLockClusterDoorStateChangeEvent) DoorState() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("doorState"))
+	return rv
+}
+
+
+// SetDoorState sets the value of the doorState property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterdoorstatechangeevent/doorstate
+func (m_ MTRDoorLockClusterDoorStateChangeEvent) SetDoorState(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDoorState:"), value)
+}
 
 
 

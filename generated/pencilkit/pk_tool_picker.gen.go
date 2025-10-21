@@ -142,6 +142,24 @@ func (t_ ToolPicker) SetVisibleForFirstResponder(visible bool, responder unsafe.
 	objc.Send[objc.ID](t_.ID, objc.Sel("setVisible:forFirstResponder:"), visible, responder)
 }
 
+// A Boolean value that indicates whether the ruler is visible on the canvas.
+//
+// [Full Topic]: https://developer.apple.com/documentation/pencilkit/pktoolpicker/isruleractive
+func (t_ ToolPicker) IsRulerActive() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("isRulerActive"))
+	return rv
+}
+
+
+// SetIsRulerActive sets the value of the isRulerActive property.
+// A Boolean value that indicates whether the ruler is visible on the canvas.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/pencilkit/pktoolpicker/isruleractive
+func (t_ ToolPicker) SetIsRulerActive(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setIsRulerActive:"), value)
+}
+
 // An optional button that appears at the trailing edge of the tool picker.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPicker/accessoryItem

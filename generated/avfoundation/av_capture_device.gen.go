@@ -768,4 +768,354 @@ func (c_ CaptureDevice) SetUserPreferredCamera(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setUserPreferredCamera:"), value)
 }
 
+// A virtual device’s active primary constituent device.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/activeprimaryconstituent
+func (c_ CaptureDevice) ActivePrimaryConstituent() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("activePrimaryConstituent"))
+	return rv
+}
+
+
+// SetActivePrimaryConstituent sets the value of the activePrimaryConstituent property.
+// A virtual device’s active primary constituent device.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/activeprimaryconstituent
+func (c_ CaptureDevice) SetActivePrimaryConstituent(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setActivePrimaryConstituent:"), value)
+}
+
+// The current scene monitoring statuses related to Cinematic Video capture.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/cinematicvideocapturescenemonitoringstatuses
+func (c_ CaptureDevice) CinematicVideoCaptureSceneMonitoringStatuses() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("cinematicVideoCaptureSceneMonitoringStatuses"))
+	return rv
+}
+
+
+// SetCinematicVideoCaptureSceneMonitoringStatuses sets the value of the cinematicVideoCaptureSceneMonitoringStatuses property.
+// The current scene monitoring statuses related to Cinematic Video capture.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/cinematicvideocapturescenemonitoringstatuses
+func (c_ CaptureDevice) SetCinematicVideoCaptureSceneMonitoringStatuses(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setCinematicVideoCaptureSceneMonitoringStatuses:"), value)
+}
+
+// The type of device, such as a built-in microphone or wide-angle camera.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/devicetype-swift.property
+func (c_ CaptureDevice) DeviceType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("deviceType"))
+	return rv
+}
+
+
+// SetDeviceType sets the value of the deviceType property.
+// The type of device, such as a built-in microphone or wide-angle camera.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/devicetype-swift.property
+func (c_ CaptureDevice) SetDeviceType(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setDeviceType:"), value)
+}
+
+// A Boolean value that indicates whether the capture device performs automatic video frame rate adjustments.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/isautovideoframerateenabled
+func (c_ CaptureDevice) IsAutoVideoFrameRateEnabled() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isAutoVideoFrameRateEnabled"))
+	return rv
+}
+
+
+// SetIsAutoVideoFrameRateEnabled sets the value of the isAutoVideoFrameRateEnabled property.
+// A Boolean value that indicates whether the capture device performs automatic video frame rate adjustments.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/isautovideoframerateenabled
+func (c_ CaptureDevice) SetIsAutoVideoFrameRateEnabled(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsAutoVideoFrameRateEnabled:"), value)
+}
+
+// Whether camera lens smudge detection is enabled.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/iscameralenssmudgedetectionenabled
+func (c_ CaptureDevice) IsCameraLensSmudgeDetectionEnabled() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isCameraLensSmudgeDetectionEnabled"))
+	return rv
+}
+
+
+// SetIsCameraLensSmudgeDetectionEnabled sets the value of the isCameraLensSmudgeDetectionEnabled property.
+// Whether camera lens smudge detection is enabled.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/iscameralenssmudgedetectionenabled
+func (c_ CaptureDevice) SetIsCameraLensSmudgeDetectionEnabled(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsCameraLensSmudgeDetectionEnabled:"), value)
+}
+
+// A Boolean value that indicates whether a device is currently connected to the system and available for use.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/isconnected
+func (c_ CaptureDevice) IsConnected() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isConnected"))
+	return rv
+}
+
+
+// SetIsConnected sets the value of the isConnected property.
+// A Boolean value that indicates whether a device is currently connected to the system and available for use.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/isconnected
+func (c_ CaptureDevice) SetIsConnected(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsConnected:"), value)
+}
+
+// A Boolean value that indicates whether the device is a Continuity Camera.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/iscontinuitycamera
+func (c_ CaptureDevice) IsContinuityCamera() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isContinuityCamera"))
+	return rv
+}
+
+
+// SetIsContinuityCamera sets the value of the isContinuityCamera property.
+// A Boolean value that indicates whether the device is a Continuity Camera.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/iscontinuitycamera
+func (c_ CaptureDevice) SetIsContinuityCamera(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsContinuityCamera:"), value)
+}
+
+// Whether the device is following an external sync device.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/isfollowingexternalsyncdevice
+func (c_ CaptureDevice) IsFollowingExternalSyncDevice() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isFollowingExternalSyncDevice"))
+	return rv
+}
+
+
+// SetIsFollowingExternalSyncDevice sets the value of the isFollowingExternalSyncDevice property.
+// Whether the device is following an external sync device.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/isfollowingexternalsyncdevice
+func (c_ CaptureDevice) SetIsFollowingExternalSyncDevice(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsFollowingExternalSyncDevice:"), value)
+}
+
+// A Boolean value that indicates whether another app is using the device.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/isinusebyanotherapplication
+func (c_ CaptureDevice) IsInUseByAnotherApplication() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isInUseByAnotherApplication"))
+	return rv
+}
+
+
+// SetIsInUseByAnotherApplication sets the value of the isInUseByAnotherApplication property.
+// A Boolean value that indicates whether another app is using the device.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/isinusebyanotherapplication
+func (c_ CaptureDevice) SetIsInUseByAnotherApplication(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsInUseByAnotherApplication:"), value)
+}
+
+// A Boolean value that indicates whether the device monitors the subject area for changes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/issubjectareachangemonitoringenabled
+func (c_ CaptureDevice) IsSubjectAreaChangeMonitoringEnabled() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isSubjectAreaChangeMonitoringEnabled"))
+	return rv
+}
+
+
+// SetIsSubjectAreaChangeMonitoringEnabled sets the value of the isSubjectAreaChangeMonitoringEnabled property.
+// A Boolean value that indicates whether the device monitors the subject area for changes.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/issubjectareachangemonitoringenabled
+func (c_ CaptureDevice) SetIsSubjectAreaChangeMonitoringEnabled(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsSubjectAreaChangeMonitoringEnabled:"), value)
+}
+
+// A Boolean value that indicates whether the device is in a suspended state.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/issuspended
+func (c_ CaptureDevice) IsSuspended() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isSuspended"))
+	return rv
+}
+
+
+// SetIsSuspended sets the value of the isSuspended property.
+// A Boolean value that indicates whether the device is in a suspended state.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/issuspended
+func (c_ CaptureDevice) SetIsSuspended(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsSuspended:"), value)
+}
+
+// Whether the device’s video frame rate (expressed as a duration) is currently locked.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/isvideoframedurationlocked
+func (c_ CaptureDevice) IsVideoFrameDurationLocked() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isVideoFrameDurationLocked"))
+	return rv
+}
+
+
+// SetIsVideoFrameDurationLocked sets the value of the isVideoFrameDurationLocked property.
+// Whether the device’s video frame rate (expressed as a duration) is currently locked.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/isvideoframedurationlocked
+func (c_ CaptureDevice) SetIsVideoFrameDurationLocked(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsVideoFrameDurationLocked:"), value)
+}
+
+// A Boolean value that indicates whether the device consists of two or more physical devices.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/isvirtualdevice
+func (c_ CaptureDevice) IsVirtualDevice() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isVirtualDevice"))
+	return rv
+}
+
+
+// SetIsVirtualDevice sets the value of the isVirtualDevice property.
+// A Boolean value that indicates whether the device consists of two or more physical devices.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/isvirtualdevice
+func (c_ CaptureDevice) SetIsVirtualDevice(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsVirtualDevice:"), value)
+}
+
+// A localized device name for display in the user interface.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/localizedname
+func (c_ CaptureDevice) LocalizedName() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("localizedName"))
+	return rv
+}
+
+
+// SetLocalizedName sets the value of the localizedName property.
+// A localized device name for display in the user interface.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/localizedname
+func (c_ CaptureDevice) SetLocalizedName(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setLocalizedName:"), objc.String(value))
+}
+
+// A human-readable string for the manufacturer of the device.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/manufacturer
+func (c_ CaptureDevice) Manufacturer() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("manufacturer"))
+	return rv
+}
+
+
+// SetManufacturer sets the value of the manufacturer property.
+// A human-readable string for the manufacturer of the device.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/manufacturer
+func (c_ CaptureDevice) SetManufacturer(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setManufacturer:"), objc.String(value))
+}
+
+// The maximum frame rate (expressed as a minimum duration) that can be set on an input associated with this device.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/minsupportedlockedvideoframeduration
+func (c_ CaptureDevice) MinSupportedLockedVideoFrameDuration() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("minSupportedLockedVideoFrameDuration"))
+	return rv
+}
+
+
+// SetMinSupportedLockedVideoFrameDuration sets the value of the minSupportedLockedVideoFrameDuration property.
+// The maximum frame rate (expressed as a minimum duration) that can be set on an input associated with this device.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/minsupportedlockedvideoframeduration
+func (c_ CaptureDevice) SetMinSupportedLockedVideoFrameDuration(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setMinSupportedLockedVideoFrameDuration:"), value)
+}
+
+// A model identifier for the device.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/modelid
+func (c_ CaptureDevice) ModelID() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("modelID"))
+	return rv
+}
+
+
+// SetModelID sets the value of the modelID property.
+// A model identifier for the device.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/modelid
+func (c_ CaptureDevice) SetModelID(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setModelID:"), objc.String(value))
+}
+
+// The physical position of the capture device hardware.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/position-swift.property
+func (c_ CaptureDevice) Position() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("position"))
+	return rv
+}
+
+
+// SetPosition sets the value of the position property.
+// The physical position of the capture device hardware.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/position-swift.property
+func (c_ CaptureDevice) SetPosition(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setPosition:"), value)
+}
+
+// Reasons why current environmental conditions aren’t suitable to capturing spatial videos that are comfortable to view.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/spatialcapturediscomfortreasons
+func (c_ CaptureDevice) SpatialCaptureDiscomfortReasons() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("spatialCaptureDiscomfortReasons"))
+	return rv
+}
+
+
+// SetSpatialCaptureDiscomfortReasons sets the value of the spatialCaptureDiscomfortReasons property.
+// Reasons why current environmental conditions aren’t suitable to capturing spatial videos that are comfortable to view.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/spatialcapturediscomfortreasons
+func (c_ CaptureDevice) SetSpatialCaptureDiscomfortReasons(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setSpatialCaptureDiscomfortReasons:"), value)
+}
+
+// A key to retrieve a state value that indicates the system pressure level and contributing factors that caused the interruption.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesessioninterruptionsystempressurestatekey
+func (c_ CaptureDevice) AVCaptureSessionInterruptionSystemPressureStateKey() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("AVCaptureSessionInterruptionSystemPressureStateKey"))
+	return rv
+}
+
 

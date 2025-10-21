@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [INStartWorkoutIntent] class.
@@ -86,13 +87,67 @@ func NewINStartWorkoutIntent() INStartWorkoutIntent {
 // Initializes an intent object with the specified workout information.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INStartWorkoutIntent/initWithWorkoutName:goalValue:workoutGoalUnitType:workoutLocationType:isOpenEnded:
-func NewINStartWorkoutIntentWithWorkoutNameGoalValueWorkoutGoalUnitTypeWorkoutLocationTypeIsOpenEnded(workoutName unsafe.Pointer, goalValue unsafe.Pointer, workoutGoalUnitType unsafe.Pointer, workoutLocationType unsafe.Pointer, isOpenEnded unsafe.Pointer) INStartWorkoutIntent {
+func NewINStartWorkoutIntentWithWorkoutNameGoalValueWorkoutGoalUnitTypeWorkoutLocationTypeIsOpenEnded(workoutName unsafe.Pointer, goalValue foundation.Number, workoutGoalUnitType unsafe.Pointer, workoutLocationType unsafe.Pointer, isOpenEnded foundation.Number) INStartWorkoutIntent {
 	instance := getINStartWorkoutIntentClass().Alloc()
 	rv := objc.Send[INStartWorkoutIntent](instance.ID, objc.Sel("initWithWorkoutName:goalValue:workoutGoalUnitType:workoutLocationType:isOpenEnded:"), workoutName, goalValue, workoutGoalUnitType, workoutLocationType, isOpenEnded)
 	rv.Autorelease()
 	return rv
 }
 
+
+// A Boolean value that indicates whether the workout is open ended.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/instartworkoutintent/isopenended-8hecn
+func (i_ INStartWorkoutIntent) IsOpenEnded() bool {
+	rv := objc.Send[bool](i_.ID, objc.Sel("isOpenEnded"))
+	return rv
+}
+
+
+// SetIsOpenEnded sets the value of the isOpenEnded property.
+// A Boolean value that indicates whether the workout is open ended.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/instartworkoutintent/isopenended-8hecn
+func (i_ INStartWorkoutIntent) SetIsOpenEnded(value bool) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setIsOpenEnded:"), value)
+}
+
+// The user-supplied numerical goal of the workout.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/instartworkoutintent/goalvalue-5oazy
+func (i_ INStartWorkoutIntent) GoalValue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("goalValue"))
+	return rv
+}
+
+
+// SetGoalValue sets the value of the goalValue property.
+// The user-supplied numerical goal of the workout.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/instartworkoutintent/goalvalue-5oazy
+func (i_ INStartWorkoutIntent) SetGoalValue(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setGoalValue:"), value)
+}
+
+// The location of the workout.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/instartworkoutintent/workoutlocationtype
+func (i_ INStartWorkoutIntent) WorkoutLocationType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("workoutLocationType"))
+	return rv
+}
+
+
+// SetWorkoutLocationType sets the value of the workoutLocationType property.
+// The location of the workout.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/instartworkoutintent/workoutlocationtype
+func (i_ INStartWorkoutIntent) SetWorkoutLocationType(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setWorkoutLocationType:"), value)
+}
 
 // The units associated with the workout goal.
 //

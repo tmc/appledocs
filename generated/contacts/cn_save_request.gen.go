@@ -160,6 +160,14 @@ func (c_ CNSaveRequest) UpdateGroup(group unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("updateGroup:"), group)
 }
 
+// The contact, group, and container objects for which the error code applies.
+//
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cnerroruserinfoaffectedrecordskey
+func (c_ CNSaveRequest) CNErrorUserInfoAffectedRecordsKey() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CNErrorUserInfoAffectedRecordsKey"))
+	return rv
+}
+
 // A Boolean value that indicates whether to refetch the added and updated contacts after the save request executes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNSaveRequest/shouldRefetchContacts

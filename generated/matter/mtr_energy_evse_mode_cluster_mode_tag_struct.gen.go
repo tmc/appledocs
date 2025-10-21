@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,8 +78,8 @@ func NewMTREnergyEVSEModeClusterModeTagStruct() MTREnergyEVSEModeClusterModeTagS
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEModeClusterModeTagStruct/mfgCode
-func (m_ MTREnergyEVSEModeClusterModeTagStruct) MfgCode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("mfgCode"))
+func (m_ MTREnergyEVSEModeClusterModeTagStruct) MfgCode() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("mfgCode"))
 	return rv
 }
 
@@ -86,14 +87,14 @@ func (m_ MTREnergyEVSEModeClusterModeTagStruct) MfgCode() unsafe.Pointer {
 // SetMfgCode sets the value of the mfgCode property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEModeClusterModeTagStruct/mfgCode
-func (m_ MTREnergyEVSEModeClusterModeTagStruct) SetMfgCode(value unsafe.Pointer) {
+func (m_ MTREnergyEVSEModeClusterModeTagStruct) SetMfgCode(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMfgCode:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEModeClusterModeTagStruct/value
-func (m_ MTREnergyEVSEModeClusterModeTagStruct) Value() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("value"))
+func (m_ MTREnergyEVSEModeClusterModeTagStruct) Value() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("value"))
 	return rv
 }
 
@@ -101,7 +102,7 @@ func (m_ MTREnergyEVSEModeClusterModeTagStruct) Value() unsafe.Pointer {
 // SetValue sets the value of the value property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEModeClusterModeTagStruct/value
-func (m_ MTREnergyEVSEModeClusterModeTagStruct) SetValue(value unsafe.Pointer) {
+func (m_ MTREnergyEVSEModeClusterModeTagStruct) SetValue(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), value)
 }
 

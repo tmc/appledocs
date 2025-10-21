@@ -80,5 +80,23 @@ func NewFSMutableFileDataBuffer() FSMutableFileDataBuffer {
 }
 
 
+// The data length of the buffer.
+//
+// [Full Topic]: https://developer.apple.com/documentation/fskit/fsmutablefiledatabuffer/length
+func (f_ FSMutableFileDataBuffer) Length() int {
+	rv := objc.Send[int](f_.ID, objc.Sel("length"))
+	return rv
+}
+
+
+// SetLength sets the value of the length property.
+// The data length of the buffer.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/fskit/fsmutablefiledatabuffer/length
+func (f_ FSMutableFileDataBuffer) SetLength(value int) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setLength:"), value)
+}
+
 
 

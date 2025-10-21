@@ -89,6 +89,78 @@ func (t_ TKSmartCardSlot) MakeSmartCard() unsafe.Pointer {
 	return rv
 }
 
+// The maximum length of input APDU (Application Protocol Data Unit) that the Smart Card reader slot is able to transfer to the Smart Card.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcardslot/maxinputlength
+func (t_ TKSmartCardSlot) MaxInputLength() int {
+	rv := objc.Send[int](t_.ID, objc.Sel("maxInputLength"))
+	return rv
+}
+
+
+// SetMaxInputLength sets the value of the maxInputLength property.
+// The maximum length of input APDU (Application Protocol Data Unit) that the Smart Card reader slot is able to transfer to the Smart Card.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcardslot/maxinputlength
+func (t_ TKSmartCardSlot) SetMaxInputLength(value int) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setMaxInputLength:"), value)
+}
+
+// The ATR (Answer to Reset) of the inserted Smart Card, or
+//
+// [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcardslot/atr
+func (t_ TKSmartCardSlot) Atr() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("atr"))
+	return rv
+}
+
+
+// SetAtr sets the value of the atr property.
+// The ATR (Answer to Reset) of the inserted Smart Card, or
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcardslot/atr
+func (t_ TKSmartCardSlot) SetAtr(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setAtr:"), value)
+}
+
+// The maximum length of output APDU (Application Protocol Data Unit) that the Smart Card reader slot is able to transfer from the Smart Card.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcardslot/maxoutputlength
+func (t_ TKSmartCardSlot) MaxOutputLength() int {
+	rv := objc.Send[int](t_.ID, objc.Sel("maxOutputLength"))
+	return rv
+}
+
+
+// SetMaxOutputLength sets the value of the maxOutputLength property.
+// The maximum length of output APDU (Application Protocol Data Unit) that the Smart Card reader slot is able to transfer from the Smart Card.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcardslot/maxoutputlength
+func (t_ TKSmartCardSlot) SetMaxOutputLength(value int) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setMaxOutputLength:"), value)
+}
+
+// A list of identifiers for all the Smart Card reader slots available to the system.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcardslotmanager/slotnames
+func (t_ TKSmartCardSlot) SlotNames() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("slotNames"))
+	return rv
+}
+
+
+// SetSlotNames sets the value of the slotNames property.
+// A list of identifiers for all the Smart Card reader slots available to the system.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcardslotmanager/slotnames
+func (t_ TKSmartCardSlot) SetSlotNames(value string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setSlotNames:"), objc.String(value))
+}
+
 // The name of the Smart Card reader slot.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardSlot/name

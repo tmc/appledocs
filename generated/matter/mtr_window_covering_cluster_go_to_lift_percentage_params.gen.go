@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,51 @@ func NewMTRWindowCoveringClusterGoToLiftPercentageParams() MTRWindowCoveringClus
 	return getMTRWindowCoveringClusterGoToLiftPercentageParamsClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrwindowcoveringclustergotoliftpercentageparams/liftpercent100thsvalue
+func (m_ MTRWindowCoveringClusterGoToLiftPercentageParams) LiftPercent100thsValue() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("liftPercent100thsValue"))
+	return rv
+}
+
+
+// SetLiftPercent100thsValue sets the value of the liftPercent100thsValue property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrwindowcoveringclustergotoliftpercentageparams/liftpercent100thsvalue
+func (m_ MTRWindowCoveringClusterGoToLiftPercentageParams) SetLiftPercent100thsValue(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLiftPercent100thsValue:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrwindowcoveringclustergotoliftpercentageparams/timedinvoketimeoutms
+func (m_ MTRWindowCoveringClusterGoToLiftPercentageParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+	return rv
+}
+
+
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrwindowcoveringclustergotoliftpercentageparams/timedinvoketimeoutms
+func (m_ MTRWindowCoveringClusterGoToLiftPercentageParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrwindowcoveringclustergotoliftpercentageparams/serversideprocessingtimeout
+func (m_ MTRWindowCoveringClusterGoToLiftPercentageParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+	return rv
+}
+
+
+// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrwindowcoveringclustergotoliftpercentageparams/serversideprocessingtimeout
+func (m_ MTRWindowCoveringClusterGoToLiftPercentageParams) SetServerSideProcessingTimeout(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
+}
 
 
 

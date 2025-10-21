@@ -94,6 +94,24 @@ func NewSProgressReportingCapabilityWithKindDetails(kind unsafe.Pointer, details
 }
 
 
+// The kinds of progress reporting that the context can perform.
+//
+// [Full Topic]: https://developer.apple.com/documentation/classkit/clscontext/progressreportingcapabilities
+func (s_ SProgressReportingCapability) ProgressReportingCapabilities() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("progressReportingCapabilities"))
+	return rv
+}
+
+
+// SetProgressReportingCapabilities sets the value of the progressReportingCapabilities property.
+// The kinds of progress reporting that the context can perform.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/classkit/clscontext/progressreportingcapabilities
+func (s_ SProgressReportingCapability) SetProgressReportingCapabilities(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setProgressReportingCapabilities:"), value)
+}
+
 // A description of the capability presented to teachers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSProgressReportingCapability/details

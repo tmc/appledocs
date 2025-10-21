@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -310,6 +311,60 @@ func (u_ UTType) IsSupertypeOfType(type_ unsafe.Pointer) bool {
 	return rv
 }
 
+// A Boolean value that indicates whether the system generates the type.
+//
+// [Full Topic]: https://developer.apple.com/documentation/uniformtypeidentifiers/uttypereference/isdynamic
+func (u_ UTType) IsDynamic() bool {
+	rv := objc.Send[bool](u_.ID, objc.Sel("isDynamic"))
+	return rv
+}
+
+
+// SetIsDynamic sets the value of the isDynamic property.
+// A Boolean value that indicates whether the system generates the type.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/uniformtypeidentifiers/uttypereference/isdynamic
+func (u_ UTType) SetIsDynamic(value bool) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setIsDynamic:"), value)
+}
+
+// A Boolean value that indicates whether the system declares the type.
+//
+// [Full Topic]: https://developer.apple.com/documentation/uniformtypeidentifiers/uttypereference/isdeclared
+func (u_ UTType) IsDeclared() bool {
+	rv := objc.Send[bool](u_.ID, objc.Sel("isDeclared"))
+	return rv
+}
+
+
+// SetIsDeclared sets the value of the isDeclared property.
+// A Boolean value that indicates whether the system declares the type.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/uniformtypeidentifiers/uttypereference/isdeclared
+func (u_ UTType) SetIsDeclared(value bool) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setIsDeclared:"), value)
+}
+
+// A Boolean value that indicates whether the type is in the public domain.
+//
+// [Full Topic]: https://developer.apple.com/documentation/uniformtypeidentifiers/uttypereference/ispublic
+func (u_ UTType) IsPublic() bool {
+	rv := objc.Send[bool](u_.ID, objc.Sel("isPublic"))
+	return rv
+}
+
+
+// SetIsPublic sets the value of the isPublic property.
+// A Boolean value that indicates whether the type is in the public domain.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/uniformtypeidentifiers/uttypereference/ispublic
+func (u_ UTType) SetIsPublic(value bool) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setIsPublic:"), value)
+}
+
 // A type representing the @c SHCustomCatalog file format with the .shazamcatalog extension
 //
 // [Full Topic]: https://developer.apple.com/documentation/UniformTypeIdentifiers/UTType-c.class/SHCustomCatalogContentType
@@ -385,8 +440,8 @@ func (u_ UTType) PreferredMIMEType() string {
 // The reference URL for the type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UniformTypeIdentifiers/UTTypeReference/referenceURL
-func (u_ UTType) ReferenceURL() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("referenceURL"))
+func (u_ UTType) ReferenceURL() foundation.URL {
+	rv := objc.Send[foundation.URL](u_.ID, objc.Sel("referenceURL"))
 	return rv
 }
 
@@ -409,8 +464,8 @@ func (u_ UTType) Tags() unsafe.Pointer {
 // The type’s version, if available.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UniformTypeIdentifiers/UTTypeReference/version
-func (u_ UTType) Version() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("version"))
+func (u_ UTType) Version() foundation.Number {
+	rv := objc.Send[foundation.Number](u_.ID, objc.Sel("version"))
 	return rv
 }
 

@@ -331,5 +331,125 @@ func (t_ TableRowView) SetSelectionHighlightStyle(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectionHighlightStyle:"), value)
 }
 
+// Determines whether the row will draw with the alternate or secondary color (unless overridden).
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstablerowview/isemphasized
+func (t_ TableRowView) IsEmphasized() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("isEmphasized"))
+	return rv
+}
+
+
+// SetIsEmphasized sets the value of the isEmphasized property.
+// Determines whether the row will draw with the alternate or secondary color (unless overridden).
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstablerowview/isemphasized
+func (t_ TableRowView) SetIsEmphasized(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setIsEmphasized:"), value)
+}
+
+// Specifies whether the row is drawn using the floating style.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstablerowview/isfloating
+func (t_ TableRowView) IsFloating() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("isFloating"))
+	return rv
+}
+
+
+// SetIsFloating sets the value of the isFloating property.
+// Specifies whether the row is drawn using the floating style.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstablerowview/isfloating
+func (t_ TableRowView) SetIsFloating(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setIsFloating:"), value)
+}
+
+// Specifies whether this row view is a group row.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstablerowview/isgrouprowstyle
+func (t_ TableRowView) IsGroupRowStyle() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("isGroupRowStyle"))
+	return rv
+}
+
+
+// SetIsGroupRowStyle sets the value of the isGroupRowStyle property.
+// Specifies whether this row view is a group row.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstablerowview/isgrouprowstyle
+func (t_ TableRowView) SetIsGroupRowStyle(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setIsGroupRowStyle:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstablerowview/isnextrowselected
+func (t_ TableRowView) IsNextRowSelected() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("isNextRowSelected"))
+	return rv
+}
+
+
+// SetIsNextRowSelected sets the value of the isNextRowSelected property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstablerowview/isnextrowselected
+func (t_ TableRowView) SetIsNextRowSelected(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setIsNextRowSelected:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstablerowview/ispreviousrowselected
+func (t_ TableRowView) IsPreviousRowSelected() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("isPreviousRowSelected"))
+	return rv
+}
+
+
+// SetIsPreviousRowSelected sets the value of the isPreviousRowSelected property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstablerowview/ispreviousrowselected
+func (t_ TableRowView) SetIsPreviousRowSelected(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setIsPreviousRowSelected:"), value)
+}
+
+// Determines whether the row is selected.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstablerowview/isselected
+func (t_ TableRowView) IsSelected() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("isSelected"))
+	return rv
+}
+
+
+// SetIsSelected sets the value of the isSelected property.
+// Determines whether the row is selected.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstablerowview/isselected
+func (t_ TableRowView) SetIsSelected(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setIsSelected:"), value)
+}
+
+// Specifies whether this row will draw a drop indicator based on the current dragging feedback style.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstablerowview/istargetfordropoperation
+func (t_ TableRowView) IsTargetForDropOperation() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("isTargetForDropOperation"))
+	return rv
+}
+
+
+// SetIsTargetForDropOperation sets the value of the isTargetForDropOperation property.
+// Specifies whether this row will draw a drop indicator based on the current dragging feedback style.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstablerowview/istargetfordropoperation
+func (t_ TableRowView) SetIsTargetForDropOperation(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setIsTargetForDropOperation:"), value)
+}
+
 
 

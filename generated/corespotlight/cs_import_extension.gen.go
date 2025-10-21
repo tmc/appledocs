@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,7 +31,7 @@ type _CSImportExtensionClass struct {
 // An interface definition for the [CSImportExtension] class.
 type ICSImportExtension interface {
 	objectivec.IObject
-	UpdateAttributesForFileAtURLError(attributes unsafe.Pointer, contentURL unsafe.Pointer, error_ unsafe.Pointer) bool
+	UpdateAttributesForFileAtURLError(attributes unsafe.Pointer, contentURL foundation.URL, error_ unsafe.Pointer) bool
 }
 
 // An object that provides searchable attributes for file types that the app supports.
@@ -84,7 +85,7 @@ func NewCSImportExtension() CSImportExtension {
 // Provides searchable attributes for a file at the specified URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSImportExtension/update(_:forFileAt:)
-func (c_ CSImportExtension) UpdateAttributesForFileAtURLError(attributes unsafe.Pointer, contentURL unsafe.Pointer, error_ unsafe.Pointer) bool {
+func (c_ CSImportExtension) UpdateAttributesForFileAtURLError(attributes unsafe.Pointer, contentURL foundation.URL, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("updateAttributes:forFileAtURL:error:"), attributes, contentURL, error_)
 	return rv
 }

@@ -78,5 +78,23 @@ func NewCaptureSynchronizedData() CaptureSynchronizedData {
 }
 
 
+// The time at which this synchronized data was captured.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesynchronizeddata/timestamp
+func (c_ CaptureSynchronizedData) Timestamp() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("timestamp"))
+	return rv
+}
+
+
+// SetTimestamp sets the value of the timestamp property.
+// The time at which this synchronized data was captured.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesynchronizeddata/timestamp
+func (c_ CaptureSynchronizedData) SetTimestamp(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setTimestamp:"), value)
+}
+
 
 

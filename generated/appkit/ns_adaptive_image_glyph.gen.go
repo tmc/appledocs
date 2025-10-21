@@ -80,5 +80,59 @@ func NewAdaptiveImageGlyph() AdaptiveImageGlyph {
 }
 
 
+// An alternate textual description of the image contents.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsadaptiveimageglyph/contentdescription
+func (a_ AdaptiveImageGlyph) ContentDescription() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("contentDescription"))
+	return rv
+}
+
+
+// SetContentDescription sets the value of the contentDescription property.
+// An alternate textual description of the image contents.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsadaptiveimageglyph/contentdescription
+func (a_ AdaptiveImageGlyph) SetContentDescription(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setContentDescription:"), objc.String(value))
+}
+
+// A unique identifier for this image.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsadaptiveimageglyph/contentidentifier
+func (a_ AdaptiveImageGlyph) ContentIdentifier() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("contentIdentifier"))
+	return rv
+}
+
+
+// SetContentIdentifier sets the value of the contentIdentifier property.
+// A unique identifier for this image.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsadaptiveimageglyph/contentidentifier
+func (a_ AdaptiveImageGlyph) SetContentIdentifier(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setContentIdentifier:"), objc.String(value))
+}
+
+// The raw data for the image.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsadaptiveimageglyph/imagecontent
+func (a_ AdaptiveImageGlyph) ImageContent() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("imageContent"))
+	return rv
+}
+
+
+// SetImageContent sets the value of the imageContent property.
+// The raw data for the image.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsadaptiveimageglyph/imagecontent
+func (a_ AdaptiveImageGlyph) SetImageContent(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setImageContent:"), value)
+}
+
 
 

@@ -109,103 +109,103 @@ var (
 	_CMTimebaseGetTypeID func() unsafe.Pointer
 	_CMVideoFormatDescriptionGetHEVCParameterSetAtIndex func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CMTimeCodeFormatDescriptionGetFrameDuration func(unsafe.Pointer) unsafe.Pointer
-	_CMSampleBufferGetPresentationTimeStamp func(unsafe.Pointer) unsafe.Pointer
-	_CMTimebaseSetTime func(unsafe.Pointer) unsafe.Pointer
-	_CMTimeMinimum func(unsafe.Pointer) unsafe.Pointer
-	_CMTimebaseSetTimerDispatchSourceToFireImmediately func(unsafe.Pointer) unsafe.Pointer
-	_CMPropagateAttachments func(unsafe.Pointer) unsafe.Pointer
-	_CMSetAttachment func(unsafe.Pointer) unsafe.Pointer
-	_CMBufferQueueGetEndPresentationTimeStamp func(unsafe.Pointer) unsafe.Pointer
-	_CMTimeRangeFromTimeToTime func(unsafe.Pointer) unsafe.Pointer
-	_CMBlockBufferAssureBlockMemory func(unsafe.Pointer) unsafe.Pointer
-	_CMBufferQueueDequeueIfDataReady func(unsafe.Pointer) unsafe.Pointer
-	_CMTimebaseSetMasterTimebase func(unsafe.Pointer) unsafe.Pointer
-	_CMTimeRangeGetUnion func(unsafe.Pointer) unsafe.Pointer
-	_CMBufferQueueDequeue func(unsafe.Pointer) unsafe.Pointer
-	_CMBufferQueueGetDuration func(unsafe.Pointer) unsafe.Pointer
-	_CMMetadataFormatDescriptionGetIdentifiers func(unsafe.Pointer) unsafe.Pointer
 	_CMSimpleQueueReset func(unsafe.Pointer) unsafe.Pointer
-	_CMTimebaseCopyMaster func(unsafe.Pointer) unsafe.Pointer
-	_CMClockGetTypeID func() unsafe.Pointer
-	_CMVideoFormatDescriptionGetDimensions func(unsafe.Pointer) unsafe.Pointer
-	_CMMemoryPoolGetAllocator func(unsafe.Pointer) unsafe.Pointer
-	_CMTimeAbsoluteValue func(unsafe.Pointer) unsafe.Pointer
-	_CMTimeMappingShow func(unsafe.Pointer) unsafe.Pointer
-	_CMRemoveAllAttachments func(unsafe.Pointer) unsafe.Pointer
-	_CMBufferQueueGetMinPresentationTimeStamp func(unsafe.Pointer) unsafe.Pointer
-	_CMFormatDescriptionGetTypeID func() unsafe.Pointer
-	_CMMetadataFormatDescriptionGetKeyWithLocalID func(unsafe.Pointer) unsafe.Pointer
-	_CMTimebaseSetAnchorTime func(unsafe.Pointer) unsafe.Pointer
-	_CMBufferQueueSetValidationHandler func(unsafe.Pointer) unsafe.Pointer
-	_CMFormatDescriptionGetMediaSubType func(unsafe.Pointer) unsafe.Pointer
 	_CMTimeMaximum func(unsafe.Pointer) unsafe.Pointer
-	_CMTimebaseAddTimerDispatchSource func(unsafe.Pointer) unsafe.Pointer
-	_CMTimebaseCopyMasterTimebase func(unsafe.Pointer) unsafe.Pointer
-	_CMTimeMapTimeFromRangeToRange func(unsafe.Pointer) unsafe.Pointer
-	_CMTimebaseCopyMasterClock func(unsafe.Pointer) unsafe.Pointer
-	_CMTimebaseGetMaster func(unsafe.Pointer) unsafe.Pointer
-	_CMBufferQueueGetTypeID func() unsafe.Pointer
-	_CMTimeRangeGetEnd func(unsafe.Pointer) unsafe.Pointer
-	_CMVideoFormatDescriptionGetExtensionKeysCommonWithImageBuffers func() unsafe.Pointer
+	_CMTimebaseSetTimerDispatchSourceToFireImmediately func(unsafe.Pointer) unsafe.Pointer
 	_CMTimebaseGetTime func(unsafe.Pointer) unsafe.Pointer
-	_CMBufferQueueGetBufferCount func(unsafe.Pointer) unsafe.Pointer
-	_CMTimebaseCopySourceClock func(unsafe.Pointer) unsafe.Pointer
-	_CMBufferQueueGetMaxPresentationTimeStamp func(unsafe.Pointer) unsafe.Pointer
-	_CMBufferQueueMarkEndOfData func(unsafe.Pointer) unsafe.Pointer
-	_CMTimebaseGetTimeWithTimeScale func(unsafe.Pointer) unsafe.Pointer
-	_CMTimebaseSetSourceTimebase func(unsafe.Pointer) unsafe.Pointer
-	_CMBufferQueueRemoveTrigger func(unsafe.Pointer) unsafe.Pointer
-	_CMBufferQueueReset func(unsafe.Pointer) unsafe.Pointer
-	_CMTimeCopyAsDictionary func(unsafe.Pointer) unsafe.Pointer
-	_CMTimeAdd func(unsafe.Pointer) unsafe.Pointer
-	_CMTimebaseSetMasterClock func(unsafe.Pointer) unsafe.Pointer
-	_CMTimeRangeMake func(unsafe.Pointer) unsafe.Pointer
-	_CMClockInvalidate func(unsafe.Pointer) unsafe.Pointer
-	_CMClockGetTime func(unsafe.Pointer) unsafe.Pointer
-	_CMTimebaseCopyUltimateSourceClock func(unsafe.Pointer) unsafe.Pointer
-	_CMTimeClampToRange func(unsafe.Pointer) unsafe.Pointer
-	_CMTimeMakeFromDictionary func(unsafe.Pointer) unsafe.Pointer
-	_CMTimebaseGetMasterClock func(unsafe.Pointer) unsafe.Pointer
-	_CMTimebaseCopyUltimateMasterClock func(unsafe.Pointer) unsafe.Pointer
-	_CMTimeRangeGetIntersection func(unsafe.Pointer) unsafe.Pointer
-	_CMTimeMapDurationFromRangeToRange func(unsafe.Pointer) unsafe.Pointer
-	_CMBufferQueueGetFirstDecodeTimeStamp func(unsafe.Pointer) unsafe.Pointer
-	_CMFormatDescriptionGetExtensions func(unsafe.Pointer) unsafe.Pointer
-	_CMTimebaseCopySourceTimebase func(unsafe.Pointer) unsafe.Pointer
-	_CMTimebaseCopySource func(unsafe.Pointer) unsafe.Pointer
-	_CMTimebaseAddTimer func(unsafe.Pointer) unsafe.Pointer
-	_CMTimeMappingMake func(unsafe.Pointer) unsafe.Pointer
-	_CMBlockBufferGetTypeID func() unsafe.Pointer
-	_CMCopyDictionaryOfAttachments func(unsafe.Pointer) unsafe.Pointer
-	_CMBufferQueueGetFirstPresentationTimeStamp func(unsafe.Pointer) unsafe.Pointer
-	_CMTimebaseGetMasterTimebase func(unsafe.Pointer) unsafe.Pointer
-	_CMBufferQueueEnqueue func(unsafe.Pointer) unsafe.Pointer
-	_CMBufferQueueGetMinDecodeTimeStamp func(unsafe.Pointer) unsafe.Pointer
-	_CMTimeFoldIntoRange func(unsafe.Pointer) unsafe.Pointer
-	_CMTimebaseRemoveTimer func(unsafe.Pointer) unsafe.Pointer
-	_CMBufferQueueGetHead func(unsafe.Pointer) unsafe.Pointer
-	_CMFormatDescriptionGetMediaType func(unsafe.Pointer) unsafe.Pointer
-	_CMTimebaseSetSourceClock func(unsafe.Pointer) unsafe.Pointer
-	_CMTimeMappingCopyAsDictionary func(unsafe.Pointer) unsafe.Pointer
-	_CMTimeRangeCopyDescription func(unsafe.Pointer) unsafe.Pointer
-	_CMTimeShow func(unsafe.Pointer) unsafe.Pointer
-	_CMRemoveAttachment func(unsafe.Pointer) unsafe.Pointer
-	_CMMemoryPoolCreate func(unsafe.Pointer) unsafe.Pointer
-	_CMSyncGetTime func(unsafe.Pointer) unsafe.Pointer
-	_CMSampleBufferGetTypeID func() unsafe.Pointer
+	_CMTimeRangeShow func(unsafe.Pointer) unsafe.Pointer
+	_CMTimeRangeGetEnd func(unsafe.Pointer) unsafe.Pointer
+	_CMRemoveAllAttachments func(unsafe.Pointer) unsafe.Pointer
 	_CMTimebaseGetUltimateMasterClock func(unsafe.Pointer) unsafe.Pointer
-	_CMTimeRangeMakeFromDictionary func(unsafe.Pointer) unsafe.Pointer
+	_CMTimebaseGetMasterClock func(unsafe.Pointer) unsafe.Pointer
+	_CMBufferQueueGetFirstDecodeTimeStamp func(unsafe.Pointer) unsafe.Pointer
 	_CMMemoryPoolInvalidate func(unsafe.Pointer) unsafe.Pointer
-	_CMTimeMappingMakeEmpty func(unsafe.Pointer) unsafe.Pointer
-	_CMTimebaseNotificationBarrier func(unsafe.Pointer) unsafe.Pointer
+	_CMSampleBufferGetTypeID func() unsafe.Pointer
+	_CMTimebaseSetMasterClock func(unsafe.Pointer) unsafe.Pointer
 	_CMTimebaseSetTimerToFireImmediately func(unsafe.Pointer) unsafe.Pointer
 	_CMFormatDescriptionGetExtension func(unsafe.Pointer) unsafe.Pointer
-	_CMMemoryPoolFlush func(unsafe.Pointer) unsafe.Pointer
-	_CMTimeCopyDescription func(unsafe.Pointer) unsafe.Pointer
-	_CMTimeSubtract func(unsafe.Pointer) unsafe.Pointer
-	_CMTimeRangeShow func(unsafe.Pointer) unsafe.Pointer
+	_CMTimebaseGetMaster func(unsafe.Pointer) unsafe.Pointer
+	_CMBufferQueueGetMaxPresentationTimeStamp func(unsafe.Pointer) unsafe.Pointer
+	_CMMetadataFormatDescriptionGetKeyWithLocalID func(unsafe.Pointer) unsafe.Pointer
+	_CMMemoryPoolGetAllocator func(unsafe.Pointer) unsafe.Pointer
+	_CMTimebaseGetMasterTimebase func(unsafe.Pointer) unsafe.Pointer
+	_CMPropagateAttachments func(unsafe.Pointer) unsafe.Pointer
+	_CMTimeCopyAsDictionary func(unsafe.Pointer) unsafe.Pointer
+	_CMTimebaseCopySourceTimebase func(unsafe.Pointer) unsafe.Pointer
 	_CMSetAttachments func(unsafe.Pointer) unsafe.Pointer
+	_CMTimeAdd func(unsafe.Pointer) unsafe.Pointer
+	_CMTimebaseAddTimerDispatchSource func(unsafe.Pointer) unsafe.Pointer
+	_CMTimeMappingMake func(unsafe.Pointer) unsafe.Pointer
+	_CMFormatDescriptionGetExtensions func(unsafe.Pointer) unsafe.Pointer
+	_CMTimebaseSetAnchorTime func(unsafe.Pointer) unsafe.Pointer
+	_CMBufferQueueGetHead func(unsafe.Pointer) unsafe.Pointer
+	_CMTimeSubtract func(unsafe.Pointer) unsafe.Pointer
+	_CMTimebaseCopyUltimateSourceClock func(unsafe.Pointer) unsafe.Pointer
+	_CMSyncGetTime func(unsafe.Pointer) unsafe.Pointer
+	_CMTimeMakeFromDictionary func(unsafe.Pointer) unsafe.Pointer
+	_CMBufferQueueGetMinPresentationTimeStamp func(unsafe.Pointer) unsafe.Pointer
+	_CMFormatDescriptionGetMediaSubType func(unsafe.Pointer) unsafe.Pointer
+	_CMTimebaseCopySourceClock func(unsafe.Pointer) unsafe.Pointer
+	_CMTimebaseAddTimer func(unsafe.Pointer) unsafe.Pointer
+	_CMTimebaseCopyUltimateMasterClock func(unsafe.Pointer) unsafe.Pointer
+	_CMBufferQueueDequeueIfDataReady func(unsafe.Pointer) unsafe.Pointer
+	_CMBufferQueueGetBufferCount func(unsafe.Pointer) unsafe.Pointer
+	_CMTimeMapTimeFromRangeToRange func(unsafe.Pointer) unsafe.Pointer
+	_CMTimeClampToRange func(unsafe.Pointer) unsafe.Pointer
+	_CMTimeMappingCopyAsDictionary func(unsafe.Pointer) unsafe.Pointer
+	_CMBufferQueueGetTypeID func() unsafe.Pointer
+	_CMSampleBufferGetPresentationTimeStamp func(unsafe.Pointer) unsafe.Pointer
+	_CMTimebaseNotificationBarrier func(unsafe.Pointer) unsafe.Pointer
+	_CMTimeShow func(unsafe.Pointer) unsafe.Pointer
+	_CMSetAttachment func(unsafe.Pointer) unsafe.Pointer
+	_CMClockInvalidate func(unsafe.Pointer) unsafe.Pointer
+	_CMTimeRangeCopyDescription func(unsafe.Pointer) unsafe.Pointer
+	_CMTimeRangeFromTimeToTime func(unsafe.Pointer) unsafe.Pointer
+	_CMBufferQueueRemoveTrigger func(unsafe.Pointer) unsafe.Pointer
+	_CMTimebaseCopyMasterTimebase func(unsafe.Pointer) unsafe.Pointer
+	_CMTimeMapDurationFromRangeToRange func(unsafe.Pointer) unsafe.Pointer
+	_CMTimebaseSetMasterTimebase func(unsafe.Pointer) unsafe.Pointer
+	_CMTimebaseSetSourceTimebase func(unsafe.Pointer) unsafe.Pointer
+	_CMTimeRangeGetUnion func(unsafe.Pointer) unsafe.Pointer
+	_CMRemoveAttachment func(unsafe.Pointer) unsafe.Pointer
+	_CMVideoFormatDescriptionGetDimensions func(unsafe.Pointer) unsafe.Pointer
+	_CMBufferQueueGetDuration func(unsafe.Pointer) unsafe.Pointer
+	_CMBufferQueueGetEndPresentationTimeStamp func(unsafe.Pointer) unsafe.Pointer
+	_CMTimebaseCopyMasterClock func(unsafe.Pointer) unsafe.Pointer
+	_CMTimeRangeGetIntersection func(unsafe.Pointer) unsafe.Pointer
+	_CMBufferQueueDequeue func(unsafe.Pointer) unsafe.Pointer
+	_CMClockGetTime func(unsafe.Pointer) unsafe.Pointer
+	_CMTimeCopyDescription func(unsafe.Pointer) unsafe.Pointer
+	_CMTimebaseCopyMaster func(unsafe.Pointer) unsafe.Pointer
+	_CMBufferQueueSetValidationHandler func(unsafe.Pointer) unsafe.Pointer
+	_CMMetadataFormatDescriptionGetIdentifiers func(unsafe.Pointer) unsafe.Pointer
+	_CMTimeFoldIntoRange func(unsafe.Pointer) unsafe.Pointer
+	_CMTimeRangeMakeFromDictionary func(unsafe.Pointer) unsafe.Pointer
+	_CMTimeRangeMake func(unsafe.Pointer) unsafe.Pointer
+	_CMBufferQueueGetMinDecodeTimeStamp func(unsafe.Pointer) unsafe.Pointer
+	_CMFormatDescriptionGetTypeID func() unsafe.Pointer
+	_CMTimebaseCopySource func(unsafe.Pointer) unsafe.Pointer
+	_CMBufferQueueGetFirstPresentationTimeStamp func(unsafe.Pointer) unsafe.Pointer
 	_CMTimebaseRemoveTimerDispatchSource func(unsafe.Pointer) unsafe.Pointer
+	_CMVideoFormatDescriptionGetExtensionKeysCommonWithImageBuffers func() unsafe.Pointer
+	_CMTimebaseGetTimeWithTimeScale func(unsafe.Pointer) unsafe.Pointer
+	_CMTimeMappingShow func(unsafe.Pointer) unsafe.Pointer
+	_CMBlockBufferGetTypeID func() unsafe.Pointer
+	_CMBufferQueueReset func(unsafe.Pointer) unsafe.Pointer
+	_CMBufferQueueMarkEndOfData func(unsafe.Pointer) unsafe.Pointer
+	_CMClockGetTypeID func() unsafe.Pointer
+	_CMTimebaseSetSourceClock func(unsafe.Pointer) unsafe.Pointer
+	_CMFormatDescriptionGetMediaType func(unsafe.Pointer) unsafe.Pointer
+	_CMMemoryPoolCreate func(unsafe.Pointer) unsafe.Pointer
+	_CMBlockBufferAssureBlockMemory func(unsafe.Pointer) unsafe.Pointer
+	_CMMemoryPoolFlush func(unsafe.Pointer) unsafe.Pointer
+	_CMTimeAbsoluteValue func(unsafe.Pointer) unsafe.Pointer
+	_CMTimeMappingMakeEmpty func(unsafe.Pointer) unsafe.Pointer
+	_CMTimeMinimum func(unsafe.Pointer) unsafe.Pointer
+	_CMTimebaseSetTime func(unsafe.Pointer) unsafe.Pointer
+	_CMTimebaseRemoveTimer func(unsafe.Pointer) unsafe.Pointer
+	_CMCopyDictionaryOfAttachments func(unsafe.Pointer) unsafe.Pointer
+	_CMBufferQueueEnqueue func(unsafe.Pointer) unsafe.Pointer
 )
 
 func init() {
@@ -307,103 +307,103 @@ func init() {
 	tryRegister(&_CMTimebaseGetTypeID, lib, "CMTimebaseGetTypeID")
 	tryRegister(&_CMVideoFormatDescriptionGetHEVCParameterSetAtIndex, lib, "CMVideoFormatDescriptionGetHEVCParameterSetAtIndex")
 	tryRegister(&_CMTimeCodeFormatDescriptionGetFrameDuration, lib, "CMTimeCodeFormatDescriptionGetFrameDuration")
-	tryRegister(&_CMSampleBufferGetPresentationTimeStamp, lib, "CMSampleBufferGetPresentationTimeStamp")
-	tryRegister(&_CMTimebaseSetTime, lib, "CMTimebaseSetTime")
-	tryRegister(&_CMTimeMinimum, lib, "CMTimeMinimum")
-	tryRegister(&_CMTimebaseSetTimerDispatchSourceToFireImmediately, lib, "CMTimebaseSetTimerDispatchSourceToFireImmediately")
-	tryRegister(&_CMPropagateAttachments, lib, "CMPropagateAttachments")
-	tryRegister(&_CMSetAttachment, lib, "CMSetAttachment")
-	tryRegister(&_CMBufferQueueGetEndPresentationTimeStamp, lib, "CMBufferQueueGetEndPresentationTimeStamp")
-	tryRegister(&_CMTimeRangeFromTimeToTime, lib, "CMTimeRangeFromTimeToTime")
-	tryRegister(&_CMBlockBufferAssureBlockMemory, lib, "CMBlockBufferAssureBlockMemory")
-	tryRegister(&_CMBufferQueueDequeueIfDataReady, lib, "CMBufferQueueDequeueIfDataReady")
-	tryRegister(&_CMTimebaseSetMasterTimebase, lib, "CMTimebaseSetMasterTimebase")
-	tryRegister(&_CMTimeRangeGetUnion, lib, "CMTimeRangeGetUnion")
-	tryRegister(&_CMBufferQueueDequeue, lib, "CMBufferQueueDequeue")
-	tryRegister(&_CMBufferQueueGetDuration, lib, "CMBufferQueueGetDuration")
-	tryRegister(&_CMMetadataFormatDescriptionGetIdentifiers, lib, "CMMetadataFormatDescriptionGetIdentifiers")
 	tryRegister(&_CMSimpleQueueReset, lib, "CMSimpleQueueReset")
-	tryRegister(&_CMTimebaseCopyMaster, lib, "CMTimebaseCopyMaster")
-	tryRegister(&_CMClockGetTypeID, lib, "CMClockGetTypeID")
-	tryRegister(&_CMVideoFormatDescriptionGetDimensions, lib, "CMVideoFormatDescriptionGetDimensions")
-	tryRegister(&_CMMemoryPoolGetAllocator, lib, "CMMemoryPoolGetAllocator")
-	tryRegister(&_CMTimeAbsoluteValue, lib, "CMTimeAbsoluteValue")
-	tryRegister(&_CMTimeMappingShow, lib, "CMTimeMappingShow")
-	tryRegister(&_CMRemoveAllAttachments, lib, "CMRemoveAllAttachments")
-	tryRegister(&_CMBufferQueueGetMinPresentationTimeStamp, lib, "CMBufferQueueGetMinPresentationTimeStamp")
-	tryRegister(&_CMFormatDescriptionGetTypeID, lib, "CMFormatDescriptionGetTypeID")
-	tryRegister(&_CMMetadataFormatDescriptionGetKeyWithLocalID, lib, "CMMetadataFormatDescriptionGetKeyWithLocalID")
-	tryRegister(&_CMTimebaseSetAnchorTime, lib, "CMTimebaseSetAnchorTime")
-	tryRegister(&_CMBufferQueueSetValidationHandler, lib, "CMBufferQueueSetValidationHandler")
-	tryRegister(&_CMFormatDescriptionGetMediaSubType, lib, "CMFormatDescriptionGetMediaSubType")
 	tryRegister(&_CMTimeMaximum, lib, "CMTimeMaximum")
-	tryRegister(&_CMTimebaseAddTimerDispatchSource, lib, "CMTimebaseAddTimerDispatchSource")
-	tryRegister(&_CMTimebaseCopyMasterTimebase, lib, "CMTimebaseCopyMasterTimebase")
-	tryRegister(&_CMTimeMapTimeFromRangeToRange, lib, "CMTimeMapTimeFromRangeToRange")
-	tryRegister(&_CMTimebaseCopyMasterClock, lib, "CMTimebaseCopyMasterClock")
-	tryRegister(&_CMTimebaseGetMaster, lib, "CMTimebaseGetMaster")
-	tryRegister(&_CMBufferQueueGetTypeID, lib, "CMBufferQueueGetTypeID")
-	tryRegister(&_CMTimeRangeGetEnd, lib, "CMTimeRangeGetEnd")
-	tryRegister(&_CMVideoFormatDescriptionGetExtensionKeysCommonWithImageBuffers, lib, "CMVideoFormatDescriptionGetExtensionKeysCommonWithImageBuffers")
+	tryRegister(&_CMTimebaseSetTimerDispatchSourceToFireImmediately, lib, "CMTimebaseSetTimerDispatchSourceToFireImmediately")
 	tryRegister(&_CMTimebaseGetTime, lib, "CMTimebaseGetTime")
-	tryRegister(&_CMBufferQueueGetBufferCount, lib, "CMBufferQueueGetBufferCount")
-	tryRegister(&_CMTimebaseCopySourceClock, lib, "CMTimebaseCopySourceClock")
-	tryRegister(&_CMBufferQueueGetMaxPresentationTimeStamp, lib, "CMBufferQueueGetMaxPresentationTimeStamp")
-	tryRegister(&_CMBufferQueueMarkEndOfData, lib, "CMBufferQueueMarkEndOfData")
-	tryRegister(&_CMTimebaseGetTimeWithTimeScale, lib, "CMTimebaseGetTimeWithTimeScale")
-	tryRegister(&_CMTimebaseSetSourceTimebase, lib, "CMTimebaseSetSourceTimebase")
-	tryRegister(&_CMBufferQueueRemoveTrigger, lib, "CMBufferQueueRemoveTrigger")
-	tryRegister(&_CMBufferQueueReset, lib, "CMBufferQueueReset")
-	tryRegister(&_CMTimeCopyAsDictionary, lib, "CMTimeCopyAsDictionary")
-	tryRegister(&_CMTimeAdd, lib, "CMTimeAdd")
-	tryRegister(&_CMTimebaseSetMasterClock, lib, "CMTimebaseSetMasterClock")
-	tryRegister(&_CMTimeRangeMake, lib, "CMTimeRangeMake")
-	tryRegister(&_CMClockInvalidate, lib, "CMClockInvalidate")
-	tryRegister(&_CMClockGetTime, lib, "CMClockGetTime")
-	tryRegister(&_CMTimebaseCopyUltimateSourceClock, lib, "CMTimebaseCopyUltimateSourceClock")
-	tryRegister(&_CMTimeClampToRange, lib, "CMTimeClampToRange")
-	tryRegister(&_CMTimeMakeFromDictionary, lib, "CMTimeMakeFromDictionary")
-	tryRegister(&_CMTimebaseGetMasterClock, lib, "CMTimebaseGetMasterClock")
-	tryRegister(&_CMTimebaseCopyUltimateMasterClock, lib, "CMTimebaseCopyUltimateMasterClock")
-	tryRegister(&_CMTimeRangeGetIntersection, lib, "CMTimeRangeGetIntersection")
-	tryRegister(&_CMTimeMapDurationFromRangeToRange, lib, "CMTimeMapDurationFromRangeToRange")
-	tryRegister(&_CMBufferQueueGetFirstDecodeTimeStamp, lib, "CMBufferQueueGetFirstDecodeTimeStamp")
-	tryRegister(&_CMFormatDescriptionGetExtensions, lib, "CMFormatDescriptionGetExtensions")
-	tryRegister(&_CMTimebaseCopySourceTimebase, lib, "CMTimebaseCopySourceTimebase")
-	tryRegister(&_CMTimebaseCopySource, lib, "CMTimebaseCopySource")
-	tryRegister(&_CMTimebaseAddTimer, lib, "CMTimebaseAddTimer")
-	tryRegister(&_CMTimeMappingMake, lib, "CMTimeMappingMake")
-	tryRegister(&_CMBlockBufferGetTypeID, lib, "CMBlockBufferGetTypeID")
-	tryRegister(&_CMCopyDictionaryOfAttachments, lib, "CMCopyDictionaryOfAttachments")
-	tryRegister(&_CMBufferQueueGetFirstPresentationTimeStamp, lib, "CMBufferQueueGetFirstPresentationTimeStamp")
-	tryRegister(&_CMTimebaseGetMasterTimebase, lib, "CMTimebaseGetMasterTimebase")
-	tryRegister(&_CMBufferQueueEnqueue, lib, "CMBufferQueueEnqueue")
-	tryRegister(&_CMBufferQueueGetMinDecodeTimeStamp, lib, "CMBufferQueueGetMinDecodeTimeStamp")
-	tryRegister(&_CMTimeFoldIntoRange, lib, "CMTimeFoldIntoRange")
-	tryRegister(&_CMTimebaseRemoveTimer, lib, "CMTimebaseRemoveTimer")
-	tryRegister(&_CMBufferQueueGetHead, lib, "CMBufferQueueGetHead")
-	tryRegister(&_CMFormatDescriptionGetMediaType, lib, "CMFormatDescriptionGetMediaType")
-	tryRegister(&_CMTimebaseSetSourceClock, lib, "CMTimebaseSetSourceClock")
-	tryRegister(&_CMTimeMappingCopyAsDictionary, lib, "CMTimeMappingCopyAsDictionary")
-	tryRegister(&_CMTimeRangeCopyDescription, lib, "CMTimeRangeCopyDescription")
-	tryRegister(&_CMTimeShow, lib, "CMTimeShow")
-	tryRegister(&_CMRemoveAttachment, lib, "CMRemoveAttachment")
-	tryRegister(&_CMMemoryPoolCreate, lib, "CMMemoryPoolCreate")
-	tryRegister(&_CMSyncGetTime, lib, "CMSyncGetTime")
-	tryRegister(&_CMSampleBufferGetTypeID, lib, "CMSampleBufferGetTypeID")
+	tryRegister(&_CMTimeRangeShow, lib, "CMTimeRangeShow")
+	tryRegister(&_CMTimeRangeGetEnd, lib, "CMTimeRangeGetEnd")
+	tryRegister(&_CMRemoveAllAttachments, lib, "CMRemoveAllAttachments")
 	tryRegister(&_CMTimebaseGetUltimateMasterClock, lib, "CMTimebaseGetUltimateMasterClock")
-	tryRegister(&_CMTimeRangeMakeFromDictionary, lib, "CMTimeRangeMakeFromDictionary")
+	tryRegister(&_CMTimebaseGetMasterClock, lib, "CMTimebaseGetMasterClock")
+	tryRegister(&_CMBufferQueueGetFirstDecodeTimeStamp, lib, "CMBufferQueueGetFirstDecodeTimeStamp")
 	tryRegister(&_CMMemoryPoolInvalidate, lib, "CMMemoryPoolInvalidate")
-	tryRegister(&_CMTimeMappingMakeEmpty, lib, "CMTimeMappingMakeEmpty")
-	tryRegister(&_CMTimebaseNotificationBarrier, lib, "CMTimebaseNotificationBarrier")
+	tryRegister(&_CMSampleBufferGetTypeID, lib, "CMSampleBufferGetTypeID")
+	tryRegister(&_CMTimebaseSetMasterClock, lib, "CMTimebaseSetMasterClock")
 	tryRegister(&_CMTimebaseSetTimerToFireImmediately, lib, "CMTimebaseSetTimerToFireImmediately")
 	tryRegister(&_CMFormatDescriptionGetExtension, lib, "CMFormatDescriptionGetExtension")
-	tryRegister(&_CMMemoryPoolFlush, lib, "CMMemoryPoolFlush")
-	tryRegister(&_CMTimeCopyDescription, lib, "CMTimeCopyDescription")
-	tryRegister(&_CMTimeSubtract, lib, "CMTimeSubtract")
-	tryRegister(&_CMTimeRangeShow, lib, "CMTimeRangeShow")
+	tryRegister(&_CMTimebaseGetMaster, lib, "CMTimebaseGetMaster")
+	tryRegister(&_CMBufferQueueGetMaxPresentationTimeStamp, lib, "CMBufferQueueGetMaxPresentationTimeStamp")
+	tryRegister(&_CMMetadataFormatDescriptionGetKeyWithLocalID, lib, "CMMetadataFormatDescriptionGetKeyWithLocalID")
+	tryRegister(&_CMMemoryPoolGetAllocator, lib, "CMMemoryPoolGetAllocator")
+	tryRegister(&_CMTimebaseGetMasterTimebase, lib, "CMTimebaseGetMasterTimebase")
+	tryRegister(&_CMPropagateAttachments, lib, "CMPropagateAttachments")
+	tryRegister(&_CMTimeCopyAsDictionary, lib, "CMTimeCopyAsDictionary")
+	tryRegister(&_CMTimebaseCopySourceTimebase, lib, "CMTimebaseCopySourceTimebase")
 	tryRegister(&_CMSetAttachments, lib, "CMSetAttachments")
+	tryRegister(&_CMTimeAdd, lib, "CMTimeAdd")
+	tryRegister(&_CMTimebaseAddTimerDispatchSource, lib, "CMTimebaseAddTimerDispatchSource")
+	tryRegister(&_CMTimeMappingMake, lib, "CMTimeMappingMake")
+	tryRegister(&_CMFormatDescriptionGetExtensions, lib, "CMFormatDescriptionGetExtensions")
+	tryRegister(&_CMTimebaseSetAnchorTime, lib, "CMTimebaseSetAnchorTime")
+	tryRegister(&_CMBufferQueueGetHead, lib, "CMBufferQueueGetHead")
+	tryRegister(&_CMTimeSubtract, lib, "CMTimeSubtract")
+	tryRegister(&_CMTimebaseCopyUltimateSourceClock, lib, "CMTimebaseCopyUltimateSourceClock")
+	tryRegister(&_CMSyncGetTime, lib, "CMSyncGetTime")
+	tryRegister(&_CMTimeMakeFromDictionary, lib, "CMTimeMakeFromDictionary")
+	tryRegister(&_CMBufferQueueGetMinPresentationTimeStamp, lib, "CMBufferQueueGetMinPresentationTimeStamp")
+	tryRegister(&_CMFormatDescriptionGetMediaSubType, lib, "CMFormatDescriptionGetMediaSubType")
+	tryRegister(&_CMTimebaseCopySourceClock, lib, "CMTimebaseCopySourceClock")
+	tryRegister(&_CMTimebaseAddTimer, lib, "CMTimebaseAddTimer")
+	tryRegister(&_CMTimebaseCopyUltimateMasterClock, lib, "CMTimebaseCopyUltimateMasterClock")
+	tryRegister(&_CMBufferQueueDequeueIfDataReady, lib, "CMBufferQueueDequeueIfDataReady")
+	tryRegister(&_CMBufferQueueGetBufferCount, lib, "CMBufferQueueGetBufferCount")
+	tryRegister(&_CMTimeMapTimeFromRangeToRange, lib, "CMTimeMapTimeFromRangeToRange")
+	tryRegister(&_CMTimeClampToRange, lib, "CMTimeClampToRange")
+	tryRegister(&_CMTimeMappingCopyAsDictionary, lib, "CMTimeMappingCopyAsDictionary")
+	tryRegister(&_CMBufferQueueGetTypeID, lib, "CMBufferQueueGetTypeID")
+	tryRegister(&_CMSampleBufferGetPresentationTimeStamp, lib, "CMSampleBufferGetPresentationTimeStamp")
+	tryRegister(&_CMTimebaseNotificationBarrier, lib, "CMTimebaseNotificationBarrier")
+	tryRegister(&_CMTimeShow, lib, "CMTimeShow")
+	tryRegister(&_CMSetAttachment, lib, "CMSetAttachment")
+	tryRegister(&_CMClockInvalidate, lib, "CMClockInvalidate")
+	tryRegister(&_CMTimeRangeCopyDescription, lib, "CMTimeRangeCopyDescription")
+	tryRegister(&_CMTimeRangeFromTimeToTime, lib, "CMTimeRangeFromTimeToTime")
+	tryRegister(&_CMBufferQueueRemoveTrigger, lib, "CMBufferQueueRemoveTrigger")
+	tryRegister(&_CMTimebaseCopyMasterTimebase, lib, "CMTimebaseCopyMasterTimebase")
+	tryRegister(&_CMTimeMapDurationFromRangeToRange, lib, "CMTimeMapDurationFromRangeToRange")
+	tryRegister(&_CMTimebaseSetMasterTimebase, lib, "CMTimebaseSetMasterTimebase")
+	tryRegister(&_CMTimebaseSetSourceTimebase, lib, "CMTimebaseSetSourceTimebase")
+	tryRegister(&_CMTimeRangeGetUnion, lib, "CMTimeRangeGetUnion")
+	tryRegister(&_CMRemoveAttachment, lib, "CMRemoveAttachment")
+	tryRegister(&_CMVideoFormatDescriptionGetDimensions, lib, "CMVideoFormatDescriptionGetDimensions")
+	tryRegister(&_CMBufferQueueGetDuration, lib, "CMBufferQueueGetDuration")
+	tryRegister(&_CMBufferQueueGetEndPresentationTimeStamp, lib, "CMBufferQueueGetEndPresentationTimeStamp")
+	tryRegister(&_CMTimebaseCopyMasterClock, lib, "CMTimebaseCopyMasterClock")
+	tryRegister(&_CMTimeRangeGetIntersection, lib, "CMTimeRangeGetIntersection")
+	tryRegister(&_CMBufferQueueDequeue, lib, "CMBufferQueueDequeue")
+	tryRegister(&_CMClockGetTime, lib, "CMClockGetTime")
+	tryRegister(&_CMTimeCopyDescription, lib, "CMTimeCopyDescription")
+	tryRegister(&_CMTimebaseCopyMaster, lib, "CMTimebaseCopyMaster")
+	tryRegister(&_CMBufferQueueSetValidationHandler, lib, "CMBufferQueueSetValidationHandler")
+	tryRegister(&_CMMetadataFormatDescriptionGetIdentifiers, lib, "CMMetadataFormatDescriptionGetIdentifiers")
+	tryRegister(&_CMTimeFoldIntoRange, lib, "CMTimeFoldIntoRange")
+	tryRegister(&_CMTimeRangeMakeFromDictionary, lib, "CMTimeRangeMakeFromDictionary")
+	tryRegister(&_CMTimeRangeMake, lib, "CMTimeRangeMake")
+	tryRegister(&_CMBufferQueueGetMinDecodeTimeStamp, lib, "CMBufferQueueGetMinDecodeTimeStamp")
+	tryRegister(&_CMFormatDescriptionGetTypeID, lib, "CMFormatDescriptionGetTypeID")
+	tryRegister(&_CMTimebaseCopySource, lib, "CMTimebaseCopySource")
+	tryRegister(&_CMBufferQueueGetFirstPresentationTimeStamp, lib, "CMBufferQueueGetFirstPresentationTimeStamp")
 	tryRegister(&_CMTimebaseRemoveTimerDispatchSource, lib, "CMTimebaseRemoveTimerDispatchSource")
+	tryRegister(&_CMVideoFormatDescriptionGetExtensionKeysCommonWithImageBuffers, lib, "CMVideoFormatDescriptionGetExtensionKeysCommonWithImageBuffers")
+	tryRegister(&_CMTimebaseGetTimeWithTimeScale, lib, "CMTimebaseGetTimeWithTimeScale")
+	tryRegister(&_CMTimeMappingShow, lib, "CMTimeMappingShow")
+	tryRegister(&_CMBlockBufferGetTypeID, lib, "CMBlockBufferGetTypeID")
+	tryRegister(&_CMBufferQueueReset, lib, "CMBufferQueueReset")
+	tryRegister(&_CMBufferQueueMarkEndOfData, lib, "CMBufferQueueMarkEndOfData")
+	tryRegister(&_CMClockGetTypeID, lib, "CMClockGetTypeID")
+	tryRegister(&_CMTimebaseSetSourceClock, lib, "CMTimebaseSetSourceClock")
+	tryRegister(&_CMFormatDescriptionGetMediaType, lib, "CMFormatDescriptionGetMediaType")
+	tryRegister(&_CMMemoryPoolCreate, lib, "CMMemoryPoolCreate")
+	tryRegister(&_CMBlockBufferAssureBlockMemory, lib, "CMBlockBufferAssureBlockMemory")
+	tryRegister(&_CMMemoryPoolFlush, lib, "CMMemoryPoolFlush")
+	tryRegister(&_CMTimeAbsoluteValue, lib, "CMTimeAbsoluteValue")
+	tryRegister(&_CMTimeMappingMakeEmpty, lib, "CMTimeMappingMakeEmpty")
+	tryRegister(&_CMTimeMinimum, lib, "CMTimeMinimum")
+	tryRegister(&_CMTimebaseSetTime, lib, "CMTimebaseSetTime")
+	tryRegister(&_CMTimebaseRemoveTimer, lib, "CMTimebaseRemoveTimer")
+	tryRegister(&_CMCopyDictionaryOfAttachments, lib, "CMCopyDictionaryOfAttachments")
+	tryRegister(&_CMBufferQueueEnqueue, lib, "CMBufferQueueEnqueue")
 }
 
 // tryRegister attempts to register a function, silently ignoring failures.
@@ -1360,235 +1360,11 @@ func CMTimeCodeFormatDescriptionGetFrameDuration(p0 unsafe.Pointer) unsafe.Point
 	}
 
 
-// Returns the presentation timestamp that’s the earliest numerically of all the samples in a sample buffer. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMSampleBufferGetPresentationTimeStamp(_:)
-func CMSampleBufferGetPresentationTimeStamp(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMSampleBufferGetPresentationTimeStamp(p0)
-	}
-
-
-// Sets the current time of a timebase. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimebaseSetTime(_:time:)
-func CMTimebaseSetTime(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMTimebaseSetTime(p0)
-	}
-
-
-// Returns the lesser of two time values. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimeMinimum(_:_:)
-func CMTimeMinimum(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMTimeMinimum(p0)
-	}
-
-
-// Sets the timer dispatch source to fire immediately once, overriding any previous timer call. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimebaseSetTimerDispatchSourceToFireImmediately(_:timerSource:)
-func CMTimebaseSetTimerDispatchSourceToFireImmediately(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMTimebaseSetTimerDispatchSourceToFireImmediately(p0)
-	}
-
-
-// Copies all propagable attachments from one attachment bearer object to another. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMPropagateAttachments(_:destination:)
-func CMPropagateAttachments(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMPropagateAttachments(p0)
-	}
-
-
-// Sets or adds an attachment to an attachment bearer object. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMSetAttachment(_:key:value:attachmentMode:)
-func CMSetAttachment(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMSetAttachment(p0)
-	}
-
-
-// Gets the greatest end presentation timestamp of a buffer queue. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMBufferQueueGetEndPresentationTimeStamp(_:)
-func CMBufferQueueGetEndPresentationTimeStamp(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMBufferQueueGetEndPresentationTimeStamp(p0)
-	}
-
-
-// Creates a valid time range from a start and end time. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimeRangeFromTimeToTime(start:end:)
-func CMTimeRangeFromTimeToTime(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMTimeRangeFromTimeToTime(p0)
-	}
-
-
-// Assures that the system allocates memory for all memory blocks in a block buffer. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMBlockBufferAssureBlockMemory(_:)
-func CMBlockBufferAssureBlockMemory(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMBlockBufferAssureBlockMemory(p0)
-	}
-
-
-// Dequeues a buffer from a queue, if it’s ready. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMBufferQueueDequeueIfDataReady(_:)
-func CMBufferQueueDequeueIfDataReady(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMBufferQueueDequeueIfDataReady(p0)
-	}
-
-
-// CMTimebaseSetMasterTimebase is a CoreMedia function. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimebaseSetMasterTimebase(_:_:)
-func CMTimebaseSetMasterTimebase(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMTimebaseSetMasterTimebase(p0)
-	}
-
-
-// Returns a new time range with the time elements of the input. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimeRangeGetUnion(_:otherRange:)
-func CMTimeRangeGetUnion(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMTimeRangeGetUnion(p0)
-	}
-
-
-// Dequeues a buffer from a queue. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMBufferQueueDequeue(_:)
-func CMBufferQueueDequeue(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMBufferQueueDequeue(p0)
-	}
-
-
-// Gets the duration of a buffer queue. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMBufferQueueGetDuration(_:)
-func CMBufferQueueGetDuration(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMBufferQueueGetDuration(p0)
-	}
-
-
-// Returns an array of metadata identifiers from a metadata format description. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMMetadataFormatDescriptionGetIdentifiers(_:)
-func CMMetadataFormatDescriptionGetIdentifiers(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMMetadataFormatDescriptionGetIdentifiers(p0)
-	}
-
-
 // Resets the queue. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMSimpleQueueReset(_:)
 func CMSimpleQueueReset(p0 unsafe.Pointer) unsafe.Pointer {
 	return _CMSimpleQueueReset(p0)
-	}
-
-
-// Returns the immediate host timebase of a timebase. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimebaseCopyMaster(_:)
-func CMTimebaseCopyMaster(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMTimebaseCopyMaster(p0)
-	}
-
-
-// Returns the core foundation type identifier of a clock type. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMClockGetTypeID()
-func CMClockGetTypeID() unsafe.Pointer {
-	return _CMClockGetTypeID()
-	}
-
-
-// Returns the video dimensions, in encoded pixels. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMVideoFormatDescriptionGetDimensions(_:)
-func CMVideoFormatDescriptionGetDimensions(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMVideoFormatDescriptionGetDimensions(p0)
-	}
-
-
-// Returns the allocator for the memory pool. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMMemoryPoolGetAllocator(_:)
-func CMMemoryPoolGetAllocator(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMMemoryPoolGetAllocator(p0)
-	}
-
-
-// Returns the absolute value of a time. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimeAbsoluteValue(_:)
-func CMTimeAbsoluteValue(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMTimeAbsoluteValue(p0)
-	}
-
-
-// Prints a description of a time mapping to standard output. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimeMappingShow(_:)
-func CMTimeMappingShow(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMTimeMappingShow(p0)
-	}
-
-
-// Removes all attachments from an attachment bearer object. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMRemoveAllAttachments(_:)
-func CMRemoveAllAttachments(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMRemoveAllAttachments(p0)
-	}
-
-
-// Gets the earliest presentation timestamp of a buffer queue. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMBufferQueueGetMinPresentationTimeStamp(_:)
-func CMBufferQueueGetMinPresentationTimeStamp(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMBufferQueueGetMinPresentationTimeStamp(p0)
-	}
-
-
-// Returns the Core Foundation type identifier that identifies format description objects. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMFormatDescriptionGetTypeID()
-func CMFormatDescriptionGetTypeID() unsafe.Pointer {
-	return _CMFormatDescriptionGetTypeID()
-	}
-
-
-// Returns the key for the local identifier. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMMetadataFormatDescriptionGetKeyWithLocalID(_:localKeyID:)
-func CMMetadataFormatDescriptionGetKeyWithLocalID(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMMetadataFormatDescriptionGetKeyWithLocalID(p0)
-	}
-
-
-// Sets the time of a timebase at a particular source time. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimebaseSetAnchorTime(_:timebaseTime:immediateMasterTime:)
-func CMTimebaseSetAnchorTime(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMTimebaseSetAnchorTime(p0)
-	}
-
-
-// A validation handler for the queue to call before enqueuing buffers. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMBufferQueueSetValidationHandler(_:_:)
-func CMBufferQueueSetValidationHandler(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMBufferQueueSetValidationHandler(p0)
-	}
-
-
-// Returns the media subtype of a format description. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMFormatDescriptionGetMediaSubType(_:)
-func CMFormatDescriptionGetMediaSubType(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMFormatDescriptionGetMediaSubType(p0)
 	}
 
 
@@ -1600,67 +1376,11 @@ func CMTimeMaximum(p0 unsafe.Pointer) unsafe.Pointer {
 	}
 
 
-// Adds the timer dispatch source to the list of timers the timebase manages. [Full Topic]
+// Sets the timer dispatch source to fire immediately once, overriding any previous timer call. [Full Topic]
 //
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimebaseAddTimerDispatchSource(_:timerSource:)
-func CMTimebaseAddTimerDispatchSource(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMTimebaseAddTimerDispatchSource(p0)
-	}
-
-
-// Returns the immediate host timebase of a timebase. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimebaseCopyMasterTimebase(_:)
-func CMTimebaseCopyMasterTimebase(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMTimebaseCopyMasterTimebase(p0)
-	}
-
-
-// Translates a time through a mapping from two time ranges. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimeMapTimeFromRangeToRange(_:fromRange:toRange:)
-func CMTimeMapTimeFromRangeToRange(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMTimeMapTimeFromRangeToRange(p0)
-	}
-
-
-// Returns the immediate host clock of a timebase. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimebaseCopyMasterClock(_:)
-func CMTimebaseCopyMasterClock(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMTimebaseCopyMasterClock(p0)
-	}
-
-
-// Returns the immediate host (either timebase or clock) of a timebase. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimebaseGetMaster(_:)
-func CMTimebaseGetMaster(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMTimebaseGetMaster(p0)
-	}
-
-
-// Returns the type identifier of buffer queue objects. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMBufferQueueGetTypeID()
-func CMBufferQueueGetTypeID() unsafe.Pointer {
-	return _CMBufferQueueGetTypeID()
-	}
-
-
-// Returns a time value that represents the end of a time range. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimeRangeGetEnd(_:)
-func CMTimeRangeGetEnd(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMTimeRangeGetEnd(p0)
-	}
-
-
-// Returns an array of keys that you use for video format description extensions, image buffer attachments, and attributes. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMVideoFormatDescriptionGetExtensionKeysCommonWithImageBuffers()
-func CMVideoFormatDescriptionGetExtensionKeysCommonWithImageBuffers() unsafe.Pointer {
-	return _CMVideoFormatDescriptionGetExtensionKeysCommonWithImageBuffers()
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimebaseSetTimerDispatchSourceToFireImmediately(_:timerSource:)
+func CMTimebaseSetTimerDispatchSourceToFireImmediately(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMTimebaseSetTimerDispatchSourceToFireImmediately(p0)
 	}
 
 
@@ -1672,363 +1392,27 @@ func CMTimebaseGetTime(p0 unsafe.Pointer) unsafe.Pointer {
 	}
 
 
-// Gets the number of buffers in the queue. [Full Topic]
+// Prints a description of the time range to standard error. [Full Topic]
 //
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMBufferQueueGetBufferCount(_:)
-func CMBufferQueueGetBufferCount(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMBufferQueueGetBufferCount(p0)
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimeRangeShow(_:)
+func CMTimeRangeShow(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMTimeRangeShow(p0)
 	}
 
 
-// Returns the immediate source clock of a timebase. [Full Topic]
+// Returns a time value that represents the end of a time range. [Full Topic]
 //
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimebaseCopySourceClock(_:)
-func CMTimebaseCopySourceClock(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMTimebaseCopySourceClock(p0)
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimeRangeGetEnd(_:)
+func CMTimeRangeGetEnd(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMTimeRangeGetEnd(p0)
 	}
 
 
-// Gets the greatest presentation timestamp of a buffer queue. [Full Topic]
+// Removes all attachments from an attachment bearer object. [Full Topic]
 //
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMBufferQueueGetMaxPresentationTimeStamp(_:)
-func CMBufferQueueGetMaxPresentationTimeStamp(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMBufferQueueGetMaxPresentationTimeStamp(p0)
-	}
-
-
-// Sets a marker to indicate this queue doesn’t allow enqueuing new buffers. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMBufferQueueMarkEndOfData(_:)
-func CMBufferQueueMarkEndOfData(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMBufferQueueMarkEndOfData(p0)
-	}
-
-
-// Returns the current time from a timebase in the specified timescale. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimebaseGetTimeWithTimeScale(_:timescale:method:)
-func CMTimebaseGetTimeWithTimeScale(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMTimebaseGetTimeWithTimeScale(p0)
-	}
-
-
-// Sets the source timebase of a timebase. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimebaseSetSourceTimebase(_:_:)
-func CMTimebaseSetSourceTimebase(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMTimebaseSetSourceTimebase(p0)
-	}
-
-
-// Removes a previously installed trigger from a buffer queue. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMBufferQueueRemoveTrigger(_:triggerToken:)
-func CMBufferQueueRemoveTrigger(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMBufferQueueRemoveTrigger(p0)
-	}
-
-
-// Resets a buffer queue, which allows it to enqueue new buffers. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMBufferQueueReset(_:)
-func CMBufferQueueReset(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMBufferQueueReset(p0)
-	}
-
-
-// Creates a dictionary representation of the time. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimeCopyAsDictionary(_:allocator:)
-func CMTimeCopyAsDictionary(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMTimeCopyAsDictionary(p0)
-	}
-
-
-// Returns the sum of two times. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimeAdd(_:_:)
-func CMTimeAdd(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMTimeAdd(p0)
-	}
-
-
-// Sets the time of a timebase at a particular source time. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimebaseSetMasterClock(_:_:)
-func CMTimebaseSetMasterClock(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMTimebaseSetMasterClock(p0)
-	}
-
-
-// Creates a valid time range with a start time and duration. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimeRangeMake(start:duration:)
-func CMTimeRangeMake(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMTimeRangeMake(p0)
-	}
-
-
-// Stops the clock. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMClockInvalidate(_:)
-func CMClockInvalidate(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMClockInvalidate(p0)
-	}
-
-
-// Returns the current time from a clock. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMClockGetTime(_:)
-func CMClockGetTime(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMClockGetTime(p0)
-	}
-
-
-// Returns the source clock that’s the source of all of a timebase’s source timebases. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimebaseCopyUltimateSourceClock(_:)
-func CMTimebaseCopyUltimateSourceClock(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMTimebaseCopyUltimateSourceClock(p0)
-	}
-
-
-// Returns the nearest time value inside the time range. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimeClampToRange(_:range:)
-func CMTimeClampToRange(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMTimeClampToRange(p0)
-	}
-
-
-// Creates a time from a dictionary representation of its fields. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimeMakeFromDictionary(_:)
-func CMTimeMakeFromDictionary(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMTimeMakeFromDictionary(p0)
-	}
-
-
-// Returns the immediate host clock of a timebase. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimebaseGetMasterClock(_:)
-func CMTimebaseGetMasterClock(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMTimebaseGetMasterClock(p0)
-	}
-
-
-// Returns the host clock that is the host of all of a timebase’s host timebases. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimebaseCopyUltimateMasterClock(_:)
-func CMTimebaseCopyUltimateMasterClock(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMTimebaseCopyUltimateMasterClock(p0)
-	}
-
-
-// Returns a new time range with the time elements that are common between the input. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimeRangeGetIntersection(_:otherRange:)
-func CMTimeRangeGetIntersection(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMTimeRangeGetIntersection(p0)
-	}
-
-
-// Translates a duration through a mapping from two time ranges. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimeMapDurationFromRangeToRange(_:fromRange:toRange:)
-func CMTimeMapDurationFromRangeToRange(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMTimeMapDurationFromRangeToRange(p0)
-	}
-
-
-// Gets the decode timestamp of the first buffer in a buffer queue. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMBufferQueueGetFirstDecodeTimeStamp(_:)
-func CMBufferQueueGetFirstDecodeTimeStamp(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMBufferQueueGetFirstDecodeTimeStamp(p0)
-	}
-
-
-// Returns all of the extensions for a format description. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMFormatDescriptionGetExtensions(_:)
-func CMFormatDescriptionGetExtensions(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMFormatDescriptionGetExtensions(p0)
-	}
-
-
-// Returns the immediate source timebase of a timebase. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimebaseCopySourceTimebase(_:)
-func CMTimebaseCopySourceTimebase(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMTimebaseCopySourceTimebase(p0)
-	}
-
-
-// Returns the immediate source — either a clock or timebase — of a timebase. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimebaseCopySource(_:)
-func CMTimebaseCopySource(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMTimebaseCopySource(p0)
-	}
-
-
-// Adds the timer to the list of timers the timebase manages. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimebaseAddTimer(_:timer:runloop:)
-func CMTimebaseAddTimer(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMTimebaseAddTimer(p0)
-	}
-
-
-// Creates a time mapping with a source and target time range. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimeMappingMake(source:target:)
-func CMTimeMappingMake(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMTimeMappingMake(p0)
-	}
-
-
-// Returns the type identifier for block buffer objects. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMBlockBufferGetTypeID()
-func CMBlockBufferGetTypeID() unsafe.Pointer {
-	return _CMBlockBufferGetTypeID()
-	}
-
-
-// Returns a dictionary of all attachments for an attachment bearer object. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMCopyDictionaryOfAttachments(allocator:target:attachmentMode:)
-func CMCopyDictionaryOfAttachments(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMCopyDictionaryOfAttachments(p0)
-	}
-
-
-// Gets the presentation timestamp of the first buffer in a buffer queue. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMBufferQueueGetFirstPresentationTimeStamp(_:)
-func CMBufferQueueGetFirstPresentationTimeStamp(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMBufferQueueGetFirstPresentationTimeStamp(p0)
-	}
-
-
-// Returns the immediate host timebase of a timebase. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimebaseGetMasterTimebase(_:)
-func CMTimebaseGetMasterTimebase(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMTimebaseGetMasterTimebase(p0)
-	}
-
-
-// Enqueues a buffer onto a queue. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMBufferQueueEnqueue(_:buffer:)
-func CMBufferQueueEnqueue(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMBufferQueueEnqueue(p0)
-	}
-
-
-// Gets the earliest decode timestamp of a buffer queue. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMBufferQueueGetMinDecodeTimeStamp(_:)
-func CMBufferQueueGetMinDecodeTimeStamp(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMBufferQueueGetMinDecodeTimeStamp(p0)
-	}
-
-
-// Folds a time into a time range. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimeFoldIntoRange(_:foldRange:)
-func CMTimeFoldIntoRange(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMTimeFoldIntoRange(p0)
-	}
-
-
-// Removes the timer from the list of timers the timebase manages. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimebaseRemoveTimer(_:timer:)
-func CMTimebaseRemoveTimer(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMTimebaseRemoveTimer(p0)
-	}
-
-
-// Retrieves the next buffer from a queue, but doesn’t remove it. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMBufferQueueGetHead(_:)
-func CMBufferQueueGetHead(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMBufferQueueGetHead(p0)
-	}
-
-
-// Returns the media type of a format description. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMFormatDescriptionGetMediaType(_:)
-func CMFormatDescriptionGetMediaType(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMFormatDescriptionGetMediaType(p0)
-	}
-
-
-// Sets the source clock of a timebase. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimebaseSetSourceClock(_:_:)
-func CMTimebaseSetSourceClock(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMTimebaseSetSourceClock(p0)
-	}
-
-
-// Returns a dictionary representation of a time mapping. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimeMappingCopyAsDictionary(_:allocator:)
-func CMTimeMappingCopyAsDictionary(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMTimeMappingCopyAsDictionary(p0)
-	}
-
-
-// Returns a string with a description of a time range. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimeRangeCopyDescription(allocator:range:)
-func CMTimeRangeCopyDescription(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMTimeRangeCopyDescription(p0)
-	}
-
-
-// Prints a description of the time to the console. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimeShow(_:)
-func CMTimeShow(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMTimeShow(p0)
-	}
-
-
-// Removes a specific attachment from an attachment bearer object. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMRemoveAttachment(_:key:)
-func CMRemoveAttachment(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMRemoveAttachment(p0)
-	}
-
-
-// Creates a memory pool. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMMemoryPoolCreate(options:)
-func CMMemoryPoolCreate(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMMemoryPoolCreate(p0)
-	}
-
-
-// Returns the time from a clock or timebase. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMSyncGetTime(_:)
-func CMSyncGetTime(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMSyncGetTime(p0)
-	}
-
-
-// Returns the type identifier of sample buffer objects. [Full Topic]
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMSampleBufferGetTypeID()
-func CMSampleBufferGetTypeID() unsafe.Pointer {
-	return _CMSampleBufferGetTypeID()
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMRemoveAllAttachments(_:)
+func CMRemoveAllAttachments(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMRemoveAllAttachments(p0)
 	}
 
 
@@ -2040,11 +1424,19 @@ func CMTimebaseGetUltimateMasterClock(p0 unsafe.Pointer) unsafe.Pointer {
 	}
 
 
-// Creates a time range from a dictionary representation of its fields. [Full Topic]
+// Returns the immediate host clock of a timebase. [Full Topic]
 //
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimeRangeMakeFromDictionary(_:)
-func CMTimeRangeMakeFromDictionary(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMTimeRangeMakeFromDictionary(p0)
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimebaseGetMasterClock(_:)
+func CMTimebaseGetMasterClock(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMTimebaseGetMasterClock(p0)
+	}
+
+
+// Gets the decode timestamp of the first buffer in a buffer queue. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMBufferQueueGetFirstDecodeTimeStamp(_:)
+func CMBufferQueueGetFirstDecodeTimeStamp(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMBufferQueueGetFirstDecodeTimeStamp(p0)
 	}
 
 
@@ -2056,19 +1448,19 @@ func CMMemoryPoolInvalidate(p0 unsafe.Pointer) unsafe.Pointer {
 	}
 
 
-// Creates a valid time mapping with an empty source. [Full Topic]
+// Returns the type identifier of sample buffer objects. [Full Topic]
 //
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimeMappingMakeEmpty(target:)
-func CMTimeMappingMakeEmpty(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMTimeMappingMakeEmpty(p0)
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMSampleBufferGetTypeID()
+func CMSampleBufferGetTypeID() unsafe.Pointer {
+	return _CMSampleBufferGetTypeID()
 	}
 
 
-// Requests that the timebase wait until it isn’t posting notifications. [Full Topic]
+// Sets the time of a timebase at a particular source time. [Full Topic]
 //
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimebaseNotificationBarrier(_:)
-func CMTimebaseNotificationBarrier(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMTimebaseNotificationBarrier(p0)
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimebaseSetMasterClock(_:_:)
+func CMTimebaseSetMasterClock(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMTimebaseSetMasterClock(p0)
 	}
 
 
@@ -2088,35 +1480,67 @@ func CMFormatDescriptionGetExtension(p0 unsafe.Pointer) unsafe.Pointer {
 	}
 
 
-// Deallocates all memory the pool holds. [Full Topic]
+// Returns the immediate host (either timebase or clock) of a timebase. [Full Topic]
 //
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMMemoryPoolFlush(_:)
-func CMMemoryPoolFlush(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMMemoryPoolFlush(p0)
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimebaseGetMaster(_:)
+func CMTimebaseGetMaster(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMTimebaseGetMaster(p0)
 	}
 
 
-// Creates a string representation of the time. [Full Topic]
+// Gets the greatest presentation timestamp of a buffer queue. [Full Topic]
 //
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimeCopyDescription(allocator:time:)
-func CMTimeCopyDescription(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMTimeCopyDescription(p0)
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMBufferQueueGetMaxPresentationTimeStamp(_:)
+func CMBufferQueueGetMaxPresentationTimeStamp(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMBufferQueueGetMaxPresentationTimeStamp(p0)
 	}
 
 
-// Returns the difference between two times. [Full Topic]
+// Returns the key for the local identifier. [Full Topic]
 //
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimeSubtract(_:_:)
-func CMTimeSubtract(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMTimeSubtract(p0)
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMMetadataFormatDescriptionGetKeyWithLocalID(_:localKeyID:)
+func CMMetadataFormatDescriptionGetKeyWithLocalID(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMMetadataFormatDescriptionGetKeyWithLocalID(p0)
 	}
 
 
-// Prints a description of the time range to standard error. [Full Topic]
+// Returns the allocator for the memory pool. [Full Topic]
 //
-// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimeRangeShow(_:)
-func CMTimeRangeShow(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CMTimeRangeShow(p0)
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMMemoryPoolGetAllocator(_:)
+func CMMemoryPoolGetAllocator(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMMemoryPoolGetAllocator(p0)
+	}
+
+
+// Returns the immediate host timebase of a timebase. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimebaseGetMasterTimebase(_:)
+func CMTimebaseGetMasterTimebase(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMTimebaseGetMasterTimebase(p0)
+	}
+
+
+// Copies all propagable attachments from one attachment bearer object to another. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMPropagateAttachments(_:destination:)
+func CMPropagateAttachments(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMPropagateAttachments(p0)
+	}
+
+
+// Creates a dictionary representation of the time. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimeCopyAsDictionary(_:allocator:)
+func CMTimeCopyAsDictionary(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMTimeCopyAsDictionary(p0)
+	}
+
+
+// Returns the immediate source timebase of a timebase. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimebaseCopySourceTimebase(_:)
+func CMTimebaseCopySourceTimebase(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMTimebaseCopySourceTimebase(p0)
 	}
 
 
@@ -2128,11 +1552,587 @@ func CMSetAttachments(p0 unsafe.Pointer) unsafe.Pointer {
 	}
 
 
+// Returns the sum of two times. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimeAdd(_:_:)
+func CMTimeAdd(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMTimeAdd(p0)
+	}
+
+
+// Adds the timer dispatch source to the list of timers the timebase manages. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimebaseAddTimerDispatchSource(_:timerSource:)
+func CMTimebaseAddTimerDispatchSource(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMTimebaseAddTimerDispatchSource(p0)
+	}
+
+
+// Creates a time mapping with a source and target time range. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimeMappingMake(source:target:)
+func CMTimeMappingMake(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMTimeMappingMake(p0)
+	}
+
+
+// Returns all of the extensions for a format description. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMFormatDescriptionGetExtensions(_:)
+func CMFormatDescriptionGetExtensions(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMFormatDescriptionGetExtensions(p0)
+	}
+
+
+// Sets the time of a timebase at a particular source time. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimebaseSetAnchorTime(_:timebaseTime:immediateMasterTime:)
+func CMTimebaseSetAnchorTime(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMTimebaseSetAnchorTime(p0)
+	}
+
+
+// Retrieves the next buffer from a queue, but doesn’t remove it. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMBufferQueueGetHead(_:)
+func CMBufferQueueGetHead(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMBufferQueueGetHead(p0)
+	}
+
+
+// Returns the difference between two times. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimeSubtract(_:_:)
+func CMTimeSubtract(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMTimeSubtract(p0)
+	}
+
+
+// Returns the source clock that’s the source of all of a timebase’s source timebases. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimebaseCopyUltimateSourceClock(_:)
+func CMTimebaseCopyUltimateSourceClock(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMTimebaseCopyUltimateSourceClock(p0)
+	}
+
+
+// Returns the time from a clock or timebase. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMSyncGetTime(_:)
+func CMSyncGetTime(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMSyncGetTime(p0)
+	}
+
+
+// Creates a time from a dictionary representation of its fields. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimeMakeFromDictionary(_:)
+func CMTimeMakeFromDictionary(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMTimeMakeFromDictionary(p0)
+	}
+
+
+// Gets the earliest presentation timestamp of a buffer queue. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMBufferQueueGetMinPresentationTimeStamp(_:)
+func CMBufferQueueGetMinPresentationTimeStamp(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMBufferQueueGetMinPresentationTimeStamp(p0)
+	}
+
+
+// Returns the media subtype of a format description. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMFormatDescriptionGetMediaSubType(_:)
+func CMFormatDescriptionGetMediaSubType(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMFormatDescriptionGetMediaSubType(p0)
+	}
+
+
+// Returns the immediate source clock of a timebase. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimebaseCopySourceClock(_:)
+func CMTimebaseCopySourceClock(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMTimebaseCopySourceClock(p0)
+	}
+
+
+// Adds the timer to the list of timers the timebase manages. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimebaseAddTimer(_:timer:runloop:)
+func CMTimebaseAddTimer(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMTimebaseAddTimer(p0)
+	}
+
+
+// Returns the host clock that is the host of all of a timebase’s host timebases. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimebaseCopyUltimateMasterClock(_:)
+func CMTimebaseCopyUltimateMasterClock(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMTimebaseCopyUltimateMasterClock(p0)
+	}
+
+
+// Dequeues a buffer from a queue, if it’s ready. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMBufferQueueDequeueIfDataReady(_:)
+func CMBufferQueueDequeueIfDataReady(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMBufferQueueDequeueIfDataReady(p0)
+	}
+
+
+// Gets the number of buffers in the queue. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMBufferQueueGetBufferCount(_:)
+func CMBufferQueueGetBufferCount(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMBufferQueueGetBufferCount(p0)
+	}
+
+
+// Translates a time through a mapping from two time ranges. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimeMapTimeFromRangeToRange(_:fromRange:toRange:)
+func CMTimeMapTimeFromRangeToRange(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMTimeMapTimeFromRangeToRange(p0)
+	}
+
+
+// Returns the nearest time value inside the time range. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimeClampToRange(_:range:)
+func CMTimeClampToRange(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMTimeClampToRange(p0)
+	}
+
+
+// Returns a dictionary representation of a time mapping. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimeMappingCopyAsDictionary(_:allocator:)
+func CMTimeMappingCopyAsDictionary(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMTimeMappingCopyAsDictionary(p0)
+	}
+
+
+// Returns the type identifier of buffer queue objects. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMBufferQueueGetTypeID()
+func CMBufferQueueGetTypeID() unsafe.Pointer {
+	return _CMBufferQueueGetTypeID()
+	}
+
+
+// Returns the presentation timestamp that’s the earliest numerically of all the samples in a sample buffer. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMSampleBufferGetPresentationTimeStamp(_:)
+func CMSampleBufferGetPresentationTimeStamp(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMSampleBufferGetPresentationTimeStamp(p0)
+	}
+
+
+// Requests that the timebase wait until it isn’t posting notifications. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimebaseNotificationBarrier(_:)
+func CMTimebaseNotificationBarrier(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMTimebaseNotificationBarrier(p0)
+	}
+
+
+// Prints a description of the time to the console. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimeShow(_:)
+func CMTimeShow(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMTimeShow(p0)
+	}
+
+
+// Sets or adds an attachment to an attachment bearer object. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMSetAttachment(_:key:value:attachmentMode:)
+func CMSetAttachment(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMSetAttachment(p0)
+	}
+
+
+// Stops the clock. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMClockInvalidate(_:)
+func CMClockInvalidate(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMClockInvalidate(p0)
+	}
+
+
+// Returns a string with a description of a time range. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimeRangeCopyDescription(allocator:range:)
+func CMTimeRangeCopyDescription(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMTimeRangeCopyDescription(p0)
+	}
+
+
+// Creates a valid time range from a start and end time. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimeRangeFromTimeToTime(start:end:)
+func CMTimeRangeFromTimeToTime(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMTimeRangeFromTimeToTime(p0)
+	}
+
+
+// Removes a previously installed trigger from a buffer queue. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMBufferQueueRemoveTrigger(_:triggerToken:)
+func CMBufferQueueRemoveTrigger(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMBufferQueueRemoveTrigger(p0)
+	}
+
+
+// Returns the immediate host timebase of a timebase. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimebaseCopyMasterTimebase(_:)
+func CMTimebaseCopyMasterTimebase(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMTimebaseCopyMasterTimebase(p0)
+	}
+
+
+// Translates a duration through a mapping from two time ranges. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimeMapDurationFromRangeToRange(_:fromRange:toRange:)
+func CMTimeMapDurationFromRangeToRange(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMTimeMapDurationFromRangeToRange(p0)
+	}
+
+
+// CMTimebaseSetMasterTimebase is a CoreMedia function. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimebaseSetMasterTimebase(_:_:)
+func CMTimebaseSetMasterTimebase(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMTimebaseSetMasterTimebase(p0)
+	}
+
+
+// Sets the source timebase of a timebase. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimebaseSetSourceTimebase(_:_:)
+func CMTimebaseSetSourceTimebase(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMTimebaseSetSourceTimebase(p0)
+	}
+
+
+// Returns a new time range with the time elements of the input. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimeRangeGetUnion(_:otherRange:)
+func CMTimeRangeGetUnion(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMTimeRangeGetUnion(p0)
+	}
+
+
+// Removes a specific attachment from an attachment bearer object. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMRemoveAttachment(_:key:)
+func CMRemoveAttachment(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMRemoveAttachment(p0)
+	}
+
+
+// Returns the video dimensions, in encoded pixels. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMVideoFormatDescriptionGetDimensions(_:)
+func CMVideoFormatDescriptionGetDimensions(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMVideoFormatDescriptionGetDimensions(p0)
+	}
+
+
+// Gets the duration of a buffer queue. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMBufferQueueGetDuration(_:)
+func CMBufferQueueGetDuration(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMBufferQueueGetDuration(p0)
+	}
+
+
+// Gets the greatest end presentation timestamp of a buffer queue. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMBufferQueueGetEndPresentationTimeStamp(_:)
+func CMBufferQueueGetEndPresentationTimeStamp(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMBufferQueueGetEndPresentationTimeStamp(p0)
+	}
+
+
+// Returns the immediate host clock of a timebase. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimebaseCopyMasterClock(_:)
+func CMTimebaseCopyMasterClock(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMTimebaseCopyMasterClock(p0)
+	}
+
+
+// Returns a new time range with the time elements that are common between the input. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimeRangeGetIntersection(_:otherRange:)
+func CMTimeRangeGetIntersection(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMTimeRangeGetIntersection(p0)
+	}
+
+
+// Dequeues a buffer from a queue. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMBufferQueueDequeue(_:)
+func CMBufferQueueDequeue(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMBufferQueueDequeue(p0)
+	}
+
+
+// Returns the current time from a clock. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMClockGetTime(_:)
+func CMClockGetTime(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMClockGetTime(p0)
+	}
+
+
+// Creates a string representation of the time. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimeCopyDescription(allocator:time:)
+func CMTimeCopyDescription(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMTimeCopyDescription(p0)
+	}
+
+
+// Returns the immediate host timebase of a timebase. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimebaseCopyMaster(_:)
+func CMTimebaseCopyMaster(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMTimebaseCopyMaster(p0)
+	}
+
+
+// A validation handler for the queue to call before enqueuing buffers. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMBufferQueueSetValidationHandler(_:_:)
+func CMBufferQueueSetValidationHandler(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMBufferQueueSetValidationHandler(p0)
+	}
+
+
+// Returns an array of metadata identifiers from a metadata format description. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMMetadataFormatDescriptionGetIdentifiers(_:)
+func CMMetadataFormatDescriptionGetIdentifiers(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMMetadataFormatDescriptionGetIdentifiers(p0)
+	}
+
+
+// Folds a time into a time range. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimeFoldIntoRange(_:foldRange:)
+func CMTimeFoldIntoRange(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMTimeFoldIntoRange(p0)
+	}
+
+
+// Creates a time range from a dictionary representation of its fields. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimeRangeMakeFromDictionary(_:)
+func CMTimeRangeMakeFromDictionary(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMTimeRangeMakeFromDictionary(p0)
+	}
+
+
+// Creates a valid time range with a start time and duration. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimeRangeMake(start:duration:)
+func CMTimeRangeMake(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMTimeRangeMake(p0)
+	}
+
+
+// Gets the earliest decode timestamp of a buffer queue. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMBufferQueueGetMinDecodeTimeStamp(_:)
+func CMBufferQueueGetMinDecodeTimeStamp(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMBufferQueueGetMinDecodeTimeStamp(p0)
+	}
+
+
+// Returns the Core Foundation type identifier that identifies format description objects. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMFormatDescriptionGetTypeID()
+func CMFormatDescriptionGetTypeID() unsafe.Pointer {
+	return _CMFormatDescriptionGetTypeID()
+	}
+
+
+// Returns the immediate source — either a clock or timebase — of a timebase. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimebaseCopySource(_:)
+func CMTimebaseCopySource(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMTimebaseCopySource(p0)
+	}
+
+
+// Gets the presentation timestamp of the first buffer in a buffer queue. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMBufferQueueGetFirstPresentationTimeStamp(_:)
+func CMBufferQueueGetFirstPresentationTimeStamp(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMBufferQueueGetFirstPresentationTimeStamp(p0)
+	}
+
+
 // Removes the timer dispatch source from the list of timers the timebase manages. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimebaseRemoveTimerDispatchSource(_:timerSource:)
 func CMTimebaseRemoveTimerDispatchSource(p0 unsafe.Pointer) unsafe.Pointer {
 	return _CMTimebaseRemoveTimerDispatchSource(p0)
+	}
+
+
+// Returns an array of keys that you use for video format description extensions, image buffer attachments, and attributes. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMVideoFormatDescriptionGetExtensionKeysCommonWithImageBuffers()
+func CMVideoFormatDescriptionGetExtensionKeysCommonWithImageBuffers() unsafe.Pointer {
+	return _CMVideoFormatDescriptionGetExtensionKeysCommonWithImageBuffers()
+	}
+
+
+// Returns the current time from a timebase in the specified timescale. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimebaseGetTimeWithTimeScale(_:timescale:method:)
+func CMTimebaseGetTimeWithTimeScale(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMTimebaseGetTimeWithTimeScale(p0)
+	}
+
+
+// Prints a description of a time mapping to standard output. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimeMappingShow(_:)
+func CMTimeMappingShow(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMTimeMappingShow(p0)
+	}
+
+
+// Returns the type identifier for block buffer objects. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMBlockBufferGetTypeID()
+func CMBlockBufferGetTypeID() unsafe.Pointer {
+	return _CMBlockBufferGetTypeID()
+	}
+
+
+// Resets a buffer queue, which allows it to enqueue new buffers. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMBufferQueueReset(_:)
+func CMBufferQueueReset(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMBufferQueueReset(p0)
+	}
+
+
+// Sets a marker to indicate this queue doesn’t allow enqueuing new buffers. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMBufferQueueMarkEndOfData(_:)
+func CMBufferQueueMarkEndOfData(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMBufferQueueMarkEndOfData(p0)
+	}
+
+
+// Returns the core foundation type identifier of a clock type. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMClockGetTypeID()
+func CMClockGetTypeID() unsafe.Pointer {
+	return _CMClockGetTypeID()
+	}
+
+
+// Sets the source clock of a timebase. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimebaseSetSourceClock(_:_:)
+func CMTimebaseSetSourceClock(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMTimebaseSetSourceClock(p0)
+	}
+
+
+// Returns the media type of a format description. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMFormatDescriptionGetMediaType(_:)
+func CMFormatDescriptionGetMediaType(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMFormatDescriptionGetMediaType(p0)
+	}
+
+
+// Creates a memory pool. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMMemoryPoolCreate(options:)
+func CMMemoryPoolCreate(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMMemoryPoolCreate(p0)
+	}
+
+
+// Assures that the system allocates memory for all memory blocks in a block buffer. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMBlockBufferAssureBlockMemory(_:)
+func CMBlockBufferAssureBlockMemory(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMBlockBufferAssureBlockMemory(p0)
+	}
+
+
+// Deallocates all memory the pool holds. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMMemoryPoolFlush(_:)
+func CMMemoryPoolFlush(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMMemoryPoolFlush(p0)
+	}
+
+
+// Returns the absolute value of a time. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimeAbsoluteValue(_:)
+func CMTimeAbsoluteValue(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMTimeAbsoluteValue(p0)
+	}
+
+
+// Creates a valid time mapping with an empty source. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimeMappingMakeEmpty(target:)
+func CMTimeMappingMakeEmpty(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMTimeMappingMakeEmpty(p0)
+	}
+
+
+// Returns the lesser of two time values. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimeMinimum(_:_:)
+func CMTimeMinimum(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMTimeMinimum(p0)
+	}
+
+
+// Sets the current time of a timebase. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimebaseSetTime(_:time:)
+func CMTimebaseSetTime(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMTimebaseSetTime(p0)
+	}
+
+
+// Removes the timer from the list of timers the timebase manages. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTimebaseRemoveTimer(_:timer:)
+func CMTimebaseRemoveTimer(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMTimebaseRemoveTimer(p0)
+	}
+
+
+// Returns a dictionary of all attachments for an attachment bearer object. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMCopyDictionaryOfAttachments(allocator:target:attachmentMode:)
+func CMCopyDictionaryOfAttachments(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMCopyDictionaryOfAttachments(p0)
+	}
+
+
+// Enqueues a buffer onto a queue. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMBufferQueueEnqueue(_:buffer:)
+func CMBufferQueueEnqueue(p0 unsafe.Pointer) unsafe.Pointer {
+	return _CMBufferQueueEnqueue(p0)
 	}
 
 

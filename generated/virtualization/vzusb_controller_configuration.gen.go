@@ -80,5 +80,23 @@ func NewVZUSBControllerConfiguration() VZUSBControllerConfiguration {
 }
 
 
+// The list of USB devices.
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzusbcontrollerconfiguration/usbdevices
+func (v_ VZUSBControllerConfiguration) UsbDevices() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("usbDevices"))
+	return rv
+}
+
+
+// SetUsbDevices sets the value of the usbDevices property.
+// The list of USB devices.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzusbcontrollerconfiguration/usbdevices
+func (v_ VZUSBControllerConfiguration) SetUsbDevices(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setUsbDevices:"), value)
+}
+
 
 

@@ -118,6 +118,24 @@ func (e_ EKEvent) Refresh() bool {
 	return rv
 }
 
+// A Boolean value that indicates whether the event is an all-day event.
+//
+// [Full Topic]: https://developer.apple.com/documentation/eventkit/ekevent/isallday
+func (e_ EKEvent) IsAllDay() bool {
+	rv := objc.Send[bool](e_.ID, objc.Sel("isAllDay"))
+	return rv
+}
+
+
+// SetIsAllDay sets the value of the isAllDay property.
+// A Boolean value that indicates whether the event is an all-day event.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/eventkit/ekevent/isallday
+func (e_ EKEvent) SetIsAllDay(value bool) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setIsAllDay:"), value)
+}
+
 // The availability setting for the event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEvent/availability

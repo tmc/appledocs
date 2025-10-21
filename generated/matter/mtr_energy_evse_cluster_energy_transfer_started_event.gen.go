@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,8 +78,8 @@ func NewMTREnergyEVSEClusterEnergyTransferStartedEvent() MTREnergyEVSEClusterEne
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEnergyTransferStartedEvent/maximumCurrent
-func (m_ MTREnergyEVSEClusterEnergyTransferStartedEvent) MaximumCurrent() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("maximumCurrent"))
+func (m_ MTREnergyEVSEClusterEnergyTransferStartedEvent) MaximumCurrent() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("maximumCurrent"))
 	return rv
 }
 
@@ -86,14 +87,14 @@ func (m_ MTREnergyEVSEClusterEnergyTransferStartedEvent) MaximumCurrent() unsafe
 // SetMaximumCurrent sets the value of the maximumCurrent property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEnergyTransferStartedEvent/maximumCurrent
-func (m_ MTREnergyEVSEClusterEnergyTransferStartedEvent) SetMaximumCurrent(value unsafe.Pointer) {
+func (m_ MTREnergyEVSEClusterEnergyTransferStartedEvent) SetMaximumCurrent(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMaximumCurrent:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEnergyTransferStartedEvent/sessionID
-func (m_ MTREnergyEVSEClusterEnergyTransferStartedEvent) SessionID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("sessionID"))
+func (m_ MTREnergyEVSEClusterEnergyTransferStartedEvent) SessionID() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("sessionID"))
 	return rv
 }
 
@@ -101,14 +102,14 @@ func (m_ MTREnergyEVSEClusterEnergyTransferStartedEvent) SessionID() unsafe.Poin
 // SetSessionID sets the value of the sessionID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEnergyTransferStartedEvent/sessionID
-func (m_ MTREnergyEVSEClusterEnergyTransferStartedEvent) SetSessionID(value unsafe.Pointer) {
+func (m_ MTREnergyEVSEClusterEnergyTransferStartedEvent) SetSessionID(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSessionID:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEnergyTransferStartedEvent/state
-func (m_ MTREnergyEVSEClusterEnergyTransferStartedEvent) State() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("state"))
+func (m_ MTREnergyEVSEClusterEnergyTransferStartedEvent) State() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("state"))
 	return rv
 }
 
@@ -116,7 +117,7 @@ func (m_ MTREnergyEVSEClusterEnergyTransferStartedEvent) State() unsafe.Pointer 
 // SetState sets the value of the state property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEnergyTransferStartedEvent/state
-func (m_ MTREnergyEVSEClusterEnergyTransferStartedEvent) SetState(value unsafe.Pointer) {
+func (m_ MTREnergyEVSEClusterEnergyTransferStartedEvent) SetState(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setState:"), value)
 }
 

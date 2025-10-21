@@ -105,6 +105,42 @@ func NewSNClassifySoundRequestWithMLModelError(mlModel unsafe.Pointer, error_ un
 }
 
 
+// A range or list of sound duration times the request’s underlying sound classifier supports.
+//
+// [Full Topic]: https://developer.apple.com/documentation/soundanalysis/snclassifysoundrequest/windowdurationconstraint-5no60
+func (s_ SNClassifySoundRequest) WindowDurationConstraint() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("windowDurationConstraint"))
+	return rv
+}
+
+
+// SetWindowDurationConstraint sets the value of the windowDurationConstraint property.
+// A range or list of sound duration times the request’s underlying sound classifier supports.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/soundanalysis/snclassifysoundrequest/windowdurationconstraint-5no60
+func (s_ SNClassifySoundRequest) SetWindowDurationConstraint(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setWindowDurationConstraint:"), value)
+}
+
+// The duration of the audio buffer the request sends to the underlying sound classifier for each prediction.
+//
+// [Full Topic]: https://developer.apple.com/documentation/soundanalysis/snclassifysoundrequest/windowduration
+func (s_ SNClassifySoundRequest) WindowDuration() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("windowDuration"))
+	return rv
+}
+
+
+// SetWindowDuration sets the value of the windowDuration property.
+// The duration of the audio buffer the request sends to the underlying sound classifier for each prediction.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/soundanalysis/snclassifysoundrequest/windowduration
+func (s_ SNClassifySoundRequest) SetWindowDuration(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setWindowDuration:"), value)
+}
+
 // A string array that contains every prediction label in the request’s underlying sound classifier model.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SoundAnalysis/SNClassifySoundRequest/knownClassifications

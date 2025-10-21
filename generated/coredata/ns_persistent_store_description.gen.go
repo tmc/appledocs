@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -85,7 +86,7 @@ func NewPersistentStoreDescription() PersistentStoreDescription {
 // Initializes the receiver with a URL for the store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreDescription/init(url:)
-func NewPersistentStoreDescriptionWithURL(url unsafe.Pointer) PersistentStoreDescription {
+func NewPersistentStoreDescriptionWithURL(url foundation.URL) PersistentStoreDescription {
 	instance := getPersistentStoreDescriptionClass().Alloc()
 	rv := objc.Send[PersistentStoreDescription](instance.ID, objc.Sel("initWithURL:"), url)
 	rv.Autorelease()
@@ -96,7 +97,7 @@ func NewPersistentStoreDescriptionWithURL(url unsafe.Pointer) PersistentStoreDes
 // Initializes and returns a persistent store description with the given URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreDescription/persistentStoreDescriptionWithURL:
-func (pc _PersistentStoreDescriptionClass) PersistentStoreDescriptionWithURL(URL unsafe.Pointer) unsafe.Pointer {
+func (pc _PersistentStoreDescriptionClass) PersistentStoreDescriptionWithURL(URL foundation.URL) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("persistentStoreDescriptionWithURL:"), URL)
 	return rv
 }
@@ -113,6 +114,42 @@ func (p_ PersistentStoreDescription) SetOptionForKey(option unsafe.Pointer, key 
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreDescription/setValue(_:forPragmaNamed:)
 func (p_ PersistentStoreDescription) SetValueForPragmaNamed(value unsafe.Pointer, name string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setValue:forPragmaNamed:"), value, objc.String(name))
+}
+
+// A flag that indicates whether this store will be read-only.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstoredescription/isreadonly
+func (p_ PersistentStoreDescription) IsReadOnly() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isReadOnly"))
+	return rv
+}
+
+
+// SetIsReadOnly sets the value of the isReadOnly property.
+// A flag that indicates whether this store will be read-only.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstoredescription/isreadonly
+func (p_ PersistentStoreDescription) SetIsReadOnly(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsReadOnly:"), value)
+}
+
+// The type of store this description represents.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstoredescription/type
+func (p_ PersistentStoreDescription) Type() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("type"))
+	return rv
+}
+
+
+// SetType sets the value of the type property.
+// The type of store this description represents.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstoredescription/type
+func (p_ PersistentStoreDescription) SetType(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setType:"), objc.String(value))
 }
 
 // Options that customize how this store description aligns with a CloudKit database.
@@ -242,8 +279,8 @@ func (p_ PersistentStoreDescription) SqlitePragmas() unsafe.Pointer {
 // The connection timeout for the associated store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreDescription/timeout
-func (p_ PersistentStoreDescription) Timeout() TimeInterval {
-	rv := objc.Send[TimeInterval](p_.ID, objc.Sel("timeout"))
+func (p_ PersistentStoreDescription) Timeout() foundation.TimeInterval {
+	rv := objc.Send[foundation.TimeInterval](p_.ID, objc.Sel("timeout"))
 	return rv
 }
 
@@ -253,15 +290,15 @@ func (p_ PersistentStoreDescription) Timeout() TimeInterval {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreDescription/timeout
-func (p_ PersistentStoreDescription) SetTimeout(value TimeInterval) {
+func (p_ PersistentStoreDescription) SetTimeout(value foundation.TimeInterval) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setTimeout:"), value)
 }
 
 // The URL that the store will use for its location.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreDescription/url
-func (p_ PersistentStoreDescription) URL() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("URL"))
+func (p_ PersistentStoreDescription) URL() foundation.URL {
+	rv := objc.Send[foundation.URL](p_.ID, objc.Sel("URL"))
 	return rv
 }
 
@@ -271,7 +308,7 @@ func (p_ PersistentStoreDescription) URL() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreDescription/url
-func (p_ PersistentStoreDescription) SetURL(value unsafe.Pointer) {
+func (p_ PersistentStoreDescription) SetURL(value foundation.URL) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setURL:"), value)
 }
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MTRTestClusterClusterTestSpecificParams] class.
@@ -75,6 +76,36 @@ func NewMTRTestClusterClusterTestSpecificParams() MTRTestClusterClusterTestSpeci
 	return getMTRTestClusterClusterTestSpecificParamsClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestspecificparams/timedinvoketimeoutms
+func (m_ MTRTestClusterClusterTestSpecificParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+	return rv
+}
+
+
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestspecificparams/timedinvoketimeoutms
+func (m_ MTRTestClusterClusterTestSpecificParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestspecificparams/serversideprocessingtimeout
+func (m_ MTRTestClusterClusterTestSpecificParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+	return rv
+}
+
+
+// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestspecificparams/serversideprocessingtimeout
+func (m_ MTRTestClusterClusterTestSpecificParams) SetServerSideProcessingTimeout(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
+}
 
 
 

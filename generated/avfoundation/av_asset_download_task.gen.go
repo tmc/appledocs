@@ -82,5 +82,77 @@ func NewAssetDownloadTask() AssetDownloadTask {
 }
 
 
+// The local file URL to where the task downloads the asset.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetdownloadtask/destinationurl
+func (a_ AssetDownloadTask) DestinationURL() foundation.URL {
+	rv := objc.Send[foundation.URL](a_.ID, objc.Sel("destinationURL"))
+	return rv
+}
+
+
+// SetDestinationURL sets the value of the destinationURL property.
+// The local file URL to where the task downloads the asset.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetdownloadtask/destinationurl
+func (a_ AssetDownloadTask) SetDestinationURL(value foundation.URL) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setDestinationURL:"), value)
+}
+
+// The time ranges of the downloaded media that are ready for playback.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetdownloadtask/loadedtimeranges
+func (a_ AssetDownloadTask) LoadedTimeRanges() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("loadedTimeRanges"))
+	return rv
+}
+
+
+// SetLoadedTimeRanges sets the value of the loadedTimeRanges property.
+// The time ranges of the downloaded media that are ready for playback.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetdownloadtask/loadedtimeranges
+func (a_ AssetDownloadTask) SetLoadedTimeRanges(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setLoadedTimeRanges:"), value)
+}
+
+// The configuration options for the task.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetdownloadtask/options
+func (a_ AssetDownloadTask) Options() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("options"))
+	return rv
+}
+
+
+// SetOptions sets the value of the options property.
+// The configuration options for the task.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetdownloadtask/options
+func (a_ AssetDownloadTask) SetOptions(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setOptions:"), objc.String(value))
+}
+
+// The asset that this task downloads.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetdownloadtask/urlasset
+func (a_ AssetDownloadTask) UrlAsset() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("urlAsset"))
+	return rv
+}
+
+
+// SetUrlAsset sets the value of the urlAsset property.
+// The asset that this task downloads.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetdownloadtask/urlasset
+func (a_ AssetDownloadTask) SetUrlAsset(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setUrlAsset:"), value)
+}
+
 
 

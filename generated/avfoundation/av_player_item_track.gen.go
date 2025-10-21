@@ -122,5 +122,49 @@ func (p_ PlayerItemTrack) SetVideoFieldMode(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setVideoFieldMode:"), objc.String(value))
 }
 
+// An asset track that provides the media for the player item track.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemtrack/assettrack
+func (p_ PlayerItemTrack) AssetTrack() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("assetTrack"))
+	return rv
+}
+
+
+// SetAssetTrack sets the value of the assetTrack property.
+// An asset track that provides the media for the player item track.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemtrack/assettrack
+func (p_ PlayerItemTrack) SetAssetTrack(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setAssetTrack:"), value)
+}
+
+// A Boolean value that indicates whether the player item presents the track’s media during playback.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemtrack/isenabled
+func (p_ PlayerItemTrack) IsEnabled() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isEnabled"))
+	return rv
+}
+
+
+// SetIsEnabled sets the value of the isEnabled property.
+// A Boolean value that indicates whether the player item presents the track’s media during playback.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemtrack/isenabled
+func (p_ PlayerItemTrack) SetIsEnabled(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsEnabled:"), value)
+}
+
+// A video field mode that requests deinterlacing of video fields.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemtrackvideofieldmodedeinterlacefields
+func (p_ PlayerItemTrack) AVPlayerItemTrackVideoFieldModeDeinterlaceFields() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("AVPlayerItemTrackVideoFieldModeDeinterlaceFields"))
+	return rv
+}
+
 
 

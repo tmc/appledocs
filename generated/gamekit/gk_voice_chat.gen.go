@@ -88,5 +88,131 @@ func (v_ VoiceChat) Stop() {
 	objc.Send[objc.ID](v_.ID, objc.Sel("stop"))
 }
 
+// The players connected to the channel.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkvoicechat/players
+func (v_ VoiceChat) Players() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("players"))
+	return rv
+}
+
+
+// SetPlayers sets the value of the players property.
+// The players connected to the channel.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkvoicechat/players
+func (v_ VoiceChat) SetPlayers(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setPlayers:"), value)
+}
+
+// Handles when a player in the chat changes state.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkvoicechat/playerstateupdatehandler
+func (v_ VoiceChat) PlayerStateUpdateHandler() string {
+	rv := objc.Send[string](v_.ID, objc.Sel("playerStateUpdateHandler"))
+	return rv
+}
+
+
+// SetPlayerStateUpdateHandler sets the value of the playerStateUpdateHandler property.
+// Handles when a player in the chat changes state.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkvoicechat/playerstateupdatehandler
+func (v_ VoiceChat) SetPlayerStateUpdateHandler(value string) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setPlayerStateUpdateHandler:"), objc.String(value))
+}
+
+// The name of the voice chat channel.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkvoicechat/name
+func (v_ VoiceChat) Name() string {
+	rv := objc.Send[string](v_.ID, objc.Sel("name"))
+	return rv
+}
+
+
+// SetName sets the value of the name property.
+// The name of the voice chat channel.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkvoicechat/name
+func (v_ VoiceChat) SetName(value string) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setName:"), objc.String(value))
+}
+
+// The volume level for the channel.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkvoicechat/volume
+func (v_ VoiceChat) Volume() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("volume"))
+	return rv
+}
+
+
+// SetVolume sets the value of the volume property.
+// The volume level for the channel.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkvoicechat/volume
+func (v_ VoiceChat) SetVolume(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setVolume:"), value)
+}
+
+// A Boolean value that indicates whether the channel is sampling the microphone.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkvoicechat/isactive
+func (v_ VoiceChat) IsActive() bool {
+	rv := objc.Send[bool](v_.ID, objc.Sel("isActive"))
+	return rv
+}
+
+
+// SetIsActive sets the value of the isActive property.
+// A Boolean value that indicates whether the channel is sampling the microphone.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkvoicechat/isactive
+func (v_ VoiceChat) SetIsActive(value bool) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setIsActive:"), value)
+}
+
+// An array of strings containing the player identifiers for the players connected to the channel.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkvoicechat/playerids
+func (v_ VoiceChat) PlayerIDs() string {
+	rv := objc.Send[string](v_.ID, objc.Sel("playerIDs"))
+	return rv
+}
+
+
+// SetPlayerIDs sets the value of the playerIDs property.
+// An array of strings containing the player identifiers for the players connected to the channel.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkvoicechat/playerids
+func (v_ VoiceChat) SetPlayerIDs(value string) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setPlayerIDs:"), objc.String(value))
+}
+
+// A method that handles when a player’s voice chat changes state.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkvoicechat/playervoicechatstatedidchangehandler
+func (v_ VoiceChat) PlayerVoiceChatStateDidChangeHandler() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("playerVoiceChatStateDidChangeHandler"))
+	return rv
+}
+
+
+// SetPlayerVoiceChatStateDidChangeHandler sets the value of the playerVoiceChatStateDidChangeHandler property.
+// A method that handles when a player’s voice chat changes state.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkvoicechat/playervoicechatstatedidchangehandler
+func (v_ VoiceChat) SetPlayerVoiceChatStateDidChangeHandler(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setPlayerVoiceChatStateDidChangeHandler:"), value)
+}
+
 
 

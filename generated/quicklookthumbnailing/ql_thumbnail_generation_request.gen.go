@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -84,13 +85,67 @@ func NewThumbnailGenerationRequest() ThumbnailGenerationRequest {
 // Creates a new request for a thumbnail with the specified parameters for a file at a provided URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuickLookThumbnailing/QLThumbnailGenerator/Request/init(fileAt:size:scale:representationTypes:)
-func NewThumbnailGenerationRequestWithFileAtURLSizeScaleRepresentationTypes(url unsafe.Pointer, size coregraphics.CGSize, scale float64, representationTypes unsafe.Pointer) ThumbnailGenerationRequest {
+func NewThumbnailGenerationRequestWithFileAtURLSizeScaleRepresentationTypes(url foundation.URL, size coregraphics.CGSize, scale float64, representationTypes unsafe.Pointer) ThumbnailGenerationRequest {
 	instance := getThumbnailGenerationRequestClass().Alloc()
 	rv := objc.Send[ThumbnailGenerationRequest](instance.ID, objc.Sel("initWithFileAtURL:size:scale:representationTypes:"), url, size, scale, representationTypes)
 	rv.Autorelease()
 	return rv
 }
 
+
+// A Boolean value indicating whether the generated thumbnail request should include icon decorations.
+//
+// [Full Topic]: https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailgenerator/request/iconmode
+func (t_ ThumbnailGenerationRequest) IconMode() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("iconMode"))
+	return rv
+}
+
+
+// SetIconMode sets the value of the iconMode property.
+// A Boolean value indicating whether the generated thumbnail request should include icon decorations.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailgenerator/request/iconmode
+func (t_ ThumbnailGenerationRequest) SetIconMode(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setIconMode:"), value)
+}
+
+// The size of the thumbnails.
+//
+// [Full Topic]: https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailgenerator/request/size
+func (t_ ThumbnailGenerationRequest) Size() coregraphics.CGSize {
+	rv := objc.Send[coregraphics.CGSize](t_.ID, objc.Sel("size"))
+	return rv
+}
+
+
+// SetSize sets the value of the size property.
+// The size of the thumbnails.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailgenerator/request/size
+func (t_ ThumbnailGenerationRequest) SetSize(value coregraphics.CGSize) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setSize:"), value)
+}
+
+// The content type of the source data for the thumbnail request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailgenerator/request/contenttype
+func (t_ ThumbnailGenerationRequest) ContentType() UTType {
+	rv := objc.Send[UTType](t_.ID, objc.Sel("contentType"))
+	return rv
+}
+
+
+// SetContentType sets the value of the contentType property.
+// The content type of the source data for the thumbnail request.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailgenerator/request/contenttype
+func (t_ ThumbnailGenerationRequest) SetContentType(value UTType) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setContentType:"), value)
+}
 
 // The minimum height or width for a generated thumbnail.
 //

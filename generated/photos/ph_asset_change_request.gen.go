@@ -115,6 +115,78 @@ func (p_ PHAssetChangeRequest) RevertAssetContentToOriginal() {
 	objc.Send[objc.ID](p_.ID, objc.Sel("revertAssetContentToOriginal"))
 }
 
+// A Boolean value that indicates whether the asset is hidden in collections.
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phassetchangerequest/ishidden
+func (p_ PHAssetChangeRequest) IsHidden() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isHidden"))
+	return rv
+}
+
+
+// SetIsHidden sets the value of the isHidden property.
+// A Boolean value that indicates whether the asset is hidden in collections.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phassetchangerequest/ishidden
+func (p_ PHAssetChangeRequest) SetIsHidden(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsHidden:"), value)
+}
+
+// A Boolean value that indicates whether the asset is marked as one of the user’s favorites.
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phassetchangerequest/isfavorite
+func (p_ PHAssetChangeRequest) IsFavorite() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isFavorite"))
+	return rv
+}
+
+
+// SetIsFavorite sets the value of the isFavorite property.
+// A Boolean value that indicates whether the asset is marked as one of the user’s favorites.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phassetchangerequest/isfavorite
+func (p_ PHAssetChangeRequest) SetIsFavorite(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsFavorite:"), value)
+}
+
+// The location information saved with the asset.
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phassetchangerequest/location
+func (p_ PHAssetChangeRequest) Location() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("location"))
+	return rv
+}
+
+
+// SetLocation sets the value of the location property.
+// The location information saved with the asset.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phassetchangerequest/location
+func (p_ PHAssetChangeRequest) SetLocation(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setLocation:"), value)
+}
+
+// The date and time at which the asset claims to have been originally created.
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phassetchangerequest/creationdate
+func (p_ PHAssetChangeRequest) CreationDate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("creationDate"))
+	return rv
+}
+
+
+// SetCreationDate sets the value of the creationDate property.
+// The date and time at which the asset claims to have been originally created.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phassetchangerequest/creationdate
+func (p_ PHAssetChangeRequest) SetCreationDate(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setCreationDate:"), value)
+}
+
 // The output of an asset content editing session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetChangeRequest/contentEditingOutput

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MTRClusterDeviceEnergyManagement] class.
@@ -29,13 +30,13 @@ type _MTRClusterDeviceEnergyManagementClass struct {
 // An interface definition for the [MTRClusterDeviceEnergyManagement] class.
 type IMTRClusterDeviceEnergyManagement interface {
 	IMTRGenericCluster
-	CancelPowerAdjustRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, completion unsafe.Pointer)
-	CancelPowerAdjustRequestWithExpectedValuesExpectedValueIntervalCompletion(expectedValues unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, completion unsafe.Pointer)
-	CancelRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, completion unsafe.Pointer)
-	CancelRequestWithExpectedValuesExpectedValueIntervalCompletion(expectedValues unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, completion unsafe.Pointer)
-	ModifyForecastRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, completion unsafe.Pointer)
-	PauseRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, completion unsafe.Pointer)
-	PowerAdjustRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, completion unsafe.Pointer)
+	CancelPowerAdjustRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer)
+	CancelPowerAdjustRequestWithExpectedValuesExpectedValueIntervalCompletion(expectedValues unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer)
+	CancelRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer)
+	CancelRequestWithExpectedValuesExpectedValueIntervalCompletion(expectedValues unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer)
+	ModifyForecastRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer)
+	PauseRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer)
+	PowerAdjustRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer)
 	ReadAttributeAbsMaxPowerWithParams(params unsafe.Pointer) unsafe.Pointer
 	ReadAttributeAbsMinPowerWithParams(params unsafe.Pointer) unsafe.Pointer
 	ReadAttributeAcceptedCommandListWithParams(params unsafe.Pointer) unsafe.Pointer
@@ -49,10 +50,10 @@ type IMTRClusterDeviceEnergyManagement interface {
 	ReadAttributeGeneratedCommandListWithParams(params unsafe.Pointer) unsafe.Pointer
 	ReadAttributeOptOutStateWithParams(params unsafe.Pointer) unsafe.Pointer
 	ReadAttributePowerAdjustmentCapabilityWithParams(params unsafe.Pointer) unsafe.Pointer
-	RequestConstraintBasedForecastWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, completion unsafe.Pointer)
-	ResumeRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, completion unsafe.Pointer)
-	ResumeRequestWithExpectedValuesExpectedValueIntervalCompletion(expectedValues unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, completion unsafe.Pointer)
-	StartTimeAdjustRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, completion unsafe.Pointer)
+	RequestConstraintBasedForecastWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer)
+	ResumeRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer)
+	ResumeRequestWithExpectedValuesExpectedValueIntervalCompletion(expectedValues unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer)
+	StartTimeAdjustRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer)
 }
 
 // Cluster Device Energy Management This cluster allows a client to manage the power draw of a device. An example of such a client could be an Energy Management System (EMS) which controls an Energy Smart Appliance (ESA).
@@ -108,7 +109,7 @@ func NewMTRClusterDeviceEnergyManagement() MTRClusterDeviceEnergyManagement {
 // For all instance methods that take a completion (i.e. command invocations), the completion will be called on the provided queue.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterDeviceEnergyManagement/init(device:endpointID:queue:)
-func NewMTRClusterDeviceEnergyManagementWithDeviceEndpointIDQueue(device unsafe.Pointer, endpointID unsafe.Pointer, queue unsafe.Pointer) MTRClusterDeviceEnergyManagement {
+func NewMTRClusterDeviceEnergyManagementWithDeviceEndpointIDQueue(device unsafe.Pointer, endpointID foundation.Number, queue unsafe.Pointer) MTRClusterDeviceEnergyManagement {
 	instance := getMTRClusterDeviceEnergyManagementClass().Alloc()
 	rv := objc.Send[MTRClusterDeviceEnergyManagement](instance.ID, objc.Sel("initWithDevice:endpointID:queue:"), device, endpointID, queue)
 	rv.Autorelease()
@@ -118,43 +119,43 @@ func NewMTRClusterDeviceEnergyManagementWithDeviceEndpointIDQueue(device unsafe.
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterDeviceEnergyManagement/cancelPowerAdjustRequest(with:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterDeviceEnergyManagement) CancelPowerAdjustRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, completion unsafe.Pointer) {
+func (m_ MTRClusterDeviceEnergyManagement) CancelPowerAdjustRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("cancelPowerAdjustRequestWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterDeviceEnergyManagement/cancelPowerAdjustRequest(withExpectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterDeviceEnergyManagement) CancelPowerAdjustRequestWithExpectedValuesExpectedValueIntervalCompletion(expectedValues unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, completion unsafe.Pointer) {
+func (m_ MTRClusterDeviceEnergyManagement) CancelPowerAdjustRequestWithExpectedValuesExpectedValueIntervalCompletion(expectedValues unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("cancelPowerAdjustRequestWithExpectedValues:expectedValueInterval:completion:"), expectedValues, expectedValueIntervalMs, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterDeviceEnergyManagement/cancelRequest(with:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterDeviceEnergyManagement) CancelRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, completion unsafe.Pointer) {
+func (m_ MTRClusterDeviceEnergyManagement) CancelRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("cancelRequestWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterDeviceEnergyManagement/cancelRequest(withExpectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterDeviceEnergyManagement) CancelRequestWithExpectedValuesExpectedValueIntervalCompletion(expectedValues unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, completion unsafe.Pointer) {
+func (m_ MTRClusterDeviceEnergyManagement) CancelRequestWithExpectedValuesExpectedValueIntervalCompletion(expectedValues unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("cancelRequestWithExpectedValues:expectedValueInterval:completion:"), expectedValues, expectedValueIntervalMs, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterDeviceEnergyManagement/modifyForecastRequest(with:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterDeviceEnergyManagement) ModifyForecastRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, completion unsafe.Pointer) {
+func (m_ MTRClusterDeviceEnergyManagement) ModifyForecastRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("modifyForecastRequestWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterDeviceEnergyManagement/pauseRequest(with:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterDeviceEnergyManagement) PauseRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, completion unsafe.Pointer) {
+func (m_ MTRClusterDeviceEnergyManagement) PauseRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("pauseRequestWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterDeviceEnergyManagement/powerAdjustRequest(with:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterDeviceEnergyManagement) PowerAdjustRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, completion unsafe.Pointer) {
+func (m_ MTRClusterDeviceEnergyManagement) PowerAdjustRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("powerAdjustRequestWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
 }
 
@@ -251,25 +252,25 @@ func (m_ MTRClusterDeviceEnergyManagement) ReadAttributePowerAdjustmentCapabilit
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterDeviceEnergyManagement/requestConstraintBasedForecast(with:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterDeviceEnergyManagement) RequestConstraintBasedForecastWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, completion unsafe.Pointer) {
+func (m_ MTRClusterDeviceEnergyManagement) RequestConstraintBasedForecastWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("requestConstraintBasedForecastWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterDeviceEnergyManagement/resumeRequest(with:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterDeviceEnergyManagement) ResumeRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, completion unsafe.Pointer) {
+func (m_ MTRClusterDeviceEnergyManagement) ResumeRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("resumeRequestWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterDeviceEnergyManagement/resumeRequest(withExpectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterDeviceEnergyManagement) ResumeRequestWithExpectedValuesExpectedValueIntervalCompletion(expectedValues unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, completion unsafe.Pointer) {
+func (m_ MTRClusterDeviceEnergyManagement) ResumeRequestWithExpectedValuesExpectedValueIntervalCompletion(expectedValues unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("resumeRequestWithExpectedValues:expectedValueInterval:completion:"), expectedValues, expectedValueIntervalMs, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterDeviceEnergyManagement/startTimeAdjustRequest(with:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterDeviceEnergyManagement) StartTimeAdjustRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, completion unsafe.Pointer) {
+func (m_ MTRClusterDeviceEnergyManagement) StartTimeAdjustRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("startTimeAdjustRequestWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
 }
 

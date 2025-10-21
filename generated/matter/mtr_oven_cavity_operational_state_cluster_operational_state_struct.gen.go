@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,8 +78,8 @@ func NewMTROvenCavityOperationalStateClusterOperationalStateStruct() MTROvenCavi
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenCavityOperationalStateClusterOperationalStateStruct/operationalStateID
-func (m_ MTROvenCavityOperationalStateClusterOperationalStateStruct) OperationalStateID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("operationalStateID"))
+func (m_ MTROvenCavityOperationalStateClusterOperationalStateStruct) OperationalStateID() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("operationalStateID"))
 	return rv
 }
 
@@ -86,7 +87,7 @@ func (m_ MTROvenCavityOperationalStateClusterOperationalStateStruct) Operational
 // SetOperationalStateID sets the value of the operationalStateID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenCavityOperationalStateClusterOperationalStateStruct/operationalStateID
-func (m_ MTROvenCavityOperationalStateClusterOperationalStateStruct) SetOperationalStateID(value unsafe.Pointer) {
+func (m_ MTROvenCavityOperationalStateClusterOperationalStateStruct) SetOperationalStateID(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOperationalStateID:"), value)
 }
 

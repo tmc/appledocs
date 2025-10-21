@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,9 +33,9 @@ type IBehavior interface {
 	objectivec.IObject
 	RemoveGoal(goal unsafe.Pointer)
 	RemoveAllGoals()
-	SetObjectForKeyedSubscript(weight unsafe.Pointer, goal unsafe.Pointer)
+	SetObjectForKeyedSubscript(weight foundation.Number, goal unsafe.Pointer)
 	SetWeightForGoal(weight unsafe.Pointer, goal unsafe.Pointer)
-	ObjectForKeyedSubscript(goal unsafe.Pointer) unsafe.Pointer
+	ObjectForKeyedSubscript(goal unsafe.Pointer) foundation.Number
 	ObjectAtIndexedSubscript(idx uint) unsafe.Pointer
 	WeightForGoal(goal unsafe.Pointer) unsafe.Pointer
 }
@@ -177,7 +178,7 @@ func (b_ Behavior) RemoveAllGoals() {
 // Sets the weight for the goal specified by subscript syntax.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKBehavior/setObject:forKeyedSubscript:
-func (b_ Behavior) SetObjectForKeyedSubscript(weight unsafe.Pointer, goal unsafe.Pointer) {
+func (b_ Behavior) SetObjectForKeyedSubscript(weight foundation.Number, goal unsafe.Pointer) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setObject:forKeyedSubscript:"), weight, goal)
 }
 
@@ -191,8 +192,8 @@ func (b_ Behavior) SetWeightForGoal(weight unsafe.Pointer, goal unsafe.Pointer) 
 // Returns the weight associated with the goal specified by subscript syntax.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKBehavior/subscript(_:)-2yvko
-func (b_ Behavior) ObjectForKeyedSubscript(goal unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("objectForKeyedSubscript:"), goal)
+func (b_ Behavior) ObjectForKeyedSubscript(goal unsafe.Pointer) foundation.Number {
+	rv := objc.Send[foundation.Number](b_.ID, objc.Sel("objectForKeyedSubscript:"), goal)
 	return rv
 }
 
@@ -210,6 +211,24 @@ func (b_ Behavior) ObjectAtIndexedSubscript(idx uint) unsafe.Pointer {
 func (b_ Behavior) WeightForGoal(goal unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("weightForGoal:"), goal)
 	return rv
+}
+
+// A weighted collection of goals that influence the agent’s movement.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gameplaykit/gkagent/behavior
+func (b_ Behavior) Behavior() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("behavior"))
+	return rv
+}
+
+
+// SetBehavior sets the value of the behavior property.
+// A weighted collection of goals that influence the agent’s movement.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gameplaykit/gkagent/behavior
+func (b_ Behavior) SetBehavior(value unsafe.Pointer) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setBehavior:"), value)
 }
 
 // The number of goals in the behavior.

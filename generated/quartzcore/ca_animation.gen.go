@@ -124,6 +124,24 @@ func (a_ Animation) ShouldArchiveValueForKey(key string) bool {
 	return rv
 }
 
+// Determines if the animation is removed from the target layer’s animations upon completion.
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/caanimation/isremovedoncompletion
+func (a_ Animation) IsRemovedOnCompletion() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("isRemovedOnCompletion"))
+	return rv
+}
+
+
+// SetIsRemovedOnCompletion sets the value of the isRemovedOnCompletion property.
+// Determines if the animation is removed from the target layer’s animations upon completion.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/caanimation/isremovedoncompletion
+func (a_ Animation) SetIsRemovedOnCompletion(value bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setIsRemovedOnCompletion:"), value)
+}
+
 // For animations attached to SceneKit objects, a list of events attached to an animation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAAnimation/animationEvents

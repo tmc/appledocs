@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,96 @@ func NewMTRContentLauncherClusterLaunchContentParams() MTRContentLauncherCluster
 	return getMTRContentLauncherClusterLaunchContentParamsClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchcontentparams/serversideprocessingtimeout
+func (m_ MTRContentLauncherClusterLaunchContentParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+	return rv
+}
+
+
+// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchcontentparams/serversideprocessingtimeout
+func (m_ MTRContentLauncherClusterLaunchContentParams) SetServerSideProcessingTimeout(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchcontentparams/usecurrentcontext
+func (m_ MTRContentLauncherClusterLaunchContentParams) UseCurrentContext() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("useCurrentContext"))
+	return rv
+}
+
+
+// SetUseCurrentContext sets the value of the useCurrentContext property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchcontentparams/usecurrentcontext
+func (m_ MTRContentLauncherClusterLaunchContentParams) SetUseCurrentContext(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setUseCurrentContext:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchcontentparams/autoplay
+func (m_ MTRContentLauncherClusterLaunchContentParams) AutoPlay() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("autoPlay"))
+	return rv
+}
+
+
+// SetAutoPlay sets the value of the autoPlay property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchcontentparams/autoplay
+func (m_ MTRContentLauncherClusterLaunchContentParams) SetAutoPlay(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAutoPlay:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchcontentparams/data
+func (m_ MTRContentLauncherClusterLaunchContentParams) Data() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("data"))
+	return rv
+}
+
+
+// SetData sets the value of the data property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchcontentparams/data
+func (m_ MTRContentLauncherClusterLaunchContentParams) SetData(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setData:"), objc.String(value))
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchcontentparams/search
+func (m_ MTRContentLauncherClusterLaunchContentParams) Search() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("search"))
+	return rv
+}
+
+
+// SetSearch sets the value of the search property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchcontentparams/search
+func (m_ MTRContentLauncherClusterLaunchContentParams) SetSearch(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSearch:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchcontentparams/timedinvoketimeoutms
+func (m_ MTRContentLauncherClusterLaunchContentParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+	return rv
+}
+
+
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchcontentparams/timedinvoketimeoutms
+func (m_ MTRContentLauncherClusterLaunchContentParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+}
 
 
 

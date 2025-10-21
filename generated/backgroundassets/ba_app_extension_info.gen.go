@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,15 +78,15 @@ func NewBAAppExtensionInfo() BAAppExtensionInfo {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAppExtensionInfo/restrictedDownloadSizeRemaining-9itic
-func (b_ BAAppExtensionInfo) RestrictedDownloadSizeRemaining() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("restrictedDownloadSizeRemaining"))
+func (b_ BAAppExtensionInfo) RestrictedDownloadSizeRemaining() foundation.Number {
+	rv := objc.Send[foundation.Number](b_.ID, objc.Sel("restrictedDownloadSizeRemaining"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAppExtensionInfo/restrictedEssentialDownloadSizeRemaining-76av8
-func (b_ BAAppExtensionInfo) RestrictedEssentialDownloadSizeRemaining() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("restrictedEssentialDownloadSizeRemaining"))
+func (b_ BAAppExtensionInfo) RestrictedEssentialDownloadSizeRemaining() foundation.Number {
+	rv := objc.Send[foundation.Number](b_.ID, objc.Sel("restrictedEssentialDownloadSizeRemaining"))
 	return rv
 }
 

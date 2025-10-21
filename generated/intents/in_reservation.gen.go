@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -131,8 +132,8 @@ func (i_ INReservation) ReservationStatus() unsafe.Pointer {
 // A webpage the user can access to view reservation details.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INReservation/url
-func (i_ INReservation) URL() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("URL"))
+func (i_ INReservation) URL() foundation.URL {
+	rv := objc.Send[foundation.URL](i_.ID, objc.Sel("URL"))
 	return rv
 }
 

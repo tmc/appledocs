@@ -75,5 +75,23 @@ func NewMTRDeviceControllerAbstractParameters() MTRDeviceControllerAbstractParam
 }
 
 
+// Whether the controller should start out suspended.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerabstractparameters/startsuspended
+func (m_ MTRDeviceControllerAbstractParameters) StartSuspended() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("startSuspended"))
+	return rv
+}
+
+
+// SetStartSuspended sets the value of the startSuspended property.
+// Whether the controller should start out suspended.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerabstractparameters/startsuspended
+func (m_ MTRDeviceControllerAbstractParameters) SetStartSuspended(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setStartSuspended:"), value)
+}
+
 
 

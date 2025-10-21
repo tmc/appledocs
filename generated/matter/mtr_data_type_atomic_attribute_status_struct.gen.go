@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,8 +78,8 @@ func NewMTRDataTypeAtomicAttributeStatusStruct() MTRDataTypeAtomicAttributeStatu
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeAtomicAttributeStatusStruct/attributeID
-func (m_ MTRDataTypeAtomicAttributeStatusStruct) AttributeID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("attributeID"))
+func (m_ MTRDataTypeAtomicAttributeStatusStruct) AttributeID() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("attributeID"))
 	return rv
 }
 
@@ -86,14 +87,14 @@ func (m_ MTRDataTypeAtomicAttributeStatusStruct) AttributeID() unsafe.Pointer {
 // SetAttributeID sets the value of the attributeID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeAtomicAttributeStatusStruct/attributeID
-func (m_ MTRDataTypeAtomicAttributeStatusStruct) SetAttributeID(value unsafe.Pointer) {
+func (m_ MTRDataTypeAtomicAttributeStatusStruct) SetAttributeID(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAttributeID:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeAtomicAttributeStatusStruct/statusCode
-func (m_ MTRDataTypeAtomicAttributeStatusStruct) StatusCode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("statusCode"))
+func (m_ MTRDataTypeAtomicAttributeStatusStruct) StatusCode() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("statusCode"))
 	return rv
 }
 
@@ -101,7 +102,7 @@ func (m_ MTRDataTypeAtomicAttributeStatusStruct) StatusCode() unsafe.Pointer {
 // SetStatusCode sets the value of the statusCode property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeAtomicAttributeStatusStruct/statusCode
-func (m_ MTRDataTypeAtomicAttributeStatusStruct) SetStatusCode(value unsafe.Pointer) {
+func (m_ MTRDataTypeAtomicAttributeStatusStruct) SetStatusCode(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStatusCode:"), value)
 }
 

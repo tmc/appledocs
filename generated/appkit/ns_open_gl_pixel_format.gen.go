@@ -88,5 +88,23 @@ func (o_ OpenGLPixelFormat) CGLPixelFormatObj() unsafe.Pointer {
 	return rv
 }
 
+// The number of virtual screens associated with the OpenGL pixel format.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenglpixelformat/numberofvirtualscreens
+func (o_ OpenGLPixelFormat) NumberOfVirtualScreens() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("numberOfVirtualScreens"))
+	return rv
+}
+
+
+// SetNumberOfVirtualScreens sets the value of the numberOfVirtualScreens property.
+// The number of virtual screens associated with the OpenGL pixel format.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenglpixelformat/numberofvirtualscreens
+func (o_ OpenGLPixelFormat) SetNumberOfVirtualScreens(value unsafe.Pointer) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setNumberOfVirtualScreens:"), value)
+}
+
 
 

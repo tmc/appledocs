@@ -170,6 +170,24 @@ func (p_ Path) PointAtIndex(index uint) unsafe.Pointer {
 
 // A Boolean value that determines whether the path loops around on itself (that is, the path’s end point connects to its start point).
 //
+// [Full Topic]: https://developer.apple.com/documentation/gameplaykit/gkpath/iscyclical
+func (p_ Path) IsCyclical() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isCyclical"))
+	return rv
+}
+
+
+// SetIsCyclical sets the value of the isCyclical property.
+// A Boolean value that determines whether the path loops around on itself (that is, the path’s end point connects to its start point).
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gameplaykit/gkpath/iscyclical
+func (p_ Path) SetIsCyclical(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsCyclical:"), value)
+}
+
+// A Boolean value that determines whether the path loops around on itself (that is, the path’s end point connects to its start point).
+//
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKPath/isCyclical
 func (p_ Path) Cyclical() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("cyclical"))

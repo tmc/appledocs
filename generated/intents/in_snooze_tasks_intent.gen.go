@@ -81,5 +81,59 @@ func NewINSnoozeTasksIntent() INSnoozeTasksIntent {
 }
 
 
+// A Boolean value that indicates whether to snooze all of the tasks.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insnoozetasksintent/all-spsb
+func (i_ INSnoozeTasksIntent) All() bool {
+	rv := objc.Send[bool](i_.ID, objc.Sel("all"))
+	return rv
+}
+
+
+// SetAll sets the value of the all property.
+// A Boolean value that indicates whether to snooze all of the tasks.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insnoozetasksintent/all-spsb
+func (i_ INSnoozeTasksIntent) SetAll(value bool) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setAll:"), value)
+}
+
+// An array of tasks to snooze.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insnoozetasksintent/tasks
+func (i_ INSnoozeTasksIntent) Tasks() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("tasks"))
+	return rv
+}
+
+
+// SetTasks sets the value of the tasks property.
+// An array of tasks to snooze.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insnoozetasksintent/tasks
+func (i_ INSnoozeTasksIntent) SetTasks(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setTasks:"), value)
+}
+
+// The next time after the current time that triggers a task to snooze.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insnoozetasksintent/nexttriggertime
+func (i_ INSnoozeTasksIntent) NextTriggerTime() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("nextTriggerTime"))
+	return rv
+}
+
+
+// SetNextTriggerTime sets the value of the nextTriggerTime property.
+// The next time after the current time that triggers a task to snooze.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insnoozetasksintent/nexttriggertime
+func (i_ INSnoozeTasksIntent) SetNextTriggerTime(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setNextTriggerTime:"), value)
+}
+
 
 

@@ -89,4 +89,49 @@ func NewImageNormalizedHistogramWithCoderDevice(aDecoder unsafe.Pointer, device 
 }
 
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagenormalizedhistogram/zerohistogram
+func (i_ ImageNormalizedHistogram) ZeroHistogram() bool {
+	rv := objc.Send[bool](i_.ID, objc.Sel("zeroHistogram"))
+	return rv
+}
+
+
+// SetZeroHistogram sets the value of the zeroHistogram property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagenormalizedhistogram/zerohistogram
+func (i_ ImageNormalizedHistogram) SetZeroHistogram(value bool) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setZeroHistogram:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagenormalizedhistogram/histograminfo
+func (i_ ImageNormalizedHistogram) HistogramInfo() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("histogramInfo"))
+	return rv
+}
+
+
+// SetHistogramInfo sets the value of the histogramInfo property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagenormalizedhistogram/histograminfo
+func (i_ ImageNormalizedHistogram) SetHistogramInfo(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setHistogramInfo:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagenormalizedhistogram/cliprectsource
+func (i_ ImageNormalizedHistogram) ClipRectSource() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("clipRectSource"))
+	return rv
+}
+
+
+// SetClipRectSource sets the value of the clipRectSource property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagenormalizedhistogram/cliprectsource
+func (i_ ImageNormalizedHistogram) SetClipRectSource(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setClipRectSource:"), value)
+}
+
 

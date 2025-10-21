@@ -76,5 +76,20 @@ func NewINHangUpCallIntent() INHangUpCallIntent {
 }
 
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inhangupcallintent/callidentifier
+func (i_ INHangUpCallIntent) CallIdentifier() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("callIdentifier"))
+	return rv
+}
+
+
+// SetCallIdentifier sets the value of the callIdentifier property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inhangupcallintent/callidentifier
+func (i_ INHangUpCallIntent) SetCallIdentifier(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setCallIdentifier:"), objc.String(value))
+}
+
 
 

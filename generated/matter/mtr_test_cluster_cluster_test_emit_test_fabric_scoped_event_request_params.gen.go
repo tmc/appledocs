@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MTRTestClusterClusterTestEmitTestFabricScopedEventRequestParams] class.
@@ -75,6 +76,51 @@ func NewMTRTestClusterClusterTestEmitTestFabricScopedEventRequestParams() MTRTes
 	return getMTRTestClusterClusterTestEmitTestFabricScopedEventRequestParamsClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestemittestfabricscopedeventrequestparams/serversideprocessingtimeout
+func (m_ MTRTestClusterClusterTestEmitTestFabricScopedEventRequestParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+	return rv
+}
+
+
+// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestemittestfabricscopedeventrequestparams/serversideprocessingtimeout
+func (m_ MTRTestClusterClusterTestEmitTestFabricScopedEventRequestParams) SetServerSideProcessingTimeout(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestemittestfabricscopedeventrequestparams/timedinvoketimeoutms
+func (m_ MTRTestClusterClusterTestEmitTestFabricScopedEventRequestParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+	return rv
+}
+
+
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestemittestfabricscopedeventrequestparams/timedinvoketimeoutms
+func (m_ MTRTestClusterClusterTestEmitTestFabricScopedEventRequestParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestemittestfabricscopedeventrequestparams/arg1
+func (m_ MTRTestClusterClusterTestEmitTestFabricScopedEventRequestParams) Arg1() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("arg1"))
+	return rv
+}
+
+
+// SetArg1 sets the value of the arg1 property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestemittestfabricscopedeventrequestparams/arg1
+func (m_ MTRTestClusterClusterTestEmitTestFabricScopedEventRequestParams) SetArg1(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setArg1:"), value)
+}
 
 
 

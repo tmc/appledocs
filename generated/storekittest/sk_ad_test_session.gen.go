@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -128,8 +129,8 @@ func (a_ AdTestSession) ValidateWebAdImpressionPayloadPublicKeyError(impressionD
 // The URL that SKAdNetwork computes to send copies of winning postbacks to the advertised app’s developer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKAdTestSession/developerPostbackURL
-func (a_ AdTestSession) DeveloperPostbackURL() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("developerPostbackURL"))
+func (a_ AdTestSession) DeveloperPostbackURL() foundation.URL {
+	rv := objc.Send[foundation.URL](a_.ID, objc.Sel("developerPostbackURL"))
 	return rv
 }
 

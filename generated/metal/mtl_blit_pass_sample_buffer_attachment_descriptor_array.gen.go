@@ -80,5 +80,23 @@ func NewBlitPassSampleBufferAttachmentDescriptorArray() BlitPassSampleBufferAtta
 }
 
 
+// The counter sets supported by the device object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtldevice/countersets
+func (b_ BlitPassSampleBufferAttachmentDescriptorArray) CounterSets() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("counterSets"))
+	return rv
+}
+
+
+// SetCounterSets sets the value of the counterSets property.
+// The counter sets supported by the device object.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtldevice/countersets
+func (b_ BlitPassSampleBufferAttachmentDescriptorArray) SetCounterSets(value unsafe.Pointer) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setCounterSets:"), value)
+}
+
 
 

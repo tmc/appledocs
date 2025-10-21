@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -34,7 +35,7 @@ type IBluetoothSDPDataElement interface {
 	ContainsValue(cmpValue unsafe.Pointer) bool
 	GetArrayValue() unsafe.Pointer
 	GetDataValue() unsafe.Pointer
-	GetNumberValue() unsafe.Pointer
+	GetNumberValue() foundation.Number
 	GetSDPDataElementRef() unsafe.Pointer
 	GetSize() unsafe.Pointer
 	GetSizeDescriptor() unsafe.Pointer
@@ -176,8 +177,8 @@ func (b_ BluetoothSDPDataElement) GetDataValue() unsafe.Pointer {
 // If the data element is represented by a number, it returns the value as an NSNumber.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothSDPDataElement/getNumberValue()
-func (b_ BluetoothSDPDataElement) GetNumberValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("getNumberValue"))
+func (b_ BluetoothSDPDataElement) GetNumberValue() foundation.Number {
+	rv := objc.Send[foundation.Number](b_.ID, objc.Sel("getNumberValue"))
 	return rv
 }
 

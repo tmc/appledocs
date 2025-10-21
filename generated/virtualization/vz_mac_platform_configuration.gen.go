@@ -82,6 +82,24 @@ func NewVZMacPlatformConfiguration() VZMacPlatformConfiguration {
 
 
 
+// This object represents the most fully featured configuration that’s supported by both the current host and by this restore image.
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzmacosrestoreimage/mostfeaturefulsupportedconfiguration
+func (v_ VZMacPlatformConfiguration) MostFeaturefulSupportedConfiguration() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("mostFeaturefulSupportedConfiguration"))
+	return rv
+}
+
+
+// SetMostFeaturefulSupportedConfiguration sets the value of the mostFeaturefulSupportedConfiguration property.
+// This object represents the most fully featured configuration that’s supported by both the current host and by this restore image.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzmacosrestoreimage/mostfeaturefulsupportedconfiguration
+func (v_ VZMacPlatformConfiguration) SetMostFeaturefulSupportedConfiguration(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setMostFeaturefulSupportedConfiguration:"), value)
+}
+
 // The Mac auxiliary storage.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacPlatformConfiguration/auxiliaryStorage

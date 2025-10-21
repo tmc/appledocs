@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -93,8 +94,8 @@ func (m_ MTRAccessControlClusterReviewFabricRestrictionsParams) SetArl(value uns
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterReviewFabricRestrictionsParams/serverSideProcessingTimeout
-func (m_ MTRAccessControlClusterReviewFabricRestrictionsParams) ServerSideProcessingTimeout() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRAccessControlClusterReviewFabricRestrictionsParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
@@ -104,15 +105,15 @@ func (m_ MTRAccessControlClusterReviewFabricRestrictionsParams) ServerSideProces
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterReviewFabricRestrictionsParams/serverSideProcessingTimeout
-func (m_ MTRAccessControlClusterReviewFabricRestrictionsParams) SetServerSideProcessingTimeout(value unsafe.Pointer) {
+func (m_ MTRAccessControlClusterReviewFabricRestrictionsParams) SetServerSideProcessingTimeout(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterReviewFabricRestrictionsParams/timedInvokeTimeoutMs
-func (m_ MTRAccessControlClusterReviewFabricRestrictionsParams) TimedInvokeTimeoutMs() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRAccessControlClusterReviewFabricRestrictionsParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
@@ -122,7 +123,7 @@ func (m_ MTRAccessControlClusterReviewFabricRestrictionsParams) TimedInvokeTimeo
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterReviewFabricRestrictionsParams/timedInvokeTimeoutMs
-func (m_ MTRAccessControlClusterReviewFabricRestrictionsParams) SetTimedInvokeTimeoutMs(value unsafe.Pointer) {
+func (m_ MTRAccessControlClusterReviewFabricRestrictionsParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

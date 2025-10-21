@@ -22,16 +22,3 @@ type IOSurfaceRef unsafe.Pointer
 
 
 
-// Fallback type aliases for undefined types
-// These types are referenced in method signatures but not fully documented.
-// Using unsafe.Pointer as fallback to allow code generation.
-type Boolean unsafe.Pointer
-
-type CFTypeID unsafe.Pointer
-
-type IOSurfaceID unsafe.Pointer
-
-type OSType unsafe.Pointer
-
-
-

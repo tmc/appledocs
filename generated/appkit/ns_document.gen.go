@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -35,7 +36,7 @@ type IDocument interface {
 	AutosaveDocumentWithDelegateDidAutosaveSelectorContextInfo(delegate objc.ID, didAutosaveSelector objc.SEL, contextInfo unsafe.Pointer)
 	AutosaveWithImplicitCancellabilityCompletionHandler(autosavingIsImplicitlyCancellable bool, completionHandler unsafe.Pointer)
 	BrowseDocumentVersions(sender objc.ID)
-	CanAsynchronouslyWriteToURLOfTypeForSaveOperation(url unsafe.Pointer, typeName string, saveOperation unsafe.Pointer) bool
+	CanAsynchronouslyWriteToURLOfTypeForSaveOperation(url foundation.URL, typeName string, saveOperation unsafe.Pointer) bool
 	CanCloseDocumentWithDelegateShouldCloseSelectorContextInfo(delegate objc.ID, shouldCloseSelector objc.SEL, contextInfo unsafe.Pointer)
 	ChangeCountTokenForSaveOperation(saveOperation unsafe.Pointer) objc.ID
 	CheckAutosavingSafetyAndReturnError(outError unsafe.Pointer) bool
@@ -49,7 +50,7 @@ type IDocument interface {
 	DuplicateDocumentWithDelegateDidDuplicateSelectorContextInfo(delegate objc.ID, didDuplicateSelector objc.SEL, contextInfo unsafe.Pointer)
 	EncodeRestorableStateWithCoder(coder unsafe.Pointer)
 	EncodeRestorableStateWithCoderBackgroundQueue(coder unsafe.Pointer, queue unsafe.Pointer)
-	FileAttributesToWriteToURLOfTypeForSaveOperationOriginalContentsURLError(url unsafe.Pointer, typeName string, saveOperation unsafe.Pointer, absoluteOriginalContentsURL unsafe.Pointer, outError unsafe.Pointer) unsafe.Pointer
+	FileAttributesToWriteToURLOfTypeForSaveOperationOriginalContentsURLError(url foundation.URL, typeName string, saveOperation unsafe.Pointer, absoluteOriginalContentsURL foundation.URL, outError unsafe.Pointer) unsafe.Pointer
 	FileNameExtensionForTypeSaveOperation(typeName string, saveOperation unsafe.Pointer) string
 	FileWrapperOfTypeError(typeName string, outError unsafe.Pointer) unsafe.Pointer
 	HandleCloseScriptCommand(command unsafe.Pointer) objc.ID
@@ -62,7 +63,7 @@ type IDocument interface {
 	MakeWindowControllers()
 	MoveDocument(sender objc.ID)
 	MoveDocumentWithCompletionHandler(completionHandler unsafe.Pointer)
-	MoveToURLCompletionHandler(url unsafe.Pointer, completionHandler unsafe.Pointer)
+	MoveToURLCompletionHandler(url foundation.URL, completionHandler unsafe.Pointer)
 	MoveDocumentToUbiquityContainer(sender objc.ID)
 	PerformActivityWithSynchronousWaitingUsingBlock(waitSynchronously bool, block unsafe.Pointer)
 	PerformAsynchronousFileAccessUsingBlock(block unsafe.Pointer)
@@ -76,12 +77,12 @@ type IDocument interface {
 	PresentedItemDidChangeUbiquityAttributes(attributes unsafe.Pointer)
 	PresentedItemDidGainVersion(version unsafe.Pointer)
 	PresentedItemDidLoseVersion(version unsafe.Pointer)
-	PresentedItemDidMoveToURL(newURL unsafe.Pointer)
+	PresentedItemDidMoveToURL(newURL foundation.URL)
 	PresentedItemDidResolveConflictVersion(version unsafe.Pointer)
 	PrintDocumentWithSettingsShowPrintPanelDelegateDidPrintSelectorContextInfo(printSettings unsafe.Pointer, showPrintPanel bool, delegate objc.ID, didPrintSelector objc.SEL, contextInfo unsafe.Pointer)
 	PrintDocument(sender objc.ID)
 	PrintOperationWithSettingsError(printSettings unsafe.Pointer, outError unsafe.Pointer) unsafe.Pointer
-	ReadFromURLOfTypeError(url unsafe.Pointer, typeName string, outError unsafe.Pointer) bool
+	ReadFromURLOfTypeError(url foundation.URL, typeName string, outError unsafe.Pointer) bool
 	ReadFromFileWrapperOfTypeError(fileWrapper unsafe.Pointer, typeName string, outError unsafe.Pointer) bool
 	ReadFromDataOfTypeError(data unsafe.Pointer, typeName string, outError unsafe.Pointer) bool
 	RelinquishPresentedItemToReader(reader unsafe.Pointer)
@@ -90,21 +91,21 @@ type IDocument interface {
 	RenameDocument(sender objc.ID)
 	RestoreStateWithCoder(coder unsafe.Pointer)
 	RestoreDocumentWindowWithIdentifierStateCompletionHandler(identifier unsafe.Pointer, state unsafe.Pointer, completionHandler unsafe.Pointer)
-	RevertToContentsOfURLOfTypeError(url unsafe.Pointer, typeName string, outError unsafe.Pointer) bool
+	RevertToContentsOfURLOfTypeError(url foundation.URL, typeName string, outError unsafe.Pointer) bool
 	RevertDocumentToSaved(sender objc.ID)
 	RunModalPageLayoutWithPrintInfoDelegateDidRunSelectorContextInfo(printInfo unsafe.Pointer, delegate objc.ID, didRunSelector objc.SEL, contextInfo unsafe.Pointer)
 	RunModalPrintOperationDelegateDidRunSelectorContextInfo(printOperation unsafe.Pointer, delegate objc.ID, didRunSelector objc.SEL, contextInfo unsafe.Pointer)
 	RunModalSavePanelForSaveOperationDelegateDidSaveSelectorContextInfo(saveOperation unsafe.Pointer, delegate objc.ID, didSaveSelector objc.SEL, contextInfo unsafe.Pointer)
 	RunPageLayout(sender objc.ID)
 	SaveDocument(sender objc.ID)
-	SaveToURLOfTypeForSaveOperationCompletionHandler(url unsafe.Pointer, typeName string, saveOperation unsafe.Pointer, completionHandler unsafe.Pointer)
-	SaveToURLOfTypeForSaveOperationDelegateDidSaveSelectorContextInfo(url unsafe.Pointer, typeName string, saveOperation unsafe.Pointer, delegate objc.ID, didSaveSelector objc.SEL, contextInfo unsafe.Pointer)
+	SaveToURLOfTypeForSaveOperationCompletionHandler(url foundation.URL, typeName string, saveOperation unsafe.Pointer, completionHandler unsafe.Pointer)
+	SaveToURLOfTypeForSaveOperationDelegateDidSaveSelectorContextInfo(url foundation.URL, typeName string, saveOperation unsafe.Pointer, delegate objc.ID, didSaveSelector objc.SEL, contextInfo unsafe.Pointer)
 	SaveDocumentWithDelegateDidSaveSelectorContextInfo(delegate objc.ID, didSaveSelector objc.SEL, contextInfo unsafe.Pointer)
 	SaveDocumentAs(sender objc.ID)
 	SavePresentedItemChangesWithCompletionHandler(completionHandler unsafe.Pointer)
 	SaveDocumentTo(sender objc.ID)
 	SaveDocumentToPDF(sender objc.ID)
-	SaveToURLOfTypeForSaveOperationError(url unsafe.Pointer, typeName string, saveOperation unsafe.Pointer, outError unsafe.Pointer) bool
+	SaveToURLOfTypeForSaveOperationError(url foundation.URL, typeName string, saveOperation unsafe.Pointer, outError unsafe.Pointer) bool
 	ScheduleAutosaving()
 	SetWindow(window unsafe.Pointer)
 	ShareDocumentWithSharingServiceCompletionHandler(sharingService unsafe.Pointer, completionHandler unsafe.Pointer)
@@ -125,9 +126,9 @@ type IDocument interface {
 	WindowControllerDidLoadNib(windowController unsafe.Pointer)
 	WindowControllerWillLoadNib(windowController unsafe.Pointer)
 	WritableTypesForSaveOperation(saveOperation unsafe.Pointer) []string
-	WriteToURLOfTypeError(url unsafe.Pointer, typeName string, outError unsafe.Pointer) bool
-	WriteToURLOfTypeForSaveOperationOriginalContentsURLError(url unsafe.Pointer, typeName string, saveOperation unsafe.Pointer, absoluteOriginalContentsURL unsafe.Pointer, outError unsafe.Pointer) bool
-	WriteSafelyToURLOfTypeForSaveOperationError(url unsafe.Pointer, typeName string, saveOperation unsafe.Pointer, outError unsafe.Pointer) bool
+	WriteToURLOfTypeError(url foundation.URL, typeName string, outError unsafe.Pointer) bool
+	WriteToURLOfTypeForSaveOperationOriginalContentsURLError(url foundation.URL, typeName string, saveOperation unsafe.Pointer, absoluteOriginalContentsURL foundation.URL, outError unsafe.Pointer) bool
+	WriteSafelyToURLOfTypeForSaveOperationError(url foundation.URL, typeName string, saveOperation unsafe.Pointer, outError unsafe.Pointer) bool
 }
 
 // An abstract class that defines the interface for macOS documents.
@@ -183,7 +184,7 @@ func NewDocument() Document {
 // Initializes a document with the specified contents, and places the resulting document’s file at the designated location.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/init(for:withContentsOf:ofType:)
-func NewDocumentForURLWithContentsOfURLOfTypeError(urlOrNil unsafe.Pointer, contentsURL unsafe.Pointer, typeName string, outError unsafe.Pointer) Document {
+func NewDocumentForURLWithContentsOfURLOfTypeError(urlOrNil foundation.URL, contentsURL foundation.URL, typeName string, outError unsafe.Pointer) Document {
 	instance := getDocumentClass().Alloc()
 	rv := objc.Send[Document](instance.ID, objc.Sel("initForURL:withContentsOfURL:ofType:error:"), urlOrNil, contentsURL, objc.String(typeName), outError)
 	rv.Autorelease()
@@ -195,7 +196,7 @@ func NewDocumentForURLWithContentsOfURLOfTypeError(urlOrNil unsafe.Pointer, cont
 // Initializes a document located by a URL of a specified type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/init(contentsOf:ofType:)
-func NewDocumentWithContentsOfURLOfTypeError(url unsafe.Pointer, typeName string, outError unsafe.Pointer) Document {
+func NewDocumentWithContentsOfURLOfTypeError(url foundation.URL, typeName string, outError unsafe.Pointer) Document {
 	instance := getDocumentClass().Alloc()
 	rv := objc.Send[Document](instance.ID, objc.Sel("initWithContentsOfURL:ofType:error:"), url, objc.String(typeName), outError)
 	rv.Autorelease()
@@ -325,7 +326,7 @@ func (d_ Document) BrowseDocumentVersions(sender objc.ID) {
 // Returns whether the receiver can concurrently write to a file or file package located by a URL, that is formatted for a specific type, for a specific kind of save operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/canAsynchronouslyWrite(to:ofType:for:)
-func (d_ Document) CanAsynchronouslyWriteToURLOfTypeForSaveOperation(url unsafe.Pointer, typeName string, saveOperation unsafe.Pointer) bool {
+func (d_ Document) CanAsynchronouslyWriteToURLOfTypeForSaveOperation(url foundation.URL, typeName string, saveOperation unsafe.Pointer) bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("canAsynchronouslyWriteToURL:ofType:forSaveOperation:"), url, objc.String(typeName), saveOperation)
 	return rv
 }
@@ -429,7 +430,7 @@ func (d_ Document) EncodeRestorableStateWithCoderBackgroundQueue(coder unsafe.Po
 // Returns the attributes to write to the file or file package at the specified URL, and targeting the specified type of save operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/fileAttributesToWrite(to:ofType:for:originalContentsURL:)
-func (d_ Document) FileAttributesToWriteToURLOfTypeForSaveOperationOriginalContentsURLError(url unsafe.Pointer, typeName string, saveOperation unsafe.Pointer, absoluteOriginalContentsURL unsafe.Pointer, outError unsafe.Pointer) unsafe.Pointer {
+func (d_ Document) FileAttributesToWriteToURLOfTypeForSaveOperationOriginalContentsURLError(url foundation.URL, typeName string, saveOperation unsafe.Pointer, absoluteOriginalContentsURL foundation.URL, outError unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("fileAttributesToWriteToURL:ofType:forSaveOperation:originalContentsURL:error:"), url, objc.String(typeName), saveOperation, absoluteOriginalContentsURL, outError)
 	return rv
 }
@@ -526,7 +527,7 @@ func (d_ Document) MoveDocumentWithCompletionHandler(completionHandler unsafe.Po
 // Moves the document’s file to the given URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/move(to:completionHandler:)
-func (d_ Document) MoveToURLCompletionHandler(url unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (d_ Document) MoveToURLCompletionHandler(url foundation.URL, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("moveToURL:completionHandler:"), url, completionHandler)
 }
 
@@ -622,7 +623,7 @@ func (d_ Document) PresentedItemDidLoseVersion(version unsafe.Pointer) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/presentedItemDidMove(to:)
-func (d_ Document) PresentedItemDidMoveToURL(newURL unsafe.Pointer) {
+func (d_ Document) PresentedItemDidMoveToURL(newURL foundation.URL) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("presentedItemDidMoveToURL:"), newURL)
 }
 
@@ -657,7 +658,7 @@ func (d_ Document) PrintOperationWithSettingsError(printSettings unsafe.Pointer,
 // Sets the contents of this document by reading from a file or file package, of a specified type, located by a URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/read(from:ofType:)-1vttv
-func (d_ Document) ReadFromURLOfTypeError(url unsafe.Pointer, typeName string, outError unsafe.Pointer) bool {
+func (d_ Document) ReadFromURLOfTypeError(url foundation.URL, typeName string, outError unsafe.Pointer) bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("readFromURL:ofType:error:"), url, objc.String(typeName), outError)
 	return rv
 }
@@ -721,7 +722,7 @@ func (d_ Document) RestoreDocumentWindowWithIdentifierStateCompletionHandler(ide
 // Discards all unsaved document modifications and replaces the document’s contents by reading a file or file package located by a URL of a specified type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/revert(toContentsOf:ofType:)
-func (d_ Document) RevertToContentsOfURLOfTypeError(url unsafe.Pointer, typeName string, outError unsafe.Pointer) bool {
+func (d_ Document) RevertToContentsOfURLOfTypeError(url foundation.URL, typeName string, outError unsafe.Pointer) bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("revertToContentsOfURL:ofType:error:"), url, objc.String(typeName), outError)
 	return rv
 }
@@ -771,14 +772,14 @@ func (d_ Document) SaveDocument(sender objc.ID) {
 // Saves the contents of the document to a file or file package located by a URL, that is formatted to a specified type, for a particular kind of save operation, and invokes the passed-in completion handler.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/save(to:ofType:for:completionHandler:)
-func (d_ Document) SaveToURLOfTypeForSaveOperationCompletionHandler(url unsafe.Pointer, typeName string, saveOperation unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (d_ Document) SaveToURLOfTypeForSaveOperationCompletionHandler(url foundation.URL, typeName string, saveOperation unsafe.Pointer, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("saveToURL:ofType:forSaveOperation:completionHandler:"), url, objc.String(typeName), saveOperation, completionHandler)
 }
 
 // Saves the contents of the document to a file or file package located by a URL, that is formatted to a specified type, for a particular kind of save operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/save(to:ofType:for:delegate:didSave:contextInfo:)
-func (d_ Document) SaveToURLOfTypeForSaveOperationDelegateDidSaveSelectorContextInfo(url unsafe.Pointer, typeName string, saveOperation unsafe.Pointer, delegate objc.ID, didSaveSelector objc.SEL, contextInfo unsafe.Pointer) {
+func (d_ Document) SaveToURLOfTypeForSaveOperationDelegateDidSaveSelectorContextInfo(url foundation.URL, typeName string, saveOperation unsafe.Pointer, delegate objc.ID, didSaveSelector objc.SEL, contextInfo unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("saveToURL:ofType:forSaveOperation:delegate:didSaveSelector:contextInfo:"), url, objc.String(typeName), saveOperation, delegate, didSaveSelector, contextInfo)
 }
 
@@ -819,7 +820,7 @@ func (d_ Document) SaveDocumentToPDF(sender objc.ID) {
 // Saves the contents of the document to a file or file package located by a URL, formatted to a specified type, for a particular kind of save operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/saveToURL:ofType:forSaveOperation:error:
-func (d_ Document) SaveToURLOfTypeForSaveOperationError(url unsafe.Pointer, typeName string, saveOperation unsafe.Pointer, outError unsafe.Pointer) bool {
+func (d_ Document) SaveToURLOfTypeForSaveOperationError(url foundation.URL, typeName string, saveOperation unsafe.Pointer, outError unsafe.Pointer) bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("saveToURL:ofType:forSaveOperation:error:"), url, objc.String(typeName), saveOperation, outError)
 	return rv
 }
@@ -971,7 +972,7 @@ func (d_ Document) WritableTypesForSaveOperation(saveOperation unsafe.Pointer) [
 // Writes the contents of the document to a file or file package located by a URL, that is formatted to a specified type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/write(to:ofType:)
-func (d_ Document) WriteToURLOfTypeError(url unsafe.Pointer, typeName string, outError unsafe.Pointer) bool {
+func (d_ Document) WriteToURLOfTypeError(url foundation.URL, typeName string, outError unsafe.Pointer) bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("writeToURL:ofType:error:"), url, objc.String(typeName), outError)
 	return rv
 }
@@ -979,7 +980,7 @@ func (d_ Document) WriteToURLOfTypeError(url unsafe.Pointer, typeName string, ou
 // Writes the contents of the document to a file or file package located by a URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/write(to:ofType:for:originalContentsURL:)
-func (d_ Document) WriteToURLOfTypeForSaveOperationOriginalContentsURLError(url unsafe.Pointer, typeName string, saveOperation unsafe.Pointer, absoluteOriginalContentsURL unsafe.Pointer, outError unsafe.Pointer) bool {
+func (d_ Document) WriteToURLOfTypeForSaveOperationOriginalContentsURLError(url foundation.URL, typeName string, saveOperation unsafe.Pointer, absoluteOriginalContentsURL foundation.URL, outError unsafe.Pointer) bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("writeToURL:ofType:forSaveOperation:originalContentsURL:error:"), url, objc.String(typeName), saveOperation, absoluteOriginalContentsURL, outError)
 	return rv
 }
@@ -987,7 +988,7 @@ func (d_ Document) WriteToURLOfTypeForSaveOperationOriginalContentsURLError(url 
 // Writes the contents of the document to a file or file package located by a URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/writeSafely(to:ofType:for:)
-func (d_ Document) WriteSafelyToURLOfTypeForSaveOperationError(url unsafe.Pointer, typeName string, saveOperation unsafe.Pointer, outError unsafe.Pointer) bool {
+func (d_ Document) WriteSafelyToURLOfTypeForSaveOperationError(url foundation.URL, typeName string, saveOperation unsafe.Pointer, outError unsafe.Pointer) bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("writeSafelyToURL:ofType:forSaveOperation:error:"), url, objc.String(typeName), saveOperation, outError)
 	return rv
 }
@@ -1003,8 +1004,8 @@ func (d_ Document) AllowsDocumentSharing() bool {
 // The location of the most recently autosaved document contents.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/autosavedContentsFileURL
-func (d_ Document) AutosavedContentsFileURL() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("autosavedContentsFileURL"))
+func (d_ Document) AutosavedContentsFileURL() foundation.URL {
+	rv := objc.Send[foundation.URL](d_.ID, objc.Sel("autosavedContentsFileURL"))
 	return rv
 }
 
@@ -1014,7 +1015,7 @@ func (d_ Document) AutosavedContentsFileURL() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/autosavedContentsFileURL
-func (d_ Document) SetAutosavedContentsFileURL(value unsafe.Pointer) {
+func (d_ Document) SetAutosavedContentsFileURL(value foundation.URL) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setAutosavedContentsFileURL:"), value)
 }
 
@@ -1053,8 +1054,8 @@ func (d_ Document) AutosavingIsImplicitlyCancellable() bool {
 // The URL for the document’s backup file that was created during an autosave operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/backupFileURL
-func (d_ Document) BackupFileURL() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("backupFileURL"))
+func (d_ Document) BackupFileURL() foundation.URL {
+	rv := objc.Send[foundation.URL](d_.ID, objc.Sel("backupFileURL"))
 	return rv
 }
 
@@ -1131,8 +1132,8 @@ func (d_ Document) FileTypeFromLastRunSavePanel() string {
 // The location of the document’s on-disk representation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/fileURL
-func (d_ Document) FileURL() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("fileURL"))
+func (d_ Document) FileURL() foundation.URL {
+	rv := objc.Send[foundation.URL](d_.ID, objc.Sel("fileURL"))
 	return rv
 }
 
@@ -1142,7 +1143,7 @@ func (d_ Document) FileURL() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/fileURL
-func (d_ Document) SetFileURL(value unsafe.Pointer) {
+func (d_ Document) SetFileURL(value foundation.URL) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setFileURL:"), value)
 }
 
@@ -1281,8 +1282,8 @@ func (d_ Document) PDFPrintOperation() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/presentedItemURL
-func (d_ Document) PresentedItemURL() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("presentedItemURL"))
+func (d_ Document) PresentedItemURL() foundation.URL {
+	rv := objc.Send[foundation.URL](d_.ID, objc.Sel("presentedItemURL"))
 	return rv
 }
 
@@ -1441,6 +1442,122 @@ func (d_ Document) WindowNibName() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/writableTypes
 func (d_ Document) WritableTypes() []string {
 	rv := objc.Send[[]string](d_.ID, objc.Sel("writableTypes"))
+	return rv
+}
+
+// A Boolean value that indicates whether the document is currently displaying the Versions browser.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocument/isbrowsingversions
+func (d_ Document) IsBrowsingVersions() bool {
+	rv := objc.Send[bool](d_.ID, objc.Sel("isBrowsingVersions"))
+	return rv
+}
+
+
+// SetIsBrowsingVersions sets the value of the isBrowsingVersions property.
+// A Boolean value that indicates whether the document is currently displaying the Versions browser.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocument/isbrowsingversions
+func (d_ Document) SetIsBrowsingVersions(value bool) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setIsBrowsingVersions:"), value)
+}
+
+// A Boolean value that indicates whether the document has unsaved changes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocument/isdocumentedited
+func (d_ Document) IsDocumentEdited() bool {
+	rv := objc.Send[bool](d_.ID, objc.Sel("isDocumentEdited"))
+	return rv
+}
+
+
+// SetIsDocumentEdited sets the value of the isDocumentEdited property.
+// A Boolean value that indicates whether the document has unsaved changes.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocument/isdocumentedited
+func (d_ Document) SetIsDocumentEdited(value bool) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setIsDocumentEdited:"), value)
+}
+
+// A Boolean value that indicates whether the document is a draft that the user has not yet saved.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocument/isdraft
+func (d_ Document) IsDraft() bool {
+	rv := objc.Send[bool](d_.ID, objc.Sel("isDraft"))
+	return rv
+}
+
+
+// SetIsDraft sets the value of the isDraft property.
+// A Boolean value that indicates whether the document is a draft that the user has not yet saved.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocument/isdraft
+func (d_ Document) SetIsDraft(value bool) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setIsDraft:"), value)
+}
+
+// A Boolean value that indicates whether the document’s file is completely loaded into memory.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocument/isentirefileloaded
+func (d_ Document) IsEntireFileLoaded() bool {
+	rv := objc.Send[bool](d_.ID, objc.Sel("isEntireFileLoaded"))
+	return rv
+}
+
+
+// SetIsEntireFileLoaded sets the value of the isEntireFileLoaded property.
+// A Boolean value that indicates whether the document’s file is completely loaded into memory.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocument/isentirefileloaded
+func (d_ Document) SetIsEntireFileLoaded(value bool) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setIsEntireFileLoaded:"), value)
+}
+
+// A Boolean value that indicates whether the document is in read-only mode.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocument/isinviewingmode
+func (d_ Document) IsInViewingMode() bool {
+	rv := objc.Send[bool](d_.ID, objc.Sel("isInViewingMode"))
+	return rv
+}
+
+
+// SetIsInViewingMode sets the value of the isInViewingMode property.
+// A Boolean value that indicates whether the document is in read-only mode.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocument/isinviewingmode
+func (d_ Document) SetIsInViewingMode(value bool) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setIsInViewingMode:"), value)
+}
+
+// A Boolean value that indicates whether or not the file can be written to.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocument/islocked
+func (d_ Document) IsLocked() bool {
+	rv := objc.Send[bool](d_.ID, objc.Sel("isLocked"))
+	return rv
+}
+
+
+// SetIsLocked sets the value of the isLocked property.
+// A Boolean value that indicates whether or not the file can be written to.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocument/islocked
+func (d_ Document) SetIsLocked(value bool) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setIsLocked:"), value)
+}
+
+// The key that identifies the document associated with a user activity.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsuseractivitydocumenturlkey
+func (d_ Document) NSUserActivityDocumentURLKey() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("NSUserActivityDocumentURLKey"))
 	return rv
 }
 

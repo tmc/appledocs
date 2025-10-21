@@ -88,5 +88,149 @@ func (f_ FontManager) SetFontMenu(newMenu unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setFontMenu:"), newMenu)
 }
 
+// The action sent to the first responder when the user selects a new font from the Font panel or chooses a command from the Font menu.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontmanager/action
+func (f_ FontManager) Action() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("action"))
+	return rv
+}
+
+
+// SetAction sets the value of the action property.
+// The action sent to the first responder when the user selects a new font from the Font panel or chooses a command from the Font menu.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontmanager/action
+func (f_ FontManager) SetAction(value unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setAction:"), value)
+}
+
+// The names of the font families available in the system.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontmanager/availablefontfamilies
+func (f_ FontManager) AvailableFontFamilies() string {
+	rv := objc.Send[string](f_.ID, objc.Sel("availableFontFamilies"))
+	return rv
+}
+
+
+// SetAvailableFontFamilies sets the value of the availableFontFamilies property.
+// The names of the font families available in the system.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontmanager/availablefontfamilies
+func (f_ FontManager) SetAvailableFontFamilies(value string) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setAvailableFontFamilies:"), objc.String(value))
+}
+
+// The names of the fonts available in the system (not the
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontmanager/availablefonts
+func (f_ FontManager) AvailableFonts() string {
+	rv := objc.Send[string](f_.ID, objc.Sel("availableFonts"))
+	return rv
+}
+
+
+// SetAvailableFonts sets the value of the availableFonts property.
+// The names of the fonts available in the system (not the
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontmanager/availablefonts
+func (f_ FontManager) SetAvailableFonts(value string) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setAvailableFonts:"), objc.String(value))
+}
+
+// The current font conversion action.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontmanager/currentfontaction
+func (f_ FontManager) CurrentFontAction() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("currentFontAction"))
+	return rv
+}
+
+
+// SetCurrentFontAction sets the value of the currentFontAction property.
+// The current font conversion action.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontmanager/currentfontaction
+func (f_ FontManager) SetCurrentFontAction(value unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setCurrentFontAction:"), value)
+}
+
+// A Boolean value that indicates whether the font conversion system’s Font panel and Font menu items are enabled.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontmanager/isenabled
+func (f_ FontManager) IsEnabled() bool {
+	rv := objc.Send[bool](f_.ID, objc.Sel("isEnabled"))
+	return rv
+}
+
+
+// SetIsEnabled sets the value of the isEnabled property.
+// A Boolean value that indicates whether the font conversion system’s Font panel and Font menu items are enabled.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontmanager/isenabled
+func (f_ FontManager) SetIsEnabled(value bool) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setIsEnabled:"), value)
+}
+
+// A Boolean value that indicates whether the currently selected font has multiple fonts.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontmanager/ismultiple
+func (f_ FontManager) IsMultiple() bool {
+	rv := objc.Send[bool](f_.ID, objc.Sel("isMultiple"))
+	return rv
+}
+
+
+// SetIsMultiple sets the value of the isMultiple property.
+// A Boolean value that indicates whether the currently selected font has multiple fonts.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontmanager/ismultiple
+func (f_ FontManager) SetIsMultiple(value bool) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setIsMultiple:"), value)
+}
+
+// The currently selected font object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontmanager/selectedfont
+func (f_ FontManager) SelectedFont() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("selectedFont"))
+	return rv
+}
+
+
+// SetSelectedFont sets the value of the selectedFont property.
+// The currently selected font object.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontmanager/selectedfont
+func (f_ FontManager) SetSelectedFont(value unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setSelectedFont:"), value)
+}
+
+// The object that receives action messages related to the font manager.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontmanager/target
+func (f_ FontManager) Target() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("target"))
+	return rv
+}
+
+
+// SetTarget sets the value of the target property.
+// The object that receives action messages related to the font manager.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontmanager/target
+func (f_ FontManager) SetTarget(value unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setTarget:"), value)
+}
+
 
 

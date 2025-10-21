@@ -96,6 +96,31 @@ func (v_ VertexDescriptor) Reset() {
 	objc.Send[objc.ID](v_.ID, objc.Sel("reset"))
 }
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlbufferlayoutstridedynamic
+func (v_ VertexDescriptor) MTLBufferLayoutStrideDynamic() int {
+	rv := objc.Send[int](v_.ID, objc.Sel("MTLBufferLayoutStrideDynamic"))
+	return rv
+}
+
+// The organization of vertex data in an attribute’s argument table.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlrenderpipelinedescriptor/vertexdescriptor
+func (v_ VertexDescriptor) VertexDescriptor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("vertexDescriptor"))
+	return rv
+}
+
+
+// SetVertexDescriptor sets the value of the vertexDescriptor property.
+// The organization of vertex data in an attribute’s argument table.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlrenderpipelinedescriptor/vertexdescriptor
+func (v_ VertexDescriptor) SetVertexDescriptor(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setVertexDescriptor:"), value)
+}
+
 // An array of state data that describes how vertex attribute data is stored in memory and is mapped to arguments for a vertex shader function.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLVertexDescriptor/attributes

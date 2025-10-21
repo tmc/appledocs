@@ -79,6 +79,24 @@ func NewINTicketedEventReservation() INTicketedEventReservation {
 }
 
 
+// The user’s assigned seat for the ticketed event.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inticketedeventreservation/reservedseat
+func (i_ INTicketedEventReservation) ReservedSeat() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("reservedSeat"))
+	return rv
+}
+
+
+// SetReservedSeat sets the value of the reservedSeat property.
+// The user’s assigned seat for the ticketed event.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inticketedeventreservation/reservedseat
+func (i_ INTicketedEventReservation) SetReservedSeat(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setReservedSeat:"), value)
+}
+
 // An object containing detailed information about the ticketed event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INTicketedEventReservation/event

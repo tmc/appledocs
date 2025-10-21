@@ -115,6 +115,50 @@ func (d_ DetectHumanHandPoseRequest) SupportedJointsGroupNamesAndReturnError(err
 	return rv
 }
 
+// A constant for specifying revision 1 of the hand pose detection request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetecthumanhandposerequestrevision1
+func (d_ DetectHumanHandPoseRequest) VNDetectHumanHandPoseRequestRevision1() int {
+	rv := objc.Send[int](d_.ID, objc.Sel("VNDetectHumanHandPoseRequestRevision1"))
+	return rv
+}
+
+// Retrieves the supported joint group names.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetecthumanhandposerequest/supportedjointsgroupnames
+func (d_ DetectHumanHandPoseRequest) SupportedJointsGroupNames() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("supportedJointsGroupNames"))
+	return rv
+}
+
+
+// SetSupportedJointsGroupNames sets the value of the supportedJointsGroupNames property.
+// Retrieves the supported joint group names.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetecthumanhandposerequest/supportedjointsgroupnames
+func (d_ DetectHumanHandPoseRequest) SetSupportedJointsGroupNames(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setSupportedJointsGroupNames:"), value)
+}
+
+// Retrieves the supported joint names.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetecthumanhandposerequest/supportedjointnames
+func (d_ DetectHumanHandPoseRequest) SupportedJointNames() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("supportedJointNames"))
+	return rv
+}
+
+
+// SetSupportedJointNames sets the value of the supportedJointNames property.
+// Retrieves the supported joint names.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetecthumanhandposerequest/supportedjointnames
+func (d_ DetectHumanHandPoseRequest) SetSupportedJointNames(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setSupportedJointNames:"), value)
+}
+
 // The maximum number of hands to detect in an image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectHumanHandPoseRequest/maximumHandCount

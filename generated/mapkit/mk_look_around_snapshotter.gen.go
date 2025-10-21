@@ -91,4 +91,22 @@ func NewMKLookAroundSnapshotterWithSceneOptions(scene unsafe.Pointer, options un
 }
 
 
+// A Boolean value that indicates whether the snapshot request is loading.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mklookaroundsnapshotter/isloading
+func (m_ MKLookAroundSnapshotter) IsLoading() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("isLoading"))
+	return rv
+}
+
+
+// SetIsLoading sets the value of the isLoading property.
+// A Boolean value that indicates whether the snapshot request is loading.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mklookaroundsnapshotter/isloading
+func (m_ MKLookAroundSnapshotter) SetIsLoading(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIsLoading:"), value)
+}
+
 

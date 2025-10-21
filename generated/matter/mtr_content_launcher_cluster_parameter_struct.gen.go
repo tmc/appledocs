@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,51 @@ func NewMTRContentLauncherClusterParameterStruct() MTRContentLauncherClusterPara
 	return getMTRContentLauncherClusterParameterStructClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterparameterstruct/value
+func (m_ MTRContentLauncherClusterParameterStruct) Value() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("value"))
+	return rv
+}
+
+
+// SetValue sets the value of the value property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterparameterstruct/value
+func (m_ MTRContentLauncherClusterParameterStruct) SetValue(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), objc.String(value))
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterparameterstruct/externalidlist
+func (m_ MTRContentLauncherClusterParameterStruct) ExternalIDList() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("externalIDList"))
+	return rv
+}
+
+
+// SetExternalIDList sets the value of the externalIDList property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterparameterstruct/externalidlist
+func (m_ MTRContentLauncherClusterParameterStruct) SetExternalIDList(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setExternalIDList:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterparameterstruct/type
+func (m_ MTRContentLauncherClusterParameterStruct) Type() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("type"))
+	return rv
+}
+
+
+// SetType sets the value of the type property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterparameterstruct/type
+func (m_ MTRContentLauncherClusterParameterStruct) SetType(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setType:"), value)
+}
 
 
 

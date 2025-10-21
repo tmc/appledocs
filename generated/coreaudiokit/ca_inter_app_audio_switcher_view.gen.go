@@ -96,6 +96,21 @@ func (i_ InterAppAudioSwitcherView) SetOutputAudioUnit(au unsafe.Pointer) {
 }
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/coreaudiokit/cainterappaudioswitcherview/isshowingappnames
+func (i_ InterAppAudioSwitcherView) IsShowingAppNames() bool {
+	rv := objc.Send[bool](i_.ID, objc.Sel("isShowingAppNames"))
+	return rv
+}
+
+
+// SetIsShowingAppNames sets the value of the isShowingAppNames property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreaudiokit/cainterappaudioswitcherview/isshowingappnames
+func (i_ InterAppAudioSwitcherView) SetIsShowingAppNames(value bool) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setIsShowingAppNames:"), value)
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/CAInterAppAudioSwitcherView/isShowingAppNames
 func (i_ InterAppAudioSwitcherView) ShowingAppNames() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("showingAppNames"))

@@ -75,5 +75,20 @@ func NewMTROperationalStateClusterOperationalErrorEvent() MTROperationalStateClu
 }
 
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalstateclusteroperationalerrorevent/errorstate
+func (m_ MTROperationalStateClusterOperationalErrorEvent) ErrorState() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("errorState"))
+	return rv
+}
+
+
+// SetErrorState sets the value of the errorState property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalstateclusteroperationalerrorevent/errorstate
+func (m_ MTROperationalStateClusterOperationalErrorEvent) SetErrorState(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setErrorState:"), value)
+}
+
 
 

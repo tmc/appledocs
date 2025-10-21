@@ -75,5 +75,35 @@ func NewMTRElectricalEnergyMeasurementClusterPeriodicEnergyMeasuredEvent() MTREl
 }
 
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalenergymeasurementclusterperiodicenergymeasuredevent/energyexported
+func (m_ MTRElectricalEnergyMeasurementClusterPeriodicEnergyMeasuredEvent) EnergyExported() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("energyExported"))
+	return rv
+}
+
+
+// SetEnergyExported sets the value of the energyExported property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalenergymeasurementclusterperiodicenergymeasuredevent/energyexported
+func (m_ MTRElectricalEnergyMeasurementClusterPeriodicEnergyMeasuredEvent) SetEnergyExported(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setEnergyExported:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalenergymeasurementclusterperiodicenergymeasuredevent/energyimported
+func (m_ MTRElectricalEnergyMeasurementClusterPeriodicEnergyMeasuredEvent) EnergyImported() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("energyImported"))
+	return rv
+}
+
+
+// SetEnergyImported sets the value of the energyImported property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalenergymeasurementclusterperiodicenergymeasuredevent/energyimported
+func (m_ MTRElectricalEnergyMeasurementClusterPeriodicEnergyMeasuredEvent) SetEnergyImported(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setEnergyImported:"), value)
+}
+
 
 

@@ -107,4 +107,76 @@ func (u_ UserDefaultsController) Values() objc.ID {
 	return rv
 }
 
+// Returns whether any changes made to bound user default properties are saved immediately.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsuserdefaultscontroller/appliesimmediately
+func (u_ UserDefaultsController) AppliesImmediately() bool {
+	rv := objc.Send[bool](u_.ID, objc.Sel("appliesImmediately"))
+	return rv
+}
+
+
+// SetAppliesImmediately sets the value of the appliesImmediately property.
+// Returns whether any changes made to bound user default properties are saved immediately.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsuserdefaultscontroller/appliesimmediately
+func (u_ UserDefaultsController) SetAppliesImmediately(value bool) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setAppliesImmediately:"), value)
+}
+
+// Returns the instance of NSUserDefaults in use by the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsuserdefaultscontroller/defaults
+func (u_ UserDefaultsController) Defaults() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("defaults"))
+	return rv
+}
+
+
+// SetDefaults sets the value of the defaults property.
+// Returns the instance of NSUserDefaults in use by the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsuserdefaultscontroller/defaults
+func (u_ UserDefaultsController) SetDefaults(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setDefaults:"), value)
+}
+
+// Returns whether the receiver has user default values that have not been saved to NSUserDefaults.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsuserdefaultscontroller/hasunappliedchanges
+func (u_ UserDefaultsController) HasUnappliedChanges() bool {
+	rv := objc.Send[bool](u_.ID, objc.Sel("hasUnappliedChanges"))
+	return rv
+}
+
+
+// SetHasUnappliedChanges sets the value of the hasUnappliedChanges property.
+// Returns whether the receiver has user default values that have not been saved to NSUserDefaults.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsuserdefaultscontroller/hasunappliedchanges
+func (u_ UserDefaultsController) SetHasUnappliedChanges(value bool) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setHasUnappliedChanges:"), value)
+}
+
+// Returns a dictionary containing the receiver’s initial default values.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsuserdefaultscontroller/initialvalues
+func (u_ UserDefaultsController) InitialValues() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("initialValues"))
+	return rv
+}
+
+
+// SetInitialValues sets the value of the initialValues property.
+// Returns a dictionary containing the receiver’s initial default values.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsuserdefaultscontroller/initialvalues
+func (u_ UserDefaultsController) SetInitialValues(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setInitialValues:"), objc.String(value))
+}
+
 

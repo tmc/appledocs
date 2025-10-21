@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,51 @@ func NewMTRContentLauncherClusterDimensionStruct() MTRContentLauncherClusterDime
 	return getMTRContentLauncherClusterDimensionStructClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterdimensionstruct/metric
+func (m_ MTRContentLauncherClusterDimensionStruct) Metric() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("metric"))
+	return rv
+}
+
+
+// SetMetric sets the value of the metric property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterdimensionstruct/metric
+func (m_ MTRContentLauncherClusterDimensionStruct) SetMetric(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMetric:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterdimensionstruct/width
+func (m_ MTRContentLauncherClusterDimensionStruct) Width() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("width"))
+	return rv
+}
+
+
+// SetWidth sets the value of the width property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterdimensionstruct/width
+func (m_ MTRContentLauncherClusterDimensionStruct) SetWidth(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setWidth:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterdimensionstruct/height
+func (m_ MTRContentLauncherClusterDimensionStruct) Height() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("height"))
+	return rv
+}
+
+
+// SetHeight sets the value of the height property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterdimensionstruct/height
+func (m_ MTRContentLauncherClusterDimensionStruct) SetHeight(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setHeight:"), value)
+}
 
 
 

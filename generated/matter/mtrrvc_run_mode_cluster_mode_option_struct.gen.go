@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,51 @@ func NewMTRRVCRunModeClusterModeOptionStruct() MTRRVCRunModeClusterModeOptionStr
 	return getMTRRVCRunModeClusterModeOptionStructClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcrunmodeclustermodeoptionstruct/label
+func (m_ MTRRVCRunModeClusterModeOptionStruct) Label() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("label"))
+	return rv
+}
+
+
+// SetLabel sets the value of the label property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcrunmodeclustermodeoptionstruct/label
+func (m_ MTRRVCRunModeClusterModeOptionStruct) SetLabel(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), objc.String(value))
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcrunmodeclustermodeoptionstruct/mode
+func (m_ MTRRVCRunModeClusterModeOptionStruct) Mode() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("mode"))
+	return rv
+}
+
+
+// SetMode sets the value of the mode property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcrunmodeclustermodeoptionstruct/mode
+func (m_ MTRRVCRunModeClusterModeOptionStruct) SetMode(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMode:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcrunmodeclustermodeoptionstruct/modetags
+func (m_ MTRRVCRunModeClusterModeOptionStruct) ModeTags() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("modeTags"))
+	return rv
+}
+
+
+// SetModeTags sets the value of the modeTags property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcrunmodeclustermodeoptionstruct/modetags
+func (m_ MTRRVCRunModeClusterModeOptionStruct) SetModeTags(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setModeTags:"), value)
+}
 
 
 

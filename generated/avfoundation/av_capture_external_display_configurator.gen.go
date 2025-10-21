@@ -80,5 +80,95 @@ func NewCaptureExternalDisplayConfigurator() CaptureExternalDisplayConfigurator 
 }
 
 
+// The capture format in use by the device.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/activeformat
+func (c_ CaptureExternalDisplayConfigurator) ActiveFormat() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("activeFormat"))
+	return rv
+}
+
+
+// SetActiveFormat sets the value of the activeFormat property.
+// The capture format in use by the device.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/activeformat
+func (c_ CaptureExternalDisplayConfigurator) SetActiveFormat(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setActiveFormat:"), value)
+}
+
+// The currently configured frame rate on the external display that’s displaying the preview layer.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureexternaldisplayconfigurator/activeexternaldisplayframerate
+func (c_ CaptureExternalDisplayConfigurator) ActiveExternalDisplayFrameRate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("activeExternalDisplayFrameRate"))
+	return rv
+}
+
+
+// SetActiveExternalDisplayFrameRate sets the value of the activeExternalDisplayFrameRate property.
+// The currently configured frame rate on the external display that’s displaying the preview layer.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureexternaldisplayconfigurator/activeexternaldisplayframerate
+func (c_ CaptureExternalDisplayConfigurator) SetActiveExternalDisplayFrameRate(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setActiveExternalDisplayFrameRate:"), value)
+}
+
+// The device for which the coordinator configures the preview layer.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureexternaldisplayconfigurator/device
+func (c_ CaptureExternalDisplayConfigurator) Device() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("device"))
+	return rv
+}
+
+
+// SetDevice sets the value of the device property.
+// The device for which the coordinator configures the preview layer.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureexternaldisplayconfigurator/device
+func (c_ CaptureExternalDisplayConfigurator) SetDevice(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setDevice:"), value)
+}
+
+// This property tells you whether the configurator is actively configuring the external display.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureexternaldisplayconfigurator/isactive
+func (c_ CaptureExternalDisplayConfigurator) IsActive() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isActive"))
+	return rv
+}
+
+
+// SetIsActive sets the value of the isActive property.
+// This property tells you whether the configurator is actively configuring the external display.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureexternaldisplayconfigurator/isactive
+func (c_ CaptureExternalDisplayConfigurator) SetIsActive(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsActive:"), value)
+}
+
+// The layer for which the configurator adjusts display properties to match the device’s state.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureexternaldisplayconfigurator/previewlayer
+func (c_ CaptureExternalDisplayConfigurator) PreviewLayer() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("previewLayer"))
+	return rv
+}
+
+
+// SetPreviewLayer sets the value of the previewLayer property.
+// The layer for which the configurator adjusts display properties to match the device’s state.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureexternaldisplayconfigurator/previewlayer
+func (c_ CaptureExternalDisplayConfigurator) SetPreviewLayer(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setPreviewLayer:"), value)
+}
+
 
 

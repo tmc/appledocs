@@ -75,5 +75,20 @@ func NewAccelerationStructurePassDescriptor() AccelerationStructurePassDescripto
 }
 
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructurepassdescriptor/samplebufferattachments
+func (a_ AccelerationStructurePassDescriptor) SampleBufferAttachments() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("sampleBufferAttachments"))
+	return rv
+}
+
+
+// SetSampleBufferAttachments sets the value of the sampleBufferAttachments property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructurepassdescriptor/samplebufferattachments
+func (a_ AccelerationStructurePassDescriptor) SetSampleBufferAttachments(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setSampleBufferAttachments:"), value)
+}
+
 
 

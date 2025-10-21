@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -123,8 +124,8 @@ func (o_ OdometerData) GpsDate() unsafe.Pointer {
 // The maximum absolute slope at the location toward all directions, measured in degrees.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMOdometerData/maxAbsSlope-96ulr
-func (o_ OdometerData) MaxAbsSlope() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("maxAbsSlope"))
+func (o_ OdometerData) MaxAbsSlope() foundation.Number {
+	rv := objc.Send[foundation.Number](o_.ID, objc.Sel("maxAbsSlope"))
 	return rv
 }
 
@@ -139,8 +140,8 @@ func (o_ OdometerData) OriginDevice() unsafe.Pointer {
 // The slope at the location toward the direction of travel, measured in degrees.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMOdometerData/slope-96hlt
-func (o_ OdometerData) Slope() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("slope"))
+func (o_ OdometerData) Slope() foundation.Number {
+	rv := objc.Send[foundation.Number](o_.ID, objc.Sel("slope"))
 	return rv
 }
 

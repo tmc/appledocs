@@ -79,6 +79,96 @@ func NewMKStandardMapConfiguration() MKStandardMapConfiguration {
 }
 
 
+// A Boolean value that indicates whether the map displays the user tracking button.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/showsusertrackingbutton
+func (m_ MKStandardMapConfiguration) ShowsUserTrackingButton() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("showsUserTrackingButton"))
+	return rv
+}
+
+
+// SetShowsUserTrackingButton sets the value of the showsUserTrackingButton property.
+// A Boolean value that indicates whether the map displays the user tracking button.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/showsusertrackingbutton
+func (m_ MKStandardMapConfiguration) SetShowsUserTrackingButton(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setShowsUserTrackingButton:"), value)
+}
+
+// A value that indicates whether the map’s pitch button is visible.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/pitchbuttonvisibility
+func (m_ MKStandardMapConfiguration) PitchButtonVisibility() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("pitchButtonVisibility"))
+	return rv
+}
+
+
+// SetPitchButtonVisibility sets the value of the pitchButtonVisibility property.
+// A value that indicates whether the map’s pitch button is visible.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/pitchbuttonvisibility
+func (m_ MKStandardMapConfiguration) SetPitchButtonVisibility(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPitchButtonVisibility:"), value)
+}
+
+// The value that indicates how the framework emphasizes map features.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkstandardmapconfiguration/emphasisstyle-swift.property
+func (m_ MKStandardMapConfiguration) EmphasisStyle() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("emphasisStyle"))
+	return rv
+}
+
+
+// SetEmphasisStyle sets the value of the emphasisStyle property.
+// The value that indicates how the framework emphasizes map features.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkstandardmapconfiguration/emphasisstyle-swift.property
+func (m_ MKStandardMapConfiguration) SetEmphasisStyle(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setEmphasisStyle:"), value)
+}
+
+// The characteristics of the map view, including the map type and features the map displays.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/preferredconfiguration
+func (m_ MKStandardMapConfiguration) PreferredConfiguration() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("preferredConfiguration"))
+	return rv
+}
+
+
+// SetPreferredConfiguration sets the value of the preferredConfiguration property.
+// The characteristics of the map view, including the map type and features the map displays.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/preferredconfiguration
+func (m_ MKStandardMapConfiguration) SetPreferredConfiguration(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPreferredConfiguration:"), value)
+}
+
+// A Boolean value that controls whether the map displays traffic conditions.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkstandardmapconfiguration/showstraffic
+func (m_ MKStandardMapConfiguration) ShowsTraffic() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("showsTraffic"))
+	return rv
+}
+
+
+// SetShowsTraffic sets the value of the showsTraffic property.
+// A Boolean value that controls whether the map displays traffic conditions.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkstandardmapconfiguration/showstraffic
+func (m_ MKStandardMapConfiguration) SetShowsTraffic(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setShowsTraffic:"), value)
+}
+
 // The filter used to determine the points of interest shown on the map.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKStandardMapConfiguration/pointOfInterestFilter

@@ -237,6 +237,14 @@ func (p_ PHPhotoLibrary) UnregisterChangeObserver(observer objc.ID) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("unregisterChangeObserver:"), observer)
 }
 
+// A constant value that indicates that the system can’t resolve a local object from a global identifier.
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phlocalidentifiernotfound
+func (p_ PHPhotoLibrary) PHLocalIdentifierNotFound() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("PHLocalIdentifierNotFound"))
+	return rv
+}
+
 // The opaque token that represents the current state of the Photos library.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHPhotoLibrary/currentChangeToken

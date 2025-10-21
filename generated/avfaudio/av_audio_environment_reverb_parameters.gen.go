@@ -80,6 +80,24 @@ func NewAudioEnvironmentReverbParameters() AudioEnvironmentReverbParameters {
 }
 
 
+// Controls the amount of reverb, in decibels.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentreverbparameters/level
+func (a_ AudioEnvironmentReverbParameters) Level() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("level"))
+	return rv
+}
+
+
+// SetLevel sets the value of the level property.
+// Controls the amount of reverb, in decibels.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentreverbparameters/level
+func (a_ AudioEnvironmentReverbParameters) SetLevel(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setLevel:"), value)
+}
+
 // A Boolean value that indicates whether reverberation is in an enabled state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioEnvironmentReverbParameters/enable

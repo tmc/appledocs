@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MTRBaseClusterDeviceEnergyManagement] class.
@@ -123,7 +124,7 @@ func NewMTRBaseClusterDeviceEnergyManagement() MTRBaseClusterDeviceEnergyManagem
 // For all instance methods (reads, writes, commands) that take a completion, the completion will be called on the provided queue.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterDeviceEnergyManagement/init(device:endpointID:queue:)
-func NewMTRBaseClusterDeviceEnergyManagementWithDeviceEndpointIDQueue(device unsafe.Pointer, endpointID unsafe.Pointer, queue unsafe.Pointer) MTRBaseClusterDeviceEnergyManagement {
+func NewMTRBaseClusterDeviceEnergyManagementWithDeviceEndpointIDQueue(device unsafe.Pointer, endpointID foundation.Number, queue unsafe.Pointer) MTRBaseClusterDeviceEnergyManagement {
 	instance := getMTRBaseClusterDeviceEnergyManagementClass().Alloc()
 	rv := objc.Send[MTRBaseClusterDeviceEnergyManagement](instance.ID, objc.Sel("initWithDevice:endpointID:queue:"), device, endpointID, queue)
 	rv.Autorelease()
@@ -133,79 +134,79 @@ func NewMTRBaseClusterDeviceEnergyManagementWithDeviceEndpointIDQueue(device uns
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterDeviceEnergyManagement/readAttributeAbsMaxPower(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterDeviceEnergyManagementClass) ReadAttributeAbsMaxPowerWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint unsafe.Pointer, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterDeviceEnergyManagementClass) ReadAttributeAbsMaxPowerWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeAbsMaxPowerWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterDeviceEnergyManagement/readAttributeAbsMinPower(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterDeviceEnergyManagementClass) ReadAttributeAbsMinPowerWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint unsafe.Pointer, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterDeviceEnergyManagementClass) ReadAttributeAbsMinPowerWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeAbsMinPowerWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterDeviceEnergyManagement/readAttributeAcceptedCommandList(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterDeviceEnergyManagementClass) ReadAttributeAcceptedCommandListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint unsafe.Pointer, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterDeviceEnergyManagementClass) ReadAttributeAcceptedCommandListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeAcceptedCommandListWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterDeviceEnergyManagement/readAttributeAttributeList(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterDeviceEnergyManagementClass) ReadAttributeAttributeListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint unsafe.Pointer, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterDeviceEnergyManagementClass) ReadAttributeAttributeListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeAttributeListWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterDeviceEnergyManagement/readAttributeClusterRevision(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterDeviceEnergyManagementClass) ReadAttributeClusterRevisionWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint unsafe.Pointer, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterDeviceEnergyManagementClass) ReadAttributeClusterRevisionWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeClusterRevisionWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterDeviceEnergyManagement/readAttributeESACanGenerate(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterDeviceEnergyManagementClass) ReadAttributeESACanGenerateWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint unsafe.Pointer, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterDeviceEnergyManagementClass) ReadAttributeESACanGenerateWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeESACanGenerateWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterDeviceEnergyManagement/readAttributeESAState(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterDeviceEnergyManagementClass) ReadAttributeESAStateWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint unsafe.Pointer, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterDeviceEnergyManagementClass) ReadAttributeESAStateWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeESAStateWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterDeviceEnergyManagement/readAttributeESAType(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterDeviceEnergyManagementClass) ReadAttributeESATypeWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint unsafe.Pointer, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterDeviceEnergyManagementClass) ReadAttributeESATypeWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeESATypeWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterDeviceEnergyManagement/readAttributeFeatureMap(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterDeviceEnergyManagementClass) ReadAttributeFeatureMapWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint unsafe.Pointer, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterDeviceEnergyManagementClass) ReadAttributeFeatureMapWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeFeatureMapWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterDeviceEnergyManagement/readAttributeForecast(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterDeviceEnergyManagementClass) ReadAttributeForecastWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint unsafe.Pointer, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterDeviceEnergyManagementClass) ReadAttributeForecastWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeForecastWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterDeviceEnergyManagement/readAttributeGeneratedCommandList(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterDeviceEnergyManagementClass) ReadAttributeGeneratedCommandListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint unsafe.Pointer, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterDeviceEnergyManagementClass) ReadAttributeGeneratedCommandListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeGeneratedCommandListWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterDeviceEnergyManagement/readAttributeOptOutState(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterDeviceEnergyManagementClass) ReadAttributeOptOutStateWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint unsafe.Pointer, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterDeviceEnergyManagementClass) ReadAttributeOptOutStateWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeOptOutStateWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterDeviceEnergyManagement/readAttributePowerAdjustmentCapability(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterDeviceEnergyManagementClass) ReadAttributePowerAdjustmentCapabilityWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint unsafe.Pointer, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterDeviceEnergyManagementClass) ReadAttributePowerAdjustmentCapabilityWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributePowerAdjustmentCapabilityWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 

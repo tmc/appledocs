@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,8 +78,8 @@ func NewMTRMediaPlaybackClusterStateChangedEvent() MTRMediaPlaybackClusterStateC
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterStateChangedEvent/audioAdvanceUnmuted
-func (m_ MTRMediaPlaybackClusterStateChangedEvent) AudioAdvanceUnmuted() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("audioAdvanceUnmuted"))
+func (m_ MTRMediaPlaybackClusterStateChangedEvent) AudioAdvanceUnmuted() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("audioAdvanceUnmuted"))
 	return rv
 }
 
@@ -86,14 +87,14 @@ func (m_ MTRMediaPlaybackClusterStateChangedEvent) AudioAdvanceUnmuted() unsafe.
 // SetAudioAdvanceUnmuted sets the value of the audioAdvanceUnmuted property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterStateChangedEvent/audioAdvanceUnmuted
-func (m_ MTRMediaPlaybackClusterStateChangedEvent) SetAudioAdvanceUnmuted(value unsafe.Pointer) {
+func (m_ MTRMediaPlaybackClusterStateChangedEvent) SetAudioAdvanceUnmuted(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAudioAdvanceUnmuted:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterStateChangedEvent/currentState
-func (m_ MTRMediaPlaybackClusterStateChangedEvent) CurrentState() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("currentState"))
+func (m_ MTRMediaPlaybackClusterStateChangedEvent) CurrentState() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("currentState"))
 	return rv
 }
 
@@ -101,7 +102,7 @@ func (m_ MTRMediaPlaybackClusterStateChangedEvent) CurrentState() unsafe.Pointer
 // SetCurrentState sets the value of the currentState property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterStateChangedEvent/currentState
-func (m_ MTRMediaPlaybackClusterStateChangedEvent) SetCurrentState(value unsafe.Pointer) {
+func (m_ MTRMediaPlaybackClusterStateChangedEvent) SetCurrentState(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCurrentState:"), value)
 }
 
@@ -122,8 +123,8 @@ func (m_ MTRMediaPlaybackClusterStateChangedEvent) SetData(value unsafe.Pointer)
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterStateChangedEvent/duration
-func (m_ MTRMediaPlaybackClusterStateChangedEvent) Duration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("duration"))
+func (m_ MTRMediaPlaybackClusterStateChangedEvent) Duration() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("duration"))
 	return rv
 }
 
@@ -131,14 +132,14 @@ func (m_ MTRMediaPlaybackClusterStateChangedEvent) Duration() unsafe.Pointer {
 // SetDuration sets the value of the duration property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterStateChangedEvent/duration
-func (m_ MTRMediaPlaybackClusterStateChangedEvent) SetDuration(value unsafe.Pointer) {
+func (m_ MTRMediaPlaybackClusterStateChangedEvent) SetDuration(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDuration:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterStateChangedEvent/playbackSpeed
-func (m_ MTRMediaPlaybackClusterStateChangedEvent) PlaybackSpeed() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("playbackSpeed"))
+func (m_ MTRMediaPlaybackClusterStateChangedEvent) PlaybackSpeed() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("playbackSpeed"))
 	return rv
 }
 
@@ -146,7 +147,7 @@ func (m_ MTRMediaPlaybackClusterStateChangedEvent) PlaybackSpeed() unsafe.Pointe
 // SetPlaybackSpeed sets the value of the playbackSpeed property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterStateChangedEvent/playbackSpeed
-func (m_ MTRMediaPlaybackClusterStateChangedEvent) SetPlaybackSpeed(value unsafe.Pointer) {
+func (m_ MTRMediaPlaybackClusterStateChangedEvent) SetPlaybackSpeed(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPlaybackSpeed:"), value)
 }
 
@@ -167,8 +168,8 @@ func (m_ MTRMediaPlaybackClusterStateChangedEvent) SetSampledPosition(value unsa
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterStateChangedEvent/seekRangeEnd
-func (m_ MTRMediaPlaybackClusterStateChangedEvent) SeekRangeEnd() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("seekRangeEnd"))
+func (m_ MTRMediaPlaybackClusterStateChangedEvent) SeekRangeEnd() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("seekRangeEnd"))
 	return rv
 }
 
@@ -176,14 +177,14 @@ func (m_ MTRMediaPlaybackClusterStateChangedEvent) SeekRangeEnd() unsafe.Pointer
 // SetSeekRangeEnd sets the value of the seekRangeEnd property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterStateChangedEvent/seekRangeEnd
-func (m_ MTRMediaPlaybackClusterStateChangedEvent) SetSeekRangeEnd(value unsafe.Pointer) {
+func (m_ MTRMediaPlaybackClusterStateChangedEvent) SetSeekRangeEnd(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSeekRangeEnd:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterStateChangedEvent/seekRangeStart
-func (m_ MTRMediaPlaybackClusterStateChangedEvent) SeekRangeStart() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("seekRangeStart"))
+func (m_ MTRMediaPlaybackClusterStateChangedEvent) SeekRangeStart() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("seekRangeStart"))
 	return rv
 }
 
@@ -191,14 +192,14 @@ func (m_ MTRMediaPlaybackClusterStateChangedEvent) SeekRangeStart() unsafe.Point
 // SetSeekRangeStart sets the value of the seekRangeStart property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterStateChangedEvent/seekRangeStart
-func (m_ MTRMediaPlaybackClusterStateChangedEvent) SetSeekRangeStart(value unsafe.Pointer) {
+func (m_ MTRMediaPlaybackClusterStateChangedEvent) SetSeekRangeStart(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSeekRangeStart:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterStateChangedEvent/startTime
-func (m_ MTRMediaPlaybackClusterStateChangedEvent) StartTime() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("startTime"))
+func (m_ MTRMediaPlaybackClusterStateChangedEvent) StartTime() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("startTime"))
 	return rv
 }
 
@@ -206,7 +207,7 @@ func (m_ MTRMediaPlaybackClusterStateChangedEvent) StartTime() unsafe.Pointer {
 // SetStartTime sets the value of the startTime property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterStateChangedEvent/startTime
-func (m_ MTRMediaPlaybackClusterStateChangedEvent) SetStartTime(value unsafe.Pointer) {
+func (m_ MTRMediaPlaybackClusterStateChangedEvent) SetStartTime(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStartTime:"), value)
 }
 

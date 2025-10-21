@@ -80,6 +80,234 @@ func NewImage() Image {
 }
 
 
+// The formal height of the image, in pixels.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimage/height
+func (i_ Image) Height() int {
+	rv := objc.Send[int](i_.ID, objc.Sel("height"))
+	return rv
+}
+
+
+// SetHeight sets the value of the height property.
+// The formal height of the image, in pixels.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimage/height
+func (i_ Image) SetHeight(value int) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setHeight:"), value)
+}
+
+// The number of images for batch processing.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagedescriptor/numberofimages
+func (i_ Image) NumberOfImages() int {
+	rv := objc.Send[int](i_.ID, objc.Sel("numberOfImages"))
+	return rv
+}
+
+
+// SetNumberOfImages sets the value of the numberOfImages property.
+// The number of images for batch processing.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagedescriptor/numberofimages
+func (i_ Image) SetNumberOfImages(value int) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setNumberOfImages:"), value)
+}
+
+// The number of bits of numeric precision available for each feature channel.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimage/precision
+func (i_ Image) Precision() int {
+	rv := objc.Send[int](i_.ID, objc.Sel("precision"))
+	return rv
+}
+
+
+// SetPrecision sets the value of the precision property.
+// The number of bits of numeric precision available for each feature channel.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimage/precision
+func (i_ Image) SetPrecision(value int) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setPrecision:"), value)
+}
+
+// The number of bytes from the first byte of one pixel to the first byte of the next pixel, in storage order. (Includes padding.)
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimage/pixelsize
+func (i_ Image) PixelSize() int {
+	rv := objc.Send[int](i_.ID, objc.Sel("pixelSize"))
+	return rv
+}
+
+
+// SetPixelSize sets the value of the pixelSize property.
+// The number of bytes from the first byte of one pixel to the first byte of the next pixel, in storage order. (Includes padding.)
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimage/pixelsize
+func (i_ Image) SetPixelSize(value int) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setPixelSize:"), value)
+}
+
+// The intended usage of the underlying texture.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimage/usage
+func (i_ Image) Usage() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("usage"))
+	return rv
+}
+
+
+// SetUsage sets the value of the usage property.
+// The intended usage of the underlying texture.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimage/usage
+func (i_ Image) SetUsage(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setUsage:"), value)
+}
+
+// The number of feature channels per pixel.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimage/featurechannels
+func (i_ Image) FeatureChannels() int {
+	rv := objc.Send[int](i_.ID, objc.Sel("featureChannels"))
+	return rv
+}
+
+
+// SetFeatureChannels sets the value of the featureChannels property.
+// The number of feature channels per pixel.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimage/featurechannels
+func (i_ Image) SetFeatureChannels(value int) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setFeatureChannels:"), value)
+}
+
+// The formal width of the image, in pixels.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimage/width
+func (i_ Image) Width() int {
+	rv := objc.Send[int](i_.ID, objc.Sel("width"))
+	return rv
+}
+
+
+// SetWidth sets the value of the width property.
+// The formal width of the image, in pixels.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimage/width
+func (i_ Image) SetWidth(value int) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setWidth:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimage/parent
+func (i_ Image) Parent() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("parent"))
+	return rv
+}
+
+
+// SetParent sets the value of the parent property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimage/parent
+func (i_ Image) SetParent(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setParent:"), value)
+}
+
+// The pixel format of the underlying texture.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimage/pixelformat
+func (i_ Image) PixelFormat() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("pixelFormat"))
+	return rv
+}
+
+
+// SetPixelFormat sets the value of the pixelFormat property.
+// The pixel format of the underlying texture.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimage/pixelformat
+func (i_ Image) SetPixelFormat(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setPixelFormat:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimage/featurechannelformat
+func (i_ Image) FeatureChannelFormat() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("featureChannelFormat"))
+	return rv
+}
+
+
+// SetFeatureChannelFormat sets the value of the featureChannelFormat property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimage/featurechannelformat
+func (i_ Image) SetFeatureChannelFormat(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setFeatureChannelFormat:"), value)
+}
+
+// A string to help identify this object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimage/label
+func (i_ Image) Label() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("label"))
+	return rv
+}
+
+
+// SetLabel sets the value of the label property.
+// A string to help identify this object.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimage/label
+func (i_ Image) SetLabel(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setLabel:"), objc.String(value))
+}
+
+// The device on which the image will be used.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimage/device
+func (i_ Image) Device() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("device"))
+	return rv
+}
+
+
+// SetDevice sets the value of the device property.
+// The device on which the image will be used.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimage/device
+func (i_ Image) SetDevice(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setDevice:"), value)
+}
+
+// The type of the underlying texture.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimage/texturetype
+func (i_ Image) TextureType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("textureType"))
+	return rv
+}
+
+
+// SetTextureType sets the value of the textureType property.
+// The type of the underlying texture.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimage/texturetype
+func (i_ Image) SetTextureType(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setTextureType:"), value)
+}
+
 // The underlying texture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImage/texture

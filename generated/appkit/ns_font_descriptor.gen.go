@@ -113,5 +113,92 @@ func (f_ FontDescriptor) SymbolicTraits() unsafe.Pointer {
 	return rv
 }
 
+// The receiver’s dictionary of attributes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontdescriptor/fontattributes
+func (f_ FontDescriptor) FontAttributes() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("fontAttributes"))
+	return rv
+}
+
+
+// SetFontAttributes sets the value of the fontAttributes property.
+// The receiver’s dictionary of attributes.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontdescriptor/fontattributes
+func (f_ FontDescriptor) SetFontAttributes(value unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setFontAttributes:"), value)
+}
+
+// The point size of the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontdescriptor/pointsize
+func (f_ FontDescriptor) PointSize() float64 {
+	rv := objc.Send[float64](f_.ID, objc.Sel("pointSize"))
+	return rv
+}
+
+
+// SetPointSize sets the value of the pointSize property.
+// The point size of the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontdescriptor/pointsize
+func (f_ FontDescriptor) SetPointSize(value float64) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setPointSize:"), value)
+}
+
+// The PostScript name of the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontdescriptor/postscriptname
+func (f_ FontDescriptor) PostscriptName() string {
+	rv := objc.Send[string](f_.ID, objc.Sel("postscriptName"))
+	return rv
+}
+
+
+// SetPostscriptName sets the value of the postscriptName property.
+// The PostScript name of the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontdescriptor/postscriptname
+func (f_ FontDescriptor) SetPostscriptName(value string) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setPostscriptName:"), objc.String(value))
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontdescriptor/requiresfontassetrequest
+func (f_ FontDescriptor) RequiresFontAssetRequest() bool {
+	rv := objc.Send[bool](f_.ID, objc.Sel("requiresFontAssetRequest"))
+	return rv
+}
+
+
+// SetRequiresFontAssetRequest sets the value of the requiresFontAssetRequest property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontdescriptor/requiresfontassetrequest
+func (f_ FontDescriptor) SetRequiresFontAssetRequest(value bool) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setRequiresFontAssetRequest:"), value)
+}
+
+// Constant you use to access
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontfamilyclassmask
+func (f_ FontDescriptor) NSFontFamilyClassMask() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("NSFontFamilyClassMask"))
+	return rv
+}
+
+
+// SetNSFontFamilyClassMask sets the value of the NSFontFamilyClassMask property.
+// Constant you use to access
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontfamilyclassmask
+func (f_ FontDescriptor) SetNSFontFamilyClassMask(value unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setNSFontFamilyClassMask:"), value)
+}
+
 
 

@@ -89,5 +89,41 @@ func (vc _VZVirtioBlockDeviceConfigurationClass) ValidateBlockDeviceIdentifierEr
 	return rv
 }
 
+// The string that identifies the VIRTIO block device.
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtioblockdeviceconfiguration/blockdeviceidentifier
+func (v_ VZVirtioBlockDeviceConfiguration) BlockDeviceIdentifier() string {
+	rv := objc.Send[string](v_.ID, objc.Sel("blockDeviceIdentifier"))
+	return rv
+}
+
+
+// SetBlockDeviceIdentifier sets the value of the blockDeviceIdentifier property.
+// The string that identifies the VIRTIO block device.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtioblockdeviceconfiguration/blockdeviceidentifier
+func (v_ VZVirtioBlockDeviceConfiguration) SetBlockDeviceIdentifier(value string) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setBlockDeviceIdentifier:"), objc.String(value))
+}
+
+// The array of storage devices that you expose to the guest operating system.
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/storagedevices
+func (v_ VZVirtioBlockDeviceConfiguration) StorageDevices() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("storageDevices"))
+	return rv
+}
+
+
+// SetStorageDevices sets the value of the storageDevices property.
+// The array of storage devices that you expose to the guest operating system.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/storagedevices
+func (v_ VZVirtioBlockDeviceConfiguration) SetStorageDevices(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setStorageDevices:"), value)
+}
+
 
 

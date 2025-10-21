@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,66 @@ func NewMTRAudioOutputClusterRenameOutputParams() MTRAudioOutputClusterRenameOut
 	return getMTRAudioOutputClusterRenameOutputParamsClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtraudiooutputclusterrenameoutputparams/name
+func (m_ MTRAudioOutputClusterRenameOutputParams) Name() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("name"))
+	return rv
+}
+
+
+// SetName sets the value of the name property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtraudiooutputclusterrenameoutputparams/name
+func (m_ MTRAudioOutputClusterRenameOutputParams) SetName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtraudiooutputclusterrenameoutputparams/serversideprocessingtimeout
+func (m_ MTRAudioOutputClusterRenameOutputParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+	return rv
+}
+
+
+// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtraudiooutputclusterrenameoutputparams/serversideprocessingtimeout
+func (m_ MTRAudioOutputClusterRenameOutputParams) SetServerSideProcessingTimeout(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtraudiooutputclusterrenameoutputparams/timedinvoketimeoutms
+func (m_ MTRAudioOutputClusterRenameOutputParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+	return rv
+}
+
+
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtraudiooutputclusterrenameoutputparams/timedinvoketimeoutms
+func (m_ MTRAudioOutputClusterRenameOutputParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtraudiooutputclusterrenameoutputparams/index
+func (m_ MTRAudioOutputClusterRenameOutputParams) Index() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("index"))
+	return rv
+}
+
+
+// SetIndex sets the value of the index property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtraudiooutputclusterrenameoutputparams/index
+func (m_ MTRAudioOutputClusterRenameOutputParams) SetIndex(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIndex:"), value)
+}
 
 
 

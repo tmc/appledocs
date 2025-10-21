@@ -116,5 +116,77 @@ func (s_ SpeechRecognizer) SetCommands(value []string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setCommands:"), nsArray)
 }
 
+// A Boolean value that indicates whether the speech recognizer object should block all other recognizers (that is, other applications attempting to understand spoken commands) when listening.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsspeechrecognizer/blocksotherrecognizers
+func (s_ SpeechRecognizer) BlocksOtherRecognizers() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("blocksOtherRecognizers"))
+	return rv
+}
+
+
+// SetBlocksOtherRecognizers sets the value of the blocksOtherRecognizers property.
+// A Boolean value that indicates whether the speech recognizer object should block all other recognizers (that is, other applications attempting to understand spoken commands) when listening.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsspeechrecognizer/blocksotherrecognizers
+func (s_ SpeechRecognizer) SetBlocksOtherRecognizers(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setBlocksOtherRecognizers:"), value)
+}
+
+// The delegate for the speech recognizer object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsspeechrecognizer/delegate
+func (s_ SpeechRecognizer) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+
+// SetDelegate sets the value of the delegate property.
+// The delegate for the speech recognizer object.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsspeechrecognizer/delegate
+func (s_ SpeechRecognizer) SetDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setDelegate:"), value)
+}
+
+// The title of the commands section in the Speech Commands window or
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsspeechrecognizer/displayedcommandstitle
+func (s_ SpeechRecognizer) DisplayedCommandsTitle() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("displayedCommandsTitle"))
+	return rv
+}
+
+
+// SetDisplayedCommandsTitle sets the value of the displayedCommandsTitle property.
+// The title of the commands section in the Speech Commands window or
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsspeechrecognizer/displayedcommandstitle
+func (s_ SpeechRecognizer) SetDisplayedCommandsTitle(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setDisplayedCommandsTitle:"), objc.String(value))
+}
+
+// A Boolean value that indicates whether the speech recognizer object should only enable its commands when its application is the frontmost one.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsspeechrecognizer/listensinforegroundonly
+func (s_ SpeechRecognizer) ListensInForegroundOnly() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("listensInForegroundOnly"))
+	return rv
+}
+
+
+// SetListensInForegroundOnly sets the value of the listensInForegroundOnly property.
+// A Boolean value that indicates whether the speech recognizer object should only enable its commands when its application is the frontmost one.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsspeechrecognizer/listensinforegroundonly
+func (s_ SpeechRecognizer) SetListensInForegroundOnly(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setListensInForegroundOnly:"), value)
+}
+
 
 

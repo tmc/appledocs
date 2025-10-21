@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,36 @@ func NewMTRKeypadInputClusterSendKeyResponseParams() MTRKeypadInputClusterSendKe
 	return getMTRKeypadInputClusterSendKeyResponseParamsClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrkeypadinputclustersendkeyresponseparams/status
+func (m_ MTRKeypadInputClusterSendKeyResponseParams) Status() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("status"))
+	return rv
+}
+
+
+// SetStatus sets the value of the status property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrkeypadinputclustersendkeyresponseparams/status
+func (m_ MTRKeypadInputClusterSendKeyResponseParams) SetStatus(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setStatus:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrkeypadinputclustersendkeyresponseparams/timedinvoketimeoutms
+func (m_ MTRKeypadInputClusterSendKeyResponseParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+	return rv
+}
+
+
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrkeypadinputclustersendkeyresponseparams/timedinvoketimeoutms
+func (m_ MTRKeypadInputClusterSendKeyResponseParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+}
 
 
 

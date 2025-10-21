@@ -88,5 +88,113 @@ func (l_ LayoutAnchor) HasAmbiguousLayout() bool {
 	return rv
 }
 
+// The constraints that impact the layout of the anchor.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutanchor/constraintsaffectinglayout
+func (l_ LayoutAnchor) ConstraintsAffectingLayout() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("constraintsAffectingLayout"))
+	return rv
+}
+
+
+// SetConstraintsAffectingLayout sets the value of the constraintsAffectingLayout property.
+// The constraints that impact the layout of the anchor.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutanchor/constraintsaffectinglayout
+func (l_ LayoutAnchor) SetConstraintsAffectingLayout(value unsafe.Pointer) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setConstraintsAffectingLayout:"), value)
+}
+
+// The layout item used to calculate the anchor’s position.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutanchor/item
+func (l_ LayoutAnchor) Item() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("item"))
+	return rv
+}
+
+
+// SetItem sets the value of the item property.
+// The layout item used to calculate the anchor’s position.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutanchor/item
+func (l_ LayoutAnchor) SetItem(value unsafe.Pointer) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setItem:"), value)
+}
+
+// The name assigned to the anchor for debugging purposes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutanchor/name
+func (l_ LayoutAnchor) Name() string {
+	rv := objc.Send[string](l_.ID, objc.Sel("name"))
+	return rv
+}
+
+
+// SetName sets the value of the name property.
+// The name assigned to the anchor for debugging purposes.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutanchor/name
+func (l_ LayoutAnchor) SetName(value string) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setName:"), objc.String(value))
+}
+
+// A layout anchor representing the bottom edge of the view’s frame.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsview/bottomanchor
+func (l_ LayoutAnchor) BottomAnchor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("bottomAnchor"))
+	return rv
+}
+
+
+// SetBottomAnchor sets the value of the bottomAnchor property.
+// A layout anchor representing the bottom edge of the view’s frame.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsview/bottomanchor
+func (l_ LayoutAnchor) SetBottomAnchor(value unsafe.Pointer) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setBottomAnchor:"), value)
+}
+
+// A layout anchor representing the leading edge of the view’s frame.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsview/leadinganchor
+func (l_ LayoutAnchor) LeadingAnchor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("leadingAnchor"))
+	return rv
+}
+
+
+// SetLeadingAnchor sets the value of the leadingAnchor property.
+// A layout anchor representing the leading edge of the view’s frame.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsview/leadinganchor
+func (l_ LayoutAnchor) SetLeadingAnchor(value unsafe.Pointer) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setLeadingAnchor:"), value)
+}
+
+// A layout anchor representing the left edge of the view’s frame.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsview/leftanchor
+func (l_ LayoutAnchor) LeftAnchor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("leftAnchor"))
+	return rv
+}
+
+
+// SetLeftAnchor sets the value of the leftAnchor property.
+// A layout anchor representing the left edge of the view’s frame.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsview/leftanchor
+func (l_ LayoutAnchor) SetLeftAnchor(value unsafe.Pointer) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setLeftAnchor:"), value)
+}
+
 
 

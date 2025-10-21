@@ -104,6 +104,132 @@ func (h_ HKWorkoutSession) Pause() {
 	objc.Send[objc.ID](h_.ID, objc.Sel("pause"))
 }
 
+// The starting time and date for this workout session.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutsession/startdate
+func (h_ HKWorkoutSession) StartDate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("startDate"))
+	return rv
+}
+
+
+// SetStartDate sets the value of the startDate property.
+// The starting time and date for this workout session.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutsession/startdate
+func (h_ HKWorkoutSession) SetStartDate(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setStartDate:"), value)
+}
+
+// The workout session’s delegate.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutsession/delegate
+func (h_ HKWorkoutSession) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+
+// SetDelegate sets the value of the delegate property.
+// The workout session’s delegate.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutsession/delegate
+func (h_ HKWorkoutSession) SetDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setDelegate:"), value)
+}
+
+// A value that indicates whether the session is a primary session or a mirrored session.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutsession/type
+func (h_ HKWorkoutSession) Type() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("type"))
+	return rv
+}
+
+
+// SetType sets the value of the type property.
+// A value that indicates whether the session is a primary session or a mirrored session.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutsession/type
+func (h_ HKWorkoutSession) SetType(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setType:"), value)
+}
+
+// The configuration object that describes this workout.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutsession/workoutconfiguration
+func (h_ HKWorkoutSession) WorkoutConfiguration() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("workoutConfiguration"))
+	return rv
+}
+
+
+// SetWorkoutConfiguration sets the value of the workoutConfiguration property.
+// The configuration object that describes this workout.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutsession/workoutconfiguration
+func (h_ HKWorkoutSession) SetWorkoutConfiguration(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setWorkoutConfiguration:"), value)
+}
+
+// The current workout activity.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutsession/currentactivity
+func (h_ HKWorkoutSession) CurrentActivity() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("currentActivity"))
+	return rv
+}
+
+
+// SetCurrentActivity sets the value of the currentActivity property.
+// The current workout activity.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutsession/currentactivity
+func (h_ HKWorkoutSession) SetCurrentActivity(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setCurrentActivity:"), value)
+}
+
+// The ending time and date for this workout session.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutsession/enddate
+func (h_ HKWorkoutSession) EndDate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("endDate"))
+	return rv
+}
+
+
+// SetEndDate sets the value of the endDate property.
+// The ending time and date for this workout session.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutsession/enddate
+func (h_ HKWorkoutSession) SetEndDate(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setEndDate:"), value)
+}
+
+// The workout activity performed during this session.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutsession/activitytype
+func (h_ HKWorkoutSession) ActivityType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("activityType"))
+	return rv
+}
+
+
+// SetActivityType sets the value of the activityType property.
+// The workout activity performed during this session.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutsession/activitytype
+func (h_ HKWorkoutSession) SetActivityType(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setActivityType:"), value)
+}
+
 // A value that indicates whether the workout session occurred indoors or outdoors.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKWorkoutSession/locationType

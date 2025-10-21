@@ -95,5 +95,41 @@ func (r_ RasterizationRateLayerArray) ObjectAtIndexedSubscript(layerIndex uint) 
 	return rv
 }
 
+// The rasterization rates for one or more layers in the rate map.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlrasterizationratemapdescriptor/layers
+func (r_ RasterizationRateLayerArray) Layers() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("layers"))
+	return rv
+}
+
+
+// SetLayers sets the value of the layers property.
+// The rasterization rates for one or more layers in the rate map.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlrasterizationratemapdescriptor/layers
+func (r_ RasterizationRateLayerArray) SetLayers(value unsafe.Pointer) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setLayers:"), value)
+}
+
+// The number of layers in the rate map.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlrasterizationratemapdescriptor/layercount
+func (r_ RasterizationRateLayerArray) LayerCount() int {
+	rv := objc.Send[int](r_.ID, objc.Sel("layerCount"))
+	return rv
+}
+
+
+// SetLayerCount sets the value of the layerCount property.
+// The number of layers in the rate map.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlrasterizationratemapdescriptor/layercount
+func (r_ RasterizationRateLayerArray) SetLayerCount(value int) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setLayerCount:"), value)
+}
+
 
 

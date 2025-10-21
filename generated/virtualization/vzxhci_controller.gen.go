@@ -81,5 +81,23 @@ func NewVZXHCIController() VZXHCIController {
 }
 
 
+// The list of configured USB controllers for the VM.
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/usbcontrollers
+func (v_ VZXHCIController) UsbControllers() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("usbControllers"))
+	return rv
+}
+
+
+// SetUsbControllers sets the value of the usbControllers property.
+// The list of configured USB controllers for the VM.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/usbcontrollers
+func (v_ VZXHCIController) SetUsbControllers(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setUsbControllers:"), value)
+}
+
 
 

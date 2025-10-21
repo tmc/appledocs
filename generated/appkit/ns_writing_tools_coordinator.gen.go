@@ -193,5 +193,71 @@ func (w_ WritingToolsCoordinator) State() unsafe.Pointer {
 	return rv
 }
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsview/writingtoolscoordinator
+func (w_ WritingToolsCoordinator) WritingToolsCoordinator() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("writingToolsCoordinator"))
+	return rv
+}
+
+
+// SetWritingToolsCoordinator sets the value of the writingToolsCoordinator property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsview/writingtoolscoordinator
+func (w_ WritingToolsCoordinator) SetWritingToolsCoordinator(value unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setWritingToolsCoordinator:"), value)
+}
+
+// The object that handles Writing Tools interactions for your view.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/delegate-swift.property
+func (w_ WritingToolsCoordinator) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+
+// SetDelegate sets the value of the delegate property.
+// The object that handles Writing Tools interactions for your view.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/delegate-swift.property
+func (w_ WritingToolsCoordinator) SetDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setDelegate:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/includestextlistmarkers
+func (w_ WritingToolsCoordinator) IncludesTextListMarkers() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("includesTextListMarkers"))
+	return rv
+}
+
+
+// SetIncludesTextListMarkers sets the value of the includesTextListMarkers property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/includestextlistmarkers
+func (w_ WritingToolsCoordinator) SetIncludesTextListMarkers(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setIncludesTextListMarkers:"), value)
+}
+
+// The view that currently uses the writing tools coordinator.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/view
+func (w_ WritingToolsCoordinator) View() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("view"))
+	return rv
+}
+
+
+// SetView sets the value of the view property.
+// The view that currently uses the writing tools coordinator.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/view
+func (w_ WritingToolsCoordinator) SetView(value unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setView:"), value)
+}
+
 
 

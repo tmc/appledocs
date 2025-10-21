@@ -81,6 +81,168 @@ func NewGraphImToColOpDescriptor() GraphImToColOpDescriptor {
 }
 
 
+// The property that defines the padding in height dimension at the top.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphimtocolopdescriptor/paddingtop
+func (g_ GraphImToColOpDescriptor) PaddingTop() int {
+	rv := objc.Send[int](g_.ID, objc.Sel("paddingTop"))
+	return rv
+}
+
+
+// SetPaddingTop sets the value of the paddingTop property.
+// The property that defines the padding in height dimension at the top.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphimtocolopdescriptor/paddingtop
+func (g_ GraphImToColOpDescriptor) SetPaddingTop(value int) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setPaddingTop:"), value)
+}
+
+// The property that defines the kernel size in height dimension.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphimtocolopdescriptor/kernelheight
+func (g_ GraphImToColOpDescriptor) KernelHeight() int {
+	rv := objc.Send[int](g_.ID, objc.Sel("kernelHeight"))
+	return rv
+}
+
+
+// SetKernelHeight sets the value of the kernelHeight property.
+// The property that defines the kernel size in height dimension.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphimtocolopdescriptor/kernelheight
+func (g_ GraphImToColOpDescriptor) SetKernelHeight(value int) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setKernelHeight:"), value)
+}
+
+// The property that defines the dilation in height dimension.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphimtocolopdescriptor/dilationrateiny
+func (g_ GraphImToColOpDescriptor) DilationRateInY() int {
+	rv := objc.Send[int](g_.ID, objc.Sel("dilationRateInY"))
+	return rv
+}
+
+
+// SetDilationRateInY sets the value of the dilationRateInY property.
+// The property that defines the dilation in height dimension.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphimtocolopdescriptor/dilationrateiny
+func (g_ GraphImToColOpDescriptor) SetDilationRateInY(value int) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setDilationRateInY:"), value)
+}
+
+// The property that defines the padding in width dimension on the right side.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphimtocolopdescriptor/paddingright
+func (g_ GraphImToColOpDescriptor) PaddingRight() int {
+	rv := objc.Send[int](g_.ID, objc.Sel("paddingRight"))
+	return rv
+}
+
+
+// SetPaddingRight sets the value of the paddingRight property.
+// The property that defines the padding in width dimension on the right side.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphimtocolopdescriptor/paddingright
+func (g_ GraphImToColOpDescriptor) SetPaddingRight(value int) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setPaddingRight:"), value)
+}
+
+// The property that defines the layout of source or output tensor.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphimtocolopdescriptor/datalayout
+func (g_ GraphImToColOpDescriptor) DataLayout() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("dataLayout"))
+	return rv
+}
+
+
+// SetDataLayout sets the value of the dataLayout property.
+// The property that defines the layout of source or output tensor.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphimtocolopdescriptor/datalayout
+func (g_ GraphImToColOpDescriptor) SetDataLayout(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setDataLayout:"), value)
+}
+
+// The property that defines the kernel size in width dimension.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphimtocolopdescriptor/kernelwidth
+func (g_ GraphImToColOpDescriptor) KernelWidth() int {
+	rv := objc.Send[int](g_.ID, objc.Sel("kernelWidth"))
+	return rv
+}
+
+
+// SetKernelWidth sets the value of the kernelWidth property.
+// The property that defines the kernel size in width dimension.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphimtocolopdescriptor/kernelwidth
+func (g_ GraphImToColOpDescriptor) SetKernelWidth(value int) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setKernelWidth:"), value)
+}
+
+// The property that defines the stride in width dimension.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphimtocolopdescriptor/strideinx
+func (g_ GraphImToColOpDescriptor) StrideInX() int {
+	rv := objc.Send[int](g_.ID, objc.Sel("strideInX"))
+	return rv
+}
+
+
+// SetStrideInX sets the value of the strideInX property.
+// The property that defines the stride in width dimension.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphimtocolopdescriptor/strideinx
+func (g_ GraphImToColOpDescriptor) SetStrideInX(value int) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setStrideInX:"), value)
+}
+
+// The property that defines the padding in width dimension on the left side.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphimtocolopdescriptor/paddingleft
+func (g_ GraphImToColOpDescriptor) PaddingLeft() int {
+	rv := objc.Send[int](g_.ID, objc.Sel("paddingLeft"))
+	return rv
+}
+
+
+// SetPaddingLeft sets the value of the paddingLeft property.
+// The property that defines the padding in width dimension on the left side.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphimtocolopdescriptor/paddingleft
+func (g_ GraphImToColOpDescriptor) SetPaddingLeft(value int) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setPaddingLeft:"), value)
+}
+
+// The property that defines the padding in height dimension at the bottom.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphimtocolopdescriptor/paddingbottom
+func (g_ GraphImToColOpDescriptor) PaddingBottom() int {
+	rv := objc.Send[int](g_.ID, objc.Sel("paddingBottom"))
+	return rv
+}
+
+
+// SetPaddingBottom sets the value of the paddingBottom property.
+// The property that defines the padding in height dimension at the bottom.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphimtocolopdescriptor/paddingbottom
+func (g_ GraphImToColOpDescriptor) SetPaddingBottom(value int) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setPaddingBottom:"), value)
+}
+
 // The property that defines the dilation in width dimension.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphImToColOpDescriptor/dilationRateInX

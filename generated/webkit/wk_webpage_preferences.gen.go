@@ -80,6 +80,24 @@ func NewWebpagePreferences() WebpagePreferences {
 }
 
 
+// A Boolean value that indicates whether to use Lockdown Mode in the web view.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebpagepreferences/islockdownmodeenabled
+func (w_ WebpagePreferences) IsLockdownModeEnabled() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("isLockdownModeEnabled"))
+	return rv
+}
+
+
+// SetIsLockdownModeEnabled sets the value of the isLockdownModeEnabled property.
+// A Boolean value that indicates whether to use Lockdown Mode in the web view.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebpagepreferences/islockdownmodeenabled
+func (w_ WebpagePreferences) SetIsLockdownModeEnabled(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setIsLockdownModeEnabled:"), value)
+}
+
 // A Boolean value that indicates whether JavaScript from web content is allowed to run.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebpagePreferences/allowsContentJavaScript

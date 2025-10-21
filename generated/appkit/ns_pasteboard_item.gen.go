@@ -107,5 +107,41 @@ func (p_ PasteboardItem) SetCollaborationMetadata(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCollaborationMetadata:"), value)
 }
 
+// An array that contains all the items held by the pasteboard.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspasteboard/pasteboarditems
+func (p_ PasteboardItem) PasteboardItems() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("pasteboardItems"))
+	return rv
+}
+
+
+// SetPasteboardItems sets the value of the pasteboardItems property.
+// An array that contains all the items held by the pasteboard.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspasteboard/pasteboarditems
+func (p_ PasteboardItem) SetPasteboardItems(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPasteboardItems:"), value)
+}
+
+// An array of uniform type identifier strings of the data types that the receiver supports.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspasteboarditem/types
+func (p_ PasteboardItem) Types() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("types"))
+	return rv
+}
+
+
+// SetTypes sets the value of the types property.
+// An array of uniform type identifier strings of the data types that the receiver supports.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspasteboarditem/types
+func (p_ PasteboardItem) SetTypes(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setTypes:"), value)
+}
+
 
 

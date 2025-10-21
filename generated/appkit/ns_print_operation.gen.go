@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -155,6 +156,204 @@ func (p_ PrintOperation) SetPrintInfo(value unsafe.Pointer) {
 func (p_ PrintOperation) View() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("view"))
 	return rv
+}
+
+// A Boolean value that determines whether the print operation is allowed to spawn a separate printing thread.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintoperation/canspawnseparatethread
+func (p_ PrintOperation) CanSpawnSeparateThread() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("canSpawnSeparateThread"))
+	return rv
+}
+
+
+// SetCanSpawnSeparateThread sets the value of the canSpawnSeparateThread property.
+// A Boolean value that determines whether the print operation is allowed to spawn a separate printing thread.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintoperation/canspawnseparatethread
+func (p_ PrintOperation) SetCanSpawnSeparateThread(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setCanSpawnSeparateThread:"), value)
+}
+
+// The graphics context object used for generating output.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintoperation/context
+func (p_ PrintOperation) Context() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("context"))
+	return rv
+}
+
+
+// SetContext sets the value of the context property.
+// The graphics context object used for generating output.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintoperation/context
+func (p_ PrintOperation) SetContext(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setContext:"), value)
+}
+
+// The current page number being printed.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintoperation/currentpage
+func (p_ PrintOperation) CurrentPage() int {
+	rv := objc.Send[int](p_.ID, objc.Sel("currentPage"))
+	return rv
+}
+
+
+// SetCurrentPage sets the value of the currentPage property.
+// The current page number being printed.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintoperation/currentpage
+func (p_ PrintOperation) SetCurrentPage(value int) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setCurrentPage:"), value)
+}
+
+// A Boolean value that indicates whether the print operation is an EPS or PDF copy operation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintoperation/iscopyingoperation
+func (p_ PrintOperation) IsCopyingOperation() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isCopyingOperation"))
+	return rv
+}
+
+
+// SetIsCopyingOperation sets the value of the isCopyingOperation property.
+// A Boolean value that indicates whether the print operation is an EPS or PDF copy operation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintoperation/iscopyingoperation
+func (p_ PrintOperation) SetIsCopyingOperation(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsCopyingOperation:"), value)
+}
+
+// The custom title of the print job.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintoperation/jobtitle
+func (p_ PrintOperation) JobTitle() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("jobTitle"))
+	return rv
+}
+
+
+// SetJobTitle sets the value of the jobTitle property.
+// The custom title of the print job.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintoperation/jobtitle
+func (p_ PrintOperation) SetJobTitle(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setJobTitle:"), objc.String(value))
+}
+
+// The print order for the pages of the operation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintoperation/pageorder-swift.property
+func (p_ PrintOperation) PageOrder() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("pageOrder"))
+	return rv
+}
+
+
+// SetPageOrder sets the value of the pageOrder property.
+// The print order for the pages of the operation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintoperation/pageorder-swift.property
+func (p_ PrintOperation) SetPageOrder(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPageOrder:"), value)
+}
+
+// The range of pages associated with the print operation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintoperation/pagerange
+func (p_ PrintOperation) PageRange() foundation.Range {
+	rv := objc.Send[foundation.Range](p_.ID, objc.Sel("pageRange"))
+	return rv
+}
+
+
+// SetPageRange sets the value of the pageRange property.
+// The range of pages associated with the print operation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintoperation/pagerange
+func (p_ PrintOperation) SetPageRange(value foundation.Range) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPageRange:"), value)
+}
+
+// The printing quality.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintoperation/preferredrenderingquality
+func (p_ PrintOperation) PreferredRenderingQuality() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("preferredRenderingQuality"))
+	return rv
+}
+
+
+// SetPreferredRenderingQuality sets the value of the preferredRenderingQuality property.
+// The printing quality.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintoperation/preferredrenderingquality
+func (p_ PrintOperation) SetPreferredRenderingQuality(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPreferredRenderingQuality:"), value)
+}
+
+// The print panel object to use during the operation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintoperation/printpanel
+func (p_ PrintOperation) PrintPanel() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("printPanel"))
+	return rv
+}
+
+
+// SetPrintPanel sets the value of the printPanel property.
+// The print panel object to use during the operation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintoperation/printpanel
+func (p_ PrintOperation) SetPrintPanel(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPrintPanel:"), value)
+}
+
+// A Boolean value that determines whether the print operation displays a print panel.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintoperation/showsprintpanel
+func (p_ PrintOperation) ShowsPrintPanel() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("showsPrintPanel"))
+	return rv
+}
+
+
+// SetShowsPrintPanel sets the value of the showsPrintPanel property.
+// A Boolean value that determines whether the print operation displays a print panel.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintoperation/showsprintpanel
+func (p_ PrintOperation) SetShowsPrintPanel(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setShowsPrintPanel:"), value)
+}
+
+// A Boolean value that determines whether the print operation displays a progress panel.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintoperation/showsprogresspanel
+func (p_ PrintOperation) ShowsProgressPanel() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("showsProgressPanel"))
+	return rv
+}
+
+
+// SetShowsProgressPanel sets the value of the showsProgressPanel property.
+// A Boolean value that determines whether the print operation displays a progress panel.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintoperation/showsprogresspanel
+func (p_ PrintOperation) SetShowsProgressPanel(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setShowsProgressPanel:"), value)
 }
 
 

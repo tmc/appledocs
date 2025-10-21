@@ -728,4 +728,58 @@ func (c_ Control) SetUsesSingleLineMode(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setUsesSingleLineMode:"), value)
 }
 
+// A Boolean value indicating whether the receiver’s cell sends its action message continuously to its target during mouse tracking.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/iscontinuous
+func (c_ Control) IsContinuous() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isContinuous"))
+	return rv
+}
+
+
+// SetIsContinuous sets the value of the isContinuous property.
+// A Boolean value indicating whether the receiver’s cell sends its action message continuously to its target during mouse tracking.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/iscontinuous
+func (c_ Control) SetIsContinuous(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsContinuous:"), value)
+}
+
+// A Boolean value that indicates whether the receiver reacts to mouse events.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/isenabled
+func (c_ Control) IsEnabled() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isEnabled"))
+	return rv
+}
+
+
+// SetIsEnabled sets the value of the isEnabled property.
+// A Boolean value that indicates whether the receiver reacts to mouse events.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/isenabled
+func (c_ Control) SetIsEnabled(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsEnabled:"), value)
+}
+
+// A Boolean value that indicates whether the cell is highlighted.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/ishighlighted
+func (c_ Control) IsHighlighted() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isHighlighted"))
+	return rv
+}
+
+
+// SetIsHighlighted sets the value of the isHighlighted property.
+// A Boolean value that indicates whether the cell is highlighted.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/ishighlighted
+func (c_ Control) SetIsHighlighted(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsHighlighted:"), value)
+}
+
 

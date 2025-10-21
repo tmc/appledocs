@@ -88,5 +88,13 @@ func (nc _NEHotspotHelperClass) SupportedNetworkInterfaces() unsafe.Pointer {
 	return rv
 }
 
+// The string displayed in Wi-Fi Settings for a network handled by the application.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/knehotspothelperoptiondisplayname
+func (n_ NEHotspotHelper) KNEHotspotHelperOptionDisplayName() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("kNEHotspotHelperOptionDisplayName"))
+	return rv
+}
+
 
 

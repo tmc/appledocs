@@ -80,6 +80,24 @@ func NewVZVirtioConsolePort() VZVirtioConsolePort {
 }
 
 
+// The array of console ports that a specific device uses.
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtioconsoledevice/ports
+func (v_ VZVirtioConsolePort) Ports() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("ports"))
+	return rv
+}
+
+
+// SetPorts sets the value of the ports property.
+// The array of console ports that a specific device uses.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtioconsoledevice/ports
+func (v_ VZVirtioConsolePort) SetPorts(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setPorts:"), value)
+}
+
 // An array of serial port attachments.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioConsolePort/attachment

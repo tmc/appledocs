@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,51 @@ func NewMTRIdentifyClusterIdentifyParams() MTRIdentifyClusterIdentifyParams {
 	return getMTRIdentifyClusterIdentifyParamsClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtridentifyclusteridentifyparams/identifytime
+func (m_ MTRIdentifyClusterIdentifyParams) IdentifyTime() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("identifyTime"))
+	return rv
+}
+
+
+// SetIdentifyTime sets the value of the identifyTime property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtridentifyclusteridentifyparams/identifytime
+func (m_ MTRIdentifyClusterIdentifyParams) SetIdentifyTime(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIdentifyTime:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtridentifyclusteridentifyparams/timedinvoketimeoutms
+func (m_ MTRIdentifyClusterIdentifyParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+	return rv
+}
+
+
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtridentifyclusteridentifyparams/timedinvoketimeoutms
+func (m_ MTRIdentifyClusterIdentifyParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtridentifyclusteridentifyparams/serversideprocessingtimeout
+func (m_ MTRIdentifyClusterIdentifyParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+	return rv
+}
+
+
+// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtridentifyclusteridentifyparams/serversideprocessingtimeout
+func (m_ MTRIdentifyClusterIdentifyParams) SetServerSideProcessingTimeout(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
+}
 
 
 

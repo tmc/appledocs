@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -78,8 +79,8 @@ func NewMTREnergyEVSEClusterGetTargetsParams() MTREnergyEVSEClusterGetTargetsPar
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterGetTargetsParams/serverSideProcessingTimeout
-func (m_ MTREnergyEVSEClusterGetTargetsParams) ServerSideProcessingTimeout() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTREnergyEVSEClusterGetTargetsParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
@@ -89,15 +90,15 @@ func (m_ MTREnergyEVSEClusterGetTargetsParams) ServerSideProcessingTimeout() uns
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterGetTargetsParams/serverSideProcessingTimeout
-func (m_ MTREnergyEVSEClusterGetTargetsParams) SetServerSideProcessingTimeout(value unsafe.Pointer) {
+func (m_ MTREnergyEVSEClusterGetTargetsParams) SetServerSideProcessingTimeout(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterGetTargetsParams/timedInvokeTimeoutMs
-func (m_ MTREnergyEVSEClusterGetTargetsParams) TimedInvokeTimeoutMs() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTREnergyEVSEClusterGetTargetsParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
@@ -107,7 +108,7 @@ func (m_ MTREnergyEVSEClusterGetTargetsParams) TimedInvokeTimeoutMs() unsafe.Poi
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterGetTargetsParams/timedInvokeTimeoutMs
-func (m_ MTREnergyEVSEClusterGetTargetsParams) SetTimedInvokeTimeoutMs(value unsafe.Pointer) {
+func (m_ MTREnergyEVSEClusterGetTargetsParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

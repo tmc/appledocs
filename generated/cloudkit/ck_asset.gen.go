@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -85,7 +86,7 @@ func NewCKAsset() CKAsset {
 // Creates an asset that references a file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKAsset/init(fileURL:)
-func NewCKAssetWithFileURL(fileURL unsafe.Pointer) CKAsset {
+func NewCKAssetWithFileURL(fileURL foundation.URL) CKAsset {
 	instance := getCKAssetClass().Alloc()
 	rv := objc.Send[CKAsset](instance.ID, objc.Sel("initWithFileURL:"), fileURL)
 	rv.Autorelease()
@@ -96,8 +97,8 @@ func NewCKAssetWithFileURL(fileURL unsafe.Pointer) CKAsset {
 // The URL for accessing the asset.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKAsset/fileURL
-func (c_ CKAsset) FileURL() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("fileURL"))
+func (c_ CKAsset) FileURL() foundation.URL {
+	rv := objc.Send[foundation.URL](c_.ID, objc.Sel("fileURL"))
 	return rv
 }
 

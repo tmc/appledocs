@@ -81,5 +81,95 @@ func NewCoreMLFeatureValueObservation() CoreMLFeatureValueObservation {
 }
 
 
+// The name of the primary prediction feature output description.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelDescription/predictedFeatureName
+func (c_ CoreMLFeatureValueObservation) PredictedFeatureName() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("predictedFeatureName"))
+	return rv
+}
+
+
+// SetPredictedFeatureName sets the value of the predictedFeatureName property.
+// The name of the primary prediction feature output description.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelDescription/predictedFeatureName
+func (c_ CoreMLFeatureValueObservation) SetPredictedFeatureName(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setPredictedFeatureName:"), objc.String(value))
+}
+
+// The name used in the model description of the CoreML model that produced this observation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vncoremlfeaturevalueobservation/featurename
+func (c_ CoreMLFeatureValueObservation) FeatureName() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("featureName"))
+	return rv
+}
+
+
+// SetFeatureName sets the value of the featureName property.
+// The name used in the model description of the CoreML model that produced this observation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vncoremlfeaturevalueobservation/featurename
+func (c_ CoreMLFeatureValueObservation) SetFeatureName(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setFeatureName:"), objc.String(value))
+}
+
+// Model information you use at runtime during development, which Xcode also displays in its Core ML model editor view.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/modelDescription
+func (c_ CoreMLFeatureValueObservation) ModelDescription() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("modelDescription"))
+	return rv
+}
+
+
+// SetModelDescription sets the value of the modelDescription property.
+// Model information you use at runtime during development, which Xcode also displays in its Core ML model editor view.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/modelDescription
+func (c_ CoreMLFeatureValueObservation) SetModelDescription(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setModelDescription:"), value)
+}
+
+// The feature result of a
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vncoremlfeaturevalueobservation/featurevalue
+func (c_ CoreMLFeatureValueObservation) FeatureValue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("featureValue"))
+	return rv
+}
+
+
+// SetFeatureValue sets the value of the featureValue property.
+// The feature result of a
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vncoremlfeaturevalueobservation/featurevalue
+func (c_ CoreMLFeatureValueObservation) SetFeatureValue(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setFeatureValue:"), value)
+}
+
+// A dictionary of output feature descriptions, which the model keys by the output’s name.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelDescription/outputDescriptionsByName
+func (c_ CoreMLFeatureValueObservation) OutputDescriptionsByName() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("outputDescriptionsByName"))
+	return rv
+}
+
+
+// SetOutputDescriptionsByName sets the value of the outputDescriptionsByName property.
+// A dictionary of output feature descriptions, which the model keys by the output’s name.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelDescription/outputDescriptionsByName
+func (c_ CoreMLFeatureValueObservation) SetOutputDescriptionsByName(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setOutputDescriptionsByName:"), objc.String(value))
+}
+
 
 

@@ -161,6 +161,24 @@ func (g_ Geocoder) ReverseGeocodeLocationPreferredLocaleCompletionHandler(locati
 
 // A Boolean value indicating whether the receiver is in the middle of geocoding its value.
 //
+// [Full Topic]: https://developer.apple.com/documentation/corelocation/clgeocoder/isgeocoding
+func (g_ Geocoder) IsGeocoding() bool {
+	rv := objc.Send[bool](g_.ID, objc.Sel("isGeocoding"))
+	return rv
+}
+
+
+// SetIsGeocoding sets the value of the isGeocoding property.
+// A Boolean value indicating whether the receiver is in the middle of geocoding its value.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/corelocation/clgeocoder/isgeocoding
+func (g_ Geocoder) SetIsGeocoding(value bool) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setIsGeocoding:"), value)
+}
+
+// A Boolean value indicating whether the receiver is in the middle of geocoding its value.
+//
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLGeocoder/isGeocoding
 func (g_ Geocoder) Geocoding() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("geocoding"))

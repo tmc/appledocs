@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,6 +78,42 @@ func NewCaptureDescriptor() CaptureDescriptor {
 	return getCaptureDescriptorClass().New()
 }
 
+
+// The destination for any captured command data.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlcapturedescriptor/destination
+func (c_ CaptureDescriptor) Destination() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("destination"))
+	return rv
+}
+
+
+// SetDestination sets the value of the destination property.
+// The destination for any captured command data.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlcapturedescriptor/destination
+func (c_ CaptureDescriptor) SetDestination(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setDestination:"), value)
+}
+
+// A URL for a file to write the capture data into.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlcapturedescriptor/outputurl
+func (c_ CaptureDescriptor) OutputURL() foundation.URL {
+	rv := objc.Send[foundation.URL](c_.ID, objc.Sel("outputURL"))
+	return rv
+}
+
+
+// SetOutputURL sets the value of the outputURL property.
+// A URL for a file to write the capture data into.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlcapturedescriptor/outputurl
+func (c_ CaptureDescriptor) SetOutputURL(value foundation.URL) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setOutputURL:"), value)
+}
 
 // The instance whose contents should be captured.
 //

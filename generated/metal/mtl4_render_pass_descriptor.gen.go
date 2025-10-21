@@ -97,6 +97,42 @@ func (m_ MTL4RenderPassDescriptor) SetSamplePositionsCount(positions unsafe.Poin
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSamplePositions:count:"), positions, count)
 }
 
+// Configures the custom sample positions to use in MSAA rendering.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4renderpassdescriptor/samplepositions
+func (m_ MTL4RenderPassDescriptor) SamplePositions() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("samplePositions"))
+	return rv
+}
+
+
+// SetSamplePositions sets the value of the samplePositions property.
+// Configures the custom sample positions to use in MSAA rendering.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4renderpassdescriptor/samplepositions
+func (m_ MTL4RenderPassDescriptor) SetSamplePositions(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSamplePositions:"), value)
+}
+
+// Accesses the array of state information for render attachments that store color data.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4renderpassdescriptor/colorattachments
+func (m_ MTL4RenderPassDescriptor) ColorAttachments() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("colorAttachments"))
+	return rv
+}
+
+
+// SetColorAttachments sets the value of the colorAttachments property.
+// Accesses the array of state information for render attachments that store color data.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4renderpassdescriptor/colorattachments
+func (m_ MTL4RenderPassDescriptor) SetColorAttachments(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setColorAttachments:"), value)
+}
+
 // Sets the default raster sample count for the render pass when it references no attachments.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4RenderPassDescriptor/defaultRasterSampleCount

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,66 @@ func NewMTROperationalCredentialsClusterAttestationResponseParams() MTROperation
 	return getMTROperationalCredentialsClusterAttestationResponseParamsClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterattestationresponseparams/signature
+func (m_ MTROperationalCredentialsClusterAttestationResponseParams) Signature() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("signature"))
+	return rv
+}
+
+
+// SetSignature sets the value of the signature property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterattestationresponseparams/signature
+func (m_ MTROperationalCredentialsClusterAttestationResponseParams) SetSignature(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSignature:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterattestationresponseparams/attestationelements
+func (m_ MTROperationalCredentialsClusterAttestationResponseParams) AttestationElements() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("attestationElements"))
+	return rv
+}
+
+
+// SetAttestationElements sets the value of the attestationElements property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterattestationresponseparams/attestationelements
+func (m_ MTROperationalCredentialsClusterAttestationResponseParams) SetAttestationElements(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAttestationElements:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterattestationresponseparams/attestationsignature
+func (m_ MTROperationalCredentialsClusterAttestationResponseParams) AttestationSignature() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("attestationSignature"))
+	return rv
+}
+
+
+// SetAttestationSignature sets the value of the attestationSignature property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterattestationresponseparams/attestationsignature
+func (m_ MTROperationalCredentialsClusterAttestationResponseParams) SetAttestationSignature(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAttestationSignature:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterattestationresponseparams/timedinvoketimeoutms
+func (m_ MTROperationalCredentialsClusterAttestationResponseParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+	return rv
+}
+
+
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterattestationresponseparams/timedinvoketimeoutms
+func (m_ MTROperationalCredentialsClusterAttestationResponseParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+}
 
 
 

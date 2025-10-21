@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -105,8 +106,8 @@ func (f_ FileProviderRequest) IsSystemRequest() bool {
 // The URL of the requesting executable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderRequest/requestingExecutable
-func (f_ FileProviderRequest) RequestingExecutable() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("requestingExecutable"))
+func (f_ FileProviderRequest) RequestingExecutable() foundation.URL {
+	rv := objc.Send[foundation.URL](f_.ID, objc.Sel("requestingExecutable"))
 	return rv
 }
 

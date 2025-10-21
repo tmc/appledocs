@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,51 @@ func NewMTRAudioOutputClusterOutputInfoStruct() MTRAudioOutputClusterOutputInfoS
 	return getMTRAudioOutputClusterOutputInfoStructClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtraudiooutputclusteroutputinfostruct/name
+func (m_ MTRAudioOutputClusterOutputInfoStruct) Name() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("name"))
+	return rv
+}
+
+
+// SetName sets the value of the name property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtraudiooutputclusteroutputinfostruct/name
+func (m_ MTRAudioOutputClusterOutputInfoStruct) SetName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtraudiooutputclusteroutputinfostruct/outputtype
+func (m_ MTRAudioOutputClusterOutputInfoStruct) OutputType() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("outputType"))
+	return rv
+}
+
+
+// SetOutputType sets the value of the outputType property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtraudiooutputclusteroutputinfostruct/outputtype
+func (m_ MTRAudioOutputClusterOutputInfoStruct) SetOutputType(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setOutputType:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtraudiooutputclusteroutputinfostruct/index
+func (m_ MTRAudioOutputClusterOutputInfoStruct) Index() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("index"))
+	return rv
+}
+
+
+// SetIndex sets the value of the index property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtraudiooutputclusteroutputinfostruct/index
+func (m_ MTRAudioOutputClusterOutputInfoStruct) SetIndex(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIndex:"), value)
+}
 
 
 

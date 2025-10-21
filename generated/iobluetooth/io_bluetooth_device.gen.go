@@ -644,6 +644,36 @@ func (b_ BluetoothDevice) SetSupervisionTimeout(timeout unsafe.Pointer) unsafe.P
 	return rv
 }
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/iobluetooth/iobluetoothdevice/ishandsfreeaudiogateway
+func (b_ BluetoothDevice) IsHandsFreeAudioGateway() bool {
+	rv := objc.Send[bool](b_.ID, objc.Sel("isHandsFreeAudioGateway"))
+	return rv
+}
+
+
+// SetIsHandsFreeAudioGateway sets the value of the isHandsFreeAudioGateway property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/iobluetooth/iobluetoothdevice/ishandsfreeaudiogateway
+func (b_ BluetoothDevice) SetIsHandsFreeAudioGateway(value bool) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setIsHandsFreeAudioGateway:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/iobluetooth/iobluetoothdevice/ishandsfreedevice
+func (b_ BluetoothDevice) IsHandsFreeDevice() bool {
+	rv := objc.Send[bool](b_.ID, objc.Sel("isHandsFreeDevice"))
+	return rv
+}
+
+
+// SetIsHandsFreeDevice sets the value of the isHandsFreeDevice property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/iobluetooth/iobluetoothdevice/ishandsfreedevice
+func (b_ BluetoothDevice) SetIsHandsFreeDevice(value bool) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setIsHandsFreeDevice:"), value)
+}
+
 // Get a string representation of the Bluetooth device address for the target device. The format of the string is the same as returned by IOBluetoothNSStringFromDeviceAddress().
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevice/addressString

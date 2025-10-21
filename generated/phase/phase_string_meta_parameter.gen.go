@@ -81,5 +81,41 @@ func NewPHASEStringMetaParameter() PHASEStringMetaParameter {
 }
 
 
+// The object’s meta parameters.
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasesoundevent/metaparameters
+func (p_ PHASEStringMetaParameter) MetaParameters() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("metaParameters"))
+	return rv
+}
+
+
+// SetMetaParameters sets the value of the metaParameters property.
+// The object’s meta parameters.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasesoundevent/metaparameters
+func (p_ PHASEStringMetaParameter) SetMetaParameters(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setMetaParameters:"), objc.String(value))
+}
+
+// A dictionary of metaparameters that all sound event assets share.
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phaseassetregistry/globalmetaparameters
+func (p_ PHASEStringMetaParameter) GlobalMetaParameters() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("globalMetaParameters"))
+	return rv
+}
+
+
+// SetGlobalMetaParameters sets the value of the globalMetaParameters property.
+// A dictionary of metaparameters that all sound event assets share.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phaseassetregistry/globalmetaparameters
+func (p_ PHASEStringMetaParameter) SetGlobalMetaParameters(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setGlobalMetaParameters:"), objc.String(value))
+}
+
 
 

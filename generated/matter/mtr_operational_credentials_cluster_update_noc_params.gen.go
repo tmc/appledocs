@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,66 @@ func NewMTROperationalCredentialsClusterUpdateNOCParams() MTROperationalCredenti
 	return getMTROperationalCredentialsClusterUpdateNOCParamsClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterupdatenocparams/serversideprocessingtimeout
+func (m_ MTROperationalCredentialsClusterUpdateNOCParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+	return rv
+}
+
+
+// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterupdatenocparams/serversideprocessingtimeout
+func (m_ MTROperationalCredentialsClusterUpdateNOCParams) SetServerSideProcessingTimeout(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterupdatenocparams/timedinvoketimeoutms
+func (m_ MTROperationalCredentialsClusterUpdateNOCParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+	return rv
+}
+
+
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterupdatenocparams/timedinvoketimeoutms
+func (m_ MTROperationalCredentialsClusterUpdateNOCParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterupdatenocparams/icacvalue
+func (m_ MTROperationalCredentialsClusterUpdateNOCParams) IcacValue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("icacValue"))
+	return rv
+}
+
+
+// SetIcacValue sets the value of the icacValue property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterupdatenocparams/icacvalue
+func (m_ MTROperationalCredentialsClusterUpdateNOCParams) SetIcacValue(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIcacValue:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterupdatenocparams/nocvalue
+func (m_ MTROperationalCredentialsClusterUpdateNOCParams) NocValue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("nocValue"))
+	return rv
+}
+
+
+// SetNocValue sets the value of the nocValue property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterupdatenocparams/nocvalue
+func (m_ MTROperationalCredentialsClusterUpdateNOCParams) SetNocValue(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setNocValue:"), value)
+}
 
 
 

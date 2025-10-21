@@ -97,5 +97,12 @@ func (v_ VertexBufferLayoutDescriptorArray) ObjectAtIndexedSubscript(index uint)
 	return rv
 }
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlbufferlayoutstridedynamic
+func (v_ VertexBufferLayoutDescriptorArray) MTLBufferLayoutStrideDynamic() int {
+	rv := objc.Send[int](v_.ID, objc.Sel("MTLBufferLayoutStrideDynamic"))
+	return rv
+}
+
 
 

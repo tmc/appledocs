@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -192,8 +193,8 @@ func (n_ NEHotspotConfiguration) SetJoinOnce(value bool) {
 // The number of days the network retains the associated configuration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEHotspotConfiguration/lifeTimeInDays
-func (n_ NEHotspotConfiguration) LifeTimeInDays() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("lifeTimeInDays"))
+func (n_ NEHotspotConfiguration) LifeTimeInDays() foundation.Number {
+	rv := objc.Send[foundation.Number](n_.ID, objc.Sel("lifeTimeInDays"))
 	return rv
 }
 
@@ -203,7 +204,7 @@ func (n_ NEHotspotConfiguration) LifeTimeInDays() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEHotspotConfiguration/lifeTimeInDays
-func (n_ NEHotspotConfiguration) SetLifeTimeInDays(value unsafe.Pointer) {
+func (n_ NEHotspotConfiguration) SetLifeTimeInDays(value foundation.Number) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setLifeTimeInDays:"), value)
 }
 

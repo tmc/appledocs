@@ -78,5 +78,30 @@ func NewMTL4CommandAllocatorDescriptor() MTL4CommandAllocatorDescriptor {
 }
 
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4commandqueueerrordomain
+func (m_ MTL4CommandAllocatorDescriptor) MTL4CommandQueueErrorDomain() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("MTL4CommandQueueErrorDomain"))
+	return rv
+}
+
+// An optional label you can assign to the command allocator to aid debugging.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4commandallocatordescriptor/label
+func (m_ MTL4CommandAllocatorDescriptor) Label() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("label"))
+	return rv
+}
+
+
+// SetLabel sets the value of the label property.
+// An optional label you can assign to the command allocator to aid debugging.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4commandallocatordescriptor/label
+func (m_ MTL4CommandAllocatorDescriptor) SetLabel(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), objc.String(value))
+}
+
 
 

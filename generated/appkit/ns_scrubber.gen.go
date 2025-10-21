@@ -465,4 +465,184 @@ func (s_ Scrubber) SetShowsArrowButtons(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setShowsArrowButtons:"), value)
 }
 
+// A Boolean value that, together with the
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubber/iscontinuous
+func (s_ Scrubber) IsContinuous() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("isContinuous"))
+	return rv
+}
+
+
+// SetIsContinuous sets the value of the isContinuous property.
+// A Boolean value that, together with the
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubber/iscontinuous
+func (s_ Scrubber) SetIsContinuous(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setIsContinuous:"), value)
+}
+
+// The alignment of the image within the scrubber item.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberimageitemview/imagealignment
+func (s_ Scrubber) ImageAlignment() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("imageAlignment"))
+	return rv
+}
+
+
+// SetImageAlignment sets the value of the imageAlignment property.
+// The alignment of the image within the scrubber item.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberimageitemview/imagealignment
+func (s_ Scrubber) SetImageAlignment(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setImageAlignment:"), value)
+}
+
+// The image view that the scrubber item uses to display its image.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberimageitemview/imageview
+func (s_ Scrubber) ImageView() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("imageView"))
+	return rv
+}
+
+
+// SetImageView sets the value of the imageView property.
+// The image view that the scrubber item uses to display its image.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberimageitemview/imageview
+func (s_ Scrubber) SetImageView(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setImageView:"), value)
+}
+
+// The size required to contain all elements within the scrubber.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberlayout/scrubbercontentsize
+func (s_ Scrubber) ScrubberContentSize() coregraphics.CGSize {
+	rv := objc.Send[coregraphics.CGSize](s_.ID, objc.Sel("scrubberContentSize"))
+	return rv
+}
+
+
+// SetScrubberContentSize sets the value of the scrubberContentSize property.
+// The size required to contain all elements within the scrubber.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberlayout/scrubbercontentsize
+func (s_ Scrubber) SetScrubberContentSize(value coregraphics.CGSize) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setScrubberContentSize:"), value)
+}
+
+// Determines whether the scrubber should refresh its layout when an item is highlighted.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberlayout/shouldinvalidatelayoutforhighlightchange
+func (s_ Scrubber) ShouldInvalidateLayoutForHighlightChange() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("shouldInvalidateLayoutForHighlightChange"))
+	return rv
+}
+
+
+// SetShouldInvalidateLayoutForHighlightChange sets the value of the shouldInvalidateLayoutForHighlightChange property.
+// Determines whether the scrubber should refresh its layout when an item is highlighted.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberlayout/shouldinvalidatelayoutforhighlightchange
+func (s_ Scrubber) SetShouldInvalidateLayoutForHighlightChange(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setShouldInvalidateLayoutForHighlightChange:"), value)
+}
+
+// Determines whether the scrubber should refresh its layout when the selection changes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberlayout/shouldinvalidatelayoutforselectionchange
+func (s_ Scrubber) ShouldInvalidateLayoutForSelectionChange() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("shouldInvalidateLayoutForSelectionChange"))
+	return rv
+}
+
+
+// SetShouldInvalidateLayoutForSelectionChange sets the value of the shouldInvalidateLayoutForSelectionChange property.
+// Determines whether the scrubber should refresh its layout when the selection changes.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberlayout/shouldinvalidatelayoutforselectionchange
+func (s_ Scrubber) SetShouldInvalidateLayoutForSelectionChange(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setShouldInvalidateLayoutForSelectionChange:"), value)
+}
+
+// The item’s alpha value.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberlayoutattributes/alpha
+func (s_ Scrubber) Alpha() float64 {
+	rv := objc.Send[float64](s_.ID, objc.Sel("alpha"))
+	return rv
+}
+
+
+// SetAlpha sets the value of the alpha property.
+// The item’s alpha value.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberlayoutattributes/alpha
+func (s_ Scrubber) SetAlpha(value float64) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setAlpha:"), value)
+}
+
+// The frame of the scrubber item.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberlayoutattributes/frame
+func (s_ Scrubber) Frame() coregraphics.CGRect {
+	rv := objc.Send[coregraphics.CGRect](s_.ID, objc.Sel("frame"))
+	return rv
+}
+
+
+// SetFrame sets the value of the frame property.
+// The frame of the scrubber item.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberlayoutattributes/frame
+func (s_ Scrubber) SetFrame(value coregraphics.CGRect) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setFrame:"), value)
+}
+
+// The index of the scrubber item that is represented by the item’s layout attributes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberlayoutattributes/itemindex
+func (s_ Scrubber) ItemIndex() int {
+	rv := objc.Send[int](s_.ID, objc.Sel("itemIndex"))
+	return rv
+}
+
+
+// SetItemIndex sets the value of the itemIndex property.
+// The index of the scrubber item that is represented by the item’s layout attributes.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberlayoutattributes/itemindex
+func (s_ Scrubber) SetItemIndex(value int) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setItemIndex:"), value)
+}
+
+// The text field that the scrubber item uses to display its text.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubbertextitemview/textfield
+func (s_ Scrubber) TextField() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("textField"))
+	return rv
+}
+
+
+// SetTextField sets the value of the textField property.
+// The text field that the scrubber item uses to display its text.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubbertextitemview/textfield
+func (s_ Scrubber) SetTextField(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setTextField:"), value)
+}
+
 

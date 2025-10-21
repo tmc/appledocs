@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,51 @@ func NewMTRUnitTestingClusterTestNestedStructListArgumentRequestParams() MTRUnit
 	return getMTRUnitTestingClusterTestNestedStructListArgumentRequestParamsClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestnestedstructlistargumentrequestparams/timedinvoketimeoutms
+func (m_ MTRUnitTestingClusterTestNestedStructListArgumentRequestParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+	return rv
+}
+
+
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestnestedstructlistargumentrequestparams/timedinvoketimeoutms
+func (m_ MTRUnitTestingClusterTestNestedStructListArgumentRequestParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestnestedstructlistargumentrequestparams/arg1
+func (m_ MTRUnitTestingClusterTestNestedStructListArgumentRequestParams) Arg1() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("arg1"))
+	return rv
+}
+
+
+// SetArg1 sets the value of the arg1 property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestnestedstructlistargumentrequestparams/arg1
+func (m_ MTRUnitTestingClusterTestNestedStructListArgumentRequestParams) SetArg1(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setArg1:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestnestedstructlistargumentrequestparams/serversideprocessingtimeout
+func (m_ MTRUnitTestingClusterTestNestedStructListArgumentRequestParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+	return rv
+}
+
+
+// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestnestedstructlistargumentrequestparams/serversideprocessingtimeout
+func (m_ MTRUnitTestingClusterTestNestedStructListArgumentRequestParams) SetServerSideProcessingTimeout(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
+}
 
 
 

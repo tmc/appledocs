@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [SFSpeechURLRecognitionRequest] class.
@@ -86,7 +87,7 @@ func NewSFSpeechURLRecognitionRequest() SFSpeechURLRecognitionRequest {
 // Creates a speech recognition request, initialized with the specified URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Speech/SFSpeechURLRecognitionRequest/init(url:)
-func NewSFSpeechURLRecognitionRequestWithURL(URL unsafe.Pointer) SFSpeechURLRecognitionRequest {
+func NewSFSpeechURLRecognitionRequestWithURL(URL foundation.URL) SFSpeechURLRecognitionRequest {
 	instance := getSFSpeechURLRecognitionRequestClass().Alloc()
 	rv := objc.Send[SFSpeechURLRecognitionRequest](instance.ID, objc.Sel("initWithURL:"), URL)
 	rv.Autorelease()
@@ -97,8 +98,8 @@ func NewSFSpeechURLRecognitionRequestWithURL(URL unsafe.Pointer) SFSpeechURLReco
 // The URL of the audio file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Speech/SFSpeechURLRecognitionRequest/url
-func (s_ SFSpeechURLRecognitionRequest) URL() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("URL"))
+func (s_ SFSpeechURLRecognitionRequest) URL() foundation.URL {
+	rv := objc.Send[foundation.URL](s_.ID, objc.Sel("URL"))
 	return rv
 }
 

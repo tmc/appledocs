@@ -80,5 +80,67 @@ func NewCaptureSystemPressureState() CaptureSystemPressureState {
 }
 
 
+// The set of underlying causes for the system pressure level.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/systempressurestate-swift.class/factors-swift.property
+func (c_ CaptureSystemPressureState) Factors() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("factors"))
+	return rv
+}
+
+
+// SetFactors sets the value of the factors property.
+// The set of underlying causes for the system pressure level.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/systempressurestate-swift.class/factors-swift.property
+func (c_ CaptureSystemPressureState) SetFactors(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setFactors:"), value)
+}
+
+// The overall level of performance constraints on the capture system.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/systempressurestate-swift.class/level-swift.property
+func (c_ CaptureSystemPressureState) Level() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("level"))
+	return rv
+}
+
+
+// SetLevel sets the value of the level property.
+// The overall level of performance constraints on the capture system.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/systempressurestate-swift.class/level-swift.property
+func (c_ CaptureSystemPressureState) SetLevel(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setLevel:"), value)
+}
+
+// A value that indicates the capture device’s current system pressure state.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/systempressurestate-swift.property
+func (c_ CaptureSystemPressureState) SystemPressureState() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("systemPressureState"))
+	return rv
+}
+
+
+// SetSystemPressureState sets the value of the systemPressureState property.
+// A value that indicates the capture device’s current system pressure state.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/systempressurestate-swift.property
+func (c_ CaptureSystemPressureState) SetSystemPressureState(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setSystemPressureState:"), value)
+}
+
+// A key to retrieve a state value that indicates the system pressure level and contributing factors that caused the interruption.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesessioninterruptionsystempressurestatekey
+func (c_ CaptureSystemPressureState) AVCaptureSessionInterruptionSystemPressureStateKey() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("AVCaptureSessionInterruptionSystemPressureStateKey"))
+	return rv
+}
+
 
 

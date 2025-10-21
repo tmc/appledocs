@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [BeaconIdentityCondition] class.
@@ -129,16 +130,16 @@ func (b_ BeaconIdentityCondition) UUID() unsafe.Pointer {
 // The most significant value associated with the beacon.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeaconIdentityCondition/major
-func (b_ BeaconIdentityCondition) Major() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("major"))
+func (b_ BeaconIdentityCondition) Major() foundation.Number {
+	rv := objc.Send[foundation.Number](b_.ID, objc.Sel("major"))
 	return rv
 }
 
 // The least significant value associated with the beacon.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeaconIdentityCondition/minor
-func (b_ BeaconIdentityCondition) Minor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("minor"))
+func (b_ BeaconIdentityCondition) Minor() foundation.Number {
+	rv := objc.Send[foundation.Number](b_.ID, objc.Sel("minor"))
 	return rv
 }
 

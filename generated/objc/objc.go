@@ -11,9 +11,23 @@ import (
 
 // Type aliases for convenience
 type (
-	ID    = purego.ID
-	SEL   = purego.SEL
-	Class = purego.Class
+	ID       = purego.ID
+	SEL      = purego.SEL
+	Class    = purego.Class
+	Protocol = purego.Protocol
+)
+
+// Additional type aliases for advanced use cases
+type (
+	MethodDef = purego.MethodDef
+	FieldDef  = purego.FieldDef
+)
+
+// Re-export common functions for convenience
+var (
+	RegisterClass = purego.RegisterClass
+	RegisterName  = purego.RegisterName
+	GetProtocol   = purego.GetProtocol
 )
 
 // IObject is the root interface for all Objective-C objects.

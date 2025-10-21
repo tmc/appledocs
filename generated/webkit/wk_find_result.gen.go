@@ -80,5 +80,23 @@ func NewFindResult() FindResult {
 }
 
 
+// A Boolean value that indicates whether the web view found a match during the search.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkfindresult/matchfound
+func (f_ FindResult) MatchFound() bool {
+	rv := objc.Send[bool](f_.ID, objc.Sel("matchFound"))
+	return rv
+}
+
+
+// SetMatchFound sets the value of the matchFound property.
+// A Boolean value that indicates whether the web view found a match during the search.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkfindresult/matchfound
+func (f_ FindResult) SetMatchFound(value bool) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setMatchFound:"), value)
+}
+
 
 

@@ -30,7 +30,6 @@ type _ApplicationClass struct {
 type IApplication interface {
 	IResponder
 	ActivateIgnoringOtherApps(ignoreOtherApps bool)
-	ActivationPolicy() unsafe.Pointer
 	ApplicationPrintFiles(sender unsafe.Pointer, filenames unsafe.Pointer)
 	BeginModalSessionForWindow(window unsafe.Pointer) unsafe.Pointer
 	BeginSheetModalForWindowModalDelegateDidEndSelectorContextInfo(sheet unsafe.Pointer, docWindow unsafe.Pointer, modalDelegate objc.ID, didEndSelector objc.SEL, contextInfo unsafe.Pointer)
@@ -59,7 +58,6 @@ type IApplication interface {
 	RunPageLayout(sender objc.ID)
 	SendActionToFrom(action objc.SEL, target objc.ID, sender objc.ID) bool
 	SendEvent(event unsafe.Pointer)
-	SetActivationPolicy(activationPolicy unsafe.Pointer) bool
 	SetWindowsNeedUpdate(needUpdate bool)
 	StopModal()
 	Terminate(sender objc.ID)
@@ -132,14 +130,6 @@ func (ac _ApplicationClass) SharedApplication() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/activate(ignoringOtherApps:)
 func (a_ Application) ActivateIgnoringOtherApps(ignoreOtherApps bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("activateIgnoringOtherApps:"), ignoreOtherApps)
-}
-
-// Returns the app’s activation policy.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/activationPolicy()
-func (a_ Application) ActivationPolicy() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("activationPolicy"))
-	return rv
 }
 
 // Use the delegate method instead.
@@ -343,14 +333,6 @@ func (a_ Application) SendEvent(event unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("sendEvent:"), event)
 }
 
-// Attempts to modify the app’s activation policy.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/setActivationPolicy(_:)
-func (a_ Application) SetActivationPolicy(activationPolicy unsafe.Pointer) bool {
-	rv := objc.Send[bool](a_.ID, objc.Sel("setActivationPolicy:"), activationPolicy)
-	return rv
-}
-
 // Sets whether the receiver’s windows need updating when the receiver has finished processing the current event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/setWindowsNeedUpdate(_:)
@@ -518,6 +500,294 @@ func (a_ Application) SetServicesProvider(value objc.ID) {
 func (a_ Application) SharedApplication() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("sharedApplication"))
 	return rv
+}
+
+// The global variable for the shared app instance.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsapp
+func (a_ Application) NSApp() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("NSApp"))
+	return rv
+}
+
+
+// SetNSApp sets the value of the NSApp property.
+// The global variable for the shared app instance.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsapp
+func (a_ Application) SetNSApp(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setNSApp:"), value)
+}
+
+// The image used for the app’s icon.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/applicationiconimage
+func (a_ Application) ApplicationIconImage() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("applicationIconImage"))
+	return rv
+}
+
+
+// SetApplicationIconImage sets the value of the applicationIconImage property.
+// The image used for the app’s icon.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/applicationiconimage
+func (a_ Application) SetApplicationIconImage(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setApplicationIconImage:"), value)
+}
+
+// A boolean value indicating whether your application should suppress HDR content based on established policy.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/applicationshouldsuppresshighdynamicrangecontent
+func (a_ Application) ApplicationShouldSuppressHighDynamicRangeContent() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("applicationShouldSuppressHighDynamicRangeContent"))
+	return rv
+}
+
+
+// SetApplicationShouldSuppressHighDynamicRangeContent sets the value of the applicationShouldSuppressHighDynamicRangeContent property.
+// A boolean value indicating whether your application should suppress HDR content based on established policy.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/applicationshouldsuppresshighdynamicrangecontent
+func (a_ Application) SetApplicationShouldSuppressHighDynamicRangeContent(value bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setApplicationShouldSuppressHighDynamicRangeContent:"), value)
+}
+
+// The set of app presentation options that are currently in effect for the system.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/currentsystempresentationoptions
+func (a_ Application) CurrentSystemPresentationOptions() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("currentSystemPresentationOptions"))
+	return rv
+}
+
+
+// SetCurrentSystemPresentationOptions sets the value of the currentSystemPresentationOptions property.
+// The set of app presentation options that are currently in effect for the system.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/currentsystempresentationoptions
+func (a_ Application) SetCurrentSystemPresentationOptions(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setCurrentSystemPresentationOptions:"), value)
+}
+
+// The app delegate object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/delegate
+func (a_ Application) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+
+// SetDelegate sets the value of the delegate property.
+// The app delegate object.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/delegate
+func (a_ Application) SetDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setDelegate:"), value)
+}
+
+// The app’s Dock tile.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/docktile
+func (a_ Application) DockTile() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("dockTile"))
+	return rv
+}
+
+
+// SetDockTile sets the value of the dockTile property.
+// The app’s Dock tile.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/docktile
+func (a_ Application) SetDockTile(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setDockTile:"), value)
+}
+
+// The help menu used by the app.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/helpmenu
+func (a_ Application) HelpMenu() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("helpMenu"))
+	return rv
+}
+
+
+// SetHelpMenu sets the value of the helpMenu property.
+// The help menu used by the app.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/helpmenu
+func (a_ Application) SetHelpMenu(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setHelpMenu:"), value)
+}
+
+// A Boolean value indicating whether this is the active app.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/isactive
+func (a_ Application) IsActive() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("isActive"))
+	return rv
+}
+
+
+// SetIsActive sets the value of the isActive property.
+// A Boolean value indicating whether this is the active app.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/isactive
+func (a_ Application) SetIsActive(value bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setIsActive:"), value)
+}
+
+// A Boolean value indicating whether Full Keyboard Access is enabled in the Keyboard preference pane.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/isfullkeyboardaccessenabled
+func (a_ Application) IsFullKeyboardAccessEnabled() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("isFullKeyboardAccessEnabled"))
+	return rv
+}
+
+
+// SetIsFullKeyboardAccessEnabled sets the value of the isFullKeyboardAccessEnabled property.
+// A Boolean value indicating whether Full Keyboard Access is enabled in the Keyboard preference pane.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/isfullkeyboardaccessenabled
+func (a_ Application) SetIsFullKeyboardAccessEnabled(value bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setIsFullKeyboardAccessEnabled:"), value)
+}
+
+// A Boolean value indicating whether the app is registered with Apple Push Notification service (APNs).
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/isregisteredforremotenotifications
+func (a_ Application) IsRegisteredForRemoteNotifications() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("isRegisteredForRemoteNotifications"))
+	return rv
+}
+
+
+// SetIsRegisteredForRemoteNotifications sets the value of the isRegisteredForRemoteNotifications property.
+// A Boolean value indicating whether the app is registered with Apple Push Notification service (APNs).
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/isregisteredforremotenotifications
+func (a_ Application) SetIsRegisteredForRemoteNotifications(value bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setIsRegisteredForRemoteNotifications:"), value)
+}
+
+// A Boolean value indicating whether the main event loop is running.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/isrunning
+func (a_ Application) IsRunning() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("isRunning"))
+	return rv
+}
+
+
+// SetIsRunning sets the value of the isRunning property.
+// A Boolean value indicating whether the main event loop is running.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/isrunning
+func (a_ Application) SetIsRunning(value bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setIsRunning:"), value)
+}
+
+// An array of document objects arranged according to the front-to-back ordering of their associated windows.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/ordereddocuments
+func (a_ Application) OrderedDocuments() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("orderedDocuments"))
+	return rv
+}
+
+
+// SetOrderedDocuments sets the value of the orderedDocuments property.
+// An array of document objects arranged according to the front-to-back ordering of their associated windows.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/ordereddocuments
+func (a_ Application) SetOrderedDocuments(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setOrderedDocuments:"), value)
+}
+
+// An array of window objects arranged according to their front-to-back ordering on the screen.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/orderedwindows
+func (a_ Application) OrderedWindows() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("orderedWindows"))
+	return rv
+}
+
+
+// SetOrderedWindows sets the value of the orderedWindows property.
+// An array of window objects arranged according to their front-to-back ordering on the screen.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/orderedwindows
+func (a_ Application) SetOrderedWindows(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setOrderedWindows:"), value)
+}
+
+// The presentation options that should be in effect for the system when this app is active.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/presentationoptions-swift.property
+func (a_ Application) PresentationOptions() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("presentationOptions"))
+	return rv
+}
+
+
+// SetPresentationOptions sets the value of the presentationOptions property.
+// The presentation options that should be in effect for the system when this app is active.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/presentationoptions-swift.property
+func (a_ Application) SetPresentationOptions(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setPresentationOptions:"), value)
+}
+
+// The layout direction of the user interface.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/userinterfacelayoutdirection
+func (a_ Application) UserInterfaceLayoutDirection() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("userInterfaceLayoutDirection"))
+	return rv
+}
+
+
+// SetUserInterfaceLayoutDirection sets the value of the userInterfaceLayoutDirection property.
+// The layout direction of the user interface.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/userinterfacelayoutdirection
+func (a_ Application) SetUserInterfaceLayoutDirection(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setUserInterfaceLayoutDirection:"), value)
+}
+
+// Indicates the activation policy of the application.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsrunningapplication/activationpolicy
+func (a_ Application) ActivationPolicy() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("activationPolicy"))
+	return rv
+}
+
+
+// SetActivationPolicy sets the value of the activationPolicy property.
+// Indicates the activation policy of the application.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsrunningapplication/activationpolicy
+func (a_ Application) SetActivationPolicy(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setActivationPolicy:"), value)
 }
 
 

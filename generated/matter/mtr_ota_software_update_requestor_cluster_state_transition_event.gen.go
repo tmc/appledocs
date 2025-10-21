@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MTROtaSoftwareUpdateRequestorClusterStateTransitionEvent] class.
@@ -75,6 +76,66 @@ func NewMTROtaSoftwareUpdateRequestorClusterStateTransitionEvent() MTROtaSoftwar
 	return getMTROtaSoftwareUpdateRequestorClusterStateTransitionEventClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterstatetransitionevent-1xzd5/previousstate
+func (m_ MTROtaSoftwareUpdateRequestorClusterStateTransitionEvent) PreviousState() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("previousState"))
+	return rv
+}
+
+
+// SetPreviousState sets the value of the previousState property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterstatetransitionevent-1xzd5/previousstate
+func (m_ MTROtaSoftwareUpdateRequestorClusterStateTransitionEvent) SetPreviousState(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPreviousState:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterstatetransitionevent-1xzd5/targetsoftwareversion
+func (m_ MTROtaSoftwareUpdateRequestorClusterStateTransitionEvent) TargetSoftwareVersion() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("targetSoftwareVersion"))
+	return rv
+}
+
+
+// SetTargetSoftwareVersion sets the value of the targetSoftwareVersion property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterstatetransitionevent-1xzd5/targetsoftwareversion
+func (m_ MTROtaSoftwareUpdateRequestorClusterStateTransitionEvent) SetTargetSoftwareVersion(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTargetSoftwareVersion:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterstatetransitionevent-1xzd5/newstate
+func (m_ MTROtaSoftwareUpdateRequestorClusterStateTransitionEvent) NewState() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("newState"))
+	return rv
+}
+
+
+// SetNewState sets the value of the newState property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterstatetransitionevent-1xzd5/newstate
+func (m_ MTROtaSoftwareUpdateRequestorClusterStateTransitionEvent) SetNewState(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setNewState:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterstatetransitionevent-1xzd5/reason
+func (m_ MTROtaSoftwareUpdateRequestorClusterStateTransitionEvent) Reason() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("reason"))
+	return rv
+}
+
+
+// SetReason sets the value of the reason property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterstatetransitionevent-1xzd5/reason
+func (m_ MTROtaSoftwareUpdateRequestorClusterStateTransitionEvent) SetReason(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setReason:"), value)
+}
 
 
 

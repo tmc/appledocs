@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,8 +78,8 @@ func NewMTRDataTypeLocationDescriptorStruct() MTRDataTypeLocationDescriptorStruc
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeLocationDescriptorStruct/areaType
-func (m_ MTRDataTypeLocationDescriptorStruct) AreaType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("areaType"))
+func (m_ MTRDataTypeLocationDescriptorStruct) AreaType() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("areaType"))
 	return rv
 }
 
@@ -86,14 +87,14 @@ func (m_ MTRDataTypeLocationDescriptorStruct) AreaType() unsafe.Pointer {
 // SetAreaType sets the value of the areaType property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeLocationDescriptorStruct/areaType
-func (m_ MTRDataTypeLocationDescriptorStruct) SetAreaType(value unsafe.Pointer) {
+func (m_ MTRDataTypeLocationDescriptorStruct) SetAreaType(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAreaType:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeLocationDescriptorStruct/floorNumber
-func (m_ MTRDataTypeLocationDescriptorStruct) FloorNumber() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("floorNumber"))
+func (m_ MTRDataTypeLocationDescriptorStruct) FloorNumber() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("floorNumber"))
 	return rv
 }
 
@@ -101,7 +102,7 @@ func (m_ MTRDataTypeLocationDescriptorStruct) FloorNumber() unsafe.Pointer {
 // SetFloorNumber sets the value of the floorNumber property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeLocationDescriptorStruct/floorNumber
-func (m_ MTRDataTypeLocationDescriptorStruct) SetFloorNumber(value unsafe.Pointer) {
+func (m_ MTRDataTypeLocationDescriptorStruct) SetFloorNumber(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFloorNumber:"), value)
 }
 

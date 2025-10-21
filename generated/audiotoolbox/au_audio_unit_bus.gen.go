@@ -101,6 +101,24 @@ func (a_ AudioUnitBus) SetFormatError(format unsafe.Pointer, outError unsafe.Poi
 	return rv
 }
 
+// Determines whether the bus is active.
+//
+// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounitbus/isenabled
+func (a_ AudioUnitBus) IsEnabled() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("isEnabled"))
+	return rv
+}
+
+
+// SetIsEnabled sets the value of the isEnabled property.
+// Determines whether the bus is active.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounitbus/isenabled
+func (a_ AudioUnitBus) SetIsEnabled(value bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setIsEnabled:"), value)
+}
+
 // The bus type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitBus/busType
@@ -112,8 +130,8 @@ func (a_ AudioUnitBus) BusType() unsafe.Pointer {
 // Information about latency in the audio unit’s processing context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitBus/contextPresentationLatency
-func (a_ AudioUnitBus) ContextPresentationLatency() TimeInterval {
-	rv := objc.Send[TimeInterval](a_.ID, objc.Sel("contextPresentationLatency"))
+func (a_ AudioUnitBus) ContextPresentationLatency() foundation.TimeInterval {
+	rv := objc.Send[foundation.TimeInterval](a_.ID, objc.Sel("contextPresentationLatency"))
 	return rv
 }
 
@@ -123,7 +141,7 @@ func (a_ AudioUnitBus) ContextPresentationLatency() TimeInterval {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitBus/contextPresentationLatency
-func (a_ AudioUnitBus) SetContextPresentationLatency(value TimeInterval) {
+func (a_ AudioUnitBus) SetContextPresentationLatency(value foundation.TimeInterval) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setContextPresentationLatency:"), value)
 }
 
@@ -223,8 +241,8 @@ func (a_ AudioUnitBus) SetShouldAllocateBuffer(value bool) {
 // An array of numbers indicating the supported number of channels for this bus.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitBus/supportedChannelCounts
-func (a_ AudioUnitBus) SupportedChannelCounts() []foundation.NSNumber {
-	rv := objc.Send[[]foundation.NSNumber](a_.ID, objc.Sel("supportedChannelCounts"))
+func (a_ AudioUnitBus) SupportedChannelCounts() []foundation.Number {
+	rv := objc.Send[[]foundation.Number](a_.ID, objc.Sel("supportedChannelCounts"))
 	return rv
 }
 
@@ -234,7 +252,7 @@ func (a_ AudioUnitBus) SupportedChannelCounts() []foundation.NSNumber {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitBus/supportedChannelCounts
-func (a_ AudioUnitBus) SetSupportedChannelCounts(value []foundation.NSNumber) {
+func (a_ AudioUnitBus) SetSupportedChannelCounts(value []foundation.Number) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -251,8 +269,8 @@ func (a_ AudioUnitBus) SetSupportedChannelCounts(value []foundation.NSNumber) {
 // An array of audio channel layout tags.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitBus/supportedChannelLayoutTags
-func (a_ AudioUnitBus) SupportedChannelLayoutTags() []foundation.NSNumber {
-	rv := objc.Send[[]foundation.NSNumber](a_.ID, objc.Sel("supportedChannelLayoutTags"))
+func (a_ AudioUnitBus) SupportedChannelLayoutTags() []foundation.Number {
+	rv := objc.Send[[]foundation.Number](a_.ID, objc.Sel("supportedChannelLayoutTags"))
 	return rv
 }
 

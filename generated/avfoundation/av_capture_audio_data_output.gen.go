@@ -79,5 +79,77 @@ func NewCaptureAudioDataOutput() CaptureAudioDataOutput {
 }
 
 
+// The settings used to decode or re-encode audio before it’s output.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureaudiodataoutput/audiosettings
+func (c_ CaptureAudioDataOutput) AudioSettings() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("audioSettings"))
+	return rv
+}
+
+
+// SetAudioSettings sets the value of the audioSettings property.
+// The settings used to decode or re-encode audio before it’s output.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureaudiodataoutput/audiosettings
+func (c_ CaptureAudioDataOutput) SetAudioSettings(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setAudioSettings:"), objc.String(value))
+}
+
+// The queue on which delegate callbacks are invoked
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureaudiodataoutput/samplebuffercallbackqueue
+func (c_ CaptureAudioDataOutput) SampleBufferCallbackQueue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("sampleBufferCallbackQueue"))
+	return rv
+}
+
+
+// SetSampleBufferCallbackQueue sets the value of the sampleBufferCallbackQueue property.
+// The queue on which delegate callbacks are invoked
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureaudiodataoutput/samplebuffercallbackqueue
+func (c_ CaptureAudioDataOutput) SetSampleBufferCallbackQueue(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setSampleBufferCallbackQueue:"), value)
+}
+
+// The capture object’s delegate.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureaudiodataoutput/samplebufferdelegate
+func (c_ CaptureAudioDataOutput) SampleBufferDelegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("sampleBufferDelegate"))
+	return rv
+}
+
+
+// SetSampleBufferDelegate sets the value of the sampleBufferDelegate property.
+// The capture object’s delegate.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureaudiodataoutput/samplebufferdelegate
+func (c_ CaptureAudioDataOutput) SetSampleBufferDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setSampleBufferDelegate:"), value)
+}
+
+// The audio channel layout tag of the audio sample buffers produced by the audio data output.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureaudiodataoutput/spatialaudiochannellayouttag
+func (c_ CaptureAudioDataOutput) SpatialAudioChannelLayoutTag() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("spatialAudioChannelLayoutTag"))
+	return rv
+}
+
+
+// SetSpatialAudioChannelLayoutTag sets the value of the spatialAudioChannelLayoutTag property.
+// The audio channel layout tag of the audio sample buffers produced by the audio data output.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureaudiodataoutput/spatialaudiochannellayouttag
+func (c_ CaptureAudioDataOutput) SetSpatialAudioChannelLayoutTag(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setSpatialAudioChannelLayoutTag:"), value)
+}
+
 
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [FSPathURLResource] class.
@@ -83,13 +84,28 @@ func NewFSPathURLResource() FSPathURLResource {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSPathURLResource/init(url:writable:)
-func NewFSPathURLResourceWithURLWritable(URL unsafe.Pointer, writable bool) FSPathURLResource {
+func NewFSPathURLResourceWithURLWritable(URL foundation.URL, writable bool) FSPathURLResource {
 	instance := getFSPathURLResourceClass().Alloc()
 	rv := objc.Send[FSPathURLResource](instance.ID, objc.Sel("initWithURL:writable:"), URL, writable)
 	rv.Autorelease()
 	return rv
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/fskit/fspathurlresource/iswritable
+func (f_ FSPathURLResource) IsWritable() bool {
+	rv := objc.Send[bool](f_.ID, objc.Sel("isWritable"))
+	return rv
+}
+
+
+// SetIsWritable sets the value of the isWritable property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/fskit/fspathurlresource/iswritable
+func (f_ FSPathURLResource) SetIsWritable(value bool) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setIsWritable:"), value)
+}
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSPathURLResource/isWritable
@@ -100,8 +116,8 @@ func (f_ FSPathURLResource) Writable() bool {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSPathURLResource/url
-func (f_ FSPathURLResource) Url() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("url"))
+func (f_ FSPathURLResource) Url() foundation.URL {
+	rv := objc.Send[foundation.URL](f_.ID, objc.Sel("url"))
 	return rv
 }
 

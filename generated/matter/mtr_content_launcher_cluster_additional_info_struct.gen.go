@@ -75,5 +75,35 @@ func NewMTRContentLauncherClusterAdditionalInfoStruct() MTRContentLauncherCluste
 }
 
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusteradditionalinfostruct/name
+func (m_ MTRContentLauncherClusterAdditionalInfoStruct) Name() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("name"))
+	return rv
+}
+
+
+// SetName sets the value of the name property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusteradditionalinfostruct/name
+func (m_ MTRContentLauncherClusterAdditionalInfoStruct) SetName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusteradditionalinfostruct/value
+func (m_ MTRContentLauncherClusterAdditionalInfoStruct) Value() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("value"))
+	return rv
+}
+
+
+// SetValue sets the value of the value property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusteradditionalinfostruct/value
+func (m_ MTRContentLauncherClusterAdditionalInfoStruct) SetValue(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), objc.String(value))
+}
+
 
 

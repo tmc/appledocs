@@ -105,6 +105,24 @@ func NewPHASEShapeWithEngineMeshMaterials(engine unsafe.Pointer, mesh unsafe.Poi
 }
 
 
+// An array of shapes that collectively define the audio-emitting surface area of a volumetric source.
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasesource/shapes
+func (p_ PHASEShape) Shapes() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("shapes"))
+	return rv
+}
+
+
+// SetShapes sets the value of the shapes property.
+// An array of shapes that collectively define the audio-emitting surface area of a volumetric source.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasesource/shapes
+func (p_ PHASEShape) SetShapes(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setShapes:"), value)
+}
+
 // An array of objects that collectively describe the physical characteristics of a surface.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEShape/elements

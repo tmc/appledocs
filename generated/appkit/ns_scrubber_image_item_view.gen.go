@@ -107,5 +107,23 @@ func (s_ ScrubberImageItemView) ImageView() unsafe.Pointer {
 	return rv
 }
 
+// The image displayed by the scrubber item.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberimageitemview/image
+func (s_ ScrubberImageItemView) Image() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("image"))
+	return rv
+}
+
+
+// SetImage sets the value of the image property.
+// The image displayed by the scrubber item.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberimageitemview/image
+func (s_ ScrubberImageItemView) SetImage(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setImage:"), value)
+}
+
 
 

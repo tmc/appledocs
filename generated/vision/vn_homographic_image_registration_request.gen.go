@@ -81,5 +81,31 @@ func NewHomographicImageRegistrationRequest() HomographicImageRegistrationReques
 }
 
 
+// A constant for specifying revision 1 of the homographic image registration request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnhomographicimageregistrationrequestrevision1
+func (h_ HomographicImageRegistrationRequest) VNHomographicImageRegistrationRequestRevision1() int {
+	rv := objc.Send[int](h_.ID, objc.Sel("VNHomographicImageRegistrationRequestRevision1"))
+	return rv
+}
+
+// The results of the image registration request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnhomographicimageregistrationrequest/results
+func (h_ HomographicImageRegistrationRequest) Results() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("results"))
+	return rv
+}
+
+
+// SetResults sets the value of the results property.
+// The results of the image registration request.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnhomographicimageregistrationrequest/results
+func (h_ HomographicImageRegistrationRequest) SetResults(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setResults:"), value)
+}
+
 
 

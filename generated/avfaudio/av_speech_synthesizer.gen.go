@@ -88,6 +88,132 @@ func (s_ SpeechSynthesizer) SpeakUtterance(utterance unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("speakUtterance:"), utterance)
 }
 
+// A Boolean value that indicates whether a speech synthesizer is in a paused state.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesizer/ispaused
+func (s_ SpeechSynthesizer) IsPaused() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("isPaused"))
+	return rv
+}
+
+
+// SetIsPaused sets the value of the isPaused property.
+// A Boolean value that indicates whether a speech synthesizer is in a paused state.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesizer/ispaused
+func (s_ SpeechSynthesizer) SetIsPaused(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setIsPaused:"), value)
+}
+
+// The voice the speech synthesizer uses when speaking the utterance.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechutterance/voice
+func (s_ SpeechSynthesizer) Voice() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("voice"))
+	return rv
+}
+
+
+// SetVoice sets the value of the voice property.
+// The voice the speech synthesizer uses when speaking the utterance.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechutterance/voice
+func (s_ SpeechSynthesizer) SetVoice(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setVoice:"), value)
+}
+
+// A Boolean value that specifies whether to send synthesized speech to an active call.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesizer/mixtotelephonyuplink
+func (s_ SpeechSynthesizer) MixToTelephonyUplink() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("mixToTelephonyUplink"))
+	return rv
+}
+
+
+// SetMixToTelephonyUplink sets the value of the mixToTelephonyUplink property.
+// A Boolean value that specifies whether to send synthesized speech to an active call.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesizer/mixtotelephonyuplink
+func (s_ SpeechSynthesizer) SetMixToTelephonyUplink(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setMixToTelephonyUplink:"), value)
+}
+
+// An array of audio session channels to route generated speech.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesizer/outputchannels
+func (s_ SpeechSynthesizer) OutputChannels() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("outputChannels"))
+	return rv
+}
+
+
+// SetOutputChannels sets the value of the outputChannels property.
+// An array of audio session channels to route generated speech.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesizer/outputchannels
+func (s_ SpeechSynthesizer) SetOutputChannels(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setOutputChannels:"), value)
+}
+
+// A Boolean value that indicates whether the speech synthesizer is speaking or is in a paused state and has utterances to speak.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesizer/isspeaking
+func (s_ SpeechSynthesizer) IsSpeaking() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("isSpeaking"))
+	return rv
+}
+
+
+// SetIsSpeaking sets the value of the isSpeaking property.
+// A Boolean value that indicates whether the speech synthesizer is speaking or is in a paused state and has utterances to speak.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesizer/isspeaking
+func (s_ SpeechSynthesizer) SetIsSpeaking(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setIsSpeaking:"), value)
+}
+
+// The amount of time the speech synthesizer pauses before speaking the utterance.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechutterance/preutterancedelay
+func (s_ SpeechSynthesizer) PreUtteranceDelay() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("preUtteranceDelay"))
+	return rv
+}
+
+
+// SetPreUtteranceDelay sets the value of the preUtteranceDelay property.
+// The amount of time the speech synthesizer pauses before speaking the utterance.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechutterance/preutterancedelay
+func (s_ SpeechSynthesizer) SetPreUtteranceDelay(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setPreUtteranceDelay:"), value)
+}
+
+// A Boolean value that specifies whether the app manages the audio session.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesizer/usesapplicationaudiosession
+func (s_ SpeechSynthesizer) UsesApplicationAudioSession() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("usesApplicationAudioSession"))
+	return rv
+}
+
+
+// SetUsesApplicationAudioSession sets the value of the usesApplicationAudioSession property.
+// A Boolean value that specifies whether the app manages the audio session.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesizer/usesapplicationaudiosession
+func (s_ SpeechSynthesizer) SetUsesApplicationAudioSession(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setUsesApplicationAudioSession:"), value)
+}
+
 // The delegate object for the speech synthesizer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesizer/delegate

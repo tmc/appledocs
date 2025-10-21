@@ -122,5 +122,164 @@ func (i_ ImageView) SetSymbolConfiguration(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSymbolConfiguration:"), value)
 }
 
+// A Boolean value indicating whether the image view lets the user cut, copy, and paste the image contents.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimageview/allowscutcopypaste
+func (i_ ImageView) AllowsCutCopyPaste() bool {
+	rv := objc.Send[bool](i_.ID, objc.Sel("allowsCutCopyPaste"))
+	return rv
+}
+
+
+// SetAllowsCutCopyPaste sets the value of the allowsCutCopyPaste property.
+// A Boolean value indicating whether the image view lets the user cut, copy, and paste the image contents.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimageview/allowscutcopypaste
+func (i_ ImageView) SetAllowsCutCopyPaste(value bool) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setAllowsCutCopyPaste:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimageview/contenttintcolor
+func (i_ ImageView) ContentTintColor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("contentTintColor"))
+	return rv
+}
+
+
+// SetContentTintColor sets the value of the contentTintColor property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimageview/contenttintcolor
+func (i_ ImageView) SetContentTintColor(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setContentTintColor:"), value)
+}
+
+// The image displayed by the image view.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimageview/image
+func (i_ ImageView) Image() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("image"))
+	return rv
+}
+
+
+// SetImage sets the value of the image property.
+// The image displayed by the image view.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimageview/image
+func (i_ ImageView) SetImage(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setImage:"), value)
+}
+
+// The alignment of the cell’s image inside the image view.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimageview/imagealignment
+func (i_ ImageView) ImageAlignment() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("imageAlignment"))
+	return rv
+}
+
+
+// SetImageAlignment sets the value of the imageAlignment property.
+// The alignment of the cell’s image inside the image view.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimageview/imagealignment
+func (i_ ImageView) SetImageAlignment(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setImageAlignment:"), value)
+}
+
+// The resolved dynamic range of the fully resolved image content.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimageview/imagedynamicrange
+func (i_ ImageView) ImageDynamicRange() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("imageDynamicRange"))
+	return rv
+}
+
+
+// SetImageDynamicRange sets the value of the imageDynamicRange property.
+// The resolved dynamic range of the fully resolved image content.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimageview/imagedynamicrange
+func (i_ ImageView) SetImageDynamicRange(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setImageDynamicRange:"), value)
+}
+
+// The style of frame that appears around the image.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimageview/imageframestyle
+func (i_ ImageView) ImageFrameStyle() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("imageFrameStyle"))
+	return rv
+}
+
+
+// SetImageFrameStyle sets the value of the imageFrameStyle property.
+// The style of frame that appears around the image.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimageview/imageframestyle
+func (i_ ImageView) SetImageFrameStyle(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setImageFrameStyle:"), value)
+}
+
+// The scaling mode applied to make the cell’s image fit the frame of the image view.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimageview/imagescaling
+func (i_ ImageView) ImageScaling() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("imageScaling"))
+	return rv
+}
+
+
+// SetImageScaling sets the value of the imageScaling property.
+// The scaling mode applied to make the cell’s image fit the frame of the image view.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimageview/imagescaling
+func (i_ ImageView) SetImageScaling(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setImageScaling:"), value)
+}
+
+// A Boolean value indicating whether the user can drag a new image into the image view.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimageview/iseditable
+func (i_ ImageView) IsEditable() bool {
+	rv := objc.Send[bool](i_.ID, objc.Sel("isEditable"))
+	return rv
+}
+
+
+// SetIsEditable sets the value of the isEditable property.
+// A Boolean value indicating whether the user can drag a new image into the image view.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimageview/iseditable
+func (i_ ImageView) SetIsEditable(value bool) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setIsEditable:"), value)
+}
+
+// The preferred dynamic range when displaying an image in the receiving image view.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimageview/preferredimagedynamicrange
+func (i_ ImageView) PreferredImageDynamicRange() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("preferredImageDynamicRange"))
+	return rv
+}
+
+
+// SetPreferredImageDynamicRange sets the value of the preferredImageDynamicRange property.
+// The preferred dynamic range when displaying an image in the receiving image view.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimageview/preferredimagedynamicrange
+func (i_ ImageView) SetPreferredImageDynamicRange(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setPreferredImageDynamicRange:"), value)
+}
+
 
 

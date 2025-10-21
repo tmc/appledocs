@@ -75,5 +75,35 @@ func NewMTRUserLabelClusterLabelStruct() MTRUserLabelClusterLabelStruct {
 }
 
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtruserlabelclusterlabelstruct/value
+func (m_ MTRUserLabelClusterLabelStruct) Value() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("value"))
+	return rv
+}
+
+
+// SetValue sets the value of the value property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtruserlabelclusterlabelstruct/value
+func (m_ MTRUserLabelClusterLabelStruct) SetValue(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), objc.String(value))
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtruserlabelclusterlabelstruct/label
+func (m_ MTRUserLabelClusterLabelStruct) Label() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("label"))
+	return rv
+}
+
+
+// SetLabel sets the value of the label property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtruserlabelclusterlabelstruct/label
+func (m_ MTRUserLabelClusterLabelStruct) SetLabel(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), objc.String(value))
+}
+
 
 

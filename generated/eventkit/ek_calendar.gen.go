@@ -118,6 +118,42 @@ func (ec _EKCalendarClass) CalendarForEntityTypeEventStore(entityType unsafe.Poi
 	return rv
 }
 
+// A Boolean value indicating whether the calendar’s properties can be edited or deleted.
+//
+// [Full Topic]: https://developer.apple.com/documentation/eventkit/ekcalendar/isimmutable
+func (e_ EKCalendar) IsImmutable() bool {
+	rv := objc.Send[bool](e_.ID, objc.Sel("isImmutable"))
+	return rv
+}
+
+
+// SetIsImmutable sets the value of the isImmutable property.
+// A Boolean value indicating whether the calendar’s properties can be edited or deleted.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/eventkit/ekcalendar/isimmutable
+func (e_ EKCalendar) SetIsImmutable(value bool) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setIsImmutable:"), value)
+}
+
+// A Boolean value indicating whether the calendar is a subscribed calendar.
+//
+// [Full Topic]: https://developer.apple.com/documentation/eventkit/ekcalendar/issubscribed
+func (e_ EKCalendar) IsSubscribed() bool {
+	rv := objc.Send[bool](e_.ID, objc.Sel("isSubscribed"))
+	return rv
+}
+
+
+// SetIsSubscribed sets the value of the isSubscribed property.
+// A Boolean value indicating whether the calendar is a subscribed calendar.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/eventkit/ekcalendar/issubscribed
+func (e_ EKCalendar) SetIsSubscribed(value bool) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setIsSubscribed:"), value)
+}
+
 // The entity types this calendar can contain.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar/allowedEntityTypes

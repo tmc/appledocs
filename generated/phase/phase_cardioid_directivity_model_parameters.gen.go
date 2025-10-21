@@ -81,5 +81,23 @@ func NewPHASECardioidDirectivityModelParameters() PHASECardioidDirectivityModelP
 }
 
 
+// An array of frequencies that describe varying sound emission across the spectrum.
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasecardioiddirectivitymodelparameters/subbandparameters
+func (p_ PHASECardioidDirectivityModelParameters) SubbandParameters() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("subbandParameters"))
+	return rv
+}
+
+
+// SetSubbandParameters sets the value of the subbandParameters property.
+// An array of frequencies that describe varying sound emission across the spectrum.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasecardioiddirectivitymodelparameters/subbandparameters
+func (p_ PHASECardioidDirectivityModelParameters) SetSubbandParameters(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setSubbandParameters:"), value)
+}
+
 
 

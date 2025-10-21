@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [AudioUnit] class.
@@ -29,7 +30,7 @@ type _AudioUnitClass struct {
 // An interface definition for the [AudioUnit] class.
 type IAudioUnit interface {
 	IAudioNode
-	LoadAudioUnitPresetAtURLError(url unsafe.Pointer, outError unsafe.Pointer) bool
+	LoadAudioUnitPresetAtURLError(url foundation.URL, outError unsafe.Pointer) bool
 }
 
 // A subclass of the audio node class that, processes audio either in real time or nonreal time, depending on the type of the audio unit.
@@ -83,9 +84,99 @@ func NewAudioUnit() AudioUnit {
 // Loads an audio unit using a specified preset.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioUnit/loadPreset(at:)
-func (a_ AudioUnit) LoadAudioUnitPresetAtURLError(url unsafe.Pointer, outError unsafe.Pointer) bool {
+func (a_ AudioUnit) LoadAudioUnitPresetAtURLError(url foundation.URL, outError unsafe.Pointer) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("loadAudioUnitPresetAtURL:error:"), url, outError)
 	return rv
+}
+
+// The name of the manufacturer of the audio unit.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounit/manufacturername
+func (a_ AudioUnit) ManufacturerName() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("manufacturerName"))
+	return rv
+}
+
+
+// SetManufacturerName sets the value of the manufacturerName property.
+// The name of the manufacturer of the audio unit.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounit/manufacturername
+func (a_ AudioUnit) SetManufacturerName(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setManufacturerName:"), objc.String(value))
+}
+
+// The version number of the audio unit.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounit/version
+func (a_ AudioUnit) Version() int {
+	rv := objc.Send[int](a_.ID, objc.Sel("version"))
+	return rv
+}
+
+
+// SetVersion sets the value of the version property.
+// The version number of the audio unit.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounit/version
+func (a_ AudioUnit) SetVersion(value int) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setVersion:"), value)
+}
+
+// The audio component description that represents the underlying Core Audio audio unit.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounit/audiocomponentdescription
+func (a_ AudioUnit) AudioComponentDescription() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("audioComponentDescription"))
+	return rv
+}
+
+
+// SetAudioComponentDescription sets the value of the audioComponentDescription property.
+// The audio component description that represents the underlying Core Audio audio unit.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounit/audiocomponentdescription
+func (a_ AudioUnit) SetAudioComponentDescription(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAudioComponentDescription:"), value)
+}
+
+// The name of the audio unit.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounit/name
+func (a_ AudioUnit) Name() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("name"))
+	return rv
+}
+
+
+// SetName sets the value of the name property.
+// The name of the audio unit.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounit/name
+func (a_ AudioUnit) SetName(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setName:"), objc.String(value))
+}
+
+// The audio unit class wrapping or underlying the implementation’s audio unit.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounit/auaudiounit
+func (a_ AudioUnit) AuAudioUnit() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("auAudioUnit"))
+	return rv
+}
+
+
+// SetAuAudioUnit sets the value of the auAudioUnit property.
+// The audio unit class wrapping or underlying the implementation’s audio unit.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounit/auaudiounit
+func (a_ AudioUnit) SetAuAudioUnit(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAuAudioUnit:"), value)
 }
 
 // The underlying Core Audio audio unit.

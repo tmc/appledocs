@@ -109,4 +109,94 @@ func (s_ StepperTouchBarItem) SetMaxValue(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setMaxValue:"), value)
 }
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssteppertouchbaritem/action
+func (s_ StepperTouchBarItem) Action() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("action"))
+	return rv
+}
+
+
+// SetAction sets the value of the action property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssteppertouchbaritem/action
+func (s_ StepperTouchBarItem) SetAction(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setAction:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssteppertouchbaritem/customizationlabel
+func (s_ StepperTouchBarItem) CustomizationLabel() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("customizationLabel"))
+	return rv
+}
+
+
+// SetCustomizationLabel sets the value of the customizationLabel property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssteppertouchbaritem/customizationlabel
+func (s_ StepperTouchBarItem) SetCustomizationLabel(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setCustomizationLabel:"), objc.String(value))
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssteppertouchbaritem/increment
+func (s_ StepperTouchBarItem) Increment() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("increment"))
+	return rv
+}
+
+
+// SetIncrement sets the value of the increment property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssteppertouchbaritem/increment
+func (s_ StepperTouchBarItem) SetIncrement(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setIncrement:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssteppertouchbaritem/minvalue
+func (s_ StepperTouchBarItem) MinValue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("minValue"))
+	return rv
+}
+
+
+// SetMinValue sets the value of the minValue property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssteppertouchbaritem/minvalue
+func (s_ StepperTouchBarItem) SetMinValue(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setMinValue:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssteppertouchbaritem/target
+func (s_ StepperTouchBarItem) Target() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("target"))
+	return rv
+}
+
+
+// SetTarget sets the value of the target property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssteppertouchbaritem/target
+func (s_ StepperTouchBarItem) SetTarget(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setTarget:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssteppertouchbaritem/value
+func (s_ StepperTouchBarItem) Value() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("value"))
+	return rv
+}
+
+
+// SetValue sets the value of the value property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssteppertouchbaritem/value
+func (s_ StepperTouchBarItem) SetValue(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setValue:"), value)
+}
+
 

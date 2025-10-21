@@ -80,5 +80,137 @@ func NewAccelerationStructureGeometryDescriptor() AccelerationStructureGeometryD
 }
 
 
+// A Boolean value that indicates whether Metal calls the ray-intersection test more than once per primitive on the structure.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuregeometrydescriptor/allowduplicateintersectionfunctioninvocation
+func (a_ AccelerationStructureGeometryDescriptor) AllowDuplicateIntersectionFunctionInvocation() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("allowDuplicateIntersectionFunctionInvocation"))
+	return rv
+}
+
+
+// SetAllowDuplicateIntersectionFunctionInvocation sets the value of the allowDuplicateIntersectionFunctionInvocation property.
+// A Boolean value that indicates whether Metal calls the ray-intersection test more than once per primitive on the structure.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuregeometrydescriptor/allowduplicateintersectionfunctioninvocation
+func (a_ AccelerationStructureGeometryDescriptor) SetAllowDuplicateIntersectionFunctionInvocation(value bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowDuplicateIntersectionFunctionInvocation:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuregeometrydescriptor/primitivedatabufferoffset
+func (a_ AccelerationStructureGeometryDescriptor) PrimitiveDataBufferOffset() int {
+	rv := objc.Send[int](a_.ID, objc.Sel("primitiveDataBufferOffset"))
+	return rv
+}
+
+
+// SetPrimitiveDataBufferOffset sets the value of the primitiveDataBufferOffset property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuregeometrydescriptor/primitivedatabufferoffset
+func (a_ AccelerationStructureGeometryDescriptor) SetPrimitiveDataBufferOffset(value int) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setPrimitiveDataBufferOffset:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuregeometrydescriptor/primitivedataelementsize
+func (a_ AccelerationStructureGeometryDescriptor) PrimitiveDataElementSize() int {
+	rv := objc.Send[int](a_.ID, objc.Sel("primitiveDataElementSize"))
+	return rv
+}
+
+
+// SetPrimitiveDataElementSize sets the value of the primitiveDataElementSize property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuregeometrydescriptor/primitivedataelementsize
+func (a_ AccelerationStructureGeometryDescriptor) SetPrimitiveDataElementSize(value int) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setPrimitiveDataElementSize:"), value)
+}
+
+// An index into the intersection table for determining which intersection function Metal calls when it intersects a ray with the acceleration structure.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuregeometrydescriptor/intersectionfunctiontableoffset
+func (a_ AccelerationStructureGeometryDescriptor) IntersectionFunctionTableOffset() int {
+	rv := objc.Send[int](a_.ID, objc.Sel("intersectionFunctionTableOffset"))
+	return rv
+}
+
+
+// SetIntersectionFunctionTableOffset sets the value of the intersectionFunctionTableOffset property.
+// An index into the intersection table for determining which intersection function Metal calls when it intersects a ray with the acceleration structure.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuregeometrydescriptor/intersectionfunctiontableoffset
+func (a_ AccelerationStructureGeometryDescriptor) SetIntersectionFunctionTableOffset(value int) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setIntersectionFunctionTableOffset:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuregeometrydescriptor/primitivedatabuffer
+func (a_ AccelerationStructureGeometryDescriptor) PrimitiveDataBuffer() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("primitiveDataBuffer"))
+	return rv
+}
+
+
+// SetPrimitiveDataBuffer sets the value of the primitiveDataBuffer property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuregeometrydescriptor/primitivedatabuffer
+func (a_ AccelerationStructureGeometryDescriptor) SetPrimitiveDataBuffer(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setPrimitiveDataBuffer:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuregeometrydescriptor/primitivedatastride
+func (a_ AccelerationStructureGeometryDescriptor) PrimitiveDataStride() int {
+	rv := objc.Send[int](a_.ID, objc.Sel("primitiveDataStride"))
+	return rv
+}
+
+
+// SetPrimitiveDataStride sets the value of the primitiveDataStride property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuregeometrydescriptor/primitivedatastride
+func (a_ AccelerationStructureGeometryDescriptor) SetPrimitiveDataStride(value int) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setPrimitiveDataStride:"), value)
+}
+
+// A label for the geometry structure, suitable for debugging.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuregeometrydescriptor/label
+func (a_ AccelerationStructureGeometryDescriptor) Label() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("label"))
+	return rv
+}
+
+
+// SetLabel sets the value of the label property.
+// A label for the geometry structure, suitable for debugging.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuregeometrydescriptor/label
+func (a_ AccelerationStructureGeometryDescriptor) SetLabel(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setLabel:"), objc.String(value))
+}
+
+// A Boolean value that determines whether the geometry data in the acceleration structure needs to skip triangle-intersection tests.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuregeometrydescriptor/opaque
+func (a_ AccelerationStructureGeometryDescriptor) Opaque() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("opaque"))
+	return rv
+}
+
+
+// SetOpaque sets the value of the opaque property.
+// A Boolean value that determines whether the geometry data in the acceleration structure needs to skip triangle-intersection tests.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuregeometrydescriptor/opaque
+func (a_ AccelerationStructureGeometryDescriptor) SetOpaque(value bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setOpaque:"), value)
+}
+
 
 

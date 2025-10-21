@@ -80,5 +80,41 @@ func NewIKImageEditPanel() IKImageEditPanel {
 }
 
 
+// Specifies the edit panel’s dataSource.
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartz/ikimageeditpanel/datasource
+func (i_ IKImageEditPanel) DataSource() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("dataSource"))
+	return rv
+}
+
+
+// SetDataSource sets the value of the dataSource property.
+// Specifies the edit panel’s dataSource.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartz/ikimageeditpanel/datasource
+func (i_ IKImageEditPanel) SetDataSource(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setDataSource:"), value)
+}
+
+// Returns the current array of user adjustments to effects.
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartz/ikimageeditpanel/filterarray
+func (i_ IKImageEditPanel) FilterArray() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("filterArray"))
+	return rv
+}
+
+
+// SetFilterArray sets the value of the filterArray property.
+// Returns the current array of user adjustments to effects.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartz/ikimageeditpanel/filterarray
+func (i_ IKImageEditPanel) SetFilterArray(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setFilterArray:"), value)
+}
+
 
 

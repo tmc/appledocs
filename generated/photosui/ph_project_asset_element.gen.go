@@ -82,6 +82,42 @@ func NewPHProjectAssetElement() PHProjectAssetElement {
 }
 
 
+// The unique identifier the system associates for a local asset object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phassetresource/assetlocalidentifier
+func (p_ PHProjectAssetElement) AssetLocalIdentifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("assetLocalIdentifier"))
+	return rv
+}
+
+
+// SetAssetLocalIdentifier sets the value of the assetLocalIdentifier property.
+// The unique identifier the system associates for a local asset object.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phassetresource/assetlocalidentifier
+func (p_ PHProjectAssetElement) SetAssetLocalIdentifier(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setAssetLocalIdentifier:"), objc.String(value))
+}
+
+// An array containing all cloud asset identifiers referenced in the content.
+//
+// [Full Topic]: https://developer.apple.com/documentation/photosui/phprojectsectioncontent/cloudassetidentifiers
+func (p_ PHProjectAssetElement) CloudAssetIdentifiers() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("cloudAssetIdentifiers"))
+	return rv
+}
+
+
+// SetCloudAssetIdentifiers sets the value of the cloudAssetIdentifiers property.
+// An array containing all cloud asset identifiers referenced in the content.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/photosui/phprojectsectioncontent/cloudassetidentifiers
+func (p_ PHProjectAssetElement) SetCloudAssetIdentifiers(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setCloudAssetIdentifiers:"), value)
+}
+
 // A string annotation attached to the asset.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHProjectAssetElement/annotation

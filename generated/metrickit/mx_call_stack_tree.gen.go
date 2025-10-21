@@ -87,5 +87,13 @@ func (m_ MXCallStackTree) JSONRepresentation() unsafe.Pointer {
 	return rv
 }
 
+// Error domain for error values from app metrics.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metrickit/mxerrordomain
+func (m_ MXCallStackTree) MXErrorDomain() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("MXErrorDomain"))
+	return rv
+}
+
 
 

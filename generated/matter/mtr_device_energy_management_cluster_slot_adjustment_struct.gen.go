@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,8 +78,8 @@ func NewMTRDeviceEnergyManagementClusterSlotAdjustmentStruct() MTRDeviceEnergyMa
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterSlotAdjustmentStruct/duration
-func (m_ MTRDeviceEnergyManagementClusterSlotAdjustmentStruct) Duration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("duration"))
+func (m_ MTRDeviceEnergyManagementClusterSlotAdjustmentStruct) Duration() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("duration"))
 	return rv
 }
 
@@ -86,14 +87,14 @@ func (m_ MTRDeviceEnergyManagementClusterSlotAdjustmentStruct) Duration() unsafe
 // SetDuration sets the value of the duration property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterSlotAdjustmentStruct/duration
-func (m_ MTRDeviceEnergyManagementClusterSlotAdjustmentStruct) SetDuration(value unsafe.Pointer) {
+func (m_ MTRDeviceEnergyManagementClusterSlotAdjustmentStruct) SetDuration(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDuration:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterSlotAdjustmentStruct/nominalPower
-func (m_ MTRDeviceEnergyManagementClusterSlotAdjustmentStruct) NominalPower() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("nominalPower"))
+func (m_ MTRDeviceEnergyManagementClusterSlotAdjustmentStruct) NominalPower() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("nominalPower"))
 	return rv
 }
 
@@ -101,14 +102,14 @@ func (m_ MTRDeviceEnergyManagementClusterSlotAdjustmentStruct) NominalPower() un
 // SetNominalPower sets the value of the nominalPower property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterSlotAdjustmentStruct/nominalPower
-func (m_ MTRDeviceEnergyManagementClusterSlotAdjustmentStruct) SetNominalPower(value unsafe.Pointer) {
+func (m_ MTRDeviceEnergyManagementClusterSlotAdjustmentStruct) SetNominalPower(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNominalPower:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterSlotAdjustmentStruct/slotIndex
-func (m_ MTRDeviceEnergyManagementClusterSlotAdjustmentStruct) SlotIndex() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("slotIndex"))
+func (m_ MTRDeviceEnergyManagementClusterSlotAdjustmentStruct) SlotIndex() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("slotIndex"))
 	return rv
 }
 
@@ -116,7 +117,7 @@ func (m_ MTRDeviceEnergyManagementClusterSlotAdjustmentStruct) SlotIndex() unsaf
 // SetSlotIndex sets the value of the slotIndex property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterSlotAdjustmentStruct/slotIndex
-func (m_ MTRDeviceEnergyManagementClusterSlotAdjustmentStruct) SetSlotIndex(value unsafe.Pointer) {
+func (m_ MTRDeviceEnergyManagementClusterSlotAdjustmentStruct) SetSlotIndex(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSlotIndex:"), value)
 }
 

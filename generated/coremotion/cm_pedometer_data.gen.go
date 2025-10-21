@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,32 +84,32 @@ func NewPedometerData() PedometerData {
 // The average pace of the user, measured in seconds per meter.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometerData/averageActivePace
-func (p_ PedometerData) AverageActivePace() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("averageActivePace"))
+func (p_ PedometerData) AverageActivePace() foundation.Number {
+	rv := objc.Send[foundation.Number](p_.ID, objc.Sel("averageActivePace"))
 	return rv
 }
 
 // The rate at which steps are taken, measured in steps per second.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometerData/currentCadence
-func (p_ PedometerData) CurrentCadence() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("currentCadence"))
+func (p_ PedometerData) CurrentCadence() foundation.Number {
+	rv := objc.Send[foundation.Number](p_.ID, objc.Sel("currentCadence"))
 	return rv
 }
 
 // The current pace of the user, measured in seconds per meter.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometerData/currentPace
-func (p_ PedometerData) CurrentPace() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("currentPace"))
+func (p_ PedometerData) CurrentPace() foundation.Number {
+	rv := objc.Send[foundation.Number](p_.ID, objc.Sel("currentPace"))
 	return rv
 }
 
 // The estimated distance (in meters) traveled by the user.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometerData/distance
-func (p_ PedometerData) Distance() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("distance"))
+func (p_ PedometerData) Distance() foundation.Number {
+	rv := objc.Send[foundation.Number](p_.ID, objc.Sel("distance"))
 	return rv
 }
 
@@ -123,24 +124,24 @@ func (p_ PedometerData) EndDate() unsafe.Pointer {
 // The approximate number of floors ascended by walking.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometerData/floorsAscended
-func (p_ PedometerData) FloorsAscended() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("floorsAscended"))
+func (p_ PedometerData) FloorsAscended() foundation.Number {
+	rv := objc.Send[foundation.Number](p_.ID, objc.Sel("floorsAscended"))
 	return rv
 }
 
 // The approximate number of floors descended by walking.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometerData/floorsDescended
-func (p_ PedometerData) FloorsDescended() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("floorsDescended"))
+func (p_ PedometerData) FloorsDescended() foundation.Number {
+	rv := objc.Send[foundation.Number](p_.ID, objc.Sel("floorsDescended"))
 	return rv
 }
 
 // The number of steps taken by the user.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometerData/numberOfSteps
-func (p_ PedometerData) NumberOfSteps() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("numberOfSteps"))
+func (p_ PedometerData) NumberOfSteps() foundation.Number {
+	rv := objc.Send[foundation.Number](p_.ID, objc.Sel("numberOfSteps"))
 	return rv
 }
 

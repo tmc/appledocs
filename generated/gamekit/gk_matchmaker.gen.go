@@ -96,5 +96,23 @@ func (m_ Matchmaker) FindPlayersForHostedMatchRequestWithCompletionHandler(reque
 	objc.Send[objc.ID](m_.ID, objc.Sel("findPlayersForHostedMatchRequest:withCompletionHandler:"), request, completionHandler)
 }
 
+// The remaining number of players invited but not yet connected to the match.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatch/expectedplayercount
+func (m_ Matchmaker) ExpectedPlayerCount() int {
+	rv := objc.Send[int](m_.ID, objc.Sel("expectedPlayerCount"))
+	return rv
+}
+
+
+// SetExpectedPlayerCount sets the value of the expectedPlayerCount property.
+// The remaining number of players invited but not yet connected to the match.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatch/expectedplayercount
+func (m_ Matchmaker) SetExpectedPlayerCount(value int) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setExpectedPlayerCount:"), value)
+}
+
 
 

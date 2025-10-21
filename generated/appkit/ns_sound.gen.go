@@ -97,5 +97,149 @@ func (s_ Sound) Play() bool {
 	return rv
 }
 
+// The sound’s playback progress, in seconds.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssound/currenttime
+func (s_ Sound) CurrentTime() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("currentTime"))
+	return rv
+}
+
+
+// SetCurrentTime sets the value of the currentTime property.
+// The sound’s playback progress, in seconds.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssound/currenttime
+func (s_ Sound) SetCurrentTime(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setCurrentTime:"), value)
+}
+
+// The sound’s delegate.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssound/delegate
+func (s_ Sound) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+
+// SetDelegate sets the value of the delegate property.
+// The sound’s delegate.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssound/delegate
+func (s_ Sound) SetDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setDelegate:"), value)
+}
+
+// The duration of the sound, in seconds.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssound/duration
+func (s_ Sound) Duration() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("duration"))
+	return rv
+}
+
+
+// SetDuration sets the value of the duration property.
+// The duration of the sound, in seconds.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssound/duration
+func (s_ Sound) SetDuration(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setDuration:"), value)
+}
+
+// A Boolean that indicates whether the sound is playing its audio data.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssound/isplaying
+func (s_ Sound) IsPlaying() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("isPlaying"))
+	return rv
+}
+
+
+// SetIsPlaying sets the value of the isPlaying property.
+// A Boolean that indicates whether the sound is playing its audio data.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssound/isplaying
+func (s_ Sound) SetIsPlaying(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setIsPlaying:"), value)
+}
+
+// A Boolean that indicates whether the sound restarts playback when it reaches the end of its content.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssound/loops
+func (s_ Sound) Loops() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("loops"))
+	return rv
+}
+
+
+// SetLoops sets the value of the loops property.
+// A Boolean that indicates whether the sound restarts playback when it reaches the end of its content.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssound/loops
+func (s_ Sound) SetLoops(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setLoops:"), value)
+}
+
+// The name assigned to the sound.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssound/name-swift.property
+func (s_ Sound) Name() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("name"))
+	return rv
+}
+
+
+// SetName sets the value of the name property.
+// The name assigned to the sound.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssound/name-swift.property
+func (s_ Sound) SetName(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setName:"), value)
+}
+
+// Identifies the sound’s output device
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssound/playbackdeviceidentifier-swift.property
+func (s_ Sound) PlaybackDeviceIdentifier() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("playbackDeviceIdentifier"))
+	return rv
+}
+
+
+// SetPlaybackDeviceIdentifier sets the value of the playbackDeviceIdentifier property.
+// Identifies the sound’s output device
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssound/playbackdeviceidentifier-swift.property
+func (s_ Sound) SetPlaybackDeviceIdentifier(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setPlaybackDeviceIdentifier:"), value)
+}
+
+// The volume of the sound.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssound/volume
+func (s_ Sound) Volume() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("volume"))
+	return rv
+}
+
+
+// SetVolume sets the value of the volume property.
+// The volume of the sound.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssound/volume
+func (s_ Sound) SetVolume(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setVolume:"), value)
+}
+
 
 

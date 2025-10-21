@@ -87,5 +87,59 @@ func (lc _LeaderboardSetClass) LoadLeaderboardSetsWithCompletionHandler(completi
 	objc.Send[objc.ID](objc.ID(lc.class), objc.Sel("loadLeaderboardSetsWithCompletionHandler:"), completionHandler)
 }
 
+// The localized title for the leaderboard set.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboardset/title
+func (l_ LeaderboardSet) Title() string {
+	rv := objc.Send[string](l_.ID, objc.Sel("title"))
+	return rv
+}
+
+
+// SetTitle sets the value of the title property.
+// The localized title for the leaderboard set.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboardset/title
+func (l_ LeaderboardSet) SetTitle(value string) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setTitle:"), objc.String(value))
+}
+
+// The identifier for the leaderboard set.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboardset/identifier
+func (l_ LeaderboardSet) Identifier() string {
+	rv := objc.Send[string](l_.ID, objc.Sel("identifier"))
+	return rv
+}
+
+
+// SetIdentifier sets the value of the identifier property.
+// The identifier for the leaderboard set.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboardset/identifier
+func (l_ LeaderboardSet) SetIdentifier(value string) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+}
+
+// The identifier for the group that the leaderboard set belongs to.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboardset/groupidentifier
+func (l_ LeaderboardSet) GroupIdentifier() string {
+	rv := objc.Send[string](l_.ID, objc.Sel("groupIdentifier"))
+	return rv
+}
+
+
+// SetGroupIdentifier sets the value of the groupIdentifier property.
+// The identifier for the group that the leaderboard set belongs to.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboardset/groupidentifier
+func (l_ LeaderboardSet) SetGroupIdentifier(value string) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setGroupIdentifier:"), objc.String(value))
+}
+
 
 

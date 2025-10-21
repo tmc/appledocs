@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -79,6 +80,60 @@ func NewCollectionViewLayout() CollectionViewLayout {
 	return getCollectionViewLayoutClass().New()
 }
 
+
+// The layout object used to organize the collection view’s content.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionview/collectionviewlayout
+func (c_ CollectionViewLayout) CollectionViewLayout() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("collectionViewLayout"))
+	return rv
+}
+
+
+// SetCollectionViewLayout sets the value of the collectionViewLayout property.
+// The layout object used to organize the collection view’s content.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionview/collectionviewlayout
+func (c_ CollectionViewLayout) SetCollectionViewLayout(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setCollectionViewLayout:"), value)
+}
+
+// The collection view object currently using this layout.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewlayout/collectionview
+func (c_ CollectionViewLayout) CollectionView() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("collectionView"))
+	return rv
+}
+
+
+// SetCollectionView sets the value of the collectionView property.
+// The collection view object currently using this layout.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewlayout/collectionview
+func (c_ CollectionViewLayout) SetCollectionView(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setCollectionView:"), value)
+}
+
+// The width and height of the collection view’s contents.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewlayout/collectionviewcontentsize
+func (c_ CollectionViewLayout) CollectionViewContentSize() coregraphics.CGSize {
+	rv := objc.Send[coregraphics.CGSize](c_.ID, objc.Sel("collectionViewContentSize"))
+	return rv
+}
+
+
+// SetCollectionViewContentSize sets the value of the collectionViewContentSize property.
+// The width and height of the collection view’s contents.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewlayout/collectionviewcontentsize
+func (c_ CollectionViewLayout) SetCollectionViewContentSize(value coregraphics.CGSize) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setCollectionViewContentSize:"), value)
+}
 
 
 

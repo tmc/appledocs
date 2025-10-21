@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,36 @@ func NewMTRGroupKeyManagementClusterKeySetReadAllIndicesResponseParams() MTRGrou
 	return getMTRGroupKeyManagementClusterKeySetReadAllIndicesResponseParamsClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclusterkeysetreadallindicesresponseparams/groupkeysetids
+func (m_ MTRGroupKeyManagementClusterKeySetReadAllIndicesResponseParams) GroupKeySetIDs() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("groupKeySetIDs"))
+	return rv
+}
+
+
+// SetGroupKeySetIDs sets the value of the groupKeySetIDs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclusterkeysetreadallindicesresponseparams/groupkeysetids
+func (m_ MTRGroupKeyManagementClusterKeySetReadAllIndicesResponseParams) SetGroupKeySetIDs(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupKeySetIDs:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclusterkeysetreadallindicesresponseparams/timedinvoketimeoutms
+func (m_ MTRGroupKeyManagementClusterKeySetReadAllIndicesResponseParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+	return rv
+}
+
+
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclusterkeysetreadallindicesresponseparams/timedinvoketimeoutms
+func (m_ MTRGroupKeyManagementClusterKeySetReadAllIndicesResponseParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+}
 
 
 

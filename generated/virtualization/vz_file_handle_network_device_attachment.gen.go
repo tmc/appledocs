@@ -94,6 +94,60 @@ func NewVZFileHandleNetworkDeviceAttachmentWithFileHandle(fileHandle unsafe.Poin
 }
 
 
+// The object that defines how the virtual network device communicates with the host system.
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vznetworkdeviceconfiguration/attachment
+func (v_ VZFileHandleNetworkDeviceAttachment) Attachment() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("attachment"))
+	return rv
+}
+
+
+// SetAttachment sets the value of the attachment property.
+// The object that defines how the virtual network device communicates with the host system.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vznetworkdeviceconfiguration/attachment
+func (v_ VZFileHandleNetworkDeviceAttachment) SetAttachment(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setAttachment:"), value)
+}
+
+// The file handle assigned to this attachment.
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzfilehandlenetworkdeviceattachment/filehandle
+func (v_ VZFileHandleNetworkDeviceAttachment) FileHandle() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("fileHandle"))
+	return rv
+}
+
+
+// SetFileHandle sets the value of the fileHandle property.
+// The file handle assigned to this attachment.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzfilehandlenetworkdeviceattachment/filehandle
+func (v_ VZFileHandleNetworkDeviceAttachment) SetFileHandle(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setFileHandle:"), value)
+}
+
+// The array of network devices that you expose to the guest operating system.
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/networkdevices
+func (v_ VZFileHandleNetworkDeviceAttachment) NetworkDevices() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("networkDevices"))
+	return rv
+}
+
+
+// SetNetworkDevices sets the value of the networkDevices property.
+// The array of network devices that you expose to the guest operating system.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/networkdevices
+func (v_ VZFileHandleNetworkDeviceAttachment) SetNetworkDevices(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setNetworkDevices:"), value)
+}
+
 // An integer value that indicates the maximum transmission unit (MTU) associated with this attachment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZFileHandleNetworkDeviceAttachment/maximumTransmissionUnit

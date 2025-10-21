@@ -77,6 +77,51 @@ func NewMatrixRandom() MatrixRandom {
 
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixrandom/distributiontype
+func (m_ MatrixRandom) DistributionType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("distributionType"))
+	return rv
+}
+
+
+// SetDistributionType sets the value of the distributionType property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixrandom/distributiontype
+func (m_ MatrixRandom) SetDistributionType(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDistributionType:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixrandom/batchsize
+func (m_ MatrixRandom) BatchSize() int {
+	rv := objc.Send[int](m_.ID, objc.Sel("batchSize"))
+	return rv
+}
+
+
+// SetBatchSize sets the value of the batchSize property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixrandom/batchsize
+func (m_ MatrixRandom) SetBatchSize(value int) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setBatchSize:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixrandom/batchstart
+func (m_ MatrixRandom) BatchStart() int {
+	rv := objc.Send[int](m_.ID, objc.Sel("batchStart"))
+	return rv
+}
+
+
+// SetBatchStart sets the value of the batchStart property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixrandom/batchstart
+func (m_ MatrixRandom) SetBatchStart(value int) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setBatchStart:"), value)
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSMatrixRandom/destinationDataType
 func (m_ MatrixRandom) DestinationDataType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("destinationDataType"))

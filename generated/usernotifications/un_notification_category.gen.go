@@ -135,6 +135,24 @@ func (uc _UNNotificationCategoryClass) CategoryWithIdentifierActionsIntentIdenti
 	return rv
 }
 
+// The identifier of the notification’s category.
+//
+// [Full Topic]: https://developer.apple.com/documentation/usernotifications/unmutablenotificationcontent/categoryidentifier
+func (u_ UNNotificationCategory) CategoryIdentifier() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("categoryIdentifier"))
+	return rv
+}
+
+
+// SetCategoryIdentifier sets the value of the categoryIdentifier property.
+// The identifier of the notification’s category.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/usernotifications/unmutablenotificationcontent/categoryidentifier
+func (u_ UNNotificationCategory) SetCategoryIdentifier(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setCategoryIdentifier:"), objc.String(value))
+}
+
 // The actions to display when the system delivers notifications of this type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationCategory/actions

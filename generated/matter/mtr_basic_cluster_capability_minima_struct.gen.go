@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MTRBasicClusterCapabilityMinimaStruct] class.
@@ -75,6 +76,36 @@ func NewMTRBasicClusterCapabilityMinimaStruct() MTRBasicClusterCapabilityMinimaS
 	return getMTRBasicClusterCapabilityMinimaStructClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrbasicclustercapabilityminimastruct/subscriptionsperfabric
+func (m_ MTRBasicClusterCapabilityMinimaStruct) SubscriptionsPerFabric() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("subscriptionsPerFabric"))
+	return rv
+}
+
+
+// SetSubscriptionsPerFabric sets the value of the subscriptionsPerFabric property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrbasicclustercapabilityminimastruct/subscriptionsperfabric
+func (m_ MTRBasicClusterCapabilityMinimaStruct) SetSubscriptionsPerFabric(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSubscriptionsPerFabric:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrbasicclustercapabilityminimastruct/casesessionsperfabric
+func (m_ MTRBasicClusterCapabilityMinimaStruct) CaseSessionsPerFabric() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("caseSessionsPerFabric"))
+	return rv
+}
+
+
+// SetCaseSessionsPerFabric sets the value of the caseSessionsPerFabric property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrbasicclustercapabilityminimastruct/casesessionsperfabric
+func (m_ MTRBasicClusterCapabilityMinimaStruct) SetCaseSessionsPerFabric(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCaseSessionsPerFabric:"), value)
+}
 
 
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -118,8 +119,8 @@ func (t_ TKSmartCardUserInteraction) SetDelegate(value objc.ID) {
 // The timeout, in seconds, for initial interaction. If set to , the reader-defined default timeout is used. by default.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardUserInteraction/initialTimeout
-func (t_ TKSmartCardUserInteraction) InitialTimeout() TimeInterval {
-	rv := objc.Send[TimeInterval](t_.ID, objc.Sel("initialTimeout"))
+func (t_ TKSmartCardUserInteraction) InitialTimeout() foundation.TimeInterval {
+	rv := objc.Send[foundation.TimeInterval](t_.ID, objc.Sel("initialTimeout"))
 	return rv
 }
 
@@ -129,15 +130,15 @@ func (t_ TKSmartCardUserInteraction) InitialTimeout() TimeInterval {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardUserInteraction/initialTimeout
-func (t_ TKSmartCardUserInteraction) SetInitialTimeout(value TimeInterval) {
+func (t_ TKSmartCardUserInteraction) SetInitialTimeout(value foundation.TimeInterval) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setInitialTimeout:"), value)
 }
 
 // The timeout, in seconds, after the first key stroke. If set to , the reader-defined default timeout is used. by default.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardUserInteraction/interactionTimeout
-func (t_ TKSmartCardUserInteraction) InteractionTimeout() TimeInterval {
-	rv := objc.Send[TimeInterval](t_.ID, objc.Sel("interactionTimeout"))
+func (t_ TKSmartCardUserInteraction) InteractionTimeout() foundation.TimeInterval {
+	rv := objc.Send[foundation.TimeInterval](t_.ID, objc.Sel("interactionTimeout"))
 	return rv
 }
 
@@ -147,7 +148,7 @@ func (t_ TKSmartCardUserInteraction) InteractionTimeout() TimeInterval {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardUserInteraction/interactionTimeout
-func (t_ TKSmartCardUserInteraction) SetInteractionTimeout(value TimeInterval) {
+func (t_ TKSmartCardUserInteraction) SetInteractionTimeout(value foundation.TimeInterval) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setInteractionTimeout:"), value)
 }
 

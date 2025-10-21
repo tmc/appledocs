@@ -76,5 +76,20 @@ func NewNDArrayGather() NDArrayGather {
 }
 
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraygather/axis
+func (n_ NDArrayGather) Axis() int {
+	rv := objc.Send[int](n_.ID, objc.Sel("axis"))
+	return rv
+}
+
+
+// SetAxis sets the value of the axis property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraygather/axis
+func (n_ NDArrayGather) SetAxis(value int) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setAxis:"), value)
+}
+
 
 

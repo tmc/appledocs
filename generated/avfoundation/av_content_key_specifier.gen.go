@@ -78,5 +78,59 @@ func NewContentKeySpecifier() ContentKeySpecifier {
 }
 
 
+// The container and protocol-specific key identifier.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcontentkeyspecifier/identifier
+func (c_ ContentKeySpecifier) Identifier() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("identifier"))
+	return rv
+}
+
+
+// SetIdentifier sets the value of the identifier property.
+// The container and protocol-specific key identifier.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcontentkeyspecifier/identifier
+func (c_ ContentKeySpecifier) SetIdentifier(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIdentifier:"), value)
+}
+
+// The key system that generates content keys.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcontentkeyspecifier/keysystem
+func (c_ ContentKeySpecifier) KeySystem() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("keySystem"))
+	return rv
+}
+
+
+// SetKeySystem sets the value of the keySystem property.
+// The key system that generates content keys.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcontentkeyspecifier/keysystem
+func (c_ ContentKeySpecifier) SetKeySystem(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setKeySystem:"), value)
+}
+
+// A dictionary of options with which you initialized the specifier.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcontentkeyspecifier/options
+func (c_ ContentKeySpecifier) Options() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("options"))
+	return rv
+}
+
+
+// SetOptions sets the value of the options property.
+// A dictionary of options with which you initialized the specifier.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcontentkeyspecifier/options
+func (c_ ContentKeySpecifier) SetOptions(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setOptions:"), objc.String(value))
+}
+
 
 

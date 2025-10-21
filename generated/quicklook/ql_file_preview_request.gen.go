@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,24 @@ func NewFilePreviewRequest() FilePreviewRequest {
 	return getFilePreviewRequestClass().New()
 }
 
+
+// The url of the file for which a preview is being requested.
+//
+// [Full Topic]: https://developer.apple.com/documentation/quicklook/qlfilepreviewrequest/fileurl
+func (f_ FilePreviewRequest) FileURL() foundation.URL {
+	rv := objc.Send[foundation.URL](f_.ID, objc.Sel("fileURL"))
+	return rv
+}
+
+
+// SetFileURL sets the value of the fileURL property.
+// The url of the file for which a preview is being requested.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/quicklook/qlfilepreviewrequest/fileurl
+func (f_ FilePreviewRequest) SetFileURL(value foundation.URL) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setFileURL:"), value)
+}
 
 
 

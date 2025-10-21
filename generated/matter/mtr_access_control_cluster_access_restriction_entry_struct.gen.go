@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,8 +78,8 @@ func NewMTRAccessControlClusterAccessRestrictionEntryStruct() MTRAccessControlCl
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterAccessRestrictionEntryStruct/cluster
-func (m_ MTRAccessControlClusterAccessRestrictionEntryStruct) Cluster() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("cluster"))
+func (m_ MTRAccessControlClusterAccessRestrictionEntryStruct) Cluster() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("cluster"))
 	return rv
 }
 
@@ -86,14 +87,14 @@ func (m_ MTRAccessControlClusterAccessRestrictionEntryStruct) Cluster() unsafe.P
 // SetCluster sets the value of the cluster property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterAccessRestrictionEntryStruct/cluster
-func (m_ MTRAccessControlClusterAccessRestrictionEntryStruct) SetCluster(value unsafe.Pointer) {
+func (m_ MTRAccessControlClusterAccessRestrictionEntryStruct) SetCluster(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCluster:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterAccessRestrictionEntryStruct/endpoint
-func (m_ MTRAccessControlClusterAccessRestrictionEntryStruct) Endpoint() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("endpoint"))
+func (m_ MTRAccessControlClusterAccessRestrictionEntryStruct) Endpoint() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("endpoint"))
 	return rv
 }
 
@@ -101,14 +102,14 @@ func (m_ MTRAccessControlClusterAccessRestrictionEntryStruct) Endpoint() unsafe.
 // SetEndpoint sets the value of the endpoint property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterAccessRestrictionEntryStruct/endpoint
-func (m_ MTRAccessControlClusterAccessRestrictionEntryStruct) SetEndpoint(value unsafe.Pointer) {
+func (m_ MTRAccessControlClusterAccessRestrictionEntryStruct) SetEndpoint(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEndpoint:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterAccessRestrictionEntryStruct/fabricIndex
-func (m_ MTRAccessControlClusterAccessRestrictionEntryStruct) FabricIndex() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("fabricIndex"))
+func (m_ MTRAccessControlClusterAccessRestrictionEntryStruct) FabricIndex() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("fabricIndex"))
 	return rv
 }
 
@@ -116,7 +117,7 @@ func (m_ MTRAccessControlClusterAccessRestrictionEntryStruct) FabricIndex() unsa
 // SetFabricIndex sets the value of the fabricIndex property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterAccessRestrictionEntryStruct/fabricIndex
-func (m_ MTRAccessControlClusterAccessRestrictionEntryStruct) SetFabricIndex(value unsafe.Pointer) {
+func (m_ MTRAccessControlClusterAccessRestrictionEntryStruct) SetFabricIndex(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
 }
 

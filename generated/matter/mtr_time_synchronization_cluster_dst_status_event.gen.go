@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,8 +78,8 @@ func NewMTRTimeSynchronizationClusterDSTStatusEvent() MTRTimeSynchronizationClus
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterDSTStatusEvent/dstOffsetActive
-func (m_ MTRTimeSynchronizationClusterDSTStatusEvent) DstOffsetActive() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("dstOffsetActive"))
+func (m_ MTRTimeSynchronizationClusterDSTStatusEvent) DstOffsetActive() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("dstOffsetActive"))
 	return rv
 }
 
@@ -86,7 +87,7 @@ func (m_ MTRTimeSynchronizationClusterDSTStatusEvent) DstOffsetActive() unsafe.P
 // SetDstOffsetActive sets the value of the dstOffsetActive property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterDSTStatusEvent/dstOffsetActive
-func (m_ MTRTimeSynchronizationClusterDSTStatusEvent) SetDstOffsetActive(value unsafe.Pointer) {
+func (m_ MTRTimeSynchronizationClusterDSTStatusEvent) SetDstOffsetActive(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDstOffsetActive:"), value)
 }
 

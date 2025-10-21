@@ -81,5 +81,95 @@ func NewStepper() Stepper {
 }
 
 
+// A Boolean value that indicates how the stepper responds to mouse events.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsstepper/autorepeat
+func (s_ Stepper) Autorepeat() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("autorepeat"))
+	return rv
+}
+
+
+// SetAutorepeat sets the value of the autorepeat property.
+// A Boolean value that indicates how the stepper responds to mouse events.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsstepper/autorepeat
+func (s_ Stepper) SetAutorepeat(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setAutorepeat:"), value)
+}
+
+// The amount by which the receiver changes with each increment or decrement.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsstepper/increment
+func (s_ Stepper) Increment() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("increment"))
+	return rv
+}
+
+
+// SetIncrement sets the value of the increment property.
+// The amount by which the receiver changes with each increment or decrement.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsstepper/increment
+func (s_ Stepper) SetIncrement(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setIncrement:"), value)
+}
+
+// The stepper’s maximum value.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsstepper/maxvalue
+func (s_ Stepper) MaxValue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("maxValue"))
+	return rv
+}
+
+
+// SetMaxValue sets the value of the maxValue property.
+// The stepper’s maximum value.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsstepper/maxvalue
+func (s_ Stepper) SetMaxValue(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setMaxValue:"), value)
+}
+
+// The stepper’s minimum value.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsstepper/minvalue
+func (s_ Stepper) MinValue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("minValue"))
+	return rv
+}
+
+
+// SetMinValue sets the value of the minValue property.
+// The stepper’s minimum value.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsstepper/minvalue
+func (s_ Stepper) SetMinValue(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setMinValue:"), value)
+}
+
+// A Boolean value that indicates whether the stepper wraps around the minimum and maximum values.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsstepper/valuewraps
+func (s_ Stepper) ValueWraps() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("valueWraps"))
+	return rv
+}
+
+
+// SetValueWraps sets the value of the valueWraps property.
+// A Boolean value that indicates whether the stepper wraps around the minimum and maximum values.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsstepper/valuewraps
+func (s_ Stepper) SetValueWraps(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setValueWraps:"), value)
+}
+
 
 

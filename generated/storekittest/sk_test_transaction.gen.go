@@ -80,6 +80,24 @@ func NewTestTransaction() TestTransaction {
 }
 
 
+// A Boolean value that indicates whether the auto-renewable subscription has a price increase that’s awaiting user consent in the test environment.
+//
+// [Full Topic]: https://developer.apple.com/documentation/storekittest/sktesttransaction/ispendingpriceincreaseconsent
+func (t_ TestTransaction) IsPendingPriceIncreaseConsent() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("isPendingPriceIncreaseConsent"))
+	return rv
+}
+
+
+// SetIsPendingPriceIncreaseConsent sets the value of the isPendingPriceIncreaseConsent property.
+// A Boolean value that indicates whether the auto-renewable subscription has a price increase that’s awaiting user consent in the test environment.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/storekittest/sktesttransaction/ispendingpriceincreaseconsent
+func (t_ TestTransaction) SetIsPendingPriceIncreaseConsent(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setIsPendingPriceIncreaseConsent:"), value)
+}
+
 // A Boolean value that indicates whether automatic renewal is enabled for the subscription.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKTestTransaction/autoRenewingEnabled

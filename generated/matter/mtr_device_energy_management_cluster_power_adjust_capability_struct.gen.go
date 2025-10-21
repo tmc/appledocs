@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,8 +78,8 @@ func NewMTRDeviceEnergyManagementClusterPowerAdjustCapabilityStruct() MTRDeviceE
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPowerAdjustCapabilityStruct/cause
-func (m_ MTRDeviceEnergyManagementClusterPowerAdjustCapabilityStruct) Cause() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("cause"))
+func (m_ MTRDeviceEnergyManagementClusterPowerAdjustCapabilityStruct) Cause() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("cause"))
 	return rv
 }
 
@@ -86,7 +87,7 @@ func (m_ MTRDeviceEnergyManagementClusterPowerAdjustCapabilityStruct) Cause() un
 // SetCause sets the value of the cause property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPowerAdjustCapabilityStruct/cause
-func (m_ MTRDeviceEnergyManagementClusterPowerAdjustCapabilityStruct) SetCause(value unsafe.Pointer) {
+func (m_ MTRDeviceEnergyManagementClusterPowerAdjustCapabilityStruct) SetCause(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCause:"), value)
 }
 

@@ -83,5 +83,20 @@ func (t_ TemporalAA) EncodeToCommandBufferSourceTexturePreviousTextureDestinatio
 	objc.Send[objc.ID](t_.ID, objc.Sel("encodeToCommandBuffer:sourceTexture:previousTexture:destinationTexture:motionVectorTexture:depthTexture:"), commandBuffer, sourceTexture, previousTexture, destinationTexture, motionVectorTexture, depthTexture)
 }
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpstemporalaa/blendfactor
+func (t_ TemporalAA) BlendFactor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("blendFactor"))
+	return rv
+}
+
+
+// SetBlendFactor sets the value of the blendFactor property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpstemporalaa/blendfactor
+func (t_ TemporalAA) SetBlendFactor(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setBlendFactor:"), value)
+}
+
 
 

@@ -112,6 +112,137 @@ func (h_ HKWorkoutBuilder) UpdateActivityWithUUIDEndDateCompletion(UUID unsafe.P
 	objc.Send[objc.ID](h_.ID, objc.Sel("updateActivityWithUUID:endDate:completion:"), UUID, endDate, completion)
 }
 
+// The list of events added to the workout.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutbuilder/workoutevents
+func (h_ HKWorkoutBuilder) WorkoutEvents() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("workoutEvents"))
+	return rv
+}
+
+
+// SetWorkoutEvents sets the value of the workoutEvents property.
+// The list of events added to the workout.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutbuilder/workoutevents
+func (h_ HKWorkoutBuilder) SetWorkoutEvents(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setWorkoutEvents:"), value)
+}
+
+// A dictionary that contains all the statistics for the workout builder.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutbuilder/allstatistics
+func (h_ HKWorkoutBuilder) AllStatistics() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("allStatistics"))
+	return rv
+}
+
+
+// SetAllStatistics sets the value of the allStatistics property.
+// A dictionary that contains all the statistics for the workout builder.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutbuilder/allstatistics
+func (h_ HKWorkoutBuilder) SetAllStatistics(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setAllStatistics:"), value)
+}
+
+// The workout’s end date and time.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutbuilder/enddate
+func (h_ HKWorkoutBuilder) EndDate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("endDate"))
+	return rv
+}
+
+
+// SetEndDate sets the value of the endDate property.
+// The workout’s end date and time.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutbuilder/enddate
+func (h_ HKWorkoutBuilder) SetEndDate(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setEndDate:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutbuilder/workoutactivities
+func (h_ HKWorkoutBuilder) WorkoutActivities() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("workoutActivities"))
+	return rv
+}
+
+
+// SetWorkoutActivities sets the value of the workoutActivities property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutbuilder/workoutactivities
+func (h_ HKWorkoutBuilder) SetWorkoutActivities(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setWorkoutActivities:"), value)
+}
+
+// The configuration information for the workout.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutbuilder/workoutconfiguration
+func (h_ HKWorkoutBuilder) WorkoutConfiguration() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("workoutConfiguration"))
+	return rv
+}
+
+
+// SetWorkoutConfiguration sets the value of the workoutConfiguration property.
+// The configuration information for the workout.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutbuilder/workoutconfiguration
+func (h_ HKWorkoutBuilder) SetWorkoutConfiguration(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setWorkoutConfiguration:"), value)
+}
+
+// The workout type identifier.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkouttypeidentifier
+func (h_ HKWorkoutBuilder) HKWorkoutTypeIdentifier() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("HKWorkoutTypeIdentifier"))
+	return rv
+}
+
+// The workout’s start date and time.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutbuilder/startdate
+func (h_ HKWorkoutBuilder) StartDate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("startDate"))
+	return rv
+}
+
+
+// SetStartDate sets the value of the startDate property.
+// The workout’s start date and time.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutbuilder/startdate
+func (h_ HKWorkoutBuilder) SetStartDate(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setStartDate:"), value)
+}
+
+// The metadata the builder saves with the workout.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutbuilder/metadata
+func (h_ HKWorkoutBuilder) Metadata() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("metadata"))
+	return rv
+}
+
+
+// SetMetadata sets the value of the metadata property.
+// The metadata the builder saves with the workout.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutbuilder/metadata
+func (h_ HKWorkoutBuilder) SetMetadata(value string) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setMetadata:"), objc.String(value))
+}
+
 // The device associated with the workout.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKWorkoutBuilder/device

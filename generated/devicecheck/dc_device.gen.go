@@ -95,6 +95,24 @@ func (d_ DCDevice) GenerateTokenWithCompletionHandler(completion unsafe.Pointer)
 	objc.Send[objc.ID](d_.ID, objc.Sel("generateTokenWithCompletionHandler:"), completion)
 }
 
+// A Boolean value that indicates whether the device supports the DeviceCheck
+//
+// [Full Topic]: https://developer.apple.com/documentation/devicecheck/dcdevice/issupported
+func (d_ DCDevice) IsSupported() bool {
+	rv := objc.Send[bool](d_.ID, objc.Sel("isSupported"))
+	return rv
+}
+
+
+// SetIsSupported sets the value of the isSupported property.
+// A Boolean value that indicates whether the device supports the DeviceCheck
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/devicecheck/dcdevice/issupported
+func (d_ DCDevice) SetIsSupported(value bool) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setIsSupported:"), value)
+}
+
 // A representation of the device for which you want to query the two bits of data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/DeviceCheck/DCDevice/current

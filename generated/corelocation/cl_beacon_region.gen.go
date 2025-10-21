@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [BeaconRegion] class.
@@ -29,7 +30,7 @@ type _BeaconRegionClass struct {
 // An interface definition for the [BeaconRegion] class.
 type IBeaconRegion interface {
 	IRegion
-	PeripheralDataWithMeasuredPower(measuredPower unsafe.Pointer) unsafe.Pointer
+	PeripheralDataWithMeasuredPower(measuredPower foundation.Number) unsafe.Pointer
 }
 
 // A region for detecting the presence of iBeacon devices.
@@ -170,7 +171,7 @@ func NewBeaconRegionWithUUIDMajorMinorIdentifier(uuid unsafe.Pointer, major unsa
 // Retrieves data that you can use to advertise the current device as a beacon.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeaconRegion/peripheralData(withMeasuredPower:)
-func (b_ BeaconRegion) PeripheralDataWithMeasuredPower(measuredPower unsafe.Pointer) unsafe.Pointer {
+func (b_ BeaconRegion) PeripheralDataWithMeasuredPower(measuredPower foundation.Number) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("peripheralDataWithMeasuredPower:"), measuredPower)
 	return rv
 }
@@ -186,16 +187,16 @@ func (b_ BeaconRegion) BeaconIdentityConstraint() unsafe.Pointer {
 // The major value from the beacon identity constraint that defines the beacon region.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeaconRegion/major
-func (b_ BeaconRegion) Major() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("major"))
+func (b_ BeaconRegion) Major() foundation.Number {
+	rv := objc.Send[foundation.Number](b_.ID, objc.Sel("major"))
 	return rv
 }
 
 // The minor value from the beacon identity constraint that defines the beacon region.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeaconRegion/minor
-func (b_ BeaconRegion) Minor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("minor"))
+func (b_ BeaconRegion) Minor() foundation.Number {
+	rv := objc.Send[foundation.Number](b_.ID, objc.Sel("minor"))
 	return rv
 }
 

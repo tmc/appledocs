@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,8 +84,8 @@ func NewBackForwardListItem() BackForwardListItem {
 // The source URL that originally asked the web view to load this page.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKBackForwardListItem/initialURL
-func (b_ BackForwardListItem) InitialURL() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("initialURL"))
+func (b_ BackForwardListItem) InitialURL() foundation.URL {
+	rv := objc.Send[foundation.URL](b_.ID, objc.Sel("initialURL"))
 	return rv
 }
 
@@ -99,8 +100,8 @@ func (b_ BackForwardListItem) Title() string {
 // The URL of the webpage this item represents.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKBackForwardListItem/url
-func (b_ BackForwardListItem) URL() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("URL"))
+func (b_ BackForwardListItem) URL() foundation.URL {
+	rv := objc.Send[foundation.URL](b_.ID, objc.Sel("URL"))
 	return rv
 }
 

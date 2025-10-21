@@ -78,6 +78,68 @@ func NewSubscriber() Subscriber {
 }
 
 
+// A data object containing authorization information about the subscriber.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctsubscriber/carriertoken
+func (s_ Subscriber) CarrierToken() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("carrierToken"))
+	return rv
+}
+
+
+// SetCarrierToken sets the value of the carrierToken property.
+// A data object containing authorization information about the subscriber.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctsubscriber/carriertoken
+func (s_ Subscriber) SetCarrierToken(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setCarrierToken:"), value)
+}
+
+// An implementation-defined identifier used to correlate this subscriber with information vended by other APIs.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctsubscriber/identifier
+func (s_ Subscriber) Identifier() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("identifier"))
+	return rv
+}
+
+
+// SetIdentifier sets the value of the identifier property.
+// An implementation-defined identifier used to correlate this subscriber with information vended by other APIs.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctsubscriber/identifier
+func (s_ Subscriber) SetIdentifier(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+}
+
+// The name of the notification indicating that the carrier token is available.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctsubscribertokenrefreshed
+func (s_ Subscriber) CTSubscriberTokenRefreshed() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("CTSubscriberTokenRefreshed"))
+	return rv
+}
+
+// A Boolean property that indicates whether a SIM is present.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctsubscriber/issiminserted
+func (s_ Subscriber) IsSIMInserted() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("isSIMInserted"))
+	return rv
+}
+
+
+// SetIsSIMInserted sets the value of the isSIMInserted property.
+// A Boolean property that indicates whether a SIM is present.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctsubscriber/issiminserted
+func (s_ Subscriber) SetIsSIMInserted(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setIsSIMInserted:"), value)
+}
+
 // A delegate that receives updates on the subscriber information.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTSubscriber/delegate

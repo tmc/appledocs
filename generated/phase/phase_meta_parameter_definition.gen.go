@@ -81,5 +81,59 @@ func NewPHASEMetaParameterDefinition() PHASEMetaParameterDefinition {
 }
 
 
+// A dictionary of metaparameters that all sound event assets share.
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phaseassetregistry/globalmetaparameters
+func (p_ PHASEMetaParameterDefinition) GlobalMetaParameters() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("globalMetaParameters"))
+	return rv
+}
+
+
+// SetGlobalMetaParameters sets the value of the globalMetaParameters property.
+// A dictionary of metaparameters that all sound event assets share.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phaseassetregistry/globalmetaparameters
+func (p_ PHASEMetaParameterDefinition) SetGlobalMetaParameters(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setGlobalMetaParameters:"), objc.String(value))
+}
+
+// A constant value for the parameter definition.
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasemetaparameterdefinition/value
+func (p_ PHASEMetaParameterDefinition) Value() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("value"))
+	return rv
+}
+
+
+// SetValue sets the value of the value property.
+// A constant value for the parameter definition.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasemetaparameterdefinition/value
+func (p_ PHASEMetaParameterDefinition) SetValue(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setValue:"), value)
+}
+
+// The object’s meta parameters.
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasesoundevent/metaparameters
+func (p_ PHASEMetaParameterDefinition) MetaParameters() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("metaParameters"))
+	return rv
+}
+
+
+// SetMetaParameters sets the value of the metaParameters property.
+// The object’s meta parameters.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasesoundevent/metaparameters
+func (p_ PHASEMetaParameterDefinition) SetMetaParameters(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setMetaParameters:"), objc.String(value))
+}
+
 
 

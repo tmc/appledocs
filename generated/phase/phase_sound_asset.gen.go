@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PHASESoundAsset] class.
@@ -100,8 +101,8 @@ func (p_ PHASESoundAsset) Type() unsafe.Pointer {
 // The URL of the sound asset.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESoundAsset/url
-func (p_ PHASESoundAsset) Url() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("url"))
+func (p_ PHASESoundAsset) Url() foundation.URL {
+	rv := objc.Send[foundation.URL](p_.ID, objc.Sel("url"))
 	return rv
 }
 

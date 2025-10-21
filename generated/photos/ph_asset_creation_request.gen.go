@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PHAssetCreationRequest] class.
@@ -30,7 +31,7 @@ type _PHAssetCreationRequestClass struct {
 type IPHAssetCreationRequest interface {
 	IPHAssetChangeRequest
 	AddResourceWithTypeDataOptions(type_ unsafe.Pointer, data unsafe.Pointer, options unsafe.Pointer)
-	AddResourceWithTypeFileURLOptions(type_ unsafe.Pointer, fileURL unsafe.Pointer, options unsafe.Pointer)
+	AddResourceWithTypeFileURLOptions(type_ unsafe.Pointer, fileURL foundation.URL, options unsafe.Pointer)
 }
 
 // A request to create a new Photos asset from underlying data resources, for use in a photo library change block.
@@ -109,7 +110,7 @@ func (p_ PHAssetCreationRequest) AddResourceWithTypeDataOptions(type_ unsafe.Poi
 // Adds a data resource to the asset being created, using the file at the specified URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetCreationRequest/addResource(with:fileURL:options:)
-func (p_ PHAssetCreationRequest) AddResourceWithTypeFileURLOptions(type_ unsafe.Pointer, fileURL unsafe.Pointer, options unsafe.Pointer) {
+func (p_ PHAssetCreationRequest) AddResourceWithTypeFileURLOptions(type_ unsafe.Pointer, fileURL foundation.URL, options unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("addResourceWithType:fileURL:options:"), type_, fileURL, options)
 }
 

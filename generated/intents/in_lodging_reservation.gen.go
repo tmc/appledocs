@@ -79,5 +79,77 @@ func NewINLodgingReservation() INLodgingReservation {
 }
 
 
+// The name and location of the lodging establishment.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inlodgingreservation/lodgingbusinesslocation
+func (i_ INLodgingReservation) LodgingBusinessLocation() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("lodgingBusinessLocation"))
+	return rv
+}
+
+
+// SetLodgingBusinessLocation sets the value of the lodgingBusinessLocation property.
+// The name and location of the lodging establishment.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inlodgingreservation/lodgingbusinesslocation
+func (i_ INLodgingReservation) SetLodgingBusinessLocation(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setLodgingBusinessLocation:"), value)
+}
+
+// The number of children staying at the lodging location.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inlodgingreservation/numberofchildren-1dm3g
+func (i_ INLodgingReservation) NumberOfChildren() int {
+	rv := objc.Send[int](i_.ID, objc.Sel("numberOfChildren"))
+	return rv
+}
+
+
+// SetNumberOfChildren sets the value of the numberOfChildren property.
+// The number of children staying at the lodging location.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inlodgingreservation/numberofchildren-1dm3g
+func (i_ INLodgingReservation) SetNumberOfChildren(value int) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setNumberOfChildren:"), value)
+}
+
+// The date and time range that indicates the beginning and end of the reservation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inlodgingreservation/reservationduration
+func (i_ INLodgingReservation) ReservationDuration() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("reservationDuration"))
+	return rv
+}
+
+
+// SetReservationDuration sets the value of the reservationDuration property.
+// The date and time range that indicates the beginning and end of the reservation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inlodgingreservation/reservationduration
+func (i_ INLodgingReservation) SetReservationDuration(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setReservationDuration:"), value)
+}
+
+// The number of adults staying at the lodging location.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inlodgingreservation/numberofadults-6fsnq
+func (i_ INLodgingReservation) NumberOfAdults() int {
+	rv := objc.Send[int](i_.ID, objc.Sel("numberOfAdults"))
+	return rv
+}
+
+
+// SetNumberOfAdults sets the value of the numberOfAdults property.
+// The number of adults staying at the lodging location.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inlodgingreservation/numberofadults-6fsnq
+func (i_ INLodgingReservation) SetNumberOfAdults(value int) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setNumberOfAdults:"), value)
+}
+
 
 

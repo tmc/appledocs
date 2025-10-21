@@ -281,5 +281,23 @@ func (c_ ColorPanel) SetShowsAlpha(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setShowsAlpha:"), value)
 }
 
+// A Boolean value indicating whether the receiver continuously sends the action message to the target.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorpanel/iscontinuous
+func (c_ ColorPanel) IsContinuous() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isContinuous"))
+	return rv
+}
+
+
+// SetIsContinuous sets the value of the isContinuous property.
+// A Boolean value indicating whether the receiver continuously sends the action message to the target.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorpanel/iscontinuous
+func (c_ ColorPanel) SetIsContinuous(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsContinuous:"), value)
+}
+
 
 

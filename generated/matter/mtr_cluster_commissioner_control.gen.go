@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MTRClusterCommissionerControl] class.
@@ -29,14 +30,14 @@ type _MTRClusterCommissionerControlClass struct {
 // An interface definition for the [MTRClusterCommissionerControl] class.
 type IMTRClusterCommissionerControl interface {
 	IMTRGenericCluster
-	CommissionNodeWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, completion unsafe.Pointer)
+	CommissionNodeWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer)
 	ReadAttributeAcceptedCommandListWithParams(params unsafe.Pointer) unsafe.Pointer
 	ReadAttributeAttributeListWithParams(params unsafe.Pointer) unsafe.Pointer
 	ReadAttributeClusterRevisionWithParams(params unsafe.Pointer) unsafe.Pointer
 	ReadAttributeFeatureMapWithParams(params unsafe.Pointer) unsafe.Pointer
 	ReadAttributeGeneratedCommandListWithParams(params unsafe.Pointer) unsafe.Pointer
 	ReadAttributeSupportedDeviceCategoriesWithParams(params unsafe.Pointer) unsafe.Pointer
-	RequestCommissioningApprovalWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, completion unsafe.Pointer)
+	RequestCommissioningApprovalWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer)
 }
 
 // Cluster Commissioner Control Supports the ability for clients to request the commissioning of themselves or other nodes onto a fabric which the cluster server can commission onto.
@@ -92,7 +93,7 @@ func NewMTRClusterCommissionerControl() MTRClusterCommissionerControl {
 // For all instance methods that take a completion (i.e. command invocations), the completion will be called on the provided queue.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterCommissionerControl/init(device:endpointID:queue:)
-func NewMTRClusterCommissionerControlWithDeviceEndpointIDQueue(device unsafe.Pointer, endpointID unsafe.Pointer, queue unsafe.Pointer) MTRClusterCommissionerControl {
+func NewMTRClusterCommissionerControlWithDeviceEndpointIDQueue(device unsafe.Pointer, endpointID foundation.Number, queue unsafe.Pointer) MTRClusterCommissionerControl {
 	instance := getMTRClusterCommissionerControlClass().Alloc()
 	rv := objc.Send[MTRClusterCommissionerControl](instance.ID, objc.Sel("initWithDevice:endpointID:queue:"), device, endpointID, queue)
 	rv.Autorelease()
@@ -102,7 +103,7 @@ func NewMTRClusterCommissionerControlWithDeviceEndpointIDQueue(device unsafe.Poi
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterCommissionerControl/commissionNode(with:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterCommissionerControl) CommissionNodeWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, completion unsafe.Pointer) {
+func (m_ MTRClusterCommissionerControl) CommissionNodeWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("commissionNodeWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
 }
 
@@ -150,7 +151,7 @@ func (m_ MTRClusterCommissionerControl) ReadAttributeSupportedDeviceCategoriesWi
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterCommissionerControl/requestCommissioningApproval(with:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterCommissionerControl) RequestCommissioningApprovalWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, completion unsafe.Pointer) {
+func (m_ MTRClusterCommissionerControl) RequestCommissioningApprovalWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("requestCommissioningApprovalWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
 }
 

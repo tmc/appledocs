@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -105,8 +104,8 @@ func (c_ ConstraintConflict) ConflictingObjects() []ManagedObject {
 // The original property values of objects in violation of the constraint.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSConstraintConflict/conflictingSnapshots
-func (c_ ConstraintConflict) ConflictingSnapshots() []foundation.NSDictionary {
-	rv := objc.Send[[]foundation.NSDictionary](c_.ID, objc.Sel("conflictingSnapshots"))
+func (c_ ConstraintConflict) ConflictingSnapshots() []unsafe.Pointer {
+	rv := objc.Send[[]unsafe.Pointer](c_.ID, objc.Sel("conflictingSnapshots"))
 	return rv
 }
 

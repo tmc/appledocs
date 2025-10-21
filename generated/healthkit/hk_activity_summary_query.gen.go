@@ -94,4 +94,22 @@ func NewHKActivitySummaryQueryWithPredicateResultsHandler(predicate unsafe.Point
 }
 
 
+// The handler for monitoring updates to activity summaries saved in the HealthKit store.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitysummaryquery/updatehandler
+func (h_ HKActivitySummaryQuery) UpdateHandler() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("updateHandler"))
+	return rv
+}
+
+
+// SetUpdateHandler sets the value of the updateHandler property.
+// The handler for monitoring updates to activity summaries saved in the HealthKit store.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitysummaryquery/updatehandler
+func (h_ HKActivitySummaryQuery) SetUpdateHandler(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setUpdateHandler:"), value)
+}
+
 

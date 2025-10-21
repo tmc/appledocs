@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,36 @@ func NewMTRMediaPlaybackClusterPlaybackPositionStruct() MTRMediaPlaybackClusterP
 	return getMTRMediaPlaybackClusterPlaybackPositionStructClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterplaybackpositionstruct/updatedat
+func (m_ MTRMediaPlaybackClusterPlaybackPositionStruct) UpdatedAt() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("updatedAt"))
+	return rv
+}
+
+
+// SetUpdatedAt sets the value of the updatedAt property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterplaybackpositionstruct/updatedat
+func (m_ MTRMediaPlaybackClusterPlaybackPositionStruct) SetUpdatedAt(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setUpdatedAt:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterplaybackpositionstruct/position
+func (m_ MTRMediaPlaybackClusterPlaybackPositionStruct) Position() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("position"))
+	return rv
+}
+
+
+// SetPosition sets the value of the position property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterplaybackpositionstruct/position
+func (m_ MTRMediaPlaybackClusterPlaybackPositionStruct) SetPosition(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPosition:"), value)
+}
 
 
 

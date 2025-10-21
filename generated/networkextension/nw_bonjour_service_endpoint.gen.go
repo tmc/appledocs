@@ -100,6 +100,24 @@ func (nc _NWBonjourServiceEndpointClass) EndpointWithNameTypeDomain(name string,
 	return rv
 }
 
+// The endpoint’s Bonjour service name.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nwbonjourserviceendpoint/name
+func (n_ NWBonjourServiceEndpoint) Name() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("name"))
+	return rv
+}
+
+
+// SetName sets the value of the name property.
+// The endpoint’s Bonjour service name.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nwbonjourserviceendpoint/name
+func (n_ NWBonjourServiceEndpoint) SetName(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setName:"), objc.String(value))
+}
+
 // The endpoint’s Bonjour service domain, such as .
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NWBonjourServiceEndpoint/domain

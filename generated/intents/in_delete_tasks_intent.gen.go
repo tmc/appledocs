@@ -81,5 +81,59 @@ func NewINDeleteTasksIntent() INDeleteTasksIntent {
 }
 
 
+// The tasks to delete from a task list.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/indeletetasksintent/tasks
+func (i_ INDeleteTasksIntent) Tasks() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("tasks"))
+	return rv
+}
+
+
+// SetTasks sets the value of the tasks property.
+// The tasks to delete from a task list.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/indeletetasksintent/tasks
+func (i_ INDeleteTasksIntent) SetTasks(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setTasks:"), value)
+}
+
+// A Boolean value that indicates whether to delete all the tasks from a task list.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/indeletetasksintent/all-8gg59
+func (i_ INDeleteTasksIntent) All() bool {
+	rv := objc.Send[bool](i_.ID, objc.Sel("all"))
+	return rv
+}
+
+
+// SetAll sets the value of the all property.
+// A Boolean value that indicates whether to delete all the tasks from a task list.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/indeletetasksintent/all-8gg59
+func (i_ INDeleteTasksIntent) SetAll(value bool) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setAll:"), value)
+}
+
+// The task list from which to delete tasks.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/indeletetasksintent/tasklist
+func (i_ INDeleteTasksIntent) TaskList() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("taskList"))
+	return rv
+}
+
+
+// SetTaskList sets the value of the taskList property.
+// The task list from which to delete tasks.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/indeletetasksintent/tasklist
+func (i_ INDeleteTasksIntent) SetTaskList(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setTaskList:"), value)
+}
+
 
 

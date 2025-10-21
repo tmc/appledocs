@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -78,8 +79,8 @@ func NewMTRTimeSynchronizationClusterSetTimeZoneParams() MTRTimeSynchronizationC
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterSetTimeZoneParams/serverSideProcessingTimeout
-func (m_ MTRTimeSynchronizationClusterSetTimeZoneParams) ServerSideProcessingTimeout() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRTimeSynchronizationClusterSetTimeZoneParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
@@ -89,7 +90,7 @@ func (m_ MTRTimeSynchronizationClusterSetTimeZoneParams) ServerSideProcessingTim
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterSetTimeZoneParams/serverSideProcessingTimeout
-func (m_ MTRTimeSynchronizationClusterSetTimeZoneParams) SetServerSideProcessingTimeout(value unsafe.Pointer) {
+func (m_ MTRTimeSynchronizationClusterSetTimeZoneParams) SetServerSideProcessingTimeout(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -111,8 +112,8 @@ func (m_ MTRTimeSynchronizationClusterSetTimeZoneParams) SetTimeZone(value unsaf
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterSetTimeZoneParams/timedInvokeTimeoutMs
-func (m_ MTRTimeSynchronizationClusterSetTimeZoneParams) TimedInvokeTimeoutMs() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRTimeSynchronizationClusterSetTimeZoneParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
@@ -122,7 +123,7 @@ func (m_ MTRTimeSynchronizationClusterSetTimeZoneParams) TimedInvokeTimeoutMs() 
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterSetTimeZoneParams/timedInvokeTimeoutMs
-func (m_ MTRTimeSynchronizationClusterSetTimeZoneParams) SetTimedInvokeTimeoutMs(value unsafe.Pointer) {
+func (m_ MTRTimeSynchronizationClusterSetTimeZoneParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

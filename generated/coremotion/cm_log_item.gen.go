@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,8 +84,8 @@ func NewLogItem() LogItem {
 // The time when the logged item is valid.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMLogItem/timestamp
-func (l_ LogItem) Timestamp() TimeInterval {
-	rv := objc.Send[TimeInterval](l_.ID, objc.Sel("timestamp"))
+func (l_ LogItem) Timestamp() foundation.TimeInterval {
+	rv := objc.Send[foundation.TimeInterval](l_.ID, objc.Sel("timestamp"))
 	return rv
 }
 

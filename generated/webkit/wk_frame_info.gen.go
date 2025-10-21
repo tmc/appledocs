@@ -80,6 +80,60 @@ func NewFrameInfo() FrameInfo {
 }
 
 
+// The frame’s security origin.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkframeinfo/securityorigin
+func (f_ FrameInfo) SecurityOrigin() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("securityOrigin"))
+	return rv
+}
+
+
+// SetSecurityOrigin sets the value of the securityOrigin property.
+// The frame’s security origin.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkframeinfo/securityorigin
+func (f_ FrameInfo) SetSecurityOrigin(value unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setSecurityOrigin:"), value)
+}
+
+// The web view that contains this frame and the containing webpage.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkframeinfo/webview
+func (f_ FrameInfo) WebView() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("webView"))
+	return rv
+}
+
+
+// SetWebView sets the value of the webView property.
+// The web view that contains this frame and the containing webpage.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkframeinfo/webview
+func (f_ FrameInfo) SetWebView(value unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setWebView:"), value)
+}
+
+// A Boolean value indicating whether the frame is the web site’s main frame or a subframe.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkframeinfo/ismainframe
+func (f_ FrameInfo) IsMainFrame() bool {
+	rv := objc.Send[bool](f_.ID, objc.Sel("isMainFrame"))
+	return rv
+}
+
+
+// SetIsMainFrame sets the value of the isMainFrame property.
+// A Boolean value indicating whether the frame is the web site’s main frame or a subframe.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkframeinfo/ismainframe
+func (f_ FrameInfo) SetIsMainFrame(value bool) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setIsMainFrame:"), value)
+}
+
 // A Boolean value indicating whether the frame is the web site’s main frame or a subframe.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKFrameInfo/isMainFrame

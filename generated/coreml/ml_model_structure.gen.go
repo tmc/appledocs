@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -81,7 +82,7 @@ func NewModelStructure() ModelStructure {
 // Construct the model structure asynchronously given the location of its on-disk representation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructure-c.class/loadContentsOfURL:completionHandler:
-func (mc _ModelStructureClass) LoadContentsOfURLCompletionHandler(url unsafe.Pointer, handler unsafe.Pointer) {
+func (mc _ModelStructureClass) LoadContentsOfURLCompletionHandler(url foundation.URL, handler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("loadContentsOfURL:completionHandler:"), url, handler)
 }
 

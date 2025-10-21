@@ -107,4 +107,22 @@ func (c_ CaptureDeviceDiscoverySession) Devices() []CaptureDevice {
 	return rv
 }
 
+// Sets of capture devices that you can use simultaneously in a multi-camera session.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/discoverysession/supportedmulticamdevicesets
+func (c_ CaptureDeviceDiscoverySession) SupportedMultiCamDeviceSets() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("supportedMultiCamDeviceSets"))
+	return rv
+}
+
+
+// SetSupportedMultiCamDeviceSets sets the value of the supportedMultiCamDeviceSets property.
+// Sets of capture devices that you can use simultaneously in a multi-camera session.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/discoverysession/supportedmulticamdevicesets
+func (c_ CaptureDeviceDiscoverySession) SetSupportedMultiCamDeviceSets(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setSupportedMultiCamDeviceSets:"), value)
+}
+
 

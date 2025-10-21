@@ -93,6 +93,42 @@ func NewPHASESpatialPipelineWithFlags(flags unsafe.Pointer) PHASESpatialPipeline
 }
 
 
+// An object that adds sound layers for environmental effects.
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasespatialmixerdefinition/spatialpipeline
+func (p_ PHASESpatialPipeline) SpatialPipeline() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("spatialPipeline"))
+	return rv
+}
+
+
+// SetSpatialPipeline sets the value of the spatialPipeline property.
+// An object that adds sound layers for environmental effects.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasespatialmixerdefinition/spatialpipeline
+func (p_ PHASESpatialPipeline) SetSpatialPipeline(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setSpatialPipeline:"), value)
+}
+
+// The amount of audio signal to add to the output.
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasespatialpipelineentry/sendlevel
+func (p_ PHASESpatialPipeline) SendLevel() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("sendLevel"))
+	return rv
+}
+
+
+// SetSendLevel sets the value of the sendLevel property.
+// The amount of audio signal to add to the output.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasespatialpipelineentry/sendlevel
+func (p_ PHASESpatialPipeline) SetSendLevel(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setSendLevel:"), value)
+}
+
 // Audio layers for environmental effects to add to the output.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESpatialPipeline/entries

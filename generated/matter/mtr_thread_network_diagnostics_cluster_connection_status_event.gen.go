@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,21 @@ func NewMTRThreadNetworkDiagnosticsClusterConnectionStatusEvent() MTRThreadNetwo
 	return getMTRThreadNetworkDiagnosticsClusterConnectionStatusEventClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterconnectionstatusevent/connectionstatus
+func (m_ MTRThreadNetworkDiagnosticsClusterConnectionStatusEvent) ConnectionStatus() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("connectionStatus"))
+	return rv
+}
+
+
+// SetConnectionStatus sets the value of the connectionStatus property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterconnectionstatusevent/connectionstatus
+func (m_ MTRThreadNetworkDiagnosticsClusterConnectionStatusEvent) SetConnectionStatus(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setConnectionStatus:"), value)
+}
 
 
 

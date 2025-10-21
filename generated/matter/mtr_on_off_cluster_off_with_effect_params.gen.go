@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,81 @@ func NewMTROnOffClusterOffWithEffectParams() MTROnOffClusterOffWithEffectParams 
 	return getMTROnOffClusterOffWithEffectParamsClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtronoffclusteroffwitheffectparams/effectidentifier
+func (m_ MTROnOffClusterOffWithEffectParams) EffectIdentifier() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("effectIdentifier"))
+	return rv
+}
+
+
+// SetEffectIdentifier sets the value of the effectIdentifier property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtronoffclusteroffwitheffectparams/effectidentifier
+func (m_ MTROnOffClusterOffWithEffectParams) SetEffectIdentifier(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setEffectIdentifier:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtronoffclusteroffwitheffectparams/serversideprocessingtimeout
+func (m_ MTROnOffClusterOffWithEffectParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+	return rv
+}
+
+
+// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtronoffclusteroffwitheffectparams/serversideprocessingtimeout
+func (m_ MTROnOffClusterOffWithEffectParams) SetServerSideProcessingTimeout(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtronoffclusteroffwitheffectparams/effectid
+func (m_ MTROnOffClusterOffWithEffectParams) EffectId() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("effectId"))
+	return rv
+}
+
+
+// SetEffectId sets the value of the effectId property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtronoffclusteroffwitheffectparams/effectid
+func (m_ MTROnOffClusterOffWithEffectParams) SetEffectId(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setEffectId:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtronoffclusteroffwitheffectparams/effectvariant
+func (m_ MTROnOffClusterOffWithEffectParams) EffectVariant() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("effectVariant"))
+	return rv
+}
+
+
+// SetEffectVariant sets the value of the effectVariant property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtronoffclusteroffwitheffectparams/effectvariant
+func (m_ MTROnOffClusterOffWithEffectParams) SetEffectVariant(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setEffectVariant:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtronoffclusteroffwitheffectparams/timedinvoketimeoutms
+func (m_ MTROnOffClusterOffWithEffectParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+	return rv
+}
+
+
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtronoffclusteroffwitheffectparams/timedinvoketimeoutms
+func (m_ MTROnOffClusterOffWithEffectParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+}
 
 
 

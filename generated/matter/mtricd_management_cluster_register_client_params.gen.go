@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,8 +78,8 @@ func NewMTRICDManagementClusterRegisterClientParams() MTRICDManagementClusterReg
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterRegisterClientParams/checkInNodeID
-func (m_ MTRICDManagementClusterRegisterClientParams) CheckInNodeID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("checkInNodeID"))
+func (m_ MTRICDManagementClusterRegisterClientParams) CheckInNodeID() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("checkInNodeID"))
 	return rv
 }
 
@@ -86,14 +87,14 @@ func (m_ MTRICDManagementClusterRegisterClientParams) CheckInNodeID() unsafe.Poi
 // SetCheckInNodeID sets the value of the checkInNodeID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterRegisterClientParams/checkInNodeID
-func (m_ MTRICDManagementClusterRegisterClientParams) SetCheckInNodeID(value unsafe.Pointer) {
+func (m_ MTRICDManagementClusterRegisterClientParams) SetCheckInNodeID(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCheckInNodeID:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterRegisterClientParams/clientType
-func (m_ MTRICDManagementClusterRegisterClientParams) ClientType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("clientType"))
+func (m_ MTRICDManagementClusterRegisterClientParams) ClientType() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("clientType"))
 	return rv
 }
 
@@ -101,7 +102,7 @@ func (m_ MTRICDManagementClusterRegisterClientParams) ClientType() unsafe.Pointe
 // SetClientType sets the value of the clientType property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterRegisterClientParams/clientType
-func (m_ MTRICDManagementClusterRegisterClientParams) SetClientType(value unsafe.Pointer) {
+func (m_ MTRICDManagementClusterRegisterClientParams) SetClientType(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setClientType:"), value)
 }
 
@@ -122,8 +123,8 @@ func (m_ MTRICDManagementClusterRegisterClientParams) SetKey(value unsafe.Pointe
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterRegisterClientParams/monitoredSubject
-func (m_ MTRICDManagementClusterRegisterClientParams) MonitoredSubject() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("monitoredSubject"))
+func (m_ MTRICDManagementClusterRegisterClientParams) MonitoredSubject() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("monitoredSubject"))
 	return rv
 }
 
@@ -131,15 +132,15 @@ func (m_ MTRICDManagementClusterRegisterClientParams) MonitoredSubject() unsafe.
 // SetMonitoredSubject sets the value of the monitoredSubject property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterRegisterClientParams/monitoredSubject
-func (m_ MTRICDManagementClusterRegisterClientParams) SetMonitoredSubject(value unsafe.Pointer) {
+func (m_ MTRICDManagementClusterRegisterClientParams) SetMonitoredSubject(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMonitoredSubject:"), value)
 }
 
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterRegisterClientParams/serverSideProcessingTimeout
-func (m_ MTRICDManagementClusterRegisterClientParams) ServerSideProcessingTimeout() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRICDManagementClusterRegisterClientParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
@@ -149,15 +150,15 @@ func (m_ MTRICDManagementClusterRegisterClientParams) ServerSideProcessingTimeou
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterRegisterClientParams/serverSideProcessingTimeout
-func (m_ MTRICDManagementClusterRegisterClientParams) SetServerSideProcessingTimeout(value unsafe.Pointer) {
+func (m_ MTRICDManagementClusterRegisterClientParams) SetServerSideProcessingTimeout(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterRegisterClientParams/timedInvokeTimeoutMs
-func (m_ MTRICDManagementClusterRegisterClientParams) TimedInvokeTimeoutMs() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRICDManagementClusterRegisterClientParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
@@ -167,7 +168,7 @@ func (m_ MTRICDManagementClusterRegisterClientParams) TimedInvokeTimeoutMs() uns
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterRegisterClientParams/timedInvokeTimeoutMs
-func (m_ MTRICDManagementClusterRegisterClientParams) SetTimedInvokeTimeoutMs(value unsafe.Pointer) {
+func (m_ MTRICDManagementClusterRegisterClientParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

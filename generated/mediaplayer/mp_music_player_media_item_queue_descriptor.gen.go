@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MusicPlayerMediaItemQueueDescriptor] class.
@@ -29,8 +30,8 @@ type _MusicPlayerMediaItemQueueDescriptorClass struct {
 // An interface definition for the [MusicPlayerMediaItemQueueDescriptor] class.
 type IMusicPlayerMediaItemQueueDescriptor interface {
 	IMusicPlayerQueueDescriptor
-	SetEndTimeForItem(endTime TimeInterval, mediaItem unsafe.Pointer)
-	SetStartTimeForItem(startTime TimeInterval, mediaItem unsafe.Pointer)
+	SetEndTimeForItem(endTime foundation.TimeInterval, mediaItem unsafe.Pointer)
+	SetStartTimeForItem(startTime foundation.TimeInterval, mediaItem unsafe.Pointer)
 }
 
 // A set of properties and methods for modifying audio media items in the player’s media queue.
@@ -111,14 +112,14 @@ func NewMusicPlayerMediaItemQueueDescriptorWithQuery(query unsafe.Pointer) Music
 // The time the designated media item is to stop playing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerMediaItemQueueDescriptor/setEndTime(_:for:)
-func (m_ MusicPlayerMediaItemQueueDescriptor) SetEndTimeForItem(endTime TimeInterval, mediaItem unsafe.Pointer) {
+func (m_ MusicPlayerMediaItemQueueDescriptor) SetEndTimeForItem(endTime foundation.TimeInterval, mediaItem unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEndTime:forItem:"), endTime, mediaItem)
 }
 
 // The time the designated media item is to start playing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerMediaItemQueueDescriptor/setStartTime(_:for:)
-func (m_ MusicPlayerMediaItemQueueDescriptor) SetStartTimeForItem(startTime TimeInterval, mediaItem unsafe.Pointer) {
+func (m_ MusicPlayerMediaItemQueueDescriptor) SetStartTimeForItem(startTime foundation.TimeInterval, mediaItem unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStartTime:forItem:"), startTime, mediaItem)
 }
 

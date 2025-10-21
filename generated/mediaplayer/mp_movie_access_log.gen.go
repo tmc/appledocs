@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -79,6 +80,114 @@ func NewMovieAccessLog() MovieAccessLog {
 	return getMovieAccessLogClass().New()
 }
 
+
+// A textual version of the web server access log for the associated movie player.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieaccesslog/extendedlogdata
+func (m_ MovieAccessLog) ExtendedLogData() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("extendedLogData"))
+	return rv
+}
+
+
+// SetExtendedLogData sets the value of the extendedLogData property.
+// A textual version of the web server access log for the associated movie player.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieaccesslog/extendedlogdata
+func (m_ MovieAccessLog) SetExtendedLogData(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setExtendedLogData:"), value)
+}
+
+// A Boolean value that indicates whether the route button is visible in the volume view.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpvolumeview/showsroutebutton
+func (m_ MovieAccessLog) ShowsRouteButton() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("showsRouteButton"))
+	return rv
+}
+
+
+// SetShowsRouteButton sets the value of the showsRouteButton property.
+// A Boolean value that indicates whether the route button is visible in the volume view.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpvolumeview/showsroutebutton
+func (m_ MovieAccessLog) SetShowsRouteButton(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setShowsRouteButton:"), value)
+}
+
+// The string encoding for the
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieaccesslog/extendedlogdatastringencoding
+func (m_ MovieAccessLog) ExtendedLogDataStringEncoding() uint {
+	rv := objc.Send[uint](m_.ID, objc.Sel("extendedLogDataStringEncoding"))
+	return rv
+}
+
+
+// SetExtendedLogDataStringEncoding sets the value of the extendedLogDataStringEncoding property.
+// The string encoding for the
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieaccesslog/extendedlogdatastringencoding
+func (m_ MovieAccessLog) SetExtendedLogDataStringEncoding(value uint) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setExtendedLogDataStringEncoding:"), value)
+}
+
+// A snapshot of the network playback log for the movie player if it is playing a network stream.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieplayercontroller/accesslog
+func (m_ MovieAccessLog) AccessLog() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("accessLog"))
+	return rv
+}
+
+
+// SetAccessLog sets the value of the accessLog property.
+// A snapshot of the network playback log for the movie player if it is playing a network stream.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieplayercontroller/accesslog
+func (m_ MovieAccessLog) SetAccessLog(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAccessLog:"), value)
+}
+
+// The bounds, in points, of the content area for the full size image associated with the media item artwork.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitemartwork/imagecroprect
+func (m_ MovieAccessLog) ImageCropRect() coregraphics.CGRect {
+	rv := objc.Send[coregraphics.CGRect](m_.ID, objc.Sel("imageCropRect"))
+	return rv
+}
+
+
+// SetImageCropRect sets the value of the imageCropRect property.
+// The bounds, in points, of the content area for the full size image associated with the media item artwork.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitemartwork/imagecroprect
+func (m_ MovieAccessLog) SetImageCropRect(value coregraphics.CGRect) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setImageCropRect:"), value)
+}
+
+// The events in the movie access log.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieaccesslog/events
+func (m_ MovieAccessLog) Events() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("events"))
+	return rv
+}
+
+
+// SetEvents sets the value of the events property.
+// The events in the movie access log.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieaccesslog/events
+func (m_ MovieAccessLog) SetEvents(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setEvents:"), value)
+}
 
 
 

@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -33,11 +34,11 @@ type IStrokePath interface {
 	objectivec.IObject
 	EnumerateInterpolatedPointsInRangeStrideByDistanceUsingBlock(range_ unsafe.Pointer, distanceStep float64, block unsafe.Pointer)
 	EnumerateInterpolatedPointsInRangeStrideByParametricStepUsingBlock(range_ unsafe.Pointer, parametricStep float64, block unsafe.Pointer)
-	EnumerateInterpolatedPointsInRangeStrideByTimeUsingBlock(range_ unsafe.Pointer, timeStep TimeInterval, block unsafe.Pointer)
+	EnumerateInterpolatedPointsInRangeStrideByTimeUsingBlock(range_ unsafe.Pointer, timeStep foundation.TimeInterval, block unsafe.Pointer)
 	InterpolatedLocationAt(parametricValue float64) coregraphics.CGPoint
 	InterpolatedPointAt(parametricValue float64) unsafe.Pointer
 	ParametricValueOffsetByDistance(parametricValue float64, distanceStep float64) float64
-	ParametricValueOffsetByTime(parametricValue float64, timeStep TimeInterval) float64
+	ParametricValueOffsetByTime(parametricValue float64, timeStep foundation.TimeInterval) float64
 	PointAtIndex(i uint) unsafe.Pointer
 	ObjectAtIndexedSubscript(i uint) unsafe.Pointer
 }
@@ -118,7 +119,7 @@ func (s_ StrokePath) EnumerateInterpolatedPointsInRangeStrideByParametricStepUsi
 // Executes a given block using each point in a range with a time step.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKStrokePathReference/enumerateInterpolatedPoints(in:strideByTime:using:)
-func (s_ StrokePath) EnumerateInterpolatedPointsInRangeStrideByTimeUsingBlock(range_ unsafe.Pointer, timeStep TimeInterval, block unsafe.Pointer) {
+func (s_ StrokePath) EnumerateInterpolatedPointsInRangeStrideByTimeUsingBlock(range_ unsafe.Pointer, timeStep foundation.TimeInterval, block unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("enumerateInterpolatedPointsInRange:strideByTime:usingBlock:"), range_, timeStep, block)
 }
 
@@ -149,7 +150,7 @@ func (s_ StrokePath) ParametricValueOffsetByDistance(parametricValue float64, di
 // Returns a parametric value on the B-spline that’s a specified time from the given parametric value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKStrokePathReference/parametricValue(_:offsetByTime:)
-func (s_ StrokePath) ParametricValueOffsetByTime(parametricValue float64, timeStep TimeInterval) float64 {
+func (s_ StrokePath) ParametricValueOffsetByTime(parametricValue float64, timeStep foundation.TimeInterval) float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("parametricValue:offsetByTime:"), parametricValue, timeStep)
 	return rv
 }

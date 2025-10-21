@@ -78,5 +78,23 @@ func NewIntersectionFunctionTableDescriptor() IntersectionFunctionTableDescripto
 }
 
 
+// The number of entries in the intersection function table.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlintersectionfunctiontabledescriptor/functioncount
+func (i_ IntersectionFunctionTableDescriptor) FunctionCount() int {
+	rv := objc.Send[int](i_.ID, objc.Sel("functionCount"))
+	return rv
+}
+
+
+// SetFunctionCount sets the value of the functionCount property.
+// The number of entries in the intersection function table.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlintersectionfunctiontabledescriptor/functioncount
+func (i_ IntersectionFunctionTableDescriptor) SetFunctionCount(value int) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setFunctionCount:"), value)
+}
+
 
 

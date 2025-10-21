@@ -86,4 +86,19 @@ func NewUnaryReductionNodeWithSource(sourceNode unsafe.Pointer) UnaryReductionNo
 }
 
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnunaryreductionnode/cliprectsource
+func (u_ UnaryReductionNode) ClipRectSource() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("clipRectSource"))
+	return rv
+}
+
+
+// SetClipRectSource sets the value of the clipRectSource property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnunaryreductionnode/cliprectsource
+func (u_ UnaryReductionNode) SetClipRectSource(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setClipRectSource:"), value)
+}
+
 

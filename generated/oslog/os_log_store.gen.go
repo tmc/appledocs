@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -33,8 +34,8 @@ type IOSLogStore interface {
 	EntriesEnumeratorAndReturnError(error_ unsafe.Pointer) unsafe.Pointer
 	EntriesEnumeratorWithOptionsPositionPredicateError(options unsafe.Pointer, position unsafe.Pointer, predicate unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer
 	PositionWithDate(date unsafe.Pointer) unsafe.Pointer
-	PositionWithTimeIntervalSinceEnd(seconds TimeInterval) unsafe.Pointer
-	PositionWithTimeIntervalSinceLatestBoot(seconds TimeInterval) unsafe.Pointer
+	PositionWithTimeIntervalSinceEnd(seconds foundation.TimeInterval) unsafe.Pointer
+	PositionWithTimeIntervalSinceLatestBoot(seconds foundation.TimeInterval) unsafe.Pointer
 }
 
 // A set of entries from the unified logging system.
@@ -97,7 +98,7 @@ func NewOSLogStoreWithScopeError(scope unsafe.Pointer, error_ unsafe.Pointer) OS
 // Creates a log store based on a log archive.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogStore/init(url:)
-func NewOSLogStoreWithURLError(url unsafe.Pointer, error_ unsafe.Pointer) OSLogStore {
+func NewOSLogStoreWithURLError(url foundation.URL, error_ unsafe.Pointer) OSLogStore {
 	rv := objc.Send[OSLogStore](objc.ID(getOSLogStoreClass().class), objc.Sel("storeWithURL:error:"), url, error_)
 	return rv
 }
@@ -113,7 +114,7 @@ func (oc _OSLogStoreClass) StoreWithScopeError(scope unsafe.Pointer, error_ unsa
 // Creates a log store based on a log archive.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogStore/init(url:)
-func (oc _OSLogStoreClass) StoreWithURLError(url unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func (oc _OSLogStoreClass) StoreWithURLError(url foundation.URL, error_ unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(oc.class), objc.Sel("storeWithURL:error:"), url, error_)
 	return rv
 }
@@ -153,7 +154,7 @@ func (o_ OSLogStore) PositionWithDate(date unsafe.Pointer) unsafe.Pointer {
 // Returns a position representing time since the end of the time range that the entries span.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogStore/position(timeIntervalSinceEnd:)
-func (o_ OSLogStore) PositionWithTimeIntervalSinceEnd(seconds TimeInterval) unsafe.Pointer {
+func (o_ OSLogStore) PositionWithTimeIntervalSinceEnd(seconds foundation.TimeInterval) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("positionWithTimeIntervalSinceEnd:"), seconds)
 	return rv
 }
@@ -161,7 +162,7 @@ func (o_ OSLogStore) PositionWithTimeIntervalSinceEnd(seconds TimeInterval) unsa
 // Returns a position representing time since the last boot in the series of entries.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogStore/position(timeIntervalSinceLatestBoot:)
-func (o_ OSLogStore) PositionWithTimeIntervalSinceLatestBoot(seconds TimeInterval) unsafe.Pointer {
+func (o_ OSLogStore) PositionWithTimeIntervalSinceLatestBoot(seconds foundation.TimeInterval) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("positionWithTimeIntervalSinceLatestBoot:"), seconds)
 	return rv
 }

@@ -118,5 +118,77 @@ func (c_ CaptureVideoPreviewLayer) SetSession(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSession:"), value)
 }
 
+// A
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturevideopreviewlayer/isdeferredstartenabled
+func (c_ CaptureVideoPreviewLayer) IsDeferredStartEnabled() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isDeferredStartEnabled"))
+	return rv
+}
+
+
+// SetIsDeferredStartEnabled sets the value of the isDeferredStartEnabled property.
+// A
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturevideopreviewlayer/isdeferredstartenabled
+func (c_ CaptureVideoPreviewLayer) SetIsDeferredStartEnabled(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsDeferredStartEnabled:"), value)
+}
+
+// A
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturevideopreviewlayer/isdeferredstartsupported
+func (c_ CaptureVideoPreviewLayer) IsDeferredStartSupported() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isDeferredStartSupported"))
+	return rv
+}
+
+
+// SetIsDeferredStartSupported sets the value of the isDeferredStartSupported property.
+// A
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturevideopreviewlayer/isdeferredstartsupported
+func (c_ CaptureVideoPreviewLayer) SetIsDeferredStartSupported(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsDeferredStartSupported:"), value)
+}
+
+// A Boolean value that indicates whether the layer is rendering video frames from its source.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturevideopreviewlayer/ispreviewing
+func (c_ CaptureVideoPreviewLayer) IsPreviewing() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isPreviewing"))
+	return rv
+}
+
+
+// SetIsPreviewing sets the value of the isPreviewing property.
+// A Boolean value that indicates whether the layer is rendering video frames from its source.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturevideopreviewlayer/ispreviewing
+func (c_ CaptureVideoPreviewLayer) SetIsPreviewing(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsPreviewing:"), value)
+}
+
+// A value that indicates how the layer displays video content within its bounds.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturevideopreviewlayer/videogravity
+func (c_ CaptureVideoPreviewLayer) VideoGravity() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("videoGravity"))
+	return rv
+}
+
+
+// SetVideoGravity sets the value of the videoGravity property.
+// A value that indicates how the layer displays video content within its bounds.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturevideopreviewlayer/videogravity
+func (c_ CaptureVideoPreviewLayer) SetVideoGravity(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setVideoGravity:"), value)
+}
+
 
 

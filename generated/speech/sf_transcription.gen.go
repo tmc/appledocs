@@ -80,5 +80,77 @@ func NewSFTranscription() SFTranscription {
 }
 
 
+// The entire transcription of utterances, formatted into a single, user-displayable string.
+//
+// [Full Topic]: https://developer.apple.com/documentation/speech/sftranscription/formattedstring
+func (s_ SFTranscription) FormattedString() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("formattedString"))
+	return rv
+}
+
+
+// SetFormattedString sets the value of the formattedString property.
+// The entire transcription of utterances, formatted into a single, user-displayable string.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/speech/sftranscription/formattedstring
+func (s_ SFTranscription) SetFormattedString(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setFormattedString:"), objc.String(value))
+}
+
+// An array of transcription segments that represent the parts of the transcription, as identified by the speech recognizer.
+//
+// [Full Topic]: https://developer.apple.com/documentation/speech/sftranscription/segments
+func (s_ SFTranscription) Segments() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("segments"))
+	return rv
+}
+
+
+// SetSegments sets the value of the segments property.
+// An array of transcription segments that represent the parts of the transcription, as identified by the speech recognizer.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/speech/sftranscription/segments
+func (s_ SFTranscription) SetSegments(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setSegments:"), value)
+}
+
+// The number of words spoken per minute.
+//
+// [Full Topic]: https://developer.apple.com/documentation/speech/sftranscription/speakingrate
+func (s_ SFTranscription) SpeakingRate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("speakingRate"))
+	return rv
+}
+
+
+// SetSpeakingRate sets the value of the speakingRate property.
+// The number of words spoken per minute.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/speech/sftranscription/speakingrate
+func (s_ SFTranscription) SetSpeakingRate(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setSpeakingRate:"), value)
+}
+
+// The average pause duration between words, measured in seconds.
+//
+// [Full Topic]: https://developer.apple.com/documentation/speech/sftranscription/averagepauseduration
+func (s_ SFTranscription) AveragePauseDuration() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("averagePauseDuration"))
+	return rv
+}
+
+
+// SetAveragePauseDuration sets the value of the averagePauseDuration property.
+// The average pause duration between words, measured in seconds.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/speech/sftranscription/averagepauseduration
+func (s_ SFTranscription) SetAveragePauseDuration(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setAveragePauseDuration:"), value)
+}
+
 
 

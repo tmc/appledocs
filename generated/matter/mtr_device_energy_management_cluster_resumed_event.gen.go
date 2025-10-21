@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,8 +78,8 @@ func NewMTRDeviceEnergyManagementClusterResumedEvent() MTRDeviceEnergyManagement
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterResumedEvent/cause
-func (m_ MTRDeviceEnergyManagementClusterResumedEvent) Cause() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("cause"))
+func (m_ MTRDeviceEnergyManagementClusterResumedEvent) Cause() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("cause"))
 	return rv
 }
 
@@ -86,7 +87,7 @@ func (m_ MTRDeviceEnergyManagementClusterResumedEvent) Cause() unsafe.Pointer {
 // SetCause sets the value of the cause property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterResumedEvent/cause
-func (m_ MTRDeviceEnergyManagementClusterResumedEvent) SetCause(value unsafe.Pointer) {
+func (m_ MTRDeviceEnergyManagementClusterResumedEvent) SetCause(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCause:"), value)
 }
 

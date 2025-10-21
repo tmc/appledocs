@@ -362,8 +362,8 @@ func (c_ CaptureSession) Connections() []CaptureConnection {
 // The controls that allow configuring the camera system from device hardware.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/controls
-func (c_ CaptureSession) Controls() []AVCaptureControl {
-	rv := objc.Send[[]AVCaptureControl](c_.ID, objc.Sel("controls"))
+func (c_ CaptureSession) Controls() []unsafe.Pointer {
+	rv := objc.Send[[]unsafe.Pointer](c_.ID, objc.Sel("controls"))
 	return rv
 }
 
@@ -539,6 +539,96 @@ func (c_ CaptureSession) UsesApplicationAudioSession() bool {
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/usesApplicationAudioSession
 func (c_ CaptureSession) SetUsesApplicationAudioSession(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setUsesApplicationAudioSession:"), value)
+}
+
+// A Boolean value that indicates whether the capture session is in an interrupted state.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesession/isinterrupted
+func (c_ CaptureSession) IsInterrupted() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isInterrupted"))
+	return rv
+}
+
+
+// SetIsInterrupted sets the value of the isInterrupted property.
+// A Boolean value that indicates whether the capture session is in an interrupted state.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesession/isinterrupted
+func (c_ CaptureSession) SetIsInterrupted(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsInterrupted:"), value)
+}
+
+// A
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesession/ismanualdeferredstartsupported
+func (c_ CaptureSession) IsManualDeferredStartSupported() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isManualDeferredStartSupported"))
+	return rv
+}
+
+
+// SetIsManualDeferredStartSupported sets the value of the isManualDeferredStartSupported property.
+// A
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesession/ismanualdeferredstartsupported
+func (c_ CaptureSession) SetIsManualDeferredStartSupported(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsManualDeferredStartSupported:"), value)
+}
+
+// A Boolean value that indicates whether the capture session enables access to the camera while multitasking.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesession/ismultitaskingcameraaccessenabled
+func (c_ CaptureSession) IsMultitaskingCameraAccessEnabled() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isMultitaskingCameraAccessEnabled"))
+	return rv
+}
+
+
+// SetIsMultitaskingCameraAccessEnabled sets the value of the isMultitaskingCameraAccessEnabled property.
+// A Boolean value that indicates whether the capture session enables access to the camera while multitasking.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesession/ismultitaskingcameraaccessenabled
+func (c_ CaptureSession) SetIsMultitaskingCameraAccessEnabled(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsMultitaskingCameraAccessEnabled:"), value)
+}
+
+// A Boolean value that indicates whether the capture session supports using the camera while multitasking.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesession/ismultitaskingcameraaccesssupported
+func (c_ CaptureSession) IsMultitaskingCameraAccessSupported() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isMultitaskingCameraAccessSupported"))
+	return rv
+}
+
+
+// SetIsMultitaskingCameraAccessSupported sets the value of the isMultitaskingCameraAccessSupported property.
+// A Boolean value that indicates whether the capture session supports using the camera while multitasking.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesession/ismultitaskingcameraaccesssupported
+func (c_ CaptureSession) SetIsMultitaskingCameraAccessSupported(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsMultitaskingCameraAccessSupported:"), value)
+}
+
+// A Boolean value that indicates whether the capture session is in a running state.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesession/isrunning
+func (c_ CaptureSession) IsRunning() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isRunning"))
+	return rv
+}
+
+
+// SetIsRunning sets the value of the isRunning property.
+// A Boolean value that indicates whether the capture session is in a running state.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesession/isrunning
+func (c_ CaptureSession) SetIsRunning(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsRunning:"), value)
 }
 
 

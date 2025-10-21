@@ -80,5 +80,95 @@ func NewMKRouteStep() MKRouteStep {
 }
 
 
+// The step distance, in meters.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkroute/step/distance
+func (m_ MKRouteStep) Distance() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("distance"))
+	return rv
+}
+
+
+// SetDistance sets the value of the distance property.
+// The step distance, in meters.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkroute/step/distance
+func (m_ MKRouteStep) SetDistance(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDistance:"), value)
+}
+
+// The transport type of the step.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkroute/step/transporttype
+func (m_ MKRouteStep) TransportType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("transportType"))
+	return rv
+}
+
+
+// SetTransportType sets the value of the transportType property.
+// The transport type of the step.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkroute/step/transporttype
+func (m_ MKRouteStep) SetTransportType(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTransportType:"), value)
+}
+
+// The detailed step geometry.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkroute/step/polyline
+func (m_ MKRouteStep) Polyline() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("polyline"))
+	return rv
+}
+
+
+// SetPolyline sets the value of the polyline property.
+// The detailed step geometry.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkroute/step/polyline
+func (m_ MKRouteStep) SetPolyline(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPolyline:"), value)
+}
+
+// Additional notices that apply to the step.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkroute/step/notice
+func (m_ MKRouteStep) Notice() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("notice"))
+	return rv
+}
+
+
+// SetNotice sets the value of the notice property.
+// Additional notices that apply to the step.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkroute/step/notice
+func (m_ MKRouteStep) SetNotice(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setNotice:"), objc.String(value))
+}
+
+// The written instructions for following the path that the step represents.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkroute/step/instructions
+func (m_ MKRouteStep) Instructions() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("instructions"))
+	return rv
+}
+
+
+// SetInstructions sets the value of the instructions property.
+// The written instructions for following the path that the step represents.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkroute/step/instructions
+func (m_ MKRouteStep) SetInstructions(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setInstructions:"), objc.String(value))
+}
+
 
 

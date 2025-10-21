@@ -10,15 +10,7 @@ import (
 // Fallback type aliases for undefined types
 // These types are referenced in method signatures but not fully documented.
 // Using unsafe.Pointer as fallback to allow code generation.
-type Bool unsafe.Pointer
-
-type CLBeaconMajorValue unsafe.Pointer
-
-type CLBeaconMinorValue unsafe.Pointer
-
 type CLGeocodeCompletionHandler unsafe.Pointer
-
-type CLHeadingComponentValue unsafe.Pointer
 
 type CLLocationAccuracy unsafe.Pointer
 
@@ -35,24 +27,6 @@ type CLLocationDistance unsafe.Pointer
 type CLLocationSpeed unsafe.Pointer
 
 type CLLocationSpeedAccuracy unsafe.Pointer
-
-type CNPostalAddress unsafe.Pointer
-
-type Class unsafe.Pointer
-
-type Int unsafe.Pointer
-
-type NSError unsafe.Pointer
-
-type NSLocale unsafe.Pointer
-
-type NSMutableDictionary unsafe.Pointer
-
-type NSTimeInterval unsafe.Pointer
-
-type NSTimeZone unsafe.Pointer
-
-type NSUUID unsafe.Pointer
 
 
 

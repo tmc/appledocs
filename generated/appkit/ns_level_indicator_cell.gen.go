@@ -79,5 +79,149 @@ func NewLevelIndicatorCell() LevelIndicatorCell {
 }
 
 
+// The critical value of the level indicator control.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nslevelindicatorcell/criticalvalue
+func (l_ LevelIndicatorCell) CriticalValue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("criticalValue"))
+	return rv
+}
+
+
+// SetCriticalValue sets the value of the criticalValue property.
+// The critical value of the level indicator control.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nslevelindicatorcell/criticalvalue
+func (l_ LevelIndicatorCell) SetCriticalValue(value unsafe.Pointer) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setCriticalValue:"), value)
+}
+
+// The style of the level indicator control.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nslevelindicatorcell/levelindicatorstyle
+func (l_ LevelIndicatorCell) LevelIndicatorStyle() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("levelIndicatorStyle"))
+	return rv
+}
+
+
+// SetLevelIndicatorStyle sets the value of the levelIndicatorStyle property.
+// The style of the level indicator control.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nslevelindicatorcell/levelindicatorstyle
+func (l_ LevelIndicatorCell) SetLevelIndicatorStyle(value unsafe.Pointer) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setLevelIndicatorStyle:"), value)
+}
+
+// The maximum value of the control.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nslevelindicatorcell/maxvalue
+func (l_ LevelIndicatorCell) MaxValue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("maxValue"))
+	return rv
+}
+
+
+// SetMaxValue sets the value of the maxValue property.
+// The maximum value of the control.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nslevelindicatorcell/maxvalue
+func (l_ LevelIndicatorCell) SetMaxValue(value unsafe.Pointer) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setMaxValue:"), value)
+}
+
+// The minimum value of the control.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nslevelindicatorcell/minvalue
+func (l_ LevelIndicatorCell) MinValue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("minValue"))
+	return rv
+}
+
+
+// SetMinValue sets the value of the minValue property.
+// The minimum value of the control.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nslevelindicatorcell/minvalue
+func (l_ LevelIndicatorCell) SetMinValue(value unsafe.Pointer) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setMinValue:"), value)
+}
+
+// The number of major tick marks displayed by the control.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nslevelindicatorcell/numberofmajortickmarks
+func (l_ LevelIndicatorCell) NumberOfMajorTickMarks() int {
+	rv := objc.Send[int](l_.ID, objc.Sel("numberOfMajorTickMarks"))
+	return rv
+}
+
+
+// SetNumberOfMajorTickMarks sets the value of the numberOfMajorTickMarks property.
+// The number of major tick marks displayed by the control.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nslevelindicatorcell/numberofmajortickmarks
+func (l_ LevelIndicatorCell) SetNumberOfMajorTickMarks(value int) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setNumberOfMajorTickMarks:"), value)
+}
+
+// The number of tick marks displayed by the control.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nslevelindicatorcell/numberoftickmarks
+func (l_ LevelIndicatorCell) NumberOfTickMarks() int {
+	rv := objc.Send[int](l_.ID, objc.Sel("numberOfTickMarks"))
+	return rv
+}
+
+
+// SetNumberOfTickMarks sets the value of the numberOfTickMarks property.
+// The number of tick marks displayed by the control.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nslevelindicatorcell/numberoftickmarks
+func (l_ LevelIndicatorCell) SetNumberOfTickMarks(value int) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setNumberOfTickMarks:"), value)
+}
+
+// The placement of tick marks on the level indicator control.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nslevelindicatorcell/tickmarkposition
+func (l_ LevelIndicatorCell) TickMarkPosition() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("tickMarkPosition"))
+	return rv
+}
+
+
+// SetTickMarkPosition sets the value of the tickMarkPosition property.
+// The placement of tick marks on the level indicator control.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nslevelindicatorcell/tickmarkposition
+func (l_ LevelIndicatorCell) SetTickMarkPosition(value unsafe.Pointer) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setTickMarkPosition:"), value)
+}
+
+// The warning value of the level indicator control.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nslevelindicatorcell/warningvalue
+func (l_ LevelIndicatorCell) WarningValue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("warningValue"))
+	return rv
+}
+
+
+// SetWarningValue sets the value of the warningValue property.
+// The warning value of the level indicator control.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nslevelindicatorcell/warningvalue
+func (l_ LevelIndicatorCell) SetWarningValue(value unsafe.Pointer) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setWarningValue:"), value)
+}
+
 
 

@@ -43,22 +43,3 @@ type ColorSyncTransformRef unsafe.Pointer
 
 
 
-// Fallback type aliases for undefined types
-// These types are referenced in method signatures but not fully documented.
-// Using unsafe.Pointer as fallback to allow code generation.
-type CFErrorRef unsafe.Pointer
-
-type CFTypeID unsafe.Pointer
-
-type ColorSyncCMMIterateCallback unsafe.Pointer
-
-type ColorSyncDataLayout unsafe.Pointer
-
-type ColorSyncDeviceProfileIterateCallback unsafe.Pointer
-
-type ColorSyncMD5 unsafe.Pointer
-
-type ColorSyncProfileIterateCallback unsafe.Pointer
-
-
-

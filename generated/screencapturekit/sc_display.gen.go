@@ -81,6 +81,42 @@ func NewDisplay() Display {
 }
 
 
+// The width of the display in points.
+//
+// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scdisplay/width
+func (d_ Display) Width() int {
+	rv := objc.Send[int](d_.ID, objc.Sel("width"))
+	return rv
+}
+
+
+// SetWidth sets the value of the width property.
+// The width of the display in points.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scdisplay/width
+func (d_ Display) SetWidth(value int) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setWidth:"), value)
+}
+
+// The height of the display in points.
+//
+// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scdisplay/height
+func (d_ Display) Height() int {
+	rv := objc.Send[int](d_.ID, objc.Sel("height"))
+	return rv
+}
+
+
+// SetHeight sets the value of the height property.
+// The height of the display in points.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scdisplay/height
+func (d_ Display) SetHeight(value int) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setHeight:"), value)
+}
+
 // The Core Graphics display identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCDisplay/displayID

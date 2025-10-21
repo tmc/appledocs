@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -76,9 +77,39 @@ func NewMTRReadParams() MTRReadParams {
 
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrreadparams/shouldassumeunknownattributesreportable
+func (m_ MTRReadParams) ShouldAssumeUnknownAttributesReportable() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("shouldAssumeUnknownAttributesReportable"))
+	return rv
+}
+
+
+// SetShouldAssumeUnknownAttributesReportable sets the value of the shouldAssumeUnknownAttributesReportable property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrreadparams/shouldassumeunknownattributesreportable
+func (m_ MTRReadParams) SetShouldAssumeUnknownAttributesReportable(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setShouldAssumeUnknownAttributesReportable:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrreadparams/shouldfilterbyfabric
+func (m_ MTRReadParams) ShouldFilterByFabric() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("shouldFilterByFabric"))
+	return rv
+}
+
+
+// SetShouldFilterByFabric sets the value of the shouldFilterByFabric property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrreadparams/shouldfilterbyfabric
+func (m_ MTRReadParams) SetShouldFilterByFabric(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setShouldFilterByFabric:"), value)
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRReadParams/fabricFiltered
-func (m_ MTRReadParams) FabricFiltered() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("fabricFiltered"))
+func (m_ MTRReadParams) FabricFiltered() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("fabricFiltered"))
 	return rv
 }
 
@@ -86,14 +117,14 @@ func (m_ MTRReadParams) FabricFiltered() unsafe.Pointer {
 // SetFabricFiltered sets the value of the fabricFiltered property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRReadParams/fabricFiltered
-func (m_ MTRReadParams) SetFabricFiltered(value unsafe.Pointer) {
+func (m_ MTRReadParams) SetFabricFiltered(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricFiltered:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRReadParams/minEventNumber
-func (m_ MTRReadParams) MinEventNumber() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("minEventNumber"))
+func (m_ MTRReadParams) MinEventNumber() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("minEventNumber"))
 	return rv
 }
 
@@ -101,7 +132,7 @@ func (m_ MTRReadParams) MinEventNumber() unsafe.Pointer {
 // SetMinEventNumber sets the value of the minEventNumber property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRReadParams/minEventNumber
-func (m_ MTRReadParams) SetMinEventNumber(value unsafe.Pointer) {
+func (m_ MTRReadParams) SetMinEventNumber(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMinEventNumber:"), value)
 }
 

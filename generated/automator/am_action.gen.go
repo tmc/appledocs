@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -100,7 +101,7 @@ func NewAMAction() AMAction {
 // Loads an Automator action from a file URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMAction/init(contentsOf:)
-func NewAMActionWithContentsOfURLError(fileURL unsafe.Pointer, outError unsafe.Pointer) AMAction {
+func NewAMActionWithContentsOfURLError(fileURL foundation.URL, outError unsafe.Pointer) AMAction {
 	instance := getAMActionClass().Alloc()
 	rv := objc.Send[AMAction](instance.ID, objc.Sel("initWithContentsOfURL:error:"), fileURL, outError)
 	rv.Autorelease()
@@ -225,6 +226,24 @@ func (a_ AMAction) WillFinishRunning() {
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMAction/write(to:)
 func (a_ AMAction) WriteToDictionary(dictionary unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("writeToDictionary:"), dictionary)
+}
+
+// A Boolean value that indicates whether the user clicked the stop button on the parent workflow.
+//
+// [Full Topic]: https://developer.apple.com/documentation/automator/amaction/isstopped
+func (a_ AMAction) IsStopped() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("isStopped"))
+	return rv
+}
+
+
+// SetIsStopped sets the value of the isStopped property.
+// A Boolean value that indicates whether the user clicked the stop button on the parent workflow.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/automator/amaction/isstopped
+func (a_ AMAction) SetIsStopped(value bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setIsStopped:"), value)
 }
 
 // A Boolean value that indicates whether the action acts upon its input or the input is ignored.

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,81 @@ func NewMTRActionsClusterInstantActionWithTransitionParams() MTRActionsClusterIn
 	return getMTRActionsClusterInstantActionWithTransitionParamsClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterinstantactionwithtransitionparams/serversideprocessingtimeout
+func (m_ MTRActionsClusterInstantActionWithTransitionParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+	return rv
+}
+
+
+// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterinstantactionwithtransitionparams/serversideprocessingtimeout
+func (m_ MTRActionsClusterInstantActionWithTransitionParams) SetServerSideProcessingTimeout(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterinstantactionwithtransitionparams/actionid
+func (m_ MTRActionsClusterInstantActionWithTransitionParams) ActionID() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("actionID"))
+	return rv
+}
+
+
+// SetActionID sets the value of the actionID property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterinstantactionwithtransitionparams/actionid
+func (m_ MTRActionsClusterInstantActionWithTransitionParams) SetActionID(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setActionID:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterinstantactionwithtransitionparams/timedinvoketimeoutms
+func (m_ MTRActionsClusterInstantActionWithTransitionParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+	return rv
+}
+
+
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterinstantactionwithtransitionparams/timedinvoketimeoutms
+func (m_ MTRActionsClusterInstantActionWithTransitionParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterinstantactionwithtransitionparams/transitiontime
+func (m_ MTRActionsClusterInstantActionWithTransitionParams) TransitionTime() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("transitionTime"))
+	return rv
+}
+
+
+// SetTransitionTime sets the value of the transitionTime property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterinstantactionwithtransitionparams/transitiontime
+func (m_ MTRActionsClusterInstantActionWithTransitionParams) SetTransitionTime(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTransitionTime:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterinstantactionwithtransitionparams/invokeid
+func (m_ MTRActionsClusterInstantActionWithTransitionParams) InvokeID() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("invokeID"))
+	return rv
+}
+
+
+// SetInvokeID sets the value of the invokeID property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterinstantactionwithtransitionparams/invokeid
+func (m_ MTRActionsClusterInstantActionWithTransitionParams) SetInvokeID(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setInvokeID:"), value)
+}
 
 
 

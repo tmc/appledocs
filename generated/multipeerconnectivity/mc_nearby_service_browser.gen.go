@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,7 +31,7 @@ type _MCNearbyServiceBrowserClass struct {
 // An interface definition for the [MCNearbyServiceBrowser] class.
 type IMCNearbyServiceBrowser interface {
 	objectivec.IObject
-	InvitePeerToSessionWithContextTimeout(peerID unsafe.Pointer, session unsafe.Pointer, context unsafe.Pointer, timeout TimeInterval)
+	InvitePeerToSessionWithContextTimeout(peerID unsafe.Pointer, session unsafe.Pointer, context unsafe.Pointer, timeout foundation.TimeInterval)
 	StartBrowsingForPeers()
 	StopBrowsingForPeers()
 }
@@ -97,7 +98,7 @@ func NewMCNearbyServiceBrowserWithPeerServiceType(myPeerID unsafe.Pointer, servi
 // Invites a discovered peer to join a Multipeer Connectivity session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCNearbyServiceBrowser/invitePeer(_:to:withContext:timeout:)
-func (m_ MCNearbyServiceBrowser) InvitePeerToSessionWithContextTimeout(peerID unsafe.Pointer, session unsafe.Pointer, context unsafe.Pointer, timeout TimeInterval) {
+func (m_ MCNearbyServiceBrowser) InvitePeerToSessionWithContextTimeout(peerID unsafe.Pointer, session unsafe.Pointer, context unsafe.Pointer, timeout foundation.TimeInterval) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("invitePeer:toSession:withContext:timeout:"), peerID, session, context, timeout)
 }
 

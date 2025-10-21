@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [ChangePlaybackPositionCommandEvent] class.
@@ -82,8 +83,8 @@ func NewChangePlaybackPositionCommandEvent() ChangePlaybackPositionCommandEvent 
 // The playback position used when setting the current time of the player.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPChangePlaybackPositionCommandEvent/positionTime
-func (c_ ChangePlaybackPositionCommandEvent) PositionTime() TimeInterval {
-	rv := objc.Send[TimeInterval](c_.ID, objc.Sel("positionTime"))
+func (c_ ChangePlaybackPositionCommandEvent) PositionTime() foundation.TimeInterval {
+	rv := objc.Send[foundation.TimeInterval](c_.ID, objc.Sel("positionTime"))
 	return rv
 }
 

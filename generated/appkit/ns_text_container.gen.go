@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -96,6 +97,201 @@ func (t_ TextContainer) LayoutManager() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContainer/layoutManager
 func (t_ TextContainer) SetLayoutManager(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLayoutManager:"), value)
+}
+
+// The size of the text container’s bounding rectangle.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontainer/containersize
+func (t_ TextContainer) ContainerSize() coregraphics.CGSize {
+	rv := objc.Send[coregraphics.CGSize](t_.ID, objc.Sel("containerSize"))
+	return rv
+}
+
+
+// SetContainerSize sets the value of the containerSize property.
+// The size of the text container’s bounding rectangle.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontainer/containersize
+func (t_ TextContainer) SetContainerSize(value coregraphics.CGSize) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setContainerSize:"), value)
+}
+
+// An array of path objects that represents the regions where text doesn’t display in the text container.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontainer/exclusionpaths
+func (t_ TextContainer) ExclusionPaths() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("exclusionPaths"))
+	return rv
+}
+
+
+// SetExclusionPaths sets the value of the exclusionPaths property.
+// An array of path objects that represents the regions where text doesn’t display in the text container.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontainer/exclusionpaths
+func (t_ TextContainer) SetExclusionPaths(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setExclusionPaths:"), value)
+}
+
+// A Boolean that controls whether the text container adjusts the height of its bounding rectangle when its text view resizes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontainer/heighttrackstextview
+func (t_ TextContainer) HeightTracksTextView() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("heightTracksTextView"))
+	return rv
+}
+
+
+// SetHeightTracksTextView sets the value of the heightTracksTextView property.
+// A Boolean that controls whether the text container adjusts the height of its bounding rectangle when its text view resizes.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontainer/heighttrackstextview
+func (t_ TextContainer) SetHeightTracksTextView(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setHeightTracksTextView:"), value)
+}
+
+// A Boolean that indicates whether the text container’s region is a rectangle with no holes or gaps, and whose edges are parallel to the text view’s coordinate system axes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontainer/issimplerectangulartextcontainer
+func (t_ TextContainer) IsSimpleRectangularTextContainer() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("isSimpleRectangularTextContainer"))
+	return rv
+}
+
+
+// SetIsSimpleRectangularTextContainer sets the value of the isSimpleRectangularTextContainer property.
+// A Boolean that indicates whether the text container’s region is a rectangle with no holes or gaps, and whose edges are parallel to the text view’s coordinate system axes.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontainer/issimplerectangulartextcontainer
+func (t_ TextContainer) SetIsSimpleRectangularTextContainer(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setIsSimpleRectangularTextContainer:"), value)
+}
+
+// The behavior of the last line inside the text container.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontainer/linebreakmode
+func (t_ TextContainer) LineBreakMode() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("lineBreakMode"))
+	return rv
+}
+
+
+// SetLineBreakMode sets the value of the lineBreakMode property.
+// The behavior of the last line inside the text container.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontainer/linebreakmode
+func (t_ TextContainer) SetLineBreakMode(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setLineBreakMode:"), value)
+}
+
+// The value for the text inset within line fragment rectangles.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontainer/linefragmentpadding
+func (t_ TextContainer) LineFragmentPadding() float64 {
+	rv := objc.Send[float64](t_.ID, objc.Sel("lineFragmentPadding"))
+	return rv
+}
+
+
+// SetLineFragmentPadding sets the value of the lineFragmentPadding property.
+// The value for the text inset within line fragment rectangles.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontainer/linefragmentpadding
+func (t_ TextContainer) SetLineFragmentPadding(value float64) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setLineFragmentPadding:"), value)
+}
+
+// The maximum number of lines that the text container can store.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontainer/maximumnumberoflines
+func (t_ TextContainer) MaximumNumberOfLines() int {
+	rv := objc.Send[int](t_.ID, objc.Sel("maximumNumberOfLines"))
+	return rv
+}
+
+
+// SetMaximumNumberOfLines sets the value of the maximumNumberOfLines property.
+// The maximum number of lines that the text container can store.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontainer/maximumnumberoflines
+func (t_ TextContainer) SetMaximumNumberOfLines(value int) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setMaximumNumberOfLines:"), value)
+}
+
+// The size of the text container’s bounding rectangle.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontainer/size
+func (t_ TextContainer) Size() coregraphics.CGSize {
+	rv := objc.Send[coregraphics.CGSize](t_.ID, objc.Sel("size"))
+	return rv
+}
+
+
+// SetSize sets the value of the size property.
+// The size of the text container’s bounding rectangle.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontainer/size
+func (t_ TextContainer) SetSize(value coregraphics.CGSize) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setSize:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontainer/textlayoutmanager
+func (t_ TextContainer) TextLayoutManager() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("textLayoutManager"))
+	return rv
+}
+
+
+// SetTextLayoutManager sets the value of the textLayoutManager property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontainer/textlayoutmanager
+func (t_ TextContainer) SetTextLayoutManager(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setTextLayoutManager:"), value)
+}
+
+// The text container’s text view.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontainer/textview
+func (t_ TextContainer) TextView() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("textView"))
+	return rv
+}
+
+
+// SetTextView sets the value of the textView property.
+// The text container’s text view.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontainer/textview
+func (t_ TextContainer) SetTextView(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setTextView:"), value)
+}
+
+// A Boolean that controls whether the text container adjusts the width of its bounding rectangle when its text view resizes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontainer/widthtrackstextview
+func (t_ TextContainer) WidthTracksTextView() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("widthTracksTextView"))
+	return rv
+}
+
+
+// SetWidthTracksTextView sets the value of the widthTracksTextView property.
+// A Boolean that controls whether the text container adjusts the width of its bounding rectangle when its text view resizes.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontainer/widthtrackstextview
+func (t_ TextContainer) SetWidthTracksTextView(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setWidthTracksTextView:"), value)
 }
 
 

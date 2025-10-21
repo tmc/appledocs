@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MTRTestClusterClusterTestListStructOctet] class.
@@ -75,6 +76,36 @@ func NewMTRTestClusterClusterTestListStructOctet() MTRTestClusterClusterTestList
 	return getMTRTestClusterClusterTestListStructOctetClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestliststructoctet/member1
+func (m_ MTRTestClusterClusterTestListStructOctet) Member1() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("member1"))
+	return rv
+}
+
+
+// SetMember1 sets the value of the member1 property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestliststructoctet/member1
+func (m_ MTRTestClusterClusterTestListStructOctet) SetMember1(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMember1:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestliststructoctet/member2
+func (m_ MTRTestClusterClusterTestListStructOctet) Member2() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("member2"))
+	return rv
+}
+
+
+// SetMember2 sets the value of the member2 property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestliststructoctet/member2
+func (m_ MTRTestClusterClusterTestListStructOctet) SetMember2(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMember2:"), value)
+}
 
 
 

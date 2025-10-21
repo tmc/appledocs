@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [SFAuthorizationView] class.
@@ -39,7 +40,7 @@ type ISFAuthorizationView interface {
 	IsEnabled() bool
 	SetAuthorizationRights(authorizationRights unsafe.Pointer)
 	SetAutoupdate(autoupdate bool)
-	SetAutoupdateInterval(autoupdate bool, interval TimeInterval)
+	SetAutoupdateInterval(autoupdate bool, interval foundation.TimeInterval)
 	SetDelegate(delegate objc.ID)
 	SetEnabled(enabled bool)
 	SetFlags(flags unsafe.Pointer)
@@ -170,7 +171,7 @@ func (s_ SFAuthorizationView) SetAutoupdate(autoupdate bool) {
 // Sets the authorization view to update itself at a specific interval.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFAuthorizationView/setAutoupdate(_:interval:)
-func (s_ SFAuthorizationView) SetAutoupdateInterval(autoupdate bool, interval TimeInterval) {
+func (s_ SFAuthorizationView) SetAutoupdateInterval(autoupdate bool, interval foundation.TimeInterval) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAutoupdate:interval:"), autoupdate, interval)
 }
 

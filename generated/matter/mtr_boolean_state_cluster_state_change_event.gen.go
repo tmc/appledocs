@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,21 @@ func NewMTRBooleanStateClusterStateChangeEvent() MTRBooleanStateClusterStateChan
 	return getMTRBooleanStateClusterStateChangeEventClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrbooleanstateclusterstatechangeevent/statevalue
+func (m_ MTRBooleanStateClusterStateChangeEvent) StateValue() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("stateValue"))
+	return rv
+}
+
+
+// SetStateValue sets the value of the stateValue property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrbooleanstateclusterstatechangeevent/statevalue
+func (m_ MTRBooleanStateClusterStateChangeEvent) SetStateValue(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setStateValue:"), value)
+}
 
 
 

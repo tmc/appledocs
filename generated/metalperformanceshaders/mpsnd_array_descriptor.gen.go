@@ -91,5 +91,50 @@ func (n_ NDArrayDescriptor) SliceRangeForDimension(dimensionIndex uint) unsafe.P
 	return rv
 }
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraydescriptor/numberofdimensions
+func (n_ NDArrayDescriptor) NumberOfDimensions() int {
+	rv := objc.Send[int](n_.ID, objc.Sel("numberOfDimensions"))
+	return rv
+}
+
+
+// SetNumberOfDimensions sets the value of the numberOfDimensions property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraydescriptor/numberofdimensions
+func (n_ NDArrayDescriptor) SetNumberOfDimensions(value int) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setNumberOfDimensions:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraydescriptor/datatype
+func (n_ NDArrayDescriptor) DataType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("dataType"))
+	return rv
+}
+
+
+// SetDataType sets the value of the dataType property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraydescriptor/datatype
+func (n_ NDArrayDescriptor) SetDataType(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setDataType:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraydescriptor/preferpackedrows
+func (n_ NDArrayDescriptor) PreferPackedRows() bool {
+	rv := objc.Send[bool](n_.ID, objc.Sel("preferPackedRows"))
+	return rv
+}
+
+
+// SetPreferPackedRows sets the value of the preferPackedRows property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraydescriptor/preferpackedrows
+func (n_ NDArrayDescriptor) SetPreferPackedRows(value bool) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setPreferPackedRows:"), value)
+}
+
 
 

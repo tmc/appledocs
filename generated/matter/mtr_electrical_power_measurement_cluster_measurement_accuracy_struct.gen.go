@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,81 @@ func NewMTRElectricalPowerMeasurementClusterMeasurementAccuracyStruct() MTRElect
 	return getMTRElectricalPowerMeasurementClusterMeasurementAccuracyStructClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementaccuracystruct/measurementtype
+func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyStruct) MeasurementType() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("measurementType"))
+	return rv
+}
+
+
+// SetMeasurementType sets the value of the measurementType property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementaccuracystruct/measurementtype
+func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyStruct) SetMeasurementType(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMeasurementType:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementaccuracystruct/maxmeasuredvalue
+func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyStruct) MaxMeasuredValue() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("maxMeasuredValue"))
+	return rv
+}
+
+
+// SetMaxMeasuredValue sets the value of the maxMeasuredValue property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementaccuracystruct/maxmeasuredvalue
+func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyStruct) SetMaxMeasuredValue(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMaxMeasuredValue:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementaccuracystruct/minmeasuredvalue
+func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyStruct) MinMeasuredValue() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("minMeasuredValue"))
+	return rv
+}
+
+
+// SetMinMeasuredValue sets the value of the minMeasuredValue property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementaccuracystruct/minmeasuredvalue
+func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyStruct) SetMinMeasuredValue(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMinMeasuredValue:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementaccuracystruct/measured
+func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyStruct) Measured() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("measured"))
+	return rv
+}
+
+
+// SetMeasured sets the value of the measured property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementaccuracystruct/measured
+func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyStruct) SetMeasured(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMeasured:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementaccuracystruct/accuracyranges
+func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyStruct) AccuracyRanges() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("accuracyRanges"))
+	return rv
+}
+
+
+// SetAccuracyRanges sets the value of the accuracyRanges property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementaccuracystruct/accuracyranges
+func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyStruct) SetAccuracyRanges(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAccuracyRanges:"), value)
+}
 
 
 

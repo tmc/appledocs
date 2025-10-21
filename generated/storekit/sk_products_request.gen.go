@@ -81,5 +81,23 @@ func NewProductsRequest() ProductsRequest {
 }
 
 
+// The delegate that receives the response of the app’s products request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skproductsrequest/delegate
+func (p_ ProductsRequest) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+
+// SetDelegate sets the value of the delegate property.
+// The delegate that receives the response of the app’s products request.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skproductsrequest/delegate
+func (p_ ProductsRequest) SetDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setDelegate:"), value)
+}
+
 
 

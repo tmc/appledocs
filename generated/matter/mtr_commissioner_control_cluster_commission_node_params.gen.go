@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,8 +78,8 @@ func NewMTRCommissionerControlClusterCommissionNodeParams() MTRCommissionerContr
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterCommissionNodeParams/requestID
-func (m_ MTRCommissionerControlClusterCommissionNodeParams) RequestID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("requestID"))
+func (m_ MTRCommissionerControlClusterCommissionNodeParams) RequestID() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("requestID"))
 	return rv
 }
 
@@ -86,14 +87,14 @@ func (m_ MTRCommissionerControlClusterCommissionNodeParams) RequestID() unsafe.P
 // SetRequestID sets the value of the requestID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterCommissionNodeParams/requestID
-func (m_ MTRCommissionerControlClusterCommissionNodeParams) SetRequestID(value unsafe.Pointer) {
+func (m_ MTRCommissionerControlClusterCommissionNodeParams) SetRequestID(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRequestID:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterCommissionNodeParams/responseTimeoutSeconds
-func (m_ MTRCommissionerControlClusterCommissionNodeParams) ResponseTimeoutSeconds() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("responseTimeoutSeconds"))
+func (m_ MTRCommissionerControlClusterCommissionNodeParams) ResponseTimeoutSeconds() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("responseTimeoutSeconds"))
 	return rv
 }
 
@@ -101,15 +102,15 @@ func (m_ MTRCommissionerControlClusterCommissionNodeParams) ResponseTimeoutSecon
 // SetResponseTimeoutSeconds sets the value of the responseTimeoutSeconds property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterCommissionNodeParams/responseTimeoutSeconds
-func (m_ MTRCommissionerControlClusterCommissionNodeParams) SetResponseTimeoutSeconds(value unsafe.Pointer) {
+func (m_ MTRCommissionerControlClusterCommissionNodeParams) SetResponseTimeoutSeconds(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setResponseTimeoutSeconds:"), value)
 }
 
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterCommissionNodeParams/serverSideProcessingTimeout
-func (m_ MTRCommissionerControlClusterCommissionNodeParams) ServerSideProcessingTimeout() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRCommissionerControlClusterCommissionNodeParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
@@ -119,15 +120,15 @@ func (m_ MTRCommissionerControlClusterCommissionNodeParams) ServerSideProcessing
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterCommissionNodeParams/serverSideProcessingTimeout
-func (m_ MTRCommissionerControlClusterCommissionNodeParams) SetServerSideProcessingTimeout(value unsafe.Pointer) {
+func (m_ MTRCommissionerControlClusterCommissionNodeParams) SetServerSideProcessingTimeout(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterCommissionNodeParams/timedInvokeTimeoutMs
-func (m_ MTRCommissionerControlClusterCommissionNodeParams) TimedInvokeTimeoutMs() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRCommissionerControlClusterCommissionNodeParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
@@ -137,7 +138,7 @@ func (m_ MTRCommissionerControlClusterCommissionNodeParams) TimedInvokeTimeoutMs
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterCommissionNodeParams/timedInvokeTimeoutMs
-func (m_ MTRCommissionerControlClusterCommissionNodeParams) SetTimedInvokeTimeoutMs(value unsafe.Pointer) {
+func (m_ MTRCommissionerControlClusterCommissionNodeParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

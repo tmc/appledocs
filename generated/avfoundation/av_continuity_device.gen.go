@@ -83,8 +83,8 @@ func NewContinuityDevice() ContinuityDevice {
 // An array of the continuity device’s audio session port descriptions that’s available to your app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVContinuityDevice/audioSessionInputs
-func (c_ ContinuityDevice) AudioSessionInputs() []AVAudioSessionPortDescription {
-	rv := objc.Send[[]AVAudioSessionPortDescription](c_.ID, objc.Sel("audioSessionInputs"))
+func (c_ ContinuityDevice) AudioSessionInputs() []unsafe.Pointer {
+	rv := objc.Send[[]unsafe.Pointer](c_.ID, objc.Sel("audioSessionInputs"))
 	return rv
 }
 
@@ -110,6 +110,24 @@ func (c_ ContinuityDevice) Connected() bool {
 func (c_ ContinuityDevice) VideoDevices() []CaptureDevice {
 	rv := objc.Send[[]CaptureDevice](c_.ID, objc.Sel("videoDevices"))
 	return rv
+}
+
+// A Boolean value that indicates whether you can use the continuity device because it’s connected to the system.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcontinuitydevice/isconnected
+func (c_ ContinuityDevice) IsConnected() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isConnected"))
+	return rv
+}
+
+
+// SetIsConnected sets the value of the isConnected property.
+// A Boolean value that indicates whether you can use the continuity device because it’s connected to the system.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcontinuitydevice/isconnected
+func (c_ ContinuityDevice) SetIsConnected(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsConnected:"), value)
 }
 
 

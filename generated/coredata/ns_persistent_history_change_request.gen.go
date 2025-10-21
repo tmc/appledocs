@@ -111,6 +111,24 @@ func (pc _PersistentHistoryChangeRequestClass) FetchHistoryWithFetchRequest(fetc
 	return rv
 }
 
+// The specified token, when retrieving history defined by a token.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistenthistorychangerequest/token
+func (p_ PersistentHistoryChangeRequest) Token() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("token"))
+	return rv
+}
+
+
+// SetToken sets the value of the token property.
+// The specified token, when retrieving history defined by a token.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistenthistorychangerequest/token
+func (p_ PersistentHistoryChangeRequest) SetToken(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setToken:"), value)
+}
+
 // The specified fetch request, when retrieving history.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChangeRequest/fetchRequest

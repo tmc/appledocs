@@ -98,5 +98,23 @@ func (c_ CapturePhotoOutputReadinessCoordinator) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDelegate:"), value)
 }
 
+// A value that specifies whether the photo output is ready to respond to new capture requests in a timely manner.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/capturereadiness-swift.property
+func (c_ CapturePhotoOutputReadinessCoordinator) CaptureReadiness() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("captureReadiness"))
+	return rv
+}
+
+
+// SetCaptureReadiness sets the value of the captureReadiness property.
+// A value that specifies whether the photo output is ready to respond to new capture requests in a timely manner.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/capturereadiness-swift.property
+func (c_ CapturePhotoOutputReadinessCoordinator) SetCaptureReadiness(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setCaptureReadiness:"), value)
+}
+
 
 

@@ -89,6 +89,36 @@ func NewCropAndResizeBilinearWithCoderDevice(aDecoder unsafe.Pointer, device obj
 
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnncropandresizebilinear/resizewidth
+func (c_ CropAndResizeBilinear) ResizeWidth() int {
+	rv := objc.Send[int](c_.ID, objc.Sel("resizeWidth"))
+	return rv
+}
+
+
+// SetResizeWidth sets the value of the resizeWidth property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnncropandresizebilinear/resizewidth
+func (c_ CropAndResizeBilinear) SetResizeWidth(value int) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setResizeWidth:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnncropandresizebilinear/numberofregions
+func (c_ CropAndResizeBilinear) NumberOfRegions() int {
+	rv := objc.Send[int](c_.ID, objc.Sel("numberOfRegions"))
+	return rv
+}
+
+
+// SetNumberOfRegions sets the value of the numberOfRegions property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnncropandresizebilinear/numberofregions
+func (c_ CropAndResizeBilinear) SetNumberOfRegions(value int) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setNumberOfRegions:"), value)
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNCropAndResizeBilinear/regions
 func (c_ CropAndResizeBilinear) Regions() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("regions"))

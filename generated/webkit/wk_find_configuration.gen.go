@@ -80,6 +80,42 @@ func NewFindConfiguration() FindConfiguration {
 }
 
 
+// A Boolean value that indicates the search direction, relative to the current selection.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkfindconfiguration/backwards
+func (f_ FindConfiguration) Backwards() bool {
+	rv := objc.Send[bool](f_.ID, objc.Sel("backwards"))
+	return rv
+}
+
+
+// SetBackwards sets the value of the backwards property.
+// A Boolean value that indicates the search direction, relative to the current selection.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkfindconfiguration/backwards
+func (f_ FindConfiguration) SetBackwards(value bool) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setBackwards:"), value)
+}
+
+// A Boolean value that indicates whether to consider case when matching the search string.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkfindconfiguration/casesensitive
+func (f_ FindConfiguration) CaseSensitive() bool {
+	rv := objc.Send[bool](f_.ID, objc.Sel("caseSensitive"))
+	return rv
+}
+
+
+// SetCaseSensitive sets the value of the caseSensitive property.
+// A Boolean value that indicates whether to consider case when matching the search string.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkfindconfiguration/casesensitive
+func (f_ FindConfiguration) SetCaseSensitive(value bool) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setCaseSensitive:"), value)
+}
+
 // A Boolean value that indicates whether the search wraps around to the other side of the page.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKFindConfiguration/wraps

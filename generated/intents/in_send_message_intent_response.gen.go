@@ -81,5 +81,56 @@ func NewINSendMessageIntentResponse() INSendMessageIntentResponse {
 }
 
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insendmessageintentresponse/sentmessages
+func (i_ INSendMessageIntentResponse) SentMessages() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("sentMessages"))
+	return rv
+}
+
+
+// SetSentMessages sets the value of the sentMessages property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insendmessageintentresponse/sentmessages
+func (i_ INSendMessageIntentResponse) SetSentMessages(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setSentMessages:"), value)
+}
+
+// The code indicating whether you successfully handled the intent.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insendmessageintentresponse/code
+func (i_ INSendMessageIntentResponse) Code() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("code"))
+	return rv
+}
+
+
+// SetCode sets the value of the code property.
+// The code indicating whether you successfully handled the intent.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insendmessageintentresponse/code
+func (i_ INSendMessageIntentResponse) SetCode(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setCode:"), value)
+}
+
+// The message sent by the intent.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insendmessageintentresponse/sentmessage
+func (i_ INSendMessageIntentResponse) SentMessage() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("sentMessage"))
+	return rv
+}
+
+
+// SetSentMessage sets the value of the sentMessage property.
+// The message sent by the intent.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insendmessageintentresponse/sentmessage
+func (i_ INSendMessageIntentResponse) SetSentMessage(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setSentMessage:"), value)
+}
+
 
 

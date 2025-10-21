@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,7 +31,7 @@ type _NERelayManagerClass struct {
 // An interface definition for the [NERelayManager] class.
 type INERelayManager interface {
 	objectivec.IObject
-	GetLastClientErrorsCompletionHandler(seconds TimeInterval, completionHandler unsafe.Pointer)
+	GetLastClientErrorsCompletionHandler(seconds foundation.TimeInterval, completionHandler unsafe.Pointer)
 	LoadFromPreferencesWithCompletionHandler(completionHandler unsafe.Pointer)
 	RemoveFromPreferencesWithCompletionHandler(completionHandler unsafe.Pointer)
 	SaveToPreferencesWithCompletionHandler(completionHandler unsafe.Pointer)
@@ -101,7 +102,7 @@ func (nc _NERelayManagerClass) SharedManager() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NERelayManager/getLastClientErrors(_:completionHandler:)
-func (n_ NERelayManager) GetLastClientErrorsCompletionHandler(seconds TimeInterval, completionHandler unsafe.Pointer) {
+func (n_ NERelayManager) GetLastClientErrorsCompletionHandler(seconds foundation.TimeInterval, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("getLastClientErrors:completionHandler:"), seconds, completionHandler)
 }
 
@@ -124,6 +125,62 @@ func (n_ NERelayManager) RemoveFromPreferencesWithCompletionHandler(completionHa
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NERelayManager/saveToPreferences(completionHandler:)
 func (n_ NERelayManager) SaveToPreferencesWithCompletionHandler(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("saveToPreferencesWithCompletionHandler:"), completionHandler)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nerelaymanager/isuitoggleenabled
+func (n_ NERelayManager) IsUIToggleEnabled() bool {
+	rv := objc.Send[bool](n_.ID, objc.Sel("isUIToggleEnabled"))
+	return rv
+}
+
+
+// SetIsUIToggleEnabled sets the value of the isUIToggleEnabled property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nerelaymanager/isuitoggleenabled
+func (n_ NERelayManager) SetIsUIToggleEnabled(value bool) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setIsUIToggleEnabled:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nerelaymanager/isdnsfailoverallowed
+func (n_ NERelayManager) IsDNSFailoverAllowed() bool {
+	rv := objc.Send[bool](n_.ID, objc.Sel("isDNSFailoverAllowed"))
+	return rv
+}
+
+
+// SetIsDNSFailoverAllowed sets the value of the isDNSFailoverAllowed property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nerelaymanager/isdnsfailoverallowed
+func (n_ NERelayManager) SetIsDNSFailoverAllowed(value bool) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setIsDNSFailoverAllowed:"), value)
+}
+
+// The domain for errors resulting from calls to the relay manager.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nerelayerrordomain
+func (n_ NERelayManager) NERelayErrorDomain() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("NERelayErrorDomain"))
+	return rv
+}
+
+// A Boolean used to toggle the enabled state of the relay configuration.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nerelaymanager/isenabled
+func (n_ NERelayManager) IsEnabled() bool {
+	rv := objc.Send[bool](n_.ID, objc.Sel("isEnabled"))
+	return rv
+}
+
+
+// SetIsEnabled sets the value of the isEnabled property.
+// A Boolean used to toggle the enabled state of the relay configuration.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nerelaymanager/isenabled
+func (n_ NERelayManager) SetIsEnabled(value bool) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setIsEnabled:"), value)
 }
 
 // A list of domain strings used to determine which connections won’t use the relay configuration contained in this object.

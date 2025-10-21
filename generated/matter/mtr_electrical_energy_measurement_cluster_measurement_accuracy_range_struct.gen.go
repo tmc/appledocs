@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,8 +78,8 @@ func NewMTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct() MT
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct/fixedMax
-func (m_ MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct) FixedMax() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("fixedMax"))
+func (m_ MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct) FixedMax() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("fixedMax"))
 	return rv
 }
 
@@ -86,14 +87,14 @@ func (m_ MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct) Fi
 // SetFixedMax sets the value of the fixedMax property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct/fixedMax
-func (m_ MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct) SetFixedMax(value unsafe.Pointer) {
+func (m_ MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct) SetFixedMax(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFixedMax:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct/fixedMin
-func (m_ MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct) FixedMin() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("fixedMin"))
+func (m_ MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct) FixedMin() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("fixedMin"))
 	return rv
 }
 
@@ -101,14 +102,14 @@ func (m_ MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct) Fi
 // SetFixedMin sets the value of the fixedMin property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct/fixedMin
-func (m_ MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct) SetFixedMin(value unsafe.Pointer) {
+func (m_ MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct) SetFixedMin(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFixedMin:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct/fixedTypical
-func (m_ MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct) FixedTypical() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("fixedTypical"))
+func (m_ MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct) FixedTypical() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("fixedTypical"))
 	return rv
 }
 
@@ -116,14 +117,14 @@ func (m_ MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct) Fi
 // SetFixedTypical sets the value of the fixedTypical property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct/fixedTypical
-func (m_ MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct) SetFixedTypical(value unsafe.Pointer) {
+func (m_ MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct) SetFixedTypical(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFixedTypical:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct/percentMax
-func (m_ MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct) PercentMax() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("percentMax"))
+func (m_ MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct) PercentMax() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("percentMax"))
 	return rv
 }
 
@@ -131,14 +132,14 @@ func (m_ MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct) Pe
 // SetPercentMax sets the value of the percentMax property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct/percentMax
-func (m_ MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct) SetPercentMax(value unsafe.Pointer) {
+func (m_ MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct) SetPercentMax(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPercentMax:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct/percentMin
-func (m_ MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct) PercentMin() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("percentMin"))
+func (m_ MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct) PercentMin() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("percentMin"))
 	return rv
 }
 
@@ -146,14 +147,14 @@ func (m_ MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct) Pe
 // SetPercentMin sets the value of the percentMin property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct/percentMin
-func (m_ MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct) SetPercentMin(value unsafe.Pointer) {
+func (m_ MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct) SetPercentMin(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPercentMin:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct/percentTypical
-func (m_ MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct) PercentTypical() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("percentTypical"))
+func (m_ MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct) PercentTypical() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("percentTypical"))
 	return rv
 }
 
@@ -161,14 +162,14 @@ func (m_ MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct) Pe
 // SetPercentTypical sets the value of the percentTypical property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct/percentTypical
-func (m_ MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct) SetPercentTypical(value unsafe.Pointer) {
+func (m_ MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct) SetPercentTypical(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPercentTypical:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct/rangeMax
-func (m_ MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct) RangeMax() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("rangeMax"))
+func (m_ MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct) RangeMax() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("rangeMax"))
 	return rv
 }
 
@@ -176,14 +177,14 @@ func (m_ MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct) Ra
 // SetRangeMax sets the value of the rangeMax property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct/rangeMax
-func (m_ MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct) SetRangeMax(value unsafe.Pointer) {
+func (m_ MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct) SetRangeMax(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRangeMax:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct/rangeMin
-func (m_ MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct) RangeMin() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("rangeMin"))
+func (m_ MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct) RangeMin() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("rangeMin"))
 	return rv
 }
 
@@ -191,7 +192,7 @@ func (m_ MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct) Ra
 // SetRangeMin sets the value of the rangeMin property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct/rangeMin
-func (m_ MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct) SetRangeMin(value unsafe.Pointer) {
+func (m_ MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct) SetRangeMin(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRangeMin:"), value)
 }
 

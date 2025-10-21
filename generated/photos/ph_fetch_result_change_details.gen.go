@@ -80,5 +80,185 @@ func NewPHFetchResultChangeDetails() PHFetchResultChangeDetails {
 }
 
 
+// The items that have been removed from the fetch result.
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phfetchresultchangedetails/removedobjects
+func (p_ PHFetchResultChangeDetails) RemovedObjects() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("removedObjects"))
+	return rv
+}
+
+
+// SetRemovedObjects sets the value of the removedObjects property.
+// The items that have been removed from the fetch result.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phfetchresultchangedetails/removedobjects
+func (p_ PHFetchResultChangeDetails) SetRemovedObjects(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setRemovedObjects:"), value)
+}
+
+// The new items that have been inserted in the fetch result.
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phfetchresultchangedetails/insertedobjects
+func (p_ PHFetchResultChangeDetails) InsertedObjects() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("insertedObjects"))
+	return rv
+}
+
+
+// SetInsertedObjects sets the value of the insertedObjects property.
+// The new items that have been inserted in the fetch result.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phfetchresultchangedetails/insertedobjects
+func (p_ PHFetchResultChangeDetails) SetInsertedObjects(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setInsertedObjects:"), value)
+}
+
+// The original fetch result, without recent changes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phfetchresultchangedetails/fetchresultbeforechanges
+func (p_ PHFetchResultChangeDetails) FetchResultBeforeChanges() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("fetchResultBeforeChanges"))
+	return rv
+}
+
+
+// SetFetchResultBeforeChanges sets the value of the fetchResultBeforeChanges property.
+// The original fetch result, without recent changes.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phfetchresultchangedetails/fetchresultbeforechanges
+func (p_ PHFetchResultChangeDetails) SetFetchResultBeforeChanges(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setFetchResultBeforeChanges:"), value)
+}
+
+// The indexes from which objects have been removed from the fetch result.
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phfetchresultchangedetails/removedindexes
+func (p_ PHFetchResultChangeDetails) RemovedIndexes() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("removedIndexes"))
+	return rv
+}
+
+
+// SetRemovedIndexes sets the value of the removedIndexes property.
+// The indexes from which objects have been removed from the fetch result.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phfetchresultchangedetails/removedindexes
+func (p_ PHFetchResultChangeDetails) SetRemovedIndexes(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setRemovedIndexes:"), value)
+}
+
+// The indexes of objects in the fetch result whose content or metadata have been updated.
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phfetchresultchangedetails/changedindexes
+func (p_ PHFetchResultChangeDetails) ChangedIndexes() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("changedIndexes"))
+	return rv
+}
+
+
+// SetChangedIndexes sets the value of the changedIndexes property.
+// The indexes of objects in the fetch result whose content or metadata have been updated.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phfetchresultchangedetails/changedindexes
+func (p_ PHFetchResultChangeDetails) SetChangedIndexes(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setChangedIndexes:"), value)
+}
+
+// The objects in the fetch result whose content or metadata have been updated.
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phfetchresultchangedetails/changedobjects
+func (p_ PHFetchResultChangeDetails) ChangedObjects() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("changedObjects"))
+	return rv
+}
+
+
+// SetChangedObjects sets the value of the changedObjects property.
+// The objects in the fetch result whose content or metadata have been updated.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phfetchresultchangedetails/changedobjects
+func (p_ PHFetchResultChangeDetails) SetChangedObjects(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setChangedObjects:"), value)
+}
+
+// A Boolean value that indicates whether changes to the fetch result can be described incrementally.
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phfetchresultchangedetails/hasincrementalchanges
+func (p_ PHFetchResultChangeDetails) HasIncrementalChanges() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("hasIncrementalChanges"))
+	return rv
+}
+
+
+// SetHasIncrementalChanges sets the value of the hasIncrementalChanges property.
+// A Boolean value that indicates whether changes to the fetch result can be described incrementally.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phfetchresultchangedetails/hasincrementalchanges
+func (p_ PHFetchResultChangeDetails) SetHasIncrementalChanges(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setHasIncrementalChanges:"), value)
+}
+
+// The current fetch result, incorporating recent changes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phfetchresultchangedetails/fetchresultafterchanges
+func (p_ PHFetchResultChangeDetails) FetchResultAfterChanges() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("fetchResultAfterChanges"))
+	return rv
+}
+
+
+// SetFetchResultAfterChanges sets the value of the fetchResultAfterChanges property.
+// The current fetch result, incorporating recent changes.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phfetchresultchangedetails/fetchresultafterchanges
+func (p_ PHFetchResultChangeDetails) SetFetchResultAfterChanges(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setFetchResultAfterChanges:"), value)
+}
+
+// The indexes where new objects have been inserted in the fetch result.
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phfetchresultchangedetails/insertedindexes
+func (p_ PHFetchResultChangeDetails) InsertedIndexes() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("insertedIndexes"))
+	return rv
+}
+
+
+// SetInsertedIndexes sets the value of the insertedIndexes property.
+// The indexes where new objects have been inserted in the fetch result.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phfetchresultchangedetails/insertedindexes
+func (p_ PHFetchResultChangeDetails) SetInsertedIndexes(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setInsertedIndexes:"), value)
+}
+
+// A Boolean value that indicates whether objects have been rearranged in the fetch result.
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phfetchresultchangedetails/hasmoves
+func (p_ PHFetchResultChangeDetails) HasMoves() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("hasMoves"))
+	return rv
+}
+
+
+// SetHasMoves sets the value of the hasMoves property.
+// A Boolean value that indicates whether objects have been rearranged in the fetch result.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phfetchresultchangedetails/hasmoves
+func (p_ PHFetchResultChangeDetails) SetHasMoves(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setHasMoves:"), value)
+}
+
 
 

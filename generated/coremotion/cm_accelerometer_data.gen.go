@@ -81,6 +81,42 @@ func NewAccelerometerData() AccelerometerData {
 }
 
 
+// The time when the logged item is valid.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coremotion/cmlogitem/timestamp
+func (a_ AccelerometerData) Timestamp() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("timestamp"))
+	return rv
+}
+
+
+// SetTimestamp sets the value of the timestamp property.
+// The time when the logged item is valid.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coremotion/cmlogitem/timestamp
+func (a_ AccelerometerData) SetTimestamp(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setTimestamp:"), value)
+}
+
+// The latest sample of accelerometer data.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coremotion/cmmotionmanager/accelerometerdata
+func (a_ AccelerometerData) AccelerometerData() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("accelerometerData"))
+	return rv
+}
+
+
+// SetAccelerometerData sets the value of the accelerometerData property.
+// The latest sample of accelerometer data.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coremotion/cmmotionmanager/accelerometerdata
+func (a_ AccelerometerData) SetAccelerometerData(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAccelerometerData:"), value)
+}
+
 // The acceleration measured by the accelerometer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAccelerometerData/acceleration

@@ -94,4 +94,22 @@ func NewINEndWorkoutIntentWithWorkoutName(workoutName unsafe.Pointer) INEndWorko
 }
 
 
+// The name of the workout.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inendworkoutintent/workoutname
+func (i_ INEndWorkoutIntent) WorkoutName() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("workoutName"))
+	return rv
+}
+
+
+// SetWorkoutName sets the value of the workoutName property.
+// The name of the workout.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inendworkoutintent/workoutname
+func (i_ INEndWorkoutIntent) SetWorkoutName(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setWorkoutName:"), value)
+}
+
 

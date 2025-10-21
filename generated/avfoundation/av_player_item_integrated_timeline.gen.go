@@ -88,5 +88,41 @@ func (p_ PlayerItemIntegratedTimeline) CurrentTime() unsafe.Pointer {
 	return rv
 }
 
+// The current date of playback.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemintegratedtimeline/currentdate
+func (p_ PlayerItemIntegratedTimeline) CurrentDate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("currentDate"))
+	return rv
+}
+
+
+// SetCurrentDate sets the value of the currentDate property.
+// The current date of playback.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemintegratedtimeline/currentdate
+func (p_ PlayerItemIntegratedTimeline) SetCurrentDate(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setCurrentDate:"), value)
+}
+
+// An immutable representation of the timeline state at time of request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemintegratedtimeline/currentsnapshot
+func (p_ PlayerItemIntegratedTimeline) CurrentSnapshot() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("currentSnapshot"))
+	return rv
+}
+
+
+// SetCurrentSnapshot sets the value of the currentSnapshot property.
+// An immutable representation of the timeline state at time of request.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemintegratedtimeline/currentsnapshot
+func (p_ PlayerItemIntegratedTimeline) SetCurrentSnapshot(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setCurrentSnapshot:"), value)
+}
+
 
 

@@ -30,8 +30,6 @@ type _GCMotionClass struct {
 // An interface definition for the [GCMotion] class.
 type IGCMotion interface {
 	objectivec.IObject
-	SetAttitude(attitude unsafe.Pointer)
-	SetUserAcceleration(userAcceleration unsafe.Pointer)
 }
 
 // A controller profile that supports orientation and motion.
@@ -82,18 +80,202 @@ func NewGCMotion() GCMotion {
 }
 
 
-// Sets the controller’s attitude.
+// The acceleration that the user applies to the controller.
 //
-// [Full Topic]: https://developer.apple.com/documentation/GameController/GCMotion/setAttitude(_:)
-func (g_ GCMotion) SetAttitude(attitude unsafe.Pointer) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setAttitude:"), attitude)
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmotion/useracceleration
+func (g_ GCMotion) UserAcceleration() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("userAcceleration"))
+	return rv
 }
 
-// Sets the acceleration the user applies to the controller.
+
+// SetUserAcceleration sets the value of the userAcceleration property.
+// The acceleration that the user applies to the controller.
+
 //
-// [Full Topic]: https://developer.apple.com/documentation/GameController/GCMotion/setUserAcceleration(_:)
-func (g_ GCMotion) SetUserAcceleration(userAcceleration unsafe.Pointer) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setUserAcceleration:"), userAcceleration)
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmotion/useracceleration
+func (g_ GCMotion) SetUserAcceleration(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setUserAcceleration:"), value)
+}
+
+// A Boolean value that indicates whether the controller provides gravity and user acceleration data.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmotion/hasgravityanduseracceleration
+func (g_ GCMotion) HasGravityAndUserAcceleration() bool {
+	rv := objc.Send[bool](g_.ID, objc.Sel("hasGravityAndUserAcceleration"))
+	return rv
+}
+
+
+// SetHasGravityAndUserAcceleration sets the value of the hasGravityAndUserAcceleration property.
+// A Boolean value that indicates whether the controller provides gravity and user acceleration data.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmotion/hasgravityanduseracceleration
+func (g_ GCMotion) SetHasGravityAndUserAcceleration(value bool) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setHasGravityAndUserAcceleration:"), value)
+}
+
+// The block that the profile calls when an element’s value changes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmotion/valuechangedhandler
+func (g_ GCMotion) ValueChangedHandler() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("valueChangedHandler"))
+	return rv
+}
+
+
+// SetValueChangedHandler sets the value of the valueChangedHandler property.
+// The block that the profile calls when an element’s value changes.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmotion/valuechangedhandler
+func (g_ GCMotion) SetValueChangedHandler(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setValueChangedHandler:"), value)
+}
+
+// The total acceleration of the controller that includes gravity and the acceleration the user applies to the controller.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmotion/acceleration
+func (g_ GCMotion) Acceleration() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("acceleration"))
+	return rv
+}
+
+
+// SetAcceleration sets the value of the acceleration property.
+// The total acceleration of the controller that includes gravity and the acceleration the user applies to the controller.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmotion/acceleration
+func (g_ GCMotion) SetAcceleration(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setAcceleration:"), value)
+}
+
+// The gravity acceleration vector from the controller’s reference frame.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmotion/gravity
+func (g_ GCMotion) Gravity() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("gravity"))
+	return rv
+}
+
+
+// SetGravity sets the value of the gravity property.
+// The gravity acceleration vector from the controller’s reference frame.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmotion/gravity
+func (g_ GCMotion) SetGravity(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setGravity:"), value)
+}
+
+// A Boolean value that indicates whether the controller provides rotation data.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmotion/hasrotationrate
+func (g_ GCMotion) HasRotationRate() bool {
+	rv := objc.Send[bool](g_.ID, objc.Sel("hasRotationRate"))
+	return rv
+}
+
+
+// SetHasRotationRate sets the value of the hasRotationRate property.
+// A Boolean value that indicates whether the controller provides rotation data.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmotion/hasrotationrate
+func (g_ GCMotion) SetHasRotationRate(value bool) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setHasRotationRate:"), value)
+}
+
+// A Boolean value that indicates whether the controller provides attitude data.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmotion/hasattitude
+func (g_ GCMotion) HasAttitude() bool {
+	rv := objc.Send[bool](g_.ID, objc.Sel("hasAttitude"))
+	return rv
+}
+
+
+// SetHasAttitude sets the value of the hasAttitude property.
+// A Boolean value that indicates whether the controller provides attitude data.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmotion/hasattitude
+func (g_ GCMotion) SetHasAttitude(value bool) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setHasAttitude:"), value)
+}
+
+// The motion input profile.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/motion
+func (g_ GCMotion) Motion() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("motion"))
+	return rv
+}
+
+
+// SetMotion sets the value of the motion property.
+// The motion input profile.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/motion
+func (g_ GCMotion) SetMotion(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setMotion:"), value)
+}
+
+// The controller for the profile.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmotion/controller
+func (g_ GCMotion) Controller() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("controller"))
+	return rv
+}
+
+
+// SetController sets the value of the controller property.
+// The controller for the profile.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmotion/controller
+func (g_ GCMotion) SetController(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setController:"), value)
+}
+
+// The attitude of the controller.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmotion/attitude
+func (g_ GCMotion) Attitude() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("attitude"))
+	return rv
+}
+
+
+// SetAttitude sets the value of the attitude property.
+// The attitude of the controller.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmotion/attitude
+func (g_ GCMotion) SetAttitude(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setAttitude:"), value)
+}
+
+// A Boolean value that indicates whether the sensors that compute the motion data are active.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmotion/sensorsactive
+func (g_ GCMotion) SensorsActive() bool {
+	rv := objc.Send[bool](g_.ID, objc.Sel("sensorsActive"))
+	return rv
+}
+
+
+// SetSensorsActive sets the value of the sensorsActive property.
+// A Boolean value that indicates whether the sensors that compute the motion data are active.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmotion/sensorsactive
+func (g_ GCMotion) SetSensorsActive(value bool) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setSensorsActive:"), value)
 }
 
 // A Boolean value that indicates whether the controller provides attitude and rotation data.

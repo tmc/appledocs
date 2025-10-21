@@ -81,5 +81,31 @@ func NewDetectDocumentSegmentationRequest() DetectDocumentSegmentationRequest {
 }
 
 
+// A constant for specifying revision 1 of the document segmentation request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetectdocumentsegmentationrequestrevision1
+func (d_ DetectDocumentSegmentationRequest) VNDetectDocumentSegmentationRequestRevision1() int {
+	rv := objc.Send[int](d_.ID, objc.Sel("VNDetectDocumentSegmentationRequestRevision1"))
+	return rv
+}
+
+// The results of a document segmentation request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetectdocumentsegmentationrequest/results
+func (d_ DetectDocumentSegmentationRequest) Results() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("results"))
+	return rv
+}
+
+
+// SetResults sets the value of the results property.
+// The results of a document segmentation request.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetectdocumentsegmentationrequest/results
+func (d_ DetectDocumentSegmentationRequest) SetResults(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setResults:"), value)
+}
+
 
 

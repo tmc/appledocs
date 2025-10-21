@@ -81,6 +81,42 @@ func NewHKClinicalRecord() HKClinicalRecord {
 }
 
 
+// The sample’s start date.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hksample/startdate
+func (h_ HKClinicalRecord) StartDate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("startDate"))
+	return rv
+}
+
+
+// SetStartDate sets the value of the startDate property.
+// The sample’s start date.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hksample/startdate
+func (h_ HKClinicalRecord) SetStartDate(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setStartDate:"), value)
+}
+
+// The sample’s end date.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hksample/enddate
+func (h_ HKClinicalRecord) EndDate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("endDate"))
+	return rv
+}
+
+
+// SetEndDate sets the value of the endDate property.
+// The sample’s end date.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hksample/enddate
+func (h_ HKClinicalRecord) SetEndDate(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setEndDate:"), value)
+}
+
 // An identifier that indicates the type of record, such as an allergic reaction, a lab result, or a medical procedure.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKClinicalRecord/clinicalType

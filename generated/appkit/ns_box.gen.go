@@ -346,5 +346,23 @@ func (b_ Box) TitleRect() coregraphics.CGRect {
 	return rv
 }
 
+// A Boolean value that indicates whether the receiver is transparent.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbox/istransparent
+func (b_ Box) IsTransparent() bool {
+	rv := objc.Send[bool](b_.ID, objc.Sel("isTransparent"))
+	return rv
+}
+
+
+// SetIsTransparent sets the value of the isTransparent property.
+// A Boolean value that indicates whether the receiver is transparent.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbox/istransparent
+func (b_ Box) SetIsTransparent(value bool) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setIsTransparent:"), value)
+}
+
 
 

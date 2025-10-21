@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -85,13 +86,31 @@ func NewVZSharedDirectory() VZSharedDirectory {
 // Initialize with a host directory.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZSharedDirectory/init(url:readOnly:)
-func NewVZSharedDirectoryWithURLReadOnly(url unsafe.Pointer, readOnly bool) VZSharedDirectory {
+func NewVZSharedDirectoryWithURLReadOnly(url foundation.URL, readOnly bool) VZSharedDirectory {
 	instance := getVZSharedDirectoryClass().Alloc()
 	rv := objc.Send[VZSharedDirectory](instance.ID, objc.Sel("initWithURL:readOnly:"), url, readOnly)
 	rv.Autorelease()
 	return rv
 }
 
+
+// A Boolean value that indicates whether the directory is read-only to the guest.
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzshareddirectory/isreadonly
+func (v_ VZSharedDirectory) IsReadOnly() bool {
+	rv := objc.Send[bool](v_.ID, objc.Sel("isReadOnly"))
+	return rv
+}
+
+
+// SetIsReadOnly sets the value of the isReadOnly property.
+// A Boolean value that indicates whether the directory is read-only to the guest.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzshareddirectory/isreadonly
+func (v_ VZSharedDirectory) SetIsReadOnly(value bool) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setIsReadOnly:"), value)
+}
 
 // A Boolean value that indicates whether the directory is read-only to the guest.
 //
@@ -104,8 +123,8 @@ func (v_ VZSharedDirectory) ReadOnly() bool {
 // A file URL to a directory on the host system to expose to the guest.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZSharedDirectory/url
-func (v_ VZSharedDirectory) URL() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("URL"))
+func (v_ VZSharedDirectory) URL() foundation.URL {
+	rv := objc.Send[foundation.URL](v_.ID, objc.Sel("URL"))
 	return rv
 }
 

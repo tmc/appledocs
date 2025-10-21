@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,8 +78,8 @@ func NewMTROvenModeClusterModeTagStruct() MTROvenModeClusterModeTagStruct {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenModeClusterModeTagStruct/mfgCode
-func (m_ MTROvenModeClusterModeTagStruct) MfgCode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("mfgCode"))
+func (m_ MTROvenModeClusterModeTagStruct) MfgCode() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("mfgCode"))
 	return rv
 }
 
@@ -86,14 +87,14 @@ func (m_ MTROvenModeClusterModeTagStruct) MfgCode() unsafe.Pointer {
 // SetMfgCode sets the value of the mfgCode property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenModeClusterModeTagStruct/mfgCode
-func (m_ MTROvenModeClusterModeTagStruct) SetMfgCode(value unsafe.Pointer) {
+func (m_ MTROvenModeClusterModeTagStruct) SetMfgCode(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMfgCode:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenModeClusterModeTagStruct/value
-func (m_ MTROvenModeClusterModeTagStruct) Value() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("value"))
+func (m_ MTROvenModeClusterModeTagStruct) Value() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("value"))
 	return rv
 }
 
@@ -101,7 +102,7 @@ func (m_ MTROvenModeClusterModeTagStruct) Value() unsafe.Pointer {
 // SetValue sets the value of the value property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenModeClusterModeTagStruct/value
-func (m_ MTROvenModeClusterModeTagStruct) SetValue(value unsafe.Pointer) {
+func (m_ MTROvenModeClusterModeTagStruct) SetValue(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), value)
 }
 

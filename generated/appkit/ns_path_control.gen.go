@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PathControl] class.
@@ -80,6 +81,204 @@ func NewPathControl() PathControl {
 	return getPathControlClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcontrol/allowedtypes
+func (p_ PathControl) AllowedTypes() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("allowedTypes"))
+	return rv
+}
+
+
+// SetAllowedTypes sets the value of the allowedTypes property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcontrol/allowedtypes
+func (p_ PathControl) SetAllowedTypes(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setAllowedTypes:"), objc.String(value))
+}
+
+// The receiver’s background color.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcontrol/backgroundcolor
+func (p_ PathControl) BackgroundColor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("backgroundColor"))
+	return rv
+}
+
+
+// SetBackgroundColor sets the value of the backgroundColor property.
+// The receiver’s background color.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcontrol/backgroundcolor
+func (p_ PathControl) SetBackgroundColor(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setBackgroundColor:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcontrol/clickedpathitem
+func (p_ PathControl) ClickedPathItem() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("clickedPathItem"))
+	return rv
+}
+
+
+// SetClickedPathItem sets the value of the clickedPathItem property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcontrol/clickedpathitem
+func (p_ PathControl) SetClickedPathItem(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setClickedPathItem:"), value)
+}
+
+// The receiver’s delegate.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcontrol/delegate
+func (p_ PathControl) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+
+// SetDelegate sets the value of the delegate property.
+// The receiver’s delegate.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcontrol/delegate
+func (p_ PathControl) SetDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setDelegate:"), value)
+}
+
+// The receiver’s double-click action method.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcontrol/doubleaction
+func (p_ PathControl) DoubleAction() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("doubleAction"))
+	return rv
+}
+
+
+// SetDoubleAction sets the value of the doubleAction property.
+// The receiver’s double-click action method.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcontrol/doubleaction
+func (p_ PathControl) SetDoubleAction(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setDoubleAction:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcontrol/iseditable
+func (p_ PathControl) IsEditable() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isEditable"))
+	return rv
+}
+
+
+// SetIsEditable sets the value of the isEditable property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcontrol/iseditable
+func (p_ PathControl) SetIsEditable(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsEditable:"), value)
+}
+
+// The menu that is used for the path control’s cells.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcontrol/menu
+func (p_ PathControl) Menu() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("menu"))
+	return rv
+}
+
+
+// SetMenu sets the value of the menu property.
+// The menu that is used for the path control’s cells.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcontrol/menu
+func (p_ PathControl) SetMenu(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setMenu:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcontrol/pathitems
+func (p_ PathControl) PathItems() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("pathItems"))
+	return rv
+}
+
+
+// SetPathItems sets the value of the pathItems property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcontrol/pathitems
+func (p_ PathControl) SetPathItems(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPathItems:"), value)
+}
+
+// The receiver’s path style.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcontrol/pathstyle
+func (p_ PathControl) PathStyle() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("pathStyle"))
+	return rv
+}
+
+
+// SetPathStyle sets the value of the pathStyle property.
+// The receiver’s path style.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcontrol/pathstyle
+func (p_ PathControl) SetPathStyle(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPathStyle:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcontrol/placeholderattributedstring
+func (p_ PathControl) PlaceholderAttributedString() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("placeholderAttributedString"))
+	return rv
+}
+
+
+// SetPlaceholderAttributedString sets the value of the placeholderAttributedString property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcontrol/placeholderattributedstring
+func (p_ PathControl) SetPlaceholderAttributedString(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPlaceholderAttributedString:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcontrol/placeholderstring
+func (p_ PathControl) PlaceholderString() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("placeholderString"))
+	return rv
+}
+
+
+// SetPlaceholderString sets the value of the placeholderString property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcontrol/placeholderstring
+func (p_ PathControl) SetPlaceholderString(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPlaceholderString:"), objc.String(value))
+}
+
+// The path value displayed by the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcontrol/url
+func (p_ PathControl) Url() foundation.URL {
+	rv := objc.Send[foundation.URL](p_.ID, objc.Sel("url"))
+	return rv
+}
+
+
+// SetUrl sets the value of the url property.
+// The path value displayed by the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcontrol/url
+func (p_ PathControl) SetUrl(value foundation.URL) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setUrl:"), value)
+}
 
 
 

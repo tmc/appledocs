@@ -76,36 +76,3 @@ type SCVLANInterfaceRef unsafe.Pointer
 
 
 
-// Fallback type aliases for undefined types
-// These types are referenced in method signatures but not fully documented.
-// Using unsafe.Pointer as fallback to allow code generation.
-type Boolean unsafe.Pointer
-
-type CFIndex unsafe.Pointer
-
-type CFStringEncoding unsafe.Pointer
-
-type CFTypeID unsafe.Pointer
-
-type SCDynamicStoreCallBack unsafe.Pointer
-
-type SCDynamicStoreContext unsafe.Pointer
-
-type SCNetworkConnectionCallBack unsafe.Pointer
-
-type SCNetworkConnectionContext unsafe.Pointer
-
-type SCNetworkConnectionFlags unsafe.Pointer
-
-type SCNetworkReachabilityCallBack unsafe.Pointer
-
-type SCNetworkReachabilityContext unsafe.Pointer
-
-type SCPreferencesCallBack unsafe.Pointer
-
-type SCPreferencesContext unsafe.Pointer
-
-type UInt8 unsafe.Pointer
-
-
-

@@ -76,5 +76,20 @@ func NewINHangUpCallIntentResponse() INHangUpCallIntentResponse {
 }
 
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inhangupcallintentresponse/code
+func (i_ INHangUpCallIntentResponse) Code() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("code"))
+	return rv
+}
+
+
+// SetCode sets the value of the code property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inhangupcallintentresponse/code
+func (i_ INHangUpCallIntentResponse) SetCode(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setCode:"), value)
+}
+
 
 

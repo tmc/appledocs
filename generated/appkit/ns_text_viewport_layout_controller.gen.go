@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -79,6 +80,78 @@ func NewTextViewportLayoutController() TextViewportLayoutController {
 	return getTextViewportLayoutControllerClass().New()
 }
 
+
+// The delegate for the text layout manager object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextviewportlayoutcontroller/delegate
+func (t_ TextViewportLayoutController) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+
+// SetDelegate sets the value of the delegate property.
+// The delegate for the text layout manager object.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextviewportlayoutcontroller/delegate
+func (t_ TextViewportLayoutController) SetDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setDelegate:"), value)
+}
+
+// Returns the text layout manager for this viewport layout controller.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextviewportlayoutcontroller/textlayoutmanager
+func (t_ TextViewportLayoutController) TextLayoutManager() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("textLayoutManager"))
+	return rv
+}
+
+
+// SetTextLayoutManager sets the value of the textLayoutManager property.
+// Returns the text layout manager for this viewport layout controller.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextviewportlayoutcontroller/textlayoutmanager
+func (t_ TextViewportLayoutController) SetTextLayoutManager(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setTextLayoutManager:"), value)
+}
+
+// Returns the visible bounds of the view, plus the overdraw area.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextviewportlayoutcontroller/viewportbounds
+func (t_ TextViewportLayoutController) ViewportBounds() coregraphics.CGRect {
+	rv := objc.Send[coregraphics.CGRect](t_.ID, objc.Sel("viewportBounds"))
+	return rv
+}
+
+
+// SetViewportBounds sets the value of the viewportBounds property.
+// Returns the visible bounds of the view, plus the overdraw area.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextviewportlayoutcontroller/viewportbounds
+func (t_ TextViewportLayoutController) SetViewportBounds(value coregraphics.CGRect) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setViewportBounds:"), value)
+}
+
+// Returns the text range of the current viewport layout.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextviewportlayoutcontroller/viewportrange
+func (t_ TextViewportLayoutController) ViewportRange() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("viewportRange"))
+	return rv
+}
+
+
+// SetViewportRange sets the value of the viewportRange property.
+// Returns the text range of the current viewport layout.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextviewportlayoutcontroller/viewportrange
+func (t_ TextViewportLayoutController) SetViewportRange(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setViewportRange:"), value)
+}
 
 
 

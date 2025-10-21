@@ -79,6 +79,24 @@ func NewCYOLOLossLayer() CYOLOLossLayer {
 }
 
 
+// The configuration object you use to create the YOLO loss layer.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcyololosslayer/yololossdescriptor
+func (c_ CYOLOLossLayer) YoloLossDescriptor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("yoloLossDescriptor"))
+	return rv
+}
+
+
+// SetYoloLossDescriptor sets the value of the yoloLossDescriptor property.
+// The configuration object you use to create the YOLO loss layer.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcyololosslayer/yololossdescriptor
+func (c_ CYOLOLossLayer) SetYoloLossDescriptor(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setYoloLossDescriptor:"), value)
+}
+
 
 
 

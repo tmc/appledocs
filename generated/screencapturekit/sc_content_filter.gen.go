@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -104,6 +105,123 @@ func NewContentFilterWithDisplayExcludingWindows(display unsafe.Pointer, exclude
 	return rv
 }
 
+
+// The scaling factor used to translate screen points into pixels.
+//
+// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/sccontentfilter/pointpixelscale
+func (c_ ContentFilter) PointPixelScale() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("pointPixelScale"))
+	return rv
+}
+
+
+// SetPointPixelScale sets the value of the pointPixelScale property.
+// The scaling factor used to translate screen points into pixels.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/sccontentfilter/pointpixelscale
+func (c_ ContentFilter) SetPointPixelScale(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setPointPixelScale:"), value)
+}
+
+// The display style of the sharable content.
+//
+// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/sccontentfilter/style
+func (c_ ContentFilter) Style() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("style"))
+	return rv
+}
+
+
+// SetStyle sets the value of the style property.
+// The display style of the sharable content.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/sccontentfilter/style
+func (c_ ContentFilter) SetStyle(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setStyle:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/sccontentfilter/includeddisplays
+func (c_ ContentFilter) IncludedDisplays() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("includedDisplays"))
+	return rv
+}
+
+
+// SetIncludedDisplays sets the value of the includedDisplays property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/sccontentfilter/includeddisplays
+func (c_ ContentFilter) SetIncludedDisplays(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIncludedDisplays:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/sccontentfilter/includedwindows
+func (c_ ContentFilter) IncludedWindows() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("includedWindows"))
+	return rv
+}
+
+
+// SetIncludedWindows sets the value of the includedWindows property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/sccontentfilter/includedwindows
+func (c_ ContentFilter) SetIncludedWindows(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIncludedWindows:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/sccontentfilter/includedapplications
+func (c_ ContentFilter) IncludedApplications() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("includedApplications"))
+	return rv
+}
+
+
+// SetIncludedApplications sets the value of the includedApplications property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/sccontentfilter/includedapplications
+func (c_ ContentFilter) SetIncludedApplications(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIncludedApplications:"), value)
+}
+
+// The type of the streaming content.
+//
+// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/sccontentfilter/streamtype
+func (c_ ContentFilter) StreamType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("streamType"))
+	return rv
+}
+
+
+// SetStreamType sets the value of the streamType property.
+// The type of the streaming content.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/sccontentfilter/streamtype
+func (c_ ContentFilter) SetStreamType(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setStreamType:"), value)
+}
+
+// The size and location of the content to filter, in screen points.
+//
+// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/sccontentfilter/contentrect
+func (c_ ContentFilter) ContentRect() coregraphics.CGRect {
+	rv := objc.Send[coregraphics.CGRect](c_.ID, objc.Sel("contentRect"))
+	return rv
+}
+
+
+// SetContentRect sets the value of the contentRect property.
+// The size and location of the content to filter, in screen points.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/sccontentfilter/contentrect
+func (c_ ContentFilter) SetContentRect(value coregraphics.CGRect) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setContentRect:"), value)
+}
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCContentFilter/includeMenuBar

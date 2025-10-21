@@ -80,6 +80,78 @@ func NewMKHybridMapConfiguration() MKHybridMapConfiguration {
 
 
 
+// A Boolean value that indicates whether the maps shows traffic conditions.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkhybridmapconfiguration/showstraffic
+func (m_ MKHybridMapConfiguration) ShowsTraffic() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("showsTraffic"))
+	return rv
+}
+
+
+// SetShowsTraffic sets the value of the showsTraffic property.
+// A Boolean value that indicates whether the maps shows traffic conditions.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkhybridmapconfiguration/showstraffic
+func (m_ MKHybridMapConfiguration) SetShowsTraffic(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setShowsTraffic:"), value)
+}
+
+// A Boolean value that indicates whether the map displays the user tracking button.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/showsusertrackingbutton
+func (m_ MKHybridMapConfiguration) ShowsUserTrackingButton() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("showsUserTrackingButton"))
+	return rv
+}
+
+
+// SetShowsUserTrackingButton sets the value of the showsUserTrackingButton property.
+// A Boolean value that indicates whether the map displays the user tracking button.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/showsusertrackingbutton
+func (m_ MKHybridMapConfiguration) SetShowsUserTrackingButton(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setShowsUserTrackingButton:"), value)
+}
+
+// A value that indicates whether the map’s pitch button is visible.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/pitchbuttonvisibility
+func (m_ MKHybridMapConfiguration) PitchButtonVisibility() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("pitchButtonVisibility"))
+	return rv
+}
+
+
+// SetPitchButtonVisibility sets the value of the pitchButtonVisibility property.
+// A value that indicates whether the map’s pitch button is visible.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/pitchbuttonvisibility
+func (m_ MKHybridMapConfiguration) SetPitchButtonVisibility(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPitchButtonVisibility:"), value)
+}
+
+// The characteristics of the map view, including the map type and features the map displays.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/preferredconfiguration
+func (m_ MKHybridMapConfiguration) PreferredConfiguration() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("preferredConfiguration"))
+	return rv
+}
+
+
+// SetPreferredConfiguration sets the value of the preferredConfiguration property.
+// The characteristics of the map view, including the map type and features the map displays.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/preferredconfiguration
+func (m_ MKHybridMapConfiguration) SetPreferredConfiguration(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPreferredConfiguration:"), value)
+}
+
 // The filter the framework uses to determine the points of interest to show on the map.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKHybridMapConfiguration/pointOfInterestFilter

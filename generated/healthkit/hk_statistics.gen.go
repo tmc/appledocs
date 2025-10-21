@@ -80,5 +80,77 @@ func NewHKStatistics() HKStatistics {
 }
 
 
+// The start of the time period included in these statistics.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkstatistics/startdate
+func (h_ HKStatistics) StartDate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("startDate"))
+	return rv
+}
+
+
+// SetStartDate sets the value of the startDate property.
+// The start of the time period included in these statistics.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkstatistics/startdate
+func (h_ HKStatistics) SetStartDate(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setStartDate:"), value)
+}
+
+// The end of the time period included in these statistics.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkstatistics/enddate
+func (h_ HKStatistics) EndDate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("endDate"))
+	return rv
+}
+
+
+// SetEndDate sets the value of the endDate property.
+// The end of the time period included in these statistics.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkstatistics/enddate
+func (h_ HKStatistics) SetEndDate(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setEndDate:"), value)
+}
+
+// An array containing all the sources contributing to these statistics.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkstatistics/sources
+func (h_ HKStatistics) Sources() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("sources"))
+	return rv
+}
+
+
+// SetSources sets the value of the sources property.
+// An array containing all the sources contributing to these statistics.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkstatistics/sources
+func (h_ HKStatistics) SetSources(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setSources:"), value)
+}
+
+// The quantity type of the samples used to calculate these statistics.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkstatistics/quantitytype
+func (h_ HKStatistics) QuantityType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("quantityType"))
+	return rv
+}
+
+
+// SetQuantityType sets the value of the quantityType property.
+// The quantity type of the samples used to calculate these statistics.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkstatistics/quantitytype
+func (h_ HKStatistics) SetQuantityType(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setQuantityType:"), value)
+}
+
 
 

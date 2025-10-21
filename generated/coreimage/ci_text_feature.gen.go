@@ -82,6 +82,14 @@ func NewTextFeature() TextFeature {
 }
 
 
+// A detector that searches for text in a still image or video, returning
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreimage/cidetectortypetext
+func (t_ TextFeature) CIDetectorTypeText() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("CIDetectorTypeText"))
+	return rv
+}
+
 // The image coordinate of the lower-left corner of the detected text.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CITextFeature/bottomLeft

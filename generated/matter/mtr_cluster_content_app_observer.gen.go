@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MTRClusterContentAppObserver] class.
@@ -29,7 +30,7 @@ type _MTRClusterContentAppObserverClass struct {
 // An interface definition for the [MTRClusterContentAppObserver] class.
 type IMTRClusterContentAppObserver interface {
 	IMTRGenericCluster
-	ContentAppMessageWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, completion unsafe.Pointer)
+	ContentAppMessageWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer)
 	ReadAttributeAcceptedCommandListWithParams(params unsafe.Pointer) unsafe.Pointer
 	ReadAttributeAttributeListWithParams(params unsafe.Pointer) unsafe.Pointer
 	ReadAttributeClusterRevisionWithParams(params unsafe.Pointer) unsafe.Pointer
@@ -90,7 +91,7 @@ func NewMTRClusterContentAppObserver() MTRClusterContentAppObserver {
 // For all instance methods that take a completion (i.e. command invocations), the completion will be called on the provided queue.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterContentAppObserver/init(device:endpointID:queue:)
-func NewMTRClusterContentAppObserverWithDeviceEndpointIDQueue(device unsafe.Pointer, endpointID unsafe.Pointer, queue unsafe.Pointer) MTRClusterContentAppObserver {
+func NewMTRClusterContentAppObserverWithDeviceEndpointIDQueue(device unsafe.Pointer, endpointID foundation.Number, queue unsafe.Pointer) MTRClusterContentAppObserver {
 	instance := getMTRClusterContentAppObserverClass().Alloc()
 	rv := objc.Send[MTRClusterContentAppObserver](instance.ID, objc.Sel("initWithDevice:endpointID:queue:"), device, endpointID, queue)
 	rv.Autorelease()
@@ -100,7 +101,7 @@ func NewMTRClusterContentAppObserverWithDeviceEndpointIDQueue(device unsafe.Poin
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterContentAppObserver/contentAppMessage(with:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterContentAppObserver) ContentAppMessageWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, completion unsafe.Pointer) {
+func (m_ MTRClusterContentAppObserver) ContentAppMessageWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("contentAppMessageWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
 }
 

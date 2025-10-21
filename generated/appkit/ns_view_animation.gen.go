@@ -81,5 +81,23 @@ func NewViewAnimation() ViewAnimation {
 }
 
 
+// The dictionaries defining the objects to animate.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsviewanimation/viewanimations
+func (v_ ViewAnimation) ViewAnimations() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("viewAnimations"))
+	return rv
+}
+
+
+// SetViewAnimations sets the value of the viewAnimations property.
+// The dictionaries defining the objects to animate.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsviewanimation/viewanimations
+func (v_ ViewAnimation) SetViewAnimations(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setViewAnimations:"), value)
+}
+
 
 

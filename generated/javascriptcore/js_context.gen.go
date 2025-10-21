@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,7 +31,7 @@ type _JSContextClass struct {
 // An interface definition for the [JSContext] class.
 type IJSContext interface {
 	objectivec.IObject
-	EvaluateScriptWithSourceURL(script string, sourceURL unsafe.Pointer) unsafe.Pointer
+	EvaluateScriptWithSourceURL(script string, sourceURL foundation.URL) unsafe.Pointer
 	ObjectForKeyedSubscript(key objc.ID) unsafe.Pointer
 }
 
@@ -93,7 +94,7 @@ func (jc _JSContextClass) CurrentCallee() unsafe.Pointer {
 // Executes the specified JavaScript code, treating the specified URL as its source location.
 //
 // [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSContext/evaluateScript(_:withSourceURL:)
-func (j_ JSContext) EvaluateScriptWithSourceURL(script string, sourceURL unsafe.Pointer) unsafe.Pointer {
+func (j_ JSContext) EvaluateScriptWithSourceURL(script string, sourceURL foundation.URL) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](j_.ID, objc.Sel("evaluateScript:withSourceURL:"), objc.String(script), sourceURL)
 	return rv
 }
@@ -104,6 +105,96 @@ func (j_ JSContext) EvaluateScriptWithSourceURL(script string, sourceURL unsafe.
 func (j_ JSContext) ObjectForKeyedSubscript(key objc.ID) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](j_.ID, objc.Sel("objectForKeyedSubscript:"), key)
 	return rv
+}
+
+// The JavaScript global object associated with the context.
+//
+// [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jscontext/globalobject
+func (j_ JSContext) GlobalObject() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](j_.ID, objc.Sel("globalObject"))
+	return rv
+}
+
+
+// SetGlobalObject sets the value of the globalObject property.
+// The JavaScript global object associated with the context.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jscontext/globalobject
+func (j_ JSContext) SetGlobalObject(value unsafe.Pointer) {
+	objc.Send[objc.ID](j_.ID, objc.Sel("setGlobalObject:"), value)
+}
+
+// A Boolean value that indicates whether you can inspect the JavaScript context with Safari Web Inspector.
+//
+// [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jscontext/isinspectable
+func (j_ JSContext) IsInspectable() bool {
+	rv := objc.Send[bool](j_.ID, objc.Sel("isInspectable"))
+	return rv
+}
+
+
+// SetIsInspectable sets the value of the isInspectable property.
+// A Boolean value that indicates whether you can inspect the JavaScript context with Safari Web Inspector.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jscontext/isinspectable
+func (j_ JSContext) SetIsInspectable(value bool) {
+	objc.Send[objc.ID](j_.ID, objc.Sel("setIsInspectable:"), value)
+}
+
+// Returns the C representation of the JavaScript context.
+//
+// [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jscontext/jsglobalcontextref
+func (j_ JSContext) JsGlobalContextRef() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](j_.ID, objc.Sel("jsGlobalContextRef"))
+	return rv
+}
+
+
+// SetJsGlobalContextRef sets the value of the jsGlobalContextRef property.
+// Returns the C representation of the JavaScript context.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jscontext/jsglobalcontextref
+func (j_ JSContext) SetJsGlobalContextRef(value unsafe.Pointer) {
+	objc.Send[objc.ID](j_.ID, objc.Sel("setJsGlobalContextRef:"), value)
+}
+
+// A block to be invoked should evaluating a script result in a JavaScript exception being thrown.
+//
+// [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jscontext/exceptionhandler
+func (j_ JSContext) ExceptionHandler() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](j_.ID, objc.Sel("exceptionHandler"))
+	return rv
+}
+
+
+// SetExceptionHandler sets the value of the exceptionHandler property.
+// A block to be invoked should evaluating a script result in a JavaScript exception being thrown.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jscontext/exceptionhandler
+func (j_ JSContext) SetExceptionHandler(value unsafe.Pointer) {
+	objc.Send[objc.ID](j_.ID, objc.Sel("setExceptionHandler:"), value)
+}
+
+// A descriptive name for the context.
+//
+// [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jscontext/name
+func (j_ JSContext) Name() string {
+	rv := objc.Send[string](j_.ID, objc.Sel("name"))
+	return rv
+}
+
+
+// SetName sets the value of the name property.
+// A descriptive name for the context.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jscontext/name
+func (j_ JSContext) SetName(value string) {
+	objc.Send[objc.ID](j_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
 // A JavaScript exception to be thrown in evaluation of the script.

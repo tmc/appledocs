@@ -448,8 +448,8 @@ func (f_ FetchRequest) SetShouldRefreshRefetchedObjects(value bool) {
 // The sort descriptors of the fetch request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/sortDescriptors
-func (f_ FetchRequest) SortDescriptors() []NSSortDescriptor {
-	rv := objc.Send[[]NSSortDescriptor](f_.ID, objc.Sel("sortDescriptors"))
+func (f_ FetchRequest) SortDescriptors() []unsafe.Pointer {
+	rv := objc.Send[[]unsafe.Pointer](f_.ID, objc.Sel("sortDescriptors"))
 	return rv
 }
 
@@ -459,7 +459,7 @@ func (f_ FetchRequest) SortDescriptors() []NSSortDescriptor {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/sortDescriptors
-func (f_ FetchRequest) SetSortDescriptors(value []NSSortDescriptor) {
+func (f_ FetchRequest) SetSortDescriptors(value []unsafe.Pointer) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {

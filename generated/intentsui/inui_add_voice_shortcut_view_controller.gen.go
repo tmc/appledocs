@@ -82,5 +82,23 @@ func NewINUIAddVoiceShortcutViewController() INUIAddVoiceShortcutViewController 
 }
 
 
+// The object that retrieves notifications from the view controller.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intentsui/inuiaddvoiceshortcutviewcontroller/delegate
+func (i_ INUIAddVoiceShortcutViewController) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+
+// SetDelegate sets the value of the delegate property.
+// The object that retrieves notifications from the view controller.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intentsui/inuiaddvoiceshortcutviewcontroller/delegate
+func (i_ INUIAddVoiceShortcutViewController) SetDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setDelegate:"), value)
+}
+
 
 

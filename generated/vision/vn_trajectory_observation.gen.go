@@ -79,6 +79,78 @@ func NewTrajectoryObservation() TrajectoryObservation {
 }
 
 
+// The coefficients of the parabolic equation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vntrajectoryobservation/equationcoefficients
+func (t_ TrajectoryObservation) EquationCoefficients() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("equationCoefficients"))
+	return rv
+}
+
+
+// SetEquationCoefficients sets the value of the equationCoefficients property.
+// The coefficients of the parabolic equation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vntrajectoryobservation/equationcoefficients
+func (t_ TrajectoryObservation) SetEquationCoefficients(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setEquationCoefficients:"), value)
+}
+
+// The centroid points of the detected contour along the trajectory.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vntrajectoryobservation/detectedpoints
+func (t_ TrajectoryObservation) DetectedPoints() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("detectedPoints"))
+	return rv
+}
+
+
+// SetDetectedPoints sets the value of the detectedPoints property.
+// The centroid points of the detected contour along the trajectory.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vntrajectoryobservation/detectedpoints
+func (t_ TrajectoryObservation) SetDetectedPoints(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setDetectedPoints:"), value)
+}
+
+// The centroids of the calculated trajectory from the detected points.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vntrajectoryobservation/projectedpoints
+func (t_ TrajectoryObservation) ProjectedPoints() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("projectedPoints"))
+	return rv
+}
+
+
+// SetProjectedPoints sets the value of the projectedPoints property.
+// The centroids of the calculated trajectory from the detected points.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vntrajectoryobservation/projectedpoints
+func (t_ TrajectoryObservation) SetProjectedPoints(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setProjectedPoints:"), value)
+}
+
+// The array of detected trajectory observations.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetecttrajectoriesrequest/results
+func (t_ TrajectoryObservation) Results() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("results"))
+	return rv
+}
+
+
+// SetResults sets the value of the results property.
+// The array of detected trajectory observations.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetecttrajectoriesrequest/results
+func (t_ TrajectoryObservation) SetResults(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setResults:"), value)
+}
+
 // The moving average radius of the object the request is tracking.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNTrajectoryObservation/movingAverageRadius

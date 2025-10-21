@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,8 +78,8 @@ func NewMTRGeneralDiagnosticsClusterPayloadTestRequestParams() MTRGeneralDiagnos
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralDiagnosticsClusterPayloadTestRequestParams/count
-func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) Count() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("count"))
+func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) Count() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("count"))
 	return rv
 }
 
@@ -86,7 +87,7 @@ func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) Count() unsafe.Po
 // SetCount sets the value of the count property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralDiagnosticsClusterPayloadTestRequestParams/count
-func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) SetCount(value unsafe.Pointer) {
+func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) SetCount(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCount:"), value)
 }
 
@@ -108,8 +109,8 @@ func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) SetEnableKey(valu
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralDiagnosticsClusterPayloadTestRequestParams/serverSideProcessingTimeout
-func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) ServerSideProcessingTimeout() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
@@ -119,15 +120,15 @@ func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) ServerSideProcess
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralDiagnosticsClusterPayloadTestRequestParams/serverSideProcessingTimeout
-func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) SetServerSideProcessingTimeout(value unsafe.Pointer) {
+func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) SetServerSideProcessingTimeout(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralDiagnosticsClusterPayloadTestRequestParams/timedInvokeTimeoutMs
-func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) TimedInvokeTimeoutMs() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
@@ -137,14 +138,14 @@ func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) TimedInvokeTimeou
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralDiagnosticsClusterPayloadTestRequestParams/timedInvokeTimeoutMs
-func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) SetTimedInvokeTimeoutMs(value unsafe.Pointer) {
+func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralDiagnosticsClusterPayloadTestRequestParams/value
-func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) Value() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("value"))
+func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) Value() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("value"))
 	return rv
 }
 
@@ -152,7 +153,7 @@ func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) Value() unsafe.Po
 // SetValue sets the value of the value property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralDiagnosticsClusterPayloadTestRequestParams/value
-func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) SetValue(value unsafe.Pointer) {
+func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) SetValue(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), value)
 }
 

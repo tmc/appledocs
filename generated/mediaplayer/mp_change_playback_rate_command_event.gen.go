@@ -79,5 +79,23 @@ func NewChangePlaybackRateCommandEvent() ChangePlaybackRateCommandEvent {
 }
 
 
+// The chosen playback rate for the command event.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpchangeplaybackratecommandevent/playbackrate
+func (c_ ChangePlaybackRateCommandEvent) PlaybackRate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("playbackRate"))
+	return rv
+}
+
+
+// SetPlaybackRate sets the value of the playbackRate property.
+// The chosen playback rate for the command event.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpchangeplaybackratecommandevent/playbackrate
+func (c_ ChangePlaybackRateCommandEvent) SetPlaybackRate(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setPlaybackRate:"), value)
+}
+
 
 

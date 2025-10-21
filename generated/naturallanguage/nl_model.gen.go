@@ -33,7 +33,7 @@ type IModel interface {
 	objectivec.IObject
 	PredictedLabelForString(string_ string) string
 	PredictedLabelHypothesesForStringMaximumCount(string_ string, maximumCount uint) unsafe.Pointer
-	PredictedLabelHypothesesForTokensMaximumCount(tokens unsafe.Pointer, maximumCount uint) []foundation.NSDictionary
+	PredictedLabelHypothesesForTokensMaximumCount(tokens unsafe.Pointer, maximumCount uint) []unsafe.Pointer
 	PredictedLabelsForTokens(tokens unsafe.Pointer) []string
 }
 
@@ -90,7 +90,7 @@ func NewModel() Model {
 // Creates a new natural language model based on a compiled Core ML model at the given URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLModel/init(contentsOf:)
-func NewModelWithContentsOfURLError(url unsafe.Pointer, error_ unsafe.Pointer) Model {
+func NewModelWithContentsOfURLError(url foundation.URL, error_ unsafe.Pointer) Model {
 	rv := objc.Send[Model](objc.ID(getModelClass().class), objc.Sel("modelWithContentsOfURL:error:"), url, error_)
 	return rv
 }
@@ -109,7 +109,7 @@ func NewModelWithMLModelError(mlModel unsafe.Pointer, error_ unsafe.Pointer) Mod
 // Creates a new natural language model based on a compiled Core ML model at the given URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLModel/init(contentsOf:)
-func (mc _ModelClass) ModelWithContentsOfURLError(url unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func (mc _ModelClass) ModelWithContentsOfURLError(url foundation.URL, error_ unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("modelWithContentsOfURL:error:"), url, error_)
 	return rv
 }
@@ -141,8 +141,8 @@ func (m_ Model) PredictedLabelHypothesesForStringMaximumCount(string_ string, ma
 // Predicts multiple possible labels for each string in the given array.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLModel/predictedLabelHypothesesForTokens:maximumCount:
-func (m_ Model) PredictedLabelHypothesesForTokensMaximumCount(tokens unsafe.Pointer, maximumCount uint) []foundation.NSDictionary {
-	rv := objc.Send[[]foundation.NSDictionary](m_.ID, objc.Sel("predictedLabelHypothesesForTokens:maximumCount:"), tokens, maximumCount)
+func (m_ Model) PredictedLabelHypothesesForTokensMaximumCount(tokens unsafe.Pointer, maximumCount uint) []unsafe.Pointer {
+	rv := objc.Send[[]unsafe.Pointer](m_.ID, objc.Sel("predictedLabelHypothesesForTokens:maximumCount:"), tokens, maximumCount)
 	return rv
 }
 

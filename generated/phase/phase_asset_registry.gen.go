@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -33,7 +34,7 @@ type IPHASEAssetRegistry interface {
 	AssetForIdentifier(identifier string) unsafe.Pointer
 	RegisterGlobalMetaParameterError(metaParameterDefinition unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer
 	RegisterSoundAssetWithDataIdentifierFormatNormalizationModeError(data unsafe.Pointer, identifier string, format unsafe.Pointer, normalizationMode unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer
-	RegisterSoundAssetAtURLIdentifierAssetTypeChannelLayoutNormalizationModeError(url unsafe.Pointer, identifier string, assetType unsafe.Pointer, channelLayout unsafe.Pointer, normalizationMode unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer
+	RegisterSoundAssetAtURLIdentifierAssetTypeChannelLayoutNormalizationModeError(url foundation.URL, identifier string, assetType unsafe.Pointer, channelLayout unsafe.Pointer, normalizationMode unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer
 	RegisterSoundEventAssetWithRootNodeIdentifierError(rootNode unsafe.Pointer, identifier string, error_ unsafe.Pointer) unsafe.Pointer
 	UnregisterAssetWithIdentifierCompletion(identifier string, handler unsafe.Pointer)
 }
@@ -113,7 +114,7 @@ func (p_ PHASEAssetRegistry) RegisterSoundAssetWithDataIdentifierFormatNormaliza
 // Loads a sound asset from the argument URL and adds it to the engine’s list of registered assets.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEAssetRegistry/registerSoundAsset(url:identifier:assetType:channelLayout:normalizationMode:)
-func (p_ PHASEAssetRegistry) RegisterSoundAssetAtURLIdentifierAssetTypeChannelLayoutNormalizationModeError(url unsafe.Pointer, identifier string, assetType unsafe.Pointer, channelLayout unsafe.Pointer, normalizationMode unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func (p_ PHASEAssetRegistry) RegisterSoundAssetAtURLIdentifierAssetTypeChannelLayoutNormalizationModeError(url foundation.URL, identifier string, assetType unsafe.Pointer, channelLayout unsafe.Pointer, normalizationMode unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("registerSoundAssetAtURL:identifier:assetType:channelLayout:normalizationMode:error:"), url, objc.String(identifier), assetType, channelLayout, normalizationMode, error_)
 	return rv
 }

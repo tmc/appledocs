@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,51 @@ func NewMTRSoftwareDiagnosticsClusterSoftwareFaultEvent() MTRSoftwareDiagnostics
 	return getMTRSoftwareDiagnosticsClusterSoftwareFaultEventClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrsoftwarediagnosticsclustersoftwarefaultevent/name
+func (m_ MTRSoftwareDiagnosticsClusterSoftwareFaultEvent) Name() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("name"))
+	return rv
+}
+
+
+// SetName sets the value of the name property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrsoftwarediagnosticsclustersoftwarefaultevent/name
+func (m_ MTRSoftwareDiagnosticsClusterSoftwareFaultEvent) SetName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrsoftwarediagnosticsclustersoftwarefaultevent/id
+func (m_ MTRSoftwareDiagnosticsClusterSoftwareFaultEvent) Id() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("id"))
+	return rv
+}
+
+
+// SetId sets the value of the id property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrsoftwarediagnosticsclustersoftwarefaultevent/id
+func (m_ MTRSoftwareDiagnosticsClusterSoftwareFaultEvent) SetId(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setId:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrsoftwarediagnosticsclustersoftwarefaultevent/faultrecording
+func (m_ MTRSoftwareDiagnosticsClusterSoftwareFaultEvent) FaultRecording() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("faultRecording"))
+	return rv
+}
+
+
+// SetFaultRecording sets the value of the faultRecording property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrsoftwarediagnosticsclustersoftwarefaultevent/faultrecording
+func (m_ MTRSoftwareDiagnosticsClusterSoftwareFaultEvent) SetFaultRecording(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setFaultRecording:"), value)
+}
 
 
 

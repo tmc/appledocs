@@ -78,5 +78,56 @@ func NewMEComposeSession() MEComposeSession {
 }
 
 
+// The properties of the mail message, such as the subject and recipients.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mailkit/mecomposesession/mailmessage
+func (m_ MEComposeSession) MailMessage() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("mailMessage"))
+	return rv
+}
+
+
+// SetMailMessage sets the value of the mailMessage property.
+// The properties of the mail message, such as the subject and recipients.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mailkit/mecomposesession/mailmessage
+func (m_ MEComposeSession) SetMailMessage(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMailMessage:"), value)
+}
+
+// A unique identifier for the session.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mailkit/mecomposesession/sessionid
+func (m_ MEComposeSession) SessionID() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("sessionID"))
+	return rv
+}
+
+
+// SetSessionID sets the value of the sessionID property.
+// A unique identifier for the session.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mailkit/mecomposesession/sessionid
+func (m_ MEComposeSession) SetSessionID(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSessionID:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mailkit/mecomposesession/composecontext
+func (m_ MEComposeSession) ComposeContext() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("composeContext"))
+	return rv
+}
+
+
+// SetComposeContext sets the value of the composeContext property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mailkit/mecomposesession/composecontext
+func (m_ MEComposeSession) SetComposeContext(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setComposeContext:"), value)
+}
+
 
 

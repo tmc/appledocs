@@ -6147,8 +6147,8 @@ func CFSocketCopyRegisteredValue(nameServerSignature unsafe.Pointer, timeout uns
 // Creates a CFSocket object of a specified protocol and type. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocketCreate(_:_:_:_:_:_:_:)
-func CFSocketCreate(allocator unsafe.Pointer, protocolFamily unsafe.Pointer, socketType unsafe.Pointer, protocol unsafe.Pointer, callBackTypes unsafe.Pointer, callout unsafe.Pointer, context unsafe.Pointer) unsafe.Pointer {
-	return _CFSocketCreate(allocator, protocolFamily, socketType, protocol, callBackTypes, callout, context)
+func CFSocketCreate(allocator unsafe.Pointer, protocolFamily unsafe.Pointer, socketType unsafe.Pointer, protocol_ unsafe.Pointer, callBackTypes unsafe.Pointer, callout unsafe.Pointer, context unsafe.Pointer) unsafe.Pointer {
+	return _CFSocketCreate(allocator, protocolFamily, socketType, protocol_, callBackTypes, callout, context)
 	}
 
 

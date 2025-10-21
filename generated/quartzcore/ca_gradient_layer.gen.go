@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [GradientLayer] class.
@@ -121,8 +122,8 @@ func (g_ GradientLayer) SetEndPoint(value coregraphics.CGPoint) {
 // An optional array of NSNumber objects defining the location of each gradient stop. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAGradientLayer/locations
-func (g_ GradientLayer) Locations() []NSNumber {
-	rv := objc.Send[[]NSNumber](g_.ID, objc.Sel("locations"))
+func (g_ GradientLayer) Locations() []foundation.Number {
+	rv := objc.Send[[]foundation.Number](g_.ID, objc.Sel("locations"))
 	return rv
 }
 
@@ -132,7 +133,7 @@ func (g_ GradientLayer) Locations() []NSNumber {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAGradientLayer/locations
-func (g_ GradientLayer) SetLocations(value []NSNumber) {
+func (g_ GradientLayer) SetLocations(value []foundation.Number) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {

@@ -80,6 +80,24 @@ func NewPHContentEditingInputRequestOptions() PHContentEditingInputRequestOption
 }
 
 
+// A Boolean value that specifies whether Photos can download the asset from iCloud.
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phcontenteditinginputrequestoptions/isnetworkaccessallowed
+func (p_ PHContentEditingInputRequestOptions) IsNetworkAccessAllowed() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isNetworkAccessAllowed"))
+	return rv
+}
+
+
+// SetIsNetworkAccessAllowed sets the value of the isNetworkAccessAllowed property.
+// A Boolean value that specifies whether Photos can download the asset from iCloud.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phcontenteditinginputrequestoptions/isnetworkaccessallowed
+func (p_ PHContentEditingInputRequestOptions) SetIsNetworkAccessAllowed(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsNetworkAccessAllowed:"), value)
+}
+
 // A block to be called when Photos needs to determine whether your app can continue previous edits made to an asset.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHContentEditingInputRequestOptions/canHandleAdjustmentData

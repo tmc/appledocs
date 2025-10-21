@@ -97,5 +97,59 @@ func (s_ SemanticSegmentationMatte) MatteType() unsafe.Pointer {
 	return rv
 }
 
+// The semantic segmentation matte’s internal image.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsemanticsegmentationmatte/mattingimage
+func (s_ SemanticSegmentationMatte) MattingImage() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("mattingImage"))
+	return rv
+}
+
+
+// SetMattingImage sets the value of the mattingImage property.
+// The semantic segmentation matte’s internal image.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsemanticsegmentationmatte/mattingimage
+func (s_ SemanticSegmentationMatte) SetMattingImage(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setMattingImage:"), value)
+}
+
+// The pixel format type for this object’s internal matting image.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsemanticsegmentationmatte/pixelformattype
+func (s_ SemanticSegmentationMatte) PixelFormatType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("pixelFormatType"))
+	return rv
+}
+
+
+// SetPixelFormatType sets the value of the pixelFormatType property.
+// The pixel format type for this object’s internal matting image.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsemanticsegmentationmatte/pixelformattype
+func (s_ SemanticSegmentationMatte) SetPixelFormatType(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setPixelFormatType:"), value)
+}
+
+// 8-bit one component, black is zero.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreVideo/kCVPixelFormatType_OneComponent8
+func (s_ SemanticSegmentationMatte) KCVPixelFormatType_OneComponent8() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("kCVPixelFormatType_OneComponent8"))
+	return rv
+}
+
+
+// SetKCVPixelFormatType_OneComponent8 sets the value of the kCVPixelFormatType_OneComponent8 property.
+// 8-bit one component, black is zero.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreVideo/kCVPixelFormatType_OneComponent8
+func (s_ SemanticSegmentationMatte) SetKCVPixelFormatType_OneComponent8(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setKCVPixelFormatType_OneComponent8:"), value)
+}
+
 
 

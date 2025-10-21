@@ -86,5 +86,41 @@ func (cc _ComputePassDescriptorClass) ComputePassDescriptor() unsafe.Pointer {
 	return rv
 }
 
+// The strategy for dispatching any compute commands encoded in the compute pass.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlcomputepassdescriptor/dispatchtype
+func (c_ ComputePassDescriptor) DispatchType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("dispatchType"))
+	return rv
+}
+
+
+// SetDispatchType sets the value of the dispatchType property.
+// The strategy for dispatching any compute commands encoded in the compute pass.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlcomputepassdescriptor/dispatchtype
+func (c_ ComputePassDescriptor) SetDispatchType(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setDispatchType:"), value)
+}
+
+// The sample buffers that the compute pass can access.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlcomputepassdescriptor/samplebufferattachments
+func (c_ ComputePassDescriptor) SampleBufferAttachments() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("sampleBufferAttachments"))
+	return rv
+}
+
+
+// SetSampleBufferAttachments sets the value of the sampleBufferAttachments property.
+// The sample buffers that the compute pass can access.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlcomputepassdescriptor/samplebufferattachments
+func (c_ ComputePassDescriptor) SetSampleBufferAttachments(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setSampleBufferAttachments:"), value)
+}
+
 
 

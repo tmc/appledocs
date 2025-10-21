@@ -81,5 +81,23 @@ func NewPHASEConeDirectivityModelParameters() PHASEConeDirectivityModelParameter
 }
 
 
+// An array of frequencies that describe varying sound emission across the spectrum.
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phaseconedirectivitymodelparameters/subbandparameters
+func (p_ PHASEConeDirectivityModelParameters) SubbandParameters() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("subbandParameters"))
+	return rv
+}
+
+
+// SetSubbandParameters sets the value of the subbandParameters property.
+// An array of frequencies that describe varying sound emission across the spectrum.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phaseconedirectivitymodelparameters/subbandparameters
+func (p_ PHASEConeDirectivityModelParameters) SetSubbandParameters(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setSubbandParameters:"), value)
+}
+
 
 

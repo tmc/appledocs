@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,36 @@ func NewMTRDoorLockClusterCredentialStruct() MTRDoorLockClusterCredentialStruct 
 	return getMTRDoorLockClusterCredentialStructClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustercredentialstruct/credentialtype
+func (m_ MTRDoorLockClusterCredentialStruct) CredentialType() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("credentialType"))
+	return rv
+}
+
+
+// SetCredentialType sets the value of the credentialType property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustercredentialstruct/credentialtype
+func (m_ MTRDoorLockClusterCredentialStruct) SetCredentialType(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCredentialType:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustercredentialstruct/credentialindex
+func (m_ MTRDoorLockClusterCredentialStruct) CredentialIndex() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("credentialIndex"))
+	return rv
+}
+
+
+// SetCredentialIndex sets the value of the credentialIndex property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustercredentialstruct/credentialindex
+func (m_ MTRDoorLockClusterCredentialStruct) SetCredentialIndex(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCredentialIndex:"), value)
+}
 
 
 

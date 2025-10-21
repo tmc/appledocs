@@ -152,6 +152,42 @@ func (r_ Rule) PerformActionWithSystem(system unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("performActionWithSystem:"), system)
 }
 
+// The list of facts claimed by the rule system.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gameplaykit/gkrulesystem/facts
+func (r_ Rule) Facts() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("facts"))
+	return rv
+}
+
+
+// SetFacts sets the value of the facts property.
+// The list of facts claimed by the rule system.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gameplaykit/gkrulesystem/facts
+func (r_ Rule) SetFacts(value unsafe.Pointer) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setFacts:"), value)
+}
+
+// A dictionary of state information to be evaluated by the system’s rules.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gameplaykit/gkrulesystem/state
+func (r_ Rule) State() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("state"))
+	return rv
+}
+
+
+// SetState sets the value of the state property.
+// A dictionary of state information to be evaluated by the system’s rules.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gameplaykit/gkrulesystem/state
+func (r_ Rule) SetState(value unsafe.Pointer) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setState:"), value)
+}
+
 // The importance of the rule relative to others in a rule system’s agenda.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRule/salience

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -111,8 +112,8 @@ func NewPersistentContainerWithNameManagedObjectModel(name string, model unsafe.
 // Returns the location of the directory that contains the persistent stores.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentContainer/defaultDirectoryURL()
-func (pc _PersistentContainerClass) DefaultDirectoryURL() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("defaultDirectoryURL"))
+func (pc _PersistentContainerClass) DefaultDirectoryURL() foundation.URL {
+	rv := objc.Send[foundation.URL](objc.ID(pc.class), objc.Sel("defaultDirectoryURL"))
 	return rv
 }
 

@@ -78,5 +78,113 @@ func NewVector() Vector {
 }
 
 
+// The radius, absolute value, or length of the vector.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnvector/r
+func (v_ Vector) R() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("r"))
+	return rv
+}
+
+
+// SetR sets the value of the r property.
+// The radius, absolute value, or length of the vector.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnvector/r
+func (v_ Vector) SetR(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setR:"), value)
+}
+
+// A signed projection that indicates the vector’s direction on the x-axis.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnvector/x
+func (v_ Vector) X() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("x"))
+	return rv
+}
+
+
+// SetX sets the value of the x property.
+// A signed projection that indicates the vector’s direction on the x-axis.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnvector/x
+func (v_ Vector) SetX(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setX:"), value)
+}
+
+// The squared length of the vector.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnvector/squaredlength
+func (v_ Vector) SquaredLength() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("squaredLength"))
+	return rv
+}
+
+
+// SetSquaredLength sets the value of the squaredLength property.
+// The squared length of the vector.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnvector/squaredlength
+func (v_ Vector) SetSquaredLength(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setSquaredLength:"), value)
+}
+
+// The length, or absolute value, of the vector.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnvector/length
+func (v_ Vector) Length() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("length"))
+	return rv
+}
+
+
+// SetLength sets the value of the length property.
+// The length, or absolute value, of the vector.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnvector/length
+func (v_ Vector) SetLength(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setLength:"), value)
+}
+
+// The angle between the vector direction and the positive direction of the x-axis.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnvector/theta
+func (v_ Vector) Theta() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("theta"))
+	return rv
+}
+
+
+// SetTheta sets the value of the theta property.
+// The angle between the vector direction and the positive direction of the x-axis.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnvector/theta
+func (v_ Vector) SetTheta(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setTheta:"), value)
+}
+
+// A signed projection that indicates the vector’s direction on the y-axis.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnvector/y
+func (v_ Vector) Y() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("y"))
+	return rv
+}
+
+
+// SetY sets the value of the y property.
+// A signed projection that indicates the vector’s direction on the y-axis.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnvector/y
+func (v_ Vector) SetY(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setY:"), value)
+}
+
 
 

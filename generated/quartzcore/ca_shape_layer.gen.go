@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [ShapeLayer] class.
@@ -139,8 +140,8 @@ func (s_ ShapeLayer) SetLineCap(value unsafe.Pointer) {
 // The dash pattern applied to the shape’s path when stroked.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAShapeLayer/lineDashPattern
-func (s_ ShapeLayer) LineDashPattern() []NSNumber {
-	rv := objc.Send[[]NSNumber](s_.ID, objc.Sel("lineDashPattern"))
+func (s_ ShapeLayer) LineDashPattern() []foundation.Number {
+	rv := objc.Send[[]foundation.Number](s_.ID, objc.Sel("lineDashPattern"))
 	return rv
 }
 
@@ -150,7 +151,7 @@ func (s_ ShapeLayer) LineDashPattern() []NSNumber {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAShapeLayer/lineDashPattern
-func (s_ ShapeLayer) SetLineDashPattern(value []NSNumber) {
+func (s_ ShapeLayer) SetLineDashPattern(value []foundation.Number) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,7 +33,7 @@ type IState interface {
 	objectivec.IObject
 	DidEnterWithPreviousState(previousState unsafe.Pointer)
 	IsValidNextState(stateClass objc.Class) bool
-	UpdateWithDeltaTime(seconds TimeInterval)
+	UpdateWithDeltaTime(seconds foundation.TimeInterval)
 	WillExitWithNextState(nextState unsafe.Pointer)
 }
 
@@ -111,7 +112,7 @@ func (s_ State) IsValidNextState(stateClass objc.Class) bool {
 // Performs custom actions when a state machine updates while in this state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKState/update(deltaTime:)
-func (s_ State) UpdateWithDeltaTime(seconds TimeInterval) {
+func (s_ State) UpdateWithDeltaTime(seconds foundation.TimeInterval) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("updateWithDeltaTime:"), seconds)
 }
 

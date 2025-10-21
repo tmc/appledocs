@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [NEFilterBrowserFlow] class.
@@ -78,6 +79,60 @@ func NewNEFilterBrowserFlow() NEFilterBrowserFlow {
 	return getNEFilterBrowserFlowClass().New()
 }
 
+
+// An HTTP request of the flow.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterbrowserflow/request
+func (n_ NEFilterBrowserFlow) Request() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("request"))
+	return rv
+}
+
+
+// SetRequest sets the value of the request property.
+// An HTTP request of the flow.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterbrowserflow/request
+func (n_ NEFilterBrowserFlow) SetRequest(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setRequest:"), value)
+}
+
+// An HTTP response of the flow.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterbrowserflow/response
+func (n_ NEFilterBrowserFlow) Response() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("response"))
+	return rv
+}
+
+
+// SetResponse sets the value of the response property.
+// An HTTP response of the flow.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterbrowserflow/response
+func (n_ NEFilterBrowserFlow) SetResponse(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setResponse:"), value)
+}
+
+// A URL of the web page that’s responsible for the flow’s creation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterbrowserflow/parenturl
+func (n_ NEFilterBrowserFlow) ParentURL() foundation.URL {
+	rv := objc.Send[foundation.URL](n_.ID, objc.Sel("parentURL"))
+	return rv
+}
+
+
+// SetParentURL sets the value of the parentURL property.
+// A URL of the web page that’s responsible for the flow’s creation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterbrowserflow/parenturl
+func (n_ NEFilterBrowserFlow) SetParentURL(value foundation.URL) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setParentURL:"), value)
+}
 
 
 

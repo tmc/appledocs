@@ -99,5 +99,59 @@ func (t_ TokenFieldCell) SetTokenStyle(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTokenStyle:"), value)
 }
 
+// The receiver’s completion delay to a given delay.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstokenfieldcell/completiondelay
+func (t_ TokenFieldCell) CompletionDelay() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("completionDelay"))
+	return rv
+}
+
+
+// SetCompletionDelay sets the value of the completionDelay property.
+// The receiver’s completion delay to a given delay.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstokenfieldcell/completiondelay
+func (t_ TokenFieldCell) SetCompletionDelay(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setCompletionDelay:"), value)
+}
+
+// The receiver’s delegate.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstokenfieldcell/delegate
+func (t_ TokenFieldCell) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+
+// SetDelegate sets the value of the delegate property.
+// The receiver’s delegate.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstokenfieldcell/delegate
+func (t_ TokenFieldCell) SetDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setDelegate:"), value)
+}
+
+// The receiver’s tokenizing character set to a given character set.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstokenfieldcell/tokenizingcharacterset
+func (t_ TokenFieldCell) TokenizingCharacterSet() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("tokenizingCharacterSet"))
+	return rv
+}
+
+
+// SetTokenizingCharacterSet sets the value of the tokenizingCharacterSet property.
+// The receiver’s tokenizing character set to a given character set.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstokenfieldcell/tokenizingcharacterset
+func (t_ TokenFieldCell) SetTokenizingCharacterSet(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setTokenizingCharacterSet:"), value)
+}
+
 
 

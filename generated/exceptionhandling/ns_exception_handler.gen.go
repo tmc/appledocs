@@ -137,5 +137,23 @@ func (e_ ExceptionHandler) SetExceptionHangingMask(aMask uint) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setExceptionHangingMask:"), aMask)
 }
 
+// A dictionary containing application-specific data pertaining to the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSException/userInfo-swift.property
+func (e_ ExceptionHandler) UserInfo() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("userInfo"))
+	return rv
+}
+
+
+// SetUserInfo sets the value of the userInfo property.
+// A dictionary containing application-specific data pertaining to the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSException/userInfo-swift.property
+func (e_ ExceptionHandler) SetUserInfo(value unsafe.Pointer) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setUserInfo:"), value)
+}
+
 
 

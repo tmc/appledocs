@@ -80,5 +80,59 @@ func NewINRidePartySizeOption() INRidePartySizeOption {
 }
 
 
+// The user-visible description of the party size.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inridepartysizeoption/sizedescription
+func (i_ INRidePartySizeOption) SizeDescription() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("sizeDescription"))
+	return rv
+}
+
+
+// SetSizeDescription sets the value of the sizeDescription property.
+// The user-visible description of the party size.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inridepartysizeoption/sizedescription
+func (i_ INRidePartySizeOption) SetSizeDescription(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setSizeDescription:"), objc.String(value))
+}
+
+// The number of people in the party, specified as a minimum and maximum value.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inridepartysizeoption/partysizerange
+func (i_ INRidePartySizeOption) PartySizeRange() Range {
+	rv := objc.Send[Range](i_.ID, objc.Sel("partySizeRange"))
+	return rv
+}
+
+
+// SetPartySizeRange sets the value of the partySizeRange property.
+// The number of people in the party, specified as a minimum and maximum value.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inridepartysizeoption/partysizerange
+func (i_ INRidePartySizeOption) SetPartySizeRange(value Range) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setPartySizeRange:"), value)
+}
+
+// The pricing information for parties of the specified size.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inridepartysizeoption/pricerange
+func (i_ INRidePartySizeOption) PriceRange() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("priceRange"))
+	return rv
+}
+
+
+// SetPriceRange sets the value of the priceRange property.
+// The pricing information for parties of the specified size.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inridepartysizeoption/pricerange
+func (i_ INRidePartySizeOption) SetPriceRange(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setPriceRange:"), value)
+}
+
 
 

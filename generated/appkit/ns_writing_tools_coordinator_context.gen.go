@@ -89,6 +89,60 @@ func (w_ WritingToolsCoordinatorContext) Range() foundation.Range {
 	return rv
 }
 
+// The portion of your view’s text to evaluate.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/context/attributedstring
+func (w_ WritingToolsCoordinatorContext) AttributedString() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("attributedString"))
+	return rv
+}
+
+
+// SetAttributedString sets the value of the attributedString property.
+// The portion of your view’s text to evaluate.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/context/attributedstring
+func (w_ WritingToolsCoordinatorContext) SetAttributedString(value unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setAttributedString:"), value)
+}
+
+// The unique identifier of the context object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/context/identifier
+func (w_ WritingToolsCoordinatorContext) Identifier() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("identifier"))
+	return rv
+}
+
+
+// SetIdentifier sets the value of the identifier property.
+// The unique identifier of the context object.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/context/identifier
+func (w_ WritingToolsCoordinatorContext) SetIdentifier(value unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setIdentifier:"), value)
+}
+
+// The actual range of text that Writing Tools might change, which can
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/context/resolvedrange
+func (w_ WritingToolsCoordinatorContext) ResolvedRange() foundation.Range {
+	rv := objc.Send[foundation.Range](w_.ID, objc.Sel("resolvedRange"))
+	return rv
+}
+
+
+// SetResolvedRange sets the value of the resolvedRange property.
+// The actual range of text that Writing Tools might change, which can
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/context/resolvedrange
+func (w_ WritingToolsCoordinatorContext) SetResolvedRange(value foundation.Range) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setResolvedRange:"), value)
+}
+
 
 
 

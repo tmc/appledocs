@@ -78,5 +78,41 @@ func NewMIDICIProfile() MIDICIProfile {
 }
 
 
+// A string that describes the profile.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciprofile/name
+func (m_ MIDICIProfile) Name() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("name"))
+	return rv
+}
+
+
+// SetName sets the value of the name property.
+// A string that describes the profile.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciprofile/name
+func (m_ MIDICIProfile) SetName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
+}
+
+// The unique five-byte profile identifier that represents the profile.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciprofile/profileid
+func (m_ MIDICIProfile) ProfileID() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("profileID"))
+	return rv
+}
+
+
+// SetProfileID sets the value of the profileID property.
+// The unique five-byte profile identifier that represents the profile.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciprofile/profileid
+func (m_ MIDICIProfile) SetProfileID(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setProfileID:"), value)
+}
+
 
 

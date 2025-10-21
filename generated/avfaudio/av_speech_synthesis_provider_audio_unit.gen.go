@@ -81,6 +81,24 @@ func NewSpeechSynthesisProviderAudioUnit() SpeechSynthesisProviderAudioUnit {
 }
 
 
+// A list of voices the audio unit provides to the system.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisprovideraudiounit/speechvoices
+func (s_ SpeechSynthesisProviderAudioUnit) SpeechVoices() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("speechVoices"))
+	return rv
+}
+
+
+// SetSpeechVoices sets the value of the speechVoices property.
+// A list of voices the audio unit provides to the system.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisprovideraudiounit/speechvoices
+func (s_ SpeechSynthesisProviderAudioUnit) SetSpeechVoices(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setSpeechVoices:"), value)
+}
+
 // A block that subclasses use to send marker information to the host.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesisProviderAudioUnit/speechSynthesisOutputMetadataBlock

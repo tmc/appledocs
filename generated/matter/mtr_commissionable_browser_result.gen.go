@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,81 @@ func NewMTRCommissionableBrowserResult() MTRCommissionableBrowserResult {
 	return getMTRCommissionableBrowserResultClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissionablebrowserresult/discriminator
+func (m_ MTRCommissionableBrowserResult) Discriminator() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("discriminator"))
+	return rv
+}
+
+
+// SetDiscriminator sets the value of the discriminator property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissionablebrowserresult/discriminator
+func (m_ MTRCommissionableBrowserResult) SetDiscriminator(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDiscriminator:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissionablebrowserresult/vendorid
+func (m_ MTRCommissionableBrowserResult) VendorID() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("vendorID"))
+	return rv
+}
+
+
+// SetVendorID sets the value of the vendorID property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissionablebrowserresult/vendorid
+func (m_ MTRCommissionableBrowserResult) SetVendorID(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setVendorID:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissionablebrowserresult/instancename
+func (m_ MTRCommissionableBrowserResult) InstanceName() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("instanceName"))
+	return rv
+}
+
+
+// SetInstanceName sets the value of the instanceName property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissionablebrowserresult/instancename
+func (m_ MTRCommissionableBrowserResult) SetInstanceName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setInstanceName:"), objc.String(value))
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissionablebrowserresult/productid
+func (m_ MTRCommissionableBrowserResult) ProductID() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("productID"))
+	return rv
+}
+
+
+// SetProductID sets the value of the productID property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissionablebrowserresult/productid
+func (m_ MTRCommissionableBrowserResult) SetProductID(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setProductID:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissionablebrowserresult/commissioningmode
+func (m_ MTRCommissionableBrowserResult) CommissioningMode() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("commissioningMode"))
+	return rv
+}
+
+
+// SetCommissioningMode sets the value of the commissioningMode property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissionablebrowserresult/commissioningmode
+func (m_ MTRCommissionableBrowserResult) SetCommissioningMode(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCommissioningMode:"), value)
+}
 
 
 

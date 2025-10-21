@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,8 +84,8 @@ func NewFilePreviewRequest() FilePreviewRequest {
 // The URL that indicates the content to preview.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuickLookUI/QLFilePreviewRequest/fileURL
-func (f_ FilePreviewRequest) FileURL() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("fileURL"))
+func (f_ FilePreviewRequest) FileURL() foundation.URL {
+	rv := objc.Send[foundation.URL](f_.ID, objc.Sel("fileURL"))
 	return rv
 }
 

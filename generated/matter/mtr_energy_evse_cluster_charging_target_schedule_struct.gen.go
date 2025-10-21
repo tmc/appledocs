@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -92,8 +93,8 @@ func (m_ MTREnergyEVSEClusterChargingTargetScheduleStruct) SetChargingTargets(va
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterChargingTargetScheduleStruct/dayOfWeekForSequence
-func (m_ MTREnergyEVSEClusterChargingTargetScheduleStruct) DayOfWeekForSequence() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("dayOfWeekForSequence"))
+func (m_ MTREnergyEVSEClusterChargingTargetScheduleStruct) DayOfWeekForSequence() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("dayOfWeekForSequence"))
 	return rv
 }
 
@@ -101,7 +102,7 @@ func (m_ MTREnergyEVSEClusterChargingTargetScheduleStruct) DayOfWeekForSequence(
 // SetDayOfWeekForSequence sets the value of the dayOfWeekForSequence property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterChargingTargetScheduleStruct/dayOfWeekForSequence
-func (m_ MTREnergyEVSEClusterChargingTargetScheduleStruct) SetDayOfWeekForSequence(value unsafe.Pointer) {
+func (m_ MTREnergyEVSEClusterChargingTargetScheduleStruct) SetDayOfWeekForSequence(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDayOfWeekForSequence:"), value)
 }
 

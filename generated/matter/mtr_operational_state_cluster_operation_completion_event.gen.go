@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,51 @@ func NewMTROperationalStateClusterOperationCompletionEvent() MTROperationalState
 	return getMTROperationalStateClusterOperationCompletionEventClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalstateclusteroperationcompletionevent/pausedtime
+func (m_ MTROperationalStateClusterOperationCompletionEvent) PausedTime() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("pausedTime"))
+	return rv
+}
+
+
+// SetPausedTime sets the value of the pausedTime property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalstateclusteroperationcompletionevent/pausedtime
+func (m_ MTROperationalStateClusterOperationCompletionEvent) SetPausedTime(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPausedTime:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalstateclusteroperationcompletionevent/completionerrorcode
+func (m_ MTROperationalStateClusterOperationCompletionEvent) CompletionErrorCode() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("completionErrorCode"))
+	return rv
+}
+
+
+// SetCompletionErrorCode sets the value of the completionErrorCode property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalstateclusteroperationcompletionevent/completionerrorcode
+func (m_ MTROperationalStateClusterOperationCompletionEvent) SetCompletionErrorCode(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCompletionErrorCode:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalstateclusteroperationcompletionevent/totaloperationaltime
+func (m_ MTROperationalStateClusterOperationCompletionEvent) TotalOperationalTime() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("totalOperationalTime"))
+	return rv
+}
+
+
+// SetTotalOperationalTime sets the value of the totalOperationalTime property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalstateclusteroperationcompletionevent/totaloperationaltime
+func (m_ MTROperationalStateClusterOperationCompletionEvent) SetTotalOperationalTime(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTotalOperationalTime:"), value)
+}
 
 
 

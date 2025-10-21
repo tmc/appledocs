@@ -100,6 +100,24 @@ func (ec _EKReminderClass) ReminderWithEventStore(eventStore unsafe.Pointer) uns
 	return rv
 }
 
+// A Boolean value determining whether or not the reminder is marked completed.
+//
+// [Full Topic]: https://developer.apple.com/documentation/eventkit/ekreminder/iscompleted
+func (e_ EKReminder) IsCompleted() bool {
+	rv := objc.Send[bool](e_.ID, objc.Sel("isCompleted"))
+	return rv
+}
+
+
+// SetIsCompleted sets the value of the isCompleted property.
+// A Boolean value determining whether or not the reminder is marked completed.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/eventkit/ekreminder/iscompleted
+func (e_ EKReminder) SetIsCompleted(value bool) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setIsCompleted:"), value)
+}
+
 // The date on which the reminder was completed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKReminder/completionDate

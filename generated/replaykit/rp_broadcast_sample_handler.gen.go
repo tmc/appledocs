@@ -137,5 +137,21 @@ func (r_ RPBroadcastSampleHandler) ProcessSampleBufferWithType(sampleBuffer unsa
 	objc.Send[objc.ID](r_.ID, objc.Sel("processSampleBuffer:withType:"), sampleBuffer, sampleBufferType)
 }
 
+// The key to retrieve the app’s bundle identifier from the user-information dictionary.
+//
+// [Full Topic]: https://developer.apple.com/documentation/replaykit/rpapplicationinfobundleidentifierkey
+func (r_ RPBroadcastSampleHandler) RPApplicationInfoBundleIdentifierKey() string {
+	rv := objc.Send[string](r_.ID, objc.Sel("RPApplicationInfoBundleIdentifierKey"))
+	return rv
+}
+
+// The sample attachment key that describes the video orientation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/replaykit/rpvideosampleorientationkey
+func (r_ RPBroadcastSampleHandler) RPVideoSampleOrientationKey() string {
+	rv := objc.Send[string](r_.ID, objc.Sel("RPVideoSampleOrientationKey"))
+	return rv
+}
+
 
 

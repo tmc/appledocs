@@ -33,7 +33,7 @@ type ICaptureVideoDataOutput interface {
 	AvailableVideoCodecTypesForAssetWriterWithOutputFileType(outputFileType unsafe.Pointer) []string
 	RecommendedMovieMetadataForVideoCodecTypeAssetWriterOutputFileType(videoCodecType unsafe.Pointer, outputFileType unsafe.Pointer) []MetadataItem
 	RecommendedVideoSettingsForVideoCodecTypeAssetWriterOutputFileType(videoCodecType unsafe.Pointer, outputFileType unsafe.Pointer) unsafe.Pointer
-	RecommendedVideoSettingsForVideoCodecTypeAssetWriterOutputFileTypeOutputFileURL(videoCodecType unsafe.Pointer, outputFileType unsafe.Pointer, outputFileURL unsafe.Pointer) unsafe.Pointer
+	RecommendedVideoSettingsForVideoCodecTypeAssetWriterOutputFileTypeOutputFileURL(videoCodecType unsafe.Pointer, outputFileType unsafe.Pointer, outputFileURL foundation.URL) unsafe.Pointer
 	RecommendedVideoSettingsForAssetWriterWithOutputFileType(outputFileType unsafe.Pointer) unsafe.Pointer
 	SetSampleBufferDelegateQueue(sampleBufferDelegate objc.ID, sampleBufferCallbackQueue unsafe.Pointer)
 }
@@ -115,7 +115,7 @@ func (c_ CaptureVideoDataOutput) RecommendedVideoSettingsForVideoCodecTypeAssetW
 // Returns a dictionary of recommended output settings for writing the specified code, file type, and output URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureVideoDataOutput/recommendedVideoSettings(forVideoCodecType:assetWriterOutputFileType:outputFileURL:)
-func (c_ CaptureVideoDataOutput) RecommendedVideoSettingsForVideoCodecTypeAssetWriterOutputFileTypeOutputFileURL(videoCodecType unsafe.Pointer, outputFileType unsafe.Pointer, outputFileURL unsafe.Pointer) unsafe.Pointer {
+func (c_ CaptureVideoDataOutput) RecommendedVideoSettingsForVideoCodecTypeAssetWriterOutputFileTypeOutputFileURL(videoCodecType unsafe.Pointer, outputFileType unsafe.Pointer, outputFileURL foundation.URL) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("recommendedVideoSettingsForVideoCodecType:assetWriterOutputFileType:outputFileURL:"), videoCodecType, outputFileType, outputFileURL)
 	return rv
 }
@@ -174,8 +174,8 @@ func (c_ CaptureVideoDataOutput) SetAutomaticallyConfiguresOutputBufferDimension
 // The video pixel formats the output supports.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureVideoDataOutput/availableVideoCVPixelFormatTypes
-func (c_ CaptureVideoDataOutput) AvailableVideoCVPixelFormatTypes() []foundation.NSNumber {
-	rv := objc.Send[[]foundation.NSNumber](c_.ID, objc.Sel("availableVideoCVPixelFormatTypes"))
+func (c_ CaptureVideoDataOutput) AvailableVideoCVPixelFormatTypes() []foundation.Number {
+	rv := objc.Send[[]foundation.Number](c_.ID, objc.Sel("availableVideoCVPixelFormatTypes"))
 	return rv
 }
 
@@ -299,6 +299,24 @@ func (c_ CaptureVideoDataOutput) VideoSettings() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureVideoDataOutput/videoSettings
 func (c_ CaptureVideoDataOutput) SetVideoSettings(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setVideoSettings:"), value)
+}
+
+// The video pixel formats the output supports.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturevideodataoutput/availablevideopixelformattypes
+func (c_ CaptureVideoDataOutput) AvailableVideoPixelFormatTypes() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("availableVideoPixelFormatTypes"))
+	return rv
+}
+
+
+// SetAvailableVideoPixelFormatTypes sets the value of the availableVideoPixelFormatTypes property.
+// The video pixel formats the output supports.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturevideodataoutput/availablevideopixelformattypes
+func (c_ CaptureVideoDataOutput) SetAvailableVideoPixelFormatTypes(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setAvailableVideoPixelFormatTypes:"), value)
 }
 
 

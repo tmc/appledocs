@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [FaceObservation] class.
@@ -87,7 +88,7 @@ func NewFaceObservation() FaceObservation {
 // Creates an observation that contains the roll and yaw of the face.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNFaceObservation/init(requestRevision:boundingBox:roll:yaw:)
-func NewFaceObservationWithRequestRevisionBoundingBoxRollYaw(requestRevision uint, boundingBox coregraphics.CGRect, roll unsafe.Pointer, yaw unsafe.Pointer) FaceObservation {
+func NewFaceObservationWithRequestRevisionBoundingBoxRollYaw(requestRevision uint, boundingBox coregraphics.CGRect, roll foundation.Number, yaw foundation.Number) FaceObservation {
 	rv := objc.Send[FaceObservation](objc.ID(getFaceObservationClass().class), objc.Sel("faceObservationWithRequestRevision:boundingBox:roll:yaw:"), requestRevision, boundingBox, roll, yaw)
 	return rv
 }
@@ -97,7 +98,7 @@ func NewFaceObservationWithRequestRevisionBoundingBoxRollYaw(requestRevision uin
 // Creates an observation that contains the roll, yaw, and pitch of the face.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNFaceObservation/init(requestRevision:boundingBox:roll:yaw:pitch:)
-func NewFaceObservationWithRequestRevisionBoundingBoxRollYawPitch(requestRevision uint, boundingBox coregraphics.CGRect, roll unsafe.Pointer, yaw unsafe.Pointer, pitch unsafe.Pointer) FaceObservation {
+func NewFaceObservationWithRequestRevisionBoundingBoxRollYawPitch(requestRevision uint, boundingBox coregraphics.CGRect, roll foundation.Number, yaw foundation.Number, pitch foundation.Number) FaceObservation {
 	rv := objc.Send[FaceObservation](objc.ID(getFaceObservationClass().class), objc.Sel("faceObservationWithRequestRevision:boundingBox:roll:yaw:pitch:"), requestRevision, boundingBox, roll, yaw, pitch)
 	return rv
 }
@@ -106,7 +107,7 @@ func NewFaceObservationWithRequestRevisionBoundingBoxRollYawPitch(requestRevisio
 // Creates an observation that contains the roll and yaw of the face.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNFaceObservation/init(requestRevision:boundingBox:roll:yaw:)
-func (fc _FaceObservationClass) FaceObservationWithRequestRevisionBoundingBoxRollYaw(requestRevision uint, boundingBox coregraphics.CGRect, roll unsafe.Pointer, yaw unsafe.Pointer) unsafe.Pointer {
+func (fc _FaceObservationClass) FaceObservationWithRequestRevisionBoundingBoxRollYaw(requestRevision uint, boundingBox coregraphics.CGRect, roll foundation.Number, yaw foundation.Number) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("faceObservationWithRequestRevision:boundingBox:roll:yaw:"), requestRevision, boundingBox, roll, yaw)
 	return rv
 }
@@ -114,16 +115,88 @@ func (fc _FaceObservationClass) FaceObservationWithRequestRevisionBoundingBoxRol
 // Creates an observation that contains the roll, yaw, and pitch of the face.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNFaceObservation/init(requestRevision:boundingBox:roll:yaw:pitch:)
-func (fc _FaceObservationClass) FaceObservationWithRequestRevisionBoundingBoxRollYawPitch(requestRevision uint, boundingBox coregraphics.CGRect, roll unsafe.Pointer, yaw unsafe.Pointer, pitch unsafe.Pointer) unsafe.Pointer {
+func (fc _FaceObservationClass) FaceObservationWithRequestRevisionBoundingBoxRollYawPitch(requestRevision uint, boundingBox coregraphics.CGRect, roll foundation.Number, yaw foundation.Number, pitch foundation.Number) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("faceObservationWithRequestRevision:boundingBox:roll:yaw:pitch:"), requestRevision, boundingBox, roll, yaw, pitch)
 	return rv
+}
+
+// The results of the face-capture quality request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetectfacecapturequalityrequest/results
+func (f_ FaceObservation) Results() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("results"))
+	return rv
+}
+
+
+// SetResults sets the value of the results property.
+// The results of the face-capture quality request.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetectfacecapturequalityrequest/results
+func (f_ FaceObservation) SetResults(value unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setResults:"), value)
+}
+
+// The roll angle of a face in radians.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnfaceobservation/roll
+func (f_ FaceObservation) Roll() foundation.Number {
+	rv := objc.Send[foundation.Number](f_.ID, objc.Sel("roll"))
+	return rv
+}
+
+
+// SetRoll sets the value of the roll property.
+// The roll angle of a face in radians.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnfaceobservation/roll
+func (f_ FaceObservation) SetRoll(value foundation.Number) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setRoll:"), value)
+}
+
+// The yaw angle of a face in radians.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnfaceobservation/yaw
+func (f_ FaceObservation) Yaw() foundation.Number {
+	rv := objc.Send[foundation.Number](f_.ID, objc.Sel("yaw"))
+	return rv
+}
+
+
+// SetYaw sets the value of the yaw property.
+// The yaw angle of a face in radians.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnfaceobservation/yaw
+func (f_ FaceObservation) SetYaw(value foundation.Number) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setYaw:"), value)
+}
+
+// The pitch angle of a face in radians.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnfaceobservation/pitch
+func (f_ FaceObservation) Pitch() foundation.Number {
+	rv := objc.Send[foundation.Number](f_.ID, objc.Sel("pitch"))
+	return rv
+}
+
+
+// SetPitch sets the value of the pitch property.
+// The pitch angle of a face in radians.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnfaceobservation/pitch
+func (f_ FaceObservation) SetPitch(value foundation.Number) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setPitch:"), value)
 }
 
 // A value that indicates the quality of the face capture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNFaceObservation/faceCaptureQuality-2o4xv
-func (f_ FaceObservation) FaceCaptureQuality() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("faceCaptureQuality"))
+func (f_ FaceObservation) FaceCaptureQuality() foundation.Number {
+	rv := objc.Send[foundation.Number](f_.ID, objc.Sel("faceCaptureQuality"))
 	return rv
 }
 

@@ -81,5 +81,59 @@ func NewCReductionLayer() CReductionLayer {
 }
 
 
+// The dimension to perform the reduction operation on.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcreductionlayer/dimension
+func (c_ CReductionLayer) Dimension() int {
+	rv := objc.Send[int](c_.ID, objc.Sel("dimension"))
+	return rv
+}
+
+
+// SetDimension sets the value of the dimension property.
+// The dimension to perform the reduction operation on.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcreductionlayer/dimension
+func (c_ CReductionLayer) SetDimension(value int) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setDimension:"), value)
+}
+
+// The dimensions to perform the reduction operation on.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcreductionlayer/dimensions-9oph6
+func (c_ CReductionLayer) Dimensions() int {
+	rv := objc.Send[int](c_.ID, objc.Sel("dimensions"))
+	return rv
+}
+
+
+// SetDimensions sets the value of the dimensions property.
+// The dimensions to perform the reduction operation on.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcreductionlayer/dimensions-9oph6
+func (c_ CReductionLayer) SetDimensions(value int) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setDimensions:"), value)
+}
+
+// The function reduction type the system uses for reduction.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcreductionlayer/reductiontype
+func (c_ CReductionLayer) ReductionType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("reductionType"))
+	return rv
+}
+
+
+// SetReductionType sets the value of the reductionType property.
+// The function reduction type the system uses for reduction.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcreductionlayer/reductiontype
+func (c_ CReductionLayer) SetReductionType(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setReductionType:"), value)
+}
+
 
 

@@ -98,5 +98,77 @@ func (a_ AssetResourceLoader) SetSendsCommonMediaClientDataAsHTTPHeaders(value b
 	objc.Send[objc.ID](a_.ID, objc.Sel("setSendsCommonMediaClientDataAsHTTPHeaders:"), value)
 }
 
+// The delegate object to use when handling resource requests.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetresourceloader/delegate
+func (a_ AssetResourceLoader) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+
+// SetDelegate sets the value of the delegate property.
+// The delegate object to use when handling resource requests.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetresourceloader/delegate
+func (a_ AssetResourceLoader) SetDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setDelegate:"), value)
+}
+
+// The dispatch queue to use when handling resource requests.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetresourceloader/delegatequeue
+func (a_ AssetResourceLoader) DelegateQueue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("delegateQueue"))
+	return rv
+}
+
+
+// SetDelegateQueue sets the value of the delegateQueue property.
+// The dispatch queue to use when handling resource requests.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetresourceloader/delegatequeue
+func (a_ AssetResourceLoader) SetDelegateQueue(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setDelegateQueue:"), value)
+}
+
+// A Boolean value that indicates whether content keys will be loaded as quickly as possible.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetresourceloader/preloadseligiblecontentkeys
+func (a_ AssetResourceLoader) PreloadsEligibleContentKeys() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("preloadsEligibleContentKeys"))
+	return rv
+}
+
+
+// SetPreloadsEligibleContentKeys sets the value of the preloadsEligibleContentKeys property.
+// A Boolean value that indicates whether content keys will be loaded as quickly as possible.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetresourceloader/preloadseligiblecontentkeys
+func (a_ AssetResourceLoader) SetPreloadsEligibleContentKeys(value bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setPreloadsEligibleContentKeys:"), value)
+}
+
+// The resource loader for the asset.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avurlasset/resourceloader
+func (a_ AssetResourceLoader) ResourceLoader() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("resourceLoader"))
+	return rv
+}
+
+
+// SetResourceLoader sets the value of the resourceLoader property.
+// The resource loader for the asset.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avurlasset/resourceloader
+func (a_ AssetResourceLoader) SetResourceLoader(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setResourceLoader:"), value)
+}
+
 
 

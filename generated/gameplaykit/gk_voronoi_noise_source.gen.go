@@ -102,6 +102,24 @@ func (vc _VoronoiNoiseSourceClass) VoronoiNoiseWithFrequencyDisplacementDistance
 	return rv
 }
 
+// A Boolean value that specifies whether generated noise values incorporate the distance from each point to the nearest seed point.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gameplaykit/gkvoronoinoisesource/isdistanceenabled
+func (v_ VoronoiNoiseSource) IsDistanceEnabled() bool {
+	rv := objc.Send[bool](v_.ID, objc.Sel("isDistanceEnabled"))
+	return rv
+}
+
+
+// SetIsDistanceEnabled sets the value of the isDistanceEnabled property.
+// A Boolean value that specifies whether generated noise values incorporate the distance from each point to the nearest seed point.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gameplaykit/gkvoronoinoisesource/isdistanceenabled
+func (v_ VoronoiNoiseSource) SetIsDistanceEnabled(value bool) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setIsDistanceEnabled:"), value)
+}
+
 // The range of random values to assign to each cell in generated noise.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKVoronoiNoiseSource/displacement

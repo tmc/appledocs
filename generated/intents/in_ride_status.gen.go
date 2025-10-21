@@ -80,6 +80,150 @@ func NewINRideStatus() INRideStatus {
 }
 
 
+// The starting location for the ride.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inridestatus/pickuplocation
+func (i_ INRideStatus) PickupLocation() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("pickupLocation"))
+	return rv
+}
+
+
+// SetPickupLocation sets the value of the pickupLocation property.
+// The starting location for the ride.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inridestatus/pickuplocation
+func (i_ INRideStatus) SetPickupLocation(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setPickupLocation:"), value)
+}
+
+// The date after which the driver may stop waiting for the user.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inridestatus/estimatedpickupenddate
+func (i_ INRideStatus) EstimatedPickupEndDate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("estimatedPickupEndDate"))
+	return rv
+}
+
+
+// SetEstimatedPickupEndDate sets the value of the estimatedPickupEndDate property.
+// The date after which the driver may stop waiting for the user.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inridestatus/estimatedpickupenddate
+func (i_ INRideStatus) SetEstimatedPickupEndDate(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setEstimatedPickupEndDate:"), value)
+}
+
+// The scheduled pickup time for the user.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inridestatus/scheduledpickuptime
+func (i_ INRideStatus) ScheduledPickupTime() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("scheduledPickupTime"))
+	return rv
+}
+
+
+// SetScheduledPickupTime sets the value of the scheduledPickupTime property.
+// The scheduled pickup time for the user.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inridestatus/scheduledpickuptime
+func (i_ INRideStatus) SetScheduledPickupTime(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setScheduledPickupTime:"), value)
+}
+
+// The estimated drop-off time for the ride.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inridestatus/estimateddropoffdate
+func (i_ INRideStatus) EstimatedDropOffDate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("estimatedDropOffDate"))
+	return rv
+}
+
+
+// SetEstimatedDropOffDate sets the value of the estimatedDropOffDate property.
+// The estimated drop-off time for the ride.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inridestatus/estimateddropoffdate
+func (i_ INRideStatus) SetEstimatedDropOffDate(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setEstimatedDropOffDate:"), value)
+}
+
+// The destination of the user.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inridestatus/dropofflocation
+func (i_ INRideStatus) DropOffLocation() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("dropOffLocation"))
+	return rv
+}
+
+
+// SetDropOffLocation sets the value of the dropOffLocation property.
+// The destination of the user.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inridestatus/dropofflocation
+func (i_ INRideStatus) SetDropOffLocation(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setDropOffLocation:"), value)
+}
+
+// The intermediate waypoints for the journey.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inridestatus/waypoints
+func (i_ INRideStatus) Waypoints() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("waypoints"))
+	return rv
+}
+
+
+// SetWaypoints sets the value of the waypoints property.
+// The intermediate waypoints for the journey.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inridestatus/waypoints
+func (i_ INRideStatus) SetWaypoints(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setWaypoints:"), value)
+}
+
+// Additional activities that the user may choose to perform while the ride request is active.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inridestatus/additionalactionactivities
+func (i_ INRideStatus) AdditionalActionActivities() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("additionalActionActivities"))
+	return rv
+}
+
+
+// SetAdditionalActionActivities sets the value of the additionalActionActivities property.
+// Additional activities that the user may choose to perform while the ride request is active.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inridestatus/additionalactionactivities
+func (i_ INRideStatus) SetAdditionalActionActivities(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setAdditionalActionActivities:"), value)
+}
+
+// The estimated pickup time for the ride.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inridestatus/estimatedpickupdate
+func (i_ INRideStatus) EstimatedPickupDate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("estimatedPickupDate"))
+	return rv
+}
+
+
+// SetEstimatedPickupDate sets the value of the estimatedPickupDate property.
+// The estimated pickup time for the ride.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inridestatus/estimatedpickupdate
+func (i_ INRideStatus) SetEstimatedPickupDate(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setEstimatedPickupDate:"), value)
+}
+
 // Information about how the ride ended.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INRideStatus/completionStatus

@@ -99,6 +99,60 @@ func (vc _ValueFunctionClass) FunctionWithName(name unsafe.Pointer) unsafe.Point
 	return rv
 }
 
+// An optional value function that is applied to interpolated values.
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/capropertyanimation/valuefunction
+func (v_ ValueFunction) ValueFunction() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("valueFunction"))
+	return rv
+}
+
+
+// SetValueFunction sets the value of the valueFunction property.
+// An optional value function that is applied to interpolated values.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/capropertyanimation/valuefunction
+func (v_ ValueFunction) SetValueFunction(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setValueFunction:"), value)
+}
+
+// Defines the value the receiver uses to start interpolation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/cabasicanimation/fromvalue
+func (v_ ValueFunction) FromValue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("fromValue"))
+	return rv
+}
+
+
+// SetFromValue sets the value of the fromValue property.
+// Defines the value the receiver uses to start interpolation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/cabasicanimation/fromvalue
+func (v_ ValueFunction) SetFromValue(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setFromValue:"), value)
+}
+
+// Defines the value the receiver uses to end interpolation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/cabasicanimation/tovalue
+func (v_ ValueFunction) ToValue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("toValue"))
+	return rv
+}
+
+
+// SetToValue sets the value of the toValue property.
+// Defines the value the receiver uses to end interpolation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/cabasicanimation/tovalue
+func (v_ ValueFunction) SetToValue(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setToValue:"), value)
+}
+
 // Returns the name of the value function.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAValueFunction/name

@@ -81,5 +81,77 @@ func NewBrowserCell() BrowserCell {
 }
 
 
+// The browser cell’s image for the highlighted state.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowsercell/alternateimage
+func (b_ BrowserCell) AlternateImage() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("alternateImage"))
+	return rv
+}
+
+
+// SetAlternateImage sets the value of the alternateImage property.
+// The browser cell’s image for the highlighted state.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowsercell/alternateimage
+func (b_ BrowserCell) SetAlternateImage(value unsafe.Pointer) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setAlternateImage:"), value)
+}
+
+// The browser cell’s image.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowsercell/image
+func (b_ BrowserCell) Image() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("image"))
+	return rv
+}
+
+
+// SetImage sets the value of the image property.
+// The browser cell’s image.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowsercell/image
+func (b_ BrowserCell) SetImage(value unsafe.Pointer) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setImage:"), value)
+}
+
+// A Boolean that indicates whether the browser cell is a leaf or a branch cell.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowsercell/isleaf
+func (b_ BrowserCell) IsLeaf() bool {
+	rv := objc.Send[bool](b_.ID, objc.Sel("isLeaf"))
+	return rv
+}
+
+
+// SetIsLeaf sets the value of the isLeaf property.
+// A Boolean that indicates whether the browser cell is a leaf or a branch cell.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowsercell/isleaf
+func (b_ BrowserCell) SetIsLeaf(value bool) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setIsLeaf:"), value)
+}
+
+// A Boolean that indicates whether the cell is ready to display.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowsercell/isloaded
+func (b_ BrowserCell) IsLoaded() bool {
+	rv := objc.Send[bool](b_.ID, objc.Sel("isLoaded"))
+	return rv
+}
+
+
+// SetIsLoaded sets the value of the isLoaded property.
+// A Boolean that indicates whether the cell is ready to display.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowsercell/isloaded
+func (b_ BrowserCell) SetIsLoaded(value bool) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setIsLoaded:"), value)
+}
+
 
 

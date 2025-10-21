@@ -143,5 +143,71 @@ func (e_ EntityMigrationPolicy) PerformCustomValidationForEntityMappingManagerEr
 	return rv
 }
 
+// Key for the property mapping object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmigrationpropertymappingkey
+func (e_ EntityMigrationPolicy) NSMigrationPropertyMappingKey() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("NSMigrationPropertyMappingKey"))
+	return rv
+}
+
+// Key for the entity mapping object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmigrationentitymappingkey
+func (e_ EntityMigrationPolicy) NSMigrationEntityMappingKey() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("NSMigrationEntityMappingKey"))
+	return rv
+}
+
+// The class name of the migration policy for the entity mapping.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitymapping/entitymigrationpolicyclassname
+func (e_ EntityMigrationPolicy) EntityMigrationPolicyClassName() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("entityMigrationPolicyClassName"))
+	return rv
+}
+
+
+// SetEntityMigrationPolicyClassName sets the value of the entityMigrationPolicyClassName property.
+// The class name of the migration policy for the entity mapping.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitymapping/entitymigrationpolicyclassname
+func (e_ EntityMigrationPolicy) SetEntityMigrationPolicyClassName(value string) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setEntityMigrationPolicyClassName:"), objc.String(value))
+}
+
+// Key for the source object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmigrationsourceobjectkey
+func (e_ EntityMigrationPolicy) NSMigrationSourceObjectKey() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("NSMigrationSourceObjectKey"))
+	return rv
+}
+
+// Key for the entity migration policy object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmigrationentitypolicykey
+func (e_ EntityMigrationPolicy) NSMigrationEntityPolicyKey() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("NSMigrationEntityPolicyKey"))
+	return rv
+}
+
+// Key for the migration manager.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmigrationmanagerkey
+func (e_ EntityMigrationPolicy) NSMigrationManagerKey() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("NSMigrationManagerKey"))
+	return rv
+}
+
+// Key for the destination object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmigrationdestinationobjectkey
+func (e_ EntityMigrationPolicy) NSMigrationDestinationObjectKey() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("NSMigrationDestinationObjectKey"))
+	return rv
+}
+
 
 

@@ -133,5 +133,41 @@ func (p_ PageController) SelectedViewController() unsafe.Pointer {
 	return rv
 }
 
+// The page controller’s delegate object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspagecontroller/delegate
+func (p_ PageController) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+
+// SetDelegate sets the value of the delegate property.
+// The page controller’s delegate object.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspagecontroller/delegate
+func (p_ PageController) SetDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setDelegate:"), value)
+}
+
+// The transition style the page controller uses when changing pages.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspagecontroller/transitionstyle-swift.property
+func (p_ PageController) TransitionStyle() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("transitionStyle"))
+	return rv
+}
+
+
+// SetTransitionStyle sets the value of the transitionStyle property.
+// The transition style the page controller uses when changing pages.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspagecontroller/transitionstyle-swift.property
+func (p_ PageController) SetTransitionStyle(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setTransitionStyle:"), value)
+}
+
 
 

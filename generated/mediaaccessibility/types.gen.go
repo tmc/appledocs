@@ -22,22 +22,3 @@ type CTFontDescriptorRef unsafe.Pointer
 
 
 
-// Fallback type aliases for undefined types
-// These types are referenced in method signatures but not fully documented.
-// Using unsafe.Pointer as fallback to allow code generation.
-type CFAbsoluteTime unsafe.Pointer
-
-type CFErrorRef unsafe.Pointer
-
-type IOSurfaceRef unsafe.Pointer
-
-type MACaptionAppearanceBehavior unsafe.Pointer
-
-type MACaptionAppearanceDisplayType unsafe.Pointer
-
-type MACaptionAppearanceDomain unsafe.Pointer
-
-type NSCopying unsafe.Pointer
-
-
-

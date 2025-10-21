@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,7 +84,7 @@ func NewCaptureEventSound() CaptureEventSound {
 // Creates a sound object for a capture event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureEventSound/init(url:)
-func NewCaptureEventSoundWithURLError(url unsafe.Pointer, error_ unsafe.Pointer) CaptureEventSound {
+func NewCaptureEventSoundWithURLError(url foundation.URL, error_ unsafe.Pointer) CaptureEventSound {
 	instance := getCaptureEventSoundClass().Alloc()
 	rv := objc.Send[CaptureEventSound](instance.ID, objc.Sel("initWithURL:error:"), url, error_)
 	rv.Autorelease()

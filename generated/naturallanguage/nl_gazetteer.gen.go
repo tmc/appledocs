@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -86,7 +87,7 @@ func NewGazetteer() Gazetteer {
 // Creates a Natural Language gazetteer from a model created with the Create ML framework.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLGazetteer/init(contentsOf:)
-func NewGazetteerWithContentsOfURLError(url unsafe.Pointer, error_ unsafe.Pointer) Gazetteer {
+func NewGazetteerWithContentsOfURLError(url foundation.URL, error_ unsafe.Pointer) Gazetteer {
 	instance := getGazetteerClass().Alloc()
 	rv := objc.Send[Gazetteer](instance.ID, objc.Sel("initWithContentsOfURL:error:"), url, error_)
 	rv.Autorelease()
@@ -121,7 +122,7 @@ func NewGazetteerWithDictionaryLanguageError(dictionary unsafe.Pointer, language
 // Creates a Natural Language gazetteer from a model created with the Create ML framework.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLGazetteer/gazetteerWithContentsOfURL:error:
-func (gc _GazetteerClass) GazetteerWithContentsOfURLError(url unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func (gc _GazetteerClass) GazetteerWithContentsOfURLError(url foundation.URL, error_ unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(gc.class), objc.Sel("gazetteerWithContentsOfURL:error:"), url, error_)
 	return rv
 }
@@ -129,7 +130,7 @@ func (gc _GazetteerClass) GazetteerWithContentsOfURLError(url unsafe.Pointer, er
 // Creates a gazetteer from a set of labels for terms represented by a dictionary and saves the gazetteer to a file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLGazetteer/write(_:language:to:)
-func (gc _GazetteerClass) WriteGazetteerForDictionaryLanguageToURLError(dictionary unsafe.Pointer, language unsafe.Pointer, url unsafe.Pointer, error_ unsafe.Pointer) bool {
+func (gc _GazetteerClass) WriteGazetteerForDictionaryLanguageToURLError(dictionary unsafe.Pointer, language unsafe.Pointer, url foundation.URL, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](objc.ID(gc.class), objc.Sel("writeGazetteerForDictionary:language:toURL:error:"), dictionary, language, url, error_)
 	return rv
 }

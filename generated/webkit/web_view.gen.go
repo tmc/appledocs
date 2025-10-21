@@ -146,6 +146,770 @@ func (w_ WebView) OverWrite(sender objc.ID) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("overWrite:"), sender)
 }
 
+// A Boolean that indicates whether or not the receiver’s attributes are automatically stored in the user defaults database.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webpreferences/autosaves
+func (w_ WebView) Autosaves() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("autosaves"))
+	return rv
+}
+
+
+// SetAutosaves sets the value of the autosaves property.
+// A Boolean that indicates whether or not the receiver’s attributes are automatically stored in the user defaults database.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webpreferences/autosaves
+func (w_ WebView) SetAutosaves(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setAutosaves:"), value)
+}
+
+// The receiver’s CSS media property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/mediastyle
+func (w_ WebView) MediaStyle() string {
+	rv := objc.Send[string](w_.ID, objc.Sel("mediaStyle"))
+	return rv
+}
+
+
+// SetMediaStyle sets the value of the mediaStyle property.
+// The receiver’s CSS media property.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/mediastyle
+func (w_ WebView) SetMediaStyle(value string) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setMediaStyle:"), objc.String(value))
+}
+
+// The receiver’s custom user-agent string.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/customuseragent
+func (w_ WebView) CustomUserAgent() string {
+	rv := objc.Send[string](w_.ID, objc.Sel("customUserAgent"))
+	return rv
+}
+
+
+// SetCustomUserAgent sets the value of the customUserAgent property.
+// The receiver’s custom user-agent string.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/customuseragent
+func (w_ WebView) SetCustomUserAgent(value string) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setCustomUserAgent:"), objc.String(value))
+}
+
+// The receiver’s frame load delegate.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/frameloaddelegate
+func (w_ WebView) FrameLoadDelegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("frameLoadDelegate"))
+	return rv
+}
+
+
+// SetFrameLoadDelegate sets the value of the frameLoadDelegate property.
+// The receiver’s frame load delegate.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/frameloaddelegate
+func (w_ WebView) SetFrameLoadDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setFrameLoadDelegate:"), value)
+}
+
+// A Boolean that indicates whether the text can be made larger.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/canmaketextlarger
+func (w_ WebView) CanMakeTextLarger() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("canMakeTextLarger"))
+	return rv
+}
+
+
+// SetCanMakeTextLarger sets the value of the canMakeTextLarger property.
+// A Boolean that indicates whether the text can be made larger.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/canmaketextlarger
+func (w_ WebView) SetCanMakeTextLarger(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setCanMakeTextLarger:"), value)
+}
+
+// An array of pasteboard types that can be used for the current selection of the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/pasteboardtypesforselection
+func (w_ WebView) PasteboardTypesForSelection() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("pasteboardTypesForSelection"))
+	return rv
+}
+
+
+// SetPasteboardTypesForSelection sets the value of the pasteboardTypesForSelection property.
+// An array of pasteboard types that can be used for the current selection of the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/pasteboardtypesforselection
+func (w_ WebView) SetPasteboardTypesForSelection(value unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setPasteboardTypesForSelection:"), value)
+}
+
+// The receiver’s policy delegate.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/policydelegate
+func (w_ WebView) PolicyDelegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("policyDelegate"))
+	return rv
+}
+
+
+// SetPolicyDelegate sets the value of the policyDelegate property.
+// The receiver’s policy delegate.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/policydelegate
+func (w_ WebView) SetPolicyDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setPolicyDelegate:"), value)
+}
+
+// The receiver’s download delegate.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/downloaddelegate
+func (w_ WebView) DownloadDelegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("downloadDelegate"))
+	return rv
+}
+
+
+// SetDownloadDelegate sets the value of the downloadDelegate property.
+// The receiver’s download delegate.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/downloaddelegate
+func (w_ WebView) SetDownloadDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setDownloadDelegate:"), value)
+}
+
+// A Boolean that indicates whether the selection is maintained when focus is lost.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/maintainsinactiveselection
+func (w_ WebView) MaintainsInactiveSelection() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("maintainsInactiveSelection"))
+	return rv
+}
+
+
+// SetMaintainsInactiveSelection sets the value of the maintainsInactiveSelection property.
+// A Boolean that indicates whether the selection is maintained when focus is lost.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/maintainsinactiveselection
+func (w_ WebView) SetMaintainsInactiveSelection(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setMaintainsInactiveSelection:"), value)
+}
+
+// The receiver’s window object from the scripting environment.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/windowscriptobject
+func (w_ WebView) WindowScriptObject() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("windowScriptObject"))
+	return rv
+}
+
+
+// SetWindowScriptObject sets the value of the windowScriptObject property.
+// The receiver’s window object from the scripting environment.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/windowscriptobject
+func (w_ WebView) SetWindowScriptObject(value unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setWindowScriptObject:"), value)
+}
+
+// A Boolean that indicates whether the web view is loading content.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/isloading
+func (w_ WebView) IsLoading() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("isLoading"))
+	return rv
+}
+
+
+// SetIsLoading sets the value of the isLoading property.
+// A Boolean that indicates whether the web view is loading content.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/isloading
+func (w_ WebView) SetIsLoading(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setIsLoading:"), value)
+}
+
+// The custom text encoding name.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/customtextencodingname
+func (w_ WebView) CustomTextEncodingName() string {
+	rv := objc.Send[string](w_.ID, objc.Sel("customTextEncodingName"))
+	return rv
+}
+
+
+// SetCustomTextEncodingName sets the value of the customTextEncodingName property.
+// The custom text encoding name.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/customtextencodingname
+func (w_ WebView) SetCustomTextEncodingName(value string) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setCustomTextEncodingName:"), objc.String(value))
+}
+
+// A Boolean that indicates whether the user is allowed to edit the document.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/iseditable
+func (w_ WebView) IsEditable() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("isEditable"))
+	return rv
+}
+
+
+// SetIsEditable sets the value of the isEditable property.
+// A Boolean that indicates whether the user is allowed to edit the document.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/iseditable
+func (w_ WebView) SetIsEditable(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setIsEditable:"), value)
+}
+
+// The receiver’s application name that is used in the user-agent string.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/applicationnameforuseragent
+func (w_ WebView) ApplicationNameForUserAgent() string {
+	rv := objc.Send[string](w_.ID, objc.Sel("applicationNameForUserAgent"))
+	return rv
+}
+
+
+// SetApplicationNameForUserAgent sets the value of the applicationNameForUserAgent property.
+// The receiver’s application name that is used in the user-agent string.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/applicationnameforuseragent
+func (w_ WebView) SetApplicationNameForUserAgent(value string) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setApplicationNameForUserAgent:"), objc.String(value))
+}
+
+// The URL that the main frame loads.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/mainframeurl
+func (w_ WebView) MainFrameURL() string {
+	rv := objc.Send[string](w_.ID, objc.Sel("mainFrameURL"))
+	return rv
+}
+
+
+// SetMainFrameURL sets the value of the mainFrameURL property.
+// The URL that the main frame loads.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/mainframeurl
+func (w_ WebView) SetMainFrameURL(value string) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setMainFrameURL:"), objc.String(value))
+}
+
+// The receiver’s editing delegate.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/editingdelegate
+func (w_ WebView) EditingDelegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("editingDelegate"))
+	return rv
+}
+
+
+// SetEditingDelegate sets the value of the editingDelegate property.
+// The receiver’s editing delegate.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/editingdelegate
+func (w_ WebView) SetEditingDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setEditingDelegate:"), value)
+}
+
+// A Boolean that inidicates whether the web view should update even when it is not in a window that is currently visible.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/shouldupdatewhileoffscreen
+func (w_ WebView) ShouldUpdateWhileOffscreen() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("shouldUpdateWhileOffscreen"))
+	return rv
+}
+
+
+// SetShouldUpdateWhileOffscreen sets the value of the shouldUpdateWhileOffscreen property.
+// A Boolean that inidicates whether the web view should update even when it is not in a window that is currently visible.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/shouldupdatewhileoffscreen
+func (w_ WebView) SetShouldUpdateWhileOffscreen(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setShouldUpdateWhileOffscreen:"), value)
+}
+
+// A Boolean that indicates whether the current text size is a multiple of 1.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/canmaketextstandardsize
+func (w_ WebView) CanMakeTextStandardSize() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("canMakeTextStandardSize"))
+	return rv
+}
+
+
+// SetCanMakeTextStandardSize sets the value of the canMakeTextStandardSize property.
+// A Boolean that indicates whether the current text size is a multiple of 1.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/canmaketextstandardsize
+func (w_ WebView) SetCanMakeTextStandardSize(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setCanMakeTextStandardSize:"), value)
+}
+
+// A Boolean that indicates whether the web view has continuous spell-checking enabled.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/iscontinuousspellcheckingenabled
+func (w_ WebView) IsContinuousSpellCheckingEnabled() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("isContinuousSpellCheckingEnabled"))
+	return rv
+}
+
+
+// SetIsContinuousSpellCheckingEnabled sets the value of the isContinuousSpellCheckingEnabled property.
+// A Boolean that indicates whether the web view has continuous spell-checking enabled.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/iscontinuousspellcheckingenabled
+func (w_ WebView) SetIsContinuousSpellCheckingEnabled(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setIsContinuousSpellCheckingEnabled:"), value)
+}
+
+// The frame with the active selection.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/selectedframe
+func (w_ WebView) SelectedFrame() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("selectedFrame"))
+	return rv
+}
+
+
+// SetSelectedFrame sets the value of the selectedFrame property.
+// The frame with the active selection.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/selectedframe
+func (w_ WebView) SetSelectedFrame(value unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setSelectedFrame:"), value)
+}
+
+// The main frame, the root of the web frame hierarchy for this page.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/mainframe
+func (w_ WebView) MainFrame() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("mainFrame"))
+	return rv
+}
+
+
+// SetMainFrame sets the value of the mainFrame property.
+// The main frame, the root of the web frame hierarchy for this page.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/mainframe
+func (w_ WebView) SetMainFrame(value unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setMainFrame:"), value)
+}
+
+// A Boolean that indicates whether the previous location can be loaded.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/cangoback
+func (w_ WebView) CanGoBack() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("canGoBack"))
+	return rv
+}
+
+
+// SetCanGoBack sets the value of the canGoBack property.
+// A Boolean that indicates whether the previous location can be loaded.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/cangoback
+func (w_ WebView) SetCanGoBack(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setCanGoBack:"), value)
+}
+
+// The current selection affinity.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/selectionaffinity
+func (w_ WebView) SelectionAffinity() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("selectionAffinity"))
+	return rv
+}
+
+
+// SetSelectionAffinity sets the value of the selectionAffinity property.
+// The current selection affinity.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/selectionaffinity
+func (w_ WebView) SetSelectionAffinity(value unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setSelectionAffinity:"), value)
+}
+
+// The receiver’s undo manager.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/undomanager
+func (w_ WebView) UndoManager() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("undoManager"))
+	return rv
+}
+
+
+// SetUndoManager sets the value of the undoManager property.
+// The receiver’s undo manager.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/undomanager
+func (w_ WebView) SetUndoManager(value unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setUndoManager:"), value)
+}
+
+// A Boolean that indicates whether the text can be made smaller.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/canmaketextsmaller
+func (w_ WebView) CanMakeTextSmaller() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("canMakeTextSmaller"))
+	return rv
+}
+
+
+// SetCanMakeTextSmaller sets the value of the canMakeTextSmaller property.
+// A Boolean that indicates whether the text can be made smaller.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/canmaketextsmaller
+func (w_ WebView) SetCanMakeTextSmaller(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setCanMakeTextSmaller:"), value)
+}
+
+// The receiver’s CSS typing style.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/typingstyle
+func (w_ WebView) TypingStyle() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("typingStyle"))
+	return rv
+}
+
+
+// SetTypingStyle sets the value of the typingStyle property.
+// The receiver’s CSS typing style.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/typingstyle
+func (w_ WebView) SetTypingStyle(value unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setTypingStyle:"), value)
+}
+
+// A Boolean that indicates whether the document view supports different text encodings.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/supportstextencoding
+func (w_ WebView) SupportsTextEncoding() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("supportsTextEncoding"))
+	return rv
+}
+
+
+// SetSupportsTextEncoding sets the value of the supportsTextEncoding property.
+// A Boolean that indicates whether the document view supports different text encodings.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/supportstextencoding
+func (w_ WebView) SetSupportsTextEncoding(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setSupportsTextEncoding:"), value)
+}
+
+// The receiver’s user interface delegate.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/uidelegate
+func (w_ WebView) UiDelegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("uiDelegate"))
+	return rv
+}
+
+
+// SetUiDelegate sets the value of the uiDelegate property.
+// The receiver’s user interface delegate.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/uidelegate
+func (w_ WebView) SetUiDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setUiDelegate:"), value)
+}
+
+// The font size multiplier for text displayed in web frame view objects managed by the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/textsizemultiplier
+func (w_ WebView) TextSizeMultiplier() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("textSizeMultiplier"))
+	return rv
+}
+
+
+// SetTextSizeMultiplier sets the value of the textSizeMultiplier property.
+// The font size multiplier for text displayed in web frame view objects managed by the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/textsizemultiplier
+func (w_ WebView) SetTextSizeMultiplier(value unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setTextSizeMultiplier:"), value)
+}
+
+// A Boolean that indicates whether smart-space insertion and deletion is enabled.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/smartinsertdeleteenabled
+func (w_ WebView) SmartInsertDeleteEnabled() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("smartInsertDeleteEnabled"))
+	return rv
+}
+
+
+// SetSmartInsertDeleteEnabled sets the value of the smartInsertDeleteEnabled property.
+// A Boolean that indicates whether smart-space insertion and deletion is enabled.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/smartinsertdeleteenabled
+func (w_ WebView) SetSmartInsertDeleteEnabled(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setSmartInsertDeleteEnabled:"), value)
+}
+
+// The navigation type of the action. Can be any of the values defined in
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webactionnavigationtypekey
+func (w_ WebView) WebActionNavigationTypeKey() string {
+	rv := objc.Send[string](w_.ID, objc.Sel("WebActionNavigationTypeKey"))
+	return rv
+}
+
+// The HTML title of the loaded page.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/mainframetitle
+func (w_ WebView) MainFrameTitle() string {
+	rv := objc.Send[string](w_.ID, objc.Sel("mainFrameTitle"))
+	return rv
+}
+
+
+// SetMainFrameTitle sets the value of the mainFrameTitle property.
+// The HTML title of the loaded page.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/mainframetitle
+func (w_ WebView) SetMainFrameTitle(value string) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setMainFrameTitle:"), objc.String(value))
+}
+
+// The DOM document for the main frame.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/mainframedocument
+func (w_ WebView) MainFrameDocument() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("mainFrameDocument"))
+	return rv
+}
+
+
+// SetMainFrameDocument sets the value of the mainFrameDocument property.
+// The DOM document for the main frame.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/mainframedocument
+func (w_ WebView) SetMainFrameDocument(value unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setMainFrameDocument:"), value)
+}
+
+// The receiver’s group name.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/groupname
+func (w_ WebView) GroupName() string {
+	rv := objc.Send[string](w_.ID, objc.Sel("groupName"))
+	return rv
+}
+
+
+// SetGroupName sets the value of the groupName property.
+// The receiver’s group name.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/groupname
+func (w_ WebView) SetGroupName(value string) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setGroupName:"), objc.String(value))
+}
+
+// A Boolean that indicates whether the web view should close when its window or host window closes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/shouldclosewithwindow
+func (w_ WebView) ShouldCloseWithWindow() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("shouldCloseWithWindow"))
+	return rv
+}
+
+
+// SetShouldCloseWithWindow sets the value of the shouldCloseWithWindow property.
+// A Boolean that indicates whether the web view should close when its window or host window closes.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/shouldclosewithwindow
+func (w_ WebView) SetShouldCloseWithWindow(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setShouldCloseWithWindow:"), value)
+}
+
+// The receiver’s host window.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/hostwindow
+func (w_ WebView) HostWindow() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("hostWindow"))
+	return rv
+}
+
+
+// SetHostWindow sets the value of the hostWindow property.
+// The receiver’s host window.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/hostwindow
+func (w_ WebView) SetHostWindow(value unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setHostWindow:"), value)
+}
+
+// The range of the current selection.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/selecteddomrange
+func (w_ WebView) SelectedDOMRange() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("selectedDOMRange"))
+	return rv
+}
+
+
+// SetSelectedDOMRange sets the value of the selectedDOMRange property.
+// The range of the current selection.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/selecteddomrange
+func (w_ WebView) SetSelectedDOMRange(value unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setSelectedDOMRange:"), value)
+}
+
+// The spell-checker document tag for this document.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/spellcheckerdocumenttag
+func (w_ WebView) SpellCheckerDocumentTag() int {
+	rv := objc.Send[int](w_.ID, objc.Sel("spellCheckerDocumentTag"))
+	return rv
+}
+
+
+// SetSpellCheckerDocumentTag sets the value of the spellCheckerDocumentTag property.
+// The spell-checker document tag for this document.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/spellcheckerdocumenttag
+func (w_ WebView) SetSpellCheckerDocumentTag(value int) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setSpellCheckerDocumentTag:"), value)
+}
+
+// A Boolean that indicates whether the web view draws a background.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/drawsbackground
+func (w_ WebView) DrawsBackground() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("drawsBackground"))
+	return rv
+}
+
+
+// SetDrawsBackground sets the value of the drawsBackground property.
+// A Boolean that indicates whether the web view draws a background.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/drawsbackground
+func (w_ WebView) SetDrawsBackground(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setDrawsBackground:"), value)
+}
+
+// The site’s favicon.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/mainframeicon
+func (w_ WebView) MainFrameIcon() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("mainFrameIcon"))
+	return rv
+}
+
+
+// SetMainFrameIcon sets the value of the mainFrameIcon property.
+// The site’s favicon.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/mainframeicon
+func (w_ WebView) SetMainFrameIcon(value unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setMainFrameIcon:"), value)
+}
+
+// The receiver’s resource load delegate.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/resourceloaddelegate
+func (w_ WebView) ResourceLoadDelegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("resourceLoadDelegate"))
+	return rv
+}
+
+
+// SetResourceLoadDelegate sets the value of the resourceLoadDelegate property.
+// The receiver’s resource load delegate.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/resourceloaddelegate
+func (w_ WebView) SetResourceLoadDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setResourceLoadDelegate:"), value)
+}
+
+// A Boolean that indicates whether the next location can be loaded.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/cangoforward
+func (w_ WebView) CanGoForward() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("canGoForward"))
+	return rv
+}
+
+
+// SetCanGoForward sets the value of the canGoForward property.
+// A Boolean that indicates whether the next location can be loaded.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/cangoforward
+func (w_ WebView) SetCanGoForward(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setCanGoForward:"), value)
+}
+
+// The receiver’s preferences.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/preferences
+func (w_ WebView) Preferences() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("preferences"))
+	return rv
+}
+
+
+// SetPreferences sets the value of the preferences property.
+// The receiver’s preferences.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/preferences
+func (w_ WebView) SetPreferences(value unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setPreferences:"), value)
+}
+
 // The receiver’s back-forward list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WebView-swift.class/backForwardList

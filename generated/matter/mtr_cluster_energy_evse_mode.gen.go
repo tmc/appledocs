@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MTRClusterEnergyEVSEMode] class.
@@ -29,7 +30,7 @@ type _MTRClusterEnergyEVSEModeClass struct {
 // An interface definition for the [MTRClusterEnergyEVSEMode] class.
 type IMTRClusterEnergyEVSEMode interface {
 	IMTRGenericCluster
-	ChangeToModeWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, completion unsafe.Pointer)
+	ChangeToModeWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer)
 	ReadAttributeAcceptedCommandListWithParams(params unsafe.Pointer) unsafe.Pointer
 	ReadAttributeAttributeListWithParams(params unsafe.Pointer) unsafe.Pointer
 	ReadAttributeClusterRevisionWithParams(params unsafe.Pointer) unsafe.Pointer
@@ -92,7 +93,7 @@ func NewMTRClusterEnergyEVSEMode() MTRClusterEnergyEVSEMode {
 // For all instance methods that take a completion (i.e. command invocations), the completion will be called on the provided queue.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterEnergyEVSEMode/init(device:endpointID:queue:)
-func NewMTRClusterEnergyEVSEModeWithDeviceEndpointIDQueue(device unsafe.Pointer, endpointID unsafe.Pointer, queue unsafe.Pointer) MTRClusterEnergyEVSEMode {
+func NewMTRClusterEnergyEVSEModeWithDeviceEndpointIDQueue(device unsafe.Pointer, endpointID foundation.Number, queue unsafe.Pointer) MTRClusterEnergyEVSEMode {
 	instance := getMTRClusterEnergyEVSEModeClass().Alloc()
 	rv := objc.Send[MTRClusterEnergyEVSEMode](instance.ID, objc.Sel("initWithDevice:endpointID:queue:"), device, endpointID, queue)
 	rv.Autorelease()
@@ -102,7 +103,7 @@ func NewMTRClusterEnergyEVSEModeWithDeviceEndpointIDQueue(device unsafe.Pointer,
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterEnergyEVSEMode/changeToMode(with:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterEnergyEVSEMode) ChangeToModeWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, completion unsafe.Pointer) {
+func (m_ MTRClusterEnergyEVSEMode) ChangeToModeWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("changeToModeWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
 }
 

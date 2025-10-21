@@ -84,5 +84,110 @@ func (b_ BluetoothPasskeyDisplay) RetreatPasskeyIndicator() {
 	objc.Send[objc.ID](b_.ID, objc.Sel("retreatPasskeyIndicator"))
 }
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/iobluetoothui/iobluetoothpasskeydisplay/returnimage
+func (b_ BluetoothPasskeyDisplay) ReturnImage() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("returnImage"))
+	return rv
+}
+
+
+// SetReturnImage sets the value of the returnImage property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/iobluetoothui/iobluetoothpasskeydisplay/returnimage
+func (b_ BluetoothPasskeyDisplay) SetReturnImage(value unsafe.Pointer) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setReturnImage:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/iobluetoothui/iobluetoothpasskeydisplay/returnhighlightimage
+func (b_ BluetoothPasskeyDisplay) ReturnHighlightImage() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("returnHighlightImage"))
+	return rv
+}
+
+
+// SetReturnHighlightImage sets the value of the returnHighlightImage property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/iobluetoothui/iobluetoothpasskeydisplay/returnhighlightimage
+func (b_ BluetoothPasskeyDisplay) SetReturnHighlightImage(value unsafe.Pointer) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setReturnHighlightImage:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/iobluetoothui/iobluetoothpasskeydisplay/passkey-swift.property
+func (b_ BluetoothPasskeyDisplay) Passkey() string {
+	rv := objc.Send[string](b_.ID, objc.Sel("passkey"))
+	return rv
+}
+
+
+// SetPasskey sets the value of the passkey property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/iobluetoothui/iobluetoothpasskeydisplay/passkey-swift.property
+func (b_ BluetoothPasskeyDisplay) SetPasskey(value string) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setPasskey:"), objc.String(value))
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/iobluetoothui/iobluetoothpasskeydisplay/usepasskeynotificaitons
+func (b_ BluetoothPasskeyDisplay) UsePasskeyNotificaitons() bool {
+	rv := objc.Send[bool](b_.ID, objc.Sel("usePasskeyNotificaitons"))
+	return rv
+}
+
+
+// SetUsePasskeyNotificaitons sets the value of the usePasskeyNotificaitons property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/iobluetoothui/iobluetoothpasskeydisplay/usepasskeynotificaitons
+func (b_ BluetoothPasskeyDisplay) SetUsePasskeyNotificaitons(value bool) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setUsePasskeyNotificaitons:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/iobluetoothui/iobluetoothpasskeydisplay/backgroundimageconstraint
+func (b_ BluetoothPasskeyDisplay) BackgroundImageConstraint() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("backgroundImageConstraint"))
+	return rv
+}
+
+
+// SetBackgroundImageConstraint sets the value of the backgroundImageConstraint property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/iobluetoothui/iobluetoothpasskeydisplay/backgroundimageconstraint
+func (b_ BluetoothPasskeyDisplay) SetBackgroundImageConstraint(value unsafe.Pointer) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setBackgroundImageConstraint:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/iobluetoothui/iobluetoothpasskeydisplay/centeredview
+func (b_ BluetoothPasskeyDisplay) CenteredView() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("centeredView"))
+	return rv
+}
+
+
+// SetCenteredView sets the value of the centeredView property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/iobluetoothui/iobluetoothpasskeydisplay/centeredview
+func (b_ BluetoothPasskeyDisplay) SetCenteredView(value unsafe.Pointer) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setCenteredView:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/iobluetoothui/iobluetoothpasskeydisplay/isincomingrequest-swift.property
+func (b_ BluetoothPasskeyDisplay) IsIncomingRequest() bool {
+	rv := objc.Send[bool](b_.ID, objc.Sel("isIncomingRequest"))
+	return rv
+}
+
+
+// SetIsIncomingRequest sets the value of the isIncomingRequest property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/iobluetoothui/iobluetoothpasskeydisplay/isincomingrequest-swift.property
+func (b_ BluetoothPasskeyDisplay) SetIsIncomingRequest(value bool) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setIsIncomingRequest:"), value)
+}
+
 
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,7 +31,7 @@ type _BAAssetPackManagerClass struct {
 // An interface definition for the [BAAssetPackManager] class.
 type IBAAssetPackManager interface {
 	objectivec.IObject
-	URLForPathError(path string, error_ unsafe.Pointer) unsafe.Pointer
+	URLForPathError(path string, error_ unsafe.Pointer) foundation.URL
 	CheckForUpdatesWithCompletionHandler(completionHandler unsafe.Pointer)
 	ContentsAtPathSearchingInAssetPackWithIdentifierOptionsError(path string, assetPackIdentifier string, options unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer
 	EnsureLocalAvailabilityOfAssetPackCompletionHandler(assetPack unsafe.Pointer, completionHandler unsafe.Pointer)
@@ -99,8 +100,8 @@ func (bc _BAAssetPackManagerClass) SharedManager() unsafe.Pointer {
 // Returns a URL for the specified relative path.
 //
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPackManager/URLForPath:error:
-func (b_ BAAssetPackManager) URLForPathError(path string, error_ unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("URLForPath:error:"), objc.String(path), error_)
+func (b_ BAAssetPackManager) URLForPathError(path string, error_ unsafe.Pointer) foundation.URL {
+	rv := objc.Send[foundation.URL](b_.ID, objc.Sel("URLForPath:error:"), objc.String(path), error_)
 	return rv
 }
 

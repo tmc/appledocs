@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,8 +78,8 @@ func NewMTRDeviceEnergyManagementClusterForecastStruct() MTRDeviceEnergyManageme
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterForecastStruct/activeSlotNumber
-func (m_ MTRDeviceEnergyManagementClusterForecastStruct) ActiveSlotNumber() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("activeSlotNumber"))
+func (m_ MTRDeviceEnergyManagementClusterForecastStruct) ActiveSlotNumber() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("activeSlotNumber"))
 	return rv
 }
 
@@ -86,14 +87,14 @@ func (m_ MTRDeviceEnergyManagementClusterForecastStruct) ActiveSlotNumber() unsa
 // SetActiveSlotNumber sets the value of the activeSlotNumber property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterForecastStruct/activeSlotNumber
-func (m_ MTRDeviceEnergyManagementClusterForecastStruct) SetActiveSlotNumber(value unsafe.Pointer) {
+func (m_ MTRDeviceEnergyManagementClusterForecastStruct) SetActiveSlotNumber(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setActiveSlotNumber:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterForecastStruct/earliestStartTime
-func (m_ MTRDeviceEnergyManagementClusterForecastStruct) EarliestStartTime() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("earliestStartTime"))
+func (m_ MTRDeviceEnergyManagementClusterForecastStruct) EarliestStartTime() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("earliestStartTime"))
 	return rv
 }
 
@@ -101,14 +102,14 @@ func (m_ MTRDeviceEnergyManagementClusterForecastStruct) EarliestStartTime() uns
 // SetEarliestStartTime sets the value of the earliestStartTime property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterForecastStruct/earliestStartTime
-func (m_ MTRDeviceEnergyManagementClusterForecastStruct) SetEarliestStartTime(value unsafe.Pointer) {
+func (m_ MTRDeviceEnergyManagementClusterForecastStruct) SetEarliestStartTime(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEarliestStartTime:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterForecastStruct/endTime
-func (m_ MTRDeviceEnergyManagementClusterForecastStruct) EndTime() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("endTime"))
+func (m_ MTRDeviceEnergyManagementClusterForecastStruct) EndTime() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("endTime"))
 	return rv
 }
 
@@ -116,14 +117,14 @@ func (m_ MTRDeviceEnergyManagementClusterForecastStruct) EndTime() unsafe.Pointe
 // SetEndTime sets the value of the endTime property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterForecastStruct/endTime
-func (m_ MTRDeviceEnergyManagementClusterForecastStruct) SetEndTime(value unsafe.Pointer) {
+func (m_ MTRDeviceEnergyManagementClusterForecastStruct) SetEndTime(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEndTime:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterForecastStruct/forecastID
-func (m_ MTRDeviceEnergyManagementClusterForecastStruct) ForecastID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("forecastID"))
+func (m_ MTRDeviceEnergyManagementClusterForecastStruct) ForecastID() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("forecastID"))
 	return rv
 }
 
@@ -131,14 +132,14 @@ func (m_ MTRDeviceEnergyManagementClusterForecastStruct) ForecastID() unsafe.Poi
 // SetForecastID sets the value of the forecastID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterForecastStruct/forecastID
-func (m_ MTRDeviceEnergyManagementClusterForecastStruct) SetForecastID(value unsafe.Pointer) {
+func (m_ MTRDeviceEnergyManagementClusterForecastStruct) SetForecastID(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setForecastID:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterForecastStruct/forecastUpdateReason
-func (m_ MTRDeviceEnergyManagementClusterForecastStruct) ForecastUpdateReason() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("forecastUpdateReason"))
+func (m_ MTRDeviceEnergyManagementClusterForecastStruct) ForecastUpdateReason() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("forecastUpdateReason"))
 	return rv
 }
 
@@ -146,14 +147,14 @@ func (m_ MTRDeviceEnergyManagementClusterForecastStruct) ForecastUpdateReason() 
 // SetForecastUpdateReason sets the value of the forecastUpdateReason property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterForecastStruct/forecastUpdateReason
-func (m_ MTRDeviceEnergyManagementClusterForecastStruct) SetForecastUpdateReason(value unsafe.Pointer) {
+func (m_ MTRDeviceEnergyManagementClusterForecastStruct) SetForecastUpdateReason(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setForecastUpdateReason:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterForecastStruct/isPausable
-func (m_ MTRDeviceEnergyManagementClusterForecastStruct) IsPausable() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("isPausable"))
+func (m_ MTRDeviceEnergyManagementClusterForecastStruct) IsPausable() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("isPausable"))
 	return rv
 }
 
@@ -161,14 +162,14 @@ func (m_ MTRDeviceEnergyManagementClusterForecastStruct) IsPausable() unsafe.Poi
 // SetIsPausable sets the value of the isPausable property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterForecastStruct/isPausable
-func (m_ MTRDeviceEnergyManagementClusterForecastStruct) SetIsPausable(value unsafe.Pointer) {
+func (m_ MTRDeviceEnergyManagementClusterForecastStruct) SetIsPausable(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsPausable:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterForecastStruct/latestEndTime
-func (m_ MTRDeviceEnergyManagementClusterForecastStruct) LatestEndTime() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("latestEndTime"))
+func (m_ MTRDeviceEnergyManagementClusterForecastStruct) LatestEndTime() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("latestEndTime"))
 	return rv
 }
 
@@ -176,7 +177,7 @@ func (m_ MTRDeviceEnergyManagementClusterForecastStruct) LatestEndTime() unsafe.
 // SetLatestEndTime sets the value of the latestEndTime property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterForecastStruct/latestEndTime
-func (m_ MTRDeviceEnergyManagementClusterForecastStruct) SetLatestEndTime(value unsafe.Pointer) {
+func (m_ MTRDeviceEnergyManagementClusterForecastStruct) SetLatestEndTime(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLatestEndTime:"), value)
 }
 
@@ -197,8 +198,8 @@ func (m_ MTRDeviceEnergyManagementClusterForecastStruct) SetSlots(value unsafe.P
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterForecastStruct/startTime
-func (m_ MTRDeviceEnergyManagementClusterForecastStruct) StartTime() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("startTime"))
+func (m_ MTRDeviceEnergyManagementClusterForecastStruct) StartTime() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("startTime"))
 	return rv
 }
 
@@ -206,7 +207,7 @@ func (m_ MTRDeviceEnergyManagementClusterForecastStruct) StartTime() unsafe.Poin
 // SetStartTime sets the value of the startTime property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterForecastStruct/startTime
-func (m_ MTRDeviceEnergyManagementClusterForecastStruct) SetStartTime(value unsafe.Pointer) {
+func (m_ MTRDeviceEnergyManagementClusterForecastStruct) SetStartTime(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStartTime:"), value)
 }
 

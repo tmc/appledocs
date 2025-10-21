@@ -80,6 +80,68 @@ func NewHKWorkoutEvent() HKWorkoutEvent {
 }
 
 
+// The time and duration of the event.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutevent/dateinterval
+func (h_ HKWorkoutEvent) DateInterval() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("dateInterval"))
+	return rv
+}
+
+
+// SetDateInterval sets the value of the dateInterval property.
+// The time and duration of the event.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutevent/dateinterval
+func (h_ HKWorkoutEvent) SetDateInterval(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setDateInterval:"), value)
+}
+
+// The metadata associated with the workout event.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutevent/metadata
+func (h_ HKWorkoutEvent) Metadata() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("metadata"))
+	return rv
+}
+
+
+// SetMetadata sets the value of the metadata property.
+// The metadata associated with the workout event.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutevent/metadata
+func (h_ HKWorkoutEvent) SetMetadata(value string) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setMetadata:"), objc.String(value))
+}
+
+// The time when the transition occurred.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutevent/date
+func (h_ HKWorkoutEvent) Date() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("date"))
+	return rv
+}
+
+
+// SetDate sets the value of the date property.
+// The time when the transition occurred.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutevent/date
+func (h_ HKWorkoutEvent) SetDate(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setDate:"), value)
+}
+
+// The workout type identifier.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkouttypeidentifier
+func (h_ HKWorkoutEvent) HKWorkoutTypeIdentifier() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("HKWorkoutTypeIdentifier"))
+	return rv
+}
+
 // The type of workout event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKWorkoutEvent/type

@@ -363,4 +363,346 @@ func (b_ Button) SetSound(value unsafe.Pointer) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setSound:"), value)
 }
 
+// A Boolean value that indicates whether the button allows a mixed state.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/allowsmixedstate
+func (b_ Button) AllowsMixedState() bool {
+	rv := objc.Send[bool](b_.ID, objc.Sel("allowsMixedState"))
+	return rv
+}
+
+
+// SetAllowsMixedState sets the value of the allowsMixedState property.
+// A Boolean value that indicates whether the button allows a mixed state.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/allowsmixedstate
+func (b_ Button) SetAllowsMixedState(value bool) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setAllowsMixedState:"), value)
+}
+
+// An alternate image that appears on the button when the button is in an on state.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/alternateimage
+func (b_ Button) AlternateImage() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("alternateImage"))
+	return rv
+}
+
+
+// SetAlternateImage sets the value of the alternateImage property.
+// An alternate image that appears on the button when the button is in an on state.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/alternateimage
+func (b_ Button) SetAlternateImage(value unsafe.Pointer) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setAlternateImage:"), value)
+}
+
+// The title that the button displays when the button is in an on state.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/alternatetitle
+func (b_ Button) AlternateTitle() string {
+	rv := objc.Send[string](b_.ID, objc.Sel("alternateTitle"))
+	return rv
+}
+
+
+// SetAlternateTitle sets the value of the alternateTitle property.
+// The title that the button displays when the button is in an on state.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/alternatetitle
+func (b_ Button) SetAlternateTitle(value string) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setAlternateTitle:"), objc.String(value))
+}
+
+// The title that the button displays as an attributed string when the button is in an on state.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/attributedalternatetitle
+func (b_ Button) AttributedAlternateTitle() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("attributedAlternateTitle"))
+	return rv
+}
+
+
+// SetAttributedAlternateTitle sets the value of the attributedAlternateTitle property.
+// The title that the button displays as an attributed string when the button is in an on state.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/attributedalternatetitle
+func (b_ Button) SetAttributedAlternateTitle(value unsafe.Pointer) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setAttributedAlternateTitle:"), value)
+}
+
+// The appearance of the button’s border.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/bezelstyle-swift.property
+func (b_ Button) BezelStyle() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("bezelStyle"))
+	return rv
+}
+
+
+// SetBezelStyle sets the value of the bezelStyle property.
+// The appearance of the button’s border.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/bezelstyle-swift.property
+func (b_ Button) SetBezelStyle(value unsafe.Pointer) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setBezelStyle:"), value)
+}
+
+// A Boolean value that defines whether a button’s action has a destructive effect.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/hasdestructiveaction
+func (b_ Button) HasDestructiveAction() bool {
+	rv := objc.Send[bool](b_.ID, objc.Sel("hasDestructiveAction"))
+	return rv
+}
+
+
+// SetHasDestructiveAction sets the value of the hasDestructiveAction property.
+// A Boolean value that defines whether a button’s action has a destructive effect.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/hasdestructiveaction
+func (b_ Button) SetHasDestructiveAction(value bool) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setHasDestructiveAction:"), value)
+}
+
+// The image that appears on the button when it’s in an off state, or
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/image
+func (b_ Button) Image() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("image"))
+	return rv
+}
+
+
+// SetImage sets the value of the image property.
+// The image that appears on the button when it’s in an off state, or
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/image
+func (b_ Button) SetImage(value unsafe.Pointer) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setImage:"), value)
+}
+
+// A Boolean value that determines how the button’s image and title are positioned together within the button bezel.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/imagehugstitle
+func (b_ Button) ImageHugsTitle() bool {
+	rv := objc.Send[bool](b_.ID, objc.Sel("imageHugsTitle"))
+	return rv
+}
+
+
+// SetImageHugsTitle sets the value of the imageHugsTitle property.
+// A Boolean value that determines how the button’s image and title are positioned together within the button bezel.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/imagehugstitle
+func (b_ Button) SetImageHugsTitle(value bool) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setImageHugsTitle:"), value)
+}
+
+// The position of the button’s image relative to its title.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/imageposition
+func (b_ Button) ImagePosition() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("imagePosition"))
+	return rv
+}
+
+
+// SetImagePosition sets the value of the imagePosition property.
+// The position of the button’s image relative to its title.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/imageposition
+func (b_ Button) SetImagePosition(value unsafe.Pointer) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setImagePosition:"), value)
+}
+
+// The scaling mode applied to make the cell’s image fit the frame of the image view.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/imagescaling
+func (b_ Button) ImageScaling() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("imageScaling"))
+	return rv
+}
+
+
+// SetImageScaling sets the value of the imageScaling property.
+// The scaling mode applied to make the cell’s image fit the frame of the image view.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/imagescaling
+func (b_ Button) SetImageScaling(value unsafe.Pointer) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setImageScaling:"), value)
+}
+
+// A Boolean value that determines whether the button has a border.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/isbordered
+func (b_ Button) IsBordered() bool {
+	rv := objc.Send[bool](b_.ID, objc.Sel("isBordered"))
+	return rv
+}
+
+
+// SetIsBordered sets the value of the isBordered property.
+// A Boolean value that determines whether the button has a border.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/isbordered
+func (b_ Button) SetIsBordered(value bool) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setIsBordered:"), value)
+}
+
+// A Boolean value that indicates whether spring loading is enabled for the button.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/isspringloaded
+func (b_ Button) IsSpringLoaded() bool {
+	rv := objc.Send[bool](b_.ID, objc.Sel("isSpringLoaded"))
+	return rv
+}
+
+
+// SetIsSpringLoaded sets the value of the isSpringLoaded property.
+// A Boolean value that indicates whether spring loading is enabled for the button.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/isspringloaded
+func (b_ Button) SetIsSpringLoaded(value bool) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setIsSpringLoaded:"), value)
+}
+
+// A Boolean value that indicates whether the button is transparent.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/istransparent
+func (b_ Button) IsTransparent() bool {
+	rv := objc.Send[bool](b_.ID, objc.Sel("isTransparent"))
+	return rv
+}
+
+
+// SetIsTransparent sets the value of the isTransparent property.
+// A Boolean value that indicates whether the button is transparent.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/istransparent
+func (b_ Button) SetIsTransparent(value bool) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setIsTransparent:"), value)
+}
+
+// The mask specifying the modifier keys for the button’s key equivalent.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/keyequivalentmodifiermask
+func (b_ Button) KeyEquivalentModifierMask() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("keyEquivalentModifierMask"))
+	return rv
+}
+
+
+// SetKeyEquivalentModifierMask sets the value of the keyEquivalentModifierMask property.
+// The mask specifying the modifier keys for the button’s key equivalent.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/keyequivalentmodifiermask
+func (b_ Button) SetKeyEquivalentModifierMask(value unsafe.Pointer) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setKeyEquivalentModifierMask:"), value)
+}
+
+// An integer value indicating the maximum pressure level for a button of type
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/maxacceleratorlevel
+func (b_ Button) MaxAcceleratorLevel() int {
+	rv := objc.Send[int](b_.ID, objc.Sel("maxAcceleratorLevel"))
+	return rv
+}
+
+
+// SetMaxAcceleratorLevel sets the value of the maxAcceleratorLevel property.
+// An integer value indicating the maximum pressure level for a button of type
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/maxacceleratorlevel
+func (b_ Button) SetMaxAcceleratorLevel(value int) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setMaxAcceleratorLevel:"), value)
+}
+
+// The button’s state.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/state
+func (b_ Button) State() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("state"))
+	return rv
+}
+
+
+// SetState sets the value of the state property.
+// The button’s state.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/state
+func (b_ Button) SetState(value unsafe.Pointer) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setState:"), value)
+}
+
+// The combination of point size, weight, and scale to use when sizing and displaying symbol images.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/symbolconfiguration
+func (b_ Button) SymbolConfiguration() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("symbolConfiguration"))
+	return rv
+}
+
+
+// SetSymbolConfiguration sets the value of the symbolConfiguration property.
+// The combination of point size, weight, and scale to use when sizing and displaying symbol images.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/symbolconfiguration
+func (b_ Button) SetSymbolConfiguration(value unsafe.Pointer) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setSymbolConfiguration:"), value)
+}
+
+// The tint prominence of the button. Use tint prominence to gently suggest a hierarchy when multiple buttons perform similar actions. A button with primary tint prominence suggests the most preferred option, while secondary prominence indicates a reasonable alternative. See
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/tintprominence
+func (b_ Button) TintProminence() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("tintProminence"))
+	return rv
+}
+
+
+// SetTintProminence sets the value of the tintProminence property.
+// The tint prominence of the button. Use tint prominence to gently suggest a hierarchy when multiple buttons perform similar actions. A button with primary tint prominence suggests the most preferred option, while secondary prominence indicates a reasonable alternative. See
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/tintprominence
+func (b_ Button) SetTintProminence(value unsafe.Pointer) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setTintProminence:"), value)
+}
+
+// The title displayed on the button when it’s in an off state.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/title
+func (b_ Button) Title() string {
+	rv := objc.Send[string](b_.ID, objc.Sel("title"))
+	return rv
+}
+
+
+// SetTitle sets the value of the title property.
+// The title displayed on the button when it’s in an off state.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/title
+func (b_ Button) SetTitle(value string) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setTitle:"), objc.String(value))
+}
+
 

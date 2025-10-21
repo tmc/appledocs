@@ -78,6 +78,24 @@ func NewMEEstimatedSampleLocation() MEEstimatedSampleLocation {
 }
 
 
+// The starting file offset and size in bytes of the data necessary to provide an accurate sample location.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaextension/meestimatedsamplelocation/refinementdatalocation
+func (m_ MEEstimatedSampleLocation) RefinementDataLocation() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("refinementDataLocation"))
+	return rv
+}
+
+
+// SetRefinementDataLocation sets the value of the refinementDataLocation property.
+// The starting file offset and size in bytes of the data necessary to provide an accurate sample location.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaextension/meestimatedsamplelocation/refinementdatalocation
+func (m_ MEEstimatedSampleLocation) SetRefinementDataLocation(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setRefinementDataLocation:"), value)
+}
+
 // The byte source to use to read the data for the sample.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaExtension/MEEstimatedSampleLocation/byteSource

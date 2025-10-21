@@ -81,6 +81,24 @@ func NewGraphTensor() GraphTensor {
 }
 
 
+// The operation responsible for creating this tensor.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphtensor/operation
+func (g_ GraphTensor) Operation() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("operation"))
+	return rv
+}
+
+
+// SetOperation sets the value of the operation property.
+// The operation responsible for creating this tensor.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphtensor/operation
+func (g_ GraphTensor) SetOperation(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setOperation:"), value)
+}
+
 // The data type of the tensor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphTensor/dataType

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,51 @@ func NewMTRModeSelectClusterModeOptionStruct() MTRModeSelectClusterModeOptionStr
 	return getMTRModeSelectClusterModeOptionStructClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmodeselectclustermodeoptionstruct/mode
+func (m_ MTRModeSelectClusterModeOptionStruct) Mode() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("mode"))
+	return rv
+}
+
+
+// SetMode sets the value of the mode property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmodeselectclustermodeoptionstruct/mode
+func (m_ MTRModeSelectClusterModeOptionStruct) SetMode(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMode:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmodeselectclustermodeoptionstruct/semantictags
+func (m_ MTRModeSelectClusterModeOptionStruct) SemanticTags() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("semanticTags"))
+	return rv
+}
+
+
+// SetSemanticTags sets the value of the semanticTags property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmodeselectclustermodeoptionstruct/semantictags
+func (m_ MTRModeSelectClusterModeOptionStruct) SetSemanticTags(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSemanticTags:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmodeselectclustermodeoptionstruct/label
+func (m_ MTRModeSelectClusterModeOptionStruct) Label() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("label"))
+	return rv
+}
+
+
+// SetLabel sets the value of the label property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmodeselectclustermodeoptionstruct/label
+func (m_ MTRModeSelectClusterModeOptionStruct) SetLabel(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), objc.String(value))
+}
 
 
 

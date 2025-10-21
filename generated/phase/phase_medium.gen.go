@@ -93,4 +93,22 @@ func NewPHASEMediumWithEnginePreset(engine unsafe.Pointer, preset unsafe.Pointer
 }
 
 
+// The physical matter through which sound travels.
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phaseengine/defaultmedium
+func (p_ PHASEMedium) DefaultMedium() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("defaultMedium"))
+	return rv
+}
+
+
+// SetDefaultMedium sets the value of the defaultMedium property.
+// The physical matter through which sound travels.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phaseengine/defaultmedium
+func (p_ PHASEMedium) SetDefaultMedium(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setDefaultMedium:"), value)
+}
+
 

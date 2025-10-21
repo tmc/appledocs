@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [Agent2D] class.
@@ -29,7 +30,7 @@ type _Agent2DClass struct {
 // An interface definition for the [Agent2D] class.
 type IAgent2D interface {
 	IAgent
-	UpdateWithDeltaTime(seconds TimeInterval)
+	UpdateWithDeltaTime(seconds foundation.TimeInterval)
 }
 
 // An agent that operates in a two-dimensional space.
@@ -85,7 +86,7 @@ func NewAgent2D() Agent2D {
 // Causes the agent to evaluate its goals and update its position, rotation, and velocity accordingly.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent2D/update(deltaTime:)
-func (a_ Agent2D) UpdateWithDeltaTime(seconds TimeInterval) {
+func (a_ Agent2D) UpdateWithDeltaTime(seconds foundation.TimeInterval) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("updateWithDeltaTime:"), seconds)
 }
 

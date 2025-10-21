@@ -109,4 +109,22 @@ func (t_ TKTokenWatcher) SetInsertionHandler(insertionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setInsertionHandler:"), insertionHandler)
 }
 
+// The token IDs currently available in the system.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tktokenwatcher/tokenids
+func (t_ TKTokenWatcher) TokenIDs() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("tokenIDs"))
+	return rv
+}
+
+
+// SetTokenIDs sets the value of the tokenIDs property.
+// The token IDs currently available in the system.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tktokenwatcher/tokenids
+func (t_ TKTokenWatcher) SetTokenIDs(value string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setTokenIDs:"), objc.String(value))
+}
+
 

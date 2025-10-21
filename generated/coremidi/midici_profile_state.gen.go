@@ -78,5 +78,59 @@ func NewMIDICIProfileState() MIDICIProfileState {
 }
 
 
+// The MIDI channel to which this state applies.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciprofilestate/midichannel
+func (m_ MIDICIProfileState) MidiChannel() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("midiChannel"))
+	return rv
+}
+
+
+// SetMidiChannel sets the value of the midiChannel property.
+// The MIDI channel to which this state applies.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciprofilestate/midichannel
+func (m_ MIDICIProfileState) SetMidiChannel(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMidiChannel:"), value)
+}
+
+// The object’s disabled profiles.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciprofilestate/disabledprofiles
+func (m_ MIDICIProfileState) DisabledProfiles() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("disabledProfiles"))
+	return rv
+}
+
+
+// SetDisabledProfiles sets the value of the disabledProfiles property.
+// The object’s disabled profiles.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciprofilestate/disabledprofiles
+func (m_ MIDICIProfileState) SetDisabledProfiles(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDisabledProfiles:"), value)
+}
+
+// The object’s enabled profiles.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciprofilestate/enabledprofiles
+func (m_ MIDICIProfileState) EnabledProfiles() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("enabledProfiles"))
+	return rv
+}
+
+
+// SetEnabledProfiles sets the value of the enabledProfiles property.
+// The object’s enabled profiles.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciprofilestate/enabledprofiles
+func (m_ MIDICIProfileState) SetEnabledProfiles(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setEnabledProfiles:"), value)
+}
+
 
 

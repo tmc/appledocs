@@ -108,6 +108,24 @@ func (vc _VZLinuxRosettaDirectoryShareClass) Availability() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(vc.class), objc.Sel("availability"))
 	return rv
 }
+// The value that enables translation caching and configures the socket communication type for Rosetta.
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzlinuxrosettadirectoryshare/cachingoptions-swift.property
+func (v_ VZLinuxRosettaDirectoryShare) CachingOptions() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("cachingOptions"))
+	return rv
+}
+
+
+// SetCachingOptions sets the value of the cachingOptions property.
+// The value that enables translation caching and configures the socket communication type for Rosetta.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzlinuxrosettadirectoryshare/cachingoptions-swift.property
+func (v_ VZLinuxRosettaDirectoryShare) SetCachingOptions(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setCachingOptions:"), value)
+}
+
 // A value that indicates the current state of Rosetta’s availability.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxRosettaDirectoryShare/availability

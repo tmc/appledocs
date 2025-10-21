@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,36 @@ func NewMTRBasicInformationClusterProductAppearanceStruct() MTRBasicInformationC
 	return getMTRBasicInformationClusterProductAppearanceStructClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrbasicinformationclusterproductappearancestruct/primarycolor
+func (m_ MTRBasicInformationClusterProductAppearanceStruct) PrimaryColor() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("primaryColor"))
+	return rv
+}
+
+
+// SetPrimaryColor sets the value of the primaryColor property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrbasicinformationclusterproductappearancestruct/primarycolor
+func (m_ MTRBasicInformationClusterProductAppearanceStruct) SetPrimaryColor(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPrimaryColor:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrbasicinformationclusterproductappearancestruct/finish
+func (m_ MTRBasicInformationClusterProductAppearanceStruct) Finish() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("finish"))
+	return rv
+}
+
+
+// SetFinish sets the value of the finish property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrbasicinformationclusterproductappearancestruct/finish
+func (m_ MTRBasicInformationClusterProductAppearanceStruct) SetFinish(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setFinish:"), value)
+}
 
 
 

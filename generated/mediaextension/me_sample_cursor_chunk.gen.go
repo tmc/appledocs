@@ -80,6 +80,60 @@ func NewMESampleCursorChunk() MESampleCursorChunk {
 }
 
 
+// An object that provides details about the chunk in the media.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaextension/mesamplecursorchunk/chunkinfo
+func (m_ MESampleCursorChunk) ChunkInfo() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("chunkInfo"))
+	return rv
+}
+
+
+// SetChunkInfo sets the value of the chunkInfo property.
+// An object that provides details about the chunk in the media.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaextension/mesamplecursorchunk/chunkinfo
+func (m_ MESampleCursorChunk) SetChunkInfo(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setChunkInfo:"), value)
+}
+
+// The offset location and length of the sample’s chunk within the byte source.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaextension/mesamplecursorchunk/chunkstoragerange
+func (m_ MESampleCursorChunk) ChunkStorageRange() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("chunkStorageRange"))
+	return rv
+}
+
+
+// SetChunkStorageRange sets the value of the chunkStorageRange property.
+// The offset location and length of the sample’s chunk within the byte source.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaextension/mesamplecursorchunk/chunkstoragerange
+func (m_ MESampleCursorChunk) SetChunkStorageRange(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setChunkStorageRange:"), value)
+}
+
+// The offset index of the sample within the chunk, in samples.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaextension/mesamplecursorchunk/sampleindexwithinchunk
+func (m_ MESampleCursorChunk) SampleIndexWithinChunk() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("sampleIndexWithinChunk"))
+	return rv
+}
+
+
+// SetSampleIndexWithinChunk sets the value of the sampleIndexWithinChunk property.
+// The offset index of the sample within the chunk, in samples.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaextension/mesamplecursorchunk/sampleindexwithinchunk
+func (m_ MESampleCursorChunk) SetSampleIndexWithinChunk(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSampleIndexWithinChunk:"), value)
+}
+
 // The byte source to use to read the data for the sample.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaExtension/MESampleCursorChunk/byteSource

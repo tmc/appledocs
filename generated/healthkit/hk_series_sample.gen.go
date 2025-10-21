@@ -81,5 +81,31 @@ func NewHKSeriesSample() HKSeriesSample {
 }
 
 
+// The number of items in the series.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkseriessample/count
+func (h_ HKSeriesSample) Count() int {
+	rv := objc.Send[int](h_.ID, objc.Sel("count"))
+	return rv
+}
+
+
+// SetCount sets the value of the count property.
+// The number of items in the series.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkseriessample/count
+func (h_ HKSeriesSample) SetCount(value int) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setCount:"), value)
+}
+
+// A series sample containing location data that defines the route the user took during a workout.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutroutetypeidentifier
+func (h_ HKSeriesSample) HKWorkoutRouteTypeIdentifier() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("HKWorkoutRouteTypeIdentifier"))
+	return rv
+}
+
 
 

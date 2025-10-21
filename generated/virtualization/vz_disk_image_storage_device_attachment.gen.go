@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [VZDiskImageStorageDeviceAttachment] class.
@@ -80,6 +81,78 @@ func NewVZDiskImageStorageDeviceAttachment() VZDiskImageStorageDeviceAttachment 
 	return getVZDiskImageStorageDeviceAttachmentClass().New()
 }
 
+
+// The mode in which the disk image synchronizes data with the underlying storage device.
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzdiskimagestoragedeviceattachment/synchronizationmode
+func (v_ VZDiskImageStorageDeviceAttachment) SynchronizationMode() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("synchronizationMode"))
+	return rv
+}
+
+
+// SetSynchronizationMode sets the value of the synchronizationMode property.
+// The mode in which the disk image synchronizes data with the underlying storage device.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzdiskimagestoragedeviceattachment/synchronizationmode
+func (v_ VZDiskImageStorageDeviceAttachment) SetSynchronizationMode(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setSynchronizationMode:"), value)
+}
+
+// The current cacheing mode for the virtual disk image.
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzdiskimagestoragedeviceattachment/cachingmode
+func (v_ VZDiskImageStorageDeviceAttachment) CachingMode() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("cachingMode"))
+	return rv
+}
+
+
+// SetCachingMode sets the value of the cachingMode property.
+// The current cacheing mode for the virtual disk image.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzdiskimagestoragedeviceattachment/cachingmode
+func (v_ VZDiskImageStorageDeviceAttachment) SetCachingMode(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setCachingMode:"), value)
+}
+
+// A Boolean value that indicates whether the underlying disk image is read-only.
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzdiskimagestoragedeviceattachment/isreadonly
+func (v_ VZDiskImageStorageDeviceAttachment) IsReadOnly() bool {
+	rv := objc.Send[bool](v_.ID, objc.Sel("isReadOnly"))
+	return rv
+}
+
+
+// SetIsReadOnly sets the value of the isReadOnly property.
+// A Boolean value that indicates whether the underlying disk image is read-only.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzdiskimagestoragedeviceattachment/isreadonly
+func (v_ VZDiskImageStorageDeviceAttachment) SetIsReadOnly(value bool) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setIsReadOnly:"), value)
+}
+
+// The URL of the underlying disk image.
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzdiskimagestoragedeviceattachment/url
+func (v_ VZDiskImageStorageDeviceAttachment) Url() foundation.URL {
+	rv := objc.Send[foundation.URL](v_.ID, objc.Sel("url"))
+	return rv
+}
+
+
+// SetUrl sets the value of the url property.
+// The URL of the underlying disk image.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzdiskimagestoragedeviceattachment/url
+func (v_ VZDiskImageStorageDeviceAttachment) SetUrl(value foundation.URL) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setUrl:"), value)
+}
 
 
 

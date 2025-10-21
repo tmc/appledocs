@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -40,7 +41,7 @@ type ICKContainer interface {
 	DiscoverUserIdentityWithUserRecordIDCompletionHandler(userRecordID unsafe.Pointer, completionHandler unsafe.Pointer)
 	FetchAllLongLivedOperationIDsWithCompletionHandler(completionHandler unsafe.Pointer)
 	FetchLongLivedOperationWithIDCompletionHandler(operationID unsafe.Pointer, completionHandler unsafe.Pointer)
-	FetchShareMetadataWithURLCompletionHandler(url unsafe.Pointer, completionHandler unsafe.Pointer)
+	FetchShareMetadataWithURLCompletionHandler(url foundation.URL, completionHandler unsafe.Pointer)
 	FetchShareParticipantWithEmailAddressCompletionHandler(emailAddress string, completionHandler unsafe.Pointer)
 	FetchShareParticipantWithPhoneNumberCompletionHandler(phoneNumber string, completionHandler unsafe.Pointer)
 	FetchShareParticipantWithUserRecordIDCompletionHandler(userRecordID unsafe.Pointer, completionHandler unsafe.Pointer)
@@ -198,7 +199,7 @@ func (c_ CKContainer) FetchLongLivedOperationWithIDCompletionHandler(operationID
 // Fetches the share metadata for the specified share URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKContainer/fetchShareMetadata(with:completionHandler:)
-func (c_ CKContainer) FetchShareMetadataWithURLCompletionHandler(url unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (c_ CKContainer) FetchShareMetadataWithURLCompletionHandler(url foundation.URL, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("fetchShareMetadataWithURL:completionHandler:"), url, completionHandler)
 }
 
@@ -242,6 +243,40 @@ func (c_ CKContainer) RequestApplicationPermissionCompletionHandler(applicationP
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKContainer/status(forApplicationPermission:completionHandler:)
 func (c_ CKContainer) StatusForApplicationPermissionCompletionHandler(applicationPermission unsafe.Pointer, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("statusForApplicationPermission:completionHandler:"), applicationPermission, completionHandler)
+}
+
+// A constant that provides the default owner’s name.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckownerdefaultname
+func (c_ CKContainer) CKOwnerDefaultName() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CKOwnerDefaultName"))
+	return rv
+}
+
+// The user record ID for the corresponding user record.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckuseridentity/userrecordid
+func (c_ CKContainer) UserRecordID() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("userRecordID"))
+	return rv
+}
+
+
+// SetUserRecordID sets the value of the userRecordID property.
+// The user record ID for the corresponding user record.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckuseridentity/userrecordid
+func (c_ CKContainer) SetUserRecordID(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setUserRecordID:"), value)
+}
+
+// A constant that provides the current user’s default name.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckcurrentuserdefaultname
+func (c_ CKContainer) CKCurrentUserDefaultName() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CKCurrentUserDefaultName"))
+	return rv
 }
 
 // The container’s unique identifier.

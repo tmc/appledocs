@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MTRMediaPlaybackClusterStopPlaybackParams] class.
@@ -75,6 +76,36 @@ func NewMTRMediaPlaybackClusterStopPlaybackParams() MTRMediaPlaybackClusterStopP
 	return getMTRMediaPlaybackClusterStopPlaybackParamsClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterstopplaybackparams/serversideprocessingtimeout
+func (m_ MTRMediaPlaybackClusterStopPlaybackParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+	return rv
+}
+
+
+// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterstopplaybackparams/serversideprocessingtimeout
+func (m_ MTRMediaPlaybackClusterStopPlaybackParams) SetServerSideProcessingTimeout(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterstopplaybackparams/timedinvoketimeoutms
+func (m_ MTRMediaPlaybackClusterStopPlaybackParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+	return rv
+}
+
+
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterstopplaybackparams/timedinvoketimeoutms
+func (m_ MTRMediaPlaybackClusterStopPlaybackParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+}
 
 
 

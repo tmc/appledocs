@@ -80,6 +80,60 @@ func NewPHFetchResult() PHFetchResult {
 }
 
 
+// The first object in the fetch result.
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phfetchresult/firstobject
+func (p_ PHFetchResult) FirstObject() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("firstObject"))
+	return rv
+}
+
+
+// SetFirstObject sets the value of the firstObject property.
+// The first object in the fetch result.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phfetchresult/firstobject
+func (p_ PHFetchResult) SetFirstObject(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setFirstObject:"), value)
+}
+
+// The last object in the fetch result.
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phfetchresult/lastobject
+func (p_ PHFetchResult) LastObject() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("lastObject"))
+	return rv
+}
+
+
+// SetLastObject sets the value of the lastObject property.
+// The last object in the fetch result.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phfetchresult/lastobject
+func (p_ PHFetchResult) SetLastObject(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setLastObject:"), value)
+}
+
+// A unique string that persistently identifies the object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phobject/localidentifier
+func (p_ PHFetchResult) LocalIdentifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("localIdentifier"))
+	return rv
+}
+
+
+// SetLocalIdentifier sets the value of the localIdentifier property.
+// A unique string that persistently identifies the object.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phobject/localidentifier
+func (p_ PHFetchResult) SetLocalIdentifier(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setLocalIdentifier:"), objc.String(value))
+}
+
 // The number of objects in the fetch result.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHFetchResult/count

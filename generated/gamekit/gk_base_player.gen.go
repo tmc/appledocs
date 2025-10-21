@@ -80,6 +80,24 @@ func NewBasePlayer() BasePlayer {
 }
 
 
+// The Game Center profile name for a player.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkbaseplayer/displayname
+func (b_ BasePlayer) DisplayName() string {
+	rv := objc.Send[string](b_.ID, objc.Sel("displayName"))
+	return rv
+}
+
+
+// SetDisplayName sets the value of the displayName property.
+// The Game Center profile name for a player.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkbaseplayer/displayname
+func (b_ BasePlayer) SetDisplayName(value string) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setDisplayName:"), objc.String(value))
+}
+
 // A unique identifier for a player.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKBasePlayer/playerID

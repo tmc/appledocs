@@ -101,6 +101,14 @@ func (cc _CNPhoneNumberClass) PhoneNumberWithStringValue(stringValue string) uns
 	return rv
 }
 
+// A phone numbers of a contact.
+//
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cncontactphonenumberskey
+func (c_ CNPhoneNumber) CNContactPhoneNumbersKey() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CNContactPhoneNumbersKey"))
+	return rv
+}
+
 // The string value of the phone number.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNPhoneNumber/stringValue

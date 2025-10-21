@@ -106,6 +106,24 @@ func NewPHASEAmbientMixerDefinitionWithChannelLayoutOrientationIdentifier(layout
 }
 
 
+// A matrix, in local coordinates, that determines the object’s pose in the scene.
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phaseobject/transform
+func (p_ PHASEAmbientMixerDefinition) Transform() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("transform"))
+	return rv
+}
+
+
+// SetTransform sets the value of the transform property.
+// A matrix, in local coordinates, that determines the object’s pose in the scene.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phaseobject/transform
+func (p_ PHASEAmbientMixerDefinition) SetTransform(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setTransform:"), value)
+}
+
 // The channel layout of input audio.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEAmbientMixerDefinition/inputChannelLayout

@@ -90,5 +90,59 @@ func (t_ TrackingRequest) SupportedNumberOfTrackersAndReturnError(error_ unsafe.
 	return rv
 }
 
+// A Boolean that indicates the last frame in a tracking sequence.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vntrackingrequest/islastframe
+func (t_ TrackingRequest) IsLastFrame() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("isLastFrame"))
+	return rv
+}
+
+
+// SetIsLastFrame sets the value of the isLastFrame property.
+// A Boolean that indicates the last frame in a tracking sequence.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vntrackingrequest/islastframe
+func (t_ TrackingRequest) SetIsLastFrame(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setIsLastFrame:"), value)
+}
+
+// A value for specifying whether to prioritize speed or location accuracy.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vntrackingrequest/trackinglevel
+func (t_ TrackingRequest) TrackingLevel() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("trackingLevel"))
+	return rv
+}
+
+
+// SetTrackingLevel sets the value of the trackingLevel property.
+// A value for specifying whether to prioritize speed or location accuracy.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vntrackingrequest/trackinglevel
+func (t_ TrackingRequest) SetTrackingLevel(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setTrackingLevel:"), value)
+}
+
+// The observation object defining a region to track.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vntrackingrequest/inputobservation
+func (t_ TrackingRequest) InputObservation() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("inputObservation"))
+	return rv
+}
+
+
+// SetInputObservation sets the value of the inputObservation property.
+// The observation object defining a region to track.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vntrackingrequest/inputobservation
+func (t_ TrackingRequest) SetInputObservation(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setInputObservation:"), value)
+}
+
 
 

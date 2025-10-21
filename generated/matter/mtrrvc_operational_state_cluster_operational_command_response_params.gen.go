@@ -75,5 +75,20 @@ func NewMTRRVCOperationalStateClusterOperationalCommandResponseParams() MTRRVCOp
 }
 
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcoperationalstateclusteroperationalcommandresponseparams/commandresponsestate
+func (m_ MTRRVCOperationalStateClusterOperationalCommandResponseParams) CommandResponseState() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("commandResponseState"))
+	return rv
+}
+
+
+// SetCommandResponseState sets the value of the commandResponseState property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcoperationalstateclusteroperationalcommandresponseparams/commandresponsestate
+func (m_ MTRRVCOperationalStateClusterOperationalCommandResponseParams) SetCommandResponseState(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCommandResponseState:"), value)
+}
+
 
 

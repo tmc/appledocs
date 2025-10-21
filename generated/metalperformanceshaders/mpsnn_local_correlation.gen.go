@@ -86,6 +86,51 @@ func NewLocalCorrelationWithCoderDevice(aDecoder unsafe.Pointer, device objc.ID)
 
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlocalcorrelation/strideinx
+func (l_ LocalCorrelation) StrideInX() int {
+	rv := objc.Send[int](l_.ID, objc.Sel("strideInX"))
+	return rv
+}
+
+
+// SetStrideInX sets the value of the strideInX property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlocalcorrelation/strideinx
+func (l_ LocalCorrelation) SetStrideInX(value int) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setStrideInX:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlocalcorrelation/windowiny
+func (l_ LocalCorrelation) WindowInY() int {
+	rv := objc.Send[int](l_.ID, objc.Sel("windowInY"))
+	return rv
+}
+
+
+// SetWindowInY sets the value of the windowInY property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlocalcorrelation/windowiny
+func (l_ LocalCorrelation) SetWindowInY(value int) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setWindowInY:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlocalcorrelation/windowinx
+func (l_ LocalCorrelation) WindowInX() int {
+	rv := objc.Send[int](l_.ID, objc.Sel("windowInX"))
+	return rv
+}
+
+
+// SetWindowInX sets the value of the windowInX property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlocalcorrelation/windowinx
+func (l_ LocalCorrelation) SetWindowInX(value int) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setWindowInX:"), value)
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNLocalCorrelation/strideInY
 func (l_ LocalCorrelation) StrideInY() uint {
 	rv := objc.Send[uint](l_.ID, objc.Sel("strideInY"))

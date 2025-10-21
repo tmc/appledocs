@@ -81,5 +81,77 @@ func NewTextTable() TextTable {
 }
 
 
+// A Boolean value indicating whether the text table borders are collapsible.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstexttable/collapsesborders
+func (t_ TextTable) CollapsesBorders() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("collapsesBorders"))
+	return rv
+}
+
+
+// SetCollapsesBorders sets the value of the collapsesBorders property.
+// A Boolean value indicating whether the text table borders are collapsible.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstexttable/collapsesborders
+func (t_ TextTable) SetCollapsesBorders(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setCollapsesBorders:"), value)
+}
+
+// A Boolean value indicating whether the text table hides empty cells.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstexttable/hidesemptycells
+func (t_ TextTable) HidesEmptyCells() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("hidesEmptyCells"))
+	return rv
+}
+
+
+// SetHidesEmptyCells sets the value of the hidesEmptyCells property.
+// A Boolean value indicating whether the text table hides empty cells.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstexttable/hidesemptycells
+func (t_ TextTable) SetHidesEmptyCells(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setHidesEmptyCells:"), value)
+}
+
+// The text table layout algorithm.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstexttable/layoutalgorithm-swift.property
+func (t_ TextTable) LayoutAlgorithm() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("layoutAlgorithm"))
+	return rv
+}
+
+
+// SetLayoutAlgorithm sets the value of the layoutAlgorithm property.
+// The text table layout algorithm.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstexttable/layoutalgorithm-swift.property
+func (t_ TextTable) SetLayoutAlgorithm(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setLayoutAlgorithm:"), value)
+}
+
+// The number of columns in the text table.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstexttable/numberofcolumns
+func (t_ TextTable) NumberOfColumns() int {
+	rv := objc.Send[int](t_.ID, objc.Sel("numberOfColumns"))
+	return rv
+}
+
+
+// SetNumberOfColumns sets the value of the numberOfColumns property.
+// The number of columns in the text table.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstexttable/numberofcolumns
+func (t_ TextTable) SetNumberOfColumns(value int) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setNumberOfColumns:"), value)
+}
+
 
 

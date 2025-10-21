@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [EKParticipant] class.
@@ -99,6 +100,24 @@ func (e_ EKParticipant) ABRecordWithAddressBook(addressBook unsafe.Pointer) unsa
 	return rv
 }
 
+// A Boolean value indicating whether this participant represents the owner of this account.
+//
+// [Full Topic]: https://developer.apple.com/documentation/eventkit/ekparticipant/iscurrentuser
+func (e_ EKParticipant) IsCurrentUser() bool {
+	rv := objc.Send[bool](e_.ID, objc.Sel("isCurrentUser"))
+	return rv
+}
+
+
+// SetIsCurrentUser sets the value of the isCurrentUser property.
+// A Boolean value indicating whether this participant represents the owner of this account.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/eventkit/ekparticipant/iscurrentuser
+func (e_ EKParticipant) SetIsCurrentUser(value bool) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setIsCurrentUser:"), value)
+}
+
 // A predicate to use with the Contacts framework to retrieve the corresponding contact instance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKParticipant/contactPredicate
@@ -150,8 +169,8 @@ func (e_ EKParticipant) ParticipantType() unsafe.Pointer {
 // The URL representing this participant.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKParticipant/url
-func (e_ EKParticipant) URL() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("URL"))
+func (e_ EKParticipant) URL() foundation.URL {
+	rv := objc.Send[foundation.URL](e_.ID, objc.Sel("URL"))
 	return rv
 }
 

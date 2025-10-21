@@ -81,5 +81,23 @@ func NewINSetMessageAttributeIntentResponse() INSetMessageAttributeIntentRespons
 }
 
 
+// The code indicating whether you successfully handled the intent.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insetmessageattributeintentresponse/code
+func (i_ INSetMessageAttributeIntentResponse) Code() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("code"))
+	return rv
+}
+
+
+// SetCode sets the value of the code property.
+// The code indicating whether you successfully handled the intent.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insetmessageattributeintentresponse/code
+func (i_ INSetMessageAttributeIntentResponse) SetCode(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setCode:"), value)
+}
+
 
 

@@ -96,5 +96,239 @@ func (ac _AchievementDescriptionClass) PlaceholderCompletedAchievementImage() un
 	return rv
 }
 
+// A Boolean value that states whether the player can earn the achievement multiple times.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/isreplayable
+func (a_ AchievementDescription) IsReplayable() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("isReplayable"))
+	return rv
+}
+
+
+// SetIsReplayable sets the value of the isReplayable property.
+// A Boolean value that states whether the player can earn the achievement multiple times.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/isreplayable
+func (a_ AchievementDescription) SetIsReplayable(value bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setIsReplayable:"), value)
+}
+
+// The string you enter in App Store Connect that uniquely identifies the achievement.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/identifier
+func (a_ AchievementDescription) Identifier() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("identifier"))
+	return rv
+}
+
+
+// SetIdentifier sets the value of the identifier property.
+// The string you enter in App Store Connect that uniquely identifies the achievement.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/identifier
+func (a_ AchievementDescription) SetIdentifier(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+}
+
+// The percentage of players of this game that earned the achievement.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/raritypercent-4bh6k
+func (a_ AchievementDescription) RarityPercent() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("rarityPercent"))
+	return rv
+}
+
+
+// SetRarityPercent sets the value of the rarityPercent property.
+// The percentage of players of this game that earned the achievement.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/raritypercent-4bh6k
+func (a_ AchievementDescription) SetRarityPercent(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setRarityPercent:"), value)
+}
+
+// A localized description of the achievement that you display when the player completes the achievement.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/achieveddescription
+func (a_ AchievementDescription) AchievedDescription() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("achievedDescription"))
+	return rv
+}
+
+
+// SetAchievedDescription sets the value of the achievedDescription property.
+// A localized description of the achievement that you display when the player completes the achievement.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/achieveddescription
+func (a_ AchievementDescription) SetAchievedDescription(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAchievedDescription:"), objc.String(value))
+}
+
+// A Boolean value that states whether the achievement is initially visible to players.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/ishidden
+func (a_ AchievementDescription) IsHidden() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("isHidden"))
+	return rv
+}
+
+
+// SetIsHidden sets the value of the isHidden property.
+// A Boolean value that states whether the achievement is initially visible to players.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/ishidden
+func (a_ AchievementDescription) SetIsHidden(value bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setIsHidden:"), value)
+}
+
+// A localized title for the achievement.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/title
+func (a_ AchievementDescription) Title() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("title"))
+	return rv
+}
+
+
+// SetTitle sets the value of the title property.
+// A localized title for the achievement.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/title
+func (a_ AchievementDescription) SetTitle(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setTitle:"), objc.String(value))
+}
+
+// The release state of the achievement in App Store Connect.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/releasestate
+func (a_ AchievementDescription) ReleaseState() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("releaseState"))
+	return rv
+}
+
+
+// SetReleaseState sets the value of the releaseState property.
+// The release state of the achievement in App Store Connect.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/releasestate
+func (a_ AchievementDescription) SetReleaseState(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setReleaseState:"), value)
+}
+
+// The number of points that the player earns when completing the achievement.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/maximumpoints
+func (a_ AchievementDescription) MaximumPoints() int {
+	rv := objc.Send[int](a_.ID, objc.Sel("maximumPoints"))
+	return rv
+}
+
+
+// SetMaximumPoints sets the value of the maximumPoints property.
+// The number of points that the player earns when completing the achievement.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/maximumpoints
+func (a_ AchievementDescription) SetMaximumPoints(value int) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setMaximumPoints:"), value)
+}
+
+// The properties when associating this achievement with a game activity, as configured by the developer in App Store Connect.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/activityproperties
+func (a_ AchievementDescription) ActivityProperties() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("activityProperties"))
+	return rv
+}
+
+
+// SetActivityProperties sets the value of the activityProperties property.
+// The properties when associating this achievement with a game activity, as configured by the developer in App Store Connect.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/activityproperties
+func (a_ AchievementDescription) SetActivityProperties(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setActivityProperties:"), objc.String(value))
+}
+
+// The achievement’s artwork that you display when the player completes the achievement.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/image
+func (a_ AchievementDescription) Image() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("image"))
+	return rv
+}
+
+
+// SetImage sets the value of the image property.
+// The achievement’s artwork that you display when the player completes the achievement.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/image
+func (a_ AchievementDescription) SetImage(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setImage:"), value)
+}
+
+// The identifier of the game activity associated with this achievement, as configured by the developer in App Store Connect.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/activityidentifier
+func (a_ AchievementDescription) ActivityIdentifier() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("activityIdentifier"))
+	return rv
+}
+
+
+// SetActivityIdentifier sets the value of the activityIdentifier property.
+// The identifier of the game activity associated with this achievement, as configured by the developer in App Store Connect.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/activityidentifier
+func (a_ AchievementDescription) SetActivityIdentifier(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setActivityIdentifier:"), objc.String(value))
+}
+
+// The identifier for the group that the achievement description is part of.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/groupidentifier
+func (a_ AchievementDescription) GroupIdentifier() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("groupIdentifier"))
+	return rv
+}
+
+
+// SetGroupIdentifier sets the value of the groupIdentifier property.
+// The identifier for the group that the achievement description is part of.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/groupidentifier
+func (a_ AchievementDescription) SetGroupIdentifier(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setGroupIdentifier:"), objc.String(value))
+}
+
+// A localized description of the achievement that you display when the player hasn’t completed the achievement.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/unachieveddescription
+func (a_ AchievementDescription) UnachievedDescription() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("unachievedDescription"))
+	return rv
+}
+
+
+// SetUnachievedDescription sets the value of the unachievedDescription property.
+// A localized description of the achievement that you display when the player hasn’t completed the achievement.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/unachieveddescription
+func (a_ AchievementDescription) SetUnachievedDescription(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setUnachievedDescription:"), objc.String(value))
+}
+
 
 

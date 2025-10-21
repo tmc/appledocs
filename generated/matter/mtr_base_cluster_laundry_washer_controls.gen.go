@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MTRBaseClusterLaundryWasherControls] class.
@@ -47,10 +48,10 @@ type IMTRBaseClusterLaundryWasherControls interface {
 	SubscribeAttributeSpinSpeedCurrentWithParamsSubscriptionEstablishedReportHandler(params unsafe.Pointer, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
 	SubscribeAttributeSpinSpeedsWithParamsSubscriptionEstablishedReportHandler(params unsafe.Pointer, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
 	SubscribeAttributeSupportedRinsesWithParamsSubscriptionEstablishedReportHandler(params unsafe.Pointer, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
-	WriteAttributeNumberOfRinsesWithValueCompletion(value unsafe.Pointer, completion unsafe.Pointer)
-	WriteAttributeNumberOfRinsesWithValueParamsCompletion(value unsafe.Pointer, params unsafe.Pointer, completion unsafe.Pointer)
-	WriteAttributeSpinSpeedCurrentWithValueCompletion(value unsafe.Pointer, completion unsafe.Pointer)
-	WriteAttributeSpinSpeedCurrentWithValueParamsCompletion(value unsafe.Pointer, params unsafe.Pointer, completion unsafe.Pointer)
+	WriteAttributeNumberOfRinsesWithValueCompletion(value foundation.Number, completion unsafe.Pointer)
+	WriteAttributeNumberOfRinsesWithValueParamsCompletion(value foundation.Number, params unsafe.Pointer, completion unsafe.Pointer)
+	WriteAttributeSpinSpeedCurrentWithValueCompletion(value foundation.Number, completion unsafe.Pointer)
+	WriteAttributeSpinSpeedCurrentWithValueParamsCompletion(value foundation.Number, params unsafe.Pointer, completion unsafe.Pointer)
 }
 
 // Cluster Laundry Washer Controls
@@ -108,7 +109,7 @@ func NewMTRBaseClusterLaundryWasherControls() MTRBaseClusterLaundryWasherControl
 // For all instance methods (reads, writes, commands) that take a completion, the completion will be called on the provided queue.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterLaundryWasherControls/init(device:endpointID:queue:)
-func NewMTRBaseClusterLaundryWasherControlsWithDeviceEndpointIDQueue(device unsafe.Pointer, endpointID unsafe.Pointer, queue unsafe.Pointer) MTRBaseClusterLaundryWasherControls {
+func NewMTRBaseClusterLaundryWasherControlsWithDeviceEndpointIDQueue(device unsafe.Pointer, endpointID foundation.Number, queue unsafe.Pointer) MTRBaseClusterLaundryWasherControls {
 	instance := getMTRBaseClusterLaundryWasherControlsClass().Alloc()
 	rv := objc.Send[MTRBaseClusterLaundryWasherControls](instance.ID, objc.Sel("initWithDevice:endpointID:queue:"), device, endpointID, queue)
 	rv.Autorelease()
@@ -118,55 +119,55 @@ func NewMTRBaseClusterLaundryWasherControlsWithDeviceEndpointIDQueue(device unsa
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterLaundryWasherControls/readAttributeAcceptedCommandList(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterLaundryWasherControlsClass) ReadAttributeAcceptedCommandListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint unsafe.Pointer, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterLaundryWasherControlsClass) ReadAttributeAcceptedCommandListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeAcceptedCommandListWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterLaundryWasherControls/readAttributeAttributeList(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterLaundryWasherControlsClass) ReadAttributeAttributeListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint unsafe.Pointer, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterLaundryWasherControlsClass) ReadAttributeAttributeListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeAttributeListWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterLaundryWasherControls/readAttributeClusterRevision(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterLaundryWasherControlsClass) ReadAttributeClusterRevisionWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint unsafe.Pointer, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterLaundryWasherControlsClass) ReadAttributeClusterRevisionWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeClusterRevisionWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterLaundryWasherControls/readAttributeFeatureMap(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterLaundryWasherControlsClass) ReadAttributeFeatureMapWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint unsafe.Pointer, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterLaundryWasherControlsClass) ReadAttributeFeatureMapWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeFeatureMapWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterLaundryWasherControls/readAttributeGeneratedCommandList(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterLaundryWasherControlsClass) ReadAttributeGeneratedCommandListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint unsafe.Pointer, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterLaundryWasherControlsClass) ReadAttributeGeneratedCommandListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeGeneratedCommandListWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterLaundryWasherControls/readAttributeNumberOfRinses(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterLaundryWasherControlsClass) ReadAttributeNumberOfRinsesWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint unsafe.Pointer, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterLaundryWasherControlsClass) ReadAttributeNumberOfRinsesWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeNumberOfRinsesWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterLaundryWasherControls/readAttributeSpinSpeedCurrent(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterLaundryWasherControlsClass) ReadAttributeSpinSpeedCurrentWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint unsafe.Pointer, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterLaundryWasherControlsClass) ReadAttributeSpinSpeedCurrentWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeSpinSpeedCurrentWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterLaundryWasherControls/readAttributeSpinSpeeds(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterLaundryWasherControlsClass) ReadAttributeSpinSpeedsWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint unsafe.Pointer, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterLaundryWasherControlsClass) ReadAttributeSpinSpeedsWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeSpinSpeedsWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterLaundryWasherControls/readAttributeSupportedRinses(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterLaundryWasherControlsClass) ReadAttributeSupportedRinsesWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint unsafe.Pointer, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterLaundryWasherControlsClass) ReadAttributeSupportedRinsesWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeSupportedRinsesWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
@@ -280,25 +281,25 @@ func (m_ MTRBaseClusterLaundryWasherControls) SubscribeAttributeSupportedRinsesW
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterLaundryWasherControls/writeAttributeNumberOfRinses(withValue:completion:)
-func (m_ MTRBaseClusterLaundryWasherControls) WriteAttributeNumberOfRinsesWithValueCompletion(value unsafe.Pointer, completion unsafe.Pointer) {
+func (m_ MTRBaseClusterLaundryWasherControls) WriteAttributeNumberOfRinsesWithValueCompletion(value foundation.Number, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("writeAttributeNumberOfRinsesWithValue:completion:"), value, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterLaundryWasherControls/writeAttributeNumberOfRinses(withValue:params:completion:)
-func (m_ MTRBaseClusterLaundryWasherControls) WriteAttributeNumberOfRinsesWithValueParamsCompletion(value unsafe.Pointer, params unsafe.Pointer, completion unsafe.Pointer) {
+func (m_ MTRBaseClusterLaundryWasherControls) WriteAttributeNumberOfRinsesWithValueParamsCompletion(value foundation.Number, params unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("writeAttributeNumberOfRinsesWithValue:params:completion:"), value, params, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterLaundryWasherControls/writeAttributeSpinSpeedCurrent(withValue:completion:)
-func (m_ MTRBaseClusterLaundryWasherControls) WriteAttributeSpinSpeedCurrentWithValueCompletion(value unsafe.Pointer, completion unsafe.Pointer) {
+func (m_ MTRBaseClusterLaundryWasherControls) WriteAttributeSpinSpeedCurrentWithValueCompletion(value foundation.Number, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("writeAttributeSpinSpeedCurrentWithValue:completion:"), value, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterLaundryWasherControls/writeAttributeSpinSpeedCurrent(withValue:params:completion:)
-func (m_ MTRBaseClusterLaundryWasherControls) WriteAttributeSpinSpeedCurrentWithValueParamsCompletion(value unsafe.Pointer, params unsafe.Pointer, completion unsafe.Pointer) {
+func (m_ MTRBaseClusterLaundryWasherControls) WriteAttributeSpinSpeedCurrentWithValueParamsCompletion(value foundation.Number, params unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("writeAttributeSpinSpeedCurrentWithValue:params:completion:"), value, params, completion)
 }
 

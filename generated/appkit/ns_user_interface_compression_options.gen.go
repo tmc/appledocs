@@ -93,4 +93,22 @@ func NewUserInterfaceCompressionOptionsWithIdentifier(identifier string) UserInt
 }
 
 
+// A Boolean value that denotes whether the option is empty.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsuserinterfacecompressionoptions/isempty
+func (u_ UserInterfaceCompressionOptions) IsEmpty() bool {
+	rv := objc.Send[bool](u_.ID, objc.Sel("isEmpty"))
+	return rv
+}
+
+
+// SetIsEmpty sets the value of the isEmpty property.
+// A Boolean value that denotes whether the option is empty.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsuserinterfacecompressionoptions/isempty
+func (u_ UserInterfaceCompressionOptions) SetIsEmpty(value bool) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setIsEmpty:"), value)
+}
+
 

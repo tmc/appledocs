@@ -99,6 +99,24 @@ func (r_ RoutePickerView) SetRoutePickerButtonColorForState(color unsafe.Pointer
 	objc.Send[objc.ID](r_.ID, objc.Sel("setRoutePickerButtonColor:forState:"), color, state)
 }
 
+// A Boolean value that indicates whether the route picker button has a border.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avkit/avroutepickerview/isroutepickerbuttonbordered
+func (r_ RoutePickerView) IsRoutePickerButtonBordered() bool {
+	rv := objc.Send[bool](r_.ID, objc.Sel("isRoutePickerButtonBordered"))
+	return rv
+}
+
+
+// SetIsRoutePickerButtonBordered sets the value of the isRoutePickerButtonBordered property.
+// A Boolean value that indicates whether the route picker button has a border.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avkit/avroutepickerview/isroutepickerbuttonbordered
+func (r_ RoutePickerView) SetIsRoutePickerButtonBordered(value bool) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setIsRoutePickerButtonBordered:"), value)
+}
+
 // The view’s tint color when AirPlay is active.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVRoutePickerView/activeTintColor

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,36 @@ func NewMTRBooleanStateConfigurationClusterAlarmsStateChangedEvent() MTRBooleanS
 	return getMTRBooleanStateConfigurationClusterAlarmsStateChangedEventClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrbooleanstateconfigurationclusteralarmsstatechangedevent/alarmssuppressed
+func (m_ MTRBooleanStateConfigurationClusterAlarmsStateChangedEvent) AlarmsSuppressed() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("alarmsSuppressed"))
+	return rv
+}
+
+
+// SetAlarmsSuppressed sets the value of the alarmsSuppressed property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrbooleanstateconfigurationclusteralarmsstatechangedevent/alarmssuppressed
+func (m_ MTRBooleanStateConfigurationClusterAlarmsStateChangedEvent) SetAlarmsSuppressed(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAlarmsSuppressed:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrbooleanstateconfigurationclusteralarmsstatechangedevent/alarmsactive
+func (m_ MTRBooleanStateConfigurationClusterAlarmsStateChangedEvent) AlarmsActive() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("alarmsActive"))
+	return rv
+}
+
+
+// SetAlarmsActive sets the value of the alarmsActive property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrbooleanstateconfigurationclusteralarmsstatechangedevent/alarmsactive
+func (m_ MTRBooleanStateConfigurationClusterAlarmsStateChangedEvent) SetAlarmsActive(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAlarmsActive:"), value)
+}
 
 
 

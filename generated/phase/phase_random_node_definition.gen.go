@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PHASERandomNodeDefinition] class.
@@ -29,7 +30,7 @@ type _PHASERandomNodeDefinitionClass struct {
 // An interface definition for the [PHASERandomNodeDefinition] class.
 type IPHASERandomNodeDefinition interface {
 	IPHASESoundEventNodeDefinition
-	AddSubtreeWeight(subtree unsafe.Pointer, weight unsafe.Pointer)
+	AddSubtreeWeight(subtree unsafe.Pointer, weight foundation.Number)
 }
 
 // A sound event node that invokes one of its child nodes at random.
@@ -98,7 +99,7 @@ func NewPHASERandomNodeDefinitionWithIdentifier(identifier string) PHASERandomNo
 // Adds a node tree that’s one of the random-selection options.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASERandomNodeDefinition/addSubtree(_:weight:)
-func (p_ PHASERandomNodeDefinition) AddSubtreeWeight(subtree unsafe.Pointer, weight unsafe.Pointer) {
+func (p_ PHASERandomNodeDefinition) AddSubtreeWeight(subtree unsafe.Pointer, weight foundation.Number) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("addSubtree:weight:"), subtree, weight)
 }
 

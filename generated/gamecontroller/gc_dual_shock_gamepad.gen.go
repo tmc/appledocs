@@ -81,5 +81,149 @@ func NewGCDualShockGamepad() GCDualShockGamepad {
 }
 
 
+// The motion input profile.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/motion
+func (g_ GCDualShockGamepad) Motion() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("motion"))
+	return rv
+}
+
+
+// SetMotion sets the value of the motion property.
+// The motion input profile.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/motion
+func (g_ GCDualShockGamepad) SetMotion(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setMotion:"), value)
+}
+
+// The location of the player’s secondary finger on the touchpad.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcdualshockgamepad/touchpadsecondary
+func (g_ GCDualShockGamepad) TouchpadSecondary() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("touchpadSecondary"))
+	return rv
+}
+
+
+// SetTouchpadSecondary sets the value of the touchpadSecondary property.
+// The location of the player’s secondary finger on the touchpad.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcdualshockgamepad/touchpadsecondary
+func (g_ GCDualShockGamepad) SetTouchpadSecondary(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setTouchpadSecondary:"), value)
+}
+
+// The physical input profile for the controller.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/physicalinputprofile
+func (g_ GCDualShockGamepad) PhysicalInputProfile() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("physicalInputProfile"))
+	return rv
+}
+
+
+// SetPhysicalInputProfile sets the value of the physicalInputProfile property.
+// The physical input profile for the controller.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/physicalinputprofile
+func (g_ GCDualShockGamepad) SetPhysicalInputProfile(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setPhysicalInputProfile:"), value)
+}
+
+// The extended gamepad profile.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/extendedgamepad
+func (g_ GCDualShockGamepad) ExtendedGamepad() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("extendedGamepad"))
+	return rv
+}
+
+
+// SetExtendedGamepad sets the value of the extendedGamepad property.
+// The extended gamepad profile.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/extendedgamepad
+func (g_ GCDualShockGamepad) SetExtendedGamepad(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setExtendedGamepad:"), value)
+}
+
+// The button element on the touchpad of the controller.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcdualshockgamepad/touchpadbutton
+func (g_ GCDualShockGamepad) TouchpadButton() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("touchpadButton"))
+	return rv
+}
+
+
+// SetTouchpadButton sets the value of the touchpadButton property.
+// The button element on the touchpad of the controller.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcdualshockgamepad/touchpadbutton
+func (g_ GCDualShockGamepad) SetTouchpadButton(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setTouchpadButton:"), value)
+}
+
+// The location of the player’s primary finger on the touchpad.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcdualshockgamepad/touchpadprimary
+func (g_ GCDualShockGamepad) TouchpadPrimary() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("touchpadPrimary"))
+	return rv
+}
+
+
+// SetTouchpadPrimary sets the value of the touchpadPrimary property.
+// The location of the player’s primary finger on the touchpad.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcdualshockgamepad/touchpadprimary
+func (g_ GCDualShockGamepad) SetTouchpadPrimary(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setTouchpadPrimary:"), value)
+}
+
+// The micro gamepad profile.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/microgamepad
+func (g_ GCDualShockGamepad) MicroGamepad() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("microGamepad"))
+	return rv
+}
+
+
+// SetMicroGamepad sets the value of the microGamepad property.
+// The micro gamepad profile.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/microgamepad
+func (g_ GCDualShockGamepad) SetMicroGamepad(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setMicroGamepad:"), value)
+}
+
+// The gamepad profile.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/gamepad
+func (g_ GCDualShockGamepad) Gamepad() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("gamepad"))
+	return rv
+}
+
+
+// SetGamepad sets the value of the gamepad property.
+// The gamepad profile.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/gamepad
+func (g_ GCDualShockGamepad) SetGamepad(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setGamepad:"), value)
+}
+
 
 

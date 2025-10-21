@@ -80,5 +80,74 @@ func NewTableViewRowAction() TableViewRowAction {
 }
 
 
+// The background color of the action button.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstableviewrowaction/backgroundcolor
+func (t_ TableViewRowAction) BackgroundColor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("backgroundColor"))
+	return rv
+}
+
+
+// SetBackgroundColor sets the value of the backgroundColor property.
+// The background color of the action button.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstableviewrowaction/backgroundcolor
+func (t_ TableViewRowAction) SetBackgroundColor(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setBackgroundColor:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstableviewrowaction/image
+func (t_ TableViewRowAction) Image() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("image"))
+	return rv
+}
+
+
+// SetImage sets the value of the image property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstableviewrowaction/image
+func (t_ TableViewRowAction) SetImage(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setImage:"), value)
+}
+
+// The style applied to the action button.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstableviewrowaction/style-swift.property
+func (t_ TableViewRowAction) Style() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("style"))
+	return rv
+}
+
+
+// SetStyle sets the value of the style property.
+// The style applied to the action button.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstableviewrowaction/style-swift.property
+func (t_ TableViewRowAction) SetStyle(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setStyle:"), value)
+}
+
+// The title of the action button.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstableviewrowaction/title
+func (t_ TableViewRowAction) Title() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("title"))
+	return rv
+}
+
+
+// SetTitle sets the value of the title property.
+// The title of the action button.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstableviewrowaction/title
+func (t_ TableViewRowAction) SetTitle(value string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setTitle:"), objc.String(value))
+}
+
 
 

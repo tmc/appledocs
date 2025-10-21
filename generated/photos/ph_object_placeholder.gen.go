@@ -81,5 +81,41 @@ func NewPHObjectPlaceholder() PHObjectPlaceholder {
 }
 
 
+// A unique string that persistently identifies the object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phobject/localidentifier
+func (p_ PHObjectPlaceholder) LocalIdentifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("localIdentifier"))
+	return rv
+}
+
+
+// SetLocalIdentifier sets the value of the localIdentifier property.
+// A unique string that persistently identifies the object.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phobject/localidentifier
+func (p_ PHObjectPlaceholder) SetLocalIdentifier(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setLocalIdentifier:"), objc.String(value))
+}
+
+// Returns an integer that can be used as a table address in a hash table structure.
+//
+// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObjectProtocol/hash
+func (p_ PHObjectPlaceholder) Hash() int {
+	rv := objc.Send[int](p_.ID, objc.Sel("hash"))
+	return rv
+}
+
+
+// SetHash sets the value of the hash property.
+// Returns an integer that can be used as a table address in a hash table structure.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObjectProtocol/hash
+func (p_ PHObjectPlaceholder) SetHash(value int) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setHash:"), value)
+}
+
 
 

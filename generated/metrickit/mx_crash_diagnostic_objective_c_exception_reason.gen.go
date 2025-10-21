@@ -97,6 +97,14 @@ func (m_ MXCrashDiagnosticObjectiveCExceptionReason) JSONRepresentation() unsafe
 	return rv
 }
 
+// Error domain for error values from app metrics.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metrickit/mxerrordomain
+func (m_ MXCrashDiagnosticObjectiveCExceptionReason) MXErrorDomain() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("MXErrorDomain"))
+	return rv
+}
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXCrashDiagnosticObjectiveCExceptionReason/arguments
 func (m_ MXCrashDiagnosticObjectiveCExceptionReason) Arguments() []string {

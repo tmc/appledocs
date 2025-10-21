@@ -89,5 +89,113 @@ func (m_ Match) VoiceChatWithName(name string) unsafe.Pointer {
 	return rv
 }
 
+// The properties for other players that matchmaking rules uses to find players, with some additions.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatch/playerproperties
+func (m_ Match) PlayerProperties() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("playerProperties"))
+	return rv
+}
+
+
+// SetPlayerProperties sets the value of the playerProperties property.
+// The properties for other players that matchmaking rules uses to find players, with some additions.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatch/playerproperties
+func (m_ Match) SetPlayerProperties(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPlayerProperties:"), value)
+}
+
+// The remaining number of players invited but not yet connected to the match.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatch/expectedplayercount
+func (m_ Match) ExpectedPlayerCount() int {
+	rv := objc.Send[int](m_.ID, objc.Sel("expectedPlayerCount"))
+	return rv
+}
+
+
+// SetExpectedPlayerCount sets the value of the expectedPlayerCount property.
+// The remaining number of players invited but not yet connected to the match.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatch/expectedplayercount
+func (m_ Match) SetExpectedPlayerCount(value int) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setExpectedPlayerCount:"), value)
+}
+
+// The player identifiers for remote players in the match.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatch/playerids
+func (m_ Match) PlayerIDs() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("playerIDs"))
+	return rv
+}
+
+
+// SetPlayerIDs sets the value of the playerIDs property.
+// The player identifiers for remote players in the match.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatch/playerids
+func (m_ Match) SetPlayerIDs(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPlayerIDs:"), objc.String(value))
+}
+
+// The delegate that handles communication between players in a match.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatch/delegate
+func (m_ Match) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+
+// SetDelegate sets the value of the delegate property.
+// The delegate that handles communication between players in a match.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatch/delegate
+func (m_ Match) SetDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDelegate:"), value)
+}
+
+// The players that join the match.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatch/players
+func (m_ Match) Players() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("players"))
+	return rv
+}
+
+
+// SetPlayers sets the value of the players property.
+// The players that join the match.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatch/players
+func (m_ Match) SetPlayers(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPlayers:"), value)
+}
+
+// The local player’s properties that matchmaking rules used to find the players with some additions.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatch/properties
+func (m_ Match) Properties() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("properties"))
+	return rv
+}
+
+
+// SetProperties sets the value of the properties property.
+// The local player’s properties that matchmaking rules used to find the players with some additions.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatch/properties
+func (m_ Match) SetProperties(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setProperties:"), objc.String(value))
+}
+
 
 

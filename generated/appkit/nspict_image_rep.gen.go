@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [PICTImageRep] class.
@@ -85,6 +86,24 @@ func NewPICTImageRep() PICTImageRep {
 func (p_ PICTImageRep) PICTRepresentation() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("PICTRepresentation"))
 	return rv
+}
+
+// The rectangle that bounds the image representation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspictimagerep/boundingbox
+func (p_ PICTImageRep) BoundingBox() coregraphics.CGRect {
+	rv := objc.Send[coregraphics.CGRect](p_.ID, objc.Sel("boundingBox"))
+	return rv
+}
+
+
+// SetBoundingBox sets the value of the boundingBox property.
+// The rectangle that bounds the image representation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspictimagerep/boundingbox
+func (p_ PICTImageRep) SetBoundingBox(value coregraphics.CGRect) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setBoundingBox:"), value)
 }
 
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -85,7 +86,7 @@ func NewFileProviderDomain() FileProviderDomain {
 // Creates a new file provider domain with the specified URL and display name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/init(displayName:userInfo:volumeURL:)
-func NewFileProviderDomainWithDisplayNameUserInfoVolumeURL(displayName string, userInfo objc.ID, volumeURL unsafe.Pointer) FileProviderDomain {
+func NewFileProviderDomainWithDisplayNameUserInfoVolumeURL(displayName string, userInfo objc.ID, volumeURL foundation.URL) FileProviderDomain {
 	instance := getFileProviderDomainClass().Alloc()
 	rv := objc.Send[FileProviderDomain](instance.ID, objc.Sel("initWithDisplayName:userInfo:volumeURL:"), objc.String(displayName), userInfo, volumeURL)
 	rv.Autorelease()
@@ -116,6 +117,75 @@ func NewFileProviderDomainWithIdentifierDisplayNamePathRelativeToDocumentStorage
 	return rv
 }
 
+
+// A Boolean value indicating that the domain is present, but disconnected from the file extension.
+//
+// [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderdomain/isdisconnected
+func (f_ FileProviderDomain) IsDisconnected() bool {
+	rv := objc.Send[bool](f_.ID, objc.Sel("isDisconnected"))
+	return rv
+}
+
+
+// SetIsDisconnected sets the value of the isDisconnected property.
+// A Boolean value indicating that the domain is present, but disconnected from the file extension.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderdomain/isdisconnected
+func (f_ FileProviderDomain) SetIsDisconnected(value bool) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setIsDisconnected:"), value)
+}
+
+// The domain managed by this file provider object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderextension/domain
+func (f_ FileProviderDomain) Domain() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("domain"))
+	return rv
+}
+
+
+// SetDomain sets the value of the domain property.
+// The domain managed by this file provider object.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderextension/domain
+func (f_ FileProviderDomain) SetDomain(value unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setDomain:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderdomain/isreplicated
+func (f_ FileProviderDomain) IsReplicated() bool {
+	rv := objc.Send[bool](f_.ID, objc.Sel("isReplicated"))
+	return rv
+}
+
+
+// SetIsReplicated sets the value of the isReplicated property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderdomain/isreplicated
+func (f_ FileProviderDomain) SetIsReplicated(value bool) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setIsReplicated:"), value)
+}
+
+// A Boolean value that determines whether the domain is visible to users.
+//
+// [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderdomain/ishidden
+func (f_ FileProviderDomain) IsHidden() bool {
+	rv := objc.Send[bool](f_.ID, objc.Sel("isHidden"))
+	return rv
+}
+
+
+// SetIsHidden sets the value of the isHidden property.
+// A Boolean value that determines whether the domain is visible to users.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderdomain/ishidden
+func (f_ FileProviderDomain) SetIsHidden(value bool) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setIsHidden:"), value)
+}
 
 // A unique identifier for the backing store used by the system.
 //

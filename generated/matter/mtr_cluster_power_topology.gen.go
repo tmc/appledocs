@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MTRClusterPowerTopology] class.
@@ -91,7 +92,7 @@ func NewMTRClusterPowerTopology() MTRClusterPowerTopology {
 // The queue is currently unused, but may be used in the future for calling completions for command invocations if commands are added to this cluster.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterPowerTopology/init(device:endpointID:queue:)
-func NewMTRClusterPowerTopologyWithDeviceEndpointIDQueue(device unsafe.Pointer, endpointID unsafe.Pointer, queue unsafe.Pointer) MTRClusterPowerTopology {
+func NewMTRClusterPowerTopologyWithDeviceEndpointIDQueue(device unsafe.Pointer, endpointID foundation.Number, queue unsafe.Pointer) MTRClusterPowerTopology {
 	instance := getMTRClusterPowerTopologyClass().Alloc()
 	rv := objc.Send[MTRClusterPowerTopology](instance.ID, objc.Sel("initWithDevice:endpointID:queue:"), device, endpointID, queue)
 	rv.Autorelease()

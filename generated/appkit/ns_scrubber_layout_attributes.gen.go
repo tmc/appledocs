@@ -154,4 +154,22 @@ func (s_ ScrubberLayoutAttributes) SetItemIndex(value int) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setItemIndex:"), value)
 }
 
+// Returns an integer that can be used as a table address in a hash table structure.
+//
+// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObjectProtocol/hash
+func (s_ ScrubberLayoutAttributes) Hash() int {
+	rv := objc.Send[int](s_.ID, objc.Sel("hash"))
+	return rv
+}
+
+
+// SetHash sets the value of the hash property.
+// Returns an integer that can be used as a table address in a hash table structure.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObjectProtocol/hash
+func (s_ ScrubberLayoutAttributes) SetHash(value int) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setHash:"), value)
+}
+
 

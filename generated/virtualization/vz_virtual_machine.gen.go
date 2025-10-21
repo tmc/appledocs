@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,9 +33,9 @@ type IVZVirtualMachine interface {
 	objectivec.IObject
 	PauseWithCompletionHandler(completionHandler unsafe.Pointer)
 	RequestStopWithError(error_ unsafe.Pointer) bool
-	RestoreMachineStateFromURLCompletionHandler(saveFileURL unsafe.Pointer, completionHandler unsafe.Pointer)
+	RestoreMachineStateFromURLCompletionHandler(saveFileURL foundation.URL, completionHandler unsafe.Pointer)
 	ResumeWithCompletionHandler(completionHandler unsafe.Pointer)
-	SaveMachineStateToURLCompletionHandler(saveFileURL unsafe.Pointer, completionHandler unsafe.Pointer)
+	SaveMachineStateToURLCompletionHandler(saveFileURL foundation.URL, completionHandler unsafe.Pointer)
 	StartWithCompletionHandler(completionHandler unsafe.Pointer)
 	StartWithOptionsCompletionHandler(options unsafe.Pointer, completionHandler unsafe.Pointer)
 	StopWithCompletionHandler(completionHandler unsafe.Pointer)
@@ -138,7 +139,7 @@ func (v_ VZVirtualMachine) RequestStopWithError(error_ unsafe.Pointer) bool {
 // Restores a VM from a previously saved state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachine/restoreMachineStateFrom(url:completionHandler:)
-func (v_ VZVirtualMachine) RestoreMachineStateFromURLCompletionHandler(saveFileURL unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (v_ VZVirtualMachine) RestoreMachineStateFromURLCompletionHandler(saveFileURL foundation.URL, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("restoreMachineStateFromURL:completionHandler:"), saveFileURL, completionHandler)
 }
 
@@ -152,7 +153,7 @@ func (v_ VZVirtualMachine) ResumeWithCompletionHandler(completionHandler unsafe.
 // Saves the state of a VM.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachine/saveMachineStateTo(url:completionHandler:)
-func (v_ VZVirtualMachine) SaveMachineStateToURLCompletionHandler(saveFileURL unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (v_ VZVirtualMachine) SaveMachineStateToURLCompletionHandler(saveFileURL foundation.URL, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("saveMachineStateToURL:completionHandler:"), saveFileURL, completionHandler)
 }
 

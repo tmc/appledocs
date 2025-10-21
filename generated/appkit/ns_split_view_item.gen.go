@@ -253,4 +253,181 @@ func (s_ SplitViewItem) SetViewController(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setViewController:"), value)
 }
 
+// The maximum thickness of the split view item when it resizes due to automatic sizing.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitviewitem/automaticmaximumthickness
+func (s_ SplitViewItem) AutomaticMaximumThickness() float64 {
+	rv := objc.Send[float64](s_.ID, objc.Sel("automaticMaximumThickness"))
+	return rv
+}
+
+
+// SetAutomaticMaximumThickness sets the value of the automaticMaximumThickness property.
+// The maximum thickness of the split view item when it resizes due to automatic sizing.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitviewitem/automaticmaximumthickness
+func (s_ SplitViewItem) SetAutomaticMaximumThickness(value float64) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setAutomaticMaximumThickness:"), value)
+}
+
+// When YES, other items such as sidebars or inspectors may appear overlaid on top of this item’s
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitviewitem/automaticallyadjustssafeareainsets
+func (s_ SplitViewItem) AutomaticallyAdjustsSafeAreaInsets() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("automaticallyAdjustsSafeAreaInsets"))
+	return rv
+}
+
+
+// SetAutomaticallyAdjustsSafeAreaInsets sets the value of the automaticallyAdjustsSafeAreaInsets property.
+// When YES, other items such as sidebars or inspectors may appear overlaid on top of this item’s
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitviewitem/automaticallyadjustssafeareainsets
+func (s_ SplitViewItem) SetAutomaticallyAdjustsSafeAreaInsets(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setAutomaticallyAdjustsSafeAreaInsets:"), value)
+}
+
+// A Boolean value that determines whether a user interaction can collapse the child view controller that corresponds to the split view item.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitviewitem/cancollapse
+func (s_ SplitViewItem) CanCollapse() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("canCollapse"))
+	return rv
+}
+
+
+// SetCanCollapse sets the value of the canCollapse property.
+// A Boolean value that determines whether a user interaction can collapse the child view controller that corresponds to the split view item.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitviewitem/cancollapse
+func (s_ SplitViewItem) SetCanCollapse(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setCanCollapse:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitviewitem/cancollapsefromwindowresize
+func (s_ SplitViewItem) CanCollapseFromWindowResize() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("canCollapseFromWindowResize"))
+	return rv
+}
+
+
+// SetCanCollapseFromWindowResize sets the value of the canCollapseFromWindowResize property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitviewitem/cancollapsefromwindowresize
+func (s_ SplitViewItem) SetCanCollapseFromWindowResize(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setCanCollapseFromWindowResize:"), value)
+}
+
+// The resizing behavior when the split view item toggles its collapsed state.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitviewitem/collapsebehavior-swift.property
+func (s_ SplitViewItem) CollapseBehavior() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("collapseBehavior"))
+	return rv
+}
+
+
+// SetCollapseBehavior sets the value of the collapseBehavior property.
+// The resizing behavior when the split view item toggles its collapsed state.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitviewitem/collapsebehavior-swift.property
+func (s_ SplitViewItem) SetCollapseBehavior(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setCollapseBehavior:"), value)
+}
+
+// The priority for a split view item to hold its size.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitviewitem/holdingpriority
+func (s_ SplitViewItem) HoldingPriority() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("holdingPriority"))
+	return rv
+}
+
+
+// SetHoldingPriority sets the value of the holdingPriority property.
+// The priority for a split view item to hold its size.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitviewitem/holdingpriority
+func (s_ SplitViewItem) SetHoldingPriority(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setHoldingPriority:"), value)
+}
+
+// A Boolean value that determines whether the child view controller that corresponds to the split view item is in a collapsed state in the split view controller.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitviewitem/iscollapsed
+func (s_ SplitViewItem) IsCollapsed() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("isCollapsed"))
+	return rv
+}
+
+
+// SetIsCollapsed sets the value of the isCollapsed property.
+// A Boolean value that determines whether the child view controller that corresponds to the split view item is in a collapsed state in the split view controller.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitviewitem/iscollapsed
+func (s_ SplitViewItem) SetIsCollapsed(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setIsCollapsed:"), value)
+}
+
+// A Boolean value that determines whether the split view item can temporarily expand during a drag.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitviewitem/isspringloaded
+func (s_ SplitViewItem) IsSpringLoaded() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("isSpringLoaded"))
+	return rv
+}
+
+
+// SetIsSpringLoaded sets the value of the isSpringLoaded property.
+// A Boolean value that determines whether the split view item can temporarily expand during a drag.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitviewitem/isspringloaded
+func (s_ SplitViewItem) SetIsSpringLoaded(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setIsSpringLoaded:"), value)
+}
+
+// The maximum thickness of the split view item.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitviewitem/maximumthickness
+func (s_ SplitViewItem) MaximumThickness() float64 {
+	rv := objc.Send[float64](s_.ID, objc.Sel("maximumThickness"))
+	return rv
+}
+
+
+// SetMaximumThickness sets the value of the maximumThickness property.
+// The maximum thickness of the split view item.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitviewitem/maximumthickness
+func (s_ SplitViewItem) SetMaximumThickness(value float64) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setMaximumThickness:"), value)
+}
+
+// The preferred thickness of the split view item relative to the split view.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitviewitem/preferredthicknessfraction
+func (s_ SplitViewItem) PreferredThicknessFraction() float64 {
+	rv := objc.Send[float64](s_.ID, objc.Sel("preferredThicknessFraction"))
+	return rv
+}
+
+
+// SetPreferredThicknessFraction sets the value of the preferredThicknessFraction property.
+// The preferred thickness of the split view item relative to the split view.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitviewitem/preferredthicknessfraction
+func (s_ SplitViewItem) SetPreferredThicknessFraction(value float64) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setPreferredThicknessFraction:"), value)
+}
+
 

@@ -81,5 +81,59 @@ func NewHKVisionPrescription() HKVisionPrescription {
 }
 
 
+// The date when the prescription expires.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprescription/expirationdate
+func (h_ HKVisionPrescription) ExpirationDate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("expirationDate"))
+	return rv
+}
+
+
+// SetExpirationDate sets the value of the expirationDate property.
+// The date when the prescription expires.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprescription/expirationdate
+func (h_ HKVisionPrescription) SetExpirationDate(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setExpirationDate:"), value)
+}
+
+// The date when the doctor issued the prescription.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprescription/dateissued
+func (h_ HKVisionPrescription) DateIssued() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("dateIssued"))
+	return rv
+}
+
+
+// SetDateIssued sets the value of the dateIssued property.
+// The date when the doctor issued the prescription.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprescription/dateissued
+func (h_ HKVisionPrescription) SetDateIssued(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setDateIssued:"), value)
+}
+
+// The type of vision prescription.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprescription/prescriptiontype
+func (h_ HKVisionPrescription) PrescriptionType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("prescriptionType"))
+	return rv
+}
+
+
+// SetPrescriptionType sets the value of the prescriptionType property.
+// The type of vision prescription.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprescription/prescriptiontype
+func (h_ HKVisionPrescription) SetPrescriptionType(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setPrescriptionType:"), value)
+}
+
 
 

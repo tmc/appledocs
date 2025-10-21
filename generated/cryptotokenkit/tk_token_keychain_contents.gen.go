@@ -104,6 +104,24 @@ func (t_ TKTokenKeychainContents) KeyForObjectIDError(objectID unsafe.Pointer, e
 	return rv
 }
 
+// The contents of the keychain for this token.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tktoken/keychaincontents
+func (t_ TKTokenKeychainContents) KeychainContents() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("keychainContents"))
+	return rv
+}
+
+
+// SetKeychainContents sets the value of the keychainContents property.
+// The contents of the keychain for this token.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tktoken/keychaincontents
+func (t_ TKTokenKeychainContents) SetKeychainContents(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setKeychainContents:"), value)
+}
+
 // Returns all items for token in the keychain.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKTokenKeychainContents/items

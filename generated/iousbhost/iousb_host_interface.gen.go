@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [USBHostInterface] class.
@@ -85,7 +86,7 @@ func NewUSBHostInterface() USBHostInterface {
 // Creates a matching dictionary to find a USB interface.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostInterface/createMatchingDictionaryWithVendorID:productID:bcdDevice:interfaceNumber:configurationValue:interfaceClass:interfaceSubclass:interfaceProtocol:speed:productIDArray:
-func (uc _USBHostInterfaceClass) CreateMatchingDictionaryWithVendorIDProductIDBcdDeviceInterfaceNumberConfigurationValueInterfaceClassInterfaceSubclassInterfaceProtocolSpeedProductIDArray(vendorID unsafe.Pointer, productID unsafe.Pointer, bcdDevice unsafe.Pointer, interfaceNumber unsafe.Pointer, configurationValue unsafe.Pointer, interfaceClass unsafe.Pointer, interfaceSubclass unsafe.Pointer, interfaceProtocol unsafe.Pointer, speed unsafe.Pointer, productIDArray objc.ID) unsafe.Pointer {
+func (uc _USBHostInterfaceClass) CreateMatchingDictionaryWithVendorIDProductIDBcdDeviceInterfaceNumberConfigurationValueInterfaceClassInterfaceSubclassInterfaceProtocolSpeedProductIDArray(vendorID foundation.Number, productID foundation.Number, bcdDevice foundation.Number, interfaceNumber foundation.Number, configurationValue foundation.Number, interfaceClass foundation.Number, interfaceSubclass foundation.Number, interfaceProtocol foundation.Number, speed foundation.Number, productIDArray objc.ID) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("createMatchingDictionaryWithVendorID:productID:bcdDevice:interfaceNumber:configurationValue:interfaceClass:interfaceSubclass:interfaceProtocol:speed:productIDArray:"), vendorID, productID, bcdDevice, interfaceNumber, configurationValue, interfaceClass, interfaceSubclass, interfaceProtocol, speed, productIDArray)
 	return rv
 }
@@ -96,6 +97,42 @@ func (uc _USBHostInterfaceClass) CreateMatchingDictionaryWithVendorIDProductIDBc
 func (u_ USBHostInterface) SelectAlternateSettingError(alternateSetting uint, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("selectAlternateSetting:error:"), alternateSetting, error_)
 	return rv
+}
+
+// The current idle suspend timeout.
+//
+// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostinterface/idletimeout
+func (u_ USBHostInterface) IdleTimeout() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("idleTimeout"))
+	return rv
+}
+
+
+// SetIdleTimeout sets the value of the idleTimeout property.
+// The current idle suspend timeout.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostinterface/idletimeout
+func (u_ USBHostInterface) SetIdleTimeout(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setIdleTimeout:"), value)
+}
+
+// The configuration descriptor for the interface.
+//
+// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostinterface/configurationdescriptor
+func (u_ USBHostInterface) ConfigurationDescriptor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("configurationDescriptor"))
+	return rv
+}
+
+
+// SetConfigurationDescriptor sets the value of the configurationDescriptor property.
+// The configuration descriptor for the interface.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostinterface/configurationdescriptor
+func (u_ USBHostInterface) SetConfigurationDescriptor(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setConfigurationDescriptor:"), value)
 }
 
 // The descriptor for the interface.

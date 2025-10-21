@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -79,6 +80,60 @@ func NewTextPreview() TextPreview {
 	return getTextPreviewClass().New()
 }
 
+
+// Rectangles that define the specific portions of text to highlight.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextpreview/candidaterects
+func (t_ TextPreview) CandidateRects() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("candidateRects"))
+	return rv
+}
+
+
+// SetCandidateRects sets the value of the candidateRects property.
+// Rectangles that define the specific portions of text to highlight.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextpreview/candidaterects
+func (t_ TextPreview) SetCandidateRects(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setCandidateRects:"), value)
+}
+
+// The frame rectangle that places the preview image directly over the
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextpreview/presentationframe
+func (t_ TextPreview) PresentationFrame() coregraphics.CGRect {
+	rv := objc.Send[coregraphics.CGRect](t_.ID, objc.Sel("presentationFrame"))
+	return rv
+}
+
+
+// SetPresentationFrame sets the value of the presentationFrame property.
+// The frame rectangle that places the preview image directly over the
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextpreview/presentationframe
+func (t_ TextPreview) SetPresentationFrame(value coregraphics.CGRect) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setPresentationFrame:"), value)
+}
+
+// The image that contains the requested text from your view.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextpreview/previewimage
+func (t_ TextPreview) PreviewImage() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("previewImage"))
+	return rv
+}
+
+
+// SetPreviewImage sets the value of the previewImage property.
+// The image that contains the requested text from your view.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextpreview/previewimage
+func (t_ TextPreview) SetPreviewImage(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setPreviewImage:"), value)
+}
 
 
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,36 @@ func NewMTRAccessControlClusterAccessControlExtensionStruct() MTRAccessControlCl
 	return getMTRAccessControlClusterAccessControlExtensionStructClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolextensionstruct/fabricindex
+func (m_ MTRAccessControlClusterAccessControlExtensionStruct) FabricIndex() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("fabricIndex"))
+	return rv
+}
+
+
+// SetFabricIndex sets the value of the fabricIndex property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolextensionstruct/fabricindex
+func (m_ MTRAccessControlClusterAccessControlExtensionStruct) SetFabricIndex(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolextensionstruct/data
+func (m_ MTRAccessControlClusterAccessControlExtensionStruct) Data() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("data"))
+	return rv
+}
+
+
+// SetData sets the value of the data property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolextensionstruct/data
+func (m_ MTRAccessControlClusterAccessControlExtensionStruct) SetData(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setData:"), value)
+}
 
 
 

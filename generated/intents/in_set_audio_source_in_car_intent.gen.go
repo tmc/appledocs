@@ -81,5 +81,41 @@ func NewINSetAudioSourceInCarIntent() INSetAudioSourceInCarIntent {
 }
 
 
+// The audio source to select.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insetaudiosourceincarintent/audiosource
+func (i_ INSetAudioSourceInCarIntent) AudioSource() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("audioSource"))
+	return rv
+}
+
+
+// SetAudioSource sets the value of the audioSource property.
+// The audio source to select.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insetaudiosourceincarintent/audiosource
+func (i_ INSetAudioSourceInCarIntent) SetAudioSource(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setAudioSource:"), value)
+}
+
+// The relative audio source to select.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insetaudiosourceincarintent/relativeaudiosourcereference
+func (i_ INSetAudioSourceInCarIntent) RelativeAudioSourceReference() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("relativeAudioSourceReference"))
+	return rv
+}
+
+
+// SetRelativeAudioSourceReference sets the value of the relativeAudioSourceReference property.
+// The relative audio source to select.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insetaudiosourceincarintent/relativeaudiosourcereference
+func (i_ INSetAudioSourceInCarIntent) SetRelativeAudioSourceReference(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setRelativeAudioSourceReference:"), value)
+}
+
 
 

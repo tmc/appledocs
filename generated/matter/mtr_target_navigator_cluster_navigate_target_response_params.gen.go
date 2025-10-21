@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,51 @@ func NewMTRTargetNavigatorClusterNavigateTargetResponseParams() MTRTargetNavigat
 	return getMTRTargetNavigatorClusterNavigateTargetResponseParamsClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtargetnavigatorclusternavigatetargetresponseparams/timedinvoketimeoutms
+func (m_ MTRTargetNavigatorClusterNavigateTargetResponseParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+	return rv
+}
+
+
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtargetnavigatorclusternavigatetargetresponseparams/timedinvoketimeoutms
+func (m_ MTRTargetNavigatorClusterNavigateTargetResponseParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtargetnavigatorclusternavigatetargetresponseparams/data
+func (m_ MTRTargetNavigatorClusterNavigateTargetResponseParams) Data() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("data"))
+	return rv
+}
+
+
+// SetData sets the value of the data property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtargetnavigatorclusternavigatetargetresponseparams/data
+func (m_ MTRTargetNavigatorClusterNavigateTargetResponseParams) SetData(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setData:"), objc.String(value))
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtargetnavigatorclusternavigatetargetresponseparams/status
+func (m_ MTRTargetNavigatorClusterNavigateTargetResponseParams) Status() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("status"))
+	return rv
+}
+
+
+// SetStatus sets the value of the status property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtargetnavigatorclusternavigatetargetresponseparams/status
+func (m_ MTRTargetNavigatorClusterNavigateTargetResponseParams) SetStatus(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setStatus:"), value)
+}
 
 
 

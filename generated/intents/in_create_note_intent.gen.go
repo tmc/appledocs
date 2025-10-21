@@ -81,5 +81,59 @@ func NewINCreateNoteIntent() INCreateNoteIntent {
 }
 
 
+// The title text for the note.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/increatenoteintent/title
+func (i_ INCreateNoteIntent) Title() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("title"))
+	return rv
+}
+
+
+// SetTitle sets the value of the title property.
+// The title text for the note.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/increatenoteintent/title
+func (i_ INCreateNoteIntent) SetTitle(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setTitle:"), value)
+}
+
+// The group that contains the note.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/increatenoteintent/groupname
+func (i_ INCreateNoteIntent) GroupName() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("groupName"))
+	return rv
+}
+
+
+// SetGroupName sets the value of the groupName property.
+// The group that contains the note.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/increatenoteintent/groupname
+func (i_ INCreateNoteIntent) SetGroupName(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setGroupName:"), value)
+}
+
+// The main content of the note.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/increatenoteintent/content
+func (i_ INCreateNoteIntent) Content() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("content"))
+	return rv
+}
+
+
+// SetContent sets the value of the content property.
+// The main content of the note.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/increatenoteintent/content
+func (i_ INCreateNoteIntent) SetContent(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setContent:"), value)
+}
+
 
 

@@ -88,5 +88,41 @@ func (cc _ConstraintLayoutManagerClass) LayoutManager() unsafe.Pointer {
 	return rv
 }
 
+// The object responsible for laying out the layer’s sublayers.
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/calayer/layoutmanager
+func (c_ ConstraintLayoutManager) LayoutManager() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("layoutManager"))
+	return rv
+}
+
+
+// SetLayoutManager sets the value of the layoutManager property.
+// The object responsible for laying out the layer’s sublayers.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/calayer/layoutmanager
+func (c_ ConstraintLayoutManager) SetLayoutManager(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setLayoutManager:"), value)
+}
+
+// The name of the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/calayer/name
+func (c_ ConstraintLayoutManager) Name() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("name"))
+	return rv
+}
+
+
+// SetName sets the value of the name property.
+// The name of the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/calayer/name
+func (c_ ConstraintLayoutManager) SetName(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setName:"), objc.String(value))
+}
+
 
 

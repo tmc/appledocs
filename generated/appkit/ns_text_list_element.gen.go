@@ -79,5 +79,113 @@ func NewTextListElement() TextListElement {
 }
 
 
+// An attributed string that represents the string the framework displays for this element taking into account markers and the indentation level of the list element.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlistelement/attributedstring
+func (t_ TextListElement) AttributedString() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("attributedString"))
+	return rv
+}
+
+
+// SetAttributedString sets the value of the attributedString property.
+// An attributed string that represents the string the framework displays for this element taking into account markers and the indentation level of the list element.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlistelement/attributedstring
+func (t_ TextListElement) SetAttributedString(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setAttributedString:"), value)
+}
+
+// An array that contains child text elements.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlistelement/childelements
+func (t_ TextListElement) ChildElements() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("childElements"))
+	return rv
+}
+
+
+// SetChildElements sets the value of the childElements property.
+// An array that contains child text elements.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlistelement/childelements
+func (t_ TextListElement) SetChildElements(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setChildElements:"), value)
+}
+
+// The text list element contents without markers and formatting.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlistelement/contents
+func (t_ TextListElement) Contents() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("contents"))
+	return rv
+}
+
+
+// SetContents sets the value of the contents property.
+// The text list element contents without markers and formatting.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlistelement/contents
+func (t_ TextListElement) SetContents(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setContents:"), value)
+}
+
+// A dictionary of attributed string keys and IDs that represent the list’s marker attributes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlistelement/markerattributes
+func (t_ TextListElement) MarkerAttributes() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("markerAttributes"))
+	return rv
+}
+
+
+// SetMarkerAttributes sets the value of the markerAttributes property.
+// A dictionary of attributed string keys and IDs that represent the list’s marker attributes.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlistelement/markerattributes
+func (t_ TextListElement) SetMarkerAttributes(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setMarkerAttributes:"), value)
+}
+
+// A text list element that refers to the enclosing text list element.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlistelement/parent
+func (t_ TextListElement) Parent() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("parent"))
+	return rv
+}
+
+
+// SetParent sets the value of the parent property.
+// A text list element that refers to the enclosing text list element.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlistelement/parent
+func (t_ TextListElement) SetParent(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setParent:"), value)
+}
+
+// The value that represents the text list.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlistelement/textlist
+func (t_ TextListElement) TextList() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("textList"))
+	return rv
+}
+
+
+// SetTextList sets the value of the textList property.
+// The value that represents the text list.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlistelement/textlist
+func (t_ TextListElement) SetTextList(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setTextList:"), value)
+}
+
 
 

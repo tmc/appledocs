@@ -81,6 +81,92 @@ func NewHKElectrocardiogram() HKElectrocardiogram {
 }
 
 
+// A value that indicates whether the user entered a symptom when they recorded the ECG.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkelectrocardiogram/symptomsstatus-swift.property
+func (h_ HKElectrocardiogram) SymptomsStatus() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("symptomsStatus"))
+	return rv
+}
+
+
+// SetSymptomsStatus sets the value of the symptomsStatus property.
+// A value that indicates whether the user entered a symptom when they recorded the ECG.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkelectrocardiogram/symptomsstatus-swift.property
+func (h_ HKElectrocardiogram) SetSymptomsStatus(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setSymptomsStatus:"), value)
+}
+
+// The key path for the sample’s classification.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathecgclassification
+func (h_ HKElectrocardiogram) HKPredicateKeyPathECGClassification() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathECGClassification"))
+	return rv
+}
+
+// The frequency at which the Apple Watch sampled the voltage.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkelectrocardiogram/samplingfrequency
+func (h_ HKElectrocardiogram) SamplingFrequency() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("samplingFrequency"))
+	return rv
+}
+
+
+// SetSamplingFrequency sets the value of the samplingFrequency property.
+// The frequency at which the Apple Watch sampled the voltage.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkelectrocardiogram/samplingfrequency
+func (h_ HKElectrocardiogram) SetSamplingFrequency(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setSamplingFrequency:"), value)
+}
+
+// A key for metadata indicating the version number of the algorithm Apple Watch uses to generate an ECG reading.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmetadatakeyappleecgalgorithmversion
+func (h_ HKElectrocardiogram) HKMetadataKeyAppleECGAlgorithmVersion() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("HKMetadataKeyAppleECGAlgorithmVersion"))
+	return rv
+}
+
+// The key path for the sample’s symptom status.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathecgsymptomsstatus
+func (h_ HKElectrocardiogram) HKPredicateKeyPathECGSymptomsStatus() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathECGSymptomsStatus"))
+	return rv
+}
+
+// The key path for the sample’s average heart rate.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathaverageheartrate
+func (h_ HKElectrocardiogram) HKPredicateKeyPathAverageHeartRate() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathAverageHeartRate"))
+	return rv
+}
+
+// The ECG’s classification.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkelectrocardiogram/classification-swift.property
+func (h_ HKElectrocardiogram) Classification() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("classification"))
+	return rv
+}
+
+
+// SetClassification sets the value of the classification property.
+// The ECG’s classification.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkelectrocardiogram/classification-swift.property
+func (h_ HKElectrocardiogram) SetClassification(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setClassification:"), value)
+}
+
 // The user’s average heart rate during the ECG.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKElectrocardiogram/averageHeartRate

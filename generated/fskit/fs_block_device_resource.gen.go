@@ -178,6 +178,24 @@ func (f_ FSBlockDeviceResource) WriteFromStartingAtLengthError(buffer unsafe.Poi
 	return rv
 }
 
+// A Boolean property that indicates whether the resource can write data to the device.
+//
+// [Full Topic]: https://developer.apple.com/documentation/fskit/fsblockdeviceresource/iswritable
+func (f_ FSBlockDeviceResource) IsWritable() bool {
+	rv := objc.Send[bool](f_.ID, objc.Sel("isWritable"))
+	return rv
+}
+
+
+// SetIsWritable sets the value of the isWritable property.
+// A Boolean property that indicates whether the resource can write data to the device.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/fskit/fsblockdeviceresource/iswritable
+func (f_ FSBlockDeviceResource) SetIsWritable(value bool) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setIsWritable:"), value)
+}
+
 // The block count on this resource.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSBlockDeviceResource/blockCount

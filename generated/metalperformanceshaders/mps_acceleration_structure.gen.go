@@ -89,4 +89,64 @@ func NewAccelerationStructureWithGroup(group unsafe.Pointer) AccelerationStructu
 }
 
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsaccelerationstructure/boundingbox
+func (a_ AccelerationStructure) BoundingBox() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("boundingBox"))
+	return rv
+}
+
+
+// SetBoundingBox sets the value of the boundingBox property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsaccelerationstructure/boundingbox
+func (a_ AccelerationStructure) SetBoundingBox(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setBoundingBox:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsaccelerationstructure/usage
+func (a_ AccelerationStructure) Usage() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("usage"))
+	return rv
+}
+
+
+// SetUsage sets the value of the usage property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsaccelerationstructure/usage
+func (a_ AccelerationStructure) SetUsage(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setUsage:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsaccelerationstructure/group
+func (a_ AccelerationStructure) Group() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("group"))
+	return rv
+}
+
+
+// SetGroup sets the value of the group property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsaccelerationstructure/group
+func (a_ AccelerationStructure) SetGroup(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setGroup:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsaccelerationstructure/status
+func (a_ AccelerationStructure) Status() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("status"))
+	return rv
+}
+
+
+// SetStatus sets the value of the status property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsaccelerationstructure/status
+func (a_ AccelerationStructure) SetStatus(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setStatus:"), value)
+}
+
 

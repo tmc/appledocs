@@ -81,5 +81,59 @@ func NewVZBridgedNetworkDeviceAttachment() VZBridgedNetworkDeviceAttachment {
 }
 
 
+// The network interface assigned to this attachment.
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzbridgednetworkdeviceattachment/interface
+func (v_ VZBridgedNetworkDeviceAttachment) Interface() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("interface"))
+	return rv
+}
+
+
+// SetInterface sets the value of the interface property.
+// The network interface assigned to this attachment.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzbridgednetworkdeviceattachment/interface
+func (v_ VZBridgedNetworkDeviceAttachment) SetInterface(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setInterface:"), value)
+}
+
+// The object that defines how the virtual network device communicates with the host system.
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vznetworkdeviceconfiguration/attachment
+func (v_ VZBridgedNetworkDeviceAttachment) Attachment() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("attachment"))
+	return rv
+}
+
+
+// SetAttachment sets the value of the attachment property.
+// The object that defines how the virtual network device communicates with the host system.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vznetworkdeviceconfiguration/attachment
+func (v_ VZBridgedNetworkDeviceAttachment) SetAttachment(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setAttachment:"), value)
+}
+
+// The array of network devices that you expose to the guest operating system.
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/networkdevices
+func (v_ VZBridgedNetworkDeviceAttachment) NetworkDevices() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("networkDevices"))
+	return rv
+}
+
+
+// SetNetworkDevices sets the value of the networkDevices property.
+// The array of network devices that you expose to the guest operating system.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/networkdevices
+func (v_ VZBridgedNetworkDeviceAttachment) SetNetworkDevices(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setNetworkDevices:"), value)
+}
+
 
 

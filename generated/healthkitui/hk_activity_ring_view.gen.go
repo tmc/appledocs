@@ -90,6 +90,168 @@ func (h_ HKActivityRingView) SetActivitySummaryAnimated(activitySummary unsafe.P
 	objc.Send[objc.ID](h_.ID, objc.Sel("setActivitySummary:animated:"), activitySummary, animated)
 }
 
+// The number hours in the specified day during which the user has stood and moved for at least a minute per hour.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitysummary/applestandhours
+func (h_ HKActivityRingView) AppleStandHours() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("appleStandHours"))
+	return rv
+}
+
+
+// SetAppleStandHours sets the value of the appleStandHours property.
+// The number hours in the specified day during which the user has stood and moved for at least a minute per hour.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitysummary/applestandhours
+func (h_ HKActivityRingView) SetAppleStandHours(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setAppleStandHours:"), value)
+}
+
+// The user’s daily exercise goal.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitysummary/appleexercisetimegoal
+func (h_ HKActivityRingView) AppleExerciseTimeGoal() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("appleExerciseTimeGoal"))
+	return rv
+}
+
+
+// SetAppleExerciseTimeGoal sets the value of the appleExerciseTimeGoal property.
+// The user’s daily exercise goal.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitysummary/appleexercisetimegoal
+func (h_ HKActivityRingView) SetAppleExerciseTimeGoal(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setAppleExerciseTimeGoal:"), value)
+}
+
+// The user’s daily goal for move time.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitysummary/applemovetimegoal
+func (h_ HKActivityRingView) AppleMoveTimeGoal() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("appleMoveTimeGoal"))
+	return rv
+}
+
+
+// SetAppleMoveTimeGoal sets the value of the appleMoveTimeGoal property.
+// The user’s daily goal for move time.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitysummary/applemovetimegoal
+func (h_ HKActivityRingView) SetAppleMoveTimeGoal(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setAppleMoveTimeGoal:"), value)
+}
+
+// The user’s daily goal for active energy burned.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitysummary/activeenergyburnedgoal
+func (h_ HKActivityRingView) ActiveEnergyBurnedGoal() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("activeEnergyBurnedGoal"))
+	return rv
+}
+
+
+// SetActiveEnergyBurnedGoal sets the value of the activeEnergyBurnedGoal property.
+// The user’s daily goal for active energy burned.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitysummary/activeenergyburnedgoal
+func (h_ HKActivityRingView) SetActiveEnergyBurnedGoal(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setActiveEnergyBurnedGoal:"), value)
+}
+
+// The amount of time that the user has spent exercising during the specified day.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitysummary/appleexercisetime
+func (h_ HKActivityRingView) AppleExerciseTime() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("appleExerciseTime"))
+	return rv
+}
+
+
+// SetAppleExerciseTime sets the value of the appleExerciseTime property.
+// The amount of time that the user has spent exercising during the specified day.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitysummary/appleexercisetime
+func (h_ HKActivityRingView) SetAppleExerciseTime(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setAppleExerciseTime:"), value)
+}
+
+// The user’s daily goal for stand hours.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitysummary/applestandhoursgoal
+func (h_ HKActivityRingView) AppleStandHoursGoal() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("appleStandHoursGoal"))
+	return rv
+}
+
+
+// SetAppleStandHoursGoal sets the value of the appleStandHoursGoal property.
+// The user’s daily goal for stand hours.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitysummary/applestandhoursgoal
+func (h_ HKActivityRingView) SetAppleStandHoursGoal(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setAppleStandHoursGoal:"), value)
+}
+
+// A property that contains the movement mode value.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitymovemodeobject/activitymovemode
+func (h_ HKActivityRingView) ActivityMoveMode() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("activityMoveMode"))
+	return rv
+}
+
+
+// SetActivityMoveMode sets the value of the activityMoveMode property.
+// A property that contains the movement mode value.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitymovemodeobject/activitymovemode
+func (h_ HKActivityRingView) SetActivityMoveMode(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setActivityMoveMode:"), value)
+}
+
+// The amount of time the user spent performing activities that involve full-body movements during the specified day.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitysummary/applemovetime
+func (h_ HKActivityRingView) AppleMoveTime() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("appleMoveTime"))
+	return rv
+}
+
+
+// SetAppleMoveTime sets the value of the appleMoveTime property.
+// The amount of time the user spent performing activities that involve full-body movements during the specified day.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitysummary/applemovetime
+func (h_ HKActivityRingView) SetAppleMoveTime(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setAppleMoveTime:"), value)
+}
+
+// The amount of active energy the user burned during the specified day.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitysummary/activeenergyburned
+func (h_ HKActivityRingView) ActiveEnergyBurned() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("activeEnergyBurned"))
+	return rv
+}
+
+
+// SetActiveEnergyBurned sets the value of the activeEnergyBurned property.
+// The amount of active energy the user burned during the specified day.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitysummary/activeenergyburned
+func (h_ HKActivityRingView) SetActiveEnergyBurned(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setActiveEnergyBurned:"), value)
+}
+
 // The active summary displayed by the activity ring view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKitUI/HKActivityRingView/activitySummary

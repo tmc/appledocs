@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MXCrashDiagnostic] class.
@@ -90,8 +91,8 @@ func (m_ MXCrashDiagnostic) CallStackTree() unsafe.Pointer {
 // The encoded processor-specific information for the crash.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXCrashDiagnostic/exceptionCode
-func (m_ MXCrashDiagnostic) ExceptionCode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("exceptionCode"))
+func (m_ MXCrashDiagnostic) ExceptionCode() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("exceptionCode"))
 	return rv
 }
 
@@ -105,16 +106,16 @@ func (m_ MXCrashDiagnostic) ExceptionReason() unsafe.Pointer {
 // The Mach exception type of the crash.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXCrashDiagnostic/exceptionType
-func (m_ MXCrashDiagnostic) ExceptionType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("exceptionType"))
+func (m_ MXCrashDiagnostic) ExceptionType() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("exceptionType"))
 	return rv
 }
 
 // The signal associated with the crash.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXCrashDiagnostic/signal
-func (m_ MXCrashDiagnostic) Signal() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("signal"))
+func (m_ MXCrashDiagnostic) Signal() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("signal"))
 	return rv
 }
 

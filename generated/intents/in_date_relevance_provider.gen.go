@@ -78,6 +78,24 @@ func NewINDateRelevanceProvider() INDateRelevanceProvider {
 }
 
 
+// The relevant end date.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/indaterelevanceprovider/enddate
+func (i_ INDateRelevanceProvider) EndDate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("endDate"))
+	return rv
+}
+
+
+// SetEndDate sets the value of the endDate property.
+// The relevant end date.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/indaterelevanceprovider/enddate
+func (i_ INDateRelevanceProvider) SetEndDate(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setEndDate:"), value)
+}
+
 // The relevant start date.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INDateRelevanceProvider/startDate

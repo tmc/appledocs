@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -82,7 +83,7 @@ func NewHKAudiogramSensitivityPointClampingRange() HKAudiogramSensitivityPointCl
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKAudiogramSensitivityPointClampingRange/init(lowerBound:upperBound:)
-func NewHKAudiogramSensitivityPointClampingRangeWithLowerBoundUpperBoundError(lowerBound unsafe.Pointer, upperBound unsafe.Pointer, errorOut unsafe.Pointer) HKAudiogramSensitivityPointClampingRange {
+func NewHKAudiogramSensitivityPointClampingRangeWithLowerBoundUpperBoundError(lowerBound foundation.Number, upperBound foundation.Number, errorOut unsafe.Pointer) HKAudiogramSensitivityPointClampingRange {
 	rv := objc.Send[HKAudiogramSensitivityPointClampingRange](objc.ID(getHKAudiogramSensitivityPointClampingRangeClass().class), objc.Sel("clampingRangeWithLowerBound:upperBound:error:"), lowerBound, upperBound, errorOut)
 	return rv
 }
@@ -90,7 +91,7 @@ func NewHKAudiogramSensitivityPointClampingRangeWithLowerBoundUpperBoundError(lo
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKAudiogramSensitivityPointClampingRange/init(lowerBound:upperBound:)
-func (hc _HKAudiogramSensitivityPointClampingRangeClass) ClampingRangeWithLowerBoundUpperBoundError(lowerBound unsafe.Pointer, upperBound unsafe.Pointer, errorOut unsafe.Pointer) unsafe.Pointer {
+func (hc _HKAudiogramSensitivityPointClampingRangeClass) ClampingRangeWithLowerBoundUpperBoundError(lowerBound foundation.Number, upperBound foundation.Number, errorOut unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("clampingRangeWithLowerBound:upperBound:error:"), lowerBound, upperBound, errorOut)
 	return rv
 }

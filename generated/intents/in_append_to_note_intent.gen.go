@@ -81,5 +81,41 @@ func NewINAppendToNoteIntent() INAppendToNoteIntent {
 }
 
 
+// The note to receive the additional content.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inappendtonoteintent/targetnote
+func (i_ INAppendToNoteIntent) TargetNote() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("targetNote"))
+	return rv
+}
+
+
+// SetTargetNote sets the value of the targetNote property.
+// The note to receive the additional content.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inappendtonoteintent/targetnote
+func (i_ INAppendToNoteIntent) SetTargetNote(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setTargetNote:"), value)
+}
+
+// The content to append to the note.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inappendtonoteintent/content
+func (i_ INAppendToNoteIntent) Content() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("content"))
+	return rv
+}
+
+
+// SetContent sets the value of the content property.
+// The content to append to the note.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inappendtonoteintent/content
+func (i_ INAppendToNoteIntent) SetContent(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setContent:"), value)
+}
+
 
 

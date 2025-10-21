@@ -398,4 +398,40 @@ func (s_ StackView) Views() []View {
 	return rv
 }
 
+// A Boolean value indicating whether the view is hidden.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsview/ishidden
+func (s_ StackView) IsHidden() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("isHidden"))
+	return rv
+}
+
+
+// SetIsHidden sets the value of the isHidden property.
+// A Boolean value indicating whether the view is hidden.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsview/ishidden
+func (s_ StackView) SetIsHidden(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setIsHidden:"), value)
+}
+
+// The layout direction for content in the view.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsview/userinterfacelayoutdirection
+func (s_ StackView) UserInterfaceLayoutDirection() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("userInterfaceLayoutDirection"))
+	return rv
+}
+
+
+// SetUserInterfaceLayoutDirection sets the value of the userInterfaceLayoutDirection property.
+// The layout direction for content in the view.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsview/userinterfacelayoutdirection
+func (s_ StackView) SetUserInterfaceLayoutDirection(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setUserInterfaceLayoutDirection:"), value)
+}
+
 

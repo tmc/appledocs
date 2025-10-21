@@ -81,5 +81,77 @@ func NewPixelBufferObservation() PixelBufferObservation {
 }
 
 
+// The image that results from a request with image output.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnpixelbufferobservation/pixelbuffer
+func (p_ PixelBufferObservation) PixelBuffer() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("pixelBuffer"))
+	return rv
+}
+
+
+// SetPixelBuffer sets the value of the pixelBuffer property.
+// The image that results from a request with image output.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnpixelbufferobservation/pixelbuffer
+func (p_ PixelBufferObservation) SetPixelBuffer(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPixelBuffer:"), value)
+}
+
+// Model information you use at runtime during development, which Xcode also displays in its Core ML model editor view.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/modelDescription
+func (p_ PixelBufferObservation) ModelDescription() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("modelDescription"))
+	return rv
+}
+
+
+// SetModelDescription sets the value of the modelDescription property.
+// Model information you use at runtime during development, which Xcode also displays in its Core ML model editor view.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/modelDescription
+func (p_ PixelBufferObservation) SetModelDescription(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setModelDescription:"), value)
+}
+
+// A feature name that the CoreML model defines.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnpixelbufferobservation/featurename
+func (p_ PixelBufferObservation) FeatureName() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("featureName"))
+	return rv
+}
+
+
+// SetFeatureName sets the value of the featureName property.
+// A feature name that the CoreML model defines.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnpixelbufferobservation/featurename
+func (p_ PixelBufferObservation) SetFeatureName(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setFeatureName:"), objc.String(value))
+}
+
+// A dictionary of output feature descriptions, which the model keys by the output’s name.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelDescription/outputDescriptionsByName
+func (p_ PixelBufferObservation) OutputDescriptionsByName() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("outputDescriptionsByName"))
+	return rv
+}
+
+
+// SetOutputDescriptionsByName sets the value of the outputDescriptionsByName property.
+// A dictionary of output feature descriptions, which the model keys by the output’s name.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelDescription/outputDescriptionsByName
+func (p_ PixelBufferObservation) SetOutputDescriptionsByName(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setOutputDescriptionsByName:"), objc.String(value))
+}
+
 
 

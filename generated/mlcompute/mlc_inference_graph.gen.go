@@ -79,5 +79,23 @@ func NewCInferenceGraph() CInferenceGraph {
 }
 
 
+// The device memory size in bytes for all intermediate tensors in the inference graph.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcinferencegraph/devicememorysize
+func (c_ CInferenceGraph) DeviceMemorySize() int {
+	rv := objc.Send[int](c_.ID, objc.Sel("deviceMemorySize"))
+	return rv
+}
+
+
+// SetDeviceMemorySize sets the value of the deviceMemorySize property.
+// The device memory size in bytes for all intermediate tensors in the inference graph.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcinferencegraph/devicememorysize
+func (c_ CInferenceGraph) SetDeviceMemorySize(value int) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setDeviceMemorySize:"), value)
+}
+
 
 

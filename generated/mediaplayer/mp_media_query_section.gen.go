@@ -81,6 +81,42 @@ func NewMediaQuerySection() MediaQuerySection {
 }
 
 
+// An array representing the section grouping of the query’s specified media item collections.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaquery/collectionsections
+func (m_ MediaQuerySection) CollectionSections() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("collectionSections"))
+	return rv
+}
+
+
+// SetCollectionSections sets the value of the collectionSections property.
+// An array representing the section grouping of the query’s specified media item collections.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaquery/collectionsections
+func (m_ MediaQuerySection) SetCollectionSections(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCollectionSections:"), value)
+}
+
+// An array representing the section grouping of the query’s specified media items.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaquery/itemsections
+func (m_ MediaQuerySection) ItemSections() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("itemSections"))
+	return rv
+}
+
+
+// SetItemSections sets the value of the itemSections property.
+// An array representing the section grouping of the query’s specified media items.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaquery/itemsections
+func (m_ MediaQuerySection) SetItemSections(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setItemSections:"), value)
+}
+
 // The range in the media query’s items or collections array that the media query section represents.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaQuerySection/range

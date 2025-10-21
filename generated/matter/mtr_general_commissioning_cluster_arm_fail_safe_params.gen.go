@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,66 @@ func NewMTRGeneralCommissioningClusterArmFailSafeParams() MTRGeneralCommissionin
 	return getMTRGeneralCommissioningClusterArmFailSafeParamsClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclusterarmfailsafeparams/breadcrumb
+func (m_ MTRGeneralCommissioningClusterArmFailSafeParams) Breadcrumb() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("breadcrumb"))
+	return rv
+}
+
+
+// SetBreadcrumb sets the value of the breadcrumb property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclusterarmfailsafeparams/breadcrumb
+func (m_ MTRGeneralCommissioningClusterArmFailSafeParams) SetBreadcrumb(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setBreadcrumb:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclusterarmfailsafeparams/expirylengthseconds
+func (m_ MTRGeneralCommissioningClusterArmFailSafeParams) ExpiryLengthSeconds() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("expiryLengthSeconds"))
+	return rv
+}
+
+
+// SetExpiryLengthSeconds sets the value of the expiryLengthSeconds property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclusterarmfailsafeparams/expirylengthseconds
+func (m_ MTRGeneralCommissioningClusterArmFailSafeParams) SetExpiryLengthSeconds(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setExpiryLengthSeconds:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclusterarmfailsafeparams/serversideprocessingtimeout
+func (m_ MTRGeneralCommissioningClusterArmFailSafeParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+	return rv
+}
+
+
+// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclusterarmfailsafeparams/serversideprocessingtimeout
+func (m_ MTRGeneralCommissioningClusterArmFailSafeParams) SetServerSideProcessingTimeout(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclusterarmfailsafeparams/timedinvoketimeoutms
+func (m_ MTRGeneralCommissioningClusterArmFailSafeParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+	return rv
+}
+
+
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclusterarmfailsafeparams/timedinvoketimeoutms
+func (m_ MTRGeneralCommissioningClusterArmFailSafeParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+}
 
 
 

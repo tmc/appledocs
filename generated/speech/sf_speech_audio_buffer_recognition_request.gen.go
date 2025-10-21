@@ -81,5 +81,23 @@ func NewSFSpeechAudioBufferRecognitionRequest() SFSpeechAudioBufferRecognitionRe
 }
 
 
+// The preferred audio format for optimal speech recognition.
+//
+// [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechaudiobufferrecognitionrequest/nativeaudioformat
+func (s_ SFSpeechAudioBufferRecognitionRequest) NativeAudioFormat() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("nativeAudioFormat"))
+	return rv
+}
+
+
+// SetNativeAudioFormat sets the value of the nativeAudioFormat property.
+// The preferred audio format for optimal speech recognition.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechaudiobufferrecognitionrequest/nativeaudioformat
+func (s_ SFSpeechAudioBufferRecognitionRequest) SetNativeAudioFormat(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setNativeAudioFormat:"), value)
+}
+
 
 

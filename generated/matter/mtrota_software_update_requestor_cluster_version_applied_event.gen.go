@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,36 @@ func NewMTROTASoftwareUpdateRequestorClusterVersionAppliedEvent() MTROTASoftware
 	return getMTROTASoftwareUpdateRequestorClusterVersionAppliedEventClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterversionappliedevent-94prr/softwareversion
+func (m_ MTROTASoftwareUpdateRequestorClusterVersionAppliedEvent) SoftwareVersion() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("softwareVersion"))
+	return rv
+}
+
+
+// SetSoftwareVersion sets the value of the softwareVersion property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterversionappliedevent-94prr/softwareversion
+func (m_ MTROTASoftwareUpdateRequestorClusterVersionAppliedEvent) SetSoftwareVersion(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSoftwareVersion:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterversionappliedevent-94prr/productid
+func (m_ MTROTASoftwareUpdateRequestorClusterVersionAppliedEvent) ProductID() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("productID"))
+	return rv
+}
+
+
+// SetProductID sets the value of the productID property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterversionappliedevent-94prr/productid
+func (m_ MTROTASoftwareUpdateRequestorClusterVersionAppliedEvent) SetProductID(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setProductID:"), value)
+}
 
 
 

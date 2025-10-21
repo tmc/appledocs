@@ -95,6 +95,24 @@ func NewTurnBasedMatchmakerViewControllerWithMatchRequest(request unsafe.Pointer
 }
 
 
+// The mode that a multiplayer game uses to find players.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatchmakerviewcontroller/matchmakingmode
+func (t_ TurnBasedMatchmakerViewController) MatchmakingMode() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("matchmakingMode"))
+	return rv
+}
+
+
+// SetMatchmakingMode sets the value of the matchmakingMode property.
+// The mode that a multiplayer game uses to find players.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatchmakerviewcontroller/matchmakingmode
+func (t_ TurnBasedMatchmakerViewController) SetMatchmakingMode(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setMatchmakingMode:"), value)
+}
+
 // A Boolean value that determines whether the view controller shows existing matches.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKTurnBasedMatchmakerViewController/showExistingMatches

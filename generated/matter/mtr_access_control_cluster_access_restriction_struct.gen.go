@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,8 +78,8 @@ func NewMTRAccessControlClusterAccessRestrictionStruct() MTRAccessControlCluster
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterAccessRestrictionStruct/id
-func (m_ MTRAccessControlClusterAccessRestrictionStruct) Id() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("id"))
+func (m_ MTRAccessControlClusterAccessRestrictionStruct) Id() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("id"))
 	return rv
 }
 
@@ -86,14 +87,14 @@ func (m_ MTRAccessControlClusterAccessRestrictionStruct) Id() unsafe.Pointer {
 // SetId sets the value of the id property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterAccessRestrictionStruct/id
-func (m_ MTRAccessControlClusterAccessRestrictionStruct) SetId(value unsafe.Pointer) {
+func (m_ MTRAccessControlClusterAccessRestrictionStruct) SetId(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setId:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterAccessRestrictionStruct/type
-func (m_ MTRAccessControlClusterAccessRestrictionStruct) Type() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("type"))
+func (m_ MTRAccessControlClusterAccessRestrictionStruct) Type() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("type"))
 	return rv
 }
 
@@ -101,7 +102,7 @@ func (m_ MTRAccessControlClusterAccessRestrictionStruct) Type() unsafe.Pointer {
 // SetType sets the value of the type property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterAccessRestrictionStruct/type
-func (m_ MTRAccessControlClusterAccessRestrictionStruct) SetType(value unsafe.Pointer) {
+func (m_ MTRAccessControlClusterAccessRestrictionStruct) SetType(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setType:"), value)
 }
 

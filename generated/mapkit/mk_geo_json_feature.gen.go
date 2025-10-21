@@ -80,6 +80,42 @@ func NewMKGeoJSONFeature() MKGeoJSONFeature {
 }
 
 
+// Optional serialized JSON data that corresponds to the properties key.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkgeojsonfeature/properties
+func (m_ MKGeoJSONFeature) Properties() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("properties"))
+	return rv
+}
+
+
+// SetProperties sets the value of the properties property.
+// Optional serialized JSON data that corresponds to the properties key.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkgeojsonfeature/properties
+func (m_ MKGeoJSONFeature) SetProperties(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setProperties:"), value)
+}
+
+// The shape or shapes associated with the GeoJSON feature.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkgeojsonfeature/geometry
+func (m_ MKGeoJSONFeature) Geometry() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("geometry"))
+	return rv
+}
+
+
+// SetGeometry sets the value of the geometry property.
+// The shape or shapes associated with the GeoJSON feature.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkgeojsonfeature/geometry
+func (m_ MKGeoJSONFeature) SetGeometry(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setGeometry:"), value)
+}
+
 // An optional identifier the class returns as a string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKGeoJSONFeature/identifier

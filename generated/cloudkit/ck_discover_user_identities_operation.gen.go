@@ -94,6 +94,57 @@ func NewCKDiscoverUserIdentitiesOperationWithUserIdentityLookupInfos(userIdentit
 }
 
 
+// The block to execute after the operation’s main task is completed.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/completionBlock
+func (c_ CKDiscoverUserIdentitiesOperation) CompletionBlock() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("completionBlock"))
+	return rv
+}
+
+
+// SetCompletionBlock sets the value of the completionBlock property.
+// The block to execute after the operation’s main task is completed.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/completionBlock
+func (c_ CKDiscoverUserIdentitiesOperation) SetCompletionBlock(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setCompletionBlock:"), value)
+}
+
+// The relative amount of importance for granting system resources to the operation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/qualityOfService
+func (c_ CKDiscoverUserIdentitiesOperation) QualityOfService() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("qualityOfService"))
+	return rv
+}
+
+
+// SetQualityOfService sets the value of the qualityOfService property.
+// The relative amount of importance for granting system resources to the operation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/qualityOfService
+func (c_ CKDiscoverUserIdentitiesOperation) SetQualityOfService(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setQualityOfService:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckdiscoveruseridentitiesoperation/discoveruseridentitiesresultblock
+func (c_ CKDiscoverUserIdentitiesOperation) DiscoverUserIdentitiesResultBlock() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("discoverUserIdentitiesResultBlock"))
+	return rv
+}
+
+
+// SetDiscoverUserIdentitiesResultBlock sets the value of the discoverUserIdentitiesResultBlock property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckdiscoveruseridentitiesoperation/discoveruseridentitiesresultblock
+func (c_ CKDiscoverUserIdentitiesOperation) SetDiscoverUserIdentitiesResultBlock(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setDiscoverUserIdentitiesResultBlock:"), value)
+}
+
 // The lookup info for discovering user identities.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKDiscoverUserIdentitiesOperation/userIdentityLookupInfos

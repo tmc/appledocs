@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -86,7 +87,7 @@ func NewVZMacOSInstaller() VZMacOSInstaller {
 // Creates a macOS installer object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacOSInstaller/init(virtualMachine:restoringFromImageAt:)
-func NewVZMacOSInstallerWithVirtualMachineRestoreImageURL(virtualMachine unsafe.Pointer, restoreImageFileURL unsafe.Pointer) VZMacOSInstaller {
+func NewVZMacOSInstallerWithVirtualMachineRestoreImageURL(virtualMachine unsafe.Pointer, restoreImageFileURL foundation.URL) VZMacOSInstaller {
 	instance := getVZMacOSInstallerClass().Alloc()
 	rv := objc.Send[VZMacOSInstaller](instance.ID, objc.Sel("initWithVirtualMachine:restoreImageURL:"), virtualMachine, restoreImageFileURL)
 	rv.Autorelease()
@@ -112,8 +113,8 @@ func (v_ VZMacOSInstaller) Progress() unsafe.Pointer {
 // The restore image URL used to initialize this installer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacOSInstaller/restoreImageURL
-func (v_ VZMacOSInstaller) RestoreImageURL() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("restoreImageURL"))
+func (v_ VZMacOSInstaller) RestoreImageURL() foundation.URL {
+	rv := objc.Send[foundation.URL](v_.ID, objc.Sel("restoreImageURL"))
 	return rv
 }
 

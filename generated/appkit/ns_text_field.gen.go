@@ -322,4 +322,355 @@ func (t_ TextField) SetPreferredMaxLayoutWidth(value float64) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setPreferredMaxLayoutWidth:"), value)
 }
 
+// The value of the receiver’s cell as a double-precision floating-point number.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/doublevalue
+func (t_ TextField) DoubleValue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("doubleValue"))
+	return rv
+}
+
+
+// SetDoubleValue sets the value of the doubleValue property.
+// The value of the receiver’s cell as a double-precision floating-point number.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/doublevalue
+func (t_ TextField) SetDoubleValue(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setDoubleValue:"), value)
+}
+
+// The value of the receiver’s cell as an
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/stringvalue
+func (t_ TextField) StringValue() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("stringValue"))
+	return rv
+}
+
+
+// SetStringValue sets the value of the stringValue property.
+// The value of the receiver’s cell as an
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/stringvalue
+func (t_ TextField) SetStringValue(value string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setStringValue:"), objc.String(value))
+}
+
+// A Boolean value that indicates whether the text field is editable and accepts first responder status.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/acceptsfirstresponder
+func (t_ TextField) AcceptsFirstResponder() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("acceptsFirstResponder"))
+	return rv
+}
+
+
+// SetAcceptsFirstResponder sets the value of the acceptsFirstResponder property.
+// A Boolean value that indicates whether the text field is editable and accepts first responder status.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/acceptsfirstresponder
+func (t_ TextField) SetAcceptsFirstResponder(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setAcceptsFirstResponder:"), value)
+}
+
+// A Boolean value that controls whether the Touch Bar displays the character picker item for rich text fields.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/allowscharacterpickertouchbaritem
+func (t_ TextField) AllowsCharacterPickerTouchBarItem() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("allowsCharacterPickerTouchBarItem"))
+	return rv
+}
+
+
+// SetAllowsCharacterPickerTouchBarItem sets the value of the allowsCharacterPickerTouchBarItem property.
+// A Boolean value that controls whether the Touch Bar displays the character picker item for rich text fields.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/allowscharacterpickertouchbaritem
+func (t_ TextField) SetAllowsCharacterPickerTouchBarItem(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setAllowsCharacterPickerTouchBarItem:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/allowswritingtools
+func (t_ TextField) AllowsWritingTools() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("allowsWritingTools"))
+	return rv
+}
+
+
+// SetAllowsWritingTools sets the value of the allowsWritingTools property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/allowswritingtools
+func (t_ TextField) SetAllowsWritingTools(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setAllowsWritingTools:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/allowswritingtoolsaffordance
+func (t_ TextField) AllowsWritingToolsAffordance() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("allowsWritingToolsAffordance"))
+	return rv
+}
+
+
+// SetAllowsWritingToolsAffordance sets the value of the allowsWritingToolsAffordance property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/allowswritingtoolsaffordance
+func (t_ TextField) SetAllowsWritingToolsAffordance(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setAllowsWritingToolsAffordance:"), value)
+}
+
+// The color of the background the text field’s cell draws behind the text.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/backgroundcolor
+func (t_ TextField) BackgroundColor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("backgroundColor"))
+	return rv
+}
+
+
+// SetBackgroundColor sets the value of the backgroundColor property.
+// The color of the background the text field’s cell draws behind the text.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/backgroundcolor
+func (t_ TextField) SetBackgroundColor(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setBackgroundColor:"), value)
+}
+
+// The text field’s bezel style, square or rounded.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/bezelstyle-swift.property
+func (t_ TextField) BezelStyle() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("bezelStyle"))
+	return rv
+}
+
+
+// SetBezelStyle sets the value of the bezelStyle property.
+// The text field’s bezel style, square or rounded.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/bezelstyle-swift.property
+func (t_ TextField) SetBezelStyle(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setBezelStyle:"), value)
+}
+
+// A Boolean value that indicates whether the text field automatically completes text as the user types.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/isautomatictextcompletionenabled
+func (t_ TextField) IsAutomaticTextCompletionEnabled() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("isAutomaticTextCompletionEnabled"))
+	return rv
+}
+
+
+// SetIsAutomaticTextCompletionEnabled sets the value of the isAutomaticTextCompletionEnabled property.
+// A Boolean value that indicates whether the text field automatically completes text as the user types.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/isautomatictextcompletionenabled
+func (t_ TextField) SetIsAutomaticTextCompletionEnabled(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setIsAutomaticTextCompletionEnabled:"), value)
+}
+
+// A Boolean value that controls whether the text field draws a bezeled background around its contents.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/isbezeled
+func (t_ TextField) IsBezeled() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("isBezeled"))
+	return rv
+}
+
+
+// SetIsBezeled sets the value of the isBezeled property.
+// A Boolean value that controls whether the text field draws a bezeled background around its contents.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/isbezeled
+func (t_ TextField) SetIsBezeled(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setIsBezeled:"), value)
+}
+
+// A Boolean value that controls whether the text field draws a solid black border around its contents.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/isbordered
+func (t_ TextField) IsBordered() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("isBordered"))
+	return rv
+}
+
+
+// SetIsBordered sets the value of the isBordered property.
+// A Boolean value that controls whether the text field draws a solid black border around its contents.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/isbordered
+func (t_ TextField) SetIsBordered(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setIsBordered:"), value)
+}
+
+// A Boolean value that controls whether the user can edit the value in the text field.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/iseditable
+func (t_ TextField) IsEditable() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("isEditable"))
+	return rv
+}
+
+
+// SetIsEditable sets the value of the isEditable property.
+// A Boolean value that controls whether the user can edit the value in the text field.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/iseditable
+func (t_ TextField) SetIsEditable(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setIsEditable:"), value)
+}
+
+// A Boolean value that determines whether the user can select the content of the text field.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/isselectable
+func (t_ TextField) IsSelectable() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("isSelectable"))
+	return rv
+}
+
+
+// SetIsSelectable sets the value of the isSelectable property.
+// A Boolean value that determines whether the user can select the content of the text field.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/isselectable
+func (t_ TextField) SetIsSelectable(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setIsSelectable:"), value)
+}
+
+// The strategy that the system uses to break lines when laying out multiple lines of text.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/linebreakstrategy
+func (t_ TextField) LineBreakStrategy() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("lineBreakStrategy"))
+	return rv
+}
+
+
+// SetLineBreakStrategy sets the value of the lineBreakStrategy property.
+// The strategy that the system uses to break lines when laying out multiple lines of text.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/linebreakstrategy
+func (t_ TextField) SetLineBreakStrategy(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setLineBreakStrategy:"), value)
+}
+
+// The maximum number of lines a wrapping text field displays before clipping or truncating the text.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/maximumnumberoflines
+func (t_ TextField) MaximumNumberOfLines() int {
+	rv := objc.Send[int](t_.ID, objc.Sel("maximumNumberOfLines"))
+	return rv
+}
+
+
+// SetMaximumNumberOfLines sets the value of the maximumNumberOfLines property.
+// The maximum number of lines a wrapping text field displays before clipping or truncating the text.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/maximumnumberoflines
+func (t_ TextField) SetMaximumNumberOfLines(value int) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setMaximumNumberOfLines:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/placeholderattributedstrings
+func (t_ TextField) PlaceholderAttributedStrings() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("placeholderAttributedStrings"))
+	return rv
+}
+
+
+// SetPlaceholderAttributedStrings sets the value of the placeholderAttributedStrings property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/placeholderattributedstrings
+func (t_ TextField) SetPlaceholderAttributedStrings(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setPlaceholderAttributedStrings:"), value)
+}
+
+// The string the text field displays when empty to help the user understand the text field’s purpose.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/placeholderstring
+func (t_ TextField) PlaceholderString() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("placeholderString"))
+	return rv
+}
+
+
+// SetPlaceholderString sets the value of the placeholderString property.
+// The string the text field displays when empty to help the user understand the text field’s purpose.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/placeholderstring
+func (t_ TextField) SetPlaceholderString(value string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setPlaceholderString:"), objc.String(value))
+}
+
+// Specifies the behavior for resolving
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/resolvesnaturalalignmentwithbasewritingdirection
+func (t_ TextField) ResolvesNaturalAlignmentWithBaseWritingDirection() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("resolvesNaturalAlignmentWithBaseWritingDirection"))
+	return rv
+}
+
+
+// SetResolvesNaturalAlignmentWithBaseWritingDirection sets the value of the resolvesNaturalAlignmentWithBaseWritingDirection property.
+// Specifies the behavior for resolving
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/resolvesnaturalalignmentwithbasewritingdirection
+func (t_ TextField) SetResolvesNaturalAlignmentWithBaseWritingDirection(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setResolvesNaturalAlignmentWithBaseWritingDirection:"), value)
+}
+
+// The delegate that provides text suggestions for the receiving text field and responds to the user highlighting and selecting items.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/suggestionsdelegate
+func (t_ TextField) SuggestionsDelegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("suggestionsDelegate"))
+	return rv
+}
+
+
+// SetSuggestionsDelegate sets the value of the suggestionsDelegate property.
+// The delegate that provides text suggestions for the receiving text field and responds to the user highlighting and selecting items.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/suggestionsdelegate
+func (t_ TextField) SetSuggestionsDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setSuggestionsDelegate:"), value)
+}
+
+// The color of the text field’s content.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/textcolor
+func (t_ TextField) TextColor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("textColor"))
+	return rv
+}
+
+
+// SetTextColor sets the value of the textColor property.
+// The color of the text field’s content.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/textcolor
+func (t_ TextField) SetTextColor(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setTextColor:"), value)
+}
+
 

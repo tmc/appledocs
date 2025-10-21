@@ -78,5 +78,23 @@ func NewIKSlideshow() IKSlideshow {
 }
 
 
+// Controls the interval of time before a slideshow starts to play automatically.
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartz/ikslideshow/autoplaydelay
+func (i_ IKSlideshow) AutoPlayDelay() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("autoPlayDelay"))
+	return rv
+}
+
+
+// SetAutoPlayDelay sets the value of the autoPlayDelay property.
+// Controls the interval of time before a slideshow starts to play automatically.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartz/ikslideshow/autoplaydelay
+func (i_ IKSlideshow) SetAutoPlayDelay(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setAutoPlayDelay:"), value)
+}
+
 
 

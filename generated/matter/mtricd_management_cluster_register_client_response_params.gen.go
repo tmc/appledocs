@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -90,8 +91,8 @@ func NewMTRICDManagementClusterRegisterClientResponseParamsWithResponseValueErro
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterRegisterClientResponseParams/icdCounter
-func (m_ MTRICDManagementClusterRegisterClientResponseParams) IcdCounter() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("icdCounter"))
+func (m_ MTRICDManagementClusterRegisterClientResponseParams) IcdCounter() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("icdCounter"))
 	return rv
 }
 
@@ -99,7 +100,7 @@ func (m_ MTRICDManagementClusterRegisterClientResponseParams) IcdCounter() unsaf
 // SetIcdCounter sets the value of the icdCounter property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterRegisterClientResponseParams/icdCounter
-func (m_ MTRICDManagementClusterRegisterClientResponseParams) SetIcdCounter(value unsafe.Pointer) {
+func (m_ MTRICDManagementClusterRegisterClientResponseParams) SetIcdCounter(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIcdCounter:"), value)
 }
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,8 +78,8 @@ func NewMTROccupancySensingClusterHoldTimeLimitsStruct() MTROccupancySensingClus
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROccupancySensingClusterHoldTimeLimitsStruct/holdTimeDefault
-func (m_ MTROccupancySensingClusterHoldTimeLimitsStruct) HoldTimeDefault() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("holdTimeDefault"))
+func (m_ MTROccupancySensingClusterHoldTimeLimitsStruct) HoldTimeDefault() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("holdTimeDefault"))
 	return rv
 }
 
@@ -86,14 +87,14 @@ func (m_ MTROccupancySensingClusterHoldTimeLimitsStruct) HoldTimeDefault() unsaf
 // SetHoldTimeDefault sets the value of the holdTimeDefault property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROccupancySensingClusterHoldTimeLimitsStruct/holdTimeDefault
-func (m_ MTROccupancySensingClusterHoldTimeLimitsStruct) SetHoldTimeDefault(value unsafe.Pointer) {
+func (m_ MTROccupancySensingClusterHoldTimeLimitsStruct) SetHoldTimeDefault(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setHoldTimeDefault:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROccupancySensingClusterHoldTimeLimitsStruct/holdTimeMax
-func (m_ MTROccupancySensingClusterHoldTimeLimitsStruct) HoldTimeMax() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("holdTimeMax"))
+func (m_ MTROccupancySensingClusterHoldTimeLimitsStruct) HoldTimeMax() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("holdTimeMax"))
 	return rv
 }
 
@@ -101,14 +102,14 @@ func (m_ MTROccupancySensingClusterHoldTimeLimitsStruct) HoldTimeMax() unsafe.Po
 // SetHoldTimeMax sets the value of the holdTimeMax property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROccupancySensingClusterHoldTimeLimitsStruct/holdTimeMax
-func (m_ MTROccupancySensingClusterHoldTimeLimitsStruct) SetHoldTimeMax(value unsafe.Pointer) {
+func (m_ MTROccupancySensingClusterHoldTimeLimitsStruct) SetHoldTimeMax(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setHoldTimeMax:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROccupancySensingClusterHoldTimeLimitsStruct/holdTimeMin
-func (m_ MTROccupancySensingClusterHoldTimeLimitsStruct) HoldTimeMin() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("holdTimeMin"))
+func (m_ MTROccupancySensingClusterHoldTimeLimitsStruct) HoldTimeMin() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("holdTimeMin"))
 	return rv
 }
 
@@ -116,7 +117,7 @@ func (m_ MTROccupancySensingClusterHoldTimeLimitsStruct) HoldTimeMin() unsafe.Po
 // SetHoldTimeMin sets the value of the holdTimeMin property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROccupancySensingClusterHoldTimeLimitsStruct/holdTimeMin
-func (m_ MTROccupancySensingClusterHoldTimeLimitsStruct) SetHoldTimeMin(value unsafe.Pointer) {
+func (m_ MTROccupancySensingClusterHoldTimeLimitsStruct) SetHoldTimeMin(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setHoldTimeMin:"), value)
 }
 

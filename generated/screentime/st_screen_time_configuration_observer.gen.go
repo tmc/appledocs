@@ -109,6 +109,24 @@ func (s_ STScreenTimeConfigurationObserver) StopObserving() {
 	objc.Send[objc.ID](s_.ID, objc.Sel("stopObserving"))
 }
 
+// A Boolean that indicates whether the device is currently enforcing child
+//
+// [Full Topic]: https://developer.apple.com/documentation/screentime/stscreentimeconfiguration/enforceschildrestrictions
+func (s_ STScreenTimeConfigurationObserver) EnforcesChildRestrictions() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("enforcesChildRestrictions"))
+	return rv
+}
+
+
+// SetEnforcesChildRestrictions sets the value of the enforcesChildRestrictions property.
+// A Boolean that indicates whether the device is currently enforcing child
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/screentime/stscreentimeconfiguration/enforceschildrestrictions
+func (s_ STScreenTimeConfigurationObserver) SetEnforcesChildRestrictions(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setEnforcesChildRestrictions:"), value)
+}
+
 // The configuration being observed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScreenTime/STScreenTimeConfigurationObserver/configuration

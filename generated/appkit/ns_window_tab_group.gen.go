@@ -164,5 +164,59 @@ func (w_ WindowTabGroup) Windows() []Window {
 	return rv
 }
 
+// A group of windows that display together as a tab group.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/tabgroup
+func (w_ WindowTabGroup) TabGroup() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("tabGroup"))
+	return rv
+}
+
+
+// SetTabGroup sets the value of the tabGroup property.
+// A group of windows that display together as a tab group.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/tabgroup
+func (w_ WindowTabGroup) SetTabGroup(value unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setTabGroup:"), value)
+}
+
+// A Boolean value indicating if the tab overview is currently displayed.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindowtabgroup/isoverviewvisible
+func (w_ WindowTabGroup) IsOverviewVisible() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("isOverviewVisible"))
+	return rv
+}
+
+
+// SetIsOverviewVisible sets the value of the isOverviewVisible property.
+// A Boolean value indicating if the tab overview is currently displayed.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindowtabgroup/isoverviewvisible
+func (w_ WindowTabGroup) SetIsOverviewVisible(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setIsOverviewVisible:"), value)
+}
+
+// A Boolean value indicating whether the tabbed window group currently displays a tab bar.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindowtabgroup/istabbarvisible
+func (w_ WindowTabGroup) IsTabBarVisible() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("isTabBarVisible"))
+	return rv
+}
+
+
+// SetIsTabBarVisible sets the value of the isTabBarVisible property.
+// A Boolean value indicating whether the tabbed window group currently displays a tab bar.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindowtabgroup/istabbarvisible
+func (w_ WindowTabGroup) SetIsTabBarVisible(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setIsTabBarVisible:"), value)
+}
+
 
 

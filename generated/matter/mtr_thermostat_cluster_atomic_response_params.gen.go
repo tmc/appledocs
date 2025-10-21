@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -105,8 +106,8 @@ func (m_ MTRThermostatClusterAtomicResponseParams) SetAttributeStatus(value unsa
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterAtomicResponseParams/statusCode
-func (m_ MTRThermostatClusterAtomicResponseParams) StatusCode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("statusCode"))
+func (m_ MTRThermostatClusterAtomicResponseParams) StatusCode() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("statusCode"))
 	return rv
 }
 
@@ -114,14 +115,14 @@ func (m_ MTRThermostatClusterAtomicResponseParams) StatusCode() unsafe.Pointer {
 // SetStatusCode sets the value of the statusCode property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterAtomicResponseParams/statusCode
-func (m_ MTRThermostatClusterAtomicResponseParams) SetStatusCode(value unsafe.Pointer) {
+func (m_ MTRThermostatClusterAtomicResponseParams) SetStatusCode(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStatusCode:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterAtomicResponseParams/timeout
-func (m_ MTRThermostatClusterAtomicResponseParams) Timeout() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("timeout"))
+func (m_ MTRThermostatClusterAtomicResponseParams) Timeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timeout"))
 	return rv
 }
 
@@ -129,7 +130,7 @@ func (m_ MTRThermostatClusterAtomicResponseParams) Timeout() unsafe.Pointer {
 // SetTimeout sets the value of the timeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterAtomicResponseParams/timeout
-func (m_ MTRThermostatClusterAtomicResponseParams) SetTimeout(value unsafe.Pointer) {
+func (m_ MTRThermostatClusterAtomicResponseParams) SetTimeout(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimeout:"), value)
 }
 

@@ -80,5 +80,113 @@ func NewINObject() INObject {
 }
 
 
+// Additional details about the custom intent object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inobject/subtitlestring
+func (i_ INObject) SubtitleString() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("subtitleString"))
+	return rv
+}
+
+
+// SetSubtitleString sets the value of the subtitleString property.
+// Additional details about the custom intent object.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inobject/subtitlestring
+func (i_ INObject) SetSubtitleString(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setSubtitleString:"), objc.String(value))
+}
+
+// A string that identifies the custom intent object within your app.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inobject/identifier
+func (i_ INObject) Identifier() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("identifier"))
+	return rv
+}
+
+
+// SetIdentifier sets the value of the identifier property.
+// A string that identifies the custom intent object within your app.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inobject/identifier
+func (i_ INObject) SetIdentifier(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+}
+
+// An array of alternative speakable strings that identify the object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inobject/alternativespeakablematches
+func (i_ INObject) AlternativeSpeakableMatches() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("alternativeSpeakableMatches"))
+	return rv
+}
+
+
+// SetAlternativeSpeakableMatches sets the value of the alternativeSpeakableMatches property.
+// An array of alternative speakable strings that identify the object.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inobject/alternativespeakablematches
+func (i_ INObject) SetAlternativeSpeakableMatches(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setAlternativeSpeakableMatches:"), value)
+}
+
+// A name or description for the custom intent object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inobject/displaystring
+func (i_ INObject) DisplayString() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("displayString"))
+	return rv
+}
+
+
+// SetDisplayString sets the value of the displayString property.
+// A name or description for the custom intent object.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inobject/displaystring
+func (i_ INObject) SetDisplayString(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setDisplayString:"), objc.String(value))
+}
+
+// An image to display alongside the custom intent object’s text.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inobject/displayimage
+func (i_ INObject) DisplayImage() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("displayImage"))
+	return rv
+}
+
+
+// SetDisplayImage sets the value of the displayImage property.
+// An image to display alongside the custom intent object’s text.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inobject/displayimage
+func (i_ INObject) SetDisplayImage(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setDisplayImage:"), value)
+}
+
+// A hint that describes how to pronounce the custom intent object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inobject/pronunciationhint
+func (i_ INObject) PronunciationHint() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("pronunciationHint"))
+	return rv
+}
+
+
+// SetPronunciationHint sets the value of the pronunciationHint property.
+// A hint that describes how to pronounce the custom intent object.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inobject/pronunciationhint
+func (i_ INObject) SetPronunciationHint(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setPronunciationHint:"), objc.String(value))
+}
+
 
 

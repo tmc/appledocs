@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [LPLinkView] class.
@@ -99,7 +100,7 @@ func NewLPLinkViewWithMetadata(metadata unsafe.Pointer) LPLinkView {
 // Initializes a placeholder link view without metadata for a given URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPLinkView/init(url:)
-func NewLPLinkViewWithURL(URL unsafe.Pointer) LPLinkView {
+func NewLPLinkViewWithURL(URL foundation.URL) LPLinkView {
 	instance := getLPLinkViewClass().Alloc()
 	rv := objc.Send[LPLinkView](instance.ID, objc.Sel("initWithURL:"), URL)
 	rv.Autorelease()

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MTRBasicClusterLeaveEvent] class.
@@ -75,6 +76,21 @@ func NewMTRBasicClusterLeaveEvent() MTRBasicClusterLeaveEvent {
 	return getMTRBasicClusterLeaveEventClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrbasicclusterleaveevent/fabricindex
+func (m_ MTRBasicClusterLeaveEvent) FabricIndex() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("fabricIndex"))
+	return rv
+}
+
+
+// SetFabricIndex sets the value of the fabricIndex property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrbasicclusterleaveevent/fabricindex
+func (m_ MTRBasicClusterLeaveEvent) SetFabricIndex(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
+}
 
 
 

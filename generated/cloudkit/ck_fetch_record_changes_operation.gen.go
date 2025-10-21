@@ -94,6 +94,24 @@ func NewCKFetchRecordChangesOperationWithRecordZoneIDPreviousServerChangeToken(r
 }
 
 
+// The block to execute after the operation’s main task is completed.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/completionBlock
+func (c_ CKFetchRecordChangesOperation) CompletionBlock() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("completionBlock"))
+	return rv
+}
+
+
+// SetCompletionBlock sets the value of the completionBlock property.
+// The block to execute after the operation’s main task is completed.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/completionBlock
+func (c_ CKFetchRecordChangesOperation) SetCompletionBlock(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setCompletionBlock:"), value)
+}
+
 // The fields to fetch for the requested records.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordChangesOperation/desiredKeys

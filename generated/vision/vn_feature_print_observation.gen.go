@@ -79,5 +79,59 @@ func NewFeaturePrintObservation() FeaturePrintObservation {
 }
 
 
+// The total number of elements in the data.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnfeatureprintobservation/elementcount
+func (f_ FeaturePrintObservation) ElementCount() int {
+	rv := objc.Send[int](f_.ID, objc.Sel("elementCount"))
+	return rv
+}
+
+
+// SetElementCount sets the value of the elementCount property.
+// The total number of elements in the data.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnfeatureprintobservation/elementcount
+func (f_ FeaturePrintObservation) SetElementCount(value int) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setElementCount:"), value)
+}
+
+// The feature print data.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnfeatureprintobservation/data
+func (f_ FeaturePrintObservation) Data() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("data"))
+	return rv
+}
+
+
+// SetData sets the value of the data property.
+// The feature print data.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnfeatureprintobservation/data
+func (f_ FeaturePrintObservation) SetData(value unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setData:"), value)
+}
+
+// The type of each element in the data.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnfeatureprintobservation/elementtype
+func (f_ FeaturePrintObservation) ElementType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("elementType"))
+	return rv
+}
+
+
+// SetElementType sets the value of the elementType property.
+// The type of each element in the data.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnfeatureprintobservation/elementtype
+func (f_ FeaturePrintObservation) SetElementType(value unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setElementType:"), value)
+}
+
 
 

@@ -80,5 +80,41 @@ func NewHKSource() HKSource {
 }
 
 
+// The source’s bundle identifier.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hksource/bundleidentifier
+func (h_ HKSource) BundleIdentifier() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("bundleIdentifier"))
+	return rv
+}
+
+
+// SetBundleIdentifier sets the value of the bundleIdentifier property.
+// The source’s bundle identifier.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hksource/bundleidentifier
+func (h_ HKSource) SetBundleIdentifier(value string) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setBundleIdentifier:"), objc.String(value))
+}
+
+// The source’s name.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hksource/name
+func (h_ HKSource) Name() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("name"))
+	return rv
+}
+
+
+// SetName sets the value of the name property.
+// The source’s name.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hksource/name
+func (h_ HKSource) SetName(value string) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setName:"), objc.String(value))
+}
+
 
 

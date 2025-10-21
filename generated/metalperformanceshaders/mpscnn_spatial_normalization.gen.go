@@ -80,5 +80,59 @@ func NewCNNSpatialNormalization() CNNSpatialNormalization {
 }
 
 
+// The “alpha” variable of the kernel function.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnspatialnormalization/alpha
+func (c_ CNNSpatialNormalization) Alpha() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("alpha"))
+	return rv
+}
+
+
+// SetAlpha sets the value of the alpha property.
+// The “alpha” variable of the kernel function.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnspatialnormalization/alpha
+func (c_ CNNSpatialNormalization) SetAlpha(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setAlpha:"), value)
+}
+
+// The “delta” variable of the kernel function.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnspatialnormalization/delta
+func (c_ CNNSpatialNormalization) Delta() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("delta"))
+	return rv
+}
+
+
+// SetDelta sets the value of the delta property.
+// The “delta” variable of the kernel function.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnspatialnormalization/delta
+func (c_ CNNSpatialNormalization) SetDelta(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setDelta:"), value)
+}
+
+// The “beta” variable of the kernel function.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnspatialnormalization/beta
+func (c_ CNNSpatialNormalization) Beta() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("beta"))
+	return rv
+}
+
+
+// SetBeta sets the value of the beta property.
+// The “beta” variable of the kernel function.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnspatialnormalization/beta
+func (c_ CNNSpatialNormalization) SetBeta(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setBeta:"), value)
+}
+
 
 

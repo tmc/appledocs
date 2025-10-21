@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -95,7 +96,7 @@ func NewModel() Model {
 // Creates a Core ML model instance from a compiled model file and a custom configuration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/init(contentsOf:configuration:)
-func NewModelWithContentsOfURLConfigurationError(url unsafe.Pointer, configuration unsafe.Pointer, error_ unsafe.Pointer) Model {
+func NewModelWithContentsOfURLConfigurationError(url foundation.URL, configuration unsafe.Pointer, error_ unsafe.Pointer) Model {
 	rv := objc.Send[Model](objc.ID(getModelClass().class), objc.Sel("modelWithContentsOfURL:configuration:error:"), url, configuration, error_)
 	return rv
 }
@@ -105,7 +106,7 @@ func NewModelWithContentsOfURLConfigurationError(url unsafe.Pointer, configurati
 // Creates a Core ML model instance from a compiled model file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/init(contentsOf:)
-func NewModelWithContentsOfURLError(url unsafe.Pointer, error_ unsafe.Pointer) Model {
+func NewModelWithContentsOfURLError(url foundation.URL, error_ unsafe.Pointer) Model {
 	rv := objc.Send[Model](objc.ID(getModelClass().class), objc.Sel("modelWithContentsOfURL:error:"), url, error_)
 	return rv
 }
@@ -120,22 +121,22 @@ func (mc _ModelClass) CompileModel() {
 // Compile a model for a device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/compileModel(at:)-3nea
-func (mc _ModelClass) CompileModelAtURLCompletionHandler(modelURL unsafe.Pointer, handler unsafe.Pointer) {
+func (mc _ModelClass) CompileModelAtURLCompletionHandler(modelURL foundation.URL, handler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("compileModelAtURL:completionHandler:"), modelURL, handler)
 }
 
 // Compiles a model on the device to update the model in your app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/compileModel(at:)-6442s
-func (mc _ModelClass) CompileModelAtURLError(modelURL unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("compileModelAtURL:error:"), modelURL, error_)
+func (mc _ModelClass) CompileModelAtURLError(modelURL foundation.URL, error_ unsafe.Pointer) foundation.URL {
+	rv := objc.Send[foundation.URL](objc.ID(mc.class), objc.Sel("compileModelAtURL:error:"), modelURL, error_)
 	return rv
 }
 
 // Creates a Core ML model instance from a compiled model file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/init(contentsOf:)
-func (mc _ModelClass) ModelWithContentsOfURLError(url unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func (mc _ModelClass) ModelWithContentsOfURLError(url foundation.URL, error_ unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("modelWithContentsOfURL:error:"), url, error_)
 	return rv
 }
@@ -143,7 +144,7 @@ func (mc _ModelClass) ModelWithContentsOfURLError(url unsafe.Pointer, error_ uns
 // Creates a Core ML model instance from a compiled model file and a custom configuration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/init(contentsOf:configuration:)
-func (mc _ModelClass) ModelWithContentsOfURLConfigurationError(url unsafe.Pointer, configuration unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func (mc _ModelClass) ModelWithContentsOfURLConfigurationError(url foundation.URL, configuration unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("modelWithContentsOfURL:configuration:error:"), url, configuration, error_)
 	return rv
 }
@@ -158,7 +159,7 @@ func (mc _ModelClass) LoadModelAssetConfigurationCompletionHandler(asset unsafe.
 // Creates a Core ML model instance asynchronously from a compiled model file, a custom configuration, and a completion handler.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/loadContentsOfURL:configuration:completionHandler:
-func (mc _ModelClass) LoadContentsOfURLConfigurationCompletionHandler(url unsafe.Pointer, configuration unsafe.Pointer, handler unsafe.Pointer) {
+func (mc _ModelClass) LoadContentsOfURLConfigurationCompletionHandler(url foundation.URL, configuration unsafe.Pointer, handler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("loadContentsOfURL:configuration:completionHandler:"), url, configuration, handler)
 }
 
@@ -242,6 +243,24 @@ func (m_ Model) PredictionsFromBatchOptionsError(inputBatch objc.ID, options uns
 func (m_ Model) PredictionsFromBatchError(inputBatch objc.ID, error_ unsafe.Pointer) objc.ID {
 	rv := objc.Send[objc.ID](m_.ID, objc.Sel("predictionsFromBatch:error:"), inputBatch, error_)
 	return rv
+}
+
+// A dictionary of the model’s creation information, such as its description, author, version, and license.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodeldescription/metadata
+func (m_ Model) Metadata() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("metadata"))
+	return rv
+}
+
+
+// SetMetadata sets the value of the metadata property.
+// A dictionary of the model’s creation information, such as its description, author, version, and license.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodeldescription/metadata
+func (m_ Model) SetMetadata(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMetadata:"), value)
 }
 
 // The list of available compute devices that the model’s prediction can use.

@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -84,7 +85,7 @@ func NewStrokePoint() StrokePoint {
 // Creates a new point with the provided properties.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKStrokePointReference/init(location:timeOffset:size:opacity:force:azimuth:altitude:)
-func NewStrokePointWithLocationTimeOffsetSizeOpacityForceAzimuthAltitude(location coregraphics.CGPoint, timeOffset TimeInterval, size coregraphics.CGSize, opacity float64, force float64, azimuth float64, altitude float64) StrokePoint {
+func NewStrokePointWithLocationTimeOffsetSizeOpacityForceAzimuthAltitude(location coregraphics.CGPoint, timeOffset foundation.TimeInterval, size coregraphics.CGSize, opacity float64, force float64, azimuth float64, altitude float64) StrokePoint {
 	instance := getStrokePointClass().Alloc()
 	rv := objc.Send[StrokePoint](instance.ID, objc.Sel("initWithLocation:timeOffset:size:opacity:force:azimuth:altitude:"), location, timeOffset, size, opacity, force, azimuth, altitude)
 	rv.Autorelease()
@@ -93,7 +94,7 @@ func NewStrokePointWithLocationTimeOffsetSizeOpacityForceAzimuthAltitude(locatio
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKStrokePointReference/init(location:timeOffset:size:opacity:force:azimuth:altitude:secondaryScale:)
-func NewStrokePointWithLocationTimeOffsetSizeOpacityForceAzimuthAltitudeSecondaryScale(location coregraphics.CGPoint, timeOffset TimeInterval, size coregraphics.CGSize, opacity float64, force float64, azimuth float64, altitude float64, secondaryScale float64) StrokePoint {
+func NewStrokePointWithLocationTimeOffsetSizeOpacityForceAzimuthAltitudeSecondaryScale(location coregraphics.CGPoint, timeOffset foundation.TimeInterval, size coregraphics.CGSize, opacity float64, force float64, azimuth float64, altitude float64, secondaryScale float64) StrokePoint {
 	instance := getStrokePointClass().Alloc()
 	rv := objc.Send[StrokePoint](instance.ID, objc.Sel("initWithLocation:timeOffset:size:opacity:force:azimuth:altitude:secondaryScale:"), location, timeOffset, size, opacity, force, azimuth, altitude, secondaryScale)
 	rv.Autorelease()
@@ -105,7 +106,7 @@ func NewStrokePointWithLocationTimeOffsetSizeOpacityForceAzimuthAltitudeSecondar
 // Create a new point with the provided properties.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKStrokePointReference/init(location:timeOffset:size:opacity:force:azimuth:altitude:secondaryScale:threshold:)
-func NewStrokePointWithLocationTimeOffsetSizeOpacityForceAzimuthAltitudeSecondaryScaleThreshold(location coregraphics.CGPoint, timeOffset TimeInterval, size coregraphics.CGSize, opacity float64, force float64, azimuth float64, altitude float64, secondaryScale float64, threshold float64) StrokePoint {
+func NewStrokePointWithLocationTimeOffsetSizeOpacityForceAzimuthAltitudeSecondaryScaleThreshold(location coregraphics.CGPoint, timeOffset foundation.TimeInterval, size coregraphics.CGSize, opacity float64, force float64, azimuth float64, altitude float64, secondaryScale float64, threshold float64) StrokePoint {
 	instance := getStrokePointClass().Alloc()
 	rv := objc.Send[StrokePoint](instance.ID, objc.Sel("initWithLocation:timeOffset:size:opacity:force:azimuth:altitude:secondaryScale:threshold:"), location, timeOffset, size, opacity, force, azimuth, altitude, secondaryScale, threshold)
 	rv.Autorelease()
@@ -179,8 +180,8 @@ func (s_ StrokePoint) Threshold() float64 {
 // The time offset since the start of the stroke path in seconds.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKStrokePointReference/timeOffset
-func (s_ StrokePoint) TimeOffset() TimeInterval {
-	rv := objc.Send[TimeInterval](s_.ID, objc.Sel("timeOffset"))
+func (s_ StrokePoint) TimeOffset() foundation.TimeInterval {
+	rv := objc.Send[foundation.TimeInterval](s_.ID, objc.Sel("timeOffset"))
 	return rv
 }
 

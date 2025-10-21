@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,36 @@ func NewMTRModeSelectClusterSemanticTagStruct() MTRModeSelectClusterSemanticTagS
 	return getMTRModeSelectClusterSemanticTagStructClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmodeselectclustersemantictagstruct/mfgcode
+func (m_ MTRModeSelectClusterSemanticTagStruct) MfgCode() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("mfgCode"))
+	return rv
+}
+
+
+// SetMfgCode sets the value of the mfgCode property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmodeselectclustersemantictagstruct/mfgcode
+func (m_ MTRModeSelectClusterSemanticTagStruct) SetMfgCode(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMfgCode:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmodeselectclustersemantictagstruct/value
+func (m_ MTRModeSelectClusterSemanticTagStruct) Value() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("value"))
+	return rv
+}
+
+
+// SetValue sets the value of the value property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmodeselectclustersemantictagstruct/value
+func (m_ MTRModeSelectClusterSemanticTagStruct) SetValue(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), value)
+}
 
 
 

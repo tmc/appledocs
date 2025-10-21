@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,8 +78,8 @@ func NewMTRDishwasherAlarmClusterNotifyEvent() MTRDishwasherAlarmClusterNotifyEv
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherAlarmClusterNotifyEvent/active
-func (m_ MTRDishwasherAlarmClusterNotifyEvent) Active() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("active"))
+func (m_ MTRDishwasherAlarmClusterNotifyEvent) Active() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("active"))
 	return rv
 }
 
@@ -86,14 +87,14 @@ func (m_ MTRDishwasherAlarmClusterNotifyEvent) Active() unsafe.Pointer {
 // SetActive sets the value of the active property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherAlarmClusterNotifyEvent/active
-func (m_ MTRDishwasherAlarmClusterNotifyEvent) SetActive(value unsafe.Pointer) {
+func (m_ MTRDishwasherAlarmClusterNotifyEvent) SetActive(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setActive:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherAlarmClusterNotifyEvent/inactive
-func (m_ MTRDishwasherAlarmClusterNotifyEvent) Inactive() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("inactive"))
+func (m_ MTRDishwasherAlarmClusterNotifyEvent) Inactive() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("inactive"))
 	return rv
 }
 
@@ -101,14 +102,14 @@ func (m_ MTRDishwasherAlarmClusterNotifyEvent) Inactive() unsafe.Pointer {
 // SetInactive sets the value of the inactive property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherAlarmClusterNotifyEvent/inactive
-func (m_ MTRDishwasherAlarmClusterNotifyEvent) SetInactive(value unsafe.Pointer) {
+func (m_ MTRDishwasherAlarmClusterNotifyEvent) SetInactive(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setInactive:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherAlarmClusterNotifyEvent/mask
-func (m_ MTRDishwasherAlarmClusterNotifyEvent) Mask() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("mask"))
+func (m_ MTRDishwasherAlarmClusterNotifyEvent) Mask() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("mask"))
 	return rv
 }
 
@@ -116,14 +117,14 @@ func (m_ MTRDishwasherAlarmClusterNotifyEvent) Mask() unsafe.Pointer {
 // SetMask sets the value of the mask property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherAlarmClusterNotifyEvent/mask
-func (m_ MTRDishwasherAlarmClusterNotifyEvent) SetMask(value unsafe.Pointer) {
+func (m_ MTRDishwasherAlarmClusterNotifyEvent) SetMask(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMask:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherAlarmClusterNotifyEvent/state
-func (m_ MTRDishwasherAlarmClusterNotifyEvent) State() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("state"))
+func (m_ MTRDishwasherAlarmClusterNotifyEvent) State() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("state"))
 	return rv
 }
 
@@ -131,7 +132,7 @@ func (m_ MTRDishwasherAlarmClusterNotifyEvent) State() unsafe.Pointer {
 // SetState sets the value of the state property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherAlarmClusterNotifyEvent/state
-func (m_ MTRDishwasherAlarmClusterNotifyEvent) SetState(value unsafe.Pointer) {
+func (m_ MTRDishwasherAlarmClusterNotifyEvent) SetState(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setState:"), value)
 }
 

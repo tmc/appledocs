@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,8 +32,8 @@ type _TextureLoaderClass struct {
 // An interface definition for the [TextureLoader] class.
 type ITextureLoader interface {
 	objectivec.IObject
-	NewTextureWithContentsOfURLOptionsError(URL unsafe.Pointer, options unsafe.Pointer, error_ unsafe.Pointer) objc.ID
-	NewTextureWithContentsOfURLOptionsCompletionHandler(URL unsafe.Pointer, options unsafe.Pointer, completionHandler unsafe.Pointer)
+	NewTextureWithContentsOfURLOptionsError(URL foundation.URL, options unsafe.Pointer, error_ unsafe.Pointer) objc.ID
+	NewTextureWithContentsOfURLOptionsCompletionHandler(URL foundation.URL, options unsafe.Pointer, completionHandler unsafe.Pointer)
 	NewTextureWithCGImageOptionsError(cgImage coregraphics.CGImageRef, options unsafe.Pointer, error_ unsafe.Pointer) objc.ID
 	NewTextureWithCGImageOptionsCompletionHandler(cgImage coregraphics.CGImageRef, options unsafe.Pointer, completionHandler unsafe.Pointer)
 	NewTextureWithDataOptionsError(data unsafe.Pointer, options unsafe.Pointer, error_ unsafe.Pointer) objc.ID
@@ -113,7 +114,7 @@ func NewTextureLoaderWithDevice(device objc.ID) TextureLoader {
 // Synchronously loads image data and creates a new Metal texture from a given URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKTextureLoader/newTexture(URL:options:)
-func (t_ TextureLoader) NewTextureWithContentsOfURLOptionsError(URL unsafe.Pointer, options unsafe.Pointer, error_ unsafe.Pointer) objc.ID {
+func (t_ TextureLoader) NewTextureWithContentsOfURLOptionsError(URL foundation.URL, options unsafe.Pointer, error_ unsafe.Pointer) objc.ID {
 	rv := objc.Send[objc.ID](t_.ID, objc.Sel("newTextureWithContentsOfURL:options:error:"), URL, options, error_)
 	return rv
 }
@@ -121,7 +122,7 @@ func (t_ TextureLoader) NewTextureWithContentsOfURLOptionsError(URL unsafe.Point
 // Asynchronously loads image data and creates a new Metal texture from a given URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKTextureLoader/newTexture(URL:options:completionHandler:)
-func (t_ TextureLoader) NewTextureWithContentsOfURLOptionsCompletionHandler(URL unsafe.Pointer, options unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (t_ TextureLoader) NewTextureWithContentsOfURLOptionsCompletionHandler(URL foundation.URL, options unsafe.Pointer, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("newTextureWithContentsOfURL:options:completionHandler:"), URL, options, completionHandler)
 }
 

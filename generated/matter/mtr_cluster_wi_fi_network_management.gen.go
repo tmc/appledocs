@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MTRClusterWiFiNetworkManagement] class.
@@ -29,8 +30,8 @@ type _MTRClusterWiFiNetworkManagementClass struct {
 // An interface definition for the [MTRClusterWiFiNetworkManagement] class.
 type IMTRClusterWiFiNetworkManagement interface {
 	IMTRGenericCluster
-	NetworkPassphraseRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, completion unsafe.Pointer)
-	NetworkPassphraseRequestWithExpectedValuesExpectedValueIntervalCompletion(expectedValues unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, completion unsafe.Pointer)
+	NetworkPassphraseRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer)
+	NetworkPassphraseRequestWithExpectedValuesExpectedValueIntervalCompletion(expectedValues unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer)
 	ReadAttributeAcceptedCommandListWithParams(params unsafe.Pointer) unsafe.Pointer
 	ReadAttributeAttributeListWithParams(params unsafe.Pointer) unsafe.Pointer
 	ReadAttributeClusterRevisionWithParams(params unsafe.Pointer) unsafe.Pointer
@@ -93,7 +94,7 @@ func NewMTRClusterWiFiNetworkManagement() MTRClusterWiFiNetworkManagement {
 // For all instance methods that take a completion (i.e. command invocations), the completion will be called on the provided queue.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterWiFiNetworkManagement/init(device:endpointID:queue:)
-func NewMTRClusterWiFiNetworkManagementWithDeviceEndpointIDQueue(device unsafe.Pointer, endpointID unsafe.Pointer, queue unsafe.Pointer) MTRClusterWiFiNetworkManagement {
+func NewMTRClusterWiFiNetworkManagementWithDeviceEndpointIDQueue(device unsafe.Pointer, endpointID foundation.Number, queue unsafe.Pointer) MTRClusterWiFiNetworkManagement {
 	instance := getMTRClusterWiFiNetworkManagementClass().Alloc()
 	rv := objc.Send[MTRClusterWiFiNetworkManagement](instance.ID, objc.Sel("initWithDevice:endpointID:queue:"), device, endpointID, queue)
 	rv.Autorelease()
@@ -103,13 +104,13 @@ func NewMTRClusterWiFiNetworkManagementWithDeviceEndpointIDQueue(device unsafe.P
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterWiFiNetworkManagement/networkPassphraseRequest(with:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterWiFiNetworkManagement) NetworkPassphraseRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, completion unsafe.Pointer) {
+func (m_ MTRClusterWiFiNetworkManagement) NetworkPassphraseRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("networkPassphraseRequestWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterWiFiNetworkManagement/networkPassphraseRequest(withExpectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterWiFiNetworkManagement) NetworkPassphraseRequestWithExpectedValuesExpectedValueIntervalCompletion(expectedValues unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, completion unsafe.Pointer) {
+func (m_ MTRClusterWiFiNetworkManagement) NetworkPassphraseRequestWithExpectedValuesExpectedValueIntervalCompletion(expectedValues unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("networkPassphraseRequestWithExpectedValues:expectedValueInterval:completion:"), expectedValues, expectedValueIntervalMs, completion)
 }
 

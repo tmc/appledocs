@@ -78,5 +78,23 @@ func NewHKElectrocardiogramVoltageMeasurement() HKElectrocardiogramVoltageMeasur
 }
 
 
+// The time of the measurement relative to the sample’s start time.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkelectrocardiogram/voltagemeasurement/timesincesamplestart
+func (h_ HKElectrocardiogramVoltageMeasurement) TimeSinceSampleStart() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("timeSinceSampleStart"))
+	return rv
+}
+
+
+// SetTimeSinceSampleStart sets the value of the timeSinceSampleStart property.
+// The time of the measurement relative to the sample’s start time.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkelectrocardiogram/voltagemeasurement/timesincesamplestart
+func (h_ HKElectrocardiogramVoltageMeasurement) SetTimeSinceSampleStart(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setTimeSinceSampleStart:"), value)
+}
+
 
 

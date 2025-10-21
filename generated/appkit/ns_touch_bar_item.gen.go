@@ -122,5 +122,167 @@ func (t_ TouchBarItem) SetVisibilityPriority(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setVisibilityPriority:"), value)
 }
 
+// A Boolean value indicating whether the receiver’s cell sends its action message continuously to its target during mouse tracking.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/iscontinuous
+func (t_ TouchBarItem) IsContinuous() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("isContinuous"))
+	return rv
+}
+
+
+// SetIsContinuous sets the value of the isContinuous property.
+// A Boolean value indicating whether the receiver’s cell sends its action message continuously to its target during mouse tracking.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/iscontinuous
+func (t_ TouchBarItem) SetIsContinuous(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setIsContinuous:"), value)
+}
+
+// A bar that holds this group’s items.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsgrouptouchbaritem/grouptouchbar
+func (t_ TouchBarItem) GroupTouchBar() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("groupTouchBar"))
+	return rv
+}
+
+
+// SetGroupTouchBar sets the value of the groupTouchBar property.
+// A bar that holds this group’s items.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsgrouptouchbaritem/grouptouchbar
+func (t_ TouchBarItem) SetGroupTouchBar(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setGroupTouchBar:"), value)
+}
+
+// The view displayed when this item is displayed in its parent bar.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspopovertouchbaritem/collapsedrepresentation
+func (t_ TouchBarItem) CollapsedRepresentation() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("collapsedRepresentation"))
+	return rv
+}
+
+
+// SetCollapsedRepresentation sets the value of the collapsedRepresentation property.
+// The view displayed when this item is displayed in its parent bar.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspopovertouchbaritem/collapsedrepresentation
+func (t_ TouchBarItem) SetCollapsedRepresentation(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setCollapsedRepresentation:"), value)
+}
+
+// The bar displayed when this item is “popped.”
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspopovertouchbaritem/popovertouchbar
+func (t_ TouchBarItem) PopoverTouchBar() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("popoverTouchBar"))
+	return rv
+}
+
+
+// SetPopoverTouchBar sets the value of the popoverTouchBar property.
+// The bar displayed when this item is “popped.”
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspopovertouchbaritem/popovertouchbar
+func (t_ TouchBarItem) SetPopoverTouchBar(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setPopoverTouchBar:"), value)
+}
+
+// The bar that is displayed when a user press-and-holds on the popover item.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspopovertouchbaritem/pressandholdtouchbar
+func (t_ TouchBarItem) PressAndHoldTouchBar() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("pressAndHoldTouchBar"))
+	return rv
+}
+
+
+// SetPressAndHoldTouchBar sets the value of the pressAndHoldTouchBar property.
+// The bar that is displayed when a user press-and-holds on the popover item.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspopovertouchbaritem/pressandholdtouchbar
+func (t_ TouchBarItem) SetPressAndHoldTouchBar(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setPressAndHoldTouchBar:"), value)
+}
+
+// The type of tracking behavior the control exhibits.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/trackingmode
+func (t_ TouchBarItem) TrackingMode() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("trackingMode"))
+	return rv
+}
+
+
+// SetTrackingMode sets the value of the trackingMode property.
+// The type of tracking behavior the control exhibits.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/trackingmode
+func (t_ TouchBarItem) SetTrackingMode(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setTrackingMode:"), value)
+}
+
+// The identifier of an item you want the system to center in the Touch Bar.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstouchbar/principalitemidentifier
+func (t_ TouchBarItem) PrincipalItemIdentifier() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("principalItemIdentifier"))
+	return rv
+}
+
+
+// SetPrincipalItemIdentifier sets the value of the principalItemIdentifier property.
+// The identifier of an item you want the system to center in the Touch Bar.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstouchbar/principalitemidentifier
+func (t_ TouchBarItem) SetPrincipalItemIdentifier(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setPrincipalItemIdentifier:"), value)
+}
+
+// The identifier for this item.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstouchbaritem/identifier-swift.property
+func (t_ TouchBarItem) Identifier() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("identifier"))
+	return rv
+}
+
+
+// SetIdentifier sets the value of the identifier property.
+// The identifier for this item.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstouchbaritem/identifier-swift.property
+func (t_ TouchBarItem) SetIdentifier(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setIdentifier:"), value)
+}
+
+// A Boolean value that reflects whether or not the item is visible.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstouchbaritem/isvisible
+func (t_ TouchBarItem) IsVisible() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("isVisible"))
+	return rv
+}
+
+
+// SetIsVisible sets the value of the isVisible property.
+// A Boolean value that reflects whether or not the item is visible.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstouchbaritem/isvisible
+func (t_ TouchBarItem) SetIsVisible(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setIsVisible:"), value)
+}
+
 
 

@@ -77,6 +77,21 @@ func NewAXMathExpressionSubSuperscript() AXMathExpressionSubSuperscript {
 
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/accessibility/axmathexpressionsubsuperscript/subscriptexpressions
+func (a_ AXMathExpressionSubSuperscript) SubscriptExpressions() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("subscriptExpressions"))
+	return rv
+}
+
+
+// SetSubscriptExpressions sets the value of the subscriptExpressions property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/accessibility/axmathexpressionsubsuperscript/subscriptexpressions
+func (a_ AXMathExpressionSubSuperscript) SetSubscriptExpressions(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setSubscriptExpressions:"), value)
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionSubSuperscript/baseExpression
 func (a_ AXMathExpressionSubSuperscript) BaseExpression() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("baseExpression"))

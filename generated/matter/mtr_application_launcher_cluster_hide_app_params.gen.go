@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,51 @@ func NewMTRApplicationLauncherClusterHideAppParams() MTRApplicationLauncherClust
 	return getMTRApplicationLauncherClusterHideAppParamsClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterhideappparams/serversideprocessingtimeout
+func (m_ MTRApplicationLauncherClusterHideAppParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+	return rv
+}
+
+
+// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterhideappparams/serversideprocessingtimeout
+func (m_ MTRApplicationLauncherClusterHideAppParams) SetServerSideProcessingTimeout(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterhideappparams/application
+func (m_ MTRApplicationLauncherClusterHideAppParams) Application() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("application"))
+	return rv
+}
+
+
+// SetApplication sets the value of the application property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterhideappparams/application
+func (m_ MTRApplicationLauncherClusterHideAppParams) SetApplication(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setApplication:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterhideappparams/timedinvoketimeoutms
+func (m_ MTRApplicationLauncherClusterHideAppParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+	return rv
+}
+
+
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterhideappparams/timedinvoketimeoutms
+func (m_ MTRApplicationLauncherClusterHideAppParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+}
 
 
 

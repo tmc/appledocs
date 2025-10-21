@@ -114,5 +114,59 @@ func (t_ TokenField) SetTokenizingCharacterSet(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTokenizingCharacterSet:"), value)
 }
 
+// The receiver’s completion delay.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstokenfield/completiondelay
+func (t_ TokenField) CompletionDelay() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("completionDelay"))
+	return rv
+}
+
+
+// SetCompletionDelay sets the value of the completionDelay property.
+// The receiver’s completion delay.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstokenfield/completiondelay
+func (t_ TokenField) SetCompletionDelay(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setCompletionDelay:"), value)
+}
+
+// Returns the token field’s delegate.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstokenfield/delegate
+func (t_ TokenField) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+
+// SetDelegate sets the value of the delegate property.
+// Returns the token field’s delegate.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstokenfield/delegate
+func (t_ TokenField) SetDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setDelegate:"), value)
+}
+
+// The token style of the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstokenfield/tokenstyle-swift.property
+func (t_ TokenField) TokenStyle() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("tokenStyle"))
+	return rv
+}
+
+
+// SetTokenStyle sets the value of the tokenStyle property.
+// The token style of the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstokenfield/tokenstyle-swift.property
+func (t_ TokenField) SetTokenStyle(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setTokenStyle:"), value)
+}
+
 
 

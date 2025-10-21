@@ -86,6 +86,51 @@ func (m_ MeshRenderPipelineDescriptor) Reset() {
 }
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlmeshrenderpipelinedescriptor/israsterizationenabled
+func (m_ MeshRenderPipelineDescriptor) IsRasterizationEnabled() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("isRasterizationEnabled"))
+	return rv
+}
+
+
+// SetIsRasterizationEnabled sets the value of the isRasterizationEnabled property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlmeshrenderpipelinedescriptor/israsterizationenabled
+func (m_ MeshRenderPipelineDescriptor) SetIsRasterizationEnabled(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIsRasterizationEnabled:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlmeshrenderpipelinedescriptor/isalphatooneenabled
+func (m_ MeshRenderPipelineDescriptor) IsAlphaToOneEnabled() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("isAlphaToOneEnabled"))
+	return rv
+}
+
+
+// SetIsAlphaToOneEnabled sets the value of the isAlphaToOneEnabled property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlmeshrenderpipelinedescriptor/isalphatooneenabled
+func (m_ MeshRenderPipelineDescriptor) SetIsAlphaToOneEnabled(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIsAlphaToOneEnabled:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlmeshrenderpipelinedescriptor/isalphatocoverageenabled
+func (m_ MeshRenderPipelineDescriptor) IsAlphaToCoverageEnabled() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("isAlphaToCoverageEnabled"))
+	return rv
+}
+
+
+// SetIsAlphaToCoverageEnabled sets the value of the isAlphaToCoverageEnabled property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlmeshrenderpipelinedescriptor/isalphatocoverageenabled
+func (m_ MeshRenderPipelineDescriptor) SetIsAlphaToCoverageEnabled(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIsAlphaToCoverageEnabled:"), value)
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLMeshRenderPipelineDescriptor/binaryArchives
 func (m_ MeshRenderPipelineDescriptor) BinaryArchives() []objc.ID {
 	rv := objc.Send[[]objc.ID](m_.ID, objc.Sel("binaryArchives"))

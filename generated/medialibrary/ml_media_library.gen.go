@@ -93,6 +93,14 @@ func NewMediaLibraryWithOptions(options unsafe.Pointer) MediaLibrary {
 }
 
 
+// Specifies the well-known folders that should be searched for media files. If this key is not present, none of the well-known folders will be provided. The value for this key is an array of strings (identifiers that correspond to well-known folder locations). For a list of well-known folder identifiers, see
+//
+// [Full Topic]: https://developer.apple.com/documentation/medialibrary/mlmedialoadfolderskey
+func (m_ MediaLibrary) MLMediaLoadFoldersKey() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("MLMediaLoadFoldersKey"))
+	return rv
+}
+
 // Returns a dictionary of media sources by identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaLibrary/MLMediaLibrary/mediaSources

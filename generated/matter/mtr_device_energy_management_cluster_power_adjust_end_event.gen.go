@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,8 +78,8 @@ func NewMTRDeviceEnergyManagementClusterPowerAdjustEndEvent() MTRDeviceEnergyMan
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPowerAdjustEndEvent/cause
-func (m_ MTRDeviceEnergyManagementClusterPowerAdjustEndEvent) Cause() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("cause"))
+func (m_ MTRDeviceEnergyManagementClusterPowerAdjustEndEvent) Cause() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("cause"))
 	return rv
 }
 
@@ -86,14 +87,14 @@ func (m_ MTRDeviceEnergyManagementClusterPowerAdjustEndEvent) Cause() unsafe.Poi
 // SetCause sets the value of the cause property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPowerAdjustEndEvent/cause
-func (m_ MTRDeviceEnergyManagementClusterPowerAdjustEndEvent) SetCause(value unsafe.Pointer) {
+func (m_ MTRDeviceEnergyManagementClusterPowerAdjustEndEvent) SetCause(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCause:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPowerAdjustEndEvent/duration
-func (m_ MTRDeviceEnergyManagementClusterPowerAdjustEndEvent) Duration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("duration"))
+func (m_ MTRDeviceEnergyManagementClusterPowerAdjustEndEvent) Duration() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("duration"))
 	return rv
 }
 
@@ -101,14 +102,14 @@ func (m_ MTRDeviceEnergyManagementClusterPowerAdjustEndEvent) Duration() unsafe.
 // SetDuration sets the value of the duration property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPowerAdjustEndEvent/duration
-func (m_ MTRDeviceEnergyManagementClusterPowerAdjustEndEvent) SetDuration(value unsafe.Pointer) {
+func (m_ MTRDeviceEnergyManagementClusterPowerAdjustEndEvent) SetDuration(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDuration:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPowerAdjustEndEvent/energyUse
-func (m_ MTRDeviceEnergyManagementClusterPowerAdjustEndEvent) EnergyUse() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("energyUse"))
+func (m_ MTRDeviceEnergyManagementClusterPowerAdjustEndEvent) EnergyUse() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("energyUse"))
 	return rv
 }
 
@@ -116,7 +117,7 @@ func (m_ MTRDeviceEnergyManagementClusterPowerAdjustEndEvent) EnergyUse() unsafe
 // SetEnergyUse sets the value of the energyUse property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPowerAdjustEndEvent/energyUse
-func (m_ MTRDeviceEnergyManagementClusterPowerAdjustEndEvent) SetEnergyUse(value unsafe.Pointer) {
+func (m_ MTRDeviceEnergyManagementClusterPowerAdjustEndEvent) SetEnergyUse(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEnergyUse:"), value)
 }
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [UNMutableNotificationContent] class.
@@ -112,8 +113,8 @@ func (u_ UNMutableNotificationContent) SetAttachments(value []UNNotificationAtta
 // The number that your app’s icon displays.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNMutableNotificationContent/badge
-func (u_ UNMutableNotificationContent) Badge() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("badge"))
+func (u_ UNMutableNotificationContent) Badge() foundation.Number {
+	rv := objc.Send[foundation.Number](u_.ID, objc.Sel("badge"))
 	return rv
 }
 
@@ -123,7 +124,7 @@ func (u_ UNMutableNotificationContent) Badge() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNMutableNotificationContent/badge
-func (u_ UNMutableNotificationContent) SetBadge(value unsafe.Pointer) {
+func (u_ UNMutableNotificationContent) SetBadge(value foundation.Number) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setBadge:"), value)
 }
 

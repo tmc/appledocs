@@ -81,5 +81,95 @@ func NewCKDatabaseNotification() CKDatabaseNotification {
 }
 
 
+// The type of database.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckdatabasenotification/databasescope
+func (c_ CKDatabaseNotification) DatabaseScope() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("databaseScope"))
+	return rv
+}
+
+
+// SetDatabaseScope sets the value of the databaseScope property.
+// The type of database.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckdatabasenotification/databasescope
+func (c_ CKDatabaseNotification) SetDatabaseScope(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setDatabaseScope:"), value)
+}
+
+// The type of event that generates the notification.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/notificationtype-swift.property
+func (c_ CKDatabaseNotification) NotificationType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("notificationType"))
+	return rv
+}
+
+
+// SetNotificationType sets the value of the notificationType property.
+// The type of event that generates the notification.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/notificationtype-swift.property
+func (c_ CKDatabaseNotification) SetNotificationType(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setNotificationType:"), value)
+}
+
+// A Boolean value that indicates whether the system removes some push notification content before delivery.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/ispruned
+func (c_ CKDatabaseNotification) IsPruned() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isPruned"))
+	return rv
+}
+
+
+// SetIsPruned sets the value of the isPruned property.
+// A Boolean value that indicates whether the system removes some push notification content before delivery.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/ispruned
+func (c_ CKDatabaseNotification) SetIsPruned(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsPruned:"), value)
+}
+
+// A Boolean value that indicates whether the push notification includes the content available flag.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.class/shouldsendcontentavailable
+func (c_ CKDatabaseNotification) ShouldSendContentAvailable() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("shouldSendContentAvailable"))
+	return rv
+}
+
+
+// SetShouldSendContentAvailable sets the value of the shouldSendContentAvailable property.
+// A Boolean value that indicates whether the push notification includes the content available flag.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.class/shouldsendcontentavailable
+func (c_ CKDatabaseNotification) SetShouldSendContentAvailable(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setShouldSendContentAvailable:"), value)
+}
+
+// The configuration for a subscription’s push notifications.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.property
+func (c_ CKDatabaseNotification) NotificationInfo() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("notificationInfo"))
+	return rv
+}
+
+
+// SetNotificationInfo sets the value of the notificationInfo property.
+// The configuration for a subscription’s push notifications.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.property
+func (c_ CKDatabaseNotification) SetNotificationInfo(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setNotificationInfo:"), value)
+}
+
 
 

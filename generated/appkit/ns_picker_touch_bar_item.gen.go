@@ -124,4 +124,139 @@ func (p_ PickerTouchBarItem) SetCollapsedRepresentationLabel(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCollapsedRepresentationLabel:"), objc.String(value))
 }
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspickertouchbaritem/action
+func (p_ PickerTouchBarItem) Action() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("action"))
+	return rv
+}
+
+
+// SetAction sets the value of the action property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspickertouchbaritem/action
+func (p_ PickerTouchBarItem) SetAction(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setAction:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspickertouchbaritem/controlrepresentation-swift.property
+func (p_ PickerTouchBarItem) ControlRepresentation() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("controlRepresentation"))
+	return rv
+}
+
+
+// SetControlRepresentation sets the value of the controlRepresentation property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspickertouchbaritem/controlrepresentation-swift.property
+func (p_ PickerTouchBarItem) SetControlRepresentation(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setControlRepresentation:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspickertouchbaritem/customizationlabel
+func (p_ PickerTouchBarItem) CustomizationLabel() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("customizationLabel"))
+	return rv
+}
+
+
+// SetCustomizationLabel sets the value of the customizationLabel property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspickertouchbaritem/customizationlabel
+func (p_ PickerTouchBarItem) SetCustomizationLabel(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setCustomizationLabel:"), objc.String(value))
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspickertouchbaritem/isenabled
+func (p_ PickerTouchBarItem) IsEnabled() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isEnabled"))
+	return rv
+}
+
+
+// SetIsEnabled sets the value of the isEnabled property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspickertouchbaritem/isenabled
+func (p_ PickerTouchBarItem) SetIsEnabled(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsEnabled:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspickertouchbaritem/numberofoptions
+func (p_ PickerTouchBarItem) NumberOfOptions() int {
+	rv := objc.Send[int](p_.ID, objc.Sel("numberOfOptions"))
+	return rv
+}
+
+
+// SetNumberOfOptions sets the value of the numberOfOptions property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspickertouchbaritem/numberofoptions
+func (p_ PickerTouchBarItem) SetNumberOfOptions(value int) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setNumberOfOptions:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspickertouchbaritem/selectedindex
+func (p_ PickerTouchBarItem) SelectedIndex() int {
+	rv := objc.Send[int](p_.ID, objc.Sel("selectedIndex"))
+	return rv
+}
+
+
+// SetSelectedIndex sets the value of the selectedIndex property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspickertouchbaritem/selectedindex
+func (p_ PickerTouchBarItem) SetSelectedIndex(value int) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setSelectedIndex:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspickertouchbaritem/selectioncolor
+func (p_ PickerTouchBarItem) SelectionColor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("selectionColor"))
+	return rv
+}
+
+
+// SetSelectionColor sets the value of the selectionColor property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspickertouchbaritem/selectioncolor
+func (p_ PickerTouchBarItem) SetSelectionColor(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setSelectionColor:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspickertouchbaritem/selectionmode-swift.property
+func (p_ PickerTouchBarItem) SelectionMode() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("selectionMode"))
+	return rv
+}
+
+
+// SetSelectionMode sets the value of the selectionMode property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspickertouchbaritem/selectionmode-swift.property
+func (p_ PickerTouchBarItem) SetSelectionMode(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setSelectionMode:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspickertouchbaritem/target
+func (p_ PickerTouchBarItem) Target() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("target"))
+	return rv
+}
+
+
+// SetTarget sets the value of the target property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspickertouchbaritem/target
+func (p_ PickerTouchBarItem) SetTarget(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setTarget:"), value)
+}
+
 

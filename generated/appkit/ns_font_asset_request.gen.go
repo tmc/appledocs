@@ -75,5 +75,35 @@ func NewFontAssetRequest() FontAssetRequest {
 }
 
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontassetrequest/downloadedfontdescriptors
+func (f_ FontAssetRequest) DownloadedFontDescriptors() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("downloadedFontDescriptors"))
+	return rv
+}
+
+
+// SetDownloadedFontDescriptors sets the value of the downloadedFontDescriptors property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontassetrequest/downloadedfontdescriptors
+func (f_ FontAssetRequest) SetDownloadedFontDescriptors(value unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setDownloadedFontDescriptors:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontassetrequest/progress
+func (f_ FontAssetRequest) Progress() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("progress"))
+	return rv
+}
+
+
+// SetProgress sets the value of the progress property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontassetrequest/progress
+func (f_ FontAssetRequest) SetProgress(value unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setProgress:"), value)
+}
+
 
 

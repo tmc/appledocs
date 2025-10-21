@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,66 @@ func NewMTRNetworkCommissioningClusterScanNetworksParams() MTRNetworkCommissioni
 	return getMTRNetworkCommissioningClusterScanNetworksParamsClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterscannetworksparams/serversideprocessingtimeout
+func (m_ MTRNetworkCommissioningClusterScanNetworksParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+	return rv
+}
+
+
+// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterscannetworksparams/serversideprocessingtimeout
+func (m_ MTRNetworkCommissioningClusterScanNetworksParams) SetServerSideProcessingTimeout(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterscannetworksparams/breadcrumb
+func (m_ MTRNetworkCommissioningClusterScanNetworksParams) Breadcrumb() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("breadcrumb"))
+	return rv
+}
+
+
+// SetBreadcrumb sets the value of the breadcrumb property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterscannetworksparams/breadcrumb
+func (m_ MTRNetworkCommissioningClusterScanNetworksParams) SetBreadcrumb(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setBreadcrumb:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterscannetworksparams/timedinvoketimeoutms
+func (m_ MTRNetworkCommissioningClusterScanNetworksParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+	return rv
+}
+
+
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterscannetworksparams/timedinvoketimeoutms
+func (m_ MTRNetworkCommissioningClusterScanNetworksParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterscannetworksparams/ssid
+func (m_ MTRNetworkCommissioningClusterScanNetworksParams) Ssid() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("ssid"))
+	return rv
+}
+
+
+// SetSsid sets the value of the ssid property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterscannetworksparams/ssid
+func (m_ MTRNetworkCommissioningClusterScanNetworksParams) SetSsid(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSsid:"), value)
+}
 
 
 

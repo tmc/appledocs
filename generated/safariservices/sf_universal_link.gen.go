@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -85,7 +86,7 @@ func NewSFUniversalLink() SFUniversalLink {
 // Creates a universal link object with the URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFUniversalLink/init(webpageURL:)
-func NewSFUniversalLinkWithWebpageURL(url unsafe.Pointer) SFUniversalLink {
+func NewSFUniversalLinkWithWebpageURL(url foundation.URL) SFUniversalLink {
 	instance := getSFUniversalLinkClass().Alloc()
 	rv := objc.Send[SFUniversalLink](instance.ID, objc.Sel("initWithWebpageURL:"), url)
 	rv.Autorelease()
@@ -93,11 +94,29 @@ func NewSFUniversalLinkWithWebpageURL(url unsafe.Pointer) SFUniversalLink {
 }
 
 
+// A flag that indicates whether the universal link is enabled.
+//
+// [Full Topic]: https://developer.apple.com/documentation/safariservices/sfuniversallink/isenabled
+func (s_ SFUniversalLink) IsEnabled() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("isEnabled"))
+	return rv
+}
+
+
+// SetIsEnabled sets the value of the isEnabled property.
+// A flag that indicates whether the universal link is enabled.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/safariservices/sfuniversallink/isenabled
+func (s_ SFUniversalLink) SetIsEnabled(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setIsEnabled:"), value)
+}
+
 // The URL to the app that can open this universal link.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFUniversalLink/applicationURL
-func (s_ SFUniversalLink) ApplicationURL() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("applicationURL"))
+func (s_ SFUniversalLink) ApplicationURL() foundation.URL {
+	rv := objc.Send[foundation.URL](s_.ID, objc.Sel("applicationURL"))
 	return rv
 }
 
@@ -122,8 +141,8 @@ func (s_ SFUniversalLink) SetEnabled(value bool) {
 // The URL specified when initializing the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFUniversalLink/webpageURL
-func (s_ SFUniversalLink) WebpageURL() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("webpageURL"))
+func (s_ SFUniversalLink) WebpageURL() foundation.URL {
+	rv := objc.Send[foundation.URL](s_.ID, objc.Sel("webpageURL"))
 	return rv
 }
 

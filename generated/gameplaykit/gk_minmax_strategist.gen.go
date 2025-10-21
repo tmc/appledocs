@@ -98,6 +98,42 @@ func (m_ MinmaxStrategist) RandomMoveForPlayerFromNumberOfBestMoves(player objc.
 	return rv
 }
 
+// A randomizer object to be used when the strategist randomly selects a move.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gameplaykit/gkstrategist/randomsource
+func (m_ MinmaxStrategist) RandomSource() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("randomSource"))
+	return rv
+}
+
+
+// SetRandomSource sets the value of the randomSource property.
+// A randomizer object to be used when the strategist randomly selects a move.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gameplaykit/gkstrategist/randomsource
+func (m_ MinmaxStrategist) SetRandomSource(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setRandomSource:"), value)
+}
+
+// The model representing the current state of the game.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gameplaykit/gkstrategist/gamemodel
+func (m_ MinmaxStrategist) GameModel() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("gameModel"))
+	return rv
+}
+
+
+// SetGameModel sets the value of the gameModel property.
+// The model representing the current state of the game.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gameplaykit/gkstrategist/gamemodel
+func (m_ MinmaxStrategist) SetGameModel(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setGameModel:"), value)
+}
+
 // The number of future turns for the strategist to consider when planning moves.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKMinmaxStrategist/maxLookAheadDepth

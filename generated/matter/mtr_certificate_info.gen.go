@@ -75,5 +75,83 @@ func NewMTRCertificateInfo() MTRCertificateInfo {
 }
 
 
+// Public key data for this certificate
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcertificateinfo/publickeydata
+func (m_ MTRCertificateInfo) PublicKeyData() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("publicKeyData"))
+	return rv
+}
+
+
+// SetPublicKeyData sets the value of the publicKeyData property.
+// Public key data for this certificate
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcertificateinfo/publickeydata
+func (m_ MTRCertificateInfo) SetPublicKeyData(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPublicKeyData:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcertificateinfo/notbefore
+func (m_ MTRCertificateInfo) NotBefore() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("notBefore"))
+	return rv
+}
+
+
+// SetNotBefore sets the value of the notBefore property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcertificateinfo/notbefore
+func (m_ MTRCertificateInfo) SetNotBefore(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setNotBefore:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcertificateinfo/notafter
+func (m_ MTRCertificateInfo) NotAfter() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("notAfter"))
+	return rv
+}
+
+
+// SetNotAfter sets the value of the notAfter property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcertificateinfo/notafter
+func (m_ MTRCertificateInfo) SetNotAfter(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setNotAfter:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcertificateinfo/issuer
+func (m_ MTRCertificateInfo) Issuer() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("issuer"))
+	return rv
+}
+
+
+// SetIssuer sets the value of the issuer property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcertificateinfo/issuer
+func (m_ MTRCertificateInfo) SetIssuer(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIssuer:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcertificateinfo/subject
+func (m_ MTRCertificateInfo) Subject() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("subject"))
+	return rv
+}
+
+
+// SetSubject sets the value of the subject property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcertificateinfo/subject
+func (m_ MTRCertificateInfo) SetSubject(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSubject:"), value)
+}
+
 
 

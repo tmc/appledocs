@@ -82,6 +82,14 @@ func NewRectangleFeature() RectangleFeature {
 }
 
 
+// A detector that searches for rectangular areas in a still image or video, returning
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreimage/cidetectortyperectangle
+func (r_ RectangleFeature) CIDetectorTypeRectangle() string {
+	rv := objc.Send[string](r_.ID, objc.Sel("CIDetectorTypeRectangle"))
+	return rv
+}
+
 // The lower-left corner of the detected rectangle, in image coordinates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRectangleFeature/bottomLeft-swift.property

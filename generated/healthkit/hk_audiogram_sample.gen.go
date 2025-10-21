@@ -81,5 +81,23 @@ func NewHKAudiogramSample() HKAudiogramSample {
 }
 
 
+// An array of sensitivity point objects.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkaudiogramsample/sensitivitypoints
+func (h_ HKAudiogramSample) SensitivityPoints() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("sensitivityPoints"))
+	return rv
+}
+
+
+// SetSensitivityPoints sets the value of the sensitivityPoints property.
+// An array of sensitivity point objects.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkaudiogramsample/sensitivitypoints
+func (h_ HKAudiogramSample) SetSensitivityPoints(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setSensitivityPoints:"), value)
+}
+
 
 

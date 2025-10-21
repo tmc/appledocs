@@ -79,5 +79,59 @@ func NewTextParagraph() TextParagraph {
 }
 
 
+// Returns the source attributed string.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextparagraph/attributedstring
+func (t_ TextParagraph) AttributedString() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("attributedString"))
+	return rv
+}
+
+
+// SetAttributedString sets the value of the attributedString property.
+// Returns the source attributed string.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextparagraph/attributedstring
+func (t_ TextParagraph) SetAttributedString(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setAttributedString:"), value)
+}
+
+// Returns the range of the paragraph in the containing text’s attributed string.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextparagraph/paragraphcontentrange
+func (t_ TextParagraph) ParagraphContentRange() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("paragraphContentRange"))
+	return rv
+}
+
+
+// SetParagraphContentRange sets the value of the paragraphContentRange property.
+// Returns the range of the paragraph in the containing text’s attributed string.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextparagraph/paragraphcontentrange
+func (t_ TextParagraph) SetParagraphContentRange(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setParagraphContentRange:"), value)
+}
+
+// Returns the range of the paragraph separator in the containing text’s attributed string.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextparagraph/paragraphseparatorrange
+func (t_ TextParagraph) ParagraphSeparatorRange() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("paragraphSeparatorRange"))
+	return rv
+}
+
+
+// SetParagraphSeparatorRange sets the value of the paragraphSeparatorRange property.
+// Returns the range of the paragraph separator in the containing text’s attributed string.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextparagraph/paragraphseparatorrange
+func (t_ TextParagraph) SetParagraphSeparatorRange(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setParagraphSeparatorRange:"), value)
+}
+
 
 

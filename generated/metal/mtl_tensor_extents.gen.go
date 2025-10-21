@@ -80,5 +80,64 @@ func NewTensorExtents() TensorExtents {
 }
 
 
+// Retrieves the extents for this object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtltensorextents/extents
+func (t_ TensorExtents) Extents() int {
+	rv := objc.Send[int](t_.ID, objc.Sel("extents"))
+	return rv
+}
+
+
+// SetExtents sets the value of the extents property.
+// Retrieves the extents for this object.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtltensorextents/extents
+func (t_ TensorExtents) SetExtents(value int) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setExtents:"), value)
+}
+
+// An error domain for errors that pertain to creating a tensor.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtltensordomain
+func (t_ TensorExtents) MTLTensorDomain() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("MTLTensorDomain"))
+	return rv
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtl_tensor_max_rank
+func (t_ TensorExtents) MTL_TENSOR_MAX_RANK() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("MTL_TENSOR_MAX_RANK"))
+	return rv
+}
+
+
+// SetMTL_TENSOR_MAX_RANK sets the value of the MTL_TENSOR_MAX_RANK property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtl_tensor_max_rank
+func (t_ TensorExtents) SetMTL_TENSOR_MAX_RANK(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setMTL_TENSOR_MAX_RANK:"), value)
+}
+
+// Obtains the rank of the tensor.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtltensorextents/rank
+func (t_ TensorExtents) Rank() int {
+	rv := objc.Send[int](t_.ID, objc.Sel("rank"))
+	return rv
+}
+
+
+// SetRank sets the value of the rank property.
+// Obtains the rank of the tensor.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtltensorextents/rank
+func (t_ TensorExtents) SetRank(value int) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setRank:"), value)
+}
+
 
 

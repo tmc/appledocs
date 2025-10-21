@@ -80,5 +80,77 @@ func NewRasterizationRateSampleArray() RasterizationRateSampleArray {
 }
 
 
+// The maximum number of rows and columns in the layer map.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlrasterizationratelayerdescriptor/maxsamplecount
+func (r_ RasterizationRateSampleArray) MaxSampleCount() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("maxSampleCount"))
+	return rv
+}
+
+
+// SetMaxSampleCount sets the value of the maxSampleCount property.
+// The maximum number of rows and columns in the layer map.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlrasterizationratelayerdescriptor/maxsamplecount
+func (r_ RasterizationRateSampleArray) SetMaxSampleCount(value unsafe.Pointer) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setMaxSampleCount:"), value)
+}
+
+// The number of rows and columns in the layer map.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlrasterizationratelayerdescriptor/samplecount
+func (r_ RasterizationRateSampleArray) SampleCount() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("sampleCount"))
+	return rv
+}
+
+
+// SetSampleCount sets the value of the sampleCount property.
+// The number of rows and columns in the layer map.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlrasterizationratelayerdescriptor/samplecount
+func (r_ RasterizationRateSampleArray) SetSampleCount(value unsafe.Pointer) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setSampleCount:"), value)
+}
+
+// The vertical rasterization rates for the layer map’s rows.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlrasterizationratelayerdescriptor/vertical
+func (r_ RasterizationRateSampleArray) Vertical() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("vertical"))
+	return rv
+}
+
+
+// SetVertical sets the value of the vertical property.
+// The vertical rasterization rates for the layer map’s rows.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlrasterizationratelayerdescriptor/vertical
+func (r_ RasterizationRateSampleArray) SetVertical(value unsafe.Pointer) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setVertical:"), value)
+}
+
+// The horizontal rasterization rates for the layer map’s rows.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlrasterizationratelayerdescriptor/horizontal
+func (r_ RasterizationRateSampleArray) Horizontal() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("horizontal"))
+	return rv
+}
+
+
+// SetHorizontal sets the value of the horizontal property.
+// The horizontal rasterization rates for the layer map’s rows.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlrasterizationratelayerdescriptor/horizontal
+func (r_ RasterizationRateSampleArray) SetHorizontal(value unsafe.Pointer) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setHorizontal:"), value)
+}
+
 
 

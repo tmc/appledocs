@@ -86,6 +86,132 @@ func (c_ ChallengeDefinition) HasActiveChallengesWithCompletionHandler(completio
 	objc.Send[objc.ID](c_.ID, objc.Sel("hasActiveChallengesWithCompletionHandler:"), completionHandler)
 }
 
+// Indicates if a challenge can be attempted more than once.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkchallengedefinition/isrepeatable
+func (c_ ChallengeDefinition) IsRepeatable() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isRepeatable"))
+	return rv
+}
+
+
+// SetIsRepeatable sets the value of the isRepeatable property.
+// Indicates if a challenge can be attempted more than once.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkchallengedefinition/isrepeatable
+func (c_ ChallengeDefinition) SetIsRepeatable(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsRepeatable:"), value)
+}
+
+// A more detailed description of the challenge definition.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkchallengedefinition/details
+func (c_ ChallengeDefinition) Details() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("details"))
+	return rv
+}
+
+
+// SetDetails sets the value of the details property.
+// A more detailed description of the challenge definition.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkchallengedefinition/details
+func (c_ ChallengeDefinition) SetDetails(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setDetails:"), objc.String(value))
+}
+
+// The group identifier for the challenge definition, if one exists.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkchallengedefinition/groupidentifier
+func (c_ ChallengeDefinition) GroupIdentifier() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("groupIdentifier"))
+	return rv
+}
+
+
+// SetGroupIdentifier sets the value of the groupIdentifier property.
+// The group identifier for the challenge definition, if one exists.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkchallengedefinition/groupidentifier
+func (c_ ChallengeDefinition) SetGroupIdentifier(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setGroupIdentifier:"), objc.String(value))
+}
+
+// Scores submitted to this leaderboard will also be submitted as scores in this challenge.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkchallengedefinition/leaderboard
+func (c_ ChallengeDefinition) Leaderboard() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("leaderboard"))
+	return rv
+}
+
+
+// SetLeaderboard sets the value of the leaderboard property.
+// Scores submitted to this leaderboard will also be submitted as scores in this challenge.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkchallengedefinition/leaderboard
+func (c_ ChallengeDefinition) SetLeaderboard(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setLeaderboard:"), value)
+}
+
+// The developer defined identifier for a given challenge definition.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkchallengedefinition/identifier
+func (c_ ChallengeDefinition) Identifier() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("identifier"))
+	return rv
+}
+
+
+// SetIdentifier sets the value of the identifier property.
+// The developer defined identifier for a given challenge definition.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkchallengedefinition/identifier
+func (c_ ChallengeDefinition) SetIdentifier(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+}
+
+// The duration options for the challenge, like
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkchallengedefinition/durationoptions
+func (c_ ChallengeDefinition) DurationOptions() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("durationOptions"))
+	return rv
+}
+
+
+// SetDurationOptions sets the value of the durationOptions property.
+// The duration options for the challenge, like
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkchallengedefinition/durationoptions
+func (c_ ChallengeDefinition) SetDurationOptions(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setDurationOptions:"), value)
+}
+
+// A short title for the challenge definition.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkchallengedefinition/title
+func (c_ ChallengeDefinition) Title() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("title"))
+	return rv
+}
+
+
+// SetTitle sets the value of the title property.
+// A short title for the challenge definition.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkchallengedefinition/title
+func (c_ ChallengeDefinition) SetTitle(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setTitle:"), objc.String(value))
+}
+
 // The release state of the challenge definition in App Store Connect.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKChallengeDefinition/releaseState

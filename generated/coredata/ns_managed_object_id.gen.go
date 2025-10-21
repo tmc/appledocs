@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,7 +31,7 @@ type _ManagedObjectIDClass struct {
 // An interface definition for the [ManagedObjectID] class.
 type IManagedObjectID interface {
 	objectivec.IObject
-	URIRepresentation() unsafe.Pointer
+	URIRepresentation() foundation.URL
 }
 
 // A compact, universal identifier for a managed object.
@@ -84,9 +85,27 @@ func NewManagedObjectID() ManagedObjectID {
 // Returns a URI that provides an archiveable reference to the object for the object ID.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectID/uriRepresentation()
-func (m_ ManagedObjectID) URIRepresentation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("URIRepresentation"))
+func (m_ ManagedObjectID) URIRepresentation() foundation.URL {
+	rv := objc.Send[foundation.URL](m_.ID, objc.Sel("URIRepresentation"))
 	return rv
+}
+
+// A Boolean value that indicates whether the object ID is temporary.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectid/istemporaryid
+func (m_ ManagedObjectID) IsTemporaryID() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("isTemporaryID"))
+	return rv
+}
+
+
+// SetIsTemporaryID sets the value of the isTemporaryID property.
+// A Boolean value that indicates whether the object ID is temporary.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectid/istemporaryid
+func (m_ ManagedObjectID) SetIsTemporaryID(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIsTemporaryID:"), value)
 }
 
 // The entity description associated with the object ID.

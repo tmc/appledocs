@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,96 @@ func NewMTRDoorLockClusterLockOperationEvent() MTRDoorLockClusterLockOperationEv
 	return getMTRDoorLockClusterLockOperationEventClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockoperationevent/operationsource
+func (m_ MTRDoorLockClusterLockOperationEvent) OperationSource() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("operationSource"))
+	return rv
+}
+
+
+// SetOperationSource sets the value of the operationSource property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockoperationevent/operationsource
+func (m_ MTRDoorLockClusterLockOperationEvent) SetOperationSource(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setOperationSource:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockoperationevent/fabricindex
+func (m_ MTRDoorLockClusterLockOperationEvent) FabricIndex() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("fabricIndex"))
+	return rv
+}
+
+
+// SetFabricIndex sets the value of the fabricIndex property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockoperationevent/fabricindex
+func (m_ MTRDoorLockClusterLockOperationEvent) SetFabricIndex(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockoperationevent/lockoperationtype
+func (m_ MTRDoorLockClusterLockOperationEvent) LockOperationType() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("lockOperationType"))
+	return rv
+}
+
+
+// SetLockOperationType sets the value of the lockOperationType property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockoperationevent/lockoperationtype
+func (m_ MTRDoorLockClusterLockOperationEvent) SetLockOperationType(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLockOperationType:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockoperationevent/sourcenode
+func (m_ MTRDoorLockClusterLockOperationEvent) SourceNode() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("sourceNode"))
+	return rv
+}
+
+
+// SetSourceNode sets the value of the sourceNode property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockoperationevent/sourcenode
+func (m_ MTRDoorLockClusterLockOperationEvent) SetSourceNode(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSourceNode:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockoperationevent/credentials
+func (m_ MTRDoorLockClusterLockOperationEvent) Credentials() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("credentials"))
+	return rv
+}
+
+
+// SetCredentials sets the value of the credentials property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockoperationevent/credentials
+func (m_ MTRDoorLockClusterLockOperationEvent) SetCredentials(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCredentials:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockoperationevent/userindex
+func (m_ MTRDoorLockClusterLockOperationEvent) UserIndex() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("userIndex"))
+	return rv
+}
+
+
+// SetUserIndex sets the value of the userIndex property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockoperationevent/userindex
+func (m_ MTRDoorLockClusterLockOperationEvent) SetUserIndex(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setUserIndex:"), value)
+}
 
 
 

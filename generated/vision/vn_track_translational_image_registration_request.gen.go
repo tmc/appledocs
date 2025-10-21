@@ -81,5 +81,23 @@ func NewTrackTranslationalImageRegistrationRequest() TrackTranslationalImageRegi
 }
 
 
+// The observed translational image alignment request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vntracktranslationalimageregistrationrequest/results
+func (t_ TrackTranslationalImageRegistrationRequest) Results() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("results"))
+	return rv
+}
+
+
+// SetResults sets the value of the results property.
+// The observed translational image alignment request.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vntracktranslationalimageregistrationrequest/results
+func (t_ TrackTranslationalImageRegistrationRequest) SetResults(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setResults:"), value)
+}
+
 
 

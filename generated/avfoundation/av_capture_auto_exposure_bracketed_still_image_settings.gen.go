@@ -80,5 +80,23 @@ func NewCaptureAutoExposureBracketedStillImageSettings() CaptureAutoExposureBrac
 }
 
 
+// The exposure bias for the auto exposure bracketed settings
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureautoexposurebracketedstillimagesettings/exposuretargetbias
+func (c_ CaptureAutoExposureBracketedStillImageSettings) ExposureTargetBias() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("exposureTargetBias"))
+	return rv
+}
+
+
+// SetExposureTargetBias sets the value of the exposureTargetBias property.
+// The exposure bias for the auto exposure bracketed settings
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureautoexposurebracketedstillimagesettings/exposuretargetbias
+func (c_ CaptureAutoExposureBracketedStillImageSettings) SetExposureTargetBias(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setExposureTargetBias:"), value)
+}
+
 
 

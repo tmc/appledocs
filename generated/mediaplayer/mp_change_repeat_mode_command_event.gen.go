@@ -79,5 +79,41 @@ func NewChangeRepeatModeCommandEvent() ChangeRepeatModeCommandEvent {
 }
 
 
+// A Boolean value that indicates whether the chosen repeat mode is preserved between playback sessions.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpchangerepeatmodecommandevent/preservesrepeatmode
+func (c_ ChangeRepeatModeCommandEvent) PreservesRepeatMode() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("preservesRepeatMode"))
+	return rv
+}
+
+
+// SetPreservesRepeatMode sets the value of the preservesRepeatMode property.
+// A Boolean value that indicates whether the chosen repeat mode is preserved between playback sessions.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpchangerepeatmodecommandevent/preservesrepeatmode
+func (c_ ChangeRepeatModeCommandEvent) SetPreservesRepeatMode(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setPreservesRepeatMode:"), value)
+}
+
+// The repeat type used when fulfilling the event request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpchangerepeatmodecommandevent/repeattype
+func (c_ ChangeRepeatModeCommandEvent) RepeatType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("repeatType"))
+	return rv
+}
+
+
+// SetRepeatType sets the value of the repeatType property.
+// The repeat type used when fulfilling the event request.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpchangerepeatmodecommandevent/repeattype
+func (c_ ChangeRepeatModeCommandEvent) SetRepeatType(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setRepeatType:"), value)
+}
+
 
 

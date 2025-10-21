@@ -82,8 +82,8 @@ func NewStateConstraint() StateConstraint {
 // The shape of the state buffer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLStateConstraint/bufferShape-6o5vn
-func (s_ StateConstraint) BufferShape() []foundation.NSNumber {
-	rv := objc.Send[[]foundation.NSNumber](s_.ID, objc.Sel("bufferShape"))
+func (s_ StateConstraint) BufferShape() []foundation.Number {
+	rv := objc.Send[[]foundation.Number](s_.ID, objc.Sel("bufferShape"))
 	return rv
 }
 

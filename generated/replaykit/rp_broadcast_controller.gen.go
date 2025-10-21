@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -110,6 +111,42 @@ func (r_ RPBroadcastController) StartBroadcastWithHandler(handler func(error obj
 	objc.Send[objc.ID](r_.ID, objc.Sel("startBroadcastWithHandler:"), handler)
 }
 
+// A Boolean value indicating whether the broadcast is paused.
+//
+// [Full Topic]: https://developer.apple.com/documentation/replaykit/rpbroadcastcontroller/ispaused
+func (r_ RPBroadcastController) IsPaused() bool {
+	rv := objc.Send[bool](r_.ID, objc.Sel("isPaused"))
+	return rv
+}
+
+
+// SetIsPaused sets the value of the isPaused property.
+// A Boolean value indicating whether the broadcast is paused.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/replaykit/rpbroadcastcontroller/ispaused
+func (r_ RPBroadcastController) SetIsPaused(value bool) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setIsPaused:"), value)
+}
+
+// A Boolean value indicating whether the controller is broadcasting.
+//
+// [Full Topic]: https://developer.apple.com/documentation/replaykit/rpbroadcastcontroller/isbroadcasting
+func (r_ RPBroadcastController) IsBroadcasting() bool {
+	rv := objc.Send[bool](r_.ID, objc.Sel("isBroadcasting"))
+	return rv
+}
+
+
+// SetIsBroadcasting sets the value of the isBroadcasting property.
+// A Boolean value indicating whether the controller is broadcasting.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/replaykit/rpbroadcastcontroller/isbroadcasting
+func (r_ RPBroadcastController) SetIsBroadcasting(value bool) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setIsBroadcasting:"), value)
+}
+
 // The bundle ID for the selected broadcast service.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPBroadcastController/broadcastExtensionBundleID
@@ -121,8 +158,8 @@ func (r_ RPBroadcastController) BroadcastExtensionBundleID() string {
 // A URL that redirects users to an ongoing or completed broadcast.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPBroadcastController/broadcastURL
-func (r_ RPBroadcastController) BroadcastURL() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("broadcastURL"))
+func (r_ RPBroadcastController) BroadcastURL() foundation.URL {
+	rv := objc.Send[foundation.URL](r_.ID, objc.Sel("broadcastURL"))
 	return rv
 }
 

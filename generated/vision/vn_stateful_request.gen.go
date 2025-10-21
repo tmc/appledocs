@@ -79,5 +79,41 @@ func NewStatefulRequest() StatefulRequest {
 }
 
 
+// A time value that indicates the interval between analysis operations.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnstatefulrequest/frameanalysisspacing
+func (s_ StatefulRequest) FrameAnalysisSpacing() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("frameAnalysisSpacing"))
+	return rv
+}
+
+
+// SetFrameAnalysisSpacing sets the value of the frameAnalysisSpacing property.
+// A time value that indicates the interval between analysis operations.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnstatefulrequest/frameanalysisspacing
+func (s_ StatefulRequest) SetFrameAnalysisSpacing(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setFrameAnalysisSpacing:"), value)
+}
+
+// The minimum number of frames a request processes before reporting an observation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnstatefulrequest/minimumlatencyframecount
+func (s_ StatefulRequest) MinimumLatencyFrameCount() int {
+	rv := objc.Send[int](s_.ID, objc.Sel("minimumLatencyFrameCount"))
+	return rv
+}
+
+
+// SetMinimumLatencyFrameCount sets the value of the minimumLatencyFrameCount property.
+// The minimum number of frames a request processes before reporting an observation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnstatefulrequest/minimumlatencyframecount
+func (s_ StatefulRequest) SetMinimumLatencyFrameCount(value int) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setMinimumLatencyFrameCount:"), value)
+}
+
 
 

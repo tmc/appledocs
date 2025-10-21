@@ -98,4 +98,40 @@ func (cc _CScatterLayerClass) LayerWithDimensionReductionType(dimension uint, re
 	return rv
 }
 
+// The dimension to index.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcscatterlayer/dimension
+func (c_ CScatterLayer) Dimension() int {
+	rv := objc.Send[int](c_.ID, objc.Sel("dimension"))
+	return rv
+}
+
+
+// SetDimension sets the value of the dimension property.
+// The dimension to index.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcscatterlayer/dimension
+func (c_ CScatterLayer) SetDimension(value int) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setDimension:"), value)
+}
+
+// The reduction type that applies to all values in the source tensor.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcscatterlayer/reductiontype
+func (c_ CScatterLayer) ReductionType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("reductionType"))
+	return rv
+}
+
+
+// SetReductionType sets the value of the reductionType property.
+// The reduction type that applies to all values in the source tensor.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcscatterlayer/reductiontype
+func (c_ CScatterLayer) SetReductionType(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setReductionType:"), value)
+}
+
 

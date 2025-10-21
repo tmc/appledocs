@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,51 @@ func NewMTRThermostatClusterWeeklyScheduleTransitionStruct() MTRThermostatCluste
 	return getMTRThermostatClusterWeeklyScheduleTransitionStructClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclusterweeklyscheduletransitionstruct/heatsetpoint
+func (m_ MTRThermostatClusterWeeklyScheduleTransitionStruct) HeatSetpoint() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("heatSetpoint"))
+	return rv
+}
+
+
+// SetHeatSetpoint sets the value of the heatSetpoint property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclusterweeklyscheduletransitionstruct/heatsetpoint
+func (m_ MTRThermostatClusterWeeklyScheduleTransitionStruct) SetHeatSetpoint(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setHeatSetpoint:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclusterweeklyscheduletransitionstruct/transitiontime
+func (m_ MTRThermostatClusterWeeklyScheduleTransitionStruct) TransitionTime() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("transitionTime"))
+	return rv
+}
+
+
+// SetTransitionTime sets the value of the transitionTime property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclusterweeklyscheduletransitionstruct/transitiontime
+func (m_ MTRThermostatClusterWeeklyScheduleTransitionStruct) SetTransitionTime(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTransitionTime:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclusterweeklyscheduletransitionstruct/coolsetpoint
+func (m_ MTRThermostatClusterWeeklyScheduleTransitionStruct) CoolSetpoint() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("coolSetpoint"))
+	return rv
+}
+
+
+// SetCoolSetpoint sets the value of the coolSetpoint property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclusterweeklyscheduletransitionstruct/coolsetpoint
+func (m_ MTRThermostatClusterWeeklyScheduleTransitionStruct) SetCoolSetpoint(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCoolSetpoint:"), value)
+}
 
 
 

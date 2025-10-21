@@ -172,6 +172,32 @@ func (c_ CoreDataCoreSpotlightDelegate) StopSpotlightIndexing() {
 
 // A Boolean value that indicates whether Core Data is currently updating the Core Spotlight index with the persistent store’s entities.
 //
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nscoredatacorespotlightdelegate/isindexingenabled
+func (c_ CoreDataCoreSpotlightDelegate) IsIndexingEnabled() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isIndexingEnabled"))
+	return rv
+}
+
+
+// SetIsIndexingEnabled sets the value of the isIndexingEnabled property.
+// A Boolean value that indicates whether Core Data is currently updating the Core Spotlight index with the persistent store’s entities.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nscoredatacorespotlightdelegate/isindexingenabled
+func (c_ CoreDataCoreSpotlightDelegate) SetIsIndexingEnabled(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsIndexingEnabled:"), value)
+}
+
+// The key you use to specify your Core Spotlight delegate.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nscoredatacorespotlightexporter
+func (c_ CoreDataCoreSpotlightDelegate) NSCoreDataCoreSpotlightExporter() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("NSCoreDataCoreSpotlightExporter"))
+	return rv
+}
+
+// A Boolean value that indicates whether Core Data is currently updating the Core Spotlight index with the persistent store’s entities.
+//
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSCoreDataCoreSpotlightDelegate/isIndexingEnabled
 func (c_ CoreDataCoreSpotlightDelegate) IndexingEnabled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("indexingEnabled"))

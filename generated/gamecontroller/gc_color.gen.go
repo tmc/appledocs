@@ -91,6 +91,42 @@ func NewGCColorWithRedGreenBlue(red unsafe.Pointer, green unsafe.Pointer, blue u
 }
 
 
+// The normalized value of the red component ranging from 0 to 1.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccolor/red
+func (g_ GCColor) Red() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("red"))
+	return rv
+}
+
+
+// SetRed sets the value of the red property.
+// The normalized value of the red component ranging from 0 to 1.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccolor/red
+func (g_ GCColor) SetRed(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setRed:"), value)
+}
+
+// The color of a device’s light.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcdevicelight/color
+func (g_ GCColor) Color() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("color"))
+	return rv
+}
+
+
+// SetColor sets the value of the color property.
+// The color of a device’s light.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcdevicelight/color
+func (g_ GCColor) SetColor(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setColor:"), value)
+}
+
 // The normalized value of the blue component ranging from 0 to 1.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCColor/blue

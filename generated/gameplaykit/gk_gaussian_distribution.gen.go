@@ -106,6 +106,42 @@ func NewGaussianDistributionWithRandomSourceMeanDeviation(source objc.ID, mean u
 }
 
 
+// The lowest value to be produced by the distribution.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gameplaykit/gkrandomdistribution/lowestvalue
+func (g_ GaussianDistribution) LowestValue() int {
+	rv := objc.Send[int](g_.ID, objc.Sel("lowestValue"))
+	return rv
+}
+
+
+// SetLowestValue sets the value of the lowestValue property.
+// The lowest value to be produced by the distribution.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gameplaykit/gkrandomdistribution/lowestvalue
+func (g_ GaussianDistribution) SetLowestValue(value int) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setLowestValue:"), value)
+}
+
+// The highest value to be produced by the distribution.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gameplaykit/gkrandomdistribution/highestvalue
+func (g_ GaussianDistribution) HighestValue() int {
+	rv := objc.Send[int](g_.ID, objc.Sel("highestValue"))
+	return rv
+}
+
+
+// SetHighestValue sets the value of the highestValue property.
+// The highest value to be produced by the distribution.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gameplaykit/gkrandomdistribution/highestvalue
+func (g_ GaussianDistribution) SetHighestValue(value int) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setHighestValue:"), value)
+}
+
 // The standard deviation of the distribution (also called ).
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGaussianDistribution/deviation

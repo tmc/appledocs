@@ -80,5 +80,23 @@ func NewMediaPresentationSetting() MediaPresentationSetting {
 }
 
 
+// Provides the media characteristic that corresponds to the selectable setting.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediapresentationsetting/mediacharacteristic
+func (m_ MediaPresentationSetting) MediaCharacteristic() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("mediaCharacteristic"))
+	return rv
+}
+
+
+// SetMediaCharacteristic sets the value of the mediaCharacteristic property.
+// Provides the media characteristic that corresponds to the selectable setting.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediapresentationsetting/mediacharacteristic
+func (m_ MediaPresentationSetting) SetMediaCharacteristic(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMediaCharacteristic:"), value)
+}
+
 
 

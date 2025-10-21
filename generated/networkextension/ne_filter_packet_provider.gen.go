@@ -79,5 +79,38 @@ func NewNEFilterPacketProvider() NEFilterPacketProvider {
 }
 
 
+// A Swift closure or an ObjectiveC block that handles each packet received by the filter.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterpacketprovider/packethandler
+func (n_ NEFilterPacketProvider) PacketHandler() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("packetHandler"))
+	return rv
+}
+
+
+// SetPacketHandler sets the value of the packetHandler property.
+// A Swift closure or an ObjectiveC block that handles each packet received by the filter.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterpacketprovider/packethandler
+func (n_ NEFilterPacketProvider) SetPacketHandler(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setPacketHandler:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterpacketprovider/handler
+func (n_ NEFilterPacketProvider) Handler() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("handler"))
+	return rv
+}
+
+
+// SetHandler sets the value of the handler property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterpacketprovider/handler
+func (n_ NEFilterPacketProvider) SetHandler(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setHandler:"), value)
+}
+
 
 

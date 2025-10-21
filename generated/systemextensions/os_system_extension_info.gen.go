@@ -76,6 +76,21 @@ func NewOSSystemExtensionInfo() OSSystemExtensionInfo {
 
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/systemextensions/ossystemextensioninfo/bundleversion
+func (o_ OSSystemExtensionInfo) BundleVersion() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("bundleVersion"))
+	return rv
+}
+
+
+// SetBundleVersion sets the value of the bundleVersion property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/systemextensions/ossystemextensioninfo/bundleversion
+func (o_ OSSystemExtensionInfo) SetBundleVersion(value string) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setBundleVersion:"), objc.String(value))
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/SystemExtensions/OSSystemExtensionInfo/bundleIdentifier
 func (o_ OSSystemExtensionInfo) BundleIdentifier() string {
 	rv := objc.Send[string](o_.ID, objc.Sel("bundleIdentifier"))

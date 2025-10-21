@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,7 +32,7 @@ type _MovementDisorderManagerClass struct {
 type IMovementDisorderManager interface {
 	objectivec.IObject
 	LastProcessedDate() unsafe.Pointer
-	MonitorKinesiasForDuration(duration TimeInterval)
+	MonitorKinesiasForDuration(duration foundation.TimeInterval)
 	MonitorKinesiasExpirationDate() unsafe.Pointer
 	QueryDyskineticSymptomFromDateToDateWithHandler(fromDate unsafe.Pointer, toDate unsafe.Pointer, handler unsafe.Pointer)
 	QueryTremorFromDateToDateWithHandler(fromDate unsafe.Pointer, toDate unsafe.Pointer, handler unsafe.Pointer)
@@ -120,7 +121,7 @@ func (m_ MovementDisorderManager) LastProcessedDate() unsafe.Pointer {
 // Calculate and store tremor and dyskinetic symptom results for the duration of the specified time interval.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMovementDisorderManager/monitorKinesias(forDuration:)
-func (m_ MovementDisorderManager) MonitorKinesiasForDuration(duration TimeInterval) {
+func (m_ MovementDisorderManager) MonitorKinesiasForDuration(duration foundation.TimeInterval) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("monitorKinesiasForDuration:"), duration)
 }
 

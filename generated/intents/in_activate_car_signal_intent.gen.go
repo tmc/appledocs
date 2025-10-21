@@ -81,5 +81,41 @@ func NewINActivateCarSignalIntent() INActivateCarSignalIntent {
 }
 
 
+// A name that identifies the user’s car.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inactivatecarsignalintent/carname
+func (i_ INActivateCarSignalIntent) CarName() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("carName"))
+	return rv
+}
+
+
+// SetCarName sets the value of the carName property.
+// A name that identifies the user’s car.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inactivatecarsignalintent/carname
+func (i_ INActivateCarSignalIntent) SetCarName(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setCarName:"), value)
+}
+
+// The set of signals to activate.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inactivatecarsignalintent/signals
+func (i_ INActivateCarSignalIntent) Signals() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("signals"))
+	return rv
+}
+
+
+// SetSignals sets the value of the signals property.
+// The set of signals to activate.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inactivatecarsignalintent/signals
+func (i_ INActivateCarSignalIntent) SetSignals(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setSignals:"), value)
+}
+
 
 

@@ -88,5 +88,13 @@ func (a_ AccountAuthenticationModificationExtensionContext) CompleteChangePasswo
 	objc.Send[objc.ID](a_.ID, objc.Sel("completeChangePasswordRequestWithUpdatedCredential:userInfo:"), updatedCredential, userInfo)
 }
 
+// A key that specifies a string value to show to the user when a request fails.
+//
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asextensionlocalizedfailurereasonerrorkey
+func (a_ AccountAuthenticationModificationExtensionContext) ASExtensionLocalizedFailureReasonErrorKey() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("ASExtensionLocalizedFailureReasonErrorKey"))
+	return rv
+}
+
 
 

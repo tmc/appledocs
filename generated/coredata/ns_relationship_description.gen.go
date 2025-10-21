@@ -81,6 +81,132 @@ func NewRelationshipDescription() RelationshipDescription {
 }
 
 
+// A Boolean value that determines whether the relationship preserves the order of the referenced managed objects.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsrelationshipdescription/isordered
+func (r_ RelationshipDescription) IsOrdered() bool {
+	rv := objc.Send[bool](r_.ID, objc.Sel("isOrdered"))
+	return rv
+}
+
+
+// SetIsOrdered sets the value of the isOrdered property.
+// A Boolean value that determines whether the relationship preserves the order of the referenced managed objects.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsrelationshipdescription/isordered
+func (r_ RelationshipDescription) SetIsOrdered(value bool) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setIsOrdered:"), value)
+}
+
+// The maximum number of managed objects the relationship can reference.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsrelationshipdescription/maxcount
+func (r_ RelationshipDescription) MaxCount() int {
+	rv := objc.Send[int](r_.ID, objc.Sel("maxCount"))
+	return rv
+}
+
+
+// SetMaxCount sets the value of the maxCount property.
+// The maximum number of managed objects the relationship can reference.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsrelationshipdescription/maxcount
+func (r_ RelationshipDescription) SetMaxCount(value int) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setMaxCount:"), value)
+}
+
+// The relationship that represents the inverse of the current relationship.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsrelationshipdescription/inverserelationship
+func (r_ RelationshipDescription) InverseRelationship() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("inverseRelationship"))
+	return rv
+}
+
+
+// SetInverseRelationship sets the value of the inverseRelationship property.
+// The relationship that represents the inverse of the current relationship.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsrelationshipdescription/inverserelationship
+func (r_ RelationshipDescription) SetInverseRelationship(value unsafe.Pointer) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setInverseRelationship:"), value)
+}
+
+// The type of object the relationship contains.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsrelationshipdescription/destinationentity
+func (r_ RelationshipDescription) DestinationEntity() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("destinationEntity"))
+	return rv
+}
+
+
+// SetDestinationEntity sets the value of the destinationEntity property.
+// The type of object the relationship contains.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsrelationshipdescription/destinationentity
+func (r_ RelationshipDescription) SetDestinationEntity(value unsafe.Pointer) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setDestinationEntity:"), value)
+}
+
+// The minimum number of managed objects the relationship can reference.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsrelationshipdescription/mincount
+func (r_ RelationshipDescription) MinCount() int {
+	rv := objc.Send[int](r_.ID, objc.Sel("minCount"))
+	return rv
+}
+
+
+// SetMinCount sets the value of the minCount property.
+// The minimum number of managed objects the relationship can reference.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsrelationshipdescription/mincount
+func (r_ RelationshipDescription) SetMinCount(value int) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setMinCount:"), value)
+}
+
+// Returns a Boolean value that indicates whether the relationship can contain many managed objects.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsrelationshipdescription/istomany
+func (r_ RelationshipDescription) IsToMany() bool {
+	rv := objc.Send[bool](r_.ID, objc.Sel("isToMany"))
+	return rv
+}
+
+
+// SetIsToMany sets the value of the isToMany property.
+// Returns a Boolean value that indicates whether the relationship can contain many managed objects.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsrelationshipdescription/istomany
+func (r_ RelationshipDescription) SetIsToMany(value bool) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setIsToMany:"), value)
+}
+
+// The relationship’s unique identity.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsrelationshipdescription/versionhash
+func (r_ RelationshipDescription) VersionHash() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("versionHash"))
+	return rv
+}
+
+
+// SetVersionHash sets the value of the versionHash property.
+// The relationship’s unique identity.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsrelationshipdescription/versionhash
+func (r_ RelationshipDescription) SetVersionHash(value unsafe.Pointer) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setVersionHash:"), value)
+}
+
 // The rule to apply when you delete the relationship’s owning managed object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSRelationshipDescription/deleteRule

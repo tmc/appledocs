@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,51 @@ func NewMTRSwitchClusterMultiPressCompleteEvent() MTRSwitchClusterMultiPressComp
 	return getMTRSwitchClusterMultiPressCompleteEventClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrswitchclustermultipresscompleteevent/totalnumberofpressescounted
+func (m_ MTRSwitchClusterMultiPressCompleteEvent) TotalNumberOfPressesCounted() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("totalNumberOfPressesCounted"))
+	return rv
+}
+
+
+// SetTotalNumberOfPressesCounted sets the value of the totalNumberOfPressesCounted property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrswitchclustermultipresscompleteevent/totalnumberofpressescounted
+func (m_ MTRSwitchClusterMultiPressCompleteEvent) SetTotalNumberOfPressesCounted(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTotalNumberOfPressesCounted:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrswitchclustermultipresscompleteevent/previousposition
+func (m_ MTRSwitchClusterMultiPressCompleteEvent) PreviousPosition() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("previousPosition"))
+	return rv
+}
+
+
+// SetPreviousPosition sets the value of the previousPosition property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrswitchclustermultipresscompleteevent/previousposition
+func (m_ MTRSwitchClusterMultiPressCompleteEvent) SetPreviousPosition(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPreviousPosition:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrswitchclustermultipresscompleteevent/newposition
+func (m_ MTRSwitchClusterMultiPressCompleteEvent) NewPosition() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("newPosition"))
+	return rv
+}
+
+
+// SetNewPosition sets the value of the newPosition property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrswitchclustermultipresscompleteevent/newposition
+func (m_ MTRSwitchClusterMultiPressCompleteEvent) SetNewPosition(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setNewPosition:"), value)
+}
 
 
 

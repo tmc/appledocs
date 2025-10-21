@@ -82,6 +82,42 @@ func NewDisplayManager() DisplayManager {
 
 // A Boolean value that indicates whether the user has enabled display critera matching.
 //
+// [Full Topic]: https://developer.apple.com/documentation/avkit/avdisplaymanager/isdisplaycriteriamatchingenabled
+func (d_ DisplayManager) IsDisplayCriteriaMatchingEnabled() bool {
+	rv := objc.Send[bool](d_.ID, objc.Sel("isDisplayCriteriaMatchingEnabled"))
+	return rv
+}
+
+
+// SetIsDisplayCriteriaMatchingEnabled sets the value of the isDisplayCriteriaMatchingEnabled property.
+// A Boolean value that indicates whether the user has enabled display critera matching.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avkit/avdisplaymanager/isdisplaycriteriamatchingenabled
+func (d_ DisplayManager) SetIsDisplayCriteriaMatchingEnabled(value bool) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setIsDisplayCriteriaMatchingEnabled:"), value)
+}
+
+// A Boolean value that indicates whether a display mode switch is in progress.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avkit/avdisplaymanager/isdisplaymodeswitchinprogress
+func (d_ DisplayManager) IsDisplayModeSwitchInProgress() bool {
+	rv := objc.Send[bool](d_.ID, objc.Sel("isDisplayModeSwitchInProgress"))
+	return rv
+}
+
+
+// SetIsDisplayModeSwitchInProgress sets the value of the isDisplayModeSwitchInProgress property.
+// A Boolean value that indicates whether a display mode switch is in progress.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avkit/avdisplaymanager/isdisplaymodeswitchinprogress
+func (d_ DisplayManager) SetIsDisplayModeSwitchInProgress(value bool) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setIsDisplayModeSwitchInProgress:"), value)
+}
+
+// A Boolean value that indicates whether the user has enabled display critera matching.
+//
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVDisplayManager/isDisplayCriteriaMatchingEnabled
 func (d_ DisplayManager) DisplayCriteriaMatchingEnabled() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("displayCriteriaMatchingEnabled"))

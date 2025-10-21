@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [HKPHQ9Assessment] class.
@@ -92,8 +93,8 @@ func (hc _HKPHQ9AssessmentClass) AssessmentWithDateAnswersMetadata(date unsafe.P
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKPHQ9Assessment/answers-439dt
-func (h_ HKPHQ9Assessment) Answers() []NSNumber {
-	rv := objc.Send[[]NSNumber](h_.ID, objc.Sel("answers"))
+func (h_ HKPHQ9Assessment) Answers() []foundation.Number {
+	rv := objc.Send[[]foundation.Number](h_.ID, objc.Sel("answers"))
 	return rv
 }
 

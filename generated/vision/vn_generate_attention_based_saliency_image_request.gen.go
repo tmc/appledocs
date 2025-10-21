@@ -79,5 +79,31 @@ func NewGenerateAttentionBasedSaliencyImageRequest() GenerateAttentionBasedSalie
 }
 
 
+// A constant for specifying revision 1 of the image saliency request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vngenerateattentionbasedsaliencyimagerequestrevision1
+func (g_ GenerateAttentionBasedSaliencyImageRequest) VNGenerateAttentionBasedSaliencyImageRequestRevision1() int {
+	rv := objc.Send[int](g_.ID, objc.Sel("VNGenerateAttentionBasedSaliencyImageRequestRevision1"))
+	return rv
+}
+
+// The results of the image saliency request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vngenerateattentionbasedsaliencyimagerequest/results
+func (g_ GenerateAttentionBasedSaliencyImageRequest) Results() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("results"))
+	return rv
+}
+
+
+// SetResults sets the value of the results property.
+// The results of the image saliency request.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vngenerateattentionbasedsaliencyimagerequest/results
+func (g_ GenerateAttentionBasedSaliencyImageRequest) SetResults(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setResults:"), value)
+}
+
 
 

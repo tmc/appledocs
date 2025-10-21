@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,8 +78,8 @@ func NewMTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams() MTRDevice
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams/cause
-func (m_ MTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams) Cause() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("cause"))
+func (m_ MTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams) Cause() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("cause"))
 	return rv
 }
 
@@ -86,14 +87,14 @@ func (m_ MTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams) Cause() u
 // SetCause sets the value of the cause property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams/cause
-func (m_ MTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams) SetCause(value unsafe.Pointer) {
+func (m_ MTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams) SetCause(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCause:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams/requestedStartTime
-func (m_ MTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams) RequestedStartTime() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("requestedStartTime"))
+func (m_ MTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams) RequestedStartTime() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("requestedStartTime"))
 	return rv
 }
 
@@ -101,15 +102,15 @@ func (m_ MTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams) Requested
 // SetRequestedStartTime sets the value of the requestedStartTime property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams/requestedStartTime
-func (m_ MTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams) SetRequestedStartTime(value unsafe.Pointer) {
+func (m_ MTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams) SetRequestedStartTime(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRequestedStartTime:"), value)
 }
 
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams/serverSideProcessingTimeout
-func (m_ MTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams) ServerSideProcessingTimeout() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
@@ -119,15 +120,15 @@ func (m_ MTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams) ServerSid
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams/serverSideProcessingTimeout
-func (m_ MTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams) SetServerSideProcessingTimeout(value unsafe.Pointer) {
+func (m_ MTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams) SetServerSideProcessingTimeout(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams/timedInvokeTimeoutMs
-func (m_ MTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams) TimedInvokeTimeoutMs() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
@@ -137,7 +138,7 @@ func (m_ MTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams) TimedInvo
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams/timedInvokeTimeoutMs
-func (m_ MTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams) SetTimedInvokeTimeoutMs(value unsafe.Pointer) {
+func (m_ MTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

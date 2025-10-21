@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PDFActionURL] class.
@@ -78,6 +79,24 @@ func NewPDFActionURL() PDFActionURL {
 	return getPDFActionURLClass().New()
 }
 
+
+// Returns the URL associated with the URL action.
+//
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfactionurl/url
+func (p_ PDFActionURL) Url() foundation.URL {
+	rv := objc.Send[foundation.URL](p_.ID, objc.Sel("url"))
+	return rv
+}
+
+
+// SetUrl sets the value of the url property.
+// Returns the URL associated with the URL action.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfactionurl/url
+func (p_ PDFActionURL) SetUrl(value foundation.URL) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setUrl:"), value)
+}
 
 
 

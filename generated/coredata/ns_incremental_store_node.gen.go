@@ -80,6 +80,24 @@ func NewIncrementalStoreNode() IncrementalStoreNode {
 }
 
 
+// The version of data in the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsincrementalstorenode/version
+func (i_ IncrementalStoreNode) Version() uint64 {
+	rv := objc.Send[uint64](i_.ID, objc.Sel("version"))
+	return rv
+}
+
+
+// SetVersion sets the value of the version property.
+// The version of data in the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsincrementalstorenode/version
+func (i_ IncrementalStoreNode) SetVersion(value uint64) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setVersion:"), value)
+}
+
 // The object ID that identifies the data stored by the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSIncrementalStoreNode/objectID

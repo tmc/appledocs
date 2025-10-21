@@ -99,5 +99,23 @@ func (u_ USBHostDevice) ResetWithError(error_ unsafe.Pointer) bool {
 	return rv
 }
 
+// The currently selected configuration descriptor.
+//
+// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostdevice/configurationdescriptor
+func (u_ USBHostDevice) ConfigurationDescriptor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("configurationDescriptor"))
+	return rv
+}
+
+
+// SetConfigurationDescriptor sets the value of the configurationDescriptor property.
+// The currently selected configuration descriptor.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostdevice/configurationdescriptor
+func (u_ USBHostDevice) SetConfigurationDescriptor(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setConfigurationDescriptor:"), value)
+}
+
 
 

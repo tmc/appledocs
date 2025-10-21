@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [VZLinuxBootLoader] class.
@@ -86,13 +87,31 @@ func NewVZLinuxBootLoader() VZLinuxBootLoader {
 // Creates a boot loader that launches the Linux kernel at the specified URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxBootLoader/init(kernelURL:)
-func NewVZLinuxBootLoaderWithKernelURL(kernelURL unsafe.Pointer) VZLinuxBootLoader {
+func NewVZLinuxBootLoaderWithKernelURL(kernelURL foundation.URL) VZLinuxBootLoader {
 	instance := getVZLinuxBootLoaderClass().Alloc()
 	rv := objc.Send[VZLinuxBootLoader](instance.ID, objc.Sel("initWithKernelURL:"), kernelURL)
 	rv.Autorelease()
 	return rv
 }
 
+
+// The guest system to boot when the VM starts.
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/bootloader
+func (v_ VZLinuxBootLoader) BootLoader() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("bootLoader"))
+	return rv
+}
+
+
+// SetBootLoader sets the value of the bootLoader property.
+// The guest system to boot when the VM starts.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/bootloader
+func (v_ VZLinuxBootLoader) SetBootLoader(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setBootLoader:"), value)
+}
 
 // The command-line parameters to pass to the Linux kernel at boot time.
 //
@@ -115,8 +134,8 @@ func (v_ VZLinuxBootLoader) SetCommandLine(value string) {
 // The location of an optional RAM disk, which the boot loader maps into memory before it boots the Linux kernel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxBootLoader/initialRamdiskURL
-func (v_ VZLinuxBootLoader) InitialRamdiskURL() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("initialRamdiskURL"))
+func (v_ VZLinuxBootLoader) InitialRamdiskURL() foundation.URL {
+	rv := objc.Send[foundation.URL](v_.ID, objc.Sel("initialRamdiskURL"))
 	return rv
 }
 
@@ -126,15 +145,15 @@ func (v_ VZLinuxBootLoader) InitialRamdiskURL() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxBootLoader/initialRamdiskURL
-func (v_ VZLinuxBootLoader) SetInitialRamdiskURL(value unsafe.Pointer) {
+func (v_ VZLinuxBootLoader) SetInitialRamdiskURL(value foundation.URL) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setInitialRamdiskURL:"), value)
 }
 
 // The URL of the Linux kernel file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxBootLoader/kernelURL
-func (v_ VZLinuxBootLoader) KernelURL() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("kernelURL"))
+func (v_ VZLinuxBootLoader) KernelURL() foundation.URL {
+	rv := objc.Send[foundation.URL](v_.ID, objc.Sel("kernelURL"))
 	return rv
 }
 
@@ -144,7 +163,7 @@ func (v_ VZLinuxBootLoader) KernelURL() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxBootLoader/kernelURL
-func (v_ VZLinuxBootLoader) SetKernelURL(value unsafe.Pointer) {
+func (v_ VZLinuxBootLoader) SetKernelURL(value foundation.URL) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setKernelURL:"), value)
 }
 

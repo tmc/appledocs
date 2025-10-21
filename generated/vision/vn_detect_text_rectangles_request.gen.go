@@ -81,5 +81,49 @@ func NewDetectTextRectanglesRequest() DetectTextRectanglesRequest {
 }
 
 
+// The results of the request to detect text rectangles.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetecttextrectanglesrequest/results
+func (d_ DetectTextRectanglesRequest) Results() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("results"))
+	return rv
+}
+
+
+// SetResults sets the value of the results property.
+// The results of the request to detect text rectangles.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetecttextrectanglesrequest/results
+func (d_ DetectTextRectanglesRequest) SetResults(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setResults:"), value)
+}
+
+// A Boolean value that indicates whether the request detects character bounding boxes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetecttextrectanglesrequest/reportcharacterboxes
+func (d_ DetectTextRectanglesRequest) ReportCharacterBoxes() bool {
+	rv := objc.Send[bool](d_.ID, objc.Sel("reportCharacterBoxes"))
+	return rv
+}
+
+
+// SetReportCharacterBoxes sets the value of the reportCharacterBoxes property.
+// A Boolean value that indicates whether the request detects character bounding boxes.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetecttextrectanglesrequest/reportcharacterboxes
+func (d_ DetectTextRectanglesRequest) SetReportCharacterBoxes(value bool) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setReportCharacterBoxes:"), value)
+}
+
+// A constant for specifying revision 1 of the text rectangles detection request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetecttextrectanglesrequestrevision1
+func (d_ DetectTextRectanglesRequest) VNDetectTextRectanglesRequestRevision1() int {
+	rv := objc.Send[int](d_.ID, objc.Sel("VNDetectTextRectanglesRequestRevision1"))
+	return rv
+}
+
 
 

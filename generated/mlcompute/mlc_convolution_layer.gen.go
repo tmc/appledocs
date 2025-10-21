@@ -79,5 +79,95 @@ func NewCConvolutionLayer() CConvolutionLayer {
 }
 
 
+// The weights tensor you use for the convolution layer.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcconvolutionlayer/weights
+func (c_ CConvolutionLayer) Weights() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("weights"))
+	return rv
+}
+
+
+// SetWeights sets the value of the weights property.
+// The weights tensor you use for the convolution layer.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcconvolutionlayer/weights
+func (c_ CConvolutionLayer) SetWeights(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setWeights:"), value)
+}
+
+// The biases tensor parameter you use for optimizer updates.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcconvolutionlayer/biasesparameter
+func (c_ CConvolutionLayer) BiasesParameter() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("biasesParameter"))
+	return rv
+}
+
+
+// SetBiasesParameter sets the value of the biasesParameter property.
+// The biases tensor parameter you use for optimizer updates.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcconvolutionlayer/biasesparameter
+func (c_ CConvolutionLayer) SetBiasesParameter(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setBiasesParameter:"), value)
+}
+
+// The weights tensor parameter you use for optimizer updates.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcconvolutionlayer/weightsparameter
+func (c_ CConvolutionLayer) WeightsParameter() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("weightsParameter"))
+	return rv
+}
+
+
+// SetWeightsParameter sets the value of the weightsParameter property.
+// The weights tensor parameter you use for optimizer updates.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcconvolutionlayer/weightsparameter
+func (c_ CConvolutionLayer) SetWeightsParameter(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setWeightsParameter:"), value)
+}
+
+// The biases tensor you use for the convolution layer.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcconvolutionlayer/biases
+func (c_ CConvolutionLayer) Biases() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("biases"))
+	return rv
+}
+
+
+// SetBiases sets the value of the biases property.
+// The biases tensor you use for the convolution layer.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcconvolutionlayer/biases
+func (c_ CConvolutionLayer) SetBiases(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setBiases:"), value)
+}
+
+// The configuration object you use to create the convolution layer.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcconvolutionlayer/descriptor
+func (c_ CConvolutionLayer) Descriptor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("descriptor"))
+	return rv
+}
+
+
+// SetDescriptor sets the value of the descriptor property.
+// The configuration object you use to create the convolution layer.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcconvolutionlayer/descriptor
+func (c_ CConvolutionLayer) SetDescriptor(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setDescriptor:"), value)
+}
+
 
 

@@ -81,5 +81,95 @@ func NewPHASENumberMetaParameterDefinition() PHASENumberMetaParameterDefinition 
 }
 
 
+// A linear input value to plot on a curve.
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasemappedmetaparameterdefinition/inputmetaparameterdefinition
+func (p_ PHASENumberMetaParameterDefinition) InputMetaParameterDefinition() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("inputMetaParameterDefinition"))
+	return rv
+}
+
+
+// SetInputMetaParameterDefinition sets the value of the inputMetaParameterDefinition property.
+// A linear input value to plot on a curve.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasemappedmetaparameterdefinition/inputmetaparameterdefinition
+func (p_ PHASENumberMetaParameterDefinition) SetInputMetaParameterDefinition(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setInputMetaParameterDefinition:"), value)
+}
+
+// The lowest possible number for the value.
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasenumbermetaparameterdefinition/minimum
+func (p_ PHASENumberMetaParameterDefinition) Minimum() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("minimum"))
+	return rv
+}
+
+
+// SetMinimum sets the value of the minimum property.
+// The lowest possible number for the value.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasenumbermetaparameterdefinition/minimum
+func (p_ PHASENumberMetaParameterDefinition) SetMinimum(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setMinimum:"), value)
+}
+
+// The highest possible number for the value.
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasenumbermetaparameterdefinition/maximum
+func (p_ PHASENumberMetaParameterDefinition) Maximum() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("maximum"))
+	return rv
+}
+
+
+// SetMaximum sets the value of the maximum property.
+// The highest possible number for the value.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasenumbermetaparameterdefinition/maximum
+func (p_ PHASENumberMetaParameterDefinition) SetMaximum(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setMaximum:"), value)
+}
+
+// A dictionary of metaparameters that all sound event assets share.
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phaseassetregistry/globalmetaparameters
+func (p_ PHASENumberMetaParameterDefinition) GlobalMetaParameters() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("globalMetaParameters"))
+	return rv
+}
+
+
+// SetGlobalMetaParameters sets the value of the globalMetaParameters property.
+// A dictionary of metaparameters that all sound event assets share.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phaseassetregistry/globalmetaparameters
+func (p_ PHASENumberMetaParameterDefinition) SetGlobalMetaParameters(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setGlobalMetaParameters:"), objc.String(value))
+}
+
+// The object’s meta parameters.
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasesoundevent/metaparameters
+func (p_ PHASENumberMetaParameterDefinition) MetaParameters() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("metaParameters"))
+	return rv
+}
+
+
+// SetMetaParameters sets the value of the metaParameters property.
+// The object’s meta parameters.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasesoundevent/metaparameters
+func (p_ PHASENumberMetaParameterDefinition) SetMetaParameters(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setMetaParameters:"), objc.String(value))
+}
+
 
 

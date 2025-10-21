@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,8 +78,8 @@ func NewMTRServiceAreaClusterAreaStruct() MTRServiceAreaClusterAreaStruct {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterAreaStruct/areaID
-func (m_ MTRServiceAreaClusterAreaStruct) AreaID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("areaID"))
+func (m_ MTRServiceAreaClusterAreaStruct) AreaID() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("areaID"))
 	return rv
 }
 
@@ -86,7 +87,7 @@ func (m_ MTRServiceAreaClusterAreaStruct) AreaID() unsafe.Pointer {
 // SetAreaID sets the value of the areaID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterAreaStruct/areaID
-func (m_ MTRServiceAreaClusterAreaStruct) SetAreaID(value unsafe.Pointer) {
+func (m_ MTRServiceAreaClusterAreaStruct) SetAreaID(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAreaID:"), value)
 }
 
@@ -107,8 +108,8 @@ func (m_ MTRServiceAreaClusterAreaStruct) SetAreaInfo(value unsafe.Pointer) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterAreaStruct/mapID
-func (m_ MTRServiceAreaClusterAreaStruct) MapID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("mapID"))
+func (m_ MTRServiceAreaClusterAreaStruct) MapID() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("mapID"))
 	return rv
 }
 
@@ -116,7 +117,7 @@ func (m_ MTRServiceAreaClusterAreaStruct) MapID() unsafe.Pointer {
 // SetMapID sets the value of the mapID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterAreaStruct/mapID
-func (m_ MTRServiceAreaClusterAreaStruct) SetMapID(value unsafe.Pointer) {
+func (m_ MTRServiceAreaClusterAreaStruct) SetMapID(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMapID:"), value)
 }
 

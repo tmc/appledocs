@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [MutableComposition] class.
@@ -88,6 +89,42 @@ func NewMutableComposition() MutableComposition {
 func (m_ MutableComposition) InsertTimeRangeOfAssetAtTimeError(timeRange unsafe.Pointer, asset unsafe.Pointer, startTime unsafe.Pointer, outError unsafe.Pointer) bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("insertTimeRange:ofAsset:atTime:error:"), timeRange, asset, startTime, outError)
 	return rv
+}
+
+// The encoded or authored size of the visual portion of the asset.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmutablecomposition/naturalsize
+func (m_ MutableComposition) NaturalSize() coregraphics.CGSize {
+	rv := objc.Send[coregraphics.CGSize](m_.ID, objc.Sel("naturalSize"))
+	return rv
+}
+
+
+// SetNaturalSize sets the value of the naturalSize property.
+// The encoded or authored size of the visual portion of the asset.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmutablecomposition/naturalsize
+func (m_ MutableComposition) SetNaturalSize(value coregraphics.CGSize) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setNaturalSize:"), value)
+}
+
+// The tracks that a composition contains.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmutablecomposition/tracks
+func (m_ MutableComposition) Tracks() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("tracks"))
+	return rv
+}
+
+
+// SetTracks sets the value of the tracks property.
+// The tracks that a composition contains.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmutablecomposition/tracks
+func (m_ MutableComposition) SetTracks(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTracks:"), value)
 }
 
 

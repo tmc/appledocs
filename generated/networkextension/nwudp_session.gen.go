@@ -80,6 +80,132 @@ func NewNWUDPSession() NWUDPSession {
 }
 
 
+// The maximum size of a datagram to be written currently.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nwudpsession/maximumdatagramlength
+func (n_ NWUDPSession) MaximumDatagramLength() int {
+	rv := objc.Send[int](n_.ID, objc.Sel("maximumDatagramLength"))
+	return rv
+}
+
+
+// SetMaximumDatagramLength sets the value of the maximumDatagramLength property.
+// The maximum size of a datagram to be written currently.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nwudpsession/maximumdatagramlength
+func (n_ NWUDPSession) SetMaximumDatagramLength(value int) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setMaximumDatagramLength:"), value)
+}
+
+// The destination endpoint with which this session was created.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nwudpsession/endpoint
+func (n_ NWUDPSession) Endpoint() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("endpoint"))
+	return rv
+}
+
+
+// SetEndpoint sets the value of the endpoint property.
+// The destination endpoint with which this session was created.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nwudpsession/endpoint
+func (n_ NWUDPSession) SetEndpoint(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setEndpoint:"), value)
+}
+
+// If a session has a better path, new session would use a different interface.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nwudpsession/hasbetterpath
+func (n_ NWUDPSession) HasBetterPath() bool {
+	rv := objc.Send[bool](n_.ID, objc.Sel("hasBetterPath"))
+	return rv
+}
+
+
+// SetHasBetterPath sets the value of the hasBetterPath property.
+// If a session has a better path, new session would use a different interface.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nwudpsession/hasbetterpath
+func (n_ NWUDPSession) SetHasBetterPath(value bool) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setHasBetterPath:"), value)
+}
+
+// The viability of a UDP session represents whether or not data can be transferred.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nwudpsession/isviable
+func (n_ NWUDPSession) IsViable() bool {
+	rv := objc.Send[bool](n_.ID, objc.Sel("isViable"))
+	return rv
+}
+
+
+// SetIsViable sets the value of the isViable property.
+// The viability of a UDP session represents whether or not data can be transferred.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nwudpsession/isviable
+func (n_ NWUDPSession) SetIsViable(value bool) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setIsViable:"), value)
+}
+
+// The currently targeted remote endpoint.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nwudpsession/resolvedendpoint
+func (n_ NWUDPSession) ResolvedEndpoint() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("resolvedEndpoint"))
+	return rv
+}
+
+
+// SetResolvedEndpoint sets the value of the resolvedEndpoint property.
+// The currently targeted remote endpoint.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nwudpsession/resolvedendpoint
+func (n_ NWUDPSession) SetResolvedEndpoint(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setResolvedEndpoint:"), value)
+}
+
+// The current state of the UDP session.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nwudpsession/state
+func (n_ NWUDPSession) State() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("state"))
+	return rv
+}
+
+
+// SetState sets the value of the state property.
+// The current state of the UDP session.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nwudpsession/state
+func (n_ NWUDPSession) SetState(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setState:"), value)
+}
+
+// The current evaluated path for the session’s
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nwudpsession/currentpath
+func (n_ NWUDPSession) CurrentPath() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("currentPath"))
+	return rv
+}
+
+
+// SetCurrentPath sets the value of the currentPath property.
+// The current evaluated path for the session’s
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nwudpsession/currentpath
+func (n_ NWUDPSession) SetCurrentPath(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setCurrentPath:"), value)
+}
+
 
 
 

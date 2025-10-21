@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,8 +78,8 @@ func NewMTRDishwasherAlarmClusterModifyEnabledAlarmsParams() MTRDishwasherAlarmC
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherAlarmClusterModifyEnabledAlarmsParams/mask
-func (m_ MTRDishwasherAlarmClusterModifyEnabledAlarmsParams) Mask() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("mask"))
+func (m_ MTRDishwasherAlarmClusterModifyEnabledAlarmsParams) Mask() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("mask"))
 	return rv
 }
 
@@ -86,15 +87,15 @@ func (m_ MTRDishwasherAlarmClusterModifyEnabledAlarmsParams) Mask() unsafe.Point
 // SetMask sets the value of the mask property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherAlarmClusterModifyEnabledAlarmsParams/mask
-func (m_ MTRDishwasherAlarmClusterModifyEnabledAlarmsParams) SetMask(value unsafe.Pointer) {
+func (m_ MTRDishwasherAlarmClusterModifyEnabledAlarmsParams) SetMask(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMask:"), value)
 }
 
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherAlarmClusterModifyEnabledAlarmsParams/serverSideProcessingTimeout
-func (m_ MTRDishwasherAlarmClusterModifyEnabledAlarmsParams) ServerSideProcessingTimeout() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRDishwasherAlarmClusterModifyEnabledAlarmsParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
@@ -104,15 +105,15 @@ func (m_ MTRDishwasherAlarmClusterModifyEnabledAlarmsParams) ServerSideProcessin
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherAlarmClusterModifyEnabledAlarmsParams/serverSideProcessingTimeout
-func (m_ MTRDishwasherAlarmClusterModifyEnabledAlarmsParams) SetServerSideProcessingTimeout(value unsafe.Pointer) {
+func (m_ MTRDishwasherAlarmClusterModifyEnabledAlarmsParams) SetServerSideProcessingTimeout(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherAlarmClusterModifyEnabledAlarmsParams/timedInvokeTimeoutMs
-func (m_ MTRDishwasherAlarmClusterModifyEnabledAlarmsParams) TimedInvokeTimeoutMs() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRDishwasherAlarmClusterModifyEnabledAlarmsParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
@@ -122,7 +123,7 @@ func (m_ MTRDishwasherAlarmClusterModifyEnabledAlarmsParams) TimedInvokeTimeoutM
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherAlarmClusterModifyEnabledAlarmsParams/timedInvokeTimeoutMs
-func (m_ MTRDishwasherAlarmClusterModifyEnabledAlarmsParams) SetTimedInvokeTimeoutMs(value unsafe.Pointer) {
+func (m_ MTRDishwasherAlarmClusterModifyEnabledAlarmsParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

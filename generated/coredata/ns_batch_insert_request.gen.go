@@ -124,4 +124,112 @@ func (bc _BatchInsertRequestClass) BatchInsertRequestWithEntityNameDictionaryHan
 	return rv
 }
 
+// The type of result that Core Data returns from this request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsbatchinsertrequest/resulttype
+func (b_ BatchInsertRequest) ResultType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("resultType"))
+	return rv
+}
+
+
+// SetResultType sets the value of the resultType property.
+// The type of result that Core Data returns from this request.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsbatchinsertrequest/resulttype
+func (b_ BatchInsertRequest) SetResultType(value unsafe.Pointer) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setResultType:"), value)
+}
+
+// The managed entity to insert data into.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsbatchinsertrequest/entity
+func (b_ BatchInsertRequest) Entity() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("entity"))
+	return rv
+}
+
+
+// SetEntity sets the value of the entity property.
+// The managed entity to insert data into.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsbatchinsertrequest/entity
+func (b_ BatchInsertRequest) SetEntity(value unsafe.Pointer) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setEntity:"), value)
+}
+
+// An array of dictionaries that represents the objects to insert with the keys as attribute names and their assigned values.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsbatchinsertrequest/objectstoinsert
+func (b_ BatchInsertRequest) ObjectsToInsert() string {
+	rv := objc.Send[string](b_.ID, objc.Sel("objectsToInsert"))
+	return rv
+}
+
+
+// SetObjectsToInsert sets the value of the objectsToInsert property.
+// An array of dictionaries that represents the objects to insert with the keys as attribute names and their assigned values.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsbatchinsertrequest/objectstoinsert
+func (b_ BatchInsertRequest) SetObjectsToInsert(value string) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setObjectsToInsert:"), objc.String(value))
+}
+
+// A closure that provides a dictionary for your app to insert data into.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsbatchinsertrequest/dictionaryhandler
+func (b_ BatchInsertRequest) DictionaryHandler() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("dictionaryHandler"))
+	return rv
+}
+
+
+// SetDictionaryHandler sets the value of the dictionaryHandler property.
+// A closure that provides a dictionary for your app to insert data into.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsbatchinsertrequest/dictionaryhandler
+func (b_ BatchInsertRequest) SetDictionaryHandler(value unsafe.Pointer) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setDictionaryHandler:"), value)
+}
+
+// The name of the managed entity to insert data into.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsbatchinsertrequest/entityname
+func (b_ BatchInsertRequest) EntityName() string {
+	rv := objc.Send[string](b_.ID, objc.Sel("entityName"))
+	return rv
+}
+
+
+// SetEntityName sets the value of the entityName property.
+// The name of the managed entity to insert data into.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsbatchinsertrequest/entityname
+func (b_ BatchInsertRequest) SetEntityName(value string) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setEntityName:"), objc.String(value))
+}
+
+// A closure that provides a managed object for your app to insert data into.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsbatchinsertrequest/managedobjecthandler
+func (b_ BatchInsertRequest) ManagedObjectHandler() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("managedObjectHandler"))
+	return rv
+}
+
+
+// SetManagedObjectHandler sets the value of the managedObjectHandler property.
+// A closure that provides a managed object for your app to insert data into.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsbatchinsertrequest/managedobjecthandler
+func (b_ BatchInsertRequest) SetManagedObjectHandler(value unsafe.Pointer) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setManagedObjectHandler:"), value)
+}
+
 

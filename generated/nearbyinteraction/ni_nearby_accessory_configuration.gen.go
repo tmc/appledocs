@@ -106,6 +106,60 @@ func NewNINearbyAccessoryConfigurationWithDataError(data unsafe.Pointer, error_ 
 }
 
 
+// An object that the framework notifies of session events.
+//
+// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nisession/delegate
+func (n_ NINearbyAccessoryConfiguration) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+
+// SetDelegate sets the value of the delegate property.
+// An object that the framework notifies of session events.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nisession/delegate
+func (n_ NINearbyAccessoryConfiguration) SetDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setDelegate:"), value)
+}
+
+// A Boolean value that combines the spatial awareness of ARKit with Nearby Interaction to improve the accuracy of a nearby object’s position.
+//
+// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/ninearbyaccessoryconfiguration/iscameraassistanceenabled
+func (n_ NINearbyAccessoryConfiguration) IsCameraAssistanceEnabled() bool {
+	rv := objc.Send[bool](n_.ID, objc.Sel("isCameraAssistanceEnabled"))
+	return rv
+}
+
+
+// SetIsCameraAssistanceEnabled sets the value of the isCameraAssistanceEnabled property.
+// A Boolean value that combines the spatial awareness of ARKit with Nearby Interaction to improve the accuracy of a nearby object’s position.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/ninearbyaccessoryconfiguration/iscameraassistanceenabled
+func (n_ NINearbyAccessoryConfiguration) SetIsCameraAssistanceEnabled(value bool) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setIsCameraAssistanceEnabled:"), value)
+}
+
+// The distance from the user’s device to the peer device in meters.
+//
+// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/ninearbyobject/distance-676dm
+func (n_ NINearbyAccessoryConfiguration) Distance() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("distance"))
+	return rv
+}
+
+
+// SetDistance sets the value of the distance property.
+// The distance from the user’s device to the peer device in meters.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/ninearbyobject/distance-676dm
+func (n_ NINearbyAccessoryConfiguration) SetDistance(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setDistance:"), value)
+}
+
 // An identifier for the accessory in a session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NINearbyAccessoryConfiguration/accessoryDiscoveryToken

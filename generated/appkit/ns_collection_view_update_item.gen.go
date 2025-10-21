@@ -80,5 +80,59 @@ func NewCollectionViewUpdateItem() CollectionViewUpdateItem {
 }
 
 
+// The index path of the item after the update.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewupdateitem/indexpathafterupdate
+func (c_ CollectionViewUpdateItem) IndexPathAfterUpdate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("indexPathAfterUpdate"))
+	return rv
+}
+
+
+// SetIndexPathAfterUpdate sets the value of the indexPathAfterUpdate property.
+// The index path of the item after the update.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewupdateitem/indexpathafterupdate
+func (c_ CollectionViewUpdateItem) SetIndexPathAfterUpdate(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIndexPathAfterUpdate:"), value)
+}
+
+// The index path of the item before the update.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewupdateitem/indexpathbeforeupdate
+func (c_ CollectionViewUpdateItem) IndexPathBeforeUpdate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("indexPathBeforeUpdate"))
+	return rv
+}
+
+
+// SetIndexPathBeforeUpdate sets the value of the indexPathBeforeUpdate property.
+// The index path of the item before the update.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewupdateitem/indexpathbeforeupdate
+func (c_ CollectionViewUpdateItem) SetIndexPathBeforeUpdate(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIndexPathBeforeUpdate:"), value)
+}
+
+// The action being performed on the item.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewupdateitem/updateaction
+func (c_ CollectionViewUpdateItem) UpdateAction() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("updateAction"))
+	return rv
+}
+
+
+// SetUpdateAction sets the value of the updateAction property.
+// The action being performed on the item.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewupdateitem/updateaction
+func (c_ CollectionViewUpdateItem) SetUpdateAction(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setUpdateAction:"), value)
+}
+
 
 

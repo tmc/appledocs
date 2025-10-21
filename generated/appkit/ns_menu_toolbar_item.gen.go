@@ -99,5 +99,38 @@ func (m_ MenuToolbarItem) SetMenu(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMenu:"), value)
 }
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenutoolbaritem/itemmenu
+func (m_ MenuToolbarItem) ItemMenu() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("itemMenu"))
+	return rv
+}
+
+
+// SetItemMenu sets the value of the itemMenu property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenutoolbaritem/itemmenu
+func (m_ MenuToolbarItem) SetItemMenu(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setItemMenu:"), value)
+}
+
+// A Boolean value that determines whether the toolbar item displays an indicator of additional functionality.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenutoolbaritem/showsindicator
+func (m_ MenuToolbarItem) ShowsIndicator() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("showsIndicator"))
+	return rv
+}
+
+
+// SetShowsIndicator sets the value of the showsIndicator property.
+// A Boolean value that determines whether the toolbar item displays an indicator of additional functionality.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenutoolbaritem/showsindicator
+func (m_ MenuToolbarItem) SetShowsIndicator(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setShowsIndicator:"), value)
+}
+
 
 

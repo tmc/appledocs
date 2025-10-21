@@ -80,5 +80,95 @@ func NewCaption() Caption {
 }
 
 
+// The animation that the system applies to this caption.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaption/animation-swift.property
+func (c_ Caption) Animation() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("animation"))
+	return rv
+}
+
+
+// SetAnimation sets the value of the animation property.
+// The animation that the system applies to this caption.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaption/animation-swift.property
+func (c_ Caption) SetAnimation(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setAnimation:"), value)
+}
+
+// The region in which the caption exists.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaption/region
+func (c_ Caption) Region() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("region"))
+	return rv
+}
+
+
+// SetRegion sets the value of the region property.
+// The region in which the caption exists.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaption/region
+func (c_ Caption) SetRegion(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setRegion:"), value)
+}
+
+// The caption text.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaption/text
+func (c_ Caption) Text() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("text"))
+	return rv
+}
+
+
+// SetText sets the value of the text property.
+// The caption text.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaption/text
+func (c_ Caption) SetText(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setText:"), objc.String(value))
+}
+
+// The alignment for the caption text.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaption/textalignment-swift.property
+func (c_ Caption) TextAlignment() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("textAlignment"))
+	return rv
+}
+
+
+// SetTextAlignment sets the value of the textAlignment property.
+// The alignment for the caption text.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaption/textalignment-swift.property
+func (c_ Caption) SetTextAlignment(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setTextAlignment:"), value)
+}
+
+// The time range over which the system presents the caption.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaption/timerange
+func (c_ Caption) TimeRange() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("timeRange"))
+	return rv
+}
+
+
+// SetTimeRange sets the value of the timeRange property.
+// The time range over which the system presents the caption.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaption/timerange
+func (c_ Caption) SetTimeRange(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setTimeRange:"), value)
+}
+
 
 

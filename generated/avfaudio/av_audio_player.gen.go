@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -34,9 +35,9 @@ type IAudioPlayer interface {
 	Pause()
 	PeakPowerForChannel(channelNumber uint) unsafe.Pointer
 	Play() bool
-	PlayAtTime(time TimeInterval) bool
+	PlayAtTime(time foundation.TimeInterval) bool
 	PrepareToPlay() bool
-	SetVolumeFadeDuration(volume unsafe.Pointer, duration TimeInterval)
+	SetVolumeFadeDuration(volume unsafe.Pointer, duration foundation.TimeInterval)
 	Stop()
 	UpdateMeters()
 }
@@ -94,7 +95,7 @@ func NewAudioPlayer() AudioPlayer {
 // Creates a player to play audio from a file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/init(contentsOf:)
-func NewAudioPlayerWithContentsOfURLError(url unsafe.Pointer, outError unsafe.Pointer) AudioPlayer {
+func NewAudioPlayerWithContentsOfURLError(url foundation.URL, outError unsafe.Pointer) AudioPlayer {
 	instance := getAudioPlayerClass().Alloc()
 	rv := objc.Send[AudioPlayer](instance.ID, objc.Sel("initWithContentsOfURL:error:"), url, outError)
 	rv.Autorelease()
@@ -106,7 +107,7 @@ func NewAudioPlayerWithContentsOfURLError(url unsafe.Pointer, outError unsafe.Po
 // Creates a player to play audio from a file of a particular type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/init(contentsOf:fileTypeHint:)
-func NewAudioPlayerWithContentsOfURLFileTypeHintError(url unsafe.Pointer, utiString string, outError unsafe.Pointer) AudioPlayer {
+func NewAudioPlayerWithContentsOfURLFileTypeHintError(url foundation.URL, utiString string, outError unsafe.Pointer) AudioPlayer {
 	instance := getAudioPlayerClass().Alloc()
 	rv := objc.Send[AudioPlayer](instance.ID, objc.Sel("initWithContentsOfURL:fileTypeHint:error:"), url, objc.String(utiString), outError)
 	rv.Autorelease()
@@ -172,7 +173,7 @@ func (a_ AudioPlayer) Play() bool {
 // Plays audio asynchronously, starting at a specified point in the audio output device’s timeline.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/play(atTime:)
-func (a_ AudioPlayer) PlayAtTime(time TimeInterval) bool {
+func (a_ AudioPlayer) PlayAtTime(time foundation.TimeInterval) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("playAtTime:"), time)
 	return rv
 }
@@ -188,7 +189,7 @@ func (a_ AudioPlayer) PrepareToPlay() bool {
 // Changes the audio player’s volume over a duration of time.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/setVolume(_:fadeDuration:)
-func (a_ AudioPlayer) SetVolumeFadeDuration(volume unsafe.Pointer, duration TimeInterval) {
+func (a_ AudioPlayer) SetVolumeFadeDuration(volume unsafe.Pointer, duration foundation.TimeInterval) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setVolume:fadeDuration:"), volume, duration)
 }
 
@@ -204,6 +205,42 @@ func (a_ AudioPlayer) Stop() {
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/updateMeters()
 func (a_ AudioPlayer) UpdateMeters() {
 	objc.Send[objc.ID](a_.ID, objc.Sel("updateMeters"))
+}
+
+// A Boolean value that indicates whether the player is able to generate audio-level metering data.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioplayer/ismeteringenabled
+func (a_ AudioPlayer) IsMeteringEnabled() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("isMeteringEnabled"))
+	return rv
+}
+
+
+// SetIsMeteringEnabled sets the value of the isMeteringEnabled property.
+// A Boolean value that indicates whether the player is able to generate audio-level metering data.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioplayer/ismeteringenabled
+func (a_ AudioPlayer) SetIsMeteringEnabled(value bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setIsMeteringEnabled:"), value)
+}
+
+// A Boolean value that indicates whether the player is currently playing audio.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioplayer/isplaying
+func (a_ AudioPlayer) IsPlaying() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("isPlaying"))
+	return rv
+}
+
+
+// SetIsPlaying sets the value of the isPlaying property.
+// A Boolean value that indicates whether the player is currently playing audio.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioplayer/isplaying
+func (a_ AudioPlayer) SetIsPlaying(value bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setIsPlaying:"), value)
 }
 
 // An array of channel descriptions for the audio player.
@@ -255,8 +292,8 @@ func (a_ AudioPlayer) SetCurrentDevice(value string) {
 // The current playback time, in seconds, within the audio timeline.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/currentTime
-func (a_ AudioPlayer) CurrentTime() TimeInterval {
-	rv := objc.Send[TimeInterval](a_.ID, objc.Sel("currentTime"))
+func (a_ AudioPlayer) CurrentTime() foundation.TimeInterval {
+	rv := objc.Send[foundation.TimeInterval](a_.ID, objc.Sel("currentTime"))
 	return rv
 }
 
@@ -266,7 +303,7 @@ func (a_ AudioPlayer) CurrentTime() TimeInterval {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/currentTime
-func (a_ AudioPlayer) SetCurrentTime(value TimeInterval) {
+func (a_ AudioPlayer) SetCurrentTime(value foundation.TimeInterval) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCurrentTime:"), value)
 }
 
@@ -299,16 +336,16 @@ func (a_ AudioPlayer) SetDelegate(value objc.ID) {
 // The time value, in seconds, of the audio output device’s clock.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/deviceCurrentTime
-func (a_ AudioPlayer) DeviceCurrentTime() TimeInterval {
-	rv := objc.Send[TimeInterval](a_.ID, objc.Sel("deviceCurrentTime"))
+func (a_ AudioPlayer) DeviceCurrentTime() foundation.TimeInterval {
+	rv := objc.Send[foundation.TimeInterval](a_.ID, objc.Sel("deviceCurrentTime"))
 	return rv
 }
 
 // The total duration, in seconds, of the player’s audio.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/duration
-func (a_ AudioPlayer) Duration() TimeInterval {
-	rv := objc.Send[TimeInterval](a_.ID, objc.Sel("duration"))
+func (a_ AudioPlayer) Duration() foundation.TimeInterval {
+	rv := objc.Send[foundation.TimeInterval](a_.ID, objc.Sel("duration"))
 	return rv
 }
 
@@ -452,8 +489,8 @@ func (a_ AudioPlayer) Settings() unsafe.Pointer {
 // The URL of the audio file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/url
-func (a_ AudioPlayer) Url() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("url"))
+func (a_ AudioPlayer) Url() foundation.URL {
+	rv := objc.Send[foundation.URL](a_.ID, objc.Sel("url"))
 	return rv
 }
 

@@ -81,5 +81,59 @@ func NewINSaveProfileInCarIntent() INSaveProfileInCarIntent {
 }
 
 
+// The name to assign to the profile.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insaveprofileincarintent/profilelabel
+func (i_ INSaveProfileInCarIntent) ProfileLabel() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("profileLabel"))
+	return rv
+}
+
+
+// SetProfileLabel sets the value of the profileLabel property.
+// The name to assign to the profile.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insaveprofileincarintent/profilelabel
+func (i_ INSaveProfileInCarIntent) SetProfileLabel(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setProfileLabel:"), objc.String(value))
+}
+
+// The name to assign to the profile.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insaveprofileincarintent/profilename
+func (i_ INSaveProfileInCarIntent) ProfileName() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("profileName"))
+	return rv
+}
+
+
+// SetProfileName sets the value of the profileName property.
+// The name to assign to the profile.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insaveprofileincarintent/profilename
+func (i_ INSaveProfileInCarIntent) SetProfileName(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setProfileName:"), objc.String(value))
+}
+
+// The profile index in which to save the settings.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insaveprofileincarintent/profilenumber-2q84c
+func (i_ INSaveProfileInCarIntent) ProfileNumber() int {
+	rv := objc.Send[int](i_.ID, objc.Sel("profileNumber"))
+	return rv
+}
+
+
+// SetProfileNumber sets the value of the profileNumber property.
+// The profile index in which to save the settings.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insaveprofileincarintent/profilenumber-2q84c
+func (i_ INSaveProfileInCarIntent) SetProfileNumber(value int) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setProfileNumber:"), value)
+}
+
 
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -133,7 +134,7 @@ func NewAudioTimeWithSampleTimeAtRate(sampleTime unsafe.Pointer, sampleRate unsa
 // Converts seconds to host time.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioTime/hostTime(forSeconds:)
-func (ac _AudioTimeClass) HostTimeForSeconds(seconds TimeInterval) uint64 {
+func (ac _AudioTimeClass) HostTimeForSeconds(seconds foundation.TimeInterval) uint64 {
 	rv := objc.Send[uint64](objc.ID(ac.class), objc.Sel("hostTimeForSeconds:"), seconds)
 	return rv
 }
@@ -141,8 +142,8 @@ func (ac _AudioTimeClass) HostTimeForSeconds(seconds TimeInterval) uint64 {
 // Converts host time to seconds.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioTime/seconds(forHostTime:)
-func (ac _AudioTimeClass) SecondsForHostTime(hostTime uint64) TimeInterval {
-	rv := objc.Send[TimeInterval](objc.ID(ac.class), objc.Sel("secondsForHostTime:"), hostTime)
+func (ac _AudioTimeClass) SecondsForHostTime(hostTime uint64) foundation.TimeInterval {
+	rv := objc.Send[foundation.TimeInterval](objc.ID(ac.class), objc.Sel("secondsForHostTime:"), hostTime)
 	return rv
 }
 
@@ -184,6 +185,42 @@ func (ac _AudioTimeClass) TimeWithSampleTimeAtRate(sampleTime unsafe.Pointer, sa
 func (a_ AudioTime) ExtrapolateTimeFromAnchor(anchorTime unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("extrapolateTimeFromAnchor:"), anchorTime)
 	return rv
+}
+
+// A Boolean value that indicates whether the sample time and sample rate properties are in a valid state.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiotime/issampletimevalid
+func (a_ AudioTime) IsSampleTimeValid() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("isSampleTimeValid"))
+	return rv
+}
+
+
+// SetIsSampleTimeValid sets the value of the isSampleTimeValid property.
+// A Boolean value that indicates whether the sample time and sample rate properties are in a valid state.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiotime/issampletimevalid
+func (a_ AudioTime) SetIsSampleTimeValid(value bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setIsSampleTimeValid:"), value)
+}
+
+// A Boolean value that indicates whether the host time value is valid.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiotime/ishosttimevalid
+func (a_ AudioTime) IsHostTimeValid() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("isHostTimeValid"))
+	return rv
+}
+
+
+// SetIsHostTimeValid sets the value of the isHostTimeValid property.
+// A Boolean value that indicates whether the host time value is valid.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiotime/ishosttimevalid
+func (a_ AudioTime) SetIsHostTimeValid(value bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setIsHostTimeValid:"), value)
 }
 
 // The time as an audio timestamp.

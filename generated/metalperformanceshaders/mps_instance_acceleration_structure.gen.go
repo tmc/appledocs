@@ -80,6 +80,126 @@ func NewInstanceAccelerationStructure() InstanceAccelerationStructure {
 
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsinstanceaccelerationstructure/instancecount
+func (i_ InstanceAccelerationStructure) InstanceCount() int {
+	rv := objc.Send[int](i_.ID, objc.Sel("instanceCount"))
+	return rv
+}
+
+
+// SetInstanceCount sets the value of the instanceCount property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsinstanceaccelerationstructure/instancecount
+func (i_ InstanceAccelerationStructure) SetInstanceCount(value int) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setInstanceCount:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsinstanceaccelerationstructure/transformtype
+func (i_ InstanceAccelerationStructure) TransformType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("transformType"))
+	return rv
+}
+
+
+// SetTransformType sets the value of the transformType property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsinstanceaccelerationstructure/transformtype
+func (i_ InstanceAccelerationStructure) SetTransformType(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setTransformType:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsinstanceaccelerationstructure/instancebuffer
+func (i_ InstanceAccelerationStructure) InstanceBuffer() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("instanceBuffer"))
+	return rv
+}
+
+
+// SetInstanceBuffer sets the value of the instanceBuffer property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsinstanceaccelerationstructure/instancebuffer
+func (i_ InstanceAccelerationStructure) SetInstanceBuffer(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setInstanceBuffer:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsinstanceaccelerationstructure/maskbuffer
+func (i_ InstanceAccelerationStructure) MaskBuffer() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("maskBuffer"))
+	return rv
+}
+
+
+// SetMaskBuffer sets the value of the maskBuffer property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsinstanceaccelerationstructure/maskbuffer
+func (i_ InstanceAccelerationStructure) SetMaskBuffer(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setMaskBuffer:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsinstanceaccelerationstructure/transformbufferoffset
+func (i_ InstanceAccelerationStructure) TransformBufferOffset() int {
+	rv := objc.Send[int](i_.ID, objc.Sel("transformBufferOffset"))
+	return rv
+}
+
+
+// SetTransformBufferOffset sets the value of the transformBufferOffset property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsinstanceaccelerationstructure/transformbufferoffset
+func (i_ InstanceAccelerationStructure) SetTransformBufferOffset(value int) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setTransformBufferOffset:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsinstanceaccelerationstructure/maskbufferoffset
+func (i_ InstanceAccelerationStructure) MaskBufferOffset() int {
+	rv := objc.Send[int](i_.ID, objc.Sel("maskBufferOffset"))
+	return rv
+}
+
+
+// SetMaskBufferOffset sets the value of the maskBufferOffset property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsinstanceaccelerationstructure/maskbufferoffset
+func (i_ InstanceAccelerationStructure) SetMaskBufferOffset(value int) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setMaskBufferOffset:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsinstanceaccelerationstructure/accelerationstructures
+func (i_ InstanceAccelerationStructure) AccelerationStructures() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("accelerationStructures"))
+	return rv
+}
+
+
+// SetAccelerationStructures sets the value of the accelerationStructures property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsinstanceaccelerationstructure/accelerationstructures
+func (i_ InstanceAccelerationStructure) SetAccelerationStructures(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setAccelerationStructures:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsinstanceaccelerationstructure/instancebufferoffset
+func (i_ InstanceAccelerationStructure) InstanceBufferOffset() int {
+	rv := objc.Send[int](i_.ID, objc.Sel("instanceBufferOffset"))
+	return rv
+}
+
+
+// SetInstanceBufferOffset sets the value of the instanceBufferOffset property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsinstanceaccelerationstructure/instancebufferoffset
+func (i_ InstanceAccelerationStructure) SetInstanceBufferOffset(value int) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setInstanceBufferOffset:"), value)
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSInstanceAccelerationStructure/transformBuffer
 func (i_ InstanceAccelerationStructure) TransformBuffer() objc.ID {
 	rv := objc.Send[objc.ID](i_.ID, objc.Sel("transformBuffer"))

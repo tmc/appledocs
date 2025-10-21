@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -36,7 +37,7 @@ type IComponentSystem interface {
 	RemoveComponent(component unsafe.Pointer)
 	RemoveComponentWithEntity(entity unsafe.Pointer)
 	ObjectAtIndexedSubscript(idx uint) unsafe.Pointer
-	UpdateWithDeltaTime(seconds TimeInterval)
+	UpdateWithDeltaTime(seconds foundation.TimeInterval)
 }
 
 // Manages periodic update messages for all component objects of a specified class.
@@ -146,7 +147,7 @@ func (c_ ComponentSystem) ObjectAtIndexedSubscript(idx uint) unsafe.Pointer {
 // Tells all component instances managed by the system to perform their custom periodic actions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKComponentSystem/update(deltaTime:)
-func (c_ ComponentSystem) UpdateWithDeltaTime(seconds TimeInterval) {
+func (c_ ComponentSystem) UpdateWithDeltaTime(seconds foundation.TimeInterval) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("updateWithDeltaTime:"), seconds)
 }
 

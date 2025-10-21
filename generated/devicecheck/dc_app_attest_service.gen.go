@@ -111,6 +111,24 @@ func (d_ DCAppAttestService) GenerateKeyWithCompletionHandler(completionHandler 
 	objc.Send[objc.ID](d_.ID, objc.Sel("generateKeyWithCompletionHandler:"), completionHandler)
 }
 
+// A Boolean value that indicates whether a particular device provides the App
+//
+// [Full Topic]: https://developer.apple.com/documentation/devicecheck/dcappattestservice/issupported
+func (d_ DCAppAttestService) IsSupported() bool {
+	rv := objc.Send[bool](d_.ID, objc.Sel("isSupported"))
+	return rv
+}
+
+
+// SetIsSupported sets the value of the isSupported property.
+// A Boolean value that indicates whether a particular device provides the App
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/devicecheck/dcappattestservice/issupported
+func (d_ DCAppAttestService) SetIsSupported(value bool) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setIsSupported:"), value)
+}
+
 // A Boolean value that indicates whether a particular device provides the App Attest service.
 //
 // [Full Topic]: https://developer.apple.com/documentation/DeviceCheck/DCAppAttestService/isSupported

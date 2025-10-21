@@ -128,4 +128,40 @@ func (a_ Appearance) Name() unsafe.Pointer {
 	return rv
 }
 
+// Specifies whether the current appearance allows vibrancy.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsappearance/allowsvibrancy
+func (a_ Appearance) AllowsVibrancy() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("allowsVibrancy"))
+	return rv
+}
+
+
+// SetAllowsVibrancy sets the value of the allowsVibrancy property.
+// Specifies whether the current appearance allows vibrancy.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsappearance/allowsvibrancy
+func (a_ Appearance) SetAllowsVibrancy(value bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowsVibrancy:"), value)
+}
+
+// The appearance of the receiver, in an
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsappearancecustomization/appearance
+func (a_ Appearance) Appearance() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("appearance"))
+	return rv
+}
+
+
+// SetAppearance sets the value of the appearance property.
+// The appearance of the receiver, in an
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsappearancecustomization/appearance
+func (a_ Appearance) SetAppearance(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAppearance:"), value)
+}
+
 

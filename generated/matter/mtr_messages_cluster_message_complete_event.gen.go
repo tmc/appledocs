@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,8 +78,8 @@ func NewMTRMessagesClusterMessageCompleteEvent() MTRMessagesClusterMessageComple
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageCompleteEvent/futureMessagesPreference
-func (m_ MTRMessagesClusterMessageCompleteEvent) FutureMessagesPreference() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("futureMessagesPreference"))
+func (m_ MTRMessagesClusterMessageCompleteEvent) FutureMessagesPreference() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("futureMessagesPreference"))
 	return rv
 }
 
@@ -86,7 +87,7 @@ func (m_ MTRMessagesClusterMessageCompleteEvent) FutureMessagesPreference() unsa
 // SetFutureMessagesPreference sets the value of the futureMessagesPreference property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageCompleteEvent/futureMessagesPreference
-func (m_ MTRMessagesClusterMessageCompleteEvent) SetFutureMessagesPreference(value unsafe.Pointer) {
+func (m_ MTRMessagesClusterMessageCompleteEvent) SetFutureMessagesPreference(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFutureMessagesPreference:"), value)
 }
 
@@ -122,8 +123,8 @@ func (m_ MTRMessagesClusterMessageCompleteEvent) SetReply(value string) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageCompleteEvent/responseID
-func (m_ MTRMessagesClusterMessageCompleteEvent) ResponseID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("responseID"))
+func (m_ MTRMessagesClusterMessageCompleteEvent) ResponseID() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("responseID"))
 	return rv
 }
 
@@ -131,7 +132,7 @@ func (m_ MTRMessagesClusterMessageCompleteEvent) ResponseID() unsafe.Pointer {
 // SetResponseID sets the value of the responseID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageCompleteEvent/responseID
-func (m_ MTRMessagesClusterMessageCompleteEvent) SetResponseID(value unsafe.Pointer) {
+func (m_ MTRMessagesClusterMessageCompleteEvent) SetResponseID(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setResponseID:"), value)
 }
 

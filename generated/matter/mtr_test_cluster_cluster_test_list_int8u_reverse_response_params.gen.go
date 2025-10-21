@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MTRTestClusterClusterTestListInt8UReverseResponseParams] class.
@@ -75,6 +76,36 @@ func NewMTRTestClusterClusterTestListInt8UReverseResponseParams() MTRTestCluster
 	return getMTRTestClusterClusterTestListInt8UReverseResponseParamsClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestlistint8ureverseresponseparams/arg1
+func (m_ MTRTestClusterClusterTestListInt8UReverseResponseParams) Arg1() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("arg1"))
+	return rv
+}
+
+
+// SetArg1 sets the value of the arg1 property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestlistint8ureverseresponseparams/arg1
+func (m_ MTRTestClusterClusterTestListInt8UReverseResponseParams) SetArg1(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setArg1:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestlistint8ureverseresponseparams/timedinvoketimeoutms
+func (m_ MTRTestClusterClusterTestListInt8UReverseResponseParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+	return rv
+}
+
+
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestlistint8ureverseresponseparams/timedinvoketimeoutms
+func (m_ MTRTestClusterClusterTestListInt8UReverseResponseParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+}
 
 
 

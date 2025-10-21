@@ -81,5 +81,23 @@ func NewMetadataSalientObject() MetadataSalientObject {
 }
 
 
+// An integer value that defines the unique identifier of an object in a picture.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadatasalientobject/objectid
+func (m_ MetadataSalientObject) ObjectID() int {
+	rv := objc.Send[int](m_.ID, objc.Sel("objectID"))
+	return rv
+}
+
+
+// SetObjectID sets the value of the objectID property.
+// An integer value that defines the unique identifier of an object in a picture.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadatasalientobject/objectid
+func (m_ MetadataSalientObject) SetObjectID(value int) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setObjectID:"), value)
+}
+
 
 

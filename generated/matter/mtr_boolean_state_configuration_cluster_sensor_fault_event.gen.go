@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,21 @@ func NewMTRBooleanStateConfigurationClusterSensorFaultEvent() MTRBooleanStateCon
 	return getMTRBooleanStateConfigurationClusterSensorFaultEventClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrbooleanstateconfigurationclustersensorfaultevent/sensorfault
+func (m_ MTRBooleanStateConfigurationClusterSensorFaultEvent) SensorFault() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("sensorFault"))
+	return rv
+}
+
+
+// SetSensorFault sets the value of the sensorFault property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrbooleanstateconfigurationclustersensorfaultevent/sensorfault
+func (m_ MTRBooleanStateConfigurationClusterSensorFaultEvent) SetSensorFault(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSensorFault:"), value)
+}
 
 
 

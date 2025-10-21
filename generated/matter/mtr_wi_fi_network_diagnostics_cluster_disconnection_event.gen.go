@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,21 @@ func NewMTRWiFiNetworkDiagnosticsClusterDisconnectionEvent() MTRWiFiNetworkDiagn
 	return getMTRWiFiNetworkDiagnosticsClusterDisconnectionEventClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrwifinetworkdiagnosticsclusterdisconnectionevent/reasoncode
+func (m_ MTRWiFiNetworkDiagnosticsClusterDisconnectionEvent) ReasonCode() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("reasonCode"))
+	return rv
+}
+
+
+// SetReasonCode sets the value of the reasonCode property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrwifinetworkdiagnosticsclusterdisconnectionevent/reasoncode
+func (m_ MTRWiFiNetworkDiagnosticsClusterDisconnectionEvent) SetReasonCode(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setReasonCode:"), value)
+}
 
 
 

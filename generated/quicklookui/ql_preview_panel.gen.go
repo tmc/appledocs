@@ -90,6 +90,114 @@ func (pc _PreviewPanelClass) SharedPreviewPanel() unsafe.Pointer {
 	return rv
 }
 
+// The currently previewed item.
+//
+// [Full Topic]: https://developer.apple.com/documentation/quicklookui/qlpreviewpanel/currentpreviewitem
+func (p_ PreviewPanel) CurrentPreviewItem() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("currentPreviewItem"))
+	return rv
+}
+
+
+// SetCurrentPreviewItem sets the value of the currentPreviewItem property.
+// The currently previewed item.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/quicklookui/qlpreviewpanel/currentpreviewitem
+func (p_ PreviewPanel) SetCurrentPreviewItem(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setCurrentPreviewItem:"), value)
+}
+
+// The delegate object that controls the preview panel’s behavior.
+//
+// [Full Topic]: https://developer.apple.com/documentation/quicklookui/qlpreviewpanel/delegate
+func (p_ PreviewPanel) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+
+// SetDelegate sets the value of the delegate property.
+// The delegate object that controls the preview panel’s behavior.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/quicklookui/qlpreviewpanel/delegate
+func (p_ PreviewPanel) SetDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setDelegate:"), value)
+}
+
+// The property that indicates whether the panel is in full screen mode.
+//
+// [Full Topic]: https://developer.apple.com/documentation/quicklookui/qlpreviewpanel/isinfullscreenmode
+func (p_ PreviewPanel) IsInFullScreenMode() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isInFullScreenMode"))
+	return rv
+}
+
+
+// SetIsInFullScreenMode sets the value of the isInFullScreenMode property.
+// The property that indicates whether the panel is in full screen mode.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/quicklookui/qlpreviewpanel/isinfullscreenmode
+func (p_ PreviewPanel) SetIsInFullScreenMode(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsInFullScreenMode:"), value)
+}
+
+// The index of the current preview item.
+//
+// [Full Topic]: https://developer.apple.com/documentation/quicklookui/qlpreviewpanel/currentpreviewitemindex
+func (p_ PreviewPanel) CurrentPreviewItemIndex() int {
+	rv := objc.Send[int](p_.ID, objc.Sel("currentPreviewItemIndex"))
+	return rv
+}
+
+
+// SetCurrentPreviewItemIndex sets the value of the currentPreviewItemIndex property.
+// The index of the current preview item.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/quicklookui/qlpreviewpanel/currentpreviewitemindex
+func (p_ PreviewPanel) SetCurrentPreviewItemIndex(value int) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setCurrentPreviewItemIndex:"), value)
+}
+
+// The preview panel data source.
+//
+// [Full Topic]: https://developer.apple.com/documentation/quicklookui/qlpreviewpanel/datasource
+func (p_ PreviewPanel) DataSource() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("dataSource"))
+	return rv
+}
+
+
+// SetDataSource sets the value of the dataSource property.
+// The preview panel data source.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/quicklookui/qlpreviewpanel/datasource
+func (p_ PreviewPanel) SetDataSource(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setDataSource:"), value)
+}
+
+// The preview panel’s display state.
+//
+// [Full Topic]: https://developer.apple.com/documentation/quicklookui/qlpreviewpanel/displaystate
+func (p_ PreviewPanel) DisplayState() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("displayState"))
+	return rv
+}
+
+
+// SetDisplayState sets the value of the displayState property.
+// The preview panel’s display state.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/quicklookui/qlpreviewpanel/displaystate
+func (p_ PreviewPanel) SetDisplayState(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setDisplayState:"), value)
+}
+
 // The current first responder accepting to control the preview panel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuickLookUI/QLPreviewPanel/currentController

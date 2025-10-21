@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MTRAudioOutputClusterOutputInfo] class.
@@ -75,6 +76,51 @@ func NewMTRAudioOutputClusterOutputInfo() MTRAudioOutputClusterOutputInfo {
 	return getMTRAudioOutputClusterOutputInfoClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtraudiooutputclusteroutputinfo/index
+func (m_ MTRAudioOutputClusterOutputInfo) Index() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("index"))
+	return rv
+}
+
+
+// SetIndex sets the value of the index property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtraudiooutputclusteroutputinfo/index
+func (m_ MTRAudioOutputClusterOutputInfo) SetIndex(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIndex:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtraudiooutputclusteroutputinfo/name
+func (m_ MTRAudioOutputClusterOutputInfo) Name() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("name"))
+	return rv
+}
+
+
+// SetName sets the value of the name property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtraudiooutputclusteroutputinfo/name
+func (m_ MTRAudioOutputClusterOutputInfo) SetName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtraudiooutputclusteroutputinfo/outputtype
+func (m_ MTRAudioOutputClusterOutputInfo) OutputType() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("outputType"))
+	return rv
+}
+
+
+// SetOutputType sets the value of the outputType property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtraudiooutputclusteroutputinfo/outputtype
+func (m_ MTRAudioOutputClusterOutputInfo) SetOutputType(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setOutputType:"), value)
+}
 
 
 

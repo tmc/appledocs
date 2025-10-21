@@ -81,6 +81,24 @@ func NewFeedbackCommandEvent() FeedbackCommandEvent {
 
 // A Boolean value that indicates whether an app should perform a negative command appropriate to the target.
 //
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpfeedbackcommandevent/isnegative
+func (f_ FeedbackCommandEvent) IsNegative() bool {
+	rv := objc.Send[bool](f_.ID, objc.Sel("isNegative"))
+	return rv
+}
+
+
+// SetIsNegative sets the value of the isNegative property.
+// A Boolean value that indicates whether an app should perform a negative command appropriate to the target.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpfeedbackcommandevent/isnegative
+func (f_ FeedbackCommandEvent) SetIsNegative(value bool) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setIsNegative:"), value)
+}
+
+// A Boolean value that indicates whether an app should perform a negative command appropriate to the target.
+//
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPFeedbackCommandEvent/isNegative
 func (f_ FeedbackCommandEvent) Negative() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("negative"))

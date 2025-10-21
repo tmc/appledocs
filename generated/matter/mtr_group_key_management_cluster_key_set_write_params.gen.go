@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,51 @@ func NewMTRGroupKeyManagementClusterKeySetWriteParams() MTRGroupKeyManagementClu
 	return getMTRGroupKeyManagementClusterKeySetWriteParamsClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclusterkeysetwriteparams/serversideprocessingtimeout
+func (m_ MTRGroupKeyManagementClusterKeySetWriteParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+	return rv
+}
+
+
+// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclusterkeysetwriteparams/serversideprocessingtimeout
+func (m_ MTRGroupKeyManagementClusterKeySetWriteParams) SetServerSideProcessingTimeout(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclusterkeysetwriteparams/timedinvoketimeoutms
+func (m_ MTRGroupKeyManagementClusterKeySetWriteParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+	return rv
+}
+
+
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclusterkeysetwriteparams/timedinvoketimeoutms
+func (m_ MTRGroupKeyManagementClusterKeySetWriteParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclusterkeysetwriteparams/groupkeyset
+func (m_ MTRGroupKeyManagementClusterKeySetWriteParams) GroupKeySet() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("groupKeySet"))
+	return rv
+}
+
+
+// SetGroupKeySet sets the value of the groupKeySet property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclusterkeysetwriteparams/groupkeyset
+func (m_ MTRGroupKeyManagementClusterKeySetWriteParams) SetGroupKeySet(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupKeySet:"), value)
+}
 
 
 

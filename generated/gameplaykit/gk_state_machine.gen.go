@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -33,7 +34,7 @@ type IStateMachine interface {
 	CanEnterState(stateClass objc.Class) bool
 	EnterState(stateClass objc.Class) bool
 	StateForClass(stateClass objc.Class) unsafe.Pointer
-	UpdateWithDeltaTime(sec TimeInterval)
+	UpdateWithDeltaTime(sec foundation.TimeInterval)
 }
 
 // A finite-state machine—a collection of state objects that each define logic for a particular state of gameplay and rules for transitioning between states.
@@ -132,7 +133,7 @@ func (s_ StateMachine) StateForClass(stateClass objc.Class) unsafe.Pointer {
 // Tells the current state object to perform per-frame updates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKStateMachine/update(deltaTime:)
-func (s_ StateMachine) UpdateWithDeltaTime(sec TimeInterval) {
+func (s_ StateMachine) UpdateWithDeltaTime(sec foundation.TimeInterval) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("updateWithDeltaTime:"), sec)
 }
 

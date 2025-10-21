@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,36 @@ func NewMTRProductIdentity() MTRProductIdentity {
 	return getMTRProductIdentityClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrproductidentity/vendorid
+func (m_ MTRProductIdentity) VendorID() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("vendorID"))
+	return rv
+}
+
+
+// SetVendorID sets the value of the vendorID property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrproductidentity/vendorid
+func (m_ MTRProductIdentity) SetVendorID(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setVendorID:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrproductidentity/productid
+func (m_ MTRProductIdentity) ProductID() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("productID"))
+	return rv
+}
+
+
+// SetProductID sets the value of the productID property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrproductidentity/productid
+func (m_ MTRProductIdentity) SetProductID(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setProductID:"), value)
+}
 
 
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,8 +78,8 @@ func NewMTRAccessControlClusterCommissioningAccessRestrictionEntryStruct() MTRAc
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterCommissioningAccessRestrictionEntryStruct/cluster
-func (m_ MTRAccessControlClusterCommissioningAccessRestrictionEntryStruct) Cluster() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("cluster"))
+func (m_ MTRAccessControlClusterCommissioningAccessRestrictionEntryStruct) Cluster() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("cluster"))
 	return rv
 }
 
@@ -86,14 +87,14 @@ func (m_ MTRAccessControlClusterCommissioningAccessRestrictionEntryStruct) Clust
 // SetCluster sets the value of the cluster property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterCommissioningAccessRestrictionEntryStruct/cluster
-func (m_ MTRAccessControlClusterCommissioningAccessRestrictionEntryStruct) SetCluster(value unsafe.Pointer) {
+func (m_ MTRAccessControlClusterCommissioningAccessRestrictionEntryStruct) SetCluster(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCluster:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterCommissioningAccessRestrictionEntryStruct/endpoint
-func (m_ MTRAccessControlClusterCommissioningAccessRestrictionEntryStruct) Endpoint() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("endpoint"))
+func (m_ MTRAccessControlClusterCommissioningAccessRestrictionEntryStruct) Endpoint() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("endpoint"))
 	return rv
 }
 
@@ -101,7 +102,7 @@ func (m_ MTRAccessControlClusterCommissioningAccessRestrictionEntryStruct) Endpo
 // SetEndpoint sets the value of the endpoint property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterCommissioningAccessRestrictionEntryStruct/endpoint
-func (m_ MTRAccessControlClusterCommissioningAccessRestrictionEntryStruct) SetEndpoint(value unsafe.Pointer) {
+func (m_ MTRAccessControlClusterCommissioningAccessRestrictionEntryStruct) SetEndpoint(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEndpoint:"), value)
 }
 

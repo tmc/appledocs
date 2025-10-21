@@ -274,4 +274,19 @@ func (i_ ImageSymbolConfiguration) ConfigurationByApplyingConfiguration(configur
 	return rv
 }
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimageview/symbolconfiguration
+func (i_ ImageSymbolConfiguration) SymbolConfiguration() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("symbolConfiguration"))
+	return rv
+}
+
+
+// SetSymbolConfiguration sets the value of the symbolConfiguration property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimageview/symbolconfiguration
+func (i_ ImageSymbolConfiguration) SetSymbolConfiguration(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setSymbolConfiguration:"), value)
+}
+
 

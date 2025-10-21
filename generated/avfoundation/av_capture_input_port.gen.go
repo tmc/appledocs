@@ -80,5 +80,149 @@ func NewCaptureInputPort() CaptureInputPort {
 }
 
 
+// An object that represents the capture device’s clock.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureinput/port/clock
+func (c_ CaptureInputPort) Clock() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("clock"))
+	return rv
+}
+
+
+// SetClock sets the value of the clock property.
+// An object that represents the capture device’s clock.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureinput/port/clock
+func (c_ CaptureInputPort) SetClock(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setClock:"), value)
+}
+
+// A description of the port format.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureinput/port/formatdescription
+func (c_ CaptureInputPort) FormatDescription() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("formatDescription"))
+	return rv
+}
+
+
+// SetFormatDescription sets the value of the formatDescription property.
+// A description of the port format.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureinput/port/formatdescription
+func (c_ CaptureInputPort) SetFormatDescription(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setFormatDescription:"), value)
+}
+
+// The input object that owns the port.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureinput/port/input
+func (c_ CaptureInputPort) Input() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("input"))
+	return rv
+}
+
+
+// SetInput sets the value of the input property.
+// The input object that owns the port.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureinput/port/input
+func (c_ CaptureInputPort) SetInput(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setInput:"), value)
+}
+
+// A Boolean value that indicates whether the port is in an enabled state.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureinput/port/isenabled
+func (c_ CaptureInputPort) IsEnabled() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isEnabled"))
+	return rv
+}
+
+
+// SetIsEnabled sets the value of the isEnabled property.
+// A Boolean value that indicates whether the port is in an enabled state.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureinput/port/isenabled
+func (c_ CaptureInputPort) SetIsEnabled(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsEnabled:"), value)
+}
+
+// The media type of the port.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureinput/port/mediatype
+func (c_ CaptureInputPort) MediaType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("mediaType"))
+	return rv
+}
+
+
+// SetMediaType sets the value of the mediaType property.
+// The media type of the port.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureinput/port/mediatype
+func (c_ CaptureInputPort) SetMediaType(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setMediaType:"), value)
+}
+
+// The position of the source device providing input through this port.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureinput/port/sourcedeviceposition
+func (c_ CaptureInputPort) SourceDevicePosition() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("sourceDevicePosition"))
+	return rv
+}
+
+
+// SetSourceDevicePosition sets the value of the sourceDevicePosition property.
+// The position of the source device providing input through this port.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureinput/port/sourcedeviceposition
+func (c_ CaptureInputPort) SetSourceDevicePosition(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setSourceDevicePosition:"), value)
+}
+
+// The device type of the source camera that provides data to the port.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureinput/port/sourcedevicetype
+func (c_ CaptureInputPort) SourceDeviceType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("sourceDeviceType"))
+	return rv
+}
+
+
+// SetSourceDeviceType sets the value of the sourceDeviceType property.
+// The device type of the source camera that provides data to the port.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureinput/port/sourcedevicetype
+func (c_ CaptureInputPort) SetSourceDeviceType(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setSourceDeviceType:"), value)
+}
+
+// The ports available on a capture input.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureinput/ports
+func (c_ CaptureInputPort) Ports() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("ports"))
+	return rv
+}
+
+
+// SetPorts sets the value of the ports property.
+// The ports available on a capture input.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureinput/ports
+func (c_ CaptureInputPort) SetPorts(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setPorts:"), value)
+}
+
 
 

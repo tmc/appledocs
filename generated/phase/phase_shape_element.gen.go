@@ -80,6 +80,24 @@ func NewPHASEShapeElement() PHASEShapeElement {
 }
 
 
+// An array of objects that collectively describe the physical characteristics of a surface.
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phaseshape/elements
+func (p_ PHASEShapeElement) Elements() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("elements"))
+	return rv
+}
+
+
+// SetElements sets the value of the elements property.
+// An array of objects that collectively describe the physical characteristics of a surface.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phaseshape/elements
+func (p_ PHASEShapeElement) SetElements(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setElements:"), value)
+}
+
 // A surface characteristic that determines the acoustic properties of an object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEShape/Element/material

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,81 @@ func NewMTRAccessControlClusterAccessControlEntryStruct() MTRAccessControlCluste
 	return getMTRAccessControlClusterAccessControlEntryStructClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolentrystruct/fabricindex
+func (m_ MTRAccessControlClusterAccessControlEntryStruct) FabricIndex() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("fabricIndex"))
+	return rv
+}
+
+
+// SetFabricIndex sets the value of the fabricIndex property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolentrystruct/fabricindex
+func (m_ MTRAccessControlClusterAccessControlEntryStruct) SetFabricIndex(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolentrystruct/subjects
+func (m_ MTRAccessControlClusterAccessControlEntryStruct) Subjects() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("subjects"))
+	return rv
+}
+
+
+// SetSubjects sets the value of the subjects property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolentrystruct/subjects
+func (m_ MTRAccessControlClusterAccessControlEntryStruct) SetSubjects(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSubjects:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolentrystruct/authmode
+func (m_ MTRAccessControlClusterAccessControlEntryStruct) AuthMode() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("authMode"))
+	return rv
+}
+
+
+// SetAuthMode sets the value of the authMode property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolentrystruct/authmode
+func (m_ MTRAccessControlClusterAccessControlEntryStruct) SetAuthMode(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAuthMode:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolentrystruct/targets
+func (m_ MTRAccessControlClusterAccessControlEntryStruct) Targets() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("targets"))
+	return rv
+}
+
+
+// SetTargets sets the value of the targets property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolentrystruct/targets
+func (m_ MTRAccessControlClusterAccessControlEntryStruct) SetTargets(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTargets:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolentrystruct/privilege
+func (m_ MTRAccessControlClusterAccessControlEntryStruct) Privilege() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("privilege"))
+	return rv
+}
+
+
+// SetPrivilege sets the value of the privilege property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolentrystruct/privilege
+func (m_ MTRAccessControlClusterAccessControlEntryStruct) SetPrivilege(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPrivilege:"), value)
+}
 
 
 

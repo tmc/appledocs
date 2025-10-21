@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,8 +78,8 @@ func NewMTRServiceAreaClusterLandmarkInfoStruct() MTRServiceAreaClusterLandmarkI
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterLandmarkInfoStruct/landmarkTag
-func (m_ MTRServiceAreaClusterLandmarkInfoStruct) LandmarkTag() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("landmarkTag"))
+func (m_ MTRServiceAreaClusterLandmarkInfoStruct) LandmarkTag() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("landmarkTag"))
 	return rv
 }
 
@@ -86,14 +87,14 @@ func (m_ MTRServiceAreaClusterLandmarkInfoStruct) LandmarkTag() unsafe.Pointer {
 // SetLandmarkTag sets the value of the landmarkTag property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterLandmarkInfoStruct/landmarkTag
-func (m_ MTRServiceAreaClusterLandmarkInfoStruct) SetLandmarkTag(value unsafe.Pointer) {
+func (m_ MTRServiceAreaClusterLandmarkInfoStruct) SetLandmarkTag(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLandmarkTag:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterLandmarkInfoStruct/relativePositionTag
-func (m_ MTRServiceAreaClusterLandmarkInfoStruct) RelativePositionTag() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("relativePositionTag"))
+func (m_ MTRServiceAreaClusterLandmarkInfoStruct) RelativePositionTag() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("relativePositionTag"))
 	return rv
 }
 
@@ -101,7 +102,7 @@ func (m_ MTRServiceAreaClusterLandmarkInfoStruct) RelativePositionTag() unsafe.P
 // SetRelativePositionTag sets the value of the relativePositionTag property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterLandmarkInfoStruct/relativePositionTag
-func (m_ MTRServiceAreaClusterLandmarkInfoStruct) SetRelativePositionTag(value unsafe.Pointer) {
+func (m_ MTRServiceAreaClusterLandmarkInfoStruct) SetRelativePositionTag(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRelativePositionTag:"), value)
 }
 

@@ -78,6 +78,24 @@ func NewDocumentCameraScan() DocumentCameraScan {
 }
 
 
+// The number of pages in the scanned document.
+//
+// [Full Topic]: https://developer.apple.com/documentation/visionkit/vndocumentcamerascan/pagecount
+func (d_ DocumentCameraScan) PageCount() int {
+	rv := objc.Send[int](d_.ID, objc.Sel("pageCount"))
+	return rv
+}
+
+
+// SetPageCount sets the value of the pageCount property.
+// The number of pages in the scanned document.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/visionkit/vndocumentcamerascan/pagecount
+func (d_ DocumentCameraScan) SetPageCount(value int) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setPageCount:"), value)
+}
+
 // The title of the scanned document.
 //
 // [Full Topic]: https://developer.apple.com/documentation/VisionKit/VNDocumentCameraScan/title

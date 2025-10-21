@@ -81,5 +81,21 @@ func NewTrackObjectRequest() TrackObjectRequest {
 }
 
 
+// A constant for specifying revision 1 of the object tracking request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vntrackobjectrequestrevision1
+func (t_ TrackObjectRequest) VNTrackObjectRequestRevision1() int {
+	rv := objc.Send[int](t_.ID, objc.Sel("VNTrackObjectRequestRevision1"))
+	return rv
+}
+
+// A constant for specifying revision 2 of the object tracking request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vntrackobjectrequestrevision2
+func (t_ TrackObjectRequest) VNTrackObjectRequestRevision2() int {
+	rv := objc.Send[int](t_.ID, objc.Sel("VNTrackObjectRequestRevision2"))
+	return rv
+}
+
 
 

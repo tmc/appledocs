@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -81,8 +82,8 @@ func NewAXBrailleTranslationResult() AXBrailleTranslationResult {
 // An array of integers that has the same length as the resultString. locationMap[i]-th character in the input string corresponds to resultString[i].
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXBrailleTranslationResult/locationMap
-func (a_ AXBrailleTranslationResult) LocationMap() []NSNumber {
-	rv := objc.Send[[]NSNumber](a_.ID, objc.Sel("locationMap"))
+func (a_ AXBrailleTranslationResult) LocationMap() []foundation.Number {
+	rv := objc.Send[[]foundation.Number](a_.ID, objc.Sel("locationMap"))
 	return rv
 }
 

@@ -97,6 +97,86 @@ func (mc _MIDINetworkHostClass) HostWithNameNetServiceNameNetServiceDomain(name 
 	return rv
 }
 
+// The host address.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworkhost/address
+func (m_ MIDINetworkHost) Address() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("address"))
+	return rv
+}
+
+
+// SetAddress sets the value of the address property.
+// The host address.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworkhost/address
+func (m_ MIDINetworkHost) SetAddress(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAddress:"), objc.String(value))
+}
+
+// The net service domain.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworkhost/netservicedomain
+func (m_ MIDINetworkHost) NetServiceDomain() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("netServiceDomain"))
+	return rv
+}
+
+
+// SetNetServiceDomain sets the value of the netServiceDomain property.
+// The net service domain.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworkhost/netservicedomain
+func (m_ MIDINetworkHost) SetNetServiceDomain(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setNetServiceDomain:"), objc.String(value))
+}
+
+// The host name.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworkhost/name
+func (m_ MIDINetworkHost) Name() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("name"))
+	return rv
+}
+
+
+// SetName sets the value of the name property.
+// The host name.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworkhost/name
+func (m_ MIDINetworkHost) SetName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
+}
+
+// The net service name.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworkhost/netservicename
+func (m_ MIDINetworkHost) NetServiceName() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("netServiceName"))
+	return rv
+}
+
+
+// SetNetServiceName sets the value of the netServiceName property.
+// The net service name.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworkhost/netservicename
+func (m_ MIDINetworkHost) SetNetServiceName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setNetServiceName:"), objc.String(value))
+}
+
+// The Bonjour service type.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworkbonjourservicetype
+func (m_ MIDINetworkHost) MIDINetworkBonjourServiceType() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("MIDINetworkBonjourServiceType"))
+	return rv
+}
+
 // The host port.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDINetworkHost/port

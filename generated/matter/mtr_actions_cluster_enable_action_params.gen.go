@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,66 @@ func NewMTRActionsClusterEnableActionParams() MTRActionsClusterEnableActionParam
 	return getMTRActionsClusterEnableActionParamsClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterenableactionparams/actionid
+func (m_ MTRActionsClusterEnableActionParams) ActionID() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("actionID"))
+	return rv
+}
+
+
+// SetActionID sets the value of the actionID property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterenableactionparams/actionid
+func (m_ MTRActionsClusterEnableActionParams) SetActionID(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setActionID:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterenableactionparams/timedinvoketimeoutms
+func (m_ MTRActionsClusterEnableActionParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+	return rv
+}
+
+
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterenableactionparams/timedinvoketimeoutms
+func (m_ MTRActionsClusterEnableActionParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterenableactionparams/invokeid
+func (m_ MTRActionsClusterEnableActionParams) InvokeID() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("invokeID"))
+	return rv
+}
+
+
+// SetInvokeID sets the value of the invokeID property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterenableactionparams/invokeid
+func (m_ MTRActionsClusterEnableActionParams) SetInvokeID(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setInvokeID:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterenableactionparams/serversideprocessingtimeout
+func (m_ MTRActionsClusterEnableActionParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+	return rv
+}
+
+
+// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterenableactionparams/serversideprocessingtimeout
+func (m_ MTRActionsClusterEnableActionParams) SetServerSideProcessingTimeout(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
+}
 
 
 

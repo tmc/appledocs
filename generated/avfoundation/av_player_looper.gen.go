@@ -80,5 +80,77 @@ func NewPlayerLooper() PlayerLooper {
 }
 
 
+// An error that describes the reason looping failed.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerlooper/error
+func (p_ PlayerLooper) Error() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("error"))
+	return rv
+}
+
+
+// SetError sets the value of the error property.
+// An error that describes the reason looping failed.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerlooper/error
+func (p_ PlayerLooper) SetError(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setError:"), value)
+}
+
+// The number of times the object played the media.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerlooper/loopcount
+func (p_ PlayerLooper) LoopCount() int {
+	rv := objc.Send[int](p_.ID, objc.Sel("loopCount"))
+	return rv
+}
+
+
+// SetLoopCount sets the value of the loopCount property.
+// The number of times the object played the media.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerlooper/loopcount
+func (p_ PlayerLooper) SetLoopCount(value int) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setLoopCount:"), value)
+}
+
+// An array containing replicas of the template player item used to accomplish the looping.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerlooper/loopingplayeritems
+func (p_ PlayerLooper) LoopingPlayerItems() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("loopingPlayerItems"))
+	return rv
+}
+
+
+// SetLoopingPlayerItems sets the value of the loopingPlayerItems property.
+// An array containing replicas of the template player item used to accomplish the looping.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerlooper/loopingplayeritems
+func (p_ PlayerLooper) SetLoopingPlayerItems(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setLoopingPlayerItems:"), value)
+}
+
+// A status that indicates the object’s ability to loop playback.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerlooper/status-swift.property
+func (p_ PlayerLooper) Status() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("status"))
+	return rv
+}
+
+
+// SetStatus sets the value of the status property.
+// A status that indicates the object’s ability to loop playback.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerlooper/status-swift.property
+func (p_ PlayerLooper) SetStatus(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setStatus:"), value)
+}
+
 
 

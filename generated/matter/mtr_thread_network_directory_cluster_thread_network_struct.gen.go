@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,8 +78,8 @@ func NewMTRThreadNetworkDirectoryClusterThreadNetworkStruct() MTRThreadNetworkDi
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadNetworkDirectoryClusterThreadNetworkStruct/activeTimestamp
-func (m_ MTRThreadNetworkDirectoryClusterThreadNetworkStruct) ActiveTimestamp() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("activeTimestamp"))
+func (m_ MTRThreadNetworkDirectoryClusterThreadNetworkStruct) ActiveTimestamp() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("activeTimestamp"))
 	return rv
 }
 
@@ -86,14 +87,14 @@ func (m_ MTRThreadNetworkDirectoryClusterThreadNetworkStruct) ActiveTimestamp() 
 // SetActiveTimestamp sets the value of the activeTimestamp property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadNetworkDirectoryClusterThreadNetworkStruct/activeTimestamp
-func (m_ MTRThreadNetworkDirectoryClusterThreadNetworkStruct) SetActiveTimestamp(value unsafe.Pointer) {
+func (m_ MTRThreadNetworkDirectoryClusterThreadNetworkStruct) SetActiveTimestamp(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setActiveTimestamp:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadNetworkDirectoryClusterThreadNetworkStruct/channel
-func (m_ MTRThreadNetworkDirectoryClusterThreadNetworkStruct) Channel() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("channel"))
+func (m_ MTRThreadNetworkDirectoryClusterThreadNetworkStruct) Channel() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("channel"))
 	return rv
 }
 
@@ -101,7 +102,7 @@ func (m_ MTRThreadNetworkDirectoryClusterThreadNetworkStruct) Channel() unsafe.P
 // SetChannel sets the value of the channel property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadNetworkDirectoryClusterThreadNetworkStruct/channel
-func (m_ MTRThreadNetworkDirectoryClusterThreadNetworkStruct) SetChannel(value unsafe.Pointer) {
+func (m_ MTRThreadNetworkDirectoryClusterThreadNetworkStruct) SetChannel(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setChannel:"), value)
 }
 

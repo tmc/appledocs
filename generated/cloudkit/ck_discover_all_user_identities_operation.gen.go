@@ -82,4 +82,73 @@ func NewCKDiscoverAllUserIdentitiesOperation() CKDiscoverAllUserIdentitiesOperat
 
 
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckdiscoveralluseridentitiesoperation/discoveralluseridentitiesresultblock
+func (c_ CKDiscoverAllUserIdentitiesOperation) DiscoverAllUserIdentitiesResultBlock() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("discoverAllUserIdentitiesResultBlock"))
+	return rv
+}
+
+
+// SetDiscoverAllUserIdentitiesResultBlock sets the value of the discoverAllUserIdentitiesResultBlock property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckdiscoveralluseridentitiesoperation/discoveralluseridentitiesresultblock
+func (c_ CKDiscoverAllUserIdentitiesOperation) SetDiscoverAllUserIdentitiesResultBlock(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setDiscoverAllUserIdentitiesResultBlock:"), value)
+}
+
+// The relative amount of importance for granting system resources to the operation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/qualityOfService
+func (c_ CKDiscoverAllUserIdentitiesOperation) QualityOfService() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("qualityOfService"))
+	return rv
+}
+
+
+// SetQualityOfService sets the value of the qualityOfService property.
+// The relative amount of importance for granting system resources to the operation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/qualityOfService
+func (c_ CKDiscoverAllUserIdentitiesOperation) SetQualityOfService(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setQualityOfService:"), value)
+}
+
+// The block to execute after the operation’s main task is completed.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/completionBlock
+func (c_ CKDiscoverAllUserIdentitiesOperation) CompletionBlock() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("completionBlock"))
+	return rv
+}
+
+
+// SetCompletionBlock sets the value of the completionBlock property.
+// The block to execute after the operation’s main task is completed.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/completionBlock
+func (c_ CKDiscoverAllUserIdentitiesOperation) SetCompletionBlock(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setCompletionBlock:"), value)
+}
+
+// Identifiers that match contacts in the local Contacts database.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckuseridentity/contactidentifiers
+func (c_ CKDiscoverAllUserIdentitiesOperation) ContactIdentifiers() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("contactIdentifiers"))
+	return rv
+}
+
+
+// SetContactIdentifiers sets the value of the contactIdentifiers property.
+// Identifiers that match contacts in the local Contacts database.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckuseridentity/contactidentifiers
+func (c_ CKDiscoverAllUserIdentitiesOperation) SetContactIdentifiers(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setContactIdentifiers:"), objc.String(value))
+}
+
 

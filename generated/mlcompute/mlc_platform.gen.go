@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -81,15 +82,15 @@ func NewCPlatform() CPlatform {
 // Returns the global random number generator seed value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCPlatform/getRNGseed()
-func (cc _CPlatformClass) GetRNGseed() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("getRNGseed"))
+func (cc _CPlatformClass) GetRNGseed() foundation.Number {
+	rv := objc.Send[foundation.Number](objc.ID(cc.class), objc.Sel("getRNGseed"))
 	return rv
 }
 
 // Sets the global random number generator seed value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCPlatform/setRNGSeedTo(_:)
-func (cc _CPlatformClass) SetRNGSeedTo(seed unsafe.Pointer) {
+func (cc _CPlatformClass) SetRNGSeedTo(seed foundation.Number) {
 	objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("setRNGSeedTo:"), seed)
 }
 

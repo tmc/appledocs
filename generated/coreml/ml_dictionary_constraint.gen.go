@@ -78,5 +78,113 @@ func NewDictionaryConstraint() DictionaryConstraint {
 }
 
 
+// The constraint for a dictionary feature.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/dictionaryconstraint
+func (d_ DictionaryConstraint) DictionaryConstraint() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("dictionaryConstraint"))
+	return rv
+}
+
+
+// SetDictionaryConstraint sets the value of the dictionaryConstraint property.
+// The constraint for a dictionary feature.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/dictionaryconstraint
+func (d_ DictionaryConstraint) SetDictionaryConstraint(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setDictionaryConstraint:"), value)
+}
+
+// The key type for the dictionary.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mldictionaryconstraint/keytype
+func (d_ DictionaryConstraint) KeyType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("keyType"))
+	return rv
+}
+
+
+// SetKeyType sets the value of the keyType property.
+// The key type for the dictionary.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mldictionaryconstraint/keytype
+func (d_ DictionaryConstraint) SetKeyType(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setKeyType:"), value)
+}
+
+// The constraints on a multidimensional array feature.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/multiarrayconstraint
+func (d_ DictionaryConstraint) MultiArrayConstraint() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("multiArrayConstraint"))
+	return rv
+}
+
+
+// SetMultiArrayConstraint sets the value of the multiArrayConstraint property.
+// The constraints on a multidimensional array feature.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/multiarrayconstraint
+func (d_ DictionaryConstraint) SetMultiArrayConstraint(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setMultiArrayConstraint:"), value)
+}
+
+// The constraints for a sequence feature.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/sequenceconstraint
+func (d_ DictionaryConstraint) SequenceConstraint() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("sequenceConstraint"))
+	return rv
+}
+
+
+// SetSequenceConstraint sets the value of the sequenceConstraint property.
+// The constraints for a sequence feature.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/sequenceconstraint
+func (d_ DictionaryConstraint) SetSequenceConstraint(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setSequenceConstraint:"), value)
+}
+
+// The state feature value constraint.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/stateconstraint
+func (d_ DictionaryConstraint) StateConstraint() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("stateConstraint"))
+	return rv
+}
+
+
+// SetStateConstraint sets the value of the stateConstraint property.
+// The state feature value constraint.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/stateconstraint
+func (d_ DictionaryConstraint) SetStateConstraint(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setStateConstraint:"), value)
+}
+
+// The size and format constraints for an image feature.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/imageconstraint
+func (d_ DictionaryConstraint) ImageConstraint() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("imageConstraint"))
+	return rv
+}
+
+
+// SetImageConstraint sets the value of the imageConstraint property.
+// The size and format constraints for an image feature.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/imageconstraint
+func (d_ DictionaryConstraint) SetImageConstraint(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setImageConstraint:"), value)
+}
+
 
 

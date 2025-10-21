@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [Movie] class.
@@ -86,7 +87,7 @@ func NewMovie() Movie {
 // Creates a movie object from a movie header stored in a QuickTime movie file of ISO base media file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMovie/init(url:options:)
-func NewMovieWithURLOptions(URL unsafe.Pointer, options unsafe.Pointer) Movie {
+func NewMovieWithURLOptions(URL foundation.URL, options unsafe.Pointer) Movie {
 	instance := getMovieClass().Alloc()
 	rv := objc.Send[Movie](instance.ID, objc.Sel("initWithURL:options:"), URL, options)
 	rv.Autorelease()
@@ -108,6 +109,78 @@ func (m_ Movie) CanContainMovieFragments() bool {
 func (m_ Movie) Data() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("data"))
 	return rv
+}
+
+// A Boolean value that indicates whether at least one movie fragment extends the movie file.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmovie/containsmoviefragments
+func (m_ Movie) ContainsMovieFragments() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("containsMovieFragments"))
+	return rv
+}
+
+
+// SetContainsMovieFragments sets the value of the containsMovieFragments property.
+// A Boolean value that indicates whether at least one movie fragment extends the movie file.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmovie/containsmoviefragments
+func (m_ Movie) SetContainsMovieFragments(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setContainsMovieFragments:"), value)
+}
+
+// The default storage container for media data added to a movie.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmovie/defaultmediadatastorage
+func (m_ Movie) DefaultMediaDataStorage() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("defaultMediaDataStorage"))
+	return rv
+}
+
+
+// SetDefaultMediaDataStorage sets the value of the defaultMediaDataStorage property.
+// The default storage container for media data added to a movie.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmovie/defaultmediadatastorage
+func (m_ Movie) SetDefaultMediaDataStorage(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDefaultMediaDataStorage:"), value)
+}
+
+// The tracks that a movie contains.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmovie/tracks
+func (m_ Movie) Tracks() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("tracks"))
+	return rv
+}
+
+
+// SetTracks sets the value of the tracks property.
+// The tracks that a movie contains.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmovie/tracks
+func (m_ Movie) SetTracks(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTracks:"), value)
+}
+
+// A URL to a QuickTime or ISO base media file.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmovie/url
+func (m_ Movie) Url() foundation.URL {
+	rv := objc.Send[foundation.URL](m_.ID, objc.Sel("url"))
+	return rv
+}
+
+
+// SetUrl sets the value of the url property.
+// A URL to a QuickTime or ISO base media file.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmovie/url
+func (m_ Movie) SetUrl(value foundation.URL) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setUrl:"), value)
 }
 
 

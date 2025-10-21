@@ -111,6 +111,24 @@ func (c_ CXTransaction) AddAction(action unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("addAction:"), action)
 }
 
+// A Boolean value that indicates whether the transaction has been completed.
+//
+// [Full Topic]: https://developer.apple.com/documentation/callkit/cxtransaction/iscomplete
+func (c_ CXTransaction) IsComplete() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isComplete"))
+	return rv
+}
+
+
+// SetIsComplete sets the value of the isComplete property.
+// A Boolean value that indicates whether the transaction has been completed.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/callkit/cxtransaction/iscomplete
+func (c_ CXTransaction) SetIsComplete(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsComplete:"), value)
+}
+
 // The actions added to a transaction.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXTransaction/actions

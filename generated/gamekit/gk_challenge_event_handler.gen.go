@@ -88,5 +88,23 @@ func (cc _ChallengeEventHandlerClass) ChallengeEventHandler() unsafe.Pointer {
 	return rv
 }
 
+// The delegate for the event handler.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkchallengeeventhandler/delegate
+func (c_ ChallengeEventHandler) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+
+// SetDelegate sets the value of the delegate property.
+// The delegate for the event handler.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkchallengeeventhandler/delegate
+func (c_ ChallengeEventHandler) SetDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setDelegate:"), value)
+}
+
 
 

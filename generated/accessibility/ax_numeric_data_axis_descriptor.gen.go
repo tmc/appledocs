@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -103,11 +104,29 @@ func NewAXNumericDataAxisDescriptorWithTitleLowerBoundUpperBoundGridlinePosition
 }
 
 
+// A range that defines the minimum and maximum displayable values for the axis.
+//
+// [Full Topic]: https://developer.apple.com/documentation/accessibility/axnumericdataaxisdescriptor/range
+func (a_ AXNumericDataAxisDescriptor) Range() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("range"))
+	return rv
+}
+
+
+// SetRange sets the value of the range property.
+// A range that defines the minimum and maximum displayable values for the axis.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/accessibility/axnumericdataaxisdescriptor/range
+func (a_ AXNumericDataAxisDescriptor) SetRange(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setRange:"), value)
+}
+
 // The positions of the gridlines along the axis.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXNumericDataAxisDescriptor/gridlinePositions-9z10e
-func (a_ AXNumericDataAxisDescriptor) GridlinePositions() []NSNumber {
-	rv := objc.Send[[]NSNumber](a_.ID, objc.Sel("gridlinePositions"))
+func (a_ AXNumericDataAxisDescriptor) GridlinePositions() []foundation.Number {
+	rv := objc.Send[[]foundation.Number](a_.ID, objc.Sel("gridlinePositions"))
 	return rv
 }
 
@@ -117,7 +136,7 @@ func (a_ AXNumericDataAxisDescriptor) GridlinePositions() []NSNumber {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXNumericDataAxisDescriptor/gridlinePositions-9z10e
-func (a_ AXNumericDataAxisDescriptor) SetGridlinePositions(value []NSNumber) {
+func (a_ AXNumericDataAxisDescriptor) SetGridlinePositions(value []foundation.Number) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {

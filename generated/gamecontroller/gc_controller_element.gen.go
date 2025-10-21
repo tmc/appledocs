@@ -80,6 +80,150 @@ func NewGCControllerElement() GCControllerElement {
 }
 
 
+// The element’s system symbol, not the remapped symbol.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/unmappedsfsymbolsname
+func (g_ GCControllerElement) UnmappedSfSymbolsName() string {
+	rv := objc.Send[string](g_.ID, objc.Sel("unmappedSfSymbolsName"))
+	return rv
+}
+
+
+// SetUnmappedSfSymbolsName sets the value of the unmappedSfSymbolsName property.
+// The element’s system symbol, not the remapped symbol.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/unmappedsfsymbolsname
+func (g_ GCControllerElement) SetUnmappedSfSymbolsName(value string) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setUnmappedSfSymbolsName:"), objc.String(value))
+}
+
+// The enclosing element for this element.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/collection
+func (g_ GCControllerElement) Collection() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("collection"))
+	return rv
+}
+
+
+// SetCollection sets the value of the collection property.
+// The enclosing element for this element.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/collection
+func (g_ GCControllerElement) SetCollection(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setCollection:"), value)
+}
+
+// A system symbol for the element or the remapped element.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/sfsymbolsname
+func (g_ GCControllerElement) SfSymbolsName() string {
+	rv := objc.Send[string](g_.ID, objc.Sel("sfSymbolsName"))
+	return rv
+}
+
+
+// SetSfSymbolsName sets the value of the sfSymbolsName property.
+// A system symbol for the element or the remapped element.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/sfsymbolsname
+func (g_ GCControllerElement) SetSfSymbolsName(value string) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setSfSymbolsName:"), objc.String(value))
+}
+
+// The localized name for the element or the remapped element.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/localizedname
+func (g_ GCControllerElement) LocalizedName() string {
+	rv := objc.Send[string](g_.ID, objc.Sel("localizedName"))
+	return rv
+}
+
+
+// SetLocalizedName sets the value of the localizedName property.
+// The localized name for the element or the remapped element.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/localizedname
+func (g_ GCControllerElement) SetLocalizedName(value string) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setLocalizedName:"), objc.String(value))
+}
+
+// The preferred state for handling input when the user binds the element to a system gesture.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/preferredsystemgesturestate
+func (g_ GCControllerElement) PreferredSystemGestureState() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("preferredSystemGestureState"))
+	return rv
+}
+
+
+// SetPreferredSystemGestureState sets the value of the preferredSystemGestureState property.
+// The preferred state for handling input when the user binds the element to a system gesture.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/preferredsystemgesturestate
+func (g_ GCControllerElement) SetPreferredSystemGestureState(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setPreferredSystemGestureState:"), value)
+}
+
+// A Boolean value that indicates whether the user binds the element to a system gesture.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/isboundtosystemgesture
+func (g_ GCControllerElement) IsBoundToSystemGesture() bool {
+	rv := objc.Send[bool](g_.ID, objc.Sel("isBoundToSystemGesture"))
+	return rv
+}
+
+
+// SetIsBoundToSystemGesture sets the value of the isBoundToSystemGesture property.
+// A Boolean value that indicates whether the user binds the element to a system gesture.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/isboundtosystemgesture
+func (g_ GCControllerElement) SetIsBoundToSystemGesture(value bool) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setIsBoundToSystemGesture:"), value)
+}
+
+// The element’s localized name, not the remapped name.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/unmappedlocalizedname
+func (g_ GCControllerElement) UnmappedLocalizedName() string {
+	rv := objc.Send[string](g_.ID, objc.Sel("unmappedLocalizedName"))
+	return rv
+}
+
+
+// SetUnmappedLocalizedName sets the value of the unmappedLocalizedName property.
+// The element’s localized name, not the remapped name.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/unmappedlocalizedname
+func (g_ GCControllerElement) SetUnmappedLocalizedName(value string) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setUnmappedLocalizedName:"), objc.String(value))
+}
+
+// A Boolean value that indicates whether the element provides analog data.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/isanalog
+func (g_ GCControllerElement) IsAnalog() bool {
+	rv := objc.Send[bool](g_.ID, objc.Sel("isAnalog"))
+	return rv
+}
+
+
+// SetIsAnalog sets the value of the isAnalog property.
+// A Boolean value that indicates whether the element provides analog data.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/isanalog
+func (g_ GCControllerElement) SetIsAnalog(value bool) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setIsAnalog:"), value)
+}
+
 // The element’s aliases you use when accessing it with the subscript notation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCControllerElement/aliases

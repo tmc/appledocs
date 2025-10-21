@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,36 @@ func NewMTRRVCCleanModeClusterChangeToModeResponseParams() MTRRVCCleanModeCluste
 	return getMTRRVCCleanModeClusterChangeToModeResponseParamsClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvccleanmodeclusterchangetomoderesponseparams/status
+func (m_ MTRRVCCleanModeClusterChangeToModeResponseParams) Status() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("status"))
+	return rv
+}
+
+
+// SetStatus sets the value of the status property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvccleanmodeclusterchangetomoderesponseparams/status
+func (m_ MTRRVCCleanModeClusterChangeToModeResponseParams) SetStatus(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setStatus:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvccleanmodeclusterchangetomoderesponseparams/statustext
+func (m_ MTRRVCCleanModeClusterChangeToModeResponseParams) StatusText() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("statusText"))
+	return rv
+}
+
+
+// SetStatusText sets the value of the statusText property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvccleanmodeclusterchangetomoderesponseparams/statustext
+func (m_ MTRRVCCleanModeClusterChangeToModeResponseParams) SetStatusText(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setStatusText:"), objc.String(value))
+}
 
 
 

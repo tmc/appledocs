@@ -94,4 +94,58 @@ func NewPHASESwitchNodeDefinitionWithSwitchMetaParameterDefinition(switchMetaPar
 }
 
 
+// The meta parameter that holds the name of the child node to invoke.
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phaseswitchnodedefinition/switchmetaparameterdefinition
+func (p_ PHASESwitchNodeDefinition) SwitchMetaParameterDefinition() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("switchMetaParameterDefinition"))
+	return rv
+}
+
+
+// SetSwitchMetaParameterDefinition sets the value of the switchMetaParameterDefinition property.
+// The meta parameter that holds the name of the child node to invoke.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phaseswitchnodedefinition/switchmetaparameterdefinition
+func (p_ PHASESwitchNodeDefinition) SetSwitchMetaParameterDefinition(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setSwitchMetaParameterDefinition:"), value)
+}
+
+// The object’s meta parameters.
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasesoundevent/metaparameters
+func (p_ PHASESwitchNodeDefinition) MetaParameters() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("metaParameters"))
+	return rv
+}
+
+
+// SetMetaParameters sets the value of the metaParameters property.
+// The object’s meta parameters.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasesoundevent/metaparameters
+func (p_ PHASESwitchNodeDefinition) SetMetaParameters(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setMetaParameters:"), objc.String(value))
+}
+
+// A dictionary of metaparameters that all sound event assets share.
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phaseassetregistry/globalmetaparameters
+func (p_ PHASESwitchNodeDefinition) GlobalMetaParameters() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("globalMetaParameters"))
+	return rv
+}
+
+
+// SetGlobalMetaParameters sets the value of the globalMetaParameters property.
+// A dictionary of metaparameters that all sound event assets share.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phaseassetregistry/globalmetaparameters
+func (p_ PHASESwitchNodeDefinition) SetGlobalMetaParameters(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setGlobalMetaParameters:"), objc.String(value))
+}
+
 

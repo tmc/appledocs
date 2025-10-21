@@ -85,4 +85,19 @@ func NewGramMatrixCalculationWithCoderDevice(aDecoder unsafe.Pointer, device obj
 }
 
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnngrammatrixcalculation/alpha
+func (g_ GramMatrixCalculation) Alpha() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("alpha"))
+	return rv
+}
+
+
+// SetAlpha sets the value of the alpha property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnngrammatrixcalculation/alpha
+func (g_ GramMatrixCalculation) SetAlpha(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setAlpha:"), value)
+}
+
 

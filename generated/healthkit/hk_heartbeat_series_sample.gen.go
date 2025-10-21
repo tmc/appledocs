@@ -81,5 +81,13 @@ func NewHKHeartbeatSeriesSample() HKHeartbeatSeriesSample {
 }
 
 
+// A key that indicates the version number of the algorithm used to calculate the sample’s value.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmetadatakeyalgorithmversion
+func (h_ HKHeartbeatSeriesSample) HKMetadataKeyAlgorithmVersion() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("HKMetadataKeyAlgorithmVersion"))
+	return rv
+}
+
 
 

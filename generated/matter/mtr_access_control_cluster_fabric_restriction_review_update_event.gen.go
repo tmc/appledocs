@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,8 +78,8 @@ func NewMTRAccessControlClusterFabricRestrictionReviewUpdateEvent() MTRAccessCon
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterFabricRestrictionReviewUpdateEvent/fabricIndex
-func (m_ MTRAccessControlClusterFabricRestrictionReviewUpdateEvent) FabricIndex() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("fabricIndex"))
+func (m_ MTRAccessControlClusterFabricRestrictionReviewUpdateEvent) FabricIndex() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("fabricIndex"))
 	return rv
 }
 
@@ -86,7 +87,7 @@ func (m_ MTRAccessControlClusterFabricRestrictionReviewUpdateEvent) FabricIndex(
 // SetFabricIndex sets the value of the fabricIndex property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterFabricRestrictionReviewUpdateEvent/fabricIndex
-func (m_ MTRAccessControlClusterFabricRestrictionReviewUpdateEvent) SetFabricIndex(value unsafe.Pointer) {
+func (m_ MTRAccessControlClusterFabricRestrictionReviewUpdateEvent) SetFabricIndex(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
 }
 
@@ -107,8 +108,8 @@ func (m_ MTRAccessControlClusterFabricRestrictionReviewUpdateEvent) SetInstructi
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterFabricRestrictionReviewUpdateEvent/token
-func (m_ MTRAccessControlClusterFabricRestrictionReviewUpdateEvent) Token() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("token"))
+func (m_ MTRAccessControlClusterFabricRestrictionReviewUpdateEvent) Token() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("token"))
 	return rv
 }
 
@@ -116,7 +117,7 @@ func (m_ MTRAccessControlClusterFabricRestrictionReviewUpdateEvent) Token() unsa
 // SetToken sets the value of the token property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterFabricRestrictionReviewUpdateEvent/token
-func (m_ MTRAccessControlClusterFabricRestrictionReviewUpdateEvent) SetToken(value unsafe.Pointer) {
+func (m_ MTRAccessControlClusterFabricRestrictionReviewUpdateEvent) SetToken(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setToken:"), value)
 }
 

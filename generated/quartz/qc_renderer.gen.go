@@ -34,8 +34,8 @@ type IQCRenderer interface {
 	objectivec.IObject
 	Composition() unsafe.Pointer
 	CreateSnapshotImageOfType(type_ string) objc.ID
-	RenderAtTimeArguments(time TimeInterval, arguments objc.ID) bool
-	RenderingTimeForTimeArguments(time TimeInterval, arguments objc.ID) TimeInterval
+	RenderAtTimeArguments(time foundation.TimeInterval, arguments objc.ID) bool
+	RenderingTimeForTimeArguments(time foundation.TimeInterval, arguments objc.ID) foundation.TimeInterval
 	SnapshotImage() unsafe.Pointer
 }
 
@@ -155,15 +155,15 @@ func (q_ QCRenderer) CreateSnapshotImageOfType(type_ string) objc.ID {
 // Renders a frame of a composition at the specified time.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Quartz/QCRenderer/render(atTime:arguments:)
-func (q_ QCRenderer) RenderAtTimeArguments(time TimeInterval, arguments objc.ID) bool {
+func (q_ QCRenderer) RenderAtTimeArguments(time foundation.TimeInterval, arguments objc.ID) bool {
 	rv := objc.Send[bool](q_.ID, objc.Sel("renderAtTime:arguments:"), time, arguments)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Quartz/QCRenderer/renderingTime(forTime:arguments:)
-func (q_ QCRenderer) RenderingTimeForTimeArguments(time TimeInterval, arguments objc.ID) TimeInterval {
-	rv := objc.Send[TimeInterval](q_.ID, objc.Sel("renderingTimeForTime:arguments:"), time, arguments)
+func (q_ QCRenderer) RenderingTimeForTimeArguments(time foundation.TimeInterval, arguments objc.ID) foundation.TimeInterval {
+	rv := objc.Send[foundation.TimeInterval](q_.ID, objc.Sel("renderingTimeForTime:arguments:"), time, arguments)
 	return rv
 }
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -92,8 +93,8 @@ func (m_ MTROvenModeClusterModeOptionStruct) SetLabel(value string) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenModeClusterModeOptionStruct/mode
-func (m_ MTROvenModeClusterModeOptionStruct) Mode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("mode"))
+func (m_ MTROvenModeClusterModeOptionStruct) Mode() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("mode"))
 	return rv
 }
 
@@ -101,7 +102,7 @@ func (m_ MTROvenModeClusterModeOptionStruct) Mode() unsafe.Pointer {
 // SetMode sets the value of the mode property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenModeClusterModeOptionStruct/mode
-func (m_ MTROvenModeClusterModeOptionStruct) SetMode(value unsafe.Pointer) {
+func (m_ MTROvenModeClusterModeOptionStruct) SetMode(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMode:"), value)
 }
 

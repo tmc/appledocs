@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -94,6 +95,114 @@ func (i_ ICScannerDevice) RequestOpenSessionWithCredentialsPassword(username str
 // [Full Topic]: https://developer.apple.com/documentation/ImageCaptureCore/ICScannerDevice/requestOverviewScan()
 func (i_ ICScannerDevice) RequestOverviewScan() {
 	objc.Send[objc.ID](i_.ID, objc.Sel("requestOverviewScan"))
+}
+
+// A default username on protected scanners.
+//
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/icscannerdevice/defaultusername
+func (i_ ICScannerDevice) DefaultUsername() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("defaultUsername"))
+	return rv
+}
+
+
+// SetDefaultUsername sets the value of the defaultUsername property.
+// A default username on protected scanners.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/icscannerdevice/defaultusername
+func (i_ ICScannerDevice) SetDefaultUsername(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setDefaultUsername:"), objc.String(value))
+}
+
+// An array of functional unit types available on this scanner.
+//
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/icscannerdevice/availablefunctionalunittypes
+func (i_ ICScannerDevice) AvailableFunctionalUnitTypes() foundation.Number {
+	rv := objc.Send[foundation.Number](i_.ID, objc.Sel("availableFunctionalUnitTypes"))
+	return rv
+}
+
+
+// SetAvailableFunctionalUnitTypes sets the value of the availableFunctionalUnitTypes property.
+// An array of functional unit types available on this scanner.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/icscannerdevice/availablefunctionalunittypes
+func (i_ ICScannerDevice) SetAvailableFunctionalUnitTypes(value foundation.Number) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setAvailableFunctionalUnitTypes:"), value)
+}
+
+// The document’s uniform type identifier.
+//
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/icscannerdevice/documentuti
+func (i_ ICScannerDevice) DocumentUTI() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("documentUTI"))
+	return rv
+}
+
+
+// SetDocumentUTI sets the value of the documentUTI property.
+// The document’s uniform type identifier.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/icscannerdevice/documentuti
+func (i_ ICScannerDevice) SetDocumentUTI(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setDocumentUTI:"), objc.String(value))
+}
+
+// The total maximum band size requested when performing a memory-based transfer.
+//
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/icscannerdevice/maxmemorybandsize
+func (i_ ICScannerDevice) MaxMemoryBandSize() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("maxMemoryBandSize"))
+	return rv
+}
+
+
+// SetMaxMemoryBandSize sets the value of the maxMemoryBandSize property.
+// The total maximum band size requested when performing a memory-based transfer.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/icscannerdevice/maxmemorybandsize
+func (i_ ICScannerDevice) SetMaxMemoryBandSize(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setMaxMemoryBandSize:"), value)
+}
+
+// The downloads directory.
+//
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/icscannerdevice/downloadsdirectory
+func (i_ ICScannerDevice) DownloadsDirectory() foundation.URL {
+	rv := objc.Send[foundation.URL](i_.ID, objc.Sel("downloadsDirectory"))
+	return rv
+}
+
+
+// SetDownloadsDirectory sets the value of the downloadsDirectory property.
+// The downloads directory.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/icscannerdevice/downloadsdirectory
+func (i_ ICScannerDevice) SetDownloadsDirectory(value foundation.URL) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setDownloadsDirectory:"), value)
+}
+
+// The currently selected functional unit on the scanner.
+//
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/icscannerdevice/selectedfunctionalunit
+func (i_ ICScannerDevice) SelectedFunctionalUnit() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("selectedFunctionalUnit"))
+	return rv
+}
+
+
+// SetSelectedFunctionalUnit sets the value of the selectedFunctionalUnit property.
+// The currently selected functional unit on the scanner.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/icscannerdevice/selectedfunctionalunit
+func (i_ ICScannerDevice) SetSelectedFunctionalUnit(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setSelectedFunctionalUnit:"), value)
 }
 
 // The document’s name.

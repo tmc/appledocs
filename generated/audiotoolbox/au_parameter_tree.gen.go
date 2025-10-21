@@ -139,5 +139,23 @@ func (p_ ParameterTree) ParameterWithIDScopeElement(paramID unsafe.Pointer, scop
 	return rv
 }
 
+// An audio unit’s parameters, organized in a tree hierarchy.
+//
+// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounit/parametertree
+func (p_ ParameterTree) ParameterTree() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("parameterTree"))
+	return rv
+}
+
+
+// SetParameterTree sets the value of the parameterTree property.
+// An audio unit’s parameters, organized in a tree hierarchy.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounit/parametertree
+func (p_ ParameterTree) SetParameterTree(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setParameterTree:"), value)
+}
+
 
 

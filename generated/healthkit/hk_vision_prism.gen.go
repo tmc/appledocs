@@ -80,5 +80,131 @@ func NewHKVisionPrism() HKVisionPrism {
 }
 
 
+// The strength of the horizontal correction.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprism/horizontalamount
+func (h_ HKVisionPrism) HorizontalAmount() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("horizontalAmount"))
+	return rv
+}
+
+
+// SetHorizontalAmount sets the value of the horizontalAmount property.
+// The strength of the horizontal correction.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprism/horizontalamount
+func (h_ HKVisionPrism) SetHorizontalAmount(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setHorizontalAmount:"), value)
+}
+
+// The strength of the correction.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprism/amount
+func (h_ HKVisionPrism) Amount() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("amount"))
+	return rv
+}
+
+
+// SetAmount sets the value of the amount property.
+// The strength of the correction.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprism/amount
+func (h_ HKVisionPrism) SetAmount(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setAmount:"), value)
+}
+
+// The orientation of the vertical portion of the correction.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprism/verticalbase
+func (h_ HKVisionPrism) VerticalBase() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("verticalBase"))
+	return rv
+}
+
+
+// SetVerticalBase sets the value of the verticalBase property.
+// The orientation of the vertical portion of the correction.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprism/verticalbase
+func (h_ HKVisionPrism) SetVerticalBase(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setVerticalBase:"), value)
+}
+
+// The orientation of the adjustment.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprism/angle
+func (h_ HKVisionPrism) Angle() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("angle"))
+	return rv
+}
+
+
+// SetAngle sets the value of the angle property.
+// The orientation of the adjustment.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprism/angle
+func (h_ HKVisionPrism) SetAngle(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setAngle:"), value)
+}
+
+// The strength of the vertical correction.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprism/verticalamount
+func (h_ HKVisionPrism) VerticalAmount() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("verticalAmount"))
+	return rv
+}
+
+
+// SetVerticalAmount sets the value of the verticalAmount property.
+// The strength of the vertical correction.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprism/verticalamount
+func (h_ HKVisionPrism) SetVerticalAmount(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setVerticalAmount:"), value)
+}
+
+// A value indicating which eye the correction applies to.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprism/eye
+func (h_ HKVisionPrism) Eye() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("eye"))
+	return rv
+}
+
+
+// SetEye sets the value of the eye property.
+// A value indicating which eye the correction applies to.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprism/eye
+func (h_ HKVisionPrism) SetEye(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setEye:"), value)
+}
+
+// The orientation of the horizontal portion of the correction.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprism/horizontalbase
+func (h_ HKVisionPrism) HorizontalBase() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("horizontalBase"))
+	return rv
+}
+
+
+// SetHorizontalBase sets the value of the horizontalBase property.
+// The orientation of the horizontal portion of the correction.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprism/horizontalbase
+func (h_ HKVisionPrism) SetHorizontalBase(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setHorizontalBase:"), value)
+}
+
 
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -33,7 +34,7 @@ type IBluetoothHostController interface {
 	AddressAsString() string
 	ClassOfDevice() unsafe.Pointer
 	NameAsString() string
-	SetClassOfDeviceForTimeInterval(classOfDevice unsafe.Pointer, seconds TimeInterval) unsafe.Pointer
+	SetClassOfDeviceForTimeInterval(classOfDevice unsafe.Pointer, seconds foundation.TimeInterval) unsafe.Pointer
 }
 
 // This class is a representation of a Bluetooth Host Controller Interface that is present on the local computer (either plugged in externally or available internally).
@@ -119,7 +120,7 @@ func (b_ BluetoothHostController) NameAsString() string {
 // Sets the current class of device value, for the specified amount of time. Note that the time interval be set and valid. The range of acceptable values is 30-120 seconds. Anything above or below will be rounded up, or down, as appropriate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHostController/setClassOfDevice(_:forTimeInterval:)
-func (b_ BluetoothHostController) SetClassOfDeviceForTimeInterval(classOfDevice unsafe.Pointer, seconds TimeInterval) unsafe.Pointer {
+func (b_ BluetoothHostController) SetClassOfDeviceForTimeInterval(classOfDevice unsafe.Pointer, seconds foundation.TimeInterval) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("setClassOfDevice:forTimeInterval:"), classOfDevice, seconds)
 	return rv
 }

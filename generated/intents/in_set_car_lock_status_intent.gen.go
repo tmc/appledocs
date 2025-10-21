@@ -81,5 +81,41 @@ func NewINSetCarLockStatusIntent() INSetCarLockStatusIntent {
 }
 
 
+// A name that identifies the user’s car.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insetcarlockstatusintent/carname
+func (i_ INSetCarLockStatusIntent) CarName() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("carName"))
+	return rv
+}
+
+
+// SetCarName sets the value of the carName property.
+// A name that identifies the user’s car.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insetcarlockstatusintent/carname
+func (i_ INSetCarLockStatusIntent) SetCarName(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setCarName:"), value)
+}
+
+// A Boolean value that indicates whether to lock the car.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insetcarlockstatusintent/locked-9h0kx
+func (i_ INSetCarLockStatusIntent) Locked() bool {
+	rv := objc.Send[bool](i_.ID, objc.Sel("locked"))
+	return rv
+}
+
+
+// SetLocked sets the value of the locked property.
+// A Boolean value that indicates whether to lock the car.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insetcarlockstatusintent/locked-9h0kx
+func (i_ INSetCarLockStatusIntent) SetLocked(value bool) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setLocked:"), value)
+}
+
 
 

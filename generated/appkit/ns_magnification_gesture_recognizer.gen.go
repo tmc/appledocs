@@ -99,5 +99,23 @@ func (m_ MagnificationGestureRecognizer) SetMagnification(value float64) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMagnification:"), value)
 }
 
+// A Boolean value that indicates whether magnification events are delivered only after gesture recognition fails.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsgesturerecognizer/delaysmagnificationevents
+func (m_ MagnificationGestureRecognizer) DelaysMagnificationEvents() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("delaysMagnificationEvents"))
+	return rv
+}
+
+
+// SetDelaysMagnificationEvents sets the value of the delaysMagnificationEvents property.
+// A Boolean value that indicates whether magnification events are delivered only after gesture recognition fails.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsgesturerecognizer/delaysmagnificationevents
+func (m_ MagnificationGestureRecognizer) SetDelaysMagnificationEvents(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDelaysMagnificationEvents:"), value)
+}
+
 
 

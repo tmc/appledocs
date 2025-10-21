@@ -86,5 +86,23 @@ func (rc _ResourceStatePassDescriptorClass) ResourceStatePassDescriptor() unsafe
 	return rv
 }
 
+// The array of sample buffers that the resource state pass can access.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlresourcestatepassdescriptor/samplebufferattachments
+func (r_ ResourceStatePassDescriptor) SampleBufferAttachments() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("sampleBufferAttachments"))
+	return rv
+}
+
+
+// SetSampleBufferAttachments sets the value of the sampleBufferAttachments property.
+// The array of sample buffers that the resource state pass can access.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlresourcestatepassdescriptor/samplebufferattachments
+func (r_ ResourceStatePassDescriptor) SetSampleBufferAttachments(value unsafe.Pointer) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setSampleBufferAttachments:"), value)
+}
+
 
 

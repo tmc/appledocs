@@ -79,5 +79,23 @@ func NewRatingCommandEvent() RatingCommandEvent {
 }
 
 
+// The rating for the command event.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpratingcommandevent/rating
+func (r_ RatingCommandEvent) Rating() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("rating"))
+	return rv
+}
+
+
+// SetRating sets the value of the rating property.
+// The rating for the command event.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpratingcommandevent/rating
+func (r_ RatingCommandEvent) SetRating(value unsafe.Pointer) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setRating:"), value)
+}
+
 
 

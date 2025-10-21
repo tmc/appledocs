@@ -80,5 +80,23 @@ func NewAccelerationStructureDescriptor() AccelerationStructureDescriptor {
 }
 
 
+// The options that describe how you intend to use the acceleration structure.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuredescriptor/usage
+func (a_ AccelerationStructureDescriptor) Usage() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("usage"))
+	return rv
+}
+
+
+// SetUsage sets the value of the usage property.
+// The options that describe how you intend to use the acceleration structure.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuredescriptor/usage
+func (a_ AccelerationStructureDescriptor) SetUsage(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setUsage:"), value)
+}
+
 
 

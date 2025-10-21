@@ -80,5 +80,77 @@ func NewCLayer() CLayer {
 }
 
 
+// A Boolean that indicates whether you choose to debug the layer when executing a graph that includes it.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclayer/isdebuggingenabled
+func (c_ CLayer) IsDebuggingEnabled() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isDebuggingEnabled"))
+	return rv
+}
+
+
+// SetIsDebuggingEnabled sets the value of the isDebuggingEnabled property.
+// A Boolean that indicates whether you choose to debug the layer when executing a graph that includes it.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclayer/isdebuggingenabled
+func (c_ CLayer) SetIsDebuggingEnabled(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsDebuggingEnabled:"), value)
+}
+
+// A string that helps identify this layer.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclayer/label
+func (c_ CLayer) Label() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("label"))
+	return rv
+}
+
+
+// SetLabel sets the value of the label property.
+// A string that helps identify this layer.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclayer/label
+func (c_ CLayer) SetLabel(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setLabel:"), objc.String(value))
+}
+
+// A unique number that identifies each layer.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclayer/layerid
+func (c_ CLayer) LayerID() int {
+	rv := objc.Send[int](c_.ID, objc.Sel("layerID"))
+	return rv
+}
+
+
+// SetLayerID sets the value of the layerID property.
+// A unique number that identifies each layer.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclayer/layerid
+func (c_ CLayer) SetLayerID(value int) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setLayerID:"), value)
+}
+
+// A device type that indicates where the system executes the layer.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclayer/devicetype
+func (c_ CLayer) DeviceType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("deviceType"))
+	return rv
+}
+
+
+// SetDeviceType sets the value of the deviceType property.
+// A device type that indicates where the system executes the layer.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclayer/devicetype
+func (c_ CLayer) SetDeviceType(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setDeviceType:"), value)
+}
+
 
 

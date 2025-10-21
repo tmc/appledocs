@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -79,6 +80,24 @@ func NewPHLivePhoto() PHLivePhoto {
 	return getPHLivePhotoClass().New()
 }
 
+
+// The size, in pixels, of the Live Photo.
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phlivephoto/size
+func (p_ PHLivePhoto) Size() coregraphics.CGSize {
+	rv := objc.Send[coregraphics.CGSize](p_.ID, objc.Sel("size"))
+	return rv
+}
+
+
+// SetSize sets the value of the size property.
+// The size, in pixels, of the Live Photo.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phlivephoto/size
+func (p_ PHLivePhoto) SetSize(value coregraphics.CGSize) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setSize:"), value)
+}
 
 
 

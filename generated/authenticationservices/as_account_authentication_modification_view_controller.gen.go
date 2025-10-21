@@ -90,5 +90,23 @@ func (a_ AccountAuthenticationModificationViewController) PrepareInterfaceToConv
 	objc.Send[objc.ID](a_.ID, objc.Sel("prepareInterfaceToConvertAccountToSignInWithAppleForServiceIdentifier:existingCredential:userInfo:"), serviceIdentifier, existingCredential, userInfo)
 }
 
+// The context your account authentication modification extension uses to provide information to the system.
+//
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asaccountauthenticationmodificationviewcontroller/extensioncontext
+func (a_ AccountAuthenticationModificationViewController) ExtensionContext() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("extensionContext"))
+	return rv
+}
+
+
+// SetExtensionContext sets the value of the extensionContext property.
+// The context your account authentication modification extension uses to provide information to the system.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asaccountauthenticationmodificationviewcontroller/extensioncontext
+func (a_ AccountAuthenticationModificationViewController) SetExtensionContext(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setExtensionContext:"), value)
+}
+
 
 

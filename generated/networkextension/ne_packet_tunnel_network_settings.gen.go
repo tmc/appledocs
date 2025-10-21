@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [NEPacketTunnelNetworkSettings] class.
@@ -118,8 +119,8 @@ func (n_ NEPacketTunnelNetworkSettings) SetIPv6Settings(value unsafe.Pointer) {
 // The size of the maximum trasnmission unit, in bytes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEPacketTunnelNetworkSettings/mtu
-func (n_ NEPacketTunnelNetworkSettings) MTU() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("MTU"))
+func (n_ NEPacketTunnelNetworkSettings) MTU() foundation.Number {
+	rv := objc.Send[foundation.Number](n_.ID, objc.Sel("MTU"))
 	return rv
 }
 
@@ -129,15 +130,15 @@ func (n_ NEPacketTunnelNetworkSettings) MTU() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEPacketTunnelNetworkSettings/mtu
-func (n_ NEPacketTunnelNetworkSettings) SetMTU(value unsafe.Pointer) {
+func (n_ NEPacketTunnelNetworkSettings) SetMTU(value foundation.Number) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setMTU:"), value)
 }
 
 // The number of bytes added to each tunneled packet for storing tunneling protocol headers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEPacketTunnelNetworkSettings/tunnelOverheadBytes
-func (n_ NEPacketTunnelNetworkSettings) TunnelOverheadBytes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("tunnelOverheadBytes"))
+func (n_ NEPacketTunnelNetworkSettings) TunnelOverheadBytes() foundation.Number {
+	rv := objc.Send[foundation.Number](n_.ID, objc.Sel("tunnelOverheadBytes"))
 	return rv
 }
 
@@ -147,7 +148,7 @@ func (n_ NEPacketTunnelNetworkSettings) TunnelOverheadBytes() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEPacketTunnelNetworkSettings/tunnelOverheadBytes
-func (n_ NEPacketTunnelNetworkSettings) SetTunnelOverheadBytes(value unsafe.Pointer) {
+func (n_ NEPacketTunnelNetworkSettings) SetTunnelOverheadBytes(value foundation.Number) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setTunnelOverheadBytes:"), value)
 }
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -101,7 +102,7 @@ func NewPDFDocumentWithData(data unsafe.Pointer) PDFDocument {
 // Initializes a object with the contents at the specified URL (if the URL is invalid, this method returns ).
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFDocument/init(url:)
-func NewPDFDocumentWithURL(url unsafe.Pointer) PDFDocument {
+func NewPDFDocumentWithURL(url foundation.URL) PDFDocument {
 	instance := getPDFDocumentClass().Alloc()
 	rv := objc.Send[PDFDocument](instance.ID, objc.Sel("initWithURL:"), url)
 	rv.Autorelease()

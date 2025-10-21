@@ -78,5 +78,59 @@ func NewDateRangeMetadataGroup() DateRangeMetadataGroup {
 }
 
 
+// The end date for the metadata date range group.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdaterangemetadatagroup/enddate
+func (d_ DateRangeMetadataGroup) EndDate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("endDate"))
+	return rv
+}
+
+
+// SetEndDate sets the value of the endDate property.
+// The end date for the metadata date range group.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdaterangemetadatagroup/enddate
+func (d_ DateRangeMetadataGroup) SetEndDate(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setEndDate:"), value)
+}
+
+// An array of associated metadata items.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdaterangemetadatagroup/items
+func (d_ DateRangeMetadataGroup) Items() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("items"))
+	return rv
+}
+
+
+// SetItems sets the value of the items property.
+// An array of associated metadata items.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdaterangemetadatagroup/items
+func (d_ DateRangeMetadataGroup) SetItems(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setItems:"), value)
+}
+
+// The start date for the metadata date range group.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdaterangemetadatagroup/startdate
+func (d_ DateRangeMetadataGroup) StartDate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("startDate"))
+	return rv
+}
+
+
+// SetStartDate sets the value of the startDate property.
+// The start date for the metadata date range group.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdaterangemetadatagroup/startdate
+func (d_ DateRangeMetadataGroup) SetStartDate(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setStartDate:"), value)
+}
+
 
 

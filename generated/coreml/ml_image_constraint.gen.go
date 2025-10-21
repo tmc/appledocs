@@ -80,6 +80,42 @@ func NewImageConstraint() ImageConstraint {
 }
 
 
+// The type of this feature.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/type
+func (i_ ImageConstraint) Type() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("type"))
+	return rv
+}
+
+
+// SetType sets the value of the type property.
+// The type of this feature.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/type
+func (i_ ImageConstraint) SetType(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setType:"), value)
+}
+
+// The size and format constraints for an image feature.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/imageconstraint
+func (i_ ImageConstraint) ImageConstraint() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("imageConstraint"))
+	return rv
+}
+
+
+// SetImageConstraint sets the value of the imageConstraint property.
+// The size and format constraints for an image feature.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/imageconstraint
+func (i_ ImageConstraint) SetImageConstraint(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setImageConstraint:"), value)
+}
+
 // The model’s pixel format for an image feature.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLImageConstraint/pixelFormatType

@@ -99,5 +99,77 @@ func (p_ PressGestureRecognizer) SetMinimumPressDuration(value float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMinimumPressDuration:"), value)
 }
 
+// A Boolean value that indicates whether primary mouse button events are delivered only after gesture recognition fails.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsgesturerecognizer/delaysprimarymousebuttonevents
+func (p_ PressGestureRecognizer) DelaysPrimaryMouseButtonEvents() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("delaysPrimaryMouseButtonEvents"))
+	return rv
+}
+
+
+// SetDelaysPrimaryMouseButtonEvents sets the value of the delaysPrimaryMouseButtonEvents property.
+// A Boolean value that indicates whether primary mouse button events are delivered only after gesture recognition fails.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsgesturerecognizer/delaysprimarymousebuttonevents
+func (p_ PressGestureRecognizer) SetDelaysPrimaryMouseButtonEvents(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setDelaysPrimaryMouseButtonEvents:"), value)
+}
+
+// The maximum movement of the mouse in the view before the gesture fails.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspressgesturerecognizer/allowablemovement
+func (p_ PressGestureRecognizer) AllowableMovement() float64 {
+	rv := objc.Send[float64](p_.ID, objc.Sel("allowableMovement"))
+	return rv
+}
+
+
+// SetAllowableMovement sets the value of the allowableMovement property.
+// The maximum movement of the mouse in the view before the gesture fails.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspressgesturerecognizer/allowablemovement
+func (p_ PressGestureRecognizer) SetAllowableMovement(value float64) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setAllowableMovement:"), value)
+}
+
+// A bit mask of the buttons required to recognize this press.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspressgesturerecognizer/buttonmask
+func (p_ PressGestureRecognizer) ButtonMask() int {
+	rv := objc.Send[int](p_.ID, objc.Sel("buttonMask"))
+	return rv
+}
+
+
+// SetButtonMask sets the value of the buttonMask property.
+// A bit mask of the buttons required to recognize this press.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspressgesturerecognizer/buttonmask
+func (p_ PressGestureRecognizer) SetButtonMask(value int) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setButtonMask:"), value)
+}
+
+// The number of necessary touches on a Touch Bar for the gesture recognizer to match.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspressgesturerecognizer/numberoftouchesrequired
+func (p_ PressGestureRecognizer) NumberOfTouchesRequired() int {
+	rv := objc.Send[int](p_.ID, objc.Sel("numberOfTouchesRequired"))
+	return rv
+}
+
+
+// SetNumberOfTouchesRequired sets the value of the numberOfTouchesRequired property.
+// The number of necessary touches on a Touch Bar for the gesture recognizer to match.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspressgesturerecognizer/numberoftouchesrequired
+func (p_ PressGestureRecognizer) SetNumberOfTouchesRequired(value int) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setNumberOfTouchesRequired:"), value)
+}
+
 
 

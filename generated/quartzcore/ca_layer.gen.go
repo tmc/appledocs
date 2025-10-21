@@ -514,6 +514,78 @@ func (l_ Layer) ShouldArchiveValueForKey(key string) bool {
 	return rv
 }
 
+// A Boolean indicating whether the layer displays its content when facing away from the viewer. Animatable.
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/calayer/isdoublesided
+func (l_ Layer) IsDoubleSided() bool {
+	rv := objc.Send[bool](l_.ID, objc.Sel("isDoubleSided"))
+	return rv
+}
+
+
+// SetIsDoubleSided sets the value of the isDoubleSided property.
+// A Boolean indicating whether the layer displays its content when facing away from the viewer. Animatable.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/calayer/isdoublesided
+func (l_ Layer) SetIsDoubleSided(value bool) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setIsDoubleSided:"), value)
+}
+
+// A Boolean value indicating whether the layer contains completely opaque content.
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/calayer/isopaque
+func (l_ Layer) IsOpaque() bool {
+	rv := objc.Send[bool](l_.ID, objc.Sel("isOpaque"))
+	return rv
+}
+
+
+// SetIsOpaque sets the value of the isOpaque property.
+// A Boolean value indicating whether the layer contains completely opaque content.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/calayer/isopaque
+func (l_ Layer) SetIsOpaque(value bool) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setIsOpaque:"), value)
+}
+
+// A Boolean indicating whether the layer is displayed. Animatable.
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/calayer/ishidden
+func (l_ Layer) IsHidden() bool {
+	rv := objc.Send[bool](l_.ID, objc.Sel("isHidden"))
+	return rv
+}
+
+
+// SetIsHidden sets the value of the isHidden property.
+// A Boolean indicating whether the layer is displayed. Animatable.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/calayer/ishidden
+func (l_ Layer) SetIsHidden(value bool) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setIsHidden:"), value)
+}
+
+// A Boolean that indicates whether the geometry of the layer and its sublayers is flipped vertically.
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/calayer/isgeometryflipped
+func (l_ Layer) IsGeometryFlipped() bool {
+	rv := objc.Send[bool](l_.ID, objc.Sel("isGeometryFlipped"))
+	return rv
+}
+
+
+// SetIsGeometryFlipped sets the value of the isGeometryFlipped property.
+// A Boolean that indicates whether the geometry of the layer and its sublayers is flipped vertically.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/calayer/isgeometryflipped
+func (l_ Layer) SetIsGeometryFlipped(value bool) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setIsGeometryFlipped:"), value)
+}
+
 // A dictionary containing layer actions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/actions

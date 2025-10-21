@@ -105,6 +105,60 @@ func (n_ NETunnelProviderManager) CopyAppRules() []NEAppRule {
 	return rv
 }
 
+// An
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnmanager/protocolconfiguration
+func (n_ NETunnelProviderManager) ProtocolConfiguration() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("protocolConfiguration"))
+	return rv
+}
+
+
+// SetProtocolConfiguration sets the value of the protocolConfiguration property.
+// An
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnmanager/protocolconfiguration
+func (n_ NETunnelProviderManager) SetProtocolConfiguration(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setProtocolConfiguration:"), value)
+}
+
+// An ordered list of Connect On Demand rules.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnmanager/ondemandrules
+func (n_ NETunnelProviderManager) OnDemandRules() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("onDemandRules"))
+	return rv
+}
+
+
+// SetOnDemandRules sets the value of the onDemandRules property.
+// An ordered list of Connect On Demand rules.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnmanager/ondemandrules
+func (n_ NETunnelProviderManager) SetOnDemandRules(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setOnDemandRules:"), value)
+}
+
+// An
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnmanager/connection
+func (n_ NETunnelProviderManager) Connection() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("connection"))
+	return rv
+}
+
+
+// SetConnection sets the value of the connection property.
+// An
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnmanager/connection
+func (n_ NETunnelProviderManager) SetConnection(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setConnection:"), value)
+}
+
 // The rules for specific apps in a per-app VPN.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NETunnelProviderManager/appRules

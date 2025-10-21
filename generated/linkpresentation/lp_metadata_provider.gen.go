@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,7 +32,7 @@ type _LPMetadataProviderClass struct {
 type ILPMetadataProvider interface {
 	objectivec.IObject
 	Cancel()
-	StartFetchingMetadataForURLCompletionHandler(URL unsafe.Pointer, completionHandler unsafe.Pointer)
+	StartFetchingMetadataForURLCompletionHandler(URL foundation.URL, completionHandler unsafe.Pointer)
 	StartFetchingMetadataForRequestCompletionHandler(request unsafe.Pointer, completionHandler unsafe.Pointer)
 }
 
@@ -93,7 +94,7 @@ func (l_ LPMetadataProvider) Cancel() {
 // Fetches metadata for the given URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPMetadataProvider/startFetchingMetadata(for:completionHandler:)-54z5i
-func (l_ LPMetadataProvider) StartFetchingMetadataForURLCompletionHandler(URL unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (l_ LPMetadataProvider) StartFetchingMetadataForURLCompletionHandler(URL foundation.URL, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("startFetchingMetadataForURL:completionHandler:"), URL, completionHandler)
 }
 
@@ -125,8 +126,8 @@ func (l_ LPMetadataProvider) SetShouldFetchSubresources(value bool) {
 // The time interval after which the request automatically fails if it hasn’t already completed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPMetadataProvider/timeout
-func (l_ LPMetadataProvider) Timeout() TimeInterval {
-	rv := objc.Send[TimeInterval](l_.ID, objc.Sel("timeout"))
+func (l_ LPMetadataProvider) Timeout() foundation.TimeInterval {
+	rv := objc.Send[foundation.TimeInterval](l_.ID, objc.Sel("timeout"))
 	return rv
 }
 
@@ -136,7 +137,7 @@ func (l_ LPMetadataProvider) Timeout() TimeInterval {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPMetadataProvider/timeout
-func (l_ LPMetadataProvider) SetTimeout(value TimeInterval) {
+func (l_ LPMetadataProvider) SetTimeout(value foundation.TimeInterval) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setTimeout:"), value)
 }
 

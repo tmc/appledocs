@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,7 +84,7 @@ func NewVZEFIVariableStore() VZEFIVariableStore {
 // Creates a new EFI variable store at specified the URL on the filesystem, initialization options, and error-return variable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZEFIVariableStore/init(creatingVariableStoreAt:options:)
-func NewVZEFIVariableStoreCreatingVariableStoreAtURLOptionsError(URL unsafe.Pointer, options unsafe.Pointer, error_ unsafe.Pointer) VZEFIVariableStore {
+func NewVZEFIVariableStoreCreatingVariableStoreAtURLOptionsError(URL foundation.URL, options unsafe.Pointer, error_ unsafe.Pointer) VZEFIVariableStore {
 	instance := getVZEFIVariableStoreClass().Alloc()
 	rv := objc.Send[VZEFIVariableStore](instance.ID, objc.Sel("initCreatingVariableStoreAtURL:options:error:"), URL, options, error_)
 	rv.Autorelease()
@@ -95,7 +96,7 @@ func NewVZEFIVariableStoreCreatingVariableStoreAtURLOptionsError(URL unsafe.Poin
 // Initialize the variable store from the URL of an existing file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZEFIVariableStore/init(url:)
-func NewVZEFIVariableStoreWithURL(URL unsafe.Pointer) VZEFIVariableStore {
+func NewVZEFIVariableStoreWithURL(URL foundation.URL) VZEFIVariableStore {
 	instance := getVZEFIVariableStoreClass().Alloc()
 	rv := objc.Send[VZEFIVariableStore](instance.ID, objc.Sel("initWithURL:"), URL)
 	rv.Autorelease()
@@ -106,8 +107,8 @@ func NewVZEFIVariableStoreWithURL(URL unsafe.Pointer) VZEFIVariableStore {
 // The URL of the variable store on the local file system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZEFIVariableStore/url
-func (v_ VZEFIVariableStore) URL() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("URL"))
+func (v_ VZEFIVariableStore) URL() foundation.URL {
+	rv := objc.Send[foundation.URL](v_.ID, objc.Sel("URL"))
 	return rv
 }
 

@@ -86,4 +86,19 @@ func NewGridSampleWithDevice(device objc.ID) GridSample {
 }
 
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnngridsample/usegridvalueasinputcoordinate
+func (g_ GridSample) UseGridValueAsInputCoordinate() bool {
+	rv := objc.Send[bool](g_.ID, objc.Sel("useGridValueAsInputCoordinate"))
+	return rv
+}
+
+
+// SetUseGridValueAsInputCoordinate sets the value of the useGridValueAsInputCoordinate property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnngridsample/usegridvalueasinputcoordinate
+func (g_ GridSample) SetUseGridValueAsInputCoordinate(value bool) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setUseGridValueAsInputCoordinate:"), value)
+}
+
 

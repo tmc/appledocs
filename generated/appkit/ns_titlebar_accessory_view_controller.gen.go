@@ -107,5 +107,89 @@ func (t_ TitlebarAccessoryViewController) SetLayoutAttribute(value unsafe.Pointe
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLayoutAttribute:"), value)
 }
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstitlebaraccessoryviewcontroller/automaticallyadjustssize
+func (t_ TitlebarAccessoryViewController) AutomaticallyAdjustsSize() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("automaticallyAdjustsSize"))
+	return rv
+}
+
+
+// SetAutomaticallyAdjustsSize sets the value of the automaticallyAdjustsSize property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstitlebaraccessoryviewcontroller/automaticallyadjustssize
+func (t_ TitlebarAccessoryViewController) SetAutomaticallyAdjustsSize(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setAutomaticallyAdjustsSize:"), value)
+}
+
+// The visual minimum height of an accessory view that displays below the title bar when the window is in full screen mode.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstitlebaraccessoryviewcontroller/fullscreenminheight
+func (t_ TitlebarAccessoryViewController) FullScreenMinHeight() float64 {
+	rv := objc.Send[float64](t_.ID, objc.Sel("fullScreenMinHeight"))
+	return rv
+}
+
+
+// SetFullScreenMinHeight sets the value of the fullScreenMinHeight property.
+// The visual minimum height of an accessory view that displays below the title bar when the window is in full screen mode.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstitlebaraccessoryviewcontroller/fullscreenminheight
+func (t_ TitlebarAccessoryViewController) SetFullScreenMinHeight(value float64) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setFullScreenMinHeight:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstitlebaraccessoryviewcontroller/ishidden
+func (t_ TitlebarAccessoryViewController) IsHidden() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("isHidden"))
+	return rv
+}
+
+
+// SetIsHidden sets the value of the isHidden property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstitlebaraccessoryviewcontroller/ishidden
+func (t_ TitlebarAccessoryViewController) SetIsHidden(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setIsHidden:"), value)
+}
+
+// The toolbar’s full screen accessory view.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbar/fullscreenaccessoryview
+func (t_ TitlebarAccessoryViewController) FullScreenAccessoryView() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("fullScreenAccessoryView"))
+	return rv
+}
+
+
+// SetFullScreenAccessoryView sets the value of the fullScreenAccessoryView property.
+// The toolbar’s full screen accessory view.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbar/fullscreenaccessoryview
+func (t_ TitlebarAccessoryViewController) SetFullScreenAccessoryView(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setFullScreenAccessoryView:"), value)
+}
+
+// The view controller’s primary view.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsviewcontroller/view
+func (t_ TitlebarAccessoryViewController) View() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("view"))
+	return rv
+}
+
+
+// SetView sets the value of the view property.
+// The view controller’s primary view.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsviewcontroller/view
+func (t_ TitlebarAccessoryViewController) SetView(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setView:"), value)
+}
+
 
 

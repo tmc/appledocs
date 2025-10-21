@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,36 @@ func NewMTRNetworkCommissioningClusterNetworkInfoStruct() MTRNetworkCommissionin
 	return getMTRNetworkCommissioningClusterNetworkInfoStructClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusternetworkinfostruct/connected
+func (m_ MTRNetworkCommissioningClusterNetworkInfoStruct) Connected() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("connected"))
+	return rv
+}
+
+
+// SetConnected sets the value of the connected property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusternetworkinfostruct/connected
+func (m_ MTRNetworkCommissioningClusterNetworkInfoStruct) SetConnected(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setConnected:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusternetworkinfostruct/networkid
+func (m_ MTRNetworkCommissioningClusterNetworkInfoStruct) NetworkID() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("networkID"))
+	return rv
+}
+
+
+// SetNetworkID sets the value of the networkID property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusternetworkinfostruct/networkid
+func (m_ MTRNetworkCommissioningClusterNetworkInfoStruct) SetNetworkID(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setNetworkID:"), value)
+}
 
 
 

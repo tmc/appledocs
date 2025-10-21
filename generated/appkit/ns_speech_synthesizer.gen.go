@@ -80,5 +80,95 @@ func NewSpeechSynthesizer() SpeechSynthesizer {
 }
 
 
+// The synthesizer’s delegate.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/delegate
+func (s_ SpeechSynthesizer) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+
+// SetDelegate sets the value of the delegate property.
+// The synthesizer’s delegate.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/delegate
+func (s_ SpeechSynthesizer) SetDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setDelegate:"), value)
+}
+
+// Indicates whether the receiver is currently generating synthesized speech.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/isspeaking
+func (s_ SpeechSynthesizer) IsSpeaking() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("isSpeaking"))
+	return rv
+}
+
+
+// SetIsSpeaking sets the value of the isSpeaking property.
+// Indicates whether the receiver is currently generating synthesized speech.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/isspeaking
+func (s_ SpeechSynthesizer) SetIsSpeaking(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setIsSpeaking:"), value)
+}
+
+// The synthesizer’s speaking rate (words per minute).
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/rate
+func (s_ SpeechSynthesizer) Rate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("rate"))
+	return rv
+}
+
+
+// SetRate sets the value of the rate property.
+// The synthesizer’s speaking rate (words per minute).
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/rate
+func (s_ SpeechSynthesizer) SetRate(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setRate:"), value)
+}
+
+// Indicates whether the receiver uses the speech feedback window.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/usesfeedbackwindow
+func (s_ SpeechSynthesizer) UsesFeedbackWindow() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("usesFeedbackWindow"))
+	return rv
+}
+
+
+// SetUsesFeedbackWindow sets the value of the usesFeedbackWindow property.
+// Indicates whether the receiver uses the speech feedback window.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/usesfeedbackwindow
+func (s_ SpeechSynthesizer) SetUsesFeedbackWindow(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setUsesFeedbackWindow:"), value)
+}
+
+// The synthesizer’s speaking volume.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/volume
+func (s_ SpeechSynthesizer) Volume() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("volume"))
+	return rv
+}
+
+
+// SetVolume sets the value of the volume property.
+// The synthesizer’s speaking volume.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/volume
+func (s_ SpeechSynthesizer) SetVolume(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setVolume:"), value)
+}
+
 
 

@@ -81,5 +81,131 @@ func NewTabViewController() TabViewController {
 }
 
 
+// A Boolean value indicating whether the tab view controller gets its title from the selected child view controller.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstabviewcontroller/canpropagateselectedchildviewcontrollertitle
+func (t_ TabViewController) CanPropagateSelectedChildViewControllerTitle() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("canPropagateSelectedChildViewControllerTitle"))
+	return rv
+}
+
+
+// SetCanPropagateSelectedChildViewControllerTitle sets the value of the canPropagateSelectedChildViewControllerTitle property.
+// A Boolean value indicating whether the tab view controller gets its title from the selected child view controller.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstabviewcontroller/canpropagateselectedchildviewcontrollertitle
+func (t_ TabViewController) SetCanPropagateSelectedChildViewControllerTitle(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setCanPropagateSelectedChildViewControllerTitle:"), value)
+}
+
+// The index of the selected tab.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstabviewcontroller/selectedtabviewitemindex
+func (t_ TabViewController) SelectedTabViewItemIndex() int {
+	rv := objc.Send[int](t_.ID, objc.Sel("selectedTabViewItemIndex"))
+	return rv
+}
+
+
+// SetSelectedTabViewItemIndex sets the value of the selectedTabViewItemIndex property.
+// The index of the selected tab.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstabviewcontroller/selectedtabviewitemindex
+func (t_ TabViewController) SetSelectedTabViewItemIndex(value int) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectedTabViewItemIndex:"), value)
+}
+
+// The style used to display the tabs.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstabviewcontroller/tabstyle-swift.property
+func (t_ TabViewController) TabStyle() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("tabStyle"))
+	return rv
+}
+
+
+// SetTabStyle sets the value of the tabStyle property.
+// The style used to display the tabs.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstabviewcontroller/tabstyle-swift.property
+func (t_ TabViewController) SetTabStyle(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setTabStyle:"), value)
+}
+
+// The tab view that manages the views of the interface.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstabviewcontroller/tabview
+func (t_ TabViewController) TabView() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("tabView"))
+	return rv
+}
+
+
+// SetTabView sets the value of the tabView property.
+// The tab view that manages the views of the interface.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstabviewcontroller/tabview
+func (t_ TabViewController) SetTabView(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setTabView:"), value)
+}
+
+// The array of tab view items used to manage each of the child view controllers.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstabviewcontroller/tabviewitems
+func (t_ TabViewController) TabViewItems() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("tabViewItems"))
+	return rv
+}
+
+
+// SetTabViewItems sets the value of the tabViewItems property.
+// The array of tab view items used to manage each of the child view controllers.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstabviewcontroller/tabviewitems
+func (t_ TabViewController) SetTabViewItems(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setTabViewItems:"), value)
+}
+
+// The animation options to use when switching between tabs.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstabviewcontroller/transitionoptions
+func (t_ TabViewController) TransitionOptions() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("transitionOptions"))
+	return rv
+}
+
+
+// SetTransitionOptions sets the value of the transitionOptions property.
+// The animation options to use when switching between tabs.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstabviewcontroller/transitionoptions
+func (t_ TabViewController) SetTransitionOptions(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setTransitionOptions:"), value)
+}
+
+// An array of view controllers that are hierarchical children of the view controller.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsviewcontroller/children
+func (t_ TabViewController) Children() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("children"))
+	return rv
+}
+
+
+// SetChildren sets the value of the children property.
+// An array of view controllers that are hierarchical children of the view controller.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsviewcontroller/children
+func (t_ TabViewController) SetChildren(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setChildren:"), value)
+}
+
 
 

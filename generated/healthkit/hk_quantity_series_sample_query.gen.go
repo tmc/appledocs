@@ -81,5 +81,41 @@ func NewHKQuantitySeriesSampleQuery() HKQuantitySeriesSampleQuery {
 }
 
 
+// A Boolean value that determines whether the query should return the series sample.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquantityseriessamplequery/includesample
+func (h_ HKQuantitySeriesSampleQuery) IncludeSample() bool {
+	rv := objc.Send[bool](h_.ID, objc.Sel("includeSample"))
+	return rv
+}
+
+
+// SetIncludeSample sets the value of the includeSample property.
+// A Boolean value that determines whether the query should return the series sample.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquantityseriessamplequery/includesample
+func (h_ HKQuantitySeriesSampleQuery) SetIncludeSample(value bool) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setIncludeSample:"), value)
+}
+
+// A Boolean value that determines whether the query groups the results based on the quantity sample’s start date.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquantityseriessamplequery/orderbyquantitysamplestartdate
+func (h_ HKQuantitySeriesSampleQuery) OrderByQuantitySampleStartDate() bool {
+	rv := objc.Send[bool](h_.ID, objc.Sel("orderByQuantitySampleStartDate"))
+	return rv
+}
+
+
+// SetOrderByQuantitySampleStartDate sets the value of the orderByQuantitySampleStartDate property.
+// A Boolean value that determines whether the query groups the results based on the quantity sample’s start date.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquantityseriessamplequery/orderbyquantitysamplestartdate
+func (h_ HKQuantitySeriesSampleQuery) SetOrderByQuantitySampleStartDate(value bool) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setOrderByQuantitySampleStartDate:"), value)
+}
+
 
 

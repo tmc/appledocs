@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -79,6 +81,168 @@ func NewContentProposal() ContentProposal {
 	return getContentProposalClass().New()
 }
 
+
+// The date that the system automatically accepts a proposal if the user doesn’t intervene.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avkit/avcontentproposalviewcontroller/dateofautomaticacceptance
+func (c_ ContentProposal) DateOfAutomaticAcceptance() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("dateOfAutomaticAcceptance"))
+	return rv
+}
+
+
+// SetDateOfAutomaticAcceptance sets the value of the dateOfAutomaticAcceptance property.
+// The date that the system automatically accepts a proposal if the user doesn’t intervene.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avkit/avcontentproposalviewcontroller/dateofautomaticacceptance
+func (c_ ContentProposal) SetDateOfAutomaticAcceptance(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setDateOfAutomaticAcceptance:"), value)
+}
+
+// The interval between the time playback ends and automatic acceptance of this content proposal.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avkit/avcontentproposal/automaticacceptanceinterval
+func (c_ ContentProposal) AutomaticAcceptanceInterval() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("automaticAcceptanceInterval"))
+	return rv
+}
+
+
+// SetAutomaticAcceptanceInterval sets the value of the automaticAcceptanceInterval property.
+// The interval between the time playback ends and automatic acceptance of this content proposal.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avkit/avcontentproposal/automaticacceptanceinterval
+func (c_ ContentProposal) SetAutomaticAcceptanceInterval(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setAutomaticAcceptanceInterval:"), value)
+}
+
+// The preview image of the proposed item.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avkit/avcontentproposal/previewimage
+func (c_ ContentProposal) PreviewImage() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("previewImage"))
+	return rv
+}
+
+
+// SetPreviewImage sets the value of the previewImage property.
+// The preview image of the proposed item.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avkit/avcontentproposal/previewimage
+func (c_ ContentProposal) SetPreviewImage(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setPreviewImage:"), value)
+}
+
+// A prosal of content to play.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avkit/avcontentproposalviewcontroller/contentproposal
+func (c_ ContentProposal) ContentProposal() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("contentProposal"))
+	return rv
+}
+
+
+// SetContentProposal sets the value of the contentProposal property.
+// A prosal of content to play.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avkit/avcontentproposalviewcontroller/contentproposal
+func (c_ ContentProposal) SetContentProposal(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setContentProposal:"), value)
+}
+
+// Optional custom metadata associated with the proposed item.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avkit/avcontentproposal/metadata
+func (c_ ContentProposal) Metadata() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("metadata"))
+	return rv
+}
+
+
+// SetMetadata sets the value of the metadata property.
+// Optional custom metadata associated with the proposed item.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avkit/avcontentproposal/metadata
+func (c_ ContentProposal) SetMetadata(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setMetadata:"), value)
+}
+
+// The URL of the proposed content.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avkit/avcontentproposal/url
+func (c_ ContentProposal) Url() foundation.URL {
+	rv := objc.Send[foundation.URL](c_.ID, objc.Sel("url"))
+	return rv
+}
+
+
+// SetUrl sets the value of the url property.
+// The URL of the proposed content.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avkit/avcontentproposal/url
+func (c_ ContentProposal) SetUrl(value foundation.URL) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setUrl:"), value)
+}
+
+// The title of the proposed content.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avkit/avcontentproposal/title
+func (c_ ContentProposal) Title() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("title"))
+	return rv
+}
+
+
+// SetTitle sets the value of the title property.
+// The title of the proposed content.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avkit/avcontentproposal/title
+func (c_ ContentProposal) SetTitle(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setTitle:"), objc.String(value))
+}
+
+// A layout guide that tracks the size and location of the player view.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avkit/avcontentproposalviewcontroller/playerlayoutguide
+func (c_ ContentProposal) PlayerLayoutGuide() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("playerLayoutGuide"))
+	return rv
+}
+
+
+// SetPlayerLayoutGuide sets the value of the playerLayoutGuide property.
+// A layout guide that tracks the size and location of the player view.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avkit/avcontentproposalviewcontroller/playerlayoutguide
+func (c_ ContentProposal) SetPlayerLayoutGuide(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setPlayerLayoutGuide:"), value)
+}
+
+// The preferred presentation frame of the player view while the content proposal is active.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avkit/avcontentproposalviewcontroller/preferredplayerviewframe
+func (c_ ContentProposal) PreferredPlayerViewFrame() coregraphics.CGRect {
+	rv := objc.Send[coregraphics.CGRect](c_.ID, objc.Sel("preferredPlayerViewFrame"))
+	return rv
+}
+
+
+// SetPreferredPlayerViewFrame sets the value of the preferredPlayerViewFrame property.
+// The preferred presentation frame of the player view while the content proposal is active.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avkit/avcontentproposalviewcontroller/preferredplayerviewframe
+func (c_ ContentProposal) SetPreferredPlayerViewFrame(value coregraphics.CGRect) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setPreferredPlayerViewFrame:"), value)
+}
 
 // The time within the timeline of the current player item when the content proposal presentation should begin.
 //

@@ -79,5 +79,41 @@ func NewNEDNSProxyProviderProtocol() NEDNSProxyProviderProtocol {
 }
 
 
+// A string containing the bundle identifier of the proxy provider to be used by this configuration.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nednsproxyproviderprotocol/providerbundleidentifier
+func (n_ NEDNSProxyProviderProtocol) ProviderBundleIdentifier() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("providerBundleIdentifier"))
+	return rv
+}
+
+
+// SetProviderBundleIdentifier sets the value of the providerBundleIdentifier property.
+// A string containing the bundle identifier of the proxy provider to be used by this configuration.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nednsproxyproviderprotocol/providerbundleidentifier
+func (n_ NEDNSProxyProviderProtocol) SetProviderBundleIdentifier(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setProviderBundleIdentifier:"), objc.String(value))
+}
+
+// A dictionary containing vendor-specific configuration parameters for a proxy provider.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nednsproxyproviderprotocol/providerconfiguration
+func (n_ NEDNSProxyProviderProtocol) ProviderConfiguration() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("providerConfiguration"))
+	return rv
+}
+
+
+// SetProviderConfiguration sets the value of the providerConfiguration property.
+// A dictionary containing vendor-specific configuration parameters for a proxy provider.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nednsproxyproviderprotocol/providerconfiguration
+func (n_ NEDNSProxyProviderProtocol) SetProviderConfiguration(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setProviderConfiguration:"), objc.String(value))
+}
+
 
 

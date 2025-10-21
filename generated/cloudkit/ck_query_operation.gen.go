@@ -106,6 +106,39 @@ func NewCKQueryOperationWithQuery(query unsafe.Pointer) CKQueryOperation {
 }
 
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckqueryoperation/queryresultblock
+func (c_ CKQueryOperation) QueryResultBlock() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("queryResultBlock"))
+	return rv
+}
+
+
+// SetQueryResultBlock sets the value of the queryResultBlock property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckqueryoperation/queryresultblock
+func (c_ CKQueryOperation) SetQueryResultBlock(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setQueryResultBlock:"), value)
+}
+
+// The block to execute after the operation’s main task is completed.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/completionBlock
+func (c_ CKQueryOperation) CompletionBlock() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("completionBlock"))
+	return rv
+}
+
+
+// SetCompletionBlock sets the value of the completionBlock property.
+// The block to execute after the operation’s main task is completed.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/completionBlock
+func (c_ CKQueryOperation) SetCompletionBlock(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setCompletionBlock:"), value)
+}
+
 // The cursor for continuing the search.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKQueryOperation/cursor-swift.property

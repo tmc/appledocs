@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -134,7 +135,7 @@ func NewINImageWithUIImage(image unsafe.Pointer) INImage {
 // Creates an image object from an image file in the local file system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INImage/init(url:)
-func NewINImageWithURL(URL unsafe.Pointer) INImage {
+func NewINImageWithURL(URL foundation.URL) INImage {
 	rv := objc.Send[INImage](objc.ID(getINImageClass().class), objc.Sel("imageWithURL:"), URL)
 	return rv
 }
@@ -144,7 +145,7 @@ func NewINImageWithURL(URL unsafe.Pointer) INImage {
 // Creates an image object, of the specified size, from an image file in the local file system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INImage/init(url:width:height:)
-func NewINImageWithURLWidthHeight(URL unsafe.Pointer, width unsafe.Pointer, height unsafe.Pointer) INImage {
+func NewINImageWithURLWidthHeight(URL foundation.URL, width unsafe.Pointer, height unsafe.Pointer) INImage {
 	rv := objc.Send[INImage](objc.ID(getINImageClass().class), objc.Sel("imageWithURL:width:height:"), URL, width, height)
 	return rv
 }
@@ -200,7 +201,7 @@ func (ic _INImageClass) ImageNamed(name string) unsafe.Pointer {
 // Creates an image object from an image file in the local file system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INImage/init(url:)
-func (ic _INImageClass) ImageWithURL(URL unsafe.Pointer) unsafe.Pointer {
+func (ic _INImageClass) ImageWithURL(URL foundation.URL) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("imageWithURL:"), URL)
 	return rv
 }
@@ -208,7 +209,7 @@ func (ic _INImageClass) ImageWithURL(URL unsafe.Pointer) unsafe.Pointer {
 // Creates an image object, of the specified size, from an image file in the local file system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INImage/init(url:width:height:)
-func (ic _INImageClass) ImageWithURLWidthHeight(URL unsafe.Pointer, width unsafe.Pointer, height unsafe.Pointer) unsafe.Pointer {
+func (ic _INImageClass) ImageWithURLWidthHeight(URL foundation.URL, width unsafe.Pointer, height unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("imageWithURL:width:height:"), URL, width, height)
 	return rv
 }

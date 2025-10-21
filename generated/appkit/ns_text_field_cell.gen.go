@@ -207,5 +207,23 @@ func (t_ TextFieldCell) SetTextColor(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextColor:"), value)
 }
 
+// A Boolean value that indicates whether the cell draws its background color.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfieldcell/drawsbackground
+func (t_ TextFieldCell) DrawsBackground() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("drawsBackground"))
+	return rv
+}
+
+
+// SetDrawsBackground sets the value of the drawsBackground property.
+// A Boolean value that indicates whether the cell draws its background color.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfieldcell/drawsbackground
+func (t_ TextFieldCell) SetDrawsBackground(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setDrawsBackground:"), value)
+}
+
 
 

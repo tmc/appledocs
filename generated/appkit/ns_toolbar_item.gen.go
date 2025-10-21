@@ -560,4 +560,91 @@ func (t_ ToolbarItem) SetVisibilityPriority(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setVisibilityPriority:"), value)
 }
 
+// A Boolean value that indicates whether the toolbar item has a bordered style.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/isbordered
+func (t_ ToolbarItem) IsBordered() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("isBordered"))
+	return rv
+}
+
+
+// SetIsBordered sets the value of the isBordered property.
+// A Boolean value that indicates whether the toolbar item has a bordered style.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/isbordered
+func (t_ ToolbarItem) SetIsBordered(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setIsBordered:"), value)
+}
+
+// A Boolean value that indicates whether the item is enabled.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/isenabled
+func (t_ ToolbarItem) IsEnabled() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("isEnabled"))
+	return rv
+}
+
+
+// SetIsEnabled sets the value of the isEnabled property.
+// A Boolean value that indicates whether the item is enabled.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/isenabled
+func (t_ ToolbarItem) SetIsEnabled(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setIsEnabled:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/ishidden
+func (t_ ToolbarItem) IsHidden() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("isHidden"))
+	return rv
+}
+
+
+// SetIsHidden sets the value of the isHidden property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/ishidden
+func (t_ ToolbarItem) SetIsHidden(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setIsHidden:"), value)
+}
+
+// A Boolean value that indicates whether the item behaves as a navigation item in the toolbar.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/isnavigational
+func (t_ ToolbarItem) IsNavigational() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("isNavigational"))
+	return rv
+}
+
+
+// SetIsNavigational sets the value of the isNavigational property.
+// A Boolean value that indicates whether the item behaves as a navigation item in the toolbar.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/isnavigational
+func (t_ ToolbarItem) SetIsNavigational(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setIsNavigational:"), value)
+}
+
+// A Boolean value that indicates whether the item is currently visible in the toolbar, and not in the overflow menu.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/isvisible
+func (t_ ToolbarItem) IsVisible() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("isVisible"))
+	return rv
+}
+
+
+// SetIsVisible sets the value of the isVisible property.
+// A Boolean value that indicates whether the item is currently visible in the toolbar, and not in the overflow menu.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/isvisible
+func (t_ ToolbarItem) SetIsVisible(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setIsVisible:"), value)
+}
+
 

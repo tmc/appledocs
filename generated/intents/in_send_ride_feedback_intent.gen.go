@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [INSendRideFeedbackIntent] class.
@@ -80,6 +81,42 @@ func NewINSendRideFeedbackIntent() INSendRideFeedbackIntent {
 	return getINSendRideFeedbackIntentClass().New()
 }
 
+
+// The tip for the driver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insendridefeedbackintent/tip
+func (i_ INSendRideFeedbackIntent) Tip() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("tip"))
+	return rv
+}
+
+
+// SetTip sets the value of the tip property.
+// The tip for the driver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insendridefeedbackintent/tip
+func (i_ INSendRideFeedbackIntent) SetTip(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setTip:"), value)
+}
+
+// The user-supplied rating for the driver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insendridefeedbackintent/rating
+func (i_ INSendRideFeedbackIntent) Rating() foundation.Number {
+	rv := objc.Send[foundation.Number](i_.ID, objc.Sel("rating"))
+	return rv
+}
+
+
+// SetRating sets the value of the rating property.
+// The user-supplied rating for the driver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insendridefeedbackintent/rating
+func (i_ INSendRideFeedbackIntent) SetRating(value foundation.Number) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setRating:"), value)
+}
 
 // The unique identifier that you assigned to the ride.
 //

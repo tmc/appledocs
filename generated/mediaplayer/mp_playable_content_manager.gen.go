@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -94,6 +95,114 @@ func (p_ PlayableContentManager) BeginUpdates() {
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPPlayableContentManager/endUpdates()
 func (p_ PlayableContentManager) EndUpdates() {
 	objc.Send[objc.ID](p_.ID, objc.Sel("endUpdates"))
+}
+
+// A Boolean value that indicates whether the route button is visible in the volume view.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpvolumeview/showsroutebutton
+func (p_ PlayableContentManager) ShowsRouteButton() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("showsRouteButton"))
+	return rv
+}
+
+
+// SetShowsRouteButton sets the value of the showsRouteButton property.
+// A Boolean value that indicates whether the route button is visible in the volume view.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpvolumeview/showsroutebutton
+func (p_ PlayableContentManager) SetShowsRouteButton(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setShowsRouteButton:"), value)
+}
+
+// The bounds, in points, of the content area for the full size image associated with the media item artwork.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitemartwork/imagecroprect
+func (p_ PlayableContentManager) ImageCropRect() coregraphics.CGRect {
+	rv := objc.Send[coregraphics.CGRect](p_.ID, objc.Sel("imageCropRect"))
+	return rv
+}
+
+
+// SetImageCropRect sets the value of the imageCropRect property.
+// The bounds, in points, of the content area for the full size image associated with the media item artwork.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitemartwork/imagecroprect
+func (p_ PlayableContentManager) SetImageCropRect(value coregraphics.CGRect) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setImageCropRect:"), value)
+}
+
+// The data source provided by the app.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpplayablecontentmanager/datasource
+func (p_ PlayableContentManager) DataSource() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("dataSource"))
+	return rv
+}
+
+
+// SetDataSource sets the value of the dataSource property.
+// The data source provided by the app.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpplayablecontentmanager/datasource
+func (p_ PlayableContentManager) SetDataSource(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setDataSource:"), value)
+}
+
+// The current state of the playable content endpoint.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpplayablecontentmanager/context
+func (p_ PlayableContentManager) Context() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("context"))
+	return rv
+}
+
+
+// SetContext sets the value of the context property.
+// The current state of the playable content endpoint.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpplayablecontentmanager/context
+func (p_ PlayableContentManager) SetContext(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setContext:"), value)
+}
+
+// The content items currently playing based on their identifiers.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpplayablecontentmanager/nowplayingidentifiers
+func (p_ PlayableContentManager) NowPlayingIdentifiers() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("nowPlayingIdentifiers"))
+	return rv
+}
+
+
+// SetNowPlayingIdentifiers sets the value of the nowPlayingIdentifiers property.
+// The content items currently playing based on their identifiers.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpplayablecontentmanager/nowplayingidentifiers
+func (p_ PlayableContentManager) SetNowPlayingIdentifiers(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setNowPlayingIdentifiers:"), objc.String(value))
+}
+
+// A delegate that lets the media player manage the app’s playback queue.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpplayablecontentmanager/delegate
+func (p_ PlayableContentManager) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+
+// SetDelegate sets the value of the delegate property.
+// A delegate that lets the media player manage the app’s playback queue.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpplayablecontentmanager/delegate
+func (p_ PlayableContentManager) SetDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setDelegate:"), value)
 }
 
 

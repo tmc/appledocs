@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -91,16 +92,16 @@ func (b_ Beacon) Accuracy() unsafe.Pointer {
 // The major value that the observed beacon transmitted.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeacon/major
-func (b_ Beacon) Major() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("major"))
+func (b_ Beacon) Major() foundation.Number {
+	rv := objc.Send[foundation.Number](b_.ID, objc.Sel("major"))
 	return rv
 }
 
 // The minor value that the observed beacon transmitted.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeacon/minor
-func (b_ Beacon) Minor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("minor"))
+func (b_ Beacon) Minor() foundation.Number {
+	rv := objc.Send[foundation.Number](b_.ID, objc.Sel("minor"))
 	return rv
 }
 

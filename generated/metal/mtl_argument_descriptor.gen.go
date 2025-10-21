@@ -88,6 +88,103 @@ func (ac _ArgumentDescriptorClass) ArgumentDescriptor() unsafe.Pointer {
 	return rv
 }
 
+// The access permissions of the argument.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlargumentdescriptor/access
+func (a_ ArgumentDescriptor) Access() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("access"))
+	return rv
+}
+
+
+// SetAccess sets the value of the access property.
+// The access permissions of the argument.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlargumentdescriptor/access
+func (a_ ArgumentDescriptor) SetAccess(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAccess:"), value)
+}
+
+// The index ID of the argument.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlargumentdescriptor/index
+func (a_ ArgumentDescriptor) Index() int {
+	rv := objc.Send[int](a_.ID, objc.Sel("index"))
+	return rv
+}
+
+
+// SetIndex sets the value of the index property.
+// The index ID of the argument.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlargumentdescriptor/index
+func (a_ ArgumentDescriptor) SetIndex(value int) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setIndex:"), value)
+}
+
+// The texture type of a texture argument.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlargumentdescriptor/texturetype
+func (a_ ArgumentDescriptor) TextureType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("textureType"))
+	return rv
+}
+
+
+// SetTextureType sets the value of the textureType property.
+// The texture type of a texture argument.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlargumentdescriptor/texturetype
+func (a_ ArgumentDescriptor) SetTextureType(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setTextureType:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlattributestridestatic
+func (a_ ArgumentDescriptor) MTLAttributeStrideStatic() int {
+	rv := objc.Send[int](a_.ID, objc.Sel("MTLAttributeStrideStatic"))
+	return rv
+}
+
+// The alignment of the constant block.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlargumentdescriptor/constantblockalignment
+func (a_ ArgumentDescriptor) ConstantBlockAlignment() int {
+	rv := objc.Send[int](a_.ID, objc.Sel("constantBlockAlignment"))
+	return rv
+}
+
+
+// SetConstantBlockAlignment sets the value of the constantBlockAlignment property.
+// The alignment of the constant block.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlargumentdescriptor/constantblockalignment
+func (a_ ArgumentDescriptor) SetConstantBlockAlignment(value int) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setConstantBlockAlignment:"), value)
+}
+
+// The data type of the argument.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlargumentdescriptor/datatype
+func (a_ ArgumentDescriptor) DataType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("dataType"))
+	return rv
+}
+
+
+// SetDataType sets the value of the dataType property.
+// The data type of the argument.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlargumentdescriptor/datatype
+func (a_ ArgumentDescriptor) SetDataType(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setDataType:"), value)
+}
+
 // The length of an array argument.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLArgumentDescriptor/arrayLength

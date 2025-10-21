@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -116,6 +117,78 @@ func (c_ Cursor) DragLinkCursor() unsafe.Pointer {
 func (c_ Cursor) ZoomOutCursor() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("zoomOutCursor"))
 	return rv
+}
+
+// The position of the click location within the cursor.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscursor/hotspot
+func (c_ Cursor) HotSpot() coregraphics.CGPoint {
+	rv := objc.Send[coregraphics.CGPoint](c_.ID, objc.Sel("hotSpot"))
+	return rv
+}
+
+
+// SetHotSpot sets the value of the hotSpot property.
+// The position of the click location within the cursor.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscursor/hotspot
+func (c_ Cursor) SetHotSpot(value coregraphics.CGPoint) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setHotSpot:"), value)
+}
+
+// The cursor’s image.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscursor/image
+func (c_ Cursor) Image() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("image"))
+	return rv
+}
+
+
+// SetImage sets the value of the image property.
+// The cursor’s image.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscursor/image
+func (c_ Cursor) SetImage(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setImage:"), value)
+}
+
+// A Boolean value indicating whether the receiver becomes current on receiving a
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscursor/issetonmouseentered
+func (c_ Cursor) IsSetOnMouseEntered() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isSetOnMouseEntered"))
+	return rv
+}
+
+
+// SetIsSetOnMouseEntered sets the value of the isSetOnMouseEntered property.
+// A Boolean value indicating whether the receiver becomes current on receiving a
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscursor/issetonmouseentered
+func (c_ Cursor) SetIsSetOnMouseEntered(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsSetOnMouseEntered:"), value)
+}
+
+// A Boolean value indicating whether the receiver becomes current when it receives a
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscursor/issetonmouseexited
+func (c_ Cursor) IsSetOnMouseExited() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isSetOnMouseExited"))
+	return rv
+}
+
+
+// SetIsSetOnMouseExited sets the value of the isSetOnMouseExited property.
+// A Boolean value indicating whether the receiver becomes current when it receives a
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscursor/issetonmouseexited
+func (c_ Cursor) SetIsSetOnMouseExited(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsSetOnMouseExited:"), value)
 }
 
 

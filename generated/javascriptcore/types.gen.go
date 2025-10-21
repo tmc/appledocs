@@ -40,24 +40,3 @@ type JSValueRef unsafe.Pointer
 
 
 
-// Fallback type aliases for undefined types
-// These types are referenced in method signatures but not fully documented.
-// Using unsafe.Pointer as fallback to allow code generation.
-type JSChar unsafe.Pointer
-
-type JSClassDefinition unsafe.Pointer
-
-type JSObjectCallAsConstructorCallback unsafe.Pointer
-
-type JSObjectCallAsFunctionCallback unsafe.Pointer
-
-type JSPropertyAttributes unsafe.Pointer
-
-type JSType unsafe.Pointer
-
-type JSTypedArrayBytesDeallocator unsafe.Pointer
-
-type JSTypedArrayType unsafe.Pointer
-
-
-

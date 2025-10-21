@@ -98,5 +98,80 @@ func (u_ USBHostControllerInterface) EnqueueInterruptsCountExpediteError(interru
 	return rv
 }
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostcontrollerinterface/queue
+func (u_ USBHostControllerInterface) Queue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("queue"))
+	return rv
+}
+
+
+// SetQueue sets the value of the queue property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostcontrollerinterface/queue
+func (u_ USBHostControllerInterface) SetQueue(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setQueue:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostcontrollerinterface/interruptratehz
+func (u_ USBHostControllerInterface) InterruptRateHz() int {
+	rv := objc.Send[int](u_.ID, objc.Sel("interruptRateHz"))
+	return rv
+}
+
+
+// SetInterruptRateHz sets the value of the interruptRateHz property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostcontrollerinterface/interruptratehz
+func (u_ USBHostControllerInterface) SetInterruptRateHz(value int) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setInterruptRateHz:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostcontrollerinterface/uuid
+func (u_ USBHostControllerInterface) Uuid() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("uuid"))
+	return rv
+}
+
+
+// SetUuid sets the value of the uuid property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostcontrollerinterface/uuid
+func (u_ USBHostControllerInterface) SetUuid(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setUuid:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostcontrollerinterface/controllerstatemachine
+func (u_ USBHostControllerInterface) ControllerStateMachine() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("controllerStateMachine"))
+	return rv
+}
+
+
+// SetControllerStateMachine sets the value of the controllerStateMachine property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostcontrollerinterface/controllerstatemachine
+func (u_ USBHostControllerInterface) SetControllerStateMachine(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setControllerStateMachine:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostcontrollerinterface/capabilities
+func (u_ USBHostControllerInterface) Capabilities() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("capabilities"))
+	return rv
+}
+
+
+// SetCapabilities sets the value of the capabilities property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostcontrollerinterface/capabilities
+func (u_ USBHostControllerInterface) SetCapabilities(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setCapabilities:"), value)
+}
+
 
 

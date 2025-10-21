@@ -271,4 +271,325 @@ func (i_ Image) SetCapInsets(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCapInsets:"), value)
 }
 
+// The image’s accessibility description.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimage/accessibilitydescription
+func (i_ Image) AccessibilityDescription() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("accessibilityDescription"))
+	return rv
+}
+
+
+// SetAccessibilityDescription sets the value of the accessibilityDescription property.
+// The image’s accessibility description.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimage/accessibilitydescription
+func (i_ Image) SetAccessibilityDescription(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setAccessibilityDescription:"), objc.String(value))
+}
+
+// The background color for the image.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimage/backgroundcolor
+func (i_ Image) BackgroundColor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("backgroundColor"))
+	return rv
+}
+
+
+// SetBackgroundColor sets the value of the backgroundColor property.
+// The background color for the image.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimage/backgroundcolor
+func (i_ Image) SetBackgroundColor(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setBackgroundColor:"), value)
+}
+
+// The image’s caching mode.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimage/cachemode-swift.property
+func (i_ Image) CacheMode() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("cacheMode"))
+	return rv
+}
+
+
+// SetCacheMode sets the value of the cacheMode property.
+// The image’s caching mode.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimage/cachemode-swift.property
+func (i_ Image) SetCacheMode(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setCacheMode:"), value)
+}
+
+// The image’s delegate object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimage/delegate
+func (i_ Image) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+
+// SetDelegate sets the value of the delegate property.
+// The image’s delegate object.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimage/delegate
+func (i_ Image) SetDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setDelegate:"), value)
+}
+
+// A Boolean value that determines whether the image represents a template image.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimage/istemplate
+func (i_ Image) IsTemplate() bool {
+	rv := objc.Send[bool](i_.ID, objc.Sel("isTemplate"))
+	return rv
+}
+
+
+// SetIsTemplate sets the value of the isTemplate property.
+// A Boolean value that determines whether the image represents a template image.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimage/istemplate
+func (i_ Image) SetIsTemplate(value bool) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setIsTemplate:"), value)
+}
+
+// A Boolean value that indicates whether it is possible to draw an image representation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimage/isvalid
+func (i_ Image) IsValid() bool {
+	rv := objc.Send[bool](i_.ID, objc.Sel("isValid"))
+	return rv
+}
+
+
+// SetIsValid sets the value of the isValid property.
+// A Boolean value that indicates whether it is possible to draw an image representation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimage/isvalid
+func (i_ Image) SetIsValid(value bool) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setIsValid:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimage/locale
+func (i_ Image) Locale() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("locale"))
+	return rv
+}
+
+
+// SetLocale sets the value of the locale property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimage/locale
+func (i_ Image) SetLocale(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setLocale:"), value)
+}
+
+// A Boolean value that indicates whether image representations whose resolution is an integral multiple of the device resolution are a match.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimage/matchesonmultipleresolution
+func (i_ Image) MatchesOnMultipleResolution() bool {
+	rv := objc.Send[bool](i_.ID, objc.Sel("matchesOnMultipleResolution"))
+	return rv
+}
+
+
+// SetMatchesOnMultipleResolution sets the value of the matchesOnMultipleResolution property.
+// A Boolean value that indicates whether image representations whose resolution is an integral multiple of the device resolution are a match.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimage/matchesonmultipleresolution
+func (i_ Image) SetMatchesOnMultipleResolution(value bool) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setMatchesOnMultipleResolution:"), value)
+}
+
+// A Boolean value that indicates whether the image matches only on the best fitting axis.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimage/matchesonlyonbestfittingaxis
+func (i_ Image) MatchesOnlyOnBestFittingAxis() bool {
+	rv := objc.Send[bool](i_.ID, objc.Sel("matchesOnlyOnBestFittingAxis"))
+	return rv
+}
+
+
+// SetMatchesOnlyOnBestFittingAxis sets the value of the matchesOnlyOnBestFittingAxis property.
+// A Boolean value that indicates whether the image matches only on the best fitting axis.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimage/matchesonlyonbestfittingaxis
+func (i_ Image) SetMatchesOnlyOnBestFittingAxis(value bool) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setMatchesOnlyOnBestFittingAxis:"), value)
+}
+
+// A Boolean value that indicates whether the image prefers to choose image representations using color-matching or resolution-matching.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimage/preferscolormatch
+func (i_ Image) PrefersColorMatch() bool {
+	rv := objc.Send[bool](i_.ID, objc.Sel("prefersColorMatch"))
+	return rv
+}
+
+
+// SetPrefersColorMatch sets the value of the prefersColorMatch property.
+// A Boolean value that indicates whether the image prefers to choose image representations using color-matching or resolution-matching.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimage/preferscolormatch
+func (i_ Image) SetPrefersColorMatch(value bool) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setPrefersColorMatch:"), value)
+}
+
+// An array containing all of the image object’s image representations.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimage/representations
+func (i_ Image) Representations() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("representations"))
+	return rv
+}
+
+
+// SetRepresentations sets the value of the representations property.
+// An array containing all of the image object’s image representations.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimage/representations
+func (i_ Image) SetRepresentations(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setRepresentations:"), value)
+}
+
+// The resizing mode for the image.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimage/resizingmode-swift.property
+func (i_ Image) ResizingMode() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("resizingMode"))
+	return rv
+}
+
+
+// SetResizingMode sets the value of the resizingMode property.
+// The resizing mode for the image.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimage/resizingmode-swift.property
+func (i_ Image) SetResizingMode(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setResizingMode:"), value)
+}
+
+// The size of the image.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimage/size
+func (i_ Image) Size() coregraphics.CGSize {
+	rv := objc.Send[coregraphics.CGSize](i_.ID, objc.Sel("size"))
+	return rv
+}
+
+
+// SetSize sets the value of the size property.
+// The size of the image.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimage/size
+func (i_ Image) SetSize(value coregraphics.CGSize) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setSize:"), value)
+}
+
+// The configuration details for a symbol image.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimage/symbolconfiguration-swift.property
+func (i_ Image) SymbolConfiguration() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("symbolConfiguration"))
+	return rv
+}
+
+
+// SetSymbolConfiguration sets the value of the symbolConfiguration property.
+// The configuration details for a symbol image.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimage/symbolconfiguration-swift.property
+func (i_ Image) SetSymbolConfiguration(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setSymbolConfiguration:"), value)
+}
+
+// A data object containing TIFF data for all of the image representations in the image.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimage/tiffrepresentation
+func (i_ Image) TiffRepresentation() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("tiffRepresentation"))
+	return rv
+}
+
+
+// SetTiffRepresentation sets the value of the tiffRepresentation property.
+// A data object containing TIFF data for all of the image representations in the image.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimage/tiffrepresentation
+func (i_ Image) SetTiffRepresentation(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setTiffRepresentation:"), value)
+}
+
+// A Boolean value that indicates whether EPS representations are preferred when no other representations match the resolution of the device.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimage/usesepsonresolutionmismatch
+func (i_ Image) UsesEPSOnResolutionMismatch() bool {
+	rv := objc.Send[bool](i_.ID, objc.Sel("usesEPSOnResolutionMismatch"))
+	return rv
+}
+
+
+// SetUsesEPSOnResolutionMismatch sets the value of the usesEPSOnResolutionMismatch property.
+// A Boolean value that indicates whether EPS representations are preferred when no other representations match the resolution of the device.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimage/usesepsonresolutionmismatch
+func (i_ Image) SetUsesEPSOnResolutionMismatch(value bool) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setUsesEPSOnResolutionMismatch:"), value)
+}
+
+// An object that provides the contents of the layer. Animatable.
+//
+// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/contents
+func (i_ Image) Contents() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("contents"))
+	return rv
+}
+
+
+// SetContents sets the value of the contents property.
+// An object that provides the contents of the layer. Animatable.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/contents
+func (i_ Image) SetContents(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setContents:"), value)
+}
+
+// A constant that specifies how the layer’s contents are positioned or scaled within its bounds.
+//
+// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/contentsGravity
+func (i_ Image) ContentsGravity() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("contentsGravity"))
+	return rv
+}
+
+
+// SetContentsGravity sets the value of the contentsGravity property.
+// A constant that specifies how the layer’s contents are positioned or scaled within its bounds.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/contentsGravity
+func (i_ Image) SetContentsGravity(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setContentsGravity:"), value)
+}
+
 

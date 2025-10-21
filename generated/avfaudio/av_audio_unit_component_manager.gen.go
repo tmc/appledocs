@@ -80,5 +80,41 @@ func NewAudioUnitComponentManager() AudioUnitComponentManager {
 }
 
 
+// An array of the localized standard system tags the audio units define.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitcomponentmanager/standardlocalizedtagnames
+func (a_ AudioUnitComponentManager) StandardLocalizedTagNames() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("standardLocalizedTagNames"))
+	return rv
+}
+
+
+// SetStandardLocalizedTagNames sets the value of the standardLocalizedTagNames property.
+// An array of the localized standard system tags the audio units define.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitcomponentmanager/standardlocalizedtagnames
+func (a_ AudioUnitComponentManager) SetStandardLocalizedTagNames(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setStandardLocalizedTagNames:"), objc.String(value))
+}
+
+// An array of all tags the audio unit associates with the current user, and the system tags the audio units define.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitcomponentmanager/tagnames
+func (a_ AudioUnitComponentManager) TagNames() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("tagNames"))
+	return rv
+}
+
+
+// SetTagNames sets the value of the tagNames property.
+// An array of all tags the audio unit associates with the current user, and the system tags the audio units define.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitcomponentmanager/tagnames
+func (a_ AudioUnitComponentManager) SetTagNames(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setTagNames:"), objc.String(value))
+}
+
 
 

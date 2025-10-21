@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -109,7 +110,7 @@ func (sc _SFSafariApplicationClass) GetHostApplicationWithCompletionHandler(comp
 // Opens a new window with the desired webpage.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariApplication/openWindow(with:completionHandler:)
-func (sc _SFSafariApplicationClass) OpenWindowWithURLCompletionHandler(url unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (sc _SFSafariApplicationClass) OpenWindowWithURLCompletionHandler(url foundation.URL, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("openWindowWithURL:completionHandler:"), url, completionHandler)
 }
 

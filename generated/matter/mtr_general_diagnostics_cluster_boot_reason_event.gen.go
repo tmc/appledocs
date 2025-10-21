@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,21 @@ func NewMTRGeneralDiagnosticsClusterBootReasonEvent() MTRGeneralDiagnosticsClust
 	return getMTRGeneralDiagnosticsClusterBootReasonEventClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusterbootreasonevent/bootreason
+func (m_ MTRGeneralDiagnosticsClusterBootReasonEvent) BootReason() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("bootReason"))
+	return rv
+}
+
+
+// SetBootReason sets the value of the bootReason property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusterbootreasonevent/bootreason
+func (m_ MTRGeneralDiagnosticsClusterBootReasonEvent) SetBootReason(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setBootReason:"), value)
+}
 
 
 

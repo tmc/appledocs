@@ -102,6 +102,66 @@ func (f_ ForwardLoss) EncodeBatchToCommandBufferSourceImagesLabelsWeightsDestina
 }
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardloss/weight
+func (f_ ForwardLoss) Weight() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("weight"))
+	return rv
+}
+
+
+// SetWeight sets the value of the weight property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardloss/weight
+func (f_ ForwardLoss) SetWeight(value unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setWeight:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardloss/numberofclasses
+func (f_ ForwardLoss) NumberOfClasses() int {
+	rv := objc.Send[int](f_.ID, objc.Sel("numberOfClasses"))
+	return rv
+}
+
+
+// SetNumberOfClasses sets the value of the numberOfClasses property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardloss/numberofclasses
+func (f_ ForwardLoss) SetNumberOfClasses(value int) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setNumberOfClasses:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardloss/losstype
+func (f_ ForwardLoss) LossType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("lossType"))
+	return rv
+}
+
+
+// SetLossType sets the value of the lossType property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardloss/losstype
+func (f_ ForwardLoss) SetLossType(value unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setLossType:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardloss/labelsmoothing
+func (f_ ForwardLoss) LabelSmoothing() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("labelSmoothing"))
+	return rv
+}
+
+
+// SetLabelSmoothing sets the value of the labelSmoothing property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardloss/labelsmoothing
+func (f_ ForwardLoss) SetLabelSmoothing(value unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setLabelSmoothing:"), value)
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNForwardLoss/delta
 func (f_ ForwardLoss) Delta() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("delta"))

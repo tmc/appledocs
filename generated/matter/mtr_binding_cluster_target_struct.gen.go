@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,81 @@ func NewMTRBindingClusterTargetStruct() MTRBindingClusterTargetStruct {
 	return getMTRBindingClusterTargetStructClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrbindingclustertargetstruct/group
+func (m_ MTRBindingClusterTargetStruct) Group() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("group"))
+	return rv
+}
+
+
+// SetGroup sets the value of the group property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrbindingclustertargetstruct/group
+func (m_ MTRBindingClusterTargetStruct) SetGroup(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setGroup:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrbindingclustertargetstruct/fabricindex
+func (m_ MTRBindingClusterTargetStruct) FabricIndex() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("fabricIndex"))
+	return rv
+}
+
+
+// SetFabricIndex sets the value of the fabricIndex property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrbindingclustertargetstruct/fabricindex
+func (m_ MTRBindingClusterTargetStruct) SetFabricIndex(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrbindingclustertargetstruct/endpoint
+func (m_ MTRBindingClusterTargetStruct) Endpoint() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("endpoint"))
+	return rv
+}
+
+
+// SetEndpoint sets the value of the endpoint property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrbindingclustertargetstruct/endpoint
+func (m_ MTRBindingClusterTargetStruct) SetEndpoint(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setEndpoint:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrbindingclustertargetstruct/cluster
+func (m_ MTRBindingClusterTargetStruct) Cluster() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("cluster"))
+	return rv
+}
+
+
+// SetCluster sets the value of the cluster property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrbindingclustertargetstruct/cluster
+func (m_ MTRBindingClusterTargetStruct) SetCluster(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCluster:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrbindingclustertargetstruct/node
+func (m_ MTRBindingClusterTargetStruct) Node() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("node"))
+	return rv
+}
+
+
+// SetNode sets the value of the node property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrbindingclustertargetstruct/node
+func (m_ MTRBindingClusterTargetStruct) SetNode(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setNode:"), value)
+}
 
 
 

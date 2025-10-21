@@ -89,6 +89,60 @@ func (gc _GraphSingleGateRNNDescriptorClass) Descriptor() unsafe.Pointer {
 	return rv
 }
 
+// A parameter that makes the RNN layer support training.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphsinglegaternndescriptor/training
+func (g_ GraphSingleGateRNNDescriptor) Training() bool {
+	rv := objc.Send[bool](g_.ID, objc.Sel("training"))
+	return rv
+}
+
+
+// SetTraining sets the value of the training property.
+// A parameter that makes the RNN layer support training.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphsinglegaternndescriptor/training
+func (g_ GraphSingleGateRNNDescriptor) SetTraining(value bool) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setTraining:"), value)
+}
+
+// A parameter that defines time direction of the input sequence.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphsinglegaternndescriptor/reverse
+func (g_ GraphSingleGateRNNDescriptor) Reverse() bool {
+	rv := objc.Send[bool](g_.ID, objc.Sel("reverse"))
+	return rv
+}
+
+
+// SetReverse sets the value of the reverse property.
+// A parameter that defines time direction of the input sequence.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphsinglegaternndescriptor/reverse
+func (g_ GraphSingleGateRNNDescriptor) SetReverse(value bool) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setReverse:"), value)
+}
+
+// A parameter that defines the activation function to use with the RNN operation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphsinglegaternndescriptor/activation
+func (g_ GraphSingleGateRNNDescriptor) Activation() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("activation"))
+	return rv
+}
+
+
+// SetActivation sets the value of the activation property.
+// A parameter that defines the activation function to use with the RNN operation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphsinglegaternndescriptor/activation
+func (g_ GraphSingleGateRNNDescriptor) SetActivation(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setActivation:"), value)
+}
+
 // A parameter that defines a bidirectional RNN layer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphSingleGateRNNDescriptor/bidirectional

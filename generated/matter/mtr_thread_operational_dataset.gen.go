@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,111 @@ func NewMTRThreadOperationalDataset() MTRThreadOperationalDataset {
 	return getMTRThreadOperationalDatasetClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadoperationaldataset/channel
+func (m_ MTRThreadOperationalDataset) Channel() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("channel"))
+	return rv
+}
+
+
+// SetChannel sets the value of the channel property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadoperationaldataset/channel
+func (m_ MTRThreadOperationalDataset) SetChannel(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setChannel:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadoperationaldataset/extendedpanid
+func (m_ MTRThreadOperationalDataset) ExtendedPANID() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("extendedPANID"))
+	return rv
+}
+
+
+// SetExtendedPANID sets the value of the extendedPANID property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadoperationaldataset/extendedpanid
+func (m_ MTRThreadOperationalDataset) SetExtendedPANID(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setExtendedPANID:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadoperationaldataset/networkname
+func (m_ MTRThreadOperationalDataset) NetworkName() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("networkName"))
+	return rv
+}
+
+
+// SetNetworkName sets the value of the networkName property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadoperationaldataset/networkname
+func (m_ MTRThreadOperationalDataset) SetNetworkName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setNetworkName:"), objc.String(value))
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadoperationaldataset/panid
+func (m_ MTRThreadOperationalDataset) PanID() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("panID"))
+	return rv
+}
+
+
+// SetPanID sets the value of the panID property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadoperationaldataset/panid
+func (m_ MTRThreadOperationalDataset) SetPanID(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPanID:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadoperationaldataset/masterkey
+func (m_ MTRThreadOperationalDataset) MasterKey() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("masterKey"))
+	return rv
+}
+
+
+// SetMasterKey sets the value of the masterKey property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadoperationaldataset/masterkey
+func (m_ MTRThreadOperationalDataset) SetMasterKey(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMasterKey:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadoperationaldataset/channelnumber
+func (m_ MTRThreadOperationalDataset) ChannelNumber() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("channelNumber"))
+	return rv
+}
+
+
+// SetChannelNumber sets the value of the channelNumber property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadoperationaldataset/channelnumber
+func (m_ MTRThreadOperationalDataset) SetChannelNumber(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setChannelNumber:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadoperationaldataset/pskc
+func (m_ MTRThreadOperationalDataset) PsKc() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("psKc"))
+	return rv
+}
+
+
+// SetPsKc sets the value of the psKc property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadoperationaldataset/pskc
+func (m_ MTRThreadOperationalDataset) SetPsKc(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPsKc:"), value)
+}
 
 
 

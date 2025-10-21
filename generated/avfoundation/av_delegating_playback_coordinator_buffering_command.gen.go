@@ -81,5 +81,41 @@ func NewDelegatingPlaybackCoordinatorBufferingCommand() DelegatingPlaybackCoordi
 }
 
 
+// The rate at which the coordinator expects the current item to play.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinatorbufferingcommand/anticipatedplaybackrate
+func (d_ DelegatingPlaybackCoordinatorBufferingCommand) AnticipatedPlaybackRate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("anticipatedPlaybackRate"))
+	return rv
+}
+
+
+// SetAnticipatedPlaybackRate sets the value of the anticipatedPlaybackRate property.
+// The rate at which the coordinator expects the current item to play.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinatorbufferingcommand/anticipatedplaybackrate
+func (d_ DelegatingPlaybackCoordinatorBufferingCommand) SetAnticipatedPlaybackRate(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setAnticipatedPlaybackRate:"), value)
+}
+
+// The deadline by which the coordinator expects the delegate to complete execution of a command.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinatorbufferingcommand/completionduedate
+func (d_ DelegatingPlaybackCoordinatorBufferingCommand) CompletionDueDate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("completionDueDate"))
+	return rv
+}
+
+
+// SetCompletionDueDate sets the value of the completionDueDate property.
+// The deadline by which the coordinator expects the delegate to complete execution of a command.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinatorbufferingcommand/completionduedate
+func (d_ DelegatingPlaybackCoordinatorBufferingCommand) SetCompletionDueDate(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setCompletionDueDate:"), value)
+}
+
 
 

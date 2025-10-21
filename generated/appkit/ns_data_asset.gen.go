@@ -80,5 +80,59 @@ func NewDataAsset() DataAsset {
 }
 
 
+// The raw data values in the data asset.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdataasset/data
+func (d_ DataAsset) Data() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("data"))
+	return rv
+}
+
+
+// SetData sets the value of the data property.
+// The raw data values in the data asset.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdataasset/data
+func (d_ DataAsset) SetData(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setData:"), value)
+}
+
+// The name of the data set in the asset catalog.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdataasset/name-swift.property
+func (d_ DataAsset) Name() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("name"))
+	return rv
+}
+
+
+// SetName sets the value of the name property.
+// The name of the data set in the asset catalog.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdataasset/name-swift.property
+func (d_ DataAsset) SetName(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setName:"), value)
+}
+
+// The uniform type identifier for the data asset.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdataasset/typeidentifier
+func (d_ DataAsset) TypeIdentifier() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("typeIdentifier"))
+	return rv
+}
+
+
+// SetTypeIdentifier sets the value of the typeIdentifier property.
+// The uniform type identifier for the data asset.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdataasset/typeidentifier
+func (d_ DataAsset) SetTypeIdentifier(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setTypeIdentifier:"), objc.String(value))
+}
+
 
 

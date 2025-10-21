@@ -79,5 +79,23 @@ func NewSeekCommandEvent() SeekCommandEvent {
 }
 
 
+// The type of seek command event.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpseekcommandevent/type
+func (s_ SeekCommandEvent) Type() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("type"))
+	return rv
+}
+
+
+// SetType sets the value of the type property.
+// The type of seek command event.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpseekcommandevent/type
+func (s_ SeekCommandEvent) SetType(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setType:"), value)
+}
+
 
 

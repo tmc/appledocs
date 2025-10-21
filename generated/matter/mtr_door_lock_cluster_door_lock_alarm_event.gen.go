@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,21 @@ func NewMTRDoorLockClusterDoorLockAlarmEvent() MTRDoorLockClusterDoorLockAlarmEv
 	return getMTRDoorLockClusterDoorLockAlarmEventClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterdoorlockalarmevent/alarmcode
+func (m_ MTRDoorLockClusterDoorLockAlarmEvent) AlarmCode() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("alarmCode"))
+	return rv
+}
+
+
+// SetAlarmCode sets the value of the alarmCode property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterdoorlockalarmevent/alarmcode
+func (m_ MTRDoorLockClusterDoorLockAlarmEvent) SetAlarmCode(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAlarmCode:"), value)
+}
 
 
 

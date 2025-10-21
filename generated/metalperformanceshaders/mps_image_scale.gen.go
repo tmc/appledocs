@@ -79,5 +79,20 @@ func NewImageScale() ImageScale {
 }
 
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagescale/scaletransform
+func (i_ ImageScale) ScaleTransform() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("scaleTransform"))
+	return rv
+}
+
+
+// SetScaleTransform sets the value of the scaleTransform property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagescale/scaletransform
+func (i_ ImageScale) SetScaleTransform(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setScaleTransform:"), value)
+}
+
 
 

@@ -80,5 +80,23 @@ func NewVZConsoleDevice() VZConsoleDevice {
 }
 
 
+// The list of configured console devices on the VM.
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachine/consoledevices
+func (v_ VZConsoleDevice) ConsoleDevices() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("consoleDevices"))
+	return rv
+}
+
+
+// SetConsoleDevices sets the value of the consoleDevices property.
+// The list of configured console devices on the VM.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachine/consoledevices
+func (v_ VZConsoleDevice) SetConsoleDevices(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setConsoleDevices:"), value)
+}
+
 
 

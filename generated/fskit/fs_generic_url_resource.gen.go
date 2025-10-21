@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [FSGenericURLResource] class.
@@ -81,7 +82,7 @@ func NewFSGenericURLResource() FSGenericURLResource {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSGenericURLResource/init(url:)
-func NewFSGenericURLResourceWithURL(url unsafe.Pointer) FSGenericURLResource {
+func NewFSGenericURLResourceWithURL(url foundation.URL) FSGenericURLResource {
 	instance := getFSGenericURLResourceClass().Alloc()
 	rv := objc.Send[FSGenericURLResource](instance.ID, objc.Sel("initWithURL:"), url)
 	rv.Autorelease()
@@ -91,8 +92,8 @@ func NewFSGenericURLResourceWithURL(url unsafe.Pointer) FSGenericURLResource {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSGenericURLResource/url
-func (f_ FSGenericURLResource) Url() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("url"))
+func (f_ FSGenericURLResource) Url() foundation.URL {
+	rv := objc.Send[foundation.URL](f_.ID, objc.Sel("url"))
 	return rv
 }
 

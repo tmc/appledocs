@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -80,6 +81,114 @@ func NewMediaObject() MediaObject {
 }
 
 
+// The date and time when the media object was last altered.
+//
+// [Full Topic]: https://developer.apple.com/documentation/medialibrary/mlmediaobject/modificationdate
+func (m_ MediaObject) ModificationDate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("modificationDate"))
+	return rv
+}
+
+
+// SetModificationDate sets the value of the modificationDate property.
+// The date and time when the media object was last altered.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/medialibrary/mlmediaobject/modificationdate
+func (m_ MediaObject) SetModificationDate(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setModificationDate:"), value)
+}
+
+// The media object’s type of media (image, audio, or movie).
+//
+// [Full Topic]: https://developer.apple.com/documentation/medialibrary/mlmediaobject/mediatype
+func (m_ MediaObject) MediaType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("mediaType"))
+	return rv
+}
+
+
+// SetMediaType sets the value of the mediaType property.
+// The media object’s type of media (image, audio, or movie).
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/medialibrary/mlmediaobject/mediatype
+func (m_ MediaObject) SetMediaType(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMediaType:"), value)
+}
+
+// The location of the media object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/medialibrary/mlmediaobject/url
+func (m_ MediaObject) Url() foundation.URL {
+	rv := objc.Send[foundation.URL](m_.ID, objc.Sel("url"))
+	return rv
+}
+
+
+// SetUrl sets the value of the url property.
+// The location of the media object.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/medialibrary/mlmediaobject/url
+func (m_ MediaObject) SetUrl(value foundation.URL) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setUrl:"), value)
+}
+
+// Album artwork associated with the media object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/medialibrary/mlmediaobject/artworkimage
+func (m_ MediaObject) ArtworkImage() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("artworkImage"))
+	return rv
+}
+
+
+// SetArtworkImage sets the value of the artworkImage property.
+// Album artwork associated with the media object.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/medialibrary/mlmediaobject/artworkimage
+func (m_ MediaObject) SetArtworkImage(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setArtworkImage:"), value)
+}
+
+// A pointer to the media library instance that loaded the media object’s source.
+//
+// [Full Topic]: https://developer.apple.com/documentation/medialibrary/mlmediaobject/medialibrary
+func (m_ MediaObject) MediaLibrary() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("mediaLibrary"))
+	return rv
+}
+
+
+// SetMediaLibrary sets the value of the mediaLibrary property.
+// A pointer to the media library instance that loaded the media object’s source.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/medialibrary/mlmediaobject/medialibrary
+func (m_ MediaObject) SetMediaLibrary(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMediaLibrary:"), value)
+}
+
+// The location of the original media object, if
+//
+// [Full Topic]: https://developer.apple.com/documentation/medialibrary/mlmediaobject/originalurl
+func (m_ MediaObject) OriginalURL() foundation.URL {
+	rv := objc.Send[foundation.URL](m_.ID, objc.Sel("originalURL"))
+	return rv
+}
+
+
+// SetOriginalURL sets the value of the originalURL property.
+// The location of the original media object, if
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/medialibrary/mlmediaobject/originalurl
+func (m_ MediaObject) SetOriginalURL(value foundation.URL) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setOriginalURL:"), value)
+}
+
 // A dictionary of attributes describing the media object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaLibrary/MLMediaObject/attributes
@@ -131,8 +240,8 @@ func (m_ MediaObject) Name() string {
 // The location of the media object’s thumbnail image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaLibrary/MLMediaObject/thumbnailURL
-func (m_ MediaObject) ThumbnailURL() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("thumbnailURL"))
+func (m_ MediaObject) ThumbnailURL() foundation.URL {
+	rv := objc.Send[foundation.URL](m_.ID, objc.Sel("thumbnailURL"))
 	return rv
 }
 

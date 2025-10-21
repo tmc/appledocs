@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -90,6 +91,132 @@ func NewMETrackInfoWithMediaTypeTrackIDFormatDescriptions(mediaType unsafe.Point
 	return rv
 }
 
+
+// Indicates the preferred affine display transform of the track media for visual display.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaextension/metrackinfo/preferredtransform
+func (m_ METrackInfo) PreferredTransform() coregraphics.CGAffineTransform {
+	rv := objc.Send[coregraphics.CGAffineTransform](m_.ID, objc.Sel("preferredTransform"))
+	return rv
+}
+
+
+// SetPreferredTransform sets the value of the preferredTransform property.
+// Indicates the preferred affine display transform of the track media for visual display.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaextension/metrackinfo/preferredtransform
+func (m_ METrackInfo) SetPreferredTransform(value coregraphics.CGAffineTransform) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPreferredTransform:"), value)
+}
+
+// A string that indicates the language tag associated with the track, as an IETF BCP 47 (RFC 4646) language identifier.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaextension/metrackinfo/extendedlanguagetag
+func (m_ METrackInfo) ExtendedLanguageTag() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("extendedLanguageTag"))
+	return rv
+}
+
+
+// SetExtendedLanguageTag sets the value of the extendedLanguageTag property.
+// A string that indicates the language tag associated with the track, as an IETF BCP 47 (RFC 4646) language identifier.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaextension/metrackinfo/extendedlanguagetag
+func (m_ METrackInfo) SetExtendedLanguageTag(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setExtendedLanguageTag:"), objc.String(value))
+}
+
+// A Boolean value that indicates whether frame reordering occurs in the track.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaextension/metrackinfo/requiresframereordering
+func (m_ METrackInfo) RequiresFrameReordering() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("requiresFrameReordering"))
+	return rv
+}
+
+
+// SetRequiresFrameReordering sets the value of the requiresFrameReordering property.
+// A Boolean value that indicates whether frame reordering occurs in the track.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaextension/metrackinfo/requiresframereordering
+func (m_ METrackInfo) SetRequiresFrameReordering(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setRequiresFrameReordering:"), value)
+}
+
+// Indicates the natural dimensions of the media data referenced by the track.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaextension/metrackinfo/naturalsize
+func (m_ METrackInfo) NaturalSize() coregraphics.CGSize {
+	rv := objc.Send[coregraphics.CGSize](m_.ID, objc.Sel("naturalSize"))
+	return rv
+}
+
+
+// SetNaturalSize sets the value of the naturalSize property.
+// Indicates the natural dimensions of the media data referenced by the track.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaextension/metrackinfo/naturalsize
+func (m_ METrackInfo) SetNaturalSize(value coregraphics.CGSize) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setNaturalSize:"), value)
+}
+
+// A Boolean value that indicates whether the track is enabled by default.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaextension/metrackinfo/isenabled
+func (m_ METrackInfo) IsEnabled() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("isEnabled"))
+	return rv
+}
+
+
+// SetIsEnabled sets the value of the isEnabled property.
+// A Boolean value that indicates whether the track is enabled by default.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaextension/metrackinfo/isenabled
+func (m_ METrackInfo) SetIsEnabled(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIsEnabled:"), value)
+}
+
+// The media type of the track.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaextension/metrackinfo/mediatype
+func (m_ METrackInfo) MediaType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("mediaType"))
+	return rv
+}
+
+
+// SetMediaType sets the value of the mediaType property.
+// The media type of the track.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaextension/metrackinfo/mediatype
+func (m_ METrackInfo) SetMediaType(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMediaType:"), value)
+}
+
+// An integer that identifies the track within the media asset.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaextension/metrackinfo/trackid
+func (m_ METrackInfo) TrackID() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("trackID"))
+	return rv
+}
+
+
+// SetTrackID sets the value of the trackID property.
+// An integer that identifies the track within the media asset.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaextension/metrackinfo/trackid
+func (m_ METrackInfo) SetTrackID(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTrackID:"), value)
+}
 
 // The natural timescale of the track.
 //

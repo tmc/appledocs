@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MTREventPath] class.
@@ -75,6 +76,21 @@ func NewMTREventPath() MTREventPath {
 	return getMTREventPathClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtreventpath/event
+func (m_ MTREventPath) Event() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("event"))
+	return rv
+}
+
+
+// SetEvent sets the value of the event property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtreventpath/event
+func (m_ MTREventPath) SetEvent(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setEvent:"), value)
+}
 
 
 

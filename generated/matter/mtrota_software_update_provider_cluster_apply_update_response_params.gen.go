@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,51 @@ func NewMTROTASoftwareUpdateProviderClusterApplyUpdateResponseParams() MTROTASof
 	return getMTROTASoftwareUpdateProviderClusterApplyUpdateResponseParamsClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterapplyupdateresponseparams-36zc9/delayedactiontime
+func (m_ MTROTASoftwareUpdateProviderClusterApplyUpdateResponseParams) DelayedActionTime() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("delayedActionTime"))
+	return rv
+}
+
+
+// SetDelayedActionTime sets the value of the delayedActionTime property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterapplyupdateresponseparams-36zc9/delayedactiontime
+func (m_ MTROTASoftwareUpdateProviderClusterApplyUpdateResponseParams) SetDelayedActionTime(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDelayedActionTime:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterapplyupdateresponseparams-36zc9/action
+func (m_ MTROTASoftwareUpdateProviderClusterApplyUpdateResponseParams) Action() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("action"))
+	return rv
+}
+
+
+// SetAction sets the value of the action property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterapplyupdateresponseparams-36zc9/action
+func (m_ MTROTASoftwareUpdateProviderClusterApplyUpdateResponseParams) SetAction(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAction:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterapplyupdateresponseparams-36zc9/timedinvoketimeoutms
+func (m_ MTROTASoftwareUpdateProviderClusterApplyUpdateResponseParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+	return rv
+}
+
+
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterapplyupdateresponseparams-36zc9/timedinvoketimeoutms
+func (m_ MTROTASoftwareUpdateProviderClusterApplyUpdateResponseParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+}
 
 
 

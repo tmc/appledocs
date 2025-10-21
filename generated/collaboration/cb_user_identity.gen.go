@@ -88,6 +88,24 @@ func (c_ CBUserIdentity) AuthenticateWithPassword(password string) bool {
 	return rv
 }
 
+// Returns a Boolean value indicating whether the identity is allowed to authenticate.
+//
+// [Full Topic]: https://developer.apple.com/documentation/collaboration/cbuseridentity/isenabled
+func (c_ CBUserIdentity) IsEnabled() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isEnabled"))
+	return rv
+}
+
+
+// SetIsEnabled sets the value of the isEnabled property.
+// Returns a Boolean value indicating whether the identity is allowed to authenticate.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/collaboration/cbuseridentity/isenabled
+func (c_ CBUserIdentity) SetIsEnabled(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsEnabled:"), value)
+}
+
 // Returns the public authentication certificate associated with a user identity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBUserIdentity/certificate

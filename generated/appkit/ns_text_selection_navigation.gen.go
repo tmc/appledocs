@@ -78,5 +78,59 @@ func NewTextSelectionNavigation() TextSelectionNavigation {
 }
 
 
+// Determines if the instance could produce selections with multiple noncontiguous selections.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextselectionnavigation/allowsnoncontiguousranges
+func (t_ TextSelectionNavigation) AllowsNonContiguousRanges() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("allowsNonContiguousRanges"))
+	return rv
+}
+
+
+// SetAllowsNonContiguousRanges sets the value of the allowsNonContiguousRanges property.
+// Determines if the instance could produce selections with multiple noncontiguous selections.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextselectionnavigation/allowsnoncontiguousranges
+func (t_ TextSelectionNavigation) SetAllowsNonContiguousRanges(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setAllowsNonContiguousRanges:"), value)
+}
+
+// Determines if the framework rotates the coordinate system to match the layout orientation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextselectionnavigation/rotatescoordinatesystemforlayoutorientation
+func (t_ TextSelectionNavigation) RotatesCoordinateSystemForLayoutOrientation() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("rotatesCoordinateSystemForLayoutOrientation"))
+	return rv
+}
+
+
+// SetRotatesCoordinateSystemForLayoutOrientation sets the value of the rotatesCoordinateSystemForLayoutOrientation property.
+// Determines if the framework rotates the coordinate system to match the layout orientation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextselectionnavigation/rotatescoordinatesystemforlayoutorientation
+func (t_ TextSelectionNavigation) SetRotatesCoordinateSystemForLayoutOrientation(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setRotatesCoordinateSystemForLayoutOrientation:"), value)
+}
+
+// The data source associated with this selection navigation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextselectionnavigation/textselectiondatasource
+func (t_ TextSelectionNavigation) TextSelectionDataSource() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("textSelectionDataSource"))
+	return rv
+}
+
+
+// SetTextSelectionDataSource sets the value of the textSelectionDataSource property.
+// The data source associated with this selection navigation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextselectionnavigation/textselectiondatasource
+func (t_ TextSelectionNavigation) SetTextSelectionDataSource(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setTextSelectionDataSource:"), value)
+}
+
 
 

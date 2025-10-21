@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,51 @@ func NewMTRAttributeRequestPath() MTRAttributeRequestPath {
 	return getMTRAttributeRequestPathClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrattributerequestpath/endpoint
+func (m_ MTRAttributeRequestPath) Endpoint() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("endpoint"))
+	return rv
+}
+
+
+// SetEndpoint sets the value of the endpoint property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrattributerequestpath/endpoint
+func (m_ MTRAttributeRequestPath) SetEndpoint(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setEndpoint:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrattributerequestpath/attribute
+func (m_ MTRAttributeRequestPath) Attribute() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("attribute"))
+	return rv
+}
+
+
+// SetAttribute sets the value of the attribute property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrattributerequestpath/attribute
+func (m_ MTRAttributeRequestPath) SetAttribute(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAttribute:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrattributerequestpath/cluster
+func (m_ MTRAttributeRequestPath) Cluster() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("cluster"))
+	return rv
+}
+
+
+// SetCluster sets the value of the cluster property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrattributerequestpath/cluster
+func (m_ MTRAttributeRequestPath) SetCluster(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCluster:"), value)
+}
 
 
 

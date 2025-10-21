@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -154,6 +155,60 @@ func NewRenderDestinationWithWidthHeightPixelFormatCommandBufferMtlTextureProvid
 }
 
 
+// Indicator of whether or not the destination clamps.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreimage/cirenderdestination/isclamped
+func (r_ RenderDestination) IsClamped() bool {
+	rv := objc.Send[bool](r_.ID, objc.Sel("isClamped"))
+	return rv
+}
+
+
+// SetIsClamped sets the value of the isClamped property.
+// Indicator of whether or not the destination clamps.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreimage/cirenderdestination/isclamped
+func (r_ RenderDestination) SetIsClamped(value bool) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setIsClamped:"), value)
+}
+
+// Indicator of whether the destination is flipped.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreimage/cirenderdestination/isflipped
+func (r_ RenderDestination) IsFlipped() bool {
+	rv := objc.Send[bool](r_.ID, objc.Sel("isFlipped"))
+	return rv
+}
+
+
+// SetIsFlipped sets the value of the isFlipped property.
+// Indicator of whether the destination is flipped.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreimage/cirenderdestination/isflipped
+func (r_ RenderDestination) SetIsFlipped(value bool) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setIsFlipped:"), value)
+}
+
+// Indicator of whether or not the destination dithers.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreimage/cirenderdestination/isdithered
+func (r_ RenderDestination) IsDithered() bool {
+	rv := objc.Send[bool](r_.ID, objc.Sel("isDithered"))
+	return rv
+}
+
+
+// SetIsDithered sets the value of the isDithered property.
+// Indicator of whether or not the destination dithers.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreimage/cirenderdestination/isdithered
+func (r_ RenderDestination) SetIsDithered(value bool) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setIsDithered:"), value)
+}
+
 // The render destination’s representation of alpha (transparency) values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderDestination/alphaMode
@@ -211,8 +266,8 @@ func (r_ RenderDestination) SetBlendsInDestinationColorSpace(value bool) {
 // Tell the next render using this destination to capture a Metal trace.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderDestination/captureTraceURL
-func (r_ RenderDestination) CaptureTraceURL() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("captureTraceURL"))
+func (r_ RenderDestination) CaptureTraceURL() foundation.URL {
+	rv := objc.Send[foundation.URL](r_.ID, objc.Sel("captureTraceURL"))
 	return rv
 }
 
@@ -222,7 +277,7 @@ func (r_ RenderDestination) CaptureTraceURL() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderDestination/captureTraceURL
-func (r_ RenderDestination) SetCaptureTraceURL(value unsafe.Pointer) {
+func (r_ RenderDestination) SetCaptureTraceURL(value foundation.URL) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setCaptureTraceURL:"), value)
 }
 

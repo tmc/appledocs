@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -114,7 +115,7 @@ func NewCTensorWithDescriptorData(tensorDescriptor unsafe.Pointer, data unsafe.P
 // Creates a tensor with the descriptor and scalar value you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTensor/init(descriptor:fillWithData:)
-func NewCTensorWithDescriptorFillWithData(tensorDescriptor unsafe.Pointer, fillData unsafe.Pointer) CTensor {
+func NewCTensorWithDescriptorFillWithData(tensorDescriptor unsafe.Pointer, fillData foundation.Number) CTensor {
 	rv := objc.Send[CTensor](objc.ID(getCTensorClass().class), objc.Sel("tensorWithDescriptor:fillWithData:"), tensorDescriptor, fillData)
 	return rv
 }
@@ -229,7 +230,7 @@ func (cc _CTensorClass) TensorWithDescriptorData(tensorDescriptor unsafe.Pointer
 // Creates a tensor with the descriptor and scalar value you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTensor/init(descriptor:fillWithData:)
-func (cc _CTensorClass) TensorWithDescriptorFillWithData(tensorDescriptor unsafe.Pointer, fillData unsafe.Pointer) unsafe.Pointer {
+func (cc _CTensorClass) TensorWithDescriptorFillWithData(tensorDescriptor unsafe.Pointer, fillData foundation.Number) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("tensorWithDescriptor:fillWithData:"), tensorDescriptor, fillData)
 	return rv
 }
@@ -349,7 +350,7 @@ func (cc _CTensorClass) TensorWithShapeDataType(shape unsafe.Pointer, dataType u
 // Creates a tensor with the shape, scalar value, and data type you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTensor/tensorWithShape:fillWithData:dataType:
-func (cc _CTensorClass) TensorWithShapeFillWithDataDataType(shape unsafe.Pointer, fillData unsafe.Pointer, dataType unsafe.Pointer) unsafe.Pointer {
+func (cc _CTensorClass) TensorWithShapeFillWithDataDataType(shape unsafe.Pointer, fillData foundation.Number, dataType unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("tensorWithShape:fillWithData:dataType:"), shape, fillData, dataType)
 	return rv
 }

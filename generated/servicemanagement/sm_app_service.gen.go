@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -117,7 +118,7 @@ func (ac _AppServiceClass) OpenSystemSettingsLoginItems() {
 // Check the authorization status of an earlier OS version login item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ServiceManagement/SMAppService/statusForLegacyPlist(at:)
-func (ac _AppServiceClass) StatusForLegacyURL(url unsafe.Pointer) unsafe.Pointer {
+func (ac _AppServiceClass) StatusForLegacyURL(url foundation.URL) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("statusForLegacyURL:"), url)
 	return rv
 }

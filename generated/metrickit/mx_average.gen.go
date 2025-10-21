@@ -78,6 +78,14 @@ func NewMXAverage() MXAverage {
 }
 
 
+// Error domain for error values from app metrics.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metrickit/mxerrordomain
+func (m_ MXAverage) MXErrorDomain() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("MXErrorDomain"))
+	return rv
+}
+
 // The value of the average.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXAverage/averageMeasurement

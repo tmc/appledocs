@@ -87,5 +87,41 @@ func (cc _CLossLayerClass) MeanSquaredErrorLossWithReductionTypeWeights(reductio
 	return rv
 }
 
+// The configuration object you use to create the loss layer.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclosslayer/descriptor
+func (c_ CLossLayer) Descriptor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("descriptor"))
+	return rv
+}
+
+
+// SetDescriptor sets the value of the descriptor property.
+// The configuration object you use to create the loss layer.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclosslayer/descriptor
+func (c_ CLossLayer) SetDescriptor(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setDescriptor:"), value)
+}
+
+// The loss label weights tensor.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclosslayer/weights
+func (c_ CLossLayer) Weights() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("weights"))
+	return rv
+}
+
+
+// SetWeights sets the value of the weights property.
+// The loss label weights tensor.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclosslayer/weights
+func (c_ CLossLayer) SetWeights(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setWeights:"), value)
+}
+
 
 

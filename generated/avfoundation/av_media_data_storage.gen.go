@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,7 +31,7 @@ type _MediaDataStorageClass struct {
 // An interface definition for the [MediaDataStorage] class.
 type IMediaDataStorage interface {
 	objectivec.IObject
-	URL() unsafe.Pointer
+	URL() foundation.URL
 }
 
 // An object that represents the media sample data storage file.
@@ -82,8 +83,8 @@ func NewMediaDataStorage() MediaDataStorage {
 // Returns the URL used to initialize the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMediaDataStorage/url()
-func (m_ MediaDataStorage) URL() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("URL"))
+func (m_ MediaDataStorage) URL() foundation.URL {
+	rv := objc.Send[foundation.URL](m_.ID, objc.Sel("URL"))
 	return rv
 }
 

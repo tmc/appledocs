@@ -99,5 +99,41 @@ func (f_ FontPanel) SetWorksWhenModal(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setWorksWhenModal:"), value)
 }
 
+// The specified view as the receiver’s accessory view, allowing you to add custom controls to your application’s Font panel without having to create a subclass.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontpanel/accessoryview
+func (f_ FontPanel) AccessoryView() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("accessoryView"))
+	return rv
+}
+
+
+// SetAccessoryView sets the value of the accessoryView property.
+// The specified view as the receiver’s accessory view, allowing you to add custom controls to your application’s Font panel without having to create a subclass.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontpanel/accessoryview
+func (f_ FontPanel) SetAccessoryView(value unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setAccessoryView:"), value)
+}
+
+// A Boolean that shows whether the receiver’s Set button is enabled.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontpanel/isenabled
+func (f_ FontPanel) IsEnabled() bool {
+	rv := objc.Send[bool](f_.ID, objc.Sel("isEnabled"))
+	return rv
+}
+
+
+// SetIsEnabled sets the value of the isEnabled property.
+// A Boolean that shows whether the receiver’s Set button is enabled.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontpanel/isenabled
+func (f_ FontPanel) SetIsEnabled(value bool) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setIsEnabled:"), value)
+}
+
 
 

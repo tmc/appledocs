@@ -81,5 +81,197 @@ func NewINSearchForNotebookItemsIntent() INSearchForNotebookItemsIntent {
 }
 
 
+// An indicator of how to apply location values to your search.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchfornotebookitemsintent/locationsearchtype
+func (i_ INSearchForNotebookItemsIntent) LocationSearchType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("locationSearchType"))
+	return rv
+}
+
+
+// SetLocationSearchType sets the value of the locationSearchType property.
+// An indicator of how to apply location values to your search.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchfornotebookitemsintent/locationsearchtype
+func (i_ INSearchForNotebookItemsIntent) SetLocationSearchType(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setLocationSearchType:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchfornotebookitemsintent/temporaleventtriggertypes
+func (i_ INSearchForNotebookItemsIntent) TemporalEventTriggerTypes() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("temporalEventTriggerTypes"))
+	return rv
+}
+
+
+// SetTemporalEventTriggerTypes sets the value of the temporalEventTriggerTypes property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchfornotebookitemsintent/temporaleventtriggertypes
+func (i_ INSearchForNotebookItemsIntent) SetTemporalEventTriggerTypes(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setTemporalEventTriggerTypes:"), value)
+}
+
+// An indicator of how to apply date values to your search.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchfornotebookitemsintent/datesearchtype
+func (i_ INSearchForNotebookItemsIntent) DateSearchType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("dateSearchType"))
+	return rv
+}
+
+
+// SetDateSearchType sets the value of the dateSearchType property.
+// An indicator of how to apply date values to your search.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchfornotebookitemsintent/datesearchtype
+func (i_ INSearchForNotebookItemsIntent) SetDateSearchType(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setDateSearchType:"), value)
+}
+
+// The value to use when searching for location-triggered reminders.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchfornotebookitemsintent/location
+func (i_ INSearchForNotebookItemsIntent) Location() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("location"))
+	return rv
+}
+
+
+// SetLocation sets the value of the location property.
+// The value to use when searching for location-triggered reminders.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchfornotebookitemsintent/location
+func (i_ INSearchForNotebookItemsIntent) SetLocation(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setLocation:"), value)
+}
+
+// The value to use when performing date-based searches.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchfornotebookitemsintent/datetime
+func (i_ INSearchForNotebookItemsIntent) DateTime() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("dateTime"))
+	return rv
+}
+
+
+// SetDateTime sets the value of the dateTime property.
+// The value to use when performing date-based searches.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchfornotebookitemsintent/datetime
+func (i_ INSearchForNotebookItemsIntent) SetDateTime(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setDateTime:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchfornotebookitemsintent/taskpriority
+func (i_ INSearchForNotebookItemsIntent) TaskPriority() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("taskPriority"))
+	return rv
+}
+
+
+// SetTaskPriority sets the value of the taskPriority property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchfornotebookitemsintent/taskpriority
+func (i_ INSearchForNotebookItemsIntent) SetTaskPriority(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setTaskPriority:"), value)
+}
+
+// The type of items to include in your search.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchfornotebookitemsintent/itemtype
+func (i_ INSearchForNotebookItemsIntent) ItemType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("itemType"))
+	return rv
+}
+
+
+// SetItemType sets the value of the itemType property.
+// The type of items to include in your search.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchfornotebookitemsintent/itemtype
+func (i_ INSearchForNotebookItemsIntent) SetItemType(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setItemType:"), value)
+}
+
+// The unique identifier that your app assigned to the item.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchfornotebookitemsintent/notebookitemidentifier
+func (i_ INSearchForNotebookItemsIntent) NotebookItemIdentifier() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("notebookItemIdentifier"))
+	return rv
+}
+
+
+// SetNotebookItemIdentifier sets the value of the notebookItemIdentifier property.
+// The unique identifier that your app assigned to the item.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchfornotebookitemsintent/notebookitemidentifier
+func (i_ INSearchForNotebookItemsIntent) SetNotebookItemIdentifier(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setNotebookItemIdentifier:"), objc.String(value))
+}
+
+// The title text to search for in a note, task, or task list.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchfornotebookitemsintent/title
+func (i_ INSearchForNotebookItemsIntent) Title() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("title"))
+	return rv
+}
+
+
+// SetTitle sets the value of the title property.
+// The title text to search for in a note, task, or task list.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchfornotebookitemsintent/title
+func (i_ INSearchForNotebookItemsIntent) SetTitle(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setTitle:"), value)
+}
+
+// The completion state to look for when searching for tasks.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchfornotebookitemsintent/status
+func (i_ INSearchForNotebookItemsIntent) Status() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("status"))
+	return rv
+}
+
+
+// SetStatus sets the value of the status property.
+// The completion state to look for when searching for tasks.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchfornotebookitemsintent/status
+func (i_ INSearchForNotebookItemsIntent) SetStatus(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setStatus:"), value)
+}
+
+// The text to search for in the body of a note.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchfornotebookitemsintent/content
+func (i_ INSearchForNotebookItemsIntent) Content() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("content"))
+	return rv
+}
+
+
+// SetContent sets the value of the content property.
+// The text to search for in the body of a note.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchfornotebookitemsintent/content
+func (i_ INSearchForNotebookItemsIntent) SetContent(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setContent:"), objc.String(value))
+}
+
 
 

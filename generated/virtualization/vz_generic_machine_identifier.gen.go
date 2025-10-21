@@ -93,6 +93,42 @@ func NewVZGenericMachineIdentifierWithDataRepresentation(dataRepresentation unsa
 }
 
 
+// A value that represents a unique identifier for the virtual machine.
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzgenericplatformconfiguration/machineidentifier
+func (v_ VZGenericMachineIdentifier) MachineIdentifier() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("machineIdentifier"))
+	return rv
+}
+
+
+// SetMachineIdentifier sets the value of the machineIdentifier property.
+// A value that represents a unique identifier for the virtual machine.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzgenericplatformconfiguration/machineidentifier
+func (v_ VZGenericMachineIdentifier) SetMachineIdentifier(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setMachineIdentifier:"), value)
+}
+
+// A Boolean value that indicates whether nested virtualization is in an enabled state.
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzgenericplatformconfiguration/isnestedvirtualizationenabled
+func (v_ VZGenericMachineIdentifier) IsNestedVirtualizationEnabled() bool {
+	rv := objc.Send[bool](v_.ID, objc.Sel("isNestedVirtualizationEnabled"))
+	return rv
+}
+
+
+// SetIsNestedVirtualizationEnabled sets the value of the isNestedVirtualizationEnabled property.
+// A Boolean value that indicates whether nested virtualization is in an enabled state.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzgenericplatformconfiguration/isnestedvirtualizationenabled
+func (v_ VZGenericMachineIdentifier) SetIsNestedVirtualizationEnabled(value bool) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setIsNestedVirtualizationEnabled:"), value)
+}
+
 // An opaque data representation of the VM’s identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZGenericMachineIdentifier/dataRepresentation

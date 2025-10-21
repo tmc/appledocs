@@ -93,5 +93,56 @@ func NewFilePromiseProviderWithFileTypeDelegate(fileType string, delegate objc.I
 }
 
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfilepromiseprovider/delegate
+func (f_ FilePromiseProvider) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+
+// SetDelegate sets the value of the delegate property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfilepromiseprovider/delegate
+func (f_ FilePromiseProvider) SetDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setDelegate:"), value)
+}
+
+// The file type of the file promise provider.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfilepromiseprovider/filetype
+func (f_ FilePromiseProvider) FileType() string {
+	rv := objc.Send[string](f_.ID, objc.Sel("fileType"))
+	return rv
+}
+
+
+// SetFileType sets the value of the fileType property.
+// The file type of the file promise provider.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfilepromiseprovider/filetype
+func (f_ FilePromiseProvider) SetFileType(value string) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setFileType:"), objc.String(value))
+}
+
+// Optional user information to pass to the file promise provider.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfilepromiseprovider/userinfo
+func (f_ FilePromiseProvider) UserInfo() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("userInfo"))
+	return rv
+}
+
+
+// SetUserInfo sets the value of the userInfo property.
+// Optional user information to pass to the file promise provider.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfilepromiseprovider/userinfo
+func (f_ FilePromiseProvider) SetUserInfo(value unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setUserInfo:"), value)
+}
+
 
 

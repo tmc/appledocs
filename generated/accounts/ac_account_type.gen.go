@@ -80,6 +80,24 @@ func NewACAccountType() ACAccountType {
 }
 
 
+// The type of service account.
+//
+// [Full Topic]: https://developer.apple.com/documentation/accounts/acaccount/accounttype
+func (a_ ACAccountType) AccountType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("accountType"))
+	return rv
+}
+
+
+// SetAccountType sets the value of the accountType property.
+// The type of service account.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/accounts/acaccount/accounttype
+func (a_ ACAccountType) SetAccountType(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAccountType:"), value)
+}
+
 // A Boolean value indicating whether the user granted the application access to accounts of this type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccountType/accessGranted

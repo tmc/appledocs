@@ -83,6 +83,51 @@ func (mc _MatrixRandomDistributionDescriptorClass) NormalDistributionDescriptorW
 }
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixrandomdistributiondescriptor/mean
+func (m_ MatrixRandomDistributionDescriptor) Mean() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("mean"))
+	return rv
+}
+
+
+// SetMean sets the value of the mean property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixrandomdistributiondescriptor/mean
+func (m_ MatrixRandomDistributionDescriptor) SetMean(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMean:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixrandomdistributiondescriptor/distributiontype
+func (m_ MatrixRandomDistributionDescriptor) DistributionType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("distributionType"))
+	return rv
+}
+
+
+// SetDistributionType sets the value of the distributionType property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixrandomdistributiondescriptor/distributiontype
+func (m_ MatrixRandomDistributionDescriptor) SetDistributionType(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDistributionType:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixrandomdistributiondescriptor/maximum
+func (m_ MatrixRandomDistributionDescriptor) Maximum() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("maximum"))
+	return rv
+}
+
+
+// SetMaximum sets the value of the maximum property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixrandomdistributiondescriptor/maximum
+func (m_ MatrixRandomDistributionDescriptor) SetMaximum(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMaximum:"), value)
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSMatrixRandomDistributionDescriptor/minimum
 func (m_ MatrixRandomDistributionDescriptor) Minimum() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("minimum"))

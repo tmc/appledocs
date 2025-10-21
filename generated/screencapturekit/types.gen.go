@@ -10,13 +10,13 @@ import (
 // Fallback type aliases for undefined types
 // These types are referenced in method signatures but not fully documented.
 // Using unsafe.Pointer as fallback to allow code generation.
-type CGDirectDisplayID unsafe.Pointer
-
-type CGImageRef unsafe.Pointer
-
-type NSError unsafe.Pointer
-
 type SCCaptureDynamicRange unsafe.Pointer
+
+type SCCaptureResolutionType unsafe.Pointer
+
+type SCPresenterOverlayAlertSetting unsafe.Pointer
+
+type SCStreamType unsafe.Pointer
 
 
 

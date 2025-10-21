@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [AltitudeData] class.
@@ -84,16 +85,16 @@ func NewAltitudeData() AltitudeData {
 // The recorded pressure, in kilopascals.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAltitudeData/pressure
-func (a_ AltitudeData) Pressure() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("pressure"))
+func (a_ AltitudeData) Pressure() foundation.Number {
+	rv := objc.Send[foundation.Number](a_.ID, objc.Sel("pressure"))
 	return rv
 }
 
 // The change in altitude (in meters) since the first reported event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAltitudeData/relativeAltitude
-func (a_ AltitudeData) RelativeAltitude() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("relativeAltitude"))
+func (a_ AltitudeData) RelativeAltitude() foundation.Number {
+	rv := objc.Send[foundation.Number](a_.ID, objc.Sel("relativeAltitude"))
 	return rv
 }
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MusicPlayerStoreQueueDescriptor] class.
@@ -29,8 +30,8 @@ type _MusicPlayerStoreQueueDescriptorClass struct {
 // An interface definition for the [MusicPlayerStoreQueueDescriptor] class.
 type IMusicPlayerStoreQueueDescriptor interface {
 	IMusicPlayerQueueDescriptor
-	SetEndTimeForItemWithStoreID(endTime TimeInterval, storeID string)
-	SetStartTimeForItemWithStoreID(startTime TimeInterval, storeID string)
+	SetEndTimeForItemWithStoreID(endTime foundation.TimeInterval, storeID string)
+	SetStartTimeForItemWithStoreID(startTime foundation.TimeInterval, storeID string)
 }
 
 // A set of properties and methods for modifying items, based on their store identifier, in the player’s queue.
@@ -99,14 +100,14 @@ func NewMusicPlayerStoreQueueDescriptorWithStoreIDs(storeIDs unsafe.Pointer) Mus
 // Sets the time the designated store item is to stop playing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerStoreQueueDescriptor/setEndTime(_:forItemWithStoreID:)
-func (m_ MusicPlayerStoreQueueDescriptor) SetEndTimeForItemWithStoreID(endTime TimeInterval, storeID string) {
+func (m_ MusicPlayerStoreQueueDescriptor) SetEndTimeForItemWithStoreID(endTime foundation.TimeInterval, storeID string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEndTime:forItemWithStoreID:"), endTime, objc.String(storeID))
 }
 
 // Sets the time the designated store item is to start playing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerStoreQueueDescriptor/setStartTime(_:forItemWithStoreID:)
-func (m_ MusicPlayerStoreQueueDescriptor) SetStartTimeForItemWithStoreID(startTime TimeInterval, storeID string) {
+func (m_ MusicPlayerStoreQueueDescriptor) SetStartTimeForItemWithStoreID(startTime foundation.TimeInterval, storeID string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStartTime:forItemWithStoreID:"), startTime, objc.String(storeID))
 }
 

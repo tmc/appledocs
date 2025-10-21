@@ -80,5 +80,41 @@ func NewDelegatingPlaybackCoordinatorPlaybackControlCommand() DelegatingPlayback
 }
 
 
+// An item identifier the coordinator issues the command for.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinatorplaybackcontrolcommand/expectedcurrentitemidentifier
+func (d_ DelegatingPlaybackCoordinatorPlaybackControlCommand) ExpectedCurrentItemIdentifier() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("expectedCurrentItemIdentifier"))
+	return rv
+}
+
+
+// SetExpectedCurrentItemIdentifier sets the value of the expectedCurrentItemIdentifier property.
+// An item identifier the coordinator issues the command for.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinatorplaybackcontrolcommand/expectedcurrentitemidentifier
+func (d_ DelegatingPlaybackCoordinatorPlaybackControlCommand) SetExpectedCurrentItemIdentifier(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setExpectedCurrentItemIdentifier:"), objc.String(value))
+}
+
+// The participant that causes the coordinator to issue the command.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinatorplaybackcontrolcommand/originator
+func (d_ DelegatingPlaybackCoordinatorPlaybackControlCommand) Originator() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("originator"))
+	return rv
+}
+
+
+// SetOriginator sets the value of the originator property.
+// The participant that causes the coordinator to issue the command.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinatorplaybackcontrolcommand/originator
+func (d_ DelegatingPlaybackCoordinatorPlaybackControlCommand) SetOriginator(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setOriginator:"), value)
+}
+
 
 

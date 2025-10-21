@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MTRCommandPath] class.
@@ -75,6 +76,21 @@ func NewMTRCommandPath() MTRCommandPath {
 	return getMTRCommandPathClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommandpath/command
+func (m_ MTRCommandPath) Command() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("command"))
+	return rv
+}
+
+
+// SetCommand sets the value of the command property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommandpath/command
+func (m_ MTRCommandPath) SetCommand(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCommand:"), value)
+}
 
 
 

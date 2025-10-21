@@ -113,5 +113,41 @@ func (p_ PlaybackCoordinator) SuspensionReasons() []string {
 	return rv
 }
 
+// A Boolean value that indicates whether participants mirror the originator’s stop time when they pause.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplaybackcoordinator/pausesnapstomediatimeoforiginator
+func (p_ PlaybackCoordinator) PauseSnapsToMediaTimeOfOriginator() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("pauseSnapsToMediaTimeOfOriginator"))
+	return rv
+}
+
+
+// SetPauseSnapsToMediaTimeOfOriginator sets the value of the pauseSnapsToMediaTimeOfOriginator property.
+// A Boolean value that indicates whether participants mirror the originator’s stop time when they pause.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplaybackcoordinator/pausesnapstomediatimeoforiginator
+func (p_ PlaybackCoordinator) SetPauseSnapsToMediaTimeOfOriginator(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPauseSnapsToMediaTimeOfOriginator:"), value)
+}
+
+// The reasons that cause a coordinator to suspend playback.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplaybackcoordinator/suspensionreasonsthattriggerwaiting
+func (p_ PlaybackCoordinator) SuspensionReasonsThatTriggerWaiting() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("suspensionReasonsThatTriggerWaiting"))
+	return rv
+}
+
+
+// SetSuspensionReasonsThatTriggerWaiting sets the value of the suspensionReasonsThatTriggerWaiting property.
+// The reasons that cause a coordinator to suspend playback.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplaybackcoordinator/suspensionreasonsthattriggerwaiting
+func (p_ PlaybackCoordinator) SetSuspensionReasonsThatTriggerWaiting(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setSuspensionReasonsThatTriggerWaiting:"), value)
+}
+
 
 

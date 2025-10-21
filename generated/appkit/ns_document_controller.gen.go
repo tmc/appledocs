@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,8 +32,8 @@ type _DocumentControllerClass struct {
 type IDocumentController interface {
 	objectivec.IObject
 	BeginOpenPanelWithCompletionHandler(completionHandler unsafe.Pointer)
-	MakeDocumentWithContentsOfURLOfTypeError(url unsafe.Pointer, typeName string, outError unsafe.Pointer) unsafe.Pointer
-	OpenDocumentWithContentsOfURLDisplayCompletionHandler(url unsafe.Pointer, displayDocument bool, completionHandler unsafe.Pointer)
+	MakeDocumentWithContentsOfURLOfTypeError(url foundation.URL, typeName string, outError unsafe.Pointer) unsafe.Pointer
+	OpenDocumentWithContentsOfURLDisplayCompletionHandler(url foundation.URL, displayDocument bool, completionHandler unsafe.Pointer)
 }
 
 // An object that manages an app’s documents.
@@ -93,7 +94,7 @@ func (d_ DocumentController) BeginOpenPanelWithCompletionHandler(completionHandl
 // Instantiates a document located by a URL, of a specified type, and returns it if successful.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/makeDocument(withContentsOf:ofType:)
-func (d_ DocumentController) MakeDocumentWithContentsOfURLOfTypeError(url unsafe.Pointer, typeName string, outError unsafe.Pointer) unsafe.Pointer {
+func (d_ DocumentController) MakeDocumentWithContentsOfURLOfTypeError(url foundation.URL, typeName string, outError unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("makeDocumentWithContentsOfURL:ofType:error:"), url, objc.String(typeName), outError)
 	return rv
 }
@@ -101,16 +102,178 @@ func (d_ DocumentController) MakeDocumentWithContentsOfURLOfTypeError(url unsafe
 // Opens a document located by a URL, optionally presents its user interface, and calls the passed-in completion handler.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/openDocument(withContentsOf:display:completionHandler:)
-func (d_ DocumentController) OpenDocumentWithContentsOfURLDisplayCompletionHandler(url unsafe.Pointer, displayDocument bool, completionHandler unsafe.Pointer) {
+func (d_ DocumentController) OpenDocumentWithContentsOfURLDisplayCompletionHandler(url foundation.URL, displayDocument bool, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("openDocumentWithContentsOfURL:display:completionHandler:"), url, displayDocument, completionHandler)
 }
 
 // The list of recent-document URLs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/recentDocumentURLs
-func (d_ DocumentController) RecentDocumentURLs() []NSURL {
-	rv := objc.Send[[]NSURL](d_.ID, objc.Sel("recentDocumentURLs"))
+func (d_ DocumentController) RecentDocumentURLs() []foundation.URL {
+	rv := objc.Send[[]foundation.URL](d_.ID, objc.Sel("recentDocumentURLs"))
 	return rv
+}
+
+// A Boolean value that the system uses to insert a Share menu in the File menu.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocumentcontroller/allowsautomaticsharemenu
+func (d_ DocumentController) AllowsAutomaticShareMenu() bool {
+	rv := objc.Send[bool](d_.ID, objc.Sel("allowsAutomaticShareMenu"))
+	return rv
+}
+
+
+// SetAllowsAutomaticShareMenu sets the value of the allowsAutomaticShareMenu property.
+// A Boolean value that the system uses to insert a Share menu in the File menu.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocumentcontroller/allowsautomaticsharemenu
+func (d_ DocumentController) SetAllowsAutomaticShareMenu(value bool) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setAllowsAutomaticShareMenu:"), value)
+}
+
+// The time interval (in seconds) for periodic autosaving.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocumentcontroller/autosavingdelay
+func (d_ DocumentController) AutosavingDelay() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("autosavingDelay"))
+	return rv
+}
+
+
+// SetAutosavingDelay sets the value of the autosavingDelay property.
+// The time interval (in seconds) for periodic autosaving.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocumentcontroller/autosavingdelay
+func (d_ DocumentController) SetAutosavingDelay(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setAutosavingDelay:"), value)
+}
+
+// The directory path to use as the starting point in the Open dialog.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocumentcontroller/currentdirectory
+func (d_ DocumentController) CurrentDirectory() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("currentDirectory"))
+	return rv
+}
+
+
+// SetCurrentDirectory sets the value of the currentDirectory property.
+// The directory path to use as the starting point in the Open dialog.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocumentcontroller/currentdirectory
+func (d_ DocumentController) SetCurrentDirectory(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setCurrentDirectory:"), objc.String(value))
+}
+
+// The document object associated with the main window.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocumentcontroller/currentdocument
+func (d_ DocumentController) CurrentDocument() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("currentDocument"))
+	return rv
+}
+
+
+// SetCurrentDocument sets the value of the currentDocument property.
+// The document object associated with the main window.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocumentcontroller/currentdocument
+func (d_ DocumentController) SetCurrentDocument(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setCurrentDocument:"), value)
+}
+
+// Returns the name of the document type that should be used when creating new documents.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocumentcontroller/defaulttype
+func (d_ DocumentController) DefaultType() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("defaultType"))
+	return rv
+}
+
+
+// SetDefaultType sets the value of the defaultType property.
+// Returns the name of the document type that should be used when creating new documents.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocumentcontroller/defaulttype
+func (d_ DocumentController) SetDefaultType(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setDefaultType:"), objc.String(value))
+}
+
+// An array of strings representing the custom document classes supported by this app.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocumentcontroller/documentclassnames
+func (d_ DocumentController) DocumentClassNames() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("documentClassNames"))
+	return rv
+}
+
+
+// SetDocumentClassNames sets the value of the documentClassNames property.
+// An array of strings representing the custom document classes supported by this app.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocumentcontroller/documentclassnames
+func (d_ DocumentController) SetDocumentClassNames(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setDocumentClassNames:"), objc.String(value))
+}
+
+// The document objects managed by the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocumentcontroller/documents
+func (d_ DocumentController) Documents() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("documents"))
+	return rv
+}
+
+
+// SetDocuments sets the value of the documents property.
+// The document objects managed by the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocumentcontroller/documents
+func (d_ DocumentController) SetDocuments(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setDocuments:"), value)
+}
+
+// A Boolean value indicating whether the receiver has any documents with unsaved changes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocumentcontroller/hasediteddocuments
+func (d_ DocumentController) HasEditedDocuments() bool {
+	rv := objc.Send[bool](d_.ID, objc.Sel("hasEditedDocuments"))
+	return rv
+}
+
+
+// SetHasEditedDocuments sets the value of the hasEditedDocuments property.
+// A Boolean value indicating whether the receiver has any documents with unsaved changes.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocumentcontroller/hasediteddocuments
+func (d_ DocumentController) SetHasEditedDocuments(value bool) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setHasEditedDocuments:"), value)
+}
+
+// The maximum number of items that may be presented in the standard Open Recent menu.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocumentcontroller/maximumrecentdocumentcount
+func (d_ DocumentController) MaximumRecentDocumentCount() int {
+	rv := objc.Send[int](d_.ID, objc.Sel("maximumRecentDocumentCount"))
+	return rv
+}
+
+
+// SetMaximumRecentDocumentCount sets the value of the maximumRecentDocumentCount property.
+// The maximum number of items that may be presented in the standard Open Recent menu.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocumentcontroller/maximumrecentdocumentcount
+func (d_ DocumentController) SetMaximumRecentDocumentCount(value int) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setMaximumRecentDocumentCount:"), value)
 }
 
 

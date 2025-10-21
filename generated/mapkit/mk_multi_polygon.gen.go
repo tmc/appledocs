@@ -81,5 +81,23 @@ func NewMKMultiPolygon() MKMultiPolygon {
 }
 
 
+// An array containing the polygons that make up the multipolygon object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmultipolygon/polygons
+func (m_ MKMultiPolygon) Polygons() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("polygons"))
+	return rv
+}
+
+
+// SetPolygons sets the value of the polygons property.
+// An array containing the polygons that make up the multipolygon object.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmultipolygon/polygons
+func (m_ MKMultiPolygon) SetPolygons(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPolygons:"), value)
+}
+
 
 

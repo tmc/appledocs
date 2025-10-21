@@ -98,6 +98,48 @@ func (r_ RecognizeTextRequest) SupportedRecognitionLanguagesAndReturnError(error
 	return rv
 }
 
+// A constant for specifying revision 3 of the text recognition request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnrecognizetextrequestrevision3
+func (r_ RecognizeTextRequest) VNRecognizeTextRequestRevision3() int {
+	rv := objc.Send[int](r_.ID, objc.Sel("VNRecognizeTextRequestRevision3"))
+	return rv
+}
+
+// A constant for specifying revision 2 of the text recognition request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnrecognizetextrequestrevision2
+func (r_ RecognizeTextRequest) VNRecognizeTextRequestRevision2() int {
+	rv := objc.Send[int](r_.ID, objc.Sel("VNRecognizeTextRequestRevision2"))
+	return rv
+}
+
+// The minimum height, relative to the image height, of the text to recognize.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnrecognizetextrequest/minimumtextheight
+func (r_ RecognizeTextRequest) MinimumTextHeight() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("minimumTextHeight"))
+	return rv
+}
+
+
+// SetMinimumTextHeight sets the value of the minimumTextHeight property.
+// The minimum height, relative to the image height, of the text to recognize.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnrecognizetextrequest/minimumtextheight
+func (r_ RecognizeTextRequest) SetMinimumTextHeight(value unsafe.Pointer) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setMinimumTextHeight:"), value)
+}
+
+// A constant for specifying revision 1 of the text recognition request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnrecognizetextrequestrevision1
+func (r_ RecognizeTextRequest) VNRecognizeTextRequestRevision1() int {
+	rv := objc.Send[int](r_.ID, objc.Sel("VNRecognizeTextRequestRevision1"))
+	return rv
+}
+
 // A Boolean value that indicates whether to attempt detecting the language to use the appropriate model for recognition and language correction.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNRecognizeTextRequest/automaticallyDetectsLanguage

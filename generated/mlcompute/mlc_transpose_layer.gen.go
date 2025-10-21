@@ -79,5 +79,23 @@ func NewCTransposeLayer() CTransposeLayer {
 }
 
 
+// An array that contains an input axis source for each output axis, which represents the ordering of dimensions.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlctransposelayer/dimensions-71ed6
+func (c_ CTransposeLayer) Dimensions() int {
+	rv := objc.Send[int](c_.ID, objc.Sel("dimensions"))
+	return rv
+}
+
+
+// SetDimensions sets the value of the dimensions property.
+// An array that contains an input axis source for each output axis, which represents the ordering of dimensions.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlctransposelayer/dimensions-71ed6
+func (c_ CTransposeLayer) SetDimensions(value int) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setDimensions:"), value)
+}
+
 
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CKOperation] class.
@@ -81,6 +82,42 @@ func NewCKOperation() CKOperation {
 }
 
 
+
+// The relative amount of importance for granting system resources to the operation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/qualityOfService
+func (c_ CKOperation) QualityOfService() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("qualityOfService"))
+	return rv
+}
+
+
+// SetQualityOfService sets the value of the qualityOfService property.
+// The relative amount of importance for granting system resources to the operation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/qualityOfService
+func (c_ CKOperation) SetQualityOfService(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setQualityOfService:"), value)
+}
+
+// A Boolean value that indicates whether the operation is long-lived.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckoperation/islonglived
+func (c_ CKOperation) IsLongLived() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isLongLived"))
+	return rv
+}
+
+
+// SetIsLongLived sets the value of the isLongLived property.
+// A Boolean value that indicates whether the operation is long-lived.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckoperation/islonglived
+func (c_ CKOperation) SetIsLongLived(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsLongLived:"), value)
+}
 
 // A Boolean value that indicates whether the operation can send data over the cellular network.
 //
@@ -183,8 +220,8 @@ func (c_ CKOperation) OperationID() unsafe.Pointer {
 // The timeout interval when waiting for additional data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperation/timeoutIntervalForRequest
-func (c_ CKOperation) TimeoutIntervalForRequest() TimeInterval {
-	rv := objc.Send[TimeInterval](c_.ID, objc.Sel("timeoutIntervalForRequest"))
+func (c_ CKOperation) TimeoutIntervalForRequest() foundation.TimeInterval {
+	rv := objc.Send[foundation.TimeInterval](c_.ID, objc.Sel("timeoutIntervalForRequest"))
 	return rv
 }
 
@@ -194,15 +231,15 @@ func (c_ CKOperation) TimeoutIntervalForRequest() TimeInterval {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperation/timeoutIntervalForRequest
-func (c_ CKOperation) SetTimeoutIntervalForRequest(value TimeInterval) {
+func (c_ CKOperation) SetTimeoutIntervalForRequest(value foundation.TimeInterval) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setTimeoutIntervalForRequest:"), value)
 }
 
 // The maximum amount of time that a resource request can use.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperation/timeoutIntervalForResource
-func (c_ CKOperation) TimeoutIntervalForResource() TimeInterval {
-	rv := objc.Send[TimeInterval](c_.ID, objc.Sel("timeoutIntervalForResource"))
+func (c_ CKOperation) TimeoutIntervalForResource() foundation.TimeInterval {
+	rv := objc.Send[foundation.TimeInterval](c_.ID, objc.Sel("timeoutIntervalForResource"))
 	return rv
 }
 
@@ -212,7 +249,7 @@ func (c_ CKOperation) TimeoutIntervalForResource() TimeInterval {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperation/timeoutIntervalForResource
-func (c_ CKOperation) SetTimeoutIntervalForResource(value TimeInterval) {
+func (c_ CKOperation) SetTimeoutIntervalForResource(value foundation.TimeInterval) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setTimeoutIntervalForResource:"), value)
 }
 

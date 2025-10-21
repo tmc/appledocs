@@ -83,5 +83,20 @@ func (pc _PadNodeClass) NodeWithSourcePaddingSizeBeforePaddingSizeAfterEdgeMode(
 	return rv
 }
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpadnode/fillvalue
+func (p_ PadNode) FillValue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("fillValue"))
+	return rv
+}
+
+
+// SetFillValue sets the value of the fillValue property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpadnode/fillvalue
+func (p_ PadNode) SetFillValue(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setFillValue:"), value)
+}
+
 
 

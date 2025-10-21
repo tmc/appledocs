@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,96 @@ func NewMTRDoorLockClusterGetYearDayScheduleResponseParams() MTRDoorLockClusterG
 	return getMTRDoorLockClusterGetYearDayScheduleResponseParamsClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetyeardayscheduleresponseparams/status
+func (m_ MTRDoorLockClusterGetYearDayScheduleResponseParams) Status() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("status"))
+	return rv
+}
+
+
+// SetStatus sets the value of the status property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetyeardayscheduleresponseparams/status
+func (m_ MTRDoorLockClusterGetYearDayScheduleResponseParams) SetStatus(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setStatus:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetyeardayscheduleresponseparams/localendtime
+func (m_ MTRDoorLockClusterGetYearDayScheduleResponseParams) LocalEndTime() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("localEndTime"))
+	return rv
+}
+
+
+// SetLocalEndTime sets the value of the localEndTime property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetyeardayscheduleresponseparams/localendtime
+func (m_ MTRDoorLockClusterGetYearDayScheduleResponseParams) SetLocalEndTime(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLocalEndTime:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetyeardayscheduleresponseparams/timedinvoketimeoutms
+func (m_ MTRDoorLockClusterGetYearDayScheduleResponseParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+	return rv
+}
+
+
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetyeardayscheduleresponseparams/timedinvoketimeoutms
+func (m_ MTRDoorLockClusterGetYearDayScheduleResponseParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetyeardayscheduleresponseparams/userindex
+func (m_ MTRDoorLockClusterGetYearDayScheduleResponseParams) UserIndex() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("userIndex"))
+	return rv
+}
+
+
+// SetUserIndex sets the value of the userIndex property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetyeardayscheduleresponseparams/userindex
+func (m_ MTRDoorLockClusterGetYearDayScheduleResponseParams) SetUserIndex(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setUserIndex:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetyeardayscheduleresponseparams/yeardayindex
+func (m_ MTRDoorLockClusterGetYearDayScheduleResponseParams) YearDayIndex() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("yearDayIndex"))
+	return rv
+}
+
+
+// SetYearDayIndex sets the value of the yearDayIndex property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetyeardayscheduleresponseparams/yeardayindex
+func (m_ MTRDoorLockClusterGetYearDayScheduleResponseParams) SetYearDayIndex(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setYearDayIndex:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetyeardayscheduleresponseparams/localstarttime
+func (m_ MTRDoorLockClusterGetYearDayScheduleResponseParams) LocalStartTime() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("localStartTime"))
+	return rv
+}
+
+
+// SetLocalStartTime sets the value of the localStartTime property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetyeardayscheduleresponseparams/localstarttime
+func (m_ MTRDoorLockClusterGetYearDayScheduleResponseParams) SetLocalStartTime(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLocalStartTime:"), value)
+}
 
 
 

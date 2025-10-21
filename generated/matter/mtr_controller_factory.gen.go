@@ -75,5 +75,20 @@ func NewMTRControllerFactory() MTRControllerFactory {
 }
 
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontrollerfactory/isrunning
+func (m_ MTRControllerFactory) IsRunning() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("isRunning"))
+	return rv
+}
+
+
+// SetIsRunning sets the value of the isRunning property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontrollerfactory/isrunning
+func (m_ MTRControllerFactory) SetIsRunning(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIsRunning:"), value)
+}
+
 
 

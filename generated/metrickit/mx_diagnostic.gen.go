@@ -96,6 +96,14 @@ func (m_ MXDiagnostic) JSONRepresentation() unsafe.Pointer {
 	return rv
 }
 
+// Error domain for error values from app metrics.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metrickit/mxerrordomain
+func (m_ MXDiagnostic) MXErrorDomain() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("MXErrorDomain"))
+	return rv
+}
+
 // The value of the bundle version key, short form, in the app’s property list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXDiagnostic/applicationVersion

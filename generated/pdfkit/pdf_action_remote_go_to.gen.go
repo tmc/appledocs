@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PDFActionRemoteGoTo] class.
@@ -78,6 +80,60 @@ func NewPDFActionRemoteGoTo() PDFActionRemoteGoTo {
 	return getPDFActionRemoteGoToClass().New()
 }
 
+
+// Sets the point, in page space, on the page referenced by the remote go-to action.
+//
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfactionremotegoto/point
+func (p_ PDFActionRemoteGoTo) Point() coregraphics.CGPoint {
+	rv := objc.Send[coregraphics.CGPoint](p_.ID, objc.Sel("point"))
+	return rv
+}
+
+
+// SetPoint sets the value of the point property.
+// Sets the point, in page space, on the page referenced by the remote go-to action.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfactionremotegoto/point
+func (p_ PDFActionRemoteGoTo) SetPoint(value coregraphics.CGPoint) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPoint:"), value)
+}
+
+// Returns the URL of the document referenced by the remote go-to action.
+//
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfactionremotegoto/url
+func (p_ PDFActionRemoteGoTo) Url() foundation.URL {
+	rv := objc.Send[foundation.URL](p_.ID, objc.Sel("url"))
+	return rv
+}
+
+
+// SetUrl sets the value of the url property.
+// Returns the URL of the document referenced by the remote go-to action.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfactionremotegoto/url
+func (p_ PDFActionRemoteGoTo) SetUrl(value foundation.URL) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setUrl:"), value)
+}
+
+// Returns the zero-based page index referenced by the remote go-to action.
+//
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfactionremotegoto/pageindex
+func (p_ PDFActionRemoteGoTo) PageIndex() int {
+	rv := objc.Send[int](p_.ID, objc.Sel("pageIndex"))
+	return rv
+}
+
+
+// SetPageIndex sets the value of the pageIndex property.
+// Returns the zero-based page index referenced by the remote go-to action.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfactionremotegoto/pageindex
+func (p_ PDFActionRemoteGoTo) SetPageIndex(value int) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPageIndex:"), value)
+}
 
 
 

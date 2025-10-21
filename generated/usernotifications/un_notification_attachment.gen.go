@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -85,7 +86,7 @@ func NewUNNotificationAttachment() UNNotificationAttachment {
 // Creates an attachment object from the specified file and options.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationAttachment/init(identifier:url:options:)
-func NewUNNotificationAttachmentWithIdentifierURLOptionsError(identifier string, URL unsafe.Pointer, options objc.ID, error_ unsafe.Pointer) UNNotificationAttachment {
+func NewUNNotificationAttachmentWithIdentifierURLOptionsError(identifier string, URL foundation.URL, options objc.ID, error_ unsafe.Pointer) UNNotificationAttachment {
 	rv := objc.Send[UNNotificationAttachment](objc.ID(getUNNotificationAttachmentClass().class), objc.Sel("attachmentWithIdentifier:URL:options:error:"), objc.String(identifier), URL, options, error_)
 	return rv
 }
@@ -94,8 +95,40 @@ func NewUNNotificationAttachmentWithIdentifierURLOptionsError(identifier string,
 // Creates an attachment object from the specified file and options.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationAttachment/init(identifier:url:options:)
-func (uc _UNNotificationAttachmentClass) AttachmentWithIdentifierURLOptionsError(identifier string, URL unsafe.Pointer, options objc.ID, error_ unsafe.Pointer) unsafe.Pointer {
+func (uc _UNNotificationAttachmentClass) AttachmentWithIdentifierURLOptionsError(identifier string, URL foundation.URL, options objc.ID, error_ unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("attachmentWithIdentifier:URL:options:error:"), objc.String(identifier), URL, options, error_)
+	return rv
+}
+
+// A hint about an attachment’s file type.
+//
+// [Full Topic]: https://developer.apple.com/documentation/usernotifications/unnotificationattachmentoptionstypehintkey
+func (u_ UNNotificationAttachment) UNNotificationAttachmentOptionsTypeHintKey() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("UNNotificationAttachmentOptionsTypeHintKey"))
+	return rv
+}
+
+// The frame number of an animation to use as a thumbnail image.
+//
+// [Full Topic]: https://developer.apple.com/documentation/usernotifications/unnotificationattachmentoptionsthumbnailtimekey
+func (u_ UNNotificationAttachment) UNNotificationAttachmentOptionsThumbnailTimeKey() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("UNNotificationAttachmentOptionsThumbnailTimeKey"))
+	return rv
+}
+
+// The clipping rectangle for a thumbnail image.
+//
+// [Full Topic]: https://developer.apple.com/documentation/usernotifications/unnotificationattachmentoptionsthumbnailclippingrectkey
+func (u_ UNNotificationAttachment) UNNotificationAttachmentOptionsThumbnailClippingRectKey() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("UNNotificationAttachmentOptionsThumbnailClippingRectKey"))
+	return rv
+}
+
+// A Boolean value indicating whether the system hides the attachment’s thumbnail.
+//
+// [Full Topic]: https://developer.apple.com/documentation/usernotifications/unnotificationattachmentoptionsthumbnailhiddenkey
+func (u_ UNNotificationAttachment) UNNotificationAttachmentOptionsThumbnailHiddenKey() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("UNNotificationAttachmentOptionsThumbnailHiddenKey"))
 	return rv
 }
 
@@ -118,8 +151,8 @@ func (u_ UNNotificationAttachment) Type() string {
 // The URL of the file for this attachment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationAttachment/url
-func (u_ UNNotificationAttachment) URL() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("URL"))
+func (u_ UNNotificationAttachment) URL() foundation.URL {
+	rv := objc.Send[foundation.URL](u_.ID, objc.Sel("URL"))
 	return rv
 }
 

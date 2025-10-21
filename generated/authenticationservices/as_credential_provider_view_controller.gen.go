@@ -122,5 +122,31 @@ func (c_ CredentialProviderViewController) ProvideCredentialWithoutUserInteracti
 	objc.Send[objc.ID](c_.ID, objc.Sel("provideCredentialWithoutUserInteractionForRequest:"), credentialRequest)
 }
 
+// The domain for a credential provider extension error.
+//
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asextensionerrordomain
+func (c_ CredentialProviderViewController) ASExtensionErrorDomain() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("ASExtensionErrorDomain"))
+	return rv
+}
+
+// The context your credential provider extension uses to provide information to the system.
+//
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/ascredentialproviderviewcontroller/extensioncontext
+func (c_ CredentialProviderViewController) ExtensionContext() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("extensionContext"))
+	return rv
+}
+
+
+// SetExtensionContext sets the value of the extensionContext property.
+// The context your credential provider extension uses to provide information to the system.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/ascredentialproviderviewcontroller/extensioncontext
+func (c_ CredentialProviderViewController) SetExtensionContext(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setExtensionContext:"), value)
+}
+
 
 

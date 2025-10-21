@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -37,7 +38,7 @@ type IFilterGenerator interface {
 	RegisterFilterName(name string)
 	RemoveExportedKey(exportedKeyName string)
 	SetAttributesForExportedKey(attributes objc.ID, key string)
-	WriteToURLAtomically(aURL unsafe.Pointer, flag bool) bool
+	WriteToURLAtomically(aURL foundation.URL, flag bool) bool
 }
 
 // An object that creates and configures chains of individual image filters.
@@ -93,7 +94,7 @@ func NewFilterGenerator() FilterGenerator {
 // Initializes a filter generator object with the contents of a filter generator file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilterGenerator/init(contentsOf:)
-func NewFilterGeneratorWithContentsOfURL(aURL unsafe.Pointer) FilterGenerator {
+func NewFilterGeneratorWithContentsOfURL(aURL foundation.URL) FilterGenerator {
 	instance := getFilterGeneratorClass().Alloc()
 	rv := objc.Send[FilterGenerator](instance.ID, objc.Sel("initWithContentsOfURL:"), aURL)
 	rv.Autorelease()
@@ -112,7 +113,7 @@ func (fc _FilterGeneratorClass) FilterGenerator() unsafe.Pointer {
 // Creates and returns a filter generator object and initializes it with the contents of a filter generator file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilterGenerator/filterGeneratorWithContentsOfURL:
-func (fc _FilterGeneratorClass) FilterGeneratorWithContentsOfURL(aURL unsafe.Pointer) unsafe.Pointer {
+func (fc _FilterGeneratorClass) FilterGeneratorWithContentsOfURL(aURL foundation.URL) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("filterGeneratorWithContentsOfURL:"), aURL)
 	return rv
 }
@@ -170,7 +171,7 @@ func (f_ FilterGenerator) SetAttributesForExportedKey(attributes objc.ID, key st
 // Archives a filter generator object to a filter generator file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilterGenerator/write(to:atomically:)
-func (f_ FilterGenerator) WriteToURLAtomically(aURL unsafe.Pointer, flag bool) bool {
+func (f_ FilterGenerator) WriteToURLAtomically(aURL foundation.URL, flag bool) bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("writeToURL:atomically:"), aURL, flag)
 	return rv
 }

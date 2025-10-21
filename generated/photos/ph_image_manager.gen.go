@@ -160,5 +160,21 @@ func (p_ PHImageManager) RequestPlayerItemForVideoOptionsResultHandler(asset uns
 	return rv
 }
 
+// A special value for requesting original image data or the largest rendered image available. .
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phimagemanagermaximumsize
+func (p_ PHImageManager) PHImageManagerMaximumSize() coregraphics.CGSize {
+	rv := objc.Send[coregraphics.CGSize](p_.ID, objc.Sel("PHImageManagerMaximumSize"))
+	return rv
+}
+
+// A special value provided for asynchronous image requests that cannot be canceled.
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phinvalidimagerequestid
+func (p_ PHImageManager) PHInvalidImageRequestID() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("PHInvalidImageRequestID"))
+	return rv
+}
+
 
 

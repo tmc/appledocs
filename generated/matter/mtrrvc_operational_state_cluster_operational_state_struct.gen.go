@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,36 @@ func NewMTRRVCOperationalStateClusterOperationalStateStruct() MTRRVCOperationalS
 	return getMTRRVCOperationalStateClusterOperationalStateStructClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcoperationalstateclusteroperationalstatestruct/operationalstateid
+func (m_ MTRRVCOperationalStateClusterOperationalStateStruct) OperationalStateID() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("operationalStateID"))
+	return rv
+}
+
+
+// SetOperationalStateID sets the value of the operationalStateID property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcoperationalstateclusteroperationalstatestruct/operationalstateid
+func (m_ MTRRVCOperationalStateClusterOperationalStateStruct) SetOperationalStateID(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setOperationalStateID:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcoperationalstateclusteroperationalstatestruct/operationalstatelabel
+func (m_ MTRRVCOperationalStateClusterOperationalStateStruct) OperationalStateLabel() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("operationalStateLabel"))
+	return rv
+}
+
+
+// SetOperationalStateLabel sets the value of the operationalStateLabel property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcoperationalstateclusteroperationalstatestruct/operationalstatelabel
+func (m_ MTRRVCOperationalStateClusterOperationalStateStruct) SetOperationalStateLabel(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setOperationalStateLabel:"), objc.String(value))
+}
 
 
 

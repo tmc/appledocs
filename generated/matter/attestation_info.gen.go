@@ -75,5 +75,125 @@ func NewAttestationInfo() AttestationInfo {
 }
 
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/attestationinfo/challenge
+func (a_ AttestationInfo) Challenge() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("challenge"))
+	return rv
+}
+
+
+// SetChallenge sets the value of the challenge property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/attestationinfo/challenge
+func (a_ AttestationInfo) SetChallenge(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setChallenge:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/attestationinfo/elementssignature
+func (a_ AttestationInfo) ElementsSignature() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("elementsSignature"))
+	return rv
+}
+
+
+// SetElementsSignature sets the value of the elementsSignature property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/attestationinfo/elementssignature
+func (a_ AttestationInfo) SetElementsSignature(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setElementsSignature:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/attestationinfo/dac
+func (a_ AttestationInfo) Dac() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("dac"))
+	return rv
+}
+
+
+// SetDac sets the value of the dac property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/attestationinfo/dac
+func (a_ AttestationInfo) SetDac(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setDac:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/attestationinfo/pai
+func (a_ AttestationInfo) Pai() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("pai"))
+	return rv
+}
+
+
+// SetPai sets the value of the pai property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/attestationinfo/pai
+func (a_ AttestationInfo) SetPai(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setPai:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/attestationinfo/firmwareinfo
+func (a_ AttestationInfo) FirmwareInfo() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("firmwareInfo"))
+	return rv
+}
+
+
+// SetFirmwareInfo sets the value of the firmwareInfo property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/attestationinfo/firmwareinfo
+func (a_ AttestationInfo) SetFirmwareInfo(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setFirmwareInfo:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/attestationinfo/nonce
+func (a_ AttestationInfo) Nonce() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("nonce"))
+	return rv
+}
+
+
+// SetNonce sets the value of the nonce property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/attestationinfo/nonce
+func (a_ AttestationInfo) SetNonce(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setNonce:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/attestationinfo/certificationdeclaration
+func (a_ AttestationInfo) CertificationDeclaration() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("certificationDeclaration"))
+	return rv
+}
+
+
+// SetCertificationDeclaration sets the value of the certificationDeclaration property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/attestationinfo/certificationdeclaration
+func (a_ AttestationInfo) SetCertificationDeclaration(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setCertificationDeclaration:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/attestationinfo/elements
+func (a_ AttestationInfo) Elements() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("elements"))
+	return rv
+}
+
+
+// SetElements sets the value of the elements property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/attestationinfo/elements
+func (a_ AttestationInfo) SetElements(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setElements:"), value)
+}
+
 
 

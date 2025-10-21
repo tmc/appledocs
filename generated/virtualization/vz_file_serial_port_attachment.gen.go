@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [VZFileSerialPortAttachment] class.
@@ -86,7 +87,7 @@ func NewVZFileSerialPortAttachment() VZFileSerialPortAttachment {
 // Creates a file-based serial port attachment object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZFileSerialPortAttachment/init(url:append:)
-func NewVZFileSerialPortAttachmentWithURLAppendError(url unsafe.Pointer, shouldAppend bool, error_ unsafe.Pointer) VZFileSerialPortAttachment {
+func NewVZFileSerialPortAttachmentWithURLAppendError(url foundation.URL, shouldAppend bool, error_ unsafe.Pointer) VZFileSerialPortAttachment {
 	instance := getVZFileSerialPortAttachmentClass().Alloc()
 	rv := objc.Send[VZFileSerialPortAttachment](instance.ID, objc.Sel("initWithURL:append:error:"), url, shouldAppend, error_)
 	rv.Autorelease()
@@ -105,8 +106,8 @@ func (v_ VZFileSerialPortAttachment) Append() bool {
 // The URL of a file on the local file system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZFileSerialPortAttachment/url
-func (v_ VZFileSerialPortAttachment) URL() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("URL"))
+func (v_ VZFileSerialPortAttachment) URL() foundation.URL {
+	rv := objc.Send[foundation.URL](v_.ID, objc.Sel("URL"))
 	return rv
 }
 

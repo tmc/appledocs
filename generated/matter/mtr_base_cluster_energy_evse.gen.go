@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MTRBaseClusterEnergyEVSE] class.
@@ -83,12 +84,12 @@ type IMTRBaseClusterEnergyEVSE interface {
 	SubscribeAttributeStateWithParamsSubscriptionEstablishedReportHandler(params unsafe.Pointer, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
 	SubscribeAttributeSupplyStateWithParamsSubscriptionEstablishedReportHandler(params unsafe.Pointer, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
 	SubscribeAttributeUserMaximumChargeCurrentWithParamsSubscriptionEstablishedReportHandler(params unsafe.Pointer, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
-	WriteAttributeApproximateEVEfficiencyWithValueCompletion(value unsafe.Pointer, completion unsafe.Pointer)
-	WriteAttributeApproximateEVEfficiencyWithValueParamsCompletion(value unsafe.Pointer, params unsafe.Pointer, completion unsafe.Pointer)
-	WriteAttributeRandomizationDelayWindowWithValueCompletion(value unsafe.Pointer, completion unsafe.Pointer)
-	WriteAttributeRandomizationDelayWindowWithValueParamsCompletion(value unsafe.Pointer, params unsafe.Pointer, completion unsafe.Pointer)
-	WriteAttributeUserMaximumChargeCurrentWithValueCompletion(value unsafe.Pointer, completion unsafe.Pointer)
-	WriteAttributeUserMaximumChargeCurrentWithValueParamsCompletion(value unsafe.Pointer, params unsafe.Pointer, completion unsafe.Pointer)
+	WriteAttributeApproximateEVEfficiencyWithValueCompletion(value foundation.Number, completion unsafe.Pointer)
+	WriteAttributeApproximateEVEfficiencyWithValueParamsCompletion(value foundation.Number, params unsafe.Pointer, completion unsafe.Pointer)
+	WriteAttributeRandomizationDelayWindowWithValueCompletion(value foundation.Number, completion unsafe.Pointer)
+	WriteAttributeRandomizationDelayWindowWithValueParamsCompletion(value foundation.Number, params unsafe.Pointer, completion unsafe.Pointer)
+	WriteAttributeUserMaximumChargeCurrentWithValueCompletion(value foundation.Number, completion unsafe.Pointer)
+	WriteAttributeUserMaximumChargeCurrentWithValueParamsCompletion(value foundation.Number, params unsafe.Pointer, completion unsafe.Pointer)
 }
 
 // Cluster Energy EVSE
@@ -146,7 +147,7 @@ func NewMTRBaseClusterEnergyEVSE() MTRBaseClusterEnergyEVSE {
 // For all instance methods (reads, writes, commands) that take a completion, the completion will be called on the provided queue.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterEnergyEVSE/init(device:endpointID:queue:)
-func NewMTRBaseClusterEnergyEVSEWithDeviceEndpointIDQueue(device unsafe.Pointer, endpointID unsafe.Pointer, queue unsafe.Pointer) MTRBaseClusterEnergyEVSE {
+func NewMTRBaseClusterEnergyEVSEWithDeviceEndpointIDQueue(device unsafe.Pointer, endpointID foundation.Number, queue unsafe.Pointer) MTRBaseClusterEnergyEVSE {
 	instance := getMTRBaseClusterEnergyEVSEClass().Alloc()
 	rv := objc.Send[MTRBaseClusterEnergyEVSE](instance.ID, objc.Sel("initWithDevice:endpointID:queue:"), device, endpointID, queue)
 	rv.Autorelease()
@@ -156,133 +157,133 @@ func NewMTRBaseClusterEnergyEVSEWithDeviceEndpointIDQueue(device unsafe.Pointer,
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterEnergyEVSE/readAttributeAcceptedCommandList(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterEnergyEVSEClass) ReadAttributeAcceptedCommandListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint unsafe.Pointer, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterEnergyEVSEClass) ReadAttributeAcceptedCommandListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeAcceptedCommandListWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterEnergyEVSE/readAttributeApproximateEVEfficiency(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterEnergyEVSEClass) ReadAttributeApproximateEVEfficiencyWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint unsafe.Pointer, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterEnergyEVSEClass) ReadAttributeApproximateEVEfficiencyWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeApproximateEVEfficiencyWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterEnergyEVSE/readAttributeAttributeList(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterEnergyEVSEClass) ReadAttributeAttributeListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint unsafe.Pointer, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterEnergyEVSEClass) ReadAttributeAttributeListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeAttributeListWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterEnergyEVSE/readAttributeChargingEnabledUntil(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterEnergyEVSEClass) ReadAttributeChargingEnabledUntilWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint unsafe.Pointer, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterEnergyEVSEClass) ReadAttributeChargingEnabledUntilWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeChargingEnabledUntilWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterEnergyEVSE/readAttributeCircuitCapacity(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterEnergyEVSEClass) ReadAttributeCircuitCapacityWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint unsafe.Pointer, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterEnergyEVSEClass) ReadAttributeCircuitCapacityWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeCircuitCapacityWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterEnergyEVSE/readAttributeClusterRevision(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterEnergyEVSEClass) ReadAttributeClusterRevisionWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint unsafe.Pointer, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterEnergyEVSEClass) ReadAttributeClusterRevisionWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeClusterRevisionWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterEnergyEVSE/readAttributeFaultState(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterEnergyEVSEClass) ReadAttributeFaultStateWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint unsafe.Pointer, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterEnergyEVSEClass) ReadAttributeFaultStateWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeFaultStateWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterEnergyEVSE/readAttributeFeatureMap(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterEnergyEVSEClass) ReadAttributeFeatureMapWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint unsafe.Pointer, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterEnergyEVSEClass) ReadAttributeFeatureMapWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeFeatureMapWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterEnergyEVSE/readAttributeGeneratedCommandList(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterEnergyEVSEClass) ReadAttributeGeneratedCommandListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint unsafe.Pointer, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterEnergyEVSEClass) ReadAttributeGeneratedCommandListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeGeneratedCommandListWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterEnergyEVSE/readAttributeMaximumChargeCurrent(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterEnergyEVSEClass) ReadAttributeMaximumChargeCurrentWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint unsafe.Pointer, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterEnergyEVSEClass) ReadAttributeMaximumChargeCurrentWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeMaximumChargeCurrentWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterEnergyEVSE/readAttributeMinimumChargeCurrent(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterEnergyEVSEClass) ReadAttributeMinimumChargeCurrentWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint unsafe.Pointer, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterEnergyEVSEClass) ReadAttributeMinimumChargeCurrentWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeMinimumChargeCurrentWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterEnergyEVSE/readAttributeNextChargeRequiredEnergy(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterEnergyEVSEClass) ReadAttributeNextChargeRequiredEnergyWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint unsafe.Pointer, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterEnergyEVSEClass) ReadAttributeNextChargeRequiredEnergyWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeNextChargeRequiredEnergyWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterEnergyEVSE/readAttributeNextChargeStartTime(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterEnergyEVSEClass) ReadAttributeNextChargeStartTimeWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint unsafe.Pointer, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterEnergyEVSEClass) ReadAttributeNextChargeStartTimeWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeNextChargeStartTimeWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterEnergyEVSE/readAttributeNextChargeTargetSoC(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterEnergyEVSEClass) ReadAttributeNextChargeTargetSoCWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint unsafe.Pointer, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterEnergyEVSEClass) ReadAttributeNextChargeTargetSoCWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeNextChargeTargetSoCWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterEnergyEVSE/readAttributeNextChargeTargetTime(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterEnergyEVSEClass) ReadAttributeNextChargeTargetTimeWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint unsafe.Pointer, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterEnergyEVSEClass) ReadAttributeNextChargeTargetTimeWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeNextChargeTargetTimeWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterEnergyEVSE/readAttributeRandomizationDelayWindow(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterEnergyEVSEClass) ReadAttributeRandomizationDelayWindowWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint unsafe.Pointer, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterEnergyEVSEClass) ReadAttributeRandomizationDelayWindowWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeRandomizationDelayWindowWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterEnergyEVSE/readAttributeSessionDuration(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterEnergyEVSEClass) ReadAttributeSessionDurationWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint unsafe.Pointer, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterEnergyEVSEClass) ReadAttributeSessionDurationWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeSessionDurationWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterEnergyEVSE/readAttributeSessionEnergyCharged(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterEnergyEVSEClass) ReadAttributeSessionEnergyChargedWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint unsafe.Pointer, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterEnergyEVSEClass) ReadAttributeSessionEnergyChargedWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeSessionEnergyChargedWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterEnergyEVSE/readAttributeSessionID(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterEnergyEVSEClass) ReadAttributeSessionIDWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint unsafe.Pointer, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterEnergyEVSEClass) ReadAttributeSessionIDWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeSessionIDWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterEnergyEVSE/readAttributeState(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterEnergyEVSEClass) ReadAttributeStateWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint unsafe.Pointer, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterEnergyEVSEClass) ReadAttributeStateWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeStateWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterEnergyEVSE/readAttributeSupplyState(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterEnergyEVSEClass) ReadAttributeSupplyStateWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint unsafe.Pointer, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterEnergyEVSEClass) ReadAttributeSupplyStateWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeSupplyStateWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterEnergyEVSE/readAttributeUserMaximumChargeCurrent(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterEnergyEVSEClass) ReadAttributeUserMaximumChargeCurrentWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint unsafe.Pointer, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterEnergyEVSEClass) ReadAttributeUserMaximumChargeCurrentWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeUserMaximumChargeCurrentWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
@@ -618,37 +619,37 @@ func (m_ MTRBaseClusterEnergyEVSE) SubscribeAttributeUserMaximumChargeCurrentWit
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterEnergyEVSE/writeAttributeApproximateEVEfficiency(withValue:completion:)
-func (m_ MTRBaseClusterEnergyEVSE) WriteAttributeApproximateEVEfficiencyWithValueCompletion(value unsafe.Pointer, completion unsafe.Pointer) {
+func (m_ MTRBaseClusterEnergyEVSE) WriteAttributeApproximateEVEfficiencyWithValueCompletion(value foundation.Number, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("writeAttributeApproximateEVEfficiencyWithValue:completion:"), value, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterEnergyEVSE/writeAttributeApproximateEVEfficiency(withValue:params:completion:)
-func (m_ MTRBaseClusterEnergyEVSE) WriteAttributeApproximateEVEfficiencyWithValueParamsCompletion(value unsafe.Pointer, params unsafe.Pointer, completion unsafe.Pointer) {
+func (m_ MTRBaseClusterEnergyEVSE) WriteAttributeApproximateEVEfficiencyWithValueParamsCompletion(value foundation.Number, params unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("writeAttributeApproximateEVEfficiencyWithValue:params:completion:"), value, params, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterEnergyEVSE/writeAttributeRandomizationDelayWindow(withValue:completion:)
-func (m_ MTRBaseClusterEnergyEVSE) WriteAttributeRandomizationDelayWindowWithValueCompletion(value unsafe.Pointer, completion unsafe.Pointer) {
+func (m_ MTRBaseClusterEnergyEVSE) WriteAttributeRandomizationDelayWindowWithValueCompletion(value foundation.Number, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("writeAttributeRandomizationDelayWindowWithValue:completion:"), value, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterEnergyEVSE/writeAttributeRandomizationDelayWindow(withValue:params:completion:)
-func (m_ MTRBaseClusterEnergyEVSE) WriteAttributeRandomizationDelayWindowWithValueParamsCompletion(value unsafe.Pointer, params unsafe.Pointer, completion unsafe.Pointer) {
+func (m_ MTRBaseClusterEnergyEVSE) WriteAttributeRandomizationDelayWindowWithValueParamsCompletion(value foundation.Number, params unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("writeAttributeRandomizationDelayWindowWithValue:params:completion:"), value, params, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterEnergyEVSE/writeAttributeUserMaximumChargeCurrent(withValue:completion:)
-func (m_ MTRBaseClusterEnergyEVSE) WriteAttributeUserMaximumChargeCurrentWithValueCompletion(value unsafe.Pointer, completion unsafe.Pointer) {
+func (m_ MTRBaseClusterEnergyEVSE) WriteAttributeUserMaximumChargeCurrentWithValueCompletion(value foundation.Number, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("writeAttributeUserMaximumChargeCurrentWithValue:completion:"), value, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterEnergyEVSE/writeAttributeUserMaximumChargeCurrent(withValue:params:completion:)
-func (m_ MTRBaseClusterEnergyEVSE) WriteAttributeUserMaximumChargeCurrentWithValueParamsCompletion(value unsafe.Pointer, params unsafe.Pointer, completion unsafe.Pointer) {
+func (m_ MTRBaseClusterEnergyEVSE) WriteAttributeUserMaximumChargeCurrentWithValueParamsCompletion(value foundation.Number, params unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("writeAttributeUserMaximumChargeCurrentWithValue:params:completion:"), value, params, completion)
 }
 

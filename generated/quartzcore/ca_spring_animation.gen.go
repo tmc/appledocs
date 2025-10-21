@@ -91,6 +91,24 @@ func NewSpringAnimationWithPerceptualDurationBounce(perceptualDuration unsafe.Po
 }
 
 
+// Defines the value the receiver uses to end interpolation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/cabasicanimation/tovalue
+func (s_ SpringAnimation) ToValue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("toValue"))
+	return rv
+}
+
+
+// SetToValue sets the value of the toValue property.
+// Defines the value the receiver uses to end interpolation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/cabasicanimation/tovalue
+func (s_ SpringAnimation) SetToValue(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setToValue:"), value)
+}
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CASpringAnimation/allowsOverdamping
 func (s_ SpringAnimation) AllowsOverdamping() bool {

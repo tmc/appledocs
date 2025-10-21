@@ -81,5 +81,110 @@ func NewINSetProfileInCarIntent() INSetProfileInCarIntent {
 }
 
 
+// The profile index from which to restore the settings.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insetprofileincarintent/profilenumber-37vj8
+func (i_ INSetProfileInCarIntent) ProfileNumber() int {
+	rv := objc.Send[int](i_.ID, objc.Sel("profileNumber"))
+	return rv
+}
+
+
+// SetProfileNumber sets the value of the profileNumber property.
+// The profile index from which to restore the settings.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insetprofileincarintent/profilenumber-37vj8
+func (i_ INSetProfileInCarIntent) SetProfileNumber(value int) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setProfileNumber:"), value)
+}
+
+// The name assigned to the profile.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insetprofileincarintent/profilelabel
+func (i_ INSetProfileInCarIntent) ProfileLabel() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("profileLabel"))
+	return rv
+}
+
+
+// SetProfileLabel sets the value of the profileLabel property.
+// The name assigned to the profile.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insetprofileincarintent/profilelabel
+func (i_ INSetProfileInCarIntent) SetProfileLabel(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setProfileLabel:"), objc.String(value))
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insetprofileincarintent/defaultprofile-19jwc
+func (i_ INSetProfileInCarIntent) DefaultProfile() int {
+	rv := objc.Send[int](i_.ID, objc.Sel("defaultProfile"))
+	return rv
+}
+
+
+// SetDefaultProfile sets the value of the defaultProfile property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insetprofileincarintent/defaultprofile-19jwc
+func (i_ INSetProfileInCarIntent) SetDefaultProfile(value int) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setDefaultProfile:"), value)
+}
+
+// The name of the car associated with the profile.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insetprofileincarintent/carname
+func (i_ INSetProfileInCarIntent) CarName() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("carName"))
+	return rv
+}
+
+
+// SetCarName sets the value of the carName property.
+// The name of the car associated with the profile.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insetprofileincarintent/carname
+func (i_ INSetProfileInCarIntent) SetCarName(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setCarName:"), value)
+}
+
+// The name assigned to the profile.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insetprofileincarintent/profilename
+func (i_ INSetProfileInCarIntent) ProfileName() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("profileName"))
+	return rv
+}
+
+
+// SetProfileName sets the value of the profileName property.
+// The name assigned to the profile.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insetprofileincarintent/profilename
+func (i_ INSetProfileInCarIntent) SetProfileName(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setProfileName:"), objc.String(value))
+}
+
+// A Boolean value indicating whether to make the profile the default profile.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insetprofileincarintent/isdefaultprofile
+func (i_ INSetProfileInCarIntent) IsDefaultProfile() bool {
+	rv := objc.Send[bool](i_.ID, objc.Sel("isDefaultProfile"))
+	return rv
+}
+
+
+// SetIsDefaultProfile sets the value of the isDefaultProfile property.
+// A Boolean value indicating whether to make the profile the default profile.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/insetprofileincarintent/isdefaultprofile
+func (i_ INSetProfileInCarIntent) SetIsDefaultProfile(value bool) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setIsDefaultProfile:"), value)
+}
+
 
 

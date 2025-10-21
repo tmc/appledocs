@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -84,7 +85,7 @@ func NewWebAuthenticationSession() WebAuthenticationSession {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASWebAuthenticationSession/init(url:callback:completionHandler:)
-func NewWebAuthenticationSessionWithURLCallbackCompletionHandler(URL unsafe.Pointer, callback unsafe.Pointer, completionHandler unsafe.Pointer) WebAuthenticationSession {
+func NewWebAuthenticationSessionWithURLCallbackCompletionHandler(URL foundation.URL, callback unsafe.Pointer, completionHandler unsafe.Pointer) WebAuthenticationSession {
 	instance := getWebAuthenticationSessionClass().Alloc()
 	rv := objc.Send[WebAuthenticationSession](instance.ID, objc.Sel("initWithURL:callback:completionHandler:"), URL, callback, completionHandler)
 	rv.Autorelease()
@@ -104,6 +105,14 @@ func (w_ WebAuthenticationSession) Cancel() {
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASWebAuthenticationSession/start()
 func (w_ WebAuthenticationSession) Start() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("start"))
+	return rv
+}
+
+// The error domain for a web authentication session.
+//
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aswebauthenticationsessionerrordomain
+func (w_ WebAuthenticationSession) ASWebAuthenticationSessionErrorDomain() string {
+	rv := objc.Send[string](w_.ID, objc.Sel("ASWebAuthenticationSessionErrorDomain"))
 	return rv
 }
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -79,6 +80,96 @@ func NewMovieErrorLog() MovieErrorLog {
 	return getMovieErrorLogClass().New()
 }
 
+
+// The events in the movie error log.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieerrorlog/events
+func (m_ MovieErrorLog) Events() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("events"))
+	return rv
+}
+
+
+// SetEvents sets the value of the events property.
+// The events in the movie error log.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieerrorlog/events
+func (m_ MovieErrorLog) SetEvents(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setEvents:"), value)
+}
+
+// A Boolean value that indicates whether the route button is visible in the volume view.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpvolumeview/showsroutebutton
+func (m_ MovieErrorLog) ShowsRouteButton() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("showsRouteButton"))
+	return rv
+}
+
+
+// SetShowsRouteButton sets the value of the showsRouteButton property.
+// A Boolean value that indicates whether the route button is visible in the volume view.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpvolumeview/showsroutebutton
+func (m_ MovieErrorLog) SetShowsRouteButton(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setShowsRouteButton:"), value)
+}
+
+// The bounds, in points, of the content area for the full size image associated with the media item artwork.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitemartwork/imagecroprect
+func (m_ MovieErrorLog) ImageCropRect() coregraphics.CGRect {
+	rv := objc.Send[coregraphics.CGRect](m_.ID, objc.Sel("imageCropRect"))
+	return rv
+}
+
+
+// SetImageCropRect sets the value of the imageCropRect property.
+// The bounds, in points, of the content area for the full size image associated with the media item artwork.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitemartwork/imagecroprect
+func (m_ MovieErrorLog) SetImageCropRect(value coregraphics.CGRect) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setImageCropRect:"), value)
+}
+
+// A textual version of the web server error log.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieerrorlog/extendedlogdata
+func (m_ MovieErrorLog) ExtendedLogData() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("extendedLogData"))
+	return rv
+}
+
+
+// SetExtendedLogData sets the value of the extendedLogData property.
+// A textual version of the web server error log.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieerrorlog/extendedlogdata
+func (m_ MovieErrorLog) SetExtendedLogData(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setExtendedLogData:"), value)
+}
+
+// The string encoding for the extended log data property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieerrorlog/extendedlogdatastringencoding
+func (m_ MovieErrorLog) ExtendedLogDataStringEncoding() uint {
+	rv := objc.Send[uint](m_.ID, objc.Sel("extendedLogDataStringEncoding"))
+	return rv
+}
+
+
+// SetExtendedLogDataStringEncoding sets the value of the extendedLogDataStringEncoding property.
+// The string encoding for the extended log data property.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieerrorlog/extendedlogdatastringencoding
+func (m_ MovieErrorLog) SetExtendedLogDataStringEncoding(value uint) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setExtendedLogDataStringEncoding:"), value)
+}
 
 
 

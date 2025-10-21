@@ -86,5 +86,92 @@ func (s_ SampleBufferVideoRenderer) CopyDisplayedPixelBuffer() unsafe.Pointer {
 	return rv
 }
 
+// An object the describes the error that caused the rendering failure.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebuffervideorenderer/error
+func (s_ SampleBufferVideoRenderer) Error() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("error"))
+	return rv
+}
+
+
+// SetError sets the value of the error property.
+// An object the describes the error that caused the rendering failure.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebuffervideorenderer/error
+func (s_ SampleBufferVideoRenderer) SetError(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setError:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebuffervideorenderer/presentationtimeexpectation-swift.property
+func (s_ SampleBufferVideoRenderer) PresentationTimeExpectation() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("presentationTimeExpectation"))
+	return rv
+}
+
+
+// SetPresentationTimeExpectation sets the value of the presentationTimeExpectation property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebuffervideorenderer/presentationtimeexpectation-swift.property
+func (s_ SampleBufferVideoRenderer) SetPresentationTimeExpectation(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setPresentationTimeExpectation:"), value)
+}
+
+// Recommended pixel buffer attributes for optimal performance when using CMSampleBuffers containing CVPixelbuffers.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebuffervideorenderer/recommendedpixelbufferattributes-6zrqb
+func (s_ SampleBufferVideoRenderer) RecommendedPixelBufferAttributes() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("recommendedPixelBufferAttributes"))
+	return rv
+}
+
+
+// SetRecommendedPixelBufferAttributes sets the value of the recommendedPixelBufferAttributes property.
+// Recommended pixel buffer attributes for optimal performance when using CMSampleBuffers containing CVPixelbuffers.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebuffervideorenderer/recommendedpixelbufferattributes-6zrqb
+func (s_ SampleBufferVideoRenderer) SetRecommendedPixelBufferAttributes(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setRecommendedPixelBufferAttributes:"), value)
+}
+
+// A Boolean value that Indicates whether the renderer requires flushing to continue decoding frames.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebuffervideorenderer/requiresflushtoresumedecoding
+func (s_ SampleBufferVideoRenderer) RequiresFlushToResumeDecoding() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("requiresFlushToResumeDecoding"))
+	return rv
+}
+
+
+// SetRequiresFlushToResumeDecoding sets the value of the requiresFlushToResumeDecoding property.
+// A Boolean value that Indicates whether the renderer requires flushing to continue decoding frames.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebuffervideorenderer/requiresflushtoresumedecoding
+func (s_ SampleBufferVideoRenderer) SetRequiresFlushToResumeDecoding(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setRequiresFlushToResumeDecoding:"), value)
+}
+
+// A status value that indicates whether this object can enqueue and render sample buffers.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebuffervideorenderer/status
+func (s_ SampleBufferVideoRenderer) Status() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("status"))
+	return rv
+}
+
+
+// SetStatus sets the value of the status property.
+// A status value that indicates whether this object can enqueue and render sample buffers.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebuffervideorenderer/status
+func (s_ SampleBufferVideoRenderer) SetStatus(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setStatus:"), value)
+}
+
 
 

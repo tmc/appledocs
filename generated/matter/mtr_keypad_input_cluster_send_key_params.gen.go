@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,51 @@ func NewMTRKeypadInputClusterSendKeyParams() MTRKeypadInputClusterSendKeyParams 
 	return getMTRKeypadInputClusterSendKeyParamsClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrkeypadinputclustersendkeyparams/keycode
+func (m_ MTRKeypadInputClusterSendKeyParams) KeyCode() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("keyCode"))
+	return rv
+}
+
+
+// SetKeyCode sets the value of the keyCode property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrkeypadinputclustersendkeyparams/keycode
+func (m_ MTRKeypadInputClusterSendKeyParams) SetKeyCode(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setKeyCode:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrkeypadinputclustersendkeyparams/timedinvoketimeoutms
+func (m_ MTRKeypadInputClusterSendKeyParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+	return rv
+}
+
+
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrkeypadinputclustersendkeyparams/timedinvoketimeoutms
+func (m_ MTRKeypadInputClusterSendKeyParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrkeypadinputclustersendkeyparams/serversideprocessingtimeout
+func (m_ MTRKeypadInputClusterSendKeyParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+	return rv
+}
+
+
+// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrkeypadinputclustersendkeyparams/serversideprocessingtimeout
+func (m_ MTRKeypadInputClusterSendKeyParams) SetServerSideProcessingTimeout(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
+}
 
 
 

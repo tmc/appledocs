@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,66 @@ func NewMTRActionsClusterActionFailedEvent() MTRActionsClusterActionFailedEvent 
 	return getMTRActionsClusterActionFailedEventClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusteractionfailedevent/newstate
+func (m_ MTRActionsClusterActionFailedEvent) NewState() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("newState"))
+	return rv
+}
+
+
+// SetNewState sets the value of the newState property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusteractionfailedevent/newstate
+func (m_ MTRActionsClusterActionFailedEvent) SetNewState(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setNewState:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusteractionfailedevent/error
+func (m_ MTRActionsClusterActionFailedEvent) Error() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("error"))
+	return rv
+}
+
+
+// SetError sets the value of the error property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusteractionfailedevent/error
+func (m_ MTRActionsClusterActionFailedEvent) SetError(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setError:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusteractionfailedevent/actionid
+func (m_ MTRActionsClusterActionFailedEvent) ActionID() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("actionID"))
+	return rv
+}
+
+
+// SetActionID sets the value of the actionID property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusteractionfailedevent/actionid
+func (m_ MTRActionsClusterActionFailedEvent) SetActionID(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setActionID:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusteractionfailedevent/invokeid
+func (m_ MTRActionsClusterActionFailedEvent) InvokeID() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("invokeID"))
+	return rv
+}
+
+
+// SetInvokeID sets the value of the invokeID property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusteractionfailedevent/invokeid
+func (m_ MTRActionsClusterActionFailedEvent) SetInvokeID(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setInvokeID:"), value)
+}
 
 
 

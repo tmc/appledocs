@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,7 +84,7 @@ func NewPlugIn() PlugIn {
 // Loads filters from an image unit that have the appropriate executable status.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIPlugIn/load(_:allowExecutableCode:)
-func (pc _PlugInClass) LoadPlugInAllowExecutableCode(url unsafe.Pointer, allowExecutableCode bool) {
+func (pc _PlugInClass) LoadPlugInAllowExecutableCode(url foundation.URL, allowExecutableCode bool) {
 	objc.Send[objc.ID](objc.ID(pc.class), objc.Sel("loadPlugIn:allowExecutableCode:"), url, allowExecutableCode)
 }
 
@@ -97,7 +98,7 @@ func (pc _PlugInClass) LoadAllPlugIns() {
 // Loads a non-executable plug-in specified by its URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIPlugIn/loadNonExecutablePlugIn(_:)
-func (pc _PlugInClass) LoadNonExecutablePlugIn(url unsafe.Pointer) {
+func (pc _PlugInClass) LoadNonExecutablePlugIn(url foundation.URL) {
 	objc.Send[objc.ID](objc.ID(pc.class), objc.Sel("loadNonExecutablePlugIn:"), url)
 }
 
@@ -111,7 +112,7 @@ func (pc _PlugInClass) LoadNonExecutablePlugIns() {
 // Loads filters from an image unit that have the appropriate executable status.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIPlugIn/loadPlugIn:allowNonExecutable:
-func (pc _PlugInClass) LoadPlugInAllowNonExecutable(url unsafe.Pointer, allowNonExecutable bool) {
+func (pc _PlugInClass) LoadPlugInAllowNonExecutable(url foundation.URL, allowNonExecutable bool) {
 	objc.Send[objc.ID](objc.ID(pc.class), objc.Sel("loadPlugIn:allowNonExecutable:"), url, allowNonExecutable)
 }
 

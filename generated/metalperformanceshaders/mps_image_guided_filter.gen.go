@@ -79,5 +79,65 @@ func NewImageGuidedFilter() ImageGuidedFilter {
 }
 
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimageguidedfilter/reconstructoffset
+func (i_ ImageGuidedFilter) ReconstructOffset() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("reconstructOffset"))
+	return rv
+}
+
+
+// SetReconstructOffset sets the value of the reconstructOffset property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimageguidedfilter/reconstructoffset
+func (i_ ImageGuidedFilter) SetReconstructOffset(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setReconstructOffset:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimageguidedfilter/kerneldiameter
+func (i_ ImageGuidedFilter) KernelDiameter() int {
+	rv := objc.Send[int](i_.ID, objc.Sel("kernelDiameter"))
+	return rv
+}
+
+
+// SetKernelDiameter sets the value of the kernelDiameter property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimageguidedfilter/kerneldiameter
+func (i_ ImageGuidedFilter) SetKernelDiameter(value int) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setKernelDiameter:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimageguidedfilter/epsilon
+func (i_ ImageGuidedFilter) Epsilon() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("epsilon"))
+	return rv
+}
+
+
+// SetEpsilon sets the value of the epsilon property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimageguidedfilter/epsilon
+func (i_ ImageGuidedFilter) SetEpsilon(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setEpsilon:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimageguidedfilter/reconstructscale
+func (i_ ImageGuidedFilter) ReconstructScale() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("reconstructScale"))
+	return rv
+}
+
+
+// SetReconstructScale sets the value of the reconstructScale property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimageguidedfilter/reconstructscale
+func (i_ ImageGuidedFilter) SetReconstructScale(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setReconstructScale:"), value)
+}
+
 
 

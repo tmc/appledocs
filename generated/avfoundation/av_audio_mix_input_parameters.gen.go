@@ -80,5 +80,59 @@ func NewAudioMixInputParameters() AudioMixInputParameters {
 }
 
 
+// The audio processing tap associated with the track.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avaudiomixinputparameters/audiotapprocessor
+func (a_ AudioMixInputParameters) AudioTapProcessor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("audioTapProcessor"))
+	return rv
+}
+
+
+// SetAudioTapProcessor sets the value of the audioTapProcessor property.
+// The audio processing tap associated with the track.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avaudiomixinputparameters/audiotapprocessor
+func (a_ AudioMixInputParameters) SetAudioTapProcessor(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAudioTapProcessor:"), value)
+}
+
+// The processing algorithm used to manage audio pitch for scaled audio edits.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avaudiomixinputparameters/audiotimepitchalgorithm
+func (a_ AudioMixInputParameters) AudioTimePitchAlgorithm() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("audioTimePitchAlgorithm"))
+	return rv
+}
+
+
+// SetAudioTimePitchAlgorithm sets the value of the audioTimePitchAlgorithm property.
+// The processing algorithm used to manage audio pitch for scaled audio edits.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avaudiomixinputparameters/audiotimepitchalgorithm
+func (a_ AudioMixInputParameters) SetAudioTimePitchAlgorithm(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAudioTimePitchAlgorithm:"), value)
+}
+
+// The identifier of the audio track to which the parameters should be applied.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avaudiomixinputparameters/trackid
+func (a_ AudioMixInputParameters) TrackID() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("trackID"))
+	return rv
+}
+
+
+// SetTrackID sets the value of the trackID property.
+// The identifier of the audio track to which the parameters should be applied.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avaudiomixinputparameters/trackid
+func (a_ AudioMixInputParameters) SetTrackID(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setTrackID:"), value)
+}
+
 
 

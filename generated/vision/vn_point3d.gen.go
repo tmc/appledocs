@@ -78,5 +78,23 @@ func NewPoint3D() Point3D {
 }
 
 
+// The three-dimensional position.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnpoint3d/position
+func (p_ Point3D) Position() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("position"))
+	return rv
+}
+
+
+// SetPosition sets the value of the position property.
+// The three-dimensional position.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnpoint3d/position
+func (p_ Point3D) SetPosition(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPosition:"), value)
+}
+
 
 

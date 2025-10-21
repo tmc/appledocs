@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -119,8 +120,8 @@ func (l_ LPLinkMetadata) SetImageProvider(value unsafe.Pointer) {
 // The original URL of the metadata request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPLinkMetadata/originalURL
-func (l_ LPLinkMetadata) OriginalURL() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("originalURL"))
+func (l_ LPLinkMetadata) OriginalURL() foundation.URL {
+	rv := objc.Send[foundation.URL](l_.ID, objc.Sel("originalURL"))
 	return rv
 }
 
@@ -130,15 +131,15 @@ func (l_ LPLinkMetadata) OriginalURL() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPLinkMetadata/originalURL
-func (l_ LPLinkMetadata) SetOriginalURL(value unsafe.Pointer) {
+func (l_ LPLinkMetadata) SetOriginalURL(value foundation.URL) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setOriginalURL:"), value)
 }
 
 // A remote URL corresponding to a representative video for the URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPLinkMetadata/remoteVideoURL
-func (l_ LPLinkMetadata) RemoteVideoURL() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("remoteVideoURL"))
+func (l_ LPLinkMetadata) RemoteVideoURL() foundation.URL {
+	rv := objc.Send[foundation.URL](l_.ID, objc.Sel("remoteVideoURL"))
 	return rv
 }
 
@@ -148,7 +149,7 @@ func (l_ LPLinkMetadata) RemoteVideoURL() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPLinkMetadata/remoteVideoURL
-func (l_ LPLinkMetadata) SetRemoteVideoURL(value unsafe.Pointer) {
+func (l_ LPLinkMetadata) SetRemoteVideoURL(value foundation.URL) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setRemoteVideoURL:"), value)
 }
 
@@ -173,8 +174,8 @@ func (l_ LPLinkMetadata) SetTitle(value string) {
 // The URL that returned the metadata, taking server-side redirects into account.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPLinkMetadata/url
-func (l_ LPLinkMetadata) URL() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("URL"))
+func (l_ LPLinkMetadata) URL() foundation.URL {
+	rv := objc.Send[foundation.URL](l_.ID, objc.Sel("URL"))
 	return rv
 }
 
@@ -184,7 +185,7 @@ func (l_ LPLinkMetadata) URL() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPLinkMetadata/url
-func (l_ LPLinkMetadata) SetURL(value unsafe.Pointer) {
+func (l_ LPLinkMetadata) SetURL(value foundation.URL) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setURL:"), value)
 }
 

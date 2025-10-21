@@ -149,6 +149,24 @@ func (n_ NoiseMap) ValueAtPosition(position unsafe.Pointer) unsafe.Pointer {
 
 // A Boolean value indicating whether the noise map’s output can repeat seamlessly in all directions.
 //
+// [Full Topic]: https://developer.apple.com/documentation/gameplaykit/gknoisemap/isseamless
+func (n_ NoiseMap) IsSeamless() bool {
+	rv := objc.Send[bool](n_.ID, objc.Sel("isSeamless"))
+	return rv
+}
+
+
+// SetIsSeamless sets the value of the isSeamless property.
+// A Boolean value indicating whether the noise map’s output can repeat seamlessly in all directions.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gameplaykit/gknoisemap/isseamless
+func (n_ NoiseMap) SetIsSeamless(value bool) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setIsSeamless:"), value)
+}
+
+// A Boolean value indicating whether the noise map’s output can repeat seamlessly in all directions.
+//
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKNoiseMap/isSeamless
 func (n_ NoiseMap) Seamless() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("seamless"))

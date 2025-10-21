@@ -80,5 +80,95 @@ func NewHKSourceRevision() HKSourceRevision {
 }
 
 
+// A string that identifies the operating system used to save a sample.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hksourcerevision/operatingsystemversion
+func (h_ HKSourceRevision) OperatingSystemVersion() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("operatingSystemVersion"))
+	return rv
+}
+
+
+// SetOperatingSystemVersion sets the value of the operatingSystemVersion property.
+// A string that identifies the operating system used to save a sample.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hksourcerevision/operatingsystemversion
+func (h_ HKSourceRevision) SetOperatingSystemVersion(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setOperatingSystemVersion:"), value)
+}
+
+// A string that identifies the device used to save a sample.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hksourcerevision/producttype
+func (h_ HKSourceRevision) ProductType() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("productType"))
+	return rv
+}
+
+
+// SetProductType sets the value of the productType property.
+// A string that identifies the device used to save a sample.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hksourcerevision/producttype
+func (h_ HKSourceRevision) SetProductType(value string) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setProductType:"), objc.String(value))
+}
+
+// The source for a sample.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hksourcerevision/source
+func (h_ HKSourceRevision) Source() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("source"))
+	return rv
+}
+
+
+// SetSource sets the value of the source property.
+// The source for a sample.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hksourcerevision/source
+func (h_ HKSourceRevision) SetSource(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setSource:"), value)
+}
+
+// A string that identifies a particular version of the source.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hksourcerevision/version
+func (h_ HKSourceRevision) Version() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("version"))
+	return rv
+}
+
+
+// SetVersion sets the value of the version property.
+// A string that identifies a particular version of the source.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hksourcerevision/version
+func (h_ HKSourceRevision) SetVersion(value string) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setVersion:"), objc.String(value))
+}
+
+// The app or device that created this object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkobject/sourcerevision
+func (h_ HKSourceRevision) SourceRevision() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("sourceRevision"))
+	return rv
+}
+
+
+// SetSourceRevision sets the value of the sourceRevision property.
+// The app or device that created this object.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkobject/sourcerevision
+func (h_ HKSourceRevision) SetSourceRevision(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setSourceRevision:"), value)
+}
+
 
 

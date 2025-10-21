@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,51 @@ func NewMTRDoorLockClusterLockDoorParams() MTRDoorLockClusterLockDoorParams {
 	return getMTRDoorLockClusterLockDoorParamsClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockdoorparams/serversideprocessingtimeout
+func (m_ MTRDoorLockClusterLockDoorParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+	return rv
+}
+
+
+// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockdoorparams/serversideprocessingtimeout
+func (m_ MTRDoorLockClusterLockDoorParams) SetServerSideProcessingTimeout(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockdoorparams/pincode
+func (m_ MTRDoorLockClusterLockDoorParams) PinCode() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("pinCode"))
+	return rv
+}
+
+
+// SetPinCode sets the value of the pinCode property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockdoorparams/pincode
+func (m_ MTRDoorLockClusterLockDoorParams) SetPinCode(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPinCode:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockdoorparams/timedinvoketimeoutms
+func (m_ MTRDoorLockClusterLockDoorParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+	return rv
+}
+
+
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockdoorparams/timedinvoketimeoutms
+func (m_ MTRDoorLockClusterLockDoorParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+}
 
 
 

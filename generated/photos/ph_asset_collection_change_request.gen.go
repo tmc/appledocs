@@ -89,5 +89,41 @@ func (pc _PHAssetCollectionChangeRequestClass) CreationRequestForAssetCollection
 	return rv
 }
 
+// A placeholder object for the asset collection that the change request creates.
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phassetcollectionchangerequest/placeholderforcreatedassetcollection
+func (p_ PHAssetCollectionChangeRequest) PlaceholderForCreatedAssetCollection() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("placeholderForCreatedAssetCollection"))
+	return rv
+}
+
+
+// SetPlaceholderForCreatedAssetCollection sets the value of the placeholderForCreatedAssetCollection property.
+// A placeholder object for the asset collection that the change request creates.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phassetcollectionchangerequest/placeholderforcreatedassetcollection
+func (p_ PHAssetCollectionChangeRequest) SetPlaceholderForCreatedAssetCollection(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPlaceholderForCreatedAssetCollection:"), value)
+}
+
+// The displayed name of the asset collection.
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phassetcollectionchangerequest/title
+func (p_ PHAssetCollectionChangeRequest) Title() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("title"))
+	return rv
+}
+
+
+// SetTitle sets the value of the title property.
+// The displayed name of the asset collection.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phassetcollectionchangerequest/title
+func (p_ PHAssetCollectionChangeRequest) SetTitle(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setTitle:"), objc.String(value))
+}
+
 
 

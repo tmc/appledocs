@@ -80,5 +80,41 @@ func NewHKVerifiableClinicalRecordSubject() HKVerifiableClinicalRecordSubject {
 }
 
 
+// The subject’s birthdate.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordsubject/dateofbirthcomponents
+func (h_ HKVerifiableClinicalRecordSubject) DateOfBirthComponents() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("dateOfBirthComponents"))
+	return rv
+}
+
+
+// SetDateOfBirthComponents sets the value of the dateOfBirthComponents property.
+// The subject’s birthdate.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordsubject/dateofbirthcomponents
+func (h_ HKVerifiableClinicalRecordSubject) SetDateOfBirthComponents(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setDateOfBirthComponents:"), value)
+}
+
+// The subject’s full name.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordsubject/fullname
+func (h_ HKVerifiableClinicalRecordSubject) FullName() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("fullName"))
+	return rv
+}
+
+
+// SetFullName sets the value of the fullName property.
+// The subject’s full name.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordsubject/fullname
+func (h_ HKVerifiableClinicalRecordSubject) SetFullName(value string) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setFullName:"), objc.String(value))
+}
+
 
 

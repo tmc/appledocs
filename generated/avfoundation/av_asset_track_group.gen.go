@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -79,6 +80,24 @@ func NewAssetTrackGroup() AssetTrackGroup {
 	return getAssetTrackGroupClass().New()
 }
 
+
+// The IDs of the tracks in the group.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrackgroup/trackids
+func (a_ AssetTrackGroup) TrackIDs() foundation.Number {
+	rv := objc.Send[foundation.Number](a_.ID, objc.Sel("trackIDs"))
+	return rv
+}
+
+
+// SetTrackIDs sets the value of the trackIDs property.
+// The IDs of the tracks in the group.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrackgroup/trackids
+func (a_ AssetTrackGroup) SetTrackIDs(value foundation.Number) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setTrackIDs:"), value)
+}
 
 
 

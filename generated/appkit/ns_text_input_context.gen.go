@@ -93,4 +93,94 @@ func NewTextInputContextWithClient(client objc.ID) TextInputContext {
 }
 
 
+// A Boolean value that indicates whether the client handles
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextinputcontext/acceptsglyphinfo
+func (t_ TextInputContext) AcceptsGlyphInfo() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("acceptsGlyphInfo"))
+	return rv
+}
+
+
+// SetAcceptsGlyphInfo sets the value of the acceptsGlyphInfo property.
+// A Boolean value that indicates whether the client handles
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextinputcontext/acceptsglyphinfo
+func (t_ TextInputContext) SetAcceptsGlyphInfo(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setAcceptsGlyphInfo:"), value)
+}
+
+// The set of keyboard input source locales allowed when this input context is active.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextinputcontext/allowedinputsourcelocales
+func (t_ TextInputContext) AllowedInputSourceLocales() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("allowedInputSourceLocales"))
+	return rv
+}
+
+
+// SetAllowedInputSourceLocales sets the value of the allowedInputSourceLocales property.
+// The set of keyboard input source locales allowed when this input context is active.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextinputcontext/allowedinputsourcelocales
+func (t_ TextInputContext) SetAllowedInputSourceLocales(value string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setAllowedInputSourceLocales:"), objc.String(value))
+}
+
+// The owner of this input context. (read-only)
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextinputcontext/client
+func (t_ TextInputContext) Client() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("client"))
+	return rv
+}
+
+
+// SetClient sets the value of the client property.
+// The owner of this input context. (read-only)
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextinputcontext/client
+func (t_ TextInputContext) SetClient(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setClient:"), value)
+}
+
+// The array of keyboard text input source identifier strings available to the receiver. (read-only)
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextinputcontext/keyboardinputsources
+func (t_ TextInputContext) KeyboardInputSources() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("keyboardInputSources"))
+	return rv
+}
+
+
+// SetKeyboardInputSources sets the value of the keyboardInputSources property.
+// The array of keyboard text input source identifier strings available to the receiver. (read-only)
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextinputcontext/keyboardinputsources
+func (t_ TextInputContext) SetKeyboardInputSources(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setKeyboardInputSources:"), value)
+}
+
+// The identifier string for the selected keyboard text input source.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextinputcontext/selectedkeyboardinputsource
+func (t_ TextInputContext) SelectedKeyboardInputSource() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("selectedKeyboardInputSource"))
+	return rv
+}
+
+
+// SetSelectedKeyboardInputSource sets the value of the selectedKeyboardInputSource property.
+// The identifier string for the selected keyboard text input source.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextinputcontext/selectedkeyboardinputsource
+func (t_ TextInputContext) SetSelectedKeyboardInputSource(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectedKeyboardInputSource:"), value)
+}
+
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [INGetUserCurrentRestaurantReservationBookingsIntent] class.
@@ -80,6 +81,42 @@ func NewINGetUserCurrentRestaurantReservationBookingsIntent() INGetUserCurrentRe
 	return getINGetUserCurrentRestaurantReservationBookingsIntentClass().New()
 }
 
+
+// The earliest date to associate with any reservations.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/ingetusercurrentrestaurantreservationbookingsintent/earliestbookingdateforresults
+func (i_ INGetUserCurrentRestaurantReservationBookingsIntent) EarliestBookingDateForResults() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("earliestBookingDateForResults"))
+	return rv
+}
+
+
+// SetEarliestBookingDateForResults sets the value of the earliestBookingDateForResults property.
+// The earliest date to associate with any reservations.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/ingetusercurrentrestaurantreservationbookingsintent/earliestbookingdateforresults
+func (i_ INGetUserCurrentRestaurantReservationBookingsIntent) SetEarliestBookingDateForResults(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setEarliestBookingDateForResults:"), value)
+}
+
+// The maximum number of reservations to include in your response object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/ingetusercurrentrestaurantreservationbookingsintent/maximumnumberofresults
+func (i_ INGetUserCurrentRestaurantReservationBookingsIntent) MaximumNumberOfResults() foundation.Number {
+	rv := objc.Send[foundation.Number](i_.ID, objc.Sel("maximumNumberOfResults"))
+	return rv
+}
+
+
+// SetMaximumNumberOfResults sets the value of the maximumNumberOfResults property.
+// The maximum number of reservations to include in your response object.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/ingetusercurrentrestaurantreservationbookingsintent/maximumnumberofresults
+func (i_ INGetUserCurrentRestaurantReservationBookingsIntent) SetMaximumNumberOfResults(value foundation.Number) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setMaximumNumberOfResults:"), value)
+}
 
 // An identifier to use when searching for the user’s reservations.
 //

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -113,8 +114,8 @@ func (h_ HKFHIRResource) ResourceType() unsafe.Pointer {
 // The full URL for the source of the FHIR resource.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKFHIRResource/sourceURL
-func (h_ HKFHIRResource) SourceURL() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("sourceURL"))
+func (h_ HKFHIRResource) SourceURL() foundation.URL {
+	rv := objc.Send[foundation.URL](h_.ID, objc.Sel("sourceURL"))
 	return rv
 }
 

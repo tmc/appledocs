@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -78,8 +79,8 @@ func NewMTRICDManagementClusterStayActiveRequestParams() MTRICDManagementCluster
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterStayActiveRequestParams/serverSideProcessingTimeout
-func (m_ MTRICDManagementClusterStayActiveRequestParams) ServerSideProcessingTimeout() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRICDManagementClusterStayActiveRequestParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
@@ -89,14 +90,14 @@ func (m_ MTRICDManagementClusterStayActiveRequestParams) ServerSideProcessingTim
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterStayActiveRequestParams/serverSideProcessingTimeout
-func (m_ MTRICDManagementClusterStayActiveRequestParams) SetServerSideProcessingTimeout(value unsafe.Pointer) {
+func (m_ MTRICDManagementClusterStayActiveRequestParams) SetServerSideProcessingTimeout(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterStayActiveRequestParams/stayActiveDuration
-func (m_ MTRICDManagementClusterStayActiveRequestParams) StayActiveDuration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("stayActiveDuration"))
+func (m_ MTRICDManagementClusterStayActiveRequestParams) StayActiveDuration() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("stayActiveDuration"))
 	return rv
 }
 
@@ -104,15 +105,15 @@ func (m_ MTRICDManagementClusterStayActiveRequestParams) StayActiveDuration() un
 // SetStayActiveDuration sets the value of the stayActiveDuration property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterStayActiveRequestParams/stayActiveDuration
-func (m_ MTRICDManagementClusterStayActiveRequestParams) SetStayActiveDuration(value unsafe.Pointer) {
+func (m_ MTRICDManagementClusterStayActiveRequestParams) SetStayActiveDuration(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStayActiveDuration:"), value)
 }
 
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterStayActiveRequestParams/timedInvokeTimeoutMs
-func (m_ MTRICDManagementClusterStayActiveRequestParams) TimedInvokeTimeoutMs() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRICDManagementClusterStayActiveRequestParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
@@ -122,7 +123,7 @@ func (m_ MTRICDManagementClusterStayActiveRequestParams) TimedInvokeTimeoutMs() 
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterStayActiveRequestParams/timedInvokeTimeoutMs
-func (m_ MTRICDManagementClusterStayActiveRequestParams) SetTimedInvokeTimeoutMs(value unsafe.Pointer) {
+func (m_ MTRICDManagementClusterStayActiveRequestParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

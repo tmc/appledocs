@@ -106,6 +106,24 @@ func NewCKDatabaseSubscriptionWithSubscriptionID(subscriptionID unsafe.Pointer) 
 }
 
 
+// The configuration for a subscription’s push notifications.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.property
+func (c_ CKDatabaseSubscription) NotificationInfo() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("notificationInfo"))
+	return rv
+}
+
+
+// SetNotificationInfo sets the value of the notificationInfo property.
+// The configuration for a subscription’s push notifications.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.property
+func (c_ CKDatabaseSubscription) SetNotificationInfo(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setNotificationInfo:"), value)
+}
+
 // The type of record that the subscription queries.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKDatabaseSubscription/recordType-1y7dv

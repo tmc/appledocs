@@ -80,6 +80,24 @@ func NewPHObject() PHObject {
 }
 
 
+// Returns an integer that can be used as a table address in a hash table structure.
+//
+// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObjectProtocol/hash
+func (p_ PHObject) Hash() int {
+	rv := objc.Send[int](p_.ID, objc.Sel("hash"))
+	return rv
+}
+
+
+// SetHash sets the value of the hash property.
+// Returns an integer that can be used as a table address in a hash table structure.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObjectProtocol/hash
+func (p_ PHObject) SetHash(value int) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setHash:"), value)
+}
+
 // A unique string that persistently identifies the object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHObject/localIdentifier

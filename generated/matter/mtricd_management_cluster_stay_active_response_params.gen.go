@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -90,8 +91,8 @@ func NewMTRICDManagementClusterStayActiveResponseParamsWithResponseValueError(re
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterStayActiveResponseParams/promisedActiveDuration
-func (m_ MTRICDManagementClusterStayActiveResponseParams) PromisedActiveDuration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("promisedActiveDuration"))
+func (m_ MTRICDManagementClusterStayActiveResponseParams) PromisedActiveDuration() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("promisedActiveDuration"))
 	return rv
 }
 
@@ -99,7 +100,7 @@ func (m_ MTRICDManagementClusterStayActiveResponseParams) PromisedActiveDuration
 // SetPromisedActiveDuration sets the value of the promisedActiveDuration property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterStayActiveResponseParams/promisedActiveDuration
-func (m_ MTRICDManagementClusterStayActiveResponseParams) SetPromisedActiveDuration(value unsafe.Pointer) {
+func (m_ MTRICDManagementClusterStayActiveResponseParams) SetPromisedActiveDuration(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPromisedActiveDuration:"), value)
 }
 

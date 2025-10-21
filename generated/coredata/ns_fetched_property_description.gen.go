@@ -81,6 +81,96 @@ func NewFetchedPropertyDescription() FetchedPropertyDescription {
 }
 
 
+// The fetch limit of the fetch request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/fetchlimit
+func (f_ FetchedPropertyDescription) FetchLimit() int {
+	rv := objc.Send[int](f_.ID, objc.Sel("fetchLimit"))
+	return rv
+}
+
+
+// SetFetchLimit sets the value of the fetchLimit property.
+// The fetch limit of the fetch request.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/fetchlimit
+func (f_ FetchedPropertyDescription) SetFetchLimit(value int) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setFetchLimit:"), value)
+}
+
+// The fetch offset of the fetch request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/fetchoffset
+func (f_ FetchedPropertyDescription) FetchOffset() int {
+	rv := objc.Send[int](f_.ID, objc.Sel("fetchOffset"))
+	return rv
+}
+
+
+// SetFetchOffset sets the value of the fetchOffset property.
+// The fetch offset of the fetch request.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/fetchoffset
+func (f_ FetchedPropertyDescription) SetFetchOffset(value int) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setFetchOffset:"), value)
+}
+
+// The predicate of the fetch request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/predicate
+func (f_ FetchedPropertyDescription) Predicate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("predicate"))
+	return rv
+}
+
+
+// SetPredicate sets the value of the predicate property.
+// The predicate of the fetch request.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/predicate
+func (f_ FetchedPropertyDescription) SetPredicate(value unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setPredicate:"), value)
+}
+
+// The batch size of the objects specified in the fetch request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/fetchbatchsize
+func (f_ FetchedPropertyDescription) FetchBatchSize() int {
+	rv := objc.Send[int](f_.ID, objc.Sel("fetchBatchSize"))
+	return rv
+}
+
+
+// SetFetchBatchSize sets the value of the fetchBatchSize property.
+// The batch size of the objects specified in the fetch request.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/fetchbatchsize
+func (f_ FetchedPropertyDescription) SetFetchBatchSize(value int) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setFetchBatchSize:"), value)
+}
+
+// An array of persistent stores specified for the fetch request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/affectedstores
+func (f_ FetchedPropertyDescription) AffectedStores() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("affectedStores"))
+	return rv
+}
+
+
+// SetAffectedStores sets the value of the affectedStores property.
+// An array of persistent stores specified for the fetch request.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/affectedstores
+func (f_ FetchedPropertyDescription) SetAffectedStores(value unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setAffectedStores:"), value)
+}
+
 // The fetch request of the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchedPropertyDescription/fetchRequest

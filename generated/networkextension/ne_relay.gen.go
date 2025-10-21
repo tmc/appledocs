@@ -102,8 +102,8 @@ func (n_ NERelay) SetAdditionalHTTPHeaderFields(value unsafe.Pointer) {
 // The URL of a DNS-over-HTTPS (DoH) resolver accessible from the relay.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NERelay/dnsOverHTTPSURL
-func (n_ NERelay) DnsOverHTTPSURL() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("dnsOverHTTPSURL"))
+func (n_ NERelay) DnsOverHTTPSURL() foundation.URL {
+	rv := objc.Send[foundation.URL](n_.ID, objc.Sel("dnsOverHTTPSURL"))
 	return rv
 }
 
@@ -113,15 +113,15 @@ func (n_ NERelay) DnsOverHTTPSURL() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NERelay/dnsOverHTTPSURL
-func (n_ NERelay) SetDnsOverHTTPSURL(value unsafe.Pointer) {
+func (n_ NERelay) SetDnsOverHTTPSURL(value foundation.URL) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setDnsOverHTTPSURL:"), value)
 }
 
 // A URL identifying the relay server accessible using HTTP/2.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NERelay/http2RelayURL
-func (n_ NERelay) HTTP2RelayURL() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("HTTP2RelayURL"))
+func (n_ NERelay) HTTP2RelayURL() foundation.URL {
+	rv := objc.Send[foundation.URL](n_.ID, objc.Sel("HTTP2RelayURL"))
 	return rv
 }
 
@@ -131,15 +131,15 @@ func (n_ NERelay) HTTP2RelayURL() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NERelay/http2RelayURL
-func (n_ NERelay) SetHTTP2RelayURL(value unsafe.Pointer) {
+func (n_ NERelay) SetHTTP2RelayURL(value foundation.URL) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setHTTP2RelayURL:"), value)
 }
 
 // A URL identifying the relay server accessible using HTTP/3.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NERelay/http3RelayURL
-func (n_ NERelay) HTTP3RelayURL() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("HTTP3RelayURL"))
+func (n_ NERelay) HTTP3RelayURL() foundation.URL {
+	rv := objc.Send[foundation.URL](n_.ID, objc.Sel("HTTP3RelayURL"))
 	return rv
 }
 
@@ -149,7 +149,7 @@ func (n_ NERelay) HTTP3RelayURL() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NERelay/http3RelayURL
-func (n_ NERelay) SetHTTP3RelayURL(value unsafe.Pointer) {
+func (n_ NERelay) SetHTTP3RelayURL(value foundation.URL) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setHTTP3RelayURL:"), value)
 }
 
@@ -192,8 +192,8 @@ func (n_ NERelay) SetIdentityDataPassword(value string) {
 // An array of TLS raw public keys that the relay server can present during the TLS handshake.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NERelay/rawPublicKeys
-func (n_ NERelay) RawPublicKeys() []foundation.NSData {
-	rv := objc.Send[[]foundation.NSData](n_.ID, objc.Sel("rawPublicKeys"))
+func (n_ NERelay) RawPublicKeys() []unsafe.Pointer {
+	rv := objc.Send[[]unsafe.Pointer](n_.ID, objc.Sel("rawPublicKeys"))
 	return rv
 }
 
@@ -203,7 +203,7 @@ func (n_ NERelay) RawPublicKeys() []foundation.NSData {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NERelay/rawPublicKeys
-func (n_ NERelay) SetRawPublicKeys(value []foundation.NSData) {
+func (n_ NERelay) SetRawPublicKeys(value []unsafe.Pointer) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {

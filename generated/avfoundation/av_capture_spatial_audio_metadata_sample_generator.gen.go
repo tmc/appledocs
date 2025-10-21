@@ -96,5 +96,23 @@ func (c_ CaptureSpatialAudioMetadataSampleGenerator) NewTimedMetadataSampleBuffe
 	return rv
 }
 
+// Returns the format description of the sample buffer returned from the
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturespatialaudiometadatasamplegenerator/timedmetadatasamplebufferformatdescription
+func (c_ CaptureSpatialAudioMetadataSampleGenerator) TimedMetadataSampleBufferFormatDescription() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("timedMetadataSampleBufferFormatDescription"))
+	return rv
+}
+
+
+// SetTimedMetadataSampleBufferFormatDescription sets the value of the timedMetadataSampleBufferFormatDescription property.
+// Returns the format description of the sample buffer returned from the
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturespatialaudiometadatasamplegenerator/timedmetadatasamplebufferformatdescription
+func (c_ CaptureSpatialAudioMetadataSampleGenerator) SetTimedMetadataSampleBufferFormatDescription(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setTimedMetadataSampleBufferFormatDescription:"), value)
+}
+
 
 

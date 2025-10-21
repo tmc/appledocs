@@ -78,5 +78,77 @@ func NewINSeat() INSeat {
 }
 
 
+// The seat’s type.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inseat/seatingtype
+func (i_ INSeat) SeatingType() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("seatingType"))
+	return rv
+}
+
+
+// SetSeatingType sets the value of the seatingType property.
+// The seat’s type.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inseat/seatingtype
+func (i_ INSeat) SetSeatingType(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setSeatingType:"), objc.String(value))
+}
+
+// The seat’s number.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inseat/seatnumber
+func (i_ INSeat) SeatNumber() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("seatNumber"))
+	return rv
+}
+
+
+// SetSeatNumber sets the value of the seatNumber property.
+// The seat’s number.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inseat/seatnumber
+func (i_ INSeat) SetSeatNumber(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setSeatNumber:"), objc.String(value))
+}
+
+// The seat’s section.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inseat/seatsection
+func (i_ INSeat) SeatSection() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("seatSection"))
+	return rv
+}
+
+
+// SetSeatSection sets the value of the seatSection property.
+// The seat’s section.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inseat/seatsection
+func (i_ INSeat) SetSeatSection(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setSeatSection:"), objc.String(value))
+}
+
+// The seat’s row.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inseat/seatrow
+func (i_ INSeat) SeatRow() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("seatRow"))
+	return rv
+}
+
+
+// SetSeatRow sets the value of the seatRow property.
+// The seat’s row.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inseat/seatrow
+func (i_ INSeat) SetSeatRow(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setSeatRow:"), objc.String(value))
+}
+
 
 

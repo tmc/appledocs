@@ -80,6 +80,24 @@ func NewINRideVehicle() INRideVehicle {
 }
 
 
+// The vehicle assigned to pick up the user.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inridestatus/vehicle
+func (i_ INRideVehicle) Vehicle() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("vehicle"))
+	return rv
+}
+
+
+// SetVehicle sets the value of the vehicle property.
+// The vehicle assigned to pick up the user.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inridestatus/vehicle
+func (i_ INRideVehicle) SetVehicle(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setVehicle:"), value)
+}
+
 // The most recent location of the vehicle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INRideVehicle/location

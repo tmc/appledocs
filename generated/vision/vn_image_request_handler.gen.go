@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -227,7 +228,7 @@ func NewImageRequestHandlerWithDataOrientationOptions(imageData unsafe.Pointer, 
 // Creates a handler to be used for performing requests on an image at the specified URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNImageRequestHandler/init(url:options:)
-func NewImageRequestHandlerWithURLOptions(imageURL unsafe.Pointer, options unsafe.Pointer) ImageRequestHandler {
+func NewImageRequestHandlerWithURLOptions(imageURL foundation.URL, options unsafe.Pointer) ImageRequestHandler {
 	instance := getImageRequestHandlerClass().Alloc()
 	rv := objc.Send[ImageRequestHandler](instance.ID, objc.Sel("initWithURL:options:"), imageURL, options)
 	rv.Autorelease()
@@ -239,7 +240,7 @@ func NewImageRequestHandlerWithURLOptions(imageURL unsafe.Pointer, options unsaf
 // Creates a handler to be used for performing requests on an image with known orientation, at the specified URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNImageRequestHandler/init(url:orientation:options:)
-func NewImageRequestHandlerWithURLOrientationOptions(imageURL unsafe.Pointer, orientation unsafe.Pointer, options unsafe.Pointer) ImageRequestHandler {
+func NewImageRequestHandlerWithURLOrientationOptions(imageURL foundation.URL, orientation unsafe.Pointer, options unsafe.Pointer) ImageRequestHandler {
 	instance := getImageRequestHandlerClass().Alloc()
 	rv := objc.Send[ImageRequestHandler](instance.ID, objc.Sel("initWithURL:orientation:options:"), imageURL, orientation, options)
 	rv.Autorelease()

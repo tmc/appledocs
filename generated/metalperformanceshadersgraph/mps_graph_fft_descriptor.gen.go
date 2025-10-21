@@ -89,6 +89,42 @@ func (gc _GraphFFTDescriptorClass) Descriptor() unsafe.Pointer {
 	return rv
 }
 
+// A Boolean-valued parameter that defines the phase factor sign for Fourier transforms.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphfftdescriptor/inverse
+func (g_ GraphFFTDescriptor) Inverse() bool {
+	rv := objc.Send[bool](g_.ID, objc.Sel("inverse"))
+	return rv
+}
+
+
+// SetInverse sets the value of the inverse property.
+// A Boolean-valued parameter that defines the phase factor sign for Fourier transforms.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphfftdescriptor/inverse
+func (g_ GraphFFTDescriptor) SetInverse(value bool) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setInverse:"), value)
+}
+
+// A parameter which controls how graph rounds the output tensor size for a Hermitean-to-real Fourier transform.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphfftdescriptor/roundtooddhermitean
+func (g_ GraphFFTDescriptor) RoundToOddHermitean() bool {
+	rv := objc.Send[bool](g_.ID, objc.Sel("roundToOddHermitean"))
+	return rv
+}
+
+
+// SetRoundToOddHermitean sets the value of the roundToOddHermitean property.
+// A parameter which controls how graph rounds the output tensor size for a Hermitean-to-real Fourier transform.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphfftdescriptor/roundtooddhermitean
+func (g_ GraphFFTDescriptor) SetRoundToOddHermitean(value bool) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setRoundToOddHermitean:"), value)
+}
+
 // The scaling mode of the fast fourier transform (FFT) operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphFFTDescriptor/scalingMode

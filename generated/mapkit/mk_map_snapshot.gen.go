@@ -90,6 +90,42 @@ func (m_ MKMapSnapshot) PointForCoordinate(coordinate unsafe.Pointer) coregraphi
 	return rv
 }
 
+// Traits to use when creating the snapshot.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapsnapshotter/snapshot/traitcollection
+func (m_ MKMapSnapshot) TraitCollection() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("traitCollection"))
+	return rv
+}
+
+
+// SetTraitCollection sets the value of the traitCollection property.
+// Traits to use when creating the snapshot.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapsnapshotter/snapshot/traitcollection
+func (m_ MKMapSnapshot) SetTraitCollection(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTraitCollection:"), value)
+}
+
+// The image of the map’s content.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapsnapshotter/snapshot/image
+func (m_ MKMapSnapshot) Image() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("image"))
+	return rv
+}
+
+
+// SetImage sets the value of the image property.
+// The image of the map’s content.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapsnapshotter/snapshot/image
+func (m_ MKMapSnapshot) SetImage(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setImage:"), value)
+}
+
 // The visual style that MapKit uses when rendering the snapshot.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapSnapshotter/Snapshot/appearance

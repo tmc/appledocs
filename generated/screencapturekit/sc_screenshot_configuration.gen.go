@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -82,6 +83,156 @@ func (sc _ScreenshotConfigurationClass) SupportedContentTypes() []UTType {
 	rv := objc.Send[[]UTType](objc.ID(sc.class), objc.Sel("supportedContentTypes"))
 	return rv
 }
+//
+// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scscreenshotconfiguration/dynamicrange-swift.property
+func (s_ ScreenshotConfiguration) DynamicRange() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("dynamicRange"))
+	return rv
+}
+
+
+// SetDynamicRange sets the value of the dynamicRange property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scscreenshotconfiguration/dynamicrange-swift.property
+func (s_ ScreenshotConfiguration) SetDynamicRange(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setDynamicRange:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scscreenshotconfiguration/showscursor
+func (s_ ScreenshotConfiguration) ShowsCursor() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("showsCursor"))
+	return rv
+}
+
+
+// SetShowsCursor sets the value of the showsCursor property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scscreenshotconfiguration/showscursor
+func (s_ ScreenshotConfiguration) SetShowsCursor(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setShowsCursor:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scscreenshotconfiguration/fileurl
+func (s_ ScreenshotConfiguration) FileURL() foundation.URL {
+	rv := objc.Send[foundation.URL](s_.ID, objc.Sel("fileURL"))
+	return rv
+}
+
+
+// SetFileURL sets the value of the fileURL property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scscreenshotconfiguration/fileurl
+func (s_ ScreenshotConfiguration) SetFileURL(value foundation.URL) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setFileURL:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scscreenshotconfiguration/ignoreshadows
+func (s_ ScreenshotConfiguration) IgnoreShadows() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("ignoreShadows"))
+	return rv
+}
+
+
+// SetIgnoreShadows sets the value of the ignoreShadows property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scscreenshotconfiguration/ignoreshadows
+func (s_ ScreenshotConfiguration) SetIgnoreShadows(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setIgnoreShadows:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scscreenshotconfiguration/ignoreclipping
+func (s_ ScreenshotConfiguration) IgnoreClipping() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("ignoreClipping"))
+	return rv
+}
+
+
+// SetIgnoreClipping sets the value of the ignoreClipping property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scscreenshotconfiguration/ignoreclipping
+func (s_ ScreenshotConfiguration) SetIgnoreClipping(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setIgnoreClipping:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scscreenshotconfiguration/width
+func (s_ ScreenshotConfiguration) Width() int {
+	rv := objc.Send[int](s_.ID, objc.Sel("width"))
+	return rv
+}
+
+
+// SetWidth sets the value of the width property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scscreenshotconfiguration/width
+func (s_ ScreenshotConfiguration) SetWidth(value int) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setWidth:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scscreenshotconfiguration/displayintent-swift.property
+func (s_ ScreenshotConfiguration) DisplayIntent() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("displayIntent"))
+	return rv
+}
+
+
+// SetDisplayIntent sets the value of the displayIntent property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scscreenshotconfiguration/displayintent-swift.property
+func (s_ ScreenshotConfiguration) SetDisplayIntent(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setDisplayIntent:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scscreenshotconfiguration/includechildwindows
+func (s_ ScreenshotConfiguration) IncludeChildWindows() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("includeChildWindows"))
+	return rv
+}
+
+
+// SetIncludeChildWindows sets the value of the includeChildWindows property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scscreenshotconfiguration/includechildwindows
+func (s_ ScreenshotConfiguration) SetIncludeChildWindows(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setIncludeChildWindows:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scscreenshotconfiguration/height
+func (s_ ScreenshotConfiguration) Height() int {
+	rv := objc.Send[int](s_.ID, objc.Sel("height"))
+	return rv
+}
+
+
+// SetHeight sets the value of the height property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scscreenshotconfiguration/height
+func (s_ ScreenshotConfiguration) SetHeight(value int) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setHeight:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scscreenshotconfiguration/contenttype
+func (s_ ScreenshotConfiguration) ContentType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("contentType"))
+	return rv
+}
+
+
+// SetContentType sets the value of the contentType property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scscreenshotconfiguration/contenttype
+func (s_ ScreenshotConfiguration) SetContentType(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setContentType:"), value)
+}
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCScreenshotConfiguration/destinationRect
 func (s_ ScreenshotConfiguration) DestinationRect() coregraphics.CGRect {

@@ -81,5 +81,77 @@ func NewSplitViewController() SplitViewController {
 }
 
 
+// A Boolean value that determines the geometric orientation of the split view’s dividers.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitview/isvertical
+func (s_ SplitViewController) IsVertical() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("isVertical"))
+	return rv
+}
+
+
+// SetIsVertical sets the value of the isVertical property.
+// A Boolean value that determines the geometric orientation of the split view’s dividers.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitview/isvertical
+func (s_ SplitViewController) SetIsVertical(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setIsVertical:"), value)
+}
+
+// The minimum thickness for a sidebar before it automatically collapses.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitviewcontroller/minimumthicknessforinlinesidebars
+func (s_ SplitViewController) MinimumThicknessForInlineSidebars() float64 {
+	rv := objc.Send[float64](s_.ID, objc.Sel("minimumThicknessForInlineSidebars"))
+	return rv
+}
+
+
+// SetMinimumThicknessForInlineSidebars sets the value of the minimumThicknessForInlineSidebars property.
+// The minimum thickness for a sidebar before it automatically collapses.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitviewcontroller/minimumthicknessforinlinesidebars
+func (s_ SplitViewController) SetMinimumThicknessForInlineSidebars(value float64) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setMinimumThicknessForInlineSidebars:"), value)
+}
+
+// The split view that the split view controller manages.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitviewcontroller/splitview
+func (s_ SplitViewController) SplitView() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("splitView"))
+	return rv
+}
+
+
+// SetSplitView sets the value of the splitView property.
+// The split view that the split view controller manages.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitviewcontroller/splitview
+func (s_ SplitViewController) SetSplitView(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setSplitView:"), value)
+}
+
+// The array of split view items that correspond to the split view controller’s child view controllers.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitviewcontroller/splitviewitems
+func (s_ SplitViewController) SplitViewItems() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("splitViewItems"))
+	return rv
+}
+
+
+// SetSplitViewItems sets the value of the splitViewItems property.
+// The array of split view items that correspond to the split view controller’s child view controllers.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitviewcontroller/splitviewitems
+func (s_ SplitViewController) SetSplitViewItems(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setSplitViewItems:"), value)
+}
+
 
 

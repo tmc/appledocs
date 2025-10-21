@@ -161,5 +161,113 @@ func (c_ ColorWell) SetSupportsAlpha(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSupportsAlpha:"), value)
 }
 
+// The currently selected color for the color well.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorwell/color
+func (c_ ColorWell) Color() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("color"))
+	return rv
+}
+
+
+// SetColor sets the value of the color property.
+// The currently selected color for the color well.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorwell/color
+func (c_ ColorWell) SetColor(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setColor:"), value)
+}
+
+// The image to display on the button portion of a color well that adopts the expanded style.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorwell/image
+func (c_ ColorWell) Image() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("image"))
+	return rv
+}
+
+
+// SetImage sets the value of the image property.
+// The image to display on the button portion of a color well that adopts the expanded style.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorwell/image
+func (c_ ColorWell) SetImage(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setImage:"), value)
+}
+
+// A Boolean value that indicates whether the color well is currently active.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorwell/isactive
+func (c_ ColorWell) IsActive() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isActive"))
+	return rv
+}
+
+
+// SetIsActive sets the value of the isActive property.
+// A Boolean value that indicates whether the color well is currently active.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorwell/isactive
+func (c_ ColorWell) SetIsActive(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsActive:"), value)
+}
+
+// A Boolean value that determines whether the color well has a border.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorwell/isbordered
+func (c_ ColorWell) IsBordered() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isBordered"))
+	return rv
+}
+
+
+// SetIsBordered sets the value of the isBordered property.
+// A Boolean value that determines whether the color well has a border.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorwell/isbordered
+func (c_ ColorWell) SetIsBordered(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsBordered:"), value)
+}
+
+// The maximum linear exposure a color in this color well can be set to. Defaults to 1 and ignores any value less than 1. If set to a value >= 2, the color picked for this well may have a linear exposure applied to it.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorwell/maximumlinearexposure
+func (c_ ColorWell) MaximumLinearExposure() float64 {
+	rv := objc.Send[float64](c_.ID, objc.Sel("maximumLinearExposure"))
+	return rv
+}
+
+
+// SetMaximumLinearExposure sets the value of the maximumLinearExposure property.
+// The maximum linear exposure a color in this color well can be set to. Defaults to 1 and ignores any value less than 1. If set to a value >= 2, the color picked for this well may have a linear exposure applied to it.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorwell/maximumlinearexposure
+func (c_ ColorWell) SetMaximumLinearExposure(value float64) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setMaximumLinearExposure:"), value)
+}
+
+// The action to perform when someone clicks in the color area of the color well.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorwell/pulldownaction
+func (c_ ColorWell) PulldownAction() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("pulldownAction"))
+	return rv
+}
+
+
+// SetPulldownAction sets the value of the pulldownAction property.
+// The action to perform when someone clicks in the color area of the color well.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorwell/pulldownaction
+func (c_ ColorWell) SetPulldownAction(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setPulldownAction:"), value)
+}
+
 
 

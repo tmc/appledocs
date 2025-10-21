@@ -97,5 +97,59 @@ func (n_ NEAppPushProvider) StartWithCompletionHandler(completionHandler unsafe.
 	objc.Send[objc.ID](n_.ID, objc.Sel("startWithCompletionHandler:"), completionHandler)
 }
 
+// A dictionary that contains current vendor-specific configuration parameters.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/neapppushprovider/providerconfiguration
+func (n_ NEAppPushProvider) ProviderConfiguration() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("providerConfiguration"))
+	return rv
+}
+
+
+// SetProviderConfiguration sets the value of the providerConfiguration property.
+// A dictionary that contains current vendor-specific configuration parameters.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/neapppushprovider/providerconfiguration
+func (n_ NEAppPushProvider) SetProviderConfiguration(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setProviderConfiguration:"), objc.String(value))
+}
+
+// A delegate that receives incoming call information from the provider.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/neapppushmanager/delegate
+func (n_ NEAppPushProvider) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+
+// SetDelegate sets the value of the delegate property.
+// A delegate that receives incoming call information from the provider.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/neapppushmanager/delegate
+func (n_ NEAppPushProvider) SetDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setDelegate:"), value)
+}
+
+// A string that contains the bundle identifier of the push provider.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/neapppushmanager/providerbundleidentifier
+func (n_ NEAppPushProvider) ProviderBundleIdentifier() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("providerBundleIdentifier"))
+	return rv
+}
+
+
+// SetProviderBundleIdentifier sets the value of the providerBundleIdentifier property.
+// A string that contains the bundle identifier of the push provider.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/neapppushmanager/providerbundleidentifier
+func (n_ NEAppPushProvider) SetProviderBundleIdentifier(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setProviderBundleIdentifier:"), objc.String(value))
+}
+
 
 

@@ -80,6 +80,24 @@ func NewPushCredentials() PushCredentials {
 }
 
 
+// The push type constant associated with the token.
+//
+// [Full Topic]: https://developer.apple.com/documentation/pushkit/pkpushcredentials/type
+func (p_ PushCredentials) Type() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("type"))
+	return rv
+}
+
+
+// SetType sets the value of the type property.
+// The push type constant associated with the token.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/pushkit/pkpushcredentials/type
+func (p_ PushCredentials) SetType(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setType:"), value)
+}
+
 // A unique device token to use when sending push notifications to the current device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PushKit/PKPushCredentials/token

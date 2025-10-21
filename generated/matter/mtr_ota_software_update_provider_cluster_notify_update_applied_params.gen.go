@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MTROtaSoftwareUpdateProviderClusterNotifyUpdateAppliedParams] class.
@@ -75,6 +76,72 @@ func NewMTROtaSoftwareUpdateProviderClusterNotifyUpdateAppliedParams() MTROtaSof
 	return getMTROtaSoftwareUpdateProviderClusterNotifyUpdateAppliedParamsClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusternotifyupdateappliedparams-5eau8/updatetoken
+func (m_ MTROtaSoftwareUpdateProviderClusterNotifyUpdateAppliedParams) UpdateToken() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("updateToken"))
+	return rv
+}
+
+
+// SetUpdateToken sets the value of the updateToken property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusternotifyupdateappliedparams-5eau8/updatetoken
+func (m_ MTROtaSoftwareUpdateProviderClusterNotifyUpdateAppliedParams) SetUpdateToken(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setUpdateToken:"), value)
+}
+
+// Controls whether the command is a timed command (using Timed Invoke).
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusternotifyupdateappliedparams-6s1jv/timedinvoketimeoutms
+func (m_ MTROtaSoftwareUpdateProviderClusterNotifyUpdateAppliedParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+	return rv
+}
+
+
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+// Controls whether the command is a timed command (using Timed Invoke).
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusternotifyupdateappliedparams-6s1jv/timedinvoketimeoutms
+func (m_ MTROtaSoftwareUpdateProviderClusterNotifyUpdateAppliedParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+}
+
+// Controls how much time, in seconds, we will allow for the server to process the command.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusternotifyupdateappliedparams-6s1jv/serversideprocessingtimeout
+func (m_ MTROtaSoftwareUpdateProviderClusterNotifyUpdateAppliedParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+	return rv
+}
+
+
+// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
+// Controls how much time, in seconds, we will allow for the server to process the command.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusternotifyupdateappliedparams-6s1jv/serversideprocessingtimeout
+func (m_ MTROtaSoftwareUpdateProviderClusterNotifyUpdateAppliedParams) SetServerSideProcessingTimeout(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusternotifyupdateappliedparams-6s1jv/softwareversion
+func (m_ MTROtaSoftwareUpdateProviderClusterNotifyUpdateAppliedParams) SoftwareVersion() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("softwareVersion"))
+	return rv
+}
+
+
+// SetSoftwareVersion sets the value of the softwareVersion property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusternotifyupdateappliedparams-6s1jv/softwareversion
+func (m_ MTROtaSoftwareUpdateProviderClusterNotifyUpdateAppliedParams) SetSoftwareVersion(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSoftwareVersion:"), value)
+}
 
 
 

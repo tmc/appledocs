@@ -95,5 +95,41 @@ func (a_ AtomicStoreCacheNode) ValueForKey(key string) objc.ID {
 	return rv
 }
 
+// The managed object ID of the node.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsatomicstorecachenode/objectid
+func (a_ AtomicStoreCacheNode) ObjectID() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("objectID"))
+	return rv
+}
+
+
+// SetObjectID sets the value of the objectID property.
+// The managed object ID of the node.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsatomicstorecachenode/objectid
+func (a_ AtomicStoreCacheNode) SetObjectID(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setObjectID:"), value)
+}
+
+// The property cache dictionary of the node.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsatomicstorecachenode/propertycache
+func (a_ AtomicStoreCacheNode) PropertyCache() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("propertyCache"))
+	return rv
+}
+
+
+// SetPropertyCache sets the value of the propertyCache property.
+// The property cache dictionary of the node.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsatomicstorecachenode/propertycache
+func (a_ AtomicStoreCacheNode) SetPropertyCache(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setPropertyCache:"), value)
+}
+
 
 

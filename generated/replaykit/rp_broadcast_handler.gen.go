@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,7 +31,7 @@ type _RPBroadcastHandlerClass struct {
 // An interface definition for the [RPBroadcastHandler] class.
 type IRPBroadcastHandler interface {
 	objectivec.IObject
-	UpdateBroadcastURL(broadcastURL unsafe.Pointer)
+	UpdateBroadcastURL(broadcastURL foundation.URL)
 	UpdateServiceInfo(serviceInfo unsafe.Pointer)
 }
 
@@ -83,7 +84,7 @@ func NewRPBroadcastHandler() RPBroadcastHandler {
 // Sends the current broadcast URL to the broadcast controller.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPBroadcastHandler/updateBroadcast(_:)
-func (r_ RPBroadcastHandler) UpdateBroadcastURL(broadcastURL unsafe.Pointer) {
+func (r_ RPBroadcastHandler) UpdateBroadcastURL(broadcastURL foundation.URL) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("updateBroadcastURL:"), broadcastURL)
 }
 

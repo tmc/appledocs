@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,51 @@ func NewMTRChannelClusterChangeChannelParams() MTRChannelClusterChangeChannelPar
 	return getMTRChannelClusterChangeChannelParamsClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchangechannelparams/timedinvoketimeoutms
+func (m_ MTRChannelClusterChangeChannelParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+	return rv
+}
+
+
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchangechannelparams/timedinvoketimeoutms
+func (m_ MTRChannelClusterChangeChannelParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchangechannelparams/serversideprocessingtimeout
+func (m_ MTRChannelClusterChangeChannelParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+	return rv
+}
+
+
+// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchangechannelparams/serversideprocessingtimeout
+func (m_ MTRChannelClusterChangeChannelParams) SetServerSideProcessingTimeout(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchangechannelparams/match
+func (m_ MTRChannelClusterChangeChannelParams) Match() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("match"))
+	return rv
+}
+
+
+// SetMatch sets the value of the match property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchangechannelparams/match
+func (m_ MTRChannelClusterChangeChannelParams) SetMatch(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMatch:"), objc.String(value))
+}
 
 
 

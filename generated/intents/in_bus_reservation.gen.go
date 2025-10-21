@@ -79,5 +79,41 @@ func NewINBusReservation() INBusReservation {
 }
 
 
+// Information describing a bus trip.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inbusreservation/bustrip
+func (i_ INBusReservation) BusTrip() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("busTrip"))
+	return rv
+}
+
+
+// SetBusTrip sets the value of the busTrip property.
+// Information describing a bus trip.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inbusreservation/bustrip
+func (i_ INBusReservation) SetBusTrip(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setBusTrip:"), value)
+}
+
+// Seat information for the bus reservation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inbusreservation/reservedseat
+func (i_ INBusReservation) ReservedSeat() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("reservedSeat"))
+	return rv
+}
+
+
+// SetReservedSeat sets the value of the reservedSeat property.
+// Seat information for the bus reservation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inbusreservation/reservedseat
+func (i_ INBusReservation) SetReservedSeat(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setReservedSeat:"), value)
+}
+
 
 

@@ -94,6 +94,24 @@ func NewVZVirtioGraphicsScanoutConfigurationWithWidthInPixelsHeightInPixels(widt
 }
 
 
+// The array of output devices.
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtiographicsdeviceconfiguration/scanouts
+func (v_ VZVirtioGraphicsScanoutConfiguration) Scanouts() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("scanouts"))
+	return rv
+}
+
+
+// SetScanouts sets the value of the scanouts property.
+// The array of output devices.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtiographicsdeviceconfiguration/scanouts
+func (v_ VZVirtioGraphicsScanoutConfiguration) SetScanouts(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setScanouts:"), value)
+}
+
 // An integer value that describes the height of the graphics device in pixels.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioGraphicsScanoutConfiguration/heightInPixels

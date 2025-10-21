@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -100,8 +101,8 @@ func (u_ UNNotificationContent) Attachments() []UNNotificationAttachment {
 // The number that your app’s icon displays.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationContent/badge
-func (u_ UNNotificationContent) Badge() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("badge"))
+func (u_ UNNotificationContent) Badge() foundation.Number {
+	rv := objc.Send[foundation.Number](u_.ID, objc.Sel("badge"))
 	return rv
 }
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MTRTestClusterClusterSimpleStructEchoRequestParams] class.
@@ -75,6 +76,51 @@ func NewMTRTestClusterClusterSimpleStructEchoRequestParams() MTRTestClusterClust
 	return getMTRTestClusterClusterSimpleStructEchoRequestParamsClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestructechorequestparams/timedinvoketimeoutms
+func (m_ MTRTestClusterClusterSimpleStructEchoRequestParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+	return rv
+}
+
+
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestructechorequestparams/timedinvoketimeoutms
+func (m_ MTRTestClusterClusterSimpleStructEchoRequestParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestructechorequestparams/serversideprocessingtimeout
+func (m_ MTRTestClusterClusterSimpleStructEchoRequestParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+	return rv
+}
+
+
+// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestructechorequestparams/serversideprocessingtimeout
+func (m_ MTRTestClusterClusterSimpleStructEchoRequestParams) SetServerSideProcessingTimeout(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestructechorequestparams/arg1
+func (m_ MTRTestClusterClusterSimpleStructEchoRequestParams) Arg1() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("arg1"))
+	return rv
+}
+
+
+// SetArg1 sets the value of the arg1 property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestructechorequestparams/arg1
+func (m_ MTRTestClusterClusterSimpleStructEchoRequestParams) SetArg1(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setArg1:"), value)
+}
 
 
 

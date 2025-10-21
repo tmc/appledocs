@@ -79,5 +79,41 @@ func NewCSoftmaxLayer() CSoftmaxLayer {
 }
 
 
+// The dimension over which you want to perform the softmax operation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcsoftmaxlayer/dimension
+func (c_ CSoftmaxLayer) Dimension() int {
+	rv := objc.Send[int](c_.ID, objc.Sel("dimension"))
+	return rv
+}
+
+
+// SetDimension sets the value of the dimension property.
+// The dimension over which you want to perform the softmax operation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcsoftmaxlayer/dimension
+func (c_ CSoftmaxLayer) SetDimension(value int) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setDimension:"), value)
+}
+
+// The softmax operation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcsoftmaxlayer/operation
+func (c_ CSoftmaxLayer) Operation() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("operation"))
+	return rv
+}
+
+
+// SetOperation sets the value of the operation property.
+// The softmax operation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcsoftmaxlayer/operation
+func (c_ CSoftmaxLayer) SetOperation(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setOperation:"), value)
+}
+
 
 

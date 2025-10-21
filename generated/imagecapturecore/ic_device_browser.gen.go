@@ -86,6 +86,105 @@ func (i_ ICDeviceBrowser) Start() {
 	objc.Send[objc.ID](i_.ID, objc.Sel("start"))
 }
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/icdevicebrowser/issuspended
+func (i_ ICDeviceBrowser) IsSuspended() bool {
+	rv := objc.Send[bool](i_.ID, objc.Sel("isSuspended"))
+	return rv
+}
+
+
+// SetIsSuspended sets the value of the isSuspended property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/icdevicebrowser/issuspended
+func (i_ ICDeviceBrowser) SetIsSuspended(value bool) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setIsSuspended:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/icdevicebrowser/contentsauthorizationstatus
+func (i_ ICDeviceBrowser) ContentsAuthorizationStatus() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("contentsAuthorizationStatus"))
+	return rv
+}
+
+
+// SetContentsAuthorizationStatus sets the value of the contentsAuthorizationStatus property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/icdevicebrowser/contentsauthorizationstatus
+func (i_ ICDeviceBrowser) SetContentsAuthorizationStatus(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setContentsAuthorizationStatus:"), value)
+}
+
+// A Boolean value indicating whether the device browser is browsing for devices.
+//
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/icdevicebrowser/isbrowsing
+func (i_ ICDeviceBrowser) IsBrowsing() bool {
+	rv := objc.Send[bool](i_.ID, objc.Sel("isBrowsing"))
+	return rv
+}
+
+
+// SetIsBrowsing sets the value of the isBrowsing property.
+// A Boolean value indicating whether the device browser is browsing for devices.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/icdevicebrowser/isbrowsing
+func (i_ ICDeviceBrowser) SetIsBrowsing(value bool) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setIsBrowsing:"), value)
+}
+
+// All devices found by the browser.
+//
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/icdevicebrowser/devices
+func (i_ ICDeviceBrowser) Devices() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("devices"))
+	return rv
+}
+
+
+// SetDevices sets the value of the devices property.
+// All devices found by the browser.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/icdevicebrowser/devices
+func (i_ ICDeviceBrowser) SetDevices(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setDevices:"), value)
+}
+
+// Returns a device object that the client application should select when it launches.
+//
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/icdevicebrowser/preferreddevice
+func (i_ ICDeviceBrowser) PreferredDevice() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("preferredDevice"))
+	return rv
+}
+
+
+// SetPreferredDevice sets the value of the preferredDevice property.
+// Returns a device object that the client application should select when it launches.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/icdevicebrowser/preferreddevice
+func (i_ ICDeviceBrowser) SetPreferredDevice(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setPreferredDevice:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/icdevicebrowser/controlauthorizationstatus
+func (i_ ICDeviceBrowser) ControlAuthorizationStatus() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("controlAuthorizationStatus"))
+	return rv
+}
+
+
+// SetControlAuthorizationStatus sets the value of the controlAuthorizationStatus property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/icdevicebrowser/controlauthorizationstatus
+func (i_ ICDeviceBrowser) SetControlAuthorizationStatus(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setControlAuthorizationStatus:"), value)
+}
+
 // A mask whose set bits indicate the type of devices being browsed after the delegate receives the start message.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ImageCaptureCore/ICDeviceBrowser/browsedDeviceTypeMask

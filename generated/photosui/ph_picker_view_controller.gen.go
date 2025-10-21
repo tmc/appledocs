@@ -143,6 +143,24 @@ func (p_ PHPickerViewController) ZoomOut() {
 	objc.Send[objc.ID](p_.ID, objc.Sel("zoomOut"))
 }
 
+// The opacity of the receiver. Animatable.
+//
+// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/opacity
+func (p_ PHPickerViewController) Opacity() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("opacity"))
+	return rv
+}
+
+
+// SetOpacity sets the value of the opacity property.
+// The opacity of the receiver. Animatable.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/opacity
+func (p_ PHPickerViewController) SetOpacity(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setOpacity:"), value)
+}
+
 // The configuration you specify when creating the picker.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerViewController/configuration-3vf53

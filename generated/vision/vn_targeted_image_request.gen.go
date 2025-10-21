@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [TargetedImageRequest] class.
@@ -86,7 +87,7 @@ func NewTargetedImageRequest() TargetedImageRequest {
 // Creates a new request targeting an image at the specified URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNTargetedImageRequest/initWithTargetedImageURL:options:
-func NewTargetedImageRequestWithTargetedImageURLOptions(imageURL unsafe.Pointer, options unsafe.Pointer) TargetedImageRequest {
+func NewTargetedImageRequestWithTargetedImageURLOptions(imageURL foundation.URL, options unsafe.Pointer) TargetedImageRequest {
 	instance := getTargetedImageRequestClass().Alloc()
 	rv := objc.Send[TargetedImageRequest](instance.ID, objc.Sel("initWithTargetedImageURL:options:"), imageURL, options)
 	rv.Autorelease()

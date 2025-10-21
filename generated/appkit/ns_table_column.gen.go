@@ -116,5 +116,221 @@ func (t_ TableColumn) SetEditable(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setEditable:"), value)
 }
 
+// The cell used to draw the table column’s header.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/headercell
+func (t_ TableColumn) HeaderCell() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("headerCell"))
+	return rv
+}
+
+
+// SetHeaderCell sets the value of the headerCell property.
+// The cell used to draw the table column’s header.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/headercell
+func (t_ TableColumn) SetHeaderCell(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setHeaderCell:"), value)
+}
+
+// The string that’s displayed in a help tag over the table column header.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/headertooltip
+func (t_ TableColumn) HeaderToolTip() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("headerToolTip"))
+	return rv
+}
+
+
+// SetHeaderToolTip sets the value of the headerToolTip property.
+// The string that’s displayed in a help tag over the table column header.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/headertooltip
+func (t_ TableColumn) SetHeaderToolTip(value string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setHeaderToolTip:"), objc.String(value))
+}
+
+// The identifier string for the table column.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/identifier
+func (t_ TableColumn) Identifier() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("identifier"))
+	return rv
+}
+
+
+// SetIdentifier sets the value of the identifier property.
+// The identifier string for the table column.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/identifier
+func (t_ TableColumn) SetIdentifier(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setIdentifier:"), value)
+}
+
+// A Boolean that indicates whether a cell-based table’s column cells are user editable.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/iseditable
+func (t_ TableColumn) IsEditable() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("isEditable"))
+	return rv
+}
+
+
+// SetIsEditable sets the value of the isEditable property.
+// A Boolean that indicates whether a cell-based table’s column cells are user editable.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/iseditable
+func (t_ TableColumn) SetIsEditable(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setIsEditable:"), value)
+}
+
+// A Boolean that indicates whether the table column is hidden.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/ishidden
+func (t_ TableColumn) IsHidden() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("isHidden"))
+	return rv
+}
+
+
+// SetIsHidden sets the value of the isHidden property.
+// A Boolean that indicates whether the table column is hidden.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/ishidden
+func (t_ TableColumn) SetIsHidden(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setIsHidden:"), value)
+}
+
+// The table column’s maximum width, in points.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/maxwidth
+func (t_ TableColumn) MaxWidth() float64 {
+	rv := objc.Send[float64](t_.ID, objc.Sel("maxWidth"))
+	return rv
+}
+
+
+// SetMaxWidth sets the value of the maxWidth property.
+// The table column’s maximum width, in points.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/maxwidth
+func (t_ TableColumn) SetMaxWidth(value float64) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setMaxWidth:"), value)
+}
+
+// The table column’s minimum width, in points.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/minwidth
+func (t_ TableColumn) MinWidth() float64 {
+	rv := objc.Send[float64](t_.ID, objc.Sel("minWidth"))
+	return rv
+}
+
+
+// SetMinWidth sets the value of the minWidth property.
+// The table column’s minimum width, in points.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/minwidth
+func (t_ TableColumn) SetMinWidth(value float64) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setMinWidth:"), value)
+}
+
+// The table column’s resizing mask.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/resizingmask
+func (t_ TableColumn) ResizingMask() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("resizingMask"))
+	return rv
+}
+
+
+// SetResizingMask sets the value of the resizingMask property.
+// The table column’s resizing mask.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/resizingmask
+func (t_ TableColumn) SetResizingMask(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setResizingMask:"), value)
+}
+
+// The table column’s sort descriptor prototype.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/sortdescriptorprototype
+func (t_ TableColumn) SortDescriptorPrototype() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("sortDescriptorPrototype"))
+	return rv
+}
+
+
+// SetSortDescriptorPrototype sets the value of the sortDescriptorPrototype property.
+// The table column’s sort descriptor prototype.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/sortdescriptorprototype
+func (t_ TableColumn) SetSortDescriptorPrototype(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setSortDescriptorPrototype:"), value)
+}
+
+// The table view that contains the table column.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/tableview
+func (t_ TableColumn) TableView() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("tableView"))
+	return rv
+}
+
+
+// SetTableView sets the value of the tableView property.
+// The table view that contains the table column.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/tableview
+func (t_ TableColumn) SetTableView(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setTableView:"), value)
+}
+
+// The title of the table column’s header.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/title
+func (t_ TableColumn) Title() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("title"))
+	return rv
+}
+
+
+// SetTitle sets the value of the title property.
+// The title of the table column’s header.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/title
+func (t_ TableColumn) SetTitle(value string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setTitle:"), objc.String(value))
+}
+
+// The table column’s width, in points.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/width
+func (t_ TableColumn) Width() float64 {
+	rv := objc.Send[float64](t_.ID, objc.Sel("width"))
+	return rv
+}
+
+
+// SetWidth sets the value of the width property.
+// The table column’s width, in points.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/width
+func (t_ TableColumn) SetWidth(value float64) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setWidth:"), value)
+}
+
 
 

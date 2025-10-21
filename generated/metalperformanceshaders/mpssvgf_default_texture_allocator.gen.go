@@ -82,5 +82,35 @@ func (s_ SVGFDefaultTextureAllocator) ReturnTexture(texture objc.ID) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("returnTexture:"), texture)
 }
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpssvgfdefaulttextureallocator/device
+func (s_ SVGFDefaultTextureAllocator) Device() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("device"))
+	return rv
+}
+
+
+// SetDevice sets the value of the device property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpssvgfdefaulttextureallocator/device
+func (s_ SVGFDefaultTextureAllocator) SetDevice(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setDevice:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpssvgfdefaulttextureallocator/allocatedtexturecount
+func (s_ SVGFDefaultTextureAllocator) AllocatedTextureCount() int {
+	rv := objc.Send[int](s_.ID, objc.Sel("allocatedTextureCount"))
+	return rv
+}
+
+
+// SetAllocatedTextureCount sets the value of the allocatedTextureCount property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpssvgfdefaulttextureallocator/allocatedtexturecount
+func (s_ SVGFDefaultTextureAllocator) SetAllocatedTextureCount(value int) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setAllocatedTextureCount:"), value)
+}
+
 
 

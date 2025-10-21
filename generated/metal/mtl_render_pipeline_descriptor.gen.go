@@ -88,6 +88,111 @@ func (r_ RenderPipelineDescriptor) Reset() {
 	objc.Send[objc.ID](r_.ID, objc.Sel("reset"))
 }
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlrenderpipelinedescriptor/vertexpreloadedlibraries
+func (r_ RenderPipelineDescriptor) VertexPreloadedLibraries() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("vertexPreloadedLibraries"))
+	return rv
+}
+
+
+// SetVertexPreloadedLibraries sets the value of the vertexPreloadedLibraries property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlrenderpipelinedescriptor/vertexpreloadedlibraries
+func (r_ RenderPipelineDescriptor) SetVertexPreloadedLibraries(value unsafe.Pointer) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setVertexPreloadedLibraries:"), value)
+}
+
+// A Boolean value that indicates whether to force alpha channel values for color attachments to the largest representable value.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlrenderpipelinedescriptor/isalphatooneenabled
+func (r_ RenderPipelineDescriptor) IsAlphaToOneEnabled() bool {
+	rv := objc.Send[bool](r_.ID, objc.Sel("isAlphaToOneEnabled"))
+	return rv
+}
+
+
+// SetIsAlphaToOneEnabled sets the value of the isAlphaToOneEnabled property.
+// A Boolean value that indicates whether to force alpha channel values for color attachments to the largest representable value.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlrenderpipelinedescriptor/isalphatooneenabled
+func (r_ RenderPipelineDescriptor) SetIsAlphaToOneEnabled(value bool) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setIsAlphaToOneEnabled:"), value)
+}
+
+// A Boolean value that indicates whether to read and use the alpha channel fragment output for color attachments to compute a sample coverage mask.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlrenderpipelinedescriptor/isalphatocoverageenabled
+func (r_ RenderPipelineDescriptor) IsAlphaToCoverageEnabled() bool {
+	rv := objc.Send[bool](r_.ID, objc.Sel("isAlphaToCoverageEnabled"))
+	return rv
+}
+
+
+// SetIsAlphaToCoverageEnabled sets the value of the isAlphaToCoverageEnabled property.
+// A Boolean value that indicates whether to read and use the alpha channel fragment output for color attachments to compute a sample coverage mask.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlrenderpipelinedescriptor/isalphatocoverageenabled
+func (r_ RenderPipelineDescriptor) SetIsAlphaToCoverageEnabled(value bool) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setIsAlphaToCoverageEnabled:"), value)
+}
+
+// The vertex function the pipeline calls to process vertices.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlrenderpipelinedescriptor/vertexfunction
+func (r_ RenderPipelineDescriptor) VertexFunction() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("vertexFunction"))
+	return rv
+}
+
+
+// SetVertexFunction sets the value of the vertexFunction property.
+// The vertex function the pipeline calls to process vertices.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlrenderpipelinedescriptor/vertexfunction
+func (r_ RenderPipelineDescriptor) SetVertexFunction(value unsafe.Pointer) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setVertexFunction:"), value)
+}
+
+// A Boolean value that determines whether the pipeline rasterizes primitives.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlrenderpipelinedescriptor/israsterizationenabled
+func (r_ RenderPipelineDescriptor) IsRasterizationEnabled() bool {
+	rv := objc.Send[bool](r_.ID, objc.Sel("isRasterizationEnabled"))
+	return rv
+}
+
+
+// SetIsRasterizationEnabled sets the value of the isRasterizationEnabled property.
+// A Boolean value that determines whether the pipeline rasterizes primitives.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlrenderpipelinedescriptor/israsterizationenabled
+func (r_ RenderPipelineDescriptor) SetIsRasterizationEnabled(value bool) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setIsRasterizationEnabled:"), value)
+}
+
+// A Boolean value that determines whether the pipeline scales the tessellation factor.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlrenderpipelinedescriptor/istessellationfactorscaleenabled
+func (r_ RenderPipelineDescriptor) IsTessellationFactorScaleEnabled() bool {
+	rv := objc.Send[bool](r_.ID, objc.Sel("isTessellationFactorScaleEnabled"))
+	return rv
+}
+
+
+// SetIsTessellationFactorScaleEnabled sets the value of the isTessellationFactorScaleEnabled property.
+// A Boolean value that determines whether the pipeline scales the tessellation factor.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlrenderpipelinedescriptor/istessellationfactorscaleenabled
+func (r_ RenderPipelineDescriptor) SetIsTessellationFactorScaleEnabled(value bool) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setIsTessellationFactorScaleEnabled:"), value)
+}
+
 // An array of binary archives to search for precompiled versions of the shader.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPipelineDescriptor/binaryArchives

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [SkipIntervalCommandEvent] class.
@@ -82,8 +83,8 @@ func NewSkipIntervalCommandEvent() SkipIntervalCommandEvent {
 // The chosen interval, in seconds, for the skip command event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPSkipIntervalCommandEvent/interval
-func (s_ SkipIntervalCommandEvent) Interval() TimeInterval {
-	rv := objc.Send[TimeInterval](s_.ID, objc.Sel("interval"))
+func (s_ SkipIntervalCommandEvent) Interval() foundation.TimeInterval {
+	rv := objc.Send[foundation.TimeInterval](s_.ID, objc.Sel("interval"))
 	return rv
 }
 

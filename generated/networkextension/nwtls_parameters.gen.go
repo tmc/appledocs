@@ -78,5 +78,77 @@ func NewNWTLSParameters() NWTLSParameters {
 }
 
 
+// The set of allowed cipher suites when negotiating TLS.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nwtlsparameters/sslciphersuites
+func (n_ NWTLSParameters) SslCipherSuites() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("sslCipherSuites"))
+	return rv
+}
+
+
+// SetSslCipherSuites sets the value of the sslCipherSuites property.
+// The set of allowed cipher suites when negotiating TLS.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nwtlsparameters/sslciphersuites
+func (n_ NWTLSParameters) SetSslCipherSuites(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setSslCipherSuites:"), value)
+}
+
+// The minimum allowed
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nwtlsparameters/minimumsslprotocolversion
+func (n_ NWTLSParameters) MinimumSSLProtocolVersion() int {
+	rv := objc.Send[int](n_.ID, objc.Sel("minimumSSLProtocolVersion"))
+	return rv
+}
+
+
+// SetMinimumSSLProtocolVersion sets the value of the minimumSSLProtocolVersion property.
+// The minimum allowed
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nwtlsparameters/minimumsslprotocolversion
+func (n_ NWTLSParameters) SetMinimumSSLProtocolVersion(value int) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setMinimumSSLProtocolVersion:"), value)
+}
+
+// The maximum allowed
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nwtlsparameters/maximumsslprotocolversion
+func (n_ NWTLSParameters) MaximumSSLProtocolVersion() int {
+	rv := objc.Send[int](n_.ID, objc.Sel("maximumSSLProtocolVersion"))
+	return rv
+}
+
+
+// SetMaximumSSLProtocolVersion sets the value of the maximumSSLProtocolVersion property.
+// The maximum allowed
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nwtlsparameters/maximumsslprotocolversion
+func (n_ NWTLSParameters) SetMaximumSSLProtocolVersion(value int) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setMaximumSSLProtocolVersion:"), value)
+}
+
+// The Session ID to use for the associated TCP connection.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nwtlsparameters/tlssessionid
+func (n_ NWTLSParameters) TlsSessionID() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("tlsSessionID"))
+	return rv
+}
+
+
+// SetTlsSessionID sets the value of the tlsSessionID property.
+// The Session ID to use for the associated TCP connection.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nwtlsparameters/tlssessionid
+func (n_ NWTLSParameters) SetTlsSessionID(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setTlsSessionID:"), value)
+}
+
 
 

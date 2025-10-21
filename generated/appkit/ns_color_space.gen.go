@@ -186,4 +186,112 @@ func (c_ ColorSpace) ExtendedSRGBColorSpace() unsafe.Pointer {
 	return rv
 }
 
+// The Core Graphics color-space object that represents a color space equivalent to the color space’s.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorspace/cgcolorspace
+func (c_ ColorSpace) CgColorSpace() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("cgColorSpace"))
+	return rv
+}
+
+
+// SetCgColorSpace sets the value of the cgColorSpace property.
+// The Core Graphics color-space object that represents a color space equivalent to the color space’s.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorspace/cgcolorspace
+func (c_ ColorSpace) SetCgColorSpace(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setCgColorSpace:"), value)
+}
+
+// The model on which the color space is based.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorspace/colorspacemodel
+func (c_ ColorSpace) ColorSpaceModel() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("colorSpaceModel"))
+	return rv
+}
+
+
+// SetColorSpaceModel sets the value of the colorSpaceModel property.
+// The model on which the color space is based.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorspace/colorspacemodel
+func (c_ ColorSpace) SetColorSpaceModel(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setColorSpaceModel:"), value)
+}
+
+// The ColorSync profile from which the color space was created.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorspace/colorsyncprofile
+func (c_ ColorSpace) ColorSyncProfile() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("colorSyncProfile"))
+	return rv
+}
+
+
+// SetColorSyncProfile sets the value of the colorSyncProfile property.
+// The ColorSync profile from which the color space was created.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorspace/colorsyncprofile
+func (c_ ColorSpace) SetColorSyncProfile(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setColorSyncProfile:"), value)
+}
+
+// The ICC profile data from which the color space was created.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorspace/iccprofiledata
+func (c_ ColorSpace) IccProfileData() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("iccProfileData"))
+	return rv
+}
+
+
+// SetIccProfileData sets the value of the iccProfileData property.
+// The ICC profile data from which the color space was created.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorspace/iccprofiledata
+func (c_ ColorSpace) SetIccProfileData(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIccProfileData:"), value)
+}
+
+// The localized name of the color space.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorspace/localizedname
+func (c_ ColorSpace) LocalizedName() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("localizedName"))
+	return rv
+}
+
+
+// SetLocalizedName sets the value of the localizedName property.
+// The localized name of the color space.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorspace/localizedname
+func (c_ ColorSpace) SetLocalizedName(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setLocalizedName:"), objc.String(value))
+}
+
+// The number of components, excluding alpha, the color space supports.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorspace/numberofcolorcomponents
+func (c_ ColorSpace) NumberOfColorComponents() int {
+	rv := objc.Send[int](c_.ID, objc.Sel("numberOfColorComponents"))
+	return rv
+}
+
+
+// SetNumberOfColorComponents sets the value of the numberOfColorComponents property.
+// The number of components, excluding alpha, the color space supports.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorspace/numberofcolorcomponents
+func (c_ ColorSpace) SetNumberOfColorComponents(value int) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setNumberOfColorComponents:"), value)
+}
+
 

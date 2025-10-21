@@ -80,5 +80,41 @@ func NewPHASEMetaParameter() PHASEMetaParameter {
 }
 
 
+// A unique name for the metaparameter.
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasemetaparameter/identifier
+func (p_ PHASEMetaParameter) Identifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("identifier"))
+	return rv
+}
+
+
+// SetIdentifier sets the value of the identifier property.
+// A unique name for the metaparameter.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasemetaparameter/identifier
+func (p_ PHASEMetaParameter) SetIdentifier(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+}
+
+// A value for the metaparameter.
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasemetaparameter/value
+func (p_ PHASEMetaParameter) Value() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("value"))
+	return rv
+}
+
+
+// SetValue sets the value of the value property.
+// A value for the metaparameter.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasemetaparameter/value
+func (p_ PHASEMetaParameter) SetValue(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setValue:"), value)
+}
+
 
 

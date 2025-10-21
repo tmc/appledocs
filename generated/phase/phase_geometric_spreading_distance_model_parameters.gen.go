@@ -81,6 +81,24 @@ func NewPHASEGeometricSpreadingDistanceModelParameters() PHASEGeometricSpreading
 }
 
 
+// An effect that changes sound as it carries over a distance.
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasespatialmixerdefinition/distancemodelparameters
+func (p_ PHASEGeometricSpreadingDistanceModelParameters) DistanceModelParameters() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("distanceModelParameters"))
+	return rv
+}
+
+
+// SetDistanceModelParameters sets the value of the distanceModelParameters property.
+// An effect that changes sound as it carries over a distance.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasespatialmixerdefinition/distancemodelparameters
+func (p_ PHASEGeometricSpreadingDistanceModelParameters) SetDistanceModelParameters(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setDistanceModelParameters:"), value)
+}
+
 // A value that fades specific frequencies over a distance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEGeometricSpreadingDistanceModelParameters/rolloffFactor

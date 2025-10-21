@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,126 @@ func NewMTRAdministratorCommissioningClusterOpenCommissioningWindowParams() MTRA
 	return getMTRAdministratorCommissioningClusterOpenCommissioningWindowParamsClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtradministratorcommissioningclusteropencommissioningwindowparams/discriminator
+func (m_ MTRAdministratorCommissioningClusterOpenCommissioningWindowParams) Discriminator() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("discriminator"))
+	return rv
+}
+
+
+// SetDiscriminator sets the value of the discriminator property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtradministratorcommissioningclusteropencommissioningwindowparams/discriminator
+func (m_ MTRAdministratorCommissioningClusterOpenCommissioningWindowParams) SetDiscriminator(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDiscriminator:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtradministratorcommissioningclusteropencommissioningwindowparams/iterations
+func (m_ MTRAdministratorCommissioningClusterOpenCommissioningWindowParams) Iterations() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("iterations"))
+	return rv
+}
+
+
+// SetIterations sets the value of the iterations property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtradministratorcommissioningclusteropencommissioningwindowparams/iterations
+func (m_ MTRAdministratorCommissioningClusterOpenCommissioningWindowParams) SetIterations(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIterations:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtradministratorcommissioningclusteropencommissioningwindowparams/timedinvoketimeoutms
+func (m_ MTRAdministratorCommissioningClusterOpenCommissioningWindowParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+	return rv
+}
+
+
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtradministratorcommissioningclusteropencommissioningwindowparams/timedinvoketimeoutms
+func (m_ MTRAdministratorCommissioningClusterOpenCommissioningWindowParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtradministratorcommissioningclusteropencommissioningwindowparams/pakeverifier
+func (m_ MTRAdministratorCommissioningClusterOpenCommissioningWindowParams) PakeVerifier() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("pakeVerifier"))
+	return rv
+}
+
+
+// SetPakeVerifier sets the value of the pakeVerifier property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtradministratorcommissioningclusteropencommissioningwindowparams/pakeverifier
+func (m_ MTRAdministratorCommissioningClusterOpenCommissioningWindowParams) SetPakeVerifier(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPakeVerifier:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtradministratorcommissioningclusteropencommissioningwindowparams/salt
+func (m_ MTRAdministratorCommissioningClusterOpenCommissioningWindowParams) Salt() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("salt"))
+	return rv
+}
+
+
+// SetSalt sets the value of the salt property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtradministratorcommissioningclusteropencommissioningwindowparams/salt
+func (m_ MTRAdministratorCommissioningClusterOpenCommissioningWindowParams) SetSalt(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSalt:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtradministratorcommissioningclusteropencommissioningwindowparams/commissioningtimeout
+func (m_ MTRAdministratorCommissioningClusterOpenCommissioningWindowParams) CommissioningTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("commissioningTimeout"))
+	return rv
+}
+
+
+// SetCommissioningTimeout sets the value of the commissioningTimeout property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtradministratorcommissioningclusteropencommissioningwindowparams/commissioningtimeout
+func (m_ MTRAdministratorCommissioningClusterOpenCommissioningWindowParams) SetCommissioningTimeout(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCommissioningTimeout:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtradministratorcommissioningclusteropencommissioningwindowparams/pakepasscodeverifier
+func (m_ MTRAdministratorCommissioningClusterOpenCommissioningWindowParams) PakePasscodeVerifier() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("pakePasscodeVerifier"))
+	return rv
+}
+
+
+// SetPakePasscodeVerifier sets the value of the pakePasscodeVerifier property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtradministratorcommissioningclusteropencommissioningwindowparams/pakepasscodeverifier
+func (m_ MTRAdministratorCommissioningClusterOpenCommissioningWindowParams) SetPakePasscodeVerifier(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPakePasscodeVerifier:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtradministratorcommissioningclusteropencommissioningwindowparams/serversideprocessingtimeout
+func (m_ MTRAdministratorCommissioningClusterOpenCommissioningWindowParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+	return rv
+}
+
+
+// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtradministratorcommissioningclusteropencommissioningwindowparams/serversideprocessingtimeout
+func (m_ MTRAdministratorCommissioningClusterOpenCommissioningWindowParams) SetServerSideProcessingTimeout(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
+}
 
 
 

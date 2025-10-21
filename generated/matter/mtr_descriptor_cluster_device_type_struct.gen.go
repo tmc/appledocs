@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,51 @@ func NewMTRDescriptorClusterDeviceTypeStruct() MTRDescriptorClusterDeviceTypeStr
 	return getMTRDescriptorClusterDeviceTypeStructClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdescriptorclusterdevicetypestruct/type
+func (m_ MTRDescriptorClusterDeviceTypeStruct) Type() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("type"))
+	return rv
+}
+
+
+// SetType sets the value of the type property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdescriptorclusterdevicetypestruct/type
+func (m_ MTRDescriptorClusterDeviceTypeStruct) SetType(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setType:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdescriptorclusterdevicetypestruct/devicetype
+func (m_ MTRDescriptorClusterDeviceTypeStruct) DeviceType() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("deviceType"))
+	return rv
+}
+
+
+// SetDeviceType sets the value of the deviceType property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdescriptorclusterdevicetypestruct/devicetype
+func (m_ MTRDescriptorClusterDeviceTypeStruct) SetDeviceType(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDeviceType:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdescriptorclusterdevicetypestruct/revision
+func (m_ MTRDescriptorClusterDeviceTypeStruct) Revision() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("revision"))
+	return rv
+}
+
+
+// SetRevision sets the value of the revision property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdescriptorclusterdevicetypestruct/revision
+func (m_ MTRDescriptorClusterDeviceTypeStruct) SetRevision(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setRevision:"), value)
+}
 
 
 

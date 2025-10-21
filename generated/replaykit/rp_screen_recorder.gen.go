@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,7 +32,7 @@ type _RPScreenRecorderClass struct {
 type IRPScreenRecorder interface {
 	objectivec.IObject
 	DiscardRecordingWithHandler(handler unsafe.Pointer)
-	ExportClipToURLDurationCompletionHandler(url unsafe.Pointer, duration TimeInterval, completionHandler func(error objc.ID))
+	ExportClipToURLDurationCompletionHandler(url foundation.URL, duration foundation.TimeInterval, completionHandler func(error objc.ID))
 	StartCaptureWithHandlerCompletionHandler(captureHandler unsafe.Pointer, completionHandler func(error objc.ID))
 	StartClipBufferingWithCompletionHandler(completionHandler unsafe.Pointer)
 	StartRecordingWithHandler(handler func(error objc.ID))
@@ -39,7 +40,7 @@ type IRPScreenRecorder interface {
 	StopCaptureWithHandler(handler func(error objc.ID))
 	StopClipBufferingWithCompletionHandler(completionHandler func(error objc.ID))
 	StopRecordingWithHandler(handler unsafe.Pointer)
-	StopRecordingWithOutputURLCompletionHandler(url unsafe.Pointer, completionHandler func(error objc.ID))
+	StopRecordingWithOutputURLCompletionHandler(url foundation.URL, completionHandler func(error objc.ID))
 }
 
 // The shared recorder object that provides the ability to record audio and video of your app.
@@ -109,7 +110,7 @@ func (r_ RPScreenRecorder) DiscardRecordingWithHandler(handler unsafe.Pointer) {
 // Exports a clip recording to a file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPScreenRecorder/exportClip(to:duration:completionHandler:)
-func (r_ RPScreenRecorder) ExportClipToURLDurationCompletionHandler(url unsafe.Pointer, duration TimeInterval, completionHandler func(error objc.ID)) {
+func (r_ RPScreenRecorder) ExportClipToURLDurationCompletionHandler(url foundation.URL, duration foundation.TimeInterval, completionHandler func(error objc.ID)) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("exportClipToURL:duration:completionHandler:"), url, duration, completionHandler)
 }
 
@@ -165,8 +166,80 @@ func (r_ RPScreenRecorder) StopRecordingWithHandler(handler unsafe.Pointer) {
 // Stops the current recording and writes the movie to the specified output URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPScreenRecorder/stopRecording(withOutput:completionHandler:)
-func (r_ RPScreenRecorder) StopRecordingWithOutputURLCompletionHandler(url unsafe.Pointer, completionHandler func(error objc.ID)) {
+func (r_ RPScreenRecorder) StopRecordingWithOutputURLCompletionHandler(url foundation.URL, completionHandler func(error objc.ID)) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("stopRecordingWithOutputURL:completionHandler:"), url, completionHandler)
+}
+
+// A Boolean value that indicates whether the camera is currently enabled.
+//
+// [Full Topic]: https://developer.apple.com/documentation/replaykit/rpscreenrecorder/iscameraenabled
+func (r_ RPScreenRecorder) IsCameraEnabled() bool {
+	rv := objc.Send[bool](r_.ID, objc.Sel("isCameraEnabled"))
+	return rv
+}
+
+
+// SetIsCameraEnabled sets the value of the isCameraEnabled property.
+// A Boolean value that indicates whether the camera is currently enabled.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/replaykit/rpscreenrecorder/iscameraenabled
+func (r_ RPScreenRecorder) SetIsCameraEnabled(value bool) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setIsCameraEnabled:"), value)
+}
+
+// A Boolean value that indicates whether the microphone is currently enabled.
+//
+// [Full Topic]: https://developer.apple.com/documentation/replaykit/rpscreenrecorder/ismicrophoneenabled
+func (r_ RPScreenRecorder) IsMicrophoneEnabled() bool {
+	rv := objc.Send[bool](r_.ID, objc.Sel("isMicrophoneEnabled"))
+	return rv
+}
+
+
+// SetIsMicrophoneEnabled sets the value of the isMicrophoneEnabled property.
+// A Boolean value that indicates whether the microphone is currently enabled.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/replaykit/rpscreenrecorder/ismicrophoneenabled
+func (r_ RPScreenRecorder) SetIsMicrophoneEnabled(value bool) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setIsMicrophoneEnabled:"), value)
+}
+
+// A Boolean value that indicates whether the app is currently recording.
+//
+// [Full Topic]: https://developer.apple.com/documentation/replaykit/rpscreenrecorder/isrecording
+func (r_ RPScreenRecorder) IsRecording() bool {
+	rv := objc.Send[bool](r_.ID, objc.Sel("isRecording"))
+	return rv
+}
+
+
+// SetIsRecording sets the value of the isRecording property.
+// A Boolean value that indicates whether the app is currently recording.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/replaykit/rpscreenrecorder/isrecording
+func (r_ RPScreenRecorder) SetIsRecording(value bool) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setIsRecording:"), value)
+}
+
+// A Boolean value that indicates whether the screen recorder is available for recording.
+//
+// [Full Topic]: https://developer.apple.com/documentation/replaykit/rpscreenrecorder/isavailable
+func (r_ RPScreenRecorder) IsAvailable() bool {
+	rv := objc.Send[bool](r_.ID, objc.Sel("isAvailable"))
+	return rv
+}
+
+
+// SetIsAvailable sets the value of the isAvailable property.
+// A Boolean value that indicates whether the screen recorder is available for recording.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/replaykit/rpscreenrecorder/isavailable
+func (r_ RPScreenRecorder) SetIsAvailable(value bool) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setIsAvailable:"), value)
 }
 
 // The camera position to use.

@@ -86,6 +86,24 @@ func (pc _PasswordCredentialClass) CredentialWithUserPassword(user string, passw
 	return rv
 }
 
+// The user for a password credential object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasswordcredential/user
+func (p_ PasswordCredential) User() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("user"))
+	return rv
+}
+
+
+// SetUser sets the value of the user property.
+// The user for a password credential object.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasswordcredential/user
+func (p_ PasswordCredential) SetUser(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setUser:"), objc.String(value))
+}
+
 // The password for a password credential object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASPasswordCredential/password

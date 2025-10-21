@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,8 +78,8 @@ func NewMTRThermostatClusterScheduleTypeStruct() MTRThermostatClusterScheduleTyp
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleTypeStruct/numberOfSchedules
-func (m_ MTRThermostatClusterScheduleTypeStruct) NumberOfSchedules() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("numberOfSchedules"))
+func (m_ MTRThermostatClusterScheduleTypeStruct) NumberOfSchedules() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("numberOfSchedules"))
 	return rv
 }
 
@@ -86,14 +87,14 @@ func (m_ MTRThermostatClusterScheduleTypeStruct) NumberOfSchedules() unsafe.Poin
 // SetNumberOfSchedules sets the value of the numberOfSchedules property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleTypeStruct/numberOfSchedules
-func (m_ MTRThermostatClusterScheduleTypeStruct) SetNumberOfSchedules(value unsafe.Pointer) {
+func (m_ MTRThermostatClusterScheduleTypeStruct) SetNumberOfSchedules(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNumberOfSchedules:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleTypeStruct/scheduleTypeFeatures
-func (m_ MTRThermostatClusterScheduleTypeStruct) ScheduleTypeFeatures() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("scheduleTypeFeatures"))
+func (m_ MTRThermostatClusterScheduleTypeStruct) ScheduleTypeFeatures() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("scheduleTypeFeatures"))
 	return rv
 }
 
@@ -101,14 +102,14 @@ func (m_ MTRThermostatClusterScheduleTypeStruct) ScheduleTypeFeatures() unsafe.P
 // SetScheduleTypeFeatures sets the value of the scheduleTypeFeatures property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleTypeStruct/scheduleTypeFeatures
-func (m_ MTRThermostatClusterScheduleTypeStruct) SetScheduleTypeFeatures(value unsafe.Pointer) {
+func (m_ MTRThermostatClusterScheduleTypeStruct) SetScheduleTypeFeatures(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setScheduleTypeFeatures:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleTypeStruct/systemMode
-func (m_ MTRThermostatClusterScheduleTypeStruct) SystemMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("systemMode"))
+func (m_ MTRThermostatClusterScheduleTypeStruct) SystemMode() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("systemMode"))
 	return rv
 }
 
@@ -116,7 +117,7 @@ func (m_ MTRThermostatClusterScheduleTypeStruct) SystemMode() unsafe.Pointer {
 // SetSystemMode sets the value of the systemMode property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleTypeStruct/systemMode
-func (m_ MTRThermostatClusterScheduleTypeStruct) SetSystemMode(value unsafe.Pointer) {
+func (m_ MTRThermostatClusterScheduleTypeStruct) SetSystemMode(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSystemMode:"), value)
 }
 

@@ -184,5 +184,59 @@ func (p_ Pasteboard) PasteboardItems() []PasteboardItem {
 	return rv
 }
 
+// The receiver’s change count.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspasteboard/changecount
+func (p_ Pasteboard) ChangeCount() int {
+	rv := objc.Send[int](p_.ID, objc.Sel("changeCount"))
+	return rv
+}
+
+
+// SetChangeCount sets the value of the changeCount property.
+// The receiver’s change count.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspasteboard/changecount
+func (p_ Pasteboard) SetChangeCount(value int) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setChangeCount:"), value)
+}
+
+// The receiver’s name.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspasteboard/name-swift.property
+func (p_ Pasteboard) Name() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("name"))
+	return rv
+}
+
+
+// SetName sets the value of the name property.
+// The receiver’s name.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspasteboard/name-swift.property
+func (p_ Pasteboard) SetName(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setName:"), value)
+}
+
+// An array of the receiver’s supported data types.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspasteboard/types
+func (p_ Pasteboard) Types() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("types"))
+	return rv
+}
+
+
+// SetTypes sets the value of the types property.
+// An array of the receiver’s supported data types.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspasteboard/types
+func (p_ Pasteboard) SetTypes(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setTypes:"), value)
+}
+
 
 

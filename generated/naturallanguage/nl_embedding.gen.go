@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -41,7 +42,7 @@ type IEmbedding interface {
 	NeighborsForStringMaximumCountMaximumDistanceDistanceType(string_ string, maxCount uint, maxDistance unsafe.Pointer, distanceType unsafe.Pointer) []string
 	NeighborsForVectorMaximumCountDistanceType(vector unsafe.Pointer, maxCount uint, distanceType unsafe.Pointer) []string
 	NeighborsForVectorMaximumCountMaximumDistanceDistanceType(vector unsafe.Pointer, maxCount uint, maxDistance unsafe.Pointer, distanceType unsafe.Pointer) []string
-	VectorForString(string_ string) []NSNumber
+	VectorForString(string_ string) []foundation.Number
 }
 
 // A map of strings to vectors, which locates neighboring, similar strings.
@@ -97,7 +98,7 @@ func NewEmbedding() Embedding {
 // Creates a word embedding from a model file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLEmbedding/init(contentsOf:)
-func NewEmbeddingWithContentsOfURLError(url unsafe.Pointer, error_ unsafe.Pointer) Embedding {
+func NewEmbeddingWithContentsOfURLError(url foundation.URL, error_ unsafe.Pointer) Embedding {
 	rv := objc.Send[Embedding](objc.ID(getEmbeddingClass().class), objc.Sel("embeddingWithContentsOfURL:error:"), url, error_)
 	return rv
 }
@@ -122,7 +123,7 @@ func (ec _EmbeddingClass) CurrentSentenceEmbeddingRevisionForLanguage(language u
 // Creates a word embedding from a model file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLEmbedding/init(contentsOf:)
-func (ec _EmbeddingClass) EmbeddingWithContentsOfURLError(url unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func (ec _EmbeddingClass) EmbeddingWithContentsOfURLError(url foundation.URL, error_ unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ec.class), objc.Sel("embeddingWithContentsOfURL:error:"), url, error_)
 	return rv
 }
@@ -178,7 +179,7 @@ func (ec _EmbeddingClass) WordEmbeddingForLanguageRevision(language unsafe.Point
 // Exports the word embedding contained within a Core ML model file at the given URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLEmbedding/writeEmbeddingForDictionary:language:revision:toURL:error:
-func (ec _EmbeddingClass) WriteEmbeddingForDictionaryLanguageRevisionToURLError(dictionary unsafe.Pointer, language unsafe.Pointer, revision uint, url unsafe.Pointer, error_ unsafe.Pointer) bool {
+func (ec _EmbeddingClass) WriteEmbeddingForDictionaryLanguageRevisionToURLError(dictionary unsafe.Pointer, language unsafe.Pointer, revision uint, url foundation.URL, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](objc.ID(ec.class), objc.Sel("writeEmbeddingForDictionary:language:revision:toURL:error:"), dictionary, language, revision, url, error_)
 	return rv
 }
@@ -270,8 +271,8 @@ func (e_ Embedding) NeighborsForVectorMaximumCountMaximumDistanceDistanceType(ve
 // Requests the vector for the given term.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLEmbedding/vectorForString:
-func (e_ Embedding) VectorForString(string_ string) []NSNumber {
-	rv := objc.Send[[]NSNumber](e_.ID, objc.Sel("vectorForString:"), objc.String(string_))
+func (e_ Embedding) VectorForString(string_ string) []foundation.Number {
+	rv := objc.Send[[]foundation.Number](e_.ID, objc.Sel("vectorForString:"), objc.String(string_))
 	return rv
 }
 

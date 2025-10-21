@@ -88,5 +88,77 @@ func (g_ GlyphInfo) CharacterIdentifier() uint {
 	return rv
 }
 
+// The string containing the character represented by the glyph.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsglyphinfo/basestring
+func (g_ GlyphInfo) BaseString() string {
+	rv := objc.Send[string](g_.ID, objc.Sel("baseString"))
+	return rv
+}
+
+
+// SetBaseString sets the value of the baseString property.
+// The string containing the character represented by the glyph.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsglyphinfo/basestring
+func (g_ GlyphInfo) SetBaseString(value string) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setBaseString:"), objc.String(value))
+}
+
+// A value specifying the glyph–to–character identifier mapping of the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsglyphinfo/charactercollection
+func (g_ GlyphInfo) CharacterCollection() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("characterCollection"))
+	return rv
+}
+
+
+// SetCharacterCollection sets the value of the characterCollection property.
+// A value specifying the glyph–to–character identifier mapping of the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsglyphinfo/charactercollection
+func (g_ GlyphInfo) SetCharacterCollection(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setCharacterCollection:"), value)
+}
+
+// The glyph identifier, specified as the index into the internal glyph table of the font.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsglyphinfo/glyphid
+func (g_ GlyphInfo) GlyphID() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("glyphID"))
+	return rv
+}
+
+
+// SetGlyphID sets the value of the glyphID property.
+// The glyph identifier, specified as the index into the internal glyph table of the font.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsglyphinfo/glyphid
+func (g_ GlyphInfo) SetGlyphID(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setGlyphID:"), value)
+}
+
+// The receiver’s glyph name.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsglyphinfo/glyphname
+func (g_ GlyphInfo) GlyphName() string {
+	rv := objc.Send[string](g_.ID, objc.Sel("glyphName"))
+	return rv
+}
+
+
+// SetGlyphName sets the value of the glyphName property.
+// The receiver’s glyph name.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsglyphinfo/glyphname
+func (g_ GlyphInfo) SetGlyphName(value string) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setGlyphName:"), objc.String(value))
+}
+
 
 

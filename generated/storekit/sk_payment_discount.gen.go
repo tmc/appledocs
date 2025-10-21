@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -85,13 +86,31 @@ func NewPaymentDiscount() PaymentDiscount {
 // Initializes the payment discount with a signature and the parameters used by the signature.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKPaymentDiscount/init(identifier:keyIdentifier:nonce:signature:timestamp:)
-func NewPaymentDiscountWithIdentifierKeyIdentifierNonceSignatureTimestamp(identifier string, keyIdentifier string, nonce unsafe.Pointer, signature string, timestamp unsafe.Pointer) PaymentDiscount {
+func NewPaymentDiscountWithIdentifierKeyIdentifierNonceSignatureTimestamp(identifier string, keyIdentifier string, nonce unsafe.Pointer, signature string, timestamp foundation.Number) PaymentDiscount {
 	instance := getPaymentDiscountClass().Alloc()
 	rv := objc.Send[PaymentDiscount](instance.ID, objc.Sel("initWithIdentifier:keyIdentifier:nonce:signature:timestamp:"), objc.String(identifier), objc.String(keyIdentifier), nonce, objc.String(signature), timestamp)
 	rv.Autorelease()
 	return rv
 }
 
+
+// The details of the discount offer to apply to the payment.
+//
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skpayment/paymentdiscount
+func (p_ PaymentDiscount) PaymentDiscount() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("paymentDiscount"))
+	return rv
+}
+
+
+// SetPaymentDiscount sets the value of the paymentDiscount property.
+// The details of the discount offer to apply to the payment.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skpayment/paymentdiscount
+func (p_ PaymentDiscount) SetPaymentDiscount(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPaymentDiscount:"), value)
+}
 
 // A string used to uniquely identify a discount offer for a product.
 //
@@ -128,8 +147,8 @@ func (p_ PaymentDiscount) Signature() string {
 // The date and time of the signature’s creation in milliseconds, formatted in Unix epoch time.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKPaymentDiscount/timestamp
-func (p_ PaymentDiscount) Timestamp() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("timestamp"))
+func (p_ PaymentDiscount) Timestamp() foundation.Number {
+	rv := objc.Send[foundation.Number](p_.ID, objc.Sel("timestamp"))
 	return rv
 }
 

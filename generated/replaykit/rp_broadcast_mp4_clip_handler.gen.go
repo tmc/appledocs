@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [RPBroadcastMP4ClipHandler] class.
@@ -30,7 +31,7 @@ type _RPBroadcastMP4ClipHandlerClass struct {
 type IRPBroadcastMP4ClipHandler interface {
 	IRPBroadcastHandler
 	FinishedProcessingMP4ClipWithUpdatedBroadcastConfigurationError(broadcastConfiguration unsafe.Pointer, error_ unsafe.Pointer)
-	ProcessMP4ClipWithURLSetupInfoFinished(mp4ClipURL unsafe.Pointer, setupInfo unsafe.Pointer, finished bool)
+	ProcessMP4ClipWithURLSetupInfoFinished(mp4ClipURL foundation.URL, setupInfo unsafe.Pointer, finished bool)
 }
 
 // An object that processes MP4 movie clips from ReplayKit.
@@ -93,7 +94,7 @@ func (r_ RPBroadcastMP4ClipHandler) FinishedProcessingMP4ClipWithUpdatedBroadcas
 // Processes MP4 movie clips for a live broadcast.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPBroadcastMP4ClipHandler/processMP4Clip(with:setupInfo:finished:)
-func (r_ RPBroadcastMP4ClipHandler) ProcessMP4ClipWithURLSetupInfoFinished(mp4ClipURL unsafe.Pointer, setupInfo unsafe.Pointer, finished bool) {
+func (r_ RPBroadcastMP4ClipHandler) ProcessMP4ClipWithURLSetupInfoFinished(mp4ClipURL foundation.URL, setupInfo unsafe.Pointer, finished bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("processMP4ClipWithURL:setupInfo:finished:"), mp4ClipURL, setupInfo, finished)
 }
 

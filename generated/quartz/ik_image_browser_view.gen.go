@@ -109,5 +109,41 @@ func (i_ IKImageBrowserView) SetDropIndexDropOperation(index int, operation unsa
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDropIndex:dropOperation:"), index, operation)
 }
 
+// Returns the delegate of the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartz/ikimagebrowserview/delegate
+func (i_ IKImageBrowserView) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+
+// SetDelegate sets the value of the delegate property.
+// Returns the delegate of the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartz/ikimagebrowserview/delegate
+func (i_ IKImageBrowserView) SetDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setDelegate:"), value)
+}
+
+// Returns the data source of the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartz/ikimagebrowserview/datasource
+func (i_ IKImageBrowserView) DataSource() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("dataSource"))
+	return rv
+}
+
+
+// SetDataSource sets the value of the dataSource property.
+// Returns the data source of the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartz/ikimagebrowserview/datasource
+func (i_ IKImageBrowserView) SetDataSource(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setDataSource:"), value)
+}
+
 
 

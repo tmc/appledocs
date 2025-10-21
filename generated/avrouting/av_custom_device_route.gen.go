@@ -80,6 +80,42 @@ func NewCustomDeviceRoute() CustomDeviceRoute {
 }
 
 
+// A reason for an event, such as a user request to activate or deactivate a route.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avrouting/avcustomroutingevent/reason
+func (c_ CustomDeviceRoute) Reason() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("reason"))
+	return rv
+}
+
+
+// SetReason sets the value of the reason property.
+// A reason for an event, such as a user request to activate or deactivate a route.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avrouting/avcustomroutingevent/reason
+func (c_ CustomDeviceRoute) SetReason(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setReason:"), value)
+}
+
+// A route for the event.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avrouting/avcustomroutingevent/route
+func (c_ CustomDeviceRoute) Route() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("route"))
+	return rv
+}
+
+
+// SetRoute sets the value of the route property.
+// A route for the event.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avrouting/avcustomroutingevent/route
+func (c_ CustomDeviceRoute) SetRoute(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setRoute:"), value)
+}
+
 // An identifier to use to establish a connection to a Bluetooth device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVCustomDeviceRoute/bluetoothIdentifier

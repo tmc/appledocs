@@ -80,5 +80,77 @@ func NewCollectionLayoutEdgeSpacing() CollectionLayoutEdgeSpacing {
 }
 
 
+// The bottom edge spacing value.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionlayoutedgespacing/bottom
+func (c_ CollectionLayoutEdgeSpacing) Bottom() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("bottom"))
+	return rv
+}
+
+
+// SetBottom sets the value of the bottom property.
+// The bottom edge spacing value.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionlayoutedgespacing/bottom
+func (c_ CollectionLayoutEdgeSpacing) SetBottom(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setBottom:"), value)
+}
+
+// The leading edge spacing value.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionlayoutedgespacing/leading
+func (c_ CollectionLayoutEdgeSpacing) Leading() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("leading"))
+	return rv
+}
+
+
+// SetLeading sets the value of the leading property.
+// The leading edge spacing value.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionlayoutedgespacing/leading
+func (c_ CollectionLayoutEdgeSpacing) SetLeading(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setLeading:"), value)
+}
+
+// The top edge spacing value.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionlayoutedgespacing/top
+func (c_ CollectionLayoutEdgeSpacing) Top() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("top"))
+	return rv
+}
+
+
+// SetTop sets the value of the top property.
+// The top edge spacing value.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionlayoutedgespacing/top
+func (c_ CollectionLayoutEdgeSpacing) SetTop(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setTop:"), value)
+}
+
+// The trailing edge spacing value.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionlayoutedgespacing/trailing
+func (c_ CollectionLayoutEdgeSpacing) Trailing() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("trailing"))
+	return rv
+}
+
+
+// SetTrailing sets the value of the trailing property.
+// The trailing edge spacing value.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionlayoutedgespacing/trailing
+func (c_ CollectionLayoutEdgeSpacing) SetTrailing(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setTrailing:"), value)
+}
+
 
 

@@ -81,5 +81,23 @@ func NewMKMultiPolyline() MKMultiPolyline {
 }
 
 
+// An array containing the polyline objects that make up the multipolyline object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmultipolyline/polylines
+func (m_ MKMultiPolyline) Polylines() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("polylines"))
+	return rv
+}
+
+
+// SetPolylines sets the value of the polylines property.
+// An array containing the polyline objects that make up the multipolyline object.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmultipolyline/polylines
+func (m_ MKMultiPolyline) SetPolylines(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPolylines:"), value)
+}
+
 
 

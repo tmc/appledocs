@@ -81,5 +81,13 @@ func NewHKWorkoutRoute() HKWorkoutRoute {
 }
 
 
+// A series sample containing location data that defines the route the user took during a workout.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutroutetypeidentifier
+func (h_ HKWorkoutRoute) HKWorkoutRouteTypeIdentifier() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("HKWorkoutRouteTypeIdentifier"))
+	return rv
+}
+
 
 

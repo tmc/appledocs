@@ -106,5 +106,59 @@ func (p_ PrintPanel) PrintInfo() unsafe.Pointer {
 	return rv
 }
 
+// The array of controller objects that manage the Print panel’s accessory views.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintpanel/accessorycontrollers
+func (p_ PrintPanel) AccessoryControllers() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("accessoryControllers"))
+	return rv
+}
+
+
+// SetAccessoryControllers sets the value of the accessoryControllers property.
+// The array of controller objects that manage the Print panel’s accessory views.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintpanel/accessorycontrollers
+func (p_ PrintPanel) SetAccessoryControllers(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setAccessoryControllers:"), value)
+}
+
+// The HTML help anchor associated with the Print panel.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintpanel/helpanchor
+func (p_ PrintPanel) HelpAnchor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("helpAnchor"))
+	return rv
+}
+
+
+// SetHelpAnchor sets the value of the helpAnchor property.
+// The HTML help anchor associated with the Print panel.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintpanel/helpanchor
+func (p_ PrintPanel) SetHelpAnchor(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setHelpAnchor:"), value)
+}
+
+// The current configuration options for the Print panel.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintpanel/options-swift.property
+func (p_ PrintPanel) Options() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("options"))
+	return rv
+}
+
+
+// SetOptions sets the value of the options property.
+// The current configuration options for the Print panel.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintpanel/options-swift.property
+func (p_ PrintPanel) SetOptions(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setOptions:"), value)
+}
+
 
 

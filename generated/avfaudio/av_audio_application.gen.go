@@ -121,6 +121,24 @@ func (a_ AudioApplication) SetInputMutedError(muted bool, outError unsafe.Pointe
 
 // A Boolean value that indicates whether the app’s audio input is in a muted state.
 //
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioapplication/isinputmuted
+func (a_ AudioApplication) IsInputMuted() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("isInputMuted"))
+	return rv
+}
+
+
+// SetIsInputMuted sets the value of the isInputMuted property.
+// A Boolean value that indicates whether the app’s audio input is in a muted state.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioapplication/isinputmuted
+func (a_ AudioApplication) SetIsInputMuted(value bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setIsInputMuted:"), value)
+}
+
+// A Boolean value that indicates whether the app’s audio input is in a muted state.
+//
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioApplication/isInputMuted
 func (a_ AudioApplication) InputMuted() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("inputMuted"))

@@ -19,14 +19,3 @@ type CFStringRef unsafe.Pointer
 
 
 
-// Fallback type aliases for undefined types
-// These types are referenced in method signatures but not fully documented.
-// Using unsafe.Pointer as fallback to allow code generation.
-type Boolean unsafe.Pointer
-
-type CFErrorRef unsafe.Pointer
-
-type NSError unsafe.Pointer
-
-
-

@@ -81,5 +81,95 @@ func NewPHASEPushStreamNode() PHASEPushStreamNode {
 }
 
 
+// A meta parameter for dynamic rate control.
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasepushstreamnode/ratemetaparameter
+func (p_ PHASEPushStreamNode) RateMetaParameter() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("rateMetaParameter"))
+	return rv
+}
+
+
+// SetRateMetaParameter sets the value of the rateMetaParameter property.
+// A meta parameter for dynamic rate control.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasepushstreamnode/ratemetaparameter
+func (p_ PHASEPushStreamNode) SetRateMetaParameter(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setRateMetaParameter:"), value)
+}
+
+// A meta parameter for dynamic loudness control.
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasepushstreamnode/gainmetaparameter
+func (p_ PHASEPushStreamNode) GainMetaParameter() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("gainMetaParameter"))
+	return rv
+}
+
+
+// SetGainMetaParameter sets the value of the gainMetaParameter property.
+// A meta parameter for dynamic loudness control.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasepushstreamnode/gainmetaparameter
+func (p_ PHASEPushStreamNode) SetGainMetaParameter(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setGainMetaParameter:"), value)
+}
+
+// A collection of audio streams for playback.
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasesoundevent/pushstreamnodes
+func (p_ PHASEPushStreamNode) PushStreamNodes() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("pushStreamNodes"))
+	return rv
+}
+
+
+// SetPushStreamNodes sets the value of the pushStreamNodes property.
+// A collection of audio streams for playback.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasesoundevent/pushstreamnodes
+func (p_ PHASEPushStreamNode) SetPushStreamNodes(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPushStreamNodes:"), objc.String(value))
+}
+
+// The audio stream’s output pipeline.
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasepushstreamnode/mixer
+func (p_ PHASEPushStreamNode) Mixer() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("mixer"))
+	return rv
+}
+
+
+// SetMixer sets the value of the mixer property.
+// The audio stream’s output pipeline.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasepushstreamnode/mixer
+func (p_ PHASEPushStreamNode) SetMixer(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setMixer:"), value)
+}
+
+// The format of the audio stream data.
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasepushstreamnode/format
+func (p_ PHASEPushStreamNode) Format() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("format"))
+	return rv
+}
+
+
+// SetFormat sets the value of the format property.
+// The format of the audio stream data.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasepushstreamnode/format
+func (p_ PHASEPushStreamNode) SetFormat(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setFormat:"), value)
+}
+
 
 

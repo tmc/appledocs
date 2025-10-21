@@ -87,6 +87,24 @@ func (gc _GCMouseClass) Current() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(gc.class), objc.Sel("current"))
 	return rv
 }
+// The controller profile for the mouse device.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmouse/mouseinput
+func (g_ GCMouse) MouseInput() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("mouseInput"))
+	return rv
+}
+
+
+// SetMouseInput sets the value of the mouseInput property.
+// The controller profile for the mouse device.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmouse/mouseinput
+func (g_ GCMouse) SetMouseInput(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setMouseInput:"), value)
+}
+
 // The most recent mouse that the user connects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCMouse/current

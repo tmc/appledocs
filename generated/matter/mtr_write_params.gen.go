@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,36 @@ func NewMTRWriteParams() MTRWriteParams {
 	return getMTRWriteParamsClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrwriteparams/dataversion
+func (m_ MTRWriteParams) DataVersion() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("dataVersion"))
+	return rv
+}
+
+
+// SetDataVersion sets the value of the dataVersion property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrwriteparams/dataversion
+func (m_ MTRWriteParams) SetDataVersion(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDataVersion:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrwriteparams/timedwritetimeout
+func (m_ MTRWriteParams) TimedWriteTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedWriteTimeout"))
+	return rv
+}
+
+
+// SetTimedWriteTimeout sets the value of the timedWriteTimeout property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrwriteparams/timedwritetimeout
+func (m_ MTRWriteParams) SetTimedWriteTimeout(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedWriteTimeout:"), value)
+}
 
 
 

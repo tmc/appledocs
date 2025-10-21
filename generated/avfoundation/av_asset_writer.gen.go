@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -182,8 +183,8 @@ func (a_ AssetWriter) SetDelegate(value objc.ID) {
 // A directory to contain temporary files that the export process generates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/directoryForTemporaryFiles
-func (a_ AssetWriter) DirectoryForTemporaryFiles() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("directoryForTemporaryFiles"))
+func (a_ AssetWriter) DirectoryForTemporaryFiles() foundation.URL {
+	rv := objc.Send[foundation.URL](a_.ID, objc.Sel("directoryForTemporaryFiles"))
 	return rv
 }
 
@@ -193,7 +194,7 @@ func (a_ AssetWriter) DirectoryForTemporaryFiles() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/directoryForTemporaryFiles
-func (a_ AssetWriter) SetDirectoryForTemporaryFiles(value unsafe.Pointer) {
+func (a_ AssetWriter) SetDirectoryForTemporaryFiles(value foundation.URL) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDirectoryForTemporaryFiles:"), value)
 }
 
@@ -298,8 +299,8 @@ func (a_ AssetWriter) OutputFileType() unsafe.Pointer {
 // The location of the container file that the writer outputs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/outputURL
-func (a_ AssetWriter) OutputURL() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("outputURL"))
+func (a_ AssetWriter) OutputURL() foundation.URL {
+	rv := objc.Send[foundation.URL](a_.ID, objc.Sel("outputURL"))
 	return rv
 }
 
@@ -363,6 +364,114 @@ func (a_ AssetWriter) SetShouldOptimizeForNetworkUse(value bool) {
 func (a_ AssetWriter) Status() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("status"))
 	return rv
+}
+
+// The interval at which to write the initial movie fragment.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriter/initialmoviefragmentinterval
+func (a_ AssetWriter) InitialMovieFragmentInterval() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("initialMovieFragmentInterval"))
+	return rv
+}
+
+
+// SetInitialMovieFragmentInterval sets the value of the initialMovieFragmentInterval property.
+// The interval at which to write the initial movie fragment.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriter/initialmoviefragmentinterval
+func (a_ AssetWriter) SetInitialMovieFragmentInterval(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setInitialMovieFragmentInterval:"), value)
+}
+
+// The sequence number of the initial movie fragment.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriter/initialmoviefragmentsequencenumber
+func (a_ AssetWriter) InitialMovieFragmentSequenceNumber() int {
+	rv := objc.Send[int](a_.ID, objc.Sel("initialMovieFragmentSequenceNumber"))
+	return rv
+}
+
+
+// SetInitialMovieFragmentSequenceNumber sets the value of the initialMovieFragmentSequenceNumber property.
+// The sequence number of the initial movie fragment.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriter/initialmoviefragmentsequencenumber
+func (a_ AssetWriter) SetInitialMovieFragmentSequenceNumber(value int) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setInitialMovieFragmentSequenceNumber:"), value)
+}
+
+// The input groups an asset writer contains.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriter/inputgroups
+func (a_ AssetWriter) InputGroups() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("inputGroups"))
+	return rv
+}
+
+
+// SetInputGroups sets the value of the inputGroups property.
+// The input groups an asset writer contains.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriter/inputgroups
+func (a_ AssetWriter) SetInputGroups(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setInputGroups:"), value)
+}
+
+// The inputs an asset writer contains.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriter/inputs
+func (a_ AssetWriter) Inputs() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("inputs"))
+	return rv
+}
+
+
+// SetInputs sets the value of the inputs property.
+// The inputs an asset writer contains.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriter/inputs
+func (a_ AssetWriter) SetInputs(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setInputs:"), value)
+}
+
+// A profile for the output file type.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriter/outputfiletypeprofile
+func (a_ AssetWriter) OutputFileTypeProfile() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("outputFileTypeProfile"))
+	return rv
+}
+
+
+// SetOutputFileTypeProfile sets the value of the outputFileTypeProfile property.
+// A profile for the output file type.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriter/outputfiletypeprofile
+func (a_ AssetWriter) SetOutputFileTypeProfile(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setOutputFileTypeProfile:"), value)
+}
+
+// A hint of the final duration of the output file.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriter/overalldurationhint
+func (a_ AssetWriter) OverallDurationHint() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("overallDurationHint"))
+	return rv
+}
+
+
+// SetOverallDurationHint sets the value of the overallDurationHint property.
+// A hint of the final duration of the output file.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriter/overalldurationhint
+func (a_ AssetWriter) SetOverallDurationHint(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setOverallDurationHint:"), value)
 }
 
 

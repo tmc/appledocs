@@ -79,5 +79,110 @@ func NewButtonTouchBarItem() ButtonTouchBarItem {
 }
 
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbuttontouchbaritem/action
+func (b_ ButtonTouchBarItem) Action() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("action"))
+	return rv
+}
+
+
+// SetAction sets the value of the action property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbuttontouchbaritem/action
+func (b_ ButtonTouchBarItem) SetAction(value unsafe.Pointer) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setAction:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbuttontouchbaritem/bezelcolor
+func (b_ ButtonTouchBarItem) BezelColor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("bezelColor"))
+	return rv
+}
+
+
+// SetBezelColor sets the value of the bezelColor property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbuttontouchbaritem/bezelcolor
+func (b_ ButtonTouchBarItem) SetBezelColor(value unsafe.Pointer) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setBezelColor:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbuttontouchbaritem/customizationlabel
+func (b_ ButtonTouchBarItem) CustomizationLabel() string {
+	rv := objc.Send[string](b_.ID, objc.Sel("customizationLabel"))
+	return rv
+}
+
+
+// SetCustomizationLabel sets the value of the customizationLabel property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbuttontouchbaritem/customizationlabel
+func (b_ ButtonTouchBarItem) SetCustomizationLabel(value string) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setCustomizationLabel:"), objc.String(value))
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbuttontouchbaritem/image
+func (b_ ButtonTouchBarItem) Image() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("image"))
+	return rv
+}
+
+
+// SetImage sets the value of the image property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbuttontouchbaritem/image
+func (b_ ButtonTouchBarItem) SetImage(value unsafe.Pointer) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setImage:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbuttontouchbaritem/isenabled
+func (b_ ButtonTouchBarItem) IsEnabled() bool {
+	rv := objc.Send[bool](b_.ID, objc.Sel("isEnabled"))
+	return rv
+}
+
+
+// SetIsEnabled sets the value of the isEnabled property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbuttontouchbaritem/isenabled
+func (b_ ButtonTouchBarItem) SetIsEnabled(value bool) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setIsEnabled:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbuttontouchbaritem/target
+func (b_ ButtonTouchBarItem) Target() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("target"))
+	return rv
+}
+
+
+// SetTarget sets the value of the target property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbuttontouchbaritem/target
+func (b_ ButtonTouchBarItem) SetTarget(value unsafe.Pointer) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setTarget:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbuttontouchbaritem/title
+func (b_ ButtonTouchBarItem) Title() string {
+	rv := objc.Send[string](b_.ID, objc.Sel("title"))
+	return rv
+}
+
+
+// SetTitle sets the value of the title property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbuttontouchbaritem/title
+func (b_ ButtonTouchBarItem) SetTitle(value string) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setTitle:"), objc.String(value))
+}
+
 
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,51 @@ func NewMTRGroupKeyManagementClusterGroupKeyMapStruct() MTRGroupKeyManagementClu
 	return getMTRGroupKeyManagementClusterGroupKeyMapStructClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupkeymapstruct/groupid
+func (m_ MTRGroupKeyManagementClusterGroupKeyMapStruct) GroupId() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("groupId"))
+	return rv
+}
+
+
+// SetGroupId sets the value of the groupId property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupkeymapstruct/groupid
+func (m_ MTRGroupKeyManagementClusterGroupKeyMapStruct) SetGroupId(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupId:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupkeymapstruct/fabricindex
+func (m_ MTRGroupKeyManagementClusterGroupKeyMapStruct) FabricIndex() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("fabricIndex"))
+	return rv
+}
+
+
+// SetFabricIndex sets the value of the fabricIndex property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupkeymapstruct/fabricindex
+func (m_ MTRGroupKeyManagementClusterGroupKeyMapStruct) SetFabricIndex(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupkeymapstruct/groupkeysetid
+func (m_ MTRGroupKeyManagementClusterGroupKeyMapStruct) GroupKeySetID() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("groupKeySetID"))
+	return rv
+}
+
+
+// SetGroupKeySetID sets the value of the groupKeySetID property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupkeymapstruct/groupkeysetid
+func (m_ MTRGroupKeyManagementClusterGroupKeyMapStruct) SetGroupKeySetID(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupKeySetID:"), value)
+}
 
 
 

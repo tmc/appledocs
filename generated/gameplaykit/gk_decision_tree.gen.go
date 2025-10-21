@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,7 +31,7 @@ type _DecisionTreeClass struct {
 // An interface definition for the [DecisionTree] class.
 type IDecisionTree interface {
 	objectivec.IObject
-	ExportToURLError(url unsafe.Pointer, error_ unsafe.Pointer) bool
+	ExportToURLError(url foundation.URL, error_ unsafe.Pointer) bool
 	FindActionForAnswers(answers unsafe.Pointer) objc.ID
 }
 
@@ -108,7 +109,7 @@ func NewDecisionTreeWithExamplesActionsAttributes(examples unsafe.Pointer, actio
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKDecisionTree/init(url:error:)
-func NewDecisionTreeWithURLError(url unsafe.Pointer, error_ unsafe.Pointer) DecisionTree {
+func NewDecisionTreeWithURLError(url foundation.URL, error_ unsafe.Pointer) DecisionTree {
 	instance := getDecisionTreeClass().Alloc()
 	rv := objc.Send[DecisionTree](instance.ID, objc.Sel("initWithURL:error:"), url, error_)
 	rv.Autorelease()
@@ -118,7 +119,7 @@ func NewDecisionTreeWithURLError(url unsafe.Pointer, error_ unsafe.Pointer) Deci
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKDecisionTree/export(to:error:)
-func (d_ DecisionTree) ExportToURLError(url unsafe.Pointer, error_ unsafe.Pointer) bool {
+func (d_ DecisionTree) ExportToURLError(url foundation.URL, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("exportToURL:error:"), url, error_)
 	return rv
 }
@@ -129,6 +130,24 @@ func (d_ DecisionTree) ExportToURLError(url unsafe.Pointer, error_ unsafe.Pointe
 func (d_ DecisionTree) FindActionForAnswers(answers unsafe.Pointer) objc.ID {
 	rv := objc.Send[objc.ID](d_.ID, objc.Sel("findActionForAnswers:"), answers)
 	return rv
+}
+
+// A textual representation of the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObjectProtocol/description
+func (d_ DecisionTree) Description() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("description"))
+	return rv
+}
+
+
+// SetDescription sets the value of the description property.
+// A textual representation of the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObjectProtocol/description
+func (d_ DecisionTree) SetDescription(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setDescription:"), objc.String(value))
 }
 
 // The randomizer to be used when evaluating parts of the tree that branch randomly.

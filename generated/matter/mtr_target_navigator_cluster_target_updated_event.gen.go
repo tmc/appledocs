@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,8 +78,8 @@ func NewMTRTargetNavigatorClusterTargetUpdatedEvent() MTRTargetNavigatorClusterT
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTargetNavigatorClusterTargetUpdatedEvent/currentTarget
-func (m_ MTRTargetNavigatorClusterTargetUpdatedEvent) CurrentTarget() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("currentTarget"))
+func (m_ MTRTargetNavigatorClusterTargetUpdatedEvent) CurrentTarget() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("currentTarget"))
 	return rv
 }
 
@@ -86,7 +87,7 @@ func (m_ MTRTargetNavigatorClusterTargetUpdatedEvent) CurrentTarget() unsafe.Poi
 // SetCurrentTarget sets the value of the currentTarget property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTargetNavigatorClusterTargetUpdatedEvent/currentTarget
-func (m_ MTRTargetNavigatorClusterTargetUpdatedEvent) SetCurrentTarget(value unsafe.Pointer) {
+func (m_ MTRTargetNavigatorClusterTargetUpdatedEvent) SetCurrentTarget(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCurrentTarget:"), value)
 }
 

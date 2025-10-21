@@ -80,6 +80,114 @@ func NewTurnBasedParticipant() TurnBasedParticipant {
 }
 
 
+// The player object containing the participant details.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedparticipant/player
+func (t_ TurnBasedParticipant) Player() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("player"))
+	return rv
+}
+
+
+// SetPlayer sets the value of the player property.
+// The player object containing the participant details.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedparticipant/player
+func (t_ TurnBasedParticipant) SetPlayer(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setPlayer:"), value)
+}
+
+// The player identifier for this participant.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedparticipant/playerid
+func (t_ TurnBasedParticipant) PlayerID() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("playerID"))
+	return rv
+}
+
+
+// SetPlayerID sets the value of the playerID property.
+// The player identifier for this participant.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedparticipant/playerid
+func (t_ TurnBasedParticipant) SetPlayerID(value string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setPlayerID:"), objc.String(value))
+}
+
+// The status of the participant.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedparticipant/status-swift.property
+func (t_ TurnBasedParticipant) Status() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("status"))
+	return rv
+}
+
+
+// SetStatus sets the value of the status property.
+// The status of the participant.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedparticipant/status-swift.property
+func (t_ TurnBasedParticipant) SetStatus(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setStatus:"), value)
+}
+
+// The players that participate in a turn-based match.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/participants
+func (t_ TurnBasedParticipant) Participants() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("participants"))
+	return rv
+}
+
+
+// SetParticipants sets the value of the participants property.
+// The players that participate in a turn-based match.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/participants
+func (t_ TurnBasedParticipant) SetParticipants(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setParticipants:"), value)
+}
+
+// The conclusion or results of a participant in a match.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedparticipant/matchoutcome
+func (t_ TurnBasedParticipant) MatchOutcome() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("matchOutcome"))
+	return rv
+}
+
+
+// SetMatchOutcome sets the value of the matchOutcome property.
+// The conclusion or results of a participant in a match.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedparticipant/matchoutcome
+func (t_ TurnBasedParticipant) SetMatchOutcome(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setMatchOutcome:"), value)
+}
+
+// The date and time that this participant last took a turn in the game.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedparticipant/lastturndate
+func (t_ TurnBasedParticipant) LastTurnDate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("lastTurnDate"))
+	return rv
+}
+
+
+// SetLastTurnDate sets the value of the lastTurnDate property.
+// The date and time that this participant last took a turn in the game.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedparticipant/lastturndate
+func (t_ TurnBasedParticipant) SetLastTurnDate(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setLastTurnDate:"), value)
+}
+
 // The date and time that the participant’s turn timed out.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKTurnBasedParticipant/timeoutDate

@@ -80,6 +80,24 @@ func NewSharedTextureHandle() SharedTextureHandle {
 }
 
 
+// A string that identifies the texture.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlsharedtexturehandle/label
+func (s_ SharedTextureHandle) Label() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("label"))
+	return rv
+}
+
+
+// SetLabel sets the value of the label property.
+// A string that identifies the texture.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlsharedtexturehandle/label
+func (s_ SharedTextureHandle) SetLabel(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setLabel:"), objc.String(value))
+}
+
 // The device object that created the texture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLSharedTextureHandle/device

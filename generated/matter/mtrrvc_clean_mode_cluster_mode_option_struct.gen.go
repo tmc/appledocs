@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,51 @@ func NewMTRRVCCleanModeClusterModeOptionStruct() MTRRVCCleanModeClusterModeOptio
 	return getMTRRVCCleanModeClusterModeOptionStructClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvccleanmodeclustermodeoptionstruct/modetags
+func (m_ MTRRVCCleanModeClusterModeOptionStruct) ModeTags() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("modeTags"))
+	return rv
+}
+
+
+// SetModeTags sets the value of the modeTags property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvccleanmodeclustermodeoptionstruct/modetags
+func (m_ MTRRVCCleanModeClusterModeOptionStruct) SetModeTags(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setModeTags:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvccleanmodeclustermodeoptionstruct/label
+func (m_ MTRRVCCleanModeClusterModeOptionStruct) Label() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("label"))
+	return rv
+}
+
+
+// SetLabel sets the value of the label property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvccleanmodeclustermodeoptionstruct/label
+func (m_ MTRRVCCleanModeClusterModeOptionStruct) SetLabel(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), objc.String(value))
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvccleanmodeclustermodeoptionstruct/mode
+func (m_ MTRRVCCleanModeClusterModeOptionStruct) Mode() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("mode"))
+	return rv
+}
+
+
+// SetMode sets the value of the mode property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvccleanmodeclustermodeoptionstruct/mode
+func (m_ MTRRVCCleanModeClusterModeOptionStruct) SetMode(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMode:"), value)
+}
 
 
 

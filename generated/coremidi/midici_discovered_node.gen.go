@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -97,8 +98,8 @@ func (m_ MIDICIDiscoveredNode) DeviceInfo() unsafe.Pointer {
 // The maximum size of a System Exclusive (SysEx) message this node supports.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIDiscoveredNode/maximumSysExSize
-func (m_ MIDICIDiscoveredNode) MaximumSysExSize() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("maximumSysExSize"))
+func (m_ MIDICIDiscoveredNode) MaximumSysExSize() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("maximumSysExSize"))
 	return rv
 }
 

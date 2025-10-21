@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -94,11 +95,227 @@ func (g_ GameActivity) SetScoreOnLeaderboardToScore(leaderboard unsafe.Pointer, 
 	objc.Send[objc.ID](g_.ID, objc.Sel("setScoreOnLeaderboard:toScore:"), leaderboard, score)
 }
 
+// The identifier of this activity instance.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/identifier
+func (g_ GameActivity) Identifier() string {
+	rv := objc.Send[string](g_.ID, objc.Sel("identifier"))
+	return rv
+}
+
+
+// SetIdentifier sets the value of the identifier property.
+// The identifier of this activity instance.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/identifier
+func (g_ GameActivity) SetIdentifier(value string) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+}
+
+// The date when the activity was initially started.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/startdate
+func (g_ GameActivity) StartDate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("startDate"))
+	return rv
+}
+
+
+// SetStartDate sets the value of the startDate property.
+// The date when the activity was initially started.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/startdate
+func (g_ GameActivity) SetStartDate(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setStartDate:"), value)
+}
+
+// If the game supports party code, this is the party code that can be shared among players to join the party.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/partycode
+func (g_ GameActivity) PartyCode() string {
+	rv := objc.Send[string](g_.ID, objc.Sel("partyCode"))
+	return rv
+}
+
+
+// SetPartyCode sets the value of the partyCode property.
+// If the game supports party code, this is the party code that can be shared among players to join the party.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/partycode
+func (g_ GameActivity) SetPartyCode(value string) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setPartyCode:"), objc.String(value))
+}
+
+// The date when the activity was created.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/creationdate
+func (g_ GameActivity) CreationDate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("creationDate"))
+	return rv
+}
+
+
+// SetCreationDate sets the value of the creationDate property.
+// The date when the activity was created.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/creationdate
+func (g_ GameActivity) SetCreationDate(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setCreationDate:"), value)
+}
+
+// Properties that contain additional information about the activity.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/properties
+func (g_ GameActivity) Properties() string {
+	rv := objc.Send[string](g_.ID, objc.Sel("properties"))
+	return rv
+}
+
+
+// SetProperties sets the value of the properties property.
+// Properties that contain additional information about the activity.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/properties
+func (g_ GameActivity) SetProperties(value string) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setProperties:"), objc.String(value))
+}
+
+// All leaderboard scores that have been associated with this activity.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/leaderboardscores
+func (g_ GameActivity) LeaderboardScores() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("leaderboardScores"))
+	return rv
+}
+
+
+// SetLeaderboardScores sets the value of the leaderboardScores property.
+// All leaderboard scores that have been associated with this activity.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/leaderboardscores
+func (g_ GameActivity) SetLeaderboardScores(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setLeaderboardScores:"), value)
+}
+
+// All achievements that have been associated with this activity.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/achievements
+func (g_ GameActivity) Achievements() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("achievements"))
+	return rv
+}
+
+
+// SetAchievements sets the value of the achievements property.
+// All achievements that have been associated with this activity.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/achievements
+func (g_ GameActivity) SetAchievements(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setAchievements:"), value)
+}
+
+// If the game supports party code, this is the URL that can be shared among players to join the party.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/partyurl
+func (g_ GameActivity) PartyURL() foundation.URL {
+	rv := objc.Send[foundation.URL](g_.ID, objc.Sel("partyURL"))
+	return rv
+}
+
+
+// SetPartyURL sets the value of the partyURL property.
+// If the game supports party code, this is the URL that can be shared among players to join the party.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/partyurl
+func (g_ GameActivity) SetPartyURL(value foundation.URL) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setPartyURL:"), value)
+}
+
+// The date when the activity was last resumed.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/lastresumedate
+func (g_ GameActivity) LastResumeDate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("lastResumeDate"))
+	return rv
+}
+
+
+// SetLastResumeDate sets the value of the lastResumeDate property.
+// The date when the activity was last resumed.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/lastresumedate
+func (g_ GameActivity) SetLastResumeDate(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setLastResumeDate:"), value)
+}
+
+// The date when the activity was officially ended.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/enddate
+func (g_ GameActivity) EndDate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("endDate"))
+	return rv
+}
+
+
+// SetEndDate sets the value of the endDate property.
+// The date when the activity was officially ended.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/enddate
+func (g_ GameActivity) SetEndDate(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setEndDate:"), value)
+}
+
+// The activity definition that this activity instance is based on.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/activitydefinition
+func (g_ GameActivity) ActivityDefinition() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("activityDefinition"))
+	return rv
+}
+
+
+// SetActivityDefinition sets the value of the activityDefinition property.
+// The activity definition that this activity instance is based on.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/activitydefinition
+func (g_ GameActivity) SetActivityDefinition(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setActivityDefinition:"), value)
+}
+
+// The state of the game activity.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/state-swift.property
+func (g_ GameActivity) State() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("state"))
+	return rv
+}
+
+
+// SetState sets the value of the state property.
+// The state of the game activity.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/state-swift.property
+func (g_ GameActivity) SetState(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setState:"), value)
+}
+
 // Total time elapsed while in active state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKGameActivity/duration
-func (g_ GameActivity) Duration() TimeInterval {
-	rv := objc.Send[TimeInterval](g_.ID, objc.Sel("duration"))
+func (g_ GameActivity) Duration() foundation.TimeInterval {
+	rv := objc.Send[foundation.TimeInterval](g_.ID, objc.Sel("duration"))
 	return rv
 }
 

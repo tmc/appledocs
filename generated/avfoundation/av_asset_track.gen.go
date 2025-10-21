@@ -401,5 +401,77 @@ func (a_ AssetTrack) TrackID() unsafe.Pointer {
 	return rv
 }
 
+// A Boolean value that indicates whether the track is decodable in the current environment.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/isdecodable
+func (a_ AssetTrack) IsDecodable() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("isDecodable"))
+	return rv
+}
+
+
+// SetIsDecodable sets the value of the isDecodable property.
+// A Boolean value that indicates whether the track is decodable in the current environment.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/isdecodable
+func (a_ AssetTrack) SetIsDecodable(value bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setIsDecodable:"), value)
+}
+
+// A Boolean value that indicates whether the track’s container enables it.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/isenabled
+func (a_ AssetTrack) IsEnabled() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("isEnabled"))
+	return rv
+}
+
+
+// SetIsEnabled sets the value of the isEnabled property.
+// A Boolean value that indicates whether the track’s container enables it.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/isenabled
+func (a_ AssetTrack) SetIsEnabled(value bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setIsEnabled:"), value)
+}
+
+// A Boolean value that indicates whether the track is playable in the current environment.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/isplayable
+func (a_ AssetTrack) IsPlayable() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("isPlayable"))
+	return rv
+}
+
+
+// SetIsPlayable sets the value of the isPlayable property.
+// A Boolean value that indicates whether the track is playable in the current environment.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/isplayable
+func (a_ AssetTrack) SetIsPlayable(value bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setIsPlayable:"), value)
+}
+
+// A Boolean value that indicates whether this track references sample data only within its container file.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/isselfcontained
+func (a_ AssetTrack) IsSelfContained() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("isSelfContained"))
+	return rv
+}
+
+
+// SetIsSelfContained sets the value of the isSelfContained property.
+// A Boolean value that indicates whether this track references sample data only within its container file.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/isselfcontained
+func (a_ AssetTrack) SetIsSelfContained(value bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setIsSelfContained:"), value)
+}
+
 
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,8 +78,8 @@ func NewMTROccupancySensingClusterOccupancyChangedEvent() MTROccupancySensingClu
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROccupancySensingClusterOccupancyChangedEvent/occupancy
-func (m_ MTROccupancySensingClusterOccupancyChangedEvent) Occupancy() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("occupancy"))
+func (m_ MTROccupancySensingClusterOccupancyChangedEvent) Occupancy() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("occupancy"))
 	return rv
 }
 
@@ -86,7 +87,7 @@ func (m_ MTROccupancySensingClusterOccupancyChangedEvent) Occupancy() unsafe.Poi
 // SetOccupancy sets the value of the occupancy property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROccupancySensingClusterOccupancyChangedEvent/occupancy
-func (m_ MTROccupancySensingClusterOccupancyChangedEvent) SetOccupancy(value unsafe.Pointer) {
+func (m_ MTROccupancySensingClusterOccupancyChangedEvent) SetOccupancy(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOccupancy:"), value)
 }
 

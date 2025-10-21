@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -93,8 +94,8 @@ func (m_ MTRMessagesClusterCancelMessagesRequestParams) SetMessageIDs(value unsa
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterCancelMessagesRequestParams/serverSideProcessingTimeout
-func (m_ MTRMessagesClusterCancelMessagesRequestParams) ServerSideProcessingTimeout() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRMessagesClusterCancelMessagesRequestParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
@@ -104,15 +105,15 @@ func (m_ MTRMessagesClusterCancelMessagesRequestParams) ServerSideProcessingTime
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterCancelMessagesRequestParams/serverSideProcessingTimeout
-func (m_ MTRMessagesClusterCancelMessagesRequestParams) SetServerSideProcessingTimeout(value unsafe.Pointer) {
+func (m_ MTRMessagesClusterCancelMessagesRequestParams) SetServerSideProcessingTimeout(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterCancelMessagesRequestParams/timedInvokeTimeoutMs
-func (m_ MTRMessagesClusterCancelMessagesRequestParams) TimedInvokeTimeoutMs() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRMessagesClusterCancelMessagesRequestParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
@@ -122,7 +123,7 @@ func (m_ MTRMessagesClusterCancelMessagesRequestParams) TimedInvokeTimeoutMs() u
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterCancelMessagesRequestParams/timedInvokeTimeoutMs
-func (m_ MTRMessagesClusterCancelMessagesRequestParams) SetTimedInvokeTimeoutMs(value unsafe.Pointer) {
+func (m_ MTRMessagesClusterCancelMessagesRequestParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

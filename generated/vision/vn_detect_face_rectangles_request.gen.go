@@ -81,5 +81,47 @@ func NewDetectFaceRectanglesRequest() DetectFaceRectanglesRequest {
 }
 
 
+// A constant for specifying revision 2 of the face rectangles detection request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetectfacerectanglesrequestrevision2
+func (d_ DetectFaceRectanglesRequest) VNDetectFaceRectanglesRequestRevision2() int {
+	rv := objc.Send[int](d_.ID, objc.Sel("VNDetectFaceRectanglesRequestRevision2"))
+	return rv
+}
+
+// The results of the face detection request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetectfacerectanglesrequest/results
+func (d_ DetectFaceRectanglesRequest) Results() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("results"))
+	return rv
+}
+
+
+// SetResults sets the value of the results property.
+// The results of the face detection request.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetectfacerectanglesrequest/results
+func (d_ DetectFaceRectanglesRequest) SetResults(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setResults:"), value)
+}
+
+// A constant for specifying revision 1 of the face rectangles detection request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetectfacerectanglesrequestrevision1
+func (d_ DetectFaceRectanglesRequest) VNDetectFaceRectanglesRequestRevision1() int {
+	rv := objc.Send[int](d_.ID, objc.Sel("VNDetectFaceRectanglesRequestRevision1"))
+	return rv
+}
+
+// A constant for specifying revision 3 of the face rectangles detection request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetectfacerectanglesrequestrevision3
+func (d_ DetectFaceRectanglesRequest) VNDetectFaceRectanglesRequestRevision3() int {
+	rv := objc.Send[int](d_.ID, objc.Sel("VNDetectFaceRectanglesRequestRevision3"))
+	return rv
+}
+
 
 

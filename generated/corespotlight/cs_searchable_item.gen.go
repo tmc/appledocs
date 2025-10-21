@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -100,6 +101,110 @@ func NewCSSearchableItemWithUniqueIdentifierDomainIdentifierAttributeSet(uniqueI
 func (c_ CSSearchableItem) CompareByRank(other unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("compareByRank:"), other)
 	return rv
+}
+
+// The key you use to access a searchable item in a user activity object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/corespotlight/cssearchableitemactivityidentifier
+func (c_ CSSearchableItem) CSSearchableItemActivityIdentifier() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CSSearchableItemActivityIdentifier"))
+	return rv
+}
+
+// Indicates that the activity type to continue is a search or query.
+//
+// [Full Topic]: https://developer.apple.com/documentation/corespotlight/csquerycontinuationactiontype
+func (c_ CSSearchableItem) CSQueryContinuationActionType() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CSQueryContinuationActionType"))
+	return rv
+}
+
+// The uniform type identifier (UTI) of the item.
+//
+// [Full Topic]: https://developer.apple.com/documentation/corespotlight/cssearchableitemattributeset/contenttype
+func (c_ CSSearchableItem) ContentType() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("contentType"))
+	return rv
+}
+
+
+// SetContentType sets the value of the contentType property.
+// The uniform type identifier (UTI) of the item.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/corespotlight/cssearchableitemattributeset/contenttype
+func (c_ CSSearchableItem) SetContentType(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setContentType:"), objc.String(value))
+}
+
+// The file URL of the content to index.
+//
+// [Full Topic]: https://developer.apple.com/documentation/corespotlight/cssearchableitemattributeset/contenturl
+func (c_ CSSearchableItem) ContentURL() foundation.URL {
+	rv := objc.Send[foundation.URL](c_.ID, objc.Sel("contentURL"))
+	return rv
+}
+
+
+// SetContentURL sets the value of the contentURL property.
+// The file URL of the content to index.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/corespotlight/cssearchableitemattributeset/contenturl
+func (c_ CSSearchableItem) SetContentURL(value foundation.URL) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setContentURL:"), value)
+}
+
+// Indicates that the activity type to continue is related to a searchable item.
+//
+// [Full Topic]: https://developer.apple.com/documentation/corespotlight/cssearchableitemactiontype
+func (c_ CSSearchableItem) CSSearchableItemActionType() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CSSearchableItemActionType"))
+	return rv
+}
+
+// Provides the key for the current query in the info dictionary of the user activity object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/corespotlight/cssearchquerystring
+func (c_ CSSearchableItem) CSSearchQueryString() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CSSearchQueryString"))
+	return rv
+}
+
+// A localized string that contains the name of the item, suitable to display in the user interface.
+//
+// [Full Topic]: https://developer.apple.com/documentation/corespotlight/cssearchableitemattributeset/displayname
+func (c_ CSSearchableItem) DisplayName() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("displayName"))
+	return rv
+}
+
+
+// SetDisplayName sets the value of the displayName property.
+// A localized string that contains the name of the item, suitable to display in the user interface.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/corespotlight/cssearchableitemattributeset/displayname
+func (c_ CSSearchableItem) SetDisplayName(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setDisplayName:"), objc.String(value))
+}
+
+// The title of the item.
+//
+// [Full Topic]: https://developer.apple.com/documentation/corespotlight/cssearchableitemattributeset/title
+func (c_ CSSearchableItem) Title() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("title"))
+	return rv
+}
+
+
+// SetTitle sets the value of the title property.
+// The title of the item.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/corespotlight/cssearchableitemattributeset/title
+func (c_ CSSearchableItem) SetTitle(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
 
 // The set of attributes that contain metadata associated with the item in a object.

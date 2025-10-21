@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,8 +78,8 @@ func NewMTREnergyEVSEClusterChargingTargetStruct() MTREnergyEVSEClusterChargingT
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterChargingTargetStruct/addedEnergy
-func (m_ MTREnergyEVSEClusterChargingTargetStruct) AddedEnergy() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("addedEnergy"))
+func (m_ MTREnergyEVSEClusterChargingTargetStruct) AddedEnergy() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("addedEnergy"))
 	return rv
 }
 
@@ -86,14 +87,14 @@ func (m_ MTREnergyEVSEClusterChargingTargetStruct) AddedEnergy() unsafe.Pointer 
 // SetAddedEnergy sets the value of the addedEnergy property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterChargingTargetStruct/addedEnergy
-func (m_ MTREnergyEVSEClusterChargingTargetStruct) SetAddedEnergy(value unsafe.Pointer) {
+func (m_ MTREnergyEVSEClusterChargingTargetStruct) SetAddedEnergy(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAddedEnergy:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterChargingTargetStruct/targetSoC
-func (m_ MTREnergyEVSEClusterChargingTargetStruct) TargetSoC() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("targetSoC"))
+func (m_ MTREnergyEVSEClusterChargingTargetStruct) TargetSoC() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("targetSoC"))
 	return rv
 }
 
@@ -101,14 +102,14 @@ func (m_ MTREnergyEVSEClusterChargingTargetStruct) TargetSoC() unsafe.Pointer {
 // SetTargetSoC sets the value of the targetSoC property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterChargingTargetStruct/targetSoC
-func (m_ MTREnergyEVSEClusterChargingTargetStruct) SetTargetSoC(value unsafe.Pointer) {
+func (m_ MTREnergyEVSEClusterChargingTargetStruct) SetTargetSoC(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTargetSoC:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterChargingTargetStruct/targetTimeMinutesPastMidnight
-func (m_ MTREnergyEVSEClusterChargingTargetStruct) TargetTimeMinutesPastMidnight() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("targetTimeMinutesPastMidnight"))
+func (m_ MTREnergyEVSEClusterChargingTargetStruct) TargetTimeMinutesPastMidnight() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("targetTimeMinutesPastMidnight"))
 	return rv
 }
 
@@ -116,7 +117,7 @@ func (m_ MTREnergyEVSEClusterChargingTargetStruct) TargetTimeMinutesPastMidnight
 // SetTargetTimeMinutesPastMidnight sets the value of the targetTimeMinutesPastMidnight property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterChargingTargetStruct/targetTimeMinutesPastMidnight
-func (m_ MTREnergyEVSEClusterChargingTargetStruct) SetTargetTimeMinutesPastMidnight(value unsafe.Pointer) {
+func (m_ MTREnergyEVSEClusterChargingTargetStruct) SetTargetTimeMinutesPastMidnight(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTargetTimeMinutesPastMidnight:"), value)
 }
 

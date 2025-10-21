@@ -86,6 +86,381 @@ func (i_ ICCameraFile) RequestSecurityScopedURLWithCompletion(completion unsafe.
 	objc.Send[objc.ID](i_.ID, objc.Sel("requestSecurityScopedURLWithCompletion:"), completion)
 }
 
+// The height of an image or movie frame.
+//
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/height
+func (i_ ICCameraFile) Height() int {
+	rv := objc.Send[int](i_.ID, objc.Sel("height"))
+	return rv
+}
+
+
+// SetHeight sets the value of the height property.
+// The height of an image or movie frame.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/height
+func (i_ ICCameraFile) SetHeight(value int) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setHeight:"), value)
+}
+
+// The original name of the file on disk.
+//
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/originalfilename
+func (i_ ICCameraFile) OriginalFilename() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("originalFilename"))
+	return rv
+}
+
+
+// SetOriginalFilename sets the value of the originalFilename property.
+// The original name of the file on disk.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/originalfilename
+func (i_ ICCameraFile) SetOriginalFilename(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setOriginalFilename:"), objc.String(value))
+}
+
+// The modification date of the file.
+//
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/filemodificationdate
+func (i_ ICCameraFile) FileModificationDate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("fileModificationDate"))
+	return rv
+}
+
+
+// SetFileModificationDate sets the value of the fileModificationDate property.
+// The modification date of the file.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/filemodificationdate
+func (i_ ICCameraFile) SetFileModificationDate(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setFileModificationDate:"), value)
+}
+
+// The created name of the file.
+//
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/createdfilename
+func (i_ ICCameraFile) CreatedFilename() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("createdFilename"))
+	return rv
+}
+
+
+// SetCreatedFilename sets the value of the createdFilename property.
+// The created name of the file.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/createdfilename
+func (i_ ICCameraFile) SetCreatedFilename(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setCreatedFilename:"), objc.String(value))
+}
+
+// A Boolean value that indicates whether the file is a slow motion or high-frame-rate video file.
+//
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/highframerate
+func (i_ ICCameraFile) HighFramerate() bool {
+	rv := objc.Send[bool](i_.ID, objc.Sel("highFramerate"))
+	return rv
+}
+
+
+// SetHighFramerate sets the value of the highFramerate property.
+// A Boolean value that indicates whether the file is a slow motion or high-frame-rate video file.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/highframerate
+func (i_ ICCameraFile) SetHighFramerate(value bool) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setHighFramerate:"), value)
+}
+
+// An array of two camera files associated with this file.
+//
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/sidecarfiles
+func (i_ ICCameraFile) SidecarFiles() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("sidecarFiles"))
+	return rv
+}
+
+
+// SetSidecarFiles sets the value of the sidecarFiles property.
+// An array of two camera files associated with this file.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/sidecarfiles
+func (i_ ICCameraFile) SetSidecarFiles(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setSidecarFiles:"), value)
+}
+
+// A related UUID correlating several images from an Apple device.
+//
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/relateduuid
+func (i_ ICCameraFile) RelatedUUID() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("relatedUUID"))
+	return rv
+}
+
+
+// SetRelatedUUID sets the value of the relatedUUID property.
+// A related UUID correlating several images from an Apple device.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/relateduuid
+func (i_ ICCameraFile) SetRelatedUUID(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setRelatedUUID:"), objc.String(value))
+}
+
+// The size of the file, in bytes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/filesize
+func (i_ ICCameraFile) FileSize() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("fileSize"))
+	return rv
+}
+
+
+// SetFileSize sets the value of the fileSize property.
+// The size of the file, in bytes.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/filesize
+func (i_ ICCameraFile) SetFileSize(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setFileSize:"), value)
+}
+
+// A Boolean value that indicates whether this file is user picked in a burst.
+//
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/burstpicked
+func (i_ ICCameraFile) BurstPicked() bool {
+	rv := objc.Send[bool](i_.ID, objc.Sel("burstPicked"))
+	return rv
+}
+
+
+// SetBurstPicked sets the value of the burstPicked property.
+// A Boolean value that indicates whether this file is user picked in a burst.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/burstpicked
+func (i_ ICCameraFile) SetBurstPicked(value bool) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setBurstPicked:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/fingerprint
+func (i_ ICCameraFile) Fingerprint() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("fingerprint"))
+	return rv
+}
+
+
+// SetFingerprint sets the value of the fingerprint property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/fingerprint
+func (i_ ICCameraFile) SetFingerprint(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setFingerprint:"), objc.String(value))
+}
+
+// A sidecar file containing the logical
+//
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/pairedrawimage
+func (i_ ICCameraFile) PairedRawImage() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("pairedRawImage"))
+	return rv
+}
+
+
+// SetPairedRawImage sets the value of the pairedRawImage property.
+// A sidecar file containing the logical
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/pairedrawimage
+func (i_ ICCameraFile) SetPairedRawImage(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setPairedRawImage:"), value)
+}
+
+// A Boolean value that indicates whether the file is a time-lapse video file.
+//
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/timelapse
+func (i_ ICCameraFile) TimeLapse() bool {
+	rv := objc.Send[bool](i_.ID, objc.Sel("timeLapse"))
+	return rv
+}
+
+
+// SetTimeLapse sets the value of the timeLapse property.
+// A Boolean value that indicates whether the file is a time-lapse video file.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/timelapse
+func (i_ ICCameraFile) SetTimeLapse(value bool) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setTimeLapse:"), value)
+}
+
+// The creation date of the file.
+//
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/filecreationdate
+func (i_ ICCameraFile) FileCreationDate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("fileCreationDate"))
+	return rv
+}
+
+
+// SetFileCreationDate sets the value of the fileCreationDate property.
+// The creation date of the file.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/filecreationdate
+func (i_ ICCameraFile) SetFileCreationDate(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setFileCreationDate:"), value)
+}
+
+// The group
+//
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/groupuuid
+func (i_ ICCameraFile) GroupUUID() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("groupUUID"))
+	return rv
+}
+
+
+// SetGroupUUID sets the value of the groupUUID property.
+// The group
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/groupuuid
+func (i_ ICCameraFile) SetGroupUUID(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setGroupUUID:"), objc.String(value))
+}
+
+// The GPS String of the file in standard format.
+//
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/gpsstring
+func (i_ ICCameraFile) GpsString() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("gpsString"))
+	return rv
+}
+
+
+// SetGpsString sets the value of the gpsString property.
+// The GPS String of the file in standard format.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/gpsstring
+func (i_ ICCameraFile) SetGpsString(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setGpsString:"), objc.String(value))
+}
+
+// A Boolean value that indicates whether a file is autopicked by Photos to represent the burst.
+//
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/firstpicked
+func (i_ ICCameraFile) FirstPicked() bool {
+	rv := objc.Send[bool](i_.ID, objc.Sel("firstPicked"))
+	return rv
+}
+
+
+// SetFirstPicked sets the value of the firstPicked property.
+// A Boolean value that indicates whether a file is autopicked by Photos to represent the burst.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/firstpicked
+func (i_ ICCameraFile) SetFirstPicked(value bool) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setFirstPicked:"), value)
+}
+
+// The
+//
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/exifcreationdate
+func (i_ ICCameraFile) ExifCreationDate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("exifCreationDate"))
+	return rv
+}
+
+
+// SetExifCreationDate sets the value of the exifCreationDate property.
+// The
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/exifcreationdate
+func (i_ ICCameraFile) SetExifCreationDate(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setExifCreationDate:"), value)
+}
+
+// The originating asset ID of an
+//
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/originatingassetid
+func (i_ ICCameraFile) OriginatingAssetID() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("originatingAssetID"))
+	return rv
+}
+
+
+// SetOriginatingAssetID sets the value of the originatingAssetID property.
+// The originating asset ID of an
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/originatingassetid
+func (i_ ICCameraFile) SetOriginatingAssetID(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setOriginatingAssetID:"), objc.String(value))
+}
+
+// The orientation to use when downloading the image.
+//
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/orientation
+func (i_ ICCameraFile) Orientation() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("orientation"))
+	return rv
+}
+
+
+// SetOrientation sets the value of the orientation property.
+// The orientation to use when downloading the image.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/orientation
+func (i_ ICCameraFile) SetOrientation(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setOrientation:"), value)
+}
+
+// The
+//
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/exifmodificationdate
+func (i_ ICCameraFile) ExifModificationDate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("exifModificationDate"))
+	return rv
+}
+
+
+// SetExifModificationDate sets the value of the exifModificationDate property.
+// The
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/exifmodificationdate
+func (i_ ICCameraFile) SetExifModificationDate(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setExifModificationDate:"), value)
+}
+
+// A Boolean value that indicates this file is the burst favorite in a burst.
+//
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/burstfavorite
+func (i_ ICCameraFile) BurstFavorite() bool {
+	rv := objc.Send[bool](i_.ID, objc.Sel("burstFavorite"))
+	return rv
+}
+
+
+// SetBurstFavorite sets the value of the burstFavorite property.
+// A Boolean value that indicates this file is the burst favorite in a burst.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/burstfavorite
+func (i_ ICCameraFile) SetBurstFavorite(value bool) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setBurstFavorite:"), value)
+}
+
 // The burst UUID of the file if it is in a burst.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ImageCaptureCore/ICCameraFile/burstUUID

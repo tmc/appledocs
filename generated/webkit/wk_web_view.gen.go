@@ -9,6 +9,7 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [WebView] class.
@@ -42,10 +43,10 @@ type IWebView interface {
 	GoBack() unsafe.Pointer
 	GoForward() unsafe.Pointer
 	LoadRequest(request unsafe.Pointer) unsafe.Pointer
-	LoadDataMIMETypeCharacterEncodingNameBaseURL(data unsafe.Pointer, MIMEType string, characterEncodingName string, baseURL unsafe.Pointer) unsafe.Pointer
-	LoadFileRequestAllowingReadAccessToURL(request unsafe.Pointer, readAccessURL unsafe.Pointer) unsafe.Pointer
-	LoadFileURLAllowingReadAccessToURL(URL unsafe.Pointer, readAccessURL unsafe.Pointer) unsafe.Pointer
-	LoadHTMLStringBaseURL(string_ string, baseURL unsafe.Pointer) unsafe.Pointer
+	LoadDataMIMETypeCharacterEncodingNameBaseURL(data unsafe.Pointer, MIMEType string, characterEncodingName string, baseURL foundation.URL) unsafe.Pointer
+	LoadFileRequestAllowingReadAccessToURL(request unsafe.Pointer, readAccessURL foundation.URL) unsafe.Pointer
+	LoadFileURLAllowingReadAccessToURL(URL foundation.URL, readAccessURL foundation.URL) unsafe.Pointer
+	LoadHTMLStringBaseURL(string_ string, baseURL foundation.URL) unsafe.Pointer
 	LoadSimulatedRequestResponseResponseData(request unsafe.Pointer, response unsafe.Pointer, data unsafe.Pointer) unsafe.Pointer
 	LoadSimulatedRequestResponseHTMLString(request unsafe.Pointer, string_ string) unsafe.Pointer
 	LoadSimulatedRequestWithResponseResponseData(request unsafe.Pointer, response unsafe.Pointer, data unsafe.Pointer) unsafe.Pointer
@@ -236,7 +237,7 @@ func (w_ WebView) LoadRequest(request unsafe.Pointer) unsafe.Pointer {
 // Loads the content of the specified data object and navigates to it.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/load(_:mimeType:characterEncodingName:baseURL:)
-func (w_ WebView) LoadDataMIMETypeCharacterEncodingNameBaseURL(data unsafe.Pointer, MIMEType string, characterEncodingName string, baseURL unsafe.Pointer) unsafe.Pointer {
+func (w_ WebView) LoadDataMIMETypeCharacterEncodingNameBaseURL(data unsafe.Pointer, MIMEType string, characterEncodingName string, baseURL foundation.URL) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("loadData:MIMEType:characterEncodingName:baseURL:"), data, objc.String(MIMEType), objc.String(characterEncodingName), baseURL)
 	return rv
 }
@@ -244,7 +245,7 @@ func (w_ WebView) LoadDataMIMETypeCharacterEncodingNameBaseURL(data unsafe.Point
 // Loads the web content from the file the URL request object specifies and navigates to that content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/loadFileRequest(_:allowingReadAccessTo:)
-func (w_ WebView) LoadFileRequestAllowingReadAccessToURL(request unsafe.Pointer, readAccessURL unsafe.Pointer) unsafe.Pointer {
+func (w_ WebView) LoadFileRequestAllowingReadAccessToURL(request unsafe.Pointer, readAccessURL foundation.URL) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("loadFileRequest:allowingReadAccessToURL:"), request, readAccessURL)
 	return rv
 }
@@ -252,7 +253,7 @@ func (w_ WebView) LoadFileRequestAllowingReadAccessToURL(request unsafe.Pointer,
 // Loads the web content from the specified file and navigates to it.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/loadFileURL(_:allowingReadAccessTo:)
-func (w_ WebView) LoadFileURLAllowingReadAccessToURL(URL unsafe.Pointer, readAccessURL unsafe.Pointer) unsafe.Pointer {
+func (w_ WebView) LoadFileURLAllowingReadAccessToURL(URL foundation.URL, readAccessURL foundation.URL) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("loadFileURL:allowingReadAccessToURL:"), URL, readAccessURL)
 	return rv
 }
@@ -260,7 +261,7 @@ func (w_ WebView) LoadFileURLAllowingReadAccessToURL(URL unsafe.Pointer, readAcc
 // Loads the contents of the specified HTML string and navigates to it.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/loadHTMLString(_:baseURL:)
-func (w_ WebView) LoadHTMLStringBaseURL(string_ string, baseURL unsafe.Pointer) unsafe.Pointer {
+func (w_ WebView) LoadHTMLStringBaseURL(string_ string, baseURL foundation.URL) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("loadHTMLString:baseURL:"), objc.String(string_), baseURL)
 	return rv
 }
@@ -427,6 +428,72 @@ func (w_ WebView) SuspendAllMediaPlayback(completionHandler func()) {
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/takeSnapshot(with:completionHandler:)
 func (w_ WebView) TakeSnapshotWithConfigurationCompletionHandler(snapshotConfiguration unsafe.Pointer, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("takeSnapshotWithConfiguration:completionHandler:"), snapshotConfiguration, completionHandler)
+}
+
+// A Boolean value that indicates whether the view is currently loading content.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebview/isloading
+func (w_ WebView) IsLoading() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("isLoading"))
+	return rv
+}
+
+
+// SetIsLoading sets the value of the isLoading property.
+// A Boolean value that indicates whether the view is currently loading content.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebview/isloading
+func (w_ WebView) SetIsLoading(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setIsLoading:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebview/isfindinteractionenabled
+func (w_ WebView) IsFindInteractionEnabled() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("isFindInteractionEnabled"))
+	return rv
+}
+
+
+// SetIsFindInteractionEnabled sets the value of the isFindInteractionEnabled property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebview/isfindinteractionenabled
+func (w_ WebView) SetIsFindInteractionEnabled(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setIsFindInteractionEnabled:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebview/iswritingtoolsactive
+func (w_ WebView) IsWritingToolsActive() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("isWritingToolsActive"))
+	return rv
+}
+
+
+// SetIsWritingToolsActive sets the value of the isWritingToolsActive property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebview/iswritingtoolsactive
+func (w_ WebView) SetIsWritingToolsActive(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setIsWritingToolsActive:"), value)
+}
+
+// A Boolean value that indicates whether you can inspect the view with Safari Web Inspector.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebview/isinspectable
+func (w_ WebView) IsInspectable() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("isInspectable"))
+	return rv
+}
+
+
+// SetIsInspectable sets the value of the isInspectable property.
+// A Boolean value that indicates whether you can inspect the view with Safari Web Inspector.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebview/isinspectable
+func (w_ WebView) SetIsInspectable(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setIsInspectable:"), value)
 }
 
 // A Boolean value that indicates whether horizontal swipe gestures trigger backward and forward page navigation.
@@ -832,8 +899,8 @@ func (w_ WebView) SetUnderPageBackgroundColor(value unsafe.Pointer) {
 // The URL for the current webpage.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/url
-func (w_ WebView) URL() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("URL"))
+func (w_ WebView) URL() foundation.URL {
+	rv := objc.Send[foundation.URL](w_.ID, objc.Sel("URL"))
 	return rv
 }
 

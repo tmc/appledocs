@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,7 +31,7 @@ type _SSReadingListClass struct {
 // An interface definition for the [SSReadingList] class.
 type ISSReadingList interface {
 	objectivec.IObject
-	AddReadingListItemWithURLTitlePreviewTextError(URL unsafe.Pointer, title string, previewText string, error_ unsafe.Pointer) bool
+	AddReadingListItemWithURLTitlePreviewTextError(URL foundation.URL, title string, previewText string, error_ unsafe.Pointer) bool
 }
 
 // An object for adding items to a user’s Safari Reading List.
@@ -90,7 +91,7 @@ func (sc _SSReadingListClass) DefaultReadingList() unsafe.Pointer {
 // Determines whether a URL can be added to the Reading List.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SSReadingList/supportsURL(_:)
-func (sc _SSReadingListClass) SupportsURL(URL unsafe.Pointer) bool {
+func (sc _SSReadingListClass) SupportsURL(URL foundation.URL) bool {
 	rv := objc.Send[bool](objc.ID(sc.class), objc.Sel("supportsURL:"), URL)
 	return rv
 }
@@ -98,8 +99,16 @@ func (sc _SSReadingListClass) SupportsURL(URL unsafe.Pointer) bool {
 // Adds an item to the Reading List.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SSReadingList/addItem(with:title:previewText:)
-func (s_ SSReadingList) AddReadingListItemWithURLTitlePreviewTextError(URL unsafe.Pointer, title string, previewText string, error_ unsafe.Pointer) bool {
+func (s_ SSReadingList) AddReadingListItemWithURLTitlePreviewTextError(URL foundation.URL, title string, previewText string, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("addReadingListItemWithURL:title:previewText:error:"), URL, objc.String(title), objc.String(previewText), error_)
+	return rv
+}
+
+// The domain for Safari Reading List errors.
+//
+// [Full Topic]: https://developer.apple.com/documentation/safariservices/ssreadinglisterrordomain
+func (s_ SSReadingList) SSReadingListErrorDomain() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("SSReadingListErrorDomain"))
 	return rv
 }
 

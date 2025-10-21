@@ -90,6 +90,24 @@ func (tc _TiledLayerClass) FadeDuration() unsafe.Pointer {
 	return rv
 }
 
+// An object that provides the contents of the layer. Animatable.
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/calayer/contents
+func (t_ TiledLayer) Contents() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("contents"))
+	return rv
+}
+
+
+// SetContents sets the value of the contents property.
+// An object that provides the contents of the layer. Animatable.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/calayer/contents
+func (t_ TiledLayer) SetContents(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setContents:"), value)
+}
+
 // The number of levels of detail maintained by this layer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATiledLayer/levelsOfDetail

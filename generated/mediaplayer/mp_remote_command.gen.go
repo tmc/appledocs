@@ -80,5 +80,23 @@ func NewRemoteCommand() RemoteCommand {
 }
 
 
+// A Boolean value that indicates whether a user can interact with the displayed element.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpremotecommand/isenabled
+func (r_ RemoteCommand) IsEnabled() bool {
+	rv := objc.Send[bool](r_.ID, objc.Sel("isEnabled"))
+	return rv
+}
+
+
+// SetIsEnabled sets the value of the isEnabled property.
+// A Boolean value that indicates whether a user can interact with the displayed element.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpremotecommand/isenabled
+func (r_ RemoteCommand) SetIsEnabled(value bool) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setIsEnabled:"), value)
+}
+
 
 

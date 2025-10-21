@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,81 @@ func NewMTROnOffClusterOnWithTimedOffParams() MTROnOffClusterOnWithTimedOffParam
 	return getMTROnOffClusterOnWithTimedOffParamsClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtronoffclusteronwithtimedoffparams/onoffcontrol
+func (m_ MTROnOffClusterOnWithTimedOffParams) OnOffControl() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("onOffControl"))
+	return rv
+}
+
+
+// SetOnOffControl sets the value of the onOffControl property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtronoffclusteronwithtimedoffparams/onoffcontrol
+func (m_ MTROnOffClusterOnWithTimedOffParams) SetOnOffControl(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setOnOffControl:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtronoffclusteronwithtimedoffparams/offwaittime
+func (m_ MTROnOffClusterOnWithTimedOffParams) OffWaitTime() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("offWaitTime"))
+	return rv
+}
+
+
+// SetOffWaitTime sets the value of the offWaitTime property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtronoffclusteronwithtimedoffparams/offwaittime
+func (m_ MTROnOffClusterOnWithTimedOffParams) SetOffWaitTime(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setOffWaitTime:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtronoffclusteronwithtimedoffparams/serversideprocessingtimeout
+func (m_ MTROnOffClusterOnWithTimedOffParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+	return rv
+}
+
+
+// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtronoffclusteronwithtimedoffparams/serversideprocessingtimeout
+func (m_ MTROnOffClusterOnWithTimedOffParams) SetServerSideProcessingTimeout(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtronoffclusteronwithtimedoffparams/timedinvoketimeoutms
+func (m_ MTROnOffClusterOnWithTimedOffParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+	return rv
+}
+
+
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtronoffclusteronwithtimedoffparams/timedinvoketimeoutms
+func (m_ MTROnOffClusterOnWithTimedOffParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtronoffclusteronwithtimedoffparams/ontime
+func (m_ MTROnOffClusterOnWithTimedOffParams) OnTime() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("onTime"))
+	return rv
+}
+
+
+// SetOnTime sets the value of the onTime property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtronoffclusteronwithtimedoffparams/ontime
+func (m_ MTROnOffClusterOnWithTimedOffParams) SetOnTime(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setOnTime:"), value)
+}
 
 
 

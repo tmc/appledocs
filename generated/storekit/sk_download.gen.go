@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,8 +84,8 @@ func NewDownload() Download {
 // Returns the local location for the previously downloaded flie.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKDownload/contentURL(forProductID:)
-func (dc _DownloadClass) ContentURLForProductID(productID string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("contentURLForProductID:"), objc.String(productID))
+func (dc _DownloadClass) ContentURLForProductID(productID string) foundation.URL {
+	rv := objc.Send[foundation.URL](objc.ID(dc.class), objc.Sel("contentURLForProductID:"), objc.String(productID))
 	return rv
 }
 
@@ -95,11 +96,137 @@ func (dc _DownloadClass) DeleteContentForProductID(productID string) {
 	objc.Send[objc.ID](objc.ID(dc.class), objc.Sel("deleteContentForProductID:"), objc.String(productID))
 }
 
+// The current state of the download object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skdownload/state
+func (d_ Download) State() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("state"))
+	return rv
+}
+
+
+// SetState sets the value of the state property.
+// The current state of the download object.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skdownload/state
+func (d_ Download) SetState(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setState:"), value)
+}
+
+// A string that uniquely identifies the downloadable content.
+//
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skdownload/contentidentifier
+func (d_ Download) ContentIdentifier() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("contentIdentifier"))
+	return rv
+}
+
+
+// SetContentIdentifier sets the value of the contentIdentifier property.
+// A string that uniquely identifies the downloadable content.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skdownload/contentidentifier
+func (d_ Download) SetContentIdentifier(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setContentIdentifier:"), objc.String(value))
+}
+
+// The length of the downloadable content, in bytes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skdownload/contentlength
+func (d_ Download) ContentLength() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("contentLength"))
+	return rv
+}
+
+
+// SetContentLength sets the value of the contentLength property.
+// The length of the downloadable content, in bytes.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skdownload/contentlength
+func (d_ Download) SetContentLength(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setContentLength:"), value)
+}
+
+// A string that identifies which version of the content is available for download.
+//
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skdownload/contentversion
+func (d_ Download) ContentVersion() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("contentVersion"))
+	return rv
+}
+
+
+// SetContentVersion sets the value of the contentVersion property.
+// A string that identifies which version of the content is available for download.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skdownload/contentversion
+func (d_ Download) SetContentVersion(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setContentVersion:"), objc.String(value))
+}
+
+// Indicates that the system cannot determine how much time is needed to finish downloading the content.
+//
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skdownloadtimeremainingunknown
+func (d_ Download) SKDownloadTimeRemainingUnknown() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("SKDownloadTimeRemainingUnknown"))
+	return rv
+}
+
+
+// SetSKDownloadTimeRemainingUnknown sets the value of the SKDownloadTimeRemainingUnknown property.
+// Indicates that the system cannot determine how much time is needed to finish downloading the content.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skdownloadtimeremainingunknown
+func (d_ Download) SetSKDownloadTimeRemainingUnknown(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setSKDownloadTimeRemainingUnknown:"), value)
+}
+
+// The length of the downloadable content, in bytes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skdownload/expectedcontentlength
+func (d_ Download) ExpectedContentLength() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("expectedContentLength"))
+	return rv
+}
+
+
+// SetExpectedContentLength sets the value of the expectedContentLength property.
+// The length of the downloadable content, in bytes.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skdownload/expectedcontentlength
+func (d_ Download) SetExpectedContentLength(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setExpectedContentLength:"), value)
+}
+
+// An array of download objects representing the downloadable content associated with the transaction.
+//
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skpaymenttransaction/downloads
+func (d_ Download) Downloads() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("downloads"))
+	return rv
+}
+
+
+// SetDownloads sets the value of the downloads property.
+// An array of download objects representing the downloadable content associated with the transaction.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skpaymenttransaction/downloads
+func (d_ Download) SetDownloads(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setDownloads:"), value)
+}
+
 // The local location of the downloaded file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKDownload/contentURL
-func (d_ Download) ContentURL() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("contentURL"))
+func (d_ Download) ContentURL() foundation.URL {
+	rv := objc.Send[foundation.URL](d_.ID, objc.Sel("contentURL"))
 	return rv
 }
 
@@ -130,8 +257,8 @@ func (d_ Download) Progress() unsafe.Pointer {
 // An estimated time, in seconds, to finish downloading the content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKDownload/timeRemaining
-func (d_ Download) TimeRemaining() TimeInterval {
-	rv := objc.Send[TimeInterval](d_.ID, objc.Sel("timeRemaining"))
+func (d_ Download) TimeRemaining() foundation.TimeInterval {
+	rv := objc.Send[foundation.TimeInterval](d_.ID, objc.Sel("timeRemaining"))
 	return rv
 }
 

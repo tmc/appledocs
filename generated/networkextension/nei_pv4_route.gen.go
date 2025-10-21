@@ -78,5 +78,95 @@ func NewNEIPv4Route() NEIPv4Route {
 }
 
 
+// The address of the next-hop gateway of the route.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/neipv4route/gatewayaddress
+func (n_ NEIPv4Route) GatewayAddress() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("gatewayAddress"))
+	return rv
+}
+
+
+// SetGatewayAddress sets the value of the gatewayAddress property.
+// The address of the next-hop gateway of the route.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/neipv4route/gatewayaddress
+func (n_ NEIPv4Route) SetGatewayAddress(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setGatewayAddress:"), objc.String(value))
+}
+
+// The destination network address of the route.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/neipv4route/destinationaddress
+func (n_ NEIPv4Route) DestinationAddress() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("destinationAddress"))
+	return rv
+}
+
+
+// SetDestinationAddress sets the value of the destinationAddress property.
+// The destination network address of the route.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/neipv4route/destinationaddress
+func (n_ NEIPv4Route) SetDestinationAddress(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setDestinationAddress:"), objc.String(value))
+}
+
+// The IPv4 network traffic that the system routes to the primary physical interface, not the TUN interface.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/neipv4settings/excludedroutes
+func (n_ NEIPv4Route) ExcludedRoutes() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("excludedRoutes"))
+	return rv
+}
+
+
+// SetExcludedRoutes sets the value of the excludedRoutes property.
+// The IPv4 network traffic that the system routes to the primary physical interface, not the TUN interface.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/neipv4settings/excludedroutes
+func (n_ NEIPv4Route) SetExcludedRoutes(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setExcludedRoutes:"), value)
+}
+
+// The IPv4 network traffic that the system routes to the TUN interface.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/neipv4settings/includedroutes
+func (n_ NEIPv4Route) IncludedRoutes() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("includedRoutes"))
+	return rv
+}
+
+
+// SetIncludedRoutes sets the value of the includedRoutes property.
+// The IPv4 network traffic that the system routes to the TUN interface.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/neipv4settings/includedroutes
+func (n_ NEIPv4Route) SetIncludedRoutes(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setIncludedRoutes:"), value)
+}
+
+// The destination network mask of the route.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/neipv4route/destinationsubnetmask
+func (n_ NEIPv4Route) DestinationSubnetMask() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("destinationSubnetMask"))
+	return rv
+}
+
+
+// SetDestinationSubnetMask sets the value of the destinationSubnetMask property.
+// The destination network mask of the route.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/neipv4route/destinationsubnetmask
+func (n_ NEIPv4Route) SetDestinationSubnetMask(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setDestinationSubnetMask:"), objc.String(value))
+}
+
 
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,8 +78,8 @@ func NewMTRServiceAreaClusterMapStruct() MTRServiceAreaClusterMapStruct {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterMapStruct/mapID
-func (m_ MTRServiceAreaClusterMapStruct) MapID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("mapID"))
+func (m_ MTRServiceAreaClusterMapStruct) MapID() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("mapID"))
 	return rv
 }
 
@@ -86,7 +87,7 @@ func (m_ MTRServiceAreaClusterMapStruct) MapID() unsafe.Pointer {
 // SetMapID sets the value of the mapID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterMapStruct/mapID
-func (m_ MTRServiceAreaClusterMapStruct) SetMapID(value unsafe.Pointer) {
+func (m_ MTRServiceAreaClusterMapStruct) SetMapID(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMapID:"), value)
 }
 

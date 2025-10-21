@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -89,8 +90,8 @@ func (r_ RemoteCommandEvent) Command() unsafe.Pointer {
 // The time the event occurred.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPRemoteCommandEvent/timestamp
-func (r_ RemoteCommandEvent) Timestamp() TimeInterval {
-	rv := objc.Send[TimeInterval](r_.ID, objc.Sel("timestamp"))
+func (r_ RemoteCommandEvent) Timestamp() foundation.TimeInterval {
+	rv := objc.Send[foundation.TimeInterval](r_.ID, objc.Sel("timestamp"))
 	return rv
 }
 

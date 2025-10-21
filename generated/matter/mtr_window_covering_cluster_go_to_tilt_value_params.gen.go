@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,51 @@ func NewMTRWindowCoveringClusterGoToTiltValueParams() MTRWindowCoveringClusterGo
 	return getMTRWindowCoveringClusterGoToTiltValueParamsClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrwindowcoveringclustergototiltvalueparams/serversideprocessingtimeout
+func (m_ MTRWindowCoveringClusterGoToTiltValueParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+	return rv
+}
+
+
+// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrwindowcoveringclustergototiltvalueparams/serversideprocessingtimeout
+func (m_ MTRWindowCoveringClusterGoToTiltValueParams) SetServerSideProcessingTimeout(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrwindowcoveringclustergototiltvalueparams/timedinvoketimeoutms
+func (m_ MTRWindowCoveringClusterGoToTiltValueParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+	return rv
+}
+
+
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrwindowcoveringclustergototiltvalueparams/timedinvoketimeoutms
+func (m_ MTRWindowCoveringClusterGoToTiltValueParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrwindowcoveringclustergototiltvalueparams/tiltvalue
+func (m_ MTRWindowCoveringClusterGoToTiltValueParams) TiltValue() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("tiltValue"))
+	return rv
+}
+
+
+// SetTiltValue sets the value of the tiltValue property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrwindowcoveringclustergototiltvalueparams/tiltvalue
+func (m_ MTRWindowCoveringClusterGoToTiltValueParams) SetTiltValue(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTiltValue:"), value)
+}
 
 
 

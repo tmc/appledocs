@@ -80,6 +80,42 @@ func NewCustomRoutingPartialIP() CustomRoutingPartialIP {
 }
 
 
+// A mask that represents how many octets of the IP address to respect.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avrouting/avcustomroutingpartialip/mask
+func (c_ CustomRoutingPartialIP) Mask() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("mask"))
+	return rv
+}
+
+
+// SetMask sets the value of the mask property.
+// A mask that represents how many octets of the IP address to respect.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avrouting/avcustomroutingpartialip/mask
+func (c_ CustomRoutingPartialIP) SetMask(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setMask:"), value)
+}
+
+// An array of route addresses known to be on the local network.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avrouting/avcustomroutingcontroller/knownrouteips
+func (c_ CustomRoutingPartialIP) KnownRouteIPs() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("knownRouteIPs"))
+	return rv
+}
+
+
+// SetKnownRouteIPs sets the value of the knownRouteIPs property.
+// An array of route addresses known to be on the local network.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avrouting/avcustomroutingcontroller/knownrouteips
+func (c_ CustomRoutingPartialIP) SetKnownRouteIPs(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setKnownRouteIPs:"), value)
+}
+
 // A full or partial IP address for a device known to be on the network.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVCustomRoutingPartialIP/address

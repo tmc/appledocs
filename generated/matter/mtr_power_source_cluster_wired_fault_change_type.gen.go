@@ -75,5 +75,35 @@ func NewMTRPowerSourceClusterWiredFaultChangeType() MTRPowerSourceClusterWiredFa
 }
 
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrpowersourceclusterwiredfaultchangetype/current
+func (m_ MTRPowerSourceClusterWiredFaultChangeType) Current() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("current"))
+	return rv
+}
+
+
+// SetCurrent sets the value of the current property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrpowersourceclusterwiredfaultchangetype/current
+func (m_ MTRPowerSourceClusterWiredFaultChangeType) SetCurrent(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCurrent:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrpowersourceclusterwiredfaultchangetype/previous
+func (m_ MTRPowerSourceClusterWiredFaultChangeType) Previous() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("previous"))
+	return rv
+}
+
+
+// SetPrevious sets the value of the previous property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrpowersourceclusterwiredfaultchangetype/previous
+func (m_ MTRPowerSourceClusterWiredFaultChangeType) SetPrevious(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPrevious:"), value)
+}
+
 
 

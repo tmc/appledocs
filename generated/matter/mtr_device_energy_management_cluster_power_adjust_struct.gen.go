@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,8 +78,8 @@ func NewMTRDeviceEnergyManagementClusterPowerAdjustStruct() MTRDeviceEnergyManag
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPowerAdjustStruct/maxDuration
-func (m_ MTRDeviceEnergyManagementClusterPowerAdjustStruct) MaxDuration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("maxDuration"))
+func (m_ MTRDeviceEnergyManagementClusterPowerAdjustStruct) MaxDuration() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("maxDuration"))
 	return rv
 }
 
@@ -86,14 +87,14 @@ func (m_ MTRDeviceEnergyManagementClusterPowerAdjustStruct) MaxDuration() unsafe
 // SetMaxDuration sets the value of the maxDuration property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPowerAdjustStruct/maxDuration
-func (m_ MTRDeviceEnergyManagementClusterPowerAdjustStruct) SetMaxDuration(value unsafe.Pointer) {
+func (m_ MTRDeviceEnergyManagementClusterPowerAdjustStruct) SetMaxDuration(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMaxDuration:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPowerAdjustStruct/maxPower
-func (m_ MTRDeviceEnergyManagementClusterPowerAdjustStruct) MaxPower() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("maxPower"))
+func (m_ MTRDeviceEnergyManagementClusterPowerAdjustStruct) MaxPower() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("maxPower"))
 	return rv
 }
 
@@ -101,14 +102,14 @@ func (m_ MTRDeviceEnergyManagementClusterPowerAdjustStruct) MaxPower() unsafe.Po
 // SetMaxPower sets the value of the maxPower property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPowerAdjustStruct/maxPower
-func (m_ MTRDeviceEnergyManagementClusterPowerAdjustStruct) SetMaxPower(value unsafe.Pointer) {
+func (m_ MTRDeviceEnergyManagementClusterPowerAdjustStruct) SetMaxPower(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMaxPower:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPowerAdjustStruct/minDuration
-func (m_ MTRDeviceEnergyManagementClusterPowerAdjustStruct) MinDuration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("minDuration"))
+func (m_ MTRDeviceEnergyManagementClusterPowerAdjustStruct) MinDuration() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("minDuration"))
 	return rv
 }
 
@@ -116,14 +117,14 @@ func (m_ MTRDeviceEnergyManagementClusterPowerAdjustStruct) MinDuration() unsafe
 // SetMinDuration sets the value of the minDuration property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPowerAdjustStruct/minDuration
-func (m_ MTRDeviceEnergyManagementClusterPowerAdjustStruct) SetMinDuration(value unsafe.Pointer) {
+func (m_ MTRDeviceEnergyManagementClusterPowerAdjustStruct) SetMinDuration(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMinDuration:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPowerAdjustStruct/minPower
-func (m_ MTRDeviceEnergyManagementClusterPowerAdjustStruct) MinPower() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("minPower"))
+func (m_ MTRDeviceEnergyManagementClusterPowerAdjustStruct) MinPower() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("minPower"))
 	return rv
 }
 
@@ -131,7 +132,7 @@ func (m_ MTRDeviceEnergyManagementClusterPowerAdjustStruct) MinPower() unsafe.Po
 // SetMinPower sets the value of the minPower property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPowerAdjustStruct/minPower
-func (m_ MTRDeviceEnergyManagementClusterPowerAdjustStruct) SetMinPower(value unsafe.Pointer) {
+func (m_ MTRDeviceEnergyManagementClusterPowerAdjustStruct) SetMinPower(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMinPower:"), value)
 }
 

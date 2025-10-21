@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,8 +78,8 @@ func NewMTRICDManagementClusterUnregisterClientParams() MTRICDManagementClusterU
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterUnregisterClientParams/checkInNodeID
-func (m_ MTRICDManagementClusterUnregisterClientParams) CheckInNodeID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("checkInNodeID"))
+func (m_ MTRICDManagementClusterUnregisterClientParams) CheckInNodeID() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("checkInNodeID"))
 	return rv
 }
 
@@ -86,15 +87,15 @@ func (m_ MTRICDManagementClusterUnregisterClientParams) CheckInNodeID() unsafe.P
 // SetCheckInNodeID sets the value of the checkInNodeID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterUnregisterClientParams/checkInNodeID
-func (m_ MTRICDManagementClusterUnregisterClientParams) SetCheckInNodeID(value unsafe.Pointer) {
+func (m_ MTRICDManagementClusterUnregisterClientParams) SetCheckInNodeID(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCheckInNodeID:"), value)
 }
 
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterUnregisterClientParams/serverSideProcessingTimeout
-func (m_ MTRICDManagementClusterUnregisterClientParams) ServerSideProcessingTimeout() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRICDManagementClusterUnregisterClientParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
@@ -104,15 +105,15 @@ func (m_ MTRICDManagementClusterUnregisterClientParams) ServerSideProcessingTime
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterUnregisterClientParams/serverSideProcessingTimeout
-func (m_ MTRICDManagementClusterUnregisterClientParams) SetServerSideProcessingTimeout(value unsafe.Pointer) {
+func (m_ MTRICDManagementClusterUnregisterClientParams) SetServerSideProcessingTimeout(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterUnregisterClientParams/timedInvokeTimeoutMs
-func (m_ MTRICDManagementClusterUnregisterClientParams) TimedInvokeTimeoutMs() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRICDManagementClusterUnregisterClientParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
@@ -122,7 +123,7 @@ func (m_ MTRICDManagementClusterUnregisterClientParams) TimedInvokeTimeoutMs() u
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterUnregisterClientParams/timedInvokeTimeoutMs
-func (m_ MTRICDManagementClusterUnregisterClientParams) SetTimedInvokeTimeoutMs(value unsafe.Pointer) {
+func (m_ MTRICDManagementClusterUnregisterClientParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

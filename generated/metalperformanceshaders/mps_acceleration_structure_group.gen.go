@@ -88,4 +88,19 @@ func NewAccelerationStructureGroupWithDevice(device objc.ID) AccelerationStructu
 }
 
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsaccelerationstructuregroup/device
+func (a_ AccelerationStructureGroup) Device() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("device"))
+	return rv
+}
+
+
+// SetDevice sets the value of the device property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsaccelerationstructuregroup/device
+func (a_ AccelerationStructureGroup) SetDevice(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setDevice:"), value)
+}
+
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -116,7 +117,7 @@ func NewPlayerWithPlayerItem(item unsafe.Pointer) Player {
 // Creates a new player to play a single audiovisual resource referenced by a given URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/init(url:)
-func NewPlayerWithURL(URL unsafe.Pointer) Player {
+func NewPlayerWithURL(URL foundation.URL) Player {
 	instance := getPlayerClass().Alloc()
 	rv := objc.Send[Player](instance.ID, objc.Sel("initWithURL:"), URL)
 	rv.Autorelease()
@@ -135,7 +136,7 @@ func (pc _PlayerClass) PlayerWithPlayerItem(item unsafe.Pointer) unsafe.Pointer 
 // Returns a new player to play a single audiovisual resource referenced by a given URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/playerWithURL:
-func (pc _PlayerClass) PlayerWithURL(URL unsafe.Pointer) unsafe.Pointer {
+func (pc _PlayerClass) PlayerWithURL(URL foundation.URL) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("playerWithURL:"), URL)
 	return rv
 }
@@ -824,6 +825,132 @@ func (p_ Player) Volume() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/volume
 func (p_ Player) SetVolume(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setVolume:"), value)
+}
+
+// A Boolean value that indicates whether the player is playing video through AirPlay.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayer/isairplayvideoactive
+func (p_ Player) IsAirPlayVideoActive() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isAirPlayVideoActive"))
+	return rv
+}
+
+
+// SetIsAirPlayVideoActive sets the value of the isAirPlayVideoActive property.
+// A Boolean value that indicates whether the player is playing video through AirPlay.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayer/isairplayvideoactive
+func (p_ Player) SetIsAirPlayVideoActive(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsAirPlayVideoActive:"), value)
+}
+
+// A Boolean value that indicates whether the player uses closed captioning.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayer/isclosedcaptiondisplayenabled
+func (p_ Player) IsClosedCaptionDisplayEnabled() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isClosedCaptionDisplayEnabled"))
+	return rv
+}
+
+
+// SetIsClosedCaptionDisplayEnabled sets the value of the isClosedCaptionDisplayEnabled property.
+// A Boolean value that indicates whether the player uses closed captioning.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayer/isclosedcaptiondisplayenabled
+func (p_ Player) SetIsClosedCaptionDisplayEnabled(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsClosedCaptionDisplayEnabled:"), value)
+}
+
+// A Boolean value that indicates whether the player is currently playing video in external playback mode.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayer/isexternalplaybackactive
+func (p_ Player) IsExternalPlaybackActive() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isExternalPlaybackActive"))
+	return rv
+}
+
+
+// SetIsExternalPlaybackActive sets the value of the isExternalPlaybackActive property.
+// A Boolean value that indicates whether the player is currently playing video in external playback mode.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayer/isexternalplaybackactive
+func (p_ Player) SetIsExternalPlaybackActive(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsExternalPlaybackActive:"), value)
+}
+
+// A Boolean value that indicates whether the audio output of the player is muted.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayer/ismuted
+func (p_ Player) IsMuted() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isMuted"))
+	return rv
+}
+
+
+// SetIsMuted sets the value of the isMuted property.
+// A Boolean value that indicates whether the audio output of the player is muted.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayer/ismuted
+func (p_ Player) SetIsMuted(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsMuted:"), value)
+}
+
+// A Boolean value that indicates whether output is being obscured because of insufficient external protection.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayer/isoutputobscuredduetoinsufficientexternalprotection
+func (p_ Player) IsOutputObscuredDueToInsufficientExternalProtection() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isOutputObscuredDueToInsufficientExternalProtection"))
+	return rv
+}
+
+
+// SetIsOutputObscuredDueToInsufficientExternalProtection sets the value of the isOutputObscuredDueToInsufficientExternalProtection property.
+// A Boolean value that indicates whether output is being obscured because of insufficient external protection.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayer/isoutputobscuredduetoinsufficientexternalprotection
+func (p_ Player) SetIsOutputObscuredDueToInsufficientExternalProtection(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsOutputObscuredDueToInsufficientExternalProtection:"), value)
+}
+
+// The source audio channel layouts the player item supports for spatialization.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/allowedaudiospatializationformats
+func (p_ Player) AllowedAudioSpatializationFormats() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("allowedAudioSpatializationFormats"))
+	return rv
+}
+
+
+// SetAllowedAudioSpatializationFormats sets the value of the allowedAudioSpatializationFormats property.
+// The source audio channel layouts the player item supports for spatialization.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/allowedaudiospatializationformats
+func (p_ Player) SetAllowedAudioSpatializationFormats(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setAllowedAudioSpatializationFormats:"), value)
+}
+
+// A Boolean value that indicates whether the player item allows spatialized audio playback.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/isaudiospatializationallowed
+func (p_ Player) IsAudioSpatializationAllowed() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isAudioSpatializationAllowed"))
+	return rv
+}
+
+
+// SetIsAudioSpatializationAllowed sets the value of the isAudioSpatializationAllowed property.
+// A Boolean value that indicates whether the player item allows spatialized audio playback.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/isaudiospatializationallowed
+func (p_ Player) SetIsAudioSpatializationAllowed(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIsAudioSpatializationAllowed:"), value)
 }
 
 

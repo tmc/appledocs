@@ -81,5 +81,23 @@ func NewINCancelWorkoutIntent() INCancelWorkoutIntent {
 }
 
 
+// The name of the workout.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/incancelworkoutintent/workoutname
+func (i_ INCancelWorkoutIntent) WorkoutName() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("workoutName"))
+	return rv
+}
+
+
+// SetWorkoutName sets the value of the workoutName property.
+// The name of the workout.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/incancelworkoutintent/workoutname
+func (i_ INCancelWorkoutIntent) SetWorkoutName(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setWorkoutName:"), value)
+}
+
 
 

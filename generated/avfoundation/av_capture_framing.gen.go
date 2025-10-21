@@ -88,5 +88,41 @@ func (c_ CaptureFraming) ZoomFactor() unsafe.Pointer {
 	return rv
 }
 
+// A monitor owned by the device that recommends an optimal framing based on the content in the scene.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/smartframingmonitor
+func (c_ CaptureFraming) SmartFramingMonitor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("smartFramingMonitor"))
+	return rv
+}
+
+
+// SetSmartFramingMonitor sets the value of the smartFramingMonitor property.
+// A monitor owned by the device that recommends an optimal framing based on the content in the scene.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/smartframingmonitor
+func (c_ CaptureFraming) SetSmartFramingMonitor(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setSmartFramingMonitor:"), value)
+}
+
+// An aspect ratio.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureframing/aspectratio
+func (c_ CaptureFraming) AspectRatio() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("aspectRatio"))
+	return rv
+}
+
+
+// SetAspectRatio sets the value of the aspectRatio property.
+// An aspect ratio.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureframing/aspectratio
+func (c_ CaptureFraming) SetAspectRatio(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setAspectRatio:"), value)
+}
+
 
 

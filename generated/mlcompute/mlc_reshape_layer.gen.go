@@ -79,5 +79,23 @@ func NewCReshapeLayer() CReshapeLayer {
 }
 
 
+// An array that contains the size of each dimension.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcreshapelayer/shape-8k50y
+func (c_ CReshapeLayer) Shape() int {
+	rv := objc.Send[int](c_.ID, objc.Sel("shape"))
+	return rv
+}
+
+
+// SetShape sets the value of the shape property.
+// An array that contains the size of each dimension.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcreshapelayer/shape-8k50y
+func (c_ CReshapeLayer) SetShape(value int) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setShape:"), value)
+}
+
 
 

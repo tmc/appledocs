@@ -109,5 +109,167 @@ func (s_ SliderCell) SetSliderType(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSliderType:"), value)
 }
 
+// A Boolean value indicating whether the receiver fixes its values to those values represented by its tick marks.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidercell/allowstickmarkvaluesonly
+func (s_ SliderCell) AllowsTickMarkValuesOnly() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("allowsTickMarkValuesOnly"))
+	return rv
+}
+
+
+// SetAllowsTickMarkValuesOnly sets the value of the allowsTickMarkValuesOnly property.
+// A Boolean value indicating whether the receiver fixes its values to those values represented by its tick marks.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidercell/allowstickmarkvaluesonly
+func (s_ SliderCell) SetAllowsTickMarkValuesOnly(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setAllowsTickMarkValuesOnly:"), value)
+}
+
+// The amount by which the slider changes its value when the user Option-drags the knob.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidercell/altincrementvalue
+func (s_ SliderCell) AltIncrementValue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("altIncrementValue"))
+	return rv
+}
+
+
+// SetAltIncrementValue sets the value of the altIncrementValue property.
+// The amount by which the slider changes its value when the user Option-drags the knob.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidercell/altincrementvalue
+func (s_ SliderCell) SetAltIncrementValue(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setAltIncrementValue:"), value)
+}
+
+// An integer indicating the orientation (vertical or horizontal) of the slider.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidercell/isvertical
+func (s_ SliderCell) IsVertical() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("isVertical"))
+	return rv
+}
+
+
+// SetIsVertical sets the value of the isVertical property.
+// An integer indicating the orientation (vertical or horizontal) of the slider.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidercell/isvertical
+func (s_ SliderCell) SetIsVertical(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setIsVertical:"), value)
+}
+
+// The thickness of the slider knob, in pixels.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidercell/knobthickness
+func (s_ SliderCell) KnobThickness() float64 {
+	rv := objc.Send[float64](s_.ID, objc.Sel("knobThickness"))
+	return rv
+}
+
+
+// SetKnobThickness sets the value of the knobThickness property.
+// The thickness of the slider knob, in pixels.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidercell/knobthickness
+func (s_ SliderCell) SetKnobThickness(value float64) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setKnobThickness:"), value)
+}
+
+// The maximum value the slider can send to its target.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidercell/maxvalue
+func (s_ SliderCell) MaxValue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("maxValue"))
+	return rv
+}
+
+
+// SetMaxValue sets the value of the maxValue property.
+// The maximum value the slider can send to its target.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidercell/maxvalue
+func (s_ SliderCell) SetMaxValue(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setMaxValue:"), value)
+}
+
+// The minimum value the slider can send to its target.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidercell/minvalue
+func (s_ SliderCell) MinValue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("minValue"))
+	return rv
+}
+
+
+// SetMinValue sets the value of the minValue property.
+// The minimum value the slider can send to its target.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidercell/minvalue
+func (s_ SliderCell) SetMinValue(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setMinValue:"), value)
+}
+
+// The number of tick marks associated with the slider, including the tick marks assigned to the minimum and maximum values.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidercell/numberoftickmarks
+func (s_ SliderCell) NumberOfTickMarks() int {
+	rv := objc.Send[int](s_.ID, objc.Sel("numberOfTickMarks"))
+	return rv
+}
+
+
+// SetNumberOfTickMarks sets the value of the numberOfTickMarks property.
+// The number of tick marks associated with the slider, including the tick marks assigned to the minimum and maximum values.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidercell/numberoftickmarks
+func (s_ SliderCell) SetNumberOfTickMarks(value int) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setNumberOfTickMarks:"), value)
+}
+
+// The position of the tick marks relative to the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidercell/tickmarkposition
+func (s_ SliderCell) TickMarkPosition() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("tickMarkPosition"))
+	return rv
+}
+
+
+// SetTickMarkPosition sets the value of the tickMarkPosition property.
+// The position of the tick marks relative to the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidercell/tickmarkposition
+func (s_ SliderCell) SetTickMarkPosition(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setTickMarkPosition:"), value)
+}
+
+// The rectangle within which the cell tracks the pointer while the mouse button is down.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidercell/trackrect
+func (s_ SliderCell) TrackRect() coregraphics.CGRect {
+	rv := objc.Send[coregraphics.CGRect](s_.ID, objc.Sel("trackRect"))
+	return rv
+}
+
+
+// SetTrackRect sets the value of the trackRect property.
+// The rectangle within which the cell tracks the pointer while the mouse button is down.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidercell/trackrect
+func (s_ SliderCell) SetTrackRect(value coregraphics.CGRect) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setTrackRect:"), value)
+}
+
 
 

@@ -479,4 +479,40 @@ func (t_ Toolbar) VisibleItems() []ToolbarItem {
 	return rv
 }
 
+// A dictionary containing the current configuration details for the toolbar.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbar/configuration
+func (t_ Toolbar) Configuration() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("configuration"))
+	return rv
+}
+
+
+// SetConfiguration sets the value of the configuration property.
+// A dictionary containing the current configuration details for the toolbar.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbar/configuration
+func (t_ Toolbar) SetConfiguration(value string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setConfiguration:"), objc.String(value))
+}
+
+// A Boolean value that indicates whether the toolbar is visible.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbar/isvisible
+func (t_ Toolbar) IsVisible() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("isVisible"))
+	return rv
+}
+
+
+// SetIsVisible sets the value of the isVisible property.
+// A Boolean value that indicates whether the toolbar is visible.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbar/isvisible
+func (t_ Toolbar) SetIsVisible(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setIsVisible:"), value)
+}
+
 

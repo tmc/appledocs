@@ -99,5 +99,35 @@ func (m_ MTRDeviceControllerFactory) StartControllerFactoryError(startupParams u
 	return rv
 }
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerfactory/knownfabrics
+func (m_ MTRDeviceControllerFactory) KnownFabrics() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("knownFabrics"))
+	return rv
+}
+
+
+// SetKnownFabrics sets the value of the knownFabrics property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerfactory/knownfabrics
+func (m_ MTRDeviceControllerFactory) SetKnownFabrics(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setKnownFabrics:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerfactory/isrunning
+func (m_ MTRDeviceControllerFactory) IsRunning() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("isRunning"))
+	return rv
+}
+
+
+// SetIsRunning sets the value of the isRunning property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerfactory/isrunning
+func (m_ MTRDeviceControllerFactory) SetIsRunning(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIsRunning:"), value)
+}
+
 
 

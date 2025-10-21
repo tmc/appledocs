@@ -81,6 +81,24 @@ func NewVZVirtioFileSystemDevice() VZVirtioFileSystemDevice {
 }
 
 
+// The list of configured directory-sharing devices on the VM.
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachine/directorysharingdevices
+func (v_ VZVirtioFileSystemDevice) DirectorySharingDevices() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("directorySharingDevices"))
+	return rv
+}
+
+
+// SetDirectorySharingDevices sets the value of the directorySharingDevices property.
+// The list of configured directory-sharing devices on the VM.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachine/directorysharingdevices
+func (v_ VZVirtioFileSystemDevice) SetDirectorySharingDevices(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setDirectorySharingDevices:"), value)
+}
+
 // A value that defines the directory share the host exposes to the guest VM.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioFileSystemDevice/share

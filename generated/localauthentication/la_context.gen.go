@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -131,6 +132,14 @@ func (c_ Context) SetCredentialType(credential unsafe.Pointer, type_ unsafe.Poin
 	return rv
 }
 
+// The maximum allowable reuse duration.
+//
+// [Full Topic]: https://developer.apple.com/documentation/localauthentication/latouchidauthenticationmaximumallowablereuseduration
+func (c_ Context) LATouchIDAuthenticationMaximumAllowableReuseDuration() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("LATouchIDAuthenticationMaximumAllowableReuseDuration"))
+	return rv
+}
+
 // The type of biometric authentication supported by the device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAContext/biometryType
@@ -230,8 +239,8 @@ func (c_ Context) SetLocalizedReason(value string) {
 // The number of biometric authentication failures after which the context falls back to another mechanism.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAContext/maxBiometryFailures
-func (c_ Context) MaxBiometryFailures() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("maxBiometryFailures"))
+func (c_ Context) MaxBiometryFailures() foundation.Number {
+	rv := objc.Send[foundation.Number](c_.ID, objc.Sel("maxBiometryFailures"))
 	return rv
 }
 
@@ -241,15 +250,15 @@ func (c_ Context) MaxBiometryFailures() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAContext/maxBiometryFailures
-func (c_ Context) SetMaxBiometryFailures(value unsafe.Pointer) {
+func (c_ Context) SetMaxBiometryFailures(value foundation.Number) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMaxBiometryFailures:"), value)
 }
 
 // The duration for which Touch ID authentication reuse is allowable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAContext/touchIDAuthenticationAllowableReuseDuration
-func (c_ Context) TouchIDAuthenticationAllowableReuseDuration() TimeInterval {
-	rv := objc.Send[TimeInterval](c_.ID, objc.Sel("touchIDAuthenticationAllowableReuseDuration"))
+func (c_ Context) TouchIDAuthenticationAllowableReuseDuration() foundation.TimeInterval {
+	rv := objc.Send[foundation.TimeInterval](c_.ID, objc.Sel("touchIDAuthenticationAllowableReuseDuration"))
 	return rv
 }
 
@@ -259,7 +268,7 @@ func (c_ Context) TouchIDAuthenticationAllowableReuseDuration() TimeInterval {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAContext/touchIDAuthenticationAllowableReuseDuration
-func (c_ Context) SetTouchIDAuthenticationAllowableReuseDuration(value TimeInterval) {
+func (c_ Context) SetTouchIDAuthenticationAllowableReuseDuration(value foundation.TimeInterval) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setTouchIDAuthenticationAllowableReuseDuration:"), value)
 }
 

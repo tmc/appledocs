@@ -100,6 +100,24 @@ func (mc _MetricKeyClass) MiniBatchIndex() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("miniBatchIndex"))
 	return rv
 }
+// The training metrics of the model for the update task, contained in a dictionary.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlupdatecontext/metrics
+func (m_ MetricKey) Metrics() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("metrics"))
+	return rv
+}
+
+
+// SetMetrics sets the value of the metrics property.
+// The training metrics of the model for the update task, contained in a dictionary.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlupdatecontext/metrics
+func (m_ MetricKey) SetMetrics(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMetrics:"), value)
+}
+
 // The key you use to access the epoch index (an value).
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLMetricKey/epochIndex

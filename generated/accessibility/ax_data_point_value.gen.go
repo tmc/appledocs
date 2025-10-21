@@ -80,5 +80,41 @@ func NewAXDataPointValue() AXDataPointValue {
 }
 
 
+// The value of the x-axis for the data point.
+//
+// [Full Topic]: https://developer.apple.com/documentation/accessibility/axdatapoint/xvalue
+func (a_ AXDataPointValue) XValue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("xValue"))
+	return rv
+}
+
+
+// SetXValue sets the value of the xValue property.
+// The value of the x-axis for the data point.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/accessibility/axdatapoint/xvalue
+func (a_ AXDataPointValue) SetXValue(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setXValue:"), value)
+}
+
+// The value of the y-axis for the data point.
+//
+// [Full Topic]: https://developer.apple.com/documentation/accessibility/axdatapoint/yvalue
+func (a_ AXDataPointValue) YValue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("yValue"))
+	return rv
+}
+
+
+// SetYValue sets the value of the yValue property.
+// The value of the y-axis for the data point.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/accessibility/axdatapoint/yvalue
+func (a_ AXDataPointValue) SetYValue(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setYValue:"), value)
+}
+
 
 

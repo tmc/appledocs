@@ -88,5 +88,23 @@ func (t_ TimedMetadataGroup) TimeRange() unsafe.Pointer {
 	return rv
 }
 
+// An array of metadata items in the timed metadata group.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avtimedmetadatagroup/items
+func (t_ TimedMetadataGroup) Items() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("items"))
+	return rv
+}
+
+
+// SetItems sets the value of the items property.
+// An array of metadata items in the timed metadata group.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avtimedmetadatagroup/items
+func (t_ TimedMetadataGroup) SetItems(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setItems:"), value)
+}
+
 
 

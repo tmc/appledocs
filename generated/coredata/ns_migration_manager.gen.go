@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -34,7 +35,7 @@ type IMigrationManager interface {
 	CancelMigrationWithError(error_ unsafe.Pointer)
 	DestinationEntityForEntityMapping(mEntity unsafe.Pointer) unsafe.Pointer
 	DestinationInstancesForEntityMappingNamedSourceInstances(mappingName string, sourceInstances unsafe.Pointer) []ManagedObject
-	MigrateStoreFromURLTypeOptionsWithMappingModelToDestinationURLDestinationTypeDestinationOptionsError(sourceURL unsafe.Pointer, sStoreType string, sOptions objc.ID, mappings unsafe.Pointer, dURL unsafe.Pointer, dStoreType string, dOptions objc.ID, error_ unsafe.Pointer) bool
+	MigrateStoreFromURLTypeOptionsWithMappingModelToDestinationURLDestinationTypeDestinationOptionsError(sourceURL foundation.URL, sStoreType string, sOptions objc.ID, mappings unsafe.Pointer, dURL foundation.URL, dStoreType string, dOptions objc.ID, error_ unsafe.Pointer) bool
 	Reset()
 	SourceEntityForEntityMapping(mEntity unsafe.Pointer) unsafe.Pointer
 	SourceInstancesForEntityMappingNamedDestinationInstances(mappingName string, destinationInstances unsafe.Pointer) []ManagedObject
@@ -132,7 +133,7 @@ func (m_ MigrationManager) DestinationInstancesForEntityMappingNamedSourceInstan
 // Migrates the store at a given source URL to the store at a given destination URL, performing all of the mappings specified in a given mapping model.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMigrationManager/migrateStore(from:sourceType:options:with:toDestinationURL:destinationType:destinationOptions:)
-func (m_ MigrationManager) MigrateStoreFromURLTypeOptionsWithMappingModelToDestinationURLDestinationTypeDestinationOptionsError(sourceURL unsafe.Pointer, sStoreType string, sOptions objc.ID, mappings unsafe.Pointer, dURL unsafe.Pointer, dStoreType string, dOptions objc.ID, error_ unsafe.Pointer) bool {
+func (m_ MigrationManager) MigrateStoreFromURLTypeOptionsWithMappingModelToDestinationURLDestinationTypeDestinationOptionsError(sourceURL foundation.URL, sStoreType string, sOptions objc.ID, mappings unsafe.Pointer, dURL foundation.URL, dStoreType string, dOptions objc.ID, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("migrateStoreFromURL:type:options:withMappingModel:toDestinationURL:destinationType:destinationOptions:error:"), sourceURL, objc.String(sStoreType), sOptions, mappings, dURL, objc.String(dStoreType), dOptions, error_)
 	return rv
 }

@@ -79,5 +79,23 @@ func NewCPoolingLayer() CPoolingLayer {
 }
 
 
+// The configuration object you use to create the pooling layer.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcpoolinglayer/descriptor
+func (c_ CPoolingLayer) Descriptor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("descriptor"))
+	return rv
+}
+
+
+// SetDescriptor sets the value of the descriptor property.
+// The configuration object you use to create the pooling layer.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcpoolinglayer/descriptor
+func (c_ CPoolingLayer) SetDescriptor(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setDescriptor:"), value)
+}
+
 
 

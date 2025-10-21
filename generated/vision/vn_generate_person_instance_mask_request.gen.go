@@ -79,5 +79,31 @@ func NewGeneratePersonInstanceMaskRequest() GeneratePersonInstanceMaskRequest {
 }
 
 
+// A constant for specifying revision 1 of the person instance mask request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vngeneratepersoninstancemaskrequestrevision1
+func (g_ GeneratePersonInstanceMaskRequest) VNGeneratePersonInstanceMaskRequestRevision1() int {
+	rv := objc.Send[int](g_.ID, objc.Sel("VNGeneratePersonInstanceMaskRequestRevision1"))
+	return rv
+}
+
+// The results of the instance mask request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vngeneratepersoninstancemaskrequest/results
+func (g_ GeneratePersonInstanceMaskRequest) Results() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("results"))
+	return rv
+}
+
+
+// SetResults sets the value of the results property.
+// The results of the instance mask request.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vngeneratepersoninstancemaskrequest/results
+func (g_ GeneratePersonInstanceMaskRequest) SetResults(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setResults:"), value)
+}
+
 
 

@@ -109,5 +109,77 @@ func (a_ AnimationContext) CurrentContext() unsafe.Pointer {
 	return rv
 }
 
+// Determine if animations are enabled or not for animations that occur as a result of another property change.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimationcontext/allowsimplicitanimation
+func (a_ AnimationContext) AllowsImplicitAnimation() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("allowsImplicitAnimation"))
+	return rv
+}
+
+
+// SetAllowsImplicitAnimation sets the value of the allowsImplicitAnimation property.
+// Determine if animations are enabled or not for animations that occur as a result of another property change.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimationcontext/allowsimplicitanimation
+func (a_ AnimationContext) SetAllowsImplicitAnimation(value bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowsImplicitAnimation:"), value)
+}
+
+// A completion Block that is called when the animations in the grouping are completed.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimationcontext/completionhandler
+func (a_ AnimationContext) CompletionHandler() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("completionHandler"))
+	return rv
+}
+
+
+// SetCompletionHandler sets the value of the completionHandler property.
+// A completion Block that is called when the animations in the grouping are completed.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimationcontext/completionhandler
+func (a_ AnimationContext) SetCompletionHandler(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setCompletionHandler:"), value)
+}
+
+// The duration used by animations created as a result of setting new values for an animatable property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimationcontext/duration
+func (a_ AnimationContext) Duration() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("duration"))
+	return rv
+}
+
+
+// SetDuration sets the value of the duration property.
+// The duration used by animations created as a result of setting new values for an animatable property.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimationcontext/duration
+func (a_ AnimationContext) SetDuration(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setDuration:"), value)
+}
+
+// The timing function used for all animations within this animation proxy group.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimationcontext/timingfunction
+func (a_ AnimationContext) TimingFunction() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("timingFunction"))
+	return rv
+}
+
+
+// SetTimingFunction sets the value of the timingFunction property.
+// The timing function used for all animations within this animation proxy group.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimationcontext/timingfunction
+func (a_ AnimationContext) SetTimingFunction(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setTimingFunction:"), value)
+}
+
 
 

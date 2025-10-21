@@ -124,5 +124,41 @@ func (p_ PlayerPlaybackCoordinator) Player() unsafe.Pointer {
 	return rv
 }
 
+// The playback coordinator for the player.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayer/playbackcoordinator
+func (p_ PlayerPlaybackCoordinator) PlaybackCoordinator() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("playbackCoordinator"))
+	return rv
+}
+
+
+// SetPlaybackCoordinator sets the value of the playbackCoordinator property.
+// The playback coordinator for the player.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayer/playbackcoordinator
+func (p_ PlayerPlaybackCoordinator) SetPlaybackCoordinator(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPlaybackCoordinator:"), value)
+}
+
+// A value that indicates whether playback is in progress, paused indefinitely, or waiting for network conditions to improve.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayer/timecontrolstatus-swift.property
+func (p_ PlayerPlaybackCoordinator) TimeControlStatus() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("timeControlStatus"))
+	return rv
+}
+
+
+// SetTimeControlStatus sets the value of the timeControlStatus property.
+// A value that indicates whether playback is in progress, paused indefinitely, or waiting for network conditions to improve.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayer/timecontrolstatus-swift.property
+func (p_ PlayerPlaybackCoordinator) SetTimeControlStatus(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setTimeControlStatus:"), value)
+}
+
 
 

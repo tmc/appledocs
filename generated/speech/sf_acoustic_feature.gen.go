@@ -78,5 +78,41 @@ func NewSFAcousticFeature() SFAcousticFeature {
 }
 
 
+// An array of feature values, one value per audio frame, corresponding to a transcript segment of recorded audio.
+//
+// [Full Topic]: https://developer.apple.com/documentation/speech/sfacousticfeature/acousticfeaturevalueperframe-5krkk
+func (s_ SFAcousticFeature) AcousticFeatureValuePerFrame() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("acousticFeatureValuePerFrame"))
+	return rv
+}
+
+
+// SetAcousticFeatureValuePerFrame sets the value of the acousticFeatureValuePerFrame property.
+// An array of feature values, one value per audio frame, corresponding to a transcript segment of recorded audio.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/speech/sfacousticfeature/acousticfeaturevalueperframe-5krkk
+func (s_ SFAcousticFeature) SetAcousticFeatureValuePerFrame(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setAcousticFeatureValuePerFrame:"), value)
+}
+
+// The duration of the audio frame.
+//
+// [Full Topic]: https://developer.apple.com/documentation/speech/sfacousticfeature/frameduration
+func (s_ SFAcousticFeature) FrameDuration() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("frameDuration"))
+	return rv
+}
+
+
+// SetFrameDuration sets the value of the frameDuration property.
+// The duration of the audio frame.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/speech/sfacousticfeature/frameduration
+func (s_ SFAcousticFeature) SetFrameDuration(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setFrameDuration:"), value)
+}
+
 
 

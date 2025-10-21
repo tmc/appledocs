@@ -94,4 +94,40 @@ func NewHKVerifiableClinicalRecordQueryWithRecordTypesSourceTypesPredicateResult
 }
 
 
+// The type of records that this query returns.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordquery/recordtypes
+func (h_ HKVerifiableClinicalRecordQuery) RecordTypes() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("recordTypes"))
+	return rv
+}
+
+
+// SetRecordTypes sets the value of the recordTypes property.
+// The type of records that this query returns.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordquery/recordtypes
+func (h_ HKVerifiableClinicalRecordQuery) SetRecordTypes(value string) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setRecordTypes:"), objc.String(value))
+}
+
+// The format of the verifiable clinical record.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordquery/sourcetypes
+func (h_ HKVerifiableClinicalRecordQuery) SourceTypes() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("sourceTypes"))
+	return rv
+}
+
+
+// SetSourceTypes sets the value of the sourceTypes property.
+// The format of the verifiable clinical record.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordquery/sourcetypes
+func (h_ HKVerifiableClinicalRecordQuery) SetSourceTypes(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setSourceTypes:"), value)
+}
+
 

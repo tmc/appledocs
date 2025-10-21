@@ -81,6 +81,24 @@ func NewEAGLLayer() EAGLLayer {
 }
 
 
+// A dictionary of values that specify the desired characteristics of the drawable surface.
+//
+// [Full Topic]: https://developer.apple.com/documentation/OpenGLES/EAGLDrawable/drawableProperties
+func (e_ EAGLLayer) DrawableProperties() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("drawableProperties"))
+	return rv
+}
+
+
+// SetDrawableProperties sets the value of the drawableProperties property.
+// A dictionary of values that specify the desired characteristics of the drawable surface.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/OpenGLES/EAGLDrawable/drawableProperties
+func (e_ EAGLLayer) SetDrawableProperties(value string) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setDrawableProperties:"), objc.String(value))
+}
+
 // A Boolean value that determines whether the layer presents its content using a Core Animation transaction.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEAGLLayer/presentsWithTransaction

@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -105,7 +106,7 @@ func NewPreviewReplyWithDataOfContentTypeContentSizeDataCreationBlock(contentTyp
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuickLook/QLPreviewReply/init(fileURL:)
-func NewPreviewReplyWithFileURL(fileURL unsafe.Pointer) PreviewReply {
+func NewPreviewReplyWithFileURL(fileURL foundation.URL) PreviewReply {
 	instance := getPreviewReplyClass().Alloc()
 	rv := objc.Send[PreviewReply](instance.ID, objc.Sel("initWithFileURL:"), fileURL)
 	rv.Autorelease()

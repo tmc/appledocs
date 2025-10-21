@@ -79,6 +79,42 @@ func NewGraphExecutableSerializationDescriptor() GraphExecutableSerializationDes
 }
 
 
+// The deployment platform used to serialize the executable.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphexecutableserializationdescriptor/deploymentplatform
+func (g_ GraphExecutableSerializationDescriptor) DeploymentPlatform() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("deploymentPlatform"))
+	return rv
+}
+
+
+// SetDeploymentPlatform sets the value of the deploymentPlatform property.
+// The deployment platform used to serialize the executable.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphexecutableserializationdescriptor/deploymentplatform
+func (g_ GraphExecutableSerializationDescriptor) SetDeploymentPlatform(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setDeploymentPlatform:"), value)
+}
+
+// The minimum deployment target to serialize the executable.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphexecutableserializationdescriptor/minimumdeploymenttarget
+func (g_ GraphExecutableSerializationDescriptor) MinimumDeploymentTarget() string {
+	rv := objc.Send[string](g_.ID, objc.Sel("minimumDeploymentTarget"))
+	return rv
+}
+
+
+// SetMinimumDeploymentTarget sets the value of the minimumDeploymentTarget property.
+// The minimum deployment target to serialize the executable.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphexecutableserializationdescriptor/minimumdeploymenttarget
+func (g_ GraphExecutableSerializationDescriptor) SetMinimumDeploymentTarget(value string) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setMinimumDeploymentTarget:"), objc.String(value))
+}
+
 // Flag to append to an existing .mpsgraphpackage if found at provided url.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphExecutableSerializationDescriptor/append

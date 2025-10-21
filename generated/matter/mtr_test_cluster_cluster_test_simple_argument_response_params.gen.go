@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MTRTestClusterClusterTestSimpleArgumentResponseParams] class.
@@ -75,6 +76,36 @@ func NewMTRTestClusterClusterTestSimpleArgumentResponseParams() MTRTestClusterCl
 	return getMTRTestClusterClusterTestSimpleArgumentResponseParamsClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestsimpleargumentresponseparams/returnvalue
+func (m_ MTRTestClusterClusterTestSimpleArgumentResponseParams) ReturnValue() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("returnValue"))
+	return rv
+}
+
+
+// SetReturnValue sets the value of the returnValue property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestsimpleargumentresponseparams/returnvalue
+func (m_ MTRTestClusterClusterTestSimpleArgumentResponseParams) SetReturnValue(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setReturnValue:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestsimpleargumentresponseparams/timedinvoketimeoutms
+func (m_ MTRTestClusterClusterTestSimpleArgumentResponseParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+	return rv
+}
+
+
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestsimpleargumentresponseparams/timedinvoketimeoutms
+func (m_ MTRTestClusterClusterTestSimpleArgumentResponseParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+}
 
 
 

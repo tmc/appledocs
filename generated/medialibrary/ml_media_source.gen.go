@@ -107,6 +107,60 @@ func (m_ MediaSource) MediaObjectsForIdentifiers(mediaObjectIdentifiers unsafe.P
 	return rv
 }
 
+// The base media group in the media source that contains all other groups within the source as descendant elements.
+//
+// [Full Topic]: https://developer.apple.com/documentation/medialibrary/mlmediasource/rootmediagroup
+func (m_ MediaSource) RootMediaGroup() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("rootMediaGroup"))
+	return rv
+}
+
+
+// SetRootMediaGroup sets the value of the rootMediaGroup property.
+// The base media group in the media source that contains all other groups within the source as descendant elements.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/medialibrary/mlmediasource/rootmediagroup
+func (m_ MediaSource) SetRootMediaGroup(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setRootMediaGroup:"), value)
+}
+
+// A unique identifier for the media source.
+//
+// [Full Topic]: https://developer.apple.com/documentation/medialibrary/mlmediasource/mediasourceidentifier
+func (m_ MediaSource) MediaSourceIdentifier() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("mediaSourceIdentifier"))
+	return rv
+}
+
+
+// SetMediaSourceIdentifier sets the value of the mediaSourceIdentifier property.
+// A unique identifier for the media source.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/medialibrary/mlmediasource/mediasourceidentifier
+func (m_ MediaSource) SetMediaSourceIdentifier(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMediaSourceIdentifier:"), objc.String(value))
+}
+
+// A pointer to the media library instance that loaded this media source.
+//
+// [Full Topic]: https://developer.apple.com/documentation/medialibrary/mlmediasource/medialibrary
+func (m_ MediaSource) MediaLibrary() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("mediaLibrary"))
+	return rv
+}
+
+
+// SetMediaLibrary sets the value of the mediaLibrary property.
+// A pointer to the media library instance that loaded this media source.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/medialibrary/mlmediasource/medialibrary
+func (m_ MediaSource) SetMediaLibrary(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMediaLibrary:"), value)
+}
+
 // A list of attributes describing the media source.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaLibrary/MLMediaSource/attributes

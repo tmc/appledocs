@@ -93,4 +93,76 @@ func NewCaptureDeviceRotationCoordinatorWithDevicePreviewLayer(device unsafe.Poi
 }
 
 
+// The capture device the coordinator monitors to track its physical rotation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/rotationcoordinator/device
+func (c_ CaptureDeviceRotationCoordinator) Device() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("device"))
+	return rv
+}
+
+
+// SetDevice sets the value of the device property.
+// The capture device the coordinator monitors to track its physical rotation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/rotationcoordinator/device
+func (c_ CaptureDeviceRotationCoordinator) SetDevice(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setDevice:"), value)
+}
+
+// The layer that displays a camera preview the coordinator calculates a video rotation angle for.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/rotationcoordinator/previewlayer
+func (c_ CaptureDeviceRotationCoordinator) PreviewLayer() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("previewLayer"))
+	return rv
+}
+
+
+// SetPreviewLayer sets the value of the previewLayer property.
+// The layer that displays a camera preview the coordinator calculates a video rotation angle for.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/rotationcoordinator/previewlayer
+func (c_ CaptureDeviceRotationCoordinator) SetPreviewLayer(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setPreviewLayer:"), value)
+}
+
+// An angle the coordinator provides your app to apply to photos or videos it captures with the device so that they’re level relative to gravity.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/rotationcoordinator/videorotationangleforhorizonlevelcapture
+func (c_ CaptureDeviceRotationCoordinator) VideoRotationAngleForHorizonLevelCapture() float64 {
+	rv := objc.Send[float64](c_.ID, objc.Sel("videoRotationAngleForHorizonLevelCapture"))
+	return rv
+}
+
+
+// SetVideoRotationAngleForHorizonLevelCapture sets the value of the videoRotationAngleForHorizonLevelCapture property.
+// An angle the coordinator provides your app to apply to photos or videos it captures with the device so that they’re level relative to gravity.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/rotationcoordinator/videorotationangleforhorizonlevelcapture
+func (c_ CaptureDeviceRotationCoordinator) SetVideoRotationAngleForHorizonLevelCapture(value float64) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setVideoRotationAngleForHorizonLevelCapture:"), value)
+}
+
+// An angle the coordinator provides your app to apply to the preview layer so that it’s level relative to gravity.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/rotationcoordinator/videorotationangleforhorizonlevelpreview
+func (c_ CaptureDeviceRotationCoordinator) VideoRotationAngleForHorizonLevelPreview() float64 {
+	rv := objc.Send[float64](c_.ID, objc.Sel("videoRotationAngleForHorizonLevelPreview"))
+	return rv
+}
+
+
+// SetVideoRotationAngleForHorizonLevelPreview sets the value of the videoRotationAngleForHorizonLevelPreview property.
+// An angle the coordinator provides your app to apply to the preview layer so that it’s level relative to gravity.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/rotationcoordinator/videorotationangleforhorizonlevelpreview
+func (c_ CaptureDeviceRotationCoordinator) SetVideoRotationAngleForHorizonLevelPreview(value float64) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setVideoRotationAngleForHorizonLevelPreview:"), value)
+}
+
 

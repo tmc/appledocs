@@ -77,9 +77,84 @@ func NewMTRDeviceControllerFactoryParams() MTRDeviceControllerFactoryParams {
 
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerfactoryparams/storage
+func (m_ MTRDeviceControllerFactoryParams) Storage() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("storage"))
+	return rv
+}
+
+
+// SetStorage sets the value of the storage property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerfactoryparams/storage
+func (m_ MTRDeviceControllerFactoryParams) SetStorage(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setStorage:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerfactoryparams/otaproviderdelegate
+func (m_ MTRDeviceControllerFactoryParams) OtaProviderDelegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("otaProviderDelegate"))
+	return rv
+}
+
+
+// SetOtaProviderDelegate sets the value of the otaProviderDelegate property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerfactoryparams/otaproviderdelegate
+func (m_ MTRDeviceControllerFactoryParams) SetOtaProviderDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setOtaProviderDelegate:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerfactoryparams/shouldstartserver
+func (m_ MTRDeviceControllerFactoryParams) ShouldStartServer() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("shouldStartServer"))
+	return rv
+}
+
+
+// SetShouldStartServer sets the value of the shouldStartServer property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerfactoryparams/shouldstartserver
+func (m_ MTRDeviceControllerFactoryParams) SetShouldStartServer(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setShouldStartServer:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerfactoryparams/certificationdeclarationcertificates
+func (m_ MTRDeviceControllerFactoryParams) CertificationDeclarationCertificates() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("certificationDeclarationCertificates"))
+	return rv
+}
+
+
+// SetCertificationDeclarationCertificates sets the value of the certificationDeclarationCertificates property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerfactoryparams/certificationdeclarationcertificates
+func (m_ MTRDeviceControllerFactoryParams) SetCertificationDeclarationCertificates(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCertificationDeclarationCertificates:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerfactoryparams/port
+func (m_ MTRDeviceControllerFactoryParams) Port() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("port"))
+	return rv
+}
+
+
+// SetPort sets the value of the port property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerfactoryparams/port
+func (m_ MTRDeviceControllerFactoryParams) SetPort(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPort:"), value)
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceControllerFactoryParams/productAttestationAuthorityCertificates
-func (m_ MTRDeviceControllerFactoryParams) ProductAttestationAuthorityCertificates() []foundation.NSData {
-	rv := objc.Send[[]foundation.NSData](m_.ID, objc.Sel("productAttestationAuthorityCertificates"))
+func (m_ MTRDeviceControllerFactoryParams) ProductAttestationAuthorityCertificates() []unsafe.Pointer {
+	rv := objc.Send[[]unsafe.Pointer](m_.ID, objc.Sel("productAttestationAuthorityCertificates"))
 	return rv
 }
 
@@ -87,7 +162,7 @@ func (m_ MTRDeviceControllerFactoryParams) ProductAttestationAuthorityCertificat
 // SetProductAttestationAuthorityCertificates sets the value of the productAttestationAuthorityCertificates property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceControllerFactoryParams/productAttestationAuthorityCertificates
-func (m_ MTRDeviceControllerFactoryParams) SetProductAttestationAuthorityCertificates(value []foundation.NSData) {
+func (m_ MTRDeviceControllerFactoryParams) SetProductAttestationAuthorityCertificates(value []unsafe.Pointer) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {

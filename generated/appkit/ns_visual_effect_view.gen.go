@@ -195,5 +195,41 @@ func (v_ VisualEffectView) SetState(value unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setState:"), value)
 }
 
+// A Boolean value indicating whether the view ensures it is vibrant on top of other content.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsview/allowsvibrancy
+func (v_ VisualEffectView) AllowsVibrancy() bool {
+	rv := objc.Send[bool](v_.ID, objc.Sel("allowsVibrancy"))
+	return rv
+}
+
+
+// SetAllowsVibrancy sets the value of the allowsVibrancy property.
+// A Boolean value indicating whether the view ensures it is vibrant on top of other content.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsview/allowsvibrancy
+func (v_ VisualEffectView) SetAllowsVibrancy(value bool) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setAllowsVibrancy:"), value)
+}
+
+// A Boolean value indicating whether to emphasize the look of the material.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsvisualeffectview/isemphasized
+func (v_ VisualEffectView) IsEmphasized() bool {
+	rv := objc.Send[bool](v_.ID, objc.Sel("isEmphasized"))
+	return rv
+}
+
+
+// SetIsEmphasized sets the value of the isEmphasized property.
+// A Boolean value indicating whether to emphasize the look of the material.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsvisualeffectview/isemphasized
+func (v_ VisualEffectView) SetIsEmphasized(value bool) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setIsEmphasized:"), value)
+}
+
 
 

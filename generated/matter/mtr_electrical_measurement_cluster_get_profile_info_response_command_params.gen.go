@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,81 @@ func NewMTRElectricalMeasurementClusterGetProfileInfoResponseCommandParams() MTR
 	return getMTRElectricalMeasurementClusterGetProfileInfoResponseCommandParamsClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalmeasurementclustergetprofileinforesponsecommandparams/timedinvoketimeoutms
+func (m_ MTRElectricalMeasurementClusterGetProfileInfoResponseCommandParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+	return rv
+}
+
+
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalmeasurementclustergetprofileinforesponsecommandparams/timedinvoketimeoutms
+func (m_ MTRElectricalMeasurementClusterGetProfileInfoResponseCommandParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalmeasurementclustergetprofileinforesponsecommandparams/listofattributes
+func (m_ MTRElectricalMeasurementClusterGetProfileInfoResponseCommandParams) ListOfAttributes() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("listOfAttributes"))
+	return rv
+}
+
+
+// SetListOfAttributes sets the value of the listOfAttributes property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalmeasurementclustergetprofileinforesponsecommandparams/listofattributes
+func (m_ MTRElectricalMeasurementClusterGetProfileInfoResponseCommandParams) SetListOfAttributes(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setListOfAttributes:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalmeasurementclustergetprofileinforesponsecommandparams/profileintervalperiod
+func (m_ MTRElectricalMeasurementClusterGetProfileInfoResponseCommandParams) ProfileIntervalPeriod() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("profileIntervalPeriod"))
+	return rv
+}
+
+
+// SetProfileIntervalPeriod sets the value of the profileIntervalPeriod property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalmeasurementclustergetprofileinforesponsecommandparams/profileintervalperiod
+func (m_ MTRElectricalMeasurementClusterGetProfileInfoResponseCommandParams) SetProfileIntervalPeriod(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setProfileIntervalPeriod:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalmeasurementclustergetprofileinforesponsecommandparams/profilecount
+func (m_ MTRElectricalMeasurementClusterGetProfileInfoResponseCommandParams) ProfileCount() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("profileCount"))
+	return rv
+}
+
+
+// SetProfileCount sets the value of the profileCount property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalmeasurementclustergetprofileinforesponsecommandparams/profilecount
+func (m_ MTRElectricalMeasurementClusterGetProfileInfoResponseCommandParams) SetProfileCount(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setProfileCount:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalmeasurementclustergetprofileinforesponsecommandparams/maxnumberofintervals
+func (m_ MTRElectricalMeasurementClusterGetProfileInfoResponseCommandParams) MaxNumberOfIntervals() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("maxNumberOfIntervals"))
+	return rv
+}
+
+
+// SetMaxNumberOfIntervals sets the value of the maxNumberOfIntervals property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalmeasurementclustergetprofileinforesponsecommandparams/maxnumberofintervals
+func (m_ MTRElectricalMeasurementClusterGetProfileInfoResponseCommandParams) SetMaxNumberOfIntervals(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMaxNumberOfIntervals:"), value)
+}
 
 
 

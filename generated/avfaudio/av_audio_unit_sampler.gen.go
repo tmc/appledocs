@@ -81,5 +81,77 @@ func NewAudioUnitSampler() AudioUnitSampler {
 }
 
 
+// An adjustment for the gain of all the played notes, in decibels.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitsampler/mastergain
+func (a_ AudioUnitSampler) MasterGain() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("masterGain"))
+	return rv
+}
+
+
+// SetMasterGain sets the value of the masterGain property.
+// An adjustment for the gain of all the played notes, in decibels.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitsampler/mastergain
+func (a_ AudioUnitSampler) SetMasterGain(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setMasterGain:"), value)
+}
+
+// An adjustment for the stereo panning of all the played notes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitsampler/stereopan
+func (a_ AudioUnitSampler) StereoPan() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("stereoPan"))
+	return rv
+}
+
+
+// SetStereoPan sets the value of the stereoPan property.
+// An adjustment for the stereo panning of all the played notes.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitsampler/stereopan
+func (a_ AudioUnitSampler) SetStereoPan(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setStereoPan:"), value)
+}
+
+// An adjustment for the gain of all the played notes, in decibels.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitsampler/overallgain
+func (a_ AudioUnitSampler) OverallGain() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("overallGain"))
+	return rv
+}
+
+
+// SetOverallGain sets the value of the overallGain property.
+// An adjustment for the gain of all the played notes, in decibels.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitsampler/overallgain
+func (a_ AudioUnitSampler) SetOverallGain(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setOverallGain:"), value)
+}
+
+// An adjustment for the tuning of all the played notes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitsampler/globaltuning
+func (a_ AudioUnitSampler) GlobalTuning() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("globalTuning"))
+	return rv
+}
+
+
+// SetGlobalTuning sets the value of the globalTuning property.
+// An adjustment for the tuning of all the played notes.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitsampler/globaltuning
+func (a_ AudioUnitSampler) SetGlobalTuning(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setGlobalTuning:"), value)
+}
+
 
 

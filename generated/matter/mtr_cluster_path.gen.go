@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,36 @@ func NewMTRClusterPath() MTRClusterPath {
 	return getMTRClusterPathClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrclusterpath/cluster
+func (m_ MTRClusterPath) Cluster() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("cluster"))
+	return rv
+}
+
+
+// SetCluster sets the value of the cluster property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrclusterpath/cluster
+func (m_ MTRClusterPath) SetCluster(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCluster:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrclusterpath/endpoint
+func (m_ MTRClusterPath) Endpoint() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("endpoint"))
+	return rv
+}
+
+
+// SetEndpoint sets the value of the endpoint property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrclusterpath/endpoint
+func (m_ MTRClusterPath) SetEndpoint(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setEndpoint:"), value)
+}
 
 
 

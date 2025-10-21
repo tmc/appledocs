@@ -81,6 +81,24 @@ func NewDDMatchCalendarEvent() DDMatchCalendarEvent {
 }
 
 
+// A Boolean value that indicates whether the event is an all-day event.
+//
+// [Full Topic]: https://developer.apple.com/documentation/datadetection/ddmatchcalendarevent/isallday
+func (d_ DDMatchCalendarEvent) IsAllDay() bool {
+	rv := objc.Send[bool](d_.ID, objc.Sel("isAllDay"))
+	return rv
+}
+
+
+// SetIsAllDay sets the value of the isAllDay property.
+// A Boolean value that indicates whether the event is an all-day event.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/datadetection/ddmatchcalendarevent/isallday
+func (d_ DDMatchCalendarEvent) SetIsAllDay(value bool) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setIsAllDay:"), value)
+}
+
 // A date that represents the end of the event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchCalendarEvent/endDate

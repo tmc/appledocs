@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [Drawer] class.
@@ -80,6 +81,204 @@ func NewDrawer() Drawer {
 	return getDrawerClass().New()
 }
 
+
+// The size of the receiver’s content area.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdrawer/contentsize
+func (d_ Drawer) ContentSize() coregraphics.CGSize {
+	rv := objc.Send[coregraphics.CGSize](d_.ID, objc.Sel("contentSize"))
+	return rv
+}
+
+
+// SetContentSize sets the value of the contentSize property.
+// The size of the receiver’s content area.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdrawer/contentsize
+func (d_ Drawer) SetContentSize(value coregraphics.CGSize) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setContentSize:"), value)
+}
+
+// The receiver’s content view.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdrawer/contentview
+func (d_ Drawer) ContentView() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("contentView"))
+	return rv
+}
+
+
+// SetContentView sets the value of the contentView property.
+// The receiver’s content view.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdrawer/contentview
+func (d_ Drawer) SetContentView(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setContentView:"), value)
+}
+
+// The receiver’s delegate.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdrawer/delegate
+func (d_ Drawer) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+
+// SetDelegate sets the value of the delegate property.
+// The receiver’s delegate.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdrawer/delegate
+func (d_ Drawer) SetDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setDelegate:"), value)
+}
+
+// The edge of the window that the receiver is connected to.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdrawer/edge
+func (d_ Drawer) Edge() int {
+	rv := objc.Send[int](d_.ID, objc.Sel("edge"))
+	return rv
+}
+
+
+// SetEdge sets the value of the edge property.
+// The edge of the window that the receiver is connected to.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdrawer/edge
+func (d_ Drawer) SetEdge(value int) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setEdge:"), value)
+}
+
+// The receiver’s leading offset.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdrawer/leadingoffset
+func (d_ Drawer) LeadingOffset() float64 {
+	rv := objc.Send[float64](d_.ID, objc.Sel("leadingOffset"))
+	return rv
+}
+
+
+// SetLeadingOffset sets the value of the leadingOffset property.
+// The receiver’s leading offset.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdrawer/leadingoffset
+func (d_ Drawer) SetLeadingOffset(value float64) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setLeadingOffset:"), value)
+}
+
+// The maximum allowed size of the receiver’s content area.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdrawer/maxcontentsize
+func (d_ Drawer) MaxContentSize() coregraphics.CGSize {
+	rv := objc.Send[coregraphics.CGSize](d_.ID, objc.Sel("maxContentSize"))
+	return rv
+}
+
+
+// SetMaxContentSize sets the value of the maxContentSize property.
+// The maximum allowed size of the receiver’s content area.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdrawer/maxcontentsize
+func (d_ Drawer) SetMaxContentSize(value coregraphics.CGSize) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setMaxContentSize:"), value)
+}
+
+// The minimum allowed size of the receiver’s content area.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdrawer/mincontentsize
+func (d_ Drawer) MinContentSize() coregraphics.CGSize {
+	rv := objc.Send[coregraphics.CGSize](d_.ID, objc.Sel("minContentSize"))
+	return rv
+}
+
+
+// SetMinContentSize sets the value of the minContentSize property.
+// The minimum allowed size of the receiver’s content area.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdrawer/mincontentsize
+func (d_ Drawer) SetMinContentSize(value coregraphics.CGSize) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setMinContentSize:"), value)
+}
+
+// The receiver’s parent window.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdrawer/parentwindow
+func (d_ Drawer) ParentWindow() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("parentWindow"))
+	return rv
+}
+
+
+// SetParentWindow sets the value of the parentWindow property.
+// The receiver’s parent window.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdrawer/parentwindow
+func (d_ Drawer) SetParentWindow(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setParentWindow:"), value)
+}
+
+// The receiver’s preferred, or default, edge.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdrawer/preferrededge
+func (d_ Drawer) PreferredEdge() int {
+	rv := objc.Send[int](d_.ID, objc.Sel("preferredEdge"))
+	return rv
+}
+
+
+// SetPreferredEdge sets the value of the preferredEdge property.
+// The receiver’s preferred, or default, edge.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdrawer/preferrededge
+func (d_ Drawer) SetPreferredEdge(value int) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setPreferredEdge:"), value)
+}
+
+// The state of the receiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdrawer/state-swift.property
+func (d_ Drawer) State() int {
+	rv := objc.Send[int](d_.ID, objc.Sel("state"))
+	return rv
+}
+
+
+// SetState sets the value of the state property.
+// The state of the receiver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdrawer/state-swift.property
+func (d_ Drawer) SetState(value int) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setState:"), value)
+}
+
+// The receiver’s trailing offset.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdrawer/trailingoffset
+func (d_ Drawer) TrailingOffset() float64 {
+	rv := objc.Send[float64](d_.ID, objc.Sel("trailingOffset"))
+	return rv
+}
+
+
+// SetTrailingOffset sets the value of the trailingOffset property.
+// The receiver’s trailing offset.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdrawer/trailingoffset
+func (d_ Drawer) SetTrailingOffset(value float64) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setTrailingOffset:"), value)
+}
 
 
 

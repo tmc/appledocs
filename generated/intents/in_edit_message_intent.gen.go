@@ -76,5 +76,35 @@ func NewINEditMessageIntent() INEditMessageIntent {
 }
 
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/ineditmessageintent/messageidentifier
+func (i_ INEditMessageIntent) MessageIdentifier() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("messageIdentifier"))
+	return rv
+}
+
+
+// SetMessageIdentifier sets the value of the messageIdentifier property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/ineditmessageintent/messageidentifier
+func (i_ INEditMessageIntent) SetMessageIdentifier(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setMessageIdentifier:"), objc.String(value))
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/ineditmessageintent/editedcontent
+func (i_ INEditMessageIntent) EditedContent() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("editedContent"))
+	return rv
+}
+
+
+// SetEditedContent sets the value of the editedContent property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/ineditmessageintent/editedcontent
+func (i_ INEditMessageIntent) SetEditedContent(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setEditedContent:"), objc.String(value))
+}
+
 
 

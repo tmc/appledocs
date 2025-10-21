@@ -88,6 +88,24 @@ func (c_ CXCallObserver) SetDelegateQueue(delegate objc.ID, queue unsafe.Pointer
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDelegate:queue:"), delegate, queue)
 }
 
+// Returns an observer for active calls.
+//
+// [Full Topic]: https://developer.apple.com/documentation/callkit/cxcallcontroller/callobserver
+func (c_ CXCallObserver) CallObserver() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("callObserver"))
+	return rv
+}
+
+
+// SetCallObserver sets the value of the callObserver property.
+// Returns an observer for active calls.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/callkit/cxcallcontroller/callobserver
+func (c_ CXCallObserver) SetCallObserver(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setCallObserver:"), value)
+}
+
 // Returns the active calls of the telephony provider.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallObserver/calls

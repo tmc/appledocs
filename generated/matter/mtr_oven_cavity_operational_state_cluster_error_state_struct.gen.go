@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -92,8 +93,8 @@ func (m_ MTROvenCavityOperationalStateClusterErrorStateStruct) SetErrorStateDeta
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenCavityOperationalStateClusterErrorStateStruct/errorStateID
-func (m_ MTROvenCavityOperationalStateClusterErrorStateStruct) ErrorStateID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("errorStateID"))
+func (m_ MTROvenCavityOperationalStateClusterErrorStateStruct) ErrorStateID() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("errorStateID"))
 	return rv
 }
 
@@ -101,7 +102,7 @@ func (m_ MTROvenCavityOperationalStateClusterErrorStateStruct) ErrorStateID() un
 // SetErrorStateID sets the value of the errorStateID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenCavityOperationalStateClusterErrorStateStruct/errorStateID
-func (m_ MTROvenCavityOperationalStateClusterErrorStateStruct) SetErrorStateID(value unsafe.Pointer) {
+func (m_ MTROvenCavityOperationalStateClusterErrorStateStruct) SetErrorStateID(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setErrorStateID:"), value)
 }
 

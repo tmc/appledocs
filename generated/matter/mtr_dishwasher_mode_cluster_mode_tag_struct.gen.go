@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,8 +78,8 @@ func NewMTRDishwasherModeClusterModeTagStruct() MTRDishwasherModeClusterModeTagS
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherModeClusterModeTagStruct/mfgCode
-func (m_ MTRDishwasherModeClusterModeTagStruct) MfgCode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("mfgCode"))
+func (m_ MTRDishwasherModeClusterModeTagStruct) MfgCode() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("mfgCode"))
 	return rv
 }
 
@@ -86,14 +87,14 @@ func (m_ MTRDishwasherModeClusterModeTagStruct) MfgCode() unsafe.Pointer {
 // SetMfgCode sets the value of the mfgCode property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherModeClusterModeTagStruct/mfgCode
-func (m_ MTRDishwasherModeClusterModeTagStruct) SetMfgCode(value unsafe.Pointer) {
+func (m_ MTRDishwasherModeClusterModeTagStruct) SetMfgCode(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMfgCode:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherModeClusterModeTagStruct/value
-func (m_ MTRDishwasherModeClusterModeTagStruct) Value() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("value"))
+func (m_ MTRDishwasherModeClusterModeTagStruct) Value() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("value"))
 	return rv
 }
 
@@ -101,7 +102,7 @@ func (m_ MTRDishwasherModeClusterModeTagStruct) Value() unsafe.Pointer {
 // SetValue sets the value of the value property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherModeClusterModeTagStruct/value
-func (m_ MTRDishwasherModeClusterModeTagStruct) SetValue(value unsafe.Pointer) {
+func (m_ MTRDishwasherModeClusterModeTagStruct) SetValue(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), value)
 }
 

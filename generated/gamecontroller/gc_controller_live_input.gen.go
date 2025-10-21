@@ -98,6 +98,60 @@ func (g_ GCControllerLiveInput) NextInputState() unsafe.Pointer {
 	return rv
 }
 
+// The input profile for the controller.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/input
+func (g_ GCControllerLiveInput) Input() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("input"))
+	return rv
+}
+
+
+// SetInput sets the value of the input property.
+// The input profile for the controller.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/input
+func (g_ GCControllerLiveInput) SetInput(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setInput:"), value)
+}
+
+// The live input of a controller without any system-level remapping of the controls.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerliveinput/unmapped
+func (g_ GCControllerLiveInput) Unmapped() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("unmapped"))
+	return rv
+}
+
+
+// SetUnmapped sets the value of the unmapped property.
+// The live input of a controller without any system-level remapping of the controls.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerliveinput/unmapped
+func (g_ GCControllerLiveInput) SetUnmapped(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setUnmapped:"), value)
+}
+
+// The maximum number of input values that the queue stores.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcdevicephysicalinput/inputstatequeuedepth
+func (g_ GCControllerLiveInput) InputStateQueueDepth() int {
+	rv := objc.Send[int](g_.ID, objc.Sel("inputStateQueueDepth"))
+	return rv
+}
+
+
+// SetInputStateQueueDepth sets the value of the inputStateQueueDepth property.
+// The maximum number of input values that the queue stores.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcdevicephysicalinput/inputstatequeuedepth
+func (g_ GCControllerLiveInput) SetInputStateQueueDepth(value int) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setInputStateQueueDepth:"), value)
+}
+
 // The live input of a controller without any system-level remapping of the controls.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCControllerLiveInput/unmapped

@@ -94,6 +94,57 @@ func NewCKFetchWebAuthTokenOperationWithAPIToken(APIToken string) CKFetchWebAuth
 }
 
 
+// The relative amount of importance for granting system resources to the operation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/qualityOfService
+func (c_ CKFetchWebAuthTokenOperation) QualityOfService() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("qualityOfService"))
+	return rv
+}
+
+
+// SetQualityOfService sets the value of the qualityOfService property.
+// The relative amount of importance for granting system resources to the operation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/qualityOfService
+func (c_ CKFetchWebAuthTokenOperation) SetQualityOfService(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setQualityOfService:"), value)
+}
+
+// The block to execute after the operation’s main task is completed.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/completionBlock
+func (c_ CKFetchWebAuthTokenOperation) CompletionBlock() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("completionBlock"))
+	return rv
+}
+
+
+// SetCompletionBlock sets the value of the completionBlock property.
+// The block to execute after the operation’s main task is completed.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/completionBlock
+func (c_ CKFetchWebAuthTokenOperation) SetCompletionBlock(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setCompletionBlock:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchwebauthtokenoperation/fetchwebauthtokenresultblock
+func (c_ CKFetchWebAuthTokenOperation) FetchWebAuthTokenResultBlock() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("fetchWebAuthTokenResultBlock"))
+	return rv
+}
+
+
+// SetFetchWebAuthTokenResultBlock sets the value of the fetchWebAuthTokenResultBlock property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchwebauthtokenoperation/fetchwebauthtokenresultblock
+func (c_ CKFetchWebAuthTokenOperation) SetFetchWebAuthTokenResultBlock(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setFetchWebAuthTokenResultBlock:"), value)
+}
+
 // The API token that allows access to an app’s container.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchWebAuthTokenOperation/apiToken

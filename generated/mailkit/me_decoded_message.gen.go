@@ -80,5 +80,71 @@ func NewMEDecodedMessage() MEDecodedMessage {
 }
 
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/mailkit/medecodedmessage/banner
+func (m_ MEDecodedMessage) Banner() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("banner"))
+	return rv
+}
+
+
+// SetBanner sets the value of the banner property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mailkit/medecodedmessage/banner
+func (m_ MEDecodedMessage) SetBanner(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setBanner:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mailkit/medecodedmessage/context
+func (m_ MEDecodedMessage) Context() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("context"))
+	return rv
+}
+
+
+// SetContext sets the value of the context property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mailkit/medecodedmessage/context
+func (m_ MEDecodedMessage) SetContext(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setContext:"), value)
+}
+
+// The decoded MIME data for a message.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mailkit/medecodedmessage/rawdata
+func (m_ MEDecodedMessage) RawData() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("rawData"))
+	return rv
+}
+
+
+// SetRawData sets the value of the rawData property.
+// The decoded MIME data for a message.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mailkit/medecodedmessage/rawdata
+func (m_ MEDecodedMessage) SetRawData(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setRawData:"), value)
+}
+
+// An object that contains encryption and digital signature information about the message content.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mailkit/medecodedmessage/securityinformation
+func (m_ MEDecodedMessage) SecurityInformation() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("securityInformation"))
+	return rv
+}
+
+
+// SetSecurityInformation sets the value of the securityInformation property.
+// An object that contains encryption and digital signature information about the message content.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mailkit/medecodedmessage/securityinformation
+func (m_ MEDecodedMessage) SetSecurityInformation(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSecurityInformation:"), value)
+}
+
 
 

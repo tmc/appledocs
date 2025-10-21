@@ -105,6 +105,78 @@ func NewCSCustomAttributeKeyWithKeyNameSearchableSearchableByDefaultUniqueMultiV
 }
 
 
+// A Boolean value that indicates if duplicate custom attribute values should be treated as the same value to save storage space.
+//
+// [Full Topic]: https://developer.apple.com/documentation/corespotlight/cscustomattributekey/isunique
+func (c_ CSCustomAttributeKey) IsUnique() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isUnique"))
+	return rv
+}
+
+
+// SetIsUnique sets the value of the isUnique property.
+// A Boolean value that indicates if duplicate custom attribute values should be treated as the same value to save storage space.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/corespotlight/cscustomattributekey/isunique
+func (c_ CSCustomAttributeKey) SetIsUnique(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsUnique:"), value)
+}
+
+// A Boolean value that indicates if the custom attribute is likely to have multiple values, such as arrays, associated with it.
+//
+// [Full Topic]: https://developer.apple.com/documentation/corespotlight/cscustomattributekey/ismultivalued
+func (c_ CSCustomAttributeKey) IsMultiValued() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isMultiValued"))
+	return rv
+}
+
+
+// SetIsMultiValued sets the value of the isMultiValued property.
+// A Boolean value that indicates if the custom attribute is likely to have multiple values, such as arrays, associated with it.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/corespotlight/cscustomattributekey/ismultivalued
+func (c_ CSCustomAttributeKey) SetIsMultiValued(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsMultiValued:"), value)
+}
+
+// A Boolean value that indicates if the custom attribute can be specified as a search term.
+//
+// [Full Topic]: https://developer.apple.com/documentation/corespotlight/cscustomattributekey/issearchable
+func (c_ CSCustomAttributeKey) IsSearchable() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isSearchable"))
+	return rv
+}
+
+
+// SetIsSearchable sets the value of the isSearchable property.
+// A Boolean value that indicates if the custom attribute can be specified as a search term.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/corespotlight/cscustomattributekey/issearchable
+func (c_ CSCustomAttributeKey) SetIsSearchable(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsSearchable:"), value)
+}
+
+// A Boolean value that indicates if the custom attribute should be searchable by default.
+//
+// [Full Topic]: https://developer.apple.com/documentation/corespotlight/cscustomattributekey/issearchablebydefault
+func (c_ CSCustomAttributeKey) IsSearchableByDefault() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isSearchableByDefault"))
+	return rv
+}
+
+
+// SetIsSearchableByDefault sets the value of the isSearchableByDefault property.
+// A Boolean value that indicates if the custom attribute should be searchable by default.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/corespotlight/cscustomattributekey/issearchablebydefault
+func (c_ CSCustomAttributeKey) SetIsSearchableByDefault(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsSearchableByDefault:"), value)
+}
+
 // A Boolean value that indicates if the custom attribute is likely to have multiple values, such as arrays, associated with it.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSCustomAttributeKey/isMultiValued

@@ -134,4 +134,22 @@ func (g_ Gradient) NumberOfColorStops() int {
 	return rv
 }
 
+// The color space of the colors associated with the gradient.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsgradient/colorspace
+func (g_ Gradient) ColorSpace() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("colorSpace"))
+	return rv
+}
+
+
+// SetColorSpace sets the value of the colorSpace property.
+// The color space of the colors associated with the gradient.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsgradient/colorspace
+func (g_ Gradient) SetColorSpace(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setColorSpace:"), value)
+}
+
 

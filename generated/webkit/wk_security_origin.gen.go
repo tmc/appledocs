@@ -80,6 +80,42 @@ func NewSecurityOrigin() SecurityOrigin {
 }
 
 
+// The security origin’s port.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wksecurityorigin/port
+func (s_ SecurityOrigin) Port() int {
+	rv := objc.Send[int](s_.ID, objc.Sel("port"))
+	return rv
+}
+
+
+// SetPort sets the value of the port property.
+// The security origin’s port.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wksecurityorigin/port
+func (s_ SecurityOrigin) SetPort(value int) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setPort:"), value)
+}
+
+// The security origin’s protocol.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wksecurityorigin/protocol
+func (s_ SecurityOrigin) `protocol`() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("`protocol`"))
+	return rv
+}
+
+
+// Set`protocol` sets the value of the `protocol` property.
+// The security origin’s protocol.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wksecurityorigin/protocol
+func (s_ SecurityOrigin) Set`protocol`(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("set`protocol`:"), objc.String(value))
+}
+
 // The security origin’s host.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKSecurityOrigin/host

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [OverlayAppConfiguration] class.
@@ -114,6 +115,54 @@ func (o_ OverlayAppConfiguration) SetAdImpression(impression unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/AppConfiguration/setAdditionalValue(_:forKey:)
 func (o_ OverlayAppConfiguration) SetAdditionalValueForKey(value objc.ID, key string) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAdditionalValue:forKey:"), value, objc.String(key))
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skoverlay/appconfiguration/adattributionreengagementurl
+func (o_ OverlayAppConfiguration) AdAttributionReengagementURL() foundation.URL {
+	rv := objc.Send[foundation.URL](o_.ID, objc.Sel("adAttributionReengagementURL"))
+	return rv
+}
+
+
+// SetAdAttributionReengagementURL sets the value of the adAttributionReengagementURL property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skoverlay/appconfiguration/adattributionreengagementurl
+func (o_ OverlayAppConfiguration) SetAdAttributionReengagementURL(value foundation.URL) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setAdAttributionReengagementURL:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skoverlay/appconfiguration/appimpression
+func (o_ OverlayAppConfiguration) AppImpression() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("appImpression"))
+	return rv
+}
+
+
+// SetAppImpression sets the value of the appImpression property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skoverlay/appconfiguration/appimpression
+func (o_ OverlayAppConfiguration) SetAppImpression(value unsafe.Pointer) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setAppImpression:"), value)
+}
+
+// An overlay’s attributes; for example, its position on the screen.
+//
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skoverlay/configuration-swift.property
+func (o_ OverlayAppConfiguration) Configuration() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("configuration"))
+	return rv
+}
+
+
+// SetConfiguration sets the value of the configuration property.
+// An overlay’s attributes; for example, its position on the screen.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skoverlay/configuration-swift.property
+func (o_ OverlayAppConfiguration) SetConfiguration(value unsafe.Pointer) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setConfiguration:"), value)
 }
 
 // The iTunes identifier of the recommended app.

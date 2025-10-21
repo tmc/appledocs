@@ -13,18 +13,3 @@ type QLPreviewRequestRef unsafe.Pointer
 
 
 
-// Fallback type aliases for undefined types
-// These types are referenced in method signatures but not fully documented.
-// Using unsafe.Pointer as fallback to allow code generation.
-type CGContextRef unsafe.Pointer
-
-type NSError unsafe.Pointer
-
-type NSStringEncoding unsafe.Pointer
-
-type PDFDocument unsafe.Pointer
-
-type QLPreviewReplyAttachment unsafe.Pointer
-
-
-

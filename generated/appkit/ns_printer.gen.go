@@ -177,5 +177,23 @@ func (p_ Printer) Type() unsafe.Pointer {
 	return rv
 }
 
+// The printer’s name.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsprinter/name
+func (p_ Printer) Name() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("name"))
+	return rv
+}
+
+
+// SetName sets the value of the name property.
+// The printer’s name.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsprinter/name
+func (p_ Printer) SetName(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setName:"), objc.String(value))
+}
+
 
 

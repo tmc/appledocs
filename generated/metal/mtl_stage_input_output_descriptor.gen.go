@@ -78,6 +78,60 @@ func NewStageInputOutputDescriptor() StageInputOutputDescriptor {
 }
 
 
+// The location of the index buffer for a compute function using indexed thread addressing.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlstageinputoutputdescriptor/indexbufferindex
+func (s_ StageInputOutputDescriptor) IndexBufferIndex() int {
+	rv := objc.Send[int](s_.ID, objc.Sel("indexBufferIndex"))
+	return rv
+}
+
+
+// SetIndexBufferIndex sets the value of the indexBufferIndex property.
+// The location of the index buffer for a compute function using indexed thread addressing.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlstageinputoutputdescriptor/indexbufferindex
+func (s_ StageInputOutputDescriptor) SetIndexBufferIndex(value int) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setIndexBufferIndex:"), value)
+}
+
+// The data type of the indices stored in the index buffer.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlstageinputoutputdescriptor/indextype
+func (s_ StageInputOutputDescriptor) IndexType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("indexType"))
+	return rv
+}
+
+
+// SetIndexType sets the value of the indexType property.
+// The data type of the indices stored in the index buffer.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlstageinputoutputdescriptor/indextype
+func (s_ StageInputOutputDescriptor) SetIndexType(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setIndexType:"), value)
+}
+
+// An array that describes how the function fetches data.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlstageinputoutputdescriptor/layouts
+func (s_ StageInputOutputDescriptor) Layouts() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("layouts"))
+	return rv
+}
+
+
+// SetLayouts sets the value of the layouts property.
+// An array that describes how the function fetches data.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlstageinputoutputdescriptor/layouts
+func (s_ StageInputOutputDescriptor) SetLayouts(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setLayouts:"), value)
+}
+
 // An array that describes where and how to fetch data for the function.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLStageInputOutputDescriptor/attributes

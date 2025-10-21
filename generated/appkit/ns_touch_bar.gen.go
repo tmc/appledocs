@@ -317,4 +317,217 @@ func (t_ TouchBar) SetTemplateItems(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTemplateItems:"), value)
 }
 
+// A Boolean value indicating whether the main menu contains an item for customizing the contents of the Touch Bar.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/isautomaticcustomizetouchbarmenuitemenabled
+func (t_ TouchBar) IsAutomaticCustomizeTouchBarMenuItemEnabled() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("isAutomaticCustomizeTouchBarMenuItemEnabled"))
+	return rv
+}
+
+
+// SetIsAutomaticCustomizeTouchBarMenuItemEnabled sets the value of the isAutomaticCustomizeTouchBarMenuItemEnabled property.
+// A Boolean value indicating whether the main menu contains an item for customizing the contents of the Touch Bar.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/isautomaticcustomizetouchbarmenuitemenabled
+func (t_ TouchBar) SetIsAutomaticCustomizeTouchBarMenuItemEnabled(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setIsAutomaticCustomizeTouchBarMenuItemEnabled:"), value)
+}
+
+// The color of the button’s bezel, in appearances that support it.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/bezelcolor
+func (t_ TouchBar) BezelColor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("bezelColor"))
+	return rv
+}
+
+
+// SetBezelColor sets the value of the bezelColor property.
+// The color of the button’s bezel, in appearances that support it.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/bezelcolor
+func (t_ TouchBar) SetBezelColor(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setBezelColor:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsgesturerecognizer/allowedtouchtypes
+func (t_ TouchBar) AllowedTouchTypes() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("allowedTouchTypes"))
+	return rv
+}
+
+
+// SetAllowedTouchTypes sets the value of the allowedTouchTypes property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsgesturerecognizer/allowedtouchtypes
+func (t_ TouchBar) SetAllowedTouchTypes(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setAllowedTouchTypes:"), value)
+}
+
+// A bar that holds this group’s items.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsgrouptouchbaritem/grouptouchbar
+func (t_ TouchBar) GroupTouchBar() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("groupTouchBar"))
+	return rv
+}
+
+
+// SetGroupTouchBar sets the value of the groupTouchBar property.
+// A bar that holds this group’s items.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsgrouptouchbaritem/grouptouchbar
+func (t_ TouchBar) SetGroupTouchBar(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setGroupTouchBar:"), value)
+}
+
+// The bar displayed when this item is “popped.”
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspopovertouchbaritem/popovertouchbar
+func (t_ TouchBar) PopoverTouchBar() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("popoverTouchBar"))
+	return rv
+}
+
+
+// SetPopoverTouchBar sets the value of the popoverTouchBar property.
+// The bar displayed when this item is “popped.”
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspopovertouchbaritem/popovertouchbar
+func (t_ TouchBar) SetPopoverTouchBar(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setPopoverTouchBar:"), value)
+}
+
+// The bar that is displayed when a user press-and-holds on the popover item.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspopovertouchbaritem/pressandholdtouchbar
+func (t_ TouchBar) PressAndHoldTouchBar() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("pressAndHoldTouchBar"))
+	return rv
+}
+
+
+// SetPressAndHoldTouchBar sets the value of the pressAndHoldTouchBar property.
+// The bar that is displayed when a user press-and-holds on the popover item.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspopovertouchbaritem/pressandholdtouchbar
+func (t_ TouchBar) SetPressAndHoldTouchBar(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setPressAndHoldTouchBar:"), value)
+}
+
+// The color of the selected segment’s bezel, in appearances that support it.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/selectedsegmentbezelcolor
+func (t_ TouchBar) SelectedSegmentBezelColor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("selectedSegmentBezelColor"))
+	return rv
+}
+
+
+// SetSelectedSegmentBezelColor sets the value of the selectedSegmentBezelColor property.
+// The color of the selected segment’s bezel, in appearances that support it.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/selectedsegmentbezelcolor
+func (t_ TouchBar) SetSelectedSegmentBezelColor(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectedSegmentBezelColor:"), value)
+}
+
+// The color of the filled portion of the slider track, in appearances that support it.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslider/trackfillcolor
+func (t_ TouchBar) TrackFillColor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("trackFillColor"))
+	return rv
+}
+
+
+// SetTrackFillColor sets the value of the trackFillColor property.
+// The color of the filled portion of the slider track, in appearances that support it.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslider/trackfillcolor
+func (t_ TouchBar) SetTrackFillColor(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setTrackFillColor:"), value)
+}
+
+// A Boolean value that Indicates whether the Touch Bar is eligible for display.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstouchbar/isvisible
+func (t_ TouchBar) IsVisible() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("isVisible"))
+	return rv
+}
+
+
+// SetIsVisible sets the value of the isVisible property.
+// A Boolean value that Indicates whether the Touch Bar is eligible for display.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstouchbar/isvisible
+func (t_ TouchBar) SetIsVisible(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setIsVisible:"), value)
+}
+
+// The user-visible string identifying this item during bar customization.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstouchbaritem/customizationlabel
+func (t_ TouchBar) CustomizationLabel() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("customizationLabel"))
+	return rv
+}
+
+
+// SetCustomizationLabel sets the value of the customizationLabel property.
+// The user-visible string identifying this item during bar customization.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstouchbaritem/customizationlabel
+func (t_ TouchBar) SetCustomizationLabel(value string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setCustomizationLabel:"), objc.String(value))
+}
+
+// The property you implement to provide a Touch Bar object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstouchbarprovider/touchbar
+func (t_ TouchBar) TouchBar() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("touchBar"))
+	return rv
+}
+
+
+// SetTouchBar sets the value of the touchBar property.
+// The property you implement to provide a Touch Bar object.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstouchbarprovider/touchbar
+func (t_ TouchBar) SetTouchBar(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setTouchBar:"), value)
+}
+
+// A Boolean value indicating whether the view accepts touch events.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsview/acceptstouchevents
+func (t_ TouchBar) AcceptsTouchEvents() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("acceptsTouchEvents"))
+	return rv
+}
+
+
+// SetAcceptsTouchEvents sets the value of the acceptsTouchEvents property.
+// A Boolean value indicating whether the view accepts touch events.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsview/acceptstouchevents
+func (t_ TouchBar) SetAcceptsTouchEvents(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setAcceptsTouchEvents:"), value)
+}
+
 

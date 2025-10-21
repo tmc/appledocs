@@ -128,5 +128,59 @@ func (t_ TextContentManager) TextLayoutManagers() []TextLayoutManager {
 	return rv
 }
 
+// Determines whether to automatically synchronize with the backing store when an editing transaction finishes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontentmanager/automaticallysynchronizestobackingstore
+func (t_ TextContentManager) AutomaticallySynchronizesToBackingStore() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("automaticallySynchronizesToBackingStore"))
+	return rv
+}
+
+
+// SetAutomaticallySynchronizesToBackingStore sets the value of the automaticallySynchronizesToBackingStore property.
+// Determines whether to automatically synchronize with the backing store when an editing transaction finishes.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontentmanager/automaticallysynchronizestobackingstore
+func (t_ TextContentManager) SetAutomaticallySynchronizesToBackingStore(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setAutomaticallySynchronizesToBackingStore:"), value)
+}
+
+// The delegate for the content manager object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontentmanager/delegate
+func (t_ TextContentManager) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+
+// SetDelegate sets the value of the delegate property.
+// The delegate for the content manager object.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontentmanager/delegate
+func (t_ TextContentManager) SetDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setDelegate:"), value)
+}
+
+// The primary text layout manager for this content.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontentmanager/primarytextlayoutmanager
+func (t_ TextContentManager) PrimaryTextLayoutManager() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("primaryTextLayoutManager"))
+	return rv
+}
+
+
+// SetPrimaryTextLayoutManager sets the value of the primaryTextLayoutManager property.
+// The primary text layout manager for this content.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontentmanager/primarytextlayoutmanager
+func (t_ TextContentManager) SetPrimaryTextLayoutManager(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setPrimaryTextLayoutManager:"), value)
+}
+
 
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MTRTestClusterClusterTestFabricScopedEventEvent] class.
@@ -75,6 +76,21 @@ func NewMTRTestClusterClusterTestFabricScopedEventEvent() MTRTestClusterClusterT
 	return getMTRTestClusterClusterTestFabricScopedEventEventClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestfabricscopedeventevent/fabricindex
+func (m_ MTRTestClusterClusterTestFabricScopedEventEvent) FabricIndex() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("fabricIndex"))
+	return rv
+}
+
+
+// SetFabricIndex sets the value of the fabricIndex property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestfabricscopedeventevent/fabricindex
+func (m_ MTRTestClusterClusterTestFabricScopedEventEvent) SetFabricIndex(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
+}
 
 
 

@@ -79,5 +79,59 @@ func NewMKImageryMapConfiguration() MKImageryMapConfiguration {
 }
 
 
+// The characteristics of the map view, including the map type and features the map displays.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/preferredconfiguration
+func (m_ MKImageryMapConfiguration) PreferredConfiguration() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("preferredConfiguration"))
+	return rv
+}
+
+
+// SetPreferredConfiguration sets the value of the preferredConfiguration property.
+// The characteristics of the map view, including the map type and features the map displays.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/preferredconfiguration
+func (m_ MKImageryMapConfiguration) SetPreferredConfiguration(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPreferredConfiguration:"), value)
+}
+
+// A value that indicates whether the map’s pitch button is visible.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/pitchbuttonvisibility
+func (m_ MKImageryMapConfiguration) PitchButtonVisibility() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("pitchButtonVisibility"))
+	return rv
+}
+
+
+// SetPitchButtonVisibility sets the value of the pitchButtonVisibility property.
+// A value that indicates whether the map’s pitch button is visible.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/pitchbuttonvisibility
+func (m_ MKImageryMapConfiguration) SetPitchButtonVisibility(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPitchButtonVisibility:"), value)
+}
+
+// A Boolean value that indicates whether the map displays the user tracking button.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/showsusertrackingbutton
+func (m_ MKImageryMapConfiguration) ShowsUserTrackingButton() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("showsUserTrackingButton"))
+	return rv
+}
+
+
+// SetShowsUserTrackingButton sets the value of the showsUserTrackingButton property.
+// A Boolean value that indicates whether the map displays the user tracking button.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/showsusertrackingbutton
+func (m_ MKImageryMapConfiguration) SetShowsUserTrackingButton(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setShowsUserTrackingButton:"), value)
+}
+
 
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -79,6 +80,140 @@ func NewTimedMetadata() TimedMetadata {
 	return getTimedMetadataClass().New()
 }
 
+
+// A dictionary containing all the metadata in the object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mptimedmetadata/allmetadata
+func (t_ TimedMetadata) AllMetadata() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("allMetadata"))
+	return rv
+}
+
+
+// SetAllMetadata sets the value of the allMetadata property.
+// A dictionary containing all the metadata in the object.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mptimedmetadata/allmetadata
+func (t_ TimedMetadata) SetAllMetadata(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setAllMetadata:"), value)
+}
+
+// The bounds, in points, of the content area for the full size image associated with the media item artwork.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitemartwork/imagecroprect
+func (t_ TimedMetadata) ImageCropRect() coregraphics.CGRect {
+	rv := objc.Send[coregraphics.CGRect](t_.ID, objc.Sel("imageCropRect"))
+	return rv
+}
+
+
+// SetImageCropRect sets the value of the imageCropRect property.
+// The bounds, in points, of the content area for the full size image associated with the media item artwork.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitemartwork/imagecroprect
+func (t_ TimedMetadata) SetImageCropRect(value coregraphics.CGRect) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setImageCropRect:"), value)
+}
+
+// The timed metadata.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mptimedmetadata/value
+func (t_ TimedMetadata) Value() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("value"))
+	return rv
+}
+
+
+// SetValue sets the value of the value property.
+// The timed metadata.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mptimedmetadata/value
+func (t_ TimedMetadata) SetValue(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setValue:"), value)
+}
+
+// The timestamp of the metadata, in the timebase of the media stream.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mptimedmetadata/timestamp
+func (t_ TimedMetadata) Timestamp() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("timestamp"))
+	return rv
+}
+
+
+// SetTimestamp sets the value of the timestamp property.
+// The timestamp of the metadata, in the timebase of the media stream.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mptimedmetadata/timestamp
+func (t_ TimedMetadata) SetTimestamp(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setTimestamp:"), value)
+}
+
+// A key that identifies a piece of timed metadata.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mptimedmetadata/key
+func (t_ TimedMetadata) Key() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("key"))
+	return rv
+}
+
+
+// SetKey sets the value of the key property.
+// A key that identifies a piece of timed metadata.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mptimedmetadata/key
+func (t_ TimedMetadata) SetKey(value string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setKey:"), objc.String(value))
+}
+
+// The namespace of the identifying key.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mptimedmetadata/keyspace
+func (t_ TimedMetadata) Keyspace() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("keyspace"))
+	return rv
+}
+
+
+// SetKeyspace sets the value of the keyspace property.
+// The namespace of the identifying key.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mptimedmetadata/keyspace
+func (t_ TimedMetadata) SetKeyspace(value string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setKeyspace:"), objc.String(value))
+}
+
+// A Boolean value that indicates whether the route button is visible in the volume view.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpvolumeview/showsroutebutton
+func (t_ TimedMetadata) ShowsRouteButton() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("showsRouteButton"))
+	return rv
+}
+
+
+// SetShowsRouteButton sets the value of the showsRouteButton property.
+// A Boolean value that indicates whether the route button is visible in the volume view.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpvolumeview/showsroutebutton
+func (t_ TimedMetadata) SetShowsRouteButton(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setShowsRouteButton:"), value)
+}
+
+// An NSDictionary object containing the most recent
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieplayertimedmetadatauserinfokey
+func (t_ TimedMetadata) MPMoviePlayerTimedMetadataUserInfoKey() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("MPMoviePlayerTimedMetadataUserInfoKey"))
+	return rv
+}
 
 
 

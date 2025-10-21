@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -79,6 +80,60 @@ func NewCKShareMetadata() CKShareMetadata {
 	return getCKShareMetadataClass().New()
 }
 
+
+// The URL for inviting participants to the share.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckshare/url
+func (c_ CKShareMetadata) Url() foundation.URL {
+	rv := objc.Send[foundation.URL](c_.ID, objc.Sel("url"))
+	return rv
+}
+
+
+// SetUrl sets the value of the url property.
+// The URL for inviting participants to the share.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckshare/url
+func (c_ CKShareMetadata) SetUrl(value foundation.URL) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setUrl:"), value)
+}
+
+// A Boolean value that indicates whether to retrieve the root record.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchsharemetadataoperation/shouldfetchrootrecord
+func (c_ CKShareMetadata) ShouldFetchRootRecord() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("shouldFetchRootRecord"))
+	return rv
+}
+
+
+// SetShouldFetchRootRecord sets the value of the shouldFetchRootRecord property.
+// A Boolean value that indicates whether to retrieve the root record.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchsharemetadataoperation/shouldfetchrootrecord
+func (c_ CKShareMetadata) SetShouldFetchRootRecord(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setShouldFetchRootRecord:"), value)
+}
+
+// The fields to return when fetching the root record.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchsharemetadataoperation/rootrecorddesiredkeys-3xrex
+func (c_ CKShareMetadata) RootRecordDesiredKeys() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("rootRecordDesiredKeys"))
+	return rv
+}
+
+
+// SetRootRecordDesiredKeys sets the value of the rootRecordDesiredKeys property.
+// The fields to return when fetching the root record.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchsharemetadataoperation/rootrecorddesiredkeys-3xrex
+func (c_ CKShareMetadata) SetRootRecordDesiredKeys(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setRootRecordDesiredKeys:"), value)
+}
 
 // The ID of the share’s container.
 //

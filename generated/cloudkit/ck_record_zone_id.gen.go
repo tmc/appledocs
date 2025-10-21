@@ -93,6 +93,14 @@ func NewCKRecordZoneIDWithZoneNameOwnerName(zoneName string, ownerName string) C
 }
 
 
+// A constant that provides the current user’s default name.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckcurrentuserdefaultname
+func (c_ CKRecordZoneID) CKCurrentUserDefaultName() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CKCurrentUserDefaultName"))
+	return rv
+}
+
 // The ID of the user who owns the record zone.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecordZone/ID/ownerName

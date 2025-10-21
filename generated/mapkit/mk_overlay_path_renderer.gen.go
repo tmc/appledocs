@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MKOverlayPathRenderer] class.
@@ -80,6 +81,186 @@ func NewMKOverlayPathRenderer() MKOverlayPathRenderer {
 	return getMKOverlayPathRendererClass().New()
 }
 
+
+// The limiting value that helps avoid spikes at junctions between connected line segments.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkoverlaypathrenderer/miterlimit
+func (m_ MKOverlayPathRenderer) MiterLimit() float64 {
+	rv := objc.Send[float64](m_.ID, objc.Sel("miterLimit"))
+	return rv
+}
+
+
+// SetMiterLimit sets the value of the miterLimit property.
+// The limiting value that helps avoid spikes at junctions between connected line segments.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkoverlaypathrenderer/miterlimit
+func (m_ MKOverlayPathRenderer) SetMiterLimit(value float64) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMiterLimit:"), value)
+}
+
+// The stroke width to use for the path.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkoverlaypathrenderer/linewidth
+func (m_ MKOverlayPathRenderer) LineWidth() float64 {
+	rv := objc.Send[float64](m_.ID, objc.Sel("lineWidth"))
+	return rv
+}
+
+
+// SetLineWidth sets the value of the lineWidth property.
+// The stroke width to use for the path.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkoverlaypathrenderer/linewidth
+func (m_ MKOverlayPathRenderer) SetLineWidth(value float64) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLineWidth:"), value)
+}
+
+// The stroke color to use for the path.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkoverlaypathrenderer/strokecolor
+func (m_ MKOverlayPathRenderer) StrokeColor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("strokeColor"))
+	return rv
+}
+
+
+// SetStrokeColor sets the value of the strokeColor property.
+// The stroke color to use for the path.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkoverlaypathrenderer/strokecolor
+func (m_ MKOverlayPathRenderer) SetStrokeColor(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setStrokeColor:"), value)
+}
+
+// The line join style to apply to the corners of the path.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkoverlaypathrenderer/linejoin
+func (m_ MKOverlayPathRenderer) LineJoin() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("lineJoin"))
+	return rv
+}
+
+
+// SetLineJoin sets the value of the lineJoin property.
+// The line join style to apply to the corners of the path.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkoverlaypathrenderer/linejoin
+func (m_ MKOverlayPathRenderer) SetLineJoin(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLineJoin:"), value)
+}
+
+// An array of numbers specifying the dash pattern to use for the path.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkoverlaypathrenderer/linedashpattern
+func (m_ MKOverlayPathRenderer) LineDashPattern() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("lineDashPattern"))
+	return rv
+}
+
+
+// SetLineDashPattern sets the value of the lineDashPattern property.
+// An array of numbers specifying the dash pattern to use for the path.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkoverlaypathrenderer/linedashpattern
+func (m_ MKOverlayPathRenderer) SetLineDashPattern(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLineDashPattern:"), value)
+}
+
+// The fill color to use for the path.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkoverlaypathrenderer/fillcolor
+func (m_ MKOverlayPathRenderer) FillColor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("fillColor"))
+	return rv
+}
+
+
+// SetFillColor sets the value of the fillColor property.
+// The fill color to use for the path.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkoverlaypathrenderer/fillcolor
+func (m_ MKOverlayPathRenderer) SetFillColor(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setFillColor:"), value)
+}
+
+// The line cap style to apply to the open ends of the path.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkoverlaypathrenderer/linecap
+func (m_ MKOverlayPathRenderer) LineCap() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("lineCap"))
+	return rv
+}
+
+
+// SetLineCap sets the value of the lineCap property.
+// The line cap style to apply to the open ends of the path.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkoverlaypathrenderer/linecap
+func (m_ MKOverlayPathRenderer) SetLineCap(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLineCap:"), value)
+}
+
+// The offset (in points) at which to start drawing the dash pattern.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkoverlaypathrenderer/linedashphase
+func (m_ MKOverlayPathRenderer) LineDashPhase() float64 {
+	rv := objc.Send[float64](m_.ID, objc.Sel("lineDashPhase"))
+	return rv
+}
+
+
+// SetLineDashPhase sets the value of the lineDashPhase property.
+// The offset (in points) at which to start drawing the dash pattern.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkoverlaypathrenderer/linedashphase
+func (m_ MKOverlayPathRenderer) SetLineDashPhase(value float64) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLineDashPhase:"), value)
+}
+
+// A Boolean value that determines whether the overlay path renderer renders the overlay as a bitmap before compositing.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkoverlaypathrenderer/shouldrasterize
+func (m_ MKOverlayPathRenderer) ShouldRasterize() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("shouldRasterize"))
+	return rv
+}
+
+
+// SetShouldRasterize sets the value of the shouldRasterize property.
+// A Boolean value that determines whether the overlay path renderer renders the overlay as a bitmap before compositing.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkoverlaypathrenderer/shouldrasterize
+func (m_ MKOverlayPathRenderer) SetShouldRasterize(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setShouldRasterize:"), value)
+}
+
+// The path representing the overlay’s shape.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkoverlaypathrenderer/path
+func (m_ MKOverlayPathRenderer) Path() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("path"))
+	return rv
+}
+
+
+// SetPath sets the value of the path property.
+// The path representing the overlay’s shape.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkoverlaypathrenderer/path
+func (m_ MKOverlayPathRenderer) SetPath(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPath:"), value)
+}
 
 
 

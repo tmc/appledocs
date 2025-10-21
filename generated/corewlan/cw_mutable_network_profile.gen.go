@@ -81,6 +81,24 @@ func NewCWMutableNetworkProfile() CWMutableNetworkProfile {
 }
 
 
+// The preferred networks list.
+//
+// [Full Topic]: https://developer.apple.com/documentation/corewlan/cwmutableconfiguration/networkprofiles
+func (c_ CWMutableNetworkProfile) NetworkProfiles() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("networkProfiles"))
+	return rv
+}
+
+
+// SetNetworkProfiles sets the value of the networkProfiles property.
+// The preferred networks list.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/corewlan/cwmutableconfiguration/networkprofiles
+func (c_ CWMutableNetworkProfile) SetNetworkProfiles(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setNetworkProfiles:"), value)
+}
+
 // The security type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWMutableNetworkProfile/security

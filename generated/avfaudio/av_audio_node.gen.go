@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -167,8 +168,8 @@ func (a_ AudioNode) LastRenderTime() unsafe.Pointer {
 // The processing latency of the node, in seconds.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioNode/latency
-func (a_ AudioNode) Latency() TimeInterval {
-	rv := objc.Send[TimeInterval](a_.ID, objc.Sel("latency"))
+func (a_ AudioNode) Latency() foundation.TimeInterval {
+	rv := objc.Send[foundation.TimeInterval](a_.ID, objc.Sel("latency"))
 	return rv
 }
 
@@ -191,8 +192,8 @@ func (a_ AudioNode) NumberOfOutputs() uint {
 // The maximum render pipeline latency downstream of the node, in seconds.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioNode/outputPresentationLatency
-func (a_ AudioNode) OutputPresentationLatency() TimeInterval {
-	rv := objc.Send[TimeInterval](a_.ID, objc.Sel("outputPresentationLatency"))
+func (a_ AudioNode) OutputPresentationLatency() foundation.TimeInterval {
+	rv := objc.Send[foundation.TimeInterval](a_.ID, objc.Sel("outputPresentationLatency"))
 	return rv
 }
 

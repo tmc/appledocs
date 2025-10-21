@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,66 @@ func NewMTRServerEndpoint() MTRServerEndpoint {
 	return getMTRServerEndpointClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrserverendpoint/serverclusters
+func (m_ MTRServerEndpoint) ServerClusters() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("serverClusters"))
+	return rv
+}
+
+
+// SetServerClusters sets the value of the serverClusters property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrserverendpoint/serverclusters
+func (m_ MTRServerEndpoint) SetServerClusters(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setServerClusters:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrserverendpoint/devicetypes
+func (m_ MTRServerEndpoint) DeviceTypes() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("deviceTypes"))
+	return rv
+}
+
+
+// SetDeviceTypes sets the value of the deviceTypes property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrserverendpoint/devicetypes
+func (m_ MTRServerEndpoint) SetDeviceTypes(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDeviceTypes:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrserverendpoint/accessgrants
+func (m_ MTRServerEndpoint) AccessGrants() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("accessGrants"))
+	return rv
+}
+
+
+// SetAccessGrants sets the value of the accessGrants property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrserverendpoint/accessgrants
+func (m_ MTRServerEndpoint) SetAccessGrants(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAccessGrants:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrserverendpoint/endpointid
+func (m_ MTRServerEndpoint) EndpointID() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("endpointID"))
+	return rv
+}
+
+
+// SetEndpointID sets the value of the endpointID property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrserverendpoint/endpointid
+func (m_ MTRServerEndpoint) SetEndpointID(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setEndpointID:"), value)
+}
 
 
 

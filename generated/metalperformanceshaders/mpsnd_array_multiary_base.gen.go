@@ -84,5 +84,20 @@ func (n_ NDArrayMultiaryBase) CopyWithZoneDevice(zone unsafe.Pointer, device obj
 	return rv
 }
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraymultiarybase/destinationarrayallocator
+func (n_ NDArrayMultiaryBase) DestinationArrayAllocator() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("destinationArrayAllocator"))
+	return rv
+}
+
+
+// SetDestinationArrayAllocator sets the value of the destinationArrayAllocator property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraymultiarybase/destinationarrayallocator
+func (n_ NDArrayMultiaryBase) SetDestinationArrayAllocator(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setDestinationArrayAllocator:"), value)
+}
+
 
 

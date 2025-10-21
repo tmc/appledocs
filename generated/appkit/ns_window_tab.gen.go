@@ -152,5 +152,41 @@ func (w_ WindowTab) SetToolTip(value string) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setToolTip:"), objc.String(value))
 }
 
+// An object that represents information about a window when it displays as a tab.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/tab
+func (w_ WindowTab) Tab() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("tab"))
+	return rv
+}
+
+
+// SetTab sets the value of the tab property.
+// An object that represents information about a window when it displays as a tab.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/tab
+func (w_ WindowTab) SetTab(value unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setTab:"), value)
+}
+
+// A value that allows a group of related windows.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/tabbingidentifier-swift.property
+func (w_ WindowTab) TabbingIdentifier() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("tabbingIdentifier"))
+	return rv
+}
+
+
+// SetTabbingIdentifier sets the value of the tabbingIdentifier property.
+// A value that allows a group of related windows.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/tabbingidentifier-swift.property
+func (w_ WindowTab) SetTabbingIdentifier(value unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setTabbingIdentifier:"), value)
+}
+
 
 

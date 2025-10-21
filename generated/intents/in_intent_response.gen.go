@@ -80,5 +80,23 @@ func NewINIntentResponse() INIntentResponse {
 }
 
 
+// The user activity object to use when launching the app.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inintentresponse/useractivity
+func (i_ INIntentResponse) UserActivity() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("userActivity"))
+	return rv
+}
+
+
+// SetUserActivity sets the value of the userActivity property.
+// The user activity object to use when launching the app.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/inintentresponse/useractivity
+func (i_ INIntentResponse) SetUserActivity(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setUserActivity:"), value)
+}
+
 
 

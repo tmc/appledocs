@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,8 +78,8 @@ func NewMTRRefrigeratorAndTemperatureControlledCabinetModeClusterModeTagStruct()
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRRefrigeratorAndTemperatureControlledCabinetModeClusterModeTagStruct/mfgCode
-func (m_ MTRRefrigeratorAndTemperatureControlledCabinetModeClusterModeTagStruct) MfgCode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("mfgCode"))
+func (m_ MTRRefrigeratorAndTemperatureControlledCabinetModeClusterModeTagStruct) MfgCode() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("mfgCode"))
 	return rv
 }
 
@@ -86,14 +87,14 @@ func (m_ MTRRefrigeratorAndTemperatureControlledCabinetModeClusterModeTagStruct)
 // SetMfgCode sets the value of the mfgCode property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRRefrigeratorAndTemperatureControlledCabinetModeClusterModeTagStruct/mfgCode
-func (m_ MTRRefrigeratorAndTemperatureControlledCabinetModeClusterModeTagStruct) SetMfgCode(value unsafe.Pointer) {
+func (m_ MTRRefrigeratorAndTemperatureControlledCabinetModeClusterModeTagStruct) SetMfgCode(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMfgCode:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRRefrigeratorAndTemperatureControlledCabinetModeClusterModeTagStruct/value
-func (m_ MTRRefrigeratorAndTemperatureControlledCabinetModeClusterModeTagStruct) Value() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("value"))
+func (m_ MTRRefrigeratorAndTemperatureControlledCabinetModeClusterModeTagStruct) Value() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("value"))
 	return rv
 }
 
@@ -101,7 +102,7 @@ func (m_ MTRRefrigeratorAndTemperatureControlledCabinetModeClusterModeTagStruct)
 // SetValue sets the value of the value property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRRefrigeratorAndTemperatureControlledCabinetModeClusterModeTagStruct/value
-func (m_ MTRRefrigeratorAndTemperatureControlledCabinetModeClusterModeTagStruct) SetValue(value unsafe.Pointer) {
+func (m_ MTRRefrigeratorAndTemperatureControlledCabinetModeClusterModeTagStruct) SetValue(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), value)
 }
 

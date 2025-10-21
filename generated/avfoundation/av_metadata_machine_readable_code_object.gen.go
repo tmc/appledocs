@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [MetadataMachineReadableCodeObject] class.
@@ -80,6 +81,60 @@ func NewMetadataMachineReadableCodeObject() MetadataMachineReadableCodeObject {
 	return getMetadataMachineReadableCodeObjectClass().New()
 }
 
+
+// A Swift array of corner points.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadatamachinereadablecodeobject/corners-58qbe
+func (m_ MetadataMachineReadableCodeObject) Corners() coregraphics.CGPoint {
+	rv := objc.Send[coregraphics.CGPoint](m_.ID, objc.Sel("corners"))
+	return rv
+}
+
+
+// SetCorners sets the value of the corners property.
+// A Swift array of corner points.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadatamachinereadablecodeobject/corners-58qbe
+func (m_ MetadataMachineReadableCodeObject) SetCorners(value coregraphics.CGPoint) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCorners:"), value)
+}
+
+// A barcode description for use in Core Image.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadatamachinereadablecodeobject/descriptor
+func (m_ MetadataMachineReadableCodeObject) Descriptor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("descriptor"))
+	return rv
+}
+
+
+// SetDescriptor sets the value of the descriptor property.
+// A barcode description for use in Core Image.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadatamachinereadablecodeobject/descriptor
+func (m_ MetadataMachineReadableCodeObject) SetDescriptor(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDescriptor:"), value)
+}
+
+// Returns the error-corrected data decoded into a human-readable string.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadatamachinereadablecodeobject/stringvalue
+func (m_ MetadataMachineReadableCodeObject) StringValue() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("stringValue"))
+	return rv
+}
+
+
+// SetStringValue sets the value of the stringValue property.
+// Returns the error-corrected data decoded into a human-readable string.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadatamachinereadablecodeobject/stringvalue
+func (m_ MetadataMachineReadableCodeObject) SetStringValue(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setStringValue:"), objc.String(value))
+}
 
 
 

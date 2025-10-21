@@ -79,5 +79,23 @@ func NewHumanObservation() HumanObservation {
 }
 
 
+// A Boolean value that indicates whether the observation represents an upper-body or full-body rectangle.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnhumanobservation/upperbodyonly
+func (h_ HumanObservation) UpperBodyOnly() bool {
+	rv := objc.Send[bool](h_.ID, objc.Sel("upperBodyOnly"))
+	return rv
+}
+
+
+// SetUpperBodyOnly sets the value of the upperBodyOnly property.
+// A Boolean value that indicates whether the observation represents an upper-body or full-body rectangle.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnhumanobservation/upperbodyonly
+func (h_ HumanObservation) SetUpperBodyOnly(value bool) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setUpperBodyOnly:"), value)
+}
+
 
 

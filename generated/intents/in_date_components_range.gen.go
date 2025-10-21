@@ -80,5 +80,59 @@ func NewINDateComponentsRange() INDateComponentsRange {
 }
 
 
+// The start date of the range.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/indatecomponentsrange/startdatecomponents
+func (i_ INDateComponentsRange) StartDateComponents() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("startDateComponents"))
+	return rv
+}
+
+
+// SetStartDateComponents sets the value of the startDateComponents property.
+// The start date of the range.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/indatecomponentsrange/startdatecomponents
+func (i_ INDateComponentsRange) SetStartDateComponents(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setStartDateComponents:"), value)
+}
+
+// The rule for repeating the date range.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/indatecomponentsrange/recurrencerule
+func (i_ INDateComponentsRange) RecurrenceRule() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("recurrenceRule"))
+	return rv
+}
+
+
+// SetRecurrenceRule sets the value of the recurrenceRule property.
+// The rule for repeating the date range.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/indatecomponentsrange/recurrencerule
+func (i_ INDateComponentsRange) SetRecurrenceRule(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setRecurrenceRule:"), value)
+}
+
+// The end date of the range.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/indatecomponentsrange/enddatecomponents
+func (i_ INDateComponentsRange) EndDateComponents() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("endDateComponents"))
+	return rv
+}
+
+
+// SetEndDateComponents sets the value of the endDateComponents property.
+// The end date of the range.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/indatecomponentsrange/enddatecomponents
+func (i_ INDateComponentsRange) SetEndDateComponents(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setEndDateComponents:"), value)
+}
+
 
 

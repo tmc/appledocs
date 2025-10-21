@@ -81,5 +81,41 @@ func NewDelegatingPlaybackCoordinator() DelegatingPlaybackCoordinator {
 }
 
 
+// An identifier of the current item.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinator/currentitemidentifier
+func (d_ DelegatingPlaybackCoordinator) CurrentItemIdentifier() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("currentItemIdentifier"))
+	return rv
+}
+
+
+// SetCurrentItemIdentifier sets the value of the currentItemIdentifier property.
+// An identifier of the current item.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinator/currentitemidentifier
+func (d_ DelegatingPlaybackCoordinator) SetCurrentItemIdentifier(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setCurrentItemIdentifier:"), objc.String(value))
+}
+
+// The delegate object for the playback coordinator.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinator/playbackcontroldelegate
+func (d_ DelegatingPlaybackCoordinator) PlaybackControlDelegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("playbackControlDelegate"))
+	return rv
+}
+
+
+// SetPlaybackControlDelegate sets the value of the playbackControlDelegate property.
+// The delegate object for the playback coordinator.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinator/playbackcontroldelegate
+func (d_ DelegatingPlaybackCoordinator) SetPlaybackControlDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setPlaybackControlDelegate:"), value)
+}
+
 
 

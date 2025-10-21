@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MTRAccessControlClusterTarget] class.
@@ -75,6 +76,51 @@ func NewMTRAccessControlClusterTarget() MTRAccessControlClusterTarget {
 	return getMTRAccessControlClusterTargetClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclustertarget/devicetype
+func (m_ MTRAccessControlClusterTarget) DeviceType() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("deviceType"))
+	return rv
+}
+
+
+// SetDeviceType sets the value of the deviceType property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclustertarget/devicetype
+func (m_ MTRAccessControlClusterTarget) SetDeviceType(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDeviceType:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclustertarget/cluster
+func (m_ MTRAccessControlClusterTarget) Cluster() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("cluster"))
+	return rv
+}
+
+
+// SetCluster sets the value of the cluster property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclustertarget/cluster
+func (m_ MTRAccessControlClusterTarget) SetCluster(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCluster:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclustertarget/endpoint
+func (m_ MTRAccessControlClusterTarget) Endpoint() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("endpoint"))
+	return rv
+}
+
+
+// SetEndpoint sets the value of the endpoint property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclustertarget/endpoint
+func (m_ MTRAccessControlClusterTarget) SetEndpoint(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setEndpoint:"), value)
+}
 
 
 

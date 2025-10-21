@@ -12,11 +12,9 @@ import (
 // Using unsafe.Pointer as fallback to allow code generation.
 type MTL4AlphaToCoverageState unsafe.Pointer
 
-type MTL4Archive unsafe.Pointer
-
-type MTL4BinaryFunction unsafe.Pointer
-
 type MTL4BlendState unsafe.Pointer
+
+type MTL4BufferRange unsafe.Pointer
 
 type MTL4FunctionDescriptor unsafe.Pointer
 
@@ -28,9 +26,17 @@ type MTL4PipelineStageDynamicLinkingDescriptor unsafe.Pointer
 
 type MTL4StaticLinkingDescriptor unsafe.Pointer
 
+type MTLAccelerationStructureInstanceDescriptorType unsafe.Pointer
+
 type MTLAttributeDescriptorArray unsafe.Pointer
 
+type MTLAttributeFormat unsafe.Pointer
+
 type MTLBinaryArchive unsafe.Pointer
+
+type MTLBindingAccess unsafe.Pointer
+
+type MTLBufferLayoutDescriptorArray unsafe.Pointer
 
 type MTLCPUCacheMode unsafe.Pointer
 
@@ -42,9 +48,13 @@ type MTLCompileSymbolVisibility unsafe.Pointer
 
 type MTLCounterSampleBuffer unsafe.Pointer
 
+type MTLDataType unsafe.Pointer
+
 type MTLDeviceNotificationHandler unsafe.Pointer
 
-type MTLIOCompressionContext unsafe.Pointer
+type MTLFunctionConstantValues unsafe.Pointer
+
+type MTLFunctionStitchingAttribute unsafe.Pointer
 
 type MTLLanguageVersion unsafe.Pointer
 
@@ -54,7 +64,19 @@ type MTLLibraryType unsafe.Pointer
 
 type MTLMathMode unsafe.Pointer
 
+type MTLMatrixLayout unsafe.Pointer
+
+type MTLMotionBorderMode unsafe.Pointer
+
 type MTLSamplePosition unsafe.Pointer
+
+type MTLSamplerAddressMode unsafe.Pointer
+
+type MTLSamplerBorderColor unsafe.Pointer
+
+type MTLSamplerMinMagFilter unsafe.Pointer
+
+type MTLSamplerMipFilter unsafe.Pointer
 
 type MTLSize unsafe.Pointer
 

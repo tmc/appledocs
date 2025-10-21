@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,8 +84,8 @@ func NewContextMenuElementInfo() ContextMenuElementInfo {
 // The URL of the link that the user clicked.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKContextMenuElementInfo/linkURL
-func (c_ ContextMenuElementInfo) LinkURL() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("linkURL"))
+func (c_ ContextMenuElementInfo) LinkURL() foundation.URL {
+	rv := objc.Send[foundation.URL](c_.ID, objc.Sel("linkURL"))
 	return rv
 }
 

@@ -79,5 +79,77 @@ func NewAccelerationStructureBoundingBoxGeometryDescriptor() AccelerationStructu
 }
 
 
+// The number of bounding boxes in the bounding box buffer.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructureboundingboxgeometrydescriptor/boundingboxcount
+func (a_ AccelerationStructureBoundingBoxGeometryDescriptor) BoundingBoxCount() int {
+	rv := objc.Send[int](a_.ID, objc.Sel("boundingBoxCount"))
+	return rv
+}
+
+
+// SetBoundingBoxCount sets the value of the boundingBoxCount property.
+// The number of bounding boxes in the bounding box buffer.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructureboundingboxgeometrydescriptor/boundingboxcount
+func (a_ AccelerationStructureBoundingBoxGeometryDescriptor) SetBoundingBoxCount(value int) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setBoundingBoxCount:"), value)
+}
+
+// A buffer that contains bounding box data.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructureboundingboxgeometrydescriptor/boundingboxbuffer
+func (a_ AccelerationStructureBoundingBoxGeometryDescriptor) BoundingBoxBuffer() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("boundingBoxBuffer"))
+	return rv
+}
+
+
+// SetBoundingBoxBuffer sets the value of the boundingBoxBuffer property.
+// A buffer that contains bounding box data.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructureboundingboxgeometrydescriptor/boundingboxbuffer
+func (a_ AccelerationStructureBoundingBoxGeometryDescriptor) SetBoundingBoxBuffer(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setBoundingBoxBuffer:"), value)
+}
+
+// The offset, in bytes, to the first bounding box in the buffer.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructureboundingboxgeometrydescriptor/boundingboxbufferoffset
+func (a_ AccelerationStructureBoundingBoxGeometryDescriptor) BoundingBoxBufferOffset() int {
+	rv := objc.Send[int](a_.ID, objc.Sel("boundingBoxBufferOffset"))
+	return rv
+}
+
+
+// SetBoundingBoxBufferOffset sets the value of the boundingBoxBufferOffset property.
+// The offset, in bytes, to the first bounding box in the buffer.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructureboundingboxgeometrydescriptor/boundingboxbufferoffset
+func (a_ AccelerationStructureBoundingBoxGeometryDescriptor) SetBoundingBoxBufferOffset(value int) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setBoundingBoxBufferOffset:"), value)
+}
+
+// The stride, in bytes, between bounding boxes in the buffer.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructureboundingboxgeometrydescriptor/boundingboxstride
+func (a_ AccelerationStructureBoundingBoxGeometryDescriptor) BoundingBoxStride() int {
+	rv := objc.Send[int](a_.ID, objc.Sel("boundingBoxStride"))
+	return rv
+}
+
+
+// SetBoundingBoxStride sets the value of the boundingBoxStride property.
+// The stride, in bytes, between bounding boxes in the buffer.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructureboundingboxgeometrydescriptor/boundingboxstride
+func (a_ AccelerationStructureBoundingBoxGeometryDescriptor) SetBoundingBoxStride(value int) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setBoundingBoxStride:"), value)
+}
+
 
 

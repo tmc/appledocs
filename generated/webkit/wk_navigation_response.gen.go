@@ -80,6 +80,42 @@ func NewNavigationResponse() NavigationResponse {
 }
 
 
+// A Boolean value that indicates whether the response targets the web view’s main frame.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wknavigationresponse/isformainframe
+func (n_ NavigationResponse) IsForMainFrame() bool {
+	rv := objc.Send[bool](n_.ID, objc.Sel("isForMainFrame"))
+	return rv
+}
+
+
+// SetIsForMainFrame sets the value of the isForMainFrame property.
+// A Boolean value that indicates whether the response targets the web view’s main frame.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wknavigationresponse/isformainframe
+func (n_ NavigationResponse) SetIsForMainFrame(value bool) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setIsForMainFrame:"), value)
+}
+
+// The frame’s response.
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wknavigationresponse/response
+func (n_ NavigationResponse) Response() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("response"))
+	return rv
+}
+
+
+// SetResponse sets the value of the response property.
+// The frame’s response.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wknavigationresponse/response
+func (n_ NavigationResponse) SetResponse(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setResponse:"), value)
+}
+
 // A Boolean value that indicates whether WebKit is capable of displaying the response’s MIME type natively.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKNavigationResponse/canShowMIMEType

@@ -94,6 +94,21 @@ func (gc _GramMatrixCalculationNodeClass) NodeWithSourceAlpha(sourceNode unsafe.
 }
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnngrammatrixcalculationnode/alpha
+func (g_ GramMatrixCalculationNode) Alpha() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("alpha"))
+	return rv
+}
+
+
+// SetAlpha sets the value of the alpha property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnngrammatrixcalculationnode/alpha
+func (g_ GramMatrixCalculationNode) SetAlpha(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setAlpha:"), value)
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNGramMatrixCalculationNode/propertyCallBack
 func (g_ GramMatrixCalculationNode) PropertyCallBack() objc.ID {
 	rv := objc.Send[objc.ID](g_.ID, objc.Sel("propertyCallBack"))

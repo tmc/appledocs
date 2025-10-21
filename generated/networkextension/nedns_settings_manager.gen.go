@@ -112,6 +112,32 @@ func (n_ NEDNSSettingsManager) SaveToPreferencesWithCompletionHandler(completion
 	objc.Send[objc.ID](n_.ID, objc.Sel("saveToPreferencesWithCompletionHandler:"), completionHandler)
 }
 
+// A Boolean you use to query the enabled state of the DNS settings configuration.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nednssettingsmanager/isenabled
+func (n_ NEDNSSettingsManager) IsEnabled() bool {
+	rv := objc.Send[bool](n_.ID, objc.Sel("isEnabled"))
+	return rv
+}
+
+
+// SetIsEnabled sets the value of the isEnabled property.
+// A Boolean you use to query the enabled state of the DNS settings configuration.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nednssettingsmanager/isenabled
+func (n_ NEDNSSettingsManager) SetIsEnabled(value bool) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setIsEnabled:"), value)
+}
+
+// The domain for errors resulting from calls to the DNS settings manager.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nednssettingserrordomain
+func (n_ NEDNSSettingsManager) NEDNSSettingsErrorDomain() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("NEDNSSettingsErrorDomain"))
+	return rv
+}
+
 // An object that contains the configuration settings for a DNS server.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEDNSSettingsManager/dnsSettings

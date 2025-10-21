@@ -80,5 +80,41 @@ func NewFSItem() FSItem {
 }
 
 
+// The attributes successfully used by the file system.
+//
+// [Full Topic]: https://developer.apple.com/documentation/fskit/fsitem/setattributesrequest/consumedattributes
+func (f_ FSItem) ConsumedAttributes() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("consumedAttributes"))
+	return rv
+}
+
+
+// SetConsumedAttributes sets the value of the consumedAttributes property.
+// The attributes successfully used by the file system.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/fskit/fsitem/setattributesrequest/consumedattributes
+func (f_ FSItem) SetConsumedAttributes(value unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setConsumedAttributes:"), value)
+}
+
+// The attributes requested by the request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/fskit/fsitem/getattributesrequest/wantedattributes
+func (f_ FSItem) WantedAttributes() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("wantedAttributes"))
+	return rv
+}
+
+
+// SetWantedAttributes sets the value of the wantedAttributes property.
+// The attributes requested by the request.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/fskit/fsitem/getattributesrequest/wantedattributes
+func (f_ FSItem) SetWantedAttributes(value unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setWantedAttributes:"), value)
+}
+
 
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MTRClusterRefrigeratorAlarm] class.
@@ -92,7 +93,7 @@ func NewMTRClusterRefrigeratorAlarm() MTRClusterRefrigeratorAlarm {
 // The queue is currently unused, but may be used in the future for calling completions for command invocations if commands are added to this cluster.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterRefrigeratorAlarm/init(device:endpointID:queue:)
-func NewMTRClusterRefrigeratorAlarmWithDeviceEndpointIDQueue(device unsafe.Pointer, endpointID unsafe.Pointer, queue unsafe.Pointer) MTRClusterRefrigeratorAlarm {
+func NewMTRClusterRefrigeratorAlarmWithDeviceEndpointIDQueue(device unsafe.Pointer, endpointID foundation.Number, queue unsafe.Pointer) MTRClusterRefrigeratorAlarm {
 	instance := getMTRClusterRefrigeratorAlarmClass().Alloc()
 	rv := objc.Send[MTRClusterRefrigeratorAlarm](instance.ID, objc.Sel("initWithDevice:endpointID:queue:"), device, endpointID, queue)
 	rv.Autorelease()

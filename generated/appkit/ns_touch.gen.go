@@ -123,5 +123,95 @@ func (t_ Touch) Phase() unsafe.Pointer {
 	return rv
 }
 
+// The digitizer that generates the touch. Useful to distinguish touches emanating from multiple-device scenarios.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstouch/device
+func (t_ Touch) Device() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("device"))
+	return rv
+}
+
+
+// SetDevice sets the value of the device property.
+// The digitizer that generates the touch. Useful to distinguish touches emanating from multiple-device scenarios.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstouch/device
+func (t_ Touch) SetDevice(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setDevice:"), value)
+}
+
+// The range of the touch device in points, such as 72 ppi.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstouch/devicesize
+func (t_ Touch) DeviceSize() coregraphics.CGSize {
+	rv := objc.Send[coregraphics.CGSize](t_.ID, objc.Sel("deviceSize"))
+	return rv
+}
+
+
+// SetDeviceSize sets the value of the deviceSize property.
+// The range of the touch device in points, such as 72 ppi.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstouch/devicesize
+func (t_ Touch) SetDeviceSize(value coregraphics.CGSize) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setDeviceSize:"), value)
+}
+
+// The changes to a particular touch during its lifetime.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstouch/identity
+func (t_ Touch) Identity() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("identity"))
+	return rv
+}
+
+
+// SetIdentity sets the value of the identity property.
+// The changes to a particular touch during its lifetime.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstouch/identity
+func (t_ Touch) SetIdentity(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setIdentity:"), value)
+}
+
+// The indicator for a resting touch.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstouch/isresting
+func (t_ Touch) IsResting() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("isResting"))
+	return rv
+}
+
+
+// SetIsResting sets the value of the isResting property.
+// The indicator for a resting touch.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstouch/isresting
+func (t_ Touch) SetIsResting(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setIsResting:"), value)
+}
+
+// A type of touch from a Touch Bar interaction.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstouch/type
+func (t_ Touch) Type() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("type"))
+	return rv
+}
+
+
+// SetType sets the value of the type property.
+// A type of touch from a Touch Bar interaction.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstouch/type
+func (t_ Touch) SetType(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setType:"), value)
+}
+
 
 

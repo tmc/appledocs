@@ -81,5 +81,23 @@ func NewPHASESoundEventNodeAsset() PHASESoundEventNodeAsset {
 }
 
 
+// A unique name for the asset.
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phaseasset/identifier
+func (p_ PHASESoundEventNodeAsset) Identifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("identifier"))
+	return rv
+}
+
+
+// SetIdentifier sets the value of the identifier property.
+// A unique name for the asset.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/phase/phaseasset/identifier
+func (p_ PHASESoundEventNodeAsset) SetIdentifier(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+}
+
 
 

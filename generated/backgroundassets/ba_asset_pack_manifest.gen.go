@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -99,7 +100,7 @@ func NewBAAssetPackManifestFromDataApplicationGroupIdentifierError(data unsafe.P
 // Initializes a representation of a manifest in memory given a URL to the manifest’s representation as a JSON file on disk.
 //
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPackManifest/initWithContentsOfURL:applicationGroupIdentifier:error:
-func NewBAAssetPackManifestWithContentsOfURLApplicationGroupIdentifierError(URL unsafe.Pointer, applicationGroupIdentifier string, error_ unsafe.Pointer) BAAssetPackManifest {
+func NewBAAssetPackManifestWithContentsOfURLApplicationGroupIdentifierError(URL foundation.URL, applicationGroupIdentifier string, error_ unsafe.Pointer) BAAssetPackManifest {
 	instance := getBAAssetPackManifestClass().Alloc()
 	rv := objc.Send[BAAssetPackManifest](instance.ID, objc.Sel("initWithContentsOfURL:applicationGroupIdentifier:error:"), URL, objc.String(applicationGroupIdentifier), error_)
 	rv.Autorelease()

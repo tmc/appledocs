@@ -78,6 +78,96 @@ func NewPersistentCloudKitContainerEvent() PersistentCloudKitContainerEvent {
 }
 
 
+// A unique identifier for the event in a container.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/event/identifier
+func (p_ PersistentCloudKitContainerEvent) Identifier() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("identifier"))
+	return rv
+}
+
+
+// SetIdentifier sets the value of the identifier property.
+// A unique identifier for the event in a container.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/event/identifier
+func (p_ PersistentCloudKitContainerEvent) SetIdentifier(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIdentifier:"), value)
+}
+
+// The associated store identifier in the container for the event.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/event/storeidentifier
+func (p_ PersistentCloudKitContainerEvent) StoreIdentifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("storeIdentifier"))
+	return rv
+}
+
+
+// SetStoreIdentifier sets the value of the storeIdentifier property.
+// The associated store identifier in the container for the event.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/event/storeidentifier
+func (p_ PersistentCloudKitContainerEvent) SetStoreIdentifier(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setStoreIdentifier:"), objc.String(value))
+}
+
+// The start date of the operation that the event represents.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/event/startdate
+func (p_ PersistentCloudKitContainerEvent) StartDate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("startDate"))
+	return rv
+}
+
+
+// SetStartDate sets the value of the startDate property.
+// The start date of the operation that the event represents.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/event/startdate
+func (p_ PersistentCloudKitContainerEvent) SetStartDate(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setStartDate:"), value)
+}
+
+// The end date of the operation that the event represents.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/event/enddate
+func (p_ PersistentCloudKitContainerEvent) EndDate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("endDate"))
+	return rv
+}
+
+
+// SetEndDate sets the value of the endDate property.
+// The end date of the operation that the event represents.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/event/enddate
+func (p_ PersistentCloudKitContainerEvent) SetEndDate(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setEndDate:"), value)
+}
+
+// The type of event, either setup, import, or export.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/event/type
+func (p_ PersistentCloudKitContainerEvent) Type() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("type"))
+	return rv
+}
+
+
+// SetType sets the value of the type property.
+// The type of event, either setup, import, or export.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/event/type
+func (p_ PersistentCloudKitContainerEvent) SetType(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setType:"), value)
+}
+
 // An error that indicates why an operation fails.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainer/Event/error

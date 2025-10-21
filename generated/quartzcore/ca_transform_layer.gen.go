@@ -81,5 +81,23 @@ func NewTransformLayer() TransformLayer {
 }
 
 
+// The layer’s position on the z axis. Animatable.
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/calayer/zposition
+func (t_ TransformLayer) ZPosition() float64 {
+	rv := objc.Send[float64](t_.ID, objc.Sel("zPosition"))
+	return rv
+}
+
+
+// SetZPosition sets the value of the zPosition property.
+// The layer’s position on the z axis. Animatable.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/calayer/zposition
+func (t_ TransformLayer) SetZPosition(value float64) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setZPosition:"), value)
+}
+
 
 

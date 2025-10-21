@@ -91,6 +91,60 @@ func NewTKTokenWithTokenDriverInstanceID(tokenDriver unsafe.Pointer, instanceID 
 }
 
 
+// The token delegate.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tktoken/delegate
+func (t_ TKToken) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+
+// SetDelegate sets the value of the delegate property.
+// The token delegate.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tktoken/delegate
+func (t_ TKToken) SetDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setDelegate:"), value)
+}
+
+// The token driver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tktoken/tokendriver
+func (t_ TKToken) TokenDriver() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("tokenDriver"))
+	return rv
+}
+
+
+// SetTokenDriver sets the value of the tokenDriver property.
+// The token driver.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tktoken/tokendriver
+func (t_ TKToken) SetTokenDriver(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setTokenDriver:"), value)
+}
+
+// The contents of the keychain for this token.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tktoken/keychaincontents
+func (t_ TKToken) KeychainContents() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("keychainContents"))
+	return rv
+}
+
+
+// SetKeychainContents sets the value of the keychainContents property.
+// The contents of the keychain for this token.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tktoken/keychaincontents
+func (t_ TKToken) SetKeychainContents(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setKeychainContents:"), value)
+}
+
 // The current configuration for a token.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKToken/configuration-swift.property

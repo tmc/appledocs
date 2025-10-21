@@ -78,5 +78,13 @@ func NewPHLocalIdentifierMapping() PHLocalIdentifierMapping {
 }
 
 
+// A constant value that indicates that the system can’t resolve a local object from a global identifier.
+//
+// [Full Topic]: https://developer.apple.com/documentation/photos/phlocalidentifiernotfound
+func (p_ PHLocalIdentifierMapping) PHLocalIdentifierNotFound() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("PHLocalIdentifierNotFound"))
+	return rv
+}
+
 
 

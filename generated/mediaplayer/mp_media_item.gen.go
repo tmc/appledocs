@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MediaItem] class.
@@ -97,6 +98,130 @@ func (mc _MediaItemClass) TitlePropertyForGroupingType(groupingType unsafe.Point
 	return rv
 }
 
+// A Boolean value that indicates whether the media item has explicit (adult) lyrics or language.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitem/isexplicititem
+func (m_ MediaItem) IsExplicitItem() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("isExplicitItem"))
+	return rv
+}
+
+
+// SetIsExplicitItem sets the value of the isExplicitItem property.
+// A Boolean value that indicates whether the media item has explicit (adult) lyrics or language.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitem/isexplicititem
+func (m_ MediaItem) SetIsExplicitItem(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIsExplicitItem:"), value)
+}
+
+// A Boolean value that indicates whether the media item has a protected asset.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitem/hasprotectedasset
+func (m_ MediaItem) HasProtectedAsset() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("hasProtectedAsset"))
+	return rv
+}
+
+
+// SetHasProtectedAsset sets the value of the hasProtectedAsset property.
+// A Boolean value that indicates whether the media item has a protected asset.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitem/hasprotectedasset
+func (m_ MediaItem) SetHasProtectedAsset(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setHasProtectedAsset:"), value)
+}
+
+// The musical composer for the media item.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitem/composer
+func (m_ MediaItem) Composer() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("composer"))
+	return rv
+}
+
+
+// SetComposer sets the value of the composer property.
+// The musical composer for the media item.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitem/composer
+func (m_ MediaItem) SetComposer(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setComposer:"), objc.String(value))
+}
+
+// The persistent identifier for a media entity.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaentitypropertypersistentid
+func (m_ MediaItem) MPMediaEntityPropertyPersistentID() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("MPMediaEntityPropertyPersistentID"))
+	return rv
+}
+
+// A Boolean value that indicates whether the media item is part of a compilation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitem/iscompilation
+func (m_ MediaItem) IsCompilation() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("isCompilation"))
+	return rv
+}
+
+
+// SetIsCompilation sets the value of the isCompilation property.
+// A Boolean value that indicates whether the media item is part of a compilation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitem/iscompilation
+func (m_ MediaItem) SetIsCompilation(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIsCompilation:"), value)
+}
+
+// The key for the persistent identifier for the media item.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertypersistentid
+func (m_ MediaItem) MPMediaItemPropertyPersistentID() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("MPMediaItemPropertyPersistentID"))
+	return rv
+}
+
+// A Boolean value that indicates whether the media item is an iCloud Music Library item.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitem/isclouditem
+func (m_ MediaItem) IsCloudItem() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("isCloudItem"))
+	return rv
+}
+
+
+// SetIsCloudItem sets the value of the isCloudItem property.
+// A Boolean value that indicates whether the media item is an iCloud Music Library item.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitem/isclouditem
+func (m_ MediaItem) SetIsCloudItem(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIsCloudItem:"), value)
+}
+
+// A Boolean value that indicates whether the media item is a preorder.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitem/ispreorder
+func (m_ MediaItem) IsPreorder() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("isPreorder"))
+	return rv
+}
+
+
+// SetIsPreorder sets the value of the isPreorder property.
+// A Boolean value that indicates whether the media item is a preorder.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitem/ispreorder
+func (m_ MediaItem) SetIsPreorder(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIsPreorder:"), value)
+}
+
 // The primary performing artist for an album.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItem/albumArtist
@@ -172,8 +297,8 @@ func (m_ MediaItem) Artwork() unsafe.Pointer {
 // The URL that points to the media item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItem/assetURL
-func (m_ MediaItem) AssetURL() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("assetURL"))
+func (m_ MediaItem) AssetURL() foundation.URL {
+	rv := objc.Send[foundation.URL](m_.ID, objc.Sel("assetURL"))
 	return rv
 }
 
@@ -188,8 +313,8 @@ func (m_ MediaItem) BeatsPerMinute() uint {
 // The time of the user’s most recent interaction with the bookmark in the media item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItem/bookmarkTime
-func (m_ MediaItem) BookmarkTime() TimeInterval {
-	rv := objc.Send[TimeInterval](m_.ID, objc.Sel("bookmarkTime"))
+func (m_ MediaItem) BookmarkTime() foundation.TimeInterval {
+	rv := objc.Send[foundation.TimeInterval](m_.ID, objc.Sel("bookmarkTime"))
 	return rv
 }
 
@@ -332,8 +457,8 @@ func (m_ MediaItem) PlayCount() uint {
 // The playback duration of the media item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItem/playbackDuration
-func (m_ MediaItem) PlaybackDuration() TimeInterval {
-	rv := objc.Send[TimeInterval](m_.ID, objc.Sel("playbackDuration"))
+func (m_ MediaItem) PlaybackDuration() foundation.TimeInterval {
+	rv := objc.Send[foundation.TimeInterval](m_.ID, objc.Sel("playbackDuration"))
 	return rv
 }
 

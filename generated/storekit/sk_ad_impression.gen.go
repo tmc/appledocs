@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -85,7 +86,7 @@ func NewAdImpression() AdImpression {
 // Creates an ad impression object using the supplied values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKAdImpression/init(sourceAppStoreItemIdentifier:advertisedAppStoreItemIdentifier:adNetworkIdentifier:adCampaignIdentifier:adImpressionIdentifier:timestamp:signature:version:)
-func NewAdImpressionWithSourceAppStoreItemIdentifierAdvertisedAppStoreItemIdentifierAdNetworkIdentifierAdCampaignIdentifierAdImpressionIdentifierTimestampSignatureVersion(sourceAppStoreItemIdentifier unsafe.Pointer, advertisedAppStoreItemIdentifier unsafe.Pointer, adNetworkIdentifier string, adCampaignIdentifier unsafe.Pointer, adImpressionIdentifier string, timestamp unsafe.Pointer, signature string, version string) AdImpression {
+func NewAdImpressionWithSourceAppStoreItemIdentifierAdvertisedAppStoreItemIdentifierAdNetworkIdentifierAdCampaignIdentifierAdImpressionIdentifierTimestampSignatureVersion(sourceAppStoreItemIdentifier foundation.Number, advertisedAppStoreItemIdentifier foundation.Number, adNetworkIdentifier string, adCampaignIdentifier foundation.Number, adImpressionIdentifier string, timestamp foundation.Number, signature string, version string) AdImpression {
 	instance := getAdImpressionClass().Alloc()
 	rv := objc.Send[AdImpression](instance.ID, objc.Sel("initWithSourceAppStoreItemIdentifier:advertisedAppStoreItemIdentifier:adNetworkIdentifier:adCampaignIdentifier:adImpressionIdentifier:timestamp:signature:version:"), sourceAppStoreItemIdentifier, advertisedAppStoreItemIdentifier, objc.String(adNetworkIdentifier), adCampaignIdentifier, objc.String(adImpressionIdentifier), timestamp, objc.String(signature), objc.String(version))
 	rv.Autorelease()
@@ -96,8 +97,8 @@ func NewAdImpressionWithSourceAppStoreItemIdentifierAdvertisedAppStoreItemIdenti
 // A number that represents the advertising network’s campaign.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKAdImpression/adCampaignIdentifier
-func (a_ AdImpression) AdCampaignIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("adCampaignIdentifier"))
+func (a_ AdImpression) AdCampaignIdentifier() foundation.Number {
+	rv := objc.Send[foundation.Number](a_.ID, objc.Sel("adCampaignIdentifier"))
 	return rv
 }
 
@@ -107,7 +108,7 @@ func (a_ AdImpression) AdCampaignIdentifier() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKAdImpression/adCampaignIdentifier
-func (a_ AdImpression) SetAdCampaignIdentifier(value unsafe.Pointer) {
+func (a_ AdImpression) SetAdCampaignIdentifier(value foundation.Number) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAdCampaignIdentifier:"), value)
 }
 
@@ -204,8 +205,8 @@ func (a_ AdImpression) SetAdType(value string) {
 // The App Store ID of the app that the ad impression advertises.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKAdImpression/advertisedAppStoreItemIdentifier
-func (a_ AdImpression) AdvertisedAppStoreItemIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("advertisedAppStoreItemIdentifier"))
+func (a_ AdImpression) AdvertisedAppStoreItemIdentifier() foundation.Number {
+	rv := objc.Send[foundation.Number](a_.ID, objc.Sel("advertisedAppStoreItemIdentifier"))
 	return rv
 }
 
@@ -215,7 +216,7 @@ func (a_ AdImpression) AdvertisedAppStoreItemIdentifier() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKAdImpression/advertisedAppStoreItemIdentifier
-func (a_ AdImpression) SetAdvertisedAppStoreItemIdentifier(value unsafe.Pointer) {
+func (a_ AdImpression) SetAdvertisedAppStoreItemIdentifier(value foundation.Number) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAdvertisedAppStoreItemIdentifier:"), value)
 }
 
@@ -240,8 +241,8 @@ func (a_ AdImpression) SetSignature(value string) {
 // The App Store ID of the app that displays the ad.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKAdImpression/sourceAppStoreItemIdentifier
-func (a_ AdImpression) SourceAppStoreItemIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("sourceAppStoreItemIdentifier"))
+func (a_ AdImpression) SourceAppStoreItemIdentifier() foundation.Number {
+	rv := objc.Send[foundation.Number](a_.ID, objc.Sel("sourceAppStoreItemIdentifier"))
 	return rv
 }
 
@@ -251,15 +252,15 @@ func (a_ AdImpression) SourceAppStoreItemIdentifier() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKAdImpression/sourceAppStoreItemIdentifier
-func (a_ AdImpression) SetSourceAppStoreItemIdentifier(value unsafe.Pointer) {
+func (a_ AdImpression) SetSourceAppStoreItemIdentifier(value foundation.Number) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setSourceAppStoreItemIdentifier:"), value)
 }
 
 // A four-digit integer that ad networks define to represent the ad campaign.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKAdImpression/sourceIdentifier
-func (a_ AdImpression) SourceIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("sourceIdentifier"))
+func (a_ AdImpression) SourceIdentifier() foundation.Number {
+	rv := objc.Send[foundation.Number](a_.ID, objc.Sel("sourceIdentifier"))
 	return rv
 }
 
@@ -269,15 +270,15 @@ func (a_ AdImpression) SourceIdentifier() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKAdImpression/sourceIdentifier
-func (a_ AdImpression) SetSourceIdentifier(value unsafe.Pointer) {
+func (a_ AdImpression) SetSourceIdentifier(value foundation.Number) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setSourceIdentifier:"), value)
 }
 
 // A number that represents the UNIX time, in milliseconds, of the ad impression.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKAdImpression/timestamp
-func (a_ AdImpression) Timestamp() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("timestamp"))
+func (a_ AdImpression) Timestamp() foundation.Number {
+	rv := objc.Send[foundation.Number](a_.ID, objc.Sel("timestamp"))
 	return rv
 }
 
@@ -287,7 +288,7 @@ func (a_ AdImpression) Timestamp() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKAdImpression/timestamp
-func (a_ AdImpression) SetTimestamp(value unsafe.Pointer) {
+func (a_ AdImpression) SetTimestamp(value foundation.Number) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setTimestamp:"), value)
 }
 

@@ -90,5 +90,23 @@ func (d_ DialogController) Dismiss(sender objc.ID) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("dismiss:"), sender)
 }
 
+// The window that displays the dashboard.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkdialogcontroller/parentwindow
+func (d_ DialogController) ParentWindow() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("parentWindow"))
+	return rv
+}
+
+
+// SetParentWindow sets the value of the parentWindow property.
+// The window that displays the dashboard.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkdialogcontroller/parentwindow
+func (d_ DialogController) SetParentWindow(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setParentWindow:"), value)
+}
+
 
 

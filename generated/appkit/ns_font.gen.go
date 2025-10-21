@@ -120,5 +120,275 @@ func (f_ Font) PrinterFont() unsafe.Pointer {
 	return rv
 }
 
+// The reserved code for a control glyph.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrolglyph
+func (f_ Font) NSControlGlyph() int {
+	rv := objc.Send[int](f_.ID, objc.Sel("NSControlGlyph"))
+	return rv
+}
+
+
+// SetNSControlGlyph sets the value of the NSControlGlyph property.
+// The reserved code for a control glyph.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrolglyph
+func (f_ Font) SetNSControlGlyph(value int) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setNSControlGlyph:"), value)
+}
+
+// The name of the font, including family and face names, to use when displaying the font information to the user.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfont/displayname
+func (f_ Font) DisplayName() string {
+	rv := objc.Send[string](f_.ID, objc.Sel("displayName"))
+	return rv
+}
+
+
+// SetDisplayName sets the value of the displayName property.
+// The name of the font, including family and face names, to use when displaying the font information to the user.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfont/displayname
+func (f_ Font) SetDisplayName(value string) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setDisplayName:"), objc.String(value))
+}
+
+// The family name of the font—for example, “Times” or “Helvetica.”
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfont/familyname
+func (f_ Font) FamilyName() string {
+	rv := objc.Send[string](f_.ID, objc.Sel("familyName"))
+	return rv
+}
+
+
+// SetFamilyName sets the value of the familyName property.
+// The family name of the font—for example, “Times” or “Helvetica.”
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfont/familyname
+func (f_ Font) SetFamilyName(value string) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setFamilyName:"), objc.String(value))
+}
+
+// The font descriptor object for the font.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfont/fontdescriptor
+func (f_ Font) FontDescriptor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("fontDescriptor"))
+	return rv
+}
+
+
+// SetFontDescriptor sets the value of the fontDescriptor property.
+// The font descriptor object for the font.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfont/fontdescriptor
+func (f_ Font) SetFontDescriptor(value unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setFontDescriptor:"), value)
+}
+
+// The full name of the font, as used in PostScript language code—for example, “Times-Roman” or “Helvetica-Oblique.”
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfont/fontname
+func (f_ Font) FontName() string {
+	rv := objc.Send[string](f_.ID, objc.Sel("fontName"))
+	return rv
+}
+
+
+// SetFontName sets the value of the fontName property.
+// The full name of the font, as used in PostScript language code—for example, “Times-Roman” or “Helvetica-Oblique.”
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfont/fontname
+func (f_ Font) SetFontName(value string) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setFontName:"), objc.String(value))
+}
+
+// A Boolean value indicating whether all glyphs in the font have the same advancement.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfont/isfixedpitch
+func (f_ Font) IsFixedPitch() bool {
+	rv := objc.Send[bool](f_.ID, objc.Sel("isFixedPitch"))
+	return rv
+}
+
+
+// SetIsFixedPitch sets the value of the isFixedPitch property.
+// A Boolean value indicating whether all glyphs in the font have the same advancement.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfont/isfixedpitch
+func (f_ Font) SetIsFixedPitch(value bool) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setIsFixedPitch:"), value)
+}
+
+// A Boolean value indicating whether the font is a vertical font.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfont/isvertical
+func (f_ Font) IsVertical() bool {
+	rv := objc.Send[bool](f_.ID, objc.Sel("isVertical"))
+	return rv
+}
+
+
+// SetIsVertical sets the value of the isVertical property.
+// A Boolean value indicating whether the font is a vertical font.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfont/isvertical
+func (f_ Font) SetIsVertical(value bool) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setIsVertical:"), value)
+}
+
+// The string encoding that works best with the font.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfont/mostcompatiblestringencoding
+func (f_ Font) MostCompatibleStringEncoding() uint {
+	rv := objc.Send[uint](f_.ID, objc.Sel("mostCompatibleStringEncoding"))
+	return rv
+}
+
+
+// SetMostCompatibleStringEncoding sets the value of the mostCompatibleStringEncoding property.
+// The string encoding that works best with the font.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfont/mostcompatiblestringencoding
+func (f_ Font) SetMostCompatibleStringEncoding(value uint) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setMostCompatibleStringEncoding:"), value)
+}
+
+// The number of glyphs in the font.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfont/numberofglyphs
+func (f_ Font) NumberOfGlyphs() int {
+	rv := objc.Send[int](f_.ID, objc.Sel("numberOfGlyphs"))
+	return rv
+}
+
+
+// SetNumberOfGlyphs sets the value of the numberOfGlyphs property.
+// The number of glyphs in the font.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfont/numberofglyphs
+func (f_ Font) SetNumberOfGlyphs(value int) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setNumberOfGlyphs:"), value)
+}
+
+// The point size of the font.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfont/pointsize
+func (f_ Font) PointSize() float64 {
+	rv := objc.Send[float64](f_.ID, objc.Sel("pointSize"))
+	return rv
+}
+
+
+// SetPointSize sets the value of the pointSize property.
+// The point size of the font.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfont/pointsize
+func (f_ Font) SetPointSize(value float64) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setPointSize:"), value)
+}
+
+// The scalable PostScript font corresponding to current font.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfont/printer
+func (f_ Font) Printer() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("printer"))
+	return rv
+}
+
+
+// SetPrinter sets the value of the printer property.
+// The scalable PostScript font corresponding to current font.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfont/printer
+func (f_ Font) SetPrinter(value unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setPrinter:"), value)
+}
+
+// The rendering mode of the font.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfont/renderingmode
+func (f_ Font) RenderingMode() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("renderingMode"))
+	return rv
+}
+
+
+// SetRenderingMode sets the value of the renderingMode property.
+// The rendering mode of the font.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfont/renderingmode
+func (f_ Font) SetRenderingMode(value unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setRenderingMode:"), value)
+}
+
+// The bitmapped screen font for the current font.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfont/screen
+func (f_ Font) Screen() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("screen"))
+	return rv
+}
+
+
+// SetScreen sets the value of the screen property.
+// The bitmapped screen font for the current font.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfont/screen
+func (f_ Font) SetScreen(value unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setScreen:"), value)
+}
+
+// A vertical version of the font.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfont/vertical-6ym79
+func (f_ Font) Vertical() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("vertical"))
+	return rv
+}
+
+
+// SetVertical sets the value of the vertical property.
+// A vertical version of the font.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfont/vertical-6ym79
+func (f_ Font) SetVertical(value unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setVertical:"), value)
+}
+
+// The reserved code for a null glyph.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsnullglyph
+func (f_ Font) NSNullGlyph() int {
+	rv := objc.Send[int](f_.ID, objc.Sel("NSNullGlyph"))
+	return rv
+}
+
+
+// SetNSNullGlyph sets the value of the NSNullGlyph property.
+// The reserved code for a null glyph.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsnullglyph
+func (f_ Font) SetNSNullGlyph(value int) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setNSNullGlyph:"), value)
+}
+
 
 

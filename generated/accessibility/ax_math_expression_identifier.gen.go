@@ -86,4 +86,19 @@ func NewAXMathExpressionIdentifierWithContent(content string) AXMathExpressionId
 }
 
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/accessibility/axmathexpressionidentifier/content
+func (a_ AXMathExpressionIdentifier) Content() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("content"))
+	return rv
+}
+
+
+// SetContent sets the value of the content property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/accessibility/axmathexpressionidentifier/content
+func (a_ AXMathExpressionIdentifier) SetContent(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setContent:"), objc.String(value))
+}
+
 

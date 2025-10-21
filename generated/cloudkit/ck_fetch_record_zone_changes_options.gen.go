@@ -78,6 +78,42 @@ func NewCKFetchRecordZoneChangesOptions() CKFetchRecordZoneChangesOptions {
 }
 
 
+// The maximum number of records to fetch from the record zone.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordzonechangesoperation/zoneoptions/resultslimit
+func (c_ CKFetchRecordZoneChangesOptions) ResultsLimit() int {
+	rv := objc.Send[int](c_.ID, objc.Sel("resultsLimit"))
+	return rv
+}
+
+
+// SetResultsLimit sets the value of the resultsLimit property.
+// The maximum number of records to fetch from the record zone.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordzonechangesoperation/zoneoptions/resultslimit
+func (c_ CKFetchRecordZoneChangesOptions) SetResultsLimit(value int) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setResultsLimit:"), value)
+}
+
+// The token that identifies the starting point for retrieving changes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordzonechangesoperation/zoneoptions/previousserverchangetoken
+func (c_ CKFetchRecordZoneChangesOptions) PreviousServerChangeToken() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("previousServerChangeToken"))
+	return rv
+}
+
+
+// SetPreviousServerChangeToken sets the value of the previousServerChangeToken property.
+// The token that identifies the starting point for retrieving changes.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordzonechangesoperation/zoneoptions/previousserverchangetoken
+func (c_ CKFetchRecordZoneChangesOptions) SetPreviousServerChangeToken(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setPreviousServerChangeToken:"), value)
+}
+
 // The fields to fetch for the requested records.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZoneChangesOperation/ZoneOptions/desiredKeys

@@ -81,6 +81,38 @@ func NewFeature() Feature {
 }
 
 
+// A Core Image feature type for rectangular object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreimage/cifeaturetyperectangle
+func (f_ Feature) CIFeatureTypeRectangle() string {
+	rv := objc.Send[string](f_.ID, objc.Sel("CIFeatureTypeRectangle"))
+	return rv
+}
+
+// A Core Image feature type for text.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreimage/cifeaturetypetext
+func (f_ Feature) CIFeatureTypeText() string {
+	rv := objc.Send[string](f_.ID, objc.Sel("CIFeatureTypeText"))
+	return rv
+}
+
+// A Core Image feature type for person’s face.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreimage/cifeaturetypeface
+func (f_ Feature) CIFeatureTypeFace() string {
+	rv := objc.Send[string](f_.ID, objc.Sel("CIFeatureTypeFace"))
+	return rv
+}
+
+// A Core Image feature type for QR code object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreimage/cifeaturetypeqrcode
+func (f_ Feature) CIFeatureTypeQRCode() string {
+	rv := objc.Send[string](f_.ID, objc.Sel("CIFeatureTypeQRCode"))
+	return rv
+}
+
 // The rectangle that holds discovered feature.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFeature/bounds

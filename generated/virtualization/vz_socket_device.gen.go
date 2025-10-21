@@ -80,5 +80,23 @@ func NewVZSocketDevice() VZSocketDevice {
 }
 
 
+// The array of socket devices that the VM configures for use ports in the guest VM.
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachine/socketdevices
+func (v_ VZSocketDevice) SocketDevices() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("socketDevices"))
+	return rv
+}
+
+
+// SetSocketDevices sets the value of the socketDevices property.
+// The array of socket devices that the VM configures for use ports in the guest VM.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachine/socketdevices
+func (v_ VZSocketDevice) SetSocketDevices(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setSocketDevices:"), value)
+}
+
 
 

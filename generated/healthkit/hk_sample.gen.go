@@ -81,6 +81,38 @@ func NewHKSample() HKSample {
 }
 
 
+// A constant for sorting samples based on their end date.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hksamplesortidentifierenddate
+func (h_ HKSample) HKSampleSortIdentifierEndDate() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("HKSampleSortIdentifierEndDate"))
+	return rv
+}
+
+// A constant for sorting samples based on their start date.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hksamplesortidentifierstartdate
+func (h_ HKSample) HKSampleSortIdentifierStartDate() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("HKSampleSortIdentifierStartDate"))
+	return rv
+}
+
+// The key path for accessing the sample’s start date.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathstartdate
+func (h_ HKSample) HKPredicateKeyPathStartDate() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathStartDate"))
+	return rv
+}
+
+// The key path for accessing the sample’s end date.
+//
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathenddate
+func (h_ HKSample) HKPredicateKeyPathEndDate() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathEndDate"))
+	return rv
+}
+
 // The sample’s end date.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKSample/endDate

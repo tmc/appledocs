@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [CaptureScreenInput] class.
@@ -80,6 +81,114 @@ func NewCaptureScreenInput() CaptureScreenInput {
 	return getCaptureScreenInputClass().New()
 }
 
+
+// A Boolean value that specifies whether the mouse cursor appears in the captured output.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturescreeninput/capturescursor
+func (c_ CaptureScreenInput) CapturesCursor() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("capturesCursor"))
+	return rv
+}
+
+
+// SetCapturesCursor sets the value of the capturesCursor property.
+// A Boolean value that specifies whether the mouse cursor appears in the captured output.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturescreeninput/capturescursor
+func (c_ CaptureScreenInput) SetCapturesCursor(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setCapturesCursor:"), value)
+}
+
+// A Boolean value that specifies whether mouse clicks appear highlighted in the captured output.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturescreeninput/capturesmouseclicks
+func (c_ CaptureScreenInput) CapturesMouseClicks() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("capturesMouseClicks"))
+	return rv
+}
+
+
+// SetCapturesMouseClicks sets the value of the capturesMouseClicks property.
+// A Boolean value that specifies whether mouse clicks appear highlighted in the captured output.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturescreeninput/capturesmouseclicks
+func (c_ CaptureScreenInput) SetCapturesMouseClicks(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setCapturesMouseClicks:"), value)
+}
+
+// Indicates the bounding rectangle of the screen area to be captured, in pixels.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturescreeninput/croprect
+func (c_ CaptureScreenInput) CropRect() coregraphics.CGRect {
+	rv := objc.Send[coregraphics.CGRect](c_.ID, objc.Sel("cropRect"))
+	return rv
+}
+
+
+// SetCropRect sets the value of the cropRect property.
+// Indicates the bounding rectangle of the screen area to be captured, in pixels.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturescreeninput/croprect
+func (c_ CaptureScreenInput) SetCropRect(value coregraphics.CGRect) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setCropRect:"), value)
+}
+
+// The screen input’s minimum frame duration.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturescreeninput/minframeduration
+func (c_ CaptureScreenInput) MinFrameDuration() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("minFrameDuration"))
+	return rv
+}
+
+
+// SetMinFrameDuration sets the value of the minFrameDuration property.
+// The screen input’s minimum frame duration.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturescreeninput/minframeduration
+func (c_ CaptureScreenInput) SetMinFrameDuration(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setMinFrameDuration:"), value)
+}
+
+// A Boolean value that specifies whether the capture input skips duplicate frames.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturescreeninput/removesduplicateframes
+func (c_ CaptureScreenInput) RemovesDuplicateFrames() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("removesDuplicateFrames"))
+	return rv
+}
+
+
+// SetRemovesDuplicateFrames sets the value of the removesDuplicateFrames property.
+// A Boolean value that specifies whether the capture input skips duplicate frames.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturescreeninput/removesduplicateframes
+func (c_ CaptureScreenInput) SetRemovesDuplicateFrames(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setRemovesDuplicateFrames:"), value)
+}
+
+// Indicates the factor by which video buffers captured from the screen are to be scaled.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturescreeninput/scalefactor
+func (c_ CaptureScreenInput) ScaleFactor() float64 {
+	rv := objc.Send[float64](c_.ID, objc.Sel("scaleFactor"))
+	return rv
+}
+
+
+// SetScaleFactor sets the value of the scaleFactor property.
+// Indicates the factor by which video buffers captured from the screen are to be scaled.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturescreeninput/scalefactor
+func (c_ CaptureScreenInput) SetScaleFactor(value float64) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setScaleFactor:"), value)
+}
 
 
 

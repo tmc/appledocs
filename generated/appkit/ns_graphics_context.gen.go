@@ -251,4 +251,94 @@ func (g_ GraphicsContext) SetPatternPhase(value coregraphics.CGPoint) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setPatternPhase:"), value)
 }
 
+// The attributes used to create this instance.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsgraphicscontext/attributes
+func (g_ GraphicsContext) Attributes() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("attributes"))
+	return rv
+}
+
+
+// SetAttributes sets the value of the attributes property.
+// The attributes used to create this instance.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsgraphicscontext/attributes
+func (g_ GraphicsContext) SetAttributes(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setAttributes:"), value)
+}
+
+// A constant that specifies the graphics context’s interpolation, or image smoothing, behavior.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsgraphicscontext/imageinterpolation
+func (g_ GraphicsContext) ImageInterpolation() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("imageInterpolation"))
+	return rv
+}
+
+
+// SetImageInterpolation sets the value of the imageInterpolation property.
+// A constant that specifies the graphics context’s interpolation, or image smoothing, behavior.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsgraphicscontext/imageinterpolation
+func (g_ GraphicsContext) SetImageInterpolation(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setImageInterpolation:"), value)
+}
+
+// A Boolean value that indicates whether the drawing destination is the screen.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsgraphicscontext/isdrawingtoscreen
+func (g_ GraphicsContext) IsDrawingToScreen() bool {
+	rv := objc.Send[bool](g_.ID, objc.Sel("isDrawingToScreen"))
+	return rv
+}
+
+
+// SetIsDrawingToScreen sets the value of the isDrawingToScreen property.
+// A Boolean value that indicates whether the drawing destination is the screen.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsgraphicscontext/isdrawingtoscreen
+func (g_ GraphicsContext) SetIsDrawingToScreen(value bool) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setIsDrawingToScreen:"), value)
+}
+
+// A Boolean value that indicates the graphics context’s flipped state.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsgraphicscontext/isflipped
+func (g_ GraphicsContext) IsFlipped() bool {
+	rv := objc.Send[bool](g_.ID, objc.Sel("isFlipped"))
+	return rv
+}
+
+
+// SetIsFlipped sets the value of the isFlipped property.
+// A Boolean value that indicates the graphics context’s flipped state.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsgraphicscontext/isflipped
+func (g_ GraphicsContext) SetIsFlipped(value bool) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setIsFlipped:"), value)
+}
+
+// A Boolean value that indicates whether the graphics context uses antialiasing.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsgraphicscontext/shouldantialias
+func (g_ GraphicsContext) ShouldAntialias() bool {
+	rv := objc.Send[bool](g_.ID, objc.Sel("shouldAntialias"))
+	return rv
+}
+
+
+// SetShouldAntialias sets the value of the shouldAntialias property.
+// A Boolean value that indicates whether the graphics context uses antialiasing.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsgraphicscontext/shouldantialias
+func (g_ GraphicsContext) SetShouldAntialias(value bool) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setShouldAntialias:"), value)
+}
+
 

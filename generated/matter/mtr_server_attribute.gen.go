@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,66 @@ func NewMTRServerAttribute() MTRServerAttribute {
 	return getMTRServerAttributeClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrserverattribute/attributeid
+func (m_ MTRServerAttribute) AttributeID() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("attributeID"))
+	return rv
+}
+
+
+// SetAttributeID sets the value of the attributeID property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrserverattribute/attributeid
+func (m_ MTRServerAttribute) SetAttributeID(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAttributeID:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrserverattribute/requiredreadprivilege
+func (m_ MTRServerAttribute) RequiredReadPrivilege() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("requiredReadPrivilege"))
+	return rv
+}
+
+
+// SetRequiredReadPrivilege sets the value of the requiredReadPrivilege property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrserverattribute/requiredreadprivilege
+func (m_ MTRServerAttribute) SetRequiredReadPrivilege(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setRequiredReadPrivilege:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrserverattribute/value
+func (m_ MTRServerAttribute) Value() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("value"))
+	return rv
+}
+
+
+// SetValue sets the value of the value property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrserverattribute/value
+func (m_ MTRServerAttribute) SetValue(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), objc.String(value))
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrserverattribute/iswritable
+func (m_ MTRServerAttribute) IsWritable() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("isWritable"))
+	return rv
+}
+
+
+// SetIsWritable sets the value of the isWritable property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrserverattribute/iswritable
+func (m_ MTRServerAttribute) SetIsWritable(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIsWritable:"), value)
+}
 
 
 

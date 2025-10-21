@@ -80,6 +80,42 @@ func NewGCEventInteraction() GCEventInteraction {
 }
 
 
+// A Boolean value that determines whether events are delivered exclusively
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gceventinteraction/receiveseventsinview
+func (g_ GCEventInteraction) ReceivesEventsInView() bool {
+	rv := objc.Send[bool](g_.ID, objc.Sel("receivesEventsInView"))
+	return rv
+}
+
+
+// SetReceivesEventsInView sets the value of the receivesEventsInView property.
+// A Boolean value that determines whether events are delivered exclusively
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gceventinteraction/receiveseventsinview
+func (g_ GCEventInteraction) SetReceivesEventsInView(value bool) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setReceivesEventsInView:"), value)
+}
+
+// The block that the framework calls when the user presses the pause button on the controller.
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/controllerpausedhandler
+func (g_ GCEventInteraction) ControllerPausedHandler() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("controllerPausedHandler"))
+	return rv
+}
+
+
+// SetControllerPausedHandler sets the value of the controllerPausedHandler property.
+// The block that the framework calls when the user presses the pause button on the controller.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/controllerpausedhandler
+func (g_ GCEventInteraction) SetControllerPausedHandler(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setControllerPausedHandler:"), value)
+}
+
 // The types of game controller events that should be delivered through the Game Controller framework.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCEventInteraction/handledEventTypes

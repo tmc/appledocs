@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,8 +78,8 @@ func NewMTREnergyEVSEClusterFaultEvent() MTREnergyEVSEClusterFaultEvent {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterFaultEvent/faultStateCurrentState
-func (m_ MTREnergyEVSEClusterFaultEvent) FaultStateCurrentState() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("faultStateCurrentState"))
+func (m_ MTREnergyEVSEClusterFaultEvent) FaultStateCurrentState() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("faultStateCurrentState"))
 	return rv
 }
 
@@ -86,14 +87,14 @@ func (m_ MTREnergyEVSEClusterFaultEvent) FaultStateCurrentState() unsafe.Pointer
 // SetFaultStateCurrentState sets the value of the faultStateCurrentState property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterFaultEvent/faultStateCurrentState
-func (m_ MTREnergyEVSEClusterFaultEvent) SetFaultStateCurrentState(value unsafe.Pointer) {
+func (m_ MTREnergyEVSEClusterFaultEvent) SetFaultStateCurrentState(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFaultStateCurrentState:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterFaultEvent/faultStatePreviousState
-func (m_ MTREnergyEVSEClusterFaultEvent) FaultStatePreviousState() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("faultStatePreviousState"))
+func (m_ MTREnergyEVSEClusterFaultEvent) FaultStatePreviousState() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("faultStatePreviousState"))
 	return rv
 }
 
@@ -101,14 +102,14 @@ func (m_ MTREnergyEVSEClusterFaultEvent) FaultStatePreviousState() unsafe.Pointe
 // SetFaultStatePreviousState sets the value of the faultStatePreviousState property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterFaultEvent/faultStatePreviousState
-func (m_ MTREnergyEVSEClusterFaultEvent) SetFaultStatePreviousState(value unsafe.Pointer) {
+func (m_ MTREnergyEVSEClusterFaultEvent) SetFaultStatePreviousState(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFaultStatePreviousState:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterFaultEvent/sessionID
-func (m_ MTREnergyEVSEClusterFaultEvent) SessionID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("sessionID"))
+func (m_ MTREnergyEVSEClusterFaultEvent) SessionID() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("sessionID"))
 	return rv
 }
 
@@ -116,14 +117,14 @@ func (m_ MTREnergyEVSEClusterFaultEvent) SessionID() unsafe.Pointer {
 // SetSessionID sets the value of the sessionID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterFaultEvent/sessionID
-func (m_ MTREnergyEVSEClusterFaultEvent) SetSessionID(value unsafe.Pointer) {
+func (m_ MTREnergyEVSEClusterFaultEvent) SetSessionID(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSessionID:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterFaultEvent/state
-func (m_ MTREnergyEVSEClusterFaultEvent) State() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("state"))
+func (m_ MTREnergyEVSEClusterFaultEvent) State() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("state"))
 	return rv
 }
 
@@ -131,7 +132,7 @@ func (m_ MTREnergyEVSEClusterFaultEvent) State() unsafe.Pointer {
 // SetState sets the value of the state property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterFaultEvent/state
-func (m_ MTREnergyEVSEClusterFaultEvent) SetState(value unsafe.Pointer) {
+func (m_ MTREnergyEVSEClusterFaultEvent) SetState(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setState:"), value)
 }
 

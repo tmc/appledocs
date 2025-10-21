@@ -81,5 +81,23 @@ func NewINGetCarLockStatusIntent() INGetCarLockStatusIntent {
 }
 
 
+// A name that identifies the user’s car.
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/ingetcarlockstatusintent/carname
+func (i_ INGetCarLockStatusIntent) CarName() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("carName"))
+	return rv
+}
+
+
+// SetCarName sets the value of the carName property.
+// A name that identifies the user’s car.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/intents/ingetcarlockstatusintent/carname
+func (i_ INGetCarLockStatusIntent) SetCarName(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setCarName:"), value)
+}
+
 
 

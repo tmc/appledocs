@@ -112,5 +112,23 @@ func (c_ CKSyncEngineState) RemovePendingRecordZoneChanges(changes unsafe.Pointe
 	objc.Send[objc.ID](c_.ID, objc.Sel("removePendingRecordZoneChanges:"), changes)
 }
 
+// The user record ID for the corresponding user record.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckuseridentity/userrecordid
+func (c_ CKSyncEngineState) UserRecordID() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("userRecordID"))
+	return rv
+}
+
+
+// SetUserRecordID sets the value of the userRecordID property.
+// The user record ID for the corresponding user record.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckuseridentity/userrecordid
+func (c_ CKSyncEngineState) SetUserRecordID(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setUserRecordID:"), value)
+}
+
 
 

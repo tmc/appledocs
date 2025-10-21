@@ -80,5 +80,23 @@ func NewFunctionStitchingAttributeAlwaysInline() FunctionStitchingAttributeAlway
 }
 
 
+// A list of attributes to configure how the Metal device object generates the new stitched function.
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlfunctionstitchinggraph/attributes
+func (f_ FunctionStitchingAttributeAlwaysInline) Attributes() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("attributes"))
+	return rv
+}
+
+
+// SetAttributes sets the value of the attributes property.
+// A list of attributes to configure how the Metal device object generates the new stitched function.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlfunctionstitchinggraph/attributes
+func (f_ FunctionStitchingAttributeAlwaysInline) SetAttributes(value unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setAttributes:"), value)
+}
+
 
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,111 @@ func NewMTRColorControlClusterStepHueParams() MTRColorControlClusterStepHueParam
 	return getMTRColorControlClusterStepHueParamsClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterstephueparams/serversideprocessingtimeout
+func (m_ MTRColorControlClusterStepHueParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+	return rv
+}
+
+
+// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterstephueparams/serversideprocessingtimeout
+func (m_ MTRColorControlClusterStepHueParams) SetServerSideProcessingTimeout(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterstephueparams/stepmode
+func (m_ MTRColorControlClusterStepHueParams) StepMode() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("stepMode"))
+	return rv
+}
+
+
+// SetStepMode sets the value of the stepMode property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterstephueparams/stepmode
+func (m_ MTRColorControlClusterStepHueParams) SetStepMode(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setStepMode:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterstephueparams/transitiontime
+func (m_ MTRColorControlClusterStepHueParams) TransitionTime() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("transitionTime"))
+	return rv
+}
+
+
+// SetTransitionTime sets the value of the transitionTime property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterstephueparams/transitiontime
+func (m_ MTRColorControlClusterStepHueParams) SetTransitionTime(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTransitionTime:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterstephueparams/optionsmask
+func (m_ MTRColorControlClusterStepHueParams) OptionsMask() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("optionsMask"))
+	return rv
+}
+
+
+// SetOptionsMask sets the value of the optionsMask property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterstephueparams/optionsmask
+func (m_ MTRColorControlClusterStepHueParams) SetOptionsMask(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionsMask:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterstephueparams/optionsoverride
+func (m_ MTRColorControlClusterStepHueParams) OptionsOverride() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("optionsOverride"))
+	return rv
+}
+
+
+// SetOptionsOverride sets the value of the optionsOverride property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterstephueparams/optionsoverride
+func (m_ MTRColorControlClusterStepHueParams) SetOptionsOverride(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionsOverride:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterstephueparams/stepsize
+func (m_ MTRColorControlClusterStepHueParams) StepSize() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("stepSize"))
+	return rv
+}
+
+
+// SetStepSize sets the value of the stepSize property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterstephueparams/stepsize
+func (m_ MTRColorControlClusterStepHueParams) SetStepSize(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setStepSize:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterstephueparams/timedinvoketimeoutms
+func (m_ MTRColorControlClusterStepHueParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+	return rv
+}
+
+
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterstephueparams/timedinvoketimeoutms
+func (m_ MTRColorControlClusterStepHueParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+}
 
 
 

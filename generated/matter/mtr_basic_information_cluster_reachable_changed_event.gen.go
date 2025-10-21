@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,21 @@ func NewMTRBasicInformationClusterReachableChangedEvent() MTRBasicInformationClu
 	return getMTRBasicInformationClusterReachableChangedEventClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrbasicinformationclusterreachablechangedevent/reachablenewvalue
+func (m_ MTRBasicInformationClusterReachableChangedEvent) ReachableNewValue() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("reachableNewValue"))
+	return rv
+}
+
+
+// SetReachableNewValue sets the value of the reachableNewValue property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrbasicinformationclusterreachablechangedevent/reachablenewvalue
+func (m_ MTRBasicInformationClusterReachableChangedEvent) SetReachableNewValue(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setReachableNewValue:"), value)
+}
 
 
 

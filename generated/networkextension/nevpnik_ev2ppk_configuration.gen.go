@@ -78,5 +78,95 @@ func NewNEVPNIKEv2PPKConfiguration() NEVPNIKEv2PPKConfiguration {
 }
 
 
+// The configuration for a post-quantum pre-shared key (PPK).
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnprotocolikev2/ppkconfiguration
+func (n_ NEVPNIKEv2PPKConfiguration) PpkConfiguration() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("ppkConfiguration"))
+	return rv
+}
+
+
+// SetPpkConfiguration sets the value of the ppkConfiguration property.
+// The configuration for a post-quantum pre-shared key (PPK).
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnprotocolikev2/ppkconfiguration
+func (n_ NEVPNIKEv2PPKConfiguration) SetPpkConfiguration(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setPpkConfiguration:"), value)
+}
+
+// The identifier for the PPK.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnikev2ppkconfiguration/identifier
+func (n_ NEVPNIKEv2PPKConfiguration) Identifier() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("identifier"))
+	return rv
+}
+
+
+// SetIdentifier sets the value of the identifier property.
+// The identifier for the PPK.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnikev2ppkconfiguration/identifier
+func (n_ NEVPNIKEv2PPKConfiguration) SetIdentifier(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+}
+
+// A Boolean value that indicates whether servers that don’t support post-quantum key exchanges can skip them.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnprotocolikev2/allowpostquantumkeyexchangefallback
+func (n_ NEVPNIKEv2PPKConfiguration) AllowPostQuantumKeyExchangeFallback() bool {
+	rv := objc.Send[bool](n_.ID, objc.Sel("allowPostQuantumKeyExchangeFallback"))
+	return rv
+}
+
+
+// SetAllowPostQuantumKeyExchangeFallback sets the value of the allowPostQuantumKeyExchangeFallback property.
+// A Boolean value that indicates whether servers that don’t support post-quantum key exchanges can skip them.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnprotocolikev2/allowpostquantumkeyexchangefallback
+func (n_ NEVPNIKEv2PPKConfiguration) SetAllowPostQuantumKeyExchangeFallback(value bool) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setAllowPostQuantumKeyExchangeFallback:"), value)
+}
+
+// A Boolean value that indicates whether it’s mandatory for the VPN server to use this PPK.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnikev2ppkconfiguration/ismandatory
+func (n_ NEVPNIKEv2PPKConfiguration) IsMandatory() bool {
+	rv := objc.Send[bool](n_.ID, objc.Sel("isMandatory"))
+	return rv
+}
+
+
+// SetIsMandatory sets the value of the isMandatory property.
+// A Boolean value that indicates whether it’s mandatory for the VPN server to use this PPK.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnikev2ppkconfiguration/ismandatory
+func (n_ NEVPNIKEv2PPKConfiguration) SetIsMandatory(value bool) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setIsMandatory:"), value)
+}
+
+// A persistent reference to the key in the keychain.
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnikev2ppkconfiguration/keychainreference
+func (n_ NEVPNIKEv2PPKConfiguration) KeychainReference() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("keychainReference"))
+	return rv
+}
+
+
+// SetKeychainReference sets the value of the keychainReference property.
+// A persistent reference to the key in the keychain.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnikev2ppkconfiguration/keychainreference
+func (n_ NEVPNIKEv2PPKConfiguration) SetKeychainReference(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setKeychainReference:"), value)
+}
+
 
 

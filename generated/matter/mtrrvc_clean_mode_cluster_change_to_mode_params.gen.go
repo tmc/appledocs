@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,51 @@ func NewMTRRVCCleanModeClusterChangeToModeParams() MTRRVCCleanModeClusterChangeT
 	return getMTRRVCCleanModeClusterChangeToModeParamsClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvccleanmodeclusterchangetomodeparams/timedinvoketimeoutms
+func (m_ MTRRVCCleanModeClusterChangeToModeParams) TimedInvokeTimeoutMs() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+	return rv
+}
+
+
+// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvccleanmodeclusterchangetomodeparams/timedinvoketimeoutms
+func (m_ MTRRVCCleanModeClusterChangeToModeParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvccleanmodeclusterchangetomodeparams/serversideprocessingtimeout
+func (m_ MTRRVCCleanModeClusterChangeToModeParams) ServerSideProcessingTimeout() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+	return rv
+}
+
+
+// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvccleanmodeclusterchangetomodeparams/serversideprocessingtimeout
+func (m_ MTRRVCCleanModeClusterChangeToModeParams) SetServerSideProcessingTimeout(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvccleanmodeclusterchangetomodeparams/newmode
+func (m_ MTRRVCCleanModeClusterChangeToModeParams) NewMode() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("newMode"))
+	return rv
+}
+
+
+// SetNewMode sets the value of the newMode property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvccleanmodeclusterchangetomodeparams/newmode
+func (m_ MTRRVCCleanModeClusterChangeToModeParams) SetNewMode(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setNewMode:"), value)
+}
 
 
 

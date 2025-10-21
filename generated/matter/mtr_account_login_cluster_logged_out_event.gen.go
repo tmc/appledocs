@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,8 +78,8 @@ func NewMTRAccountLoginClusterLoggedOutEvent() MTRAccountLoginClusterLoggedOutEv
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccountLoginClusterLoggedOutEvent/node
-func (m_ MTRAccountLoginClusterLoggedOutEvent) Node() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("node"))
+func (m_ MTRAccountLoginClusterLoggedOutEvent) Node() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("node"))
 	return rv
 }
 
@@ -86,7 +87,7 @@ func (m_ MTRAccountLoginClusterLoggedOutEvent) Node() unsafe.Pointer {
 // SetNode sets the value of the node property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccountLoginClusterLoggedOutEvent/node
-func (m_ MTRAccountLoginClusterLoggedOutEvent) SetNode(value unsafe.Pointer) {
+func (m_ MTRAccountLoginClusterLoggedOutEvent) SetNode(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNode:"), value)
 }
 

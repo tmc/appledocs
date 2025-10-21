@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -261,7 +262,7 @@ func NewImageWithColor(color unsafe.Pointer) Image {
 // Initializes an image object by reading an image from a URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(contentsOf:)
-func NewImageWithContentsOfURL(url unsafe.Pointer) Image {
+func NewImageWithContentsOfURL(url foundation.URL) Image {
 	instance := getImageClass().Alloc()
 	rv := objc.Send[Image](instance.ID, objc.Sel("initWithContentsOfURL:"), url)
 	rv.Autorelease()
@@ -273,7 +274,7 @@ func NewImageWithContentsOfURL(url unsafe.Pointer) Image {
 // Initializes an image object by reading an image from a URL, using the specified options.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(contentsOf:options:)
-func NewImageWithContentsOfURLOptions(url unsafe.Pointer, options unsafe.Pointer) Image {
+func NewImageWithContentsOfURLOptions(url foundation.URL, options unsafe.Pointer) Image {
 	instance := getImageClass().Alloc()
 	rv := objc.Send[Image](instance.ID, objc.Sel("initWithContentsOfURL:options:"), url, options)
 	rv.Autorelease()
@@ -565,7 +566,7 @@ func (ic _ImageClass) ImageWithColor(color unsafe.Pointer) unsafe.Pointer {
 // Creates and returns an image object from the contents of a file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/imageWithContentsOfURL:
-func (ic _ImageClass) ImageWithContentsOfURL(url unsafe.Pointer) unsafe.Pointer {
+func (ic _ImageClass) ImageWithContentsOfURL(url foundation.URL) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("imageWithContentsOfURL:"), url)
 	return rv
 }
@@ -573,7 +574,7 @@ func (ic _ImageClass) ImageWithContentsOfURL(url unsafe.Pointer) unsafe.Pointer 
 // Creates and returns an image object from the contents of a file, using the specified options.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/imageWithContentsOfURL:options:
-func (ic _ImageClass) ImageWithContentsOfURLOptions(url unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
+func (ic _ImageClass) ImageWithContentsOfURLOptions(url foundation.URL, options unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("imageWithContentsOfURL:options:"), url, options)
 	return rv
 }
@@ -1011,6 +1012,24 @@ func (i_ Image) ImageByUnpremultiplyingAlpha() unsafe.Pointer {
 	return rv
 }
 
+// Returns YES if the image is known to have and alpha value of
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreimage/ciimage/isopaque
+func (i_ Image) IsOpaque() bool {
+	rv := objc.Send[bool](i_.ID, objc.Sel("isOpaque"))
+	return rv
+}
+
+
+// SetIsOpaque sets the value of the isOpaque property.
+// Returns YES if the image is known to have and alpha value of
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreimage/ciimage/isopaque
+func (i_ Image) SetIsOpaque(value bool) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setIsOpaque:"), value)
+}
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/black
 func (i_ Image) BlackImage() unsafe.Pointer {
@@ -1172,8 +1191,8 @@ func (i_ Image) SemanticSegmentationMatte() unsafe.Pointer {
 // The URL from which the image was loaded.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/url
-func (i_ Image) Url() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("url"))
+func (i_ Image) Url() foundation.URL {
+	rv := objc.Send[foundation.URL](i_.ID, objc.Sel("url"))
 	return rv
 }
 

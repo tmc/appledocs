@@ -117,4 +117,22 @@ func (s_ StoryboardSegue) SourceController() objc.ID {
 	return rv
 }
 
+// The ending/contained view controller or window controller for the storyboard segue.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsstoryboardsegue/destinationcontroller
+func (s_ StoryboardSegue) DestinationController() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("destinationController"))
+	return rv
+}
+
+
+// SetDestinationController sets the value of the destinationController property.
+// The ending/contained view controller or window controller for the storyboard segue.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsstoryboardsegue/destinationcontroller
+func (s_ StoryboardSegue) SetDestinationController(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setDestinationController:"), value)
+}
+
 

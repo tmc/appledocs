@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MTRClusterTemperatureControl] class.
@@ -40,8 +41,8 @@ type IMTRClusterTemperatureControl interface {
 	ReadAttributeStepWithParams(params unsafe.Pointer) unsafe.Pointer
 	ReadAttributeSupportedTemperatureLevelsWithParams(params unsafe.Pointer) unsafe.Pointer
 	ReadAttributeTemperatureSetpointWithParams(params unsafe.Pointer) unsafe.Pointer
-	SetTemperatureWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, completion unsafe.Pointer)
-	SetTemperatureWithExpectedValuesExpectedValueIntervalCompletion(expectedValues unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, completion unsafe.Pointer)
+	SetTemperatureWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer)
+	SetTemperatureWithExpectedValuesExpectedValueIntervalCompletion(expectedValues unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer)
 }
 
 // Cluster Temperature Control Attributes and commands for configuring the temperature control, and reporting temperature.
@@ -97,7 +98,7 @@ func NewMTRClusterTemperatureControl() MTRClusterTemperatureControl {
 // For all instance methods that take a completion (i.e. command invocations), the completion will be called on the provided queue.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterTemperatureControl/init(device:endpointID:queue:)
-func NewMTRClusterTemperatureControlWithDeviceEndpointIDQueue(device unsafe.Pointer, endpointID unsafe.Pointer, queue unsafe.Pointer) MTRClusterTemperatureControl {
+func NewMTRClusterTemperatureControlWithDeviceEndpointIDQueue(device unsafe.Pointer, endpointID foundation.Number, queue unsafe.Pointer) MTRClusterTemperatureControl {
 	instance := getMTRClusterTemperatureControlClass().Alloc()
 	rv := objc.Send[MTRClusterTemperatureControl](instance.ID, objc.Sel("initWithDevice:endpointID:queue:"), device, endpointID, queue)
 	rv.Autorelease()
@@ -184,13 +185,13 @@ func (m_ MTRClusterTemperatureControl) ReadAttributeTemperatureSetpointWithParam
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterTemperatureControl/setTemperatureWith(_:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterTemperatureControl) SetTemperatureWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, completion unsafe.Pointer) {
+func (m_ MTRClusterTemperatureControl) SetTemperatureWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTemperatureWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterTemperatureControl/setTemperatureWithExpectedValues(_:expectedValueInterval:completion:)
-func (m_ MTRClusterTemperatureControl) SetTemperatureWithExpectedValuesExpectedValueIntervalCompletion(expectedValues unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, completion unsafe.Pointer) {
+func (m_ MTRClusterTemperatureControl) SetTemperatureWithExpectedValuesExpectedValueIntervalCompletion(expectedValues unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTemperatureWithExpectedValues:expectedValueInterval:completion:"), expectedValues, expectedValueIntervalMs, completion)
 }
 

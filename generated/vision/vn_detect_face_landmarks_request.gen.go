@@ -81,5 +81,83 @@ func NewDetectFaceLandmarksRequest() DetectFaceLandmarksRequest {
 }
 
 
+// A constant for specifying revision 2 of the face landmarks detection request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetectfacelandmarksrequestrevision2
+func (d_ DetectFaceLandmarksRequest) VNDetectFaceLandmarksRequestRevision2() int {
+	rv := objc.Send[int](d_.ID, objc.Sel("VNDetectFaceLandmarksRequestRevision2"))
+	return rv
+}
+
+// A constant for specifying revision 3 of the face landmarks detection request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetectfacelandmarksrequestrevision3
+func (d_ DetectFaceLandmarksRequest) VNDetectFaceLandmarksRequestRevision3() int {
+	rv := objc.Send[int](d_.ID, objc.Sel("VNDetectFaceLandmarksRequestRevision3"))
+	return rv
+}
+
+// The results of the face landmarks request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetectfacelandmarksrequest/results
+func (d_ DetectFaceLandmarksRequest) Results() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("results"))
+	return rv
+}
+
+
+// SetResults sets the value of the results property.
+// The results of the face landmarks request.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetectfacelandmarksrequest/results
+func (d_ DetectFaceLandmarksRequest) SetResults(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setResults:"), value)
+}
+
+// An array of
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnfaceobservationaccepting/inputfaceobservations
+func (d_ DetectFaceLandmarksRequest) InputFaceObservations() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("inputFaceObservations"))
+	return rv
+}
+
+
+// SetInputFaceObservations sets the value of the inputFaceObservations property.
+// An array of
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnfaceobservationaccepting/inputfaceobservations
+func (d_ DetectFaceLandmarksRequest) SetInputFaceObservations(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setInputFaceObservations:"), value)
+}
+
+// A variable that describes how a face landmarks request orders or enumerates the resulting features.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetectfacelandmarksrequest/constellation
+func (d_ DetectFaceLandmarksRequest) Constellation() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("constellation"))
+	return rv
+}
+
+
+// SetConstellation sets the value of the constellation property.
+// A variable that describes how a face landmarks request orders or enumerates the resulting features.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetectfacelandmarksrequest/constellation
+func (d_ DetectFaceLandmarksRequest) SetConstellation(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setConstellation:"), value)
+}
+
+// A constant for specifying revision 1 of the face landmarks detection request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetectfacelandmarksrequestrevision1
+func (d_ DetectFaceLandmarksRequest) VNDetectFaceLandmarksRequestRevision1() int {
+	rv := objc.Send[int](d_.ID, objc.Sel("VNDetectFaceLandmarksRequestRevision1"))
+	return rv
+}
+
 
 

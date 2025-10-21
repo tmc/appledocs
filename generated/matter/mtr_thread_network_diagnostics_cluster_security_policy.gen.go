@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -74,6 +75,36 @@ func NewMTRThreadNetworkDiagnosticsClusterSecurityPolicy() MTRThreadNetworkDiagn
 	return getMTRThreadNetworkDiagnosticsClusterSecurityPolicyClass().New()
 }
 
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclustersecuritypolicy/flags
+func (m_ MTRThreadNetworkDiagnosticsClusterSecurityPolicy) Flags() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("flags"))
+	return rv
+}
+
+
+// SetFlags sets the value of the flags property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclustersecuritypolicy/flags
+func (m_ MTRThreadNetworkDiagnosticsClusterSecurityPolicy) SetFlags(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setFlags:"), value)
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclustersecuritypolicy/rotationtime
+func (m_ MTRThreadNetworkDiagnosticsClusterSecurityPolicy) RotationTime() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("rotationTime"))
+	return rv
+}
+
+
+// SetRotationTime sets the value of the rotationTime property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclustersecuritypolicy/rotationtime
+func (m_ MTRThreadNetworkDiagnosticsClusterSecurityPolicy) SetRotationTime(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setRotationTime:"), value)
+}
 
 
 

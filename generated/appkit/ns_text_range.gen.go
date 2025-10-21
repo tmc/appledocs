@@ -80,5 +80,59 @@ func NewTextRange() TextRange {
 }
 
 
+// The ending location of the text range.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextrange/endlocation
+func (t_ TextRange) EndLocation() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("endLocation"))
+	return rv
+}
+
+
+// SetEndLocation sets the value of the endLocation property.
+// The ending location of the text range.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextrange/endlocation
+func (t_ TextRange) SetEndLocation(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setEndLocation:"), value)
+}
+
+// Returns whether the text range is empty.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextrange/isempty
+func (t_ TextRange) IsEmpty() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("isEmpty"))
+	return rv
+}
+
+
+// SetIsEmpty sets the value of the isEmpty property.
+// Returns whether the text range is empty.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextrange/isempty
+func (t_ TextRange) SetIsEmpty(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setIsEmpty:"), value)
+}
+
+// The starting location of the text range.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextrange/location
+func (t_ TextRange) Location() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("location"))
+	return rv
+}
+
+
+// SetLocation sets the value of the location property.
+// The starting location of the text range.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextrange/location
+func (t_ TextRange) SetLocation(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setLocation:"), value)
+}
+
 
 

@@ -88,5 +88,23 @@ func (m_ MKDirections) CalculateETAWithCompletionHandler(completionHandler unsaf
 	objc.Send[objc.ID](m_.ID, objc.Sel("calculateETAWithCompletionHandler:"), completionHandler)
 }
 
+// A Boolean value that indicates whether a request is in process.
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkdirections/iscalculating
+func (m_ MKDirections) IsCalculating() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("isCalculating"))
+	return rv
+}
+
+
+// SetIsCalculating sets the value of the isCalculating property.
+// A Boolean value that indicates whether a request is in process.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkdirections/iscalculating
+func (m_ MKDirections) SetIsCalculating(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIsCalculating:"), value)
+}
+
 
 

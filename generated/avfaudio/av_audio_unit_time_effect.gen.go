@@ -81,5 +81,23 @@ func NewAudioUnitTimeEffect() AudioUnitTimeEffect {
 }
 
 
+// The bypass state of the audio unit.
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounittimeeffect/bypass
+func (a_ AudioUnitTimeEffect) Bypass() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("bypass"))
+	return rv
+}
+
+
+// SetBypass sets the value of the bypass property.
+// The bypass state of the audio unit.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounittimeeffect/bypass
+func (a_ AudioUnitTimeEffect) SetBypass(value bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setBypass:"), value)
+}
+
 
 

@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [STWebpageController] class.
@@ -80,11 +81,83 @@ func NewSTWebpageController() STWebpageController {
 }
 
 
+// A Boolean that indicates whether the webpage controller is not recording web
+//
+// [Full Topic]: https://developer.apple.com/documentation/screentime/stwebpagecontroller/suppressusagerecording
+func (s_ STWebpageController) SuppressUsageRecording() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("suppressUsageRecording"))
+	return rv
+}
+
+
+// SetSuppressUsageRecording sets the value of the suppressUsageRecording property.
+// A Boolean that indicates whether the webpage controller is not recording web
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/screentime/stwebpagecontroller/suppressusagerecording
+func (s_ STWebpageController) SetSuppressUsageRecording(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setSuppressUsageRecording:"), value)
+}
+
+// A Boolean that indicates whether the webpage is currently displaying a
+//
+// [Full Topic]: https://developer.apple.com/documentation/screentime/stwebpagecontroller/urlispictureinpicture
+func (s_ STWebpageController) UrlIsPictureInPicture() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("urlIsPictureInPicture"))
+	return rv
+}
+
+
+// SetUrlIsPictureInPicture sets the value of the urlIsPictureInPicture property.
+// A Boolean that indicates whether the webpage is currently displaying a
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/screentime/stwebpagecontroller/urlispictureinpicture
+func (s_ STWebpageController) SetUrlIsPictureInPicture(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setUrlIsPictureInPicture:"), value)
+}
+
+// An optional identifier for the current browsing profile.
+//
+// [Full Topic]: https://developer.apple.com/documentation/screentime/stwebpagecontroller/profileidentifier
+func (s_ STWebpageController) ProfileIdentifier() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("profileIdentifier"))
+	return rv
+}
+
+
+// SetProfileIdentifier sets the value of the profileIdentifier property.
+// An optional identifier for the current browsing profile.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/screentime/stwebpagecontroller/profileidentifier
+func (s_ STWebpageController) SetProfileIdentifier(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setProfileIdentifier:"), value)
+}
+
+// A Boolean that indicates whether there are one or more videos currently
+//
+// [Full Topic]: https://developer.apple.com/documentation/screentime/stwebpagecontroller/urlisplayingvideo
+func (s_ STWebpageController) UrlIsPlayingVideo() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("urlIsPlayingVideo"))
+	return rv
+}
+
+
+// SetUrlIsPlayingVideo sets the value of the urlIsPlayingVideo property.
+// A Boolean that indicates whether there are one or more videos currently
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/screentime/stwebpagecontroller/urlisplayingvideo
+func (s_ STWebpageController) SetUrlIsPlayingVideo(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setUrlIsPlayingVideo:"), value)
+}
+
 // The URL for the webpage.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScreenTime/STWebpageController/url
-func (s_ STWebpageController) URL() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("URL"))
+func (s_ STWebpageController) URL() foundation.URL {
+	rv := objc.Send[foundation.URL](s_.ID, objc.Sel("URL"))
 	return rv
 }
 
@@ -94,7 +167,7 @@ func (s_ STWebpageController) URL() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScreenTime/STWebpageController/url
-func (s_ STWebpageController) SetURL(value unsafe.Pointer) {
+func (s_ STWebpageController) SetURL(value foundation.URL) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setURL:"), value)
 }
 

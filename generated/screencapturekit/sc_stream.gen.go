@@ -105,5 +105,23 @@ func (s_ Stream) UpdateContentFilterCompletionHandler(contentFilter unsafe.Point
 	objc.Send[objc.ID](s_.ID, objc.Sel("updateContentFilter:completionHandler:"), contentFilter, completionHandler)
 }
 
+// A clock to use for output synchronization.
+//
+// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scstream/synchronizationclock
+func (s_ Stream) SynchronizationClock() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("synchronizationClock"))
+	return rv
+}
+
+
+// SetSynchronizationClock sets the value of the synchronizationClock property.
+// A clock to use for output synchronization.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scstream/synchronizationclock
+func (s_ Stream) SetSynchronizationClock(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setSynchronizationClock:"), value)
+}
+
 
 

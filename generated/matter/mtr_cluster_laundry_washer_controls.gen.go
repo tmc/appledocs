@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MTRClusterLaundryWasherControls] class.
@@ -38,10 +39,10 @@ type IMTRClusterLaundryWasherControls interface {
 	ReadAttributeSpinSpeedCurrentWithParams(params unsafe.Pointer) unsafe.Pointer
 	ReadAttributeSpinSpeedsWithParams(params unsafe.Pointer) unsafe.Pointer
 	ReadAttributeSupportedRinsesWithParams(params unsafe.Pointer) unsafe.Pointer
-	WriteAttributeNumberOfRinsesWithValueExpectedValueInterval(dataValueDictionary unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer)
-	WriteAttributeNumberOfRinsesWithValueExpectedValueIntervalParams(dataValueDictionary unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, params unsafe.Pointer)
-	WriteAttributeSpinSpeedCurrentWithValueExpectedValueInterval(dataValueDictionary unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer)
-	WriteAttributeSpinSpeedCurrentWithValueExpectedValueIntervalParams(dataValueDictionary unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, params unsafe.Pointer)
+	WriteAttributeNumberOfRinsesWithValueExpectedValueInterval(dataValueDictionary unsafe.Pointer, expectedValueIntervalMs foundation.Number)
+	WriteAttributeNumberOfRinsesWithValueExpectedValueIntervalParams(dataValueDictionary unsafe.Pointer, expectedValueIntervalMs foundation.Number, params unsafe.Pointer)
+	WriteAttributeSpinSpeedCurrentWithValueExpectedValueInterval(dataValueDictionary unsafe.Pointer, expectedValueIntervalMs foundation.Number)
+	WriteAttributeSpinSpeedCurrentWithValueExpectedValueIntervalParams(dataValueDictionary unsafe.Pointer, expectedValueIntervalMs foundation.Number, params unsafe.Pointer)
 }
 
 // Cluster Laundry Washer Controls This cluster supports remotely monitoring and controlling the different types of functionality available to a washing device, such as a washing machine.
@@ -97,7 +98,7 @@ func NewMTRClusterLaundryWasherControls() MTRClusterLaundryWasherControls {
 // The queue is currently unused, but may be used in the future for calling completions for command invocations if commands are added to this cluster.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterLaundryWasherControls/init(device:endpointID:queue:)
-func NewMTRClusterLaundryWasherControlsWithDeviceEndpointIDQueue(device unsafe.Pointer, endpointID unsafe.Pointer, queue unsafe.Pointer) MTRClusterLaundryWasherControls {
+func NewMTRClusterLaundryWasherControlsWithDeviceEndpointIDQueue(device unsafe.Pointer, endpointID foundation.Number, queue unsafe.Pointer) MTRClusterLaundryWasherControls {
 	instance := getMTRClusterLaundryWasherControlsClass().Alloc()
 	rv := objc.Send[MTRClusterLaundryWasherControls](instance.ID, objc.Sel("initWithDevice:endpointID:queue:"), device, endpointID, queue)
 	rv.Autorelease()
@@ -170,25 +171,25 @@ func (m_ MTRClusterLaundryWasherControls) ReadAttributeSupportedRinsesWithParams
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterLaundryWasherControls/writeAttributeNumberOfRinses(withValue:expectedValueInterval:)
-func (m_ MTRClusterLaundryWasherControls) WriteAttributeNumberOfRinsesWithValueExpectedValueInterval(dataValueDictionary unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer) {
+func (m_ MTRClusterLaundryWasherControls) WriteAttributeNumberOfRinsesWithValueExpectedValueInterval(dataValueDictionary unsafe.Pointer, expectedValueIntervalMs foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("writeAttributeNumberOfRinsesWithValue:expectedValueInterval:"), dataValueDictionary, expectedValueIntervalMs)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterLaundryWasherControls/writeAttributeNumberOfRinses(withValue:expectedValueInterval:params:)
-func (m_ MTRClusterLaundryWasherControls) WriteAttributeNumberOfRinsesWithValueExpectedValueIntervalParams(dataValueDictionary unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, params unsafe.Pointer) {
+func (m_ MTRClusterLaundryWasherControls) WriteAttributeNumberOfRinsesWithValueExpectedValueIntervalParams(dataValueDictionary unsafe.Pointer, expectedValueIntervalMs foundation.Number, params unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("writeAttributeNumberOfRinsesWithValue:expectedValueInterval:params:"), dataValueDictionary, expectedValueIntervalMs, params)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterLaundryWasherControls/writeAttributeSpinSpeedCurrent(withValue:expectedValueInterval:)
-func (m_ MTRClusterLaundryWasherControls) WriteAttributeSpinSpeedCurrentWithValueExpectedValueInterval(dataValueDictionary unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer) {
+func (m_ MTRClusterLaundryWasherControls) WriteAttributeSpinSpeedCurrentWithValueExpectedValueInterval(dataValueDictionary unsafe.Pointer, expectedValueIntervalMs foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("writeAttributeSpinSpeedCurrentWithValue:expectedValueInterval:"), dataValueDictionary, expectedValueIntervalMs)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterLaundryWasherControls/writeAttributeSpinSpeedCurrent(withValue:expectedValueInterval:params:)
-func (m_ MTRClusterLaundryWasherControls) WriteAttributeSpinSpeedCurrentWithValueExpectedValueIntervalParams(dataValueDictionary unsafe.Pointer, expectedValueIntervalMs unsafe.Pointer, params unsafe.Pointer) {
+func (m_ MTRClusterLaundryWasherControls) WriteAttributeSpinSpeedCurrentWithValueExpectedValueIntervalParams(dataValueDictionary unsafe.Pointer, expectedValueIntervalMs foundation.Number, params unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("writeAttributeSpinSpeedCurrentWithValue:expectedValueInterval:params:"), dataValueDictionary, expectedValueIntervalMs, params)
 }
 

@@ -81,6 +81,132 @@ func NewCKQueryNotification() CKQueryNotification {
 }
 
 
+// A Boolean value that indicates whether the system removes some push notification content before delivery.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/ispruned
+func (c_ CKQueryNotification) IsPruned() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isPruned"))
+	return rv
+}
+
+
+// SetIsPruned sets the value of the isPruned property.
+// A Boolean value that indicates whether the system removes some push notification content before delivery.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/ispruned
+func (c_ CKQueryNotification) SetIsPruned(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsPruned:"), value)
+}
+
+// A Boolean value that indicates whether the push notification includes the content available flag.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.class/shouldsendcontentavailable
+func (c_ CKQueryNotification) ShouldSendContentAvailable() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("shouldSendContentAvailable"))
+	return rv
+}
+
+
+// SetShouldSendContentAvailable sets the value of the shouldSendContentAvailable property.
+// A Boolean value that indicates whether the push notification includes the content available flag.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.class/shouldsendcontentavailable
+func (c_ CKQueryNotification) SetShouldSendContentAvailable(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setShouldSendContentAvailable:"), value)
+}
+
+// The configuration for a subscription’s push notifications.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.property
+func (c_ CKQueryNotification) NotificationInfo() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("notificationInfo"))
+	return rv
+}
+
+
+// SetNotificationInfo sets the value of the notificationInfo property.
+// The configuration for a subscription’s push notifications.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.property
+func (c_ CKQueryNotification) SetNotificationInfo(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setNotificationInfo:"), value)
+}
+
+// A dictionary of fields that have changes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckquerynotification/recordfields
+func (c_ CKQueryNotification) RecordFields() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("recordFields"))
+	return rv
+}
+
+
+// SetRecordFields sets the value of the recordFields property.
+// A dictionary of fields that have changes.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckquerynotification/recordfields
+func (c_ CKQueryNotification) SetRecordFields(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordFields:"), objc.String(value))
+}
+
+// The names of fields to include in the push notification’s payload.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.class/desiredkeys
+func (c_ CKQueryNotification) DesiredKeys() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("desiredKeys"))
+	return rv
+}
+
+
+// SetDesiredKeys sets the value of the desiredKeys property.
+// The names of fields to include in the push notification’s payload.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.class/desiredkeys
+func (c_ CKQueryNotification) SetDesiredKeys(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setDesiredKeys:"), value)
+}
+
+// The event that triggers the push notification.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckquerynotification/querynotificationreason
+func (c_ CKQueryNotification) QueryNotificationReason() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("queryNotificationReason"))
+	return rv
+}
+
+
+// SetQueryNotificationReason sets the value of the queryNotificationReason property.
+// The event that triggers the push notification.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckquerynotification/querynotificationreason
+func (c_ CKQueryNotification) SetQueryNotificationReason(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setQueryNotificationReason:"), value)
+}
+
+// The type of event that generates the notification.
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/notificationtype-swift.property
+func (c_ CKQueryNotification) NotificationType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("notificationType"))
+	return rv
+}
+
+
+// SetNotificationType sets the value of the notificationType property.
+// The type of event that generates the notification.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/notificationtype-swift.property
+func (c_ CKQueryNotification) SetNotificationType(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setNotificationType:"), value)
+}
+
 // The type of database for the record zone.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKQueryNotification/databaseScope
