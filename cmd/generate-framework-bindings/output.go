@@ -51,114 +51,36 @@ func generateFiles(outDir, framework, packageName, inputDir string, functions []
 		gen.Classes = append(stubs, gen.Classes...)
 	}
 
-	// Try to use the module template if it exists
-	if _, err := getTemplateVariant("module", variant); err == nil {
-		// Generate using module template and parse txtar output
-		var buf bytes.Buffer
-		if err := gen.GenerateTxtarFromModule(&buf); err != nil {
-			return err
+	// Generate using module template and parse txtar output
+	var buf bytes.Buffer
+	if err := gen.GenerateTxtarFromModule(&buf); err != nil {
+		return err
+	}
+
+	// Parse txtar output
+	archive := txtar.Parse(buf.Bytes())
+
+	// Write each file from the archive
+	for _, file := range archive.Files {
+		if file.Name == "" {
+			continue
 		}
-
-		// Parse txtar output
-		archive := txtar.Parse(buf.Bytes())
-
-		// Write each file from the archive
-		for _, file := range archive.Files {
-			if file.Name == "" {
-				continue
-			}
-			filePath := filepath.Join(outDir, file.Name)
-			// Create parent directory if needed
-			if dir := filepath.Dir(filePath); dir != "." {
-				if err := os.MkdirAll(dir, 0755); err != nil {
-					return fmt.Errorf("failed to create directory %s: %w", dir, err)
-				}
-			}
-			if err := os.WriteFile(filePath, file.Data, 0644); err != nil {
-				return fmt.Errorf("failed to write %s: %w", file.Name, err)
+		filePath := filepath.Join(outDir, file.Name)
+		// Create parent directory if needed
+		if dir := filepath.Dir(filePath); dir != "." {
+			if err := os.MkdirAll(dir, 0755); err != nil {
+				return fmt.Errorf("failed to create directory %s: %w", dir, err)
 			}
 		}
-
-		// Log any collected errors/warnings
-		if verbose {
-			for _, e := range gen.Errors {
-				fmt.Fprintf(os.Stderr, "Warning: %v\n", e)
-			}
+		if err := os.WriteFile(filePath, file.Data, 0644); err != nil {
+			return fmt.Errorf("failed to write %s: %w", file.Name, err)
 		}
-		return nil
 	}
 
-	// Fallback to individual file generation
-	generators := []struct {
-		filename string
-		generate func(io.Writer) error
-	}{
-		{"gen.go", func(w io.Writer) error {
-			templateContent, err := getTemplateVariant("gen.go", variant)
-			if err != nil {
-				return err
-			}
-			tmpl, err := template.New("gen.go").Funcs(templateFuncs).Parse(templateContent)
-			if err != nil {
-				return err
-			}
-			return tmpl.Execute(w, gen)
-		}},
-		{"doc.gen.go", func(w io.Writer) error { return generateDoc(w, framework, packageName, inputDir, functions, variant) }},
-		{"types.gen.go", func(w io.Writer) error {
-			return generateTypes(w, framework, packageName, functions, typedefs, withRefMethods, variant)
-		}},
-		{"functions.gen.go", func(w io.Writer) error {
-			return generateFunctions(w, framework, packageName, functions, withRefMethods, variant)
-		}},
-	}
-
-	if withRefMethods {
-		generators = append(generators, struct {
-			filename string
-			generate func(io.Writer) error
-		}{"methods.gen.go", func(w io.Writer) error {
-			return generateMethods(w, framework, packageName, functions, typedefs, variant)
-		}})
-	}
-
-	if len(classes) > 0 {
-		generators = append(generators, struct {
-			filename string
-			generate func(io.Writer) error
-		}{"classes.gen.go", func(w io.Writer) error { return generateClasses(w, framework, packageName, classes, variant) }})
-	}
-
-	if len(protocols) > 0 {
-		generators = append(generators, struct {
-			filename string
-			generate func(io.Writer) error
-		}{"protocols.gen.go", func(w io.Writer) error { return generateProtocols(w, framework, packageName, protocols, variant) }})
-	}
-
-	if generateTests {
-		generators = append(generators, struct {
-			filename string
-			generate func(io.Writer) error
-		}{"functions_test.gen.go", func(w io.Writer) error { return generateTestsFile(w, framework, packageName, functions, variant) }})
-	}
-
-	if generateExamples {
-		generators = append(generators, struct {
-			filename string
-			generate func(io.Writer) error
-		}{"examples_test.gen.go", func(w io.Writer) error { return generateExamplesFile(w, framework, packageName, functions, variant) }})
-	}
-
-	for _, gen := range generators {
-		f, err := os.Create(filepath.Join(outDir, gen.filename))
-		if err != nil {
-			return err
-		}
-		err = gen.generate(f)
-		f.Close()
-		if err != nil {
-			return err
+	// Log any collected errors/warnings
+	if verbose {
+		for _, e := range gen.Errors {
+			fmt.Fprintf(os.Stderr, "Warning: %v\n", e)
 		}
 	}
 

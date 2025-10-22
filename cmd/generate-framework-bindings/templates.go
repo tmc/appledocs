@@ -5,18 +5,8 @@ import (
 	"io/fs"
 	"os"
 	"strings"
-	"text/template"
 
 	"golang.org/x/tools/txtar"
-)
-
-var (
-	docTemplate               *template.Template
-	coreGraphicsTypesTemplate *template.Template
-	classesTemplate           *template.Template
-	protocolsTemplate         *template.Template
-	functionsGenTemplate      *template.Template
-	methodsTemplate           *template.Template
 )
 
 var templateArchive *txtar.Archive
@@ -58,41 +48,6 @@ func init() {
 		}
 	}
 
-	templates := make(map[string]string)
-	for _, file := range templateArchive.Files {
-		templates[file.Name] = string(file.Data)
-	}
-
-	var parseErr error
-	docTemplate, parseErr = template.New("doc.gen.go").Funcs(templateFuncs).Parse(templates["doc.gen.go"])
-	if parseErr != nil {
-		panic(fmt.Errorf("failed to parse doc.gen.go: %w", parseErr))
-	}
-
-	coreGraphicsTypesTemplate, parseErr = template.New("types.gen.go").Funcs(templateFuncs).Parse(templates["types.gen.go"])
-	if parseErr != nil {
-		panic(fmt.Errorf("failed to parse types.gen.go: %w", parseErr))
-	}
-
-	classesTemplate, parseErr = template.New("classes.gen.go").Funcs(templateFuncs).Parse(templates["classes.gen.go"])
-	if parseErr != nil {
-		panic(fmt.Errorf("failed to parse classes.gen.go: %w", parseErr))
-	}
-
-	protocolsTemplate, parseErr = template.New("protocols.gen.go").Funcs(templateFuncs).Parse(templates["protocols.gen.go"])
-	if parseErr != nil {
-		panic(fmt.Errorf("failed to parse protocols.gen.go: %w", parseErr))
-	}
-
-	functionsGenTemplate, parseErr = template.New("functions.gen.go").Funcs(templateFuncs).Parse(templates["functions.gen.go"])
-	if parseErr != nil {
-		panic(fmt.Errorf("failed to parse functions.gen.go: %w", parseErr))
-	}
-
-	methodsTemplate, parseErr = template.New("methods.gen.go").Funcs(templateFuncs).Parse(templates["methods.gen.go"])
-	if parseErr != nil {
-		panic(fmt.Errorf("failed to parse methods.gen.go: %w", parseErr))
-	}
 }
 
 // getTemplateVariant returns the template content for a given file, checking variant archives.
