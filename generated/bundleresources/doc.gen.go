@@ -2,12 +2,16 @@
 
 // Package bundleresources provides Go bindings for the BundleResources framework.
 //
-// Resources located in an app, framework, or plugin bundle. [Full Topic]
+// Resources located in an app, framework, or plugin bundle.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to BundleResources without requiring cgo.
+
+// Resources located in an app, framework, or plugin bundle.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BundleResources
+
 package bundleresources
 
 import (

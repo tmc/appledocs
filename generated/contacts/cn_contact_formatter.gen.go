@@ -40,8 +40,13 @@ type ICNContactFormatter interface {
 // An object that you use to format contact information before displaying it to the user.
 //
 // A object handles international ordering and delimiting for the contact name components. When formatting many contacts, create an instance of this class and use the instance methods; otherwise use the class methods.
+
+
+// An object that you use to format contact information before displaying it to the user.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFormatter
+
 type CNContactFormatter struct {
 	foundation.Formatter
 }
@@ -87,106 +92,144 @@ func NewCNContactFormatter() CNContactFormatter {
 }
 
 
+
 // Formats the contact name as an attributed string.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFormatter/attributedString(from:style:defaultAttributes:)
+
 func (cc _CNContactFormatterClass) AttributedStringFromContactStyleDefaultAttributes(contact ICNContact, style CNContactFormatterStyle, attributes objectivec.IObject) foundation.AttributedString {
 	rv := objc.Send[foundation.AttributedString](objc.ID(cc.class), objc.Sel("attributedStringFromContact:style:defaultAttributes:"), contact, style, attributes)
 	return rv
 }
 
+
 // Returns the delimiter to use between name components.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFormatter/delimiter(for:)
+
 func (cc _CNContactFormatterClass) DelimiterForContact(contact ICNContact) foundation.String {
 	rv := objc.Send[foundation.String](objc.ID(cc.class), objc.Sel("delimiterForContact:"), contact)
 	return rv
 }
 
+
 // Returns the required key descriptor for the specified formatting style of the contact.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFormatter/descriptorForRequiredKeys(for:)
+
 func (cc _CNContactFormatterClass) DescriptorForRequiredKeysForStyle(style CNContactFormatterStyle) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("descriptorForRequiredKeysForStyle:"), style)
 	return rv
 }
 
+
 // Returns the display name order.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFormatter/nameOrder(for:)
+
 func (cc _CNContactFormatterClass) NameOrderForContact(contact ICNContact) CNContactDisplayNameOrder {
 	rv := objc.Send[CNContactDisplayNameOrder](objc.ID(cc.class), objc.Sel("nameOrderForContact:"), contact)
 	return rv
 }
 
+
 // Returns the contact name, formatted with the specified formatter.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFormatter/string(from:style:)
+
 func (cc _CNContactFormatterClass) StringFromContactStyle(contact ICNContact, style CNContactFormatterStyle) foundation.String {
 	rv := objc.Send[foundation.String](objc.ID(cc.class), objc.Sel("stringFromContact:style:"), contact, style)
 	return rv
 }
 
+
 // Returns the required key descriptor for the name delimiter.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFormatter/descriptorForRequiredKeysForDelimiter
+
 func (cc _CNContactFormatterClass) DescriptorForRequiredKeysForDelimiter() objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("descriptorForRequiredKeysForDelimiter"))
 	return rv
 }
+
 // Returns the required key descriptor for the display name order.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFormatter/descriptorForRequiredKeysForNameOrder
+
 func (cc _CNContactFormatterClass) DescriptorForRequiredKeysForNameOrder() objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("descriptorForRequiredKeysForNameOrder"))
 	return rv
 }
+
+
 // Formats the contact name as an attributed string.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFormatter/attributedString(from:defaultAttributes:)
+
 func (c_ CNContactFormatter) AttributedStringFromContactDefaultAttributes(contact ICNContact, attributes objectivec.IObject) foundation.AttributedString {
 	rv := objc.Send[foundation.AttributedString](c_.ID, objc.Sel("attributedStringFromContact:defaultAttributes:"), contact, attributes)
 	return rv
 }
 
+
+
 // Formats the contact name.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFormatter/string(from:)
+
 func (c_ CNContactFormatter) StringFromContact(contact ICNContact) foundation.String {
 	rv := objc.Send[foundation.String](c_.ID, objc.Sel("stringFromContact:"), contact)
 	return rv
 }
 
+
 // Returns the required key descriptor for the name delimiter.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFormatter/descriptorForRequiredKeysForDelimiter
+
 func (c_ CNContactFormatter) DescriptorForRequiredKeysForDelimiter() objc.ID {
 	rv := objc.Send[objc.ID](c_.ID, objc.Sel("descriptorForRequiredKeysForDelimiter"))
 	return rv
 }
 
+
 // Returns the required key descriptor for the display name order.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFormatter/descriptorForRequiredKeysForNameOrder
+
 func (c_ CNContactFormatter) DescriptorForRequiredKeysForNameOrder() objc.ID {
 	rv := objc.Send[objc.ID](c_.ID, objc.Sel("descriptorForRequiredKeysForNameOrder"))
 	return rv
 }
 
+
 // The formatting style for the contact name.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFormatter/style
+
 func (c_ CNContactFormatter) Style() CNContactFormatterStyle {
 	rv := objc.Send[CNContactFormatterStyle](c_.ID, objc.Sel("style"))
 	return rv
 }
 
 
-// SetStyle sets the value of the style property.
 // The formatting style for the contact name.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFormatter/style
+
 func (c_ CNContactFormatter) SetStyle(value CNContactFormatterStyle) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setStyle:"), value)
 }

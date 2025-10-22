@@ -36,8 +36,13 @@ type ISecureTextFieldCell interface {
 // A text field whose value is hidden from the user.
 //
 // works with and overrides the general cell use of the field editor to provide its own field editor, which doesn’t display text or allow the user to cut or copy its value.
+
+
+// A text field whose value is hidden from the user.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSecureTextFieldCell
+
 type SecureTextFieldCell struct {
 	TextFieldCell
 }
@@ -83,20 +88,23 @@ func NewSecureTextFieldCell() SecureTextFieldCell {
 }
 
 
+
 // A Boolean that indicates whether the receiver echoes a bullet character rather than each character typed.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssecuretextfieldcell/echosbullets
+
 func (s_ SecureTextFieldCell) EchosBullets() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("echosBullets"))
 	return rv
 }
 
 
-// SetEchosBullets sets the value of the echosBullets property.
 // A Boolean that indicates whether the receiver echoes a bullet character rather than each character typed.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssecuretextfieldcell/echosbullets
+
 func (s_ SecureTextFieldCell) SetEchosBullets(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setEchosBullets:"), value)
 }

@@ -35,8 +35,13 @@ type IGyroData interface {
 // A single measurement of the device’s rotation rate.
 //
 // An application receives or samples objects at regular intervals after calling the method or the method of the class.
+
+
+// A single measurement of the device’s rotation rate.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMGyroData
+
 type GyroData struct {
 	LogItem
 }
@@ -82,9 +87,12 @@ func NewGyroData() GyroData {
 }
 
 
+
 // The rotation rate as measured by the device’s gyroscope.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMGyroData/rotationRate
+
 func (g_ GyroData) RotationRate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("rotationRate"))
 	return rv

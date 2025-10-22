@@ -45,8 +45,13 @@ type IPlayerItemIntegratedTimelineSnapshot interface {
 // An immutable representation of inspectable details of an integrated timeline object.
 //
 // A snapshot doesn’t reflect the new timeline state as playback progresses. You can request a new snapshot instance from an that reflect the latest timeline state.
+
+
+// An immutable representation of inspectable details of an integrated timeline object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItemIntegratedTimelineSnapshot
+
 type PlayerItemIntegratedTimelineSnapshot struct {
 	objectivec.Object
 }
@@ -90,80 +95,98 @@ func NewPlayerItemIntegratedTimelineSnapshot() PlayerItemIntegratedTimelineSnaps
 }
 
 
+
 // The currently playing segment.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItemIntegratedTimelineSnapshot/currentSegment
+
 func (p_ PlayerItemIntegratedTimelineSnapshot) CurrentSegment() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("currentSegment"))
 	return rv
 }
 
+
 // The current time on the integrated timeline when the system created the snapshot.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItemIntegratedTimelineSnapshot/currentTime
+
 func (p_ PlayerItemIntegratedTimelineSnapshot) CurrentTime() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("currentTime"))
 	return rv
 }
 
+
 // The segments for this snapshot.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItemIntegratedTimelineSnapshot/segments
+
 func (p_ PlayerItemIntegratedTimelineSnapshot) Segments() []unsafe.Pointer {
 	rv := objc.Send[[]unsafe.Pointer](p_.ID, objc.Sel("segments"))
 	return rv
 }
 
+
 // An immutable representation of the timeline state at time of request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemintegratedtimeline/currentsnapshot
+
 func (p_ PlayerItemIntegratedTimelineSnapshot) CurrentSnapshot() AVPlayerItemIntegratedTimelineSnapshot {
 	rv := objc.Send[AVPlayerItemIntegratedTimelineSnapshot](p_.ID, objc.Sel("currentSnapshot"))
 	return rv
 }
 
 
-// SetCurrentSnapshot sets the value of the currentSnapshot property.
 // An immutable representation of the timeline state at time of request.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemintegratedtimeline/currentsnapshot
+
 func (p_ PlayerItemIntegratedTimelineSnapshot) SetCurrentSnapshot(value IAVPlayerItemIntegratedTimelineSnapshot) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCurrentSnapshot:"), value)
 }
 
+
 // The current date on the integrated timeline when the system created the snapshot.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemintegratedtimelinesnapshot/currentdate
+
 func (p_ PlayerItemIntegratedTimelineSnapshot) CurrentDate() foundation.Date {
 	rv := objc.Send[foundation.Date](p_.ID, objc.Sel("currentDate"))
 	return rv
 }
 
 
-// SetCurrentDate sets the value of the currentDate property.
 // The current date on the integrated timeline when the system created the snapshot.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemintegratedtimelinesnapshot/currentdate
+
 func (p_ PlayerItemIntegratedTimelineSnapshot) SetCurrentDate(value foundation.IDate) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCurrentDate:"), value)
 }
 
+
 // The total duration of the primary item and scheduled interstitial events.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemintegratedtimelinesnapshot/duration
+
 func (p_ PlayerItemIntegratedTimelineSnapshot) Duration() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("duration"))
 	return rv
 }
 
 
-// SetDuration sets the value of the duration property.
 // The total duration of the primary item and scheduled interstitial events.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemintegratedtimelinesnapshot/duration
+
 func (p_ PlayerItemIntegratedTimelineSnapshot) SetDuration(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDuration:"), value)
 }

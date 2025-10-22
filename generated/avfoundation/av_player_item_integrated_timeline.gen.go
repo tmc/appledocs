@@ -41,8 +41,13 @@ type IPlayerItemIntegratedTimeline interface {
 // An object that models the timeline and playback sequence of a primary player item and scheduled interstitial events.
 //
 // The timeline models all regions to traverse during playback. A player may not present portions of the primary item when exiting an interstitial event with a positive resumption offset.
+
+
+// An object that models the timeline and playback sequence of a primary player item and scheduled interstitial events.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItemIntegratedTimeline
+
 type PlayerItemIntegratedTimeline struct {
 	objectivec.Object
 }
@@ -86,46 +91,55 @@ func NewPlayerItemIntegratedTimeline() PlayerItemIntegratedTimeline {
 }
 
 
+
 // The current time on the integrated timeline.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItemIntegratedTimeline/currentTime
+
 func (p_ PlayerItemIntegratedTimeline) CurrentTime() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("currentTime"))
 	return rv
 }
 
+
 // The current date of playback.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemintegratedtimeline/currentdate
+
 func (p_ PlayerItemIntegratedTimeline) CurrentDate() foundation.Date {
 	rv := objc.Send[foundation.Date](p_.ID, objc.Sel("currentDate"))
 	return rv
 }
 
 
-// SetCurrentDate sets the value of the currentDate property.
 // The current date of playback.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemintegratedtimeline/currentdate
+
 func (p_ PlayerItemIntegratedTimeline) SetCurrentDate(value foundation.IDate) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCurrentDate:"), value)
 }
 
+
 // An immutable representation of the timeline state at time of request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemintegratedtimeline/currentsnapshot
+
 func (p_ PlayerItemIntegratedTimeline) CurrentSnapshot() AVPlayerItemIntegratedTimelineSnapshot {
 	rv := objc.Send[AVPlayerItemIntegratedTimelineSnapshot](p_.ID, objc.Sel("currentSnapshot"))
 	return rv
 }
 
 
-// SetCurrentSnapshot sets the value of the currentSnapshot property.
 // An immutable representation of the timeline state at time of request.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemintegratedtimeline/currentsnapshot
+
 func (p_ PlayerItemIntegratedTimeline) SetCurrentSnapshot(value IAVPlayerItemIntegratedTimelineSnapshot) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCurrentSnapshot:"), value)
 }

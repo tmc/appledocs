@@ -30,7 +30,7 @@ type _Agent2DClass struct {
 // An interface definition for the [Agent2D] class.
 type IAgent2D interface {
 	IAgent
-	UpdateWithDeltaTime(seconds foundation.ITimeInterval)
+	UpdateWithDeltaTime(seconds foundation.TimeInterval)
 	Position() unsafe.Pointer
 	SetPosition(value unsafe.Pointer)
 	Rotation() float32
@@ -41,8 +41,13 @@ type IAgent2D interface {
 // An agent that operates in a two-dimensional space.
 //
 // Agents are game entities that move according to realistic constraints and whose behavior is determined by goals that motivate movement. The general functionality of an agent is defined by the abstract superclass ; however, you use instances of the class to implement agent-based gameplay in a 2D game (or in a 3D game where gameplay-relevant movement is restricted to two dimensions). To learn more about using goals and agents, see in .
+
+
+// An agent that operates in a two-dimensional space.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent2D
+
 type Agent2D struct {
 	Agent
 }
@@ -88,52 +93,65 @@ func NewAgent2D() Agent2D {
 }
 
 
+
+
 // Causes the agent to evaluate its goals and update its position, rotation, and velocity accordingly.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent2D/update(deltaTime:)
-func (a_ Agent2D) UpdateWithDeltaTime(seconds foundation.ITimeInterval) {
+
+func (a_ Agent2D) UpdateWithDeltaTime(seconds foundation.TimeInterval) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("updateWithDeltaTime:"), seconds)
 }
 
+
 // The current position of the agent in 2D space.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent2D/position
+
 func (a_ Agent2D) Position() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("position"))
 	return rv
 }
 
 
-// SetPosition sets the value of the position property.
 // The current position of the agent in 2D space.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent2D/position
+
 func (a_ Agent2D) SetPosition(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPosition:"), value)
 }
 
+
 // The rotation of the agent around the z-axis.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent2D/rotation
+
 func (a_ Agent2D) Rotation() float32 {
 	rv := objc.Send[float32](a_.ID, objc.Sel("rotation"))
 	return rv
 }
 
 
-// SetRotation sets the value of the rotation property.
 // The rotation of the agent around the z-axis.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent2D/rotation
+
 func (a_ Agent2D) SetRotation(value float32) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setRotation:"), value)
 }
 
+
 // The current velocity of the agent in 2D space.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent2D/velocity
+
 func (a_ Agent2D) Velocity() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("velocity"))
 	return rv

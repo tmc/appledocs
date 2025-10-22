@@ -37,8 +37,13 @@ type IRecordedAccelerometerData interface {
 // A single piece of accelerometer data that was recorded by the device.
 //
 // You do not create instances of this class directly. Instead, you use a object to retrieve already recorded data from the system.
+
+
+// A single piece of accelerometer data that was recorded by the device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMRecordedAccelerometerData
+
 type RecordedAccelerometerData struct {
 	AccelerometerData
 }
@@ -84,17 +89,23 @@ func NewRecordedAccelerometerData() RecordedAccelerometerData {
 }
 
 
+
 // The unique identifier for the accelerometer data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMRecordedAccelerometerData/identifier
+
 func (r_ RecordedAccelerometerData) Identifier() uint64 {
 	rv := objc.Send[uint64](r_.ID, objc.Sel("identifier"))
 	return rv
 }
 
+
 // The wall clock time when the sensor sample was recorded.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMRecordedAccelerometerData/startDate
+
 func (r_ RecordedAccelerometerData) StartDate() foundation.NSDate {
 	rv := objc.Send[foundation.NSDate](r_.ID, objc.Sel("startDate"))
 	return rv

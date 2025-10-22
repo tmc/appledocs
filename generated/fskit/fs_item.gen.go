@@ -39,8 +39,13 @@ type IFSItem interface {
 // A distinct object in a file hierarchy, such as a file, directory, symlink, socket, and more.
 //
 // An is a mostly opaque object, which your file system implementation defines as needed. The class defines nonatomic properties to support instances. An instance contains a snapshot of the attributes of an at one point in time. The properties have no explicit thread safety provisions, since the operations that either get or set these properties enforce thread safety. You test an attribute’s validity with the the method . If the value is (Swift) or (Objective-C), it’s safe to use the attribute. Methods that get or set an item’s attribute use or , respectively. Both are subclasses of . An contains a property to indicate the attributes a file system provides for the request. Similarly, uses the property for a file system to signal back which attributes it successfully used. is the FSKit equivelant of a vnode in the kernel. For every FSKit vnode in the kernel, the hosting the volume has an instantiated .
+
+
+// A distinct object in a file hierarchy, such as a file, directory, symlink, socket, and more.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSItem
+
 type FSItem struct {
 	objectivec.Object
 }
@@ -84,38 +89,44 @@ func NewFSItem() FSItem {
 }
 
 
+
 // The attributes requested by the request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsitem/getattributesrequest/wantedattributes
+
 func (f_ FSItem) WantedAttributes() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("wantedAttributes"))
 	return rv
 }
 
 
-// SetWantedAttributes sets the value of the wantedAttributes property.
 // The attributes requested by the request.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsitem/getattributesrequest/wantedattributes
+
 func (f_ FSItem) SetWantedAttributes(value unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setWantedAttributes:"), value)
 }
 
+
 // The attributes successfully used by the file system.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsitem/setattributesrequest/consumedattributes
+
 func (f_ FSItem) ConsumedAttributes() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("consumedAttributes"))
 	return rv
 }
 
 
-// SetConsumedAttributes sets the value of the consumedAttributes property.
 // The attributes successfully used by the file system.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsitem/setattributesrequest/consumedattributes
+
 func (f_ FSItem) SetConsumedAttributes(value unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setConsumedAttributes:"), value)
 }

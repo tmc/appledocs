@@ -37,8 +37,13 @@ type IHKCorrelationQuery interface {
 // A query that performs complex searches based on the correlation’s contents, and returns a snapshot of all matching samples.
 //
 // Correlation samples act as a container, grouping multiple quantity or category samples. While you can use objects to search for correlations, correlation queries allow more complex filtering based on the contained samples. Specifically, correlation queries let you provide a separate predicate for each of the sample types stored in the correlation. A correlation is returned only if the correlation’s predicate and all of the sample predicates match.
+
+
+// A query that performs complex searches based on the correlation’s contents, and returns a snapshot of all matching samples.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKCorrelationQuery
+
 type HKCorrelationQuery struct {
 	HKQuery
 }
@@ -88,7 +93,9 @@ func NewHKCorrelationQuery() HKCorrelationQuery {
 
 // Instantiates and returns a correlation query.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKCorrelationQuery/init(type:predicate:samplePredicates:completion:)
+
 func NewHKCorrelationQueryWithTypePredicateSamplePredicatesCompletion(correlationType HKCorrelationType, predicate foundation.IPredicate, samplePredicates unsafe.Pointer, completion unsafe.Pointer) HKCorrelationQuery {
 	instance := getHKCorrelationQueryClass().Alloc()
 	rv := objc.Send[HKCorrelationQuery](instance.ID, objc.Sel("initWithType:predicate:samplePredicates:completion:"), correlationType, predicate, samplePredicates, completion)
@@ -97,17 +104,23 @@ func NewHKCorrelationQueryWithTypePredicateSamplePredicatesCompletion(correlatio
 }
 
 
+
 // The type of correlation to search for.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKCorrelationQuery/correlationType
+
 func (h_ HKCorrelationQuery) CorrelationType() HKCorrelationType {
 	rv := objc.Send[HKCorrelationType](h_.ID, objc.Sel("correlationType"))
 	return rv
 }
 
+
 // A dictionary whose keys are instances and whose values are instances.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKCorrelationQuery/samplePredicates
+
 func (h_ HKCorrelationQuery) SamplePredicates() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("samplePredicates"))
 	return rv

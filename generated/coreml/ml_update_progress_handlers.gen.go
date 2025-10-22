@@ -33,8 +33,13 @@ type IUpdateProgressHandlers interface {
 }
 
 // A collection of closures an update task uses to notify your app of its progress.
+
+
+// A collection of closures an update task uses to notify your app of its progress.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLUpdateProgressHandlers
+
 type UpdateProgressHandlers struct {
 	objectivec.Object
 }
@@ -82,7 +87,9 @@ func NewUpdateProgressHandlers() UpdateProgressHandlers {
 
 // Creates the collection of closures an update task uses to notify your app of its progress.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLUpdateProgressHandlers/init(forEvents:progressHandler:completionHandler:)
+
 func NewUpdateProgressHandlersForEventsProgressHandlerCompletionHandler(interestedEvents IUpdateProgressEvent, progressHandler unsafe.Pointer, completionHandler unsafe.Pointer) UpdateProgressHandlers {
 	instance := getUpdateProgressHandlersClass().Alloc()
 	rv := objc.Send[UpdateProgressHandlers](instance.ID, objc.Sel("initForEvents:progressHandler:completionHandler:"), interestedEvents, progressHandler, completionHandler)

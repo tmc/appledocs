@@ -7,37 +7,7 @@ import (
 	"github.com/tmc/appledocs/occ2go"
 )
 
-// isClassType checks if a given type name (without package prefix) is an ObjC class
-// by looking it up in the generator's Classes list. This is used to determine if
-// a type should be converted to an interface type (IClassName) or left as-is.
-//
-// Examples:
-//   - "Data" -> true (if NSData class exists)
-//   - "Point" -> false (struct type, not a class)
-//   - "DataCompressionAlgorithm" -> false (enum type)
-//   - "TimeInterval" -> false (typedef)
-func isClassType(gen *Generator, typeName string) bool {
-	if gen == nil || typeName == "" {
-		return false
-	}
-
-	// Strip any existing I prefix for lookup
-	lookupName := typeName
-	if strings.HasPrefix(typeName, "I") && len(typeName) > 1 && typeName[1] >= 'A' && typeName[1] <= 'Z' {
-		lookupName = typeName[1:]
-	}
-
-	// Add NS prefix back for lookup since classes are stored with ObjC names
-	nsName := "NS" + lookupName
-
-	for _, class := range gen.Classes {
-		structName := classToStructName(class.Name)
-		if structName == lookupName || class.Name == nsName || class.Name == lookupName {
-			return true
-		}
-	}
-	return false
-}
+// isClassType is now a method on Generator - see Generator.IsClassType()
 
 // getClassImportsOld was moved to funcs_unused.go - see that file for the implementation
 

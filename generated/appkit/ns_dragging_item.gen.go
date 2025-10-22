@@ -44,8 +44,13 @@ type IDraggingItem interface {
 // A single dragged item within a dragging session.
 //
 // objects have extremely limited lifetimes. Don’t retain these items because changing outside of the prescribed lifetimes has no impact on the drag. When you call the method , the system immediately consumes the dragging items that pass to the method, and doesn’t retain them. Any further changes to the dragging item associated with the returned must occur with the enumeration method . When enumerating, the system creates instances right before giving them to the enumeration block. After returning from the block, the dragging item is no longer valid.
+
+
+// A single dragged item within a dragging session.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDraggingItem
+
 type DraggingItem struct {
 	objectivec.Object
 }
@@ -93,7 +98,9 @@ func NewDraggingItem() DraggingItem {
 
 // Creates and returns a dragging item using the specified content.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDraggingItem/init(pasteboardWriter:)
+
 func NewDraggingItemWithPasteboardWriter(pasteboardWriter objectivec.IObject) DraggingItem {
 	instance := getDraggingItemClass().Alloc()
 	rv := objc.Send[DraggingItem](instance.ID, objc.Sel("initWithPasteboardWriter:"), pasteboardWriter)
@@ -102,20 +109,23 @@ func NewDraggingItemWithPasteboardWriter(pasteboardWriter objectivec.IObject) Dr
 }
 
 
+
 // An array of blocks that provide the dragging image components.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDraggingItem/imageComponentsProvider
+
 func (d_ DraggingItem) ImageComponentsProvider() []DraggingImageComponent {
 	rv := objc.Send[[]DraggingImageComponent](d_.ID, objc.Sel("imageComponentsProvider"))
 	return rv
 }
 
 
-// SetImageComponentsProvider sets the value of the imageComponentsProvider property.
 // An array of blocks that provide the dragging image components.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDraggingItem/imageComponentsProvider
+
 func (d_ DraggingItem) SetImageComponentsProvider(value []DraggingImageComponent) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -130,56 +140,65 @@ func (d_ DraggingItem) SetImageComponentsProvider(value []DraggingImageComponent
 	objc.Send[objc.ID](d_.ID, objc.Sel("setImageComponentsProvider:"), nsArray)
 }
 
+
 // The frame of the dragging item.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdraggingitem/draggingframe
+
 func (d_ DraggingItem) DraggingFrame() coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](d_.ID, objc.Sel("draggingFrame"))
 	return rv
 }
 
 
-// SetDraggingFrame sets the value of the draggingFrame property.
 // The frame of the dragging item.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdraggingitem/draggingframe
+
 func (d_ DraggingItem) SetDraggingFrame(value coregraphics.CGRect) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDraggingFrame:"), value)
 }
 
+
 // An array of dragging image components to use to create the drag image.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdraggingitem/imagecomponents
+
 func (d_ DraggingItem) ImageComponents() NSDraggingImageComponent {
 	rv := objc.Send[NSDraggingImageComponent](d_.ID, objc.Sel("imageComponents"))
 	return rv
 }
 
 
-// SetImageComponents sets the value of the imageComponents property.
 // An array of dragging image components to use to create the drag image.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdraggingitem/imagecomponents
+
 func (d_ DraggingItem) SetImageComponents(value IDraggingImageComponent) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setImageComponents:"), value)
 }
 
+
 // The pasteboard reader or writer object dependent on the context where you use the dragging item.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdraggingitem/item
+
 func (d_ DraggingItem) Item() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("item"))
 	return rv
 }
 
 
-// SetItem sets the value of the item property.
 // The pasteboard reader or writer object dependent on the context where you use the dragging item.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdraggingitem/item
+
 func (d_ DraggingItem) SetItem(value unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setItem:"), value)
 }

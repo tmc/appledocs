@@ -38,8 +38,13 @@ type IHKDeletedObject interface {
 // An object that represents a sample that has been deleted from the HealthKit store.
 //
 // Use queries to generate a list of recently deleted objects. Create a query using the method. When the system calls the result handler, it passes the parameter an array of instances matching the query. Deleted objects are temporary; the system may remove them from the HealthKit store at any time to free up space. To guarantee that you receive notifications for all deleted objects, create an and register it for background delivery. The system then wakes your app and calls the observer query’s update handler whenever the matching objects change—including deletions. However, the query does not provide a list of deleted objects. To determine which objects were deleted, use the observer query’s update handler to create an anchored object query for the newly deleted objects.
+
+
+// An object that represents a sample that has been deleted from the HealthKit store.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKDeletedObject
+
 type HKDeletedObject struct {
 	objectivec.Object
 }
@@ -83,17 +88,23 @@ func NewHKDeletedObject() HKDeletedObject {
 }
 
 
+
 // The metadata associated with the deleted object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKDeletedObject/metadata
+
 func (h_ HKDeletedObject) Metadata() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("metadata"))
 	return rv
 }
 
+
 // The universally unique identifier (UUID) for the HealthKit object that was deleted from the store.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKDeletedObject/uuid
+
 func (h_ HKDeletedObject) UUID() foundation.UUID {
 	rv := objc.Send[foundation.UUID](h_.ID, objc.Sel("UUID"))
 	return rv

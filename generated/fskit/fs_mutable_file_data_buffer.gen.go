@@ -37,8 +37,13 @@ type IFSMutableFileDataBuffer interface {
 // A wrapper object for a data buffer.
 //
 // This object provides a “zero-copy” buffer, for use when reading data from files. By not requiring additional buffer copying, this object reduces the extension’s memory footprint and improves performance. The behaves similarly to a in the kernel.
+
+
+// A wrapper object for a data buffer.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSMutableFileDataBuffer
+
 type FSMutableFileDataBuffer struct {
 	objectivec.Object
 }
@@ -82,20 +87,23 @@ func NewFSMutableFileDataBuffer() FSMutableFileDataBuffer {
 }
 
 
+
 // The data length of the buffer.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsmutablefiledatabuffer/length
+
 func (f_ FSMutableFileDataBuffer) Length() int {
 	rv := objc.Send[int](f_.ID, objc.Sel("length"))
 	return rv
 }
 
 
-// SetLength sets the value of the length property.
 // The data length of the buffer.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsmutablefiledatabuffer/length
+
 func (f_ FSMutableFileDataBuffer) SetLength(value int) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setLength:"), value)
 }

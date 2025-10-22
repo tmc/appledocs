@@ -36,8 +36,13 @@ type ISampleBufferGeneratorBatch interface {
 // An object that generates sample buffers in a batch.
 //
 // The benefit of batching is it aggregates adjacent I/O requests and overlaps them when possible for all sample buffers within the batch.
+
+
+// An object that generates sample buffers in a batch.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleBufferGeneratorBatch
+
 type SampleBufferGeneratorBatch struct {
 	objectivec.Object
 }
@@ -81,9 +86,13 @@ func NewSampleBufferGeneratorBatch() SampleBufferGeneratorBatch {
 }
 
 
+
+
 // Loads sample data asynchronously for all sample buffers within a batch.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleBufferGeneratorBatch/makeDataReady(completionHandler:)
+
 func (s_ SampleBufferGeneratorBatch) MakeDataReadyWithCompletionHandler(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("makeDataReadyWithCompletionHandler:"), completionHandler)
 }

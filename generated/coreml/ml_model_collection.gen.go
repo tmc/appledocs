@@ -39,8 +39,13 @@ type IModelCollection interface {
 // A set of Core ML models from a model deployment.
 //
 // Use a model collection to access the models from a Core ML Model Deployment. For example, you can use a model collection to replace one or more of your app’s built-in models with a newer version. To access the newest model collection from a deployment, call the type method. Your app can also get a notification when Core ML receives an update to a model collection (see ).
+
+
+// A set of Core ML models from a model deployment.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelCollection
+
 type ModelCollection struct {
 	objectivec.Object
 }
@@ -84,40 +89,55 @@ func NewModelCollection() ModelCollection {
 }
 
 
+
 // Requests access to a model collection.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelCollection/beginAccessingModelCollectionWithIdentifier:completionHandler:
+
 func (mc _ModelCollectionClass) BeginAccessingModelCollectionWithIdentifierCompletionHandler(identifier string, completionHandler unsafe.Pointer) foundation.Progress {
 	rv := objc.Send[foundation.Progress](objc.ID(mc.class), objc.Sel("beginAccessingModelCollectionWithIdentifier:completionHandler:"), objc.String(identifier), completionHandler)
 	return rv
 }
 
+
 // Terminates access to a model collection.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelCollection/endAccessing(identifier:)
+
 func (mc _ModelCollectionClass) EndAccessingModelCollectionWithIdentifierCompletionHandler(identifier string, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("endAccessingModelCollectionWithIdentifier:completionHandler:"), objc.String(identifier), completionHandler)
 }
 
+
 // The unique identifier of the model collection’s deployment.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelCollection/deploymentID
+
 func (m_ ModelCollection) DeploymentID() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("deploymentID"))
 	return rv
 }
 
+
 // A dictionary of model entries keyed to the models’ identifiers.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelCollection/entries
+
 func (m_ ModelCollection) Entries() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("entries"))
 	return rv
 }
 
+
 // The name of the model collection, unique to the development team.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelCollection/identifier
+
 func (m_ ModelCollection) Identifier() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("identifier"))
 	return rv

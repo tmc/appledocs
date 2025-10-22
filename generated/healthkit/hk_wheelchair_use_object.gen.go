@@ -35,8 +35,13 @@ type IHKWheelchairUseObject interface {
 }
 
 // This class acts as a wrapper for the wheelchair use enumeration.
+
+
+// This class acts as a wrapper for the wheelchair use enumeration.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKWheelchairUseObject
+
 type HKWheelchairUseObject struct {
 	objectivec.Object
 }
@@ -80,20 +85,23 @@ func NewHKWheelchairUseObject() HKWheelchairUseObject {
 }
 
 
+
 // A value indicating the user’s wheelchair use.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkwheelchairuseobject/wheelchairuse
+
 func (h_ HKWheelchairUseObject) WheelchairUse() HKWheelchairUse {
 	rv := objc.Send[HKWheelchairUse](h_.ID, objc.Sel("wheelchairUse"))
 	return rv
 }
 
 
-// SetWheelchairUse sets the value of the wheelchairUse property.
 // A value indicating the user’s wheelchair use.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkwheelchairuseobject/wheelchairuse
+
 func (h_ HKWheelchairUseObject) SetWheelchairUse(value IHKWheelchairUse) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setWheelchairUse:"), value)
 }

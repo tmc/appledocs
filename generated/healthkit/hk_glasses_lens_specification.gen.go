@@ -42,8 +42,13 @@ type IHKGlassesLensSpecification interface {
 // An object that contains the glasses prescription data for one eye.
 //
 // To create a sample that stores a glasses prescription, start by defining a specification for each eye. Each lens specification object requires a parameter. This measures the lens’s strength for correcting either nearsightedness or farsightedness (measured in units). Next, create values for any of the prescription’s optional parameters. For example, if the prescription corrects for astigmatism, create the and values. The value uses units, while the uses . To add a multifocal correction for reading, create an value using units. To add a correction for eye alignment, create an object. To add information about the distance between the eye and the back of the lens, or the pupil and the center of the nose, create , , and values. All of these use millimeters. Then you can create the lens specification. After you create your lens specifications, you can create an sample. Then save the sample to the HealthKit store. Finally, add an image or PDF of the prescription to the sample as an attachment.
+
+
+// An object that contains the glasses prescription data for one eye.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKGlassesLensSpecification
+
 type HKGlassesLensSpecification struct {
 	HKLensSpecification
 }
@@ -89,74 +94,86 @@ func NewHKGlassesLensSpecification() HKGlassesLensSpecification {
 }
 
 
+
 // The distance between the pupil and the center of the nose when looking at an object far away, measured in mm.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkglasseslensspecification/farpupillarydistance
+
 func (h_ HKGlassesLensSpecification) FarPupillaryDistance() HKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("farPupillaryDistance"))
 	return rv
 }
 
 
-// SetFarPupillaryDistance sets the value of the farPupillaryDistance property.
 // The distance between the pupil and the center of the nose when looking at an object far away, measured in mm.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkglasseslensspecification/farpupillarydistance
+
 func (h_ HKGlassesLensSpecification) SetFarPupillaryDistance(value IHKQuantity) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setFarPupillaryDistance:"), value)
 }
 
+
 // The distance between the pupil and the center of the nose when looking at a nearby object, measured in mm.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkglasseslensspecification/nearpupillarydistance
+
 func (h_ HKGlassesLensSpecification) NearPupillaryDistance() HKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("nearPupillaryDistance"))
 	return rv
 }
 
 
-// SetNearPupillaryDistance sets the value of the nearPupillaryDistance property.
 // The distance between the pupil and the center of the nose when looking at a nearby object, measured in mm.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkglasseslensspecification/nearpupillarydistance
+
 func (h_ HKGlassesLensSpecification) SetNearPupillaryDistance(value IHKQuantity) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setNearPupillaryDistance:"), value)
 }
 
+
 // An object that contains information about the eye alignment correction.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkglasseslensspecification/prism
+
 func (h_ HKGlassesLensSpecification) Prism() HKVisionPrism {
 	rv := objc.Send[HKVisionPrism](h_.ID, objc.Sel("prism"))
 	return rv
 }
 
 
-// SetPrism sets the value of the prism property.
 // An object that contains information about the eye alignment correction.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkglasseslensspecification/prism
+
 func (h_ HKGlassesLensSpecification) SetPrism(value IHKVisionPrism) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setPrism:"), value)
 }
 
+
 // The distance between the back of the lens and the eye, measured in mm.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkglasseslensspecification/vertexdistance
+
 func (h_ HKGlassesLensSpecification) VertexDistance() HKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("vertexDistance"))
 	return rv
 }
 
 
-// SetVertexDistance sets the value of the vertexDistance property.
 // The distance between the back of the lens and the eye, measured in mm.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkglasseslensspecification/vertexdistance
+
 func (h_ HKGlassesLensSpecification) SetVertexDistance(value IHKQuantity) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setVertexDistance:"), value)
 }

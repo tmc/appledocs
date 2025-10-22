@@ -37,8 +37,13 @@ type ILogItem interface {
 // The base class for all motion-related data objects.
 //
 // The class defines a read-only property that records the time a motion-event measurement was taken.
+
+
+// The base class for all motion-related data objects.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMLogItem
+
 type LogItem struct {
 	objectivec.Object
 }
@@ -82,9 +87,12 @@ func NewLogItem() LogItem {
 }
 
 
+
 // The time when the logged item is valid.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMLogItem/timestamp
+
 func (l_ LogItem) Timestamp() foundation.TimeInterval {
 	rv := objc.Send[foundation.TimeInterval](l_.ID, objc.Sel("timestamp"))
 	return rv

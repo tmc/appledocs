@@ -34,8 +34,13 @@ type IModelStructureProgramArgument interface {
 }
 
 // A class representing an argument in the Program.
+
+
+// A class representing an argument in the Program.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureProgramArgument
+
 type ModelStructureProgramArgument struct {
 	objectivec.Object
 }
@@ -79,9 +84,12 @@ func NewModelStructureProgramArgument() ModelStructureProgramArgument {
 }
 
 
+
 // The array of bindings.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureProgramArgument/bindings
+
 func (m_ ModelStructureProgramArgument) Bindings() []ModelStructureProgramBinding {
 	rv := objc.Send[[]ModelStructureProgramBinding](m_.ID, objc.Sel("bindings"))
 	return rv

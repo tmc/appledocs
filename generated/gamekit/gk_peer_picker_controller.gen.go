@@ -44,8 +44,13 @@ type IPeerPickerController interface {
 // Provides a standard user interface to allow one iOS device to discover and connect to another.
 //
 // The result is a configured object connecting the two devices. To use a object, your application creates the controller, adds a delegate, configures the allowed connection types, and then shows the peer picker. The delegate is called as the user makes selections within the peer picker interface. In iOS 3.0, the peer picker can be configured to select between Bluetooth and Internet connections. On iOS 3.0, your application should release the peer picker object after it dismisses the peer picker dialog. On iOS 3.1 or later, your application may release the peer picker after it is shown to the user. If you do this, the peer picker controller is automatically deallocated after the dialog is dismissed.
+
+
+// Provides a standard user interface to allow one iOS device to discover and connect to another.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKPeerPickerController
+
 type PeerPickerController struct {
 	objectivec.Object
 }
@@ -89,78 +94,98 @@ func NewPeerPickerController() PeerPickerController {
 }
 
 
+
+
 // Hides the peer picker dialog.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKPeerPickerController/dismiss()
+
 func (p_ PeerPickerController) Dismiss() {
 	objc.Send[objc.ID](p_.ID, objc.Sel("dismiss"))
 }
 
+
+
 // Displays the peer picker dialog to the user.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKPeerPickerController/show()
+
 func (p_ PeerPickerController) Show() {
 	objc.Send[objc.ID](p_.ID, objc.Sel("show"))
 }
 
+
 // A mask that determines the types of connections a dialog presents to the user.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKPeerPickerController/connectionTypesMask
+
 func (p_ PeerPickerController) ConnectionTypesMask() PeerPickerConnectionType {
 	rv := objc.Send[PeerPickerConnectionType](p_.ID, objc.Sel("connectionTypesMask"))
 	return rv
 }
 
 
-// SetConnectionTypesMask sets the value of the connectionTypesMask property.
 // A mask that determines the types of connections a dialog presents to the user.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKPeerPickerController/connectionTypesMask
+
 func (p_ PeerPickerController) SetConnectionTypesMask(value PeerPickerConnectionType) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setConnectionTypesMask:"), value)
 }
 
+
 // The delegate of the peer picker controller.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKPeerPickerController/delegate
+
 func (p_ PeerPickerController) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](p_.ID, objc.Sel("delegate"))
 	return rv
 }
 
 
-// SetDelegate sets the value of the delegate property.
 // The delegate of the peer picker controller.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKPeerPickerController/delegate
+
 func (p_ PeerPickerController) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDelegate:"), value)
 }
 
+
 // A Boolean value that indicates whether the picker dialog is visible.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKPeerPickerController/isVisible
+
 func (p_ PeerPickerController) Visible() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("visible"))
 	return rv
 }
 
+
 // A Boolean value that indicates whether the picker dialog is visible.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkpeerpickercontroller/isvisible
+
 func (p_ PeerPickerController) IsVisible() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isVisible"))
 	return rv
 }
 
 
-// SetIsVisible sets the value of the isVisible property.
 // A Boolean value that indicates whether the picker dialog is visible.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkpeerpickercontroller/isvisible
+
 func (p_ PeerPickerController) SetIsVisible(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsVisible:"), value)
 }

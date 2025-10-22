@@ -44,8 +44,13 @@ type IGLKEffectPropertyMaterial interface {
 // Surface appearance properties for use in GLKit rendering effects.
 //
 // The class defines properties used to configure the characteristics of the surface being lit. The material properties for an effect interact with light properties on the same effect to determine how that surface is lit within the scene. The behavior of this class matches the material properties and lighting calculations defined in the OpenGL ES 1.1 specification.
+
+
+// Surface appearance properties for use in GLKit rendering effects.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyMaterial
+
 type GLKEffectPropertyMaterial struct {
 	GLKEffectProperty
 }
@@ -91,92 +96,107 @@ func NewGLKEffectPropertyMaterial() GLKEffectPropertyMaterial {
 }
 
 
+
 // The ambient color of the material.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyMaterial/ambientColor
+
 func (g_ GLKEffectPropertyMaterial) AmbientColor() GLKVector4 {
 	rv := objc.Send[GLKVector4](g_.ID, objc.Sel("ambientColor"))
 	return rv
 }
 
 
-// SetAmbientColor sets the value of the ambientColor property.
 // The ambient color of the material.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyMaterial/ambientColor
+
 func (g_ GLKEffectPropertyMaterial) SetAmbientColor(value IGLKVector4) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setAmbientColor:"), value)
 }
 
+
 // The diffuse color of the material.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyMaterial/diffuseColor
+
 func (g_ GLKEffectPropertyMaterial) DiffuseColor() GLKVector4 {
 	rv := objc.Send[GLKVector4](g_.ID, objc.Sel("diffuseColor"))
 	return rv
 }
 
 
-// SetDiffuseColor sets the value of the diffuseColor property.
 // The diffuse color of the material.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyMaterial/diffuseColor
+
 func (g_ GLKEffectPropertyMaterial) SetDiffuseColor(value IGLKVector4) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDiffuseColor:"), value)
 }
 
+
 // The emissive color of the material.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyMaterial/emissiveColor
+
 func (g_ GLKEffectPropertyMaterial) EmissiveColor() GLKVector4 {
 	rv := objc.Send[GLKVector4](g_.ID, objc.Sel("emissiveColor"))
 	return rv
 }
 
 
-// SetEmissiveColor sets the value of the emissiveColor property.
 // The emissive color of the material.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyMaterial/emissiveColor
+
 func (g_ GLKEffectPropertyMaterial) SetEmissiveColor(value IGLKVector4) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setEmissiveColor:"), value)
 }
 
+
 // The shininess of the material, used when calculating specular lighting effects.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyMaterial/shininess
+
 func (g_ GLKEffectPropertyMaterial) Shininess() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("shininess"))
 	return rv
 }
 
 
-// SetShininess sets the value of the shininess property.
 // The shininess of the material, used when calculating specular lighting effects.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyMaterial/shininess
+
 func (g_ GLKEffectPropertyMaterial) SetShininess(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setShininess:"), value)
 }
 
+
 // The specular color of the material.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyMaterial/specularColor
+
 func (g_ GLKEffectPropertyMaterial) SpecularColor() GLKVector4 {
 	rv := objc.Send[GLKVector4](g_.ID, objc.Sel("specularColor"))
 	return rv
 }
 
 
-// SetSpecularColor sets the value of the specularColor property.
 // The specular color of the material.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyMaterial/specularColor
+
 func (g_ GLKEffectPropertyMaterial) SetSpecularColor(value IGLKVector4) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setSpecularColor:"), value)
 }

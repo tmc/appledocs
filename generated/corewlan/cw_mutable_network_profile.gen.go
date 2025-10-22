@@ -41,8 +41,13 @@ type ICWMutableNetworkProfile interface {
 // Encapsulates a mutable network profile entry.
 //
 // Use this class to change profile properties. To commit Wi-Fi network profile changes, use and .
+
+
+// Encapsulates a mutable network profile entry.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWMutableNetworkProfile
+
 type CWMutableNetworkProfile struct {
 	CWNetworkProfile
 }
@@ -88,56 +93,65 @@ func NewCWMutableNetworkProfile() CWMutableNetworkProfile {
 }
 
 
+
 // The security type.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWMutableNetworkProfile/security
+
 func (c_ CWMutableNetworkProfile) Security() CWSecurity {
 	rv := objc.Send[CWSecurity](c_.ID, objc.Sel("security"))
 	return rv
 }
 
 
-// SetSecurity sets the value of the security property.
 // The security type.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWMutableNetworkProfile/security
+
 func (c_ CWMutableNetworkProfile) SetSecurity(value ICWSecurity) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSecurity:"), value)
 }
 
+
 // The service set identifier (SSID).
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWMutableNetworkProfile/ssidData
+
 func (c_ CWMutableNetworkProfile) SsidData() foundation.NSData {
 	rv := objc.Send[foundation.NSData](c_.ID, objc.Sel("ssidData"))
 	return rv
 }
 
 
-// SetSsidData sets the value of the ssidData property.
 // The service set identifier (SSID).
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWMutableNetworkProfile/ssidData
+
 func (c_ CWMutableNetworkProfile) SetSsidData(value foundation.IData) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSsidData:"), value)
 }
 
+
 // The preferred networks list.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corewlan/cwmutableconfiguration/networkprofiles
+
 func (c_ CWMutableNetworkProfile) NetworkProfiles() foundation.OrderedSet {
 	rv := objc.Send[foundation.OrderedSet](c_.ID, objc.Sel("networkProfiles"))
 	return rv
 }
 
 
-// SetNetworkProfiles sets the value of the networkProfiles property.
 // The preferred networks list.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corewlan/cwmutableconfiguration/networkprofiles
+
 func (c_ CWMutableNetworkProfile) SetNetworkProfiles(value foundation.IOrderedSet) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setNetworkProfiles:"), value)
 }

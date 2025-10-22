@@ -34,8 +34,13 @@ type ICXCallDirectoryProvider interface {
 }
 
 // The principal object for a Call Directory app extension for a host app.
+
+
+// The principal object for a Call Directory app extension for a host app.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallDirectoryProvider
+
 type CXCallDirectoryProvider struct {
 	objectivec.Object
 }
@@ -79,9 +84,13 @@ func NewCXCallDirectoryProvider() CXCallDirectoryProvider {
 }
 
 
+
+
 // Tells the extension to prepare for a host app’s request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallDirectoryProvider/beginRequest(with:)
+
 func (c_ CXCallDirectoryProvider) BeginRequestWithExtensionContext(context ICXCallDirectoryExtensionContext) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("beginRequestWithExtensionContext:"), context)
 }

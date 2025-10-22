@@ -39,8 +39,13 @@ type IHKGlassesPrescription interface {
 // A sample that stores a prescription for glasses.
 //
 // To create a sample that stores a glasses prescription, start by defining a specification for each eye. Each lens specification object requires a parameter. This measures the lens’s strength for correcting either nearsightedness or farsightedness (measured in units). Next, create values for any of the prescription’s optional parameters. For example, if the prescription corrects for astigmatism, create the and values. The value uses units, while the uses . To add a multifocal correction for reading, create an value using units. To add a correction for eye alignment, create an object. To add information about the distance between the eye and the back of the lens, or the pupil and the center of the nose, create , , and values. All of these use millimeters. Then you can create the lens specification. After you create your lens specifications, you can create an sample. Then save the sample to the HealthKit store. Finally, add an image or PDF of the prescription to the sample as an attachment.
+
+
+// A sample that stores a prescription for glasses.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKGlassesPrescription
+
 type HKGlassesPrescription struct {
 	HKVisionPrescription
 }
@@ -86,45 +91,54 @@ func NewHKGlassesPrescription() HKGlassesPrescription {
 }
 
 
+
 // The lens specification for the left eye.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkglassesprescription/lefteye
+
 func (h_ HKGlassesPrescription) LeftEye() HKGlassesLensSpecification {
 	rv := objc.Send[HKGlassesLensSpecification](h_.ID, objc.Sel("leftEye"))
 	return rv
 }
 
 
-// SetLeftEye sets the value of the leftEye property.
 // The lens specification for the left eye.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkglassesprescription/lefteye
+
 func (h_ HKGlassesPrescription) SetLeftEye(value IHKGlassesLensSpecification) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setLeftEye:"), value)
 }
 
+
 // The lens specification for the right eye.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkglassesprescription/righteye
+
 func (h_ HKGlassesPrescription) RightEye() HKGlassesLensSpecification {
 	rv := objc.Send[HKGlassesLensSpecification](h_.ID, objc.Sel("rightEye"))
 	return rv
 }
 
 
-// SetRightEye sets the value of the rightEye property.
 // The lens specification for the right eye.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkglassesprescription/righteye
+
 func (h_ HKGlassesPrescription) SetRightEye(value IHKGlassesLensSpecification) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setRightEye:"), value)
 }
 
+
 // A description of the glasses prescription.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmetadatakeyglassesprescriptiondescription
+
 func (h_ HKGlassesPrescription) HKMetadataKeyGlassesPrescriptionDescription() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKMetadataKeyGlassesPrescriptionDescription"))
 	return rv

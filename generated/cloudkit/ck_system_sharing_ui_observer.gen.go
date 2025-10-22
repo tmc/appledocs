@@ -39,8 +39,13 @@ type ICKSystemSharingUIObserver interface {
 // An object the system uses to monitor changes in sharing.
 //
 // Initialize a instance with your when preparing to share an item using the share sheet. Use your implementation to update the local state of a shared item when your app receives a , or to delete a locally cached share when the system notifies your app about a share deletion. The system only propagates changes on the local device using  . The system doesn’t notify your app about any remote changes on the server. For more information about how to keep your local cache in sync with remote changes, see .
+
+
+// An object the system uses to monitor changes in sharing.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSystemSharingUIObserver
+
 type CKSystemSharingUIObserver struct {
 	objectivec.Object
 }
@@ -88,7 +93,9 @@ func NewCKSystemSharingUIObserver() CKSystemSharingUIObserver {
 
 // Creates and initializes an observer using the provided container.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSystemSharingUIObserver/init(container:)
+
 func NewCKSystemSharingUIObserverWithContainer(container ICKContainer) CKSystemSharingUIObserver {
 	instance := getCKSystemSharingUIObserverClass().Alloc()
 	rv := objc.Send[CKSystemSharingUIObserver](instance.ID, objc.Sel("initWithContainer:"), container)
@@ -97,38 +104,44 @@ func NewCKSystemSharingUIObserverWithContainer(container ICKContainer) CKSystemS
 }
 
 
+
 // A callback block the system invokes after the success or failure of a system sharing UI save.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSystemSharingUIObserver/systemSharingUIDidSaveShareBlock-39zlv
+
 func (c_ CKSystemSharingUIObserver) SystemSharingUIDidSaveShareBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("systemSharingUIDidSaveShareBlock"))
 	return rv
 }
 
 
-// SetSystemSharingUIDidSaveShareBlock sets the value of the systemSharingUIDidSaveShareBlock property.
 // A callback block the system invokes after the success or failure of a system sharing UI save.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSystemSharingUIObserver/systemSharingUIDidSaveShareBlock-39zlv
+
 func (c_ CKSystemSharingUIObserver) SetSystemSharingUIDidSaveShareBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSystemSharingUIDidSaveShareBlock:"), value)
 }
 
+
 // A callback block the system invokes after the success or failure of a system sharing UI delete.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSystemSharingUIObserver/systemSharingUIDidStopSharingBlock-4g5bn
+
 func (c_ CKSystemSharingUIObserver) SystemSharingUIDidStopSharingBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("systemSharingUIDidStopSharingBlock"))
 	return rv
 }
 
 
-// SetSystemSharingUIDidStopSharingBlock sets the value of the systemSharingUIDidStopSharingBlock property.
 // A callback block the system invokes after the success or failure of a system sharing UI delete.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSystemSharingUIObserver/systemSharingUIDidStopSharingBlock-4g5bn
+
 func (c_ CKSystemSharingUIObserver) SetSystemSharingUIDidStopSharingBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSystemSharingUIDidStopSharingBlock:"), value)
 }

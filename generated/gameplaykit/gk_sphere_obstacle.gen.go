@@ -38,8 +38,13 @@ type ISphereObstacle interface {
 // A spherical impassable volume to be avoided by agents.
 //
 // To make agents ( objects) avoid obstacles, create a goal with the method. Agents affected by an avoid-obstacles goal will attempt to move such that their radius never overlaps that of a spherical obstacle. To learn more about using goals and agents, see in .
+
+
+// A spherical impassable volume to be avoided by agents.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKSphereObstacle
+
 type SphereObstacle struct {
 	Obstacle
 }
@@ -89,7 +94,9 @@ func NewSphereObstacle() SphereObstacle {
 
 // Initializes a spherical obstacle with the specified radius.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKSphereObstacle/init(radius:)
+
 func NewSphereObstacleWithRadius(radius float32) SphereObstacle {
 	instance := getSphereObstacleClass().Alloc()
 	rv := objc.Send[SphereObstacle](instance.ID, objc.Sel("initWithRadius:"), radius)
@@ -98,46 +105,55 @@ func NewSphereObstacleWithRadius(radius float32) SphereObstacle {
 }
 
 
+
 // Creates a spherical obstacle with the specified radius.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKSphereObstacle/obstacleWithRadius:
+
 func (sc _SphereObstacleClass) ObstacleWithRadius(radius float32) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("obstacleWithRadius:"), radius)
 	return rv
 }
 
+
 // The position of the obstacle.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKSphereObstacle/position
+
 func (s_ SphereObstacle) Position() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("position"))
 	return rv
 }
 
 
-// SetPosition sets the value of the position property.
 // The position of the obstacle.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKSphereObstacle/position
+
 func (s_ SphereObstacle) SetPosition(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setPosition:"), value)
 }
 
+
 // The radius of the obstacle.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKSphereObstacle/radius
+
 func (s_ SphereObstacle) Radius() float32 {
 	rv := objc.Send[float32](s_.ID, objc.Sel("radius"))
 	return rv
 }
 
 
-// SetRadius sets the value of the radius property.
 // The radius of the obstacle.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKSphereObstacle/radius
+
 func (s_ SphereObstacle) SetRadius(value float32) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setRadius:"), value)
 }

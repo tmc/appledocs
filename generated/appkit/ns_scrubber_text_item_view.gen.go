@@ -37,8 +37,13 @@ type IScrubberTextItemView interface {
 // A concrete view subclass for displaying text for an item in a scrubber.
 //
 // Provide the text you want to display in the scrubber item to the property. If you want finer control over the appearance of the text, you can access the underlying text field using the property.
+
+
+// A concrete view subclass for displaying text for an item in a scrubber.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberTextItemView
+
 type ScrubberTextItemView struct {
 	ScrubberItemView
 }
@@ -84,28 +89,34 @@ func NewScrubberTextItemView() ScrubberTextItemView {
 }
 
 
+
 // The text field that the scrubber item uses to display its text.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberTextItemView/textField
+
 func (s_ ScrubberTextItemView) TextField() NSTextField {
 	rv := objc.Send[NSTextField](s_.ID, objc.Sel("textField"))
 	return rv
 }
 
+
 // The text displayed for the scrubber item.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberTextItemView/title
+
 func (s_ ScrubberTextItemView) Title() string {
 	rv := objc.Send[string](s_.ID, objc.Sel("title"))
 	return rv
 }
 
 
-// SetTitle sets the value of the title property.
 // The text displayed for the scrubber item.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberTextItemView/title
+
 func (s_ ScrubberTextItemView) SetTitle(value string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setTitle:"), objc.String(value))
 }

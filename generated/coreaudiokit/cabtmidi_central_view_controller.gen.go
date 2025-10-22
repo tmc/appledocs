@@ -35,8 +35,13 @@ type IBTMIDICentralViewController interface {
 // A view controller that displays nearby Bluetooth-based MIDI peripherals.
 //
 // To let the user search for nearby MIDI peripherals, create a new object and then either present it modally or push it onto a view controller. No other configuration of the object is necessary. Once the user interface is visible, the iOS device finds nearby peripherals and displays them to the user. If the user selects a peripheral, it’s automatically paired with this iOS device. The object manages its own user interface and is dismissed automatically. Once connected, the peripheral appears as a MIDI device, just like any other connected MIDI device. MIDI commands sent to the peripheral are automatically played. For more information, see .
+
+
+// A view controller that displays nearby Bluetooth-based MIDI peripherals.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/CABTMIDICentralViewController
+
 type BTMIDICentralViewController struct {
 	objectivec.Object
 }

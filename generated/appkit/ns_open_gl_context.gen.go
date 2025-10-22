@@ -44,8 +44,13 @@ type IOpenGLContext interface {
 // An object that represents an OpenGL graphics context, into which all OpenGL calls are rendered.
 //
 // An OpenGL context is created using an object that specifies the context’s buffer types and other attributes. A context can be full-screen, offscreen, or associated with an object. A context draws into its , which is the frame buffer that is the target of OpenGL drawing operations. Every object wraps a low-level, platform-specific Core OpenGL (CGL) context. Your application can retrieve the CGL context by calling the method. For more information on the underling CGL context, see .
+
+
+// An object that represents an OpenGL graphics context, into which all OpenGL calls are rendered.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLContext
+
 type OpenGLContext struct {
 	objectivec.Object
 }
@@ -89,78 +94,98 @@ func NewOpenGLContext() OpenGLContext {
 }
 
 
+
+
 // Disassociates the OpenGL context from its viewport.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLContext/clearDrawable()
+
 func (o_ OpenGLContext) ClearDrawable() {
 	objc.Send[objc.ID](o_.ID, objc.Sel("clearDrawable"))
 }
 
+
+
 // Copies selected groups of state variables to the OpenGL context.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLContext/copyAttributesFromContext:withMask:
+
 func (o_ OpenGLContext) CopyAttributesFromContextWithMask(context IOpenGLContext, mask unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("copyAttributesFromContext:withMask:"), context, mask)
 }
 
+
 // Returns the low-level, platform-specific Core OpenGL (CGL) context object represented by the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLContext/cglContextObj
+
 func (o_ OpenGLContext) CGLContextObj() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("CGLContextObj"))
 	return rv
 }
 
+
 // Returns the current virtual screen for the OpenGL context.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLContext/currentVirtualScreen
+
 func (o_ OpenGLContext) CurrentVirtualScreen() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("currentVirtualScreen"))
 	return rv
 }
 
 
-// SetCurrentVirtualScreen sets the value of the currentVirtualScreen property.
 // Returns the current virtual screen for the OpenGL context.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLContext/currentVirtualScreen
+
 func (o_ OpenGLContext) SetCurrentVirtualScreen(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setCurrentVirtualScreen:"), value)
 }
 
+
 // The pixel format of the OpenGL context.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenglcontext/pixelformat
+
 func (o_ OpenGLContext) PixelFormat() NSOpenGLPixelFormat {
 	rv := objc.Send[NSOpenGLPixelFormat](o_.ID, objc.Sel("pixelFormat"))
 	return rv
 }
 
 
-// SetPixelFormat sets the value of the pixelFormat property.
 // The pixel format of the OpenGL context.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenglcontext/pixelformat
+
 func (o_ OpenGLContext) SetPixelFormat(value NSOpenGLPixelFormat) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setPixelFormat:"), value)
 }
 
+
 // Returns the OpenGL context’s view.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenglcontext/view
+
 func (o_ OpenGLContext) View() NSView {
 	rv := objc.Send[NSView](o_.ID, objc.Sel("view"))
 	return rv
 }
 
 
-// SetView sets the value of the view property.
 // Returns the OpenGL context’s view.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenglcontext/view
+
 func (o_ OpenGLContext) SetView(value IView) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setView:"), value)
 }

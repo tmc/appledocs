@@ -41,8 +41,13 @@ type ISharingServicePicker interface {
 // A list of sharing services that the user can choose from.
 //
 // An object presents an interface for sharing one or more items using a specific service. In macOS 12 and earlier, this picker displays a menu with a list of services that someone can use to share the item. In macOS 13 and later, the picker displays a popover with a preview of the item and the list of services. When someone chooses a service, the picker automatically shares the proposed item with that service. Create a sharing service picker and configure it with a delegate object to monitor interactions. Your delegate must conform to the protocol. Present the picker from your interface using the method.
+
+
+// A list of sharing services that the user can choose from.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingServicePicker
+
 type SharingServicePicker struct {
 	objectivec.Object
 }
@@ -86,45 +91,55 @@ func NewSharingServicePicker() SharingServicePicker {
 }
 
 
+
+
 // Shows the picker interface and populates it with the relevant sharing services.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingServicePicker/show(relativeTo:of:preferredEdge:)
+
 func (s_ SharingServicePicker) ShowRelativeToRectOfViewPreferredEdge(rect coregraphics.CGRect, view IView, preferredEdge int) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("showRelativeToRect:ofView:preferredEdge:"), rect, view, preferredEdge)
 }
 
+
 // The object for managing the sharing service picker.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingServicePicker/delegate
+
 func (s_ SharingServicePicker) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](s_.ID, objc.Sel("delegate"))
 	return rv
 }
 
 
-// SetDelegate sets the value of the delegate property.
 // The object for managing the sharing service picker.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingServicePicker/delegate
+
 func (s_ SharingServicePicker) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDelegate:"), value)
 }
 
+
 // A menu item suitable to display the picker for the specified items.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservicepicker/standardsharemenuitem
+
 func (s_ SharingServicePicker) StandardShareMenuItem() NSMenuItem {
 	rv := objc.Send[NSMenuItem](s_.ID, objc.Sel("standardShareMenuItem"))
 	return rv
 }
 
 
-// SetStandardShareMenuItem sets the value of the standardShareMenuItem property.
 // A menu item suitable to display the picker for the specified items.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservicepicker/standardsharemenuitem
+
 func (s_ SharingServicePicker) SetStandardShareMenuItem(value IMenuItem) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setStandardShareMenuItem:"), value)
 }

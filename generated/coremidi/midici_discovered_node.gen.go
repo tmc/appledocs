@@ -39,8 +39,13 @@ type IMIDICIDiscoveredNode interface {
 }
 
 // A discovered MIDI-CI node that represents a MIDI source and destination that respond to capability inquiries.
+
+
+// A discovered MIDI-CI node that represents a MIDI source and destination that respond to capability inquiries.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIDiscoveredNode
+
 type MIDICIDiscoveredNode struct {
 	objectivec.Object
 }
@@ -84,41 +89,56 @@ func NewMIDICIDiscoveredNode() MIDICIDiscoveredNode {
 }
 
 
+
 // The node’s MIDI destination.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIDiscoveredNode/destination
+
 func (m_ MIDICIDiscoveredNode) Destination() MIDIEntityRef {
 	rv := objc.Send[MIDIEntityRef](m_.ID, objc.Sel("destination"))
 	return rv
 }
 
+
 // The available MIDI-CI device information.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIDiscoveredNode/deviceInfo
+
 func (m_ MIDICIDiscoveredNode) DeviceInfo() MIDICIDeviceInfo {
 	rv := objc.Send[MIDICIDeviceInfo](m_.ID, objc.Sel("deviceInfo"))
 	return rv
 }
 
+
 // The maximum size of a System Exclusive (SysEx) message this node supports.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIDiscoveredNode/maximumSysExSize
+
 func (m_ MIDICIDiscoveredNode) MaximumSysExSize() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("maximumSysExSize"))
 	return rv
 }
 
+
 // A Boolean value that indicates whether this node supports MIDI-CI profiles.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIDiscoveredNode/supportsProfiles
+
 func (m_ MIDICIDiscoveredNode) SupportsProfiles() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("supportsProfiles"))
 	return rv
 }
 
+
 // A Boolean value that indicates whether this node supports MIDI-CI properties.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIDiscoveredNode/supportsProperties
+
 func (m_ MIDICIDiscoveredNode) SupportsProperties() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("supportsProperties"))
 	return rv

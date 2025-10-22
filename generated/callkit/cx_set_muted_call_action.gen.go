@@ -39,8 +39,13 @@ type ICXSetMutedCallAction interface {
 // An encapsulation of the act of muting or unmuting a call.
 //
 // is a concrete subclass of . When the user or the system mutes a call, the provider sends to its delegate. The provider’s delegate calls the method to indicate that the action was successfully performed. When a caller mutes a call, that caller is unable to communicate with other callers until they unmute the call. A muted caller still receives communication from other unmuted callers.
+
+
+// An encapsulation of the act of muting or unmuting a call.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetMutedCallAction
+
 type CXSetMutedCallAction struct {
 	CXCallAction
 }
@@ -90,7 +95,9 @@ func NewCXSetMutedCallAction() CXSetMutedCallAction {
 
 // Initializes a new action for a call identified by a given UUID, as well as whether the call is muted.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetMutedCallAction/init(call:muted:)
+
 func NewCXSetMutedCallActionWithCallUUIDMuted(callUUID foundation.IUUID, muted bool) CXSetMutedCallAction {
 	instance := getCXSetMutedCallActionClass().Alloc()
 	rv := objc.Send[CXSetMutedCallAction](instance.ID, objc.Sel("initWithCallUUID:muted:"), callUUID, muted)
@@ -102,7 +109,9 @@ func NewCXSetMutedCallActionWithCallUUIDMuted(callUUID foundation.IUUID, muted b
 
 // Creates a new action for a call with data in an unarchiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetMutedCallAction/init(coder:)
+
 func NewCXSetMutedCallActionWithCoder(aDecoder foundation.ICoder) CXSetMutedCallAction {
 	instance := getCXSetMutedCallActionClass().Alloc()
 	rv := objc.Send[CXSetMutedCallAction](instance.ID, objc.Sel("initWithCoder:"), aDecoder)
@@ -111,38 +120,44 @@ func NewCXSetMutedCallActionWithCoder(aDecoder foundation.ICoder) CXSetMutedCall
 }
 
 
+
 // A Boolean value that indicates whether the call is muted.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetMutedCallAction/isMuted
+
 func (c_ CXSetMutedCallAction) Muted() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("muted"))
 	return rv
 }
 
 
-// SetMuted sets the value of the muted property.
 // A Boolean value that indicates whether the call is muted.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetMutedCallAction/isMuted
+
 func (c_ CXSetMutedCallAction) SetMuted(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMuted:"), value)
 }
 
+
 // A Boolean value that indicates whether the call is muted.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/callkit/cxsetmutedcallaction/ismuted
+
 func (c_ CXSetMutedCallAction) IsMuted() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isMuted"))
 	return rv
 }
 
 
-// SetIsMuted sets the value of the isMuted property.
 // A Boolean value that indicates whether the call is muted.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/callkit/cxsetmutedcallaction/ismuted
+
 func (c_ CXSetMutedCallAction) SetIsMuted(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsMuted:"), value)
 }

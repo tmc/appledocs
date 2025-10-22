@@ -46,8 +46,13 @@ type ICKFetchRecordZonesOperation interface {
 // An operation for retrieving record zones from a database.
 //
 // Use this operation object to fetch record zones so that you can ascertain their capabilities. If you assign a handler to the property of the operation, CloudKit calls it after the operation executes and returns its results. You can use the handler to perform any housekeeping tasks that relate to the operation, but don’t use it to process the results of the operation. The handler you specify should manage any failures, whether due to an error or an explicit cancellation.
+
+
+// An operation for retrieving record zones from a database.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZonesOperation
+
 type CKFetchRecordZonesOperation struct {
 	CKDatabaseOperation
 }
@@ -97,7 +102,9 @@ func NewCKFetchRecordZonesOperation() CKFetchRecordZonesOperation {
 
 // Creates an operation for fetching the specified record zones.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZonesOperation/init(recordZoneIDs:)
+
 func NewCKFetchRecordZonesOperationWithRecordZoneIDs(zoneIDs []CKRecordZoneID) CKFetchRecordZonesOperation {
 	instance := getCKFetchRecordZonesOperationClass().Alloc()
 	rv := objc.Send[CKFetchRecordZonesOperation](instance.ID, objc.Sel("initWithRecordZoneIDs:"), zoneIDs)
@@ -106,61 +113,72 @@ func NewCKFetchRecordZonesOperationWithRecordZoneIDs(zoneIDs []CKRecordZoneID) C
 }
 
 
+
 // Returns an operation for fetching all record zones in the current database.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZonesOperation/fetchAllRecordZonesOperation()
+
 func (cc _CKFetchRecordZonesOperationClass) FetchAllRecordZonesOperation() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("fetchAllRecordZonesOperation"))
 	return rv
 }
 
+
 // The closure to execute after CloudKit retrieves all of the record zones.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZonesOperation/fetchRecordZonesCompletionBlock
+
 func (c_ CKFetchRecordZonesOperation) FetchRecordZonesCompletionBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("fetchRecordZonesCompletionBlock"))
 	return rv
 }
 
 
-// SetFetchRecordZonesCompletionBlock sets the value of the fetchRecordZonesCompletionBlock property.
 // The closure to execute after CloudKit retrieves all of the record zones.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZonesOperation/fetchRecordZonesCompletionBlock
+
 func (c_ CKFetchRecordZonesOperation) SetFetchRecordZonesCompletionBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFetchRecordZonesCompletionBlock:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZonesOperation/perRecordZoneCompletionBlock
+
 func (c_ CKFetchRecordZonesOperation) PerRecordZoneCompletionBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("perRecordZoneCompletionBlock"))
 	return rv
 }
 
 
-// SetPerRecordZoneCompletionBlock sets the value of the perRecordZoneCompletionBlock property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZonesOperation/perRecordZoneCompletionBlock
+
 func (c_ CKFetchRecordZonesOperation) SetPerRecordZoneCompletionBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPerRecordZoneCompletionBlock:"), value)
 }
 
+
 // The IDs of the record zones to retrieve.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZonesOperation/recordZoneIDs
+
 func (c_ CKFetchRecordZonesOperation) RecordZoneIDs() []CKRecordZoneID {
 	rv := objc.Send[[]CKRecordZoneID](c_.ID, objc.Sel("recordZoneIDs"))
 	return rv
 }
 
 
-// SetRecordZoneIDs sets the value of the recordZoneIDs property.
 // The IDs of the record zones to retrieve.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZonesOperation/recordZoneIDs
+
 func (c_ CKFetchRecordZonesOperation) SetRecordZoneIDs(value []CKRecordZoneID) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -175,50 +193,57 @@ func (c_ CKFetchRecordZonesOperation) SetRecordZoneIDs(value []CKRecordZoneID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordZoneIDs:"), nsArray)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordzonesoperation/fetchrecordzonesresultblock
+
 func (c_ CKFetchRecordZonesOperation) FetchRecordZonesResultBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("fetchRecordZonesResultBlock"))
 	return rv
 }
 
 
-// SetFetchRecordZonesResultBlock sets the value of the fetchRecordZonesResultBlock property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordzonesoperation/fetchrecordzonesresultblock
+
 func (c_ CKFetchRecordZonesOperation) SetFetchRecordZonesResultBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFetchRecordZonesResultBlock:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordzonesoperation/perrecordzoneresultblock
+
 func (c_ CKFetchRecordZonesOperation) PerRecordZoneResultBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("perRecordZoneResultBlock"))
 	return rv
 }
 
 
-// SetPerRecordZoneResultBlock sets the value of the perRecordZoneResultBlock property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordzonesoperation/perrecordzoneresultblock
+
 func (c_ CKFetchRecordZonesOperation) SetPerRecordZoneResultBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPerRecordZoneResultBlock:"), value)
 }
 
+
 // The block to execute after the operation’s main task is completed.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/completionBlock
+
 func (c_ CKFetchRecordZonesOperation) CompletionBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("completionBlock"))
 	return rv
 }
 
 
-// SetCompletionBlock sets the value of the completionBlock property.
 // The block to execute after the operation’s main task is completed.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/completionBlock
+
 func (c_ CKFetchRecordZonesOperation) SetCompletionBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCompletionBlock:"), value)
 }

@@ -2,12 +2,16 @@
 
 // Package executionpolicy provides Go bindings for the ExecutionPolicy framework.
 //
-// Provide functionality so developer tools can manage execution policy exceptions. [Full Topic]
+// Provide functionality so developer tools can manage execution policy exceptions.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to ExecutionPolicy without requiring cgo.
+
+// Provide functionality so developer tools can manage execution policy exceptions.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExecutionPolicy
+
 package executionpolicy
 
 import (

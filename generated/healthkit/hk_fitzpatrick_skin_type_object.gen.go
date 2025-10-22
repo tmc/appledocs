@@ -35,8 +35,13 @@ type IHKFitzpatrickSkinTypeObject interface {
 }
 
 // This class acts as a wrapper for the enumeration.
+
+
+// This class acts as a wrapper for the enumeration.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKFitzpatrickSkinTypeObject
+
 type HKFitzpatrickSkinTypeObject struct {
 	objectivec.Object
 }
@@ -80,20 +85,23 @@ func NewHKFitzpatrickSkinTypeObject() HKFitzpatrickSkinTypeObject {
 }
 
 
+
 // The user’s skin type.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkfitzpatrickskintypeobject/skintype
+
 func (h_ HKFitzpatrickSkinTypeObject) SkinType() HKFitzpatrickSkinType {
 	rv := objc.Send[HKFitzpatrickSkinType](h_.ID, objc.Sel("skinType"))
 	return rv
 }
 
 
-// SetSkinType sets the value of the skinType property.
 // The user’s skin type.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkfitzpatrickskintypeobject/skintype
+
 func (h_ HKFitzpatrickSkinTypeObject) SetSkinType(value HKFitzpatrickSkinType) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setSkinType:"), value)
 }

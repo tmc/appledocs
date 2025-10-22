@@ -39,8 +39,13 @@ type IMotionActivityManager interface {
 // An object that manages access to the motion data stored by the device.
 //
 // Motion data reflects whether the user is walking, running, in a vehicle, or stationary for periods of time. Using this class, you can ask for notifications when the current type of motion changes or you can gather past motion change data. For example, a navigation app might look for changes in the current type of motion and offer different directions for each.
+
+
+// An object that manages access to the motion data stored by the device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionActivityManager
+
 type MotionActivityManager struct {
 	objectivec.Object
 }
@@ -84,39 +89,57 @@ func NewMotionActivityManager() MotionActivityManager {
 }
 
 
+
 // Returns a value indicating whether the app is authorized to retrieve stored motion data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionActivityManager/authorizationStatus()
+
 func (mc _MotionActivityManagerClass) AuthorizationStatus() AuthorizationStatus {
 	rv := objc.Send[AuthorizationStatus](objc.ID(mc.class), objc.Sel("authorizationStatus"))
 	return rv
 }
 
+
 // Returns a Boolean indicating whether motion data is available on the current device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionActivityManager/isActivityAvailable()
+
 func (mc _MotionActivityManagerClass) IsActivityAvailable() bool {
 	rv := objc.Send[bool](objc.ID(mc.class), objc.Sel("isActivityAvailable"))
 	return rv
 }
 
+
+
 // Gathers and returns historical motion data for the specified time period
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionActivityManager/queryActivityStarting(from:to:to:withHandler:)
+
 func (m_ MotionActivityManager) QueryActivityStartingFromDateToDateToQueueWithHandler(start foundation.IDate, end foundation.IDate, queue foundation.IOperationQueue, handler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("queryActivityStartingFromDate:toDate:toQueue:withHandler:"), start, end, queue, handler)
 }
 
+
+
 // Starts the delivery of current motion data updates to your app.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionActivityManager/startActivityUpdates(to:withHandler:)
+
 func (m_ MotionActivityManager) StartActivityUpdatesToQueueWithHandler(queue foundation.IOperationQueue, handler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("startActivityUpdatesToQueue:withHandler:"), queue, handler)
 }
 
+
+
 // Stops the delivery of motion updates to your app
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionActivityManager/stopActivityUpdates()
+
 func (m_ MotionActivityManager) StopActivityUpdates() {
 	objc.Send[objc.ID](m_.ID, objc.Sel("stopActivityUpdates"))
 }

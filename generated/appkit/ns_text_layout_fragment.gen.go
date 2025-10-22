@@ -62,8 +62,13 @@ type ITextLayoutFragment interface {
 }
 
 // A class that represents the layout fragment typically corresponding to a rendering surface, such as a layer or view subclass.
+
+
+// A class that represents the layout fragment typically corresponding to a rendering surface, such as a layer or view subclass.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLayoutFragment
+
 type TextLayoutFragment struct {
 	objectivec.Object
 }
@@ -107,236 +112,275 @@ func NewTextLayoutFragment() TextLayoutFragment {
 }
 
 
+
 // The amount of space reserved during paragraph layout between the bottom of the last line in the paragraph and the bottom of the text layout fragment.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/bottommargin
+
 func (t_ TextLayoutFragment) BottomMargin() float64 {
 	rv := objc.Send[float64](t_.ID, objc.Sel("bottomMargin"))
 	return rv
 }
 
 
-// SetBottomMargin sets the value of the bottomMargin property.
 // The amount of space reserved during paragraph layout between the bottom of the last line in the paragraph and the bottom of the text layout fragment.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/bottommargin
+
 func (t_ TextLayoutFragment) SetBottomMargin(value float64) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setBottomMargin:"), value)
 }
 
+
 // The rectangle the framework uses for tiling the layout fragment inside the target layout coordinate system.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/layoutfragmentframe
+
 func (t_ TextLayoutFragment) LayoutFragmentFrame() coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](t_.ID, objc.Sel("layoutFragmentFrame"))
 	return rv
 }
 
 
-// SetLayoutFragmentFrame sets the value of the layoutFragmentFrame property.
 // The rectangle the framework uses for tiling the layout fragment inside the target layout coordinate system.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/layoutfragmentframe
+
 func (t_ TextLayoutFragment) SetLayoutFragmentFrame(value coregraphics.CGRect) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLayoutFragmentFrame:"), value)
 }
 
+
 // The queue on which the framework dispatches layout operations.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/layoutqueue
+
 func (t_ TextLayoutFragment) LayoutQueue() foundation.OperationQueue {
 	rv := objc.Send[foundation.OperationQueue](t_.ID, objc.Sel("layoutQueue"))
 	return rv
 }
 
 
-// SetLayoutQueue sets the value of the layoutQueue property.
 // The queue on which the framework dispatches layout operations.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/layoutqueue
+
 func (t_ TextLayoutFragment) SetLayoutQueue(value foundation.IOperationQueue) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLayoutQueue:"), value)
 }
 
+
 // The amount of margin space reserved during paragraph layout between the leading edge of the text layout fragment and the start of the lines in the paragraph.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/leadingpadding
+
 func (t_ TextLayoutFragment) LeadingPadding() float64 {
 	rv := objc.Send[float64](t_.ID, objc.Sel("leadingPadding"))
 	return rv
 }
 
 
-// SetLeadingPadding sets the value of the leadingPadding property.
 // The amount of margin space reserved during paragraph layout between the leading edge of the text layout fragment and the start of the lines in the paragraph.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/leadingpadding
+
 func (t_ TextLayoutFragment) SetLeadingPadding(value float64) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLeadingPadding:"), value)
 }
 
+
 // The range inside the text element relative to the document origin.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/rangeinelement
+
 func (t_ TextLayoutFragment) RangeInElement() NSTextRange {
 	rv := objc.Send[NSTextRange](t_.ID, objc.Sel("rangeInElement"))
 	return rv
 }
 
 
-// SetRangeInElement sets the value of the rangeInElement property.
 // The range inside the text element relative to the document origin.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/rangeinelement
+
 func (t_ TextLayoutFragment) SetRangeInElement(value ITextRange) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setRangeInElement:"), value)
 }
 
+
 // The bounds defining the area required for rendering the contents.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/renderingsurfacebounds
+
 func (t_ TextLayoutFragment) RenderingSurfaceBounds() coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](t_.ID, objc.Sel("renderingSurfaceBounds"))
 	return rv
 }
 
 
-// SetRenderingSurfaceBounds sets the value of the renderingSurfaceBounds property.
 // The bounds defining the area required for rendering the contents.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/renderingsurfacebounds
+
 func (t_ TextLayoutFragment) SetRenderingSurfaceBounds(value coregraphics.CGRect) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setRenderingSurfaceBounds:"), value)
 }
 
+
 // The layout information state.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/state-swift.property
+
 func (t_ TextLayoutFragment) State() coreml.State {
 	rv := objc.Send[coreml.State](t_.ID, objc.Sel("state"))
 	return rv
 }
 
 
-// SetState sets the value of the state property.
 // The layout information state.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/state-swift.property
+
 func (t_ TextLayoutFragment) SetState(value coreml.State) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setState:"), value)
 }
 
+
 // The attachment view provider associated with the text layout fragment.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/textattachmentviewproviders
+
 func (t_ TextLayoutFragment) TextAttachmentViewProviders() NSTextAttachmentViewProvider {
 	rv := objc.Send[NSTextAttachmentViewProvider](t_.ID, objc.Sel("textAttachmentViewProviders"))
 	return rv
 }
 
 
-// SetTextAttachmentViewProviders sets the value of the textAttachmentViewProviders property.
 // The attachment view provider associated with the text layout fragment.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/textattachmentviewproviders
+
 func (t_ TextLayoutFragment) SetTextAttachmentViewProviders(value ITextAttachmentViewProvider) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextAttachmentViewProviders:"), value)
 }
 
+
 // The parent text element.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/textelement
+
 func (t_ TextLayoutFragment) TextElement() NSTextElement {
 	rv := objc.Send[NSTextElement](t_.ID, objc.Sel("textElement"))
 	return rv
 }
 
 
-// SetTextElement sets the value of the textElement property.
 // The parent text element.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/textelement
+
 func (t_ TextLayoutFragment) SetTextElement(value ITextElement) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextElement:"), value)
 }
 
+
 // The layout manager for this text layout fragment.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/textlayoutmanager
+
 func (t_ TextLayoutFragment) TextLayoutManager() NSTextLayoutManager {
 	rv := objc.Send[NSTextLayoutManager](t_.ID, objc.Sel("textLayoutManager"))
 	return rv
 }
 
 
-// SetTextLayoutManager sets the value of the textLayoutManager property.
 // The layout manager for this text layout fragment.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/textlayoutmanager
+
 func (t_ TextLayoutFragment) SetTextLayoutManager(value ITextLayoutManager) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextLayoutManager:"), value)
 }
 
+
 // An array of text line fragments.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/textlinefragments
+
 func (t_ TextLayoutFragment) TextLineFragments() NSTextLineFragment {
 	rv := objc.Send[NSTextLineFragment](t_.ID, objc.Sel("textLineFragments"))
 	return rv
 }
 
 
-// SetTextLineFragments sets the value of the textLineFragments property.
 // An array of text line fragments.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/textlinefragments
+
 func (t_ TextLayoutFragment) SetTextLineFragments(value ITextLineFragment) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextLineFragments:"), value)
 }
 
+
 // The amount of space reserved during paragraph layout between the top of the text layout fragment and the top of the first line in the paragraph.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/topmargin
+
 func (t_ TextLayoutFragment) TopMargin() float64 {
 	rv := objc.Send[float64](t_.ID, objc.Sel("topMargin"))
 	return rv
 }
 
 
-// SetTopMargin sets the value of the topMargin property.
 // The amount of space reserved during paragraph layout between the top of the text layout fragment and the top of the first line in the paragraph.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/topmargin
+
 func (t_ TextLayoutFragment) SetTopMargin(value float64) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTopMargin:"), value)
 }
 
+
 // The amount of margin space reserved during paragraph layout between the end of the lines in the paragraph and the trailing edge of the text layout fragment.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/trailingpadding
+
 func (t_ TextLayoutFragment) TrailingPadding() float64 {
 	rv := objc.Send[float64](t_.ID, objc.Sel("trailingPadding"))
 	return rv
 }
 
 
-// SetTrailingPadding sets the value of the trailingPadding property.
 // The amount of margin space reserved during paragraph layout between the end of the lines in the paragraph and the trailing edge of the text layout fragment.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/trailingpadding
+
 func (t_ TextLayoutFragment) SetTrailingPadding(value float64) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTrailingPadding:"), value)
 }

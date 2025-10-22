@@ -35,8 +35,13 @@ type IVideoCompositionLayerInstruction interface {
 }
 
 // An object used to modify the transform, cropping, and opacity ramps applied to a given track in a composition.
+
+
+// An object used to modify the transform, cropping, and opacity ramps applied to a given track in a composition.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVVideoCompositionLayerInstruction
+
 type VideoCompositionLayerInstruction struct {
 	objectivec.Object
 }
@@ -80,20 +85,23 @@ func NewVideoCompositionLayerInstruction() VideoCompositionLayerInstruction {
 }
 
 
+
 // The track identifier of the source track to which the compositor will apply the instruction.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avvideocompositionlayerinstruction/trackid
+
 func (v_ VideoCompositionLayerInstruction) TrackID() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("trackID"))
 	return rv
 }
 
 
-// SetTrackID sets the value of the trackID property.
 // The track identifier of the source track to which the compositor will apply the instruction.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avvideocompositionlayerinstruction/trackid
+
 func (v_ VideoCompositionLayerInstruction) SetTrackID(value unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setTrackID:"), value)
 }

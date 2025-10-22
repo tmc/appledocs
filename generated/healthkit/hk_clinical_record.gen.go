@@ -42,8 +42,13 @@ type IHKClinicalRecord interface {
 // A sample that stores a clinical record.
 //
 // The clinical record stores information about a single condition, procedure, or result. While the record’s properties expose some high-level information, the property contains the underlying data from the user’s healthcare institution. Note that the record inherits the class’s and properties. However, the system does not populate these properties with information from the FHIR data; instead, the and reflect the time and date when the system downloaded the FHIR data to the device.
+
+
+// A sample that stores a clinical record.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKClinicalRecord
+
 type HKClinicalRecord struct {
 	HKSample
 }
@@ -89,62 +94,77 @@ func NewHKClinicalRecord() HKClinicalRecord {
 }
 
 
+
 // An identifier that indicates the type of record, such as an allergic reaction, a lab result, or a medical procedure.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKClinicalRecord/clinicalType
+
 func (h_ HKClinicalRecord) ClinicalType() HKClinicalType {
 	rv := objc.Send[HKClinicalType](h_.ID, objc.Sel("clinicalType"))
 	return rv
 }
 
+
 // The primary display name as shown in the Health app.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKClinicalRecord/displayName
+
 func (h_ HKClinicalRecord) DisplayName() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("displayName"))
 	return rv
 }
 
+
 // The Fast Healthcare Interoperability Resources (FHIR) data for this record.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKClinicalRecord/fhirResource
+
 func (h_ HKClinicalRecord) FHIRResource() HKFHIRResource {
 	rv := objc.Send[HKFHIRResource](h_.ID, objc.Sel("FHIRResource"))
 	return rv
 }
 
+
 // The sample’s end date.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksample/enddate
+
 func (h_ HKClinicalRecord) EndDate() foundation.Date {
 	rv := objc.Send[foundation.Date](h_.ID, objc.Sel("endDate"))
 	return rv
 }
 
 
-// SetEndDate sets the value of the endDate property.
 // The sample’s end date.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksample/enddate
+
 func (h_ HKClinicalRecord) SetEndDate(value foundation.IDate) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setEndDate:"), value)
 }
 
+
 // The sample’s start date.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksample/startdate
+
 func (h_ HKClinicalRecord) StartDate() foundation.Date {
 	rv := objc.Send[foundation.Date](h_.ID, objc.Sel("startDate"))
 	return rv
 }
 
 
-// SetStartDate sets the value of the startDate property.
 // The sample’s start date.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksample/startdate
+
 func (h_ HKClinicalRecord) SetStartDate(value foundation.IDate) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setStartDate:"), value)
 }

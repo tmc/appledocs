@@ -2,12 +2,16 @@
 
 // Package appintents provides Go bindings for the AppIntents framework.
 //
-// Make your app’s content and actions discoverable with system experiences like Spotlight, widgets, and the Shortcuts app. [Full Topic]
+// Make your app’s content and actions discoverable with system experiences like Spotlight, widgets, and the Shortcuts app.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to AppIntents without requiring cgo.
+
+// Make your app’s content and actions discoverable with system experiences like Spotlight, widgets, and the Shortcuts app.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppIntents
+
 package appintents
 
 import (

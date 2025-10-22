@@ -39,8 +39,13 @@ type IGLKEffectPropertyTransform interface {
 // Coordinate transform information for use in GLKit rendering effects.
 //
 // The class defines properties that provide the coordinate transformations to be performed when rendering the effect.
+
+
+// Coordinate transform information for use in GLKit rendering effects.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyTransform
+
 type GLKEffectPropertyTransform struct {
 	GLKEffectProperty
 }
@@ -86,46 +91,55 @@ func NewGLKEffectPropertyTransform() GLKEffectPropertyTransform {
 }
 
 
+
 // The matrix used to transform position coordinates from world space to eye space.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyTransform/modelviewMatrix
+
 func (g_ GLKEffectPropertyTransform) ModelviewMatrix() GLKMatrix4 {
 	rv := objc.Send[GLKMatrix4](g_.ID, objc.Sel("modelviewMatrix"))
 	return rv
 }
 
 
-// SetModelviewMatrix sets the value of the modelviewMatrix property.
 // The matrix used to transform position coordinates from world space to eye space.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyTransform/modelviewMatrix
+
 func (g_ GLKEffectPropertyTransform) SetModelviewMatrix(value IGLKMatrix4) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setModelviewMatrix:"), value)
 }
 
+
 // The matrix used to transform normal coordinates from world space to eye space.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyTransform/normalMatrix
+
 func (g_ GLKEffectPropertyTransform) NormalMatrix() GLKMatrix3 {
 	rv := objc.Send[GLKMatrix3](g_.ID, objc.Sel("normalMatrix"))
 	return rv
 }
 
+
 // The matrix used to transform position coordinates from eye space to projection space.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyTransform/projectionMatrix
+
 func (g_ GLKEffectPropertyTransform) ProjectionMatrix() GLKMatrix4 {
 	rv := objc.Send[GLKMatrix4](g_.ID, objc.Sel("projectionMatrix"))
 	return rv
 }
 
 
-// SetProjectionMatrix sets the value of the projectionMatrix property.
 // The matrix used to transform position coordinates from eye space to projection space.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyTransform/projectionMatrix
+
 func (g_ GLKEffectPropertyTransform) SetProjectionMatrix(value IGLKMatrix4) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setProjectionMatrix:"), value)
 }

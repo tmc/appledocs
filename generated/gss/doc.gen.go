@@ -2,12 +2,16 @@
 
 // Package gss provides Go bindings for the GSS framework.
 //
-// Conduct secure, authenticated network transactions. [Full Topic]
+// Conduct secure, authenticated network transactions.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to GSS without requiring cgo.
+
+// Conduct secure, authenticated network transactions.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GSS
+
 package gss
 
 import (

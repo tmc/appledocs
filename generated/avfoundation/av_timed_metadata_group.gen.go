@@ -38,8 +38,13 @@ type ITimedMetadataGroup interface {
 // A collection of metadata items that are valid for use during a specific time range.
 //
 // For example, are used to represent chapters, optionally containing metadata items for chapter titles and chapter images.
+
+
+// A collection of metadata items that are valid for use during a specific time range.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVTimedMetadataGroup
+
 type TimedMetadataGroup struct {
 	objectivec.Object
 }
@@ -87,7 +92,9 @@ func NewTimedMetadataGroup() TimedMetadataGroup {
 
 // Creates a timed metadata group initialized with the given metadata items.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVTimedMetadataGroup/init(items:timeRange:)
+
 func NewTimedMetadataGroupWithItemsTimeRange(items []MetadataItem, timeRange unsafe.Pointer) TimedMetadataGroup {
 	instance := getTimedMetadataGroupClass().Alloc()
 	rv := objc.Send[TimedMetadataGroup](instance.ID, objc.Sel("initWithItems:timeRange:"), items, timeRange)
@@ -96,28 +103,34 @@ func NewTimedMetadataGroupWithItemsTimeRange(items []MetadataItem, timeRange uns
 }
 
 
+
 // The time range for the timed metadata.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVTimedMetadataGroup/timeRange
+
 func (t_ TimedMetadataGroup) TimeRange() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("timeRange"))
 	return rv
 }
 
+
 // An array of metadata items in the timed metadata group.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avtimedmetadatagroup/items
+
 func (t_ TimedMetadataGroup) Items() AVMetadataItem {
 	rv := objc.Send[AVMetadataItem](t_.ID, objc.Sel("items"))
 	return rv
 }
 
 
-// SetItems sets the value of the items property.
 // An array of metadata items in the timed metadata group.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avtimedmetadatagroup/items
+
 func (t_ TimedMetadataGroup) SetItems(value IAVMetadataItem) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setItems:"), value)
 }

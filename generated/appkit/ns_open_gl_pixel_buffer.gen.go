@@ -35,8 +35,13 @@ type IOpenGLPixelBuffer interface {
 // An object that provides access to accelerated offscreen rendering.
 //
 // Using offscreen rendering you could, for example, draw into the pixel buffer, then use the contents as a texture map elsewhere. Typically you initialize an object using the method and attach the resulting object to an OpenGL context with the method of . Every object wraps a low-level, platform-specific Core OpenGL (CGL) pixel buffer object. Your application can retrieve the CGL pixel buffer by calling the method. For more information on the underling CGL pixel buffer, see .
+
+
+// An object that provides access to accelerated offscreen rendering.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLPixelBuffer
+
 type OpenGLPixelBuffer struct {
 	objectivec.Object
 }

@@ -35,8 +35,13 @@ type IModelStructureProgramNamedValueType interface {
 }
 
 // A class representing a named value type in a Program.
+
+
+// A class representing a named value type in a Program.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureProgramNamedValueType
+
 type ModelStructureProgramNamedValueType struct {
 	objectivec.Object
 }
@@ -80,17 +85,23 @@ func NewModelStructureProgramNamedValueType() ModelStructureProgramNamedValueTyp
 }
 
 
+
 // The name of the parameter.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureProgramNamedValueType/name
+
 func (m_ ModelStructureProgramNamedValueType) Name() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("name"))
 	return rv
 }
 
+
 // The type of the parameter.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureProgramNamedValueType/type
+
 func (m_ ModelStructureProgramNamedValueType) Type() MLModelStructureProgramValueType {
 	rv := objc.Send[MLModelStructureProgramValueType](m_.ID, objc.Sel("type"))
 	return rv

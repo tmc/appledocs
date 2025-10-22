@@ -32,8 +32,11 @@ type IeccVersion interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIDataMatrixCodeDescriptor/eccVersion-c.ivar
+
 type eccVersion struct {
 	objectivec.Object
 }

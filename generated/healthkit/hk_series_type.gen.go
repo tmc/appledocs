@@ -32,8 +32,13 @@ type IHKSeriesType interface {
 }
 
 // A type that indicates the data stored in a series sample.
+
+
+// A type that indicates the data stored in a series sample.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKSeriesType
+
 type HKSeriesType struct {
 	HKSampleType
 }
@@ -79,17 +84,23 @@ func NewHKSeriesType() HKSeriesType {
 }
 
 
+
 // Returns a series type object for heartbeat data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKSeriesType/heartbeat()
+
 func (hc _HKSeriesTypeClass) HeartbeatSeriesType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("heartbeatSeriesType"))
 	return rv
 }
 
+
 // Returns a series type object for workout routes.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKSeriesType/workoutRoute()
+
 func (hc _HKSeriesTypeClass) WorkoutRouteType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("workoutRouteType"))
 	return rv

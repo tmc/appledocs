@@ -40,11 +40,15 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 
 
 
-// Returns an array that contains all of the compute devices that are accessible. [Full Topic]
+// Returns an array that contains all of the compute devices that are accessible.
 //
 // Added in macOS 14.0.
+
+// Returns an array that contains all of the compute devices that are accessible.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLAllComputeDevices
+
 func MLAllComputeDevices() unsafe.Pointer {
 	return _MLAllComputeDevices()
 	}

@@ -32,8 +32,11 @@ type IDispatchWorkloop interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/DispatchWorkloop
+
 type DispatchWorkloop struct {
 	objectivec.Object
 }

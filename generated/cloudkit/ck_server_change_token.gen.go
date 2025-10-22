@@ -35,8 +35,13 @@ type ICKServerChangeToken interface {
 // An opaque token that represents a specific point in a database’s history.
 //
 // CloudKit uses server change tokens to record significant events in a database’s history, such as record creation, modification, and deletion. Using change tokens helps reduce the cost of a fetch operation — both the time to execute the fetch and the overall number of records it returns. You don’t create change tokens. Instead, and provide them during their execution and when they complete. Cache each token as you receive it, overwriting any previous token for the database or record zone you’re fetching from. Then, pass the cached token with your next fetch and CloudKit returns only the changes that occur after that point. Don’t infer any behavior or order from a token’s contents. The change tokens that provides aren’t compatible with and vice versa, so segregate them in your cache. Change tokens conform to and are safe to cache on-disk, as the following example shows:
+
+
+// An opaque token that represents a specific point in a database’s history.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKServerChangeToken
+
 type CKServerChangeToken struct {
 	objectivec.Object
 }

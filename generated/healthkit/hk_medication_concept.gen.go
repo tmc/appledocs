@@ -39,8 +39,13 @@ type IHKMedicationConcept interface {
 // An object that describes a specific medication concept.
 //
 // A medication concept represents the idea of a medication, like ibuprofen or insulin. It can have clinical significance, or can be created by the person using your app.
+
+
+// An object that describes a specific medication concept.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKMedicationConcept
+
 type HKMedicationConcept struct {
 	objectivec.Object
 }
@@ -84,33 +89,45 @@ func NewHKMedicationConcept() HKMedicationConcept {
 }
 
 
+
 // The display name for this medication.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKMedicationConcept/displayText
+
 func (h_ HKMedicationConcept) DisplayText() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("displayText"))
 	return rv
 }
 
+
 // The general form the medication is manufactured in.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKMedicationConcept/generalForm
+
 func (h_ HKMedicationConcept) GeneralForm() HKMedicationGeneralForm {
 	rv := objc.Send[HKMedicationGeneralForm](h_.ID, objc.Sel("generalForm"))
 	return rv
 }
 
+
 // The unique identifier for the specific medication concept.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKMedicationConcept/identifier
+
 func (h_ HKMedicationConcept) Identifier() HKHealthConceptIdentifier {
 	rv := objc.Send[HKHealthConceptIdentifier](h_.ID, objc.Sel("identifier"))
 	return rv
 }
 
+
 // The set of related clinical codings for the medication.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKMedicationConcept/relatedCodings
+
 func (h_ HKMedicationConcept) RelatedCodings() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("relatedCodings"))
 	return rv

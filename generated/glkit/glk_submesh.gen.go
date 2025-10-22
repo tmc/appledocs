@@ -38,8 +38,11 @@ type IGLKSubmesh interface {
 	Type() unsafe.Pointer
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKSubmesh
+
 type GLKSubmesh struct {
 	objectivec.Object
 }
@@ -81,43 +84,55 @@ func NewGLKSubmesh() GLKSubmesh {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKSubmesh/elementBuffer
+
 func (g_ GLKSubmesh) ElementBuffer() GLKMeshBuffer {
 	rv := objc.Send[GLKMeshBuffer](g_.ID, objc.Sel("elementBuffer"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKSubmesh/elementCount
+
 func (g_ GLKSubmesh) ElementCount() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("elementCount"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKSubmesh/mesh
+
 func (g_ GLKSubmesh) Mesh() GLKMesh {
 	rv := objc.Send[GLKMesh](g_.ID, objc.Sel("mesh"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKSubmesh/mode
+
 func (g_ GLKSubmesh) Mode() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("mode"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKSubmesh/name
+
 func (g_ GLKSubmesh) Name() string {
 	rv := objc.Send[string](g_.ID, objc.Sel("name"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKSubmesh/type
+
 func (g_ GLKSubmesh) Type() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("type"))
 	return rv

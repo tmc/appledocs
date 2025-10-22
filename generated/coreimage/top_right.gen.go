@@ -32,8 +32,11 @@ type ItopRight interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRectangleFeature/topRight-c.ivar
+
 type topRight struct {
 	objectivec.Object
 }

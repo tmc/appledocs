@@ -35,8 +35,13 @@ type IFSFileSystem interface {
 // An abstract base class for implementing a full-featured file system.
 //
 // is a full-featured file system, which works with one or more instances and presents one or more references to callers. Implement your app extension by providing a subclass of as a delegate object. Your delegate also needs to implement the protocol so that it can probe, load, and unload resources.
+
+
+// An abstract base class for implementing a full-featured file system.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSFileSystem
+
 type FSFileSystem struct {
 	objectivec.Object
 }

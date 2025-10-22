@@ -39,8 +39,13 @@ type IAccountAuthenticationModificationViewController interface {
 // A view controller that can upgrade user passwords to strong passwords, or convert accounts to use Sign in with Apple.
 //
 // Adding an account modification extension lets your app seamlessly upgrade user passwords to strong passwords, or convert from using passwords to using Sign in with Apple. The entire process can be automatic, requiring no user interaction, or you can include interactions, such as two-factor authentication confirmation.
+
+
+// A view controller that can upgrade user passwords to strong passwords, or convert accounts to use Sign in with Apple.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAccountAuthenticationModificationViewController
+
 type AccountAuthenticationModificationViewController struct {
 	appkit.ViewController
 }
@@ -86,27 +91,34 @@ func NewAccountAuthenticationModificationViewController() AccountAuthenticationM
 }
 
 
+
+
 // Prepares the view controller’s interface that displays when converting an account that uses password authentication to use Sign in with Apple.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAccountAuthenticationModificationViewController/prepareInterfaceToConvertAccountToSignInWithApple(for:existingCredential:userInfo:)
+
 func (a_ AccountAuthenticationModificationViewController) PrepareInterfaceToConvertAccountToSignInWithAppleForServiceIdentifierExistingCredentialUserInfo(serviceIdentifier unsafe.Pointer, existingCredential IASPasswordCredential, userInfo objectivec.IObject) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("prepareInterfaceToConvertAccountToSignInWithAppleForServiceIdentifier:existingCredential:userInfo:"), serviceIdentifier, existingCredential, userInfo)
 }
 
+
 // The context your account authentication modification extension uses to provide information to the system.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asaccountauthenticationmodificationviewcontroller/extensioncontext
+
 func (a_ AccountAuthenticationModificationViewController) ExtensionContext() ASAccountAuthenticationModificationExtensionContext {
 	rv := objc.Send[ASAccountAuthenticationModificationExtensionContext](a_.ID, objc.Sel("extensionContext"))
 	return rv
 }
 
 
-// SetExtensionContext sets the value of the extensionContext property.
 // The context your account authentication modification extension uses to provide information to the system.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asaccountauthenticationmodificationviewcontroller/extensioncontext
+
 func (a_ AccountAuthenticationModificationViewController) SetExtensionContext(value IASAccountAuthenticationModificationExtensionContext) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setExtensionContext:"), value)
 }

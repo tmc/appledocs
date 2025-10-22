@@ -36,26 +36,26 @@ type IURL interface {
 	URLByAppendingPathComponentIsDirectory(pathComponent string, isDirectory bool) URL
 	URLByAppendingPathExtension(pathExtension string) URL
 	URLByAppendingPathExtensionForType(contentType unsafe.Pointer) URL
-	BookmarkDataWithOptionsIncludingResourceValuesForKeysRelativeToURLError(options URLBookmarkCreationOptions, keys []string, relativeURL IURL, error_ IError) Data
+	BookmarkDataWithOptionsIncludingResourceValuesForKeysRelativeToURLError(options IURLBookmarkCreationOptions, keys []string, relativeURL IURL, error_ IError) Data
 	CheckPromisedItemIsReachableAndReturnError(error_ IError) bool
 	CheckResourceIsReachableAndReturnError(error_ IError) bool
 	FileReferenceURL() URL
 	GetFileSystemRepresentationMaxLength(buffer unsafe.Pointer, maxBufferLength uint) bool
-	GetPromisedItemResourceValueForKeyError(value objectivec.IObject, key URLResourceKey, error_ IError) bool
-	GetResourceValueForKeyError(value objectivec.IObject, key URLResourceKey, error_ IError) bool
+	GetPromisedItemResourceValueForKeyError(value objectivec.IObject, key IURLResourceKey, error_ IError) bool
+	GetResourceValueForKeyError(value objectivec.IObject, key IURLResourceKey, error_ IError) bool
 	IsFileReferenceURL() bool
 	LoadResourceDataNotifyingClientUsingCache(client objectivec.IObject, shouldUseCache bool)
 	PromisedItemResourceValuesForKeysError(keys []string, error_ IError) unsafe.Pointer
 	PropertyForKey(propertyKey string) objc.ID
 	RemoveAllCachedResourceValues()
-	RemoveCachedResourceValueForKey(key URLResourceKey)
+	RemoveCachedResourceValueForKey(key IURLResourceKey)
 	ResourceDataUsingCache(shouldUseCache bool) Data
 	ResourceValuesForKeysError(keys []string, error_ IError) unsafe.Pointer
 	SetPropertyForKey(property objectivec.IObject, propertyKey string) bool
 	SetResourceData(data IData) bool
-	SetResourceValueForKeyError(value objectivec.IObject, key URLResourceKey, error_ IError) bool
+	SetResourceValueForKeyError(value objectivec.IObject, key IURLResourceKey, error_ IError) bool
 	SetResourceValuesError(keyedValues unsafe.Pointer, error_ IError) bool
-	SetTemporaryResourceValueForKey(value objectivec.IObject, key URLResourceKey)
+	SetTemporaryResourceValueForKey(value objectivec.IObject, key IURLResourceKey)
 	StartAccessingSecurityScopedResource() bool
 	StopAccessingSecurityScopedResource()
 	AbsoluteString() string
@@ -174,7 +174,7 @@ func NewURLAbsoluteURLWithDataRepresentationRelativeToURL(data IData, baseURL IU
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(resolvingAliasFileAt:options:)
 
-func NewURLByResolvingAliasFileAtURLOptionsError(url IURL, options URLBookmarkResolutionOptions, error_ IError) URL {
+func NewURLByResolvingAliasFileAtURLOptionsError(url IURL, options IURLBookmarkResolutionOptions, error_ IError) URL {
 	rv := objc.Send[URL](objc.ID(getURLClass().class), objc.Sel("URLByResolvingAliasFileAtURL:options:error:"), url, options, error_)
 	return rv
 }
@@ -186,7 +186,7 @@ func NewURLByResolvingAliasFileAtURLOptionsError(url IURL, options URLBookmarkRe
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(resolvingBookmarkData:options:relativeTo:bookmarkDataIsStale:)
 
-func NewURLByResolvingBookmarkDataOptionsRelativeToURLBookmarkDataIsStaleError(bookmarkData IData, options URLBookmarkResolutionOptions, relativeURL IURL, isStale unsafe.Pointer, error_ IError) URL {
+func NewURLByResolvingBookmarkDataOptionsRelativeToURLBookmarkDataIsStaleError(bookmarkData IData, options IURLBookmarkResolutionOptions, relativeURL IURL, isStale unsafe.Pointer, error_ IError) URL {
 	instance := getURLClass().Alloc()
 	rv := objc.Send[URL](instance.ID, objc.Sel("initByResolvingBookmarkData:options:relativeToURL:bookmarkDataIsStale:error:"), bookmarkData, options, relativeURL, isStale, error_)
 	rv.Autorelease()
@@ -334,7 +334,7 @@ func NewURLWithStringRelativeToURL(URLString string, baseURL IURL) URL {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/URLByResolvingBookmarkData:options:relativeToURL:bookmarkDataIsStale:error:
 
-func (uc _URLClass) URLByResolvingBookmarkDataOptionsRelativeToURLBookmarkDataIsStaleError(bookmarkData IData, options URLBookmarkResolutionOptions, relativeURL IURL, isStale unsafe.Pointer, error_ IError) unsafe.Pointer {
+func (uc _URLClass) URLByResolvingBookmarkDataOptionsRelativeToURLBookmarkDataIsStaleError(bookmarkData IData, options IURLBookmarkResolutionOptions, relativeURL IURL, isStale unsafe.Pointer, error_ IError) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("URLByResolvingBookmarkData:options:relativeToURL:bookmarkDataIsStale:error:"), bookmarkData, options, relativeURL, isStale, error_)
 	return rv
 }
@@ -469,7 +469,7 @@ func (uc _URLClass) FileURLWithPathComponents(components []string) URL {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(resolvingAliasFileAt:options:)
 
-func (uc _URLClass) URLByResolvingAliasFileAtURLOptionsError(url IURL, options URLBookmarkResolutionOptions, error_ IError) unsafe.Pointer {
+func (uc _URLClass) URLByResolvingAliasFileAtURLOptionsError(url IURL, options IURLBookmarkResolutionOptions, error_ IError) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("URLByResolvingAliasFileAtURL:options:error:"), url, options, error_)
 	return rv
 }
@@ -491,7 +491,7 @@ func (uc _URLClass) ResourceValuesForKeysFromBookmarkData(keys []string, bookmar
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/writeBookmarkData(_:to:options:)
 
-func (uc _URLClass) WriteBookmarkDataToURLOptionsError(bookmarkData IData, bookmarkFileURL IURL, options URLBookmarkFileCreationOptions, error_ IError) bool {
+func (uc _URLClass) WriteBookmarkDataToURLOptionsError(bookmarkData IData, bookmarkFileURL IURL, options IURLBookmarkFileCreationOptions, error_ IError) bool {
 	rv := objc.Send[bool](objc.ID(uc.class), objc.Sel("writeBookmarkData:toURL:options:error:"), bookmarkData, bookmarkFileURL, options, error_)
 	return rv
 }
@@ -575,7 +575,7 @@ func (u_ URL) URLByAppendingPathExtensionForType(contentType unsafe.Pointer) URL
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/bookmarkData(options:includingResourceValuesForKeys:relativeTo:)
 
-func (u_ URL) BookmarkDataWithOptionsIncludingResourceValuesForKeysRelativeToURLError(options URLBookmarkCreationOptions, keys []string, relativeURL IURL, error_ IError) Data {
+func (u_ URL) BookmarkDataWithOptionsIncludingResourceValuesForKeysRelativeToURLError(options IURLBookmarkCreationOptions, keys []string, relativeURL IURL, error_ IError) Data {
 	rv := objc.Send[Data](u_.ID, objc.Sel("bookmarkDataWithOptions:includingResourceValuesForKeys:relativeToURL:error:"), options, keys, relativeURL, error_)
 	return rv
 }
@@ -635,7 +635,7 @@ func (u_ URL) GetFileSystemRepresentationMaxLength(buffer unsafe.Pointer, maxBuf
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/getPromisedItemResourceValue(_:forKey:)
 
-func (u_ URL) GetPromisedItemResourceValueForKeyError(value objectivec.IObject, key URLResourceKey, error_ IError) bool {
+func (u_ URL) GetPromisedItemResourceValueForKeyError(value objectivec.IObject, key IURLResourceKey, error_ IError) bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("getPromisedItemResourceValue:forKey:error:"), value, key, error_)
 	return rv
 }
@@ -647,7 +647,7 @@ func (u_ URL) GetPromisedItemResourceValueForKeyError(value objectivec.IObject, 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/getResourceValue(_:forKey:)
 
-func (u_ URL) GetResourceValueForKeyError(value objectivec.IObject, key URLResourceKey, error_ IError) bool {
+func (u_ URL) GetResourceValueForKeyError(value objectivec.IObject, key IURLResourceKey, error_ IError) bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("getResourceValue:forKey:error:"), value, key, error_)
 	return rv
 }
@@ -717,7 +717,7 @@ func (u_ URL) RemoveAllCachedResourceValues() {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/removeCachedResourceValue(forKey:)
 
-func (u_ URL) RemoveCachedResourceValueForKey(key URLResourceKey) {
+func (u_ URL) RemoveCachedResourceValueForKey(key IURLResourceKey) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("removeCachedResourceValueForKey:"), key)
 }
 
@@ -776,7 +776,7 @@ func (u_ URL) SetResourceData(data IData) bool {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/setResourceValue(_:forKey:)
 
-func (u_ URL) SetResourceValueForKeyError(value objectivec.IObject, key URLResourceKey, error_ IError) bool {
+func (u_ URL) SetResourceValueForKeyError(value objectivec.IObject, key IURLResourceKey, error_ IError) bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("setResourceValue:forKey:error:"), value, key, error_)
 	return rv
 }
@@ -800,7 +800,7 @@ func (u_ URL) SetResourceValuesError(keyedValues unsafe.Pointer, error_ IError) 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/setTemporaryResourceValue(_:forKey:)
 
-func (u_ URL) SetTemporaryResourceValueForKey(value objectivec.IObject, key URLResourceKey) {
+func (u_ URL) SetTemporaryResourceValueForKey(value objectivec.IObject, key IURLResourceKey) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setTemporaryResourceValue:forKey:"), value, key)
 }
 

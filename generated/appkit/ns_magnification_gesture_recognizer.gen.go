@@ -38,8 +38,13 @@ type IMagnificationGestureRecognizer interface {
 // A continuous gesture recognizer that tracks a pinch gesture that magnifies content.
 //
 // This object tracks pinch gestures on a track pad or other input device and stores the resulting magnification value for you to use in your code. This gesture recognizer automatically sets the value of the property to .
+
+
+// A continuous gesture recognizer that tracks a pinch gesture that magnifies content.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMagnificationGestureRecognizer
+
 type MagnificationGestureRecognizer struct {
 	GestureRecognizer
 }
@@ -85,38 +90,44 @@ func NewMagnificationGestureRecognizer() MagnificationGestureRecognizer {
 }
 
 
+
 // The amount of magnification to apply.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMagnificationGestureRecognizer/magnification
+
 func (m_ MagnificationGestureRecognizer) Magnification() float64 {
 	rv := objc.Send[float64](m_.ID, objc.Sel("magnification"))
 	return rv
 }
 
 
-// SetMagnification sets the value of the magnification property.
 // The amount of magnification to apply.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMagnificationGestureRecognizer/magnification
+
 func (m_ MagnificationGestureRecognizer) SetMagnification(value float64) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMagnification:"), value)
 }
 
+
 // A Boolean value that indicates whether magnification events are delivered only after gesture recognition fails.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgesturerecognizer/delaysmagnificationevents
+
 func (m_ MagnificationGestureRecognizer) DelaysMagnificationEvents() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("delaysMagnificationEvents"))
 	return rv
 }
 
 
-// SetDelaysMagnificationEvents sets the value of the delaysMagnificationEvents property.
 // A Boolean value that indicates whether magnification events are delivered only after gesture recognition fails.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgesturerecognizer/delaysmagnificationevents
+
 func (m_ MagnificationGestureRecognizer) SetDelaysMagnificationEvents(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDelaysMagnificationEvents:"), value)
 }

@@ -235,16 +235,12 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 			typedef, typedefErr := occ2go.ParseTypedef(doc)
 			if typedefErr == nil && typedef != nil {
 				typedefs = append(typedefs, typedef)
-			} else if verbose {
-				fmt.Fprintf(os.Stderr, "Warning: failed to parse typedef %s: %v\n", path, typedefErr)
 			}
 		} else if strings.Contains(doc.Metadata.ExternalID, "@k") && (strings.HasPrefix(doc.Metadata.ExternalID, "c:@k") || strings.HasPrefix(doc.Metadata.ExternalID, "c:@E@")) {
 			// This is an extern const declaration
 			constant, constErr := occ2go.ParseConstant(doc)
 			if constErr == nil && constant != nil {
 				constants = append(constants, constant)
-			} else if verbose {
-				fmt.Fprintf(os.Stderr, "Warning: failed to parse constant %s: %v\n", path, constErr)
 			}
 		} else {
 			parseErrors++

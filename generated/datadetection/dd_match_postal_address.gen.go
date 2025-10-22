@@ -39,8 +39,13 @@ type IDDMatchPostalAddress interface {
 // An object that contains a postal address that the data detection system matches.
 //
 // The DataDetection framework returns a postal address match in a object, which optionally contains the matching parts of a postal address: street, city, state, postal code, and country.
+
+
+// An object that contains a postal address that the data detection system matches.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchPostalAddress
+
 type DDMatchPostalAddress struct {
 	DDMatch
 }
@@ -86,41 +91,56 @@ func NewDDMatchPostalAddress() DDMatchPostalAddress {
 }
 
 
+
 // The city name in a postal address.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchPostalAddress/city
+
 func (d_ DDMatchPostalAddress) City() string {
 	rv := objc.Send[string](d_.ID, objc.Sel("city"))
 	return rv
 }
 
+
 // The country or region name in a postal address.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchPostalAddress/country
+
 func (d_ DDMatchPostalAddress) Country() string {
 	rv := objc.Send[string](d_.ID, objc.Sel("country"))
 	return rv
 }
 
+
 // The postal code in a postal address.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchPostalAddress/postalCode
+
 func (d_ DDMatchPostalAddress) PostalCode() string {
 	rv := objc.Send[string](d_.ID, objc.Sel("postalCode"))
 	return rv
 }
 
+
 // The state name in a postal address.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchPostalAddress/state
+
 func (d_ DDMatchPostalAddress) State() string {
 	rv := objc.Send[string](d_.ID, objc.Sel("state"))
 	return rv
 }
 
+
 // The street name in a postal address.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchPostalAddress/street
+
 func (d_ DDMatchPostalAddress) Street() string {
 	rv := objc.Send[string](d_.ID, objc.Sel("street"))
 	return rv

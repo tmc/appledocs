@@ -32,8 +32,11 @@ type IGLKMeshBufferAllocator interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMeshBufferAllocator
+
 type GLKMeshBufferAllocator struct {
 	objectivec.Object
 }

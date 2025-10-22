@@ -35,8 +35,13 @@ type IAggregateAssetDownloadTask interface {
 }
 
 // A task that downloads multiple media selections for an asset.
+
+
+// A task that downloads multiple media selections for an asset.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAggregateAssetDownloadTask
+
 type AggregateAssetDownloadTask struct {
 	foundation.URLSessionTask
 }
@@ -82,20 +87,23 @@ func NewAggregateAssetDownloadTask() AggregateAssetDownloadTask {
 }
 
 
+
 // The asset the parent task downloads.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avaggregateassetdownloadtask/urlasset
+
 func (a_ AggregateAssetDownloadTask) UrlAsset() AVURLAsset {
 	rv := objc.Send[AVURLAsset](a_.ID, objc.Sel("urlAsset"))
 	return rv
 }
 
 
-// SetUrlAsset sets the value of the urlAsset property.
 // The asset the parent task downloads.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avaggregateassetdownloadtask/urlasset
+
 func (a_ AggregateAssetDownloadTask) SetUrlAsset(value IAVURLAsset) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setUrlAsset:"), value)
 }

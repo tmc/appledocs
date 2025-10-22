@@ -37,8 +37,13 @@ type IModelStructureNeuralNetworkLayer interface {
 }
 
 // A class representing a layer in a NeuralNetwork.
+
+
+// A class representing a layer in a NeuralNetwork.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureNeuralNetworkLayer
+
 type ModelStructureNeuralNetworkLayer struct {
 	objectivec.Object
 }
@@ -82,33 +87,45 @@ func NewModelStructureNeuralNetworkLayer() ModelStructureNeuralNetworkLayer {
 }
 
 
+
 // The input names.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureNeuralNetworkLayer/inputNames
+
 func (m_ ModelStructureNeuralNetworkLayer) InputNames() []string {
 	rv := objc.Send[[]string](m_.ID, objc.Sel("inputNames"))
 	return rv
 }
 
+
 // The layer name.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureNeuralNetworkLayer/name
+
 func (m_ ModelStructureNeuralNetworkLayer) Name() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("name"))
 	return rv
 }
 
+
 // The output names.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureNeuralNetworkLayer/outputNames
+
 func (m_ ModelStructureNeuralNetworkLayer) OutputNames() []string {
 	rv := objc.Send[[]string](m_.ID, objc.Sel("outputNames"))
 	return rv
 }
 
+
 // The type of the layer, e,g, “elementwise”, “pooling”, etc.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureNeuralNetworkLayer/type
+
 func (m_ ModelStructureNeuralNetworkLayer) Type() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("type"))
 	return rv

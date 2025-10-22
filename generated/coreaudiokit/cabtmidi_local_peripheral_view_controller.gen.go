@@ -34,8 +34,13 @@ type IBTMIDILocalPeripheralViewController interface {
 // A view controller that advertises an iOS device as a Bluetooth-based MIDI peripheral.
 //
 // To advertise the iOS device as a Bluetooth MIDI peripheral, create a new object and then either present it modally or push it onto a view controller. No other configuration of the object is necessary. Once the user interface is displayed, the iOS device is discoverable by another device looking for Bluetooth MIDI peripherals, such as an iOS device displaying a object. The object manages its own user interface and is dismissed automatically. Once connected, the peripheral appears as a MIDI device, just like any other connected MIDI device. MIDI commands sent to the peripheral are automatically played. For more information, see .
+
+
+// A view controller that advertises an iOS device as a Bluetooth-based MIDI peripheral.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/CABTMIDILocalPeripheralViewController
+
 type BTMIDILocalPeripheralViewController struct {
 	ViewController
 }

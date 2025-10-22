@@ -36,8 +36,13 @@ type IDDMatchFlightNumber interface {
 // An object that contains a flight number that the data detection system matches.
 //
 // The DataDetection framework returns a flight number match in a object, which contains an airline name and flight number.
+
+
+// An object that contains a flight number that the data detection system matches.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchFlightNumber
+
 type DDMatchFlightNumber struct {
 	DDMatch
 }
@@ -83,17 +88,23 @@ func NewDDMatchFlightNumber() DDMatchFlightNumber {
 }
 
 
+
 // The name of an airline.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchFlightNumber/airline
+
 func (d_ DDMatchFlightNumber) Airline() string {
 	rv := objc.Send[string](d_.ID, objc.Sel("airline"))
 	return rv
 }
 
+
 // A string that represents a flight number.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchFlightNumber/flightNumber
+
 func (d_ DDMatchFlightNumber) FlightNumber() string {
 	rv := objc.Send[string](d_.ID, objc.Sel("flightNumber"))
 	return rv

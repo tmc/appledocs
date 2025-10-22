@@ -33,8 +33,11 @@ type IServiceSession interface {
 	Invalidate()
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLServiceSession-2ddhd
+
 type ServiceSession struct {
 	objectivec.Object
 }
@@ -76,36 +79,47 @@ func NewServiceSession() ServiceSession {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLServiceSession-2ddhd/sessionRequiringAuthorization:
+
 func (sc _ServiceSessionClass) SessionRequiringAuthorization(authorizationRequirement IServiceSessionAuthorizationRequirement) ServiceSession {
 	rv := objc.Send[ServiceSession](objc.ID(sc.class), objc.Sel("sessionRequiringAuthorization:"), authorizationRequirement)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLServiceSession-2ddhd/sessionRequiringAuthorization:fullAccuracyPurposeKey:
+
 func (sc _ServiceSessionClass) SessionRequiringAuthorizationFullAccuracyPurposeKey(authorizationRequirement IServiceSessionAuthorizationRequirement, purposeKey string) ServiceSession {
 	rv := objc.Send[ServiceSession](objc.ID(sc.class), objc.Sel("sessionRequiringAuthorization:fullAccuracyPurposeKey:"), authorizationRequirement, objc.String(purposeKey))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLServiceSession-2ddhd/sessionRequiringAuthorization:fullAccuracyPurposeKey:queue:handler:
+
 func (sc _ServiceSessionClass) SessionRequiringAuthorizationFullAccuracyPurposeKeyQueueHandler(authorizationRequirement IServiceSessionAuthorizationRequirement, purposeKey string, queue unsafe.Pointer, handler unsafe.Pointer) ServiceSession {
 	rv := objc.Send[ServiceSession](objc.ID(sc.class), objc.Sel("sessionRequiringAuthorization:fullAccuracyPurposeKey:queue:handler:"), authorizationRequirement, objc.String(purposeKey), queue, handler)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLServiceSession-2ddhd/sessionRequiringAuthorization:queue:handler:
+
 func (sc _ServiceSessionClass) SessionRequiringAuthorizationQueueHandler(authorizationRequirement IServiceSessionAuthorizationRequirement, queue unsafe.Pointer, handler unsafe.Pointer) ServiceSession {
 	rv := objc.Send[ServiceSession](objc.ID(sc.class), objc.Sel("sessionRequiringAuthorization:queue:handler:"), authorizationRequirement, queue, handler)
 	return rv
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLServiceSession-2ddhd/invalidate
+
 func (s_ ServiceSession) Invalidate() {
 	objc.Send[objc.ID](s_.ID, objc.Sel("invalidate"))
 }

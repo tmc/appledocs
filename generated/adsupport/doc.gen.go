@@ -2,12 +2,16 @@
 
 // Package adsupport provides Go bindings for the AdSupport framework.
 //
-// Provide apps with access to an advertising identifier. [Full Topic]
+// Provide apps with access to an advertising identifier.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to AdSupport without requiring cgo.
+
+// Provide apps with access to an advertising identifier.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AdSupport
+
 package adsupport
 
 import (

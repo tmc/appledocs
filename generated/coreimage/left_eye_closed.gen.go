@@ -32,8 +32,11 @@ type IleftEyeClosed interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFaceFeature/leftEyeClosed-c.ivar
+
 type leftEyeClosed struct {
 	objectivec.Object
 }

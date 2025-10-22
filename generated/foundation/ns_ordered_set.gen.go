@@ -31,7 +31,7 @@ type _OrderedSetClass struct {
 type IOrderedSet interface {
 	objectivec.IObject
 	DescriptionWithLocaleIndent(locale objectivec.IObject, level uint) String
-	EnumerateObjectsWithOptionsUsingBlock(opts EnumerationOptions, block unsafe.Pointer)
+	EnumerateObjectsWithOptionsUsingBlock(opts IEnumerationOptions, block unsafe.Pointer)
 	IndexOfObjectPassingTest(predicate unsafe.Pointer) uint
 	ObjectAtIndex(idx uint) unsafe.Pointer
 	LastObject() unsafe.Pointer
@@ -121,7 +121,7 @@ func (o_ OrderedSet) DescriptionWithLocaleIndent(locale objectivec.IObject, leve
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedSet/enumerateObjects(options:using:)
 
-func (o_ OrderedSet) EnumerateObjectsWithOptionsUsingBlock(opts EnumerationOptions, block unsafe.Pointer) {
+func (o_ OrderedSet) EnumerateObjectsWithOptionsUsingBlock(opts IEnumerationOptions, block unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("enumerateObjectsWithOptions:usingBlock:"), opts, block)
 }
 

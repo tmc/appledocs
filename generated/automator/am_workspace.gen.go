@@ -36,8 +36,13 @@ type IAMWorkspace interface {
 // A workspace for running an Automator workflow.
 //
 // The class provides access to the shared workspace in the Automator framework, where you can run workflows without a workflow controller. Use to access the shared workspace and to run your workflow in it.
+
+
+// A workspace for running an Automator workflow.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkspace
+
 type AMWorkspace struct {
 	objectivec.Object
 }
@@ -81,24 +86,34 @@ func NewAMWorkspace() AMWorkspace {
 }
 
 
+
 // The shared workspace object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkspace/shared
+
 func (ac _AMWorkspaceClass) SharedWorkspace() AMWorkspace {
 	rv := objc.Send[AMWorkspace](objc.ID(ac.class), objc.Sel("sharedWorkspace"))
 	return rv
 }
+
+
 // Loads and runs the specified workflow file.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkspace/runWorkflow(atPath:withInput:)
+
 func (a_ AMWorkspace) RunWorkflowAtPathWithInputError(path string, input objectivec.IObject, error_ unsafe.Pointer) objc.ID {
 	rv := objc.Send[objc.ID](a_.ID, objc.Sel("runWorkflowAtPath:withInput:error:"), objc.String(path), input, error_)
 	return rv
 }
 
+
 // The shared workspace object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkspace/shared
+
 func (a_ AMWorkspace) SharedWorkspace() AMWorkspace {
 	rv := objc.Send[AMWorkspace](a_.ID, objc.Sel("sharedWorkspace"))
 	return rv

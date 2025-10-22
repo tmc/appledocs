@@ -30,6 +30,8 @@ type _AutoreleasePoolClass struct {
 // An interface definition for the [AutoreleasePool] class.
 type IAutoreleasePool interface {
 	objectivec.IObject
+	AddObject(anObject objectivec.IObject)
+	Drain()
 }
 
 // An object that supports Cocoa’s reference-counted memory management system.
@@ -84,6 +86,48 @@ func NewAutoreleasePool() AutoreleasePool {
 	return getAutoreleasePoolClass().New()
 }
 
+
+
+// Adds a given object to the active autorelease pool in the current thread.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAutoreleasePool/addObject:-c.type.method
+
+func (ac _AutoreleasePoolClass) AddObject(anObject objectivec.IObject) {
+	objc.Send[objc.ID](objc.ID(ac.class), objc.Sel("addObject:"), anObject)
+}
+
+
+// Displays the state of the current thread’s autorelease pool stack to .
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAutoreleasePool/showPools
+
+func (ac _AutoreleasePoolClass) ShowPools() {
+	objc.Send[objc.ID](objc.ID(ac.class), objc.Sel("showPools"))
+}
+
+
+
+// Adds a given object to the receiver
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAutoreleasePool/addObject:-c.method
+
+func (a_ AutoreleasePool) AddObject(anObject objectivec.IObject) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("addObject:"), anObject)
+}
+
+
+
+// In a reference-counted environment, releases and pops the receiver; in a garbage-collected environment, triggers garbage collection if the memory allocated since the last collection is greater than the current threshold.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAutoreleasePool/drain
+
+func (a_ AutoreleasePool) Drain() {
+	objc.Send[objc.ID](a_.ID, objc.Sel("drain"))
+}
 
 
 

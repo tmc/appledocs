@@ -37,8 +37,13 @@ type IGCDeviceBattery interface {
 // The charge level and state of a device’s battery.
 //
 // Use this class to display the state of a device’s battery to a player.
+
+
+// The charge level and state of a device’s battery.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCDeviceBattery
+
 type GCDeviceBattery struct {
 	objectivec.Object
 }
@@ -82,17 +87,23 @@ func NewGCDeviceBattery() GCDeviceBattery {
 }
 
 
+
 // The charge level of a device’s battery.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCDeviceBattery/batteryLevel
+
 func (g_ GCDeviceBattery) BatteryLevel() float32 {
 	rv := objc.Send[float32](g_.ID, objc.Sel("batteryLevel"))
 	return rv
 }
 
+
 // The state of a device’s battery.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCDeviceBattery/batteryState
+
 func (g_ GCDeviceBattery) BatteryState() GCDeviceBatteryState {
 	rv := objc.Send[GCDeviceBatteryState](g_.ID, objc.Sel("batteryState"))
 	return rv

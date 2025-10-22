@@ -38,8 +38,13 @@ type IAXCategoricalDataAxisDescriptor interface {
 // An object that represents an axis of categorical data.
 //
 // A categorical data axis divides information into groups, or categories. For example, a categorical axis may represent blood type data divided into the possible categories , , , and .
+
+
+// An object that represents an axis of categorical data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXCategoricalDataAxisDescriptor
+
 type AXCategoricalDataAxisDescriptor struct {
 	objectivec.Object
 }
@@ -87,7 +92,9 @@ func NewAXCategoricalDataAxisDescriptor() AXCategoricalDataAxisDescriptor {
 
 // Creates a categorical data axis with the specified attributed title and an array of categories in the specified order.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXCategoricalDataAxisDescriptor/init(attributedTitle:categoryOrder:)
+
 func NewAXCategoricalDataAxisDescriptorWithAttributedTitleCategoryOrder(attributedTitle foundation.IAttributedString, categoryOrder []string) AXCategoricalDataAxisDescriptor {
 	instance := getAXCategoricalDataAxisDescriptorClass().Alloc()
 	rv := objc.Send[AXCategoricalDataAxisDescriptor](instance.ID, objc.Sel("initWithAttributedTitle:categoryOrder:"), attributedTitle, categoryOrder)
@@ -99,7 +106,9 @@ func NewAXCategoricalDataAxisDescriptorWithAttributedTitleCategoryOrder(attribut
 
 // Creates a categorical data axis with the specified title and an array of categories in the specified order.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXCategoricalDataAxisDescriptor/init(title:categoryOrder:)
+
 func NewAXCategoricalDataAxisDescriptorWithTitleCategoryOrder(title string, categoryOrder []string) AXCategoricalDataAxisDescriptor {
 	instance := getAXCategoricalDataAxisDescriptorClass().Alloc()
 	rv := objc.Send[AXCategoricalDataAxisDescriptor](instance.ID, objc.Sel("initWithTitle:categoryOrder:"), objc.String(title), categoryOrder)
@@ -108,20 +117,23 @@ func NewAXCategoricalDataAxisDescriptorWithTitleCategoryOrder(title string, cate
 }
 
 
+
 // A list of every category value for the axis in the order they appear visually in the graph or legend.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXCategoricalDataAxisDescriptor/categoryOrder
+
 func (a_ AXCategoricalDataAxisDescriptor) CategoryOrder() []string {
 	rv := objc.Send[[]string](a_.ID, objc.Sel("categoryOrder"))
 	return rv
 }
 
 
-// SetCategoryOrder sets the value of the categoryOrder property.
 // A list of every category value for the axis in the order they appear visually in the graph or legend.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXCategoricalDataAxisDescriptor/categoryOrder
+
 func (a_ AXCategoricalDataAxisDescriptor) SetCategoryOrder(value []string) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID

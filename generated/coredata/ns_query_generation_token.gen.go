@@ -35,8 +35,13 @@ type IQueryGenerationToken interface {
 // A token that indicates which generation of the persistent store is being accessed.
 //
 // When a managed object context is pinned to a specific generation of the app data, a query generation token will be associated with that context.
+
+
+// A token that indicates which generation of the persistent store is being accessed.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSQueryGenerationToken
+
 type QueryGenerationToken struct {
 	objectivec.Object
 }
@@ -80,16 +85,22 @@ func NewQueryGenerationToken() QueryGenerationToken {
 }
 
 
+
 // A token that informs a context to use the current generation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSQueryGenerationToken/current
+
 func (qc _QueryGenerationTokenClass) CurrentQueryGenerationToken() QueryGenerationToken {
 	rv := objc.Send[NSQueryGenerationToken](objc.ID(qc.class), objc.Sel("currentQueryGenerationToken"))
 	return rv
 }
+
 // A token that informs a context to use the current generation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSQueryGenerationToken/current
+
 func (q_ QueryGenerationToken) CurrentQueryGenerationToken() NSQueryGenerationToken {
 	rv := objc.Send[NSQueryGenerationToken](q_.ID, objc.Sel("currentQueryGenerationToken"))
 	return rv

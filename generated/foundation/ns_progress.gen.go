@@ -48,7 +48,7 @@ type IProgress interface {
 	CompletedUnitCount() unsafe.Pointer
 	SetCompletedUnitCount(value unsafe.Pointer)
 	FileOperationKind() ProgressFileOperationKind
-	SetFileOperationKind(value ProgressFileOperationKind)
+	SetFileOperationKind(value IProgressFileOperationKind)
 	FileURL() URL
 	SetFileURL(value IURL)
 	FractionCompleted() float64
@@ -414,7 +414,7 @@ func (p_ Progress) FileOperationKind() ProgressFileOperationKind {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/fileOperationKind-swift.property
 
-func (p_ Progress) SetFileOperationKind(value ProgressFileOperationKind) {
+func (p_ Progress) SetFileOperationKind(value IProgressFileOperationKind) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setFileOperationKind:"), value)
 }
 

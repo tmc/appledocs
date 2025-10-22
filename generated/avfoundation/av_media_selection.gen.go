@@ -35,8 +35,13 @@ type IMediaSelection interface {
 }
 
 // An object that represents a complete rendition of media selection options on an asset.
+
+
+// An object that represents a complete rendition of media selection options on an asset.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMediaSelection
+
 type MediaSelection struct {
 	objectivec.Object
 }
@@ -80,20 +85,23 @@ func NewMediaSelection() MediaSelection {
 }
 
 
+
 // The asset associated with the media selection.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselection/asset
+
 func (m_ MediaSelection) Asset() AVAsset {
 	rv := objc.Send[AVAsset](m_.ID, objc.Sel("asset"))
 	return rv
 }
 
 
-// SetAsset sets the value of the asset property.
 // The asset associated with the media selection.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselection/asset
+
 func (m_ MediaSelection) SetAsset(value IAVAsset) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAsset:"), value)
 }

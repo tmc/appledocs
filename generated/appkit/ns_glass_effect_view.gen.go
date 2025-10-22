@@ -40,8 +40,13 @@ type IGlassEffectView interface {
 }
 
 // A view that embeds its content view in a dynamic glass effect.
+
+
+// A view that embeds its content view in a dynamic glass effect.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlassEffectView
+
 type GlassEffectView struct {
 	View
 }
@@ -87,74 +92,86 @@ func NewGlassEffectView() GlassEffectView {
 }
 
 
+
 // The view to embed in glass.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlassEffectView/contentView
+
 func (g_ GlassEffectView) ContentView() NSView {
 	rv := objc.Send[NSView](g_.ID, objc.Sel("contentView"))
 	return rv
 }
 
 
-// SetContentView sets the value of the contentView property.
 // The view to embed in glass.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlassEffectView/contentView
+
 func (g_ GlassEffectView) SetContentView(value IView) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setContentView:"), value)
 }
 
+
 // The amount of curvature for all corners of the glass.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlassEffectView/cornerRadius
+
 func (g_ GlassEffectView) CornerRadius() float64 {
 	rv := objc.Send[float64](g_.ID, objc.Sel("cornerRadius"))
 	return rv
 }
 
 
-// SetCornerRadius sets the value of the cornerRadius property.
 // The amount of curvature for all corners of the glass.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlassEffectView/cornerRadius
+
 func (g_ GlassEffectView) SetCornerRadius(value float64) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setCornerRadius:"), value)
 }
 
+
 // The style of glass this view uses.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlassEffectView/style-swift.property
+
 func (g_ GlassEffectView) Style() GlassEffectViewStyle {
 	rv := objc.Send[GlassEffectViewStyle](g_.ID, objc.Sel("style"))
 	return rv
 }
 
 
-// SetStyle sets the value of the style property.
 // The style of glass this view uses.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlassEffectView/style-swift.property
+
 func (g_ GlassEffectView) SetStyle(value GlassEffectViewStyle) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setStyle:"), value)
 }
 
+
 // The color the glass effect view uses to tint the background and glass effect toward.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlassEffectView/tintColor
+
 func (g_ GlassEffectView) TintColor() NSColor {
 	rv := objc.Send[NSColor](g_.ID, objc.Sel("tintColor"))
 	return rv
 }
 
 
-// SetTintColor sets the value of the tintColor property.
 // The color the glass effect view uses to tint the background and glass effect toward.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlassEffectView/tintColor
+
 func (g_ GlassEffectView) SetTintColor(value IColor) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setTintColor:"), value)
 }

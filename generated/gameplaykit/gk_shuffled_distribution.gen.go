@@ -34,8 +34,13 @@ type IShuffledDistribution interface {
 // A generator for random numbers that are uniformly distributed across many samplings, but where short sequences of similar values are unlikely.
 //
 // The behavior of a shuffled distribution is sometimes called “fair” randomization, because true randomness in games can result in extended “lucky streaks” or “unlucky streaks” for players. To create a shuffled distribution and use it to generate random numbers, use the methods defined by its superclass . The class inherits its entire interface from its superclass—to initialize and use a shuffled distribution, use the methods listed in . A shuffled distribution differs from its superclass in behavior only. Consider the code snippets below: In this example, each distribution generates 100 random integers from a simulated six-sided die. In both cases, the distribution of results is roughly uniform—that is, the number of occurrences of any specific value is about the same as that of any other value. However, the shuffled distribution makes sure not to repeat any one value until it has used all of its possible values. In this example, if the die rolls a 1, the shuffled distribution will not generate another 1 for at least five more rolls. For more information on choosing and using randomizers in GameplayKit, read in .
+
+
+// A generator for random numbers that are uniformly distributed across many samplings, but where short sequences of similar values are unlikely.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKShuffledDistribution
+
 type ShuffledDistribution struct {
 	RandomDistribution
 }

@@ -43,8 +43,13 @@ type ITextBlock interface {
 // A block of text laid out in a subregion of the text container.
 //
 // A text block appears as an attribute of a paragraph, and as part of the paragraph style. The most important subclass of is , which represents a block of text that appears as a cell in a table. The table itself is a object. All objects reference this table, which controls their sizing and positioning.
+
+
+// A block of text laid out in a subregion of the text container.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextBlock
+
 type TextBlock struct {
 	objectivec.Object
 }
@@ -88,74 +93,86 @@ func NewTextBlock() TextBlock {
 }
 
 
+
 // The background color of the text block.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextblock/backgroundcolor
+
 func (t_ TextBlock) BackgroundColor() NSColor {
 	rv := objc.Send[NSColor](t_.ID, objc.Sel("backgroundColor"))
 	return rv
 }
 
 
-// SetBackgroundColor sets the value of the backgroundColor property.
 // The background color of the text block.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextblock/backgroundcolor
+
 func (t_ TextBlock) SetBackgroundColor(value IColor) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setBackgroundColor:"), value)
 }
 
+
 // The width of the text block.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextblock/contentwidth
+
 func (t_ TextBlock) ContentWidth() float64 {
 	rv := objc.Send[float64](t_.ID, objc.Sel("contentWidth"))
 	return rv
 }
 
 
-// SetContentWidth sets the value of the contentWidth property.
 // The width of the text block.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextblock/contentwidth
+
 func (t_ TextBlock) SetContentWidth(value float64) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setContentWidth:"), value)
 }
 
+
 // The type of value stored for the text block width.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextblock/contentwidthvaluetype
+
 func (t_ TextBlock) ContentWidthValueType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("contentWidthValueType"))
 	return rv
 }
 
 
-// SetContentWidthValueType sets the value of the contentWidthValueType property.
 // The type of value stored for the text block width.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextblock/contentwidthvaluetype
+
 func (t_ TextBlock) SetContentWidthValueType(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setContentWidthValueType:"), value)
 }
 
+
 // The vertical alignment of the text block.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextblock/verticalalignment-swift.property
+
 func (t_ TextBlock) VerticalAlignment() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("verticalAlignment"))
 	return rv
 }
 
 
-// SetVerticalAlignment sets the value of the verticalAlignment property.
 // The vertical alignment of the text block.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextblock/verticalalignment-swift.property
+
 func (t_ TextBlock) SetVerticalAlignment(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setVerticalAlignment:"), value)
 }

@@ -35,7 +35,7 @@ type IHKWorkoutEvent interface {
 	Date() foundation.Date
 	SetDate(value foundation.IDate)
 	DateInterval() foundation.DateInterval
-	SetDateInterval(value foundation.IDateInterval)
+	SetDateInterval(value foundation.DateInterval)
 	Metadata() string
 	SetMetadata(value string)
 	HKWorkoutTypeIdentifier() string
@@ -44,8 +44,13 @@ type IHKWorkoutEvent interface {
 // An object representing an important event during a workout.
 //
 // You can use workout events to toggle a workout between an active and an inactive state, or to mark points of interest during a workout. Workouts start in an active state. A pause event switches it to an inactive state; a resume event switches it back to an active state. Adding a pause event when the workout is already inactive, or a resume event when the workout is already active, does not affect the workout’s state. These events are ignored. The lap, segment, and marker events are used to identify periods of interest during a workout. Use lap events to partition a workout into segments of equal distance. Segment events mark important periods during the workout, while markers identify important points in time.
+
+
+// An object representing an important event during a workout.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKWorkoutEvent
+
 type HKWorkoutEvent struct {
 	objectivec.Object
 }
@@ -89,71 +94,86 @@ func NewHKWorkoutEvent() HKWorkoutEvent {
 }
 
 
+
 // The type of workout event.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKWorkoutEvent/type
+
 func (h_ HKWorkoutEvent) Type() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("type"))
 	return rv
 }
 
+
 // The time when the transition occurred.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutevent/date
+
 func (h_ HKWorkoutEvent) Date() foundation.Date {
 	rv := objc.Send[foundation.Date](h_.ID, objc.Sel("date"))
 	return rv
 }
 
 
-// SetDate sets the value of the date property.
 // The time when the transition occurred.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutevent/date
+
 func (h_ HKWorkoutEvent) SetDate(value foundation.IDate) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setDate:"), value)
 }
 
+
 // The time and duration of the event.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutevent/dateinterval
+
 func (h_ HKWorkoutEvent) DateInterval() foundation.DateInterval {
 	rv := objc.Send[foundation.DateInterval](h_.ID, objc.Sel("dateInterval"))
 	return rv
 }
 
 
-// SetDateInterval sets the value of the dateInterval property.
 // The time and duration of the event.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutevent/dateinterval
-func (h_ HKWorkoutEvent) SetDateInterval(value foundation.IDateInterval) {
+
+func (h_ HKWorkoutEvent) SetDateInterval(value foundation.DateInterval) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setDateInterval:"), value)
 }
 
+
 // The metadata associated with the workout event.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutevent/metadata
+
 func (h_ HKWorkoutEvent) Metadata() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("metadata"))
 	return rv
 }
 
 
-// SetMetadata sets the value of the metadata property.
 // The metadata associated with the workout event.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutevent/metadata
+
 func (h_ HKWorkoutEvent) SetMetadata(value string) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setMetadata:"), objc.String(value))
 }
 
+
 // The workout type identifier.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkouttypeidentifier
+
 func (h_ HKWorkoutEvent) HKWorkoutTypeIdentifier() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKWorkoutTypeIdentifier"))
 	return rv

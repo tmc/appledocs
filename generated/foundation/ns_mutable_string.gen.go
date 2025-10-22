@@ -31,11 +31,11 @@ type IMutableString interface {
 	IString
 	AppendString(aString string)
 	AppendFormat(format string)
-	ApplyTransformReverseRangeUpdatedRange(transform IStringTransform, reverse bool, range_ Range, resultingRange IRangePointer) bool
-	DeleteCharactersInRange(range_ Range)
+	ApplyTransformReverseRangeUpdatedRange(transform IStringTransform, reverse bool, range_ IRange, resultingRange IRangePointer) bool
+	DeleteCharactersInRange(range_ IRange)
 	InsertStringAtIndex(aString string, loc uint)
-	ReplaceCharactersInRangeWithString(range_ Range, aString string)
-	ReplaceOccurrencesOfStringWithStringOptionsRange(target string, replacement string, options StringCompareOptions, searchRange Range) uint
+	ReplaceCharactersInRangeWithString(range_ IRange, aString string)
+	ReplaceOccurrencesOfStringWithStringOptionsRange(target string, replacement string, options IStringCompareOptions, searchRange IRange) uint
 	SetString(aString string)
 }
 
@@ -149,7 +149,7 @@ func (m_ MutableString) AppendFormat(format string) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableString/applyTransform(_:reverse:range:updatedRange:)
 
-func (m_ MutableString) ApplyTransformReverseRangeUpdatedRange(transform IStringTransform, reverse bool, range_ Range, resultingRange IRangePointer) bool {
+func (m_ MutableString) ApplyTransformReverseRangeUpdatedRange(transform IStringTransform, reverse bool, range_ IRange, resultingRange IRangePointer) bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("applyTransform:reverse:range:updatedRange:"), transform, reverse, range_, resultingRange)
 	return rv
 }
@@ -161,7 +161,7 @@ func (m_ MutableString) ApplyTransformReverseRangeUpdatedRange(transform IString
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableString/deleteCharacters(in:)
 
-func (m_ MutableString) DeleteCharactersInRange(range_ Range) {
+func (m_ MutableString) DeleteCharactersInRange(range_ IRange) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("deleteCharactersInRange:"), range_)
 }
 
@@ -183,7 +183,7 @@ func (m_ MutableString) InsertStringAtIndex(aString string, loc uint) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableString/replaceCharacters(in:with:)
 
-func (m_ MutableString) ReplaceCharactersInRangeWithString(range_ Range, aString string) {
+func (m_ MutableString) ReplaceCharactersInRangeWithString(range_ IRange, aString string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("replaceCharactersInRange:withString:"), range_, objc.String(aString))
 }
 
@@ -194,7 +194,7 @@ func (m_ MutableString) ReplaceCharactersInRangeWithString(range_ Range, aString
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableString/replaceOccurrences(of:with:options:range:)
 
-func (m_ MutableString) ReplaceOccurrencesOfStringWithStringOptionsRange(target string, replacement string, options StringCompareOptions, searchRange Range) uint {
+func (m_ MutableString) ReplaceOccurrencesOfStringWithStringOptionsRange(target string, replacement string, options IStringCompareOptions, searchRange IRange) uint {
 	rv := objc.Send[uint](m_.ID, objc.Sel("replaceOccurrencesOfString:withString:options:range:"), objc.String(target), objc.String(replacement), options, searchRange)
 	return rv
 }

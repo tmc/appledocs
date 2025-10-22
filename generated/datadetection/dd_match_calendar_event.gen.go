@@ -42,8 +42,13 @@ type IDDMatchCalendarEvent interface {
 // An object that represents a calendar date or date range that the data detection system matches.
 //
 // The DataDetection framework returns a calendar event match in a object, which has only a beginning date, only an end date, or both a beginning date and an end date.
+
+
+// An object that represents a calendar date or date range that the data detection system matches.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchCalendarEvent
+
 type DDMatchCalendarEvent struct {
 	DDMatch
 }
@@ -89,60 +94,78 @@ func NewDDMatchCalendarEvent() DDMatchCalendarEvent {
 }
 
 
+
 // A date that represents the end of the event.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchCalendarEvent/endDate
+
 func (d_ DDMatchCalendarEvent) EndDate() foundation.NSDate {
 	rv := objc.Send[foundation.NSDate](d_.ID, objc.Sel("endDate"))
 	return rv
 }
 
+
 // The time zone for the event’s end date.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchCalendarEvent/endTimeZone
+
 func (d_ DDMatchCalendarEvent) EndTimeZone() foundation.TimeZone {
 	rv := objc.Send[foundation.TimeZone](d_.ID, objc.Sel("endTimeZone"))
 	return rv
 }
 
+
 // A Boolean value that indicates whether the event is an all-day event.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchCalendarEvent/isAllDay
+
 func (d_ DDMatchCalendarEvent) AllDay() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("allDay"))
 	return rv
 }
 
+
 // A date that represents the start of the event.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchCalendarEvent/startDate
+
 func (d_ DDMatchCalendarEvent) StartDate() foundation.NSDate {
 	rv := objc.Send[foundation.NSDate](d_.ID, objc.Sel("startDate"))
 	return rv
 }
 
+
 // The time zone for the event’s start date.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchCalendarEvent/startTimeZone
+
 func (d_ DDMatchCalendarEvent) StartTimeZone() foundation.TimeZone {
 	rv := objc.Send[foundation.TimeZone](d_.ID, objc.Sel("startTimeZone"))
 	return rv
 }
 
+
 // A Boolean value that indicates whether the event is an all-day event.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/datadetection/ddmatchcalendarevent/isallday
+
 func (d_ DDMatchCalendarEvent) IsAllDay() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("isAllDay"))
 	return rv
 }
 
 
-// SetIsAllDay sets the value of the isAllDay property.
 // A Boolean value that indicates whether the event is an all-day event.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/datadetection/ddmatchcalendarevent/isallday
+
 func (d_ DDMatchCalendarEvent) SetIsAllDay(value bool) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setIsAllDay:"), value)
 }

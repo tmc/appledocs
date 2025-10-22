@@ -34,8 +34,13 @@ type ICNContactVCardSerialization interface {
 }
 
 // An object you use to convert to and from a vCard representation of the user’s contacts.
+
+
+// An object you use to convert to and from a vCard representation of the user’s contacts.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactVCardSerialization
+
 type CNContactVCardSerialization struct {
 	objectivec.Object
 }
@@ -79,25 +84,34 @@ func NewCNContactVCardSerialization() CNContactVCardSerialization {
 }
 
 
+
 // Returns the contacts from the vCard data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactVCardSerialization/contacts(with:)
+
 func (cc _CNContactVCardSerializationClass) ContactsWithDataError(data foundation.IData, error_ unsafe.Pointer) []CNContact {
 	rv := objc.Send[[]CNContact](objc.ID(cc.class), objc.Sel("contactsWithData:error:"), data, error_)
 	return rv
 }
 
+
 // Returns the vCard representation of the specified contacts.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactVCardSerialization/data(with:)
+
 func (cc _CNContactVCardSerializationClass) DataWithContactsError(contacts []CNContact, error_ unsafe.Pointer) foundation.Data {
 	rv := objc.Send[foundation.Data](objc.ID(cc.class), objc.Sel("dataWithContacts:error:"), contacts, error_)
 	return rv
 }
 
+
 // Use to fetch all contact keys required to create vCard data from a contact.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactVCardSerialization/descriptorForRequiredKeys()
+
 func (cc _CNContactVCardSerializationClass) DescriptorForRequiredKeys() objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("descriptorForRequiredKeys"))
 	return rv

@@ -41,8 +41,13 @@ type IHKVisionPrescription interface {
 // A sample that stores a vision prescription.
 //
 // Use this class to create an image-only prescription. Here, you attach the prescription as an image or PDF to a simple sample. The sample contains only basic information about the prescription, such as the issue and expiration dates. To see the prescription data, people must view the attached image or PDF. To create an image-only prescription, start by creating an sample object. Next, save the sample to the HealthKit store. Then, you can attach the image or PDF to the sample. For more information about adding images or pdfs as attachments, see . To create a vision prescription sample that contains the full data for the prescription, use or instead.
+
+
+// A sample that stores a vision prescription.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKVisionPrescription
+
 type HKVisionPrescription struct {
 	HKSample
 }
@@ -88,56 +93,65 @@ func NewHKVisionPrescription() HKVisionPrescription {
 }
 
 
+
 // The date when the doctor issued the prescription.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprescription/dateissued
+
 func (h_ HKVisionPrescription) DateIssued() foundation.Date {
 	rv := objc.Send[foundation.Date](h_.ID, objc.Sel("dateIssued"))
 	return rv
 }
 
 
-// SetDateIssued sets the value of the dateIssued property.
 // The date when the doctor issued the prescription.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprescription/dateissued
+
 func (h_ HKVisionPrescription) SetDateIssued(value foundation.IDate) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setDateIssued:"), value)
 }
 
+
 // The date when the prescription expires.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprescription/expirationdate
+
 func (h_ HKVisionPrescription) ExpirationDate() foundation.Date {
 	rv := objc.Send[foundation.Date](h_.ID, objc.Sel("expirationDate"))
 	return rv
 }
 
 
-// SetExpirationDate sets the value of the expirationDate property.
 // The date when the prescription expires.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprescription/expirationdate
+
 func (h_ HKVisionPrescription) SetExpirationDate(value foundation.IDate) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setExpirationDate:"), value)
 }
 
+
 // The type of vision prescription.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprescription/prescriptiontype
+
 func (h_ HKVisionPrescription) PrescriptionType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("prescriptionType"))
 	return rv
 }
 
 
-// SetPrescriptionType sets the value of the prescriptionType property.
 // The type of vision prescription.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprescription/prescriptiontype
+
 func (h_ HKVisionPrescription) SetPrescriptionType(value unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setPrescriptionType:"), value)
 }

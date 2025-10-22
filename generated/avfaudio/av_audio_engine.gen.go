@@ -61,8 +61,13 @@ type IAudioEngine interface {
 // An object that manages a graph of audio nodes, controls playback, and configures real-time rendering constraints.
 //
 // An audio engine object contains a group of instances that you attach to form an audio processing chain. You can connect, disconnect, and remove audio nodes during runtime with minor limitations. Removing an audio node that has differing channel counts, or that’s a mixer, can break the graph. Reconnect audio nodes only when they’re upstream of a mixer. By default, Audio Engine renders to a connected audio device in real time. You can configure the engine to operate in manual rendering mode when you need to render at, or faster than, real time. In that mode, the engine disconnects from audio devices and your app drives the rendering.
+
+
+// An object that manages a graph of audio nodes, controls playback, and configures real-time rendering constraints.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioEngine
+
 type AudioEngine struct {
 	objectivec.Object
 }
@@ -106,228 +111,279 @@ func NewAudioEngine() AudioEngine {
 }
 
 
+
+
 // Prepares the audio engine for starting.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioEngine/prepare()
+
 func (a_ AudioEngine) Prepare() {
 	objc.Send[objc.ID](a_.ID, objc.Sel("prepare"))
 }
 
+
+
 // Starts the audio engine.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioEngine/start()
+
 func (a_ AudioEngine) StartAndReturnError(outError unsafe.Pointer) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("startAndReturnError:"), outError)
 	return rv
 }
 
+
+
 // Stops the audio engine and releases any previously prepared resources.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioEngine/stop()
+
 func (a_ AudioEngine) Stop() {
 	objc.Send[objc.ID](a_.ID, objc.Sel("stop"))
 }
 
+
 // The audio engine’s singleton input audio node.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioEngine/inputNode
+
 func (a_ AudioEngine) InputNode() AVAudioInputNode {
 	rv := objc.Send[AVAudioInputNode](a_.ID, objc.Sel("inputNode"))
 	return rv
 }
 
+
 // The audio engine’s optional singleton main mixer node.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioEngine/mainMixerNode
+
 func (a_ AudioEngine) MainMixerNode() AVAudioMixerNode {
 	rv := objc.Send[AVAudioMixerNode](a_.ID, objc.Sel("mainMixerNode"))
 	return rv
 }
 
+
 // The music sequence instance that you attach to the audio engine, if any.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioEngine/musicSequence
+
 func (a_ AudioEngine) MusicSequence() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("musicSequence"))
 	return rv
 }
 
 
-// SetMusicSequence sets the value of the musicSequence property.
 // The music sequence instance that you attach to the audio engine, if any.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioEngine/musicSequence
+
 func (a_ AudioEngine) SetMusicSequence(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMusicSequence:"), value)
 }
 
+
 // The audio engine’s singleton output audio node.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioEngine/outputNode
+
 func (a_ AudioEngine) OutputNode() AVAudioOutputNode {
 	rv := objc.Send[AVAudioOutputNode](a_.ID, objc.Sel("outputNode"))
 	return rv
 }
 
+
 // A read-only set that contains the nodes you attach to the audio engine.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioengine/attachednodes
+
 func (a_ AudioEngine) AttachedNodes() AVAudioNode {
 	rv := objc.Send[AVAudioNode](a_.ID, objc.Sel("attachedNodes"))
 	return rv
 }
 
 
-// SetAttachedNodes sets the value of the attachedNodes property.
 // A read-only set that contains the nodes you attach to the audio engine.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioengine/attachednodes
+
 func (a_ AudioEngine) SetAttachedNodes(value IAVAudioNode) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAttachedNodes:"), value)
 }
 
+
 // A Boolean value that indicates whether autoshutdown is in an enabled state.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioengine/isautoshutdownenabled
+
 func (a_ AudioEngine) IsAutoShutdownEnabled() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isAutoShutdownEnabled"))
 	return rv
 }
 
 
-// SetIsAutoShutdownEnabled sets the value of the isAutoShutdownEnabled property.
 // A Boolean value that indicates whether autoshutdown is in an enabled state.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioengine/isautoshutdownenabled
+
 func (a_ AudioEngine) SetIsAutoShutdownEnabled(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsAutoShutdownEnabled:"), value)
 }
 
+
 // A Boolean value that indicates whether the engine is operating in manual rendering mode.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioengine/isinmanualrenderingmode
+
 func (a_ AudioEngine) IsInManualRenderingMode() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isInManualRenderingMode"))
 	return rv
 }
 
 
-// SetIsInManualRenderingMode sets the value of the isInManualRenderingMode property.
 // A Boolean value that indicates whether the engine is operating in manual rendering mode.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioengine/isinmanualrenderingmode
+
 func (a_ AudioEngine) SetIsInManualRenderingMode(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsInManualRenderingMode:"), value)
 }
 
+
 // A Boolean value that indicates whether the audio engine is running.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioengine/isrunning
+
 func (a_ AudioEngine) IsRunning() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isRunning"))
 	return rv
 }
 
 
-// SetIsRunning sets the value of the isRunning property.
 // A Boolean value that indicates whether the audio engine is running.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioengine/isrunning
+
 func (a_ AudioEngine) SetIsRunning(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsRunning:"), value)
 }
 
+
 // The block that renders the engine when operating in manual rendering mode.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioengine/manualrenderingblock
+
 func (a_ AudioEngine) ManualRenderingBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("manualRenderingBlock"))
 	return rv
 }
 
 
-// SetManualRenderingBlock sets the value of the manualRenderingBlock property.
 // The block that renders the engine when operating in manual rendering mode.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioengine/manualrenderingblock
+
 func (a_ AudioEngine) SetManualRenderingBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setManualRenderingBlock:"), value)
 }
 
+
 // The render format of the engine in manual rendering mode.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioengine/manualrenderingformat
+
 func (a_ AudioEngine) ManualRenderingFormat() AVAudioFormat {
 	rv := objc.Send[AVAudioFormat](a_.ID, objc.Sel("manualRenderingFormat"))
 	return rv
 }
 
 
-// SetManualRenderingFormat sets the value of the manualRenderingFormat property.
 // The render format of the engine in manual rendering mode.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioengine/manualrenderingformat
+
 func (a_ AudioEngine) SetManualRenderingFormat(value AVAudioFormat) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setManualRenderingFormat:"), value)
 }
 
+
 // The maximum number of PCM sample frames the engine produces in any single render call in manual rendering mode.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioengine/manualrenderingmaximumframecount
+
 func (a_ AudioEngine) ManualRenderingMaximumFrameCount() AudioFrameCount {
 	rv := objc.Send[AudioFrameCount](a_.ID, objc.Sel("manualRenderingMaximumFrameCount"))
 	return rv
 }
 
 
-// SetManualRenderingMaximumFrameCount sets the value of the manualRenderingMaximumFrameCount property.
 // The maximum number of PCM sample frames the engine produces in any single render call in manual rendering mode.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioengine/manualrenderingmaximumframecount
+
 func (a_ AudioEngine) SetManualRenderingMaximumFrameCount(value IAudioFrameCount) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setManualRenderingMaximumFrameCount:"), value)
 }
 
+
 // The manual rendering mode configured on the engine.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioengine/manualrenderingmode
+
 func (a_ AudioEngine) ManualRenderingMode() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("manualRenderingMode"))
 	return rv
 }
 
 
-// SetManualRenderingMode sets the value of the manualRenderingMode property.
 // The manual rendering mode configured on the engine.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioengine/manualrenderingmode
+
 func (a_ AudioEngine) SetManualRenderingMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setManualRenderingMode:"), value)
 }
 
+
 // An indication of where the engine is on its render timeline in manual rendering mode.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioengine/manualrenderingsampletime
+
 func (a_ AudioEngine) ManualRenderingSampleTime() AudioFramePosition {
 	rv := objc.Send[AudioFramePosition](a_.ID, objc.Sel("manualRenderingSampleTime"))
 	return rv
 }
 
 
-// SetManualRenderingSampleTime sets the value of the manualRenderingSampleTime property.
 // An indication of where the engine is on its render timeline in manual rendering mode.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioengine/manualrenderingsampletime
+
 func (a_ AudioEngine) SetManualRenderingSampleTime(value AudioFramePosition) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setManualRenderingSampleTime:"), value)
 }

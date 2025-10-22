@@ -34,8 +34,13 @@ type ITKSmartCardToken interface {
 }
 
 // A representation of a smart card based cryptographic token.
+
+
+// A representation of a smart card based cryptographic token.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardToken
+
 type TKSmartCardToken struct {
 	TKToken
 }
@@ -85,7 +90,9 @@ func NewTKSmartCardToken() TKSmartCardToken {
 
 // Initializes a smart card token with the specified smart card, application identifier, and token driver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardToken/init(smartCard:aid:instanceID:tokenDriver:)
+
 func NewTKSmartCardTokenWithSmartCardAIDInstanceIDTokenDriver(smartCard ITKSmartCard, AID foundation.IData, instanceID string, tokenDriver ITKSmartCardTokenDriver) TKSmartCardToken {
 	instance := getTKSmartCardTokenClass().Alloc()
 	rv := objc.Send[TKSmartCardToken](instance.ID, objc.Sel("initWithSmartCard:AID:instanceID:tokenDriver:"), smartCard, AID, objc.String(instanceID), tokenDriver)
@@ -94,9 +101,12 @@ func NewTKSmartCardTokenWithSmartCardAIDInstanceIDTokenDriver(smartCard ITKSmart
 }
 
 
+
 // The ISO 7816-4 application identifiers of the Smart Card.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardToken/aid
+
 func (t_ TKSmartCardToken) AID() foundation.NSData {
 	rv := objc.Send[foundation.NSData](t_.ID, objc.Sel("AID"))
 	return rv

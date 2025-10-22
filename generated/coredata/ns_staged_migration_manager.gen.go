@@ -38,8 +38,13 @@ type IStagedMigrationManager interface {
 // An object that handles the migration event loop and provides access to the migrating persistent store.
 //
 // A staged migration manager contains the individual stages of a migration and applies those stages, in the order you specify, when that migration runs. The manager handles the migration’s event loop, and provides access to the migrating store through its property. Stages can be custom, which enables you to perform tasks immediately before and after a stage runs, or lightweight, which supplements custom stages with those that Core Data can invoke automatically because they’re already compatible with lightweight migrations. Use to include an instance of in your persistent store’s options dictionary, as the following example shows:
+
+
+// An object that handles the migration event loop and provides access to the migrating persistent store.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSStagedMigrationManager
+
 type StagedMigrationManager struct {
 	objectivec.Object
 }
@@ -83,25 +88,34 @@ func NewStagedMigrationManager() StagedMigrationManager {
 }
 
 
+
 // The container that provides access to the migrating persistent store.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSStagedMigrationManager/container
+
 func (s_ StagedMigrationManager) Container() NSPersistentContainer {
 	rv := objc.Send[NSPersistentContainer](s_.ID, objc.Sel("container"))
 	return rv
 }
 
+
 // The migration stages.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSStagedMigrationManager/stages
+
 func (s_ StagedMigrationManager) Stages() []MigrationStage {
 	rv := objc.Send[[]MigrationStage](s_.ID, objc.Sel("stages"))
 	return rv
 }
 
+
 // The key for specifying your staged migration manager.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstorestagedmigrationmanageroptionkey
+
 func (s_ StagedMigrationManager) NSPersistentStoreStagedMigrationManagerOptionKey() string {
 	rv := objc.Send[string](s_.ID, objc.Sel("NSPersistentStoreStagedMigrationManagerOptionKey"))
 	return rv

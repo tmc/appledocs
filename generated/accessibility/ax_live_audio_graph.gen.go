@@ -35,8 +35,13 @@ type IAXLiveAudioGraph interface {
 // An object that represents an audio graph for a live-updating, continuous data series for VoiceOver.
 //
 // Use to interact with an ongoing, continuous stream of data that updates with new data in real time.
+
+
+// An object that represents an audio graph for a live-updating, continuous data series for VoiceOver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXLiveAudioGraph
+
 type AXLiveAudioGraph struct {
 	objectivec.Object
 }
@@ -80,23 +85,32 @@ func NewAXLiveAudioGraph() AXLiveAudioGraph {
 }
 
 
+
 // Begins the live audio graph session.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXLiveAudioGraph/start()
+
 func (ac _AXLiveAudioGraphClass) Start() {
 	objc.Send[objc.ID](objc.ID(ac.class), objc.Sel("start"))
 }
 
+
 // Ends the live audio graph session.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXLiveAudioGraph/stop()
+
 func (ac _AXLiveAudioGraphClass) Stop() {
 	objc.Send[objc.ID](objc.ID(ac.class), objc.Sel("stop"))
 }
 
+
 // Sets the pitch of the audio graph’s tone.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXLiveAudioGraph/updateValue(_:)
+
 func (ac _AXLiveAudioGraphClass) UpdateValue(value float64) {
 	objc.Send[objc.ID](objc.ID(ac.class), objc.Sel("updateValue:"), value)
 }

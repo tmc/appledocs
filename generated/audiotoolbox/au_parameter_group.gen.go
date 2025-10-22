@@ -38,8 +38,13 @@ type IParameterGroup interface {
 // A parameter group object represents a group of related audio unit parameters.
 //
 // A parameter group is KVC-compliant for its children. For example, calling the parameter group’s method, with a key value of , returns a child whose value matches that key.
+
+
+// A parameter group object represents a group of related audio unit parameters.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterGroup
+
 type ParameterGroup struct {
 	ParameterNode
 }
@@ -85,36 +90,45 @@ func NewParameterGroup() ParameterGroup {
 }
 
 
+
 // Returns a flat array of all parameters in the group, including those in child groups.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterGroup/allParameters
+
 func (p_ ParameterGroup) AllParameters() []Parameter {
 	rv := objc.Send[[]Parameter](p_.ID, objc.Sel("allParameters"))
 	return rv
 }
 
+
 // The group’s child nodes.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterGroup/children
+
 func (p_ ParameterGroup) Children() []ParameterNode {
 	rv := objc.Send[[]ParameterNode](p_.ID, objc.Sel("children"))
 	return rv
 }
 
+
 // A non-localized, permanent name for the parameter node.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auparameternode/identifier
+
 func (p_ ParameterGroup) Identifier() string {
 	rv := objc.Send[string](p_.ID, objc.Sel("identifier"))
 	return rv
 }
 
 
-// SetIdentifier sets the value of the identifier property.
 // A non-localized, permanent name for the parameter node.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auparameternode/identifier
+
 func (p_ ParameterGroup) SetIdentifier(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIdentifier:"), objc.String(value))
 }

@@ -38,8 +38,13 @@ type IEXHostViewController interface {
 // A view controller that hosts remote views provided by an app extension.
 //
 // Present this view controller from your app’s interface to display the content for an associated app extension. Configure the view controller with the app extension identity and the specific scene you want to display. Use the associated delegate object to receive notifications when the app extension becomes active or inactive. For more information about presenting this view controller and using it to display an app extension’s UI, see .
+
+
+// A view controller that hosts remote views provided by an app extension.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExtensionKit/EXHostViewController
+
 type EXHostViewController struct {
 	appkit.ViewController
 }
@@ -85,27 +90,34 @@ func NewEXHostViewController() EXHostViewController {
 }
 
 
+
+
 // Initiates an XPC connection to the app extension’s scene.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExtensionKit/EXHostViewController/makeXPCConnection()
+
 func (e_ EXHostViewController) MakeXPCConnection() {
 	objc.Send[objc.ID](e_.ID, objc.Sel("makeXPCConnection"))
 }
 
+
 // The information the host view controller uses to fetch the appropriate scene
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/extensionkit/exhostviewcontroller/configuration-swift.property
+
 func (e_ EXHostViewController) Configuration() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("configuration"))
 	return rv
 }
 
 
-// SetConfiguration sets the value of the configuration property.
 // The information the host view controller uses to fetch the appropriate scene
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/extensionkit/exhostviewcontroller/configuration-swift.property
+
 func (e_ EXHostViewController) SetConfiguration(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setConfiguration:"), value)
 }

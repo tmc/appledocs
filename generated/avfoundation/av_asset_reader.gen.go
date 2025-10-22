@@ -47,8 +47,13 @@ type IAssetReader interface {
 // An object that reads media data from an asset.
 //
 // Use an asset reader to read media data from instances of . The assets you read may represent file-based media like QuickTime movies or MPEG-4 files, or media that you compose from multiple sources using .
+
+
+// An object that reads media data from an asset.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetReader
+
 type AssetReader struct {
 	objectivec.Object
 }
@@ -92,108 +97,131 @@ func NewAssetReader() AssetReader {
 }
 
 
+
+
 // Determines whether you can add the output to the asset reader.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetReader/canAdd(_:)
+
 func (a_ AssetReader) CanAddOutput(output IAVAssetReaderOutput) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("canAddOutput:"), output)
 	return rv
 }
 
+
+
 // Prepares the asset reader to start reading sample buffers from the asset.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetReader/startReading()
+
 func (a_ AssetReader) StartReading() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("startReading"))
 	return rv
 }
 
+
 // The asset from which to read media data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreader/asset
+
 func (a_ AssetReader) Asset() AVAsset {
 	rv := objc.Send[AVAsset](a_.ID, objc.Sel("asset"))
 	return rv
 }
 
 
-// SetAsset sets the value of the asset property.
 // The asset from which to read media data.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreader/asset
+
 func (a_ AssetReader) SetAsset(value IAVAsset) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAsset:"), value)
 }
 
+
 // An error that describes the reason for a failure.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreader/error
+
 func (a_ AssetReader) Error() Error {
 	rv := objc.Send[Error](a_.ID, objc.Sel("error"))
 	return rv
 }
 
 
-// SetError sets the value of the error property.
 // An error that describes the reason for a failure.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreader/error
+
 func (a_ AssetReader) SetError(value IError) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setError:"), value)
 }
 
+
 // The outputs from which you read media data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreader/outputs
+
 func (a_ AssetReader) Outputs() AVAssetReaderOutput {
 	rv := objc.Send[AVAssetReaderOutput](a_.ID, objc.Sel("outputs"))
 	return rv
 }
 
 
-// SetOutputs sets the value of the outputs property.
 // The outputs from which you read media data.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreader/outputs
+
 func (a_ AssetReader) SetOutputs(value IAVAssetReaderOutput) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setOutputs:"), value)
 }
 
+
 // The status of reading sample buffers from the asset.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreader/status-swift.property
+
 func (a_ AssetReader) Status() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("status"))
 	return rv
 }
 
 
-// SetStatus sets the value of the status property.
 // The status of reading sample buffers from the asset.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreader/status-swift.property
+
 func (a_ AssetReader) SetStatus(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setStatus:"), value)
 }
 
+
 // The time range within the asset to read.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreader/timerange
+
 func (a_ AssetReader) TimeRange() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("timeRange"))
 	return rv
 }
 
 
-// SetTimeRange sets the value of the timeRange property.
 // The time range within the asset to read.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreader/timerange
+
 func (a_ AssetReader) SetTimeRange(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setTimeRange:"), value)
 }

@@ -32,8 +32,11 @@ type IcontainsMipmaps interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKTextureInfo/containsMipmaps-c.ivar
+
 type containsMipmaps struct {
 	objectivec.Object
 }

@@ -33,8 +33,13 @@ type ICPUComputeDevice interface {
 }
 
 // An object that represents a CPU compute device.
+
+
+// An object that represents a CPU compute device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLCPUComputeDevice
+
 type CPUComputeDevice struct {
 	objectivec.Object
 }

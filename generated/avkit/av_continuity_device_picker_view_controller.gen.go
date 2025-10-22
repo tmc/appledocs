@@ -37,8 +37,13 @@ type IContinuityDevicePickerViewController interface {
 // A view controller that provides an interface to a person so they can select and connect a continuity device to the system.
 //
 // The view controller presents an interface on an Apple TV that lets a person choose a nearby continuity device ( ). Your app can then connect to that device’s cameras and microphones (see and , respectively). To respond to the various outcome events from the picker, your app needs to implement the and assign it to the picker’s property.
+
+
+// A view controller that provides an interface to a person so they can select and connect a continuity device to the system.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVContinuityDevicePickerViewController
+
 type ContinuityDevicePickerViewController struct {
 	appkit.ViewController
 }
@@ -84,34 +89,43 @@ func NewContinuityDevicePickerViewController() ContinuityDevicePickerViewControl
 }
 
 
+
 // A Boolean value that indicates whether the system supports connecting to a continuity device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVContinuityDevicePickerViewController/isSupported
+
 func (cc _ContinuityDevicePickerViewControllerClass) Supported() bool {
 	rv := objc.Send[bool](objc.ID(cc.class), objc.Sel("supported"))
 	return rv
 }
+
 // The delegate that responds to events from the continuity device picker view controller.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVContinuityDevicePickerViewController/delegate
+
 func (c_ ContinuityDevicePickerViewController) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](c_.ID, objc.Sel("delegate"))
 	return rv
 }
 
 
-// SetDelegate sets the value of the delegate property.
 // The delegate that responds to events from the continuity device picker view controller.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVContinuityDevicePickerViewController/delegate
+
 func (c_ ContinuityDevicePickerViewController) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDelegate:"), value)
 }
 
+
 // A Boolean value that indicates whether the system supports connecting to a continuity device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVContinuityDevicePickerViewController/isSupported
+
 func (c_ ContinuityDevicePickerViewController) Supported() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("supported"))
 	return rv

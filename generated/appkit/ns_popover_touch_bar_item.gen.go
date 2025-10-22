@@ -50,8 +50,13 @@ type IPopoverTouchBarItem interface {
 }
 
 // A bar item that provides a two-state control that can expand into its second state, showing the contents of a bar that it owns.
+
+
+// A bar item that provides a two-state control that can expand into its second state, showing the contents of a bar that it owns.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopoverTouchBarItem
+
 type PopoverTouchBarItem struct {
 	TouchBarItem
 }
@@ -97,150 +102,183 @@ func NewPopoverTouchBarItem() PopoverTouchBarItem {
 }
 
 
+
+
 // Restores the previously visible main bar.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopoverTouchBarItem/dismissPopover(_:)
+
 func (p_ PopoverTouchBarItem) DismissPopover(sender objectivec.IObject) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("dismissPopover:"), sender)
 }
 
+
+
 // Returns a gesture recognizer, configured to invoke the method.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopoverTouchBarItem/makeStandardActivatePopoverGestureRecognizer()
+
 func (p_ PopoverTouchBarItem) MakeStandardActivatePopoverGestureRecognizer() GestureRecognizer {
 	rv := objc.Send[GestureRecognizer](p_.ID, objc.Sel("makeStandardActivatePopoverGestureRecognizer"))
 	return rv
 }
 
+
+
 // Replaces the main bar with this item’s popover bar.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopoverTouchBarItem/showPopover(_:)
+
 func (p_ PopoverTouchBarItem) ShowPopover(sender objectivec.IObject) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("showPopover:"), sender)
 }
 
+
 // The view displayed when this item is displayed in its parent bar.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopoverTouchBarItem/collapsedRepresentation
+
 func (p_ PopoverTouchBarItem) CollapsedRepresentation() NSView {
 	rv := objc.Send[NSView](p_.ID, objc.Sel("collapsedRepresentation"))
 	return rv
 }
 
 
-// SetCollapsedRepresentation sets the value of the collapsedRepresentation property.
 // The view displayed when this item is displayed in its parent bar.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopoverTouchBarItem/collapsedRepresentation
+
 func (p_ PopoverTouchBarItem) SetCollapsedRepresentation(value IView) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCollapsedRepresentation:"), value)
 }
 
+
 // The image displayed by the button for the default collapsed representation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopoverTouchBarItem/collapsedRepresentationImage
+
 func (p_ PopoverTouchBarItem) CollapsedRepresentationImage() Image {
 	rv := objc.Send[Image](p_.ID, objc.Sel("collapsedRepresentationImage"))
 	return rv
 }
 
 
-// SetCollapsedRepresentationImage sets the value of the collapsedRepresentationImage property.
 // The image displayed by the button for the default collapsed representation.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopoverTouchBarItem/collapsedRepresentationImage
+
 func (p_ PopoverTouchBarItem) SetCollapsedRepresentationImage(value IImage) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCollapsedRepresentationImage:"), value)
 }
 
+
 // The localized string displayed by the button for the default collapsed representation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopoverTouchBarItem/collapsedRepresentationLabel
+
 func (p_ PopoverTouchBarItem) CollapsedRepresentationLabel() string {
 	rv := objc.Send[string](p_.ID, objc.Sel("collapsedRepresentationLabel"))
 	return rv
 }
 
 
-// SetCollapsedRepresentationLabel sets the value of the collapsedRepresentationLabel property.
 // The localized string displayed by the button for the default collapsed representation.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopoverTouchBarItem/collapsedRepresentationLabel
+
 func (p_ PopoverTouchBarItem) SetCollapsedRepresentationLabel(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCollapsedRepresentationLabel:"), objc.String(value))
 }
 
+
 // The user-visible string identifying this item during bar customization.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopoverTouchBarItem/customizationLabel
+
 func (p_ PopoverTouchBarItem) CustomizationLabel() string {
 	rv := objc.Send[string](p_.ID, objc.Sel("customizationLabel"))
 	return rv
 }
 
 
-// SetCustomizationLabel sets the value of the customizationLabel property.
 // The user-visible string identifying this item during bar customization.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopoverTouchBarItem/customizationLabel
+
 func (p_ PopoverTouchBarItem) SetCustomizationLabel(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCustomizationLabel:"), objc.String(value))
 }
 
+
 // The bar displayed when this item is “popped.”
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopoverTouchBarItem/popoverTouchBar
+
 func (p_ PopoverTouchBarItem) PopoverTouchBar() NSTouchBar {
 	rv := objc.Send[NSTouchBar](p_.ID, objc.Sel("popoverTouchBar"))
 	return rv
 }
 
 
-// SetPopoverTouchBar sets the value of the popoverTouchBar property.
 // The bar displayed when this item is “popped.”
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopoverTouchBarItem/popoverTouchBar
+
 func (p_ PopoverTouchBarItem) SetPopoverTouchBar(value ITouchBar) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPopoverTouchBar:"), value)
 }
 
+
 // The bar that is displayed when a user press-and-holds on the popover item.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopoverTouchBarItem/pressAndHoldTouchBar
+
 func (p_ PopoverTouchBarItem) PressAndHoldTouchBar() NSTouchBar {
 	rv := objc.Send[NSTouchBar](p_.ID, objc.Sel("pressAndHoldTouchBar"))
 	return rv
 }
 
 
-// SetPressAndHoldTouchBar sets the value of the pressAndHoldTouchBar property.
 // The bar that is displayed when a user press-and-holds on the popover item.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopoverTouchBarItem/pressAndHoldTouchBar
+
 func (p_ PopoverTouchBarItem) SetPressAndHoldTouchBar(value ITouchBar) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPressAndHoldTouchBar:"), value)
 }
 
+
 // A Boolean value that determines whether a close button should be shown on the popover bar.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopovertouchbaritem/showsclosebutton
+
 func (p_ PopoverTouchBarItem) ShowsCloseButton() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("showsCloseButton"))
 	return rv
 }
 
 
-// SetShowsCloseButton sets the value of the showsCloseButton property.
 // A Boolean value that determines whether a close button should be shown on the popover bar.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopovertouchbaritem/showsclosebutton
+
 func (p_ PopoverTouchBarItem) SetShowsCloseButton(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setShowsCloseButton:"), value)
 }

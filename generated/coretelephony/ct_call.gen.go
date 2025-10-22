@@ -35,8 +35,13 @@ type ICall interface {
 }
 
 // An object used to identify a cellular call and determine its state.
+
+
+// An object used to identify a cellular call and determine its state.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCall
+
 type Call struct {
 	objectivec.Object
 }
@@ -80,17 +85,23 @@ func NewCall() Call {
 }
 
 
+
 // A unique identifier for the cellular call.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCall/callID
+
 func (c_ Call) CallID() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("callID"))
 	return rv
 }
 
+
 // The state of the cellular call.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCall/callState
+
 func (c_ Call) CallState() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("callState"))
 	return rv

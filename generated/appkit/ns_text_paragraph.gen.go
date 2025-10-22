@@ -39,8 +39,13 @@ type ITextParagraph interface {
 }
 
 // A class that represents a single paragraph backed by an attributed string as the contents.
+
+
+// A class that represents a single paragraph backed by an attributed string as the contents.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextParagraph
+
 type TextParagraph struct {
 	TextElement
 }
@@ -86,56 +91,65 @@ func NewTextParagraph() TextParagraph {
 }
 
 
+
 // Returns the source attributed string.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextparagraph/attributedstring
+
 func (t_ TextParagraph) AttributedString() foundation.AttributedString {
 	rv := objc.Send[foundation.AttributedString](t_.ID, objc.Sel("attributedString"))
 	return rv
 }
 
 
-// SetAttributedString sets the value of the attributedString property.
 // Returns the source attributed string.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextparagraph/attributedstring
+
 func (t_ TextParagraph) SetAttributedString(value foundation.IAttributedString) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAttributedString:"), value)
 }
 
+
 // Returns the range of the paragraph in the containing text’s attributed string.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextparagraph/paragraphcontentrange
+
 func (t_ TextParagraph) ParagraphContentRange() NSTextRange {
 	rv := objc.Send[NSTextRange](t_.ID, objc.Sel("paragraphContentRange"))
 	return rv
 }
 
 
-// SetParagraphContentRange sets the value of the paragraphContentRange property.
 // Returns the range of the paragraph in the containing text’s attributed string.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextparagraph/paragraphcontentrange
+
 func (t_ TextParagraph) SetParagraphContentRange(value ITextRange) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setParagraphContentRange:"), value)
 }
 
+
 // Returns the range of the paragraph separator in the containing text’s attributed string.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextparagraph/paragraphseparatorrange
+
 func (t_ TextParagraph) ParagraphSeparatorRange() NSTextRange {
 	rv := objc.Send[NSTextRange](t_.ID, objc.Sel("paragraphSeparatorRange"))
 	return rv
 }
 
 
-// SetParagraphSeparatorRange sets the value of the paragraphSeparatorRange property.
 // Returns the range of the paragraph separator in the containing text’s attributed string.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextparagraph/paragraphseparatorrange
+
 func (t_ TextParagraph) SetParagraphSeparatorRange(value ITextRange) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setParagraphSeparatorRange:"), value)
 }

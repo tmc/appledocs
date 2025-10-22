@@ -32,8 +32,7 @@ type IXMLNode interface {
 	objectivec.IObject
 	ChildAtIndex(index uint) XMLNode
 	SetStringValueResolvingEntities(string_ string, resolve bool)
-	XMLStringWithOptions(options XMLNodeOptions) String
-	Index() uint
+	XMLStringWithOptions(options IXMLNodeOptions) String
 	Kind() XMLNodeKind
 	Level() uint
 	Name() string
@@ -51,6 +50,8 @@ type IXMLNode interface {
 	SetChildren(value IXMLNode)
 	Description() string
 	SetDescription(value string)
+	Index() int
+	SetIndex(value int)
 	LocalName() string
 	SetLocalName(value string)
 	Next() NSXMLNode
@@ -131,7 +132,7 @@ func NewXMLNode() XMLNode {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/init(kind:)
 
-func NewXMLNodeWithKind(kind XMLNodeKind) XMLNode {
+func NewXMLNodeWithKind(kind IXMLNodeKind) XMLNode {
 	instance := getXMLNodeClass().Alloc()
 	rv := objc.Send[XMLNode](instance.ID, objc.Sel("initWithKind:"), kind)
 	rv.Autorelease()
@@ -145,7 +146,7 @@ func NewXMLNodeWithKind(kind XMLNodeKind) XMLNode {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/init(kind:options:)
 
-func NewXMLNodeWithKindOptions(kind XMLNodeKind, options XMLNodeOptions) XMLNode {
+func NewXMLNodeWithKindOptions(kind IXMLNodeKind, options IXMLNodeOptions) XMLNode {
 	instance := getXMLNodeClass().Alloc()
 	rv := objc.Send[XMLNode](instance.ID, objc.Sel("initWithKind:options:"), kind, options)
 	rv.Autorelease()
@@ -337,19 +338,8 @@ func (x_ XMLNode) SetStringValueResolvingEntities(string_ string, resolve bool) 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/xmlString(options:)
 
-func (x_ XMLNode) XMLStringWithOptions(options XMLNodeOptions) String {
+func (x_ XMLNode) XMLStringWithOptions(options IXMLNodeOptions) String {
 	rv := objc.Send[String](x_.ID, objc.Sel("XMLStringWithOptions:"), options)
-	return rv
-}
-
-
-// Returns the index of the receiver identifying its position relative to its sibling nodes.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/index
-
-func (x_ XMLNode) Index() uint {
-	rv := objc.Send[uint](x_.ID, objc.Sel("index"))
 	return rv
 }
 
@@ -527,6 +517,27 @@ func (x_ XMLNode) Description() string {
 
 func (x_ XMLNode) SetDescription(value string) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setDescription:"), objc.String(value))
+}
+
+
+// Returns the index of the receiver identifying its position relative to its sibling nodes.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/index
+
+func (x_ XMLNode) Index() int {
+	rv := objc.Send[int](x_.ID, objc.Sel("index"))
+	return rv
+}
+
+
+// Returns the index of the receiver identifying its position relative to its sibling nodes.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/index
+
+func (x_ XMLNode) SetIndex(value int) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("setIndex:"), value)
 }
 
 

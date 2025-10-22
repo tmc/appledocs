@@ -44,8 +44,13 @@ type IHKStatistics interface {
 // An object that represents the result of calculating the minimum, maximum, average, or sum over a set of samples from the HealthKit store.
 //
 // HealthKit creates statistic objects using either a statistics query or a statistics collection query. For the statistics query, it performs the specified calculations over all the samples that match the query. For the statistics collection query, it partitions the matching samples into a set of time intervals and performs the calculations over each interval separately. By default, these queries automatically merge the data from all of your data sources before performing the calculations. If you want to merge the data yourself, you can set the option. You can then request the statistical data for each source separately. When requesting data from a statistics object, your request must match the options you used when creating the query. For example, if you create a query using the option, you must access the results using the method. For more information on calculating statistical data, see Class Reference. To calculate the statistics over a series of time intervals, see the Class Reference.
+
+
+// An object that represents the result of calculating the minimum, maximum, average, or sum over a set of samples from the HealthKit store.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKStatistics
+
 type HKStatistics struct {
 	objectivec.Object
 }
@@ -89,74 +94,86 @@ func NewHKStatistics() HKStatistics {
 }
 
 
+
 // The end of the time period included in these statistics.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkstatistics/enddate
+
 func (h_ HKStatistics) EndDate() foundation.Date {
 	rv := objc.Send[foundation.Date](h_.ID, objc.Sel("endDate"))
 	return rv
 }
 
 
-// SetEndDate sets the value of the endDate property.
 // The end of the time period included in these statistics.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkstatistics/enddate
+
 func (h_ HKStatistics) SetEndDate(value foundation.IDate) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setEndDate:"), value)
 }
 
+
 // The quantity type of the samples used to calculate these statistics.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkstatistics/quantitytype
+
 func (h_ HKStatistics) QuantityType() HKQuantityType {
 	rv := objc.Send[HKQuantityType](h_.ID, objc.Sel("quantityType"))
 	return rv
 }
 
 
-// SetQuantityType sets the value of the quantityType property.
 // The quantity type of the samples used to calculate these statistics.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkstatistics/quantitytype
+
 func (h_ HKStatistics) SetQuantityType(value HKQuantityType) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setQuantityType:"), value)
 }
 
+
 // An array containing all the sources contributing to these statistics.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkstatistics/sources
+
 func (h_ HKStatistics) Sources() HKSource {
 	rv := objc.Send[HKSource](h_.ID, objc.Sel("sources"))
 	return rv
 }
 
 
-// SetSources sets the value of the sources property.
 // An array containing all the sources contributing to these statistics.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkstatistics/sources
+
 func (h_ HKStatistics) SetSources(value IHKSource) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setSources:"), value)
 }
 
+
 // The start of the time period included in these statistics.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkstatistics/startdate
+
 func (h_ HKStatistics) StartDate() foundation.Date {
 	rv := objc.Send[foundation.Date](h_.ID, objc.Sel("startDate"))
 	return rv
 }
 
 
-// SetStartDate sets the value of the startDate property.
 // The start of the time period included in these statistics.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkstatistics/startdate
+
 func (h_ HKStatistics) SetStartDate(value foundation.IDate) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setStartDate:"), value)
 }

@@ -37,8 +37,13 @@ type IFSItemSetAttributesRequest interface {
 // A request to set attributes on an item.
 //
 // Methods that take attributes use this type to receive attribute values and to indicate which attributes they support. The various members of the parent type, , contain the values of the attributes to set. Modify the property to indicate which attributes your file system successfully used. FSKit calls the method to determine whether the file system successfully used a given attribute. Only set the attributes that your file system supports.
+
+
+// A request to set attributes on an item.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSItem/SetAttributesRequest
+
 type FSItemSetAttributesRequest struct {
 	FSItemAttributes
 }
@@ -84,28 +89,35 @@ func NewFSItemSetAttributesRequest() FSItemSetAttributesRequest {
 }
 
 
+
+
 // A method that indicates whether the file system used the given attribute.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSItem/SetAttributesRequest/wasAttributeConsumed(_:)
+
 func (f_ FSItemSetAttributesRequest) WasAttributeConsumed(attribute FSItemAttribute) bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("wasAttributeConsumed:"), attribute)
 	return rv
 }
 
+
 // The attributes successfully used by the file system.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSItem/SetAttributesRequest/consumedAttributes
+
 func (f_ FSItemSetAttributesRequest) ConsumedAttributes() FSItemAttribute {
 	rv := objc.Send[FSItemAttribute](f_.ID, objc.Sel("consumedAttributes"))
 	return rv
 }
 
 
-// SetConsumedAttributes sets the value of the consumedAttributes property.
 // The attributes successfully used by the file system.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSItem/SetAttributesRequest/consumedAttributes
+
 func (f_ FSItemSetAttributesRequest) SetConsumedAttributes(value FSItemAttribute) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setConsumedAttributes:"), value)
 }

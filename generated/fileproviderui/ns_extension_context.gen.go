@@ -33,6 +33,10 @@ type IExtensionContext interface {
 }
 
 // A parent class referenced by other FileProviderUI classes.
+
+
+// A parent class referenced by other FileProviderUI classes. [Full Topic]
+
 type ExtensionContext struct {
 	objectivec.Object
 }

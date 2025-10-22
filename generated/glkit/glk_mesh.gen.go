@@ -37,8 +37,11 @@ type IGLKMesh interface {
 	VertexDescriptor() unsafe.Pointer
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMesh
+
 type GLKMesh struct {
 	objectivec.Object
 }
@@ -80,8 +83,11 @@ func NewGLKMesh() GLKMesh {
 }
 
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMesh/init(mesh:)
+
 func NewGLKMeshWithMeshError(mesh unsafe.Pointer, error_ unsafe.Pointer) GLKMesh {
 	instance := getGLKMeshClass().Alloc()
 	rv := objc.Send[GLKMesh](instance.ID, objc.Sel("initWithMesh:error:"), mesh, error_)
@@ -90,43 +96,55 @@ func NewGLKMeshWithMeshError(mesh unsafe.Pointer, error_ unsafe.Pointer) GLKMesh
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMesh/newMeshes(from:sourceMeshes:)
+
 func (gc _GLKMeshClass) NewMeshesFromAssetSourceMeshesError(asset unsafe.Pointer, sourceMeshes []MDLMesh, error_ unsafe.Pointer) []GLKMesh {
 	rv := objc.Send[[]GLKMesh](objc.ID(gc.class), objc.Sel("newMeshesFromAsset:sourceMeshes:error:"), asset, sourceMeshes, error_)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMesh/name
+
 func (g_ GLKMesh) Name() string {
 	rv := objc.Send[string](g_.ID, objc.Sel("name"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMesh/submeshes
+
 func (g_ GLKMesh) Submeshes() []GLKSubmesh {
 	rv := objc.Send[[]GLKSubmesh](g_.ID, objc.Sel("submeshes"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMesh/vertexBuffers
+
 func (g_ GLKMesh) VertexBuffers() []GLKMeshBuffer {
 	rv := objc.Send[[]GLKMeshBuffer](g_.ID, objc.Sel("vertexBuffers"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMesh/vertexCount
+
 func (g_ GLKMesh) VertexCount() uint {
 	rv := objc.Send[uint](g_.ID, objc.Sel("vertexCount"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMesh/vertexDescriptor
+
 func (g_ GLKMesh) VertexDescriptor() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("vertexDescriptor"))
 	return rv

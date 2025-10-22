@@ -33,8 +33,11 @@ type IMovie interface {
 	QTMovie() unsafe.Pointer
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMovie
+
 type Movie struct {
 	objectivec.Object
 }
@@ -76,8 +79,11 @@ func NewMovie() Movie {
 }
 
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMovie/QTMovie
+
 func (m_ Movie) QTMovie() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("QTMovie"))
 	return rv

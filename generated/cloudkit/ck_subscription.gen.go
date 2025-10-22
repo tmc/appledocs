@@ -41,8 +41,13 @@ type ICKSubscription interface {
 // An abstract base class for subscriptions.
 //
 // A subscription acts like a persistent query on the server that can track the creation, deletion, and modification of records. When changes occur, they trigger the delivery of push notifications so that your app can respond appropriately. Subscriptions don’t become active until you save them to the server and the server has time to index them. To save a subscription, use an instance of or the method of . To cancel a subscription, delete the corresponding subscription from the server. Most of a subscription’s configuration happens at initialization time. You must, however, specify how to deliver push notifications to the user’s device. Use the property to configure the delivery options. You must save the subscription before the changes take effect.
+
+
+// An abstract base class for subscriptions.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSubscription
+
 type CKSubscription struct {
 	objectivec.Object
 }
@@ -86,54 +91,66 @@ func NewCKSubscription() CKSubscription {
 }
 
 
+
 // The configuration for a subscription’s push notifications.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSubscription/notificationInfo-swift.property
+
 func (c_ CKSubscription) NotificationInfo() CKNotificationInfo {
 	rv := objc.Send[CKNotificationInfo](c_.ID, objc.Sel("notificationInfo"))
 	return rv
 }
 
 
-// SetNotificationInfo sets the value of the notificationInfo property.
 // The configuration for a subscription’s push notifications.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSubscription/notificationInfo-swift.property
+
 func (c_ CKSubscription) SetNotificationInfo(value ICKNotificationInfo) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setNotificationInfo:"), value)
 }
 
+
 // The subscription’s unique identifier.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSubscription/subscriptionID-12vxy
+
 func (c_ CKSubscription) SubscriptionID() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("subscriptionID"))
 	return rv
 }
 
+
 // The behavior that a subscription provides.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSubscription/subscriptionType-swift.property
+
 func (c_ CKSubscription) SubscriptionType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("subscriptionType"))
 	return rv
 }
 
+
 // The names of fields to include in the push notification’s payload.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.class/desiredkeys
+
 func (c_ CKSubscription) DesiredKeys() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("desiredKeys"))
 	return rv
 }
 
 
-// SetDesiredKeys sets the value of the desiredKeys property.
 // The names of fields to include in the push notification’s payload.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.class/desiredkeys
+
 func (c_ CKSubscription) SetDesiredKeys(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDesiredKeys:"), value)
 }

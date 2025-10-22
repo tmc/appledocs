@@ -32,8 +32,13 @@ type IHKHeartbeatSeriesBuilder interface {
 }
 
 // A builder object for incrementally building a heartbeat series.
+
+
+// A builder object for incrementally building a heartbeat series.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKHeartbeatSeriesBuilder
+
 type HKHeartbeatSeriesBuilder struct {
 	HKSeriesBuilder
 }

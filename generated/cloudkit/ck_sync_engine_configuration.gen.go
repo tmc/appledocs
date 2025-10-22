@@ -33,8 +33,13 @@ type ICKSyncEngineConfiguration interface {
 }
 
 // A type that configures the attributes and behavior of a sync engine.
+
+
+// A type that configures the attributes and behavior of a sync engine.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineConfiguration
+
 type CKSyncEngineConfiguration struct {
 	objectivec.Object
 }

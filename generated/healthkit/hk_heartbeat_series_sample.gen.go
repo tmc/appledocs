@@ -35,8 +35,13 @@ type IHKHeartbeatSeriesSample interface {
 // A sample that represents a series of heartbeats.
 //
 // Use a to access the underlying heartbeat data. The class is a subclass of the class. These samples are immutable; you set the sample’s properties when you build them, and they can’t change.
+
+
+// A sample that represents a series of heartbeats.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKHeartbeatSeriesSample
+
 type HKHeartbeatSeriesSample struct {
 	HKSeriesSample
 }
@@ -82,9 +87,12 @@ func NewHKHeartbeatSeriesSample() HKHeartbeatSeriesSample {
 }
 
 
+
 // A key that indicates the version number of the algorithm used to calculate the sample’s value.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmetadatakeyalgorithmversion
+
 func (h_ HKHeartbeatSeriesSample) HKMetadataKeyAlgorithmVersion() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKMetadataKeyAlgorithmVersion"))
 	return rv

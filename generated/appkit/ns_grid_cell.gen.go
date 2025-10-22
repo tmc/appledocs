@@ -49,8 +49,13 @@ type IGridCell interface {
 // An individual content area within a grid view, typically at the intersection of a row and a column.
 //
 // Use a grid cell to specify the content view to display and to position the content view within the cell’s area.
+
+
+// An individual content area within a grid view, typically at the intersection of a row and a column.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridCell
+
 type GridCell struct {
 	objectivec.Object
 }
@@ -94,107 +99,121 @@ func NewGridCell() GridCell {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgridcell/column
+
 func (g_ GridCell) Column() NSGridColumn {
 	rv := objc.Send[NSGridColumn](g_.ID, objc.Sel("column"))
 	return rv
 }
 
 
-// SetColumn sets the value of the column property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgridcell/column
+
 func (g_ GridCell) SetColumn(value IGridColumn) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setColumn:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgridcell/contentview
+
 func (g_ GridCell) ContentView() NSView {
 	rv := objc.Send[NSView](g_.ID, objc.Sel("contentView"))
 	return rv
 }
 
 
-// SetContentView sets the value of the contentView property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgridcell/contentview
+
 func (g_ GridCell) SetContentView(value IView) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setContentView:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgridcell/customplacementconstraints
+
 func (g_ GridCell) CustomPlacementConstraints() NSLayoutConstraint {
 	rv := objc.Send[NSLayoutConstraint](g_.ID, objc.Sel("customPlacementConstraints"))
 	return rv
 }
 
 
-// SetCustomPlacementConstraints sets the value of the customPlacementConstraints property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgridcell/customplacementconstraints
+
 func (g_ GridCell) SetCustomPlacementConstraints(value ILayoutConstraint) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setCustomPlacementConstraints:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgridcell/row
+
 func (g_ GridCell) Row() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("row"))
 	return rv
 }
 
 
-// SetRow sets the value of the row property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgridcell/row
+
 func (g_ GridCell) SetRow(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setRow:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgridcell/rowalignment
+
 func (g_ GridCell) RowAlignment() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("rowAlignment"))
 	return rv
 }
 
 
-// SetRowAlignment sets the value of the rowAlignment property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgridcell/rowalignment
+
 func (g_ GridCell) SetRowAlignment(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setRowAlignment:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgridcell/xplacement
+
 func (g_ GridCell) XPlacement() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("xPlacement"))
 	return rv
 }
 
 
-// SetXPlacement sets the value of the xPlacement property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgridcell/xplacement
+
 func (g_ GridCell) SetXPlacement(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setXPlacement:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgridcell/yplacement
+
 func (g_ GridCell) YPlacement() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("yPlacement"))
 	return rv
 }
 
 
-// SetYPlacement sets the value of the yPlacement property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgridcell/yplacement
+
 func (g_ GridCell) SetYPlacement(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setYPlacement:"), value)
 }

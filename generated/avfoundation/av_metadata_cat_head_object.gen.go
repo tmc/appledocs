@@ -34,8 +34,13 @@ type IMetadataCatHeadObject interface {
 // A concrete metadata object subclass representing a cat head.
 //
 // is a concrete subclass of representing a cat head.
+
+
+// A concrete metadata object subclass representing a cat head.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMetadataCatHeadObject
+
 type MetadataCatHeadObject struct {
 	MetadataObject
 }

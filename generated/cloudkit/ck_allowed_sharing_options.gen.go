@@ -43,8 +43,13 @@ type ICKAllowedSharingOptions interface {
 // An object that controls participant access and permission options.
 //
 // Register an instance of this class with an or when preparing a before your app invokes the share sheet. The share sheet uses the registered   object to let the user choose between the allowed options when sharing.
+
+
+// An object that controls participant access and permission options.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKAllowedSharingOptions
+
 type CKAllowedSharingOptions struct {
 	objectivec.Object
 }
@@ -88,74 +93,86 @@ func NewCKAllowedSharingOptions() CKAllowedSharingOptions {
 }
 
 
+
 // The permission option the system uses to control whether a user can share publicly or privately.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckallowedsharingoptions/allowedparticipantaccessoptions
+
 func (c_ CKAllowedSharingOptions) AllowedParticipantAccessOptions() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("allowedParticipantAccessOptions"))
 	return rv
 }
 
 
-// SetAllowedParticipantAccessOptions sets the value of the allowedParticipantAccessOptions property.
 // The permission option the system uses to control whether a user can share publicly or privately.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckallowedsharingoptions/allowedparticipantaccessoptions
+
 func (c_ CKAllowedSharingOptions) SetAllowedParticipantAccessOptions(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAllowedParticipantAccessOptions:"), value)
 }
 
+
 // The permission option the system uses to control whether a user can grant read-only or write access.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckallowedsharingoptions/allowedparticipantpermissionoptions
+
 func (c_ CKAllowedSharingOptions) AllowedParticipantPermissionOptions() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("allowedParticipantPermissionOptions"))
 	return rv
 }
 
 
-// SetAllowedParticipantPermissionOptions sets the value of the allowedParticipantPermissionOptions property.
 // The permission option the system uses to control whether a user can grant read-only or write access.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckallowedsharingoptions/allowedparticipantpermissionoptions
+
 func (c_ CKAllowedSharingOptions) SetAllowedParticipantPermissionOptions(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAllowedParticipantPermissionOptions:"), value)
 }
 
+
 // Default value is
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckallowedsharingoptions/allowsaccessrequests
+
 func (c_ CKAllowedSharingOptions) AllowsAccessRequests() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("allowsAccessRequests"))
 	return rv
 }
 
 
-// SetAllowsAccessRequests sets the value of the allowsAccessRequests property.
 // Default value is
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckallowedsharingoptions/allowsaccessrequests
+
 func (c_ CKAllowedSharingOptions) SetAllowsAccessRequests(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAllowsAccessRequests:"), value)
 }
 
+
 // Default value is
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckallowedsharingoptions/allowsparticipantstoinviteothers
+
 func (c_ CKAllowedSharingOptions) AllowsParticipantsToInviteOthers() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("allowsParticipantsToInviteOthers"))
 	return rv
 }
 
 
-// SetAllowsParticipantsToInviteOthers sets the value of the allowsParticipantsToInviteOthers property.
 // Default value is
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckallowedsharingoptions/allowsparticipantstoinviteothers
+
 func (c_ CKAllowedSharingOptions) SetAllowsParticipantsToInviteOthers(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAllowsParticipantsToInviteOthers:"), value)
 }

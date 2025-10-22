@@ -37,8 +37,13 @@ type ISBinaryItem interface {
 // Activity information that is true or false, pass or fail, yes or no.
 //
 // Use an activity item of this type to indicate a binary condition, such as whether a student passed a test or failed it. Set the property to specify how the binary condition should be reported to a teacher.
+
+
+// Activity information that is true or false, pass or fail, yes or no.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSBinaryItem
+
 type SBinaryItem struct {
 	SActivityItem
 }
@@ -88,7 +93,9 @@ func NewSBinaryItem() SBinaryItem {
 
 // Initializes a new binary activity item of the given type.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSBinaryItem/init(identifier:title:type:)
+
 func NewSBinaryItemWithIdentifierTitleType(identifier string, title string, valueType SBinaryValueType) SBinaryItem {
 	instance := getSBinaryItemClass().Alloc()
 	rv := objc.Send[SBinaryItem](instance.ID, objc.Sel("initWithIdentifier:title:type:"), objc.String(identifier), objc.String(title), valueType)
@@ -97,27 +104,33 @@ func NewSBinaryItemWithIdentifierTitleType(identifier string, title string, valu
 }
 
 
+
 // The value that the binary activity item takes.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSBinaryItem/value
+
 func (s_ SBinaryItem) Value() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("value"))
 	return rv
 }
 
 
-// SetValue sets the value of the value property.
 // The value that the binary activity item takes.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSBinaryItem/value
+
 func (s_ SBinaryItem) SetValue(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setValue:"), value)
 }
 
+
 // The kind of outcome that the binary activity item represents.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSBinaryItem/valueType
+
 func (s_ SBinaryItem) ValueType() SBinaryValueType {
 	rv := objc.Send[SBinaryValueType](s_.ID, objc.Sel("valueType"))
 	return rv

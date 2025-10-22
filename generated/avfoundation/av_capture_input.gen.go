@@ -36,8 +36,13 @@ type ICaptureInput interface {
 // An abstract superclass for objects that provide input data to a capture session.
 //
 // You create concrete instances of this class, such as , to add inputs to a capture session. An input provides one or more streams of media data. For example, input devices can provide both audio and video data. The framework represents each media stream that an input provides as an object. A capture makes connections between capture inputs and capture outputs using a object. The connection defines the mapping between a set of port objects and an .
+
+
+// An abstract superclass for objects that provide input data to a capture session.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureInput
+
 type CaptureInput struct {
 	objectivec.Object
 }
@@ -81,9 +86,12 @@ func NewCaptureInput() CaptureInput {
 }
 
 
+
 // The ports available on a capture input.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureInput/ports
+
 func (c_ CaptureInput) Ports() []CaptureInputPort {
 	rv := objc.Send[[]CaptureInputPort](c_.ID, objc.Sel("ports"))
 	return rv

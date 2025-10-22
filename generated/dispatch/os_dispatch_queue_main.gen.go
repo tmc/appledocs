@@ -35,8 +35,13 @@ type IOS_dispatch_queue_main interface {
 // A system-provided dispatch queue that schedules tasks for serial execution on the app’s main thread.
 //
 // You do not create objects of this type directly. You receive a queue of the appropriate type when you create a new object.
+
+
+// A system-provided dispatch queue that schedules tasks for serial execution on the app’s main thread.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/OS_dispatch_queue_main-swift.class
+
 type OS_dispatch_queue_main struct {
 	objectivec.Object
 }

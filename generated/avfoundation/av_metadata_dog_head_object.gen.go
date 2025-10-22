@@ -34,8 +34,13 @@ type IMetadataDogHeadObject interface {
 // A concrete metadata object subclass representing a dog head.
 //
 // is a concrete subclass of representing a dog head.
+
+
+// A concrete metadata object subclass representing a dog head.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMetadataDogHeadObject
+
 type MetadataDogHeadObject struct {
 	MetadataObject
 }

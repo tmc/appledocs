@@ -42,8 +42,13 @@ type IAMBundleAction interface {
 // An object that represents an Automator action that’s a loadable bundle.
 //
 // Automator loads action bundles from standard locations in the file system: , , and . objects have several important properties: The object associated with the action’s physical bundle The action’s view, which holds its user interface A parameters dictionary that reflects the settings in the user interface When you create a Cocoa Automator Action project in Xcode, the project template includes a custom subclass of . This custom class uses the name of the project. You must provide an implementation of , which is declared by the superclass . If you add any instance variables, you must override the method and the method of to work with them.
+
+
+// An object that represents an Automator action that’s a loadable bundle.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMBundleAction
+
 type AMBundleAction struct {
 	AMAction
 }
@@ -89,50 +94,66 @@ func NewAMBundleAction() AMBundleAction {
 }
 
 
+
+
 // Allows the action object to perform setup tasks requiring the presence of all bundle objects.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMBundleAction/awakeFromBundle()
+
 func (a_ AMBundleAction) AwakeFromBundle() {
 	objc.Send[objc.ID](a_.ID, objc.Sel("awakeFromBundle"))
 }
 
+
 // The action’s bundle object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMBundleAction/bundle
+
 func (a_ AMBundleAction) Bundle() foundation.Bundle {
 	rv := objc.Send[foundation.Bundle](a_.ID, objc.Sel("bundle"))
 	return rv
 }
 
+
 // A Boolean value that indicates whether the action has a view associated with it.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMBundleAction/hasView
+
 func (a_ AMBundleAction) HasView() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("hasView"))
 	return rv
 }
 
+
 // The action’s parameters.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMBundleAction/parameters
+
 func (a_ AMBundleAction) Parameters() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("parameters"))
 	return rv
 }
 
 
-// SetParameters sets the value of the parameters property.
 // The action’s parameters.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMBundleAction/parameters
+
 func (a_ AMBundleAction) SetParameters(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setParameters:"), value)
 }
 
+
 // The action’s view object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMBundleAction/view
+
 func (a_ AMBundleAction) View() appkit.View {
 	rv := objc.Send[appkit.View](a_.ID, objc.Sel("view"))
 	return rv

@@ -41,8 +41,13 @@ type ICSSearchQueryContext interface {
 }
 
 // The behavior configuration to use for a search query.
+
+
+// The behavior configuration to use for a search query.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchQueryContext
+
 type CSSearchQueryContext struct {
 	objectivec.Object
 }
@@ -86,20 +91,23 @@ func NewCSSearchQueryContext() CSSearchQueryContext {
 }
 
 
+
 // The attributes the system fetches for the searchable items.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchQueryContext/fetchAttributes
+
 func (c_ CSSearchQueryContext) FetchAttributes() []string {
 	rv := objc.Send[[]string](c_.ID, objc.Sel("fetchAttributes"))
 	return rv
 }
 
 
-// SetFetchAttributes sets the value of the fetchAttributes property.
 // The attributes the system fetches for the searchable items.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchQueryContext/fetchAttributes
+
 func (c_ CSSearchQueryContext) SetFetchAttributes(value []string) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -114,20 +122,23 @@ func (c_ CSSearchQueryContext) SetFetchAttributes(value []string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFetchAttributes:"), nsArray)
 }
 
+
 // The query string used to filter the results.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchQueryContext/filterQueries
+
 func (c_ CSSearchQueryContext) FilterQueries() []string {
 	rv := objc.Send[[]string](c_.ID, objc.Sel("filterQueries"))
 	return rv
 }
 
 
-// SetFilterQueries sets the value of the filterQueries property.
 // The query string used to filter the results.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchQueryContext/filterQueries
+
 func (c_ CSSearchQueryContext) SetFilterQueries(value []string) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -142,38 +153,44 @@ func (c_ CSSearchQueryContext) SetFilterQueries(value []string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFilterQueries:"), nsArray)
 }
 
+
 // The language used for the query.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchQueryContext/keyboardLanguage
+
 func (c_ CSSearchQueryContext) KeyboardLanguage() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("keyboardLanguage"))
 	return rv
 }
 
 
-// SetKeyboardLanguage sets the value of the keyboardLanguage property.
 // The language used for the query.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchQueryContext/keyboardLanguage
+
 func (c_ CSSearchQueryContext) SetKeyboardLanguage(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setKeyboardLanguage:"), objc.String(value))
 }
 
+
 // The query source options to allow or deny Mail messages in the search.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchQueryContext/sourceOptions-swift.property
+
 func (c_ CSSearchQueryContext) SourceOptions() CSSearchQuerySourceOptions {
 	rv := objc.Send[CSSearchQuerySourceOptions](c_.ID, objc.Sel("sourceOptions"))
 	return rv
 }
 
 
-// SetSourceOptions sets the value of the sourceOptions property.
 // The query source options to allow or deny Mail messages in the search.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchQueryContext/sourceOptions-swift.property
+
 func (c_ CSSearchQueryContext) SetSourceOptions(value CSSearchQuerySourceOptions) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSourceOptions:"), value)
 }

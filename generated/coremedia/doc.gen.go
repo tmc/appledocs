@@ -2,12 +2,16 @@
 
 // Package coremedia provides Go bindings for the CoreMedia framework.
 //
-// Represent time-based audio-visual assets with essential data types. [Full Topic]
+// Represent time-based audio-visual assets with essential data types.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to CoreMedia without requiring cgo.
+
+// Represent time-based audio-visual assets with essential data types.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMedia
+
 package coremedia
 
 import (

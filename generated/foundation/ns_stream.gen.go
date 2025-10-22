@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,10 +33,10 @@ type IStream interface {
 	objectivec.IObject
 	Close()
 	Open()
-	PropertyForKey(key unsafe.Pointer) objc.ID
-	RemoveFromRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode)
-	ScheduleInRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode)
-	SetPropertyForKey(property objectivec.IObject, key unsafe.Pointer) bool
+	PropertyForKey(key corefoundation.IStreamPropertyKey) objc.ID
+	RemoveFromRunLoopForMode(aRunLoop IRunLoop, mode IRunLoopMode)
+	ScheduleInRunLoopForMode(aRunLoop IRunLoop, mode IRunLoopMode)
+	SetPropertyForKey(property objectivec.IObject, key corefoundation.IStreamPropertyKey) bool
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
 	StreamError() NSError
@@ -144,7 +145,7 @@ func (s_ Stream) Open() {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Stream/property(forKey:)
 
-func (s_ Stream) PropertyForKey(key unsafe.Pointer) objc.ID {
+func (s_ Stream) PropertyForKey(key corefoundation.IStreamPropertyKey) objc.ID {
 	rv := objc.Send[objc.ID](s_.ID, objc.Sel("propertyForKey:"), key)
 	return rv
 }
@@ -156,7 +157,7 @@ func (s_ Stream) PropertyForKey(key unsafe.Pointer) objc.ID {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Stream/remove(from:forMode:)
 
-func (s_ Stream) RemoveFromRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode) {
+func (s_ Stream) RemoveFromRunLoopForMode(aRunLoop IRunLoop, mode IRunLoopMode) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("removeFromRunLoop:forMode:"), aRunLoop, mode)
 }
 
@@ -167,7 +168,7 @@ func (s_ Stream) RemoveFromRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Stream/schedule(in:forMode:)
 
-func (s_ Stream) ScheduleInRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode) {
+func (s_ Stream) ScheduleInRunLoopForMode(aRunLoop IRunLoop, mode IRunLoopMode) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("scheduleInRunLoop:forMode:"), aRunLoop, mode)
 }
 
@@ -178,7 +179,7 @@ func (s_ Stream) ScheduleInRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Stream/setProperty(_:forKey:)
 
-func (s_ Stream) SetPropertyForKey(property objectivec.IObject, key unsafe.Pointer) bool {
+func (s_ Stream) SetPropertyForKey(property objectivec.IObject, key corefoundation.IStreamPropertyKey) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("setProperty:forKey:"), property, key)
 	return rv
 }

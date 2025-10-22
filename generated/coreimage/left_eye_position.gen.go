@@ -32,8 +32,11 @@ type IleftEyePosition interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFaceFeature/leftEyePosition-c.ivar
+
 type leftEyePosition struct {
 	objectivec.Object
 }

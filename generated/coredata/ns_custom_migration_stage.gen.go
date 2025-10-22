@@ -42,8 +42,13 @@ type ICustomMigrationStage interface {
 // An object that enables you to participate in the migration between two versions of the same model.
 //
 // Use when you have two versions of a model that Core Data can’t automatically migrate. Custom migration stages enable you to participate in the migration process by assigning handlers that the stage invokes before and after it runs. The handlers provide an opportunity to prepare the persistent store’s data for the upcoming changes before the stage runs, and perform any cleanup tasks afterward. For example, to support a migration that changes an optional attribute to be nonoptional, you might assign a handler to the stage’s property that sets any instances of that attribute to a default value, thereby ensuring the migration succeeds. To access the store you’re migrating, use the property of the migration manager that Core Data provides to every handler.
+
+
+// An object that enables you to participate in the migration between two versions of the same model.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSCustomMigrationStage
+
 type CustomMigrationStage struct {
 	MigrationStage
 }
@@ -93,7 +98,9 @@ func NewCustomMigrationStage() CustomMigrationStage {
 
 // Creates a custom migration stage with the specified source and destination model references.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSCustomMigrationStage/initWithCurrentModelReference:nextModelReference:
+
 func NewCustomMigrationStageWithCurrentModelReferenceNextModelReference(currentModel IManagedObjectModelReference, nextModel IManagedObjectModelReference) CustomMigrationStage {
 	instance := getCustomMigrationStageClass().Alloc()
 	rv := objc.Send[CustomMigrationStage](instance.ID, objc.Sel("initWithCurrentModelReference:nextModelReference:"), currentModel, nextModel)
@@ -102,72 +109,87 @@ func NewCustomMigrationStageWithCurrentModelReferenceNextModelReference(currentM
 }
 
 
+
 // The reference that represents the migration’s source model.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSCustomMigrationStage/currentModel
+
 func (c_ CustomMigrationStage) CurrentModel() NSManagedObjectModelReference {
 	rv := objc.Send[NSManagedObjectModelReference](c_.ID, objc.Sel("currentModel"))
 	return rv
 }
 
+
 // The handler to execute after the stage runs.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSCustomMigrationStage/didMigrateHandler-36uhx
+
 func (c_ CustomMigrationStage) DidMigrateHandler() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("didMigrateHandler"))
 	return rv
 }
 
 
-// SetDidMigrateHandler sets the value of the didMigrateHandler property.
 // The handler to execute after the stage runs.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSCustomMigrationStage/didMigrateHandler-36uhx
+
 func (c_ CustomMigrationStage) SetDidMigrateHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDidMigrateHandler:"), value)
 }
 
+
 // The reference that represents the migration’s destination model.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSCustomMigrationStage/nextModel
+
 func (c_ CustomMigrationStage) NextModel() NSManagedObjectModelReference {
 	rv := objc.Send[NSManagedObjectModelReference](c_.ID, objc.Sel("nextModel"))
 	return rv
 }
 
+
 // The handler to execute before the stage runs.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSCustomMigrationStage/willMigrateHandler-72p73
+
 func (c_ CustomMigrationStage) WillMigrateHandler() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("willMigrateHandler"))
 	return rv
 }
 
 
-// SetWillMigrateHandler sets the value of the willMigrateHandler property.
 // The handler to execute before the stage runs.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSCustomMigrationStage/willMigrateHandler-72p73
+
 func (c_ CustomMigrationStage) SetWillMigrateHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setWillMigrateHandler:"), value)
 }
 
+
 // The container that provides access to the migrating persistent store.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsstagedmigrationmanager/container
+
 func (c_ CustomMigrationStage) Container() NSPersistentContainer {
 	rv := objc.Send[NSPersistentContainer](c_.ID, objc.Sel("container"))
 	return rv
 }
 
 
-// SetContainer sets the value of the container property.
 // The container that provides access to the migrating persistent store.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsstagedmigrationmanager/container
+
 func (c_ CustomMigrationStage) SetContainer(value IPersistentContainer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setContainer:"), value)
 }

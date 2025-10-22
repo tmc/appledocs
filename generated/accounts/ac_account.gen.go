@@ -45,8 +45,13 @@ type IACAccount interface {
 // The information associated with one of the user’s accounts.
 //
 // An object encapsulates information about a user account stored in the Accounts database. You can create and retrieve accounts using an object. The object provides an interface to the persistent Accounts database. For each user, all account objects belong to a single object.
+
+
+// The information associated with one of the user’s accounts.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccount
+
 type ACAccount struct {
 	objectivec.Object
 }
@@ -94,7 +99,9 @@ func NewACAccount() ACAccount {
 
 // Initializes a new account of the specified type.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccount/init(accountType:)
+
 func NewACAccountWithAccountType(type_ ACAccountType) ACAccount {
 	instance := getACAccountClass().Alloc()
 	rv := objc.Send[ACAccount](instance.ID, objc.Sel("initWithAccountType:"), type_)
@@ -103,90 +110,108 @@ func NewACAccountWithAccountType(type_ ACAccountType) ACAccount {
 }
 
 
+
 // A human-readable description of the account.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccount/accountDescription
+
 func (a_ ACAccount) AccountDescription() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("accountDescription"))
 	return rv
 }
 
 
-// SetAccountDescription sets the value of the accountDescription property.
 // A human-readable description of the account.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccount/accountDescription
+
 func (a_ ACAccount) SetAccountDescription(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAccountDescription:"), objc.String(value))
 }
 
+
 // The type of service account.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccount/accountType
+
 func (a_ ACAccount) AccountType() ACAccountType {
 	rv := objc.Send[ACAccountType](a_.ID, objc.Sel("accountType"))
 	return rv
 }
 
 
-// SetAccountType sets the value of the accountType property.
 // The type of service account.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccount/accountType
+
 func (a_ ACAccount) SetAccountType(value ACAccountType) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAccountType:"), value)
 }
 
+
 // The credential used to authenticate the user of this account.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccount/credential
+
 func (a_ ACAccount) Credential() ACAccountCredential {
 	rv := objc.Send[ACAccountCredential](a_.ID, objc.Sel("credential"))
 	return rv
 }
 
 
-// SetCredential sets the value of the credential property.
 // The credential used to authenticate the user of this account.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccount/credential
+
 func (a_ ACAccount) SetCredential(value IACAccountCredential) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCredential:"), value)
 }
 
+
 // A unique identifier for this account.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccount/identifier
+
 func (a_ ACAccount) Identifier() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("identifier"))
 	return rv
 }
 
+
 // The full name associated with the user account.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccount/userFullName
+
 func (a_ ACAccount) UserFullName() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("userFullName"))
 	return rv
 }
 
+
 // The username for this account.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccount/username
+
 func (a_ ACAccount) Username() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("username"))
 	return rv
 }
 
 
-// SetUsername sets the value of the username property.
 // The username for this account.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccount/username
+
 func (a_ ACAccount) SetUsername(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setUsername:"), objc.String(value))
 }

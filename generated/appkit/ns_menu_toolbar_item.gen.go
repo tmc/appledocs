@@ -40,8 +40,13 @@ type IMenuToolbarItem interface {
 // A control that presents a menu in a window’s toolbar.
 //
 // If you set an action on an control item, the user invokes the action when clicking on the item through pressing and holding to display the menu. If you set an action on the item and to , the system displays the indicator as a separate segment so the user can invoke the menu with a click on that segment. If you don’t set an action on the , a simple click invokes the menu, and the indicator is purely decorative.
+
+
+// A control that presents a menu in a window’s toolbar.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuToolbarItem
+
 type MenuToolbarItem struct {
 	ToolbarItem
 }
@@ -87,53 +92,61 @@ func NewMenuToolbarItem() MenuToolbarItem {
 }
 
 
+
 // The menu presented from the toolbar item.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuToolbarItem/menu
+
 func (m_ MenuToolbarItem) Menu() NSMenu {
 	rv := objc.Send[NSMenu](m_.ID, objc.Sel("menu"))
 	return rv
 }
 
 
-// SetMenu sets the value of the menu property.
 // The menu presented from the toolbar item.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuToolbarItem/menu
+
 func (m_ MenuToolbarItem) SetMenu(value IMenu) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMenu:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenutoolbaritem/itemmenu
+
 func (m_ MenuToolbarItem) ItemMenu() Menu {
 	rv := objc.Send[Menu](m_.ID, objc.Sel("itemMenu"))
 	return rv
 }
 
 
-// SetItemMenu sets the value of the itemMenu property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenutoolbaritem/itemmenu
+
 func (m_ MenuToolbarItem) SetItemMenu(value IMenu) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setItemMenu:"), value)
 }
 
+
 // A Boolean value that determines whether the toolbar item displays an indicator of additional functionality.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenutoolbaritem/showsindicator
+
 func (m_ MenuToolbarItem) ShowsIndicator() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("showsIndicator"))
 	return rv
 }
 
 
-// SetShowsIndicator sets the value of the showsIndicator property.
 // A Boolean value that determines whether the toolbar item displays an indicator of additional functionality.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenutoolbaritem/showsindicator
+
 func (m_ MenuToolbarItem) SetShowsIndicator(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShowsIndicator:"), value)
 }

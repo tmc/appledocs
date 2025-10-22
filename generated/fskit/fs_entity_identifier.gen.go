@@ -40,8 +40,13 @@ type IFSEntityIdentifier interface {
 // A base type that identifies containers and volumes.
 //
 // An is a UUID to identify a container or volume, optionally with eight bytes of qualifying (differentiating) data. You use the qualifiers in cases in which a file server can receive multiple connections from the same client, which differ by user credentials. In this case, the identifier for each client is the server’s base UUID, and a unique qualifier that differs by client.
+
+
+// A base type that identifies containers and volumes.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSEntityIdentifier
+
 type FSEntityIdentifier struct {
 	objectivec.Object
 }
@@ -89,7 +94,9 @@ func NewFSEntityIdentifier() FSEntityIdentifier {
 
 // Creates an entity identifier with the given UUID.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSEntityIdentifier/init(uuid:)
+
 func NewFSEntityIdentifierWithUUID(uuid foundation.IUUID) FSEntityIdentifier {
 	instance := getFSEntityIdentifierClass().Alloc()
 	rv := objc.Send[FSEntityIdentifier](instance.ID, objc.Sel("initWithUUID:"), uuid)
@@ -101,7 +108,9 @@ func NewFSEntityIdentifierWithUUID(uuid foundation.IUUID) FSEntityIdentifier {
 
 // Creates an entity identifier with the given UUID and qualifier data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSEntityIdentifier/init(uuid:data:)
+
 func NewFSEntityIdentifierWithUUIDData(uuid foundation.IUUID, qualifierData foundation.IData) FSEntityIdentifier {
 	instance := getFSEntityIdentifierClass().Alloc()
 	rv := objc.Send[FSEntityIdentifier](instance.ID, objc.Sel("initWithUUID:data:"), uuid, qualifierData)
@@ -113,7 +122,9 @@ func NewFSEntityIdentifierWithUUIDData(uuid foundation.IUUID, qualifierData foun
 
 // Creates an entity identifier with the given UUID and qualifier data as a 64-bit unsigned integer.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSEntityIdentifier/init(uuid:qualifier:)
+
 func NewFSEntityIdentifierWithUUIDQualifier(uuid foundation.IUUID, qualifier uint64) FSEntityIdentifier {
 	instance := getFSEntityIdentifierClass().Alloc()
 	rv := objc.Send[FSEntityIdentifier](instance.ID, objc.Sel("initWithUUID:qualifier:"), uuid, qualifier)
@@ -122,38 +133,44 @@ func NewFSEntityIdentifierWithUUIDQualifier(uuid foundation.IUUID, qualifier uin
 }
 
 
+
 // An optional piece of data to distinguish entities that otherwise share the same UUID.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSEntityIdentifier/qualifier
+
 func (f_ FSEntityIdentifier) Qualifier() foundation.NSData {
 	rv := objc.Send[foundation.NSData](f_.ID, objc.Sel("qualifier"))
 	return rv
 }
 
 
-// SetQualifier sets the value of the qualifier property.
 // An optional piece of data to distinguish entities that otherwise share the same UUID.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSEntityIdentifier/qualifier
+
 func (f_ FSEntityIdentifier) SetQualifier(value foundation.IData) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setQualifier:"), value)
 }
 
+
 // A UUID to uniquely identify this entity.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSEntityIdentifier/uuid
+
 func (f_ FSEntityIdentifier) Uuid() foundation.UUID {
 	rv := objc.Send[foundation.UUID](f_.ID, objc.Sel("uuid"))
 	return rv
 }
 
 
-// SetUuid sets the value of the uuid property.
 // A UUID to uniquely identify this entity.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSEntityIdentifier/uuid
+
 func (f_ FSEntityIdentifier) SetUuid(value foundation.IUUID) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setUuid:"), value)
 }

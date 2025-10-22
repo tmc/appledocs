@@ -53,8 +53,13 @@ type ICaptureFileOutput interface {
 }
 
 // The abstract superclass for capture outputs that can record captured data to a file.
+
+
+// The abstract superclass for capture outputs that can record captured data to a file.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureFileOutput
+
 type CaptureFileOutput struct {
 	CaptureOutput
 }
@@ -100,171 +105,202 @@ func NewCaptureFileOutput() CaptureFileOutput {
 }
 
 
+
+
 // Starts recording media to the specified output URL.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureFileOutput/startRecording(to:recordingDelegate:)
+
 func (c_ CaptureFileOutput) StartRecordingToOutputFileURLRecordingDelegate(outputFileURL foundation.IURL, delegate objectivec.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("startRecordingToOutputFileURL:recordingDelegate:"), outputFileURL, delegate)
 }
 
+
 // The delegate object for the capture file output.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturefileoutput/delegate
+
 func (c_ CaptureFileOutput) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("delegate"))
 	return rv
 }
 
 
-// SetDelegate sets the value of the delegate property.
 // The delegate object for the capture file output.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturefileoutput/delegate
+
 func (c_ CaptureFileOutput) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDelegate:"), value)
 }
 
+
 // Indicates whether recording is in progress.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturefileoutput/isrecording
+
 func (c_ CaptureFileOutput) IsRecording() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isRecording"))
 	return rv
 }
 
 
-// SetIsRecording sets the value of the isRecording property.
 // Indicates whether recording is in progress.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturefileoutput/isrecording
+
 func (c_ CaptureFileOutput) SetIsRecording(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsRecording:"), value)
 }
 
+
 // Indicates whether recording to the current output file is paused.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturefileoutput/isrecordingpaused
+
 func (c_ CaptureFileOutput) IsRecordingPaused() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isRecordingPaused"))
 	return rv
 }
 
 
-// SetIsRecordingPaused sets the value of the isRecordingPaused property.
 // Indicates whether recording to the current output file is paused.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturefileoutput/isrecordingpaused
+
 func (c_ CaptureFileOutput) SetIsRecordingPaused(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsRecordingPaused:"), value)
 }
 
+
 // The longest duration allowed for the recording.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturefileoutput/maxrecordedduration
+
 func (c_ CaptureFileOutput) MaxRecordedDuration() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("maxRecordedDuration"))
 	return rv
 }
 
 
-// SetMaxRecordedDuration sets the value of the maxRecordedDuration property.
 // The longest duration allowed for the recording.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturefileoutput/maxrecordedduration
+
 func (c_ CaptureFileOutput) SetMaxRecordedDuration(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMaxRecordedDuration:"), value)
 }
 
+
 // The maximum size, in bytes, of the data that should be recorded by the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturefileoutput/maxrecordedfilesize
+
 func (c_ CaptureFileOutput) MaxRecordedFileSize() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("maxRecordedFileSize"))
 	return rv
 }
 
 
-// SetMaxRecordedFileSize sets the value of the maxRecordedFileSize property.
 // The maximum size, in bytes, of the data that should be recorded by the receiver.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturefileoutput/maxrecordedfilesize
+
 func (c_ CaptureFileOutput) SetMaxRecordedFileSize(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMaxRecordedFileSize:"), value)
 }
 
+
 // The minimum amount of free space, in bytes, required for recording to continue on a given volume.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturefileoutput/minfreediskspacelimit
+
 func (c_ CaptureFileOutput) MinFreeDiskSpaceLimit() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("minFreeDiskSpaceLimit"))
 	return rv
 }
 
 
-// SetMinFreeDiskSpaceLimit sets the value of the minFreeDiskSpaceLimit property.
 // The minimum amount of free space, in bytes, required for recording to continue on a given volume.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturefileoutput/minfreediskspacelimit
+
 func (c_ CaptureFileOutput) SetMinFreeDiskSpaceLimit(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMinFreeDiskSpaceLimit:"), value)
 }
 
+
 // The URL to which output is directed.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturefileoutput/outputfileurl
+
 func (c_ CaptureFileOutput) OutputFileURL() foundation.URL {
 	rv := objc.Send[foundation.URL](c_.ID, objc.Sel("outputFileURL"))
 	return rv
 }
 
 
-// SetOutputFileURL sets the value of the outputFileURL property.
 // The URL to which output is directed.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturefileoutput/outputfileurl
+
 func (c_ CaptureFileOutput) SetOutputFileURL(value foundation.IURL) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setOutputFileURL:"), value)
 }
 
+
 // Indicates the duration of the media recorded to the current output file.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturefileoutput/recordedduration
+
 func (c_ CaptureFileOutput) RecordedDuration() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("recordedDuration"))
 	return rv
 }
 
 
-// SetRecordedDuration sets the value of the recordedDuration property.
 // Indicates the duration of the media recorded to the current output file.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturefileoutput/recordedduration
+
 func (c_ CaptureFileOutput) SetRecordedDuration(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordedDuration:"), value)
 }
 
+
 // Indicates the size, in bytes, of the data recorded to the current output file.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturefileoutput/recordedfilesize
+
 func (c_ CaptureFileOutput) RecordedFileSize() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("recordedFileSize"))
 	return rv
 }
 
 
-// SetRecordedFileSize sets the value of the recordedFileSize property.
 // Indicates the size, in bytes, of the data recorded to the current output file.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturefileoutput/recordedfilesize
+
 func (c_ CaptureFileOutput) SetRecordedFileSize(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordedFileSize:"), value)
 }

@@ -37,8 +37,13 @@ type ICKSyncEngineSendChangesOptions interface {
 }
 
 // A set of options to use with a send operation.
+
+
+// A set of options to use with a send operation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineSendChangesOptions
+
 type CKSyncEngineSendChangesOptions struct {
 	objectivec.Object
 }
@@ -82,8 +87,11 @@ func NewCKSyncEngineSendChangesOptions() CKSyncEngineSendChangesOptions {
 }
 
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineSendChangesOptions/initWithScope:
+
 func NewCKSyncEngineSendChangesOptionsWithScope(scope ICKSyncEngineSendChangesScope) CKSyncEngineSendChangesOptions {
 	instance := getCKSyncEngineSendChangesOptionsClass().Alloc()
 	rv := objc.Send[CKSyncEngineSendChangesOptions](instance.ID, objc.Sel("initWithScope:"), scope)
@@ -92,35 +100,40 @@ func NewCKSyncEngineSendChangesOptionsWithScope(scope ICKSyncEngineSendChangesSc
 }
 
 
+
 // The operation group to use for the underlying CloudKit operations.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineSendChangesOptions/operationGroup
+
 func (c_ CKSyncEngineSendChangesOptions) OperationGroup() CKOperationGroup {
 	rv := objc.Send[CKOperationGroup](c_.ID, objc.Sel("operationGroup"))
 	return rv
 }
 
 
-// SetOperationGroup sets the value of the operationGroup property.
 // The operation group to use for the underlying CloudKit operations.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineSendChangesOptions/operationGroup
+
 func (c_ CKSyncEngineSendChangesOptions) SetOperationGroup(value ICKOperationGroup) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setOperationGroup:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineSendChangesOptions/scope
+
 func (c_ CKSyncEngineSendChangesOptions) Scope() CKSyncEngineSendChangesScope {
 	rv := objc.Send[CKSyncEngineSendChangesScope](c_.ID, objc.Sel("scope"))
 	return rv
 }
 
 
-// SetScope sets the value of the scope property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineSendChangesOptions/scope
+
 func (c_ CKSyncEngineSendChangesOptions) SetScope(value ICKSyncEngineSendChangesScope) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setScope:"), value)
 }

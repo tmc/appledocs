@@ -42,8 +42,13 @@ type ICustomDeviceRoute interface {
 // An object that represents a custom device route.
 //
 // Use the value of a route’s or property to establish a connection to a device. Typically, only one of the properties provides a valid value, depending on the type of device. In certain cases, both properties may provide valid values, in which case your app determines which one to use.
+
+
+// An object that represents a custom device route.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVCustomDeviceRoute
+
 type CustomDeviceRoute struct {
 	objectivec.Object
 }
@@ -87,54 +92,66 @@ func NewCustomDeviceRoute() CustomDeviceRoute {
 }
 
 
+
 // An identifier to use to establish a connection to a Bluetooth device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVCustomDeviceRoute/bluetoothIdentifier
+
 func (c_ CustomDeviceRoute) BluetoothIdentifier() foundation.UUID {
 	rv := objc.Send[foundation.UUID](c_.ID, objc.Sel("bluetoothIdentifier"))
 	return rv
 }
 
+
 // A local or remote endpoint to connect to.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVCustomDeviceRoute/networkEndpoint
+
 func (c_ CustomDeviceRoute) NetworkEndpoint() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("networkEndpoint"))
 	return rv
 }
 
+
 // A reason for an event, such as a user request to activate or deactivate a route.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avrouting/avcustomroutingevent/reason
+
 func (c_ CustomDeviceRoute) Reason() CustomRoutingEventReason {
 	rv := objc.Send[CustomRoutingEventReason](c_.ID, objc.Sel("reason"))
 	return rv
 }
 
 
-// SetReason sets the value of the reason property.
 // A reason for an event, such as a user request to activate or deactivate a route.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avrouting/avcustomroutingevent/reason
+
 func (c_ CustomDeviceRoute) SetReason(value ICustomRoutingEventReason) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setReason:"), value)
 }
 
+
 // A route for the event.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avrouting/avcustomroutingevent/route
+
 func (c_ CustomDeviceRoute) Route() AVCustomDeviceRoute {
 	rv := objc.Send[AVCustomDeviceRoute](c_.ID, objc.Sel("route"))
 	return rv
 }
 
 
-// SetRoute sets the value of the route property.
 // A route for the event.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avrouting/avcustomroutingevent/route
+
 func (c_ CustomDeviceRoute) SetRoute(value IAVCustomDeviceRoute) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRoute:"), value)
 }

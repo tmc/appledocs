@@ -44,8 +44,13 @@ type IInvite interface {
 // An invitation to join a match sent to the local player from another player.
 //
 // Your game never directly creates objects. Instead, these objects are created by GameKit and delivered to your game’s matchmaking event handler. The properties of the invitation object describe the match to which another player invites the local player.
+
+
+// An invitation to join a match sent to the local player from another player.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKInvite
+
 type Invite struct {
 	objectivec.Object
 }
@@ -89,82 +94,97 @@ func NewInvite() Invite {
 }
 
 
+
 // The player group for the match.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKInvite/playerGroup
+
 func (i_ Invite) PlayerGroup() uint {
 	rv := objc.Send[uint](i_.ID, objc.Sel("playerGroup"))
 	return rv
 }
 
+
 // The identifier for the player who sends the invitation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkinvite/inviter
+
 func (i_ Invite) Inviter() string {
 	rv := objc.Send[string](i_.ID, objc.Sel("inviter"))
 	return rv
 }
 
 
-// SetInviter sets the value of the inviter property.
 // The identifier for the player who sends the invitation.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkinvite/inviter
+
 func (i_ Invite) SetInviter(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setInviter:"), objc.String(value))
 }
 
+
 // A Boolean value that indicates whether you host the game on your own servers.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkinvite/ishosted
+
 func (i_ Invite) IsHosted() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("isHosted"))
 	return rv
 }
 
 
-// SetIsHosted sets the value of the isHosted property.
 // A Boolean value that indicates whether you host the game on your own servers.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkinvite/ishosted
+
 func (i_ Invite) SetIsHosted(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIsHosted:"), value)
 }
 
+
 // The player attributes for the match.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkinvite/playerattributes
+
 func (i_ Invite) PlayerAttributes() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("playerAttributes"))
 	return rv
 }
 
 
-// SetPlayerAttributes sets the value of the playerAttributes property.
 // The player attributes for the match.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkinvite/playerattributes
+
 func (i_ Invite) SetPlayerAttributes(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPlayerAttributes:"), value)
 }
 
+
 // The player who sends the invitation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkinvite/sender
+
 func (i_ Invite) Sender() GKPlayer {
 	rv := objc.Send[GKPlayer](i_.ID, objc.Sel("sender"))
 	return rv
 }
 
 
-// SetSender sets the value of the sender property.
 // The player who sends the invitation.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkinvite/sender
+
 func (i_ Invite) SetSender(value IGKPlayer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSender:"), value)
 }

@@ -32,8 +32,11 @@ type IcolumnCount interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIPDF417CodeDescriptor/columnCount-c.ivar
+
 type columnCount struct {
 	objectivec.Object
 }

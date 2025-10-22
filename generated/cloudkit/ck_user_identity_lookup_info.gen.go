@@ -38,8 +38,13 @@ type ICKUserIdentityLookupInfo interface {
 // The criteria to use when searching for discoverable iCloud users.
 //
 // Use this object when you want to discover the identities of your app’s users with , or to create a share’s participants with . You create individual instances by providing an email address, phone number, or user record ID. Alternatively, create an array of objects all at once by using one of the convenience methods, such as .
+
+
+// The criteria to use when searching for discoverable iCloud users.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKUserIdentity/LookupInfo-swift.class
+
 type CKUserIdentityLookupInfo struct {
 	objectivec.Object
 }
@@ -87,7 +92,9 @@ func NewCKUserIdentityLookupInfo() CKUserIdentityLookupInfo {
 
 // Creates a lookup info for the specified email address.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKUserIdentity/LookupInfo-swift.class/init(emailAddress:)
+
 func NewCKUserIdentityLookupInfoWithEmailAddress(emailAddress string) CKUserIdentityLookupInfo {
 	instance := getCKUserIdentityLookupInfoClass().Alloc()
 	rv := objc.Send[CKUserIdentityLookupInfo](instance.ID, objc.Sel("initWithEmailAddress:"), objc.String(emailAddress))
@@ -99,7 +106,9 @@ func NewCKUserIdentityLookupInfoWithEmailAddress(emailAddress string) CKUserIden
 
 // Creates a lookup info for the specified phone number.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKUserIdentity/LookupInfo-swift.class/init(phoneNumber:)
+
 func NewCKUserIdentityLookupInfoWithPhoneNumber(phoneNumber string) CKUserIdentityLookupInfo {
 	instance := getCKUserIdentityLookupInfoClass().Alloc()
 	rv := objc.Send[CKUserIdentityLookupInfo](instance.ID, objc.Sel("initWithPhoneNumber:"), objc.String(phoneNumber))
@@ -111,7 +120,9 @@ func NewCKUserIdentityLookupInfoWithPhoneNumber(phoneNumber string) CKUserIdenti
 
 // Creates a lookup info for the specified user record ID.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKUserIdentity/LookupInfo-swift.class/init(userRecordID:)
+
 func NewCKUserIdentityLookupInfoWithUserRecordID(userRecordID ICKRecordID) CKUserIdentityLookupInfo {
 	instance := getCKUserIdentityLookupInfoClass().Alloc()
 	rv := objc.Send[CKUserIdentityLookupInfo](instance.ID, objc.Sel("initWithUserRecordID:"), userRecordID)
@@ -120,49 +131,67 @@ func NewCKUserIdentityLookupInfoWithUserRecordID(userRecordID ICKRecordID) CKUse
 }
 
 
+
 // Returns an array of lookup infos for the specifed user record IDs.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKUserIdentity/LookupInfo-swift.class/lookupInfos(with:)
+
 func (cc _CKUserIdentityLookupInfoClass) LookupInfosWithRecordIDs(recordIDs []CKRecordID) []CKUserIdentityLookupInfo {
 	rv := objc.Send[[]CKUserIdentityLookupInfo](objc.ID(cc.class), objc.Sel("lookupInfosWithRecordIDs:"), recordIDs)
 	return rv
 }
 
+
 // Returns an array of lookup infos for the specifed email addresses.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKUserIdentity/LookupInfo-swift.class/lookupInfos(withEmails:)
+
 func (cc _CKUserIdentityLookupInfoClass) LookupInfosWithEmails(emails []string) []CKUserIdentityLookupInfo {
 	rv := objc.Send[[]CKUserIdentityLookupInfo](objc.ID(cc.class), objc.Sel("lookupInfosWithEmails:"), emails)
 	return rv
 }
 
+
 // Returns an array of lookup infos for the specifed phone numbers.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKUserIdentity/LookupInfo-swift.class/lookupInfos(withPhoneNumbers:)
+
 func (cc _CKUserIdentityLookupInfoClass) LookupInfosWithPhoneNumbers(phoneNumbers []string) []CKUserIdentityLookupInfo {
 	rv := objc.Send[[]CKUserIdentityLookupInfo](objc.ID(cc.class), objc.Sel("lookupInfosWithPhoneNumbers:"), phoneNumbers)
 	return rv
 }
 
+
 // The user’s email address.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKUserIdentity/LookupInfo-swift.class/emailAddress
+
 func (c_ CKUserIdentityLookupInfo) EmailAddress() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("emailAddress"))
 	return rv
 }
 
+
 // The user’s phone number.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKUserIdentity/LookupInfo-swift.class/phoneNumber
+
 func (c_ CKUserIdentityLookupInfo) PhoneNumber() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("phoneNumber"))
 	return rv
 }
 
+
 // The ID of the user record.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKUserIdentity/LookupInfo-swift.class/userRecordID
+
 func (c_ CKUserIdentityLookupInfo) UserRecordID() CKRecordID {
 	rv := objc.Send[CKRecordID](c_.ID, objc.Sel("userRecordID"))
 	return rv

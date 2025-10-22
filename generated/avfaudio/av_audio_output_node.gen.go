@@ -39,8 +39,13 @@ type IAudioOutputNode interface {
 // An object that connects to the system’s audio output.
 //
 // This node connects to the system’s audio output when rendering to or from an audio device. This node performs output in response to client’s requests when the engine is in manual rendering mode. This audio node has one element. The format of the output scope reflects: The audio hardware sample rate and channel count when it connects to the hardware. The engine’s manual rendering mode output format (see ). The format of the input scope is initially the same as that of the output, but you may set it to a different format, in which case the audio node converts.
+
+
+// An object that connects to the system’s audio output.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioOutputNode
+
 type AudioOutputNode struct {
 	AudioIONode
 }
@@ -86,38 +91,44 @@ func NewAudioOutputNode() AudioOutputNode {
 }
 
 
+
 // The render format of the engine in manual rendering mode.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioengine/manualrenderingformat
+
 func (a_ AudioOutputNode) ManualRenderingFormat() AVAudioFormat {
 	rv := objc.Send[AVAudioFormat](a_.ID, objc.Sel("manualRenderingFormat"))
 	return rv
 }
 
 
-// SetManualRenderingFormat sets the value of the manualRenderingFormat property.
 // The render format of the engine in manual rendering mode.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioengine/manualrenderingformat
+
 func (a_ AudioOutputNode) SetManualRenderingFormat(value AVAudioFormat) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setManualRenderingFormat:"), value)
 }
 
+
 // The AVAudioOutputNode’s intended
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiooutputnode/intendedspatialexperience-3ts59
+
 func (a_ AudioOutputNode) IntendedSpatialExperience() audiotoolbox.SpatialAudioExperience {
 	rv := objc.Send[audiotoolbox.SpatialAudioExperience](a_.ID, objc.Sel("intendedSpatialExperience"))
 	return rv
 }
 
 
-// SetIntendedSpatialExperience sets the value of the intendedSpatialExperience property.
 // The AVAudioOutputNode’s intended
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiooutputnode/intendedspatialexperience-3ts59
+
 func (a_ AudioOutputNode) SetIntendedSpatialExperience(value audiotoolbox.ISpatialAudioExperience) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIntendedSpatialExperience:"), value)
 }

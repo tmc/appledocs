@@ -2,12 +2,16 @@
 
 // Package coreaudiokit provides Go bindings for the CoreAudioKit framework.
 //
-// Add user interfaces to audio units. [Full Topic]
+// Add user interfaces to audio units.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to CoreAudioKit without requiring cgo.
+
+// Add user interfaces to audio units.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit
+
 package coreaudiokit
 
 import (

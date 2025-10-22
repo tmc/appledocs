@@ -40,8 +40,13 @@ type IHKQueryDescriptor interface {
 // A descriptor that specifies a set of samples based on the data type and a predicate.
 //
 // Use descriptors to create queries that return multiple data types. You can use descriptors when creating , , or instances.
+
+
+// A descriptor that specifies a set of samples based on the data type and a predicate.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKQueryDescriptor
+
 type HKQueryDescriptor struct {
 	objectivec.Object
 }
@@ -85,38 +90,44 @@ func NewHKQueryDescriptor() HKQueryDescriptor {
 }
 
 
+
 // The predicate that filters samples matching this descriptor.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquerydescriptor/predicate
+
 func (h_ HKQueryDescriptor) Predicate() foundation.Predicate {
 	rv := objc.Send[foundation.Predicate](h_.ID, objc.Sel("predicate"))
 	return rv
 }
 
 
-// SetPredicate sets the value of the predicate property.
 // The predicate that filters samples matching this descriptor.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquerydescriptor/predicate
+
 func (h_ HKQueryDescriptor) SetPredicate(value foundation.IPredicate) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setPredicate:"), value)
 }
 
+
 // The data type of samples that match this descriptor.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquerydescriptor/sampletype
+
 func (h_ HKQueryDescriptor) SampleType() HKSampleType {
 	rv := objc.Send[HKSampleType](h_.ID, objc.Sel("sampleType"))
 	return rv
 }
 
 
-// SetSampleType sets the value of the sampleType property.
 // The data type of samples that match this descriptor.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquerydescriptor/sampletype
+
 func (h_ HKQueryDescriptor) SetSampleType(value HKSampleType) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setSampleType:"), value)
 }

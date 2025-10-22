@@ -39,8 +39,13 @@ type ICXCallObserver interface {
 // A programmatic interface for an object that manages a list of active calls and observes call changes.
 //
 // You can retrieve a list of active calls on an object using the property. You can also provide an object conforming to the protocol as the call observer delegate using the method to respond to any active call changes. VoIP apps typically interact with the object returned by the property of a instance. However, any app can create a new object to be notified of any calls activity on the system.
+
+
+// A programmatic interface for an object that manages a list of active calls and observes call changes.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallObserver
+
 type CXCallObserver struct {
 	objectivec.Object
 }
@@ -84,35 +89,45 @@ func NewCXCallObserver() CXCallObserver {
 }
 
 
+
+
 // Sets a call observer delegate, specifying an optional queue on which to execute delegate methods.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallObserver/setDelegate(_:queue:)
+
 func (c_ CXCallObserver) SetDelegateQueue(delegate objectivec.IObject, queue unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDelegate:queue:"), delegate, queue)
 }
 
+
 // Returns the active calls of the telephony provider.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallObserver/calls
+
 func (c_ CXCallObserver) Calls() []CXCall {
 	rv := objc.Send[[]CXCall](c_.ID, objc.Sel("calls"))
 	return rv
 }
 
+
 // Returns an observer for active calls.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/callkit/cxcallcontroller/callobserver
+
 func (c_ CXCallObserver) CallObserver() CXCallObserver {
 	rv := objc.Send[CXCallObserver](c_.ID, objc.Sel("callObserver"))
 	return rv
 }
 
 
-// SetCallObserver sets the value of the callObserver property.
 // Returns an observer for active calls.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/callkit/cxcallcontroller/callobserver
+
 func (c_ CXCallObserver) SetCallObserver(value ICXCallObserver) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCallObserver:"), value)
 }

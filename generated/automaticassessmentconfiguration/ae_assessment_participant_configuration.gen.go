@@ -47,8 +47,13 @@ type IAEAssessmentParticipantConfiguration interface {
 // Configuration information for an app that’s available during an assessment.
 //
 // Use an instance of this class to configure the properties of an app that you allow to run during an assessment. Associate the participant configuration with an app (an instance) when you call the method of a session configuration.
+
+
+// Configuration information for an app that’s available during an assessment.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentParticipantConfiguration
+
 type AEAssessmentParticipantConfiguration struct {
 	objectivec.Object
 }
@@ -93,101 +98,116 @@ func NewAEAssessmentParticipantConfiguration() AEAssessmentParticipantConfigurat
 
 
 
+
 // A Boolean that indicates whether an app can access network resources during an assessment.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentParticipantConfiguration/allowsNetworkAccess
+
 func (a_ AEAssessmentParticipantConfiguration) AllowsNetworkAccess() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("allowsNetworkAccess"))
 	return rv
 }
 
 
-// SetAllowsNetworkAccess sets the value of the allowsNetworkAccess property.
 // A Boolean that indicates whether an app can access network resources during an assessment.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentParticipantConfiguration/allowsNetworkAccess
+
 func (a_ AEAssessmentParticipantConfiguration) SetAllowsNetworkAccess(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowsNetworkAccess:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentParticipantConfiguration/configurationInfo
+
 func (a_ AEAssessmentParticipantConfiguration) ConfigurationInfo() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("configurationInfo"))
 	return rv
 }
 
 
-// SetConfigurationInfo sets the value of the configurationInfo property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentParticipantConfiguration/configurationInfo
+
 func (a_ AEAssessmentParticipantConfiguration) SetConfigurationInfo(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setConfigurationInfo:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentParticipantConfiguration/isRequired
+
 func (a_ AEAssessmentParticipantConfiguration) Required() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("required"))
 	return rv
 }
 
 
-// SetRequired sets the value of the required property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentParticipantConfiguration/isRequired
+
 func (a_ AEAssessmentParticipantConfiguration) SetRequired(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setRequired:"), value)
 }
 
+
 // The collection of apps available during an assessment, along with their associated configurations.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentconfiguration/configurationsbyapplication
+
 func (a_ AEAssessmentParticipantConfiguration) ConfigurationsByApplication() AEAssessmentParticipantConfiguration {
 	rv := objc.Send[AEAssessmentParticipantConfiguration](a_.ID, objc.Sel("configurationsByApplication"))
 	return rv
 }
 
 
-// SetConfigurationsByApplication sets the value of the configurationsByApplication property.
 // The collection of apps available during an assessment, along with their associated configurations.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentconfiguration/configurationsbyapplication
+
 func (a_ AEAssessmentParticipantConfiguration) SetConfigurationsByApplication(value IAEAssessmentParticipantConfiguration) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setConfigurationsByApplication:"), value)
 }
 
+
 // The app-specific configuration for the app that invokes the assessment.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentconfiguration/mainparticipantconfiguration
+
 func (a_ AEAssessmentParticipantConfiguration) MainParticipantConfiguration() AEAssessmentParticipantConfiguration {
 	rv := objc.Send[AEAssessmentParticipantConfiguration](a_.ID, objc.Sel("mainParticipantConfiguration"))
 	return rv
 }
 
 
-// SetMainParticipantConfiguration sets the value of the mainParticipantConfiguration property.
 // The app-specific configuration for the app that invokes the assessment.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentconfiguration/mainparticipantconfiguration
+
 func (a_ AEAssessmentParticipantConfiguration) SetMainParticipantConfiguration(value IAEAssessmentParticipantConfiguration) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMainParticipantConfiguration:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentparticipantconfiguration/isrequired
+
 func (a_ AEAssessmentParticipantConfiguration) IsRequired() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isRequired"))
 	return rv
 }
 
 
-// SetIsRequired sets the value of the isRequired property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentparticipantconfiguration/isrequired
+
 func (a_ AEAssessmentParticipantConfiguration) SetIsRequired(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsRequired:"), value)
 }

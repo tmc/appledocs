@@ -30,19 +30,22 @@ type _UserNotificationCenterClass struct {
 // An interface definition for the [UserNotificationCenter] class.
 type IUserNotificationCenter interface {
 	objectivec.IObject
+	DeliverNotification(notification IUserNotification)
+	RemoveAllDeliveredNotifications()
 	RemoveDeliveredNotification(notification IUserNotification)
+	RemoveScheduledNotification(notification IUserNotification)
+	ScheduleNotification(notification IUserNotification)
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
+	DeliveredNotifications() []UserNotification
+	ScheduledNotifications() []UserNotification
+	SetScheduledNotifications(value []UserNotification)
 	ActualDeliveryDate() Date
 	SetActualDeliveryDate(value IDate)
 	DeliveryDate() Date
 	SetDeliveryDate(value IDate)
 	IsPresented() bool
 	SetIsPresented(value bool)
-	DeliveredNotifications() NSUserNotification
-	SetDeliveredNotifications(value IUserNotification)
-	ScheduledNotifications() NSUserNotification
-	SetScheduledNotifications(value IUserNotification)
 }
 
 // An object that delivers notifications from apps to the user.
@@ -99,6 +102,38 @@ func NewUserNotificationCenter() UserNotificationCenter {
 
 
 
+// Returns the default user notification center.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationCenter/default
+
+func (uc _UserNotificationCenterClass) DefaultUserNotificationCenter() UserNotificationCenter {
+	rv := objc.Send[NSUserNotificationCenter](objc.ID(uc.class), objc.Sel("defaultUserNotificationCenter"))
+	return rv
+}
+
+
+// Deliver the specified user notification.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationCenter/deliver(_:)
+
+func (u_ UserNotificationCenter) DeliverNotification(notification IUserNotification) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("deliverNotification:"), notification)
+}
+
+
+
+// Remove all delivered user notifications from the user notification center.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationCenter/removeAllDeliveredNotifications()
+
+func (u_ UserNotificationCenter) RemoveAllDeliveredNotifications() {
+	objc.Send[objc.ID](u_.ID, objc.Sel("removeAllDeliveredNotifications"))
+}
+
+
 
 // Remove a delivered user notification from the user notification center.
 //
@@ -107,6 +142,39 @@ func NewUserNotificationCenter() UserNotificationCenter {
 
 func (u_ UserNotificationCenter) RemoveDeliveredNotification(notification IUserNotification) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("removeDeliveredNotification:"), notification)
+}
+
+
+
+// Removes the specified user notification for the scheduled notifications.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationCenter/removeScheduledNotification(_:)
+
+func (u_ UserNotificationCenter) RemoveScheduledNotification(notification IUserNotification) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("removeScheduledNotification:"), notification)
+}
+
+
+
+// Schedules the specified user notification.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationCenter/scheduleNotification(_:)
+
+func (u_ UserNotificationCenter) ScheduleNotification(notification IUserNotification) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("scheduleNotification:"), notification)
+}
+
+
+// Returns the default user notification center.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationCenter/default
+
+func (u_ UserNotificationCenter) DefaultUserNotificationCenter() NSUserNotificationCenter {
+	rv := objc.Send[NSUserNotificationCenter](u_.ID, objc.Sel("defaultUserNotificationCenter"))
+	return rv
 }
 
 
@@ -128,6 +196,48 @@ func (u_ UserNotificationCenter) Delegate() objc.ID {
 
 func (u_ UserNotificationCenter) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setDelegate:"), value)
+}
+
+
+// An array of all user notifications delivered to the notification center.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationCenter/deliveredNotifications
+
+func (u_ UserNotificationCenter) DeliveredNotifications() []UserNotification {
+	rv := objc.Send[[]UserNotification](u_.ID, objc.Sel("deliveredNotifications"))
+	return rv
+}
+
+
+// Specifies an array of scheduled user notifications that have not yet been delivered.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationCenter/scheduledNotifications
+
+func (u_ UserNotificationCenter) ScheduledNotifications() []UserNotification {
+	rv := objc.Send[[]UserNotification](u_.ID, objc.Sel("scheduledNotifications"))
+	return rv
+}
+
+
+// Specifies an array of scheduled user notifications that have not yet been delivered.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationCenter/scheduledNotifications
+
+func (u_ UserNotificationCenter) SetScheduledNotifications(value []UserNotification) {
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](u_.ID, objc.Sel("setScheduledNotifications:"), nsArray)
 }
 
 
@@ -191,48 +301,6 @@ func (u_ UserNotificationCenter) IsPresented() bool {
 
 func (u_ UserNotificationCenter) SetIsPresented(value bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setIsPresented:"), value)
-}
-
-
-// An array of all user notifications delivered to the notification center.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotificationcenter/deliverednotifications
-
-func (u_ UserNotificationCenter) DeliveredNotifications() NSUserNotification {
-	rv := objc.Send[NSUserNotification](u_.ID, objc.Sel("deliveredNotifications"))
-	return rv
-}
-
-
-// An array of all user notifications delivered to the notification center.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotificationcenter/deliverednotifications
-
-func (u_ UserNotificationCenter) SetDeliveredNotifications(value IUserNotification) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setDeliveredNotifications:"), value)
-}
-
-
-// Specifies an array of scheduled user notifications that have not yet been delivered.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotificationcenter/schedulednotifications
-
-func (u_ UserNotificationCenter) ScheduledNotifications() NSUserNotification {
-	rv := objc.Send[NSUserNotification](u_.ID, objc.Sel("scheduledNotifications"))
-	return rv
-}
-
-
-// Specifies an array of scheduled user notifications that have not yet been delivered.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotificationcenter/schedulednotifications
-
-func (u_ UserNotificationCenter) SetScheduledNotifications(value IUserNotification) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setScheduledNotifications:"), value)
 }
 
 

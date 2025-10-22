@@ -30,13 +30,12 @@ type _HostClass struct {
 // An interface definition for the [Host] class.
 type IHost interface {
 	objectivec.IObject
+	IsEqualToHost(aHost IHost) bool
+	Address() string
 	Addresses() []string
 	LocalizedName() string
 	Name() string
-	Address() string
-	SetAddress(value string)
-	Names() string
-	SetNames(value string)
+	Names() []string
 }
 
 // A representation of an individual host on the network.
@@ -151,6 +150,27 @@ func (hc _HostClass) HostWithName(name string) unsafe.Pointer {
 }
 
 
+// Releases the cache of existing objects so subsequent requests for objects create new ones.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHost/flushHostCache
+
+func (hc _HostClass) FlushHostCache() {
+	objc.Send[objc.ID](objc.ID(hc.class), objc.Sel("flushHostCache"))
+}
+
+
+// Indicates whether caching is turned on or off.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHost/isHostCacheEnabled
+
+func (hc _HostClass) IsHostCacheEnabled() bool {
+	rv := objc.Send[bool](objc.ID(hc.class), objc.Sel("isHostCacheEnabled"))
+	return rv
+}
+
+
 // Specifies whether the receiver is to cache instances as it creates them to avoid creating duplicate instances.
 //
 // [Full Topic]
@@ -158,6 +178,29 @@ func (hc _HostClass) HostWithName(name string) unsafe.Pointer {
 
 func (hc _HostClass) SetHostCacheEnabled(flag bool) {
 	objc.Send[objc.ID](objc.ID(hc.class), objc.Sel("setHostCacheEnabled:"), flag)
+}
+
+
+
+// Indicates whether the receiver represents the same host as another object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Host/isEqual(to:)
+
+func (h_ Host) IsEqualToHost(aHost IHost) bool {
+	rv := objc.Send[bool](h_.ID, objc.Sel("isEqualToHost:"), aHost)
+	return rv
+}
+
+
+// Returns one of the network addresses of the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Host/address
+
+func (h_ Host) Address() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("address"))
+	return rv
 }
 
 
@@ -194,45 +237,14 @@ func (h_ Host) Name() string {
 }
 
 
-// Returns one of the network addresses of the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/host/address
-
-func (h_ Host) Address() string {
-	rv := objc.Send[string](h_.ID, objc.Sel("address"))
-	return rv
-}
-
-
-// Returns one of the network addresses of the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/host/address
-
-func (h_ Host) SetAddress(value string) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setAddress:"), objc.String(value))
-}
-
-
 // Returns all the hostnames of the receiver.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/host/names
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Host/names
 
-func (h_ Host) Names() string {
-	rv := objc.Send[string](h_.ID, objc.Sel("names"))
+func (h_ Host) Names() []string {
+	rv := objc.Send[[]string](h_.ID, objc.Sel("names"))
 	return rv
-}
-
-
-// Returns all the hostnames of the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/host/names
-
-func (h_ Host) SetNames(value string) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setNames:"), objc.String(value))
 }
 
 

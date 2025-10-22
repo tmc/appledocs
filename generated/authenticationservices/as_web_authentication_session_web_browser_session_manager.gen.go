@@ -39,8 +39,13 @@ type IWebAuthenticationSessionWebBrowserSessionManager interface {
 // A session manager that mediates sharing data between an app and a web browser.
 //
 // You don’t create a session manager directly. Instead, use the session manager to tell the system what instance within your web browser app handles authentication requests. Do this by assigning an instance of a class that adopts the protocol to the shared manager’s property. You can also use the shared managers property to determine if your web browser app was launched for the specific purpose of performing authentication.
+
+
+// A session manager that mediates sharing data between an app and a web browser.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASWebAuthenticationSessionWebBrowserSessionManager
+
 type WebAuthenticationSessionWebBrowserSessionManager struct {
 	objectivec.Object
 }
@@ -84,53 +89,65 @@ func NewWebAuthenticationSessionWebBrowserSessionManager() WebAuthenticationSess
 }
 
 
+
 // The shared manager for which a web browser acts as the session handler.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASWebAuthenticationSessionWebBrowserSessionManager/shared
+
 func (wc _WebAuthenticationSessionWebBrowserSessionManagerClass) SharedManager() WebAuthenticationSessionWebBrowserSessionManager {
 	rv := objc.Send[ASWebAuthenticationSessionWebBrowserSessionManager](objc.ID(wc.class), objc.Sel("sharedManager"))
 	return rv
 }
+
 // The shared manager for which a web browser acts as the session handler.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASWebAuthenticationSessionWebBrowserSessionManager/shared
+
 func (w_ WebAuthenticationSessionWebBrowserSessionManager) SharedManager() ASWebAuthenticationSessionWebBrowserSessionManager {
 	rv := objc.Send[ASWebAuthenticationSessionWebBrowserSessionManager](w_.ID, objc.Sel("sharedManager"))
 	return rv
 }
 
+
 // A handler that a web browser provides to handle session requests from an app.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aswebauthenticationsessionwebbrowsersessionmanager/sessionhandler
+
 func (w_ WebAuthenticationSessionWebBrowserSessionManager) SessionHandler() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("sessionHandler"))
 	return rv
 }
 
 
-// SetSessionHandler sets the value of the sessionHandler property.
 // A handler that a web browser provides to handle session requests from an app.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aswebauthenticationsessionwebbrowsersessionmanager/sessionhandler
+
 func (w_ WebAuthenticationSessionWebBrowserSessionManager) SetSessionHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setSessionHandler:"), value)
 }
 
+
 // A Boolean that indicates whether the session was launched by authentication services.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aswebauthenticationsessionwebbrowsersessionmanager/waslaunchedbyauthenticationservices
+
 func (w_ WebAuthenticationSessionWebBrowserSessionManager) WasLaunchedByAuthenticationServices() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("wasLaunchedByAuthenticationServices"))
 	return rv
 }
 
 
-// SetWasLaunchedByAuthenticationServices sets the value of the wasLaunchedByAuthenticationServices property.
 // A Boolean that indicates whether the session was launched by authentication services.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aswebauthenticationsessionwebbrowsersessionmanager/waslaunchedbyauthenticationservices
+
 func (w_ WebAuthenticationSessionWebBrowserSessionManager) SetWasLaunchedByAuthenticationServices(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setWasLaunchedByAuthenticationServices:"), value)
 }

@@ -34,8 +34,13 @@ type IHKPrescriptionType interface {
 // A type that identifies samples that store a prescription.
 //
 // The class is a concrete subclass of the class. To create a vision prescription type instances, use the convenience method. Use this data type to request permission to save vision prescriptions to the HealthKit store.
+
+
+// A type that identifies samples that store a prescription.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKPrescriptionType
+
 type HKPrescriptionType struct {
 	HKSampleType
 }

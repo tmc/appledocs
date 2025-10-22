@@ -39,8 +39,13 @@ type IPathComponentCell interface {
 // A component of a path.
 //
 // An object manages a collection of objects, in conjunction with an object, to represent a path.
+
+
+// A component of a path.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPathComponentCell
+
 type PathComponentCell struct {
 	TextFieldCell
 }
@@ -86,38 +91,44 @@ func NewPathComponentCell() PathComponentCell {
 }
 
 
+
 // The image displayed for this component cell.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcomponentcell/image
+
 func (p_ PathComponentCell) Image() Image {
 	rv := objc.Send[Image](p_.ID, objc.Sel("image"))
 	return rv
 }
 
 
-// SetImage sets the value of the image property.
 // The image displayed for this component cell.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcomponentcell/image
+
 func (p_ PathComponentCell) SetImage(value IImage) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setImage:"), value)
 }
 
+
 // The portion of the path from the root through the component represented by the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcomponentcell/url
+
 func (p_ PathComponentCell) Url() foundation.URL {
 	rv := objc.Send[foundation.URL](p_.ID, objc.Sel("url"))
 	return rv
 }
 
 
-// SetUrl sets the value of the url property.
 // The portion of the path from the root through the component represented by the receiver.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcomponentcell/url
+
 func (p_ PathComponentCell) SetUrl(value foundation.IURL) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setUrl:"), value)
 }

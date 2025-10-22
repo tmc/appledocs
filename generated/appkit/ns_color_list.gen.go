@@ -44,8 +44,13 @@ type IColorList interface {
 // An ordered list of color objects, identified by keys.
 //
 // A color list manages a list of objects, each of which has an associated name. The list mode color picker uses instances of to represent any lists of colors that come with the system, as well as any lists the user creates. An app can use a color list to manage document-specific color lists.
+
+
+// An ordered list of color objects, identified by keys.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorList
+
 type ColorList struct {
 	objectivec.Object
 }
@@ -89,72 +94,88 @@ func NewColorList() ColorList {
 }
 
 
+
+
 // Saves the color list to the file at the specified URL.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorList/write(to:)
+
 func (c_ ColorList) WriteToURLError(url foundation.IURL, errPtr unsafe.Pointer) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("writeToURL:error:"), url, errPtr)
 	return rv
 }
 
+
 // A Boolean value that indicates whether the color list can be modified.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorList/isEditable
+
 func (c_ ColorList) Editable() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("editable"))
 	return rv
 }
 
+
 // An array of the keys by which the color objects are stored in the color list.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorlist/allkeys
+
 func (c_ ColorList) AllKeys() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("allKeys"))
 	return rv
 }
 
 
-// SetAllKeys sets the value of the allKeys property.
 // An array of the keys by which the color objects are stored in the color list.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorlist/allkeys
+
 func (c_ ColorList) SetAllKeys(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAllKeys:"), value)
 }
 
+
 // A Boolean value that indicates whether the color list can be modified.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorlist/iseditable
+
 func (c_ ColorList) IsEditable() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isEditable"))
 	return rv
 }
 
 
-// SetIsEditable sets the value of the isEditable property.
 // A Boolean value that indicates whether the color list can be modified.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorlist/iseditable
+
 func (c_ ColorList) SetIsEditable(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsEditable:"), value)
 }
 
+
 // The name of the color list.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorlist/name-swift.property
+
 func (c_ ColorList) Name() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("name"))
 	return rv
 }
 
 
-// SetName sets the value of the name property.
 // The name of the color list.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorlist/name-swift.property
+
 func (c_ ColorList) SetName(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setName:"), value)
 }

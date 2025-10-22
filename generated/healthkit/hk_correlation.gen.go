@@ -39,8 +39,13 @@ type IHKCorrelation interface {
 // A sample that groups multiple related samples into a single entry.
 //
 // HealthKit uses correlations to represent both blood pressure and food. Blood pressure correlations always include two quantity samples, representing the systolic and diastolic values. Food correlations can contain a wide range of dietary information about the food, including information about the fat, protein, carbohydrates, energy, and vitamins consumed. In general, a food correlation should include at least a sample. You can also add nutritional quantity samples for any other items you want to track. Use the key to indicate the food’s name. The class is a concrete subclass of the class. Correlations are immutable: You set the correlation’s properties when the object is first created, and they cannot change.
+
+
+// A sample that groups multiple related samples into a single entry.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKCorrelation
+
 type HKCorrelation struct {
 	HKSample
 }
@@ -86,43 +91,55 @@ func NewHKCorrelation() HKCorrelation {
 }
 
 
+
 // The type for this correlation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKCorrelation/correlationType
+
 func (h_ HKCorrelation) CorrelationType() HKCorrelationType {
 	rv := objc.Send[HKCorrelationType](h_.ID, objc.Sel("correlationType"))
 	return rv
 }
 
+
 // The set of sample objects that make up the correlation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcorrelation/objects
+
 func (h_ HKCorrelation) Objects() HKSample {
 	rv := objc.Send[HKSample](h_.ID, objc.Sel("objects"))
 	return rv
 }
 
 
-// SetObjects sets the value of the objects property.
 // The set of sample objects that make up the correlation.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcorrelation/objects
+
 func (h_ HKCorrelation) SetObjects(value IHKSample) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setObjects:"), value)
 }
 
+
 // The type of food that the HealthKit object represents.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmetadatakeyfoodtype
+
 func (h_ HKCorrelation) HKMetadataKeyFoodType() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKMetadataKeyFoodType"))
 	return rv
 }
 
+
 // The key path for accessing the object’s correlation inside a predicate format string.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathcorrelation
+
 func (h_ HKCorrelation) HKPredicateKeyPathCorrelation() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathCorrelation"))
 	return rv

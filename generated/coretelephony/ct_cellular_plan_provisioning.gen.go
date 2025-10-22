@@ -36,8 +36,13 @@ type ICellularPlanProvisioning interface {
 // An object you use to download and install a carrier eSIM.
 //
 // This class is only available to carrier apps with suitable entitlements.
+
+
+// An object you use to download and install a carrier eSIM.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCellularPlanProvisioning
+
 type CellularPlanProvisioning struct {
 	objectivec.Object
 }
@@ -81,9 +86,12 @@ func NewCellularPlanProvisioning() CellularPlanProvisioning {
 }
 
 
+
 // A Boolean value that indicates whether the device has hardware eSIM support.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCellularPlanProvisioning/supportsEmbeddedSIM
+
 func (c_ CellularPlanProvisioning) SupportsEmbeddedSIM() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("supportsEmbeddedSIM"))
 	return rv

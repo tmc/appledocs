@@ -37,8 +37,13 @@ type IMediaPresentationSetting interface {
 // For content that has been authored with the express intent of offering an alternative selection interface for AVMediaSelectionOptions, AVMediaPresentationSetting represents a selectable setting for controlling the presentation of the media.
 //
 // Each selectable setting is associated with a media characteristic that one or more of the AVMediaSelectionOptions in the AVMediaSelectionGroup possesses. By selecting a setting in a user interface that offers AVMediaPresentationSettings, users are essentially indicating a preference for the media characteristic of the selected setting. Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+
+
+// For content that has been authored with the express intent of offering an alternative selection interface for AVMediaSelectionOptions, AVMediaPresentationSetting represents a selectable setting for controlling the presentation of the media.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMediaPresentationSetting
+
 type MediaPresentationSetting struct {
 	objectivec.Object
 }
@@ -82,20 +87,23 @@ func NewMediaPresentationSetting() MediaPresentationSetting {
 }
 
 
+
 // Provides the media characteristic that corresponds to the selectable setting.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediapresentationsetting/mediacharacteristic
+
 func (m_ MediaPresentationSetting) MediaCharacteristic() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("mediaCharacteristic"))
 	return rv
 }
 
 
-// SetMediaCharacteristic sets the value of the mediaCharacteristic property.
 // Provides the media characteristic that corresponds to the selectable setting.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediapresentationsetting/mediacharacteristic
+
 func (m_ MediaPresentationSetting) SetMediaCharacteristic(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMediaCharacteristic:"), value)
 }

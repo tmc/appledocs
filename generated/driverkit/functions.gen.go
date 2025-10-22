@@ -58,81 +58,109 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 
 
 
-// IOCallOnce is a DriverKit function. [Full Topic]
-//
+// IOCallOnce is a DriverKit function.
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DriverKit/IOCallOnce
+
 func IOCallOnce(flag unsafe.Pointer, block unsafe.Pointer) {
 	_IOCallOnce(flag, block)
 	}
 
 
-// Sleep the calling thread for a number of microseconds. [Full Topic]
+// Sleep the calling thread for a number of microseconds.
+
+// Sleep the calling thread for a number of microseconds.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DriverKit/IODelay
+
 func IODelay(us unsafe.Pointer) {
 	_IODelay(us)
 	}
 
 
-// IOLogv is a DriverKit function. [Full Topic]
-//
+// IOLogv is a DriverKit function.
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DriverKit/IOLogv
+
 func IOLogv(format unsafe.Pointer, ap unsafe.Pointer) int {
 	return _IOLogv(format, ap)
 	}
 
 
-// Allocates the specified amount of general-purpose memory and zero-initializes it. [Full Topic]
+// Allocates the specified amount of general-purpose memory and zero-initializes it.
+
+// Allocates the specified amount of general-purpose memory and zero-initializes it.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DriverKit/IOMallocZero
+
 func IOMallocZero(length unsafe.Pointer) unsafe.Pointer {
 	return _IOMallocZero(length)
 	}
 
 
-// Parses any boot arguments in the macOS kernel boot-args. [Full Topic]
+// Parses any boot arguments in the macOS kernel boot-args.
+
+// Parses any boot arguments in the macOS kernel boot-args.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DriverKit/IOParseBootArgString
+
 func IOParseBootArgString(arg_string unsafe.Pointer, arg_ptr unsafe.Pointer, strlen int) bool {
 	return _IOParseBootArgString(arg_string, arg_ptr, strlen)
 	}
 
 
-// IORWLockUnlock is a DriverKit function. [Full Topic]
-//
+// IORWLockUnlock is a DriverKit function.
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DriverKit/IORWLockUnlock
+
 func IORWLockUnlock(lock unsafe.Pointer) {
 	_IORWLockUnlock(lock)
 	}
 
 
-// OSDataAppendBytes is a DriverKit function. [Full Topic]
-//
+// OSDataAppendBytes is a DriverKit function.
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DriverKit/OSDataAppendBytes
+
 func OSDataAppendBytes(data unsafe.Pointer, bytes unsafe.Pointer, length unsafe.Pointer) bool {
 	return _OSDataAppendBytes(data, bytes, length)
 	}
 
 
-// OSDataGetBytes is a DriverKit function. [Full Topic]
-//
+// OSDataGetBytes is a DriverKit function.
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DriverKit/OSDataGetBytes
+
 func OSDataGetBytes(obj unsafe.Pointer, buffer unsafe.Pointer, offset unsafe.Pointer, length unsafe.Pointer) unsafe.Pointer {
 	return _OSDataGetBytes(obj, buffer, offset, length)
 	}
 
 
-// OSDictionaryApply is a DriverKit function. [Full Topic]
-//
+// OSDictionaryApply is a DriverKit function.
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DriverKit/OSDictionaryApply
+
 func OSDictionaryApply(obj unsafe.Pointer, applier unsafe.Pointer) bool {
 	return _OSDictionaryApply(obj, applier)
 	}
 
 
-// Returns current value of a clock that increments monotonically in tick units (starting at an arbitrary point), this clock does not increment while the system is asleep. [Full Topic]
+// Returns current value of a clock that increments monotonically in tick units (starting at an arbitrary point), this clock does not increment while the system is asleep.
+
+// Returns current value of a clock that increments monotonically in tick units (starting at an arbitrary point), this clock does not increment while the system is asleep.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DriverKit/mach_absolute_time
+
 func mach_absolute_time() unsafe.Pointer {
 	return _mach_absolute_time()
 	}

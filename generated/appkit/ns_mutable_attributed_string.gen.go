@@ -33,6 +33,10 @@ type IMutableAttributedString interface {
 }
 
 // A parent class referenced by other AppKit classes.
+
+
+// A parent class referenced by other AppKit classes. [Full Topic]
+
 type MutableAttributedString struct {
 	objectivec.Object
 }

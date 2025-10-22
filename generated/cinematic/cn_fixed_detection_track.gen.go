@@ -34,8 +34,13 @@ type ICNFixedDetectionTrack interface {
 }
 
 // An object representing the fixed detection track.
+
+
+// An object representing the fixed detection track.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNFixedDetectionTrack-5aei2
+
 type CNFixedDetectionTrack struct {
 	CNDetectionTrack
 }
@@ -85,7 +90,9 @@ func NewCNFixedDetectionTrack() CNFixedDetectionTrack {
 
 // Creates a detection track with fixed focus at the given disparity.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNFixedDetectionTrack-5aei2/initWithFocusDisparity:
+
 func NewCNFixedDetectionTrackWithFocusDisparity(focusDisparity float32) CNFixedDetectionTrack {
 	instance := getCNFixedDetectionTrackClass().Alloc()
 	rv := objc.Send[CNFixedDetectionTrack](instance.ID, objc.Sel("initWithFocusDisparity:"), focusDisparity)
@@ -97,7 +104,9 @@ func NewCNFixedDetectionTrackWithFocusDisparity(focusDisparity float32) CNFixedD
 
 // Creates a detection track with fixed focus at the disparity of an existing detection.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNFixedDetectionTrack-5aei2/initWithOriginalDetection:
+
 func NewCNFixedDetectionTrackWithOriginalDetection(originalDetection ICNDetection) CNFixedDetectionTrack {
 	instance := getCNFixedDetectionTrackClass().Alloc()
 	rv := objc.Send[CNFixedDetectionTrack](instance.ID, objc.Sel("initWithOriginalDetection:"), originalDetection)
@@ -106,17 +115,23 @@ func NewCNFixedDetectionTrackWithOriginalDetection(originalDetection ICNDetectio
 }
 
 
+
 // The disparity to use in order to focus on the object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNFixedDetectionTrack-5aei2/focusDisparity
+
 func (c_ CNFixedDetectionTrack) FocusDisparity() float32 {
 	rv := objc.Send[float32](c_.ID, objc.Sel("focusDisparity"))
 	return rv
 }
 
+
 // The original detection based on the fixed detection track.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNFixedDetectionTrack-5aei2/originalDetection
+
 func (c_ CNFixedDetectionTrack) OriginalDetection() CNDetection {
 	rv := objc.Send[CNDetection](c_.ID, objc.Sel("originalDetection"))
 	return rv

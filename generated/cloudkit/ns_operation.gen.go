@@ -33,6 +33,10 @@ type IOperation interface {
 }
 
 // A parent class referenced by other CloudKit classes.
+
+
+// A parent class referenced by other CloudKit classes. [Full Topic]
+
 type Operation struct {
 	objectivec.Object
 }

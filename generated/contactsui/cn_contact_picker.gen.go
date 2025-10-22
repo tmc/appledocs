@@ -33,7 +33,7 @@ type _CNContactPickerClass struct {
 type ICNContactPicker interface {
 	objectivec.IObject
 	Close()
-	ShowRelativeToRectOfViewPreferredEdge(positioningRect foundation.IRect, positioningView appkit.IView, preferredEdge foundation.IRectEdge)
+	ShowRelativeToRectOfViewPreferredEdge(positioningRect foundation.Rect, positioningView appkit.IView, preferredEdge foundation.IRectEdge)
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
 	DisplayedKeys() []string
@@ -43,8 +43,13 @@ type ICNContactPicker interface {
 // A popover-based interface for selecting a contact.
 //
 // Before displaying the popover, configure the property with the information you want to display in the interface.
+
+
+// A popover-based interface for selecting a contact.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactPicker
+
 type CNContactPicker struct {
 	objectivec.Object
 }
@@ -88,52 +93,66 @@ func NewCNContactPicker() CNContactPicker {
 }
 
 
+
+
 // Closes the popover.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactPicker/close()
+
 func (c_ CNContactPicker) Close() {
 	objc.Send[objc.ID](c_.ID, objc.Sel("close"))
 }
 
+
+
 // Shows the picker popover anchored to the specified view.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactPicker/showRelative(to:of:preferredEdge:)
-func (c_ CNContactPicker) ShowRelativeToRectOfViewPreferredEdge(positioningRect foundation.IRect, positioningView appkit.IView, preferredEdge foundation.IRectEdge) {
+
+func (c_ CNContactPicker) ShowRelativeToRectOfViewPreferredEdge(positioningRect foundation.Rect, positioningView appkit.IView, preferredEdge foundation.IRectEdge) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("showRelativeToRect:ofView:preferredEdge:"), positioningRect, positioningView, preferredEdge)
 }
 
+
 // The picker delegate to be notified when the user chooses a contact.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactPicker/delegate
+
 func (c_ CNContactPicker) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](c_.ID, objc.Sel("delegate"))
 	return rv
 }
 
 
-// SetDelegate sets the value of the delegate property.
 // The picker delegate to be notified when the user chooses a contact.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactPicker/delegate
+
 func (c_ CNContactPicker) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDelegate:"), value)
 }
 
+
 // The keys to be displayed when a contact is expanded.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactPicker/displayedKeys
+
 func (c_ CNContactPicker) DisplayedKeys() []string {
 	rv := objc.Send[[]string](c_.ID, objc.Sel("displayedKeys"))
 	return rv
 }
 
 
-// SetDisplayedKeys sets the value of the displayedKeys property.
 // The keys to be displayed when a contact is expanded.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactPicker/displayedKeys
+
 func (c_ CNContactPicker) SetDisplayedKeys(value []string) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID

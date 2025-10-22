@@ -34,8 +34,13 @@ type IAsynchronousFetchResult interface {
 }
 
 // A fetch result object that encompasses the response from an executed asynchronous fetch request.
+
+
+// A fetch result object that encompasses the response from an executed asynchronous fetch request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAsynchronousFetchResult
+
 type AsynchronousFetchResult struct {
 	PersistentStoreAsynchronousResult
 }
@@ -81,17 +86,23 @@ func NewAsynchronousFetchResult() AsynchronousFetchResult {
 }
 
 
+
 // The underlying fetch request that was executed.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAsynchronousFetchResult/fetchRequest
+
 func (a_ AsynchronousFetchResult) FetchRequest() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("fetchRequest"))
 	return rv
 }
 
+
 // The results that were received from the fetch request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAsynchronousFetchResult/finalResult
+
 func (a_ AsynchronousFetchResult) FinalResult() []objc.ID {
 	rv := objc.Send[[]objc.ID](a_.ID, objc.Sel("finalResult"))
 	return rv

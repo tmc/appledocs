@@ -41,8 +41,13 @@ type IRectangleFeature interface {
 // Information about a rectangular region detected in a still or video image.
 //
 // A detected rectangle feature is not necessarily rectangular in the plane of the image; rather, the feature identifies a shape that may be rectangular in space (for example a book on a desk) but which appears as a four-sided polygon in the image. The properties of a object identify its four corners in image coordinates. You can use rectangle feature detection together with the filter to transform the feature to a normal orientation. To detect rectangles in an image or video, choose when initializing a object, and use the and options to specify the approximate shape of rectangular features to search for. The detector returns at most one rectangle feature, the most prominent found in the image.
+
+
+// Information about a rectangular region detected in a still or video image.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRectangleFeature
+
 type RectangleFeature struct {
 	Feature
 }
@@ -88,49 +93,67 @@ func NewRectangleFeature() RectangleFeature {
 }
 
 
+
 // The lower-left corner of the detected rectangle, in image coordinates.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRectangleFeature/bottomLeft-swift.property
+
 func (r_ RectangleFeature) BottomLeft() coregraphics.CGPoint {
 	rv := objc.Send[coregraphics.CGPoint](r_.ID, objc.Sel("bottomLeft"))
 	return rv
 }
 
+
 // The lower-right corner of the detected rectangle, in image coordinates.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRectangleFeature/bottomRight-swift.property
+
 func (r_ RectangleFeature) BottomRight() coregraphics.CGPoint {
 	rv := objc.Send[coregraphics.CGPoint](r_.ID, objc.Sel("bottomRight"))
 	return rv
 }
 
+
 // A rectangle indicating the position and extent of the feature in image coordinates.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRectangleFeature/bounds-swift.property
+
 func (r_ RectangleFeature) Bounds() coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](r_.ID, objc.Sel("bounds"))
 	return rv
 }
 
+
 // The upper-left corner of the detected rectangle, in image coordinates.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRectangleFeature/topLeft-swift.property
+
 func (r_ RectangleFeature) TopLeft() coregraphics.CGPoint {
 	rv := objc.Send[coregraphics.CGPoint](r_.ID, objc.Sel("topLeft"))
 	return rv
 }
 
+
 // The upper-right corner of the detected rectangle, in image coordinates.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRectangleFeature/topRight-swift.property
+
 func (r_ RectangleFeature) TopRight() coregraphics.CGPoint {
 	rv := objc.Send[coregraphics.CGPoint](r_.ID, objc.Sel("topRight"))
 	return rv
 }
 
+
 // A detector that searches for rectangular areas in a still image or video, returning
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreimage/cidetectortyperectangle
+
 func (r_ RectangleFeature) CIDetectorTypeRectangle() string {
 	rv := objc.Send[string](r_.ID, objc.Sel("CIDetectorTypeRectangle"))
 	return rv

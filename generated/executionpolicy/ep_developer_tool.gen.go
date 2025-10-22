@@ -34,8 +34,11 @@ type IEPDeveloperTool interface {
 	AuthorizationStatus() EPDeveloperToolStatus
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExecutionPolicy/EPDeveloperTool
+
 type EPDeveloperTool struct {
 	objectivec.Object
 }
@@ -78,14 +81,19 @@ func NewEPDeveloperTool() EPDeveloperTool {
 
 
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExecutionPolicy/EPDeveloperTool/requestAccess(completionHandler:)
+
 func (e_ EPDeveloperTool) RequestDeveloperToolAccessWithCompletionHandler(handler unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("requestDeveloperToolAccessWithCompletionHandler:"), handler)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExecutionPolicy/EPDeveloperTool/authorizationStatus
+
 func (e_ EPDeveloperTool) AuthorizationStatus() EPDeveloperToolStatus {
 	rv := objc.Send[EPDeveloperToolStatus](e_.ID, objc.Sel("authorizationStatus"))
 	return rv

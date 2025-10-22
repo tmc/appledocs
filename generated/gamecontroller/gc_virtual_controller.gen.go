@@ -38,8 +38,13 @@ type IGCVirtualController interface {
 // A software emulation of a real controller that you configure specifically for your game.
 //
 // Use a virtual controller to display software controls that you can customize over your game. You create a virtual controller from a configuration where you choose the input elements to display. You can even customize the images for the elements. When you connect the controller to the device, users interact with it similarly to a real controller. To add a virtual controller to your game, create a object containing the elements you want to appear in the controller. Then create the virtual controller by passing the configuration to the method. Use the method to display the virtual controller on the screen. To customize an element in the virtual controller, pass a new object for the element to the method. You process input from a virtual controller similarly to a real controller. Use the property to get the underlying object. You can either poll the elements of the controller object or set the element’s handlers to get callbacks when their input values change.
+
+
+// A software emulation of a real controller that you configure specifically for your game.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCVirtualController
+
 type GCVirtualController struct {
 	objectivec.Object
 }
@@ -87,7 +92,9 @@ func NewGCVirtualController() GCVirtualController {
 
 // Creates a new virtual controller using the configuration you specify.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCVirtualController/init(configuration:)
+
 func NewGCVirtualControllerWithConfiguration(configuration IGCVirtualControllerConfiguration) GCVirtualController {
 	instance := getGCVirtualControllerClass().Alloc()
 	rv := objc.Send[GCVirtualController](instance.ID, objc.Sel("initWithConfiguration:"), configuration)
@@ -96,31 +103,45 @@ func NewGCVirtualControllerWithConfiguration(configuration IGCVirtualControllerC
 }
 
 
+
 // Creates a new virtual controller using the configuration you specify.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCVirtualController/virtualControllerWithConfiguration:
+
 func (gc _GCVirtualControllerClass) VirtualControllerWithConfiguration(configuration IGCVirtualControllerConfiguration) GCVirtualController {
 	rv := objc.Send[GCVirtualController](objc.ID(gc.class), objc.Sel("virtualControllerWithConfiguration:"), configuration)
 	return rv
 }
 
+
+
 // Connects the virtual controller to the device and displays it on the screen.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCVirtualController/connect(replyHandler:)
+
 func (g_ GCVirtualController) ConnectWithReplyHandler(reply unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("connectWithReplyHandler:"), reply)
 }
 
+
+
 // Changes the value of a button element in the virtual controller.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCVirtualController/setValue(_:forButtonElement:)
+
 func (g_ GCVirtualController) SetValueForButtonElement(value float64, element string) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setValue:forButtonElement:"), value, objc.String(element))
 }
 
+
 // The underlying controller object that you use to access input elements.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCVirtualController/controller
+
 func (g_ GCVirtualController) Controller() GCController {
 	rv := objc.Send[GCController](g_.ID, objc.Sel("controller"))
 	return rv

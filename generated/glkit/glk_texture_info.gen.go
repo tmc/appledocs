@@ -45,8 +45,13 @@ type IGLKTextureInfo interface {
 // Information about OpenGL textures created by the class.
 //
 // When your app loads textures using the class, the texture loader returns information about the textures using objects. Your app never creates objects directly.
+
+
+// Information about OpenGL textures created by the class.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKTextureInfo
+
 type GLKTextureInfo struct {
 	objectivec.Object
 }
@@ -90,78 +95,105 @@ func NewGLKTextureInfo() GLKTextureInfo {
 }
 
 
+
 // The state of the alpha component in the loaded texture.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKTextureInfo/alphaState-swift.property
+
 func (g_ GLKTextureInfo) AlphaState() GLKTextureInfoAlphaState {
 	rv := objc.Send[GLKTextureInfoAlphaState](g_.ID, objc.Sel("alphaState"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKTextureInfo/arrayLength-swift.property
+
 func (g_ GLKTextureInfo) ArrayLength() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("arrayLength"))
 	return rv
 }
 
+
 // A Boolean value that states whether the loaded texture contains mip maps.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKTextureInfo/containsMipmaps-swift.property
+
 func (g_ GLKTextureInfo) ContainsMipmaps() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("containsMipmaps"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKTextureInfo/depth-swift.property
+
 func (g_ GLKTextureInfo) Depth() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("depth"))
 	return rv
 }
 
+
 // The height of the loaded texture.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKTextureInfo/height-swift.property
+
 func (g_ GLKTextureInfo) Height() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("height"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKTextureInfo/mimapLevelCount-swift.property
+
 func (g_ GLKTextureInfo) MimapLevelCount() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("mimapLevelCount"))
 	return rv
 }
 
+
 // The OpenGL context’s name for the texture.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKTextureInfo/name-swift.property
+
 func (g_ GLKTextureInfo) Name() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("name"))
 	return rv
 }
 
+
 // The OpenGL binding target for the texture.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKTextureInfo/target-swift.property
+
 func (g_ GLKTextureInfo) Target() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("target"))
 	return rv
 }
 
+
 // The location of the origin in the loaded texture.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKTextureInfo/textureOrigin-swift.property
+
 func (g_ GLKTextureInfo) TextureOrigin() GLKTextureInfoOrigin {
 	rv := objc.Send[GLKTextureInfoOrigin](g_.ID, objc.Sel("textureOrigin"))
 	return rv
 }
 
+
 // The width of the loaded texture.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKTextureInfo/width-swift.property
+
 func (g_ GLKTextureInfo) Width() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("width"))
 	return rv

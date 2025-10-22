@@ -36,8 +36,13 @@ type IDDMatchMoneyAmount interface {
 // An object that contains an amount of money that the data detection system matches.
 //
 // The DataDetection framework returns a match for an amount of money in a object, which contains an amount of money and an ISO currency code.
+
+
+// An object that contains an amount of money that the data detection system matches.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchMoneyAmount
+
 type DDMatchMoneyAmount struct {
 	DDMatch
 }
@@ -83,17 +88,23 @@ func NewDDMatchMoneyAmount() DDMatchMoneyAmount {
 }
 
 
+
 // A number that represents an amount of money.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchMoneyAmount/amount
+
 func (d_ DDMatchMoneyAmount) Amount() float64 {
 	rv := objc.Send[float64](d_.ID, objc.Sel("amount"))
 	return rv
 }
 
+
 // A string that contains an ISO currency code, which the data detection system identifies from the matched string and user preferences.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchMoneyAmount/currency
+
 func (d_ DDMatchMoneyAmount) Currency() string {
 	rv := objc.Send[string](d_.ID, objc.Sel("currency"))
 	return rv

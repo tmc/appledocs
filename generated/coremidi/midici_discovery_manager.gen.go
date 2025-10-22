@@ -35,8 +35,13 @@ type IMIDICIDiscoveryManager interface {
 // A singleton object that performs systemwide MIDI-CI discovery.
 //
 // Use this class to retrieve information about MIDI-CI–capable nodes in the MIDI subsystem. You can create objects only from the destinations discovered using this API.
+
+
+// A singleton object that performs systemwide MIDI-CI discovery.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIDiscoveryManager
+
 type MIDICIDiscoveryManager struct {
 	objectivec.Object
 }

@@ -42,8 +42,13 @@ type IAudioUnitSampler interface {
 // An object that you configure with one or more instrument samples, based on Apple’s Sampler audio unit.
 //
 // An is an for Apple’s Sampler audio unit. You configure the sampler by loading instruments from different types of files. These include an file, DLS, or SF2 sound bank; an EXS24 instrument; a single audio file; or an array of audio files. The output of a is a single stereo bus.
+
+
+// An object that you configure with one or more instrument samples, based on Apple’s Sampler audio unit.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioUnitSampler
+
 type AudioUnitSampler struct {
 	AudioUnitMIDIInstrument
 }
@@ -89,74 +94,86 @@ func NewAudioUnitSampler() AudioUnitSampler {
 }
 
 
+
 // An adjustment for the tuning of all the played notes.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitsampler/globaltuning
+
 func (a_ AudioUnitSampler) GlobalTuning() float32 {
 	rv := objc.Send[float32](a_.ID, objc.Sel("globalTuning"))
 	return rv
 }
 
 
-// SetGlobalTuning sets the value of the globalTuning property.
 // An adjustment for the tuning of all the played notes.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitsampler/globaltuning
+
 func (a_ AudioUnitSampler) SetGlobalTuning(value float32) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setGlobalTuning:"), value)
 }
 
+
 // An adjustment for the gain of all the played notes, in decibels.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitsampler/mastergain
+
 func (a_ AudioUnitSampler) MasterGain() float32 {
 	rv := objc.Send[float32](a_.ID, objc.Sel("masterGain"))
 	return rv
 }
 
 
-// SetMasterGain sets the value of the masterGain property.
 // An adjustment for the gain of all the played notes, in decibels.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitsampler/mastergain
+
 func (a_ AudioUnitSampler) SetMasterGain(value float32) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMasterGain:"), value)
 }
 
+
 // An adjustment for the gain of all the played notes, in decibels.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitsampler/overallgain
+
 func (a_ AudioUnitSampler) OverallGain() float32 {
 	rv := objc.Send[float32](a_.ID, objc.Sel("overallGain"))
 	return rv
 }
 
 
-// SetOverallGain sets the value of the overallGain property.
 // An adjustment for the gain of all the played notes, in decibels.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitsampler/overallgain
+
 func (a_ AudioUnitSampler) SetOverallGain(value float32) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setOverallGain:"), value)
 }
 
+
 // An adjustment for the stereo panning of all the played notes.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitsampler/stereopan
+
 func (a_ AudioUnitSampler) StereoPan() float32 {
 	rv := objc.Send[float32](a_.ID, objc.Sel("stereoPan"))
 	return rv
 }
 
 
-// SetStereoPan sets the value of the stereoPan property.
 // An adjustment for the stereo panning of all the played notes.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitsampler/stereopan
+
 func (a_ AudioUnitSampler) SetStereoPan(value float32) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setStereoPan:"), value)
 }

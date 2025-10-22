@@ -46,8 +46,13 @@ type IMonitoringEvent interface {
 // The object that the framework passes to the monitor’s callback handler upon receiving an event.
 //
 // Instances of contain detailed information about an event in the monitoring of a by a .
+
+
+// The object that the framework passes to the monitor’s callback handler upon receiving an event.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitoringEvent
+
 type MonitoringEvent struct {
 	objectivec.Object
 }
@@ -91,79 +96,107 @@ func NewMonitoringEvent() MonitoringEvent {
 }
 
 
+
 // A Boolean value that indicates whether the app has system-wide authorization.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitoringEvent/authorizationDeniedGlobally
+
 func (m_ MonitoringEvent) AuthorizationDeniedGlobally() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("authorizationDeniedGlobally"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitoringEvent/authorizationRequestInProgress
+
 func (m_ MonitoringEvent) AuthorizationRequestInProgress() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("authorizationRequestInProgress"))
 	return rv
 }
 
+
 // A Boolean value that indicates whether the app receives location updates based on other monitoring conditions.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitoringEvent/conditionLimitExceeded
+
 func (m_ MonitoringEvent) ConditionLimitExceeded() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("conditionLimitExceeded"))
 	return rv
 }
 
+
 // A Boolean value that indicates whether the app receives location updates based on the supported condition.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitoringEvent/conditionUnsupported
+
 func (m_ MonitoringEvent) ConditionUnsupported() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("conditionUnsupported"))
 	return rv
 }
 
+
 // The date the event occurs.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitoringEvent/date
+
 func (m_ MonitoringEvent) Date() foundation.NSDate {
 	rv := objc.Send[foundation.NSDate](m_.ID, objc.Sel("date"))
 	return rv
 }
 
+
 // A string that represents the identifier of a monitored condition.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitoringEvent/identifier
+
 func (m_ MonitoringEvent) Identifier() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("identifier"))
 	return rv
 }
 
+
 // A Boolean value that indicates whether the app receives location updates because it’s insufficiently in use.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitoringEvent/insufficientlyInUse
+
 func (m_ MonitoringEvent) InsufficientlyInUse() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("insufficientlyInUse"))
 	return rv
 }
 
+
 // A Boolean value that indicates whether it receives location updates based on successful persistence.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitoringEvent/persistenceUnavailable
+
 func (m_ MonitoringEvent) PersistenceUnavailable() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("persistenceUnavailable"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitoringEvent/serviceSessionRequired
+
 func (m_ MonitoringEvent) ServiceSessionRequired() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("serviceSessionRequired"))
 	return rv
 }
 
+
 // The state of the condition at the time of the event.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitoringEvent/state
+
 func (m_ MonitoringEvent) State() MonitoringState {
 	rv := objc.Send[MonitoringState](m_.ID, objc.Sel("state"))
 	return rv

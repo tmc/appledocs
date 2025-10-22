@@ -39,8 +39,13 @@ type IFallDetectionManager interface {
 // An object for managing fall detection events.
 //
 // In Series 4 and later, Apple Watch can detect when a wearer falls, and contact emergency services if necessary. Using the , your app can request the user’s authorization, and set up a delegate to receive notifications about these . For more information, see . requires an entitlement from Apple. To apply for the entitlement, see . This entitlement allows the app to run in the background without requiring any additional capabilities. However, you can add capabilities for other background modes, as needed by your app. There are two approaches to detecting falls in your app. You can either query for samples in HealthKit, or you can use Core Motion’s .
+
+
+// An object for managing fall detection events.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMFallDetectionManager
+
 type FallDetectionManager struct {
 	objectivec.Object
 }
@@ -84,49 +89,65 @@ func NewFallDetectionManager() FallDetectionManager {
 }
 
 
+
 // A Boolean value that indicates whether the current device supports fall detection.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMFallDetectionManager/isAvailable
+
 func (fc _FallDetectionManagerClass) Available() bool {
 	rv := objc.Send[bool](objc.ID(fc.class), objc.Sel("available"))
 	return rv
 }
+
+
 // Requests authorization to receive notifications about fall detection events.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMFallDetectionManager/requestAuthorization(handler:)
+
 func (f_ FallDetectionManager) RequestAuthorizationWithHandler(handler unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("requestAuthorizationWithHandler:"), handler)
 }
 
+
 // The authorization status for receiving fall detection event notifications.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMFallDetectionManager/authorizationStatus
+
 func (f_ FallDetectionManager) AuthorizationStatus() AuthorizationStatus {
 	rv := objc.Send[AuthorizationStatus](f_.ID, objc.Sel("authorizationStatus"))
 	return rv
 }
 
+
 // A delegate that can receive notifications about fall detection events.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMFallDetectionManager/delegate
+
 func (f_ FallDetectionManager) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](f_.ID, objc.Sel("delegate"))
 	return rv
 }
 
 
-// SetDelegate sets the value of the delegate property.
 // A delegate that can receive notifications about fall detection events.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMFallDetectionManager/delegate
+
 func (f_ FallDetectionManager) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setDelegate:"), value)
 }
 
+
 // A Boolean value that indicates whether the current device supports fall detection.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMFallDetectionManager/isAvailable
+
 func (f_ FallDetectionManager) Available() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("available"))
 	return rv

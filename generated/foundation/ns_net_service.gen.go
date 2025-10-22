@@ -32,11 +32,11 @@ type INetService interface {
 	objectivec.IObject
 	GetInputStreamOutputStream(inputStream IInputStream, outputStream IOutputStream) bool
 	Publish()
-	PublishWithOptions(options NetServiceOptions)
-	RemoveFromRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode)
+	PublishWithOptions(options INetServiceOptions)
+	RemoveFromRunLoopForMode(aRunLoop IRunLoop, mode IRunLoopMode)
 	Resolve()
 	ResolveWithTimeout(timeout ITimeInterval)
-	ScheduleInRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode)
+	ScheduleInRunLoopForMode(aRunLoop IRunLoop, mode IRunLoopMode)
 	SetTXTRecordData(recordData IData) bool
 	StartMonitoring()
 	Stop()
@@ -188,7 +188,7 @@ func (n_ NetService) Publish() {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/publish(options:)
 
-func (n_ NetService) PublishWithOptions(options NetServiceOptions) {
+func (n_ NetService) PublishWithOptions(options INetServiceOptions) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("publishWithOptions:"), options)
 }
 
@@ -199,7 +199,7 @@ func (n_ NetService) PublishWithOptions(options NetServiceOptions) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/remove(from:forMode:)
 
-func (n_ NetService) RemoveFromRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode) {
+func (n_ NetService) RemoveFromRunLoopForMode(aRunLoop IRunLoop, mode IRunLoopMode) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("removeFromRunLoop:forMode:"), aRunLoop, mode)
 }
 
@@ -232,7 +232,7 @@ func (n_ NetService) ResolveWithTimeout(timeout ITimeInterval) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/schedule(in:forMode:)
 
-func (n_ NetService) ScheduleInRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode) {
+func (n_ NetService) ScheduleInRunLoopForMode(aRunLoop IRunLoop, mode IRunLoopMode) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("scheduleInRunLoop:forMode:"), aRunLoop, mode)
 }
 

@@ -37,8 +37,13 @@ type IEKVirtualConferenceProvider interface {
 // An object that associates virtual conferencing details with an event object in a user’s calendar.
 //
 // lets apps that offer virtual conferencing services to integrate directly with events in users’ calendars. To add this support to your app, add a virtual conference extension. The principal class of the app extension is a custom subclass of that you create that provides the following: A list of room types where events take place, such as Personal Room or Team Room A descriptor for a virtual conference, including a user-visible title, one or more URLs, and additional details
+
+
+// An object that associates virtual conferencing details with an event object in a user’s calendar.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKVirtualConferenceProvider
+
 type EKVirtualConferenceProvider struct {
 	objectivec.Object
 }
@@ -82,16 +87,24 @@ func NewEKVirtualConferenceProvider() EKVirtualConferenceProvider {
 }
 
 
+
+
 // Provides an array of room types where events take place.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKVirtualConferenceProvider/fetchAvailableRoomTypes(completionHandler:)
+
 func (e_ EKVirtualConferenceProvider) FetchAvailableRoomTypesWithCompletionHandler(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("fetchAvailableRoomTypesWithCompletionHandler:"), completionHandler)
 }
 
+
+
 // Provides details about a virtual conference that takes place in a room the user selects.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKVirtualConferenceProvider/fetchVirtualConference(identifier:completionHandler:)
+
 func (e_ EKVirtualConferenceProvider) FetchVirtualConferenceForIdentifierCompletionHandler(identifier IEKVirtualConferenceRoomTypeIdentifier, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("fetchVirtualConferenceForIdentifier:completionHandler:"), identifier, completionHandler)
 }

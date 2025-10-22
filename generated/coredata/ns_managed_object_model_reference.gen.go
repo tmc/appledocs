@@ -37,8 +37,13 @@ type IManagedObjectModelReference interface {
 }
 
 // An object that describes a specific version of an object model.
+
+
+// An object that describes a specific version of an object model.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectModelReference
+
 type ManagedObjectModelReference struct {
 	objectivec.Object
 }
@@ -82,38 +87,44 @@ func NewManagedObjectModelReference() ManagedObjectModelReference {
 }
 
 
+
 // The resolved object model.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectmodelreference/resolvedmodel
+
 func (m_ ManagedObjectModelReference) ResolvedModel() NSManagedObjectModel {
 	rv := objc.Send[NSManagedObjectModel](m_.ID, objc.Sel("resolvedModel"))
 	return rv
 }
 
 
-// SetResolvedModel sets the value of the resolvedModel property.
 // The resolved object model.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectmodelreference/resolvedmodel
+
 func (m_ ManagedObjectModelReference) SetResolvedModel(value IManagedObjectModel) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setResolvedModel:"), value)
 }
 
+
 // The version checksum of the resolved model.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectmodelreference/versionchecksum
+
 func (m_ ManagedObjectModelReference) VersionChecksum() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("versionChecksum"))
 	return rv
 }
 
 
-// SetVersionChecksum sets the value of the versionChecksum property.
 // The version checksum of the resolved model.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectmodelreference/versionchecksum
+
 func (m_ ManagedObjectModelReference) SetVersionChecksum(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setVersionChecksum:"), objc.String(value))
 }

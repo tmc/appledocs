@@ -36,8 +36,13 @@ type ICBAttribute interface {
 // A representation of common aspects of services offered by a peripheral.
 //
 // Concrete subclasses of (and their mutable counterparts) represent the services a peripheral offers, the characteristics of those services, and the descriptors attached to those characteristics. The concrete subclasses are:
+
+
+// A representation of common aspects of services offered by a peripheral.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBAttribute
+
 type CBAttribute struct {
 	objectivec.Object
 }
@@ -81,9 +86,12 @@ func NewCBAttribute() CBAttribute {
 }
 
 
+
 // The Bluetooth-specific UUID of the attribute.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBAttribute/uuid
+
 func (c_ CBAttribute) UUID() CBUUID {
 	rv := objc.Send[CBUUID](c_.ID, objc.Sel("UUID"))
 	return rv

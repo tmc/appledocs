@@ -36,8 +36,13 @@ type ICXEndCallAction interface {
 // An encapsulation of the act of ending a call.
 //
 // is a concrete subclass of . When the user initiates an outgoing call, the provider sends to its delegate. The provider’s delegate calls the method to indicate that the action was successfully performed. To indicate that the call ended at a time other than the current time, you can instead call the
+
+
+// An encapsulation of the act of ending a call.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXEndCallAction
+
 type CXEndCallAction struct {
 	CXCallAction
 }
@@ -83,9 +88,13 @@ func NewCXEndCallAction() CXEndCallAction {
 }
 
 
+
+
 // Reports the successful execution of the action at the specified time.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXEndCallAction/fulfill(withDateEnded:)
+
 func (c_ CXEndCallAction) FulfillWithDateEnded(dateEnded foundation.IDate) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("fulfillWithDateEnded:"), dateEnded)
 }

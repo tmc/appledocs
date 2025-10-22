@@ -34,8 +34,13 @@ type IAudioMix interface {
 }
 
 // An object that manages the input parameters for mixing audio tracks.
+
+
+// An object that manages the input parameters for mixing audio tracks.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAudioMix
+
 type AudioMix struct {
 	objectivec.Object
 }
@@ -79,9 +84,12 @@ func NewAudioMix() AudioMix {
 }
 
 
+
 // An array of input parameters for the mix.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAudioMix/inputParameters
+
 func (a_ AudioMix) InputParameters() []AudioMixInputParameters {
 	rv := objc.Send[[]AudioMixInputParameters](a_.ID, objc.Sel("inputParameters"))
 	return rv

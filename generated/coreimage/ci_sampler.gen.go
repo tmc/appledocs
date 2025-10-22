@@ -38,8 +38,13 @@ type ISampler interface {
 // An object that retrieves pixel samples for processing by a filter kernel.
 //
 // The class retrieves samples of images for processing by a object. A object defines a coordinate transform, and modes for interpolation and wrapping. You use objects in conjunction with other Core Image classes, such as , , and , to create custom filters.
+
+
+// An object that retrieves pixel samples for processing by a filter kernel.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CISampler
+
 type Sampler struct {
 	objectivec.Object
 }
@@ -87,7 +92,9 @@ func NewSampler() Sampler {
 
 // Initializes a sampler with an image object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CISampler/init(image:)
+
 func NewSamplerWithImage(im ICIImage) Sampler {
 	instance := getSamplerClass().Alloc()
 	rv := objc.Send[Sampler](instance.ID, objc.Sel("initWithImage:"), im)
@@ -99,7 +106,9 @@ func NewSamplerWithImage(im ICIImage) Sampler {
 
 // Initializes the sampler with an image object using options specified as key-value pairs.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CISampler/initWithImage:keysAndValues:
+
 func NewSamplerWithImageKeysAndValues(im ICIImage, key0 objectivec.IObject) Sampler {
 	instance := getSamplerClass().Alloc()
 	rv := objc.Send[Sampler](instance.ID, objc.Sel("initWithImage:keysAndValues:"), im, key0)
@@ -111,7 +120,9 @@ func NewSamplerWithImageKeysAndValues(im ICIImage, key0 objectivec.IObject) Samp
 
 // Initializes the sampler with an image object using options specified in a dictionary.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CISampler/init(image:options:)
+
 func NewSamplerWithImageOptions(im ICIImage, dict objectivec.IObject) Sampler {
 	instance := getSamplerClass().Alloc()
 	rv := objc.Send[Sampler](instance.ID, objc.Sel("initWithImage:options:"), im, dict)
@@ -120,41 +131,56 @@ func NewSamplerWithImageOptions(im ICIImage, dict objectivec.IObject) Sampler {
 }
 
 
+
 // Creates and returns a sampler that references an image.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CISampler/samplerWithImage:
+
 func (sc _SamplerClass) SamplerWithImage(im ICIImage) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("samplerWithImage:"), im)
 	return rv
 }
 
+
 // Creates and returns a sampler that references an image using options specified as key-value pairs.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CISampler/samplerWithImage:keysAndValues:
+
 func (sc _SamplerClass) SamplerWithImageKeysAndValues(im ICIImage, key0 objectivec.IObject) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("samplerWithImage:keysAndValues:"), im, key0)
 	return rv
 }
 
+
 // Creates and returns a sampler that references an image using options specified in a dictionary.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CISampler/samplerWithImage:options:
+
 func (sc _SamplerClass) SamplerWithImageOptions(im ICIImage, dict objectivec.IObject) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("samplerWithImage:options:"), im, dict)
 	return rv
 }
 
+
 // The domain of definition (DOD) of the sampler
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CISampler/definition
+
 func (s_ Sampler) Definition() CIFilterShape {
 	rv := objc.Send[CIFilterShape](s_.ID, objc.Sel("definition"))
 	return rv
 }
 
+
 // The rectangle that specifies the extent of the sampler
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CISampler/extent
+
 func (s_ Sampler) Extent() coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](s_.ID, objc.Sel("extent"))
 	return rv

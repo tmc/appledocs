@@ -41,8 +41,13 @@ type ITurnBasedMatchmakerViewController interface {
 // An interface that allows a player to invite other players to a turn-based match and automatch to fill any empty slots.
 //
 // Before you create a object, create a object and configure it according to the parameters of your game. Then, pass the match request to the initializer to create the view controller. Configure the view controller and set its delegate before you present it to the local player. The view controller allows the local player to choose other players and optionally fill empty slots using automatch. The interface also allows players to select an existing match, forfeit a match, or view a completed match. Implement the protocol to handle when a player selects players, cancels matchmaking, or encounters an error. Implement the delegate method to dismiss the view controller when the local player invites players. Register as a listener of the protocol and implement methods that handle other turn-based events. For example, implement the to update match data and present the gameplay interface for the local player to take their turn. In iOS, you present and dismiss the view controller from another view controller in your game, using the methods provided by the class. If you use SwiftUI, you can get the root view controller from the object. In macOS, you use the class to present and dismiss the view controller.
+
+
+// An interface that allows a player to invite other players to a turn-based match and automatch to fill any empty slots.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKTurnBasedMatchmakerViewController
+
 type TurnBasedMatchmakerViewController struct {
 	appkit.ViewController
 }
@@ -92,7 +97,9 @@ func NewTurnBasedMatchmakerViewController() TurnBasedMatchmakerViewController {
 
 // Creates a matchmaker view controller for the local player to start inviting other players to a turn-based game.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKTurnBasedMatchmakerViewController/init(matchRequest:)
+
 func NewTurnBasedMatchmakerViewControllerWithMatchRequest(request IGKMatchRequest) TurnBasedMatchmakerViewController {
 	instance := getTurnBasedMatchmakerViewControllerClass().Alloc()
 	rv := objc.Send[TurnBasedMatchmakerViewController](instance.ID, objc.Sel("initWithMatchRequest:"), request)
@@ -101,56 +108,65 @@ func NewTurnBasedMatchmakerViewControllerWithMatchRequest(request IGKMatchReques
 }
 
 
+
 // A Boolean value that determines whether the view controller shows existing matches.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKTurnBasedMatchmakerViewController/showExistingMatches
+
 func (t_ TurnBasedMatchmakerViewController) ShowExistingMatches() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("showExistingMatches"))
 	return rv
 }
 
 
-// SetShowExistingMatches sets the value of the showExistingMatches property.
 // A Boolean value that determines whether the view controller shows existing matches.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKTurnBasedMatchmakerViewController/showExistingMatches
+
 func (t_ TurnBasedMatchmakerViewController) SetShowExistingMatches(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setShowExistingMatches:"), value)
 }
 
+
 // The object that handles turn-based matchmaker view controller changes.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKTurnBasedMatchmakerViewController/turnBasedMatchmakerDelegate
+
 func (t_ TurnBasedMatchmakerViewController) TurnBasedMatchmakerDelegate() objc.ID {
 	rv := objc.Send[objc.ID](t_.ID, objc.Sel("turnBasedMatchmakerDelegate"))
 	return rv
 }
 
 
-// SetTurnBasedMatchmakerDelegate sets the value of the turnBasedMatchmakerDelegate property.
 // The object that handles turn-based matchmaker view controller changes.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKTurnBasedMatchmakerViewController/turnBasedMatchmakerDelegate
+
 func (t_ TurnBasedMatchmakerViewController) SetTurnBasedMatchmakerDelegate(value objc.ID) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTurnBasedMatchmakerDelegate:"), value)
 }
 
+
 // The mode that a multiplayer game uses to find players.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatchmakerviewcontroller/matchmakingmode
+
 func (t_ TurnBasedMatchmakerViewController) MatchmakingMode() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("matchmakingMode"))
 	return rv
 }
 
 
-// SetMatchmakingMode sets the value of the matchmakingMode property.
 // The mode that a multiplayer game uses to find players.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatchmakerviewcontroller/matchmakingmode
+
 func (t_ TurnBasedMatchmakerViewController) SetMatchmakingMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setMatchmakingMode:"), value)
 }

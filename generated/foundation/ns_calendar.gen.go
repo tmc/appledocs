@@ -30,62 +30,70 @@ type _CalendarClass struct {
 // An interface definition for the [Calendar] class.
 type ICalendar interface {
 	objectivec.IObject
+	CompareDateToDateToUnitGranularity(date1 IDate, date2 IDate, unit ICalendarUnit) ComparisonResult
+	ComponentFromDate(unit ICalendarUnit, date IDate) int
 	ComponentsFromDate(unitFlags ICalendarUnit, date IDate) DateComponents
+	ComponentsFromDateComponentsToDateComponentsOptions(unitFlags ICalendarUnit, startingDateComp IDateComponents, resultDateComp IDateComponents, options ICalendarOptions) DateComponents
+	ComponentsFromDateToDateOptions(unitFlags ICalendarUnit, startingDate IDate, resultDate IDate, opts ICalendarOptions) DateComponents
+	ComponentsInTimeZoneFromDate(timezone ITimeZone, date IDate) DateComponents
+	DateMatchesComponents(date IDate, components IDateComponents) bool
+	DateByAddingComponentsToDateOptions(comps IDateComponents, date IDate, opts ICalendarOptions) Date
+	DateByAddingUnitValueToDateOptions(unit ICalendarUnit, value int, date IDate, options ICalendarOptions) Date
+	DateBySettingHourMinuteSecondOfDateOptions(h int, m int, s int, date IDate, opts ICalendarOptions) Date
+	DateBySettingUnitValueOfDateOptions(unit ICalendarUnit, v int, date IDate, opts ICalendarOptions) Date
+	DateWithEraYearMonthDayHourMinuteSecondNanosecond(eraValue int, yearValue int, monthValue int, dayValue int, hourValue int, minuteValue int, secondValue int, nanosecondValue int) Date
+	DateWithEraYearForWeekOfYearWeekOfYearWeekdayHourMinuteSecondNanosecond(eraValue int, yearValue int, weekValue int, weekdayValue int, hourValue int, minuteValue int, secondValue int, nanosecondValue int) Date
 	DateFromComponents(comps IDateComponents) Date
+	EnumerateDatesStartingAfterDateMatchingComponentsOptionsUsingBlock(start IDate, comps IDateComponents, opts ICalendarOptions, block unsafe.Pointer)
+	GetEraYearMonthDayFromDate(eraValuePointer unsafe.Pointer, yearValuePointer unsafe.Pointer, monthValuePointer unsafe.Pointer, dayValuePointer unsafe.Pointer, date IDate)
+	GetEraYearForWeekOfYearWeekOfYearWeekdayFromDate(eraValuePointer unsafe.Pointer, yearValuePointer unsafe.Pointer, weekValuePointer unsafe.Pointer, weekdayValuePointer unsafe.Pointer, date IDate)
+	GetHourMinuteSecondNanosecondFromDate(hourValuePointer unsafe.Pointer, minuteValuePointer unsafe.Pointer, secondValuePointer unsafe.Pointer, nanosecondValuePointer unsafe.Pointer, date IDate)
+	IsDateEqualToDateToUnitGranularity(date1 IDate, date2 IDate, unit ICalendarUnit) bool
+	IsDateInSameDayAsDate(date1 IDate, date2 IDate) bool
 	IsDateInToday(date IDate) bool
+	IsDateInTomorrow(date IDate) bool
+	IsDateInWeekend(date IDate) bool
+	IsDateInYesterday(date IDate) bool
+	MaximumRangeOfUnit(unit ICalendarUnit) Range
 	MinimumRangeOfUnit(unit ICalendarUnit) Range
-	NextDateAfterDateMatchingUnitValueOptions(date IDate, unit ICalendarUnit, value int, options unsafe.Pointer) Date
-	NextDateAfterDateMatchingHourMinuteSecondOptions(date IDate, hourValue int, minuteValue int, secondValue int, options unsafe.Pointer) Date
+	NextDateAfterDateMatchingComponentsOptions(date IDate, comps IDateComponents, options ICalendarOptions) Date
+	NextDateAfterDateMatchingUnitValueOptions(date IDate, unit ICalendarUnit, value int, options ICalendarOptions) Date
+	NextDateAfterDateMatchingHourMinuteSecondOptions(date IDate, hourValue int, minuteValue int, secondValue int, options ICalendarOptions) Date
+	NextWeekendStartDateIntervalOptionsAfterDate(datep IDate, tip ITimeInterval, options ICalendarOptions, date IDate) bool
 	OrdinalityOfUnitInUnitForDate(smaller ICalendarUnit, larger ICalendarUnit, date IDate) uint
 	RangeOfUnitInUnitForDate(smaller ICalendarUnit, larger ICalendarUnit, date IDate) Range
+	RangeOfUnitStartDateIntervalForDate(unit ICalendarUnit, datep IDate, tip ITimeInterval, date IDate) bool
 	RangeOfWeekendStartDateIntervalContainingDate(datep IDate, tip ITimeInterval, date IDate) bool
+	StartOfDayForDate(date IDate) Date
+	AMSymbol() string
 	CalendarIdentifier() CalendarIdentifier
+	EraSymbols() []string
 	FirstWeekday() uint
 	SetFirstWeekday(value uint)
 	Locale() NSLocale
 	SetLocale(value ILocale)
+	LongEraSymbols() []string
+	MinimumDaysInFirstWeek() uint
+	SetMinimumDaysInFirstWeek(value uint)
+	MonthSymbols() []string
+	PMSymbol() string
+	QuarterSymbols() []string
+	ShortMonthSymbols() []string
+	ShortQuarterSymbols() []string
+	ShortStandaloneMonthSymbols() []string
 	ShortStandaloneQuarterSymbols() []string
 	ShortStandaloneWeekdaySymbols() []string
+	ShortWeekdaySymbols() []string
+	StandaloneMonthSymbols() []string
+	StandaloneQuarterSymbols() []string
+	StandaloneWeekdaySymbols() []string
 	TimeZone() NSTimeZone
 	SetTimeZone(value ITimeZone)
-	AmSymbol() string
-	SetAmSymbol(value string)
-	EraSymbols() string
-	SetEraSymbols(value string)
-	LongEraSymbols() string
-	SetLongEraSymbols(value string)
-	MinimumDaysInFirstWeek() int
-	SetMinimumDaysInFirstWeek(value int)
-	MonthSymbols() string
-	SetMonthSymbols(value string)
-	PmSymbol() string
-	SetPmSymbol(value string)
-	QuarterSymbols() string
-	SetQuarterSymbols(value string)
-	ShortMonthSymbols() string
-	SetShortMonthSymbols(value string)
-	ShortQuarterSymbols() string
-	SetShortQuarterSymbols(value string)
-	ShortStandaloneMonthSymbols() string
-	SetShortStandaloneMonthSymbols(value string)
-	ShortWeekdaySymbols() string
-	SetShortWeekdaySymbols(value string)
-	StandaloneMonthSymbols() string
-	SetStandaloneMonthSymbols(value string)
-	StandaloneQuarterSymbols() string
-	SetStandaloneQuarterSymbols(value string)
-	StandaloneWeekdaySymbols() string
-	SetStandaloneWeekdaySymbols(value string)
-	VeryShortMonthSymbols() string
-	SetVeryShortMonthSymbols(value string)
-	VeryShortStandaloneMonthSymbols() string
-	SetVeryShortStandaloneMonthSymbols(value string)
-	VeryShortStandaloneWeekdaySymbols() string
-	SetVeryShortStandaloneWeekdaySymbols(value string)
-	VeryShortWeekdaySymbols() string
-	SetVeryShortWeekdaySymbols(value string)
-	WeekdaySymbols() string
-	SetWeekdaySymbols(value string)
+	VeryShortMonthSymbols() []string
+	VeryShortStandaloneMonthSymbols() []string
+	VeryShortStandaloneWeekdaySymbols() []string
+	VeryShortWeekdaySymbols() []string
+	WeekdaySymbols() []string
 }
 
 // A definition of the relationships between calendar units and absolute points in time, providing features for calculation and comparison of dates.
@@ -201,6 +209,30 @@ func (cc _CalendarClass) CurrentCalendar() Calendar {
 }
 
 
+// Indicates the ordering of two given dates based on their components down to a given unit granularity.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/compare(_:to:toUnitGranularity:)
+
+func (c_ Calendar) CompareDateToDateToUnitGranularity(date1 IDate, date2 IDate, unit ICalendarUnit) ComparisonResult {
+	rv := objc.Send[ComparisonResult](c_.ID, objc.Sel("compareDate:toDate:toUnitGranularity:"), date1, date2, unit)
+	return rv
+}
+
+
+
+// Returns the specified date component from a given date.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/component(_:from:)
+
+func (c_ Calendar) ComponentFromDate(unit ICalendarUnit, date IDate) int {
+	rv := objc.Send[int](c_.ID, objc.Sel("component:fromDate:"), unit, date)
+	return rv
+}
+
+
+
 // Returns the date components representing a given date.
 //
 // [Full Topic]
@@ -208,6 +240,126 @@ func (cc _CalendarClass) CurrentCalendar() Calendar {
 
 func (c_ Calendar) ComponentsFromDate(unitFlags ICalendarUnit, date IDate) DateComponents {
 	rv := objc.Send[DateComponents](c_.ID, objc.Sel("components:fromDate:"), unitFlags, date)
+	return rv
+}
+
+
+
+// Returns the difference between start and end dates given as date components.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/components(_:from:to:options:)-49lo8
+
+func (c_ Calendar) ComponentsFromDateComponentsToDateComponentsOptions(unitFlags ICalendarUnit, startingDateComp IDateComponents, resultDateComp IDateComponents, options ICalendarOptions) DateComponents {
+	rv := objc.Send[DateComponents](c_.ID, objc.Sel("components:fromDateComponents:toDateComponents:options:"), unitFlags, startingDateComp, resultDateComp, options)
+	return rv
+}
+
+
+
+// Returns the difference between two supplied dates as date components.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/components(_:from:to:options:)-84y5w
+
+func (c_ Calendar) ComponentsFromDateToDateOptions(unitFlags ICalendarUnit, startingDate IDate, resultDate IDate, opts ICalendarOptions) DateComponents {
+	rv := objc.Send[DateComponents](c_.ID, objc.Sel("components:fromDate:toDate:options:"), unitFlags, startingDate, resultDate, opts)
+	return rv
+}
+
+
+
+// Returns all the date components of a date, as if in a given time zone (instead of the receiving calendar’s time zone).
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/components(in:from:)
+
+func (c_ Calendar) ComponentsInTimeZoneFromDate(timezone ITimeZone, date IDate) DateComponents {
+	rv := objc.Send[DateComponents](c_.ID, objc.Sel("componentsInTimeZone:fromDate:"), timezone, date)
+	return rv
+}
+
+
+
+// Returns whether a given date matches all of the given date components.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/date(_:matchesComponents:)
+
+func (c_ Calendar) DateMatchesComponents(date IDate, components IDateComponents) bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("date:matchesComponents:"), date, components)
+	return rv
+}
+
+
+
+// Returns a date representing the absolute time calculated by adding given components to a given date.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/date(byAdding:to:options:)
+
+func (c_ Calendar) DateByAddingComponentsToDateOptions(comps IDateComponents, date IDate, opts ICalendarOptions) Date {
+	rv := objc.Send[Date](c_.ID, objc.Sel("dateByAddingComponents:toDate:options:"), comps, date, opts)
+	return rv
+}
+
+
+
+// Returns a date representing the absolute time calculated by adding the value of a given component to a given date.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/date(byAdding:value:to:options:)
+
+func (c_ Calendar) DateByAddingUnitValueToDateOptions(unit ICalendarUnit, value int, date IDate, options ICalendarOptions) Date {
+	rv := objc.Send[Date](c_.ID, objc.Sel("dateByAddingUnit:value:toDate:options:"), unit, value, date, options)
+	return rv
+}
+
+
+
+// Creates a new date calculated with the given time.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/date(bySettingHour:minute:second:of:options:)
+
+func (c_ Calendar) DateBySettingHourMinuteSecondOfDateOptions(h int, m int, s int, date IDate, opts ICalendarOptions) Date {
+	rv := objc.Send[Date](c_.ID, objc.Sel("dateBySettingHour:minute:second:ofDate:options:"), h, m, s, date, opts)
+	return rv
+}
+
+
+
+// Returns a new date representing the date calculated by setting a specific component of a given date to a given value, while trying to keep lower components the same.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/date(bySettingUnit:value:of:options:)
+
+func (c_ Calendar) DateBySettingUnitValueOfDateOptions(unit ICalendarUnit, v int, date IDate, opts ICalendarOptions) Date {
+	rv := objc.Send[Date](c_.ID, objc.Sel("dateBySettingUnit:value:ofDate:options:"), unit, v, date, opts)
+	return rv
+}
+
+
+
+// Returns a date created with the given components.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/date(era:year:month:day:hour:minute:second:nanosecond:)
+
+func (c_ Calendar) DateWithEraYearMonthDayHourMinuteSecondNanosecond(eraValue int, yearValue int, monthValue int, dayValue int, hourValue int, minuteValue int, secondValue int, nanosecondValue int) Date {
+	rv := objc.Send[Date](c_.ID, objc.Sel("dateWithEra:year:month:day:hour:minute:second:nanosecond:"), eraValue, yearValue, monthValue, dayValue, hourValue, minuteValue, secondValue, nanosecondValue)
+	return rv
+}
+
+
+
+// Returns a new date created with the given components base on a week-of-year value.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/date(era:yearForWeekOfYear:weekOfYear:weekday:hour:minute:second:nanosecond:)
+
+func (c_ Calendar) DateWithEraYearForWeekOfYearWeekOfYearWeekdayHourMinuteSecondNanosecond(eraValue int, yearValue int, weekValue int, weekdayValue int, hourValue int, minuteValue int, secondValue int, nanosecondValue int) Date {
+	rv := objc.Send[Date](c_.ID, objc.Sel("dateWithEra:yearForWeekOfYear:weekOfYear:weekday:hour:minute:second:nanosecond:"), eraValue, yearValue, weekValue, weekdayValue, hourValue, minuteValue, secondValue, nanosecondValue)
 	return rv
 }
 
@@ -225,6 +377,74 @@ func (c_ Calendar) DateFromComponents(comps IDateComponents) Date {
 
 
 
+// Computes the dates that match (or most closely match) a given set of components, and calls the block once for each of them, until the enumeration is stopped.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/enumerateDates(startingAfter:matching:options:using:)
+
+func (c_ Calendar) EnumerateDatesStartingAfterDateMatchingComponentsOptionsUsingBlock(start IDate, comps IDateComponents, opts ICalendarOptions, block unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("enumerateDatesStartingAfterDate:matchingComponents:options:usingBlock:"), start, comps, opts, block)
+}
+
+
+
+// Returns by reference the era, year, week of year, and weekday component values for a given date.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/getEra(_:year:month:day:from:)
+
+func (c_ Calendar) GetEraYearMonthDayFromDate(eraValuePointer unsafe.Pointer, yearValuePointer unsafe.Pointer, monthValuePointer unsafe.Pointer, dayValuePointer unsafe.Pointer, date IDate) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("getEra:year:month:day:fromDate:"), eraValuePointer, yearValuePointer, monthValuePointer, dayValuePointer, date)
+}
+
+
+
+// Returns by reference the era, year, week of year, and weekday component values for a given date.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/getEra(_:yearForWeekOfYear:weekOfYear:weekday:from:)
+
+func (c_ Calendar) GetEraYearForWeekOfYearWeekOfYearWeekdayFromDate(eraValuePointer unsafe.Pointer, yearValuePointer unsafe.Pointer, weekValuePointer unsafe.Pointer, weekdayValuePointer unsafe.Pointer, date IDate) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("getEra:yearForWeekOfYear:weekOfYear:weekday:fromDate:"), eraValuePointer, yearValuePointer, weekValuePointer, weekdayValuePointer, date)
+}
+
+
+
+// Returns by reference the hour, minute, second, and nanosecond component values for a given date.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/getHour(_:minute:second:nanosecond:from:)
+
+func (c_ Calendar) GetHourMinuteSecondNanosecondFromDate(hourValuePointer unsafe.Pointer, minuteValuePointer unsafe.Pointer, secondValuePointer unsafe.Pointer, nanosecondValuePointer unsafe.Pointer, date IDate) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("getHour:minute:second:nanosecond:fromDate:"), hourValuePointer, minuteValuePointer, secondValuePointer, nanosecondValuePointer, date)
+}
+
+
+
+// Indicates whether two dates are equal to a given unit of granularity.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/isDate(_:equalTo:toUnitGranularity:)
+
+func (c_ Calendar) IsDateEqualToDateToUnitGranularity(date1 IDate, date2 IDate, unit ICalendarUnit) bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isDate:equalToDate:toUnitGranularity:"), date1, date2, unit)
+	return rv
+}
+
+
+
+// Indicates whether two dates are in the same day.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/isDate(_:inSameDayAs:)
+
+func (c_ Calendar) IsDateInSameDayAsDate(date1 IDate, date2 IDate) bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isDate:inSameDayAsDate:"), date1, date2)
+	return rv
+}
+
+
+
 // Indicates whether the given date is in “today.”
 //
 // [Full Topic]
@@ -232,6 +452,54 @@ func (c_ Calendar) DateFromComponents(comps IDateComponents) Date {
 
 func (c_ Calendar) IsDateInToday(date IDate) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isDateInToday:"), date)
+	return rv
+}
+
+
+
+// Indicates whether the given date is in “tomorrow.”
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/isDateInTomorrow(_:)
+
+func (c_ Calendar) IsDateInTomorrow(date IDate) bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isDateInTomorrow:"), date)
+	return rv
+}
+
+
+
+// Indicates whether a given date falls within a weekend period, as defined by the calendar and the calendar’s locale.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/isDateInWeekend(_:)
+
+func (c_ Calendar) IsDateInWeekend(date IDate) bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isDateInWeekend:"), date)
+	return rv
+}
+
+
+
+// Indicates whether the given date is in “yesterday.”
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/isDateInYesterday(_:)
+
+func (c_ Calendar) IsDateInYesterday(date IDate) bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isDateInYesterday:"), date)
+	return rv
+}
+
+
+
+// Returns the maximum range limits of the values that a given unit can take on.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/maximumRange(of:)
+
+func (c_ Calendar) MaximumRangeOfUnit(unit ICalendarUnit) Range {
+	rv := objc.Send[Range](c_.ID, objc.Sel("maximumRangeOfUnit:"), unit)
 	return rv
 }
 
@@ -249,12 +517,24 @@ func (c_ Calendar) MinimumRangeOfUnit(unit ICalendarUnit) Range {
 
 
 
+// Returns the next date after a given date matching the given components.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/nextDate(after:matching:options:)
+
+func (c_ Calendar) NextDateAfterDateMatchingComponentsOptions(date IDate, comps IDateComponents, options ICalendarOptions) Date {
+	rv := objc.Send[Date](c_.ID, objc.Sel("nextDateAfterDate:matchingComponents:options:"), date, comps, options)
+	return rv
+}
+
+
+
 // Returns the next date after a given date matching the given calendar unit value.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/nextDate(after:matching:value:options:)
 
-func (c_ Calendar) NextDateAfterDateMatchingUnitValueOptions(date IDate, unit ICalendarUnit, value int, options unsafe.Pointer) Date {
+func (c_ Calendar) NextDateAfterDateMatchingUnitValueOptions(date IDate, unit ICalendarUnit, value int, options ICalendarOptions) Date {
 	rv := objc.Send[Date](c_.ID, objc.Sel("nextDateAfterDate:matchingUnit:value:options:"), date, unit, value, options)
 	return rv
 }
@@ -266,8 +546,20 @@ func (c_ Calendar) NextDateAfterDateMatchingUnitValueOptions(date IDate, unit IC
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/nextDate(after:matchingHour:minute:second:options:)
 
-func (c_ Calendar) NextDateAfterDateMatchingHourMinuteSecondOptions(date IDate, hourValue int, minuteValue int, secondValue int, options unsafe.Pointer) Date {
+func (c_ Calendar) NextDateAfterDateMatchingHourMinuteSecondOptions(date IDate, hourValue int, minuteValue int, secondValue int, options ICalendarOptions) Date {
 	rv := objc.Send[Date](c_.ID, objc.Sel("nextDateAfterDate:matchingHour:minute:second:options:"), date, hourValue, minuteValue, secondValue, options)
+	return rv
+}
+
+
+
+// Returns by reference the starting date and time interval range of the next weekend period after a given date.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/nextWeekendStart(_:interval:options:after:)
+
+func (c_ Calendar) NextWeekendStartDateIntervalOptionsAfterDate(datep IDate, tip ITimeInterval, options ICalendarOptions, date IDate) bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("nextWeekendStartDate:interval:options:afterDate:"), datep, tip, options, date)
 	return rv
 }
 
@@ -297,6 +589,18 @@ func (c_ Calendar) RangeOfUnitInUnitForDate(smaller ICalendarUnit, larger ICalen
 
 
 
+// Returns by reference the starting time and duration of a given calendar unit that contains a given date.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/range(of:start:interval:for:)
+
+func (c_ Calendar) RangeOfUnitStartDateIntervalForDate(unit ICalendarUnit, datep IDate, tip ITimeInterval, date IDate) bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("rangeOfUnit:startDate:interval:forDate:"), unit, datep, tip, date)
+	return rv
+}
+
+
+
 // Returns whether a given date falls within a weekend period, and if so, returns by reference the start date and time interval of the weekend range.
 //
 // [Full Topic]
@@ -304,6 +608,29 @@ func (c_ Calendar) RangeOfUnitInUnitForDate(smaller ICalendarUnit, larger ICalen
 
 func (c_ Calendar) RangeOfWeekendStartDateIntervalContainingDate(datep IDate, tip ITimeInterval, date IDate) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("rangeOfWeekendStartDate:interval:containingDate:"), datep, tip, date)
+	return rv
+}
+
+
+
+// Returns the first moment of a given date as a date instance.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/startOfDay(for:)
+
+func (c_ Calendar) StartOfDayForDate(date IDate) Date {
+	rv := objc.Send[Date](c_.ID, objc.Sel("startOfDayForDate:"), date)
+	return rv
+}
+
+
+// The symbol used to represent “AM” for this calendar.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/amSymbol
+
+func (c_ Calendar) AMSymbol() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("AMSymbol"))
 	return rv
 }
 
@@ -337,6 +664,17 @@ func (c_ Calendar) CalendarIdentifier() CalendarIdentifier {
 
 func (c_ Calendar) CurrentCalendar() NSCalendar {
 	rv := objc.Send[NSCalendar](c_.ID, objc.Sel("currentCalendar"))
+	return rv
+}
+
+
+// A list of era symbols for this calendar.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/eraSymbols
+
+func (c_ Calendar) EraSymbols() []string {
+	rv := objc.Send[[]string](c_.ID, objc.Sel("eraSymbols"))
 	return rv
 }
 
@@ -383,6 +721,104 @@ func (c_ Calendar) SetLocale(value ILocale) {
 }
 
 
+// A list of long era symbols for this calendar.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/longEraSymbols
+
+func (c_ Calendar) LongEraSymbols() []string {
+	rv := objc.Send[[]string](c_.ID, objc.Sel("longEraSymbols"))
+	return rv
+}
+
+
+// The minimum number of days in the first week of the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/minimumDaysInFirstWeek
+
+func (c_ Calendar) MinimumDaysInFirstWeek() uint {
+	rv := objc.Send[uint](c_.ID, objc.Sel("minimumDaysInFirstWeek"))
+	return rv
+}
+
+
+// The minimum number of days in the first week of the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/minimumDaysInFirstWeek
+
+func (c_ Calendar) SetMinimumDaysInFirstWeek(value uint) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setMinimumDaysInFirstWeek:"), value)
+}
+
+
+// A list of month symbols for this calendar.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/monthSymbols
+
+func (c_ Calendar) MonthSymbols() []string {
+	rv := objc.Send[[]string](c_.ID, objc.Sel("monthSymbols"))
+	return rv
+}
+
+
+// The symbol used to represent “PM” for this calendar.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/pmSymbol
+
+func (c_ Calendar) PMSymbol() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("PMSymbol"))
+	return rv
+}
+
+
+// A list of quarter symbols for this calendar.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/quarterSymbols
+
+func (c_ Calendar) QuarterSymbols() []string {
+	rv := objc.Send[[]string](c_.ID, objc.Sel("quarterSymbols"))
+	return rv
+}
+
+
+// A list of short month symbols for this calendar.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/shortMonthSymbols
+
+func (c_ Calendar) ShortMonthSymbols() []string {
+	rv := objc.Send[[]string](c_.ID, objc.Sel("shortMonthSymbols"))
+	return rv
+}
+
+
+// A list of short quarter symbols for this calendar.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/shortQuarterSymbols
+
+func (c_ Calendar) ShortQuarterSymbols() []string {
+	rv := objc.Send[[]string](c_.ID, objc.Sel("shortQuarterSymbols"))
+	return rv
+}
+
+
+// A list of short standalone month symbols for this calendar.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/shortStandaloneMonthSymbols
+
+func (c_ Calendar) ShortStandaloneMonthSymbols() []string {
+	rv := objc.Send[[]string](c_.ID, objc.Sel("shortStandaloneMonthSymbols"))
+	return rv
+}
+
+
 // A list of short standalone quarter symbols for this calendar.
 //
 // [Full Topic]
@@ -401,6 +837,50 @@ func (c_ Calendar) ShortStandaloneQuarterSymbols() []string {
 
 func (c_ Calendar) ShortStandaloneWeekdaySymbols() []string {
 	rv := objc.Send[[]string](c_.ID, objc.Sel("shortStandaloneWeekdaySymbols"))
+	return rv
+}
+
+
+// A list of shorter-named weekdays in this calendar.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/shortWeekdaySymbols
+
+func (c_ Calendar) ShortWeekdaySymbols() []string {
+	rv := objc.Send[[]string](c_.ID, objc.Sel("shortWeekdaySymbols"))
+	return rv
+}
+
+
+// A list of standalone month symbols for this calendar.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/standaloneMonthSymbols
+
+func (c_ Calendar) StandaloneMonthSymbols() []string {
+	rv := objc.Send[[]string](c_.ID, objc.Sel("standaloneMonthSymbols"))
+	return rv
+}
+
+
+// A list of standalone quarter symbols for this calendar.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/standaloneQuarterSymbols
+
+func (c_ Calendar) StandaloneQuarterSymbols() []string {
+	rv := objc.Send[[]string](c_.ID, objc.Sel("standaloneQuarterSymbols"))
+	return rv
+}
+
+
+// A list of standalone weekday symbols for this calendar.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/standaloneWeekdaySymbols
+
+func (c_ Calendar) StandaloneWeekdaySymbols() []string {
+	rv := objc.Send[[]string](c_.ID, objc.Sel("standaloneWeekdaySymbols"))
 	return rv
 }
 
@@ -426,307 +906,13 @@ func (c_ Calendar) SetTimeZone(value ITimeZone) {
 }
 
 
-// The symbol used to represent “AM” for this calendar.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/amsymbol
-
-func (c_ Calendar) AmSymbol() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("amSymbol"))
-	return rv
-}
-
-
-// The symbol used to represent “AM” for this calendar.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/amsymbol
-
-func (c_ Calendar) SetAmSymbol(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setAmSymbol:"), objc.String(value))
-}
-
-
-// A list of era symbols for this calendar.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/erasymbols
-
-func (c_ Calendar) EraSymbols() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("eraSymbols"))
-	return rv
-}
-
-
-// A list of era symbols for this calendar.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/erasymbols
-
-func (c_ Calendar) SetEraSymbols(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setEraSymbols:"), objc.String(value))
-}
-
-
-// A list of long era symbols for this calendar.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/longerasymbols
-
-func (c_ Calendar) LongEraSymbols() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("longEraSymbols"))
-	return rv
-}
-
-
-// A list of long era symbols for this calendar.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/longerasymbols
-
-func (c_ Calendar) SetLongEraSymbols(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setLongEraSymbols:"), objc.String(value))
-}
-
-
-// The minimum number of days in the first week of the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/minimumdaysinfirstweek
-
-func (c_ Calendar) MinimumDaysInFirstWeek() int {
-	rv := objc.Send[int](c_.ID, objc.Sel("minimumDaysInFirstWeek"))
-	return rv
-}
-
-
-// The minimum number of days in the first week of the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/minimumdaysinfirstweek
-
-func (c_ Calendar) SetMinimumDaysInFirstWeek(value int) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setMinimumDaysInFirstWeek:"), value)
-}
-
-
-// A list of month symbols for this calendar.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/monthsymbols
-
-func (c_ Calendar) MonthSymbols() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("monthSymbols"))
-	return rv
-}
-
-
-// A list of month symbols for this calendar.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/monthsymbols
-
-func (c_ Calendar) SetMonthSymbols(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setMonthSymbols:"), objc.String(value))
-}
-
-
-// The symbol used to represent “PM” for this calendar.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/pmsymbol
-
-func (c_ Calendar) PmSymbol() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("pmSymbol"))
-	return rv
-}
-
-
-// The symbol used to represent “PM” for this calendar.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/pmsymbol
-
-func (c_ Calendar) SetPmSymbol(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setPmSymbol:"), objc.String(value))
-}
-
-
-// A list of quarter symbols for this calendar.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/quartersymbols
-
-func (c_ Calendar) QuarterSymbols() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("quarterSymbols"))
-	return rv
-}
-
-
-// A list of quarter symbols for this calendar.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/quartersymbols
-
-func (c_ Calendar) SetQuarterSymbols(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setQuarterSymbols:"), objc.String(value))
-}
-
-
-// A list of short month symbols for this calendar.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/shortmonthsymbols
-
-func (c_ Calendar) ShortMonthSymbols() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("shortMonthSymbols"))
-	return rv
-}
-
-
-// A list of short month symbols for this calendar.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/shortmonthsymbols
-
-func (c_ Calendar) SetShortMonthSymbols(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setShortMonthSymbols:"), objc.String(value))
-}
-
-
-// A list of short quarter symbols for this calendar.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/shortquartersymbols
-
-func (c_ Calendar) ShortQuarterSymbols() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("shortQuarterSymbols"))
-	return rv
-}
-
-
-// A list of short quarter symbols for this calendar.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/shortquartersymbols
-
-func (c_ Calendar) SetShortQuarterSymbols(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setShortQuarterSymbols:"), objc.String(value))
-}
-
-
-// A list of short standalone month symbols for this calendar.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/shortstandalonemonthsymbols
-
-func (c_ Calendar) ShortStandaloneMonthSymbols() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("shortStandaloneMonthSymbols"))
-	return rv
-}
-
-
-// A list of short standalone month symbols for this calendar.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/shortstandalonemonthsymbols
-
-func (c_ Calendar) SetShortStandaloneMonthSymbols(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setShortStandaloneMonthSymbols:"), objc.String(value))
-}
-
-
-// A list of shorter-named weekdays in this calendar.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/shortweekdaysymbols
-
-func (c_ Calendar) ShortWeekdaySymbols() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("shortWeekdaySymbols"))
-	return rv
-}
-
-
-// A list of shorter-named weekdays in this calendar.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/shortweekdaysymbols
-
-func (c_ Calendar) SetShortWeekdaySymbols(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setShortWeekdaySymbols:"), objc.String(value))
-}
-
-
-// A list of standalone month symbols for this calendar.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/standalonemonthsymbols
-
-func (c_ Calendar) StandaloneMonthSymbols() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("standaloneMonthSymbols"))
-	return rv
-}
-
-
-// A list of standalone month symbols for this calendar.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/standalonemonthsymbols
-
-func (c_ Calendar) SetStandaloneMonthSymbols(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setStandaloneMonthSymbols:"), objc.String(value))
-}
-
-
-// A list of standalone quarter symbols for this calendar.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/standalonequartersymbols
-
-func (c_ Calendar) StandaloneQuarterSymbols() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("standaloneQuarterSymbols"))
-	return rv
-}
-
-
-// A list of standalone quarter symbols for this calendar.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/standalonequartersymbols
-
-func (c_ Calendar) SetStandaloneQuarterSymbols(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setStandaloneQuarterSymbols:"), objc.String(value))
-}
-
-
-// A list of standalone weekday symbols for this calendar.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/standaloneweekdaysymbols
-
-func (c_ Calendar) StandaloneWeekdaySymbols() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("standaloneWeekdaySymbols"))
-	return rv
-}
-
-
-// A list of standalone weekday symbols for this calendar.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/standaloneweekdaysymbols
-
-func (c_ Calendar) SetStandaloneWeekdaySymbols(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setStandaloneWeekdaySymbols:"), objc.String(value))
-}
-
-
 // A list of very short month symbols for this calendar.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/veryshortmonthsymbols
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/veryShortMonthSymbols
 
-func (c_ Calendar) VeryShortMonthSymbols() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("veryShortMonthSymbols"))
+func (c_ Calendar) VeryShortMonthSymbols() []string {
+	rv := objc.Send[[]string](c_.ID, objc.Sel("veryShortMonthSymbols"))
 	return rv
 }
 
@@ -734,41 +920,10 @@ func (c_ Calendar) VeryShortMonthSymbols() string {
 // A list of very short month symbols for this calendar.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/veryshortmonthsymbols
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/veryShortStandaloneMonthSymbols
 
-func (c_ Calendar) SetVeryShortMonthSymbols(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setVeryShortMonthSymbols:"), objc.String(value))
-}
-
-
-// A list of very short month symbols for this calendar.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/veryshortstandalonemonthsymbols
-
-func (c_ Calendar) VeryShortStandaloneMonthSymbols() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("veryShortStandaloneMonthSymbols"))
-	return rv
-}
-
-
-// A list of very short month symbols for this calendar.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/veryshortstandalonemonthsymbols
-
-func (c_ Calendar) SetVeryShortStandaloneMonthSymbols(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setVeryShortStandaloneMonthSymbols:"), objc.String(value))
-}
-
-
-// A list of very short standalone weekday symbols for this calendar.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/veryshortstandaloneweekdaysymbols
-
-func (c_ Calendar) VeryShortStandaloneWeekdaySymbols() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("veryShortStandaloneWeekdaySymbols"))
+func (c_ Calendar) VeryShortStandaloneMonthSymbols() []string {
+	rv := objc.Send[[]string](c_.ID, objc.Sel("veryShortStandaloneMonthSymbols"))
 	return rv
 }
 
@@ -776,20 +931,10 @@ func (c_ Calendar) VeryShortStandaloneWeekdaySymbols() string {
 // A list of very short standalone weekday symbols for this calendar.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/veryshortstandaloneweekdaysymbols
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/veryShortStandaloneWeekdaySymbols
 
-func (c_ Calendar) SetVeryShortStandaloneWeekdaySymbols(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setVeryShortStandaloneWeekdaySymbols:"), objc.String(value))
-}
-
-
-// A list of very-shortly-named weekdays in this calendar.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/veryshortweekdaysymbols
-
-func (c_ Calendar) VeryShortWeekdaySymbols() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("veryShortWeekdaySymbols"))
+func (c_ Calendar) VeryShortStandaloneWeekdaySymbols() []string {
+	rv := objc.Send[[]string](c_.ID, objc.Sel("veryShortStandaloneWeekdaySymbols"))
 	return rv
 }
 
@@ -797,20 +942,10 @@ func (c_ Calendar) VeryShortWeekdaySymbols() string {
 // A list of very-shortly-named weekdays in this calendar.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/veryshortweekdaysymbols
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/veryShortWeekdaySymbols
 
-func (c_ Calendar) SetVeryShortWeekdaySymbols(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setVeryShortWeekdaySymbols:"), objc.String(value))
-}
-
-
-// A list of weekdays in this calendar.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/weekdaysymbols
-
-func (c_ Calendar) WeekdaySymbols() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("weekdaySymbols"))
+func (c_ Calendar) VeryShortWeekdaySymbols() []string {
+	rv := objc.Send[[]string](c_.ID, objc.Sel("veryShortWeekdaySymbols"))
 	return rv
 }
 
@@ -818,10 +953,11 @@ func (c_ Calendar) WeekdaySymbols() string {
 // A list of weekdays in this calendar.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/weekdaysymbols
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/weekdaySymbols
 
-func (c_ Calendar) SetWeekdaySymbols(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setWeekdaySymbols:"), objc.String(value))
+func (c_ Calendar) WeekdaySymbols() []string {
+	rv := objc.Send[[]string](c_.ID, objc.Sel("weekdaySymbols"))
+	return rv
 }
 
 

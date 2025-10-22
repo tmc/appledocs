@@ -38,8 +38,13 @@ type ICNScript interface {
 // A collection of focus decisions, focus transitions, detections, and detection tracks associated with a movie captured in Cinematic mode and methods to change them.
 //
 // The Cinematic script provides thread-safe access to information about the focus decisions made in the original recorded Cinematic movie. The script supports changing those decisions and obtaining updated information about where to focus each frame. You can snapshot changes to a script and later reload them.
+
+
+// A collection of focus decisions, focus transitions, detections, and detection tracks associated with a movie captured in Cinematic mode and methods to change them.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNScript-9e1zn
+
 type CNScript struct {
 	objectivec.Object
 }
@@ -83,25 +88,37 @@ func NewCNScript() CNScript {
 }
 
 
+
+
 // The decision that occurs before the given time.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNScript-9e1zn/decisionBeforeTime:
+
 func (c_ CNScript) DecisionBeforeTime(time unsafe.Pointer) CNDecision {
 	rv := objc.Send[CNDecision](c_.ID, objc.Sel("decisionBeforeTime:"), time)
 	return rv
 }
 
+
+
 // The primary decision that’s in effect at the specified time, unless it’s outside the time range of the Cinematic script.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNScript-9e1zn/primaryDecisionAtTime:
+
 func (c_ CNScript) PrimaryDecisionAtTime(time unsafe.Pointer) CNDecision {
 	rv := objc.Send[CNDecision](c_.ID, objc.Sel("primaryDecisionAtTime:"), time)
 	return rv
 }
 
+
+
 // The time range during which the focus transitioned toward the given decision.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNScript-9e1zn/timeRangeOfTransitionBeforeDecision:
+
 func (c_ CNScript) TimeRangeOfTransitionBeforeDecision(decision ICNDecision) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("timeRangeOfTransitionBeforeDecision:"), decision)
 	return rv

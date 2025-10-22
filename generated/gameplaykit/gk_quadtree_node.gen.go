@@ -36,8 +36,13 @@ type IQuadtreeNode interface {
 // A helper class for managing the objects you organize in a quadtree.
 //
 // You don’t create instances of this class directly; instead, a object provides you with a instance when you add an element to a tree. If you plan to remove elements from the tree, keep references to the corresponding nodes so you can use the method for better performance. For more information, see .
+
+
+// A helper class for managing the objects you organize in a quadtree.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKQuadtreeNode
+
 type QuadtreeNode struct {
 	objectivec.Object
 }
@@ -81,9 +86,12 @@ func NewQuadtreeNode() QuadtreeNode {
 }
 
 
+
 // The axis-aligned bounding rectangle represented by the node.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKQuadtreeNode/quad
+
 func (q_ QuadtreeNode) Quad() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](q_.ID, objc.Sel("quad"))
 	return rv

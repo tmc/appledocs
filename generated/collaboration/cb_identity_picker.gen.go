@@ -42,8 +42,13 @@ type ICBIdentityPicker interface {
 }
 
 // A object allows a user to select identities—for example, user or group objects—that it wants one or more services or shared resources to have access to. An identity picker can be displayed either as an application-modal dialog or as a sheet attached to a document window. An identity picker returns the selected records to be added to access control lists using Collaboration. If a selected record is not a user or group identity, then an identity picker prompts the user for additional information—such as a password—to promote that record to a sharing account.
+
+
+// A object allows a user to select identities—for example, user or group objects—that it wants one or more services or shared resources to have access to. An identity picker can be displayed either as an application-modal dialog or as a sheet attached to a document window. An identity picker returns the selected records to be added to access control lists using Collaboration. If a selected record is not a user or group identity, then an identity picker prompts the user for additional information—such as a password—to promote that record to a sharing account.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentityPicker
+
 type CBIdentityPicker struct {
 	objectivec.Object
 }
@@ -87,68 +92,89 @@ func NewCBIdentityPicker() CBIdentityPicker {
 }
 
 
+
+
 // Runs the receiver as an application-modal dialog.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentityPicker/runModal()
+
 func (c_ CBIdentityPicker) RunModal() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("runModal"))
 	return rv
 }
 
+
+
 // Runs the identity picker modally as a sheet attached to a specified window.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentityPicker/runModal(for:completionHandler:)
+
 func (c_ CBIdentityPicker) RunModalForWindowCompletionHandler(window appkit.IWindow, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("runModalForWindow:completionHandler:"), window, completionHandler)
 }
 
+
+
 // Runs the receiver modally as a sheet attached to a specified window.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentityPicker/runModal(for:modalDelegate:didEnd:contextInfo:)
+
 func (c_ CBIdentityPicker) RunModalForWindowModalDelegateDidEndSelectorContextInfo(window appkit.IWindow, delegate objectivec.IObject, didEndSelector objc.SEL, contextInfo unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("runModalForWindow:modalDelegate:didEndSelector:contextInfo:"), window, delegate, didEndSelector, contextInfo)
 }
 
+
 // A Boolean value indicating whether the user is allowed to select multiple identities.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentityPicker/allowsMultipleSelection
+
 func (c_ CBIdentityPicker) AllowsMultipleSelection() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("allowsMultipleSelection"))
 	return rv
 }
 
 
-// SetAllowsMultipleSelection sets the value of the allowsMultipleSelection property.
 // A Boolean value indicating whether the user is allowed to select multiple identities.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentityPicker/allowsMultipleSelection
+
 func (c_ CBIdentityPicker) SetAllowsMultipleSelection(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAllowsMultipleSelection:"), value)
 }
 
+
 // The array of identities (represented by objects) selected using the identity picker.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentityPicker/identities
+
 func (c_ CBIdentityPicker) Identities() []CBIdentity {
 	rv := objc.Send[[]CBIdentity](c_.ID, objc.Sel("identities"))
 	return rv
 }
 
+
 // The title of the identity picker.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentityPicker/title
+
 func (c_ CBIdentityPicker) Title() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("title"))
 	return rv
 }
 
 
-// SetTitle sets the value of the title property.
 // The title of the identity picker.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentityPicker/title
+
 func (c_ CBIdentityPicker) SetTitle(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setTitle:"), objc.String(value))
 }

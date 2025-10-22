@@ -46,8 +46,13 @@ type IImageSizeConstraint interface {
 // A list or range of sizes that augment an image constraint’s default size.
 //
 // You use an to express what image sizes of an image feature a model will accept as input or produce as output. Use to determine which properties describe what image sizes the model’s image feature expects as input or produces as output. If is: , the image feature accepts any image that has a width in and a height in . , the image feature accepts any image size listed in . , the instance is not configured and should be ignored. Instead, use the image feature’s default image size constraint, defined by and .
+
+
+// A list or range of sizes that augment an image constraint’s default size.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLImageSizeConstraint
+
 type ImageSizeConstraint struct {
 	objectivec.Object
 }
@@ -91,88 +96,109 @@ func NewImageSizeConstraint() ImageSizeConstraint {
 }
 
 
+
 // An array of image sizes a model’s image feature accepts as input or produces as output.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLImageSizeConstraint/enumeratedImageSizes
+
 func (i_ ImageSizeConstraint) EnumeratedImageSizes() []ImageSize {
 	rv := objc.Send[[]ImageSize](i_.ID, objc.Sel("enumeratedImageSizes"))
 	return rv
 }
 
+
 // The range of heights a model’s image feature accepts as input or produces as output.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLImageSizeConstraint/pixelsHighRange
+
 func (i_ ImageSizeConstraint) PixelsHighRange() foundation.Range {
 	rv := objc.Send[foundation.Range](i_.ID, objc.Sel("pixelsHighRange"))
 	return rv
 }
 
+
 // The range of widths a model’s image feature accepts as input or produces as output.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLImageSizeConstraint/pixelsWideRange
+
 func (i_ ImageSizeConstraint) PixelsWideRange() foundation.Range {
 	rv := objc.Send[foundation.Range](i_.ID, objc.Sel("pixelsWideRange"))
 	return rv
 }
 
+
 // Indicator of which properties to inspect for this image size constraint.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLImageSizeConstraint/type
+
 func (i_ ImageSizeConstraint) Type() ImageSizeConstraintType {
 	rv := objc.Send[ImageSizeConstraintType](i_.ID, objc.Sel("type"))
 	return rv
 }
 
+
 // The model’s default height for an image feature.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlimageconstraint/pixelshigh
+
 func (i_ ImageSizeConstraint) PixelsHigh() int {
 	rv := objc.Send[int](i_.ID, objc.Sel("pixelsHigh"))
 	return rv
 }
 
 
-// SetPixelsHigh sets the value of the pixelsHigh property.
 // The model’s default height for an image feature.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlimageconstraint/pixelshigh
+
 func (i_ ImageSizeConstraint) SetPixelsHigh(value int) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPixelsHigh:"), value)
 }
 
+
 // The model’s default width for an image feature.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlimageconstraint/pixelswide
+
 func (i_ ImageSizeConstraint) PixelsWide() int {
 	rv := objc.Send[int](i_.ID, objc.Sel("pixelsWide"))
 	return rv
 }
 
 
-// SetPixelsWide sets the value of the pixelsWide property.
 // The model’s default width for an image feature.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlimageconstraint/pixelswide
+
 func (i_ ImageSizeConstraint) SetPixelsWide(value int) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPixelsWide:"), value)
 }
 
+
 // Additional sizes this image feature supports.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlimageconstraint/sizeconstraint
+
 func (i_ ImageSizeConstraint) SizeConstraint() MLImageSizeConstraint {
 	rv := objc.Send[MLImageSizeConstraint](i_.ID, objc.Sel("sizeConstraint"))
 	return rv
 }
 
 
-// SetSizeConstraint sets the value of the sizeConstraint property.
 // Additional sizes this image feature supports.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlimageconstraint/sizeconstraint
+
 func (i_ ImageSizeConstraint) SetSizeConstraint(value IMLImageSizeConstraint) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSizeConstraint:"), value)
 }

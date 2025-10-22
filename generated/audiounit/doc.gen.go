@@ -2,12 +2,16 @@
 
 // Package audiounit provides Go bindings for the AudioUnit framework.
 //
-// Add sophisticated audio manipulation and processing capabilities to your app. [Full Topic]
+// Add sophisticated audio manipulation and processing capabilities to your app.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to AudioUnit without requiring cgo.
+
+// Add sophisticated audio manipulation and processing capabilities to your app.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioUnit
+
 package audiounit
 
 import (

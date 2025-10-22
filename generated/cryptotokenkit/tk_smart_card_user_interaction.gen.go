@@ -36,16 +36,21 @@ type ITKSmartCardUserInteraction interface {
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
 	InitialTimeout() foundation.TimeInterval
-	SetInitialTimeout(value foundation.ITimeInterval)
+	SetInitialTimeout(value foundation.TimeInterval)
 	InteractionTimeout() foundation.TimeInterval
-	SetInteractionTimeout(value foundation.ITimeInterval)
+	SetInteractionTimeout(value foundation.TimeInterval)
 }
 
 // The base class for encapsulating user interaction with a Smart Card reader.
 //
 // There are two types of user interactions: those for secure PIN change and those for secure PIN validation. These interactions are instances of the , or subclasses of , respectively. is a subclass of . You interact with instances of one of the subclasses of when calling the and methods on an object.
+
+
+// The base class for encapsulating user interaction with a Smart Card reader.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardUserInteraction
+
 type TKSmartCardUserInteraction struct {
 	objectivec.Object
 }
@@ -89,72 +94,89 @@ func NewTKSmartCardUserInteraction() TKSmartCardUserInteraction {
 }
 
 
+
+
 // Attempts to cancel an interaction started by calling . For certain interactions, cancellation may not be available.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardUserInteraction/cancel()
+
 func (t_ TKSmartCardUserInteraction) Cancel() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("cancel"))
 	return rv
 }
 
+
+
 // Runs the user interaction and asynchronously receives a reply.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardUserInteraction/run(reply:)
+
 func (t_ TKSmartCardUserInteraction) RunWithReply(reply unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("runWithReply:"), reply)
 }
 
+
 // The delegate for observing events that occur during the user interaction.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardUserInteraction/delegate
+
 func (t_ TKSmartCardUserInteraction) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](t_.ID, objc.Sel("delegate"))
 	return rv
 }
 
 
-// SetDelegate sets the value of the delegate property.
 // The delegate for observing events that occur during the user interaction.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardUserInteraction/delegate
+
 func (t_ TKSmartCardUserInteraction) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDelegate:"), value)
 }
 
+
 // The timeout, in seconds, for initial interaction. If set to , the reader-defined default timeout is used. by default.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardUserInteraction/initialTimeout
+
 func (t_ TKSmartCardUserInteraction) InitialTimeout() foundation.TimeInterval {
 	rv := objc.Send[foundation.TimeInterval](t_.ID, objc.Sel("initialTimeout"))
 	return rv
 }
 
 
-// SetInitialTimeout sets the value of the initialTimeout property.
 // The timeout, in seconds, for initial interaction. If set to , the reader-defined default timeout is used. by default.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardUserInteraction/initialTimeout
-func (t_ TKSmartCardUserInteraction) SetInitialTimeout(value foundation.ITimeInterval) {
+
+func (t_ TKSmartCardUserInteraction) SetInitialTimeout(value foundation.TimeInterval) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setInitialTimeout:"), value)
 }
 
+
 // The timeout, in seconds, after the first key stroke. If set to , the reader-defined default timeout is used. by default.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardUserInteraction/interactionTimeout
+
 func (t_ TKSmartCardUserInteraction) InteractionTimeout() foundation.TimeInterval {
 	rv := objc.Send[foundation.TimeInterval](t_.ID, objc.Sel("interactionTimeout"))
 	return rv
 }
 
 
-// SetInteractionTimeout sets the value of the interactionTimeout property.
 // The timeout, in seconds, after the first key stroke. If set to , the reader-defined default timeout is used. by default.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardUserInteraction/interactionTimeout
-func (t_ TKSmartCardUserInteraction) SetInteractionTimeout(value foundation.ITimeInterval) {
+
+func (t_ TKSmartCardUserInteraction) SetInteractionTimeout(value foundation.TimeInterval) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setInteractionTimeout:"), value)
 }
 

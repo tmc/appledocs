@@ -35,8 +35,13 @@ type IComputePlanDeviceUsage interface {
 }
 
 // The anticipated compute devices to use for executing a layer or operation.
+
+
+// The anticipated compute devices to use for executing a layer or operation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLComputePlanDeviceUsage
+
 type ComputePlanDeviceUsage struct {
 	objectivec.Object
 }
@@ -80,17 +85,23 @@ func NewComputePlanDeviceUsage() ComputePlanDeviceUsage {
 }
 
 
+
 // The compute device that the framework prefers to execute the layer/operation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLComputePlanDeviceUsage/preferredComputeDevice
+
 func (c_ ComputePlanDeviceUsage) PreferredComputeDevice() objc.ID {
 	rv := objc.Send[objc.ID](c_.ID, objc.Sel("preferredComputeDevice"))
 	return rv
 }
 
+
 // The compute devices that can execute the layer/operation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLComputePlanDeviceUsage/supportedComputeDevices
+
 func (c_ ComputePlanDeviceUsage) SupportedComputeDevices() []objc.ID {
 	rv := objc.Send[[]objc.ID](c_.ID, objc.Sel("supportedComputeDevices"))
 	return rv

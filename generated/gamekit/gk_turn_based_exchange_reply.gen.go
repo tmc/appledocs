@@ -45,8 +45,13 @@ type ITurnBasedExchangeReply interface {
 // Details about a recipient’s response to an exchange request.
 //
 // When you accept an exchange request using the method, GameKit sends a object to participants using the protocol method. You can also get responses to exchange requests from the object using the parameter.
+
+
+// Details about a recipient’s response to an exchange request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKTurnBasedExchangeReply
+
 type TurnBasedExchangeReply struct {
 	objectivec.Object
 }
@@ -90,82 +95,97 @@ func NewTurnBasedExchangeReply() TurnBasedExchangeReply {
 }
 
 
+
 // The participant who replies to the exchange request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKTurnBasedExchangeReply/recipient
+
 func (t_ TurnBasedExchangeReply) Recipient() GKTurnBasedParticipant {
 	rv := objc.Send[GKTurnBasedParticipant](t_.ID, objc.Sel("recipient"))
 	return rv
 }
 
+
 // The replies from recipients of the exchange request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchange/replies
+
 func (t_ TurnBasedExchangeReply) Replies() GKTurnBasedExchangeReply {
 	rv := objc.Send[GKTurnBasedExchangeReply](t_.ID, objc.Sel("replies"))
 	return rv
 }
 
 
-// SetReplies sets the value of the replies property.
 // The replies from recipients of the exchange request.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchange/replies
+
 func (t_ TurnBasedExchangeReply) SetReplies(value IGKTurnBasedExchangeReply) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setReplies:"), value)
 }
 
+
 // The game-specific data that the recipent provides in the exchange request reply.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchangereply/data
+
 func (t_ TurnBasedExchangeReply) Data() foundation.Data {
 	rv := objc.Send[foundation.Data](t_.ID, objc.Sel("data"))
 	return rv
 }
 
 
-// SetData sets the value of the data property.
 // The game-specific data that the recipent provides in the exchange request reply.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchangereply/data
+
 func (t_ TurnBasedExchangeReply) SetData(value foundation.IData) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setData:"), value)
 }
 
+
 // A message from the recipient to the sender of the exchange request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchangereply/message
+
 func (t_ TurnBasedExchangeReply) Message() string {
 	rv := objc.Send[string](t_.ID, objc.Sel("message"))
 	return rv
 }
 
 
-// SetMessage sets the value of the message property.
 // A message from the recipient to the sender of the exchange request.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchangereply/message
+
 func (t_ TurnBasedExchangeReply) SetMessage(value string) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setMessage:"), objc.String(value))
 }
 
+
 // The date the recipient replies to the exchange request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchangereply/replydate
+
 func (t_ TurnBasedExchangeReply) ReplyDate() foundation.Date {
 	rv := objc.Send[foundation.Date](t_.ID, objc.Sel("replyDate"))
 	return rv
 }
 
 
-// SetReplyDate sets the value of the replyDate property.
 // The date the recipient replies to the exchange request.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchangereply/replydate
+
 func (t_ TurnBasedExchangeReply) SetReplyDate(value foundation.IDate) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setReplyDate:"), value)
 }

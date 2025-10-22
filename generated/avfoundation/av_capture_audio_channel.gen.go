@@ -45,8 +45,13 @@ type ICaptureAudioChannel interface {
 // An object that monitors average and peak power levels for an audio channel in a capture connection.
 //
 // You don’t create instances of this class directly. Instead, an object that connects an audio input to an audio output provides an array of objects, one for each channel of audio available. You can poll for audio levels by iterating through these audio channel objects.
+
+
+// An object that monitors average and peak power levels for an audio channel in a capture connection.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureAudioChannel
+
 type CaptureAudioChannel struct {
 	objectivec.Object
 }
@@ -90,92 +95,107 @@ func NewCaptureAudioChannel() CaptureAudioChannel {
 }
 
 
+
 // The instantaneous average power level in decibels.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureaudiochannel/averagepowerlevel
+
 func (c_ CaptureAudioChannel) AveragePowerLevel() float32 {
 	rv := objc.Send[float32](c_.ID, objc.Sel("averagePowerLevel"))
 	return rv
 }
 
 
-// SetAveragePowerLevel sets the value of the averagePowerLevel property.
 // The instantaneous average power level in decibels.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureaudiochannel/averagepowerlevel
+
 func (c_ CaptureAudioChannel) SetAveragePowerLevel(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAveragePowerLevel:"), value)
 }
 
+
 // A Boolean value that indicates whether the channel is in an enabled state.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureaudiochannel/isenabled
+
 func (c_ CaptureAudioChannel) IsEnabled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isEnabled"))
 	return rv
 }
 
 
-// SetIsEnabled sets the value of the isEnabled property.
 // A Boolean value that indicates whether the channel is in an enabled state.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureaudiochannel/isenabled
+
 func (c_ CaptureAudioChannel) SetIsEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsEnabled:"), value)
 }
 
+
 // The peak hold power level in decibels.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureaudiochannel/peakholdlevel
+
 func (c_ CaptureAudioChannel) PeakHoldLevel() float32 {
 	rv := objc.Send[float32](c_.ID, objc.Sel("peakHoldLevel"))
 	return rv
 }
 
 
-// SetPeakHoldLevel sets the value of the peakHoldLevel property.
 // The peak hold power level in decibels.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureaudiochannel/peakholdlevel
+
 func (c_ CaptureAudioChannel) SetPeakHoldLevel(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPeakHoldLevel:"), value)
 }
 
+
 // The current volume (gain) of the channel.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureaudiochannel/volume
+
 func (c_ CaptureAudioChannel) Volume() float32 {
 	rv := objc.Send[float32](c_.ID, objc.Sel("volume"))
 	return rv
 }
 
 
-// SetVolume sets the value of the volume property.
 // The current volume (gain) of the channel.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureaudiochannel/volume
+
 func (c_ CaptureAudioChannel) SetVolume(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setVolume:"), value)
 }
 
+
 // The connections between inputs and outputs that a capture session contains.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesession/connections
+
 func (c_ CaptureAudioChannel) Connections() AVCaptureConnection {
 	rv := objc.Send[AVCaptureConnection](c_.ID, objc.Sel("connections"))
 	return rv
 }
 
 
-// SetConnections sets the value of the connections property.
 // The connections between inputs and outputs that a capture session contains.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesession/connections
+
 func (c_ CaptureAudioChannel) SetConnections(value IAVCaptureConnection) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setConnections:"), value)
 }

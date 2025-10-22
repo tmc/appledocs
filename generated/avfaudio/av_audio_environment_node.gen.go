@@ -68,8 +68,13 @@ type IAudioEnvironmentNode interface {
 // An object that simulates a 3D audio environment.
 //
 // The class is a mixer node that simulates a 3D audio environment. Any node that conforms to can act as a source node, such as . The environment node has an implicit listener. You set the listener’s position and orientation, and the system then controls the way the user experiences the virtual world. To help characterize the environment, this class defines properties for distance attenuation and reverberation. affects how inputs with different channel configurations render. Spatialization applies only to inputs with a mono channel connection format. This class doesn’t spatialize stereo inputs or support inputs with connection formats of more than two channels. To set the node’s output to a multichannel format, use an that has one of the following :
+
+
+// An object that simulates a 3D audio environment.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioEnvironmentNode
+
 type AudioEnvironmentNode struct {
 	AudioNode
 }
@@ -116,298 +121,349 @@ func NewAudioEnvironmentNode() AudioEnvironmentNode {
 
 
 
+
 // An array of rendering algorithms applicable to the environment node.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioEnvironmentNode/applicableRenderingAlgorithms
+
 func (a_ AudioEnvironmentNode) ApplicableRenderingAlgorithms() []foundation.Number {
 	rv := objc.Send[[]foundation.Number](a_.ID, objc.Sel("applicableRenderingAlgorithms"))
 	return rv
 }
 
+
 // A Boolean value that indicates whether the listener orientation is automatically rotated based on head orientation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioEnvironmentNode/isListenerHeadTrackingEnabled
+
 func (a_ AudioEnvironmentNode) ListenerHeadTrackingEnabled() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("listenerHeadTrackingEnabled"))
 	return rv
 }
 
 
-// SetListenerHeadTrackingEnabled sets the value of the listenerHeadTrackingEnabled property.
 // A Boolean value that indicates whether the listener orientation is automatically rotated based on head orientation.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioEnvironmentNode/isListenerHeadTrackingEnabled
+
 func (a_ AudioEnvironmentNode) SetListenerHeadTrackingEnabled(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setListenerHeadTrackingEnabled:"), value)
 }
 
+
 // The listener’s angular orientation in the environment.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioEnvironmentNode/listenerAngularOrientation
+
 func (a_ AudioEnvironmentNode) ListenerAngularOrientation() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("listenerAngularOrientation"))
 	return rv
 }
 
 
-// SetListenerAngularOrientation sets the value of the listenerAngularOrientation property.
 // The listener’s angular orientation in the environment.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioEnvironmentNode/listenerAngularOrientation
+
 func (a_ AudioEnvironmentNode) SetListenerAngularOrientation(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setListenerAngularOrientation:"), value)
 }
 
+
 // The distance attenuation parameters for the environment.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentnode/distanceattenuationparameters
+
 func (a_ AudioEnvironmentNode) DistanceAttenuationParameters() AVAudioEnvironmentDistanceAttenuationParameters {
 	rv := objc.Send[AVAudioEnvironmentDistanceAttenuationParameters](a_.ID, objc.Sel("distanceAttenuationParameters"))
 	return rv
 }
 
 
-// SetDistanceAttenuationParameters sets the value of the distanceAttenuationParameters property.
 // The distance attenuation parameters for the environment.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentnode/distanceattenuationparameters
+
 func (a_ AudioEnvironmentNode) SetDistanceAttenuationParameters(value IAVAudioEnvironmentDistanceAttenuationParameters) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDistanceAttenuationParameters:"), value)
 }
 
+
 // A Boolean value that indicates whether the listener orientation is automatically rotated based on head orientation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentnode/islistenerheadtrackingenabled
+
 func (a_ AudioEnvironmentNode) IsListenerHeadTrackingEnabled() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isListenerHeadTrackingEnabled"))
 	return rv
 }
 
 
-// SetIsListenerHeadTrackingEnabled sets the value of the isListenerHeadTrackingEnabled property.
 // A Boolean value that indicates whether the listener orientation is automatically rotated based on head orientation.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentnode/islistenerheadtrackingenabled
+
 func (a_ AudioEnvironmentNode) SetIsListenerHeadTrackingEnabled(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsListenerHeadTrackingEnabled:"), value)
 }
 
+
 // The listener’s position in the 3D environment.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentnode/listenerposition
+
 func (a_ AudioEnvironmentNode) ListenerPosition() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("listenerPosition"))
 	return rv
 }
 
 
-// SetListenerPosition sets the value of the listenerPosition property.
 // The listener’s position in the 3D environment.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentnode/listenerposition
+
 func (a_ AudioEnvironmentNode) SetListenerPosition(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setListenerPosition:"), value)
 }
 
+
 // The listener’s vector orientation in the environment.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentnode/listenervectororientation
+
 func (a_ AudioEnvironmentNode) ListenerVectorOrientation() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("listenerVectorOrientation"))
 	return rv
 }
 
 
-// SetListenerVectorOrientation sets the value of the listenerVectorOrientation property.
 // The listener’s vector orientation in the environment.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentnode/listenervectororientation
+
 func (a_ AudioEnvironmentNode) SetListenerVectorOrientation(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setListenerVectorOrientation:"), value)
 }
 
+
 // An unused input bus.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentnode/nextavailableinputbus
+
 func (a_ AudioEnvironmentNode) NextAvailableInputBus() AudioNodeBus {
 	rv := objc.Send[AudioNodeBus](a_.ID, objc.Sel("nextAvailableInputBus"))
 	return rv
 }
 
 
-// SetNextAvailableInputBus sets the value of the nextAvailableInputBus property.
 // An unused input bus.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentnode/nextavailableinputbus
+
 func (a_ AudioEnvironmentNode) SetNextAvailableInputBus(value IAudioNodeBus) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setNextAvailableInputBus:"), value)
 }
 
+
 // The type of output hardware.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentnode/outputtype
+
 func (a_ AudioEnvironmentNode) OutputType() AudioEnvironmentOutputType {
 	rv := objc.Send[AudioEnvironmentOutputType](a_.ID, objc.Sel("outputType"))
 	return rv
 }
 
 
-// SetOutputType sets the value of the outputType property.
 // The type of output hardware.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentnode/outputtype
+
 func (a_ AudioEnvironmentNode) SetOutputType(value AudioEnvironmentOutputType) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setOutputType:"), value)
 }
 
+
 // The mixer’s output volume.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentnode/outputvolume
+
 func (a_ AudioEnvironmentNode) OutputVolume() float32 {
 	rv := objc.Send[float32](a_.ID, objc.Sel("outputVolume"))
 	return rv
 }
 
 
-// SetOutputVolume sets the value of the outputVolume property.
 // The mixer’s output volume.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentnode/outputvolume
+
 func (a_ AudioEnvironmentNode) SetOutputVolume(value float32) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setOutputVolume:"), value)
 }
 
+
 // The reverb parameters for the environment.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentnode/reverbparameters
+
 func (a_ AudioEnvironmentNode) ReverbParameters() AVAudioEnvironmentReverbParameters {
 	rv := objc.Send[AVAudioEnvironmentReverbParameters](a_.ID, objc.Sel("reverbParameters"))
 	return rv
 }
 
 
-// SetReverbParameters sets the value of the reverbParameters property.
 // The reverb parameters for the environment.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentnode/reverbparameters
+
 func (a_ AudioEnvironmentNode) SetReverbParameters(value IAVAudioEnvironmentReverbParameters) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setReverbParameters:"), value)
 }
 
+
 // A quadraphonic symmetrical layout, recommended for use by audio units.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioTypes/kAudioChannelLayoutTag_AudioUnit_4
+
 func (a_ AudioEnvironmentNode) KAudioChannelLayoutTag_AudioUnit_4() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("kAudioChannelLayoutTag_AudioUnit_4"))
 	return rv
 }
 
 
-// SetKAudioChannelLayoutTag_AudioUnit_4 sets the value of the kAudioChannelLayoutTag_AudioUnit_4 property.
 // A quadraphonic symmetrical layout, recommended for use by audio units.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioTypes/kAudioChannelLayoutTag_AudioUnit_4
+
 func (a_ AudioEnvironmentNode) SetKAudioChannelLayoutTag_AudioUnit_4(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setKAudioChannelLayoutTag_AudioUnit_4:"), value)
 }
 
+
 // A 5-channel surround-based layout, recommended for use by audio units.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioTypes/kAudioChannelLayoutTag_AudioUnit_5_0
+
 func (a_ AudioEnvironmentNode) KAudioChannelLayoutTag_AudioUnit_5_0() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("kAudioChannelLayoutTag_AudioUnit_5_0"))
 	return rv
 }
 
 
-// SetKAudioChannelLayoutTag_AudioUnit_5_0 sets the value of the kAudioChannelLayoutTag_AudioUnit_5_0 property.
 // A 5-channel surround-based layout, recommended for use by audio units.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioTypes/kAudioChannelLayoutTag_AudioUnit_5_0
+
 func (a_ AudioEnvironmentNode) SetKAudioChannelLayoutTag_AudioUnit_5_0(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setKAudioChannelLayoutTag_AudioUnit_5_0:"), value)
 }
 
+
 // A 6-channel surround-based layout, recommended for use by audio units.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioTypes/kAudioChannelLayoutTag_AudioUnit_6_0
+
 func (a_ AudioEnvironmentNode) KAudioChannelLayoutTag_AudioUnit_6_0() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("kAudioChannelLayoutTag_AudioUnit_6_0"))
 	return rv
 }
 
 
-// SetKAudioChannelLayoutTag_AudioUnit_6_0 sets the value of the kAudioChannelLayoutTag_AudioUnit_6_0 property.
 // A 6-channel surround-based layout, recommended for use by audio units.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioTypes/kAudioChannelLayoutTag_AudioUnit_6_0
+
 func (a_ AudioEnvironmentNode) SetKAudioChannelLayoutTag_AudioUnit_6_0(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setKAudioChannelLayoutTag_AudioUnit_6_0:"), value)
 }
 
+
 // A 7-channel surround-based layout, recommended for use by audio units.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioTypes/kAudioChannelLayoutTag_AudioUnit_7_0
+
 func (a_ AudioEnvironmentNode) KAudioChannelLayoutTag_AudioUnit_7_0() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("kAudioChannelLayoutTag_AudioUnit_7_0"))
 	return rv
 }
 
 
-// SetKAudioChannelLayoutTag_AudioUnit_7_0 sets the value of the kAudioChannelLayoutTag_AudioUnit_7_0 property.
 // A 7-channel surround-based layout, recommended for use by audio units.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioTypes/kAudioChannelLayoutTag_AudioUnit_7_0
+
 func (a_ AudioEnvironmentNode) SetKAudioChannelLayoutTag_AudioUnit_7_0(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setKAudioChannelLayoutTag_AudioUnit_7_0:"), value)
 }
 
+
 // An alternate 7-channel surround-based layout, for use by audio units.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioTypes/kAudioChannelLayoutTag_AudioUnit_7_0_Front
+
 func (a_ AudioEnvironmentNode) KAudioChannelLayoutTag_AudioUnit_7_0_Front() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("kAudioChannelLayoutTag_AudioUnit_7_0_Front"))
 	return rv
 }
 
 
-// SetKAudioChannelLayoutTag_AudioUnit_7_0_Front sets the value of the kAudioChannelLayoutTag_AudioUnit_7_0_Front property.
 // An alternate 7-channel surround-based layout, for use by audio units.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioTypes/kAudioChannelLayoutTag_AudioUnit_7_0_Front
+
 func (a_ AudioEnvironmentNode) SetKAudioChannelLayoutTag_AudioUnit_7_0_Front(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setKAudioChannelLayoutTag_AudioUnit_7_0_Front:"), value)
 }
 
+
 // An octagonal symmetrical layout, recommended for use by audio units.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioTypes/kAudioChannelLayoutTag_AudioUnit_8
+
 func (a_ AudioEnvironmentNode) KAudioChannelLayoutTag_AudioUnit_8() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("kAudioChannelLayoutTag_AudioUnit_8"))
 	return rv
 }
 
 
-// SetKAudioChannelLayoutTag_AudioUnit_8 sets the value of the kAudioChannelLayoutTag_AudioUnit_8 property.
 // An octagonal symmetrical layout, recommended for use by audio units.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioTypes/kAudioChannelLayoutTag_AudioUnit_8
+
 func (a_ AudioEnvironmentNode) SetKAudioChannelLayoutTag_AudioUnit_8(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setKAudioChannelLayoutTag_AudioUnit_8:"), value)
 }

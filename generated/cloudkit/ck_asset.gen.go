@@ -37,8 +37,13 @@ type ICKAsset interface {
 // An external file that belongs to a record.
 //
 // Use assets to incorporate external files into your app’s records, such as photos, videos, and binary files. Alternatively, use assets when a field’s value is more than a few kilobytes in size. To associate an instance of with a record, assign it to one of its fields. CloudKit stores an asset’s data separately from a record that references it, but maintains an association with that record. When you save a record that has an asset, CloudKit saves both the record and the asset to the server. Similarly, when you fetch the record, the server returns the record and the asset. When you fetch a record that contains an asset, CloudKit stores the asset’s data in a staging area accessible to your app. Use the asset’s property to access its staged location. The system regularly deletes files in the staging area to reclaim disk space. To avoid this behavior, move the data into your app’s container as soon as you fetch it. If you don’t require the asset when retrieving records, use the operation’s property to exclude the field. For more information, see , , and . If you no longer require an asset that’s on the server, you don’t delete it. Instead, orphan the asset by setting any fields that contain the asset to and then saving the record. CloudKit periodically deletes orphaned assets from the server.
+
+
+// An external file that belongs to a record.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKAsset
+
 type CKAsset struct {
 	objectivec.Object
 }
@@ -86,7 +91,9 @@ func NewCKAsset() CKAsset {
 
 // Creates an asset that references a file.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKAsset/init(fileURL:)
+
 func NewCKAssetWithFileURL(fileURL foundation.IURL) CKAsset {
 	instance := getCKAssetClass().Alloc()
 	rv := objc.Send[CKAsset](instance.ID, objc.Sel("initWithFileURL:"), fileURL)
@@ -95,9 +102,12 @@ func NewCKAssetWithFileURL(fileURL foundation.IURL) CKAsset {
 }
 
 
+
 // The URL for accessing the asset.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKAsset/fileURL
+
 func (c_ CKAsset) FileURL() foundation.URL {
 	rv := objc.Send[foundation.URL](c_.ID, objc.Sel("fileURL"))
 	return rv

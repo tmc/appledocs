@@ -44,8 +44,13 @@ type IMetadataFaceObject interface {
 // Face information detected by a metadata capture output.
 //
 // The class is a concrete subclass of that defines the features of a single detected face. You can retrieve instances of this class from the output of an object on devices that support face detection.
+
+
+// Face information detected by a metadata capture output.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMetadataFaceObject
+
 type MetadataFaceObject struct {
 	MetadataObject
 }
@@ -91,92 +96,107 @@ func NewMetadataFaceObject() MetadataFaceObject {
 }
 
 
+
 // The unique ID for this face metadata object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadatafaceobject/faceid
+
 func (m_ MetadataFaceObject) FaceID() int {
 	rv := objc.Send[int](m_.ID, objc.Sel("faceID"))
 	return rv
 }
 
 
-// SetFaceID sets the value of the faceID property.
 // The unique ID for this face metadata object.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadatafaceobject/faceid
+
 func (m_ MetadataFaceObject) SetFaceID(value int) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFaceID:"), value)
 }
 
+
 // A Boolean value indicating whether there is a valid roll angle associated with the face.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadatafaceobject/hasrollangle
+
 func (m_ MetadataFaceObject) HasRollAngle() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("hasRollAngle"))
 	return rv
 }
 
 
-// SetHasRollAngle sets the value of the hasRollAngle property.
 // A Boolean value indicating whether there is a valid roll angle associated with the face.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadatafaceobject/hasrollangle
+
 func (m_ MetadataFaceObject) SetHasRollAngle(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setHasRollAngle:"), value)
 }
 
+
 // A Boolean value indicating whether there is a valid yaw angle associated with the face.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadatafaceobject/hasyawangle
+
 func (m_ MetadataFaceObject) HasYawAngle() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("hasYawAngle"))
 	return rv
 }
 
 
-// SetHasYawAngle sets the value of the hasYawAngle property.
 // A Boolean value indicating whether there is a valid yaw angle associated with the face.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadatafaceobject/hasyawangle
+
 func (m_ MetadataFaceObject) SetHasYawAngle(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setHasYawAngle:"), value)
 }
 
+
 // The roll angle of the face specified in degrees.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadatafaceobject/rollangle
+
 func (m_ MetadataFaceObject) RollAngle() float64 {
 	rv := objc.Send[float64](m_.ID, objc.Sel("rollAngle"))
 	return rv
 }
 
 
-// SetRollAngle sets the value of the rollAngle property.
 // The roll angle of the face specified in degrees.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadatafaceobject/rollangle
+
 func (m_ MetadataFaceObject) SetRollAngle(value float64) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRollAngle:"), value)
 }
 
+
 // The yaw angle of the face specified in degrees.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadatafaceobject/yawangle
+
 func (m_ MetadataFaceObject) YawAngle() float64 {
 	rv := objc.Send[float64](m_.ID, objc.Sel("yawAngle"))
 	return rv
 }
 
 
-// SetYawAngle sets the value of the yawAngle property.
 // The yaw angle of the face specified in degrees.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadatafaceobject/yawangle
+
 func (m_ MetadataFaceObject) SetYawAngle(value float64) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setYawAngle:"), value)
 }

@@ -36,8 +36,13 @@ type IModelStructureProgramBlock interface {
 }
 
 // A class representing a block in the Program.
+
+
+// A class representing a block in the Program.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureProgramBlock
+
 type ModelStructureProgramBlock struct {
 	objectivec.Object
 }
@@ -81,25 +86,34 @@ func NewModelStructureProgramBlock() ModelStructureProgramBlock {
 }
 
 
+
 // The named inputs to the block.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureProgramBlock/inputs
+
 func (m_ ModelStructureProgramBlock) Inputs() []ModelStructureProgramNamedValueType {
 	rv := objc.Send[[]ModelStructureProgramNamedValueType](m_.ID, objc.Sel("inputs"))
 	return rv
 }
 
+
 // The list of topologically sorted operations in the block.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureProgramBlock/operations
+
 func (m_ ModelStructureProgramBlock) Operations() []ModelStructureProgramOperation {
 	rv := objc.Send[[]ModelStructureProgramOperation](m_.ID, objc.Sel("operations"))
 	return rv
 }
 
+
 // The output names.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureProgramBlock/outputNames
+
 func (m_ ModelStructureProgramBlock) OutputNames() []string {
 	rv := objc.Send[[]string](m_.ID, objc.Sel("outputNames"))
 	return rv

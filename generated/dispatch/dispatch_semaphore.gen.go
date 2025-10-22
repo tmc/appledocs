@@ -35,8 +35,13 @@ type IDispatchSemaphore interface {
 // An object that controls access to a resource across multiple execution contexts through use of a traditional counting semaphore.
 //
 // A dispatch semaphore is an efficient implementation of a traditional counting semaphore. Dispatch semaphores call down to the kernel only when the calling thread needs to be blocked. If the calling semaphore does not need to block, no kernel call is made. You increment a semaphore count by calling the method, and decrement a semaphore count by calling or one of its variants that specifies a timeout.
+
+
+// An object that controls access to a resource across multiple execution contexts through use of a traditional counting semaphore.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/DispatchSemaphore
+
 type DispatchSemaphore struct {
 	objectivec.Object
 }

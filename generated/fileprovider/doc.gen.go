@@ -2,12 +2,16 @@
 
 // Package fileprovider provides Go bindings for the FileProvider framework.
 //
-// An extension other apps use to access files and folders managed by your app and synced with a remote storage. [Full Topic]
+// An extension other apps use to access files and folders managed by your app and synced with a remote storage.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to FileProvider without requiring cgo.
+
+// An extension other apps use to access files and folders managed by your app and synced with a remote storage.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider
+
 package fileprovider
 
 import (

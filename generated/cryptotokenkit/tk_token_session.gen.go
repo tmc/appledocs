@@ -38,8 +38,13 @@ type ITKTokenSession interface {
 // A token session that manages the authentication state of a token.
 //
 // A token session communicates with its delegate to perform operations with its token that are bound to the authentication state. A session is always instantiated by a instance through the token’s delegate when the framework detects access to the token from a new authentication session.
+
+
+// A token session that manages the authentication state of a token.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKTokenSession
+
 type TKTokenSession struct {
 	objectivec.Object
 }
@@ -87,7 +92,9 @@ func NewTKTokenSession() TKTokenSession {
 
 // Initializes a token session with the specified token.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKTokenSession/init(token:)
+
 func NewTKTokenSessionWithToken(token ITKToken) TKTokenSession {
 	instance := getTKTokenSessionClass().Alloc()
 	rv := objc.Send[TKTokenSession](instance.ID, objc.Sel("initWithToken:"), token)
@@ -96,27 +103,33 @@ func NewTKTokenSessionWithToken(token ITKToken) TKTokenSession {
 }
 
 
+
 // The token session delegate.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKTokenSession/delegate
+
 func (t_ TKTokenSession) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](t_.ID, objc.Sel("delegate"))
 	return rv
 }
 
 
-// SetDelegate sets the value of the delegate property.
 // The token session delegate.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKTokenSession/delegate
+
 func (t_ TKTokenSession) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDelegate:"), value)
 }
 
+
 // The token to which the session is bound.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKTokenSession/token
+
 func (t_ TKTokenSession) Token() TKToken {
 	rv := objc.Send[TKToken](t_.ID, objc.Sel("token"))
 	return rv

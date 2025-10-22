@@ -2,12 +2,16 @@
 
 // Package corehid provides Go bindings for the CoreHID framework.
 //
-// Interact with keyboards, mice, and other human interface devices. [Full Topic]
+// Interact with keyboards, mice, and other human interface devices.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to CoreHID without requiring cgo.
+
+// Interact with keyboards, mice, and other human interface devices.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreHID
+
 package corehid
 
 import (

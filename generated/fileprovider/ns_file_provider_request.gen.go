@@ -38,8 +38,13 @@ type IFileProviderRequest interface {
 }
 
 // An object that provides information about the application requesting data from the File Provider extension.
+
+
+// An object that provides information about the application requesting data from the File Provider extension.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderRequest
+
 type FileProviderRequest struct {
 	objectivec.Object
 }
@@ -83,33 +88,45 @@ func NewFileProviderRequest() FileProviderRequest {
 }
 
 
+
 // The version of the domain for the request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderRequest/domainVersion
+
 func (f_ FileProviderRequest) DomainVersion() NSFileProviderDomainVersion {
 	rv := objc.Send[NSFileProviderDomainVersion](f_.ID, objc.Sel("domainVersion"))
 	return rv
 }
 
+
 // A Boolean value that indicates whether the request came from Finder or related system file browsers.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderRequest/isFileViewerRequest
+
 func (f_ FileProviderRequest) IsFileViewerRequest() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isFileViewerRequest"))
 	return rv
 }
 
+
 // A Boolean value that indicates whether the request came from a system process.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderRequest/isSystemRequest
+
 func (f_ FileProviderRequest) IsSystemRequest() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isSystemRequest"))
 	return rv
 }
 
+
 // The URL of the requesting executable.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderRequest/requestingExecutable
+
 func (f_ FileProviderRequest) RequestingExecutable() foundation.URL {
 	rv := objc.Send[foundation.URL](f_.ID, objc.Sel("requestingExecutable"))
 	return rv

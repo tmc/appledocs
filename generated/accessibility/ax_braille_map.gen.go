@@ -40,8 +40,13 @@ type IAXBrailleMap interface {
 // A representation of a two-dimensional braille display.
 //
 // A braille map object represents a two-dimensional braille display that’s connected to the current Apple device. By specifying the dot patterns in the braille map, you can change the content the user experiences. To render the data from the braille map to the display, implement .
+
+
+// A representation of a two-dimensional braille display.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXBrailleMap
+
 type AXBrailleMap struct {
 	objectivec.Object
 }
@@ -85,31 +90,46 @@ func NewAXBrailleMap() AXBrailleMap {
 }
 
 
+
+
 // Retrieves the height of an individual pin on the braille display.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXBrailleMap/height(at:)
+
 func (a_ AXBrailleMap) HeightAtPoint(point coregraphics.CGPoint) float32 {
 	rv := objc.Send[float32](a_.ID, objc.Sel("heightAtPoint:"), point)
 	return rv
 }
 
+
+
 // Converts the data from the image you specify into the braille map.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXBrailleMap/present(_:)
+
 func (a_ AXBrailleMap) PresentImage(image coregraphics.CGImageRef) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("presentImage:"), image)
 }
 
+
+
 // Sets the height of an individual pin on the braille display.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXBrailleMap/setHeight(_:at:)
+
 func (a_ AXBrailleMap) SetHeightAtPoint(status float32, point coregraphics.CGPoint) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setHeight:atPoint:"), status, point)
 }
 
+
 // The number of pins in each dimension of the braille display.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXBrailleMap/dimensions
+
 func (a_ AXBrailleMap) Dimensions() coregraphics.CGSize {
 	rv := objc.Send[coregraphics.CGSize](a_.ID, objc.Sel("dimensions"))
 	return rv

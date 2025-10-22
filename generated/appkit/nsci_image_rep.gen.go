@@ -33,8 +33,13 @@ type ICIImageRep interface {
 }
 
 // An object that can render an image from a Core Image object.
+
+
+// An object that can render an image from a Core Image object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCIImageRep
+
 type CIImageRep struct {
 	ImageRep
 }
@@ -84,7 +89,9 @@ func NewCIImageRep() CIImageRep {
 
 // Returns a representation of an image initialized to the specified Core Image instance.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCIImageRep/init(ciImage:)
+
 func NewCIImageRepWithCIImage(image IImage) CIImageRep {
 	instance := getCIImageRepClass().Alloc()
 	rv := objc.Send[CIImageRep](instance.ID, objc.Sel("initWithCIImage:"), image)
@@ -93,9 +100,12 @@ func NewCIImageRepWithCIImage(image IImage) CIImageRep {
 }
 
 
+
 // The Core Image instance.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCIImageRep/ciImage
+
 func (i_ CIImageRep) CIImage() Image {
 	rv := objc.Send[Image](i_.ID, objc.Sel("CIImage"))
 	return rv

@@ -33,8 +33,13 @@ type IBTLEMIDIWindowController interface {
 }
 
 // A window controller that displays nearby Bluetooth-based MIDI peripherals.
+
+
+// A window controller that displays nearby Bluetooth-based MIDI peripherals.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/CABTLEMIDIWindowController
+
 type BTLEMIDIWindowController struct {
 	appkit.WindowController
 }

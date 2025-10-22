@@ -39,8 +39,13 @@ type IAXDataPointValue interface {
 // A single data value.
 //
 // An can be either numeric or categorical. Data points in a numeric axis use the property, and data points in a categorical axis use the property.
+
+
+// A single data value.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXDataPointValue
+
 type AXDataPointValue struct {
 	objectivec.Object
 }
@@ -84,38 +89,44 @@ func NewAXDataPointValue() AXDataPointValue {
 }
 
 
+
 // The value of the x-axis for the data point.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axdatapoint/xvalue
+
 func (a_ AXDataPointValue) XValue() AXDataPointValue {
 	rv := objc.Send[AXDataPointValue](a_.ID, objc.Sel("xValue"))
 	return rv
 }
 
 
-// SetXValue sets the value of the xValue property.
 // The value of the x-axis for the data point.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axdatapoint/xvalue
+
 func (a_ AXDataPointValue) SetXValue(value IAXDataPointValue) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setXValue:"), value)
 }
 
+
 // The value of the y-axis for the data point.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axdatapoint/yvalue
+
 func (a_ AXDataPointValue) YValue() AXDataPointValue {
 	rv := objc.Send[AXDataPointValue](a_.ID, objc.Sel("yValue"))
 	return rv
 }
 
 
-// SetYValue sets the value of the yValue property.
 // The value of the y-axis for the data point.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axdatapoint/yvalue
+
 func (a_ AXDataPointValue) SetYValue(value IAXDataPointValue) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setYValue:"), value)
 }

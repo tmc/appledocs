@@ -34,8 +34,13 @@ type IAudioSourceNode interface {
 // An object that supplies audio data.
 //
 // The class allows for supplying audio data for rendering through . It’s a convenient method for delievering audio data instead of setting the input callback on an audio unit with .
+
+
+// An object that supplies audio data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSourceNode
+
 type AudioSourceNode struct {
 	AudioNode
 }
@@ -85,7 +90,9 @@ func NewAudioSourceNode() AudioSourceNode {
 
 // Creates an audio source node with a block that supplies audio data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSourceNode/init(renderBlock:)
+
 func NewAudioSourceNodeWithRenderBlock(block unsafe.Pointer) AudioSourceNode {
 	instance := getAudioSourceNodeClass().Alloc()
 	rv := objc.Send[AudioSourceNode](instance.ID, objc.Sel("initWithRenderBlock:"), block)

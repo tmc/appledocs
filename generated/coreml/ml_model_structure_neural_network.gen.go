@@ -34,8 +34,13 @@ type IModelStructureNeuralNetwork interface {
 }
 
 // A class representing the structure of a NeuralNetwork model.
+
+
+// A class representing the structure of a NeuralNetwork model.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureNeuralNetwork
+
 type ModelStructureNeuralNetwork struct {
 	objectivec.Object
 }
@@ -79,9 +84,12 @@ func NewModelStructureNeuralNetwork() ModelStructureNeuralNetwork {
 }
 
 
+
 // The topologically sorted layers in the NeuralNetwork.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureNeuralNetwork/layers
+
 func (m_ ModelStructureNeuralNetwork) Layers() []ModelStructureNeuralNetworkLayer {
 	rv := objc.Send[[]ModelStructureNeuralNetworkLayer](m_.ID, objc.Sel("layers"))
 	return rv

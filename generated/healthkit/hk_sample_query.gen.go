@@ -40,8 +40,13 @@ type IHKSampleQuery interface {
 // A general query that returns a snapshot of all the matching samples currently saved in the HealthKit store.
 //
 // You can use sample queries to search for any concrete subclasses of the class, including , , , and objects. The sample query returns sample objects that match the provided type and predicate. You can provide a sort order for the returned samples, or limit the number of samples returned. Other query classes can be used to perform more specialized searches and calculations. For more information, see . Sample queries are immutable: The query’s properties are set when the query is first created, and they can’t change.
+
+
+// A general query that returns a snapshot of all the matching samples currently saved in the HealthKit store.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKSampleQuery
+
 type HKSampleQuery struct {
 	HKQuery
 }
@@ -91,7 +96,9 @@ func NewHKSampleQuery() HKSampleQuery {
 
 // Creates a query for samples that match any of the query descriptors you provided, sorted by the sort descriptors you provided.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKSampleQuery/init(queryDescriptors:limit:sortDescriptors:resultsHandler:)
+
 func NewHKSampleQueryWithQueryDescriptorsLimitSortDescriptorsResultsHandler(queryDescriptors []HKQueryDescriptor, limit int, sortDescriptors []foundation.ISortDescriptor, resultsHandler unsafe.Pointer) HKSampleQuery {
 	instance := getHKSampleQueryClass().Alloc()
 	rv := objc.Send[HKSampleQuery](instance.ID, objc.Sel("initWithQueryDescriptors:limit:sortDescriptors:resultsHandler:"), queryDescriptors, limit, sortDescriptors, resultsHandler)
@@ -100,46 +107,55 @@ func NewHKSampleQueryWithQueryDescriptorsLimitSortDescriptorsResultsHandler(quer
 }
 
 
+
 // A value indicating that the query returns all the matching samples in the HealthKit store.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkobjectquerynolimit
+
 func (h_ HKSampleQuery) HKObjectQueryNoLimit() int {
 	rv := objc.Send[int](h_.ID, objc.Sel("HKObjectQueryNoLimit"))
 	return rv
 }
 
+
 // The maximum number of samples that this query returns.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksamplequery/limit
+
 func (h_ HKSampleQuery) Limit() int {
 	rv := objc.Send[int](h_.ID, objc.Sel("limit"))
 	return rv
 }
 
 
-// SetLimit sets the value of the limit property.
 // The maximum number of samples that this query returns.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksamplequery/limit
+
 func (h_ HKSampleQuery) SetLimit(value int) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setLimit:"), value)
 }
 
+
 // The sort descriptors that specify the order of the results returned by this query.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksamplequery/sortdescriptors
+
 func (h_ HKSampleQuery) SortDescriptors() foundation.SortDescriptor {
 	rv := objc.Send[foundation.SortDescriptor](h_.ID, objc.Sel("sortDescriptors"))
 	return rv
 }
 
 
-// SetSortDescriptors sets the value of the sortDescriptors property.
 // The sort descriptors that specify the order of the results returned by this query.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksamplequery/sortdescriptors
+
 func (h_ HKSampleQuery) SetSortDescriptors(value foundation.ISortDescriptor) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setSortDescriptors:"), value)
 }

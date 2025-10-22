@@ -44,8 +44,13 @@ type IPrintPanel interface {
 // The Print panel that queries the user for information about a print job.
 //
 // A Print panel may let the user select the range of pages to print and the number of copies before executing the Print command. Print panels can display a simplified interface when printing certain types of data. For example, the panel can display a list of print-setting presets, which lets the user enable print settings in groups as opposed to individually. Assigning an appropriate string to the property activates the simplified interface and identifies which presets to display. For design guidance, see .
+
+
+// The Print panel that queries the user for information about a print job.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintPanel
+
 type PrintPanel struct {
 	objectivec.Object
 }
@@ -89,82 +94,97 @@ func NewPrintPanel() PrintPanel {
 }
 
 
+
 // The type of settings that the print panel displays.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintPanel/jobStyleHint-swift.property
+
 func (p_ PrintPanel) JobStyleHint() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("jobStyleHint"))
 	return rv
 }
 
 
-// SetJobStyleHint sets the value of the jobStyleHint property.
 // The type of settings that the print panel displays.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintPanel/jobStyleHint-swift.property
+
 func (p_ PrintPanel) SetJobStyleHint(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setJobStyleHint:"), value)
 }
 
+
 // The information associated with the running Print panel.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintPanel/printInfo
+
 func (p_ PrintPanel) PrintInfo() NSPrintInfo {
 	rv := objc.Send[NSPrintInfo](p_.ID, objc.Sel("printInfo"))
 	return rv
 }
 
+
 // The array of controller objects that manage the Print panel’s accessory views.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintpanel/accessorycontrollers
+
 func (p_ PrintPanel) AccessoryControllers() NSViewController {
 	rv := objc.Send[NSViewController](p_.ID, objc.Sel("accessoryControllers"))
 	return rv
 }
 
 
-// SetAccessoryControllers sets the value of the accessoryControllers property.
 // The array of controller objects that manage the Print panel’s accessory views.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintpanel/accessorycontrollers
+
 func (p_ PrintPanel) SetAccessoryControllers(value IViewController) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAccessoryControllers:"), value)
 }
 
+
 // The HTML help anchor associated with the Print panel.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintpanel/helpanchor
+
 func (p_ PrintPanel) HelpAnchor() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("helpAnchor"))
 	return rv
 }
 
 
-// SetHelpAnchor sets the value of the helpAnchor property.
 // The HTML help anchor associated with the Print panel.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintpanel/helpanchor
+
 func (p_ PrintPanel) SetHelpAnchor(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setHelpAnchor:"), value)
 }
 
+
 // The current configuration options for the Print panel.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintpanel/options-swift.property
+
 func (p_ PrintPanel) Options() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("options"))
 	return rv
 }
 
 
-// SetOptions sets the value of the options property.
 // The current configuration options for the Print panel.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintpanel/options-swift.property
+
 func (p_ PrintPanel) SetOptions(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setOptions:"), value)
 }

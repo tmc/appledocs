@@ -34,8 +34,13 @@ type IFSVolumeIdentifier interface {
 // A type that identifies a volume.
 //
 // For most volumes, the volume identifier is the UUID identifying the volume. Network file systems may access the same underlying volume using different authentication credentials. To handle this situation, add qualifying data to identify the specific container, as discussed in the superclass, .
+
+
+// A type that identifies a volume.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSVolume/Identifier
+
 type FSVolumeIdentifier struct {
 	FSEntityIdentifier
 }

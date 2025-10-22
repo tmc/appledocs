@@ -35,8 +35,11 @@ type IAuthorizationPublicKeyCredentialPRFRegistrationOutput interface {
 	IsSupported() bool
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialPRFRegistrationOutput-c.class
+
 type AuthorizationPublicKeyCredentialPRFRegistrationOutput struct {
 	objectivec.Object
 }
@@ -78,15 +81,19 @@ func NewAuthorizationPublicKeyCredentialPRFRegistrationOutput() AuthorizationPub
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialPRFRegistrationOutput-c.class/first
+
 func (a_ AuthorizationPublicKeyCredentialPRFRegistrationOutput) First() foundation.NSData {
 	rv := objc.Send[foundation.NSData](a_.ID, objc.Sel("first"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialPRFRegistrationOutput-c.class/isSupported
+
 func (a_ AuthorizationPublicKeyCredentialPRFRegistrationOutput) IsSupported() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isSupported"))
 	return rv

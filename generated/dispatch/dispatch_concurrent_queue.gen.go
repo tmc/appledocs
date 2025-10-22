@@ -35,8 +35,13 @@ type IDispatchConcurrentQueue interface {
 // A custom dispatch queue that schedules tasks for concurrent execution.
 //
 // You do not create objects of this type directly. You receive a queue of the appropriate type when you create a new object.
+
+
+// A custom dispatch queue that schedules tasks for concurrent execution.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/DispatchConcurrentQueue
+
 type DispatchConcurrentQueue struct {
 	objectivec.Object
 }

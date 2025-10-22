@@ -36,8 +36,13 @@ type IPlugIn interface {
 // The mechanism for loading image units in macOS.
 //
 // An image unit is an image processing bundle that contains one or more Core Image filters. Th extension indicates one or more filters packaged as an image unit.
+
+
+// The mechanism for loading image units in macOS.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIPlugIn
+
 type PlugIn struct {
 	objectivec.Object
 }
@@ -81,37 +86,52 @@ func NewPlugIn() PlugIn {
 }
 
 
+
 // Loads filters from an image unit that have the appropriate executable status.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIPlugIn/load(_:allowExecutableCode:)
+
 func (pc _PlugInClass) LoadPlugInAllowExecutableCode(url foundation.IURL, allowExecutableCode bool) {
 	objc.Send[objc.ID](objc.ID(pc.class), objc.Sel("loadPlugIn:allowExecutableCode:"), url, allowExecutableCode)
 }
 
+
 // Scans directories for files that have the extension and then loads the image units.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIPlugIn/loadAllPlugIns()
+
 func (pc _PlugInClass) LoadAllPlugIns() {
 	objc.Send[objc.ID](objc.ID(pc.class), objc.Sel("loadAllPlugIns"))
 }
 
+
 // Loads a non-executable plug-in specified by its URL.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIPlugIn/loadNonExecutablePlugIn(_:)
+
 func (pc _PlugInClass) LoadNonExecutablePlugIn(url foundation.IURL) {
 	objc.Send[objc.ID](objc.ID(pc.class), objc.Sel("loadNonExecutablePlugIn:"), url)
 }
 
+
 // Scans directories for plugins.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIPlugIn/loadNonExecutablePlugIns()
+
 func (pc _PlugInClass) LoadNonExecutablePlugIns() {
 	objc.Send[objc.ID](objc.ID(pc.class), objc.Sel("loadNonExecutablePlugIns"))
 }
 
+
 // Loads filters from an image unit that have the appropriate executable status.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIPlugIn/loadPlugIn:allowNonExecutable:
+
 func (pc _PlugInClass) LoadPlugInAllowNonExecutable(url foundation.IURL, allowNonExecutable bool) {
 	objc.Send[objc.ID](objc.ID(pc.class), objc.Sel("loadPlugIn:allowNonExecutable:"), url, allowNonExecutable)
 }

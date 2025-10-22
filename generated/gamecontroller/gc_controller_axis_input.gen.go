@@ -37,8 +37,13 @@ type IGCControllerAxisInput interface {
 // A control element that tracks movement along an axis.
 //
 // A object represents the value of a physical controller’s axis. For example, a has x-axis and y-axis subelements.
+
+
+// A control element that tracks movement along an axis.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCControllerAxisInput
+
 type GCControllerAxisInput struct {
 	GCControllerElement
 }
@@ -84,28 +89,34 @@ func NewGCControllerAxisInput() GCControllerAxisInput {
 }
 
 
+
 // The current value of the axis.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCControllerAxisInput/value
+
 func (g_ GCControllerAxisInput) Value() float32 {
 	rv := objc.Send[float32](g_.ID, objc.Sel("value"))
 	return rv
 }
 
+
 // The block that the element calls when the user changes the axis value.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCControllerAxisInput/valueChangedHandler
+
 func (g_ GCControllerAxisInput) ValueChangedHandler() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("valueChangedHandler"))
 	return rv
 }
 
 
-// SetValueChangedHandler sets the value of the valueChangedHandler property.
 // The block that the element calls when the user changes the axis value.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCControllerAxisInput/valueChangedHandler
+
 func (g_ GCControllerAxisInput) SetValueChangedHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setValueChangedHandler:"), value)
 }

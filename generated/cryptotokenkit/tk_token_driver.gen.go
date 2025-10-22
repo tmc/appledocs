@@ -42,8 +42,13 @@ type ITKTokenDriver interface {
 // A base class for building token drivers.
 //
 // When using the class, implement the protocol with the method, which the system invokes when it requests the creation of a token instance. After you create the token driver, it can examine and to implement your desired functionality. An implementation can also access its associated token configuration using the property.
+
+
+// A base class for building token drivers.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKTokenDriver
+
 type TKTokenDriver struct {
 	objectivec.Object
 }
@@ -87,56 +92,65 @@ func NewTKTokenDriver() TKTokenDriver {
 }
 
 
+
 // The token driver delegate.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKTokenDriver/delegate
+
 func (t_ TKTokenDriver) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](t_.ID, objc.Sel("delegate"))
 	return rv
 }
 
 
-// SetDelegate sets the value of the delegate property.
 // The token driver delegate.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKTokenDriver/delegate
+
 func (t_ TKTokenDriver) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDelegate:"), value)
 }
 
+
 // Additional configuration information for the token instance.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tktoken/configuration-swift.class/configurationdata
+
 func (t_ TKTokenDriver) ConfigurationData() foundation.Data {
 	rv := objc.Send[foundation.Data](t_.ID, objc.Sel("configurationData"))
 	return rv
 }
 
 
-// SetConfigurationData sets the value of the configurationData property.
 // Additional configuration information for the token instance.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tktoken/configuration-swift.class/configurationdata
+
 func (t_ TKTokenDriver) SetConfigurationData(value foundation.IData) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setConfigurationData:"), value)
 }
 
+
 // The keychain items associated with this token.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tktoken/configuration-swift.class/keychainitems
+
 func (t_ TKTokenDriver) KeychainItems() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("keychainItems"))
 	return rv
 }
 
 
-// SetKeychainItems sets the value of the keychainItems property.
 // The keychain items associated with this token.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tktoken/configuration-swift.class/keychainitems
+
 func (t_ TKTokenDriver) SetKeychainItems(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setKeychainItems:"), value)
 }

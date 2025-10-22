@@ -35,8 +35,11 @@ type IAXMathExpressionSubSuperscript interface {
 	SetSubscriptExpressions(value IAXMathExpression)
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionSubSuperscript
+
 type AXMathExpressionSubSuperscript struct {
 	AXMathExpression
 }
@@ -80,31 +83,37 @@ func NewAXMathExpressionSubSuperscript() AXMathExpressionSubSuperscript {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionSubSuperscript/baseExpression
+
 func (a_ AXMathExpressionSubSuperscript) BaseExpression() AXMathExpression {
 	rv := objc.Send[AXMathExpression](a_.ID, objc.Sel("baseExpression"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionSubSuperscript/superscriptExpressions
+
 func (a_ AXMathExpressionSubSuperscript) SuperscriptExpressions() []AXMathExpression {
 	rv := objc.Send[[]AXMathExpression](a_.ID, objc.Sel("superscriptExpressions"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axmathexpressionsubsuperscript/subscriptexpressions
+
 func (a_ AXMathExpressionSubSuperscript) SubscriptExpressions() AXMathExpression {
 	rv := objc.Send[AXMathExpression](a_.ID, objc.Sel("subscriptExpressions"))
 	return rv
 }
 
 
-// SetSubscriptExpressions sets the value of the subscriptExpressions property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axmathexpressionsubsuperscript/subscriptexpressions
+
 func (a_ AXMathExpressionSubSuperscript) SetSubscriptExpressions(value IAXMathExpression) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setSubscriptExpressions:"), value)
 }

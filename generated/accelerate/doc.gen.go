@@ -2,12 +2,16 @@
 
 // Package accelerate provides Go bindings for the Accelerate framework.
 //
-// Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption. [Full Topic]
+// Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to Accelerate without requiring cgo.
+
+// Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate
+
 package accelerate
 
 import (

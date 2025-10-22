@@ -30,8 +30,9 @@ type _BackgroundActivitySchedulerClass struct {
 // An interface definition for the [BackgroundActivityScheduler] class.
 type IBackgroundActivityScheduler interface {
 	objectivec.IObject
+	Invalidate()
+	ScheduleWithBlock(block unsafe.Pointer)
 	Identifier() string
-	SetIdentifier(value string)
 	Interval() TimeInterval
 	SetInterval(value ITimeInterval)
 	QualityOfService() QualityOfService
@@ -39,7 +40,6 @@ type IBackgroundActivityScheduler interface {
 	Repeats() bool
 	SetRepeats(value bool)
 	ShouldDefer() bool
-	SetShouldDefer(value bool)
 	Tolerance() TimeInterval
 	SetTolerance(value ITimeInterval)
 }
@@ -113,10 +113,32 @@ func NewBackgroundActivitySchedulerWithIdentifier(identifier string) BackgroundA
 
 
 
-// A unique reverse DNS notation string, such as
+
+// Prevents the background activity from being scheduled again.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsbackgroundactivityscheduler/identifier
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBackgroundActivityScheduler/invalidate()
+
+func (b_ BackgroundActivityScheduler) Invalidate() {
+	objc.Send[objc.ID](b_.ID, objc.Sel("invalidate"))
+}
+
+
+
+// Begins scheduling the background activity.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBackgroundActivityScheduler/schedule(_:)
+
+func (b_ BackgroundActivityScheduler) ScheduleWithBlock(block unsafe.Pointer) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("scheduleWithBlock:"), block)
+}
+
+
+// A unique reverse DNS notation string, such as , that identifies the activity.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBackgroundActivityScheduler/identifier
 
 func (b_ BackgroundActivityScheduler) Identifier() string {
 	rv := objc.Send[string](b_.ID, objc.Sel("identifier"))
@@ -124,20 +146,10 @@ func (b_ BackgroundActivityScheduler) Identifier() string {
 }
 
 
-// A unique reverse DNS notation string, such as
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsbackgroundactivityscheduler/identifier
-
-func (b_ BackgroundActivityScheduler) SetIdentifier(value string) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setIdentifier:"), objc.String(value))
-}
-
-
 // An integer providing a suggested interval between scheduling and invoking the activity.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsbackgroundactivityscheduler/interval
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBackgroundActivityScheduler/interval
 
 func (b_ BackgroundActivityScheduler) Interval() TimeInterval {
 	rv := objc.Send[TimeInterval](b_.ID, objc.Sel("interval"))
@@ -148,17 +160,17 @@ func (b_ BackgroundActivityScheduler) Interval() TimeInterval {
 // An integer providing a suggested interval between scheduling and invoking the activity.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsbackgroundactivityscheduler/interval
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBackgroundActivityScheduler/interval
 
 func (b_ BackgroundActivityScheduler) SetInterval(value ITimeInterval) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setInterval:"), value)
 }
 
 
-// A value of type
+// A value of type , which controls how aggressively the system schedules the activity.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsbackgroundactivityscheduler/qualityofservice
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBackgroundActivityScheduler/qualityOfService
 
 func (b_ BackgroundActivityScheduler) QualityOfService() QualityOfService {
 	rv := objc.Send[QualityOfService](b_.ID, objc.Sel("qualityOfService"))
@@ -166,10 +178,10 @@ func (b_ BackgroundActivityScheduler) QualityOfService() QualityOfService {
 }
 
 
-// A value of type
+// A value of type , which controls how aggressively the system schedules the activity.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsbackgroundactivityscheduler/qualityofservice
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBackgroundActivityScheduler/qualityOfService
 
 func (b_ BackgroundActivityScheduler) SetQualityOfService(value IQualityOfService) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setQualityOfService:"), value)
@@ -179,7 +191,7 @@ func (b_ BackgroundActivityScheduler) SetQualityOfService(value IQualityOfServic
 // A Boolean value indicating whether the activity should be rescheduled after it completes.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsbackgroundactivityscheduler/repeats
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBackgroundActivityScheduler/repeats
 
 func (b_ BackgroundActivityScheduler) Repeats() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("repeats"))
@@ -190,7 +202,7 @@ func (b_ BackgroundActivityScheduler) Repeats() bool {
 // A Boolean value indicating whether the activity should be rescheduled after it completes.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsbackgroundactivityscheduler/repeats
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBackgroundActivityScheduler/repeats
 
 func (b_ BackgroundActivityScheduler) SetRepeats(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setRepeats:"), value)
@@ -200,7 +212,7 @@ func (b_ BackgroundActivityScheduler) SetRepeats(value bool) {
 // A Boolean value indicating whether your app should stop performing background activity and resume at a more optimal time.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsbackgroundactivityscheduler/shoulddefer
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBackgroundActivityScheduler/shouldDefer
 
 func (b_ BackgroundActivityScheduler) ShouldDefer() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("shouldDefer"))
@@ -208,20 +220,10 @@ func (b_ BackgroundActivityScheduler) ShouldDefer() bool {
 }
 
 
-// A Boolean value indicating whether your app should stop performing background activity and resume at a more optimal time.
+// A value of type , which specifies a range of time during which the background activity may occur.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsbackgroundactivityscheduler/shoulddefer
-
-func (b_ BackgroundActivityScheduler) SetShouldDefer(value bool) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setShouldDefer:"), value)
-}
-
-
-// A value of type
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsbackgroundactivityscheduler/tolerance
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBackgroundActivityScheduler/tolerance
 
 func (b_ BackgroundActivityScheduler) Tolerance() TimeInterval {
 	rv := objc.Send[TimeInterval](b_.ID, objc.Sel("tolerance"))
@@ -229,10 +231,10 @@ func (b_ BackgroundActivityScheduler) Tolerance() TimeInterval {
 }
 
 
-// A value of type
+// A value of type , which specifies a range of time during which the background activity may occur.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsbackgroundactivityscheduler/tolerance
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBackgroundActivityScheduler/tolerance
 
 func (b_ BackgroundActivityScheduler) SetTolerance(value ITimeInterval) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setTolerance:"), value)

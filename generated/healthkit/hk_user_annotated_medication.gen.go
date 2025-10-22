@@ -39,8 +39,13 @@ type IHKUserAnnotatedMedication interface {
 // A reference to the tracked medication and the details a person can customize.
 //
 // The details are relevant to the medication tracking experience.
+
+
+// A reference to the tracked medication and the details a person can customize.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKUserAnnotatedMedication
+
 type HKUserAnnotatedMedication struct {
 	objectivec.Object
 }
@@ -84,33 +89,45 @@ func NewHKUserAnnotatedMedication() HKUserAnnotatedMedication {
 }
 
 
+
 // A Boolean value that indicates whether a medication has a schedule set up.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKUserAnnotatedMedication/hasSchedule
+
 func (h_ HKUserAnnotatedMedication) HasSchedule() bool {
 	rv := objc.Send[bool](h_.ID, objc.Sel("hasSchedule"))
 	return rv
 }
 
+
 // A Boolean value that indicates whether a medication is archived.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKUserAnnotatedMedication/isArchived
+
 func (h_ HKUserAnnotatedMedication) IsArchived() bool {
 	rv := objc.Send[bool](h_.ID, objc.Sel("isArchived"))
 	return rv
 }
 
+
 // A reference to the specific medication a person is tracking.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKUserAnnotatedMedication/medication
+
 func (h_ HKUserAnnotatedMedication) Medication() HKMedicationConcept {
 	rv := objc.Send[HKMedicationConcept](h_.ID, objc.Sel("medication"))
 	return rv
 }
 
+
 // The nickname that a person added to a medication during the entry experience.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKUserAnnotatedMedication/nickname
+
 func (h_ HKUserAnnotatedMedication) Nickname() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("nickname"))
 	return rv

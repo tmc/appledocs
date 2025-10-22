@@ -43,8 +43,13 @@ type IShadow interface {
 // An object you use to specify attributes to create and style a drop shadow during drawing operations.
 //
 // When you create shadows, the system draws them in the default user coordinate space, where coordinates are independent from the pixel values of any particular device. Rotations, translations, and other transformations of the current transformation matrix (CTM) don’t affect the shadow or the apparent position of the shadow’s light source. A shadow has two positional parameters: an x-offset and a y-offset. Express these values with a single size data type ( in iOS, in macOS), using the units of the default user coordinate space. Positive values for these offsets extend down and to the right from the user’s perspective. In addition to its positional parameters, a shadow also contains a blur radius, which specifies how much the system blurs a drawn object’s image mask before compositing the image onto the destination. A value of produces no blur. Larger values produce an increasingly large blurred shadow. You can use an object in one of two ways. First, you can set it, like a color or a font, where attributes apply to everything you draw until you apply another shadow or restore a previous graphics state. Second, you can use an instance as the value for the text attribute, so the system applies the shadow to the glyphs corresponding to the characters bearing this attribute.
+
+
+// An object you use to specify attributes to create and style a drop shadow during drawing operations.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSShadow
+
 type Shadow struct {
 	objectivec.Object
 }
@@ -89,63 +94,76 @@ func NewShadow() Shadow {
 
 
 
+
+
 // Sets the shadow of subsequent drawing operations to the current shadow.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSShadow/set()
+
 func (s_ Shadow) Set() {
 	objc.Send[objc.ID](s_.ID, objc.Sel("set"))
 }
 
+
 // The blur radius of the shadow.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSShadow/shadowBlurRadius
+
 func (s_ Shadow) ShadowBlurRadius() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("shadowBlurRadius"))
 	return rv
 }
 
 
-// SetShadowBlurRadius sets the value of the shadowBlurRadius property.
 // The blur radius of the shadow.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSShadow/shadowBlurRadius
+
 func (s_ Shadow) SetShadowBlurRadius(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setShadowBlurRadius:"), value)
 }
 
+
 // The color of the shadow.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSShadow/shadowColor
+
 func (s_ Shadow) ShadowColor() NSColor {
 	rv := objc.Send[NSColor](s_.ID, objc.Sel("shadowColor"))
 	return rv
 }
 
 
-// SetShadowColor sets the value of the shadowColor property.
 // The color of the shadow.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSShadow/shadowColor
+
 func (s_ Shadow) SetShadowColor(value IColor) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setShadowColor:"), value)
 }
 
+
 // The shadow’s relative position, which you specify with horizontal and vertical offset values.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSShadow/shadowOffset
+
 func (s_ Shadow) ShadowOffset() coregraphics.CGSize {
 	rv := objc.Send[coregraphics.CGSize](s_.ID, objc.Sel("shadowOffset"))
 	return rv
 }
 
 
-// SetShadowOffset sets the value of the shadowOffset property.
 // The shadow’s relative position, which you specify with horizontal and vertical offset values.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSShadow/shadowOffset
+
 func (s_ Shadow) SetShadowOffset(value coregraphics.CGSize) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setShadowOffset:"), value)
 }

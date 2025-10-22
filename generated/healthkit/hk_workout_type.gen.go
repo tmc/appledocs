@@ -34,8 +34,13 @@ type IHKWorkoutType interface {
 // A type that identifies samples that store information about a workout.
 //
 // The class is a concrete subclass of the class. To create a workout type instances, use the convenience method. All workouts use the same workout type instance.
+
+
+// A type that identifies samples that store information about a workout.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKWorkoutType
+
 type HKWorkoutType struct {
 	HKSampleType
 }

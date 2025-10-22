@@ -36,8 +36,13 @@ type IDDMatchPhoneNumber interface {
 // An object that contains a phone number that the data detection system matches.
 //
 // The DataDetection framework returns a phone number match in a object, which contains a phone number, and optionally a label that categorizes the phone number.
+
+
+// An object that contains a phone number that the data detection system matches.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchPhoneNumber
+
 type DDMatchPhoneNumber struct {
 	DDMatch
 }
@@ -83,17 +88,23 @@ func NewDDMatchPhoneNumber() DDMatchPhoneNumber {
 }
 
 
+
 // A string that categorizes a phone number, such as Home or Work.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchPhoneNumber/label
+
 func (d_ DDMatchPhoneNumber) Label() string {
 	rv := objc.Send[string](d_.ID, objc.Sel("label"))
 	return rv
 }
 
+
 // A string that represents a phone number.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchPhoneNumber/phoneNumber
+
 func (d_ DDMatchPhoneNumber) PhoneNumber() string {
 	rv := objc.Send[string](d_.ID, objc.Sel("phoneNumber"))
 	return rv

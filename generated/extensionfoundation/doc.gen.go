@@ -2,12 +2,16 @@
 
 // Package extensionfoundation provides Go bindings for the ExtensionFoundation framework.
 //
-// Create executable bundles to extend the functionality of other apps. [Full Topic]
+// Create executable bundles to extend the functionality of other apps.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to ExtensionFoundation without requiring cgo.
+
+// Create executable bundles to extend the functionality of other apps.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExtensionFoundation
+
 package extensionfoundation
 
 import (

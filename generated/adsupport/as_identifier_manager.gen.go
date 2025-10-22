@@ -38,8 +38,13 @@ type IIdentifierManager interface {
 }
 
 // The object that contains the advertising identifier.
+
+
+// The object that contains the advertising identifier.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AdSupport/ASIdentifierManager
+
 type IdentifierManager struct {
 	objectivec.Object
 }
@@ -83,44 +88,56 @@ func NewIdentifierManager() IdentifierManager {
 }
 
 
+
 // The shared instance of the identifier manager class.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AdSupport/ASIdentifierManager/shared()
+
 func (ic _IdentifierManagerClass) SharedManager() IdentifierManager {
 	rv := objc.Send[IdentifierManager](objc.ID(ic.class), objc.Sel("sharedManager"))
 	return rv
 }
 
+
 // The UUID that is specific to a device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AdSupport/ASIdentifierManager/advertisingIdentifier
+
 func (i_ IdentifierManager) AdvertisingIdentifier() foundation.UUID {
 	rv := objc.Send[foundation.UUID](i_.ID, objc.Sel("advertisingIdentifier"))
 	return rv
 }
 
+
 // A Boolean value that indicates whether the user has limited ad tracking enabled.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AdSupport/ASIdentifierManager/isAdvertisingTrackingEnabled
+
 func (i_ IdentifierManager) AdvertisingTrackingEnabled() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("advertisingTrackingEnabled"))
 	return rv
 }
 
+
 // A Boolean value that indicates whether the user has limited ad tracking
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/adsupport/asidentifiermanager/isadvertisingtrackingenabled
+
 func (i_ IdentifierManager) IsAdvertisingTrackingEnabled() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("isAdvertisingTrackingEnabled"))
 	return rv
 }
 
 
-// SetIsAdvertisingTrackingEnabled sets the value of the isAdvertisingTrackingEnabled property.
 // A Boolean value that indicates whether the user has limited ad tracking
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/adsupport/asidentifiermanager/isadvertisingtrackingenabled
+
 func (i_ IdentifierManager) SetIsAdvertisingTrackingEnabled(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIsAdvertisingTrackingEnabled:"), value)
 }

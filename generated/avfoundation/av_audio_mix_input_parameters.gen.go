@@ -41,8 +41,13 @@ type IAudioMixInputParameters interface {
 // An object that represents the parameters that you apply when adding an audio track to a mix.
 //
 // You use an instance to apply audio volume ramps for an input to an audio mix. Mix parameters are associated with audio tracks via the property. Audio volume is currently supported as a time-varying parameter. has a mutable subclass, . Before the first time at which a volume is set, a volume of 1.0 used; after the last time for which a volume has been set, the last volume is used. Within the time range of a volume ramp, the volume is interpolated between the start volume and end volume of the ramp. For example, setting the volume to 1.0 at time 0 and also setting a volume ramp from a volume of 0.5 to 0.2 with a timeRange of [4.0, 5.0] results in an audio volume parameters that hold the volume constant at 1.0 from 0.0 sec to 4.0 sec, then cause it to jump to 0.5 and descend to 0.2 from 4.0 sec to 9.0 sec, holding constant at 0.2 thereafter. Given that this is an immutable variant of the object, you should not allocate and initialize a version of this class yourself. Other classes may return instances of this class.
+
+
+// An object that represents the parameters that you apply when adding an audio track to a mix.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAudioMixInputParameters
+
 type AudioMixInputParameters struct {
 	objectivec.Object
 }
@@ -86,56 +91,65 @@ func NewAudioMixInputParameters() AudioMixInputParameters {
 }
 
 
+
 // The audio processing tap associated with the track.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avaudiomixinputparameters/audiotapprocessor
+
 func (a_ AudioMixInputParameters) AudioTapProcessor() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("audioTapProcessor"))
 	return rv
 }
 
 
-// SetAudioTapProcessor sets the value of the audioTapProcessor property.
 // The audio processing tap associated with the track.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avaudiomixinputparameters/audiotapprocessor
+
 func (a_ AudioMixInputParameters) SetAudioTapProcessor(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAudioTapProcessor:"), value)
 }
 
+
 // The processing algorithm used to manage audio pitch for scaled audio edits.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avaudiomixinputparameters/audiotimepitchalgorithm
+
 func (a_ AudioMixInputParameters) AudioTimePitchAlgorithm() AudioTimePitchAlgorithm {
 	rv := objc.Send[AudioTimePitchAlgorithm](a_.ID, objc.Sel("audioTimePitchAlgorithm"))
 	return rv
 }
 
 
-// SetAudioTimePitchAlgorithm sets the value of the audioTimePitchAlgorithm property.
 // The processing algorithm used to manage audio pitch for scaled audio edits.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avaudiomixinputparameters/audiotimepitchalgorithm
+
 func (a_ AudioMixInputParameters) SetAudioTimePitchAlgorithm(value IAudioTimePitchAlgorithm) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAudioTimePitchAlgorithm:"), value)
 }
 
+
 // The identifier of the audio track to which the parameters should be applied.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avaudiomixinputparameters/trackid
+
 func (a_ AudioMixInputParameters) TrackID() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("trackID"))
 	return rv
 }
 
 
-// SetTrackID sets the value of the trackID property.
 // The identifier of the audio track to which the parameters should be applied.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avaudiomixinputparameters/trackid
+
 func (a_ AudioMixInputParameters) SetTrackID(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setTrackID:"), value)
 }

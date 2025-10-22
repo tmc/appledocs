@@ -34,15 +34,20 @@ type IStateMachine interface {
 	CanEnterState(stateClass objc.Class) bool
 	EnterState(stateClass objc.Class) bool
 	StateForClass(stateClass objc.Class) State
-	UpdateWithDeltaTime(sec foundation.ITimeInterval)
+	UpdateWithDeltaTime(sec foundation.TimeInterval)
 	CurrentState() GKState
 }
 
 // A finite-state machine—a collection of state objects that each define logic for a particular state of gameplay and rules for transitioning between states.
 //
 // In GameplayKit, you subclass to define each state and the rules for allowed transitions between states, and use a instance to manage a machine that combines several states. This system provides a way to organize code in your game by organizing state-dependent actions into methods that run when entering a state, when exiting a state, and periodically while in a state (for example, on every animation frame your game renders). You can use state machines to govern various aspects of a game. For example: An enemy character might use a state machine with Chase, Flee, Dead, and Respawn states, each of which drives the enemy’s behavior, with state transitions determined by player actions and elapsed time. An automated turret might use a state machine with Ready, Firing, and Cooldown states, controlling when it seeks out nearby targets and how often it fires. A game user interface might use Menu, Playing, Paused, and GameOver states, each of which determines what UI elements are shown and what other game elements are running. To build a state machine, first define a distinct subclass of for each possible state of the machine. In each state class, the method determines which other state classes the machine may transition into from that state. Then, create a state machine object by constructing instances of the state classes and passing them to one of the methods listed in Creating a State Machine below. Finally, set the machine in motion by choosing an initial state for it to enter with the method. To define state-dependent behavior, override the , , and methods in each subclass. The state machine notifies the current state whenever a state change happens. Use the and methods to perform actions in response to a state change. For example, an enemy character entering the Flee state might change its appearance to indicate that is has become vulnerable to attack by the player. When you call a state machine’s method, the state machine calls the method of its current state. Use this method to organize per-frame update code by state. For example, an enemy character in the Chase state can update its position to pursue the player, and an enemy in the Flee state can update its position to evade the player. For more information about state machines, read in .
+
+
+// A finite-state machine—a collection of state objects that each define logic for a particular state of gameplay and rules for transitioning between states.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKStateMachine
+
 type StateMachine struct {
 	objectivec.Object
 }
@@ -90,7 +95,9 @@ func NewStateMachine() StateMachine {
 
 // Initializes a state machine with the specified states.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKStateMachine/init(states:)
+
 func NewStateMachineWithStates(states []State) StateMachine {
 	instance := getStateMachineClass().Alloc()
 	rv := objc.Send[StateMachine](instance.ID, objc.Sel("initWithStates:"), states)
@@ -99,48 +106,70 @@ func NewStateMachineWithStates(states []State) StateMachine {
 }
 
 
+
 // Creates a state machine with the specified states.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKStateMachine/stateMachineWithStates:
+
 func (sc _StateMachineClass) StateMachineWithStates(states []State) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("stateMachineWithStates:"), states)
 	return rv
 }
 
+
+
 // Returns a Boolean value indicating whether it is valid for the state machine to transition from its current state to a state of the specified class.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKStateMachine/canEnterState(_:)
+
 func (s_ StateMachine) CanEnterState(stateClass objc.Class) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("canEnterState:"), stateClass)
 	return rv
 }
 
+
+
 // Attempts to transition the state machine from its current state to a state of the specified class.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKStateMachine/enter(_:)
+
 func (s_ StateMachine) EnterState(stateClass objc.Class) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("enterState:"), stateClass)
 	return rv
 }
 
+
+
 // Returns the state object in the state machine corresponding to the specified class.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKStateMachine/stateForClass:
+
 func (s_ StateMachine) StateForClass(stateClass objc.Class) State {
 	rv := objc.Send[State](s_.ID, objc.Sel("stateForClass:"), stateClass)
 	return rv
 }
 
+
+
 // Tells the current state object to perform per-frame updates.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKStateMachine/update(deltaTime:)
-func (s_ StateMachine) UpdateWithDeltaTime(sec foundation.ITimeInterval) {
+
+func (s_ StateMachine) UpdateWithDeltaTime(sec foundation.TimeInterval) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("updateWithDeltaTime:"), sec)
 }
 
+
 // The state machine’s current state.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKStateMachine/currentState
+
 func (s_ StateMachine) CurrentState() GKState {
 	rv := objc.Send[GKState](s_.ID, objc.Sel("currentState"))
 	return rv

@@ -41,8 +41,13 @@ type ICKSyncEngineState interface {
 // An object that manages the sync engine’s state.
 //
 // To reliably and consistently sync your app’s data, a sync engine keeps a record of several important pieces of data, such as server changes tokens (for databases and record zones), subscription identifiers, the most recent , and so on. This class automatically manages that state on behalf of your app, but there are certain elements you can modify. For example, you control the list of pending changes to send to the iCloud servers and manipulate that list using the and methods. If there aren’t any scheduled sync operations when you invoke these methods, the engine automatically schedules one. An engine’s state changes periodically and, when it does, the sync engine dispatches an event of type to your delegate. The event contains an instance of and, on receipt of such an event, it’s your responsibility to persist the serialized state to disk so that it’s available across app launches. On the next initialization of the sync engine, you provide the most recently persisted state as part of the engine’s configuration. For more information, see .
+
+
+// An object that manages the sync engine’s state.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineState
+
 type CKSyncEngineState struct {
 	objectivec.Object
 }
@@ -86,48 +91,67 @@ func NewCKSyncEngineState() CKSyncEngineState {
 }
 
 
+
+
 // Adds the specified database changes to the state.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineState/addPendingDatabaseChanges:
+
 func (c_ CKSyncEngineState) AddPendingDatabaseChanges(changes []CKSyncEnginePendingDatabaseChange) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("addPendingDatabaseChanges:"), changes)
 }
 
+
+
 // Adds the specified record zone changes to the state.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineState/addPendingRecordZoneChanges:
+
 func (c_ CKSyncEngineState) AddPendingRecordZoneChanges(changes []CKSyncEnginePendingRecordZoneChange) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("addPendingRecordZoneChanges:"), changes)
 }
 
+
+
 // Removes the specified database changes from the state.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineState/removePendingDatabaseChanges:
+
 func (c_ CKSyncEngineState) RemovePendingDatabaseChanges(changes []CKSyncEnginePendingDatabaseChange) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("removePendingDatabaseChanges:"), changes)
 }
 
+
+
 // Removes the specified record zone changes from the state.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineState/removePendingRecordZoneChanges:
+
 func (c_ CKSyncEngineState) RemovePendingRecordZoneChanges(changes []CKSyncEnginePendingRecordZoneChange) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("removePendingRecordZoneChanges:"), changes)
 }
 
+
 // The user record ID for the corresponding user record.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckuseridentity/userrecordid
+
 func (c_ CKSyncEngineState) UserRecordID() CKRecordID {
 	rv := objc.Send[CKRecordID](c_.ID, objc.Sel("userRecordID"))
 	return rv
 }
 
 
-// SetUserRecordID sets the value of the userRecordID property.
 // The user record ID for the corresponding user record.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckuseridentity/userrecordid
+
 func (c_ CKSyncEngineState) SetUserRecordID(value ICKRecordID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setUserRecordID:"), value)
 }

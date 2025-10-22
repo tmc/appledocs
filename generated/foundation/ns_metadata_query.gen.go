@@ -30,39 +30,46 @@ type _MetadataQueryClass struct {
 // An interface definition for the [MetadataQuery] class.
 type IMetadataQuery interface {
 	objectivec.IObject
+	DisableUpdates()
+	EnableUpdates()
 	EnumerateResultsUsingBlock(block unsafe.Pointer)
+	EnumerateResultsWithOptionsUsingBlock(opts IEnumerationOptions, block unsafe.Pointer)
+	IndexOfResult(result objectivec.IObject) uint
 	ResultAtIndex(idx uint) objc.ID
+	StartQuery() bool
+	StopQuery()
+	ValueOfAttributeForResultAtIndex(attrName string, idx uint) objc.ID
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	GroupedResults() []MetadataQueryResultGroup
+	GroupingAttributes() []string
+	SetGroupingAttributes(value []string)
+	Gathering() bool
+	Started() bool
+	Stopped() bool
 	NotificationBatchingInterval() TimeInterval
 	SetNotificationBatchingInterval(value ITimeInterval)
 	OperationQueue() NSOperationQueue
 	SetOperationQueue(value IOperationQueue)
 	Predicate() NSPredicate
 	SetPredicate(value IPredicate)
+	ResultCount() uint
 	Results() objc.ID
+	SearchItems() objc.ID
+	SetSearchItems(value objc.ID)
 	SearchScopes() objc.ID
 	SetSearchScopes(value objc.ID)
-	Delegate() unsafe.Pointer
-	SetDelegate(value unsafe.Pointer)
-	GroupedResults() unsafe.Pointer
-	SetGroupedResults(value unsafe.Pointer)
-	GroupingAttributes() string
-	SetGroupingAttributes(value string)
+	SortDescriptors() []SortDescriptor
+	SetSortDescriptors(value []SortDescriptor)
+	ValueListAttributes() []string
+	SetValueListAttributes(value []string)
+	ValueLists() unsafe.Pointer
 	IsGathering() bool
 	SetIsGathering(value bool)
 	IsStarted() bool
 	SetIsStarted(value bool)
 	IsStopped() bool
 	SetIsStopped(value bool)
-	ResultCount() int
-	SetResultCount(value int)
-	SearchItems() unsafe.Pointer
-	SetSearchItems(value unsafe.Pointer)
-	SortDescriptors() NSSortDescriptor
-	SetSortDescriptors(value ISortDescriptor)
-	ValueListAttributes() string
-	SetValueListAttributes(value string)
-	ValueLists() unsafe.Pointer
-	SetValueLists(value unsafe.Pointer)
 }
 
 // A query that you perform against Spotlight metadata.
@@ -120,6 +127,28 @@ func NewMetadataQuery() MetadataQuery {
 
 
 
+// Disables updates to the query results.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQuery/disableUpdates()
+
+func (m_ MetadataQuery) DisableUpdates() {
+	objc.Send[objc.ID](m_.ID, objc.Sel("disableUpdates"))
+}
+
+
+
+// Enables updates to the query results.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQuery/enableUpdates()
+
+func (m_ MetadataQuery) EnableUpdates() {
+	objc.Send[objc.ID](m_.ID, objc.Sel("enableUpdates"))
+}
+
+
+
 // Enumerates the current set of results using the given block.
 //
 // [Full Topic]
@@ -131,6 +160,29 @@ func (m_ MetadataQuery) EnumerateResultsUsingBlock(block unsafe.Pointer) {
 
 
 
+// Enumerates the current set of results using the given options and block.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQuery/enumerateResults(options:using:)
+
+func (m_ MetadataQuery) EnumerateResultsWithOptionsUsingBlock(opts IEnumerationOptions, block unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("enumerateResultsWithOptions:usingBlock:"), opts, block)
+}
+
+
+
+// Returns the index of a query result object in the receiver’s results array.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQuery/index(ofResult:)
+
+func (m_ MetadataQuery) IndexOfResult(result objectivec.IObject) uint {
+	rv := objc.Send[uint](m_.ID, objc.Sel("indexOfResult:"), result)
+	return rv
+}
+
+
+
 // Returns the query result at a specific index.
 //
 // [Full Topic]
@@ -138,6 +190,137 @@ func (m_ MetadataQuery) EnumerateResultsUsingBlock(block unsafe.Pointer) {
 
 func (m_ MetadataQuery) ResultAtIndex(idx uint) objc.ID {
 	rv := objc.Send[objc.ID](m_.ID, objc.Sel("resultAtIndex:"), idx)
+	return rv
+}
+
+
+
+// Attempts to start the query.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQuery/start()
+
+func (m_ MetadataQuery) StartQuery() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("startQuery"))
+	return rv
+}
+
+
+
+// Stops the receiver’s current query from gathering any further results.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQuery/stop()
+
+func (m_ MetadataQuery) StopQuery() {
+	objc.Send[objc.ID](m_.ID, objc.Sel("stopQuery"))
+}
+
+
+
+// Returns the value for the attribute name at the index in the results specified by .
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQuery/value(ofAttribute:forResultAt:)
+
+func (m_ MetadataQuery) ValueOfAttributeForResultAtIndex(attrName string, idx uint) objc.ID {
+	rv := objc.Send[objc.ID](m_.ID, objc.Sel("valueOfAttribute:forResultAtIndex:"), objc.String(attrName), idx)
+	return rv
+}
+
+
+// The query’s delegate.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQuery/delegate
+
+func (m_ MetadataQuery) Delegate() objc.ID {
+	rv := objc.Send[objc.ID](m_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+
+// The query’s delegate.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQuery/delegate
+
+func (m_ MetadataQuery) SetDelegate(value objc.ID) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDelegate:"), value)
+}
+
+
+// An array containing hierarchical groups of query results. (read-only)
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQuery/groupedResults
+
+func (m_ MetadataQuery) GroupedResults() []MetadataQueryResultGroup {
+	rv := objc.Send[[]MetadataQueryResultGroup](m_.ID, objc.Sel("groupedResults"))
+	return rv
+}
+
+
+// An array of grouping attributes. (read-only)
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQuery/groupingAttributes
+
+func (m_ MetadataQuery) GroupingAttributes() []string {
+	rv := objc.Send[[]string](m_.ID, objc.Sel("groupingAttributes"))
+	return rv
+}
+
+
+// An array of grouping attributes. (read-only)
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQuery/groupingAttributes
+
+func (m_ MetadataQuery) SetGroupingAttributes(value []string) {
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupingAttributes:"), nsArray)
+}
+
+
+// A Boolean value that indicates whether the receiver is in the initial gathering phase of the query. (read-only)
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQuery/isGathering
+
+func (m_ MetadataQuery) Gathering() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("gathering"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether the query has started. (read-only)
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQuery/isStarted
+
+func (m_ MetadataQuery) Started() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("started"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether the query has stopped.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQuery/isStopped
+
+func (m_ MetadataQuery) Stopped() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("stopped"))
 	return rv
 }
 
@@ -205,6 +388,17 @@ func (m_ MetadataQuery) SetPredicate(value IPredicate) {
 }
 
 
+// The number of results returned by the query. (read-only)
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQuery/resultCount
+
+func (m_ MetadataQuery) ResultCount() uint {
+	rv := objc.Send[uint](m_.ID, objc.Sel("resultCount"))
+	return rv
+}
+
+
 // An array containing the query’s results.
 //
 // [Full Topic]
@@ -213,6 +407,27 @@ func (m_ MetadataQuery) SetPredicate(value IPredicate) {
 func (m_ MetadataQuery) Results() objc.ID {
 	rv := objc.Send[objc.ID](m_.ID, objc.Sel("results"))
 	return rv
+}
+
+
+// An array of objects that define the query’s scope.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQuery/searchItems
+
+func (m_ MetadataQuery) SearchItems() objc.ID {
+	rv := objc.Send[objc.ID](m_.ID, objc.Sel("searchItems"))
+	return rv
+}
+
+
+// An array of objects that define the query’s scope.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQuery/searchItems
+
+func (m_ MetadataQuery) SetSearchItems(value objc.ID) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSearchItems:"), value)
 }
 
 
@@ -237,66 +452,76 @@ func (m_ MetadataQuery) SetSearchScopes(value objc.ID) {
 }
 
 
-// The query’s delegate.
+// An array of sort descriptor objects.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataquery/delegate
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQuery/sortDescriptors
 
-func (m_ MetadataQuery) Delegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("delegate"))
+func (m_ MetadataQuery) SortDescriptors() []SortDescriptor {
+	rv := objc.Send[[]SortDescriptor](m_.ID, objc.Sel("sortDescriptors"))
 	return rv
 }
 
 
-// The query’s delegate.
+// An array of sort descriptor objects.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataquery/delegate
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQuery/sortDescriptors
 
-func (m_ MetadataQuery) SetDelegate(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setDelegate:"), value)
+func (m_ MetadataQuery) SetSortDescriptors(value []SortDescriptor) {
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSortDescriptors:"), nsArray)
 }
 
 
-// An array containing hierarchical groups of query results. (read-only)
+// An array of attributes whose values are gathered by the query.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataquery/groupedresults
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQuery/valueListAttributes
 
-func (m_ MetadataQuery) GroupedResults() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("groupedResults"))
+func (m_ MetadataQuery) ValueListAttributes() []string {
+	rv := objc.Send[[]string](m_.ID, objc.Sel("valueListAttributes"))
 	return rv
 }
 
 
-// An array containing hierarchical groups of query results. (read-only)
+// An array of attributes whose values are gathered by the query.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataquery/groupedresults
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQuery/valueListAttributes
 
-func (m_ MetadataQuery) SetGroupedResults(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupedResults:"), value)
+func (m_ MetadataQuery) SetValueListAttributes(value []string) {
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](m_.ID, objc.Sel("setValueListAttributes:"), nsArray)
 }
 
 
-// An array of grouping attributes. (read-only)
+// A dictionary containing the value lists generated by the query.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataquery/groupingattributes
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQuery/valueLists
 
-func (m_ MetadataQuery) GroupingAttributes() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("groupingAttributes"))
+func (m_ MetadataQuery) ValueLists() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("valueLists"))
 	return rv
-}
-
-
-// An array of grouping attributes. (read-only)
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataquery/groupingattributes
-
-func (m_ MetadataQuery) SetGroupingAttributes(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupingAttributes:"), objc.String(value))
 }
 
 
@@ -360,111 +585,6 @@ func (m_ MetadataQuery) IsStopped() bool {
 
 func (m_ MetadataQuery) SetIsStopped(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsStopped:"), value)
-}
-
-
-// The number of results returned by the query. (read-only)
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataquery/resultcount
-
-func (m_ MetadataQuery) ResultCount() int {
-	rv := objc.Send[int](m_.ID, objc.Sel("resultCount"))
-	return rv
-}
-
-
-// The number of results returned by the query. (read-only)
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataquery/resultcount
-
-func (m_ MetadataQuery) SetResultCount(value int) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setResultCount:"), value)
-}
-
-
-// An array of objects that define the query’s scope.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataquery/searchitems
-
-func (m_ MetadataQuery) SearchItems() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("searchItems"))
-	return rv
-}
-
-
-// An array of objects that define the query’s scope.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataquery/searchitems
-
-func (m_ MetadataQuery) SetSearchItems(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setSearchItems:"), value)
-}
-
-
-// An array of sort descriptor objects.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataquery/sortdescriptors
-
-func (m_ MetadataQuery) SortDescriptors() NSSortDescriptor {
-	rv := objc.Send[NSSortDescriptor](m_.ID, objc.Sel("sortDescriptors"))
-	return rv
-}
-
-
-// An array of sort descriptor objects.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataquery/sortdescriptors
-
-func (m_ MetadataQuery) SetSortDescriptors(value ISortDescriptor) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setSortDescriptors:"), value)
-}
-
-
-// An array of attributes whose values are gathered by the query.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataquery/valuelistattributes
-
-func (m_ MetadataQuery) ValueListAttributes() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("valueListAttributes"))
-	return rv
-}
-
-
-// An array of attributes whose values are gathered by the query.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataquery/valuelistattributes
-
-func (m_ MetadataQuery) SetValueListAttributes(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setValueListAttributes:"), objc.String(value))
-}
-
-
-// A dictionary containing the value lists generated by the query.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataquery/valuelists
-
-func (m_ MetadataQuery) ValueLists() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("valueLists"))
-	return rv
-}
-
-
-// A dictionary containing the value lists generated by the query.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataquery/valuelists
-
-func (m_ MetadataQuery) SetValueLists(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setValueLists:"), value)
 }
 
 

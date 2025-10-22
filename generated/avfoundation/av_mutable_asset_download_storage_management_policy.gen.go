@@ -37,8 +37,13 @@ type IMutableAssetDownloadStorageManagementPolicy interface {
 }
 
 // A mutable object that you use to create a new storage management policy.
+
+
+// A mutable object that you use to create a new storage management policy.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMutableAssetDownloadStorageManagementPolicy
+
 type MutableAssetDownloadStorageManagementPolicy struct {
 	AssetDownloadStorageManagementPolicy
 }
@@ -84,38 +89,44 @@ func NewMutableAssetDownloadStorageManagementPolicy() MutableAssetDownloadStorag
 }
 
 
+
 // The expiration date for an asset.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmutableassetdownloadstoragemanagementpolicy/expirationdate
+
 func (m_ MutableAssetDownloadStorageManagementPolicy) ExpirationDate() foundation.Date {
 	rv := objc.Send[foundation.Date](m_.ID, objc.Sel("expirationDate"))
 	return rv
 }
 
 
-// SetExpirationDate sets the value of the expirationDate property.
 // The expiration date for an asset.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmutableassetdownloadstoragemanagementpolicy/expirationdate
+
 func (m_ MutableAssetDownloadStorageManagementPolicy) SetExpirationDate(value foundation.IDate) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setExpirationDate:"), value)
 }
 
+
 // The eviction priority for a downloaded asset.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmutableassetdownloadstoragemanagementpolicy/priority
+
 func (m_ MutableAssetDownloadStorageManagementPolicy) Priority() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("priority"))
 	return rv
 }
 
 
-// SetPriority sets the value of the priority property.
 // The eviction priority for a downloaded asset.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmutableassetdownloadstoragemanagementpolicy/priority
+
 func (m_ MutableAssetDownloadStorageManagementPolicy) SetPriority(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPriority:"), value)
 }

@@ -32,8 +32,11 @@ type Iname interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKTextureInfo/name-c.ivar
+
 type name struct {
 	objectivec.Object
 }

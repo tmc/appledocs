@@ -39,8 +39,13 @@ type IPersistentHistoryChangeRequest interface {
 }
 
 // A request to fetch or purge persistent history.
+
+
+// A request to fetch or purge persistent history.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChangeRequest
+
 type PersistentHistoryChangeRequest struct {
 	PersistentStoreRequest
 }
@@ -86,88 +91,109 @@ func NewPersistentHistoryChangeRequest() PersistentHistoryChangeRequest {
 }
 
 
+
 // Purges history older than that defined by a given token.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChangeRequest/deleteHistory(before:)-5kghb
+
 func (pc _PersistentHistoryChangeRequestClass) DeleteHistoryBeforeToken(token IPersistentHistoryToken) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("deleteHistoryBeforeToken:"), token)
 	return rv
 }
 
+
 // Retrieves the request history after a given token.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChangeRequest/fetchHistory(after:)-3rmfm
+
 func (pc _PersistentHistoryChangeRequestClass) FetchHistoryAfterToken(token IPersistentHistoryToken) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("fetchHistoryAfterToken:"), token)
 	return rv
 }
 
+
 // Retrieves history since a given date.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChangeRequest/fetchHistory(after:)-qi5b
+
 func (pc _PersistentHistoryChangeRequestClass) FetchHistoryAfterDate(date foundation.IDate) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("fetchHistoryAfterDate:"), date)
 	return rv
 }
 
+
 // Retrieves history based on a fetch request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChangeRequest/fetchHistory(withFetch:)
+
 func (pc _PersistentHistoryChangeRequestClass) FetchHistoryWithFetchRequest(fetchRequest IFetchRequest) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("fetchHistoryWithFetchRequest:"), fetchRequest)
 	return rv
 }
 
+
 // The specified fetch request, when retrieving history.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChangeRequest/fetchRequest
+
 func (p_ PersistentHistoryChangeRequest) FetchRequest() NSFetchRequest {
 	rv := objc.Send[NSFetchRequest](p_.ID, objc.Sel("fetchRequest"))
 	return rv
 }
 
 
-// SetFetchRequest sets the value of the fetchRequest property.
 // The specified fetch request, when retrieving history.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChangeRequest/fetchRequest
+
 func (p_ PersistentHistoryChangeRequest) SetFetchRequest(value IFetchRequest) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setFetchRequest:"), value)
 }
 
+
 // The type of result that this request returns.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChangeRequest/resultType
+
 func (p_ PersistentHistoryChangeRequest) ResultType() PersistentHistoryResultType {
 	rv := objc.Send[PersistentHistoryResultType](p_.ID, objc.Sel("resultType"))
 	return rv
 }
 
 
-// SetResultType sets the value of the resultType property.
 // The type of result that this request returns.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChangeRequest/resultType
+
 func (p_ PersistentHistoryChangeRequest) SetResultType(value PersistentHistoryResultType) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setResultType:"), value)
 }
 
+
 // The specified token, when retrieving history defined by a token.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistenthistorychangerequest/token
+
 func (p_ PersistentHistoryChangeRequest) Token() NSPersistentHistoryToken {
 	rv := objc.Send[NSPersistentHistoryToken](p_.ID, objc.Sel("token"))
 	return rv
 }
 
 
-// SetToken sets the value of the token property.
 // The specified token, when retrieving history defined by a token.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistenthistorychangerequest/token
+
 func (p_ PersistentHistoryChangeRequest) SetToken(value IPersistentHistoryToken) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setToken:"), value)
 }

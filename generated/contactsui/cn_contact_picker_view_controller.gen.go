@@ -46,8 +46,13 @@ type ICNContactPickerViewController interface {
 // A view controller that displays an interface for picking contacts.
 //
 // A allows the user to select one or more contacts (or their properties) from the list of contacts displayed in the contact view controller ( ). The picker supports both single selection and multiselection of the contacts. The app using contact picker view does not need access to the user’s contacts and the user will not be prompted for “grant permission” access. The app has access only to the user’s final selection. There are predefined predicates in this class that let you control the user selection of the contact. Changing the predicates only take effect before the view is presented.
+
+
+// A view controller that displays an interface for picking contacts.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactPickerViewController
+
 type CNContactPickerViewController struct {
 	appkit.ViewController
 }
@@ -93,38 +98,44 @@ func NewCNContactPickerViewController() CNContactPickerViewController {
 }
 
 
+
 // The delegate to be notified when the user selects a contact or a property.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactPickerViewController/delegate
+
 func (c_ CNContactPickerViewController) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](c_.ID, objc.Sel("delegate"))
 	return rv
 }
 
 
-// SetDelegate sets the value of the delegate property.
 // The delegate to be notified when the user selects a contact or a property.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactPickerViewController/delegate
+
 func (c_ CNContactPickerViewController) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDelegate:"), value)
 }
 
+
 // The property keys to display in the contact detail card.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactPickerViewController/displayedPropertyKeys
+
 func (c_ CNContactPickerViewController) DisplayedPropertyKeys() []string {
 	rv := objc.Send[[]string](c_.ID, objc.Sel("displayedPropertyKeys"))
 	return rv
 }
 
 
-// SetDisplayedPropertyKeys sets the value of the displayedPropertyKeys property.
 // The property keys to display in the contact detail card.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactPickerViewController/displayedPropertyKeys
+
 func (c_ CNContactPickerViewController) SetDisplayedPropertyKeys(value []string) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -139,56 +150,65 @@ func (c_ CNContactPickerViewController) SetDisplayedPropertyKeys(value []string)
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDisplayedPropertyKeys:"), nsArray)
 }
 
+
 // A predicate to determine the contact selectability in the list of contacts.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactPickerViewController/predicateForEnablingContact
+
 func (c_ CNContactPickerViewController) PredicateForEnablingContact() foundation.Predicate {
 	rv := objc.Send[foundation.Predicate](c_.ID, objc.Sel("predicateForEnablingContact"))
 	return rv
 }
 
 
-// SetPredicateForEnablingContact sets the value of the predicateForEnablingContact property.
 // A predicate to determine the contact selectability in the list of contacts.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactPickerViewController/predicateForEnablingContact
+
 func (c_ CNContactPickerViewController) SetPredicateForEnablingContact(value foundation.IPredicate) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPredicateForEnablingContact:"), value)
 }
 
+
 // A predicate to control the return of the selected contact.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactPickerViewController/predicateForSelectionOfContact
+
 func (c_ CNContactPickerViewController) PredicateForSelectionOfContact() foundation.Predicate {
 	rv := objc.Send[foundation.Predicate](c_.ID, objc.Sel("predicateForSelectionOfContact"))
 	return rv
 }
 
 
-// SetPredicateForSelectionOfContact sets the value of the predicateForSelectionOfContact property.
 // A predicate to control the return of the selected contact.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactPickerViewController/predicateForSelectionOfContact
+
 func (c_ CNContactPickerViewController) SetPredicateForSelectionOfContact(value foundation.IPredicate) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPredicateForSelectionOfContact:"), value)
 }
 
+
 // A predicate to control the properties of the selected contact.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactPickerViewController/predicateForSelectionOfProperty
+
 func (c_ CNContactPickerViewController) PredicateForSelectionOfProperty() foundation.Predicate {
 	rv := objc.Send[foundation.Predicate](c_.ID, objc.Sel("predicateForSelectionOfProperty"))
 	return rv
 }
 
 
-// SetPredicateForSelectionOfProperty sets the value of the predicateForSelectionOfProperty property.
 // A predicate to control the properties of the selected contact.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactPickerViewController/predicateForSelectionOfProperty
+
 func (c_ CNContactPickerViewController) SetPredicateForSelectionOfProperty(value foundation.IPredicate) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPredicateForSelectionOfProperty:"), value)
 }

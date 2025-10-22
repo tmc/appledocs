@@ -39,8 +39,13 @@ type IDialogController interface {
 // An object that provides the ability to present the dashboard in macOS games.
 //
 // For macOS games, use a object to present the dashboard from which players can browse and manage their Game Center data. Initialize a new object, as you would for an iOS game, specifying the state and setting its delegate. Then get the singleton dialog controller using the class method, or initialize a new object. To present the dashboard, set the property to the window that should display the dashboard and then call the method, passing the object. When the player closes the dashboard, GameKit calls the delegate method. Implement this method to dismiss the shared dialog controller using the method.
+
+
+// An object that provides the ability to present the dashboard in macOS games.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKDialogController
+
 type DialogController struct {
 	appkit.Responder
 }
@@ -86,27 +91,34 @@ func NewDialogController() DialogController {
 }
 
 
+
+
 // Dismisses the dashboard.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKDialogController/dismiss(_:)
+
 func (d_ DialogController) Dismiss(sender objectivec.IObject) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("dismiss:"), sender)
 }
 
+
 // The window that displays the dashboard.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkdialogcontroller/parentwindow
+
 func (d_ DialogController) ParentWindow() appkit.Window {
 	rv := objc.Send[appkit.Window](d_.ID, objc.Sel("parentWindow"))
 	return rv
 }
 
 
-// SetParentWindow sets the value of the parentWindow property.
 // The window that displays the dashboard.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkdialogcontroller/parentwindow
+
 func (d_ DialogController) SetParentWindow(value appkit.IWindow) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setParentWindow:"), value)
 }

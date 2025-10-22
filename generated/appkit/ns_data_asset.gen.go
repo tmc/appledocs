@@ -39,8 +39,13 @@ type IDataAsset interface {
 // An object from a data set type stored in an asset catalog.
 //
 // The object’s content is stored as a set of one or more files with associated device attributes. These sets can also be tagged for use as on-demand resources.
+
+
+// An object from a data set type stored in an asset catalog.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDataAsset
+
 type DataAsset struct {
 	objectivec.Object
 }
@@ -88,7 +93,9 @@ func NewDataAsset() DataAsset {
 
 // Initializes and returns an object with a reference to the named data asset in an asset catalog.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDataAsset/init(name:)
+
 func NewDataAssetWithName(name IDataAssetName) DataAsset {
 	instance := getDataAssetClass().Alloc()
 	rv := objc.Send[DataAsset](instance.ID, objc.Sel("initWithName:"), name)
@@ -100,7 +107,9 @@ func NewDataAssetWithName(name IDataAssetName) DataAsset {
 
 // Initializes and returns an object with a reference to the named data asset that’s in an asset catalog in the specified bundle.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDataAsset/init(name:bundle:)
+
 func NewDataAssetWithNameBundle(name IDataAssetName, bundle foundation.IBundle) DataAsset {
 	instance := getDataAssetClass().Alloc()
 	rv := objc.Send[DataAsset](instance.ID, objc.Sel("initWithName:bundle:"), name, bundle)
@@ -109,25 +118,34 @@ func NewDataAssetWithNameBundle(name IDataAssetName, bundle foundation.IBundle) 
 }
 
 
+
 // The raw data values in the data asset.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDataAsset/data
+
 func (d_ DataAsset) Data() foundation.NSData {
 	rv := objc.Send[foundation.NSData](d_.ID, objc.Sel("data"))
 	return rv
 }
 
+
 // The name of the data set in the asset catalog.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDataAsset/name-swift.property
+
 func (d_ DataAsset) Name() DataAssetName {
 	rv := objc.Send[DataAssetName](d_.ID, objc.Sel("name"))
 	return rv
 }
 
+
 // The uniform type identifier for the data asset.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDataAsset/typeIdentifier
+
 func (d_ DataAsset) TypeIdentifier() string {
 	rv := objc.Send[string](d_.ID, objc.Sel("typeIdentifier"))
 	return rv

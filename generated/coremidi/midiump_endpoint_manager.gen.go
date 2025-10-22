@@ -33,8 +33,11 @@ type IMIDIUMPEndpointManager interface {
 	UMPEndpoints() []MIDIUMPEndpoint
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPEndpointManager
+
 type MIDIUMPEndpointManager struct {
 	objectivec.Object
 }
@@ -76,21 +79,27 @@ func NewMIDIUMPEndpointManager() MIDIUMPEndpointManager {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPEndpointManager/shared
+
 func (mc _MIDIUMPEndpointManagerClass) SharedInstance() MIDIUMPEndpointManager {
 	rv := objc.Send[MIDIUMPEndpointManager](objc.ID(mc.class), objc.Sel("sharedInstance"))
 	return rv
 }
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPEndpointManager/shared
+
 func (m_ MIDIUMPEndpointManager) SharedInstance() MIDIUMPEndpointManager {
 	rv := objc.Send[MIDIUMPEndpointManager](m_.ID, objc.Sel("sharedInstance"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPEndpointManager/umpEndpoints
+
 func (m_ MIDIUMPEndpointManager) UMPEndpoints() []MIDIUMPEndpoint {
 	rv := objc.Send[[]MIDIUMPEndpoint](m_.ID, objc.Sel("UMPEndpoints"))
 	return rv

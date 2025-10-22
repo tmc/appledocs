@@ -37,8 +37,13 @@ type IFileProviderStringSearchRequest interface {
 }
 
 // A type that contains details of a string-based search request.
+
+
+// A type that contains details of a string-based search request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderStringSearchRequest
+
 type FileProviderStringSearchRequest struct {
 	objectivec.Object
 }
@@ -82,38 +87,44 @@ func NewFileProviderStringSearchRequest() FileProviderStringSearchRequest {
 }
 
 
+
 // How many results the system is requesting. This is a hint to the extension, to help avoid
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderstringsearchrequest/desirednumberofresults
+
 func (f_ FileProviderStringSearchRequest) DesiredNumberOfResults() int {
 	rv := objc.Send[int](f_.ID, objc.Sel("desiredNumberOfResults"))
 	return rv
 }
 
 
-// SetDesiredNumberOfResults sets the value of the desiredNumberOfResults property.
 // How many results the system is requesting. This is a hint to the extension, to help avoid
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderstringsearchrequest/desirednumberofresults
+
 func (f_ FileProviderStringSearchRequest) SetDesiredNumberOfResults(value int) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setDesiredNumberOfResults:"), value)
 }
 
+
 // A plaintext string, representing the query a person entered into the system search UI.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderstringsearchrequest/query
+
 func (f_ FileProviderStringSearchRequest) Query() string {
 	rv := objc.Send[string](f_.ID, objc.Sel("query"))
 	return rv
 }
 
 
-// SetQuery sets the value of the query property.
 // A plaintext string, representing the query a person entered into the system search UI.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderstringsearchrequest/query
+
 func (f_ FileProviderStringSearchRequest) SetQuery(value string) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setQuery:"), objc.String(value))
 }

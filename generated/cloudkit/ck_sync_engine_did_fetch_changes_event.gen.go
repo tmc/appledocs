@@ -32,8 +32,13 @@ type ICKSyncEngineDidFetchChangesEvent interface {
 }
 
 // An object that represents a completed database fetch.
+
+
+// An object that represents a completed database fetch.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineDidFetchChangesEvent
+
 type CKSyncEngineDidFetchChangesEvent struct {
 	CKSyncEngineEvent
 }

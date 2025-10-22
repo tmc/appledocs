@@ -29,9 +29,12 @@ type _MutableCharacterSetClass struct {
 // An interface definition for the [MutableCharacterSet] class.
 type IMutableCharacterSet interface {
 	ICharacterSet
-	AddCharactersInRange(aRange Range)
+	AddCharactersInRange(aRange IRange)
 	AddCharactersInString(aString string)
+	FormIntersectionWithCharacterSet(otherSet ICharacterSet)
+	FormUnionWithCharacterSet(otherSet ICharacterSet)
 	Invert()
+	RemoveCharactersInRange(aRange IRange)
 	RemoveCharactersInString(aString string)
 }
 
@@ -92,6 +95,30 @@ func NewMutableCharacterSet() MutableCharacterSet {
 
 
 
+// Returns a character set containing characters determined by a given bitmap representation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/init(bitmapRepresentation:)
+
+func NewMutableCharacterSetWithBitmapRepresentation(data IData) MutableCharacterSet {
+	rv := objc.Send[MutableCharacterSet](objc.ID(getMutableCharacterSetClass().class), objc.Sel("characterSetWithBitmapRepresentation:"), data)
+	return rv
+}
+
+
+
+// Returns a character set containing the characters in a given string.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/init(charactersIn:)
+
+func NewMutableCharacterSetWithCharactersInString(aString string) MutableCharacterSet {
+	rv := objc.Send[MutableCharacterSet](objc.ID(getMutableCharacterSetClass().class), objc.Sel("characterSetWithCharactersInString:"), objc.String(aString))
+	return rv
+}
+
+
+
 // Returns a character set read from the bitmap representation stored in the file a given path.
 //
 // [Full Topic]
@@ -109,7 +136,7 @@ func NewMutableCharacterSetWithContentsOfFile(fName string) MutableCharacterSet 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/init(range:)
 
-func NewMutableCharacterSetWithRange(aRange Range) MutableCharacterSet {
+func NewMutableCharacterSetWithRange(aRange IRange) MutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(getMutableCharacterSetClass().class), objc.Sel("characterSetWithRange:"), aRange)
 	return rv
 }
@@ -182,6 +209,28 @@ func (mc _MutableCharacterSetClass) IllegalCharacterSet() MutableCharacterSet {
 }
 
 
+// Returns a character set containing characters determined by a given bitmap representation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/init(bitmapRepresentation:)
+
+func (mc _MutableCharacterSetClass) CharacterSetWithBitmapRepresentation(data IData) MutableCharacterSet {
+	rv := objc.Send[MutableCharacterSet](objc.ID(mc.class), objc.Sel("characterSetWithBitmapRepresentation:"), data)
+	return rv
+}
+
+
+// Returns a character set containing the characters in a given string.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/init(charactersIn:)
+
+func (mc _MutableCharacterSetClass) CharacterSetWithCharactersInString(aString string) MutableCharacterSet {
+	rv := objc.Send[MutableCharacterSet](objc.ID(mc.class), objc.Sel("characterSetWithCharactersInString:"), objc.String(aString))
+	return rv
+}
+
+
 // Returns a character set read from the bitmap representation stored in the file a given path.
 //
 // [Full Topic]
@@ -198,8 +247,30 @@ func (mc _MutableCharacterSetClass) CharacterSetWithContentsOfFile(fName string)
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/init(range:)
 
-func (mc _MutableCharacterSetClass) CharacterSetWithRange(aRange Range) MutableCharacterSet {
+func (mc _MutableCharacterSetClass) CharacterSetWithRange(aRange IRange) MutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(mc.class), objc.Sel("characterSetWithRange:"), aRange)
+	return rv
+}
+
+
+// Returns a character set containing the characters in Unicode General Category L* & M*.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/letter()
+
+func (mc _MutableCharacterSetClass) LetterCharacterSet() MutableCharacterSet {
+	rv := objc.Send[MutableCharacterSet](objc.ID(mc.class), objc.Sel("letterCharacterSet"))
+	return rv
+}
+
+
+// Returns a character set containing the characters in Unicode General Category Ll.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/lowercaseLetter()
+
+func (mc _MutableCharacterSetClass) LowercaseLetterCharacterSet() MutableCharacterSet {
+	rv := objc.Send[MutableCharacterSet](objc.ID(mc.class), objc.Sel("lowercaseLetterCharacterSet"))
 	return rv
 }
 
@@ -211,6 +282,17 @@ func (mc _MutableCharacterSetClass) CharacterSetWithRange(aRange Range) MutableC
 
 func (mc _MutableCharacterSetClass) NewlineCharacterSet() MutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(mc.class), objc.Sel("newlineCharacterSet"))
+	return rv
+}
+
+
+// Returns a character set containing the characters in Unicode General Category M*.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/nonBase()
+
+func (mc _MutableCharacterSetClass) NonBaseCharacterSet() MutableCharacterSet {
+	rv := objc.Send[MutableCharacterSet](objc.ID(mc.class), objc.Sel("nonBaseCharacterSet"))
 	return rv
 }
 
@@ -259,13 +341,24 @@ func (mc _MutableCharacterSetClass) WhitespaceCharacterSet() MutableCharacterSet
 }
 
 
+// Returns a character set containing characters in Unicode General Category Z*, ~ , and .
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/whitespaceAndNewline()
+
+func (mc _MutableCharacterSetClass) WhitespaceAndNewlineCharacterSet() MutableCharacterSet {
+	rv := objc.Send[MutableCharacterSet](objc.ID(mc.class), objc.Sel("whitespaceAndNewlineCharacterSet"))
+	return rv
+}
+
+
 
 // Adds to the receiver the characters whose Unicode values are in a given range.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/addCharacters(in:)-4ppyw
 
-func (m_ MutableCharacterSet) AddCharactersInRange(aRange Range) {
+func (m_ MutableCharacterSet) AddCharactersInRange(aRange IRange) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("addCharactersInRange:"), aRange)
 }
 
@@ -282,6 +375,28 @@ func (m_ MutableCharacterSet) AddCharactersInString(aString string) {
 
 
 
+// Modifies the receiver so it contains only characters that exist in both the receiver and another set.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/formIntersection(with:)
+
+func (m_ MutableCharacterSet) FormIntersectionWithCharacterSet(otherSet ICharacterSet) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("formIntersectionWithCharacterSet:"), otherSet)
+}
+
+
+
+// Modifies the receiver so it contains all characters that exist in either the receiver or another set.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/formUnion(with:)
+
+func (m_ MutableCharacterSet) FormUnionWithCharacterSet(otherSet ICharacterSet) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("formUnionWithCharacterSet:"), otherSet)
+}
+
+
+
 // Replaces all the characters in the receiver with all the characters it didn’t previously contain.
 //
 // [Full Topic]
@@ -289,6 +404,17 @@ func (m_ MutableCharacterSet) AddCharactersInString(aString string) {
 
 func (m_ MutableCharacterSet) Invert() {
 	objc.Send[objc.ID](m_.ID, objc.Sel("invert"))
+}
+
+
+
+// Removes from the receiver the characters whose Unicode values are in a given range.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/removeCharacters(in:)-70nqp
+
+func (m_ MutableCharacterSet) RemoveCharactersInRange(aRange IRange) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("removeCharactersInRange:"), aRange)
 }
 
 

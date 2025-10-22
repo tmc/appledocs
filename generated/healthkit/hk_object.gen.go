@@ -43,8 +43,13 @@ type IHKObject interface {
 // A piece of data that can be stored inside the HealthKit store.
 //
 // The class is an abstract class. You should never instantiate a object directly. Instead, always work with one of its concrete subclasses: , , , or . HealthKit objects are all immutable. With a few exceptions (such as the object’s source revision), the object’s properties are set when the object is first created and they cannot change.
+
+
+// A piece of data that can be stored inside the HealthKit store.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKObject
+
 type HKObject struct {
 	objectivec.Object
 }
@@ -88,57 +93,78 @@ func NewHKObject() HKObject {
 }
 
 
+
 // The device that generated the data for this object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKObject/device
+
 func (h_ HKObject) Device() HKDevice {
 	rv := objc.Send[HKDevice](h_.ID, objc.Sel("device"))
 	return rv
 }
 
+
 // The metadata for this HealthKit object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKObject/metadata
+
 func (h_ HKObject) Metadata() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("metadata"))
 	return rv
 }
 
+
 // A HealthKit source, representing the app or device that created this object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKObject/source
+
 func (h_ HKObject) Source() HKSource {
 	rv := objc.Send[HKSource](h_.ID, objc.Sel("source"))
 	return rv
 }
 
+
 // The app or device that created this object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKObject/sourceRevision
+
 func (h_ HKObject) SourceRevision() HKSourceRevision {
 	rv := objc.Send[HKSourceRevision](h_.ID, objc.Sel("sourceRevision"))
 	return rv
 }
 
+
 // The universally unique identifier (UUID) for this HealthKit object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKObject/uuid
+
 func (h_ HKObject) UUID() foundation.UUID {
 	rv := objc.Send[foundation.UUID](h_.ID, objc.Sel("UUID"))
 	return rv
 }
 
+
 // The key path for accessing the object’s metadata dictionary inside a predicate format string.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathmetadata
+
 func (h_ HKObject) HKPredicateKeyPathMetadata() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathMetadata"))
 	return rv
 }
 
+
 // The key path for accessing the object’s UUID inside a predicate format string.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathuuid
+
 func (h_ HKObject) HKPredicateKeyPathUUID() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathUUID"))
 	return rv

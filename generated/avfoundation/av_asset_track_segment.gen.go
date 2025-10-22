@@ -37,8 +37,13 @@ type IAssetTrackSegment interface {
 }
 
 // An object that represents a time range segment of an asset track.
+
+
+// An object that represents a time range segment of an asset track.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetTrackSegment
+
 type AssetTrackSegment struct {
 	objectivec.Object
 }
@@ -82,36 +87,45 @@ func NewAssetTrackSegment() AssetTrackSegment {
 }
 
 
+
 // A Boolean value that indicates whether the segment is empty.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetTrackSegment/isEmpty
+
 func (a_ AssetTrackSegment) Empty() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("empty"))
 	return rv
 }
 
+
 // The time range of the track that this segment presents.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetTrackSegment/timeMapping
+
 func (a_ AssetTrackSegment) TimeMapping() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("timeMapping"))
 	return rv
 }
 
+
 // A Boolean value that indicates whether the segment is empty.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettracksegment/isempty
+
 func (a_ AssetTrackSegment) IsEmpty() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isEmpty"))
 	return rv
 }
 
 
-// SetIsEmpty sets the value of the isEmpty property.
 // A Boolean value that indicates whether the segment is empty.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettracksegment/isempty
+
 func (a_ AssetTrackSegment) SetIsEmpty(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsEmpty:"), value)
 }

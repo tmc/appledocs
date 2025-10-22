@@ -43,8 +43,13 @@ type IHKSample interface {
 // A HealthKit sample represents a piece of data associated with a start and end time.
 //
 // The class is an abstract class. You should never instantiate a object directly. Instead, you always work with one of its concrete subclasses: , , , or classes. HealthKit samples are all immutable: You set the sample’s properties when you create it, and they cannot change. If the sample represents data over a duration, the start time must be earlier than the end time. If the sample represents data at a particular instant, the start and end times can be the same.
+
+
+// A HealthKit sample represents a piece of data associated with a start and end time.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKSample
+
 type HKSample struct {
 	HKObject
 }
@@ -90,65 +95,89 @@ func NewHKSample() HKSample {
 }
 
 
+
 // The sample’s end date.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKSample/endDate
+
 func (h_ HKSample) EndDate() foundation.NSDate {
 	rv := objc.Send[foundation.NSDate](h_.ID, objc.Sel("endDate"))
 	return rv
 }
 
+
 // Indicates whether the sample has an unknown duration.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKSample/hasUndeterminedDuration
+
 func (h_ HKSample) HasUndeterminedDuration() bool {
 	rv := objc.Send[bool](h_.ID, objc.Sel("hasUndeterminedDuration"))
 	return rv
 }
 
+
 // The sample type.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKSample/sampleType
+
 func (h_ HKSample) SampleType() HKSampleType {
 	rv := objc.Send[HKSampleType](h_.ID, objc.Sel("sampleType"))
 	return rv
 }
 
+
 // The sample’s start date.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKSample/startDate
+
 func (h_ HKSample) StartDate() foundation.NSDate {
 	rv := objc.Send[foundation.NSDate](h_.ID, objc.Sel("startDate"))
 	return rv
 }
 
+
 // The key path for accessing the sample’s end date.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathenddate
+
 func (h_ HKSample) HKPredicateKeyPathEndDate() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathEndDate"))
 	return rv
 }
 
+
 // The key path for accessing the sample’s start date.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathstartdate
+
 func (h_ HKSample) HKPredicateKeyPathStartDate() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathStartDate"))
 	return rv
 }
 
+
 // A constant for sorting samples based on their end date.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksamplesortidentifierenddate
+
 func (h_ HKSample) HKSampleSortIdentifierEndDate() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKSampleSortIdentifierEndDate"))
 	return rv
 }
 
+
 // A constant for sorting samples based on their start date.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksamplesortidentifierstartdate
+
 func (h_ HKSample) HKSampleSortIdentifierStartDate() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKSampleSortIdentifierStartDate"))
 	return rv

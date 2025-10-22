@@ -42,25 +42,29 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 
 
 
-// GCExtendedGamepadSnapshotDataFromNSData is a GameController function. [Full Topic]
+// GCExtendedGamepadSnapshotDataFromNSData is a GameController function.
 //
 // Deprecated: This function was deprecated in macOS 10.15.
 //
 // Added in macOS 10.15.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCExtendedGamepadSnapshotDataFromNSData(_:_:)
+
 func GCExtendedGamepadSnapshotDataFromNSData(snapshotData unsafe.Pointer, data unsafe.Pointer) bool {
 	return _GCExtendedGamepadSnapshotDataFromNSData(snapshotData, data)
 	}
 
 
-// GCMicroGamepadSnapshotDataFromNSData is a GameController function. [Full Topic]
+// GCMicroGamepadSnapshotDataFromNSData is a GameController function.
 //
 // Deprecated: This function was deprecated in macOS 10.15.
 //
 // Added in macOS 10.15.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCMicroGamepadSnapshotDataFromNSData(_:_:)
+
 func GCMicroGamepadSnapshotDataFromNSData(snapshotData unsafe.Pointer, data unsafe.Pointer) bool {
 	return _GCMicroGamepadSnapshotDataFromNSData(snapshotData, data)
 	}

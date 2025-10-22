@@ -42,8 +42,13 @@ type IEAAccessoryManager interface {
 // The object you use to identify connected accessories, and begin delivery of connection and disconnection notifications.
 //
 // An object coordinates the attached accessories for an iOS-based device. Use the shared accessory manager to retrieve a list of connected accessories, and start and stop the delivery of connection and disconnection notifications.
+
+
+// The object you use to identify connected accessories, and begin delivery of connection and disconnection notifications.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAAccessoryManager
+
 type EAAccessoryManager struct {
 	objectivec.Object
 }
@@ -87,50 +92,66 @@ func NewEAAccessoryManager() EAAccessoryManager {
 }
 
 
+
+
 // Displays an alert that allows the user to pair the device with a Bluetooth accessory.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAAccessoryManager/showBluetoothAccessoryPicker(withNameFilter:completion:)
+
 func (e_ EAAccessoryManager) ShowBluetoothAccessoryPickerWithNameFilterCompletion(predicate foundation.IPredicate, completion unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("showBluetoothAccessoryPickerWithNameFilter:completion:"), predicate, completion)
 }
 
+
 // A key that indicates the accessory object whose status changed.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eaaccessorykey
+
 func (e_ EAAccessoryManager) EAAccessoryKey() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("EAAccessoryKey"))
 	return rv
 }
 
+
 // The accessory objects corresponding to the list of currently connected accessories.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eaaccessorymanager/connectedaccessories
+
 func (e_ EAAccessoryManager) ConnectedAccessories() EAAccessory {
 	rv := objc.Send[EAAccessory](e_.ID, objc.Sel("connectedAccessories"))
 	return rv
 }
 
 
-// SetConnectedAccessories sets the value of the connectedAccessories property.
 // The accessory objects corresponding to the list of currently connected accessories.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eaaccessorymanager/connectedaccessories
+
 func (e_ EAAccessoryManager) SetConnectedAccessories(value IEAAccessory) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setConnectedAccessories:"), value)
 }
 
+
 // A key that indicates the accessory object that the user selected.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eaaccessoryselectedkey
+
 func (e_ EAAccessoryManager) EAAccessorySelectedKey() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("EAAccessorySelectedKey"))
 	return rv
 }
 
+
 // The domain for errors passed to a Bluetooth picker completion block.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eabluetoothaccessorypickererrordomain
+
 func (e_ EAAccessoryManager) EABluetoothAccessoryPickerErrorDomain() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("EABluetoothAccessoryPickerErrorDomain"))
 	return rv

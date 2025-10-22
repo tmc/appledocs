@@ -2,12 +2,16 @@
 
 // Package applenewsapi provides Go bindings for the AppleNewsAPI framework.
 //
-// Publish and manage Apple News Format articles. [Full Topic]
+// Publish and manage Apple News Format articles.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to AppleNewsAPI without requiring cgo.
+
+// Publish and manage Apple News Format articles.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppleNewsAPI
+
 package applenewsapi
 
 import (

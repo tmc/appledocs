@@ -60,101 +60,137 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 
 
 
-// HKAppleSleepingBreathingDisturbancesMinimumQuantityForClassification is a HealthKit function. [Full Topic]
+// HKAppleSleepingBreathingDisturbancesMinimumQuantityForClassification is a HealthKit function.
 //
 // Added in macOS 15.0.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKAppleSleepingBreathingDisturbancesClassification/minimum
+
 func HKAppleSleepingBreathingDisturbancesMinimumQuantityForClassification(classification unsafe.Pointer) unsafe.Pointer {
 	return _HKAppleSleepingBreathingDisturbancesMinimumQuantityForClassification(classification)
 	}
 
 
-// HKAppleSleepingBreathingDisturbancesClassificationForQuantity is a HealthKit function. [Full Topic]
+// HKAppleSleepingBreathingDisturbancesClassificationForQuantity is a HealthKit function.
 //
 // Added in macOS 15.0.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKAppleSleepingBreathingDisturbancesClassificationForQuantity
+
 func HKAppleSleepingBreathingDisturbancesClassificationForQuantity(value unsafe.Pointer) unsafe.Pointer {
 	return _HKAppleSleepingBreathingDisturbancesClassificationForQuantity(value)
 	}
 
 
-// Provides a classification for a score that measures the steadiness of the user’s gait. [Full Topic]
+// Provides a classification for a score that measures the steadiness of the user’s gait.
 //
 // Added in macOS 13.0.
+
+// Provides a classification for a score that measures the steadiness of the user’s gait.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKAppleWalkingSteadinessClassificationForQuantity
+
 func HKAppleWalkingSteadinessClassificationForQuantity(value unsafe.Pointer, classificationOut unsafe.Pointer, errorOut unsafe.Pointer) bool {
 	return _HKAppleWalkingSteadinessClassificationForQuantity(value, classificationOut, errorOut)
 	}
 
 
-// Returns the maximum score for the steadiness of the user’s gait based on the provided classification. [Full Topic]
+// Returns the maximum score for the steadiness of the user’s gait based on the provided classification.
 //
 // Added in macOS 13.0.
+
+// Returns the maximum score for the steadiness of the user’s gait based on the provided classification.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKAppleWalkingSteadinessMaximumQuantityForClassification
+
 func HKAppleWalkingSteadinessMaximumQuantityForClassification(classification unsafe.Pointer) unsafe.Pointer {
 	return _HKAppleWalkingSteadinessMaximumQuantityForClassification(classification)
 	}
 
 
-// Returns the minimum score for the steadiness of the user’s gait based on the provided classification. [Full Topic]
+// Returns the minimum score for the steadiness of the user’s gait based on the provided classification.
 //
 // Added in macOS 13.0.
+
+// Returns the minimum score for the steadiness of the user’s gait based on the provided classification.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKAppleWalkingSteadinessMinimumQuantityForClassification
+
 func HKAppleWalkingSteadinessMinimumQuantityForClassification(classification unsafe.Pointer) unsafe.Pointer {
 	return _HKAppleWalkingSteadinessMinimumQuantityForClassification(classification)
 	}
 
 
-// HKCategoryValueSleepAnalysisAsleepValues is a HealthKit function. [Full Topic]
+// HKCategoryValueSleepAnalysisAsleepValues is a HealthKit function.
 //
 // Added in macOS 13.0.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKCategoryValueSleepAnalysisAsleepValues
+
 func HKCategoryValueSleepAnalysisAsleepValues() unsafe.Pointer {
 	return _HKCategoryValueSleepAnalysisAsleepValues()
 	}
 
 
-// Returns the upper bound of the score range for the given GAD-7 risk classification. [Full Topic]
+// Returns the upper bound of the score range for the given GAD-7 risk classification.
+
+// Returns the upper bound of the score range for the given GAD-7 risk classification.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKMaximumScoreForGAD7AssessmentRisk
+
 func HKMaximumScoreForGAD7AssessmentRisk(risk unsafe.Pointer) unsafe.Pointer {
 	return _HKMaximumScoreForGAD7AssessmentRisk(risk)
 	}
 
 
-// Returns the upper bound of the score range for the given PHQ-9 risk classification. [Full Topic]
+// Returns the upper bound of the score range for the given PHQ-9 risk classification.
+
+// Returns the upper bound of the score range for the given PHQ-9 risk classification.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKMaximumScoreForPHQ9AssessmentRisk
+
 func HKMaximumScoreForPHQ9AssessmentRisk(risk unsafe.Pointer) unsafe.Pointer {
 	return _HKMaximumScoreForPHQ9AssessmentRisk(risk)
 	}
 
 
-// Returns the lower bound of the score range for the given GAD-7 risk classification. [Full Topic]
+// Returns the lower bound of the score range for the given GAD-7 risk classification.
+
+// Returns the lower bound of the score range for the given GAD-7 risk classification.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKMinimumScoreForGAD7AssessmentRisk
+
 func HKMinimumScoreForGAD7AssessmentRisk(risk unsafe.Pointer) unsafe.Pointer {
 	return _HKMinimumScoreForGAD7AssessmentRisk(risk)
 	}
 
 
-// Returns the lower bound of the score range for the given PHQ-9 risk classification. [Full Topic]
+// Returns the lower bound of the score range for the given PHQ-9 risk classification.
+
+// Returns the lower bound of the score range for the given PHQ-9 risk classification.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKMinimumScoreForPHQ9AssessmentRisk
+
 func HKMinimumScoreForPHQ9AssessmentRisk(risk unsafe.Pointer) unsafe.Pointer {
 	return _HKMinimumScoreForPHQ9AssessmentRisk(risk)
 	}
 
 
-// HKStateOfMindValenceClassificationForValence is a HealthKit function. [Full Topic]
-//
+// HKStateOfMindValenceClassificationForValence is a HealthKit function.
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKStateOfMindValenceClassificationForValence
+
 func HKStateOfMindValenceClassificationForValence(valence unsafe.Pointer) unsafe.Pointer {
 	return _HKStateOfMindValenceClassificationForValence(valence)
 	}

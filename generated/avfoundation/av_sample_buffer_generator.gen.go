@@ -35,8 +35,13 @@ type ISampleBufferGenerator interface {
 // An object that creates sample buffers.
 //
 // Each request for creation is described in an object. The opaque objects are returned synchronously. If requested, sample data may be loaded asynchronously (depending on file format support).
+
+
+// An object that creates sample buffers.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleBufferGenerator
+
 type SampleBufferGenerator struct {
 	objectivec.Object
 }

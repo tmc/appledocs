@@ -2,12 +2,16 @@
 
 // Package applearchive provides Go bindings for the AppleArchive framework.
 //
-// Perform multithreaded lossless compression of directories, files, and data. [Full Topic]
+// Perform multithreaded lossless compression of directories, files, and data.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to AppleArchive without requiring cgo.
+
+// Perform multithreaded lossless compression of directories, files, and data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppleArchive
+
 package applearchive
 
 import (

@@ -43,8 +43,13 @@ type IAccessibilityCustomAction interface {
 // A custom action to perform on an accessible object.
 //
 // Apps that support custom actions can create instances of this class, specifying the user-readable name of the action, and either a handler closure or the object and selector to use when performing the action. Assistive apps display custom actions in response to specific user cues. For example, VoiceOver lets users access actions quickly using the Actions rotor. After creating an instance of this class, add it to the property of an appropriate accessible object.
+
+
+// A custom action to perform on an accessible object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibilityCustomAction
+
 type AccessibilityCustomAction struct {
 	objectivec.Object
 }
@@ -88,74 +93,86 @@ func NewAccessibilityCustomAction() AccessibilityCustomAction {
 }
 
 
+
 // The closure that handles the execution of the action.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsaccessibilitycustomaction/handler
+
 func (a_ AccessibilityCustomAction) Handler() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("handler"))
 	return rv
 }
 
 
-// SetHandler sets the value of the handler property.
 // The closure that handles the execution of the action.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsaccessibilitycustomaction/handler
+
 func (a_ AccessibilityCustomAction) SetHandler(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setHandler:"), value)
 }
 
+
 // A localized name that describes the action.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsaccessibilitycustomaction/name
+
 func (a_ AccessibilityCustomAction) Name() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("name"))
 	return rv
 }
 
 
-// SetName sets the value of the name property.
 // A localized name that describes the action.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsaccessibilitycustomaction/name
+
 func (a_ AccessibilityCustomAction) SetName(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
+
 // The method to call on the target to perform the action.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsaccessibilitycustomaction/selector
+
 func (a_ AccessibilityCustomAction) Selector() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("selector"))
 	return rv
 }
 
 
-// SetSelector sets the value of the selector property.
 // The method to call on the target to perform the action.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsaccessibilitycustomaction/selector
+
 func (a_ AccessibilityCustomAction) SetSelector(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setSelector:"), value)
 }
 
+
 // The object that performs the action through a selector.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsaccessibilitycustomaction/target
+
 func (a_ AccessibilityCustomAction) Target() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("target"))
 	return rv
 }
 
 
-// SetTarget sets the value of the target property.
 // The object that performs the action through a selector.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsaccessibilitycustomaction/target
+
 func (a_ AccessibilityCustomAction) SetTarget(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setTarget:"), value)
 }

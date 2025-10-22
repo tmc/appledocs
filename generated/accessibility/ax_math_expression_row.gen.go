@@ -32,8 +32,11 @@ type IAXMathExpressionRow interface {
 	Expressions() []AXMathExpression
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionRow
+
 type AXMathExpressionRow struct {
 	AXMathExpression
 }
@@ -77,8 +80,11 @@ func NewAXMathExpressionRow() AXMathExpressionRow {
 }
 
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionRow/init(expressions:)
+
 func NewAXMathExpressionRowWithExpressions(expressions []AXMathExpression) AXMathExpressionRow {
 	instance := getAXMathExpressionRowClass().Alloc()
 	rv := objc.Send[AXMathExpressionRow](instance.ID, objc.Sel("initWithExpressions:"), expressions)
@@ -87,8 +93,10 @@ func NewAXMathExpressionRowWithExpressions(expressions []AXMathExpression) AXMat
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionRow/expressions
+
 func (a_ AXMathExpressionRow) Expressions() []AXMathExpression {
 	rv := objc.Send[[]AXMathExpression](a_.ID, objc.Sel("expressions"))
 	return rv

@@ -45,8 +45,13 @@ type IAudioInputNode interface {
 // An object that connects to the system’s audio input.
 //
 // This node connects to the system’s audio input when rendering to or from an audio device. In manual rendering mode, this node supplies input data to the engine. This audio node has one element. The format of the input scope reflects: The audio hardware sample rate and channel count when it connects to hardware. The format of the PCM audio data that the node supplies to the engine in manual rendering mode. For more information, see When rendering from an audio device, the input node doesn’t support format conversion. In this case, the format of the output scope must be the same as the input and the formats for all nodes connected to the input chain. In manual rendering mode, the format of the output scope is initially the same as the input, but you may set it to a different format, which converts the node.
+
+
+// An object that connects to the system’s audio input.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioInputNode
+
 type AudioInputNode struct {
 	AudioIONode
 }
@@ -92,100 +97,119 @@ func NewAudioInputNode() AudioInputNode {
 }
 
 
+
+
 // Supplies the data through the input node to the engine while operating in the manual rendering mode.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioInputNode/setManualRenderingInputPCMFormat(_:inputBlock:)
+
 func (a_ AudioInputNode) SetManualRenderingInputPCMFormatInputBlock(format AVAudioFormat, block unsafe.Pointer) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("setManualRenderingInputPCMFormat:inputBlock:"), format, block)
 	return rv
 }
 
+
 // A Boolean that indicates whether the node bypasses all microphone uplink processing of the voice-processing unit.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioInputNode/isVoiceProcessingBypassed
+
 func (a_ AudioInputNode) VoiceProcessingBypassed() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("voiceProcessingBypassed"))
 	return rv
 }
 
 
-// SetVoiceProcessingBypassed sets the value of the voiceProcessingBypassed property.
 // A Boolean that indicates whether the node bypasses all microphone uplink processing of the voice-processing unit.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioInputNode/isVoiceProcessingBypassed
+
 func (a_ AudioInputNode) SetVoiceProcessingBypassed(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setVoiceProcessingBypassed:"), value)
 }
 
+
 // A Boolean that indicates whether automatic gain control on the processed microphone uplink signal is active.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioinputnode/isvoiceprocessingagcenabled
+
 func (a_ AudioInputNode) IsVoiceProcessingAGCEnabled() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isVoiceProcessingAGCEnabled"))
 	return rv
 }
 
 
-// SetIsVoiceProcessingAGCEnabled sets the value of the isVoiceProcessingAGCEnabled property.
 // A Boolean that indicates whether automatic gain control on the processed microphone uplink signal is active.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioinputnode/isvoiceprocessingagcenabled
+
 func (a_ AudioInputNode) SetIsVoiceProcessingAGCEnabled(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsVoiceProcessingAGCEnabled:"), value)
 }
 
+
 // A Boolean that indicates whether the node bypasses all microphone uplink processing of the voice-processing unit.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioinputnode/isvoiceprocessingbypassed
+
 func (a_ AudioInputNode) IsVoiceProcessingBypassed() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isVoiceProcessingBypassed"))
 	return rv
 }
 
 
-// SetIsVoiceProcessingBypassed sets the value of the isVoiceProcessingBypassed property.
 // A Boolean that indicates whether the node bypasses all microphone uplink processing of the voice-processing unit.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioinputnode/isvoiceprocessingbypassed
+
 func (a_ AudioInputNode) SetIsVoiceProcessingBypassed(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsVoiceProcessingBypassed:"), value)
 }
 
+
 // A Boolean that indicates whether the input of the voice processing unit is in a muted state.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioinputnode/isvoiceprocessinginputmuted
+
 func (a_ AudioInputNode) IsVoiceProcessingInputMuted() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isVoiceProcessingInputMuted"))
 	return rv
 }
 
 
-// SetIsVoiceProcessingInputMuted sets the value of the isVoiceProcessingInputMuted property.
 // A Boolean that indicates whether the input of the voice processing unit is in a muted state.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioinputnode/isvoiceprocessinginputmuted
+
 func (a_ AudioInputNode) SetIsVoiceProcessingInputMuted(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsVoiceProcessingInputMuted:"), value)
 }
 
+
 // The ducking configuration of nonvoice audio.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioinputnode/voiceprocessingotheraudioduckingconfiguration
+
 func (a_ AudioInputNode) VoiceProcessingOtherAudioDuckingConfiguration() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("voiceProcessingOtherAudioDuckingConfiguration"))
 	return rv
 }
 
 
-// SetVoiceProcessingOtherAudioDuckingConfiguration sets the value of the voiceProcessingOtherAudioDuckingConfiguration property.
 // The ducking configuration of nonvoice audio.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioinputnode/voiceprocessingotheraudioduckingconfiguration
+
 func (a_ AudioInputNode) SetVoiceProcessingOtherAudioDuckingConfiguration(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setVoiceProcessingOtherAudioDuckingConfiguration:"), value)
 }

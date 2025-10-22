@@ -2,12 +2,16 @@
 
 // Package distributed provides Go bindings for the Distributed framework.
 //
-// Build systems that run distributed code across multiple processes and devices. [Full Topic]
+// Build systems that run distributed code across multiple processes and devices.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to Distributed without requiring cgo.
+
+// Build systems that run distributed code across multiple processes and devices.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Distributed
+
 package distributed
 
 import (

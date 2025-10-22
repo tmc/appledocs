@@ -31,8 +31,11 @@ type IHKMedicationDoseEventType interface {
 	IHKSampleType
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKMedicationDoseEventType
+
 type HKMedicationDoseEventType struct {
 	HKSampleType
 }

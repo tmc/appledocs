@@ -35,8 +35,13 @@ type IHKWorkoutRoute interface {
 // A sample that contains a workout’s route data.
 //
 // When creating a workout route, you do not instantiate the objects directly. Instead, create a object, and provide it with location data throughout the workout. After the workout ends, call the route builder’s method to create the route. For detailed instructions, see . The route’s location data is stored as an array of objects. Because the route may contain a large number of location objects, use a object to asynchronously read the location data from the HealthKit store in batches. For more information, see .
+
+
+// A sample that contains a workout’s route data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKWorkoutRoute
+
 type HKWorkoutRoute struct {
 	HKSeriesSample
 }
@@ -82,9 +87,12 @@ func NewHKWorkoutRoute() HKWorkoutRoute {
 }
 
 
+
 // A series sample containing location data that defines the route the user took during a workout.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutroutetypeidentifier
+
 func (h_ HKWorkoutRoute) HKWorkoutRouteTypeIdentifier() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKWorkoutRouteTypeIdentifier"))
 	return rv

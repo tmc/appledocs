@@ -33,8 +33,13 @@ type ICKSyncEnginePendingZoneSave interface {
 }
 
 // An object that describes an unsent record zone modification.
+
+
+// An object that describes an unsent record zone modification.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEnginePendingZoneSave
+
 type CKSyncEnginePendingZoneSave struct {
 	CKSyncEnginePendingDatabaseChange
 }
@@ -84,7 +89,9 @@ func NewCKSyncEnginePendingZoneSave() CKSyncEnginePendingZoneSave {
 
 // Creates a pending zone save for the specified record zone.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEnginePendingZoneSave/initWithZone:
+
 func NewCKSyncEnginePendingZoneSaveWithZone(zone ICKRecordZone) CKSyncEnginePendingZoneSave {
 	instance := getCKSyncEnginePendingZoneSaveClass().Alloc()
 	rv := objc.Send[CKSyncEnginePendingZoneSave](instance.ID, objc.Sel("initWithZone:"), zone)
@@ -93,9 +100,12 @@ func NewCKSyncEnginePendingZoneSaveWithZone(zone ICKRecordZone) CKSyncEnginePend
 }
 
 
+
 // The record zone to save.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEnginePendingZoneSave/zone
+
 func (c_ CKSyncEnginePendingZoneSave) Zone() CKRecordZone {
 	rv := objc.Send[CKRecordZone](c_.ID, objc.Sel("zone"))
 	return rv

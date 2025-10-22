@@ -42,8 +42,13 @@ type ISegmentedCell interface {
 // An object implements the appearance and behavior of a horizontal button divided into multiple segments. This class is used in conjunction with the class to implement a segmented control.
 //
 // Use the methods of to customize the attributes of a segmented control. To customize the appearance of individual segments, you can also subclass and override the method.
+
+
+// An object implements the appearance and behavior of a horizontal button divided into multiple segments. This class is used in conjunction with the class to implement a segmented control.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedCell
+
 type SegmentedCell struct {
 	ActionCell
 }
@@ -89,74 +94,86 @@ func NewSegmentedCell() SegmentedCell {
 }
 
 
+
 // The number of segments in the segmented control.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcell/segmentcount
+
 func (s_ SegmentedCell) SegmentCount() int {
 	rv := objc.Send[int](s_.ID, objc.Sel("segmentCount"))
 	return rv
 }
 
 
-// SetSegmentCount sets the value of the segmentCount property.
 // The number of segments in the segmented control.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcell/segmentcount
+
 func (s_ SegmentedCell) SetSegmentCount(value int) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSegmentCount:"), value)
 }
 
+
 // The visual style used to display the segmented control.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcell/segmentstyle
+
 func (s_ SegmentedCell) SegmentStyle() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("segmentStyle"))
 	return rv
 }
 
 
-// SetSegmentStyle sets the value of the segmentStyle property.
 // The visual style used to display the segmented control.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcell/segmentstyle
+
 func (s_ SegmentedCell) SetSegmentStyle(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSegmentStyle:"), value)
 }
 
+
 // The index of the selected segment of the control, or
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcell/selectedsegment
+
 func (s_ SegmentedCell) SelectedSegment() int {
 	rv := objc.Send[int](s_.ID, objc.Sel("selectedSegment"))
 	return rv
 }
 
 
-// SetSelectedSegment sets the value of the selectedSegment property.
 // The index of the selected segment of the control, or
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcell/selectedsegment
+
 func (s_ SegmentedCell) SetSelectedSegment(value int) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSelectedSegment:"), value)
 }
 
+
 // The tracking mode used for the segments of the control.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcell/trackingmode
+
 func (s_ SegmentedCell) TrackingMode() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("trackingMode"))
 	return rv
 }
 
 
-// SetTrackingMode sets the value of the trackingMode property.
 // The tracking mode used for the segments of the control.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcell/trackingmode
+
 func (s_ SegmentedCell) SetTrackingMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setTrackingMode:"), value)
 }

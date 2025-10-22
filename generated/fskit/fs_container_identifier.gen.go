@@ -35,8 +35,13 @@ type IFSContainerIdentifier interface {
 // A type that identifies a container.
 //
 // The identifier is either a UUID or a UUID with additional differentiating bytes. Some network protocols evaluate access based on a user ID when connecting. In this situation, when a file server receives multiple client connections with different user IDs, the server provides different file hierarchies to each. For such systems, represent the container identifier as the UUID associated with the server, followed by four or eight bytes to differentiate connections.
+
+
+// A type that identifies a container.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSContainerIdentifier
+
 type FSContainerIdentifier struct {
 	FSEntityIdentifier
 }
@@ -82,9 +87,12 @@ func NewFSContainerIdentifier() FSContainerIdentifier {
 }
 
 
+
 // The volume identifier associated with the container.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSContainerIdentifier/volumeIdentifier
+
 func (f_ FSContainerIdentifier) VolumeIdentifier() FSVolumeIdentifier {
 	rv := objc.Send[FSVolumeIdentifier](f_.ID, objc.Sel("volumeIdentifier"))
 	return rv

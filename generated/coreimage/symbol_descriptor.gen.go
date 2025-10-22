@@ -32,8 +32,11 @@ type IsymbolDescriptor interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIQRCodeFeature/symbolDescriptor-c.ivar
+
 type symbolDescriptor struct {
 	objectivec.Object
 }

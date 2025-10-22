@@ -30,7 +30,16 @@ type _FileCoordinatorClass struct {
 // An interface definition for the [FileCoordinator] class.
 type IFileCoordinator interface {
 	objectivec.IObject
+	Cancel()
+	CoordinateReadingItemAtURLOptionsErrorByAccessor(url IURL, options IFileCoordinatorReadingOptions, outError IError, reader unsafe.Pointer)
+	CoordinateReadingItemAtURLOptionsWritingItemAtURLOptionsErrorByAccessor(readingURL IURL, readingOptions IFileCoordinatorReadingOptions, writingURL IURL, writingOptions IFileCoordinatorWritingOptions, outError IError, readerWriter unsafe.Pointer)
 	CoordinateAccessWithIntentsQueueByAccessor(intents []FileAccessIntent, queue IOperationQueue, accessor unsafe.Pointer)
+	CoordinateWritingItemAtURLOptionsErrorByAccessor(url IURL, options IFileCoordinatorWritingOptions, outError IError, writer unsafe.Pointer)
+	CoordinateWritingItemAtURLOptionsWritingItemAtURLOptionsErrorByAccessor(url1 IURL, options1 IFileCoordinatorWritingOptions, url2 IURL, options2 IFileCoordinatorWritingOptions, outError IError, writer unsafe.Pointer)
+	ItemAtURLDidChangeUbiquityAttributes(url IURL, attributes unsafe.Pointer)
+	ItemAtURLDidMoveToURL(oldURL IURL, newURL IURL)
+	ItemAtURLWillMoveToURL(oldURL IURL, newURL IURL)
+	PrepareForReadingItemsAtURLsOptionsWritingItemsAtURLsOptionsErrorByAccessor(readingURLs []URL, readingOptions IFileCoordinatorReadingOptions, writingURLs []URL, writingOptions IFileCoordinatorWritingOptions, outError IError, batchAccessor unsafe.Pointer)
 	PurposeIdentifier() string
 	SetPurposeIdentifier(value string)
 	NSUserCancelledError() int
@@ -106,6 +115,16 @@ func NewFileCoordinatorWithFilePresenter(filePresenterOrNil objectivec.IObject) 
 
 
 
+// Registers the specified file presenter object so that it can receive notifications.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileCoordinator/addFilePresenter(_:)
+
+func (fc _FileCoordinatorClass) AddFilePresenter(filePresenter objectivec.IObject) {
+	objc.Send[objc.ID](objc.ID(fc.class), objc.Sel("addFilePresenter:"), filePresenter)
+}
+
+
 // Unregisters the specified file presenter object.
 //
 // [Full Topic]
@@ -127,6 +146,39 @@ func (fc _FileCoordinatorClass) FilePresenters() []objc.ID {
 }
 
 
+// Cancels any active file coordination calls.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileCoordinator/cancel()
+
+func (f_ FileCoordinator) Cancel() {
+	objc.Send[objc.ID](f_.ID, objc.Sel("cancel"))
+}
+
+
+
+// Initiates a read operation on a single file or directory using the specified options.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileCoordinator/coordinate(readingItemAt:options:error:byAccessor:)
+
+func (f_ FileCoordinator) CoordinateReadingItemAtURLOptionsErrorByAccessor(url IURL, options IFileCoordinatorReadingOptions, outError IError, reader unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("coordinateReadingItemAtURL:options:error:byAccessor:"), url, options, outError, reader)
+}
+
+
+
+// Initiates a read operation that contains a follow-up write operation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileCoordinator/coordinate(readingItemAt:options:writingItemAt:options:error:byAccessor:)
+
+func (f_ FileCoordinator) CoordinateReadingItemAtURLOptionsWritingItemAtURLOptionsErrorByAccessor(readingURL IURL, readingOptions IFileCoordinatorReadingOptions, writingURL IURL, writingOptions IFileCoordinatorWritingOptions, outError IError, readerWriter unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("coordinateReadingItemAtURL:options:writingItemAtURL:options:error:byAccessor:"), readingURL, readingOptions, writingURL, writingOptions, outError, readerWriter)
+}
+
+
+
 // Performs a number of coordinated-read or -write operations asynchronously.
 //
 // [Full Topic]
@@ -134,6 +186,72 @@ func (fc _FileCoordinatorClass) FilePresenters() []objc.ID {
 
 func (f_ FileCoordinator) CoordinateAccessWithIntentsQueueByAccessor(intents []FileAccessIntent, queue IOperationQueue, accessor unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("coordinateAccessWithIntents:queue:byAccessor:"), intents, queue, accessor)
+}
+
+
+
+// Initiates a write operation on a single file or directory using the specified options.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileCoordinator/coordinate(writingItemAt:options:error:byAccessor:)
+
+func (f_ FileCoordinator) CoordinateWritingItemAtURLOptionsErrorByAccessor(url IURL, options IFileCoordinatorWritingOptions, outError IError, writer unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("coordinateWritingItemAtURL:options:error:byAccessor:"), url, options, outError, writer)
+}
+
+
+
+// Initiates a write operation that involves a secondary write operation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileCoordinator/coordinate(writingItemAt:options:writingItemAt:options:error:byAccessor:)
+
+func (f_ FileCoordinator) CoordinateWritingItemAtURLOptionsWritingItemAtURLOptionsErrorByAccessor(url1 IURL, options1 IFileCoordinatorWritingOptions, url2 IURL, options2 IFileCoordinatorWritingOptions, outError IError, writer unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("coordinateWritingItemAtURL:options:writingItemAtURL:options:error:byAccessor:"), url1, options1, url2, options2, outError, writer)
+}
+
+
+
+// Tells observing file providers that the item’s ubiquity attributes have changed.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileCoordinator/item(at:didChangeUbiquityAttributes:)
+
+func (f_ FileCoordinator) ItemAtURLDidChangeUbiquityAttributes(url IURL, attributes unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("itemAtURL:didChangeUbiquityAttributes:"), url, attributes)
+}
+
+
+
+// Notifies relevant file presenters that the location of a file or directory changed.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileCoordinator/item(at:didMoveTo:)
+
+func (f_ FileCoordinator) ItemAtURLDidMoveToURL(oldURL IURL, newURL IURL) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("itemAtURL:didMoveToURL:"), oldURL, newURL)
+}
+
+
+
+// Announces that your app is moving a file to a new URL.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileCoordinator/item(at:willMoveTo:)
+
+func (f_ FileCoordinator) ItemAtURLWillMoveToURL(oldURL IURL, newURL IURL) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("itemAtURL:willMoveToURL:"), oldURL, newURL)
+}
+
+
+
+// Prepare to read or write from multiple files in a single batch operation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileCoordinator/prepare(forReadingItemsAt:options:writingItemsAt:options:error:byAccessor:)
+
+func (f_ FileCoordinator) PrepareForReadingItemsAtURLsOptionsWritingItemsAtURLsOptionsErrorByAccessor(readingURLs []URL, readingOptions IFileCoordinatorReadingOptions, writingURLs []URL, writingOptions IFileCoordinatorWritingOptions, outError IError, batchAccessor unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("prepareForReadingItemsAtURLs:options:writingItemsAtURLs:options:error:byAccessor:"), readingURLs, readingOptions, writingURLs, writingOptions, outError, batchAccessor)
 }
 
 
@@ -151,7 +269,7 @@ func (f_ FileCoordinator) FilePresenters() []objc.ID {
 // A string that uniquely identifies the file access that was performed by this file coordinator.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsfilecoordinator/purposeidentifier
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileCoordinator/purposeIdentifier
 
 func (f_ FileCoordinator) PurposeIdentifier() string {
 	rv := objc.Send[string](f_.ID, objc.Sel("purposeIdentifier"))
@@ -162,7 +280,7 @@ func (f_ FileCoordinator) PurposeIdentifier() string {
 // A string that uniquely identifies the file access that was performed by this file coordinator.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsfilecoordinator/purposeidentifier
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileCoordinator/purposeIdentifier
 
 func (f_ FileCoordinator) SetPurposeIdentifier(value string) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setPurposeIdentifier:"), objc.String(value))

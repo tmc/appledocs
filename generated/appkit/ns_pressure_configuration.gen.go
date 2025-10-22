@@ -38,8 +38,13 @@ type IPressureConfiguration interface {
 // An encapsulation of the behavior and progression of a Force Touch trackpad as it responds to specific events.
 //
 // Use an object to configure the behavior and progression of a Force Touch trackpad when it responds to a mouse drag or pressure event sequence. Pressure configurations are assigned to views ( ) and gesture recognizers ( ).
+
+
+// An encapsulation of the behavior and progression of a Force Touch trackpad as it responds to specific events.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPressureConfiguration
+
 type PressureConfiguration struct {
 	objectivec.Object
 }
@@ -83,27 +88,34 @@ func NewPressureConfiguration() PressureConfiguration {
 }
 
 
+
+
 // Changes the pressure configuration of the trackpad to the initialized pressure configuration.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPressureConfiguration/set()
+
 func (p_ PressureConfiguration) Set() {
 	objc.Send[objc.ID](p_.ID, objc.Sel("set"))
 }
 
+
 // The pressure behavior of the pressure configuration object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspressureconfiguration/pressurebehavior
+
 func (p_ PressureConfiguration) PressureBehavior() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("pressureBehavior"))
 	return rv
 }
 
 
-// SetPressureBehavior sets the value of the pressureBehavior property.
 // The pressure behavior of the pressure configuration object.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspressureconfiguration/pressurebehavior
+
 func (p_ PressureConfiguration) SetPressureBehavior(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPressureBehavior:"), value)
 }

@@ -33,8 +33,13 @@ type IModelStructureProgramValueType interface {
 }
 
 // A class representing the type of a value or a variable in the Program.
+
+
+// A class representing the type of a value or a variable in the Program.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureProgramValueType
+
 type ModelStructureProgramValueType struct {
 	objectivec.Object
 }

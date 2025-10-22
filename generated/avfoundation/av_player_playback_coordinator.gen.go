@@ -41,8 +41,13 @@ type IPlayerPlaybackCoordinator interface {
 // A playback coordinator subclass that coordinates the playback of player objects in a connected group.
 //
 // This object coordinates the state of objects. You don’t create an instance of the coordinator, but instead access the player’s instance through its property. Use the standard interfaces of to control playback in your app. The coordinator automatically intercepts calls that affect transport control state, like , , and , and propagates them to other participants in the group when appropriate. Similarly, the coordinator observes rate and time changes from other participants and imposes them on the player. If this occurs, the player item posts notifications that identify the originating participant. This object may automatically suspend coordinated playback when a system state change causes the player’s value to change from a playing state to a waiting or paused state. A suspension that begins because the player enters a waiting state due to an event like a network stall or interstitial playback, ends automatically when the player finishes waiting. However, if the system pauses playback due to a system state change, such as an audio session interruption, the suspension ends only after the player’s rate changes back to nonzero.
+
+
+// A playback coordinator subclass that coordinates the playback of player objects in a connected group.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerPlaybackCoordinator
+
 type PlayerPlaybackCoordinator struct {
 	PlaybackCoordinator
 }
@@ -88,62 +93,78 @@ func NewPlayerPlaybackCoordinator() PlayerPlaybackCoordinator {
 }
 
 
+
+
 // Connects the playback coordinator to the coordination medium
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerPlaybackCoordinator/coordinate(using:)
+
 func (p_ PlayerPlaybackCoordinator) CoordinateUsingCoordinationMediumError(coordinationMedium unsafe.Pointer, outError unsafe.Pointer) bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("coordinateUsingCoordinationMedium:error:"), coordinationMedium, outError)
 	return rv
 }
 
+
 // A delegate object for the playback coordinator.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerPlaybackCoordinator/delegate
+
 func (p_ PlayerPlaybackCoordinator) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](p_.ID, objc.Sel("delegate"))
 	return rv
 }
 
 
-// SetDelegate sets the value of the delegate property.
 // A delegate object for the playback coordinator.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerPlaybackCoordinator/delegate
+
 func (p_ PlayerPlaybackCoordinator) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDelegate:"), value)
 }
 
+
 // The AVPlaybackCoordinationMedium this playback coordinator is connected to.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerPlaybackCoordinator/playbackCoordinationMedium
+
 func (p_ PlayerPlaybackCoordinator) PlaybackCoordinationMedium() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("playbackCoordinationMedium"))
 	return rv
 }
 
+
 // A player that participates in coordinated playback.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerPlaybackCoordinator/player
+
 func (p_ PlayerPlaybackCoordinator) Player() AVPlayer {
 	rv := objc.Send[AVPlayer](p_.ID, objc.Sel("player"))
 	return rv
 }
 
+
 // A value that indicates whether playback is in progress, paused indefinitely, or waiting for network conditions to improve.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayer/timecontrolstatus-swift.property
+
 func (p_ PlayerPlaybackCoordinator) TimeControlStatus() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("timeControlStatus"))
 	return rv
 }
 
 
-// SetTimeControlStatus sets the value of the timeControlStatus property.
 // A value that indicates whether playback is in progress, paused indefinitely, or waiting for network conditions to improve.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayer/timecontrolstatus-swift.property
+
 func (p_ PlayerPlaybackCoordinator) SetTimeControlStatus(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setTimeControlStatus:"), value)
 }

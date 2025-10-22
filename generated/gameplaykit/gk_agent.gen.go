@@ -48,8 +48,13 @@ type IAgent interface {
 // A component that moves a game entity according to a set of goals and realistic constraints.
 //
 // The class is abstract, defining only the general functionality of an agent—its movement constraints and the property containing its goals ( objects). To implement agent-based gameplay, choose a concrete subclass that fits your game. Use the class for 2D game worlds, or for 3D games where all gameplay-relevant movement is constrained to two dimensions. Use the class for game worlds that allow movement in three dimensions. To learn more about the agent simulation, see in .
+
+
+// A component that moves a game entity according to a set of goals and realistic constraints.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent
+
 type Agent struct {
 	Component
 }
@@ -95,128 +100,149 @@ func NewAgent() Agent {
 }
 
 
+
 // A weighted collection of goals that influence the agent’s movement.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent/behavior
+
 func (a_ Agent) Behavior() GKBehavior {
 	rv := objc.Send[GKBehavior](a_.ID, objc.Sel("behavior"))
 	return rv
 }
 
 
-// SetBehavior sets the value of the behavior property.
 // A weighted collection of goals that influence the agent’s movement.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent/behavior
+
 func (a_ Agent) SetBehavior(value GKBehavior) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setBehavior:"), value)
 }
 
+
 // An object that prepares for or responds to updates in the agent simulation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent/delegate
+
 func (a_ Agent) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](a_.ID, objc.Sel("delegate"))
 	return rv
 }
 
 
-// SetDelegate sets the value of the delegate property.
 // An object that prepares for or responds to updates in the agent simulation.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent/delegate
+
 func (a_ Agent) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDelegate:"), value)
 }
 
+
 // The resistance of the agent to changes in speed or direction.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent/mass
+
 func (a_ Agent) Mass() float32 {
 	rv := objc.Send[float32](a_.ID, objc.Sel("mass"))
 	return rv
 }
 
 
-// SetMass sets the value of the mass property.
 // The resistance of the agent to changes in speed or direction.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent/mass
+
 func (a_ Agent) SetMass(value float32) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMass:"), value)
 }
 
+
 // The upper limit to changes in the agent’s speed or direction.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent/maxAcceleration
+
 func (a_ Agent) MaxAcceleration() float32 {
 	rv := objc.Send[float32](a_.ID, objc.Sel("maxAcceleration"))
 	return rv
 }
 
 
-// SetMaxAcceleration sets the value of the maxAcceleration property.
 // The upper limit to changes in the agent’s speed or direction.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent/maxAcceleration
+
 func (a_ Agent) SetMaxAcceleration(value float32) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMaxAcceleration:"), value)
 }
 
+
 // The agent’s maximum forward speed, in units per second.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent/maxSpeed
+
 func (a_ Agent) MaxSpeed() float32 {
 	rv := objc.Send[float32](a_.ID, objc.Sel("maxSpeed"))
 	return rv
 }
 
 
-// SetMaxSpeed sets the value of the maxSpeed property.
 // The agent’s maximum forward speed, in units per second.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent/maxSpeed
+
 func (a_ Agent) SetMaxSpeed(value float32) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMaxSpeed:"), value)
 }
 
+
 // The agent’s radius.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent/radius
+
 func (a_ Agent) Radius() float32 {
 	rv := objc.Send[float32](a_.ID, objc.Sel("radius"))
 	return rv
 }
 
 
-// SetRadius sets the value of the radius property.
 // The agent’s radius.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent/radius
+
 func (a_ Agent) SetRadius(value float32) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setRadius:"), value)
 }
 
+
 // The agent’s current forward speed, in units per second.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent/speed
+
 func (a_ Agent) Speed() float32 {
 	rv := objc.Send[float32](a_.ID, objc.Sel("speed"))
 	return rv
 }
 
 
-// SetSpeed sets the value of the speed property.
 // The agent’s current forward speed, in units per second.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent/speed
+
 func (a_ Agent) SetSpeed(value float32) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setSpeed:"), value)
 }

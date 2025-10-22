@@ -37,8 +37,13 @@ type IDDDeviceEvent interface {
 // An object that provides a device or communicates its change in status.
 //
 // The extension creates and configures an instance of this class to represent a moment of interest in the device discovery life cycle. The event’s ( ) describes a particular status. For example, when the extension discovers a device of interest, it instantiates an instance of this class with the type . Then, the extension provides the discovered device to the system using for eventual display in the route picker view ( ).
+
+
+// An object that provides a device or communicates its change in status.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDeviceEvent
+
 type DDDeviceEvent struct {
 	objectivec.Object
 }
@@ -86,7 +91,9 @@ func NewDDDeviceEvent() DDDeviceEvent {
 
 // Creates an event object that conveys status for a discovered device of interest.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDeviceEvent/init(eventType:device:)
+
 func NewDDDeviceEventWithEventTypeDevice(type_ DDEventType, device IDDDevice) DDDeviceEvent {
 	instance := getDDDeviceEventClass().Alloc()
 	rv := objc.Send[DDDeviceEvent](instance.ID, objc.Sel("initWithEventType:device:"), type_, device)
@@ -95,17 +102,23 @@ func NewDDDeviceEventWithEventTypeDevice(type_ DDEventType, device IDDDevice) DD
 }
 
 
+
 // An object that describes a third-party media receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDeviceEvent/device
+
 func (d_ DDDeviceEvent) Device() DDDevice {
 	rv := objc.Send[DDDevice](d_.ID, objc.Sel("device"))
 	return rv
 }
 
+
 // A type for the event that describes the discovery status.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDeviceEvent/eventType-swift.property
+
 func (d_ DDDeviceEvent) EventType() DDEventType {
 	rv := objc.Send[DDEventType](d_.ID, objc.Sel("eventType"))
 	return rv

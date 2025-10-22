@@ -35,8 +35,13 @@ type IMigrationStage interface {
 }
 
 // An abstract base class for describing an individual stage of a migration.
+
+
+// An abstract base class for describing an individual stage of a migration.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMigrationStage
+
 type MigrationStage struct {
 	objectivec.Object
 }
@@ -80,20 +85,23 @@ func NewMigrationStage() MigrationStage {
 }
 
 
+
 // The textual description of the migration stage’s purpose.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMigrationStage/label
+
 func (m_ MigrationStage) Label() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("label"))
 	return rv
 }
 
 
-// SetLabel sets the value of the label property.
 // The textual description of the migration stage’s purpose.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMigrationStage/label
+
 func (m_ MigrationStage) SetLabel(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), objc.String(value))
 }

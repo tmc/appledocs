@@ -34,8 +34,13 @@ type ITableHeaderCell interface {
 // An object that a table header view uses to draw the content of the column headers.
 //
 // Subclasses of the class can override the , , and methods to change the way headers appear. This specific subclass is responsible for drawing the sort indicators. See the class specification for information on overriding these methods. See the and for more information.
+
+
+// An object that a table header view uses to draw the content of the column headers.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableHeaderCell
+
 type TableHeaderCell struct {
 	TextFieldCell
 }

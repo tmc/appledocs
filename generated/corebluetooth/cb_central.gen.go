@@ -35,8 +35,13 @@ type ICBCentral interface {
 // A remote device connected to a local app, which is acting as a peripheral.
 //
 // The class represents remote central devices (or ) that have connected to an app implementing the peripheral role on a local device. Remote centrals use universally unique identifiers (UUIDs), represented by objects, to identify themselves.
+
+
+// A remote device connected to a local app, which is acting as a peripheral.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBCentral
+
 type CBCentral struct {
 	CBPeer
 }
@@ -82,9 +87,12 @@ func NewCBCentral() CBCentral {
 }
 
 
+
 // The maximum amount of data, in bytes, that the central can receive in a single notification or indication.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBCentral/maximumUpdateValueLength
+
 func (c_ CBCentral) MaximumUpdateValueLength() uint {
 	rv := objc.Send[uint](c_.ID, objc.Sel("maximumUpdateValueLength"))
 	return rv

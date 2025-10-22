@@ -40,8 +40,13 @@ type IEKSource interface {
 // An abstract superclass that represents the account a calendar belongs to.
 //
 // You do not create instances of this class; instead, you retrieve objects from an object. Use the sources property to get all the objects for an event store, and use the methods in this class to access properties of the source object.
+
+
+// An abstract superclass that represents the account a calendar belongs to.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKSource
+
 type EKSource struct {
 	EKObject
 }
@@ -87,48 +92,66 @@ func NewEKSource() EKSource {
 }
 
 
+
+
 // Returns the calendars that belong to this source object that support a particular entity type.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKSource/calendars(for:)
+
 func (e_ EKSource) CalendarsForEntityType(entityType EKEntityType) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("calendarsForEntityType:"), entityType)
 	return rv
 }
 
+
 // The calendars that belong to this source object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKSource/calendars
+
 func (e_ EKSource) Calendars() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("calendars"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKSource/isDelegate
+
 func (e_ EKSource) IsDelegate() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("isDelegate"))
 	return rv
 }
 
+
 // A unique identifier for the source object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKSource/sourceIdentifier
+
 func (e_ EKSource) SourceIdentifier() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("sourceIdentifier"))
 	return rv
 }
 
+
 // The type of this source object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKSource/sourceType
+
 func (e_ EKSource) SourceType() EKSourceType {
 	rv := objc.Send[EKSourceType](e_.ID, objc.Sel("sourceType"))
 	return rv
 }
 
+
 // The name of this source object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKSource/title
+
 func (e_ EKSource) Title() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("title"))
 	return rv

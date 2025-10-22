@@ -37,8 +37,13 @@ type IQueuePlayer interface {
 // An object that plays a sequence of player items.
 //
 // Use an instance of this class to manage a queue of player items.
+
+
+// An object that plays a sequence of player items.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVQueuePlayer
+
 type QueuePlayer struct {
 	Player
 }
@@ -88,7 +93,9 @@ func NewQueuePlayer() QueuePlayer {
 
 // Creates an object that plays a queue of items.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVQueuePlayer/init(items:)
+
 func NewQueuePlayerWithItems(items []PlayerItem) QueuePlayer {
 	instance := getQueuePlayerClass().Alloc()
 	rv := objc.Send[QueuePlayer](instance.ID, objc.Sel("initWithItems:"), items)
@@ -97,32 +104,47 @@ func NewQueuePlayerWithItems(items []PlayerItem) QueuePlayer {
 }
 
 
+
 // Returns an object that plays a queue of items.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVQueuePlayer/queuePlayerWithItems:
+
 func (qc _QueuePlayerClass) QueuePlayerWithItems(items []PlayerItem) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(qc.class), objc.Sel("queuePlayerWithItems:"), items)
 	return rv
 }
 
+
+
 // Returns an array of the currently enqueued items.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVQueuePlayer/items()
+
 func (q_ QueuePlayer) Items() []PlayerItem {
 	rv := objc.Send[[]PlayerItem](q_.ID, objc.Sel("items"))
 	return rv
 }
 
+
+
 // Removes a given player item from the queue.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVQueuePlayer/remove(_:)
+
 func (q_ QueuePlayer) RemoveItem(item IAVPlayerItem) {
 	objc.Send[objc.ID](q_.ID, objc.Sel("removeItem:"), item)
 }
 
+
+
 // Removes all player items from the queue.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVQueuePlayer/removeAllItems()
+
 func (q_ QueuePlayer) RemoveAllItems() {
 	objc.Send[objc.ID](q_.ID, objc.Sel("removeAllItems"))
 }

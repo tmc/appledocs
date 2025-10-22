@@ -44,8 +44,13 @@ type IDisplayManager interface {
 // A tvOS management object that controls whether a TV switches modes to match the video’s native mode.
 //
 // If you set the display manager’s , when a user enables a Match Content setting, the TV attempts to change modes to match the currently playing video’s native display criteria.
+
+
+// A tvOS management object that controls whether a TV switches modes to match the video’s native mode.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVDisplayManager
+
 type DisplayManager struct {
 	objectivec.Object
 }
@@ -89,72 +94,87 @@ func NewDisplayManager() DisplayManager {
 }
 
 
+
 // A Boolean value that indicates whether the user has enabled display critera matching.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVDisplayManager/isDisplayCriteriaMatchingEnabled
+
 func (d_ DisplayManager) DisplayCriteriaMatchingEnabled() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("displayCriteriaMatchingEnabled"))
 	return rv
 }
 
+
 // A Boolean value that indicates whether a display mode switch is in progress.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVDisplayManager/isDisplayModeSwitchInProgress
+
 func (d_ DisplayManager) DisplayModeSwitchInProgress() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("displayModeSwitchInProgress"))
 	return rv
 }
 
+
 // A hint for the TV to set the display mode to best match the currently playing content’s display criteria.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVDisplayManager/preferredDisplayCriteria
+
 func (d_ DisplayManager) PreferredDisplayCriteria() avfoundation.DisplayCriteria {
 	rv := objc.Send[avfoundation.DisplayCriteria](d_.ID, objc.Sel("preferredDisplayCriteria"))
 	return rv
 }
 
 
-// SetPreferredDisplayCriteria sets the value of the preferredDisplayCriteria property.
 // A hint for the TV to set the display mode to best match the currently playing content’s display criteria.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVDisplayManager/preferredDisplayCriteria
+
 func (d_ DisplayManager) SetPreferredDisplayCriteria(value avfoundation.IDisplayCriteria) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setPreferredDisplayCriteria:"), value)
 }
 
+
 // A Boolean value that indicates whether the user has enabled display critera matching.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avdisplaymanager/isdisplaycriteriamatchingenabled
+
 func (d_ DisplayManager) IsDisplayCriteriaMatchingEnabled() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("isDisplayCriteriaMatchingEnabled"))
 	return rv
 }
 
 
-// SetIsDisplayCriteriaMatchingEnabled sets the value of the isDisplayCriteriaMatchingEnabled property.
 // A Boolean value that indicates whether the user has enabled display critera matching.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avdisplaymanager/isdisplaycriteriamatchingenabled
+
 func (d_ DisplayManager) SetIsDisplayCriteriaMatchingEnabled(value bool) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setIsDisplayCriteriaMatchingEnabled:"), value)
 }
 
+
 // A Boolean value that indicates whether a display mode switch is in progress.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avdisplaymanager/isdisplaymodeswitchinprogress
+
 func (d_ DisplayManager) IsDisplayModeSwitchInProgress() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("isDisplayModeSwitchInProgress"))
 	return rv
 }
 
 
-// SetIsDisplayModeSwitchInProgress sets the value of the isDisplayModeSwitchInProgress property.
 // A Boolean value that indicates whether a display mode switch is in progress.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avdisplaymanager/isdisplaymodeswitchinprogress
+
 func (d_ DisplayManager) SetIsDisplayModeSwitchInProgress(value bool) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setIsDisplayModeSwitchInProgress:"), value)
 }

@@ -37,8 +37,13 @@ type IGCMouse interface {
 // An object that represents a physical mouse connected to a device.
 //
 // To get a mouse object and its input values, register for the (Swift) or (Objective-C) notification for when a mouse connects to the device. Then register for the (Swift) or (Objective-C) notification for when it becomes the mouse. Alternatively, use the class property or the class method to get a mouse object. Then get the current input values from the mouse object’s controller profile.
+
+
+// An object that represents a physical mouse connected to a device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCMouse
+
 type GCMouse struct {
 	objectivec.Object
 }
@@ -82,35 +87,44 @@ func NewGCMouse() GCMouse {
 }
 
 
+
 // The most recent mouse that the user connects.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCMouse/current
+
 func (gc _GCMouseClass) Current() GCMouse {
 	rv := objc.Send[GCMouse](objc.ID(gc.class), objc.Sel("current"))
 	return rv
 }
+
 // The most recent mouse that the user connects.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCMouse/current
+
 func (g_ GCMouse) Current() GCMouse {
 	rv := objc.Send[GCMouse](g_.ID, objc.Sel("current"))
 	return rv
 }
 
+
 // The controller profile for the mouse device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmouse/mouseinput
+
 func (g_ GCMouse) MouseInput() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("mouseInput"))
 	return rv
 }
 
 
-// SetMouseInput sets the value of the mouseInput property.
 // The controller profile for the mouse device.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmouse/mouseinput
+
 func (g_ GCMouse) SetMouseInput(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setMouseInput:"), value)
 }

@@ -44,8 +44,13 @@ type IContentProposalViewController interface {
 // A view controller that proposes content to watch next.
 //
 // Subclass this class to define the user interface for your content proposal.
+
+
+// A view controller that proposes content to watch next.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVContentProposalViewController
+
 type ContentProposalViewController struct {
 	appkit.ViewController
 }
@@ -91,58 +96,77 @@ func NewContentProposalViewController() ContentProposalViewController {
 }
 
 
+
+
 // Dismisses the current content proposal.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVContentProposalViewController/dismissContentProposal(for:animated:completion:)
+
 func (c_ ContentProposalViewController) DismissContentProposalForActionAnimatedCompletion(action IContentProposalAction, animated bool, block unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("dismissContentProposalForAction:animated:completion:"), action, animated, block)
 }
 
+
 // A prosal of content to play.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVContentProposalViewController/contentProposal
+
 func (c_ ContentProposalViewController) ContentProposal() AVContentProposal {
 	rv := objc.Send[AVContentProposal](c_.ID, objc.Sel("contentProposal"))
 	return rv
 }
 
+
 // The date that the system automatically accepts a proposal if the user doesn’t intervene.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVContentProposalViewController/dateOfAutomaticAcceptance
+
 func (c_ ContentProposalViewController) DateOfAutomaticAcceptance() foundation.NSDate {
 	rv := objc.Send[foundation.NSDate](c_.ID, objc.Sel("dateOfAutomaticAcceptance"))
 	return rv
 }
 
 
-// SetDateOfAutomaticAcceptance sets the value of the dateOfAutomaticAcceptance property.
 // The date that the system automatically accepts a proposal if the user doesn’t intervene.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVContentProposalViewController/dateOfAutomaticAcceptance
+
 func (c_ ContentProposalViewController) SetDateOfAutomaticAcceptance(value foundation.IDate) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDateOfAutomaticAcceptance:"), value)
 }
 
+
 // A layout guide that tracks the size and location of the player view.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVContentProposalViewController/playerLayoutGuide
+
 func (c_ ContentProposalViewController) PlayerLayoutGuide() appkit.LayoutGuide {
 	rv := objc.Send[appkit.LayoutGuide](c_.ID, objc.Sel("playerLayoutGuide"))
 	return rv
 }
 
+
 // The player view controller that presents a content proposal.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVContentProposalViewController/playerViewController
+
 func (c_ ContentProposalViewController) PlayerViewController() AVPlayerViewController {
 	rv := objc.Send[AVPlayerViewController](c_.ID, objc.Sel("playerViewController"))
 	return rv
 }
 
+
 // The preferred presentation frame of the player view while the content proposal is active.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVContentProposalViewController/preferredPlayerViewFrame
+
 func (c_ ContentProposalViewController) PreferredPlayerViewFrame() coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](c_.ID, objc.Sel("preferredPlayerViewFrame"))
 	return rv

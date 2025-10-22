@@ -36,8 +36,13 @@ type IAudioBuffer interface {
 }
 
 // An object that represents a buffer of audio data with a format.
+
+
+// An object that represents a buffer of audio data with a format.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioBuffer
+
 type AudioBuffer struct {
 	objectivec.Object
 }
@@ -81,25 +86,34 @@ func NewAudioBuffer() AudioBuffer {
 }
 
 
+
 // The buffer’s underlying audio buffer list.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioBuffer/audioBufferList
+
 func (a_ AudioBuffer) AudioBufferList() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("audioBufferList"))
 	return rv
 }
 
+
 // The format of the audio in the buffer.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioBuffer/format
+
 func (a_ AudioBuffer) Format() AVAudioFormat {
 	rv := objc.Send[AVAudioFormat](a_.ID, objc.Sel("format"))
 	return rv
 }
 
+
 // A mutable version of the buffer’s underlying audio buffer list.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioBuffer/mutableAudioBufferList
+
 func (a_ AudioBuffer) MutableAudioBufferList() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("mutableAudioBufferList"))
 	return rv

@@ -36,8 +36,13 @@ type ICylindersNoiseSource interface {
 // A procedural noise generator whose output is a 3D field of concentric cylindrical shells.
 //
 // All noise sources generate infinite 3D fields of noise values, but this fact is especially relevant to cylinder noise: by rotating a noise object in 3D, you can sample the noise in ways that “slice” across or along the cylinders. Use this technique (combined with other noise sources and noise processing operations) to create effects such as wood-grain textures. Like all subclasses, a cylinder noise source represents a noise generation algorithm and its parameters. To make use of a noise source, first create object from it (and optionally apply operations to that noise object or combine it with other noise objects). Then create a object from your noise object, generating a concrete field of values that you can sample from directly or visualize using the or class.
+
+
+// A procedural noise generator whose output is a 3D field of concentric cylindrical shells.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCylindersNoiseSource
+
 type CylindersNoiseSource struct {
 	NoiseSource
 }
@@ -87,7 +92,9 @@ func NewCylindersNoiseSource() CylindersNoiseSource {
 
 // Initializes a cylinder noise source with the specified frequency.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCylindersNoiseSource/init(frequency:)
+
 func NewCylindersNoiseSourceWithFrequency(frequency float64) CylindersNoiseSource {
 	instance := getCylindersNoiseSourceClass().Alloc()
 	rv := objc.Send[CylindersNoiseSource](instance.ID, objc.Sel("initWithFrequency:"), frequency)
@@ -96,28 +103,34 @@ func NewCylindersNoiseSourceWithFrequency(frequency float64) CylindersNoiseSourc
 }
 
 
+
 // Creates a cylinder noise source with the specified frequency.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCylindersNoiseSource/cylindersNoise(withFrequency:)
+
 func (cc _CylindersNoiseSourceClass) CylindersNoiseWithFrequency(frequency float64) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("cylindersNoiseWithFrequency:"), frequency)
 	return rv
 }
 
+
 // A value that determines the size and spacing of concentric cylinders.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCylindersNoiseSource/frequency
+
 func (c_ CylindersNoiseSource) Frequency() float64 {
 	rv := objc.Send[float64](c_.ID, objc.Sel("frequency"))
 	return rv
 }
 
 
-// SetFrequency sets the value of the frequency property.
 // A value that determines the size and spacing of concentric cylinders.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCylindersNoiseSource/frequency
+
 func (c_ CylindersNoiseSource) SetFrequency(value float64) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFrequency:"), value)
 }

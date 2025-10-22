@@ -38,8 +38,13 @@ type IDelegatingPlaybackCoordinator interface {
 // A playback coordinator subclass that coordinates the playback of custom player objects in a connected group.
 //
 // This object coordinates the state of custom player objects, such as those that render media using and , or that play audio using . Adopt the protocol so that your app responds to playback commands from the coordinator. The commands provide the details of a requested state change so you can control your player object accordingly.
+
+
+// A playback coordinator subclass that coordinates the playback of custom player objects in a connected group.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVDelegatingPlaybackCoordinator
+
 type DelegatingPlaybackCoordinator struct {
 	PlaybackCoordinator
 }
@@ -85,38 +90,44 @@ func NewDelegatingPlaybackCoordinator() DelegatingPlaybackCoordinator {
 }
 
 
+
 // An identifier of the current item.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinator/currentitemidentifier
+
 func (d_ DelegatingPlaybackCoordinator) CurrentItemIdentifier() string {
 	rv := objc.Send[string](d_.ID, objc.Sel("currentItemIdentifier"))
 	return rv
 }
 
 
-// SetCurrentItemIdentifier sets the value of the currentItemIdentifier property.
 // An identifier of the current item.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinator/currentitemidentifier
+
 func (d_ DelegatingPlaybackCoordinator) SetCurrentItemIdentifier(value string) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setCurrentItemIdentifier:"), objc.String(value))
 }
 
+
 // The delegate object for the playback coordinator.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinator/playbackcontroldelegate
+
 func (d_ DelegatingPlaybackCoordinator) PlaybackControlDelegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("playbackControlDelegate"))
 	return rv
 }
 
 
-// SetPlaybackControlDelegate sets the value of the playbackControlDelegate property.
 // The delegate object for the playback coordinator.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinator/playbackcontroldelegate
+
 func (d_ DelegatingPlaybackCoordinator) SetPlaybackControlDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setPlaybackControlDelegate:"), value)
 }

@@ -35,8 +35,11 @@ type ITKTokenWatcherTokenInfo interface {
 	TokenID() string
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKTokenWatcher/TokenInfo
+
 type TKTokenWatcherTokenInfo struct {
 	objectivec.Object
 }
@@ -78,22 +81,28 @@ func NewTKTokenWatcherTokenInfo() TKTokenWatcherTokenInfo {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKTokenWatcher/TokenInfo/driverName
+
 func (t_ TKTokenWatcherTokenInfo) DriverName() string {
 	rv := objc.Send[string](t_.ID, objc.Sel("driverName"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKTokenWatcher/TokenInfo/slotName
+
 func (t_ TKTokenWatcherTokenInfo) SlotName() string {
 	rv := objc.Send[string](t_.ID, objc.Sel("slotName"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKTokenWatcher/TokenInfo/tokenID
+
 func (t_ TKTokenWatcherTokenInfo) TokenID() string {
 	rv := objc.Send[string](t_.ID, objc.Sel("tokenID"))
 	return rv

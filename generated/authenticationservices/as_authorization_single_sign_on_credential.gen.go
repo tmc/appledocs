@@ -43,8 +43,13 @@ type IAuthorizationSingleSignOnCredential interface {
 }
 
 // A credential that results from a successful single sign-on (SSO) authentication.
+
+
+// A credential that results from a successful single sign-on (SSO) authentication.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationSingleSignOnCredential
+
 type AuthorizationSingleSignOnCredential struct {
 	objectivec.Object
 }
@@ -88,82 +93,97 @@ func NewAuthorizationSingleSignOnCredential() AuthorizationSingleSignOnCredentia
 }
 
 
+
 // The contact information the user authorized your app to access.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationSingleSignOnCredential/authorizedScopes
+
 func (a_ AuthorizationSingleSignOnCredential) AuthorizedScopes() []string {
 	rv := objc.Send[[]string](a_.ID, objc.Sel("authorizedScopes"))
 	return rv
 }
 
+
 // An access token used to get an identity token.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsinglesignoncredential/accesstoken
+
 func (a_ AuthorizationSingleSignOnCredential) AccessToken() foundation.Data {
 	rv := objc.Send[foundation.Data](a_.ID, objc.Sel("accessToken"))
 	return rv
 }
 
 
-// SetAccessToken sets the value of the accessToken property.
 // An access token used to get an identity token.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsinglesignoncredential/accesstoken
+
 func (a_ AuthorizationSingleSignOnCredential) SetAccessToken(value foundation.IData) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAccessToken:"), value)
 }
 
+
 // The complete response authentication, including technology-specific values.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsinglesignoncredential/authenticatedresponse
+
 func (a_ AuthorizationSingleSignOnCredential) AuthenticatedResponse() foundation.HTTPURLResponse {
 	rv := objc.Send[foundation.HTTPURLResponse](a_.ID, objc.Sel("authenticatedResponse"))
 	return rv
 }
 
 
-// SetAuthenticatedResponse sets the value of the authenticatedResponse property.
 // The complete response authentication, including technology-specific values.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsinglesignoncredential/authenticatedresponse
+
 func (a_ AuthorizationSingleSignOnCredential) SetAuthenticatedResponse(value foundation.IHTTPURLResponse) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAuthenticatedResponse:"), value)
 }
 
+
 // A JSON Web Token (JWT) that securely communicates information about the user to your app.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsinglesignoncredential/identitytoken
+
 func (a_ AuthorizationSingleSignOnCredential) IdentityToken() foundation.Data {
 	rv := objc.Send[foundation.Data](a_.ID, objc.Sel("identityToken"))
 	return rv
 }
 
 
-// SetIdentityToken sets the value of the identityToken property.
 // A JSON Web Token (JWT) that securely communicates information about the user to your app.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsinglesignoncredential/identitytoken
+
 func (a_ AuthorizationSingleSignOnCredential) SetIdentityToken(value foundation.IData) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIdentityToken:"), value)
 }
 
+
 // An arbitrary string that your app provided to the request that generated this credential.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsinglesignoncredential/state
+
 func (a_ AuthorizationSingleSignOnCredential) State() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("state"))
 	return rv
 }
 
 
-// SetState sets the value of the state property.
 // An arbitrary string that your app provided to the request that generated this credential.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsinglesignoncredential/state
+
 func (a_ AuthorizationSingleSignOnCredential) SetState(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setState:"), objc.String(value))
 }

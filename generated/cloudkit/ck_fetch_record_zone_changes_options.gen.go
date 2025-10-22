@@ -39,8 +39,13 @@ type ICKFetchRecordZoneChangesOptions interface {
 }
 
 // A configuration object that describes the information to fetch from a record zone.
+
+
+// A configuration object that describes the information to fetch from a record zone.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZoneChangesOperation/ZoneOptions
+
 type CKFetchRecordZoneChangesOptions struct {
 	objectivec.Object
 }
@@ -84,20 +89,23 @@ func NewCKFetchRecordZoneChangesOptions() CKFetchRecordZoneChangesOptions {
 }
 
 
+
 // The fields to fetch for the requested records.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZoneChangesOperation/ZoneOptions/desiredKeys
+
 func (c_ CKFetchRecordZoneChangesOptions) DesiredKeys() []string {
 	rv := objc.Send[[]string](c_.ID, objc.Sel("desiredKeys"))
 	return rv
 }
 
 
-// SetDesiredKeys sets the value of the desiredKeys property.
 // The fields to fetch for the requested records.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZoneChangesOperation/ZoneOptions/desiredKeys
+
 func (c_ CKFetchRecordZoneChangesOptions) SetDesiredKeys(value []string) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -112,38 +120,44 @@ func (c_ CKFetchRecordZoneChangesOptions) SetDesiredKeys(value []string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDesiredKeys:"), nsArray)
 }
 
+
 // The token that identifies the starting point for retrieving changes.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordzonechangesoperation/zoneoptions/previousserverchangetoken
+
 func (c_ CKFetchRecordZoneChangesOptions) PreviousServerChangeToken() CKServerChangeToken {
 	rv := objc.Send[CKServerChangeToken](c_.ID, objc.Sel("previousServerChangeToken"))
 	return rv
 }
 
 
-// SetPreviousServerChangeToken sets the value of the previousServerChangeToken property.
 // The token that identifies the starting point for retrieving changes.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordzonechangesoperation/zoneoptions/previousserverchangetoken
+
 func (c_ CKFetchRecordZoneChangesOptions) SetPreviousServerChangeToken(value ICKServerChangeToken) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPreviousServerChangeToken:"), value)
 }
 
+
 // The maximum number of records to fetch from the record zone.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordzonechangesoperation/zoneoptions/resultslimit
+
 func (c_ CKFetchRecordZoneChangesOptions) ResultsLimit() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("resultsLimit"))
 	return rv
 }
 
 
-// SetResultsLimit sets the value of the resultsLimit property.
 // The maximum number of records to fetch from the record zone.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordzonechangesoperation/zoneoptions/resultslimit
+
 func (c_ CKFetchRecordZoneChangesOptions) SetResultsLimit(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setResultsLimit:"), value)
 }

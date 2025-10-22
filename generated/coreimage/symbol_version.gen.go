@@ -32,8 +32,11 @@ type IsymbolVersion interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIQRCodeDescriptor/symbolVersion-c.ivar
+
 type symbolVersion struct {
 	objectivec.Object
 }

@@ -32,8 +32,11 @@ type ImouthPosition interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFaceFeature/mouthPosition-c.ivar
+
 type mouthPosition struct {
 	objectivec.Object
 }

@@ -37,8 +37,13 @@ type IDictionaryFeatureProvider interface {
 // A convenience wrapper for the given dictionary of data.
 //
 // If your input data is stored in a dictionary, consider this type of that is backed by a dictionary. It is a convenience interface, saving you the trouble of iterating through the dictionary to assign all of its values.
+
+
+// A convenience wrapper for the given dictionary of data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLDictionaryFeatureProvider
+
 type DictionaryFeatureProvider struct {
 	objectivec.Object
 }
@@ -86,7 +91,9 @@ func NewDictionaryFeatureProvider() DictionaryFeatureProvider {
 
 // Creates the feature provider based on a dictionary.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLDictionaryFeatureProvider/init(dictionary:)
+
 func NewDictionaryFeatureProviderWithDictionaryError(dictionary unsafe.Pointer, error_ unsafe.Pointer) DictionaryFeatureProvider {
 	instance := getDictionaryFeatureProviderClass().Alloc()
 	rv := objc.Send[DictionaryFeatureProvider](instance.ID, objc.Sel("initWithDictionary:error:"), dictionary, error_)
@@ -95,17 +102,24 @@ func NewDictionaryFeatureProviderWithDictionaryError(dictionary unsafe.Pointer, 
 }
 
 
+
+
 // Subscript interface for the feature provider to pass through to the dictionary.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLDictionaryFeatureProvider/subscript(_:)
+
 func (d_ DictionaryFeatureProvider) ObjectForKeyedSubscript(featureName string) FeatureValue {
 	rv := objc.Send[FeatureValue](d_.ID, objc.Sel("objectForKeyedSubscript:"), objc.String(featureName))
 	return rv
 }
 
+
 // The backing dictionary.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLDictionaryFeatureProvider/dictionary
+
 func (d_ DictionaryFeatureProvider) Dictionary() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("dictionary"))
 	return rv

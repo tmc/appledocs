@@ -37,8 +37,13 @@ type IChallengeEventHandler interface {
 // The class is used to respond to events related to challenges sent or received by the local player.
 //
 // To use it, call the class method to get the instance and assign an object that implements the protocol to its property. You should assign a challenge event handler immediately after initializing the local player, because your game may have launched in response to a challenge notification being received by the player.
+
+
+// The class is used to respond to events related to challenges sent or received by the local player.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKChallengeEventHandler
+
 type ChallengeEventHandler struct {
 	objectivec.Object
 }
@@ -82,28 +87,34 @@ func NewChallengeEventHandler() ChallengeEventHandler {
 }
 
 
+
 // Returns the shared instance of the event handler
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKChallengeEventHandler/challengeEventHandler
+
 func (cc _ChallengeEventHandlerClass) ChallengeEventHandler() ChallengeEventHandler {
 	rv := objc.Send[ChallengeEventHandler](objc.ID(cc.class), objc.Sel("challengeEventHandler"))
 	return rv
 }
 
+
 // The delegate for the event handler.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkchallengeeventhandler/delegate
+
 func (c_ ChallengeEventHandler) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("delegate"))
 	return rv
 }
 
 
-// SetDelegate sets the value of the delegate property.
 // The delegate for the event handler.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkchallengeeventhandler/delegate
+
 func (c_ ChallengeEventHandler) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDelegate:"), value)
 }

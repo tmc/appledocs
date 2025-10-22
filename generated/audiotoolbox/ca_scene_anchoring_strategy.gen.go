@@ -33,8 +33,13 @@ type ISceneAnchoringStrategy interface {
 }
 
 // Anchor to the visual center of a particular UIScene.
+
+
+// Anchor to the visual center of a particular UIScene.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CASceneAnchoringStrategy
+
 type SceneAnchoringStrategy struct {
 	AnchoringStrategy
 }
@@ -80,8 +85,11 @@ func NewSceneAnchoringStrategy() SceneAnchoringStrategy {
 }
 
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CASceneAnchoringStrategy/initWithSceneIdentifier:
+
 func NewSceneAnchoringStrategyWithSceneIdentifier(sceneIdentifier string) SceneAnchoringStrategy {
 	instance := getSceneAnchoringStrategyClass().Alloc()
 	rv := objc.Send[SceneAnchoringStrategy](instance.ID, objc.Sel("initWithSceneIdentifier:"), objc.String(sceneIdentifier))
@@ -90,8 +98,10 @@ func NewSceneAnchoringStrategyWithSceneIdentifier(sceneIdentifier string) SceneA
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CASceneAnchoringStrategy/sceneIdentifier
+
 func (s_ SceneAnchoringStrategy) SceneIdentifier() string {
 	rv := objc.Send[string](s_.ID, objc.Sel("sceneIdentifier"))
 	return rv

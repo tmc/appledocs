@@ -2,12 +2,16 @@
 
 // Package coremidi provides Go bindings for the CoreMIDI framework.
 //
-// Communicate with MIDI devices such as hardware keyboards and synthesizers. [Full Topic]
+// Communicate with MIDI devices such as hardware keyboards and synthesizers.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to CoreMIDI without requiring cgo.
+
+// Communicate with MIDI devices such as hardware keyboards and synthesizers.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI
+
 package coremidi
 
 import (

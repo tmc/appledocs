@@ -34,8 +34,13 @@ type IScrubberSelectionView interface {
 // An abstract base class for specifying the appearance of a highlighted or selected item in a scrubber.
 //
 // Create a subclass to customize the selection or highlight appearance of an item in your scrubber control. You need to return an instance of your subclass from the method on .
+
+
+// An abstract base class for specifying the appearance of a highlighted or selected item in a scrubber.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberSelectionView
+
 type ScrubberSelectionView struct {
 	ScrubberArrangedView
 }

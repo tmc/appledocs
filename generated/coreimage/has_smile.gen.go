@@ -32,8 +32,11 @@ type IhasSmile interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFaceFeature/hasSmile-c.ivar
+
 type hasSmile struct {
 	objectivec.Object
 }

@@ -32,8 +32,13 @@ type IInterDeviceAudioViewController interface {
 }
 
 // A view controller object that displays iOS devices that support inter-device audio.
+
+
+// A view controller object that displays iOS devices that support inter-device audio.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/CAInterDeviceAudioViewController
+
 type InterDeviceAudioViewController struct {
 	ViewController
 }

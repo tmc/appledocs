@@ -29,6 +29,7 @@ type _XPCCoderClass struct {
 // An interface definition for the [XPCCoder] class.
 type IXPCCoder interface {
 	ICoder
+	DecodeXPCObjectOfTypeForKey(type_ unsafe.Pointer, key string) unsafe.Pointer
 	EncodeXPCObjectForKey(xpcObject unsafe.Pointer, key string)
 	Connection() NSXPCConnection
 	UserInfo() objc.ID
@@ -89,6 +90,18 @@ func NewXPCCoder() XPCCoder {
 	return getXPCCoderClass().New()
 }
 
+
+
+
+// Decodes an object and validates that its type matches the type a service provides over XPC.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCCoder/decodeXPCObject(ofType:forKey:)
+
+func (x_ XPCCoder) DecodeXPCObjectOfTypeForKey(type_ unsafe.Pointer, key string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("decodeXPCObjectOfType:forKey:"), type_, objc.String(key))
+	return rv
+}
 
 
 

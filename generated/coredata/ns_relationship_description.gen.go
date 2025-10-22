@@ -51,8 +51,13 @@ type IRelationshipDescription interface {
 // A description of a relationship between two entities.
 //
 // provides additional attributes that are specific to modeling a relationship between two entities. For the common attributes of all property types, see . For example, use this class to define a relationship’s — the number of managed objects the relationship can reference. For a to-one relationship, set to . For a to-many relationship, set to a number greater than to impose an upper limit; otherwise, use to allow an unlimited number of referenced objects. At runtime, you can modify a relationship description until you associate its owning managed object model with a persistent store coordinator. If you attempt to modify the model after you associate it, Core Data throws an exception. To modify a model that’s in use, create and modify a copy and then discard any objects that belong to the original model.
+
+
+// A description of a relationship between two entities.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSRelationshipDescription
+
 type RelationshipDescription struct {
 	PropertyDescription
 }
@@ -98,146 +103,170 @@ func NewRelationshipDescription() RelationshipDescription {
 }
 
 
+
 // The rule to apply when you delete the relationship’s owning managed object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSRelationshipDescription/deleteRule
+
 func (r_ RelationshipDescription) DeleteRule() DeleteRule {
 	rv := objc.Send[DeleteRule](r_.ID, objc.Sel("deleteRule"))
 	return rv
 }
 
 
-// SetDeleteRule sets the value of the deleteRule property.
 // The rule to apply when you delete the relationship’s owning managed object.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSRelationshipDescription/deleteRule
+
 func (r_ RelationshipDescription) SetDeleteRule(value IDeleteRule) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setDeleteRule:"), value)
 }
 
+
 // The type of object the relationship contains.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsrelationshipdescription/destinationentity
+
 func (r_ RelationshipDescription) DestinationEntity() NSEntityDescription {
 	rv := objc.Send[NSEntityDescription](r_.ID, objc.Sel("destinationEntity"))
 	return rv
 }
 
 
-// SetDestinationEntity sets the value of the destinationEntity property.
 // The type of object the relationship contains.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsrelationshipdescription/destinationentity
+
 func (r_ RelationshipDescription) SetDestinationEntity(value IEntityDescription) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setDestinationEntity:"), value)
 }
 
+
 // The relationship that represents the inverse of the current relationship.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsrelationshipdescription/inverserelationship
+
 func (r_ RelationshipDescription) InverseRelationship() NSRelationshipDescription {
 	rv := objc.Send[NSRelationshipDescription](r_.ID, objc.Sel("inverseRelationship"))
 	return rv
 }
 
 
-// SetInverseRelationship sets the value of the inverseRelationship property.
 // The relationship that represents the inverse of the current relationship.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsrelationshipdescription/inverserelationship
+
 func (r_ RelationshipDescription) SetInverseRelationship(value IRelationshipDescription) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setInverseRelationship:"), value)
 }
 
+
 // A Boolean value that determines whether the relationship preserves the order of the referenced managed objects.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsrelationshipdescription/isordered
+
 func (r_ RelationshipDescription) IsOrdered() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("isOrdered"))
 	return rv
 }
 
 
-// SetIsOrdered sets the value of the isOrdered property.
 // A Boolean value that determines whether the relationship preserves the order of the referenced managed objects.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsrelationshipdescription/isordered
+
 func (r_ RelationshipDescription) SetIsOrdered(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setIsOrdered:"), value)
 }
 
+
 // Returns a Boolean value that indicates whether the relationship can contain many managed objects.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsrelationshipdescription/istomany
+
 func (r_ RelationshipDescription) IsToMany() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("isToMany"))
 	return rv
 }
 
 
-// SetIsToMany sets the value of the isToMany property.
 // Returns a Boolean value that indicates whether the relationship can contain many managed objects.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsrelationshipdescription/istomany
+
 func (r_ RelationshipDescription) SetIsToMany(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setIsToMany:"), value)
 }
 
+
 // The maximum number of managed objects the relationship can reference.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsrelationshipdescription/maxcount
+
 func (r_ RelationshipDescription) MaxCount() int {
 	rv := objc.Send[int](r_.ID, objc.Sel("maxCount"))
 	return rv
 }
 
 
-// SetMaxCount sets the value of the maxCount property.
 // The maximum number of managed objects the relationship can reference.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsrelationshipdescription/maxcount
+
 func (r_ RelationshipDescription) SetMaxCount(value int) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setMaxCount:"), value)
 }
 
+
 // The minimum number of managed objects the relationship can reference.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsrelationshipdescription/mincount
+
 func (r_ RelationshipDescription) MinCount() int {
 	rv := objc.Send[int](r_.ID, objc.Sel("minCount"))
 	return rv
 }
 
 
-// SetMinCount sets the value of the minCount property.
 // The minimum number of managed objects the relationship can reference.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsrelationshipdescription/mincount
+
 func (r_ RelationshipDescription) SetMinCount(value int) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setMinCount:"), value)
 }
 
+
 // The relationship’s unique identity.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsrelationshipdescription/versionhash
+
 func (r_ RelationshipDescription) VersionHash() foundation.Data {
 	rv := objc.Send[foundation.Data](r_.ID, objc.Sel("versionHash"))
 	return rv
 }
 
 
-// SetVersionHash sets the value of the versionHash property.
 // The relationship’s unique identity.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsrelationshipdescription/versionhash
+
 func (r_ RelationshipDescription) SetVersionHash(value foundation.IData) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setVersionHash:"), value)
 }

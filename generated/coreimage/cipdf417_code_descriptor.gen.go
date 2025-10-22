@@ -39,8 +39,13 @@ type IPDF417CodeDescriptor interface {
 // A concrete subclass of Core Image Barcode Descriptor that represents a PDF417 symbol.
 //
 // PDF417 is a stacked linear barcode symbol format used predominantly in transport, ID cards, and inventory management. Each pattern in the code comprises 4 bars and spaces, 17 units long. Refer to the ISO/IEC 15438:2006(E) for the PDF417 symbol specification.
+
+
+// A concrete subclass of Core Image Barcode Descriptor that represents a PDF417 symbol.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIPDF417CodeDescriptor
+
 type PDF417CodeDescriptor struct {
 	BarcodeDescriptor
 }
@@ -90,7 +95,9 @@ func NewPDF417CodeDescriptor() PDF417CodeDescriptor {
 
 // Initializes an PDF417 code descriptor for the given payload and parameters.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIPDF417CodeDescriptor/init(payload:isCompact:rowCount:columnCount:)
+
 func NewPDF417CodeDescriptorWithPayloadIsCompactRowCountColumnCount(errorCorrectedPayload foundation.IData, isCompact bool, rowCount int, columnCount int) PDF417CodeDescriptor {
 	instance := getPDF417CodeDescriptorClass().Alloc()
 	rv := objc.Send[PDF417CodeDescriptor](instance.ID, objc.Sel("initWithPayload:isCompact:rowCount:columnCount:"), errorCorrectedPayload, isCompact, rowCount, columnCount)
@@ -99,41 +106,56 @@ func NewPDF417CodeDescriptorWithPayloadIsCompactRowCountColumnCount(errorCorrect
 }
 
 
+
 // Creates an PDF417 code descriptor for the given payload and parameters.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIPDF417CodeDescriptor/descriptorWithPayload:isCompact:rowCount:columnCount:
+
 func (pc _PDF417CodeDescriptorClass) DescriptorWithPayloadIsCompactRowCountColumnCount(errorCorrectedPayload foundation.IData, isCompact bool, rowCount int, columnCount int) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("descriptorWithPayload:isCompact:rowCount:columnCount:"), errorCorrectedPayload, isCompact, rowCount, columnCount)
 	return rv
 }
 
+
 // The number of columns in the PDF417 code symbol.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIPDF417CodeDescriptor/columnCount-swift.property
+
 func (p_ PDF417CodeDescriptor) ColumnCount() int {
 	rv := objc.Send[int](p_.ID, objc.Sel("columnCount"))
 	return rv
 }
 
+
 // The error-corrected payload containing the data encoded in the PDF417 code symbol.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIPDF417CodeDescriptor/errorCorrectedPayload-swift.property
+
 func (p_ PDF417CodeDescriptor) ErrorCorrectedPayload() foundation.NSData {
 	rv := objc.Send[foundation.NSData](p_.ID, objc.Sel("errorCorrectedPayload"))
 	return rv
 }
 
+
 // A boolean value telling if the PDF417 code is compact.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIPDF417CodeDescriptor/isCompact-swift.property
+
 func (p_ PDF417CodeDescriptor) IsCompact() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isCompact"))
 	return rv
 }
 
+
 // The number of rows in the PDF417 code symbol.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIPDF417CodeDescriptor/rowCount-swift.property
+
 func (p_ PDF417CodeDescriptor) RowCount() int {
 	rv := objc.Send[int](p_.ID, objc.Sel("rowCount"))
 	return rv

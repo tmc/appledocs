@@ -41,8 +41,13 @@ type ICKUserIdentity interface {
 // The identity of a user.
 //
 // A user identity provides identifiable data about an iCloud user, including their name, user record ID, and an email address or phone number. CloudKit retrieves this information from the user’s iCloud account. A user must give their consent to be discoverable before CloudKit can provide this data to your app. For more information, see . You don’t create instances of this class. Instead, CloudKit provides them in certain contexts. A share’s owner has a user identity, as does each of its participants. When creating participants, CloudKit tries to find iCloud accounts it can use to populate their identities. If CloudKit doesn’t find an account, it sets the identity’s property to . You can also discover the identities of your app’s users by executing one of the user discovery operations: and . Identities that CloudKit discovers using correspond to entries in the device’s Contacts database. These identities contain the identifiers of their Contact records, which you can use to fetch those records from the Contacts database. For more information, see .
+
+
+// The identity of a user.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKUserIdentity
+
 type CKUserIdentity struct {
 	objectivec.Object
 }
@@ -86,41 +91,56 @@ func NewCKUserIdentity() CKUserIdentity {
 }
 
 
+
 // Identifiers that match contacts in the local Contacts database.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKUserIdentity/contactIdentifiers
+
 func (c_ CKUserIdentity) ContactIdentifiers() []string {
 	rv := objc.Send[[]string](c_.ID, objc.Sel("contactIdentifiers"))
 	return rv
 }
 
+
 // A Boolean value that indicates whether the user has an iCloud account.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKUserIdentity/hasiCloudAccount
+
 func (c_ CKUserIdentity) HasiCloudAccount() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("hasiCloudAccount"))
 	return rv
 }
 
+
 // The lookup info for retrieving the user identity.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKUserIdentity/lookupInfo-swift.property
+
 func (c_ CKUserIdentity) LookupInfo() CKUserIdentityLookupInfo {
 	rv := objc.Send[CKUserIdentityLookupInfo](c_.ID, objc.Sel("lookupInfo"))
 	return rv
 }
 
+
 // The user’s name.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKUserIdentity/nameComponents
+
 func (c_ CKUserIdentity) NameComponents() foundation.PersonNameComponents {
 	rv := objc.Send[foundation.PersonNameComponents](c_.ID, objc.Sel("nameComponents"))
 	return rv
 }
 
+
 // The user record ID for the corresponding user record.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKUserIdentity/userRecordID
+
 func (c_ CKUserIdentity) UserRecordID() CKRecordID {
 	rv := objc.Send[CKRecordID](c_.ID, objc.Sel("userRecordID"))
 	return rv

@@ -39,8 +39,13 @@ type IFragmentedMovieMinder interface {
 // An object that checks whether a fragmented movie appends additional movie fragments.
 //
 // This class is identical to except that it’s capable of minding only assets of type .
+
+
+// An object that checks whether a fragmented movie appends additional movie fragments.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVFragmentedMovieMinder
+
 type FragmentedMovieMinder struct {
 	objectivec.Object
 }
@@ -84,38 +89,44 @@ func NewFragmentedMovieMinder() FragmentedMovieMinder {
 }
 
 
+
 // The amount of time between checks for additional movie fragments.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avfragmentedmovieminder/mindinginterval
+
 func (f_ FragmentedMovieMinder) MindingInterval() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("mindingInterval"))
 	return rv
 }
 
 
-// SetMindingInterval sets the value of the mindingInterval property.
 // The amount of time between checks for additional movie fragments.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avfragmentedmovieminder/mindinginterval
+
 func (f_ FragmentedMovieMinder) SetMindingInterval(value unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setMindingInterval:"), value)
 }
 
+
 // An array containing the fragmented movie objects being minded.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avfragmentedmovieminder/movies
+
 func (f_ FragmentedMovieMinder) Movies() AVFragmentedMovie {
 	rv := objc.Send[AVFragmentedMovie](f_.ID, objc.Sel("movies"))
 	return rv
 }
 
 
-// SetMovies sets the value of the movies property.
 // An array containing the fragmented movie objects being minded.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avfragmentedmovieminder/movies
+
 func (f_ FragmentedMovieMinder) SetMovies(value IAVFragmentedMovie) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setMovies:"), value)
 }

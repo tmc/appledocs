@@ -30,7 +30,7 @@ type _NumberFormatterClass struct {
 // An interface definition for the [NumberFormatter] class.
 type INumberFormatter interface {
 	IFormatter
-	GetObjectValueForStringRangeError(obj objectivec.IObject, string_ string, rangep Range, error_ IError) bool
+	GetObjectValueForStringRangeError(obj objectivec.IObject, string_ string, rangep IRange, error_ IError) bool
 	NumberFromString(string_ string) Number
 	StringFromNumber(number INumber) String
 	AllowsFloats() bool
@@ -60,7 +60,7 @@ type INumberFormatter interface {
 	FormatWidth() uint
 	SetFormatWidth(value uint)
 	FormatterBehavior() NumberFormatterBehavior
-	SetFormatterBehavior(value NumberFormatterBehavior)
+	SetFormatterBehavior(value INumberFormatterBehavior)
 	FormattingContext() int
 	SetFormattingContext(value int)
 	GroupingSeparator() string
@@ -114,11 +114,11 @@ type INumberFormatter interface {
 	NotANumberSymbol() string
 	SetNotANumberSymbol(value string)
 	NumberStyle() NumberFormatterStyle
-	SetNumberStyle(value NumberFormatterStyle)
+	SetNumberStyle(value INumberFormatterStyle)
 	PaddingCharacter() string
 	SetPaddingCharacter(value string)
 	PaddingPosition() NumberFormatterPadPosition
-	SetPaddingPosition(value NumberFormatterPadPosition)
+	SetPaddingPosition(value INumberFormatterPadPosition)
 	PerMillSymbol() string
 	SetPerMillSymbol(value string)
 	PercentSymbol() string
@@ -136,7 +136,7 @@ type INumberFormatter interface {
 	RoundingIncrement() Number
 	SetRoundingIncrement(value INumber)
 	RoundingMode() NumberFormatterRoundingMode
-	SetRoundingMode(value NumberFormatterRoundingMode)
+	SetRoundingMode(value INumberFormatterRoundingMode)
 	SecondaryGroupingSize() uint
 	SetSecondaryGroupingSize(value uint)
 	TextAttributesForNegativeInfinity() unsafe.Pointer
@@ -243,7 +243,7 @@ func (nc _NumberFormatterClass) DefaultFormatterBehavior() NumberFormatterBehavi
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/localizedString(from:number:)
 
-func (nc _NumberFormatterClass) LocalizedStringFromNumberNumberStyle(num INumber, nstyle NumberFormatterStyle) String {
+func (nc _NumberFormatterClass) LocalizedStringFromNumberNumberStyle(num INumber, nstyle INumberFormatterStyle) String {
 	rv := objc.Send[String](objc.ID(nc.class), objc.Sel("localizedStringFromNumber:numberStyle:"), num, nstyle)
 	return rv
 }
@@ -254,7 +254,7 @@ func (nc _NumberFormatterClass) LocalizedStringFromNumberNumberStyle(num INumber
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/setDefaultFormatterBehavior(_:)
 
-func (nc _NumberFormatterClass) SetDefaultFormatterBehavior(behavior NumberFormatterBehavior) {
+func (nc _NumberFormatterClass) SetDefaultFormatterBehavior(behavior INumberFormatterBehavior) {
 	objc.Send[objc.ID](objc.ID(nc.class), objc.Sel("setDefaultFormatterBehavior:"), behavior)
 }
 
@@ -265,7 +265,7 @@ func (nc _NumberFormatterClass) SetDefaultFormatterBehavior(behavior NumberForma
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/getObjectValue(_:for:range:)
 
-func (n_ NumberFormatter) GetObjectValueForStringRangeError(obj objectivec.IObject, string_ string, rangep Range, error_ IError) bool {
+func (n_ NumberFormatter) GetObjectValueForStringRangeError(obj objectivec.IObject, string_ string, rangep IRange, error_ IError) bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("getObjectValue:forString:range:error:"), obj, objc.String(string_), rangep, error_)
 	return rv
 }
@@ -584,7 +584,7 @@ func (n_ NumberFormatter) FormatterBehavior() NumberFormatterBehavior {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/formatterBehavior
 
-func (n_ NumberFormatter) SetFormatterBehavior(value NumberFormatterBehavior) {
+func (n_ NumberFormatter) SetFormatterBehavior(value INumberFormatterBehavior) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setFormatterBehavior:"), value)
 }
 
@@ -1147,7 +1147,7 @@ func (n_ NumberFormatter) NumberStyle() NumberFormatterStyle {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/numberStyle
 
-func (n_ NumberFormatter) SetNumberStyle(value NumberFormatterStyle) {
+func (n_ NumberFormatter) SetNumberStyle(value INumberFormatterStyle) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setNumberStyle:"), value)
 }
 
@@ -1189,7 +1189,7 @@ func (n_ NumberFormatter) PaddingPosition() NumberFormatterPadPosition {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/paddingPosition
 
-func (n_ NumberFormatter) SetPaddingPosition(value NumberFormatterPadPosition) {
+func (n_ NumberFormatter) SetPaddingPosition(value INumberFormatterPadPosition) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setPaddingPosition:"), value)
 }
 
@@ -1378,7 +1378,7 @@ func (n_ NumberFormatter) RoundingMode() NumberFormatterRoundingMode {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/roundingMode-swift.property
 
-func (n_ NumberFormatter) SetRoundingMode(value NumberFormatterRoundingMode) {
+func (n_ NumberFormatter) SetRoundingMode(value INumberFormatterRoundingMode) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setRoundingMode:"), value)
 }
 

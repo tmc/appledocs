@@ -45,8 +45,13 @@ type ITableCellView interface {
 // A reusable container view shown for a particular cell in a table view that uses rows for content.
 //
 // The and properties are connected in Interface Builder. Additional properties can be added by subclassing and adding the required properties and connecting them programmatically or in Interface Builder. The is used when setting the value of the view cell by the method in the . If you use your own custom view cells that are not based on you should implement this property in order to be able to receive changes to cell values.
+
+
+// A reusable container view shown for a particular cell in a table view that uses rows for content.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableCellView
+
 type TableCellView struct {
 	View
 }
@@ -92,100 +97,118 @@ func NewTableCellView() TableCellView {
 }
 
 
+
 // This property is automatically set by the enclosing row view to let this view know what its background looks like.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableCellView/backgroundStyle
+
 func (t_ TableCellView) BackgroundStyle() BackgroundStyle {
 	rv := objc.Send[BackgroundStyle](t_.ID, objc.Sel("backgroundStyle"))
 	return rv
 }
 
 
-// SetBackgroundStyle sets the value of the backgroundStyle property.
 // This property is automatically set by the enclosing row view to let this view know what its background looks like.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableCellView/backgroundStyle
+
 func (t_ TableCellView) SetBackgroundStyle(value BackgroundStyle) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setBackgroundStyle:"), value)
 }
 
+
 // Returns dragging images for the cell.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableCellView/draggingImageComponents
+
 func (t_ TableCellView) DraggingImageComponents() []DraggingImageComponent {
 	rv := objc.Send[[]DraggingImageComponent](t_.ID, objc.Sel("draggingImageComponents"))
 	return rv
 }
 
+
 // Image displayed by the cell.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableCellView/imageView
+
 func (t_ TableCellView) ImageView() NSImageView {
 	rv := objc.Send[NSImageView](t_.ID, objc.Sel("imageView"))
 	return rv
 }
 
 
-// SetImageView sets the value of the imageView property.
 // Image displayed by the cell.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableCellView/imageView
+
 func (t_ TableCellView) SetImageView(value IImageView) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setImageView:"), value)
 }
 
+
 // The object that represents the cell data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableCellView/objectValue
+
 func (t_ TableCellView) ObjectValue() objc.ID {
 	rv := objc.Send[objc.ID](t_.ID, objc.Sel("objectValue"))
 	return rv
 }
 
 
-// SetObjectValue sets the value of the objectValue property.
 // The object that represents the cell data.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableCellView/objectValue
+
 func (t_ TableCellView) SetObjectValue(value objc.ID) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setObjectValue:"), value)
 }
 
+
 // Returns the row size style.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableCellView/rowSizeStyle
+
 func (t_ TableCellView) RowSizeStyle() TableViewRowSizeStyle {
 	rv := objc.Send[TableViewRowSizeStyle](t_.ID, objc.Sel("rowSizeStyle"))
 	return rv
 }
 
 
-// SetRowSizeStyle sets the value of the rowSizeStyle property.
 // Returns the row size style.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableCellView/rowSizeStyle
+
 func (t_ TableCellView) SetRowSizeStyle(value TableViewRowSizeStyle) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setRowSizeStyle:"), value)
 }
 
+
 // Text displayed by the cell.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableCellView/textField
+
 func (t_ TableCellView) TextField() NSTextField {
 	rv := objc.Send[NSTextField](t_.ID, objc.Sel("textField"))
 	return rv
 }
 
 
-// SetTextField sets the value of the textField property.
 // Text displayed by the cell.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableCellView/textField
+
 func (t_ TableCellView) SetTextField(value ITextField) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextField:"), value)
 }

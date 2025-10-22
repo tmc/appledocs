@@ -43,8 +43,13 @@ type IHKLensSpecification interface {
 // An abstract superclass for lens specifications.
 //
 // Don’t instantiate this class directly. Instead, use one of its concrete subclasses: or .
+
+
+// An abstract superclass for lens specifications.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKLensSpecification
+
 type HKLensSpecification struct {
 	objectivec.Object
 }
@@ -88,74 +93,86 @@ func NewHKLensSpecification() HKLensSpecification {
 }
 
 
+
 // The correction for nearsightedness.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hklensspecification/addpower
+
 func (h_ HKLensSpecification) AddPower() HKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("addPower"))
 	return rv
 }
 
 
-// SetAddPower sets the value of the addPower property.
 // The correction for nearsightedness.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hklensspecification/addpower
+
 func (h_ HKLensSpecification) SetAddPower(value IHKQuantity) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setAddPower:"), value)
 }
 
+
 // Part of the correction for astigmatism that measures the orientation fo the correction.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hklensspecification/axis
+
 func (h_ HKLensSpecification) Axis() HKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("axis"))
 	return rv
 }
 
 
-// SetAxis sets the value of the axis property.
 // Part of the correction for astigmatism that measures the orientation fo the correction.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hklensspecification/axis
+
 func (h_ HKLensSpecification) SetAxis(value IHKQuantity) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setAxis:"), value)
 }
 
+
 // Part of the correction for astigmatism that measures the strength of the correction.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hklensspecification/cylinder
+
 func (h_ HKLensSpecification) Cylinder() HKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("cylinder"))
 	return rv
 }
 
 
-// SetCylinder sets the value of the cylinder property.
 // Part of the correction for astigmatism that measures the strength of the correction.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hklensspecification/cylinder
+
 func (h_ HKLensSpecification) SetCylinder(value IHKQuantity) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setCylinder:"), value)
 }
 
+
 // The correction for farsightedness.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hklensspecification/sphere
+
 func (h_ HKLensSpecification) Sphere() HKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("sphere"))
 	return rv
 }
 
 
-// SetSphere sets the value of the sphere property.
 // The correction for farsightedness.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hklensspecification/sphere
+
 func (h_ HKLensSpecification) SetSphere(value IHKQuantity) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setSphere:"), value)
 }

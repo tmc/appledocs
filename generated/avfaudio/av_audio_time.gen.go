@@ -46,8 +46,13 @@ type IAudioTime interface {
 // An object you use to represent a moment in time.
 //
 // The object represents a single moment in time in two ways: As host time, using the system’s basic clock with As audio samples at a particular sample rate A single instance contains either or both representations, meaning it might represent only a sample time, a host time, or both. Instances of this class are immutable.
+
+
+// An object you use to represent a moment in time.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioTime
+
 type AudioTime struct {
 	objectivec.Object
 }
@@ -95,7 +100,9 @@ func NewAudioTime() AudioTime {
 
 // Creates an audio time object with the specified timestamp and sample rate.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioTime/init(audioTimeStamp:sampleRate:)
+
 func NewAudioTimeWithAudioTimeStampSampleRate(ts unsafe.Pointer, sampleRate float64) AudioTime {
 	instance := getAudioTimeClass().Alloc()
 	rv := objc.Send[AudioTime](instance.ID, objc.Sel("initWithAudioTimeStamp:sampleRate:"), ts, sampleRate)
@@ -107,7 +114,9 @@ func NewAudioTimeWithAudioTimeStampSampleRate(ts unsafe.Pointer, sampleRate floa
 
 // Creates an audio time object with the specified host time.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioTime/init(hostTime:)
+
 func NewAudioTimeWithHostTime(hostTime uint64) AudioTime {
 	instance := getAudioTimeClass().Alloc()
 	rv := objc.Send[AudioTime](instance.ID, objc.Sel("initWithHostTime:"), hostTime)
@@ -119,7 +128,9 @@ func NewAudioTimeWithHostTime(hostTime uint64) AudioTime {
 
 // Creates an audio time object with the specified host time, sample time, and sample rate.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioTime/init(hostTime:sampleTime:atRate:)
+
 func NewAudioTimeWithHostTimeSampleTimeAtRate(hostTime uint64, sampleTime AudioFramePosition, sampleRate float64) AudioTime {
 	instance := getAudioTimeClass().Alloc()
 	rv := objc.Send[AudioTime](instance.ID, objc.Sel("initWithHostTime:sampleTime:atRate:"), hostTime, sampleTime, sampleRate)
@@ -131,7 +142,9 @@ func NewAudioTimeWithHostTimeSampleTimeAtRate(hostTime uint64, sampleTime AudioF
 
 // Creates an audio time object with the specified timestamp and sample rate.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioTime/init(sampleTime:atRate:)
+
 func NewAudioTimeWithSampleTimeAtRate(sampleTime AudioFramePosition, sampleRate float64) AudioTime {
 	instance := getAudioTimeClass().Alloc()
 	rv := objc.Send[AudioTime](instance.ID, objc.Sel("initWithSampleTime:atRate:"), sampleTime, sampleRate)
@@ -140,134 +153,177 @@ func NewAudioTimeWithSampleTimeAtRate(sampleTime AudioFramePosition, sampleRate 
 }
 
 
+
 // Converts seconds to host time.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioTime/hostTime(forSeconds:)
-func (ac _AudioTimeClass) HostTimeForSeconds(seconds foundation.ITimeInterval) uint64 {
+
+func (ac _AudioTimeClass) HostTimeForSeconds(seconds foundation.TimeInterval) uint64 {
 	rv := objc.Send[uint64](objc.ID(ac.class), objc.Sel("hostTimeForSeconds:"), seconds)
 	return rv
 }
 
+
 // Converts host time to seconds.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioTime/seconds(forHostTime:)
+
 func (ac _AudioTimeClass) SecondsForHostTime(hostTime uint64) foundation.TimeInterval {
 	rv := objc.Send[foundation.TimeInterval](objc.ID(ac.class), objc.Sel("secondsForHostTime:"), hostTime)
 	return rv
 }
 
+
 // Creates an audio time object with the specified timestamp and sample rate.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioTime/timeWithAudioTimeStamp:sampleRate:
+
 func (ac _AudioTimeClass) TimeWithAudioTimeStampSampleRate(ts unsafe.Pointer, sampleRate float64) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("timeWithAudioTimeStamp:sampleRate:"), ts, sampleRate)
 	return rv
 }
 
+
 // Creates an audio time object with the specified host time.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioTime/timeWithHostTime:
+
 func (ac _AudioTimeClass) TimeWithHostTime(hostTime uint64) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("timeWithHostTime:"), hostTime)
 	return rv
 }
 
+
 // Creates an audio time object with the specified host time, sample time, and sample rate.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioTime/timeWithHostTime:sampleTime:atRate:
+
 func (ac _AudioTimeClass) TimeWithHostTimeSampleTimeAtRate(hostTime uint64, sampleTime AudioFramePosition, sampleRate float64) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("timeWithHostTime:sampleTime:atRate:"), hostTime, sampleTime, sampleRate)
 	return rv
 }
 
+
 // Creates an audio time object with the specified sample time and sample rate.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioTime/timeWithSampleTime:atRate:
+
 func (ac _AudioTimeClass) TimeWithSampleTimeAtRate(sampleTime AudioFramePosition, sampleRate float64) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("timeWithSampleTime:atRate:"), sampleTime, sampleRate)
 	return rv
 }
 
+
+
 // Creates an audio time object by converting between host time and sample time.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioTime/extrapolateTime(fromAnchor:)
+
 func (a_ AudioTime) ExtrapolateTimeFromAnchor(anchorTime IAVAudioTime) AudioTime {
 	rv := objc.Send[AudioTime](a_.ID, objc.Sel("extrapolateTimeFromAnchor:"), anchorTime)
 	return rv
 }
 
+
 // The time as an audio timestamp.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioTime/audioTimeStamp
+
 func (a_ AudioTime) AudioTimeStamp() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("audioTimeStamp"))
 	return rv
 }
 
+
 // The host time.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioTime/hostTime
+
 func (a_ AudioTime) HostTime() uint64 {
 	rv := objc.Send[uint64](a_.ID, objc.Sel("hostTime"))
 	return rv
 }
 
+
 // A Boolean value that indicates whether the host time value is valid.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioTime/isHostTimeValid
+
 func (a_ AudioTime) HostTimeValid() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("hostTimeValid"))
 	return rv
 }
 
+
 // The sampling rate that the sample time property expresses.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioTime/sampleRate
+
 func (a_ AudioTime) SampleRate() float64 {
 	rv := objc.Send[float64](a_.ID, objc.Sel("sampleRate"))
 	return rv
 }
 
+
 // The time as a number of audio samples that the current audio device tracks.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioTime/sampleTime
+
 func (a_ AudioTime) SampleTime() AudioFramePosition {
 	rv := objc.Send[AudioFramePosition](a_.ID, objc.Sel("sampleTime"))
 	return rv
 }
 
+
 // A Boolean value that indicates whether the host time value is valid.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiotime/ishosttimevalid
+
 func (a_ AudioTime) IsHostTimeValid() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isHostTimeValid"))
 	return rv
 }
 
 
-// SetIsHostTimeValid sets the value of the isHostTimeValid property.
 // A Boolean value that indicates whether the host time value is valid.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiotime/ishosttimevalid
+
 func (a_ AudioTime) SetIsHostTimeValid(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsHostTimeValid:"), value)
 }
 
+
 // A Boolean value that indicates whether the sample time and sample rate properties are in a valid state.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiotime/issampletimevalid
+
 func (a_ AudioTime) IsSampleTimeValid() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isSampleTimeValid"))
 	return rv
 }
 
 
-// SetIsSampleTimeValid sets the value of the isSampleTimeValid property.
 // A Boolean value that indicates whether the sample time and sample rate properties are in a valid state.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiotime/issampletimevalid
+
 func (a_ AudioTime) SetIsSampleTimeValid(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsSampleTimeValid:"), value)
 }

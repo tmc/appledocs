@@ -34,8 +34,13 @@ type IHKElectrocardiogramType interface {
 // A type that identifies samples containing electrocardiogram data.
 //
 // The class is a concrete subclass of the class. To create an electrocardiogram type instance, use the object type’s convenience method. Use the electrocardiogram type to: Request permission to read electrocardiogram samples Query for electrocardiogram samples Electrocardiogram samples are read-only. You can request permission to read the samples using this identifier, but you can’t request authorization to share them. This means you can’t save new electrocardiogram samples to the HealthKit store. To add test data in iOS Simulator, open the Health app and select Browse > Heart > Electrocardiograms (ECG) > Add Data.
+
+
+// A type that identifies samples containing electrocardiogram data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKElectrocardiogramType
+
 type HKElectrocardiogramType struct {
 	HKSampleType
 }

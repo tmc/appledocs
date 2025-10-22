@@ -34,8 +34,13 @@ type IPasskeyAssertionCredentialExtensionOutput interface {
 }
 
 // This class encapsulates output for various WebAuthn extensions used during passkey assertion.
+
+
+// This class encapsulates output for various WebAuthn extensions used during passkey assertion.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASPasskeyAssertionCredentialExtensionOutput-c.class
+
 type PasskeyAssertionCredentialExtensionOutput struct {
 	objectivec.Object
 }
@@ -79,9 +84,12 @@ func NewPasskeyAssertionCredentialExtensionOutput() PasskeyAssertionCredentialEx
 }
 
 
+
 // Output for operation during passkey assertion.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASPasskeyAssertionCredentialExtensionOutput-c.class/largeBlobAssertionOutput
+
 func (p_ PasskeyAssertionCredentialExtensionOutput) LargeBlobAssertionOutput() ASAuthorizationPublicKeyCredentialLargeBlobAssertionOutput {
 	rv := objc.Send[ASAuthorizationPublicKeyCredentialLargeBlobAssertionOutput](p_.ID, objc.Sel("largeBlobAssertionOutput"))
 	return rv

@@ -46,8 +46,6 @@ const (
 // Fallback type aliases for undefined types
 // These types are referenced in method signatures but not fully documented.
 // Using unsafe.Pointer as fallback to allow code generation.
-type CFRunLoopRef unsafe.Pointer
-
 type Class unsafe.Pointer
 
 type FileAttributeKey unsafe.Pointer
@@ -57,8 +55,6 @@ type NSAffineTransformStruct unsafe.Pointer
 type NSCacheDelegate unsafe.Pointer
 
 type NSCalculationError unsafe.Pointer
-
-type NSCalendarOptions unsafe.Pointer
 
 type NSComparator unsafe.Pointer
 
@@ -78,8 +74,6 @@ type NSEdgeInsets unsafe.Pointer
 
 type NSFastEnumerationState unsafe.Pointer
 
-type NSFileCoordinatorReadingOptions unsafe.Pointer
-
 type NSFileProviderItem unsafe.Pointer
 
 type NSFileProviderItemIdentifier unsafe.Pointer
@@ -90,21 +84,15 @@ type NSHTTPCookieAcceptPolicy unsafe.Pointer
 
 type NSHelpManagerContextHelpKey unsafe.Pointer
 
-type NSISO8601DateFormatOptions unsafe.Pointer
-
 type NSImageName unsafe.Pointer
 
 type NSInsertionPosition unsafe.Pointer
 
+type NSItemProviderCompletionHandler unsafe.Pointer
+
+type NSItemProviderLoadHandler unsafe.Pointer
+
 type NSLengthFormatterUnit unsafe.Pointer
-
-type NSLocaleKey unsafe.Pointer
-
-type NSLocaleLanguageDirection unsafe.Pointer
-
-type NSMetadataQueryAttributeValueTuple unsafe.Pointer
-
-type NSMetadataQueryResultGroup unsafe.Pointer
 
 type NSNibName unsafe.Pointer
 
@@ -114,8 +102,6 @@ type NSOperatingSystemVersion unsafe.Pointer
 
 type NSOrderedCollectionChange unsafe.Pointer
 
-type NSPostingStyle unsafe.Pointer
-
 type NSProgressKind unsafe.Pointer
 
 type NSRange unsafe.Pointer
@@ -123,10 +109,6 @@ type NSRange unsafe.Pointer
 type NSRoundingMode unsafe.Pointer
 
 type NSSoundName unsafe.Pointer
-
-type NSStreamPropertyKey unsafe.Pointer
-
-type NSStringEncoding unsafe.Pointer
 
 type NSTestComparisonOperation unsafe.Pointer
 

@@ -43,8 +43,13 @@ type IAccessibilityCustomRotor interface {
 // A context-sensitive function that helps VoiceOver users find the next instance of a related accessibility element.
 //
 // Assistive apps, like VoiceOver, provide interfaces to quickly search apps for content of a specific type. For example, in a web browser, a user can quickly explore a list of navigational links or buttons using VoiceOver’s content menus. provides a way for apps to vend their own content menus. For example, Pages can create a custom rotor that allows assistive apps to search the Pages document for all headings.
+
+
+// A context-sensitive function that helps VoiceOver users find the next instance of a related accessibility element.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibilityCustomRotor
+
 type AccessibilityCustomRotor struct {
 	objectivec.Object
 }
@@ -88,74 +93,86 @@ func NewAccessibilityCustomRotor() AccessibilityCustomRotor {
 }
 
 
+
 // The delegate for loading item results that don’t have a backing UI element at loading time.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor/itemloadingdelegate
+
 func (a_ AccessibilityCustomRotor) ItemLoadingDelegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("itemLoadingDelegate"))
 	return rv
 }
 
 
-// SetItemLoadingDelegate sets the value of the itemLoadingDelegate property.
 // The delegate for loading item results that don’t have a backing UI element at loading time.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor/itemloadingdelegate
+
 func (a_ AccessibilityCustomRotor) SetItemLoadingDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setItemLoadingDelegate:"), value)
 }
 
+
 // The delegate for finding the next item result.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor/itemsearchdelegate
+
 func (a_ AccessibilityCustomRotor) ItemSearchDelegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("itemSearchDelegate"))
 	return rv
 }
 
 
-// SetItemSearchDelegate sets the value of the itemSearchDelegate property.
 // The delegate for finding the next item result.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor/itemsearchdelegate
+
 func (a_ AccessibilityCustomRotor) SetItemSearchDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setItemSearchDelegate:"), value)
 }
 
+
 // The localized label that assistive apps use to describe the custom rotor.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor/label
+
 func (a_ AccessibilityCustomRotor) Label() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("label"))
 	return rv
 }
 
 
-// SetLabel sets the value of the label property.
 // The localized label that assistive apps use to describe the custom rotor.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor/label
+
 func (a_ AccessibilityCustomRotor) SetLabel(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
 
+
 // The type of content that the rotor represents.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor/type
+
 func (a_ AccessibilityCustomRotor) Type() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("type"))
 	return rv
 }
 
 
-// SetType sets the value of the type property.
 // The type of content that the rotor represents.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor/type
+
 func (a_ AccessibilityCustomRotor) SetType(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setType:"), value)
 }

@@ -48,8 +48,13 @@ type ICKModifySubscriptionsOperation interface {
 // An operation for modifying one or more subscriptions.
 //
 // After you create or change the configuration of a subscription, use this operation to save those changes to the server. You can also use this operation to permanently delete subscriptions. If you assign a handler to the property, the operation calls it after it executes and passes it the results. Use the handler to perform any housekeeping tasks for the operation. The handler you specify should manage any failures, whether due to an error or an explicit cancellation.
+
+
+// An operation for modifying one or more subscriptions.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKModifySubscriptionsOperation
+
 type CKModifySubscriptionsOperation struct {
 	CKDatabaseOperation
 }
@@ -95,119 +100,137 @@ func NewCKModifySubscriptionsOperation() CKModifySubscriptionsOperation {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKModifySubscriptionsOperation/perSubscriptionSaveBlock-1yn86
+
 func (c_ CKModifySubscriptionsOperation) PerSubscriptionSaveBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("perSubscriptionSaveBlock"))
 	return rv
 }
 
 
-// SetPerSubscriptionSaveBlock sets the value of the perSubscriptionSaveBlock property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKModifySubscriptionsOperation/perSubscriptionSaveBlock-1yn86
+
 func (c_ CKModifySubscriptionsOperation) SetPerSubscriptionSaveBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPerSubscriptionSaveBlock:"), value)
 }
 
+
 // The closure to execute after the operation modifies the subscriptions.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifysubscriptionsoperation/modifysubscriptionscompletionblock-7l56
+
 func (c_ CKModifySubscriptionsOperation) ModifySubscriptionsCompletionBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("modifySubscriptionsCompletionBlock"))
 	return rv
 }
 
 
-// SetModifySubscriptionsCompletionBlock sets the value of the modifySubscriptionsCompletionBlock property.
 // The closure to execute after the operation modifies the subscriptions.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifysubscriptionsoperation/modifysubscriptionscompletionblock-7l56
+
 func (c_ CKModifySubscriptionsOperation) SetModifySubscriptionsCompletionBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setModifySubscriptionsCompletionBlock:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifysubscriptionsoperation/modifysubscriptionsresultblock
+
 func (c_ CKModifySubscriptionsOperation) ModifySubscriptionsResultBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("modifySubscriptionsResultBlock"))
 	return rv
 }
 
 
-// SetModifySubscriptionsResultBlock sets the value of the modifySubscriptionsResultBlock property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifysubscriptionsoperation/modifysubscriptionsresultblock
+
 func (c_ CKModifySubscriptionsOperation) SetModifySubscriptionsResultBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setModifySubscriptionsResultBlock:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifysubscriptionsoperation/persubscriptiondeleteblock-5ke2l
+
 func (c_ CKModifySubscriptionsOperation) PerSubscriptionDeleteBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("perSubscriptionDeleteBlock"))
 	return rv
 }
 
 
-// SetPerSubscriptionDeleteBlock sets the value of the perSubscriptionDeleteBlock property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifysubscriptionsoperation/persubscriptiondeleteblock-5ke2l
+
 func (c_ CKModifySubscriptionsOperation) SetPerSubscriptionDeleteBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPerSubscriptionDeleteBlock:"), value)
 }
 
+
 // The IDs of the subscriptions that you want to delete.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifysubscriptionsoperation/subscriptionidstodelete-3534e
+
 func (c_ CKModifySubscriptionsOperation) SubscriptionIDsToDelete() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("subscriptionIDsToDelete"))
 	return rv
 }
 
 
-// SetSubscriptionIDsToDelete sets the value of the subscriptionIDsToDelete property.
 // The IDs of the subscriptions that you want to delete.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifysubscriptionsoperation/subscriptionidstodelete-3534e
+
 func (c_ CKModifySubscriptionsOperation) SetSubscriptionIDsToDelete(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSubscriptionIDsToDelete:"), value)
 }
 
+
 // The subscriptions to save to the database.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifysubscriptionsoperation/subscriptionstosave
+
 func (c_ CKModifySubscriptionsOperation) SubscriptionsToSave() CKSubscription {
 	rv := objc.Send[CKSubscription](c_.ID, objc.Sel("subscriptionsToSave"))
 	return rv
 }
 
 
-// SetSubscriptionsToSave sets the value of the subscriptionsToSave property.
 // The subscriptions to save to the database.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifysubscriptionsoperation/subscriptionstosave
+
 func (c_ CKModifySubscriptionsOperation) SetSubscriptionsToSave(value ICKSubscription) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSubscriptionsToSave:"), value)
 }
 
+
 // The block to execute after the operation’s main task is completed.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/completionBlock
+
 func (c_ CKModifySubscriptionsOperation) CompletionBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("completionBlock"))
 	return rv
 }
 
 
-// SetCompletionBlock sets the value of the completionBlock property.
 // The block to execute after the operation’s main task is completed.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/completionBlock
+
 func (c_ CKModifySubscriptionsOperation) SetCompletionBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCompletionBlock:"), value)
 }

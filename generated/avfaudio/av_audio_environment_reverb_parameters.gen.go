@@ -40,8 +40,13 @@ type IAudioEnvironmentReverbParameters interface {
 // A class that encapsulates the parameters that you use to control the reverb of the environment node class.
 //
 // Use reverberation to simulate the acoustic characteristics of an environment. The class has a built-in reverb that describe the space that the listener is in. The reverb has a single filter that sits at the end of the chain. You use this filter to shape the overall sound of the reverb. For instance, select one of the reverb presets to simulate the general space, and then use the filter to brighten or darken the overall sound. You can’t create a standalone instance of . Only an instance vended by a source object is valid, such as an instance.
+
+
+// A class that encapsulates the parameters that you use to control the reverb of the environment node class.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioEnvironmentReverbParameters
+
 type AudioEnvironmentReverbParameters struct {
 	objectivec.Object
 }
@@ -85,46 +90,55 @@ func NewAudioEnvironmentReverbParameters() AudioEnvironmentReverbParameters {
 }
 
 
+
 // A Boolean value that indicates whether reverberation is in an enabled state.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioEnvironmentReverbParameters/enable
+
 func (a_ AudioEnvironmentReverbParameters) Enable() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("enable"))
 	return rv
 }
 
 
-// SetEnable sets the value of the enable property.
 // A Boolean value that indicates whether reverberation is in an enabled state.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioEnvironmentReverbParameters/enable
+
 func (a_ AudioEnvironmentReverbParameters) SetEnable(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setEnable:"), value)
 }
 
+
 // A filter that the system applies to the output.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioEnvironmentReverbParameters/filterParameters
+
 func (a_ AudioEnvironmentReverbParameters) FilterParameters() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("filterParameters"))
 	return rv
 }
 
+
 // Controls the amount of reverb, in decibels.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentreverbparameters/level
+
 func (a_ AudioEnvironmentReverbParameters) Level() float32 {
 	rv := objc.Send[float32](a_.ID, objc.Sel("level"))
 	return rv
 }
 
 
-// SetLevel sets the value of the level property.
 // Controls the amount of reverb, in decibels.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentreverbparameters/level
+
 func (a_ AudioEnvironmentReverbParameters) SetLevel(value float32) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setLevel:"), value)
 }

@@ -37,8 +37,13 @@ type IAbsoluteAltitudeData interface {
 // Data that records a change in absolute altitude.
 //
 // Absolute altitude is only available on iPhone 12 and later and Apple Watch 6 or SE and later.
+
+
+// Data that records a change in absolute altitude.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAbsoluteAltitudeData
+
 type AbsoluteAltitudeData struct {
 	LogItem
 }
@@ -84,25 +89,34 @@ func NewAbsoluteAltitudeData() AbsoluteAltitudeData {
 }
 
 
+
 // The estimated uncertainty of the altimeter in meters, based on one standard deviation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAbsoluteAltitudeData/accuracy
+
 func (a_ AbsoluteAltitudeData) Accuracy() float64 {
 	rv := objc.Send[float64](a_.ID, objc.Sel("accuracy"))
 	return rv
 }
 
+
 // The absolute altitude of the device relative to sea level, measured in meters.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAbsoluteAltitudeData/altitude
+
 func (a_ AbsoluteAltitudeData) Altitude() float64 {
 	rv := objc.Send[float64](a_.ID, objc.Sel("altitude"))
 	return rv
 }
 
+
 // The recommended resolution for the altitude, in meters.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAbsoluteAltitudeData/precision
+
 func (a_ AbsoluteAltitudeData) Precision() float64 {
 	rv := objc.Send[float64](a_.ID, objc.Sel("precision"))
 	return rv

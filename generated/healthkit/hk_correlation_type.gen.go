@@ -34,8 +34,13 @@ type IHKCorrelationType interface {
 // A type that identifies samples that group multiple subsamples.
 //
 // The class is a concrete subclass of the class. To create a correlation type instance, use the object type’s conveniance method. Use correlation types to: Request permission to read or write matching quantity samples. Create and share matching quantity samples. Query for matching quantity samples. HealthKit provides two correlation types: blood pressure and food.
+
+
+// A type that identifies samples that group multiple subsamples.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKCorrelationType
+
 type HKCorrelationType struct {
 	HKSampleType
 }

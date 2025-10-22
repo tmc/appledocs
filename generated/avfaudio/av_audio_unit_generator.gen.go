@@ -36,8 +36,13 @@ type IAudioUnitGenerator interface {
 // An object that generates audio output.
 //
 // A generator represents an of type or . A generator has no audio input, but produces audio output. An example is a tone generator.
+
+
+// An object that generates audio output.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioUnitGenerator
+
 type AudioUnitGenerator struct {
 	AudioUnit
 }
@@ -83,20 +88,23 @@ func NewAudioUnitGenerator() AudioUnitGenerator {
 }
 
 
+
 // The bypass state of the audio unit.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitgenerator/bypass
+
 func (a_ AudioUnitGenerator) Bypass() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("bypass"))
 	return rv
 }
 
 
-// SetBypass sets the value of the bypass property.
 // The bypass state of the audio unit.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitgenerator/bypass
+
 func (a_ AudioUnitGenerator) SetBypass(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setBypass:"), value)
 }

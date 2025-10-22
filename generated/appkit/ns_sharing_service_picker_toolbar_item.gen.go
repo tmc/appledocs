@@ -38,8 +38,13 @@ type ISharingServicePickerToolbarItem interface {
 // A toolbar item that displays the macOS share sheet.
 //
 // An object is a standard item you add to your window’s toolbar. When someone clicks it, the item displays the macOS share sheet. Use this item to share the selected or focal content from the current window. For example, you might share the photo someone is viewing, the currently selected text, or the window’s associated document. Provide the items to share using the associated object. For an app built using Mac Catalyst, provide the items from the object in the property.
+
+
+// A toolbar item that displays the macOS share sheet.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingServicePickerToolbarItem
+
 type SharingServicePickerToolbarItem struct {
 	ToolbarItem
 }
@@ -85,38 +90,44 @@ func NewSharingServicePickerToolbarItem() SharingServicePickerToolbarItem {
 }
 
 
+
 // The custom object from an app built with Mac Catalyst that provides the items to share.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingServicePickerToolbarItem/activityItemsConfiguration
+
 func (s_ SharingServicePickerToolbarItem) ActivityItemsConfiguration() objc.ID {
 	rv := objc.Send[objc.ID](s_.ID, objc.Sel("activityItemsConfiguration"))
 	return rv
 }
 
 
-// SetActivityItemsConfiguration sets the value of the activityItemsConfiguration property.
 // The custom object from an app built with Mac Catalyst that provides the items to share.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingServicePickerToolbarItem/activityItemsConfiguration
+
 func (s_ SharingServicePickerToolbarItem) SetActivityItemsConfiguration(value objc.ID) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setActivityItemsConfiguration:"), value)
 }
 
+
 // The custom object from your app that provides the items to share.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingServicePickerToolbarItem/delegate
+
 func (s_ SharingServicePickerToolbarItem) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](s_.ID, objc.Sel("delegate"))
 	return rv
 }
 
 
-// SetDelegate sets the value of the delegate property.
 // The custom object from your app that provides the items to share.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingServicePickerToolbarItem/delegate
+
 func (s_ SharingServicePickerToolbarItem) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDelegate:"), value)
 }

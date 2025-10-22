@@ -41,8 +41,13 @@ type IGCVirtualControllerConfiguration interface {
 // The configuration of a virtual controller.
 //
 // You configure a virtual controller by specifying the input elements it contains. Then using the method, you can customize individual elements.
+
+
+// The configuration of a virtual controller.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCVirtualController/Configuration
+
 type GCVirtualControllerConfiguration struct {
 	objectivec.Object
 }
@@ -86,56 +91,65 @@ func NewGCVirtualControllerConfiguration() GCVirtualControllerConfiguration {
 }
 
 
+
 // A Boolean value that indicates whether the system or the app presents the virtual interface.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCVirtualController/Configuration/isHidden
+
 func (g_ GCVirtualControllerConfiguration) Hidden() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("hidden"))
 	return rv
 }
 
 
-// SetHidden sets the value of the hidden property.
 // A Boolean value that indicates whether the system or the app presents the virtual interface.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCVirtualController/Configuration/isHidden
+
 func (g_ GCVirtualControllerConfiguration) SetHidden(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setHidden:"), value)
 }
 
+
 // The input elements of a virtual controller.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcvirtualcontroller/configuration/elements
+
 func (g_ GCVirtualControllerConfiguration) Elements() string {
 	rv := objc.Send[string](g_.ID, objc.Sel("elements"))
 	return rv
 }
 
 
-// SetElements sets the value of the elements property.
 // The input elements of a virtual controller.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcvirtualcontroller/configuration/elements
+
 func (g_ GCVirtualControllerConfiguration) SetElements(value string) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setElements:"), objc.String(value))
 }
 
+
 // A Boolean value that indicates whether the system or the app presents the virtual interface.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcvirtualcontroller/configuration/ishidden
+
 func (g_ GCVirtualControllerConfiguration) IsHidden() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("isHidden"))
 	return rv
 }
 
 
-// SetIsHidden sets the value of the isHidden property.
 // A Boolean value that indicates whether the system or the app presents the virtual interface.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcvirtualcontroller/configuration/ishidden
+
 func (g_ GCVirtualControllerConfiguration) SetIsHidden(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setIsHidden:"), value)
 }

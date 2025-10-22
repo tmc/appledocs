@@ -35,8 +35,13 @@ type ICNFetchRequest interface {
 // The base class for contact fetch requests.
 //
 // To fetch contacts, use .
+
+
+// The base class for contact fetch requests.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNFetchRequest
+
 type CNFetchRequest struct {
 	objectivec.Object
 }

@@ -52,8 +52,13 @@ type IOutlineView interface {
 // A view that uses a row-and-column format to display hierarchical data like directories and files that can be expanded and collapsed.
 //
 // Like a table view, an outline view does not store its own data, instead it retrieves data values as needed from a data source to which it has a weak reference (see ). See , which declares the methods that an object uses to access the contents of its data source object. An outline view has the following features: A user can expand and collapse rows, edit values, and resize and rearrange columns. Each item in the outline view must be unique. In order for the collapsed state to remain consistent between reloads the item’s pointer must remain the same and the item must maintain sameness. The view gets data from a data source (see ). The view retrieves only the data that needs to be displayed. For more information about using NSOutlineView in your app, see .
+
+
+// A view that uses a row-and-column format to display hierarchical data like directories and files that can be expanded and collapsed.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOutlineView
+
 type OutlineView struct {
 	TableView
 }
@@ -99,164 +104,191 @@ func NewOutlineView() OutlineView {
 }
 
 
+
 // The per-level indentation, measured in points.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOutlineView/indentationPerLevel
+
 func (o_ OutlineView) IndentationPerLevel() float64 {
 	rv := objc.Send[float64](o_.ID, objc.Sel("indentationPerLevel"))
 	return rv
 }
 
 
-// SetIndentationPerLevel sets the value of the indentationPerLevel property.
 // The per-level indentation, measured in points.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOutlineView/indentationPerLevel
+
 func (o_ OutlineView) SetIndentationPerLevel(value float64) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setIndentationPerLevel:"), value)
 }
 
+
 // A Boolean value that indicates whether the outline view resizes its outline column when the user expands or collapses items.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsoutlineview/autoresizesoutlinecolumn
+
 func (o_ OutlineView) AutoresizesOutlineColumn() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("autoresizesOutlineColumn"))
 	return rv
 }
 
 
-// SetAutoresizesOutlineColumn sets the value of the autoresizesOutlineColumn property.
 // A Boolean value that indicates whether the outline view resizes its outline column when the user expands or collapses items.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsoutlineview/autoresizesoutlinecolumn
+
 func (o_ OutlineView) SetAutoresizesOutlineColumn(value bool) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAutoresizesOutlineColumn:"), value)
 }
 
+
 // A Boolean value indicating whether the expanded items are automatically saved across launches of the app.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsoutlineview/autosaveexpandeditems
+
 func (o_ OutlineView) AutosaveExpandedItems() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("autosaveExpandedItems"))
 	return rv
 }
 
 
-// SetAutosaveExpandedItems sets the value of the autosaveExpandedItems property.
 // A Boolean value indicating whether the expanded items are automatically saved across launches of the app.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsoutlineview/autosaveexpandeditems
+
 func (o_ OutlineView) SetAutosaveExpandedItems(value bool) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAutosaveExpandedItems:"), value)
 }
 
+
 // The object that provides the data displayed by the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsoutlineview/datasource
+
 func (o_ OutlineView) DataSource() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("dataSource"))
 	return rv
 }
 
 
-// SetDataSource sets the value of the dataSource property.
 // The object that provides the data displayed by the receiver.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsoutlineview/datasource
+
 func (o_ OutlineView) SetDataSource(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setDataSource:"), value)
 }
 
+
 // The outline view’s delegate.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsoutlineview/delegate
+
 func (o_ OutlineView) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("delegate"))
 	return rv
 }
 
 
-// SetDelegate sets the value of the delegate property.
 // The outline view’s delegate.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsoutlineview/delegate
+
 func (o_ OutlineView) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setDelegate:"), value)
 }
 
+
 // A Boolean value indicating whether the indentation marker symbol displayed in the outline column should be indented along with the cell contents.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsoutlineview/indentationmarkerfollowscell
+
 func (o_ OutlineView) IndentationMarkerFollowsCell() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("indentationMarkerFollowsCell"))
 	return rv
 }
 
 
-// SetIndentationMarkerFollowsCell sets the value of the indentationMarkerFollowsCell property.
 // A Boolean value indicating whether the indentation marker symbol displayed in the outline column should be indented along with the cell contents.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsoutlineview/indentationmarkerfollowscell
+
 func (o_ OutlineView) SetIndentationMarkerFollowsCell(value bool) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setIndentationMarkerFollowsCell:"), value)
 }
 
+
 // The table column in which hierarchical data is displayed.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsoutlineview/outlinetablecolumn
+
 func (o_ OutlineView) OutlineTableColumn() NSTableColumn {
 	rv := objc.Send[NSTableColumn](o_.ID, objc.Sel("outlineTableColumn"))
 	return rv
 }
 
 
-// SetOutlineTableColumn sets the value of the outlineTableColumn property.
 // The table column in which hierarchical data is displayed.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsoutlineview/outlinetablecolumn
+
 func (o_ OutlineView) SetOutlineTableColumn(value ITableColumn) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setOutlineTableColumn:"), value)
 }
 
+
 // A Boolean value that indicates whether the outline view retains and releases the objects returned from its data source.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsoutlineview/stronglyreferencesitems
+
 func (o_ OutlineView) StronglyReferencesItems() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("stronglyReferencesItems"))
 	return rv
 }
 
 
-// SetStronglyReferencesItems sets the value of the stronglyReferencesItems property.
 // A Boolean value that indicates whether the outline view retains and releases the objects returned from its data source.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsoutlineview/stronglyreferencesitems
+
 func (o_ OutlineView) SetStronglyReferencesItems(value bool) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setStronglyReferencesItems:"), value)
 }
 
+
 // The user interface layout direction.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsoutlineview/userinterfacelayoutdirection
+
 func (o_ OutlineView) UserInterfaceLayoutDirection() UserInterfaceLayoutDirection {
 	rv := objc.Send[UserInterfaceLayoutDirection](o_.ID, objc.Sel("userInterfaceLayoutDirection"))
 	return rv
 }
 
 
-// SetUserInterfaceLayoutDirection sets the value of the userInterfaceLayoutDirection property.
 // The user interface layout direction.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsoutlineview/userinterfacelayoutdirection
+
 func (o_ OutlineView) SetUserInterfaceLayoutDirection(value UserInterfaceLayoutDirection) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setUserInterfaceLayoutDirection:"), value)
 }

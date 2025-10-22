@@ -42,8 +42,11 @@ type IMIDICIDevice interface {
 	SupportsProtocolNegotiation() bool
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIDevice
+
 type MIDICIDevice struct {
 	objectivec.Object
 }
@@ -85,71 +88,91 @@ func NewMIDICIDevice() MIDICIDevice {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIDevice/deviceInfo
+
 func (m_ MIDICIDevice) DeviceInfo() MIDI2DeviceInfo {
 	rv := objc.Send[MIDI2DeviceInfo](m_.ID, objc.Sel("deviceInfo"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIDevice/deviceType
+
 func (m_ MIDICIDevice) DeviceType() MIDICIDeviceType {
 	rv := objc.Send[MIDICIDeviceType](m_.ID, objc.Sel("deviceType"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIDevice/maxPropertyExchangeRequests
+
 func (m_ MIDICIDevice) MaxPropertyExchangeRequests() uint {
 	rv := objc.Send[uint](m_.ID, objc.Sel("maxPropertyExchangeRequests"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIDevice/maxSysExSize
+
 func (m_ MIDICIDevice) MaxSysExSize() uint {
 	rv := objc.Send[uint](m_.ID, objc.Sel("maxSysExSize"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIDevice/muid
+
 func (m_ MIDICIDevice) MUID() MIDICIMUID {
 	rv := objc.Send[MIDICIMUID](m_.ID, objc.Sel("MUID"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIDevice/profiles
+
 func (m_ MIDICIDevice) Profiles() []MIDIUMPCIProfile {
 	rv := objc.Send[[]MIDIUMPCIProfile](m_.ID, objc.Sel("profiles"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIDevice/supportsProcessInquiry
+
 func (m_ MIDICIDevice) SupportsProcessInquiry() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("supportsProcessInquiry"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIDevice/supportsProfileConfiguration
+
 func (m_ MIDICIDevice) SupportsProfileConfiguration() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("supportsProfileConfiguration"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIDevice/supportsPropertyExchange
+
 func (m_ MIDICIDevice) SupportsPropertyExchange() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("supportsPropertyExchange"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIDevice/supportsProtocolNegotiation
+
 func (m_ MIDICIDevice) SupportsProtocolNegotiation() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("supportsProtocolNegotiation"))
 	return rv

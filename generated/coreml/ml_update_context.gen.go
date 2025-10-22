@@ -38,8 +38,13 @@ type IUpdateContext interface {
 }
 
 // The context an update task provides to your app’s completion and update progress handlers.
+
+
+// The context an update task provides to your app’s completion and update progress handlers.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLUpdateContext
+
 type UpdateContext struct {
 	objectivec.Object
 }
@@ -83,41 +88,56 @@ func NewUpdateContext() UpdateContext {
 }
 
 
+
 // The event type that triggered an update task to notify your app’s completion and update progress handlers.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLUpdateContext/event
+
 func (u_ UpdateContext) Event() UpdateProgressEvent {
 	rv := objc.Send[UpdateProgressEvent](u_.ID, objc.Sel("event"))
 	return rv
 }
 
+
 // The training metrics of the model for the update task, contained in a dictionary.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLUpdateContext/metrics
+
 func (u_ UpdateContext) Metrics() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("metrics"))
 	return rv
 }
 
+
 // The underlying Core ML model stored in memory.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLUpdateContext/model
+
 func (u_ UpdateContext) Model() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("model"))
 	return rv
 }
 
+
 // The parameters for the update task.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLUpdateContext/parameters
+
 func (u_ UpdateContext) Parameters() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("parameters"))
 	return rv
 }
 
+
 // The update task that generated the update context.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLUpdateContext/task
+
 func (u_ UpdateContext) Task() MLUpdateTask {
 	rv := objc.Send[MLUpdateTask](u_.ID, objc.Sel("task"))
 	return rv

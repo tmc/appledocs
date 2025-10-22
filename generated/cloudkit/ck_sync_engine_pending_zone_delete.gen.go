@@ -32,8 +32,13 @@ type ICKSyncEnginePendingZoneDelete interface {
 }
 
 // An object that describes an unsent record zone deletion.
+
+
+// An object that describes an unsent record zone deletion.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEnginePendingZoneDelete
+
 type CKSyncEnginePendingZoneDelete struct {
 	CKSyncEnginePendingDatabaseChange
 }
@@ -83,7 +88,9 @@ func NewCKSyncEnginePendingZoneDelete() CKSyncEnginePendingZoneDelete {
 
 // Creates a pending zone delete for the specified record zone identifier.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEnginePendingZoneDelete/initWithZoneID:
+
 func NewCKSyncEnginePendingZoneDeleteWithZoneID(zoneID ICKRecordZoneID) CKSyncEnginePendingZoneDelete {
 	instance := getCKSyncEnginePendingZoneDeleteClass().Alloc()
 	rv := objc.Send[CKSyncEnginePendingZoneDelete](instance.ID, objc.Sel("initWithZoneID:"), zoneID)

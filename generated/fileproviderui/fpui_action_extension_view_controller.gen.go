@@ -39,8 +39,13 @@ type IFPUIActionExtensionViewController interface {
 // The custom user interface used to perform a selected action.
 //
 // Subclass this view controller to provide the user interface for your actions. No matter how many actions you define, your File Provider UI extension has only one subclass. When the user selects one of your actions, the system instantiates a copy of your subclass, calls its method, and presents it to the user. Your subclass must do the following: Override the method to check the action identifiers and present an appropriate user interface for the selected actions. Provide some sort of feedback, even if the action doesn’t require interaction with the user. For example, present a view that quickly fades out and automatically completes the action. Call the object’s or method when the action is finished to complete the action.
+
+
+// The custom user interface used to perform a selected action.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProviderUI/FPUIActionExtensionViewController
+
 type FPUIActionExtensionViewController struct {
 	appkit.ViewController
 }
@@ -86,23 +91,34 @@ func NewFPUIActionExtensionViewController() FPUIActionExtensionViewController {
 }
 
 
+
+
 // Performs any necessary setup or configuration for the specified action.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProviderUI/FPUIActionExtensionViewController/prepare(forAction:itemIdentifiers:)
+
 func (f_ FPUIActionExtensionViewController) PrepareForActionWithIdentifierItemIdentifiers(actionIdentifier string, itemIdentifiers []string) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("prepareForActionWithIdentifier:itemIdentifiers:"), objc.String(actionIdentifier), itemIdentifiers)
 }
 
+
+
 // Performs any necessary setup or configuration when an authentication error occurs.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProviderUI/FPUIActionExtensionViewController/prepare(forError:)
+
 func (f_ FPUIActionExtensionViewController) PrepareForError(error_ foundation.IError) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("prepareForError:"), error_)
 }
 
+
 // The extension context provided by the host app.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProviderUI/FPUIActionExtensionViewController/extensionContext
+
 func (f_ FPUIActionExtensionViewController) ExtensionContext() FPUIActionExtensionContext {
 	rv := objc.Send[FPUIActionExtensionContext](f_.ID, objc.Sel("extensionContext"))
 	return rv

@@ -32,8 +32,13 @@ type ICKSyncEngineDidSendChangesEvent interface {
 }
 
 // An object that provides information about a finished send operation.
+
+
+// An object that provides information about a finished send operation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineDidSendChangesEvent
+
 type CKSyncEngineDidSendChangesEvent struct {
 	CKSyncEngineEvent
 }

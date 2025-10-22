@@ -2,12 +2,16 @@
 
 // Package applicensedeliverysdk provides Go bindings for the AppLicenseDeliverySDK framework.
 //
-// Secure the installation of alternative distribution apps on iOS or iPadOS devices by vending licenses from your web server. [Full Topic]
+// Secure the installation of alternative distribution apps on iOS or iPadOS devices by vending licenses from your web server.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to AppLicenseDeliverySDK without requiring cgo.
+
+// Secure the installation of alternative distribution apps on iOS or iPadOS devices by vending licenses from your web server.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppLicenseDeliverySDK
+
 package applicensedeliverysdk
 
 import (

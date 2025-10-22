@@ -38,8 +38,13 @@ type ITextAlternatives interface {
 // A list of alternative strings for a piece of text.
 //
 // is an immutable value class that stores a list of alternatives for a piece of text and communicates the user’s selection of an alternative via a notification to your app. To support dictation, for example, you might use to present a list of alternative interpretations for a word or phrase the user speaks. If the user chooses to replace the initial interpretation with an alternative, notifies you of the choice so that you can update the text appropriately. instances are attached to attributed strings as the value of a text attribute, .
+
+
+// A list of alternative strings for a piece of text.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAlternatives
+
 type TextAlternatives struct {
 	objectivec.Object
 }
@@ -83,28 +88,34 @@ func NewTextAlternatives() TextAlternatives {
 }
 
 
+
 // The text that was initially chosen as the input string.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAlternatives/primaryString
+
 func (t_ TextAlternatives) PrimaryString() string {
 	rv := objc.Send[string](t_.ID, objc.Sel("primaryString"))
 	return rv
 }
 
+
 // An array of alternative possible interpretations that the user might select.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextalternatives/alternativestrings
+
 func (t_ TextAlternatives) AlternativeStrings() string {
 	rv := objc.Send[string](t_.ID, objc.Sel("alternativeStrings"))
 	return rv
 }
 
 
-// SetAlternativeStrings sets the value of the alternativeStrings property.
 // An array of alternative possible interpretations that the user might select.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextalternatives/alternativestrings
+
 func (t_ TextAlternatives) SetAlternativeStrings(value string) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAlternativeStrings:"), objc.String(value))
 }

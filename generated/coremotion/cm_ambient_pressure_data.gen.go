@@ -34,8 +34,13 @@ type IAmbientPressureData interface {
 }
 
 // A measurement of the ambient pressure and temperature.
+
+
+// A measurement of the ambient pressure and temperature.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAmbientPressureData
+
 type AmbientPressureData struct {
 	LogItem
 }
@@ -81,17 +86,23 @@ func NewAmbientPressureData() AmbientPressureData {
 }
 
 
+
 // The ambient pressure.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAmbientPressureData/pressure
+
 func (a_ AmbientPressureData) Pressure() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("pressure"))
 	return rv
 }
 
+
 // The temperature.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAmbientPressureData/temperature
+
 func (a_ AmbientPressureData) Temperature() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("temperature"))
 	return rv

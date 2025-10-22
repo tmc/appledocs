@@ -34,8 +34,13 @@ type IHKActivitySummaryType interface {
 // A type that identifies activity summary objects.
 //
 // Use the activity summary type to request permission to read objects from the HealthKit store. To create an activity summary type, use the class’s convenience method. The class is a concrete subclass of the class. Like many HealthKit classes, activity summary types aren’t extensible and you shouldn’t subclass them.
+
+
+// A type that identifies activity summary objects.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKActivitySummaryType
+
 type HKActivitySummaryType struct {
 	HKObjectType
 }

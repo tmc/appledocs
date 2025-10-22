@@ -42,8 +42,13 @@ type IAudioApplication interface {
 // An object that manages one or more audio sessions that belong to an app.
 //
 // Access the shared audio application instance to control app-level audio operations, such as requesting microphone permission and controlling audio input muting.
+
+
+// An object that manages one or more audio sessions that belong to an app.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioApplication
+
 type AudioApplication struct {
 	objectivec.Object
 }
@@ -87,89 +92,121 @@ func NewAudioApplication() AudioApplication {
 }
 
 
+
 // Requests the app’s permission to add audio to calls.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioApplication/requestMicrophoneInjectionPermission(completionHandler:)
+
 func (ac _AudioApplicationClass) RequestMicrophoneInjectionPermissionWithCompletionHandler(response unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(ac.class), objc.Sel("requestMicrophoneInjectionPermissionWithCompletionHandler:"), response)
 }
 
+
 // Determines whether the app has permission to record audio.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioApplication/requestRecordPermission(completionHandler:)
+
 func (ac _AudioApplicationClass) RequestRecordPermissionWithCompletionHandler(response unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(ac.class), objc.Sel("requestRecordPermissionWithCompletionHandler:"), response)
 }
 
+
 // Accesses the shared audio application instance.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioApplication/shared
+
 func (ac _AudioApplicationClass) SharedInstance() AudioApplication {
 	rv := objc.Send[AVAudioApplication](objc.ID(ac.class), objc.Sel("sharedInstance"))
 	return rv
 }
+
+
 // Sets a callback to handle changes to application-level audio muting states.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioApplication/setInputMuteStateChangeHandler(_:)
+
 func (a_ AudioApplication) SetInputMuteStateChangeHandlerError(inputMuteHandler unsafe.Pointer, outError unsafe.Pointer) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("setInputMuteStateChangeHandler:error:"), inputMuteHandler, outError)
 	return rv
 }
 
+
+
 // Sets a Boolean value that indicates whether the app’s audio input is in a muted state.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioApplication/setInputMuted(_:)
+
 func (a_ AudioApplication) SetInputMutedError(muted bool, outError unsafe.Pointer) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("setInputMuted:error:"), muted, outError)
 	return rv
 }
 
+
 // A Boolean value that indicates whether the app’s audio input is in a muted state.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioApplication/isInputMuted
+
 func (a_ AudioApplication) InputMuted() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("inputMuted"))
 	return rv
 }
 
+
 // A value that indicates an app’s permission to add audio to calls.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioApplication/microphoneInjectionPermission-swift.property
+
 func (a_ AudioApplication) MicrophoneInjectionPermission() AudioApplicationMicrophoneInjectionPermission {
 	rv := objc.Send[AudioApplicationMicrophoneInjectionPermission](a_.ID, objc.Sel("microphoneInjectionPermission"))
 	return rv
 }
 
+
 // The app’s permission to record audio.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioApplication/recordPermission-swift.property
+
 func (a_ AudioApplication) RecordPermission() AudioApplicationRecordPermission {
 	rv := objc.Send[AudioApplicationRecordPermission](a_.ID, objc.Sel("recordPermission"))
 	return rv
 }
 
+
 // Accesses the shared audio application instance.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioApplication/shared
+
 func (a_ AudioApplication) SharedInstance() AVAudioApplication {
 	rv := objc.Send[AVAudioApplication](a_.ID, objc.Sel("sharedInstance"))
 	return rv
 }
 
+
 // A Boolean value that indicates whether the app’s audio input is in a muted state.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioapplication/isinputmuted
+
 func (a_ AudioApplication) IsInputMuted() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isInputMuted"))
 	return rv
 }
 
 
-// SetIsInputMuted sets the value of the isInputMuted property.
 // A Boolean value that indicates whether the app’s audio input is in a muted state.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioapplication/isinputmuted
+
 func (a_ AudioApplication) SetIsInputMuted(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsInputMuted:"), value)
 }

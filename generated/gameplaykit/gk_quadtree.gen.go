@@ -42,8 +42,13 @@ type IQuadtree interface {
 // A data structure for organizing objects based on their locations in a two-dimensional space.
 //
 // A quadtree manages its structure to optimize for spatial searches—unlike a basic data structure such as an array or dictionary, a quadtree can find all elements occupying a specific position or region very quickly. The quadtree partitioning strategy divides space into four quadrants at each level, as illustrated in . When a quadrant contains more than one object, the tree subdivides that region into four smaller quadrants, adding a level to the tree. Quadtrees can be useful for many tasks in game design. For example: Deciding which game characters are close enough to each other for interaction Deciding which portions of a large game world need to be processed at a given time The class is one of three spatial partitioning data structures that GameplayKit provides. See these other classes for other tasks: The class provides the three-dimensional equivalent of a quadtree. Use an octree when you need to organize objects in 3D space. The class provides a different algorithm for two-dimensional spatial indexing. Quadtrees and R-trees have different performance tradeoffs for different tasks: quadtrees can be faster when objects are more uniformly distributed in space or when their positions change frequently, and R-trees can be faster when searching for all objects in a given region.
+
+
+// A data structure for organizing objects based on their locations in a two-dimensional space.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKQuadtree
+
 type Quadtree struct {
 	objectivec.Object
 }
@@ -91,7 +96,9 @@ func NewQuadtree() Quadtree {
 
 // Initializes a quadtree with the specified dimensions.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKQuadtree/init(boundingQuad:minimumCellSize:)
+
 func NewQuadtreeWithBoundingQuadMinimumCellSize(quad unsafe.Pointer, minCellSize float32) Quadtree {
 	instance := getQuadtreeClass().Alloc()
 	rv := objc.Send[Quadtree](instance.ID, objc.Sel("initWithBoundingQuad:minimumCellSize:"), quad, minCellSize)
@@ -100,57 +107,84 @@ func NewQuadtreeWithBoundingQuadMinimumCellSize(quad unsafe.Pointer, minCellSize
 }
 
 
+
 // Creates a quadtree with the specified dimensions.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKQuadtree/quadtreeWithBoundingQuad:minimumCellSize:
+
 func (qc _QuadtreeClass) QuadtreeWithBoundingQuadMinimumCellSize(quad unsafe.Pointer, minCellSize float32) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(qc.class), objc.Sel("quadtreeWithBoundingQuad:minimumCellSize:"), quad, minCellSize)
 	return rv
 }
 
+
+
 // Adds an object to the tree corresponding to the specified point in 2D space.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKQuadtree/add(_:at:)
+
 func (q_ Quadtree) AddElementWithPoint(element unsafe.Pointer, point unsafe.Pointer) QuadtreeNode {
 	rv := objc.Send[QuadtreeNode](q_.ID, objc.Sel("addElement:withPoint:"), element, point)
 	return rv
 }
 
+
+
 // Adds an object to the tree corresponding to the specified region of 2D space.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKQuadtree/add(_:in:)
+
 func (q_ Quadtree) AddElementWithQuad(element unsafe.Pointer, quad unsafe.Pointer) QuadtreeNode {
 	rv := objc.Send[QuadtreeNode](q_.ID, objc.Sel("addElement:withQuad:"), element, quad)
 	return rv
 }
 
+
+
 // Returns all objects whose corresponding locations overlap the specified point.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKQuadtree/elements(at:)
+
 func (q_ Quadtree) ElementsAtPoint(point unsafe.Pointer) []foundation.Object {
 	rv := objc.Send[[]foundation.Object](q_.ID, objc.Sel("elementsAtPoint:"), point)
 	return rv
 }
 
+
+
 // Returns all objects whose corresponding locations overlap the specified region.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKQuadtree/elements(in:)
+
 func (q_ Quadtree) ElementsInQuad(quad unsafe.Pointer) []foundation.Object {
 	rv := objc.Send[[]foundation.Object](q_.ID, objc.Sel("elementsInQuad:"), quad)
 	return rv
 }
 
+
+
 // Searches for the specified object and removes it from the tree.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKQuadtree/remove(_:)
+
 func (q_ Quadtree) RemoveElement(element unsafe.Pointer) bool {
 	rv := objc.Send[bool](q_.ID, objc.Sel("removeElement:"), element)
 	return rv
 }
 
+
+
 // Removes the specified object from the tree, using a reference to its containing node.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKQuadtree/remove(_:using:)
+
 func (q_ Quadtree) RemoveElementWithNode(data unsafe.Pointer, node IGKQuadtreeNode) bool {
 	rv := objc.Send[bool](q_.ID, objc.Sel("removeElement:withNode:"), data, node)
 	return rv

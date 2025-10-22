@@ -34,8 +34,13 @@ type IHKCategoryType interface {
 // A type that identifies samples that contain a value from a small set of possible values.
 //
 // The class is a concrete subclass of the HKObjectType class. To create a category type instance, use the convenience method. For example, the following code creates a category sample type for handwashing events. Use category types to: Request permission to read or write matching category samples. Create and share matching category samples. Query for matching category samples. For a complete list of category types, refer to .
+
+
+// A type that identifies samples that contain a value from a small set of possible values.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKCategoryType
+
 type HKCategoryType struct {
 	HKSampleType
 }

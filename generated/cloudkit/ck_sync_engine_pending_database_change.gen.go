@@ -35,8 +35,13 @@ type ICKSyncEnginePendingDatabaseChange interface {
 }
 
 // An object that describes an unsent database modification.
+
+
+// An object that describes an unsent database modification.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEnginePendingDatabaseChange
+
 type CKSyncEnginePendingDatabaseChange struct {
 	objectivec.Object
 }
@@ -80,17 +85,23 @@ func NewCKSyncEnginePendingDatabaseChange() CKSyncEnginePendingDatabaseChange {
 }
 
 
+
 // The type of database change.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEnginePendingDatabaseChange/type
+
 func (c_ CKSyncEnginePendingDatabaseChange) Type() CKSyncEnginePendingDatabaseChangeType {
 	rv := objc.Send[CKSyncEnginePendingDatabaseChangeType](c_.ID, objc.Sel("type"))
 	return rv
 }
 
+
 // The identifier of the record zone to change.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEnginePendingDatabaseChange/zoneID
+
 func (c_ CKSyncEnginePendingDatabaseChange) ZoneID() CKRecordZoneID {
 	rv := objc.Send[CKRecordZoneID](c_.ID, objc.Sel("zoneID"))
 	return rv

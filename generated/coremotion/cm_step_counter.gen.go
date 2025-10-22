@@ -39,8 +39,13 @@ type IStepCounter interface {
 // The number of steps the user has taken with the device.
 //
 // Step information is gathered on devices with the appropriate built-in hardware and stored so that you can run queries to determine the user’s recent physical activity. You use this class to gather both current step data and any historical data.
+
+
+// The number of steps the user has taken with the device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMStepCounter
+
 type StepCounter struct {
 	objectivec.Object
 }
@@ -84,31 +89,46 @@ func NewStepCounter() StepCounter {
 }
 
 
+
 // Returns a Boolean indicating whether step-counting support is available on the current device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMStepCounter/isStepCountingAvailable()
+
 func (sc _StepCounterClass) IsStepCountingAvailable() bool {
 	rv := objc.Send[bool](objc.ID(sc.class), objc.Sel("isStepCountingAvailable"))
 	return rv
 }
 
+
+
 // Gathers and returns historical step count data for the specified time period.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMStepCounter/queryStepCountStarting(from:to:to:withHandler:)
+
 func (s_ StepCounter) QueryStepCountStartingFromToToQueueWithHandler(start foundation.IDate, end foundation.IDate, queue foundation.IOperationQueue, handler unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("queryStepCountStartingFrom:to:toQueue:withHandler:"), start, end, queue, handler)
 }
 
+
+
 // Starts the delivery of current step-counting data to your app.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMStepCounter/startStepCountingUpdates(to:updateOn:withHandler:)
+
 func (s_ StepCounter) StartStepCountingUpdatesToQueueUpdateOnWithHandler(queue foundation.IOperationQueue, stepCounts int, handler unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("startStepCountingUpdatesToQueue:updateOn:withHandler:"), queue, stepCounts, handler)
 }
 
+
+
 // Stops the delivery of step-counting updates to your app.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMStepCounter/stopStepCountingUpdates()
+
 func (s_ StepCounter) StopStepCountingUpdates() {
 	objc.Send[objc.ID](s_.ID, objc.Sel("stopStepCountingUpdates"))
 }

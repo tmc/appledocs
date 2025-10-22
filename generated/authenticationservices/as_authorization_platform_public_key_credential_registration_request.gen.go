@@ -40,8 +40,13 @@ type IAuthorizationPlatformPublicKeyCredentialRegistrationRequest interface {
 // The object for registering a new platform public key credential.
 //
 // Create an instance of this class when registering for a new credential using platform authorization.
+
+
+// The object for registering a new platform public key credential.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest
+
 type AuthorizationPlatformPublicKeyCredentialRegistrationRequest struct {
 	AuthorizationRequest
 }
@@ -87,47 +92,53 @@ func NewAuthorizationPlatformPublicKeyCredentialRegistrationRequest() Authorizat
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest/largeBlob-28v2m
+
 func (a_ AuthorizationPlatformPublicKeyCredentialRegistrationRequest) LargeBlob() ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput {
 	rv := objc.Send[ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput](a_.ID, objc.Sel("largeBlob"))
 	return rv
 }
 
 
-// SetLargeBlob sets the value of the largeBlob property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest/largeBlob-28v2m
+
 func (a_ AuthorizationPlatformPublicKeyCredentialRegistrationRequest) SetLargeBlob(value IASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setLargeBlob:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest/prf-8fus5
+
 func (a_ AuthorizationPlatformPublicKeyCredentialRegistrationRequest) Prf() ASAuthorizationPublicKeyCredentialPRFRegistrationInput {
 	rv := objc.Send[ASAuthorizationPublicKeyCredentialPRFRegistrationInput](a_.ID, objc.Sel("prf"))
 	return rv
 }
 
 
-// SetPrf sets the value of the prf property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest/prf-8fus5
+
 func (a_ AuthorizationPlatformPublicKeyCredentialRegistrationRequest) SetPrf(value IASAuthorizationPublicKeyCredentialPRFRegistrationInput) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPrf:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest/requestStyle-swift.property
+
 func (a_ AuthorizationPlatformPublicKeyCredentialRegistrationRequest) RequestStyle() AuthorizationPlatformPublicKeyCredentialRegistrationRequestStyle {
 	rv := objc.Send[AuthorizationPlatformPublicKeyCredentialRegistrationRequestStyle](a_.ID, objc.Sel("requestStyle"))
 	return rv
 }
 
 
-// SetRequestStyle sets the value of the requestStyle property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest/requestStyle-swift.property
+
 func (a_ AuthorizationPlatformPublicKeyCredentialRegistrationRequest) SetRequestStyle(value AuthorizationPlatformPublicKeyCredentialRegistrationRequestStyle) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setRequestStyle:"), value)
 }

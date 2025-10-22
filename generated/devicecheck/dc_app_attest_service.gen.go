@@ -42,8 +42,13 @@ type IDCAppAttestService interface {
 // A service that you use to validate the instance of your app running on a device.
 //
 // Use the instance of the class to assert the legitimacy of a particular instance of your app to your server. After ensuring service availability by reading the property, you use the service to: Create a cryptographic key in the Secure Enclave by calling the method. Ask Apple to certify the key by calling the method. - Prepare an assertion of your app’s integrity to accompany any or all server requests using the method. For more information about how to support App Attest in your app, see . For information about the complementary procedures you implement on your server, see .
+
+
+// A service that you use to validate the instance of your app running on a device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceCheck/DCAppAttestService
+
 type DCAppAttestService struct {
 	objectivec.Object
 }
@@ -87,64 +92,88 @@ func NewDCAppAttestService() DCAppAttestService {
 }
 
 
+
 // The shared App Attest service that you use to validate your app.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceCheck/DCAppAttestService/shared
+
 func (dc _DCAppAttestServiceClass) SharedService() DCAppAttestService {
 	rv := objc.Send[DCAppAttestService](objc.ID(dc.class), objc.Sel("sharedService"))
 	return rv
 }
+
+
 // Asks Apple to attest to the validity of a generated cryptographic key.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceCheck/DCAppAttestService/attestKey(_:clientDataHash:completionHandler:)
+
 func (d_ DCAppAttestService) AttestKeyClientDataHashCompletionHandler(keyId string, clientDataHash foundation.IData, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("attestKey:clientDataHash:completionHandler:"), objc.String(keyId), clientDataHash, completionHandler)
 }
 
+
+
 // Creates a block of data that demonstrates the legitimacy of an instance of your app running on a device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceCheck/DCAppAttestService/generateAssertion(_:clientDataHash:completionHandler:)
+
 func (d_ DCAppAttestService) GenerateAssertionClientDataHashCompletionHandler(keyId string, clientDataHash foundation.IData, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("generateAssertion:clientDataHash:completionHandler:"), objc.String(keyId), clientDataHash, completionHandler)
 }
 
+
+
 // Creates a new cryptographic key for use with the App Attest service.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceCheck/DCAppAttestService/generateKey(completionHandler:)
+
 func (d_ DCAppAttestService) GenerateKeyWithCompletionHandler(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("generateKeyWithCompletionHandler:"), completionHandler)
 }
 
+
 // A Boolean value that indicates whether a particular device provides the App Attest service.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceCheck/DCAppAttestService/isSupported
+
 func (d_ DCAppAttestService) Supported() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("supported"))
 	return rv
 }
 
+
 // The shared App Attest service that you use to validate your app.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceCheck/DCAppAttestService/shared
+
 func (d_ DCAppAttestService) SharedService() DCAppAttestService {
 	rv := objc.Send[DCAppAttestService](d_.ID, objc.Sel("sharedService"))
 	return rv
 }
 
+
 // A Boolean value that indicates whether a particular device provides the App
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/devicecheck/dcappattestservice/issupported
+
 func (d_ DCAppAttestService) IsSupported() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("isSupported"))
 	return rv
 }
 
 
-// SetIsSupported sets the value of the isSupported property.
 // A Boolean value that indicates whether a particular device provides the App
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/devicecheck/dcappattestservice/issupported
+
 func (d_ DCAppAttestService) SetIsSupported(value bool) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setIsSupported:"), value)
 }

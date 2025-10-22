@@ -40,8 +40,13 @@ type ICNGroup interface {
 // An immutable object that represents a group of contacts.
 //
 // Contacts may be members of one or more groups, depending upon their accounts. objects are thread-safe, and you may access their properties from any thread of your app.
+
+
+// An immutable object that represents a group of contacts.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNGroup
+
 type CNGroup struct {
 	objectivec.Object
 }
@@ -85,57 +90,78 @@ func NewCNGroup() CNGroup {
 }
 
 
+
 // Returns a predicate to find groups with the specified identifiers.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNGroup/predicateForGroups(withIdentifiers:)
+
 func (cc _CNGroupClass) PredicateForGroupsWithIdentifiers(identifiers []string) foundation.Predicate {
 	rv := objc.Send[foundation.Predicate](objc.ID(cc.class), objc.Sel("predicateForGroupsWithIdentifiers:"), identifiers)
 	return rv
 }
 
+
 // Returns a predicate to find groups in the specified container.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNGroup/predicateForGroupsInContainer(withIdentifier:)
+
 func (cc _CNGroupClass) PredicateForGroupsInContainerWithIdentifier(containerIdentifier string) foundation.Predicate {
 	rv := objc.Send[foundation.Predicate](objc.ID(cc.class), objc.Sel("predicateForGroupsInContainerWithIdentifier:"), objc.String(containerIdentifier))
 	return rv
 }
 
+
 // Returns a predicate to find subgroups in the specified parent group.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNGroup/predicateForSubgroupsInGroup(withIdentifier:)
+
 func (cc _CNGroupClass) PredicateForSubgroupsInGroupWithIdentifier(parentGroupIdentifier string) foundation.Predicate {
 	rv := objc.Send[foundation.Predicate](objc.ID(cc.class), objc.Sel("predicateForSubgroupsInGroupWithIdentifier:"), objc.String(parentGroupIdentifier))
 	return rv
 }
 
+
 // The unique identifier for a group on the device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNGroup/identifier
+
 func (c_ CNGroup) Identifier() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("identifier"))
 	return rv
 }
 
+
 // The name of the group.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNGroup/name
+
 func (c_ CNGroup) Name() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("name"))
 	return rv
 }
 
+
 // The identifier of the group.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cngroupidentifierkey
+
 func (c_ CNGroup) CNGroupIdentifierKey() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNGroupIdentifierKey"))
 	return rv
 }
 
+
 // The name of the group.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cngroupnamekey
+
 func (c_ CNGroup) CNGroupNameKey() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNGroupNameKey"))
 	return rv

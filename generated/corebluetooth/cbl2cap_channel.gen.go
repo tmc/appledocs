@@ -42,8 +42,13 @@ type ICBL2CAPChannel interface {
 }
 
 // A live L2CAP connection to a remote device.
+
+
+// A live L2CAP connection to a remote device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBL2CAPChannel
+
 type CBL2CAPChannel struct {
 	objectivec.Object
 }
@@ -87,74 +92,86 @@ func NewCBL2CAPChannel() CBL2CAPChannel {
 }
 
 
+
 // The stream used for reading data from the remote peer.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corebluetooth/cbl2capchannel/inputstream
+
 func (c_ CBL2CAPChannel) InputStream() foundation.InputStream {
 	rv := objc.Send[foundation.InputStream](c_.ID, objc.Sel("inputStream"))
 	return rv
 }
 
 
-// SetInputStream sets the value of the inputStream property.
 // The stream used for reading data from the remote peer.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corebluetooth/cbl2capchannel/inputstream
+
 func (c_ CBL2CAPChannel) SetInputStream(value foundation.IInputStream) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setInputStream:"), value)
 }
 
+
 // The stream used for writing data to the peer.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corebluetooth/cbl2capchannel/outputstream
+
 func (c_ CBL2CAPChannel) OutputStream() foundation.OutputStream {
 	rv := objc.Send[foundation.OutputStream](c_.ID, objc.Sel("outputStream"))
 	return rv
 }
 
 
-// SetOutputStream sets the value of the outputStream property.
 // The stream used for writing data to the peer.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corebluetooth/cbl2capchannel/outputstream
+
 func (c_ CBL2CAPChannel) SetOutputStream(value foundation.IOutputStream) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setOutputStream:"), value)
 }
 
+
 // The peer connected to the channel.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corebluetooth/cbl2capchannel/peer
+
 func (c_ CBL2CAPChannel) Peer() CBPeer {
 	rv := objc.Send[CBPeer](c_.ID, objc.Sel("peer"))
 	return rv
 }
 
 
-// SetPeer sets the value of the peer property.
 // The peer connected to the channel.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corebluetooth/cbl2capchannel/peer
+
 func (c_ CBL2CAPChannel) SetPeer(value ICBPeer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPeer:"), value)
 }
 
+
 // The PSM of the channel.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corebluetooth/cbl2capchannel/psm
+
 func (c_ CBL2CAPChannel) Psm() CBL2CAPPSM {
 	rv := objc.Send[CBL2CAPPSM](c_.ID, objc.Sel("psm"))
 	return rv
 }
 
 
-// SetPsm sets the value of the psm property.
 // The PSM of the channel.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corebluetooth/cbl2capchannel/psm
+
 func (c_ CBL2CAPChannel) SetPsm(value ICBL2CAPPSM) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPsm:"), value)
 }

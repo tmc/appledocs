@@ -32,8 +32,11 @@ type IInputManager interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSInputManager
+
 type InputManager struct {
 	objectivec.Object
 }

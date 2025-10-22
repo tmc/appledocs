@@ -46,41 +46,49 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 
 
 
-// CMIODeviceStartStream is a CoreMediaIO function. [Full Topic]
+// CMIODeviceStartStream is a CoreMediaIO function.
 //
 // Added in macOS 10.7.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMediaIO/CMIODeviceStartStream(_:_:)
+
 func CMIODeviceStartStream(deviceID unsafe.Pointer, streamID unsafe.Pointer) unsafe.Pointer {
 	return _CMIODeviceStartStream(deviceID, streamID)
 	}
 
 
-// CMIOObjectIsPropertySettable is a CoreMediaIO function. [Full Topic]
+// CMIOObjectIsPropertySettable is a CoreMediaIO function.
 //
 // Added in macOS 10.7.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMediaIO/CMIOObjectIsPropertySettable(_:_:_:)
+
 func CMIOObjectIsPropertySettable(objectID unsafe.Pointer, address unsafe.Pointer, isSettable unsafe.Pointer) unsafe.Pointer {
 	return _CMIOObjectIsPropertySettable(objectID, address, isSettable)
 	}
 
 
-// CMIOSampleBufferGetSequenceNumber is a CoreMediaIO function. [Full Topic]
+// CMIOSampleBufferGetSequenceNumber is a CoreMediaIO function.
 //
 // Added in macOS 10.7.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMediaIO/CMIOSampleBufferGetSequenceNumber
+
 func CMIOSampleBufferGetSequenceNumber(sbuf unsafe.Pointer) unsafe.Pointer {
 	return _CMIOSampleBufferGetSequenceNumber(sbuf)
 	}
 
 
-// CMIOStreamDeckJog is a CoreMediaIO function. [Full Topic]
+// CMIOStreamDeckJog is a CoreMediaIO function.
 //
 // Added in macOS 10.7.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMediaIO/CMIOStreamDeckJog(_:_:)
+
 func CMIOStreamDeckJog(streamID unsafe.Pointer, speed unsafe.Pointer) unsafe.Pointer {
 	return _CMIOStreamDeckJog(streamID, speed)
 	}

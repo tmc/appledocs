@@ -48,41 +48,61 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 
 
 
-// Returns human-readable text for the specified identifier that describes a device’s category. [Full Topic]
+// Returns human-readable text for the specified identifier that describes a device’s category.
+
+// Returns human-readable text for the specified identifier that describes a device’s category.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDeviceCategoryToString(_:)
+
 func DDDeviceCategoryToString(inValue unsafe.Pointer) unsafe.Pointer {
 	return _DDDeviceCategoryToString(inValue)
 	}
 
 
-// Returns human-readable text for the specified media playback state. [Full Topic]
+// Returns human-readable text for the specified media playback state.
+
+// Returns human-readable text for the specified media playback state.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDeviceMediaPlaybackStateToString(_:)
+
 func DDDeviceMediaPlaybackStateToString(inValue unsafe.Pointer) unsafe.Pointer {
 	return _DDDeviceMediaPlaybackStateToString(inValue)
 	}
 
 
-// Returns human-readable text for the specified protocol identifier. [Full Topic]
+// Returns human-readable text for the specified protocol identifier.
+
+// Returns human-readable text for the specified protocol identifier.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDeviceProtocolToString(_:)
+
 func DDDeviceProtocolToString(inValue unsafe.Pointer) unsafe.Pointer {
 	return _DDDeviceProtocolToString(inValue)
 	}
 
 
-// Returns human-readable text for the specified identifier that describes a device’s status. [Full Topic]
+// Returns human-readable text for the specified identifier that describes a device’s status.
+
+// Returns human-readable text for the specified identifier that describes a device’s status.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDeviceStateToString(_:)
+
 func DDDeviceStateToString(inValue unsafe.Pointer) unsafe.Pointer {
 	return _DDDeviceStateToString(inValue)
 	}
 
 
-// Returns human-readable text for the specified event identifier. [Full Topic]
+// Returns human-readable text for the specified event identifier.
+
+// Returns human-readable text for the specified event identifier.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDEventTypeToString(_:)
+
 func DDEventTypeToString(inValue unsafe.Pointer) unsafe.Pointer {
 	return _DDEventTypeToString(inValue)
 	}

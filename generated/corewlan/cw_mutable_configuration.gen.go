@@ -44,8 +44,13 @@ type ICWMutableConfiguration interface {
 // Encapsulates a mutable configuration for an AirPort WLAN interface.
 //
 // Use this class to change configuration settings or the preferred networks list. To commit configuration changes, use .
+
+
+// Encapsulates a mutable configuration for an AirPort WLAN interface.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWMutableConfiguration
+
 type CWMutableConfiguration struct {
 	CWConfiguration
 }
@@ -91,92 +96,107 @@ func NewCWMutableConfiguration() CWMutableConfiguration {
 }
 
 
+
 // The preferred networks list.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWMutableConfiguration/networkProfiles
+
 func (c_ CWMutableConfiguration) NetworkProfiles() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("networkProfiles"))
 	return rv
 }
 
 
-// SetNetworkProfiles sets the value of the networkProfiles property.
 // The preferred networks list.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWMutableConfiguration/networkProfiles
+
 func (c_ CWMutableConfiguration) SetNetworkProfiles(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setNetworkProfiles:"), value)
 }
 
+
 // A Boolean value that determines whether to remember all joined Wi-Fi networks unless the user specifies otherwise when joining a particular Wi-Fi network.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWMutableConfiguration/rememberJoinedNetworks
+
 func (c_ CWMutableConfiguration) RememberJoinedNetworks() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("rememberJoinedNetworks"))
 	return rv
 }
 
 
-// SetRememberJoinedNetworks sets the value of the rememberJoinedNetworks property.
 // A Boolean value that determines whether to remember all joined Wi-Fi networks unless the user specifies otherwise when joining a particular Wi-Fi network.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWMutableConfiguration/rememberJoinedNetworks
+
 func (c_ CWMutableConfiguration) SetRememberJoinedNetworks(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRememberJoinedNetworks:"), value)
 }
 
+
 // A Boolean value that determines whether to require an administrator password to change networks.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWMutableConfiguration/requireAdministratorForAssociation
+
 func (c_ CWMutableConfiguration) RequireAdministratorForAssociation() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("requireAdministratorForAssociation"))
 	return rv
 }
 
 
-// SetRequireAdministratorForAssociation sets the value of the requireAdministratorForAssociation property.
 // A Boolean value that determines whether to require an administrator password to change networks.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWMutableConfiguration/requireAdministratorForAssociation
+
 func (c_ CWMutableConfiguration) SetRequireAdministratorForAssociation(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRequireAdministratorForAssociation:"), value)
 }
 
+
 // A Boolean value that determines whether to require an administrator password to create a computer-to-computer network.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWMutableConfiguration/requireAdministratorForIBSSMode
+
 func (c_ CWMutableConfiguration) RequireAdministratorForIBSSMode() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("requireAdministratorForIBSSMode"))
 	return rv
 }
 
 
-// SetRequireAdministratorForIBSSMode sets the value of the requireAdministratorForIBSSMode property.
 // A Boolean value that determines whether to require an administrator password to create a computer-to-computer network.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWMutableConfiguration/requireAdministratorForIBSSMode
+
 func (c_ CWMutableConfiguration) SetRequireAdministratorForIBSSMode(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRequireAdministratorForIBSSMode:"), value)
 }
 
+
 // A Boolean value that determines whether to require an administrator password to change the interface power state.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWMutableConfiguration/requireAdministratorForPower
+
 func (c_ CWMutableConfiguration) RequireAdministratorForPower() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("requireAdministratorForPower"))
 	return rv
 }
 
 
-// SetRequireAdministratorForPower sets the value of the requireAdministratorForPower property.
 // A Boolean value that determines whether to require an administrator password to change the interface power state.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWMutableConfiguration/requireAdministratorForPower
+
 func (c_ CWMutableConfiguration) SetRequireAdministratorForPower(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRequireAdministratorForPower:"), value)
 }

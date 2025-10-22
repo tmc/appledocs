@@ -41,8 +41,13 @@ type ILeaderboardSet interface {
 // Organizes leaderboards into logical and coherent groups.
 //
 // A object represents a group of leaderboards that you configure in App Store Connect. For example, if your game has different worlds or levels, you can organize the leaderboards into sets for each world or level. In the Game Center dashboard, players navigate from the leaderboard sets to the individual leaderboards. If you use leaderboard sets, you must have one or more leaderboards and then place each leaderboard in a set, which can be a mix of classic and recurring leaderboards. To load all the leaderboard sets for your game, use the class method. Then use the , , and properties to access the data for each leaderboard set. If you localize the leaderboard set in App Store Connect, the property localizes. GameKit only sets the property when your game is in a game group. To load the images you add to App Store Connect for each set, use the method. Then use the method to get the leaderboards in each set. To organize leaderboards into sets, see in App Store Connect Help.
+
+
+// Organizes leaderboards into logical and coherent groups.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKLeaderboardSet
+
 type LeaderboardSet struct {
 	objectivec.Object
 }
@@ -86,63 +91,75 @@ func NewLeaderboardSet() LeaderboardSet {
 }
 
 
+
 // Loads all of the leaderboard sets you configure for your game.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKLeaderboardSet/loadLeaderboardSets(completionHandler:)
+
 func (lc _LeaderboardSetClass) LoadLeaderboardSetsWithCompletionHandler(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(lc.class), objc.Sel("loadLeaderboardSetsWithCompletionHandler:"), completionHandler)
 }
 
+
 // The identifier for the group that the leaderboard set belongs to.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboardset/groupidentifier
+
 func (l_ LeaderboardSet) GroupIdentifier() string {
 	rv := objc.Send[string](l_.ID, objc.Sel("groupIdentifier"))
 	return rv
 }
 
 
-// SetGroupIdentifier sets the value of the groupIdentifier property.
 // The identifier for the group that the leaderboard set belongs to.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboardset/groupidentifier
+
 func (l_ LeaderboardSet) SetGroupIdentifier(value string) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setGroupIdentifier:"), objc.String(value))
 }
 
+
 // The identifier for the leaderboard set.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboardset/identifier
+
 func (l_ LeaderboardSet) Identifier() string {
 	rv := objc.Send[string](l_.ID, objc.Sel("identifier"))
 	return rv
 }
 
 
-// SetIdentifier sets the value of the identifier property.
 // The identifier for the leaderboard set.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboardset/identifier
+
 func (l_ LeaderboardSet) SetIdentifier(value string) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setIdentifier:"), objc.String(value))
 }
 
+
 // The localized title for the leaderboard set.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboardset/title
+
 func (l_ LeaderboardSet) Title() string {
 	rv := objc.Send[string](l_.ID, objc.Sel("title"))
 	return rv
 }
 
 
-// SetTitle sets the value of the title property.
 // The localized title for the leaderboard set.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboardset/title
+
 func (l_ LeaderboardSet) SetTitle(value string) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setTitle:"), objc.String(value))
 }

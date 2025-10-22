@@ -37,8 +37,13 @@ type IHKSeriesSample interface {
 // An abstract base class that defines samples that contain a series of items.
 //
 // Never instantiate objects directly. Instead, user one of the concrete subclasses (for example, the class).
+
+
+// An abstract base class that defines samples that contain a series of items.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKSeriesSample
+
 type HKSeriesSample struct {
 	HKSample
 }
@@ -84,27 +89,33 @@ func NewHKSeriesSample() HKSeriesSample {
 }
 
 
+
 // The number of items in the series.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkseriessample/count
+
 func (h_ HKSeriesSample) Count() int {
 	rv := objc.Send[int](h_.ID, objc.Sel("count"))
 	return rv
 }
 
 
-// SetCount sets the value of the count property.
 // The number of items in the series.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkseriessample/count
+
 func (h_ HKSeriesSample) SetCount(value int) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setCount:"), value)
 }
 
+
 // A series sample containing location data that defines the route the user took during a workout.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutroutetypeidentifier
+
 func (h_ HKSeriesSample) HKWorkoutRouteTypeIdentifier() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKWorkoutRouteTypeIdentifier"))
 	return rv

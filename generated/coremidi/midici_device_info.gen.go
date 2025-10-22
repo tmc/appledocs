@@ -48,8 +48,13 @@ type IMIDICIDeviceInfo interface {
 }
 
 // An object that provides basic information about a MIDI-CI device.
+
+
+// An object that provides basic information about a MIDI-CI device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIDeviceInfo
+
 type MIDICIDeviceInfo struct {
 	objectivec.Object
 }
@@ -93,128 +98,149 @@ func NewMIDICIDeviceInfo() MIDICIDeviceInfo {
 }
 
 
+
 // The family to which the device belongs.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midicideviceinfo/family
+
 func (m_ MIDICIDeviceInfo) Family() foundation.Data {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("family"))
 	return rv
 }
 
 
-// SetFamily sets the value of the family property.
 // The family to which the device belongs.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midicideviceinfo/family
+
 func (m_ MIDICIDeviceInfo) SetFamily(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFamily:"), value)
 }
 
+
 // The MIDI System Exclusive (SysEx) ID of the device manufacturer.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midicideviceinfo/manufacturerid
+
 func (m_ MIDICIDeviceInfo) ManufacturerID() foundation.Data {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("manufacturerID"))
 	return rv
 }
 
 
-// SetManufacturerID sets the value of the manufacturerID property.
 // The MIDI System Exclusive (SysEx) ID of the device manufacturer.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midicideviceinfo/manufacturerid
+
 func (m_ MIDICIDeviceInfo) SetManufacturerID(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setManufacturerID:"), value)
 }
 
+
 // The MIDI destination the device’s MIDI entity uses for capability inquiries.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midicideviceinfo/mididestination
+
 func (m_ MIDICIDeviceInfo) MidiDestination() MIDIEndpointRef {
 	rv := objc.Send[MIDIEndpointRef](m_.ID, objc.Sel("midiDestination"))
 	return rv
 }
 
 
-// SetMidiDestination sets the value of the midiDestination property.
 // The MIDI destination the device’s MIDI entity uses for capability inquiries.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midicideviceinfo/mididestination
+
 func (m_ MIDICIDeviceInfo) SetMidiDestination(value IMIDIEndpointRef) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMidiDestination:"), value)
 }
 
+
 // The model number of the device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midicideviceinfo/modelnumber
+
 func (m_ MIDICIDeviceInfo) ModelNumber() foundation.Data {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("modelNumber"))
 	return rv
 }
 
 
-// SetModelNumber sets the value of the modelNumber property.
 // The model number of the device.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midicideviceinfo/modelnumber
+
 func (m_ MIDICIDeviceInfo) SetModelNumber(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setModelNumber:"), value)
 }
 
+
 // The revision number of the device model number.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midicideviceinfo/revisionlevel
+
 func (m_ MIDICIDeviceInfo) RevisionLevel() foundation.Data {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("revisionLevel"))
 	return rv
 }
 
 
-// SetRevisionLevel sets the value of the revisionLevel property.
 // The revision number of the device model number.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midicideviceinfo/revisionlevel
+
 func (m_ MIDICIDeviceInfo) SetRevisionLevel(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRevisionLevel:"), value)
 }
 
+
 // The MIDI-CI device’s information.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciresponder/deviceinfo
+
 func (m_ MIDICIDeviceInfo) DeviceInfo() MIDICIDeviceInfo {
 	rv := objc.Send[MIDICIDeviceInfo](m_.ID, objc.Sel("deviceInfo"))
 	return rv
 }
 
 
-// SetDeviceInfo sets the value of the deviceInfo property.
 // The MIDI-CI device’s information.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciresponder/deviceinfo
+
 func (m_ MIDICIDeviceInfo) SetDeviceInfo(value IMIDICIDeviceInfo) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDeviceInfo:"), value)
 }
 
+
 // An array of initiators.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciresponder/initiators
+
 func (m_ MIDICIDeviceInfo) Initiators() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("initiators"))
 	return rv
 }
 
 
-// SetInitiators sets the value of the initiators property.
 // An array of initiators.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciresponder/initiators
+
 func (m_ MIDICIDeviceInfo) SetInitiators(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setInitiators:"), value)
 }

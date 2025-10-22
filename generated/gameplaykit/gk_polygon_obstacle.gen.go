@@ -36,8 +36,13 @@ type IPolygonObstacle interface {
 // A polygon-shaped impassable area in a 2D game world.
 //
 // Polygon obstacles serve two purposes in GameplayKit: You can use polygon obstacles to construct a navigability graph of your game world (a object) for use in pathfinding. You can also use polygon obstacles to define regions for agents ( objects) to avoid, using the method . To easily create obstacles for use with a SpriteKit game, create and arrange a set of nodes that define the non-navigable regions of your game world. You can create such nodes programmatically, or use the SpriteKit Scene Editor in Xcode. If you’re already using nodes with physics bodies to keep sprites from entering those regions, you can reuse those nodes. Then, use the , , or method to generate a set of objects. To learn more about both ways of using polygon obstacles, see and in .
+
+
+// A polygon-shaped impassable area in a 2D game world.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKPolygonObstacle
+
 type PolygonObstacle struct {
 	Obstacle
 }
@@ -87,7 +92,9 @@ func NewPolygonObstacle() PolygonObstacle {
 
 // Initializes a polygon obstacle with the specified list of vertices.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKPolygonObstacle/initWithPoints:count:
+
 func NewPolygonObstacleWithPointsCount(points unsafe.Pointer, numPoints Iuintptr) PolygonObstacle {
 	instance := getPolygonObstacleClass().Alloc()
 	rv := objc.Send[PolygonObstacle](instance.ID, objc.Sel("initWithPoints:count:"), points, numPoints)
@@ -96,25 +103,35 @@ func NewPolygonObstacleWithPointsCount(points unsafe.Pointer, numPoints Iuintptr
 }
 
 
+
 // Creates a polygon obstacle with the specified list of vertices.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKPolygonObstacle/obstacleWithPoints:count:
+
 func (pc _PolygonObstacleClass) ObstacleWithPointsCount(points unsafe.Pointer, numPoints Iuintptr) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("obstacleWithPoints:count:"), points, numPoints)
 	return rv
 }
 
+
+
 // Returns the point coordinates of the specified vertex.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKPolygonObstacle/vertex(at:)
+
 func (p_ PolygonObstacle) VertexAtIndex(index uint) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("vertexAtIndex:"), index)
 	return rv
 }
 
+
 // The number of vertices that define the polygon-shaped area of the obstacle.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKPolygonObstacle/vertexCount
+
 func (p_ PolygonObstacle) VertexCount() uint {
 	rv := objc.Send[uint](p_.ID, objc.Sel("vertexCount"))
 	return rv

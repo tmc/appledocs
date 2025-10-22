@@ -33,8 +33,13 @@ type ICKSyncEngineWillFetchRecordZoneChangesEvent interface {
 }
 
 // An object that provides information about an imminent fetch of changes in a record zone.
+
+
+// An object that provides information about an imminent fetch of changes in a record zone.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineWillFetchRecordZoneChangesEvent
+
 type CKSyncEngineWillFetchRecordZoneChangesEvent struct {
 	CKSyncEngineEvent
 }
@@ -80,9 +85,12 @@ func NewCKSyncEngineWillFetchRecordZoneChangesEvent() CKSyncEngineWillFetchRecor
 }
 
 
+
 // The associated record zone’s unique identifier.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineWillFetchRecordZoneChangesEvent/zoneID
+
 func (c_ CKSyncEngineWillFetchRecordZoneChangesEvent) ZoneID() CKRecordZoneID {
 	rv := objc.Send[CKRecordZoneID](c_.ID, objc.Sel("zoneID"))
 	return rv

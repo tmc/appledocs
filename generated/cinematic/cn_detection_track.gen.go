@@ -39,8 +39,13 @@ type ICNDetectionTrack interface {
 }
 
 // An object representing a series of detections of the same subject over time.
+
+
+// An object representing a series of detections of the same subject over time.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNDetectionTrack-61x7g
+
 type CNDetectionTrack struct {
 	objectivec.Object
 }
@@ -84,49 +89,70 @@ func NewCNDetectionTrack() CNDetectionTrack {
 }
 
 
+
+
 // Returns the array of detections in the detection track before a given time.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNDetectionTrack-61x7g/detectionAtOrBeforeTime:
+
 func (c_ CNDetectionTrack) DetectionAtOrBeforeTime(time unsafe.Pointer) CNDetection {
 	rv := objc.Send[CNDetection](c_.ID, objc.Sel("detectionAtOrBeforeTime:"), time)
 	return rv
 }
 
+
+
 // Returns the array of detections in the detection track nearest a given time.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNDetectionTrack-61x7g/detectionNearestTime:
+
 func (c_ CNDetectionTrack) DetectionNearestTime(time unsafe.Pointer) CNDetection {
 	rv := objc.Send[CNDetection](c_.ID, objc.Sel("detectionNearestTime:"), time)
 	return rv
 }
 
+
+
 // Returns the array of detections in the detection track within the given time range.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNDetectionTrack-61x7g/detectionsInTimeRange:
+
 func (c_ CNDetectionTrack) DetectionsInTimeRange(timeRange unsafe.Pointer) []CNDetection {
 	rv := objc.Send[[]CNDetection](c_.ID, objc.Sel("detectionsInTimeRange:"), timeRange)
 	return rv
 }
 
+
 // The detection group ID of the subject detected by the track.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNDetectionTrack-61x7g/detectionGroupID
+
 func (c_ CNDetectionTrack) DetectionGroupID() CNDetectionGroupID {
 	rv := objc.Send[CNDetectionGroupID](c_.ID, objc.Sel("detectionGroupID"))
 	return rv
 }
 
+
 // The type of object that’s detected.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNDetectionTrack-61x7g/detectionType
+
 func (c_ CNDetectionTrack) DetectionType() CNDetectionType {
 	rv := objc.Send[CNDetectionType](c_.ID, objc.Sel("detectionType"))
 	return rv
 }
 
+
 // A flag indicating if the client created the detection track.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNDetectionTrack-61x7g/userCreated
+
 func (c_ CNDetectionTrack) UserCreated() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("userCreated"))
 	return rv

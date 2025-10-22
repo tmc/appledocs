@@ -40,8 +40,13 @@ type ICXTransaction interface {
 }
 
 // An object that contains zero or more action objects for a call controller to perform.
+
+
+// An object that contains zero or more action objects for a call controller to perform.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXTransaction
+
 type CXTransaction struct {
 	objectivec.Object
 }
@@ -89,7 +94,9 @@ func NewCXTransaction() CXTransaction {
 
 // Initializes a new transaction with the specified action.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXTransaction/init(action:)
+
 func NewCXTransactionWithAction(action ICXAction) CXTransaction {
 	instance := getCXTransactionClass().Alloc()
 	rv := objc.Send[CXTransaction](instance.ID, objc.Sel("initWithAction:"), action)
@@ -101,7 +108,9 @@ func NewCXTransactionWithAction(action ICXAction) CXTransaction {
 
 // Initializes a new transaction with the specified actions.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXTransaction/init(actions:)
+
 func NewCXTransactionWithActions(actions []CXAction) CXTransaction {
 	instance := getCXTransactionClass().Alloc()
 	rv := objc.Send[CXTransaction](instance.ID, objc.Sel("initWithActions:"), actions)
@@ -110,51 +119,67 @@ func NewCXTransactionWithActions(actions []CXAction) CXTransaction {
 }
 
 
+
+
 // Adds the specified action to the transaction.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXTransaction/addAction(_:)
+
 func (c_ CXTransaction) AddAction(action ICXAction) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("addAction:"), action)
 }
 
+
 // The actions added to a transaction.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXTransaction/actions
+
 func (c_ CXTransaction) Actions() []CXAction {
 	rv := objc.Send[[]CXAction](c_.ID, objc.Sel("actions"))
 	return rv
 }
 
+
 // A Boolean value that indicates whether the transaction has been completed.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXTransaction/isComplete
+
 func (c_ CXTransaction) Complete() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("complete"))
 	return rv
 }
 
+
 // The unique identifier of the transaction.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXTransaction/uuid
+
 func (c_ CXTransaction) UUID() foundation.UUID {
 	rv := objc.Send[foundation.UUID](c_.ID, objc.Sel("UUID"))
 	return rv
 }
 
+
 // A Boolean value that indicates whether the transaction has been completed.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/callkit/cxtransaction/iscomplete
+
 func (c_ CXTransaction) IsComplete() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isComplete"))
 	return rv
 }
 
 
-// SetIsComplete sets the value of the isComplete property.
 // A Boolean value that indicates whether the transaction has been completed.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/callkit/cxtransaction/iscomplete
+
 func (c_ CXTransaction) SetIsComplete(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsComplete:"), value)
 }

@@ -36,8 +36,13 @@ type IAMAppleScriptAction interface {
 // An object that represents Automator actions whose runtime behavior is driven by an AppleScript script.
 //
 // An object holds the compiled script as an instance of the class. By default, the object is instantiated from the script in the Xcode project file . When you create a Automator Applescript Action project in Xcode, the project template supplies an instance as File’s Owner of the action bundle. This ready-made instance provides a default implementation of the method that uses the logic defined in the script. You can substitute your own subclass of for File’s Owner if you need to.
+
+
+// An object that represents Automator actions whose runtime behavior is driven by an AppleScript script.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMAppleScriptAction
+
 type AMAppleScriptAction struct {
 	AMBundleAction
 }
@@ -83,20 +88,23 @@ func NewAMAppleScriptAction() AMAppleScriptAction {
 }
 
 
+
 // An object representing the receiver’s script containing the command handler.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMAppleScriptAction/script
+
 func (a_ AMAppleScriptAction) Script() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("script"))
 	return rv
 }
 
 
-// SetScript sets the value of the script property.
 // An object representing the receiver’s script containing the command handler.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMAppleScriptAction/script
+
 func (a_ AMAppleScriptAction) SetScript(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setScript:"), value)
 }

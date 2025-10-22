@@ -32,8 +32,11 @@ type IAXMathExpressionTableCell interface {
 	Expressions() []AXMathExpression
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionTableCell
+
 type AXMathExpressionTableCell struct {
 	AXMathExpression
 }
@@ -77,8 +80,10 @@ func NewAXMathExpressionTableCell() AXMathExpressionTableCell {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionTableCell/expressions
+
 func (a_ AXMathExpressionTableCell) Expressions() []AXMathExpression {
 	rv := objc.Send[[]AXMathExpression](a_.ID, objc.Sel("expressions"))
 	return rv

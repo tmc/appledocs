@@ -36,8 +36,13 @@ type IAudioUnitTimeEffect interface {
 // An object that processes audio in nonreal time.
 //
 // A time effect audio unit represents an with a type ( . These effects don’t process audio in real time. The class is an example of a time effect unit.
+
+
+// An object that processes audio in nonreal time.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioUnitTimeEffect
+
 type AudioUnitTimeEffect struct {
 	AudioUnit
 }
@@ -83,20 +88,23 @@ func NewAudioUnitTimeEffect() AudioUnitTimeEffect {
 }
 
 
+
 // The bypass state of the audio unit.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounittimeeffect/bypass
+
 func (a_ AudioUnitTimeEffect) Bypass() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("bypass"))
 	return rv
 }
 
 
-// SetBypass sets the value of the bypass property.
 // The bypass state of the audio unit.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounittimeeffect/bypass
+
 func (a_ AudioUnitTimeEffect) SetBypass(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setBypass:"), value)
 }

@@ -42,8 +42,13 @@ type IEKObject interface {
 // An abstract superclass for all EventKit classes that have persistent instances.
 //
 // provides fine control when saving and restoring property settings. For example, you can find out if a persistent object was modified locally and whether it needs to be saved. If the object has changed in the event store since it was fetched, you can refresh the local copy by keeping local changes or by removing local changes. You can also roll back the object to the state when it was first fetched.
+
+
+// An abstract superclass for all EventKit classes that have persistent instances.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKObject
+
 type EKObject struct {
 	objectivec.Object
 }
@@ -87,58 +92,79 @@ func NewEKObject() EKObject {
 }
 
 
+
+
 // Merges changes to this object with the latest saved values.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKObject/refresh()
+
 func (e_ EKObject) Refresh() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("refresh"))
 	return rv
 }
 
+
+
 // Returns this object to its saved state.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKObject/reset()
+
 func (e_ EKObject) Reset() {
 	objc.Send[objc.ID](e_.ID, objc.Sel("reset"))
 }
 
+
+
 // Rolls back the property values of this object to its original state when it was first fetched.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKObject/rollback()
+
 func (e_ EKObject) Rollback() {
 	objc.Send[objc.ID](e_.ID, objc.Sel("rollback"))
 }
 
+
 // Returns whether this object or any of the objects it contains has uncommitted changes.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKObject/hasChanges
+
 func (e_ EKObject) HasChanges() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("hasChanges"))
 	return rv
 }
 
+
 // A Boolean value that indicates whether this object has ever been saved.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKObject/isNew
+
 func (e_ EKObject) New() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("new"))
 	return rv
 }
 
+
 // A Boolean value that indicates whether this object has ever been saved.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/eventkit/ekobject/isnew
+
 func (e_ EKObject) IsNew() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("isNew"))
 	return rv
 }
 
 
-// SetIsNew sets the value of the isNew property.
 // A Boolean value that indicates whether this object has ever been saved.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/eventkit/ekobject/isnew
+
 func (e_ EKObject) SetIsNew(value bool) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setIsNew:"), value)
 }

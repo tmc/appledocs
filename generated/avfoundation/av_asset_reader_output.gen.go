@@ -33,7 +33,7 @@ type IAssetReaderOutput interface {
 	AlwaysCopiesSampleData() bool
 	SetAlwaysCopiesSampleData(value bool)
 	MediaType() MediaType
-	SetMediaType(value MediaType)
+	SetMediaType(value IMediaType)
 	SupportsRandomAccess() bool
 	SetSupportsRandomAccess(value bool)
 }
@@ -41,8 +41,13 @@ type IAssetReaderOutput interface {
 // An abstract class that defines the interface to read media samples from an asset reader.
 //
 // You add concrete output instances, such as or , to an asset reader to perform specific tasks.
+
+
+// An abstract class that defines the interface to read media samples from an asset reader.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetReaderOutput
+
 type AssetReaderOutput struct {
 	objectivec.Object
 }
@@ -86,56 +91,65 @@ func NewAssetReaderOutput() AssetReaderOutput {
 }
 
 
+
 // A Boolean value that indicates whether the output vends copied sample data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreaderoutput/alwayscopiessampledata
+
 func (a_ AssetReaderOutput) AlwaysCopiesSampleData() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("alwaysCopiesSampleData"))
 	return rv
 }
 
 
-// SetAlwaysCopiesSampleData sets the value of the alwaysCopiesSampleData property.
 // A Boolean value that indicates whether the output vends copied sample data.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreaderoutput/alwayscopiessampledata
+
 func (a_ AssetReaderOutput) SetAlwaysCopiesSampleData(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAlwaysCopiesSampleData:"), value)
 }
 
+
 // The media type of samples that the output reads.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreaderoutput/mediatype
+
 func (a_ AssetReaderOutput) MediaType() MediaType {
 	rv := objc.Send[MediaType](a_.ID, objc.Sel("mediaType"))
 	return rv
 }
 
 
-// SetMediaType sets the value of the mediaType property.
 // The media type of samples that the output reads.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreaderoutput/mediatype
-func (a_ AssetReaderOutput) SetMediaType(value MediaType) {
+
+func (a_ AssetReaderOutput) SetMediaType(value IMediaType) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMediaType:"), value)
 }
 
+
 // A Boolean value that indicates whether the output supports reconfiguring the time ranges it reads.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreaderoutput/supportsrandomaccess
+
 func (a_ AssetReaderOutput) SupportsRandomAccess() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("supportsRandomAccess"))
 	return rv
 }
 
 
-// SetSupportsRandomAccess sets the value of the supportsRandomAccess property.
 // A Boolean value that indicates whether the output supports reconfiguring the time ranges it reads.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreaderoutput/supportsrandomaccess
+
 func (a_ AssetReaderOutput) SetSupportsRandomAccess(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setSupportsRandomAccess:"), value)
 }

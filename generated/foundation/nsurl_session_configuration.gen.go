@@ -56,9 +56,9 @@ type IURLSessionConfiguration interface {
 	Discretionary() bool
 	SetDiscretionary(value bool)
 	MultipathServiceType() URLSessionMultipathServiceType
-	SetMultipathServiceType(value URLSessionMultipathServiceType)
+	SetMultipathServiceType(value IURLSessionMultipathServiceType)
 	NetworkServiceType() URLRequestNetworkServiceType
-	SetNetworkServiceType(value URLRequestNetworkServiceType)
+	SetNetworkServiceType(value IURLRequestNetworkServiceType)
 	SessionSendsLaunchEvents() bool
 	SetSessionSendsLaunchEvents(value bool)
 	SharedContainerIdentifier() string
@@ -509,7 +509,7 @@ func (u_ URLSessionConfiguration) MultipathServiceType() URLSessionMultipathServ
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/multipathServiceType-swift.property
 
-func (u_ URLSessionConfiguration) SetMultipathServiceType(value URLSessionMultipathServiceType) {
+func (u_ URLSessionConfiguration) SetMultipathServiceType(value IURLSessionMultipathServiceType) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setMultipathServiceType:"), value)
 }
 
@@ -530,7 +530,7 @@ func (u_ URLSessionConfiguration) NetworkServiceType() URLRequestNetworkServiceT
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/networkServiceType
 
-func (u_ URLSessionConfiguration) SetNetworkServiceType(value URLRequestNetworkServiceType) {
+func (u_ URLSessionConfiguration) SetNetworkServiceType(value IURLRequestNetworkServiceType) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setNetworkServiceType:"), value)
 }
 

@@ -37,8 +37,13 @@ type IAMShellScriptAction interface {
 // An object that represents Automator actions whose runtime behavior is driven by a shell script or by a Perl or Python script.
 //
 // When you create a Shell Script Automator Action project in Xcode, the project template supplies an instance as the Principal Class of the action bundle. This ready-made instance provides a default implementation of the method that uses the logic defined in the script. You can substitute your own subclass of for Principal Class if you need to.
+
+
+// An object that represents Automator actions whose runtime behavior is driven by a shell script or by a Perl or Python script.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMShellScriptAction
+
 type AMShellScriptAction struct {
 	AMBundleAction
 }
@@ -84,25 +89,34 @@ func NewAMShellScriptAction() AMShellScriptAction {
 }
 
 
+
 // A string to use as the delimiter between items in the string passed to the action through standard input.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMShellScriptAction/inputFieldSeparator
+
 func (a_ AMShellScriptAction) InputFieldSeparator() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("inputFieldSeparator"))
 	return rv
 }
 
+
 // A string to use as a delimiter in the string output by the action.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMShellScriptAction/outputFieldSeparator
+
 func (a_ AMShellScriptAction) OutputFieldSeparator() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("outputFieldSeparator"))
 	return rv
 }
 
+
 // A Boolean value that indicates whether you want automatic remapping of carriage return ( ) to newline ( ) characters in the input string.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMShellScriptAction/remapLineEndings
+
 func (a_ AMShellScriptAction) RemapLineEndings() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("remapLineEndings"))
 	return rv

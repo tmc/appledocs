@@ -30,6 +30,8 @@ type _AttributedStringMarkdownParsingOptionsClass struct {
 // An interface definition for the [AttributedStringMarkdownParsingOptions] class.
 type IAttributedStringMarkdownParsingOptions interface {
 	objectivec.IObject
+	AppliesSourcePositionAttributes() bool
+	SetAppliesSourcePositionAttributes(value bool)
 }
 
 // Options that affect the parsing of Markdown content into an attributed string.
@@ -82,6 +84,27 @@ func NewAttributedStringMarkdownParsingOptions() AttributedStringMarkdownParsing
 	return getAttributedStringMarkdownParsingOptionsClass().New()
 }
 
+
+
+// A Boolean value that indicates whether parsing applies attributes that indicate the position of attributed text in the original Markdown string.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedStringMarkdownParsingOptions/appliesSourcePositionAttributes
+
+func (a_ AttributedStringMarkdownParsingOptions) AppliesSourcePositionAttributes() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("appliesSourcePositionAttributes"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether parsing applies attributes that indicate the position of attributed text in the original Markdown string.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedStringMarkdownParsingOptions/appliesSourcePositionAttributes
+
+func (a_ AttributedStringMarkdownParsingOptions) SetAppliesSourcePositionAttributes(value bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAppliesSourcePositionAttributes:"), value)
+}
 
 
 

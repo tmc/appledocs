@@ -35,8 +35,13 @@ type ICBManager interface {
 }
 
 // The abstract base class that manages central and peripheral objects.
+
+
+// The abstract base class that manages central and peripheral objects.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBManager
+
 type CBManager struct {
 	objectivec.Object
 }
@@ -80,17 +85,23 @@ func NewCBManager() CBManager {
 }
 
 
+
 // The current authorization status for using Bluetooth.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBManager/authorization-swift.property
+
 func (c_ CBManager) Authorization() CBManagerAuthorization {
 	rv := objc.Send[CBManagerAuthorization](c_.ID, objc.Sel("authorization"))
 	return rv
 }
 
+
 // The current state of the manager.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBManager/state
+
 func (c_ CBManager) State() CBManagerState {
 	rv := objc.Send[CBManagerState](c_.ID, objc.Sel("state"))
 	return rv

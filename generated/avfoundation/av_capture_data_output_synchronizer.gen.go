@@ -40,8 +40,13 @@ type ICaptureDataOutputSynchronizer interface {
 // An object that coordinates time-matched delivery of data from multiple capture outputs.
 //
 // Use this class when you need to capture media from multiple capture outputs and want to receive all data samples from the same timestamp in a single delegate callback. For example, when you use an object to coordinate the output of and objects, you can easily match each captured video frame to depth information captured at the same moment.
+
+
+// An object that coordinates time-matched delivery of data from multiple capture outputs.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDataOutputSynchronizer
+
 type CaptureDataOutputSynchronizer struct {
 	objectivec.Object
 }
@@ -85,46 +90,55 @@ func NewCaptureDataOutputSynchronizer() CaptureDataOutputSynchronizer {
 }
 
 
+
 // A dispatch queue for delivering synchronized capture data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDataOutputSynchronizer/delegateCallbackQueue
+
 func (c_ CaptureDataOutputSynchronizer) DelegateCallbackQueue() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("delegateCallbackQueue"))
 	return rv
 }
 
+
 // The list of data outputs governed by this data output synchronizer.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedataoutputsynchronizer/dataoutputs
+
 func (c_ CaptureDataOutputSynchronizer) DataOutputs() AVCaptureOutput {
 	rv := objc.Send[AVCaptureOutput](c_.ID, objc.Sel("dataOutputs"))
 	return rv
 }
 
 
-// SetDataOutputs sets the value of the dataOutputs property.
 // The list of data outputs governed by this data output synchronizer.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedataoutputsynchronizer/dataoutputs
+
 func (c_ CaptureDataOutputSynchronizer) SetDataOutputs(value IAVCaptureOutput) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDataOutputs:"), value)
 }
 
+
 // A delegate object that receives synchronized capture data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedataoutputsynchronizer/delegate
+
 func (c_ CaptureDataOutputSynchronizer) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("delegate"))
 	return rv
 }
 
 
-// SetDelegate sets the value of the delegate property.
 // A delegate object that receives synchronized capture data.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedataoutputsynchronizer/delegate
+
 func (c_ CaptureDataOutputSynchronizer) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDelegate:"), value)
 }

@@ -40,8 +40,13 @@ type IInterAppAudioSwitcherView interface {
 }
 
 // A view that provides an audio switcher user interface.
+
+
+// A view that provides an audio switcher user interface.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/CAInterAppAudioSwitcherView
+
 type InterAppAudioSwitcherView struct {
 	appkit.View
 }
@@ -87,45 +92,55 @@ func NewInterAppAudioSwitcherView() InterAppAudioSwitcherView {
 }
 
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/CAInterAppAudioSwitcherView/contentWidth()
+
 func (i_ InterAppAudioSwitcherView) ContentWidth() float64 {
 	rv := objc.Send[float64](i_.ID, objc.Sel("contentWidth"))
 	return rv
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/CAInterAppAudioSwitcherView/setOutputAudioUnit(_:)
+
 func (i_ InterAppAudioSwitcherView) SetOutputAudioUnit(au audiotoolbox.IAudioUnit) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setOutputAudioUnit:"), au)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/CAInterAppAudioSwitcherView/isShowingAppNames
+
 func (i_ InterAppAudioSwitcherView) ShowingAppNames() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("showingAppNames"))
 	return rv
 }
 
 
-// SetShowingAppNames sets the value of the showingAppNames property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/CAInterAppAudioSwitcherView/isShowingAppNames
+
 func (i_ InterAppAudioSwitcherView) SetShowingAppNames(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setShowingAppNames:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreaudiokit/cainterappaudioswitcherview/isshowingappnames
+
 func (i_ InterAppAudioSwitcherView) IsShowingAppNames() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("isShowingAppNames"))
 	return rv
 }
 
 
-// SetIsShowingAppNames sets the value of the isShowingAppNames property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreaudiokit/cainterappaudioswitcherview/isshowingappnames
+
 func (i_ InterAppAudioSwitcherView) SetIsShowingAppNames(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIsShowingAppNames:"), value)
 }

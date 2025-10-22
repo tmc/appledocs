@@ -44,8 +44,13 @@ type IUpdate interface {
 }
 
 // An object that represents a location update.
+
+
+// An object that represents a location update.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLUpdate
+
 type Update struct {
 	objectivec.Object
 }
@@ -89,80 +94,104 @@ func NewUpdate() Update {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLUpdate/accuracyLimited
+
 func (u_ Update) AccuracyLimited() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("accuracyLimited"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLUpdate/authorizationDenied
+
 func (u_ Update) AuthorizationDenied() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("authorizationDenied"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLUpdate/authorizationDeniedGlobally
+
 func (u_ Update) AuthorizationDeniedGlobally() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("authorizationDeniedGlobally"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLUpdate/authorizationRequestInProgress
+
 func (u_ Update) AuthorizationRequestInProgress() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("authorizationRequestInProgress"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLUpdate/authorizationRestricted
+
 func (u_ Update) AuthorizationRestricted() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("authorizationRestricted"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLUpdate/insufficientlyInUse
+
 func (u_ Update) InsufficientlyInUse() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("insufficientlyInUse"))
 	return rv
 }
 
+
 // A Boolean value that indicates whether the device is stationary.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLUpdate/isStationary
+
 func (u_ Update) IsStationary() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("isStationary"))
 	return rv
 }
 
+
 // A person’s location, if available.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLUpdate/location
+
 func (u_ Update) Location() CLLocation {
 	rv := objc.Send[CLLocation](u_.ID, objc.Sel("location"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLUpdate/locationUnavailable
+
 func (u_ Update) LocationUnavailable() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("locationUnavailable"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLUpdate/serviceSessionRequired
+
 func (u_ Update) ServiceSessionRequired() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("serviceSessionRequired"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLUpdate/stationary
+
 func (u_ Update) Stationary() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("stationary"))
 	return rv

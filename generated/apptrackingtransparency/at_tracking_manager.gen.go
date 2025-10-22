@@ -33,8 +33,13 @@ type IATTrackingManager interface {
 }
 
 // A class that provides a tracking authorization request and the tracking authorization status of the app.
+
+
+// A class that provides a tracking authorization request and the tracking authorization status of the app.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppTrackingTransparency/ATTrackingManager
+
 type ATTrackingManager struct {
 	objectivec.Object
 }
@@ -78,23 +83,32 @@ func NewATTrackingManager() ATTrackingManager {
 }
 
 
+
 // The request for user authorization to access app-related data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppTrackingTransparency/ATTrackingManager/requestTrackingAuthorization(completionHandler:)
+
 func (ac _ATTrackingManagerClass) RequestTrackingAuthorizationWithCompletionHandler(completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(ac.class), objc.Sel("requestTrackingAuthorizationWithCompletionHandler:"), completion)
 }
 
+
 // The authorization status that is current for the calling application.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppTrackingTransparency/ATTrackingManager/trackingAuthorizationStatus
+
 func (ac _ATTrackingManagerClass) TrackingAuthorizationStatus() ATTrackingManagerAuthorizationStatus {
 	rv := objc.Send[ATTrackingManagerAuthorizationStatus](objc.ID(ac.class), objc.Sel("trackingAuthorizationStatus"))
 	return rv
 }
+
 // The authorization status that is current for the calling application.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppTrackingTransparency/ATTrackingManager/trackingAuthorizationStatus
+
 func (a_ ATTrackingManager) TrackingAuthorizationStatus() ATTrackingManagerAuthorizationStatus {
 	rv := objc.Send[ATTrackingManagerAuthorizationStatus](a_.ID, objc.Sel("trackingAuthorizationStatus"))
 	return rv

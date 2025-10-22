@@ -38,8 +38,13 @@ type ISpeechSynthesisProviderAudioUnit interface {
 // An object that generates speech from text.
 //
 // Use a speech synthesizer audio unit to generate audio buffers that contain speech for a given voice and speech markup. The audio unit receives an as input, and extracts audio buffers through the render block. Use to provide metadata as an array of . The system scans and loads voices for audio unit extensions of this type, and the voices it provides are available for use in and accessibility technologies like VoiceOver and Speak Screen.
+
+
+// An object that generates speech from text.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesisProviderAudioUnit
+
 type SpeechSynthesisProviderAudioUnit struct {
 	AudioUnit
 }
@@ -85,38 +90,44 @@ func NewSpeechSynthesisProviderAudioUnit() SpeechSynthesisProviderAudioUnit {
 }
 
 
+
 // A block that subclasses use to send marker information to the host.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesisProviderAudioUnit/speechSynthesisOutputMetadataBlock
+
 func (s_ SpeechSynthesisProviderAudioUnit) SpeechSynthesisOutputMetadataBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("speechSynthesisOutputMetadataBlock"))
 	return rv
 }
 
 
-// SetSpeechSynthesisOutputMetadataBlock sets the value of the speechSynthesisOutputMetadataBlock property.
 // A block that subclasses use to send marker information to the host.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesisProviderAudioUnit/speechSynthesisOutputMetadataBlock
+
 func (s_ SpeechSynthesisProviderAudioUnit) SetSpeechSynthesisOutputMetadataBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSpeechSynthesisOutputMetadataBlock:"), value)
 }
 
+
 // A list of voices the audio unit provides to the system.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisprovideraudiounit/speechvoices
+
 func (s_ SpeechSynthesisProviderAudioUnit) SpeechVoices() AVSpeechSynthesisProviderVoice {
 	rv := objc.Send[AVSpeechSynthesisProviderVoice](s_.ID, objc.Sel("speechVoices"))
 	return rv
 }
 
 
-// SetSpeechVoices sets the value of the speechVoices property.
 // A list of voices the audio unit provides to the system.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisprovideraudiounit/speechvoices
+
 func (s_ SpeechSynthesisProviderAudioUnit) SetSpeechVoices(value IAVSpeechSynthesisProviderVoice) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSpeechVoices:"), value)
 }

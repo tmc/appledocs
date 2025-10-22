@@ -40,8 +40,13 @@ type IDateRangeMetadataGroup interface {
 }
 
 // A collection of metadata items that are valid for use within a specific date range.
+
+
+// A collection of metadata items that are valid for use within a specific date range.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVDateRangeMetadataGroup
+
 type DateRangeMetadataGroup struct {
 	objectivec.Object
 }
@@ -85,56 +90,65 @@ func NewDateRangeMetadataGroup() DateRangeMetadataGroup {
 }
 
 
+
 // The end date for the metadata date range group.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdaterangemetadatagroup/enddate
+
 func (d_ DateRangeMetadataGroup) EndDate() foundation.Date {
 	rv := objc.Send[foundation.Date](d_.ID, objc.Sel("endDate"))
 	return rv
 }
 
 
-// SetEndDate sets the value of the endDate property.
 // The end date for the metadata date range group.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdaterangemetadatagroup/enddate
+
 func (d_ DateRangeMetadataGroup) SetEndDate(value foundation.IDate) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setEndDate:"), value)
 }
 
+
 // An array of associated metadata items.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdaterangemetadatagroup/items
+
 func (d_ DateRangeMetadataGroup) Items() AVMetadataItem {
 	rv := objc.Send[AVMetadataItem](d_.ID, objc.Sel("items"))
 	return rv
 }
 
 
-// SetItems sets the value of the items property.
 // An array of associated metadata items.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdaterangemetadatagroup/items
+
 func (d_ DateRangeMetadataGroup) SetItems(value IAVMetadataItem) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setItems:"), value)
 }
 
+
 // The start date for the metadata date range group.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdaterangemetadatagroup/startdate
+
 func (d_ DateRangeMetadataGroup) StartDate() foundation.Date {
 	rv := objc.Send[foundation.Date](d_.ID, objc.Sel("startDate"))
 	return rv
 }
 
 
-// SetStartDate sets the value of the startDate property.
 // The start date for the metadata date range group.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdaterangemetadatagroup/startdate
+
 func (d_ DateRangeMetadataGroup) SetStartDate(value foundation.IDate) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setStartDate:"), value)
 }

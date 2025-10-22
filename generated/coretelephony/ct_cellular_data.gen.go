@@ -39,8 +39,13 @@ type ICellularData interface {
 // An object indicating whether the app can access cellular data.
 //
 // This property represents all access to cellular data. If the is , the app cannot use the cellular network.
+
+
+// An object indicating whether the app can access cellular data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCellularData
+
 type CellularData struct {
 	objectivec.Object
 }
@@ -84,38 +89,44 @@ func NewCellularData() CellularData {
 }
 
 
+
 // A block that handles cellular data restriction state changes.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctcellulardata/cellulardatarestrictiondidupdatenotifier
+
 func (c_ CellularData) CellularDataRestrictionDidUpdateNotifier() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("cellularDataRestrictionDidUpdateNotifier"))
 	return rv
 }
 
 
-// SetCellularDataRestrictionDidUpdateNotifier sets the value of the cellularDataRestrictionDidUpdateNotifier property.
 // A block that handles cellular data restriction state changes.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctcellulardata/cellulardatarestrictiondidupdatenotifier
+
 func (c_ CellularData) SetCellularDataRestrictionDidUpdateNotifier(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCellularDataRestrictionDidUpdateNotifier:"), value)
 }
 
+
 // The current state of cellular data restrictions.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctcellulardata/restrictedstate
+
 func (c_ CellularData) RestrictedState() CellularDataRestrictedState {
 	rv := objc.Send[CellularDataRestrictedState](c_.ID, objc.Sel("restrictedState"))
 	return rv
 }
 
 
-// SetRestrictedState sets the value of the restrictedState property.
 // The current state of cellular data restrictions.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctcellulardata/restrictedstate
+
 func (c_ CellularData) SetRestrictedState(value CellularDataRestrictedState) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRestrictedState:"), value)
 }

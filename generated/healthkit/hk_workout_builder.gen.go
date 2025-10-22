@@ -56,8 +56,13 @@ type IHKWorkoutBuilder interface {
 // A builder object that incrementally constructs a workout.
 //
 // Incrementally collect samples and events associated with a workout. When the workout ends, call to create an sample and save it to the HealthKit store. For watchOS, use an and an instead.
+
+
+// A builder object that incrementally constructs a workout.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKWorkoutBuilder
+
 type HKWorkoutBuilder struct {
 	objectivec.Object
 }
@@ -101,168 +106,210 @@ func NewHKWorkoutBuilder() HKWorkoutBuilder {
 }
 
 
+
+
 // Adds a workout activity to the workout builder.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKWorkoutBuilder/addWorkoutActivity(_:completion:)
+
 func (h_ HKWorkoutBuilder) AddWorkoutActivityCompletion(workoutActivity IHKWorkoutActivity, completion unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("addWorkoutActivity:completion:"), workoutActivity, completion)
 }
 
+
+
 // Sets the workout’s start date and begins building the workout.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKWorkoutBuilder/beginCollection(withStart:completion:)
+
 func (h_ HKWorkoutBuilder) BeginCollectionWithStartDateCompletion(startDate foundation.IDate, completion unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("beginCollectionWithStartDate:completion:"), startDate, completion)
 }
 
+
+
 // Creates the workout, using the samples and events added to the builder, and saves it to the HealthKit store.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKWorkoutBuilder/finishWorkout(completion:)
+
 func (h_ HKWorkoutBuilder) FinishWorkoutWithCompletion(completion unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("finishWorkoutWithCompletion:"), completion)
 }
 
+
+
 // Sets the end date for a workout activity that you’ve already added to the workout builder.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKWorkoutBuilder/updateActivity(uuid:end:completion:)
+
 func (h_ HKWorkoutBuilder) UpdateActivityWithUUIDEndDateCompletion(UUID foundation.IUUID, endDate foundation.IDate, completion unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("updateActivityWithUUID:endDate:completion:"), UUID, endDate, completion)
 }
 
+
 // The device associated with the workout.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKWorkoutBuilder/device
+
 func (h_ HKWorkoutBuilder) Device() HKDevice {
 	rv := objc.Send[HKDevice](h_.ID, objc.Sel("device"))
 	return rv
 }
 
+
 // A dictionary that contains all the statistics for the workout builder.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutbuilder/allstatistics
+
 func (h_ HKWorkoutBuilder) AllStatistics() HKStatistics {
 	rv := objc.Send[HKStatistics](h_.ID, objc.Sel("allStatistics"))
 	return rv
 }
 
 
-// SetAllStatistics sets the value of the allStatistics property.
 // A dictionary that contains all the statistics for the workout builder.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutbuilder/allstatistics
+
 func (h_ HKWorkoutBuilder) SetAllStatistics(value IHKStatistics) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setAllStatistics:"), value)
 }
 
+
 // The workout’s end date and time.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutbuilder/enddate
+
 func (h_ HKWorkoutBuilder) EndDate() foundation.Date {
 	rv := objc.Send[foundation.Date](h_.ID, objc.Sel("endDate"))
 	return rv
 }
 
 
-// SetEndDate sets the value of the endDate property.
 // The workout’s end date and time.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutbuilder/enddate
+
 func (h_ HKWorkoutBuilder) SetEndDate(value foundation.IDate) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setEndDate:"), value)
 }
 
+
 // The metadata the builder saves with the workout.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutbuilder/metadata
+
 func (h_ HKWorkoutBuilder) Metadata() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("metadata"))
 	return rv
 }
 
 
-// SetMetadata sets the value of the metadata property.
 // The metadata the builder saves with the workout.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutbuilder/metadata
+
 func (h_ HKWorkoutBuilder) SetMetadata(value string) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setMetadata:"), objc.String(value))
 }
 
+
 // The workout’s start date and time.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutbuilder/startdate
+
 func (h_ HKWorkoutBuilder) StartDate() foundation.Date {
 	rv := objc.Send[foundation.Date](h_.ID, objc.Sel("startDate"))
 	return rv
 }
 
 
-// SetStartDate sets the value of the startDate property.
 // The workout’s start date and time.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutbuilder/startdate
+
 func (h_ HKWorkoutBuilder) SetStartDate(value foundation.IDate) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setStartDate:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutbuilder/workoutactivities
+
 func (h_ HKWorkoutBuilder) WorkoutActivities() HKWorkoutActivity {
 	rv := objc.Send[HKWorkoutActivity](h_.ID, objc.Sel("workoutActivities"))
 	return rv
 }
 
 
-// SetWorkoutActivities sets the value of the workoutActivities property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutbuilder/workoutactivities
+
 func (h_ HKWorkoutBuilder) SetWorkoutActivities(value IHKWorkoutActivity) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setWorkoutActivities:"), value)
 }
 
+
 // The configuration information for the workout.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutbuilder/workoutconfiguration
+
 func (h_ HKWorkoutBuilder) WorkoutConfiguration() HKWorkoutConfiguration {
 	rv := objc.Send[HKWorkoutConfiguration](h_.ID, objc.Sel("workoutConfiguration"))
 	return rv
 }
 
 
-// SetWorkoutConfiguration sets the value of the workoutConfiguration property.
 // The configuration information for the workout.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutbuilder/workoutconfiguration
+
 func (h_ HKWorkoutBuilder) SetWorkoutConfiguration(value IHKWorkoutConfiguration) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setWorkoutConfiguration:"), value)
 }
 
+
 // The list of events added to the workout.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutbuilder/workoutevents
+
 func (h_ HKWorkoutBuilder) WorkoutEvents() HKWorkoutEvent {
 	rv := objc.Send[HKWorkoutEvent](h_.ID, objc.Sel("workoutEvents"))
 	return rv
 }
 
 
-// SetWorkoutEvents sets the value of the workoutEvents property.
 // The list of events added to the workout.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutbuilder/workoutevents
+
 func (h_ HKWorkoutBuilder) SetWorkoutEvents(value IHKWorkoutEvent) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setWorkoutEvents:"), value)
 }
 
+
 // The workout type identifier.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkouttypeidentifier
+
 func (h_ HKWorkoutBuilder) HKWorkoutTypeIdentifier() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKWorkoutTypeIdentifier"))
 	return rv

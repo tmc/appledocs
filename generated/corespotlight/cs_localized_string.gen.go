@@ -37,8 +37,13 @@ type ICSLocalizedString interface {
 // An object that displays localized text in search results related to your app.
 //
 // The class helps you localize text in searchable items. You can use a object in place of an object to display localized text in search results related to your app. For example, you might use the following code to define a object for a searchable item you want to identify as “Song” in English:
+
+
+// An object that displays localized text in search results related to your app.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSLocalizedString
+
 type CSLocalizedString struct {
 	string
 }
@@ -88,7 +93,9 @@ func NewCSLocalizedString() CSLocalizedString {
 
 // Initializes a object with the specified dictionary of localized strings.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSLocalizedString/init(localizedStrings:)
+
 func NewCSLocalizedStringWithLocalizedStrings(localizedStrings objectivec.IObject) CSLocalizedString {
 	instance := getCSLocalizedStringClass().Alloc()
 	rv := objc.Send[CSLocalizedString](instance.ID, objc.Sel("initWithLocalizedStrings:"), localizedStrings)
@@ -97,9 +104,13 @@ func NewCSLocalizedStringWithLocalizedStrings(localizedStrings objectivec.IObjec
 }
 
 
+
+
 // Returns the localized string for the current language.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSLocalizedString/localizedString()
+
 func (c_ CSLocalizedString) LocalizedString() foundation.String {
 	rv := objc.Send[foundation.String](c_.ID, objc.Sel("localizedString"))
 	return rv

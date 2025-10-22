@@ -34,8 +34,13 @@ type ICNChangeHistoryAddGroupEvent interface {
 }
 
 // An object that represents a user adding a group.
+
+
+// An object that represents a user adding a group.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryAddGroupEvent
+
 type CNChangeHistoryAddGroupEvent struct {
 	CNChangeHistoryEvent
 }
@@ -81,17 +86,23 @@ func NewCNChangeHistoryAddGroupEvent() CNChangeHistoryAddGroupEvent {
 }
 
 
+
 // A string that uniquely identifies the container where the user added the group.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryAddGroupEvent/containerIdentifier
+
 func (c_ CNChangeHistoryAddGroupEvent) ContainerIdentifier() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("containerIdentifier"))
 	return rv
 }
 
+
 // The group the user added.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryAddGroupEvent/group
+
 func (c_ CNChangeHistoryAddGroupEvent) Group() CNGroup {
 	rv := objc.Send[CNGroup](c_.ID, objc.Sel("group"))
 	return rv

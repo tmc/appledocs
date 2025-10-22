@@ -33,8 +33,13 @@ type ICKSyncEngineFetchedZoneDeletion interface {
 }
 
 // An object that describes the deletion of a record zone.
+
+
+// An object that describes the deletion of a record zone.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineFetchedZoneDeletion
+
 type CKSyncEngineFetchedZoneDeletion struct {
 	objectivec.Object
 }

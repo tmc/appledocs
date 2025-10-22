@@ -36,8 +36,13 @@ type IHKWorkoutRouteBuilder interface {
 // A builder object that incrementally constructs a workout route.
 //
 // To create a workout route, use to instantiate a , and provide it with location data throughout the workout. After the workout ends, call the builder’s method to construct the route. Instantiating a directly is discouraged. For detailed instructions, see .
+
+
+// A builder object that incrementally constructs a workout route.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKWorkoutRouteBuilder
+
 type HKWorkoutRouteBuilder struct {
 	HKSeriesBuilder
 }
@@ -83,16 +88,23 @@ func NewHKWorkoutRouteBuilder() HKWorkoutRouteBuilder {
 }
 
 
+
+
 // Creates, saves, and associates the route with the provided workout.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKWorkoutRouteBuilder/finishRoute(with:metadata:completion:)
+
 func (h_ HKWorkoutRouteBuilder) FinishRouteWithWorkoutMetadataCompletion(workout IHKWorkout, metadata unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("finishRouteWithWorkout:metadata:completion:"), workout, metadata, completion)
 }
 
+
 // A series sample containing location data that defines the route the user took during a workout.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutroutetypeidentifier
+
 func (h_ HKWorkoutRouteBuilder) HKWorkoutRouteTypeIdentifier() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKWorkoutRouteTypeIdentifier"))
 	return rv

@@ -49,8 +49,13 @@ type IDepthData interface {
 // A container for per-pixel distance or disparity information captured by compatible camera devices.
 //
 // is a generic term for a map of per-pixel data containing depth-related information. A depth data object wraps a disparity or depth map and provides conversion methods, focus information, and camera calibration data to aid in using the map for rendering or computer vision tasks. A depth map describes at each pixel the distance to an object, in meters. A disparity map describes normalized shift values for use in comparing two images. The value for each pixel in the map is in units of 1/meters: ( ). The capture pipeline generates disparity or depth maps from camera images containing nonrectilinear data. Camera lenses have small imperfections that cause small distortions in their resultant images compared to an ideal pinhole camera model, so maps contain nonrectilinear (nondistortion-corrected) data as well. The maps’ values are warped to match the lens distortion characteristics present in the YUV image pixel buffers captured at the same time. Because a depth data map is nonrectilinear, you can use an map as a proxy for depth when rendering effects to its accompanying image, but not to correlate points in 3D space. To use depth data for computer vision tasks, use the data in the property to rectify the depth data. There are two ways to capture depth data: The class captures and delivers depth data in a stream (similar to how the delivers video data). The class delivers depth data as a property of an object containing the captured image. You can also create objects using information obtained from image files with the framework. When editing images containing depth information, use the methods listed in Transforming and Processing to generate derivative objects reflecting the edits that have been performed.
+
+
+// A container for per-pixel distance or disparity information captured by compatible camera devices.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVDepthData
+
 type DepthData struct {
 	objectivec.Object
 }
@@ -94,128 +99,149 @@ func NewDepthData() DepthData {
 }
 
 
+
 // The list of depth data formats to which you can convert this depth data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdepthdata/availabledepthdatatypes-3ifx1
+
 func (d_ DepthData) AvailableDepthDataTypes() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("availableDepthDataTypes"))
 	return rv
 }
 
 
-// SetAvailableDepthDataTypes sets the value of the availableDepthDataTypes property.
 // The list of depth data formats to which you can convert this depth data.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdepthdata/availabledepthdatatypes-3ifx1
+
 func (d_ DepthData) SetAvailableDepthDataTypes(value unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setAvailableDepthDataTypes:"), value)
 }
 
+
 // The imaging parameters with which this depth data was captured.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdepthdata/cameracalibrationdata
+
 func (d_ DepthData) CameraCalibrationData() AVCameraCalibrationData {
 	rv := objc.Send[AVCameraCalibrationData](d_.ID, objc.Sel("cameraCalibrationData"))
 	return rv
 }
 
 
-// SetCameraCalibrationData sets the value of the cameraCalibrationData property.
 // The imaging parameters with which this depth data was captured.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdepthdata/cameracalibrationdata
+
 func (d_ DepthData) SetCameraCalibrationData(value IAVCameraCalibrationData) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setCameraCalibrationData:"), value)
 }
 
+
 // The general accuracy of depth data map values.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdepthdata/depthdataaccuracy
+
 func (d_ DepthData) DepthDataAccuracy() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("depthDataAccuracy"))
 	return rv
 }
 
 
-// SetDepthDataAccuracy sets the value of the depthDataAccuracy property.
 // The general accuracy of depth data map values.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdepthdata/depthdataaccuracy
+
 func (d_ DepthData) SetDepthDataAccuracy(value unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDepthDataAccuracy:"), value)
 }
 
+
 // A pixel buffer containing the depth data’s per-pixel depth or disparity data map.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdepthdata/depthdatamap
+
 func (d_ DepthData) DepthDataMap() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("depthDataMap"))
 	return rv
 }
 
 
-// SetDepthDataMap sets the value of the depthDataMap property.
 // A pixel buffer containing the depth data’s per-pixel depth or disparity data map.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdepthdata/depthdatamap
+
 func (d_ DepthData) SetDepthDataMap(value unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDepthDataMap:"), value)
 }
 
+
 // The overall quality of the depth map.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdepthdata/depthdataquality
+
 func (d_ DepthData) DepthDataQuality() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("depthDataQuality"))
 	return rv
 }
 
 
-// SetDepthDataQuality sets the value of the depthDataQuality property.
 // The overall quality of the depth map.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdepthdata/depthdataquality
+
 func (d_ DepthData) SetDepthDataQuality(value unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDepthDataQuality:"), value)
 }
 
+
 // The pixel format of the depth data map.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdepthdata/depthdatatype
+
 func (d_ DepthData) DepthDataType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("depthDataType"))
 	return rv
 }
 
 
-// SetDepthDataType sets the value of the depthDataType property.
 // The pixel format of the depth data map.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdepthdata/depthdatatype
+
 func (d_ DepthData) SetDepthDataType(value unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDepthDataType:"), value)
 }
 
+
 // A Boolean value indicating whether the depth map contains temporally smoothed data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdepthdata/isdepthdatafiltered
+
 func (d_ DepthData) IsDepthDataFiltered() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("isDepthDataFiltered"))
 	return rv
 }
 
 
-// SetIsDepthDataFiltered sets the value of the isDepthDataFiltered property.
 // A Boolean value indicating whether the depth map contains temporally smoothed data.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdepthdata/isdepthdatafiltered
+
 func (d_ DepthData) SetIsDepthDataFiltered(value bool) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setIsDepthDataFiltered:"), value)
 }

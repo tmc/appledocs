@@ -33,8 +33,13 @@ type IDispatchIO interface {
 }
 
 // An object that manages operations on a file descriptor using either stream-based or random-access semantics.
+
+
+// An object that manages operations on a file descriptor using either stream-based or random-access semantics.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/DispatchIO
+
 type DispatchIO struct {
 	objectivec.Object
 }

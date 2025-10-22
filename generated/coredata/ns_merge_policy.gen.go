@@ -38,8 +38,13 @@ type IMergePolicy interface {
 // A policy object that you use to resolve conflicts between the persistent store and in-memory versions of managed objects.
 //
 // A conflict is a mismatch between state held at two different layers in the Core Data stack. A conflict can arise when you save a managed object context and you have stale data at another layer. There are two places in which a conflict may occur: Between the managed object context layer and its in-memory cached state at the persistent store coordinator layer. Between the cached state at the persistent store coordinator and the external store (file, database, and so forth). Conflicts are represented by instances of .
+
+
+// A policy object that you use to resolve conflicts between the persistent store and in-memory versions of managed objects.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMergePolicy
+
 type MergePolicy struct {
 	objectivec.Object
 }
@@ -87,7 +92,9 @@ func NewMergePolicy() MergePolicy {
 
 // Returns a merge policy initialized with a given policy type.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMergePolicy/init(merge:)
+
 func NewMergePolicyWithMergeType(ty MergePolicyType) MergePolicy {
 	instance := getMergePolicyClass().Alloc()
 	rv := objc.Send[MergePolicy](instance.ID, objc.Sel("initWithMergeType:"), ty)
@@ -96,55 +103,78 @@ func NewMergePolicyWithMergeType(ty MergePolicyType) MergePolicy {
 }
 
 
+
 // A property-based merge policy that applies in-memory changes.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMergePolicy/mergeByPropertyObjectTrump
+
 func (mc _MergePolicyClass) MergeByPropertyObjectTrumpMergePolicy() MergePolicy {
 	rv := objc.Send[NSMergePolicy](objc.ID(mc.class), objc.Sel("mergeByPropertyObjectTrumpMergePolicy"))
 	return rv
 }
+
 // A property-based merge policy that applies external changes.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMergePolicy/mergeByPropertyStoreTrump
+
 func (mc _MergePolicyClass) MergeByPropertyStoreTrumpMergePolicy() MergePolicy {
 	rv := objc.Send[NSMergePolicy](objc.ID(mc.class), objc.Sel("mergeByPropertyStoreTrumpMergePolicy"))
 	return rv
 }
+
+
 // Resolves the conflicts in a given list.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMergePolicy/resolve(constraintConflicts:)
+
 func (m_ MergePolicy) ResolveConstraintConflictsError(list []ConstraintConflict, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("resolveConstraintConflicts:error:"), list, error_)
 	return rv
 }
 
+
+
 // Resolves the conflicts in a given list.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMergePolicy/resolve(optimisticLockingConflicts:)
+
 func (m_ MergePolicy) ResolveOptimisticLockingVersionConflictsError(list []MergeConflict, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("resolveOptimisticLockingVersionConflicts:error:"), list, error_)
 	return rv
 }
 
+
 // A property-based merge policy that applies in-memory changes.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMergePolicy/mergeByPropertyObjectTrump
+
 func (m_ MergePolicy) MergeByPropertyObjectTrumpMergePolicy() NSMergePolicy {
 	rv := objc.Send[NSMergePolicy](m_.ID, objc.Sel("mergeByPropertyObjectTrumpMergePolicy"))
 	return rv
 }
 
+
 // A property-based merge policy that applies external changes.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMergePolicy/mergeByPropertyStoreTrump
+
 func (m_ MergePolicy) MergeByPropertyStoreTrumpMergePolicy() NSMergePolicy {
 	rv := objc.Send[NSMergePolicy](m_.ID, objc.Sel("mergeByPropertyStoreTrumpMergePolicy"))
 	return rv
 }
 
+
 // The merge type.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMergePolicy/mergeType
+
 func (m_ MergePolicy) MergeType() MergePolicyType {
 	rv := objc.Send[MergePolicyType](m_.ID, objc.Sel("mergeType"))
 	return rv

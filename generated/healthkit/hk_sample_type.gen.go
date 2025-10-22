@@ -43,8 +43,13 @@ type IHKSampleType interface {
 // An abstract superclass for all classes that identify a specific type of sample when working with the HealthKit store.
 //
 // The class is an abstract subclass of the class, used to represent data samples. Never instantiate an object directly. Instead, work with one of its concrete subclasses: , , , or classes.
+
+
+// An abstract superclass for all classes that identify a specific type of sample when working with the HealthKit store.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKSampleType
+
 type HKSampleType struct {
 	HKObjectType
 }
@@ -90,82 +95,97 @@ func NewHKSampleType() HKSampleType {
 }
 
 
+
 // A Boolean value that indicates whether HealthKit supports recalibrating the prediction algorithm used to produce estimates for this sample type.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKSampleType/allowsRecalibrationForEstimates
+
 func (h_ HKSampleType) AllowsRecalibrationForEstimates() bool {
 	rv := objc.Send[bool](h_.ID, objc.Sel("allowsRecalibrationForEstimates"))
 	return rv
 }
 
+
 // A Boolean value that indicates whether samples of this type have a maximum time interval between the start and end dates.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksampletype/ismaximumdurationrestricted
+
 func (h_ HKSampleType) IsMaximumDurationRestricted() bool {
 	rv := objc.Send[bool](h_.ID, objc.Sel("isMaximumDurationRestricted"))
 	return rv
 }
 
 
-// SetIsMaximumDurationRestricted sets the value of the isMaximumDurationRestricted property.
 // A Boolean value that indicates whether samples of this type have a maximum time interval between the start and end dates.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksampletype/ismaximumdurationrestricted
+
 func (h_ HKSampleType) SetIsMaximumDurationRestricted(value bool) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setIsMaximumDurationRestricted:"), value)
 }
 
+
 // A Boolean value that indicates whether samples of this type have a minimum time interval between the start and end dates.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksampletype/isminimumdurationrestricted
+
 func (h_ HKSampleType) IsMinimumDurationRestricted() bool {
 	rv := objc.Send[bool](h_.ID, objc.Sel("isMinimumDurationRestricted"))
 	return rv
 }
 
 
-// SetIsMinimumDurationRestricted sets the value of the isMinimumDurationRestricted property.
 // A Boolean value that indicates whether samples of this type have a minimum time interval between the start and end dates.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksampletype/isminimumdurationrestricted
+
 func (h_ HKSampleType) SetIsMinimumDurationRestricted(value bool) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setIsMinimumDurationRestricted:"), value)
 }
 
+
 // The maximum duration if the sample type has a restricted duration.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksampletype/maximumallowedduration
+
 func (h_ HKSampleType) MaximumAllowedDuration() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("maximumAllowedDuration"))
 	return rv
 }
 
 
-// SetMaximumAllowedDuration sets the value of the maximumAllowedDuration property.
 // The maximum duration if the sample type has a restricted duration.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksampletype/maximumallowedduration
+
 func (h_ HKSampleType) SetMaximumAllowedDuration(value unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setMaximumAllowedDuration:"), value)
 }
 
+
 // The minimum duration if the sample type has a restricted duration.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksampletype/minimumallowedduration
+
 func (h_ HKSampleType) MinimumAllowedDuration() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("minimumAllowedDuration"))
 	return rv
 }
 
 
-// SetMinimumAllowedDuration sets the value of the minimumAllowedDuration property.
 // The minimum duration if the sample type has a restricted duration.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksampletype/minimumallowedduration
+
 func (h_ HKSampleType) SetMinimumAllowedDuration(value unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setMinimumAllowedDuration:"), value)
 }

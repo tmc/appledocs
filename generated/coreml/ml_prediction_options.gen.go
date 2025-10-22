@@ -37,8 +37,13 @@ type IPredictionOptions interface {
 }
 
 // The options available when making a prediction.
+
+
+// The options available when making a prediction.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLPredictionOptions
+
 type PredictionOptions struct {
 	objectivec.Object
 }
@@ -82,38 +87,44 @@ func NewPredictionOptions() PredictionOptions {
 }
 
 
+
 // A dictionary of feature names and client-allocated buffers.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlpredictionoptions/outputbackings
+
 func (p_ PredictionOptions) OutputBackings() string {
 	rv := objc.Send[string](p_.ID, objc.Sel("outputBackings"))
 	return rv
 }
 
 
-// SetOutputBackings sets the value of the outputBackings property.
 // A dictionary of feature names and client-allocated buffers.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlpredictionoptions/outputbackings
+
 func (p_ PredictionOptions) SetOutputBackings(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setOutputBackings:"), objc.String(value))
 }
 
+
 // A Boolean value that indicates whether a prediction is computed using only the CPU.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlpredictionoptions/usescpuonly
+
 func (p_ PredictionOptions) UsesCPUOnly() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("usesCPUOnly"))
 	return rv
 }
 
 
-// SetUsesCPUOnly sets the value of the usesCPUOnly property.
 // A Boolean value that indicates whether a prediction is computed using only the CPU.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlpredictionoptions/usescpuonly
+
 func (p_ PredictionOptions) SetUsesCPUOnly(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setUsesCPUOnly:"), value)
 }

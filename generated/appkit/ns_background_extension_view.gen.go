@@ -38,8 +38,13 @@ type IBackgroundExtensionView interface {
 // A view that extends content to fill its own bounds.
 //
 // A background extension view can be laid out to extend outside the safe area, such as under the titlebar, sidebar, or inspector. By default it lays out its content to stay within the safe area, and uses modifications of the content along the edges to fill the container view.
+
+
+// A view that extends content to fill its own bounds.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBackgroundExtensionView
+
 type BackgroundExtensionView struct {
 	View
 }
@@ -85,38 +90,44 @@ func NewBackgroundExtensionView() BackgroundExtensionView {
 }
 
 
+
 // Controls the automatic safe area placement of the within the container.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBackgroundExtensionView/automaticallyPlacesContentView
+
 func (b_ BackgroundExtensionView) AutomaticallyPlacesContentView() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("automaticallyPlacesContentView"))
 	return rv
 }
 
 
-// SetAutomaticallyPlacesContentView sets the value of the automaticallyPlacesContentView property.
 // Controls the automatic safe area placement of the within the container.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBackgroundExtensionView/automaticallyPlacesContentView
+
 func (b_ BackgroundExtensionView) SetAutomaticallyPlacesContentView(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setAutomaticallyPlacesContentView:"), value)
 }
 
+
 // The content view to extend to fill the .
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBackgroundExtensionView/contentView
+
 func (b_ BackgroundExtensionView) ContentView() NSView {
 	rv := objc.Send[NSView](b_.ID, objc.Sel("contentView"))
 	return rv
 }
 
 
-// SetContentView sets the value of the contentView property.
 // The content view to extend to fill the .
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBackgroundExtensionView/contentView
+
 func (b_ BackgroundExtensionView) SetContentView(value IView) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setContentView:"), value)
 }

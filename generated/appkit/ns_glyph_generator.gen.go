@@ -35,8 +35,13 @@ type IGlyphGenerator interface {
 // An object that performs the initial, nominal glyph generation phase in the layout process.
 //
 // The nominal glyph generation pass essentially generates one glyph per character; the typesetter may later make substitutions in the glyph stream, for example, changing an acute accent glyph followed by an “e” glyph into a single acute-accented “é” glyph. communicates via the protocol. An example of a class that conforms to the protocol is .
+
+
+// An object that performs the initial, nominal glyph generation phase in the layout process.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlyphGenerator
+
 type GlyphGenerator struct {
 	objectivec.Object
 }

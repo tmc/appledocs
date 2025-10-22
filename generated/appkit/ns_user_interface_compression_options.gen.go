@@ -37,8 +37,13 @@ type IUserInterfaceCompressionOptions interface {
 // An object that specifies how user interface elements resize themselves when space is constrained.
 //
 // An instance of contains zero or more options. Because a compression options object behaves like a set, you can use common operations like intersection, union and subtraction to interact with instances and their members. You can access system-defined options through the class methods detailed in Creating standard options, or you can create your own custom options with the initializer. To compare two different compression options objects, use the methods described in the Comparing compression options section.
+
+
+// An object that specifies how user interface elements resize themselves when space is constrained.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSUserInterfaceCompressionOptions
+
 type UserInterfaceCompressionOptions struct {
 	objectivec.Object
 }
@@ -86,7 +91,9 @@ func NewUserInterfaceCompressionOptions() UserInterfaceCompressionOptions {
 
 // Creates an option object with the given identifier string.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSUserInterfaceCompressionOptions/init(identifier:)
+
 func NewUserInterfaceCompressionOptionsWithIdentifier(identifier string) UserInterfaceCompressionOptions {
 	instance := getUserInterfaceCompressionOptionsClass().Alloc()
 	rv := objc.Send[UserInterfaceCompressionOptions](instance.ID, objc.Sel("initWithIdentifier:"), objc.String(identifier))
@@ -95,20 +102,23 @@ func NewUserInterfaceCompressionOptionsWithIdentifier(identifier string) UserInt
 }
 
 
+
 // A Boolean value that denotes whether the option is empty.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsuserinterfacecompressionoptions/isempty
+
 func (u_ UserInterfaceCompressionOptions) IsEmpty() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("isEmpty"))
 	return rv
 }
 
 
-// SetIsEmpty sets the value of the isEmpty property.
 // A Boolean value that denotes whether the option is empty.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsuserinterfacecompressionoptions/isempty
+
 func (u_ UserInterfaceCompressionOptions) SetIsEmpty(value bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setIsEmpty:"), value)
 }

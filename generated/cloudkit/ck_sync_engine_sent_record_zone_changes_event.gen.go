@@ -34,8 +34,13 @@ type ICKSyncEngineSentRecordZoneChangesEvent interface {
 }
 
 // An object that provides information about a sent batch of record zone changes.
+
+
+// An object that provides information about a sent batch of record zone changes.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineSentRecordZoneChangesEvent
+
 type CKSyncEngineSentRecordZoneChangesEvent struct {
 	CKSyncEngineEvent
 }
@@ -81,17 +86,23 @@ func NewCKSyncEngineSentRecordZoneChangesEvent() CKSyncEngineSentRecordZoneChang
 }
 
 
+
 // The unique identifiers of the records CloudKit is unable to delete, and the reasons why.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineSentRecordZoneChangesEvent/failedRecordDeletes
+
 func (c_ CKSyncEngineSentRecordZoneChangesEvent) FailedRecordDeletes() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("failedRecordDeletes"))
 	return rv
 }
 
+
 // The modified records.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineSentRecordZoneChangesEvent/savedRecords
+
 func (c_ CKSyncEngineSentRecordZoneChangesEvent) SavedRecords() []CKRecord {
 	rv := objc.Send[[]CKRecord](c_.ID, objc.Sel("savedRecords"))
 	return rv

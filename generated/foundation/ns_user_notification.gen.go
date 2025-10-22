@@ -33,6 +33,7 @@ type IUserNotification interface {
 	ActionButtonTitle() string
 	SetActionButtonTitle(value string)
 	ActivationType() UserNotificationActivationType
+	ActualDeliveryDate() NSDate
 	AdditionalActions() []UserNotificationAction
 	SetAdditionalActions(value []UserNotificationAction)
 	AdditionalActivationAction() NSUserNotificationAction
@@ -47,8 +48,6 @@ type IUserNotification interface {
 	Response() NSAttributedString
 	Title() string
 	SetTitle(value string)
-	ActualDeliveryDate() Date
-	SetActualDeliveryDate(value IDate)
 	DeliveryRepeatInterval() DateComponents
 	SetDeliveryRepeatInterval(value IDateComponents)
 	DeliveryTimeZone() TimeZone
@@ -156,6 +155,17 @@ func (u_ UserNotification) SetActionButtonTitle(value string) {
 
 func (u_ UserNotification) ActivationType() UserNotificationActivationType {
 	rv := objc.Send[UserNotificationActivationType](u_.ID, objc.Sel("activationType"))
+	return rv
+}
+
+
+// The date this notification was actually delivered.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/actualDeliveryDate
+
+func (u_ UserNotification) ActualDeliveryDate() NSDate {
+	rv := objc.Send[NSDate](u_.ID, objc.Sel("actualDeliveryDate"))
 	return rv
 }
 
@@ -316,27 +326,6 @@ func (u_ UserNotification) Title() string {
 
 func (u_ UserNotification) SetTitle(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setTitle:"), objc.String(value))
-}
-
-
-// The date this notification was actually delivered.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/actualdeliverydate
-
-func (u_ UserNotification) ActualDeliveryDate() Date {
-	rv := objc.Send[Date](u_.ID, objc.Sel("actualDeliveryDate"))
-	return rv
-}
-
-
-// The date this notification was actually delivered.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/actualdeliverydate
-
-func (u_ UserNotification) SetActualDeliveryDate(value IDate) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setActualDeliveryDate:"), value)
 }
 
 

@@ -2,12 +2,16 @@
 
 // Package extensionkit provides Go bindings for the ExtensionKit framework.
 //
-// Make custom UI from an app extension available in a host app, and manage the list of enabled [Full Topic]
+// Make custom UI from an app extension available in a host app, and manage the list of enabled
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to ExtensionKit without requiring cgo.
+
+// Make custom UI from an app extension available in a host app, and manage the list of enabled
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExtensionKit
+
 package extensionkit
 
 import (

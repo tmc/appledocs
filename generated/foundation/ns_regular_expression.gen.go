@@ -38,7 +38,7 @@ type IRegularExpression interface {
 	Pattern() string
 	SetPattern(value string)
 	Range() Range
-	SetRange(value Range)
+	SetRange(value IRange)
 }
 
 // An immutable representation of a compiled regular expression that you apply to Unicode strings.
@@ -185,7 +185,7 @@ func (r_ RegularExpression) Range() Range {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/range
 
-func (r_ RegularExpression) SetRange(value Range) {
+func (r_ RegularExpression) SetRange(value IRange) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setRange:"), value)
 }
 

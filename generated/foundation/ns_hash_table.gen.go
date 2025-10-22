@@ -102,7 +102,7 @@ func NewHashTable() HashTable {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHashTable/init(options:)
 
-func NewHashTableWithOptions(options PointerFunctionsOptions) HashTable {
+func NewHashTableWithOptions(options IPointerFunctionsOptions) HashTable {
 	rv := objc.Send[HashTable](objc.ID(getHashTableClass().class), objc.Sel("hashTableWithOptions:"), options)
 	return rv
 }
@@ -125,7 +125,7 @@ func (hc _HashTableClass) HashTableWithWeakObjects() objc.ID {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHashTable/init(options:)
 
-func (hc _HashTableClass) HashTableWithOptions(options PointerFunctionsOptions) unsafe.Pointer {
+func (hc _HashTableClass) HashTableWithOptions(options IPointerFunctionsOptions) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("hashTableWithOptions:"), options)
 	return rv
 }

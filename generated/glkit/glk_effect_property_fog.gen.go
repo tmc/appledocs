@@ -46,8 +46,13 @@ type IGLKEffectPropertyFog interface {
 // Fog drawing information for use in GLKit rendering effects.
 //
 // These properties are specifically designed to mimic the fog calculations provided by OpenGL ES 1.1. When fog is enabled, the fog component is calculated and clamped to a range from to . Then, the fog value is used as a blending factor between the computed fragment color and the fog color.
+
+
+// Fog drawing information for use in GLKit rendering effects.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyFog
+
 type GLKEffectPropertyFog struct {
 	GLKEffectProperty
 }
@@ -93,110 +98,128 @@ func NewGLKEffectPropertyFog() GLKEffectPropertyFog {
 }
 
 
+
 // The color of the fog at maximum density.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyFog/color
+
 func (g_ GLKEffectPropertyFog) Color() GLKVector4 {
 	rv := objc.Send[GLKVector4](g_.ID, objc.Sel("color"))
 	return rv
 }
 
 
-// SetColor sets the value of the color property.
 // The color of the fog at maximum density.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyFog/color
+
 func (g_ GLKEffectPropertyFog) SetColor(value IGLKVector4) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setColor:"), value)
 }
 
+
 // The rate at which the fog exponent increases.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyFog/density
+
 func (g_ GLKEffectPropertyFog) Density() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("density"))
 	return rv
 }
 
 
-// SetDensity sets the value of the density property.
 // The rate at which the fog exponent increases.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyFog/density
+
 func (g_ GLKEffectPropertyFog) SetDensity(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDensity:"), value)
 }
 
+
 // A Boolean value that indicates whether fog is applied to the fragment color.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyFog/enabled
+
 func (g_ GLKEffectPropertyFog) Enabled() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("enabled"))
 	return rv
 }
 
 
-// SetEnabled sets the value of the enabled property.
 // A Boolean value that indicates whether fog is applied to the fragment color.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyFog/enabled
+
 func (g_ GLKEffectPropertyFog) SetEnabled(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setEnabled:"), value)
 }
 
+
 // The distance in eye coordinates where fog completely covers the color fragment.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyFog/end
+
 func (g_ GLKEffectPropertyFog) End() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("end"))
 	return rv
 }
 
 
-// SetEnd sets the value of the end property.
 // The distance in eye coordinates where fog completely covers the color fragment.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyFog/end
+
 func (g_ GLKEffectPropertyFog) SetEnd(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setEnd:"), value)
 }
 
+
 // The algorithm used to compute the density of the fog applied to the fragment color.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyFog/mode
+
 func (g_ GLKEffectPropertyFog) Mode() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("mode"))
 	return rv
 }
 
 
-// SetMode sets the value of the mode property.
 // The algorithm used to compute the density of the fog applied to the fragment color.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyFog/mode
+
 func (g_ GLKEffectPropertyFog) SetMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setMode:"), value)
 }
 
+
 // The minimum distance in eye coordinates before fog is applied to the fragment color.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyFog/start
+
 func (g_ GLKEffectPropertyFog) Start() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("start"))
 	return rv
 }
 
 
-// SetStart sets the value of the start property.
 // The minimum distance in eye coordinates before fog is applied to the fragment color.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyFog/start
+
 func (g_ GLKEffectPropertyFog) SetStart(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setStart:"), value)
 }

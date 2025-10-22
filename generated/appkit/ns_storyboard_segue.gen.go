@@ -39,8 +39,13 @@ type IStoryboardSegue interface {
 // A transition or containment relationship between two scenes in a storyboard.
 //
 // In this context, a is a view controller or a window controller and a is an instance of the class. A storyboard segue has a procedural notion of being invoked, known in the API as being . You can take advantage of hooks into the segue performance process by way of the protocol. You do not create storyboard segue objects directly. Instead, the system creates them as needed as segues are invoked. To run code during initialization and performance of a segue, override the and methods. You can initiate a segue programmatically with the method of the protocol. For example, you might do this to transition from a scene in one storyboard file to a scene in another.
+
+
+// A transition or containment relationship between two scenes in a storyboard.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStoryboardSegue
+
 type StoryboardSegue struct {
 	objectivec.Object
 }
@@ -88,7 +93,9 @@ func NewStoryboardSegue() StoryboardSegue {
 
 // The designated initializer for a storyboard segue.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStoryboardSegue/init(identifier:source:destination:)
+
 func NewStoryboardSegueWithIdentifierSourceDestination(identifier IStoryboardSegueIdentifier, sourceController objectivec.IObject, destinationController objectivec.IObject) StoryboardSegue {
 	instance := getStoryboardSegueClass().Alloc()
 	rv := objc.Send[StoryboardSegue](instance.ID, objc.Sel("initWithIdentifier:source:destination:"), identifier, sourceController, destinationController)
@@ -100,47 +107,65 @@ func NewStoryboardSegueWithIdentifierSourceDestination(identifier IStoryboardSeg
 
 // Creates a storyboard segue and a block used when the segue is performed.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStoryboardSegue/init(identifier:source:destination:performHandler:)
+
 func NewStoryboardSegueWithIdentifierSourceDestinationPerformHandler(identifier IStoryboardSegueIdentifier, sourceController objectivec.IObject, destinationController objectivec.IObject, performHandler unsafe.Pointer) StoryboardSegue {
 	rv := objc.Send[StoryboardSegue](objc.ID(getStoryboardSegueClass().class), objc.Sel("segueWithIdentifier:source:destination:performHandler:"), identifier, sourceController, destinationController, performHandler)
 	return rv
 }
 
 
+
 // Creates a storyboard segue and a block used when the segue is performed.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStoryboardSegue/init(identifier:source:destination:performHandler:)
+
 func (sc _StoryboardSegueClass) SegueWithIdentifierSourceDestinationPerformHandler(identifier IStoryboardSegueIdentifier, sourceController objectivec.IObject, destinationController objectivec.IObject, performHandler unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("segueWithIdentifier:source:destination:performHandler:"), identifier, sourceController, destinationController, performHandler)
 	return rv
 }
 
+
+
 // Performs a visual transition from one controller to another.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStoryboardSegue/perform()
+
 func (s_ StoryboardSegue) Perform() {
 	objc.Send[objc.ID](s_.ID, objc.Sel("perform"))
 }
 
+
 // The ending/contained view controller or window controller for the storyboard segue.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStoryboardSegue/destinationController
+
 func (s_ StoryboardSegue) DestinationController() objc.ID {
 	rv := objc.Send[objc.ID](s_.ID, objc.Sel("destinationController"))
 	return rv
 }
 
+
 // An optional, unique identifier for the storyboard segue that you can specify using the Identity inspector in Interface Builder.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStoryboardSegue/identifier-swift.property
+
 func (s_ StoryboardSegue) Identifier() StoryboardSegueIdentifier {
 	rv := objc.Send[StoryboardSegueIdentifier](s_.ID, objc.Sel("identifier"))
 	return rv
 }
 
+
 // The starting/containing view controller or window controller for the storyboard segue.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStoryboardSegue/sourceController
+
 func (s_ StoryboardSegue) SourceController() objc.ID {
 	rv := objc.Send[objc.ID](s_.ID, objc.Sel("sourceController"))
 	return rv

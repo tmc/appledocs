@@ -41,8 +41,13 @@ type IAttitude interface {
 // The device’s orientation relative to a known frame of reference at a point in time.
 //
 // The class offers three different mathematical representations of attitude: a rotation matrix, a quaternion, and Euler angles (roll, pitch, and yaw values). You access objects through the attitude property of each objects passed to an application. An application starts receiving these device-motion objects as a result of calling the method, the method, the method, or the method of the class.
+
+
+// The device’s orientation relative to a known frame of reference at a point in time.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAttitude
+
 type Attitude struct {
 	objectivec.Object
 }
@@ -86,48 +91,67 @@ func NewAttitude() Attitude {
 }
 
 
+
+
 // Yields the change in attitude given a specific attitude.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAttitude/multiply(byInverseOf:)
+
 func (a_ Attitude) MultiplyByInverseOfAttitude(attitude ICMAttitude) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("multiplyByInverseOfAttitude:"), attitude)
 }
 
+
 // The pitch of the device, in radians.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAttitude/pitch
+
 func (a_ Attitude) Pitch() float64 {
 	rv := objc.Send[float64](a_.ID, objc.Sel("pitch"))
 	return rv
 }
 
+
 // Returns a quaternion representing the device’s attitude.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAttitude/quaternion
+
 func (a_ Attitude) Quaternion() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("quaternion"))
 	return rv
 }
 
+
 // The roll of the device, in radians.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAttitude/roll
+
 func (a_ Attitude) Roll() float64 {
 	rv := objc.Send[float64](a_.ID, objc.Sel("roll"))
 	return rv
 }
 
+
 // Returns a rotation matrix representing the device’s attitude.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAttitude/rotationMatrix
+
 func (a_ Attitude) RotationMatrix() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("rotationMatrix"))
 	return rv
 }
 
+
 // The yaw of the device, in radians.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAttitude/yaw
+
 func (a_ Attitude) Yaw() float64 {
 	rv := objc.Send[float64](a_.ID, objc.Sel("yaw"))
 	return rv

@@ -2,12 +2,16 @@
 
 // Package charts provides Go bindings for the Charts framework.
 //
-// Construct and customize charts on every Apple platform. [Full Topic]
+// Construct and customize charts on every Apple platform.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to Charts without requiring cgo.
+
+// Construct and customize charts on every Apple platform.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Charts
+
 package charts
 
 import (

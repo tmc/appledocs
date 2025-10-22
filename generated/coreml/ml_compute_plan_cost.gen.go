@@ -34,8 +34,13 @@ type IComputePlanCost interface {
 }
 
 // A class that represents the estimated cost of executing a layer or operation.
+
+
+// A class that represents the estimated cost of executing a layer or operation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLComputePlanCost
+
 type ComputePlanCost struct {
 	objectivec.Object
 }
@@ -79,9 +84,12 @@ func NewComputePlanCost() ComputePlanCost {
 }
 
 
+
 // The estimated workload of executing the operation over the total model execution. The value is between [0.0, 1.0].
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLComputePlanCost/weight
+
 func (c_ ComputePlanCost) Weight() float64 {
 	rv := objc.Send[float64](c_.ID, objc.Sel("weight"))
 	return rv

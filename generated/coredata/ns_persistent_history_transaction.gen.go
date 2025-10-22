@@ -44,8 +44,13 @@ type IPersistentHistoryTransaction interface {
 }
 
 // A set of changes in the persistent history based on a context save or batch operation.
+
+
+// A set of changes in the persistent history based on a context save or batch operation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryTransaction
+
 type PersistentHistoryTransaction struct {
 	objectivec.Object
 }
@@ -89,119 +94,165 @@ func NewPersistentHistoryTransaction() PersistentHistoryTransaction {
 }
 
 
+
 // Requests an entity description using the provided context for the managed object type affected by the transaction.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryTransaction/entityDescription(with:)
+
 func (pc _PersistentHistoryTransactionClass) EntityDescriptionWithContext(context IManagedObjectContext) EntityDescription {
 	rv := objc.Send[EntityDescription](objc.ID(pc.class), objc.Sel("entityDescriptionWithContext:"), context)
 	return rv
 }
 
+
 // The entity description of the persistent history transaction entity.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryTransaction/entityDescription
+
 func (pc _PersistentHistoryTransactionClass) EntityDescription() NSEntityDescription {
 	rv := objc.Send[NSEntityDescription](objc.ID(pc.class), objc.Sel("entityDescription"))
 	return rv
 }
+
 // A fetch request that has the persistent history transaction as the entity.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryTransaction/fetchRequest
+
 func (pc _PersistentHistoryTransactionClass) FetchRequest() NSFetchRequest {
 	rv := objc.Send[NSFetchRequest](objc.ID(pc.class), objc.Sel("fetchRequest"))
 	return rv
 }
+
+
 // Obtains a notification for use in merging the transaction’s changes into a managed object context.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryTransaction/objectIDNotification()
+
 func (p_ PersistentHistoryTransaction) ObjectIDNotification() foundation.Notification {
 	rv := objc.Send[foundation.Notification](p_.ID, objc.Sel("objectIDNotification"))
 	return rv
 }
 
+
 // A granular description of the context that made the persistent history change, if available.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryTransaction/author
+
 func (p_ PersistentHistoryTransaction) Author() string {
 	rv := objc.Send[string](p_.ID, objc.Sel("author"))
 	return rv
 }
 
+
 // The originating bundle’s identifier.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryTransaction/bundleID
+
 func (p_ PersistentHistoryTransaction) BundleID() string {
 	rv := objc.Send[string](p_.ID, objc.Sel("bundleID"))
 	return rv
 }
 
+
 // The array of persistent history changes.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryTransaction/changes
+
 func (p_ PersistentHistoryTransaction) Changes() []PersistentHistoryChange {
 	rv := objc.Send[[]PersistentHistoryChange](p_.ID, objc.Sel("changes"))
 	return rv
 }
 
+
 // The originating context’s name.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryTransaction/contextName
+
 func (p_ PersistentHistoryTransaction) ContextName() string {
 	rv := objc.Send[string](p_.ID, objc.Sel("contextName"))
 	return rv
 }
 
+
 // The entity description of the persistent history transaction entity.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryTransaction/entityDescription
+
 func (p_ PersistentHistoryTransaction) EntityDescription() NSEntityDescription {
 	rv := objc.Send[NSEntityDescription](p_.ID, objc.Sel("entityDescription"))
 	return rv
 }
 
+
 // A fetch request that has the persistent history transaction as the entity.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryTransaction/fetchRequest
+
 func (p_ PersistentHistoryTransaction) FetchRequest() NSFetchRequest {
 	rv := objc.Send[NSFetchRequest](p_.ID, objc.Sel("fetchRequest"))
 	return rv
 }
 
+
 // The originating process’s identifier.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryTransaction/processID
+
 func (p_ PersistentHistoryTransaction) ProcessID() string {
 	rv := objc.Send[string](p_.ID, objc.Sel("processID"))
 	return rv
 }
 
+
 // The originating store’s identifier.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryTransaction/storeID
+
 func (p_ PersistentHistoryTransaction) StoreID() string {
 	rv := objc.Send[string](p_.ID, objc.Sel("storeID"))
 	return rv
 }
 
+
 // The date of the persistent history change.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryTransaction/timestamp
+
 func (p_ PersistentHistoryTransaction) Timestamp() foundation.NSDate {
 	rv := objc.Send[foundation.NSDate](p_.ID, objc.Sel("timestamp"))
 	return rv
 }
 
+
 // The token that represents this transaction in the persistent history.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryTransaction/token
+
 func (p_ PersistentHistoryTransaction) Token() NSPersistentHistoryToken {
 	rv := objc.Send[NSPersistentHistoryToken](p_.ID, objc.Sel("token"))
 	return rv
 }
 
+
 // The transaction’s numeric identifier.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryTransaction/transactionNumber
+
 func (p_ PersistentHistoryTransaction) TransactionNumber() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("transactionNumber"))
 	return rv

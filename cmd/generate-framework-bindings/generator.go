@@ -87,6 +87,32 @@ func (g *Generator) IsClassType(typeName string) bool {
 	return false
 }
 
+// IsEnumType checks if a given type name is an enum by looking it up in the Enums list.
+func (g *Generator) IsEnumType(typeName string) bool {
+	if typeName == "" {
+		return false
+	}
+	for _, enum := range g.Enums {
+		if enum.Name == typeName {
+			return true
+		}
+	}
+	return false
+}
+
+// IsTypedefType checks if a given type name is a typedef by looking it up in the Typedefs list.
+func (g *Generator) IsTypedefType(typeName string) bool {
+	if typeName == "" {
+		return false
+	}
+	for _, typedef := range g.Typedefs {
+		if typedef.Name == typeName {
+			return true
+		}
+	}
+	return false
+}
+
 // TypeToInterfaceType converts a struct type name to its interface type name using
 // data-driven type checking. For example: "Data" becomes "IData", "Window" becomes "IWindow".
 // For qualified types: "foundation.Coder" becomes "foundation.ICoder".
@@ -116,7 +142,7 @@ func (g *Generator) TypeToInterfaceType(goType string) string {
 		return goType
 	}
 
-	// Don't convert primitives, slices, pointers, or special types
+	// Don't convert primitives, slices, pointers
 	if strings.HasPrefix(goType, "[]") ||
 		strings.HasPrefix(goType, "*") ||
 		strings.HasPrefix(goType, "map[") ||
@@ -128,9 +154,17 @@ func (g *Generator) TypeToInterfaceType(goType string) string {
 		goType == "float32" ||
 		goType == "float64" ||
 		goType == "bool" ||
-		goType == "unsafe.Pointer" ||
-		strings.HasPrefix(goType, "CG") || // CoreGraphics types (structs and refs)
-		strings.HasPrefix(goType, "NS") && (strings.HasSuffix(goType, "Integer") || strings.HasSuffix(goType, "UInteger")) {
+		goType == "unsafe.Pointer" {
+		return goType
+	}
+
+	// Don't convert CoreGraphics types (structs and refs like CGPoint, CGContextRef)
+	if strings.HasPrefix(goType, "CG") {
+		return goType
+	}
+
+	// Don't convert NSInteger/NSUInteger - these are typedefs, not classes
+	if strings.HasPrefix(goType, "NS") && (strings.HasSuffix(goType, "Integer") || strings.HasSuffix(goType, "UInteger")) {
 		return goType
 	}
 
@@ -139,8 +173,13 @@ func (g *Generator) TypeToInterfaceType(goType string) string {
 		return goType
 	}
 
+	// DATA-DRIVEN: Check if this is an enum or typedef - don't convert those
+	if g.IsEnumType(goType) || g.IsTypedefType(goType) {
+		return goType
+	}
+
 	// DATA-DRIVEN: Check if this is actually a class type by looking it up
-	// If it's not a class, it's likely a struct/enum/typedef - don't convert
+	// If it's not a class, it's likely a struct - don't convert
 	if !g.IsClassType(goType) {
 		return goType
 	}

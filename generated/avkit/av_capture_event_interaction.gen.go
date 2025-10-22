@@ -39,8 +39,13 @@ type ICaptureEventInteraction interface {
 // An object that registers handlers to respond to capture events from system hardware buttons.
 //
 // The system Camera app allows people to perform capture functions by pressing hardware buttons on their iOS device. UIKit apps can add similar functionality by using this type to register handlers that respond to interactions from device hardware. The following example shows how to add a handler that captures a photo when a user presses a hardware button on their device. The event handler queries the capture event to determine its phase, and when the interaction ends, captures a photo.
+
+
+// An object that registers handlers to respond to capture events from system hardware buttons.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureEventInteraction
+
 type CaptureEventInteraction struct {
 	objectivec.Object
 }
@@ -88,7 +93,9 @@ func NewCaptureEventInteraction() CaptureEventInteraction {
 
 // Creates a capture event interaction with a handler that responds to presses of hardware buttons.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureEventInteraction/init(handler:)
+
 func NewCaptureEventInteractionWithEventHandler(handler unsafe.Pointer) CaptureEventInteraction {
 	instance := getCaptureEventInteractionClass().Alloc()
 	rv := objc.Send[CaptureEventInteraction](instance.ID, objc.Sel("initWithEventHandler:"), handler)
@@ -100,7 +107,9 @@ func NewCaptureEventInteractionWithEventHandler(handler unsafe.Pointer) CaptureE
 
 // Creates a capture event interaction with handlers that respond independently to presses of hardware buttons.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureEventInteraction/init(primary:secondary:)
+
 func NewCaptureEventInteractionWithPrimaryEventHandlerSecondaryEventHandler(primaryHandler unsafe.Pointer, secondaryHandler unsafe.Pointer) CaptureEventInteraction {
 	instance := getCaptureEventInteractionClass().Alloc()
 	rv := objc.Send[CaptureEventInteraction](instance.ID, objc.Sel("initWithPrimaryEventHandler:secondaryEventHandler:"), primaryHandler, secondaryHandler)
@@ -109,63 +118,75 @@ func NewCaptureEventInteractionWithPrimaryEventHandlerSecondaryEventHandler(prim
 }
 
 
+
 // A Boolean value that indicates whether the default sound is in a disabled state.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureEventInteraction/defaultCaptureSoundDisabled
+
 func (cc _CaptureEventInteractionClass) DefaultCaptureSoundDisabled() bool {
 	rv := objc.Send[bool](objc.ID(cc.class), objc.Sel("defaultCaptureSoundDisabled"))
 	return rv
 }
+
 // A Boolean value that indicates whether the default sound is in a disabled state.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureEventInteraction/defaultCaptureSoundDisabled
+
 func (c_ CaptureEventInteraction) DefaultCaptureSoundDisabled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("defaultCaptureSoundDisabled"))
 	return rv
 }
 
 
-// SetDefaultCaptureSoundDisabled sets the value of the defaultCaptureSoundDisabled property.
 // A Boolean value that indicates whether the default sound is in a disabled state.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureEventInteraction/defaultCaptureSoundDisabled
+
 func (c_ CaptureEventInteraction) SetDefaultCaptureSoundDisabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDefaultCaptureSoundDisabled:"), value)
 }
 
+
 // A Boolean value that indicates whether this capture event interaction is in an enabled state.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureEventInteraction/isEnabled
+
 func (c_ CaptureEventInteraction) Enabled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("enabled"))
 	return rv
 }
 
 
-// SetEnabled sets the value of the enabled property.
 // A Boolean value that indicates whether this capture event interaction is in an enabled state.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureEventInteraction/isEnabled
+
 func (c_ CaptureEventInteraction) SetEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setEnabled:"), value)
 }
 
+
 // A Boolean value that indicates whether this capture event interaction is in an enabled state.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avcaptureeventinteraction/isenabled
+
 func (c_ CaptureEventInteraction) IsEnabled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isEnabled"))
 	return rv
 }
 
 
-// SetIsEnabled sets the value of the isEnabled property.
 // A Boolean value that indicates whether this capture event interaction is in an enabled state.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avcaptureeventinteraction/isenabled
+
 func (c_ CaptureEventInteraction) SetIsEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsEnabled:"), value)
 }

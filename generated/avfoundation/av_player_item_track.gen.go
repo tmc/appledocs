@@ -43,8 +43,13 @@ type IPlayerItemTrack interface {
 }
 
 // An object that represents the presentation state of an asset track during playback.
+
+
+// An object that represents the presentation state of an asset track during playback.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItemTrack
+
 type PlayerItemTrack struct {
 	objectivec.Object
 }
@@ -88,89 +93,107 @@ func NewPlayerItemTrack() PlayerItemTrack {
 }
 
 
+
 // The current frame rate of the video track as it plays.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItemTrack/currentVideoFrameRate
+
 func (p_ PlayerItemTrack) CurrentVideoFrameRate() float32 {
 	rv := objc.Send[float32](p_.ID, objc.Sel("currentVideoFrameRate"))
 	return rv
 }
 
+
 // A Boolean value that indicates whether the player item presents the track’s media during playback.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItemTrack/isEnabled
+
 func (p_ PlayerItemTrack) Enabled() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("enabled"))
 	return rv
 }
 
 
-// SetEnabled sets the value of the enabled property.
 // A Boolean value that indicates whether the player item presents the track’s media during playback.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItemTrack/isEnabled
+
 func (p_ PlayerItemTrack) SetEnabled(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setEnabled:"), value)
 }
 
+
 // A mode that specifies the handling of video frames that contain multiple fields.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItemTrack/videoFieldMode
+
 func (p_ PlayerItemTrack) VideoFieldMode() string {
 	rv := objc.Send[string](p_.ID, objc.Sel("videoFieldMode"))
 	return rv
 }
 
 
-// SetVideoFieldMode sets the value of the videoFieldMode property.
 // A mode that specifies the handling of video frames that contain multiple fields.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItemTrack/videoFieldMode
+
 func (p_ PlayerItemTrack) SetVideoFieldMode(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setVideoFieldMode:"), objc.String(value))
 }
 
+
 // An asset track that provides the media for the player item track.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemtrack/assettrack
+
 func (p_ PlayerItemTrack) AssetTrack() AVAssetTrack {
 	rv := objc.Send[AVAssetTrack](p_.ID, objc.Sel("assetTrack"))
 	return rv
 }
 
 
-// SetAssetTrack sets the value of the assetTrack property.
 // An asset track that provides the media for the player item track.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemtrack/assettrack
+
 func (p_ PlayerItemTrack) SetAssetTrack(value IAVAssetTrack) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAssetTrack:"), value)
 }
 
+
 // A Boolean value that indicates whether the player item presents the track’s media during playback.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemtrack/isenabled
+
 func (p_ PlayerItemTrack) IsEnabled() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isEnabled"))
 	return rv
 }
 
 
-// SetIsEnabled sets the value of the isEnabled property.
 // A Boolean value that indicates whether the player item presents the track’s media during playback.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemtrack/isenabled
+
 func (p_ PlayerItemTrack) SetIsEnabled(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsEnabled:"), value)
 }
 
+
 // A video field mode that requests deinterlacing of video fields.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemtrackvideofieldmodedeinterlacefields
+
 func (p_ PlayerItemTrack) AVPlayerItemTrackVideoFieldModeDeinterlaceFields() string {
 	rv := objc.Send[string](p_.ID, objc.Sel("AVPlayerItemTrackVideoFieldModeDeinterlaceFields"))
 	return rv

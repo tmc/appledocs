@@ -39,8 +39,13 @@ type ICNScriptChanges interface {
 // An object that represents a snapshot of the changes made to a movie script, including the added user decisions and detection tracks.
 //
 // Use as a snapshot to quickly revert to previously saved edits.
+
+
+// An object that represents a snapshot of the changes made to a movie script, including the added user decisions and detection tracks.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNScriptChanges
+
 type CNScriptChanges struct {
 	objectivec.Object
 }
@@ -84,25 +89,34 @@ func NewCNScriptChanges() CNScriptChanges {
 }
 
 
+
 // All detection tracks added since recording the movie.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNScriptChanges/addedDetectionTracks
+
 func (c_ CNScriptChanges) AddedDetectionTracks() []CNDetectionTrack {
 	rv := objc.Send[[]CNDetectionTrack](c_.ID, objc.Sel("addedDetectionTracks"))
 	return rv
 }
 
+
 // Persistent data representation of changes for later restoration.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNScriptChanges/dataRepresentation
+
 func (c_ CNScriptChanges) DataRepresentation() foundation.NSData {
 	rv := objc.Send[foundation.NSData](c_.ID, objc.Sel("dataRepresentation"))
 	return rv
 }
 
+
 // All active user decisions, including those made at recording time, unless removed.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNScriptChanges/userDecisions
+
 func (c_ CNScriptChanges) UserDecisions() []CNDecision {
 	rv := objc.Send[[]CNDecision](c_.ID, objc.Sel("userDecisions"))
 	return rv

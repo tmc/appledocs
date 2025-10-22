@@ -37,8 +37,13 @@ type IModelStructureProgramBinding interface {
 // A class representing a binding in the Program
 //
 // A Binding is either a previously defined name of a variable or a constant value in the Program.
+
+
+// A class representing a binding in the Program
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureProgramBinding
+
 type ModelStructureProgramBinding struct {
 	objectivec.Object
 }
@@ -82,17 +87,23 @@ func NewModelStructureProgramBinding() ModelStructureProgramBinding {
 }
 
 
+
 // The name of the variable in the Program.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureProgramBinding/name
+
 func (m_ ModelStructureProgramBinding) Name() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("name"))
 	return rv
 }
 
+
 // The compile time constant value in the Program.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureProgramBinding/value
+
 func (m_ ModelStructureProgramBinding) Value() MLModelStructureProgramValue {
 	rv := objc.Send[MLModelStructureProgramValue](m_.ID, objc.Sel("value"))
 	return rv

@@ -42,8 +42,13 @@ type IMetadataMachineReadableCodeObject interface {
 // Barcode information detected by a metadata capture output.
 //
 // The class is a concrete subclass of defining the features of a detected one-dimensional or two-dimensional barcode. An instance represents a single detected machine readable code in an image.  It’s an immutable object describing the features and payload of a barcode. On supported platforms, the class outputs arrays of detected machine readable code objects.
+
+
+// Barcode information detected by a metadata capture output.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMetadataMachineReadableCodeObject
+
 type MetadataMachineReadableCodeObject struct {
 	MetadataObject
 }
@@ -89,56 +94,65 @@ func NewMetadataMachineReadableCodeObject() MetadataMachineReadableCodeObject {
 }
 
 
+
 // A Swift array of corner points.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadatamachinereadablecodeobject/corners-58qbe
+
 func (m_ MetadataMachineReadableCodeObject) Corners() coregraphics.CGPoint {
 	rv := objc.Send[coregraphics.CGPoint](m_.ID, objc.Sel("corners"))
 	return rv
 }
 
 
-// SetCorners sets the value of the corners property.
 // A Swift array of corner points.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadatamachinereadablecodeobject/corners-58qbe
+
 func (m_ MetadataMachineReadableCodeObject) SetCorners(value coregraphics.CGPoint) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCorners:"), value)
 }
 
+
 // A barcode description for use in Core Image.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadatamachinereadablecodeobject/descriptor
+
 func (m_ MetadataMachineReadableCodeObject) Descriptor() coreimage.BarcodeDescriptor {
 	rv := objc.Send[coreimage.BarcodeDescriptor](m_.ID, objc.Sel("descriptor"))
 	return rv
 }
 
 
-// SetDescriptor sets the value of the descriptor property.
 // A barcode description for use in Core Image.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadatamachinereadablecodeobject/descriptor
+
 func (m_ MetadataMachineReadableCodeObject) SetDescriptor(value coreimage.IBarcodeDescriptor) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDescriptor:"), value)
 }
 
+
 // Returns the error-corrected data decoded into a human-readable string.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadatamachinereadablecodeobject/stringvalue
+
 func (m_ MetadataMachineReadableCodeObject) StringValue() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("stringValue"))
 	return rv
 }
 
 
-// SetStringValue sets the value of the stringValue property.
 // Returns the error-corrected data decoded into a human-readable string.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadatamachinereadablecodeobject/stringvalue
+
 func (m_ MetadataMachineReadableCodeObject) SetStringValue(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStringValue:"), objc.String(value))
 }

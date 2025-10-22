@@ -33,8 +33,13 @@ type ICKSyncEngineRecordZoneChangeBatch interface {
 }
 
 // An object that contains the record changes for a single send operation.
+
+
+// An object that contains the record changes for a single send operation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineRecordZoneChangeBatch
+
 type CKSyncEngineRecordZoneChangeBatch struct {
 	objectivec.Object
 }

@@ -33,8 +33,11 @@ type IMIDICIDeviceManager interface {
 	DiscoveredCIDevices() []MIDICIDevice
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIDeviceManager
+
 type MIDICIDeviceManager struct {
 	objectivec.Object
 }
@@ -76,21 +79,27 @@ func NewMIDICIDeviceManager() MIDICIDeviceManager {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIDeviceManager/shared
+
 func (mc _MIDICIDeviceManagerClass) SharedInstance() MIDICIDeviceManager {
 	rv := objc.Send[MIDICIDeviceManager](objc.ID(mc.class), objc.Sel("sharedInstance"))
 	return rv
 }
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIDeviceManager/discoveredCIDevices
+
 func (m_ MIDICIDeviceManager) DiscoveredCIDevices() []MIDICIDevice {
 	rv := objc.Send[[]MIDICIDevice](m_.ID, objc.Sel("discoveredCIDevices"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIDeviceManager/shared
+
 func (m_ MIDICIDeviceManager) SharedInstance() MIDICIDeviceManager {
 	rv := objc.Send[MIDICIDeviceManager](m_.ID, objc.Sel("sharedInstance"))
 	return rv

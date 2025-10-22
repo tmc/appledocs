@@ -50,8 +50,13 @@ type ISampleBufferDisplayLayer interface {
 }
 
 // An object that displays compressed or uncompressed video frames.
+
+
+// An object that displays compressed or uncompressed video frames.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleBufferDisplayLayer
+
 type SampleBufferDisplayLayer struct {
 	quartzcore.Layer
 }
@@ -97,153 +102,180 @@ func NewSampleBufferDisplayLayer() SampleBufferDisplayLayer {
 }
 
 
+
 // A timebase that determines how the layer interprets timestamps.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferdisplaylayer/controltimebase
+
 func (s_ SampleBufferDisplayLayer) ControlTimebase() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("controlTimebase"))
 	return rv
 }
 
 
-// SetControlTimebase sets the value of the controlTimebase property.
 // A timebase that determines how the layer interprets timestamps.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferdisplaylayer/controltimebase
+
 func (s_ SampleBufferDisplayLayer) SetControlTimebase(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setControlTimebase:"), value)
 }
 
+
 // A Boolean value that indicates whether the system obscures decoded output due to insufficient external protection on the current device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferdisplaylayer/isoutputobscuredduetoinsufficientexternalprotection
+
 func (s_ SampleBufferDisplayLayer) IsOutputObscuredDueToInsufficientExternalProtection() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isOutputObscuredDueToInsufficientExternalProtection"))
 	return rv
 }
 
 
-// SetIsOutputObscuredDueToInsufficientExternalProtection sets the value of the isOutputObscuredDueToInsufficientExternalProtection property.
 // A Boolean value that indicates whether the system obscures decoded output due to insufficient external protection on the current device.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferdisplaylayer/isoutputobscuredduetoinsufficientexternalprotection
+
 func (s_ SampleBufferDisplayLayer) SetIsOutputObscuredDueToInsufficientExternalProtection(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsOutputObscuredDueToInsufficientExternalProtection:"), value)
 }
 
+
 // A Boolean value that indicates whether the first video frame is ready for display.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferdisplaylayer/isreadyfordisplay
+
 func (s_ SampleBufferDisplayLayer) IsReadyForDisplay() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isReadyForDisplay"))
 	return rv
 }
 
 
-// SetIsReadyForDisplay sets the value of the isReadyForDisplay property.
 // A Boolean value that indicates whether the first video frame is ready for display.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferdisplaylayer/isreadyfordisplay
+
 func (s_ SampleBufferDisplayLayer) SetIsReadyForDisplay(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsReadyForDisplay:"), value)
 }
 
+
 // A Boolean value that indicates whether video playback prevents the system from automatically backgrounding an app.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferdisplaylayer/preventsautomaticbackgroundingduringvideoplayback
+
 func (s_ SampleBufferDisplayLayer) PreventsAutomaticBackgroundingDuringVideoPlayback() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("preventsAutomaticBackgroundingDuringVideoPlayback"))
 	return rv
 }
 
 
-// SetPreventsAutomaticBackgroundingDuringVideoPlayback sets the value of the preventsAutomaticBackgroundingDuringVideoPlayback property.
 // A Boolean value that indicates whether video playback prevents the system from automatically backgrounding an app.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferdisplaylayer/preventsautomaticbackgroundingduringvideoplayback
+
 func (s_ SampleBufferDisplayLayer) SetPreventsAutomaticBackgroundingDuringVideoPlayback(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setPreventsAutomaticBackgroundingDuringVideoPlayback:"), value)
 }
 
+
 // A Boolean value that indicates whether the layer protects against screen capture.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferdisplaylayer/preventscapture
+
 func (s_ SampleBufferDisplayLayer) PreventsCapture() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("preventsCapture"))
 	return rv
 }
 
 
-// SetPreventsCapture sets the value of the preventsCapture property.
 // A Boolean value that indicates whether the layer protects against screen capture.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferdisplaylayer/preventscapture
+
 func (s_ SampleBufferDisplayLayer) SetPreventsCapture(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setPreventsCapture:"), value)
 }
 
+
 // A Boolean value that indicates whether the layer prevents the system from sleeping during video playback.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferdisplaylayer/preventsdisplaysleepduringvideoplayback
+
 func (s_ SampleBufferDisplayLayer) PreventsDisplaySleepDuringVideoPlayback() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("preventsDisplaySleepDuringVideoPlayback"))
 	return rv
 }
 
 
-// SetPreventsDisplaySleepDuringVideoPlayback sets the value of the preventsDisplaySleepDuringVideoPlayback property.
 // A Boolean value that indicates whether the layer prevents the system from sleeping during video playback.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferdisplaylayer/preventsdisplaysleepduringvideoplayback
+
 func (s_ SampleBufferDisplayLayer) SetPreventsDisplaySleepDuringVideoPlayback(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setPreventsDisplaySleepDuringVideoPlayback:"), value)
 }
 
+
 // An object that enqueues video sample buffers for rendering.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferdisplaylayer/samplebufferrenderer
+
 func (s_ SampleBufferDisplayLayer) SampleBufferRenderer() AVSampleBufferVideoRenderer {
 	rv := objc.Send[AVSampleBufferVideoRenderer](s_.ID, objc.Sel("sampleBufferRenderer"))
 	return rv
 }
 
 
-// SetSampleBufferRenderer sets the value of the sampleBufferRenderer property.
 // An object that enqueues video sample buffers for rendering.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferdisplaylayer/samplebufferrenderer
+
 func (s_ SampleBufferDisplayLayer) SetSampleBufferRenderer(value IAVSampleBufferVideoRenderer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSampleBufferRenderer:"), value)
 }
 
+
 // A value that indicates how the layer displays video within its bounds.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferdisplaylayer/videogravity
+
 func (s_ SampleBufferDisplayLayer) VideoGravity() LayerVideoGravity {
 	rv := objc.Send[LayerVideoGravity](s_.ID, objc.Sel("videoGravity"))
 	return rv
 }
 
 
-// SetVideoGravity sets the value of the videoGravity property.
 // A value that indicates how the layer displays video within its bounds.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferdisplaylayer/videogravity
+
 func (s_ SampleBufferDisplayLayer) SetVideoGravity(value ILayerVideoGravity) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setVideoGravity:"), value)
 }
 
+
 // The key for the corresponding error.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferdisplaylayerfailedtodecodenotificationerrorkey
+
 func (s_ SampleBufferDisplayLayer) AVSampleBufferDisplayLayerFailedToDecodeNotificationErrorKey() string {
 	rv := objc.Send[string](s_.ID, objc.Sel("AVSampleBufferDisplayLayerFailedToDecodeNotificationErrorKey"))
 	return rv

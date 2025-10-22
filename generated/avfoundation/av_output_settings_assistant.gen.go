@@ -33,7 +33,7 @@ type IOutputSettingsAssistant interface {
 	AudioSettings() string
 	SetAudioSettings(value string)
 	OutputFileType() FileType
-	SetOutputFileType(value FileType)
+	SetOutputFileType(value IFileType)
 	SourceAudioFormat() unsafe.Pointer
 	SetSourceAudioFormat(value unsafe.Pointer)
 	SourceVideoAverageFrameDuration() unsafe.Pointer
@@ -49,8 +49,13 @@ type IOutputSettingsAssistant interface {
 // An object that builds audio and video output settings dictionaries.
 //
 // Use an output settings assistant to create the audio and video settings that you use to configure instances of and . You create an assistant with a specific preset configuration, such as or . You can accept the settings dictionaries as is to generate a file that conforms to the criteria that the preset implies. You may also use the dictionaries it generates as a base configuration that you can customize as you require. Providing the assistant additional details about your source media helps it generate more complete results. For example, setting a value for its property ensures that the assistant generates settings that don’t scale up video frames from a smaller size.
+
+
+// An object that builds audio and video output settings dictionaries.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVOutputSettingsAssistant
+
 type OutputSettingsAssistant struct {
 	objectivec.Object
 }
@@ -94,128 +99,149 @@ func NewOutputSettingsAssistant() OutputSettingsAssistant {
 }
 
 
+
 // An audio settings dictionary.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avoutputsettingsassistant/audiosettings
+
 func (o_ OutputSettingsAssistant) AudioSettings() string {
 	rv := objc.Send[string](o_.ID, objc.Sel("audioSettings"))
 	return rv
 }
 
 
-// SetAudioSettings sets the value of the audioSettings property.
 // An audio settings dictionary.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avoutputsettingsassistant/audiosettings
+
 func (o_ OutputSettingsAssistant) SetAudioSettings(value string) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAudioSettings:"), objc.String(value))
 }
 
+
 // A uniform type identifier (UTI) that indicates the type of file to write.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avoutputsettingsassistant/outputfiletype
+
 func (o_ OutputSettingsAssistant) OutputFileType() FileType {
 	rv := objc.Send[FileType](o_.ID, objc.Sel("outputFileType"))
 	return rv
 }
 
 
-// SetOutputFileType sets the value of the outputFileType property.
 // A uniform type identifier (UTI) that indicates the type of file to write.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avoutputsettingsassistant/outputfiletype
-func (o_ OutputSettingsAssistant) SetOutputFileType(value FileType) {
+
+func (o_ OutputSettingsAssistant) SetOutputFileType(value IFileType) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setOutputFileType:"), value)
 }
 
+
 // The format of the source audio data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avoutputsettingsassistant/sourceaudioformat
+
 func (o_ OutputSettingsAssistant) SourceAudioFormat() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("sourceAudioFormat"))
 	return rv
 }
 
 
-// SetSourceAudioFormat sets the value of the sourceAudioFormat property.
 // The format of the source audio data.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avoutputsettingsassistant/sourceaudioformat
+
 func (o_ OutputSettingsAssistant) SetSourceAudioFormat(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setSourceAudioFormat:"), value)
 }
 
+
 // A time value that describes the average frame duration of the video data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avoutputsettingsassistant/sourcevideoaverageframeduration
+
 func (o_ OutputSettingsAssistant) SourceVideoAverageFrameDuration() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("sourceVideoAverageFrameDuration"))
 	return rv
 }
 
 
-// SetSourceVideoAverageFrameDuration sets the value of the sourceVideoAverageFrameDuration property.
 // A time value that describes the average frame duration of the video data.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avoutputsettingsassistant/sourcevideoaverageframeduration
+
 func (o_ OutputSettingsAssistant) SetSourceVideoAverageFrameDuration(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setSourceVideoAverageFrameDuration:"), value)
 }
 
+
 // The format of the source video data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avoutputsettingsassistant/sourcevideoformat
+
 func (o_ OutputSettingsAssistant) SourceVideoFormat() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("sourceVideoFormat"))
 	return rv
 }
 
 
-// SetSourceVideoFormat sets the value of the sourceVideoFormat property.
 // The format of the source video data.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avoutputsettingsassistant/sourcevideoformat
+
 func (o_ OutputSettingsAssistant) SetSourceVideoFormat(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setSourceVideoFormat:"), value)
 }
 
+
 // A time value that describes the minimum frame duration of the video data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avoutputsettingsassistant/sourcevideominframeduration
+
 func (o_ OutputSettingsAssistant) SourceVideoMinFrameDuration() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("sourceVideoMinFrameDuration"))
 	return rv
 }
 
 
-// SetSourceVideoMinFrameDuration sets the value of the sourceVideoMinFrameDuration property.
 // A time value that describes the minimum frame duration of the video data.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avoutputsettingsassistant/sourcevideominframeduration
+
 func (o_ OutputSettingsAssistant) SetSourceVideoMinFrameDuration(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setSourceVideoMinFrameDuration:"), value)
 }
 
+
 // A video settings dictionary.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avoutputsettingsassistant/videosettings
+
 func (o_ OutputSettingsAssistant) VideoSettings() string {
 	rv := objc.Send[string](o_.ID, objc.Sel("videoSettings"))
 	return rv
 }
 
 
-// SetVideoSettings sets the value of the videoSettings property.
 // A video settings dictionary.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avoutputsettingsassistant/videosettings
+
 func (o_ OutputSettingsAssistant) SetVideoSettings(value string) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setVideoSettings:"), objc.String(value))
 }

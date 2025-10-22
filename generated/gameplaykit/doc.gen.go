@@ -2,12 +2,16 @@
 
 // Package gameplaykit provides Go bindings for the GameplayKit framework.
 //
-// Architect and organize your game logic. Incorporate common gameplay behaviors such as random number generation, artificial intelligence, pathfinding, and agent behavior. [Full Topic]
+// Architect and organize your game logic. Incorporate common gameplay behaviors such as random number generation, artificial intelligence, pathfinding, and agent behavior.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to GameplayKit without requiring cgo.
+
+// Architect and organize your game logic. Incorporate common gameplay behaviors such as random number generation, artificial intelligence, pathfinding, and agent behavior.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit
+
 package gameplaykit
 
 import (

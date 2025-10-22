@@ -36,8 +36,13 @@ type IOctreeNode interface {
 // A helper class for managing the objects you organize in an octree.
 //
 // You don’t create instances of this class directly; instead, a object provides you with a instance when you add an element to a tree. If you plan to remove elements from the tree, keep references to the corresponding nodes so you can use the method for better performance.
+
+
+// A helper class for managing the objects you organize in an octree.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKOctreeNode
+
 type OctreeNode struct {
 	objectivec.Object
 }
@@ -81,9 +86,12 @@ func NewOctreeNode() OctreeNode {
 }
 
 
+
 // The axis-aligned bounding box represented by the node.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKOctreeNode/box
+
 func (o_ OctreeNode) Box() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("box"))
 	return rv

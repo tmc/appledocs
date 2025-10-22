@@ -37,8 +37,13 @@ type IMonitoringRecord interface {
 // An object that represents a condition and its associated information that a location monitor is monitoring.
 //
 // When handling a new , the available for the indicated identifier from the contains the prior event. The updates with the new event when the handling is complete.
+
+
+// An object that represents a condition and its associated information that a location monitor is monitoring.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitoringRecord
+
 type MonitoringRecord struct {
 	objectivec.Object
 }
@@ -82,17 +87,23 @@ func NewMonitoringRecord() MonitoringRecord {
 }
 
 
+
 // The condition that the framework is monitoring events for.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitoringRecord/condition
+
 func (m_ MonitoringRecord) Condition() CLCondition {
 	rv := objc.Send[CLCondition](m_.ID, objc.Sel("condition"))
 	return rv
 }
 
+
 // An object that contains the specifics of the most recent event.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitoringRecord/lastEvent
+
 func (m_ MonitoringRecord) LastEvent() CLMonitoringEvent {
 	rv := objc.Send[CLMonitoringEvent](m_.ID, objc.Sel("lastEvent"))
 	return rv

@@ -34,8 +34,11 @@ type IHKPHQ9Assessment interface {
 	Risk() HKPHQ9AssessmentRisk
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKPHQ9Assessment
+
 type HKPHQ9Assessment struct {
 	HKScoredAssessment
 }
@@ -79,29 +82,37 @@ func NewHKPHQ9Assessment() HKPHQ9Assessment {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKPHQ9Assessment/assessmentWithDate:answers:
+
 func (hc _HKPHQ9AssessmentClass) AssessmentWithDateAnswers(date foundation.IDate, answers []foundation.INumber) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("assessmentWithDate:answers:"), date, answers)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKPHQ9Assessment/assessmentWithDate:answers:metadata:
+
 func (hc _HKPHQ9AssessmentClass) AssessmentWithDateAnswersMetadata(date foundation.IDate, answers []foundation.INumber, metadata unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("assessmentWithDate:answers:metadata:"), date, answers, metadata)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKPHQ9Assessment/answers-439dt
+
 func (h_ HKPHQ9Assessment) Answers() []foundation.Number {
 	rv := objc.Send[[]foundation.Number](h_.ID, objc.Sel("answers"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKPHQ9Assessment/risk-swift.property
+
 func (h_ HKPHQ9Assessment) Risk() HKPHQ9AssessmentRisk {
 	rv := objc.Send[HKPHQ9AssessmentRisk](h_.ID, objc.Sel("risk"))
 	return rv

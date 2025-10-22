@@ -34,8 +34,13 @@ type ITKCompactTLVRecord interface {
 }
 
 // An object that implements encoding using Compact-TLV encoding according to ISO 7816-4.
+
+
+// An object that implements encoding using Compact-TLV encoding according to ISO 7816-4.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKCompactTLVRecord
+
 type TKCompactTLVRecord struct {
 	objectivec.Object
 }
@@ -83,7 +88,9 @@ func NewTKCompactTLVRecord() TKCompactTLVRecord {
 
 // Initializes a TLV record with the specified tag and value.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKCompactTLVRecord/init(tag:value:)
+
 func NewTKCompactTLVRecordWithTagValue(tag unsafe.Pointer, value foundation.IData) TKCompactTLVRecord {
 	instance := getTKCompactTLVRecordClass().Alloc()
 	rv := objc.Send[TKCompactTLVRecord](instance.ID, objc.Sel("initWithTag:value:"), tag, value)

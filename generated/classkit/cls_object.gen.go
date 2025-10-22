@@ -36,8 +36,13 @@ type ISObject interface {
 }
 
 // The abstract base class for objects managed by ClassKit.
+
+
+// The abstract base class for objects managed by ClassKit.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSObject
+
 type SObject struct {
 	objectivec.Object
 }
@@ -81,17 +86,23 @@ func NewSObject() SObject {
 }
 
 
+
 // The date on which the object was created.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSObject/dateCreated
+
 func (s_ SObject) DateCreated() foundation.NSDate {
 	rv := objc.Send[foundation.NSDate](s_.ID, objc.Sel("dateCreated"))
 	return rv
 }
 
+
 // The date on which the object was last modified.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSObject/dateLastModified
+
 func (s_ SObject) DateLastModified() foundation.NSDate {
 	rv := objc.Send[foundation.NSDate](s_.ID, objc.Sel("dateLastModified"))
 	return rv

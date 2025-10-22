@@ -33,8 +33,11 @@ type IAuthorizationPublicKeyCredentialPRFAssertionInput interface {
 	PerCredentialInputValues() unsafe.Pointer
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialPRFAssertionInput-c.class
+
 type AuthorizationPublicKeyCredentialPRFAssertionInput struct {
 	objectivec.Object
 }
@@ -76,8 +79,10 @@ func NewAuthorizationPublicKeyCredentialPRFAssertionInput() AuthorizationPublicK
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialPRFAssertionInput-c.class/perCredentialInputValues
+
 func (a_ AuthorizationPublicKeyCredentialPRFAssertionInput) PerCredentialInputValues() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("perCredentialInputValues"))
 	return rv

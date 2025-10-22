@@ -37,8 +37,13 @@ type IModelStructure interface {
 }
 
 // A class representing the structure of a model.
+
+
+// A class representing the structure of a model.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructure-c.class
+
 type ModelStructure struct {
 	objectivec.Object
 }
@@ -82,39 +87,54 @@ func NewModelStructure() ModelStructure {
 }
 
 
+
 // Construct the model structure asynchronously given the location of its on-disk representation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructure-c.class/loadContentsOfURL:completionHandler:
+
 func (mc _ModelStructureClass) LoadContentsOfURLCompletionHandler(url foundation.IURL, handler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("loadContentsOfURL:completionHandler:"), url, handler)
 }
 
+
 // Construct the model structure asynchronously given the model asset.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructure-c.class/loadModelAsset:completionHandler:
+
 func (mc _ModelStructureClass) LoadModelAssetCompletionHandler(asset IMLModelAsset, handler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("loadModelAsset:completionHandler:"), asset, handler)
 }
 
+
 // If the model is of NeuralNetwork type then it is the structure of the NeuralNetwork otherwise .
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructure-c.class/neuralNetwork
+
 func (m_ ModelStructure) NeuralNetwork() MLModelStructureNeuralNetwork {
 	rv := objc.Send[MLModelStructureNeuralNetwork](m_.ID, objc.Sel("neuralNetwork"))
 	return rv
 }
 
+
 // If the model is of Pipeline type then it is the structure of the Pipeline otherwise .
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructure-c.class/pipeline
+
 func (m_ ModelStructure) Pipeline() MLModelStructurePipeline {
 	rv := objc.Send[MLModelStructurePipeline](m_.ID, objc.Sel("pipeline"))
 	return rv
 }
 
+
 // If the model is of ML Program type then it is the structure of the ML Program otherwise .
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructure-c.class/program
+
 func (m_ ModelStructure) Program() MLModelStructureProgram {
 	rv := objc.Send[MLModelStructureProgram](m_.ID, objc.Sel("program"))
 	return rv

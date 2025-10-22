@@ -35,8 +35,13 @@ type IGCDeviceLight interface {
 }
 
 // The colored light on a device.
+
+
+// The colored light on a device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCDeviceLight
+
 type GCDeviceLight struct {
 	objectivec.Object
 }
@@ -80,20 +85,23 @@ func NewGCDeviceLight() GCDeviceLight {
 }
 
 
+
 // The color of a device’s light.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCDeviceLight/color
+
 func (g_ GCDeviceLight) Color() GCColor {
 	rv := objc.Send[GCColor](g_.ID, objc.Sel("color"))
 	return rv
 }
 
 
-// SetColor sets the value of the color property.
 // The color of a device’s light.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCDeviceLight/color
+
 func (g_ GCDeviceLight) SetColor(value IGCColor) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setColor:"), value)
 }

@@ -39,8 +39,13 @@ type IMIDICIResponder interface {
 }
 
 // An object that responds to MIDI-CI inquiries from an initiator on behalf of a MIDI client, and handles profile and property exchange operations.
+
+
+// An object that responds to MIDI-CI inquiries from an initiator on behalf of a MIDI client, and handles profile and property exchange operations.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIResponder
+
 type MIDICIResponder struct {
 	objectivec.Object
 }
@@ -84,56 +89,65 @@ func NewMIDICIResponder() MIDICIResponder {
 }
 
 
+
 // The MIDI-CI device’s information.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciresponder/deviceinfo
+
 func (m_ MIDICIResponder) DeviceInfo() MIDICIDeviceInfo {
 	rv := objc.Send[MIDICIDeviceInfo](m_.ID, objc.Sel("deviceInfo"))
 	return rv
 }
 
 
-// SetDeviceInfo sets the value of the deviceInfo property.
 // The MIDI-CI device’s information.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciresponder/deviceinfo
+
 func (m_ MIDICIResponder) SetDeviceInfo(value IMIDICIDeviceInfo) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDeviceInfo:"), value)
 }
 
+
 // An array of initiators.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciresponder/initiators
+
 func (m_ MIDICIResponder) Initiators() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("initiators"))
 	return rv
 }
 
 
-// SetInitiators sets the value of the initiators property.
 // An array of initiators.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciresponder/initiators
+
 func (m_ MIDICIResponder) SetInitiators(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setInitiators:"), value)
 }
 
+
 // The profile delegate.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciresponder/profiledelegate
+
 func (m_ MIDICIResponder) ProfileDelegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("profileDelegate"))
 	return rv
 }
 
 
-// SetProfileDelegate sets the value of the profileDelegate property.
 // The profile delegate.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciresponder/profiledelegate
+
 func (m_ MIDICIResponder) SetProfileDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setProfileDelegate:"), value)
 }

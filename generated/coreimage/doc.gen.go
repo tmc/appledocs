@@ -2,12 +2,16 @@
 
 // Package coreimage provides Go bindings for the CoreImage framework.
 //
-// Use built-in or custom filters to process still and video images. [Full Topic]
+// Use built-in or custom filters to process still and video images.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to CoreImage without requiring cgo.
+
+// Use built-in or custom filters to process still and video images.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage
+
 package coreimage
 
 import (

@@ -39,8 +39,13 @@ type ICXSetHeldCallAction interface {
 // An encapsulation of the act of placing a call on hold or removing a call from hold.
 //
 // is a concrete subclass of . When a caller places a call on hold, callers are unable to communicate with one another until the holding caller removes the call from hold. Placing a call on hold doesn’t end the call. When the user or the system places a call on hold, the provider sends to its delegate. The provider’s delegate calls the method to indicate that the action was successfully performed.
+
+
+// An encapsulation of the act of placing a call on hold or removing a call from hold.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetHeldCallAction
+
 type CXSetHeldCallAction struct {
 	CXCallAction
 }
@@ -90,7 +95,9 @@ func NewCXSetHeldCallAction() CXSetHeldCallAction {
 
 // Initializes a new action for a call identified by a given UUID, as well as whether the call is on hold.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetHeldCallAction/init(call:onHold:)
+
 func NewCXSetHeldCallActionWithCallUUIDOnHold(callUUID foundation.IUUID, onHold bool) CXSetHeldCallAction {
 	instance := getCXSetHeldCallActionClass().Alloc()
 	rv := objc.Send[CXSetHeldCallAction](instance.ID, objc.Sel("initWithCallUUID:onHold:"), callUUID, onHold)
@@ -102,7 +109,9 @@ func NewCXSetHeldCallActionWithCallUUIDOnHold(callUUID foundation.IUUID, onHold 
 
 // Creates a new action to place a call on hold with data in an unarchiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetHeldCallAction/init(coder:)
+
 func NewCXSetHeldCallActionWithCoder(aDecoder foundation.ICoder) CXSetHeldCallAction {
 	instance := getCXSetHeldCallActionClass().Alloc()
 	rv := objc.Send[CXSetHeldCallAction](instance.ID, objc.Sel("initWithCoder:"), aDecoder)
@@ -111,38 +120,44 @@ func NewCXSetHeldCallActionWithCoder(aDecoder foundation.ICoder) CXSetHeldCallAc
 }
 
 
+
 // A Boolean value that indicates whether the call is placed on hold.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetHeldCallAction/isOnHold
+
 func (c_ CXSetHeldCallAction) OnHold() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("onHold"))
 	return rv
 }
 
 
-// SetOnHold sets the value of the onHold property.
 // A Boolean value that indicates whether the call is placed on hold.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetHeldCallAction/isOnHold
+
 func (c_ CXSetHeldCallAction) SetOnHold(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setOnHold:"), value)
 }
 
+
 // A Boolean value that indicates whether the call is placed on hold.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/callkit/cxsetheldcallaction/isonhold
+
 func (c_ CXSetHeldCallAction) IsOnHold() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isOnHold"))
 	return rv
 }
 
 
-// SetIsOnHold sets the value of the isOnHold property.
 // A Boolean value that indicates whether the call is placed on hold.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/callkit/cxsetheldcallaction/isonhold
+
 func (c_ CXSetHeldCallAction) SetIsOnHold(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsOnHold:"), value)
 }

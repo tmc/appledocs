@@ -36,8 +36,13 @@ type ICompositeAttributeDescription interface {
 // A description of an attribute that derives its value by composing other attributes.
 //
 // Composite attributes enable you to define and store complex data types, and then query, index, and apply constraints to those types. Model classes use dictionaries to represent those composites in-memory, where each dictionary contains keys corresponding to the names of the underlying attributes. You may use composite attributes anywhere you use standard attributes, including lightweight migrations and CloudKit, through . You can even nest composites inside other composites to create complex object hierarchies without additional model classes. In most scenarios, prefer to use Xcode’s model editor to add composite attributes to your entities and then regenerate your model classes. However, if you need to create composites dynamically at runtime, create an instance of this class and populate its property with the necessary attribute descriptions. You can access a composite’s underlying attributes using namespaced key paths and property-like setters and getters, as the following example demonstrates:
+
+
+// A description of an attribute that derives its value by composing other attributes.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSCompositeAttributeDescription
+
 type CompositeAttributeDescription struct {
 	AttributeDescription
 }
@@ -83,20 +88,23 @@ func NewCompositeAttributeDescription() CompositeAttributeDescription {
 }
 
 
+
 // The composed attribute descriptions.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSCompositeAttributeDescription/elements
+
 func (c_ CompositeAttributeDescription) Elements() []AttributeDescription {
 	rv := objc.Send[[]AttributeDescription](c_.ID, objc.Sel("elements"))
 	return rv
 }
 
 
-// SetElements sets the value of the elements property.
 // The composed attribute descriptions.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSCompositeAttributeDescription/elements
+
 func (c_ CompositeAttributeDescription) SetElements(value []AttributeDescription) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID

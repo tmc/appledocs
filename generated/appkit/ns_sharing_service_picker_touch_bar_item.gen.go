@@ -44,8 +44,13 @@ type ISharingServicePickerTouchBarItem interface {
 }
 
 // A bar item that, along with its delegate, provides a list of objects eligible for sharing.
+
+
+// A bar item that, along with its delegate, provides a list of objects eligible for sharing.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingServicePickerTouchBarItem
+
 type SharingServicePickerTouchBarItem struct {
 	TouchBarItem
 }
@@ -91,107 +96,124 @@ func NewSharingServicePickerTouchBarItem() SharingServicePickerTouchBarItem {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingServicePickerTouchBarItem/activityItemsConfiguration
+
 func (s_ SharingServicePickerTouchBarItem) ActivityItemsConfiguration() objc.ID {
 	rv := objc.Send[objc.ID](s_.ID, objc.Sel("activityItemsConfiguration"))
 	return rv
 }
 
 
-// SetActivityItemsConfiguration sets the value of the activityItemsConfiguration property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingServicePickerTouchBarItem/activityItemsConfiguration
+
 func (s_ SharingServicePickerTouchBarItem) SetActivityItemsConfiguration(value objc.ID) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setActivityItemsConfiguration:"), value)
 }
 
+
 // A Boolean value that specifies whether the sharing service picker item is enabled.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingServicePickerTouchBarItem/isEnabled
+
 func (s_ SharingServicePickerTouchBarItem) Enabled() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("enabled"))
 	return rv
 }
 
 
-// SetEnabled sets the value of the enabled property.
 // A Boolean value that specifies whether the sharing service picker item is enabled.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingServicePickerTouchBarItem/isEnabled
+
 func (s_ SharingServicePickerTouchBarItem) SetEnabled(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setEnabled:"), value)
 }
 
+
 // The image displayed in the sharing service picker item button.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservicepickertouchbaritem/buttonimage
+
 func (s_ SharingServicePickerTouchBarItem) ButtonImage() Image {
 	rv := objc.Send[Image](s_.ID, objc.Sel("buttonImage"))
 	return rv
 }
 
 
-// SetButtonImage sets the value of the buttonImage property.
 // The image displayed in the sharing service picker item button.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservicepickertouchbaritem/buttonimage
+
 func (s_ SharingServicePickerTouchBarItem) SetButtonImage(value IImage) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setButtonImage:"), value)
 }
 
+
 // The text displayed in the sharing service picker item button.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservicepickertouchbaritem/buttontitle
+
 func (s_ SharingServicePickerTouchBarItem) ButtonTitle() string {
 	rv := objc.Send[string](s_.ID, objc.Sel("buttonTitle"))
 	return rv
 }
 
 
-// SetButtonTitle sets the value of the buttonTitle property.
 // The text displayed in the sharing service picker item button.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservicepickertouchbaritem/buttontitle
+
 func (s_ SharingServicePickerTouchBarItem) SetButtonTitle(value string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setButtonTitle:"), objc.String(value))
 }
 
+
 // The object that acts as the delegate of the sharing service picker bar item.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservicepickertouchbaritem/delegate
+
 func (s_ SharingServicePickerTouchBarItem) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("delegate"))
 	return rv
 }
 
 
-// SetDelegate sets the value of the delegate property.
 // The object that acts as the delegate of the sharing service picker bar item.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservicepickertouchbaritem/delegate
+
 func (s_ SharingServicePickerTouchBarItem) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDelegate:"), value)
 }
 
+
 // A Boolean value that specifies whether the sharing service picker item is enabled.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservicepickertouchbaritem/isenabled
+
 func (s_ SharingServicePickerTouchBarItem) IsEnabled() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isEnabled"))
 	return rv
 }
 
 
-// SetIsEnabled sets the value of the isEnabled property.
 // A Boolean value that specifies whether the sharing service picker item is enabled.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservicepickertouchbaritem/isenabled
+
 func (s_ SharingServicePickerTouchBarItem) SetIsEnabled(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsEnabled:"), value)
 }

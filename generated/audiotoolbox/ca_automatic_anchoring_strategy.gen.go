@@ -32,8 +32,13 @@ type IAutomaticAnchoringStrategy interface {
 }
 
 // A system-defined anchoring strategy.
+
+
+// A system-defined anchoring strategy.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAAutomaticAnchoringStrategy
+
 type AutomaticAnchoringStrategy struct {
 	AnchoringStrategy
 }

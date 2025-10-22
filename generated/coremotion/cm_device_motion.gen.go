@@ -41,8 +41,13 @@ type IDeviceMotion interface {
 // Encapsulated measurements of the attitude, rotation rate, and acceleration of a device.
 //
 // An application receives or samples objects at regular intervals after calling the method, the method, the method, or the method of the class. The accelerometer measures the sum of two acceleration vectors: gravity and user acceleration. User acceleration is the acceleration that the user imparts to the device. Because Core Motion is able to track a device’s attitude using both the gyroscope and the accelerometer, it can differentiate between gravity and user acceleration. A object provides both measurements in the and properties.
+
+
+// Encapsulated measurements of the attitude, rotation rate, and acceleration of a device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMDeviceMotion
+
 type DeviceMotion struct {
 	LogItem
 }
@@ -88,57 +93,78 @@ func NewDeviceMotion() DeviceMotion {
 }
 
 
+
 // The attitude of the device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMDeviceMotion/attitude
+
 func (d_ DeviceMotion) Attitude() CMAttitude {
 	rv := objc.Send[CMAttitude](d_.ID, objc.Sel("attitude"))
 	return rv
 }
 
+
 // The gravity acceleration vector expressed in the device’s reference frame.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMDeviceMotion/gravity
+
 func (d_ DeviceMotion) Gravity() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("gravity"))
 	return rv
 }
 
+
 // The heading angle (measured in degrees) relative to the current reference frame.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMDeviceMotion/heading
+
 func (d_ DeviceMotion) Heading() float64 {
 	rv := objc.Send[float64](d_.ID, objc.Sel("heading"))
 	return rv
 }
 
+
 // Returns the magnetic field vector with respect to the device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMDeviceMotion/magneticField
+
 func (d_ DeviceMotion) MagneticField() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("magneticField"))
 	return rv
 }
 
+
 // The rotation rate of the device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMDeviceMotion/rotationRate
+
 func (d_ DeviceMotion) RotationRate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("rotationRate"))
 	return rv
 }
 
+
 // The location of the sensors that compute the device-motion data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMDeviceMotion/sensorLocation-swift.property
+
 func (d_ DeviceMotion) SensorLocation() DeviceMotionSensorLocation {
 	rv := objc.Send[DeviceMotionSensorLocation](d_.ID, objc.Sel("sensorLocation"))
 	return rv
 }
 
+
 // The acceleration that the user is giving to the device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMDeviceMotion/userAcceleration
+
 func (d_ DeviceMotion) UserAcceleration() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("userAcceleration"))
 	return rv

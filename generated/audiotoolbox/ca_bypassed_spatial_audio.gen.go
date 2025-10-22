@@ -34,8 +34,13 @@ type IBypassedSpatialAudio interface {
 // An experience in which the system does not apply spatial processing to the audio stream.
 //
 // The Objective-C version of the Swift type.
+
+
+// An experience in which the system does not apply spatial processing to the audio stream.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CABypassedSpatialAudio
+
 type BypassedSpatialAudio struct {
 	SpatialAudioExperience
 }

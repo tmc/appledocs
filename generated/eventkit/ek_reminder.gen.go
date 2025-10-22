@@ -47,8 +47,13 @@ type IEKReminder interface {
 // A class that represents a reminder in a calendar.
 //
 // Use the method to create a new reminder. Use the properties in the class to get and modify certain information about a reminder.
+
+
+// A class that represents a reminder in a calendar.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKReminder
+
 type EKReminder struct {
 	EKCalendarItem
 }
@@ -98,125 +103,148 @@ func NewEKReminder() EKReminder {
 
 // Creates and returns a new reminder in the given event store.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKReminder/init(eventStore:)
+
 func NewEKReminderWithEventStore(eventStore IEKEventStore) EKReminder {
 	rv := objc.Send[EKReminder](objc.ID(getEKReminderClass().class), objc.Sel("reminderWithEventStore:"), eventStore)
 	return rv
 }
 
 
+
 // Creates and returns a new reminder in the given event store.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKReminder/init(eventStore:)
+
 func (ec _EKReminderClass) ReminderWithEventStore(eventStore IEKEventStore) EKReminder {
 	rv := objc.Send[EKReminder](objc.ID(ec.class), objc.Sel("reminderWithEventStore:"), eventStore)
 	return rv
 }
 
+
 // The date on which the reminder was completed.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKReminder/completionDate
+
 func (e_ EKReminder) CompletionDate() foundation.NSDate {
 	rv := objc.Send[foundation.NSDate](e_.ID, objc.Sel("completionDate"))
 	return rv
 }
 
 
-// SetCompletionDate sets the value of the completionDate property.
 // The date on which the reminder was completed.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKReminder/completionDate
+
 func (e_ EKReminder) SetCompletionDate(value foundation.IDate) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setCompletionDate:"), value)
 }
 
+
 // The date by which the reminder should be completed.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKReminder/dueDateComponents
+
 func (e_ EKReminder) DueDateComponents() foundation.DateComponents {
 	rv := objc.Send[foundation.DateComponents](e_.ID, objc.Sel("dueDateComponents"))
 	return rv
 }
 
 
-// SetDueDateComponents sets the value of the dueDateComponents property.
 // The date by which the reminder should be completed.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKReminder/dueDateComponents
+
 func (e_ EKReminder) SetDueDateComponents(value foundation.IDateComponents) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setDueDateComponents:"), value)
 }
 
+
 // A Boolean value determining whether or not the reminder is marked completed.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKReminder/isCompleted
+
 func (e_ EKReminder) Completed() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("completed"))
 	return rv
 }
 
 
-// SetCompleted sets the value of the completed property.
 // A Boolean value determining whether or not the reminder is marked completed.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKReminder/isCompleted
+
 func (e_ EKReminder) SetCompleted(value bool) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setCompleted:"), value)
 }
 
+
 // The reminder’s priority.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKReminder/priority
+
 func (e_ EKReminder) Priority() uint {
 	rv := objc.Send[uint](e_.ID, objc.Sel("priority"))
 	return rv
 }
 
 
-// SetPriority sets the value of the priority property.
 // The reminder’s priority.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKReminder/priority
+
 func (e_ EKReminder) SetPriority(value uint) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setPriority:"), value)
 }
 
+
 // The start date of the task.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKReminder/startDateComponents
+
 func (e_ EKReminder) StartDateComponents() foundation.DateComponents {
 	rv := objc.Send[foundation.DateComponents](e_.ID, objc.Sel("startDateComponents"))
 	return rv
 }
 
 
-// SetStartDateComponents sets the value of the startDateComponents property.
 // The start date of the task.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKReminder/startDateComponents
+
 func (e_ EKReminder) SetStartDateComponents(value foundation.IDateComponents) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setStartDateComponents:"), value)
 }
 
+
 // A Boolean value determining whether or not the reminder is marked completed.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/eventkit/ekreminder/iscompleted
+
 func (e_ EKReminder) IsCompleted() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("isCompleted"))
 	return rv
 }
 
 
-// SetIsCompleted sets the value of the isCompleted property.
 // A Boolean value determining whether or not the reminder is marked completed.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/eventkit/ekreminder/iscompleted
+
 func (e_ EKReminder) SetIsCompleted(value bool) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setIsCompleted:"), value)
 }

@@ -113,13 +113,24 @@ func NewXMLDocument() XMLDocument {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDocument/init(data:options:)
 
-func NewXMLDocumentWithDataOptionsError(data IData, mask XMLNodeOptions, error_ IError) XMLDocument {
+func NewXMLDocumentWithDataOptionsError(data IData, mask IXMLNodeOptions, error_ IError) XMLDocument {
 	instance := getXMLDocumentClass().Alloc()
 	rv := objc.Send[XMLDocument](instance.ID, objc.Sel("initWithData:options:error:"), data, mask, error_)
 	rv.Autorelease()
 	return rv
 }
 
+
+
+// Overridden by subclasses to substitute a custom class for an NSXML class that the parser uses to create node instances.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDocument/replacementClass(for:)
+
+func (xc _XMLDocumentClass) ReplacementClassForClass(cls objc.Class) objc.Class {
+	rv := objc.Send[objc.Class](objc.ID(xc.class), objc.Sel("replacementClassForClass:"), cls)
+	return rv
+}
 
 
 

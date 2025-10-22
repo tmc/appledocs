@@ -35,8 +35,13 @@ type IAccountAuthenticationModificationRequest interface {
 // A request to modify an account’s authentication properties.
 //
 // To initiate an account authentication modification request from your app, use either or .
+
+
+// A request to modify an account’s authentication properties.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAccountAuthenticationModificationRequest
+
 type AccountAuthenticationModificationRequest struct {
 	objectivec.Object
 }

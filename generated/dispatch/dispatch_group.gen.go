@@ -35,8 +35,13 @@ type IDispatchGroup interface {
 // A group of tasks that you monitor as a single unit.
 //
 // Groups allow you to aggregate a set of tasks and synchronize behaviors on the group. You attach multiple work items to a group and schedule them for asynchronous execution on the same queue or different queues. When all work items finish executing, the group executes its completion handler. You can also wait synchronously for all tasks in the group to finish executing.
+
+
+// A group of tasks that you monitor as a single unit.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/DispatchGroup
+
 type DispatchGroup struct {
 	objectivec.Object
 }

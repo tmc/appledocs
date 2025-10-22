@@ -36,8 +36,13 @@ type IState interface {
 // Handle to the state buffers.
 //
 // A stateful model maintains a state from one prediction to another by storing the information in the state buffers. To use such a model, the client must request the model to create state buffers and get object, which is the handle to those buffers. Then, at the prediction time, pass the object in one of the stateful prediction functions. The object is a handle to the state buffers. The client shall not read or write the buffers while a prediction is in-flight. Each stateful prediction that uses the same must be serialized. Otherwise, if two such predictions run concurrently, the behavior is undefined.
+
+
+// Handle to the state buffers.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLState
+
 type State struct {
 	objectivec.Object
 }
@@ -81,9 +86,13 @@ func NewState() State {
 }
 
 
+
+
 // Gets a mutable view into a state buffer.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLState/getMultiArrayForStateNamed:handler:
+
 func (s_ State) GetMultiArrayForStateNamedHandler(stateName string, handler unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("getMultiArrayForStateNamed:handler:"), objc.String(stateName), handler)
 }

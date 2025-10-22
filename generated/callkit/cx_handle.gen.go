@@ -38,8 +38,13 @@ type ICXHandle interface {
 // A way to reach a call recipient, such as a phone number or email address.
 //
 // When the telephony provider receives an incoming call or the user starts an outgoing call, the other caller is identified by a object. For a caller identified by a phone number, the handle type is and the value is a sequence of digits. For a caller identified by an email address, the handle type is and the value is an email address. For a caller identified in any other way, the handle type is and the value typically follows some domain-specific format, such as a username, numeric ID, or URL.
+
+
+// A way to reach a call recipient, such as a phone number or email address.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXHandle
+
 type CXHandle struct {
 	objectivec.Object
 }
@@ -87,7 +92,9 @@ func NewCXHandle() CXHandle {
 
 // Initializes a new handle of a given type with the specified value.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXHandle/init(type:value:)
+
 func NewCXHandleWithTypeValue(type_ CXHandleType, value string) CXHandle {
 	instance := getCXHandleClass().Alloc()
 	rv := objc.Send[CXHandle](instance.ID, objc.Sel("initWithType:value:"), type_, objc.String(value))
@@ -96,25 +103,35 @@ func NewCXHandleWithTypeValue(type_ CXHandleType, value string) CXHandle {
 }
 
 
+
+
 // Returns a Boolean value that indicates whether a given handle is equal to the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXHandle/isEqualToHandle:
+
 func (c_ CXHandle) IsEqualToHandle(handle ICXHandle) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isEqualToHandle:"), handle)
 	return rv
 }
 
+
 // The type of the handle.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXHandle/type
+
 func (c_ CXHandle) Type() CXHandleType {
 	rv := objc.Send[CXHandleType](c_.ID, objc.Sel("type"))
 	return rv
 }
 
+
 // The value of the handle.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXHandle/value
+
 func (c_ CXHandle) Value() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("value"))
 	return rv

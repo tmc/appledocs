@@ -37,8 +37,13 @@ type IAudioMixerNode interface {
 // An object that takes any number of inputs and converts them into a single output.
 //
 // The mixer accepts input at any sample rate and efficiently combines sample rate conversions. It also accepts any channel count and correctly upmixes or downmixes to the output channel count.
+
+
+// An object that takes any number of inputs and converts them into a single output.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioMixerNode
+
 type AudioMixerNode struct {
 	AudioNode
 }
@@ -85,28 +90,34 @@ func NewAudioMixerNode() AudioMixerNode {
 
 
 
+
 // An audio bus that isn’t in a connected state.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioMixerNode/nextAvailableInputBus
+
 func (a_ AudioMixerNode) NextAvailableInputBus() AudioNodeBus {
 	rv := objc.Send[AudioNodeBus](a_.ID, objc.Sel("nextAvailableInputBus"))
 	return rv
 }
 
+
 // The mixer’s output volume.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioMixerNode/outputVolume
+
 func (a_ AudioMixerNode) OutputVolume() float32 {
 	rv := objc.Send[float32](a_.ID, objc.Sel("outputVolume"))
 	return rv
 }
 
 
-// SetOutputVolume sets the value of the outputVolume property.
 // The mixer’s output volume.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioMixerNode/outputVolume
+
 func (a_ AudioMixerNode) SetOutputVolume(value float32) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setOutputVolume:"), value)
 }

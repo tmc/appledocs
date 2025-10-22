@@ -41,8 +41,13 @@ type IOpenGLLayer interface {
 // A subclass of that is suitable for rendering OpenGL into layers.
 //
 // Unlike , uses AppKit types.
+
+
+// A subclass of that is suitable for rendering OpenGL into layers.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLLayer
+
 type OpenGLLayer struct {
 	objectivec.Object
 }
@@ -86,56 +91,65 @@ func NewOpenGLLayer() OpenGLLayer {
 }
 
 
+
 // The layer’s OpenGL context.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsopengllayer/openglcontext
+
 func (o_ OpenGLLayer) OpenGLContext() NSOpenGLContext {
 	rv := objc.Send[NSOpenGLContext](o_.ID, objc.Sel("openGLContext"))
 	return rv
 }
 
 
-// SetOpenGLContext sets the value of the openGLContext property.
 // The layer’s OpenGL context.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsopengllayer/openglcontext
+
 func (o_ OpenGLLayer) SetOpenGLContext(value IOpenGLContext) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setOpenGLContext:"), value)
 }
 
+
 // Provides access to the layer’s associated OpenGL pixel format.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsopengllayer/openglpixelformat
+
 func (o_ OpenGLLayer) OpenGLPixelFormat() NSOpenGLPixelFormat {
 	rv := objc.Send[NSOpenGLPixelFormat](o_.ID, objc.Sel("openGLPixelFormat"))
 	return rv
 }
 
 
-// SetOpenGLPixelFormat sets the value of the openGLPixelFormat property.
 // Provides access to the layer’s associated OpenGL pixel format.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsopengllayer/openglpixelformat
+
 func (o_ OpenGLLayer) SetOpenGLPixelFormat(value NSOpenGLPixelFormat) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setOpenGLPixelFormat:"), value)
 }
 
+
 // Returns the view associated with the layer.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsopengllayer/view
+
 func (o_ OpenGLLayer) View() NSView {
 	rv := objc.Send[NSView](o_.ID, objc.Sel("view"))
 	return rv
 }
 
 
-// SetView sets the value of the view property.
 // Returns the view associated with the layer.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsopengllayer/view
+
 func (o_ OpenGLLayer) SetView(value IView) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setView:"), value)
 }

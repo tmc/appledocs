@@ -57,8 +57,13 @@ type ITurnBasedExchange interface {
 // Exchange request information that participants send in a turn-based match.
 //
 // GameKit sends exchange objects to protocol methods when the local player receives an exchange request or recipients reply to an exchange request. The exchange object encapsulates your custom game data that you want to communicate to other players. You initiate an exchange request using the method. Then GameKit sends the request to the recipients passing the exchange object to the protocol method. GameKit sets the status of the exchange object to . After all recipients respond to the request, using the method, or exceed the time out specified in the request, GameKit sends the exchange to the sender and the current participant. GameKit sets the exchange status to and then passes it to the method. Before the current participant ends their turn, save the completed exchanges using the method. Get the exchanges from the match object using the property. Alternatively, save exchange data in the protocol method when all recipients reply to specific exchange requests. To cancel an active or complete exchange, use the method. GameKit notifies the recipients when the player cancels an exchange, using the protocol method.
+
+
+// Exchange request information that participants send in a turn-based match.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKTurnBasedExchange
+
 type TurnBasedExchange struct {
 	objectivec.Object
 }
@@ -102,190 +107,223 @@ func NewTurnBasedExchange() TurnBasedExchange {
 }
 
 
+
 // The identifier for the exchange request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKTurnBasedExchange/exchangeID
+
 func (t_ TurnBasedExchange) ExchangeID() string {
 	rv := objc.Send[string](t_.ID, objc.Sel("exchangeID"))
 	return rv
 }
 
+
 // The date when all recipients of the exchange request reply.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchange/completiondate
+
 func (t_ TurnBasedExchange) CompletionDate() foundation.Date {
 	rv := objc.Send[foundation.Date](t_.ID, objc.Sel("completionDate"))
 	return rv
 }
 
 
-// SetCompletionDate sets the value of the completionDate property.
 // The date when all recipients of the exchange request reply.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchange/completiondate
+
 func (t_ TurnBasedExchange) SetCompletionDate(value foundation.IDate) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setCompletionDate:"), value)
 }
 
+
 // The game-specific exchange data that GameKit sends to participants.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchange/data
+
 func (t_ TurnBasedExchange) Data() foundation.Data {
 	rv := objc.Send[foundation.Data](t_.ID, objc.Sel("data"))
 	return rv
 }
 
 
-// SetData sets the value of the data property.
 // The game-specific exchange data that GameKit sends to participants.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchange/data
+
 func (t_ TurnBasedExchange) SetData(value foundation.IData) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setData:"), value)
 }
 
+
 // A localized message from the sender to the recipients of an exchange request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchange/message
+
 func (t_ TurnBasedExchange) Message() string {
 	rv := objc.Send[string](t_.ID, objc.Sel("message"))
 	return rv
 }
 
 
-// SetMessage sets the value of the message property.
 // A localized message from the sender to the recipients of an exchange request.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchange/message
+
 func (t_ TurnBasedExchange) SetMessage(value string) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setMessage:"), objc.String(value))
 }
 
+
 // The participants who receives the exchange request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchange/recipients
+
 func (t_ TurnBasedExchange) Recipients() GKTurnBasedParticipant {
 	rv := objc.Send[GKTurnBasedParticipant](t_.ID, objc.Sel("recipients"))
 	return rv
 }
 
 
-// SetRecipients sets the value of the recipients property.
 // The participants who receives the exchange request.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchange/recipients
+
 func (t_ TurnBasedExchange) SetRecipients(value IGKTurnBasedParticipant) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setRecipients:"), value)
 }
 
+
 // The replies from recipients of the exchange request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchange/replies
+
 func (t_ TurnBasedExchange) Replies() GKTurnBasedExchangeReply {
 	rv := objc.Send[GKTurnBasedExchangeReply](t_.ID, objc.Sel("replies"))
 	return rv
 }
 
 
-// SetReplies sets the value of the replies property.
 // The replies from recipients of the exchange request.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchange/replies
+
 func (t_ TurnBasedExchange) SetReplies(value IGKTurnBasedExchangeReply) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setReplies:"), value)
 }
 
+
 // The date that the sender initiates the exchange request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchange/senddate
+
 func (t_ TurnBasedExchange) SendDate() foundation.Date {
 	rv := objc.Send[foundation.Date](t_.ID, objc.Sel("sendDate"))
 	return rv
 }
 
 
-// SetSendDate sets the value of the sendDate property.
 // The date that the sender initiates the exchange request.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchange/senddate
+
 func (t_ TurnBasedExchange) SetSendDate(value foundation.IDate) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSendDate:"), value)
 }
 
+
 // The participant who sends the exchange request to recipients.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchange/sender
+
 func (t_ TurnBasedExchange) Sender() GKTurnBasedParticipant {
 	rv := objc.Send[GKTurnBasedParticipant](t_.ID, objc.Sel("sender"))
 	return rv
 }
 
 
-// SetSender sets the value of the sender property.
 // The participant who sends the exchange request to recipients.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchange/sender
+
 func (t_ TurnBasedExchange) SetSender(value IGKTurnBasedParticipant) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSender:"), value)
 }
 
+
 // The status of the exchange request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchange/status
+
 func (t_ TurnBasedExchange) Status() TurnBasedExchangeStatus {
 	rv := objc.Send[TurnBasedExchangeStatus](t_.ID, objc.Sel("status"))
 	return rv
 }
 
 
-// SetStatus sets the value of the status property.
 // The status of the exchange request.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchange/status
+
 func (t_ TurnBasedExchange) SetStatus(value TurnBasedExchangeStatus) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setStatus:"), value)
 }
 
+
 // The date that the recipients must reply by before the exchange request times out.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchange/timeoutdate
+
 func (t_ TurnBasedExchange) TimeoutDate() foundation.Date {
 	rv := objc.Send[foundation.Date](t_.ID, objc.Sel("timeoutDate"))
 	return rv
 }
 
 
-// SetTimeoutDate sets the value of the timeoutDate property.
 // The date that the recipients must reply by before the exchange request times out.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchange/timeoutdate
+
 func (t_ TurnBasedExchange) SetTimeoutDate(value foundation.IDate) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTimeoutDate:"), value)
 }
 
+
 // The exchange requests that all recipients replied to and the current participant needs to save.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/completedexchanges
+
 func (t_ TurnBasedExchange) CompletedExchanges() GKTurnBasedExchange {
 	rv := objc.Send[GKTurnBasedExchange](t_.ID, objc.Sel("completedExchanges"))
 	return rv
 }
 
 
-// SetCompletedExchanges sets the value of the completedExchanges property.
 // The exchange requests that all recipients replied to and the current participant needs to save.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/completedexchanges
+
 func (t_ TurnBasedExchange) SetCompletedExchanges(value IGKTurnBasedExchange) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setCompletedExchanges:"), value)
 }

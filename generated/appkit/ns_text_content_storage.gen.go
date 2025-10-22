@@ -48,8 +48,13 @@ type ITextContentStorage interface {
 // A concrete object for managing your view’s text content and generating the text elements necessary for layout.
 //
 // An object provides the backing store for a view that contains text. This object stores the text in an attributed string object, and defaults to using an object. It also maps portions of the text to objects to organize the text into paragraphs, lists, and other common element types found in text content. During layout, TextKit uses these elements to lay out and render the text in your view. The standard system views use an object to manage their text content. When building a custom text view, use this type to store the text for your view. works with an associated to lay out your view’s text. When someone inserts new text or edits the existing text, call the method and use a block to modify the contents of the property. Wrapping your edits in an edit transaction lets the rest of the text system respond to those changes. TextKit uses the abstract protocol to identify locations within text. manager provides its own implementation of this protocol to represent locations within its storage object. To get the start and end locations, access the object’s property and use them to create new location objects. If you provide your own implementation of the protocol to manage locations in your content, subclass and implement your own storage object to support those locations.
+
+
+// A concrete object for managing your view’s text content and generating the text elements necessary for layout.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContentStorage
+
 type TextContentStorage struct {
 	TextContentManager
 }
@@ -95,103 +100,130 @@ func NewTextContentStorage() TextContentStorage {
 }
 
 
+
+
 // Returns the text range, if any, in the backing store that required manual adjustment after editing.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContentStorage/adjustedRange(from:forEditingTextSelection:)
+
 func (t_ TextContentStorage) AdjustedRangeFromRangeForEditingTextSelection(textRange ITextRange, forEditingTextSelection bool) TextRange {
 	rv := objc.Send[TextRange](t_.ID, objc.Sel("adjustedRangeFromRange:forEditingTextSelection:"), textRange, forEditingTextSelection)
 	return rv
 }
 
+
+
 // Returns a new text location object based on an existing location and offset you provide.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContentStorage/location(_:offsetBy:)
+
 func (t_ TextContentStorage) LocationFromLocationWithOffset(location objectivec.IObject, offset int) objc.ID {
 	rv := objc.Send[objc.ID](t_.ID, objc.Sel("locationFromLocation:withOffset:"), location, offset)
 	return rv
 }
 
+
+
 // Returns the number of characters between the specified locations.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContentStorage/offset(from:to:)
+
 func (t_ TextContentStorage) OffsetFromLocationToLocation(from objectivec.IObject, to objectivec.IObject) int {
 	rv := objc.Send[int](t_.ID, objc.Sel("offsetFromLocation:toLocation:"), from, to)
 	return rv
 }
 
+
+
 // Returns the text element corresponding to object’s attributed string.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContentStorage/textElement(for:)
+
 func (t_ TextContentStorage) TextElementForAttributedString(attributedString foundation.IAttributedString) TextElement {
 	rv := objc.Send[TextElement](t_.ID, objc.Sel("textElementForAttributedString:"), attributedString)
 	return rv
 }
 
+
 // An attributed string that contains the contents of the document.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContentStorage/attributedString
+
 func (t_ TextContentStorage) AttributedString() foundation.AttributedString {
 	rv := objc.Send[foundation.AttributedString](t_.ID, objc.Sel("attributedString"))
 	return rv
 }
 
 
-// SetAttributedString sets the value of the attributedString property.
 // An attributed string that contains the contents of the document.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContentStorage/attributedString
+
 func (t_ TextContentStorage) SetAttributedString(value foundation.IAttributedString) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAttributedString:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContentStorage/includesTextListMarkers
+
 func (t_ TextContentStorage) IncludesTextListMarkers() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("includesTextListMarkers"))
 	return rv
 }
 
 
-// SetIncludesTextListMarkers sets the value of the includesTextListMarkers property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContentStorage/includesTextListMarkers
+
 func (t_ TextContentStorage) SetIncludesTextListMarkers(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIncludesTextListMarkers:"), value)
 }
 
+
 // The delegate for the content storage object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontentstorage/delegate
+
 func (t_ TextContentStorage) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("delegate"))
 	return rv
 }
 
 
-// SetDelegate sets the value of the delegate property.
 // The delegate for the content storage object.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontentstorage/delegate
+
 func (t_ TextContentStorage) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDelegate:"), value)
 }
 
+
 // Describes the starting and ending locations for the document.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextelementprovider/documentrange
+
 func (t_ TextContentStorage) DocumentRange() NSTextRange {
 	rv := objc.Send[NSTextRange](t_.ID, objc.Sel("documentRange"))
 	return rv
 }
 
 
-// SetDocumentRange sets the value of the documentRange property.
 // Describes the starting and ending locations for the document.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextelementprovider/documentrange
+
 func (t_ TextContentStorage) SetDocumentRange(value ITextRange) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDocumentRange:"), value)
 }

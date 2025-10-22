@@ -55,8 +55,13 @@ type IEKCalendar interface {
 // A class that represents a calendar in EventKit.
 //
 // Use the properties in this class to get attributes about a calendar, such as its title and type. Use the method to create a calendar object.
+
+
+// A class that represents a calendar in EventKit.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar
+
 type EKCalendar struct {
 	EKObject
 }
@@ -106,7 +111,9 @@ func NewEKCalendar() EKCalendar {
 
 // Creates a new calendar that can contain the given entity type.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar/init(for:eventStore:)
+
 func NewEKCalendarForEntityTypeEventStore(entityType EKEntityType, eventStore IEKEventStore) EKCalendar {
 	rv := objc.Send[EKCalendar](objc.ID(getEKCalendarClass().class), objc.Sel("calendarForEntityType:eventStore:"), entityType, eventStore)
 	return rv
@@ -116,189 +123,236 @@ func NewEKCalendarForEntityTypeEventStore(entityType EKEntityType, eventStore IE
 
 // Creates and returns a calendar belonging to a specified event store.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar/init(eventStore:)
+
 func NewEKCalendarWithEventStore(eventStore IEKEventStore) EKCalendar {
 	rv := objc.Send[EKCalendar](objc.ID(getEKCalendarClass().class), objc.Sel("calendarWithEventStore:"), eventStore)
 	return rv
 }
 
 
+
 // Creates and returns a calendar belonging to a specified event store.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar/init(eventStore:)
+
 func (ec _EKCalendarClass) CalendarWithEventStore(eventStore IEKEventStore) EKCalendar {
 	rv := objc.Send[EKCalendar](objc.ID(ec.class), objc.Sel("calendarWithEventStore:"), eventStore)
 	return rv
 }
 
+
 // Creates a new calendar that can contain the given entity type.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar/init(for:eventStore:)
+
 func (ec _EKCalendarClass) CalendarForEntityTypeEventStore(entityType EKEntityType, eventStore IEKEventStore) EKCalendar {
 	rv := objc.Send[EKCalendar](objc.ID(ec.class), objc.Sel("calendarForEntityType:eventStore:"), entityType, eventStore)
 	return rv
 }
 
+
 // The entity types this calendar can contain.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar/allowedEntityTypes
+
 func (e_ EKCalendar) AllowedEntityTypes() EKEntityMask {
 	rv := objc.Send[EKEntityMask](e_.ID, objc.Sel("allowedEntityTypes"))
 	return rv
 }
 
+
 // A Boolean value that indicates whether you can add, edit, and delete items in the calendar.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar/allowsContentModifications
+
 func (e_ EKCalendar) AllowsContentModifications() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("allowsContentModifications"))
 	return rv
 }
 
+
 // A unique identifier for the calendar.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar/calendarIdentifier
+
 func (e_ EKCalendar) CalendarIdentifier() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("calendarIdentifier"))
 	return rv
 }
 
+
 // The calendar’s color.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar/cgColor
+
 func (e_ EKCalendar) CGColor() coregraphics.CGColorRef {
 	rv := objc.Send[coregraphics.CGColorRef](e_.ID, objc.Sel("CGColor"))
 	return rv
 }
 
 
-// SetCGColor sets the value of the CGColor property.
 // The calendar’s color.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar/cgColor
+
 func (e_ EKCalendar) SetCGColor(value coregraphics.CGColorRef) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setCGColor:"), value)
 }
 
+
 // The calendar’s color.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar/color
+
 func (e_ EKCalendar) Color() appkit.Color {
 	rv := objc.Send[appkit.Color](e_.ID, objc.Sel("color"))
 	return rv
 }
 
 
-// SetColor sets the value of the color property.
 // The calendar’s color.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar/color
+
 func (e_ EKCalendar) SetColor(value appkit.IColor) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setColor:"), value)
 }
 
+
 // A Boolean value indicating whether the calendar’s properties can be edited or deleted.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar/isImmutable
+
 func (e_ EKCalendar) Immutable() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("immutable"))
 	return rv
 }
 
+
 // A Boolean value indicating whether the calendar is a subscribed calendar.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar/isSubscribed
+
 func (e_ EKCalendar) Subscribed() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("subscribed"))
 	return rv
 }
 
+
 // The source object representing the account to which this calendar belongs.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar/source
+
 func (e_ EKCalendar) Source() EKSource {
 	rv := objc.Send[EKSource](e_.ID, objc.Sel("source"))
 	return rv
 }
 
 
-// SetSource sets the value of the source property.
 // The source object representing the account to which this calendar belongs.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar/source
+
 func (e_ EKCalendar) SetSource(value IEKSource) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setSource:"), value)
 }
 
+
 // The event availability settings supported by this calendar, as indicated by a bitmask.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar/supportedEventAvailabilities
+
 func (e_ EKCalendar) SupportedEventAvailabilities() EKCalendarEventAvailabilityMask {
 	rv := objc.Send[EKCalendarEventAvailabilityMask](e_.ID, objc.Sel("supportedEventAvailabilities"))
 	return rv
 }
 
+
 // The calendar’s title.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar/title
+
 func (e_ EKCalendar) Title() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("title"))
 	return rv
 }
 
 
-// SetTitle sets the value of the title property.
 // The calendar’s title.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar/title
+
 func (e_ EKCalendar) SetTitle(value string) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
 
+
 // The calendar’s type.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar/type
+
 func (e_ EKCalendar) Type() EKCalendarType {
 	rv := objc.Send[EKCalendarType](e_.ID, objc.Sel("type"))
 	return rv
 }
 
+
 // A Boolean value indicating whether the calendar’s properties can be edited or deleted.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/eventkit/ekcalendar/isimmutable
+
 func (e_ EKCalendar) IsImmutable() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("isImmutable"))
 	return rv
 }
 
 
-// SetIsImmutable sets the value of the isImmutable property.
 // A Boolean value indicating whether the calendar’s properties can be edited or deleted.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/eventkit/ekcalendar/isimmutable
+
 func (e_ EKCalendar) SetIsImmutable(value bool) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setIsImmutable:"), value)
 }
 
+
 // A Boolean value indicating whether the calendar is a subscribed calendar.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/eventkit/ekcalendar/issubscribed
+
 func (e_ EKCalendar) IsSubscribed() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("isSubscribed"))
 	return rv
 }
 
 
-// SetIsSubscribed sets the value of the isSubscribed property.
 // A Boolean value indicating whether the calendar is a subscribed calendar.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/eventkit/ekcalendar/issubscribed
+
 func (e_ EKCalendar) SetIsSubscribed(value bool) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setIsSubscribed:"), value)
 }

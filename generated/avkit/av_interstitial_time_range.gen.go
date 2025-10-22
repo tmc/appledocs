@@ -36,8 +36,13 @@ type IInterstitialTimeRange interface {
 // A time range in an audiovisual presentation for content with an interstitial designation, such as advertisements or legal notices.
 //
 // When you associate interstitial time ranges with an you present with an , you can customize or restrict the presentation of interstitial content. For example, you can allow the user to skip advertisements or prohibit skipping of a legal notice.
+
+
+// A time range in an audiovisual presentation for content with an interstitial designation, such as advertisements or legal notices.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVInterstitialTimeRange
+
 type InterstitialTimeRange struct {
 	objectivec.Object
 }
@@ -85,7 +90,9 @@ func NewInterstitialTimeRange() InterstitialTimeRange {
 
 // Initializes an interstitial time range object with the specified time range.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVInterstitialTimeRange/init(timeRange:)
+
 func NewInterstitialTimeRangeWithTimeRange(timeRange unsafe.Pointer) InterstitialTimeRange {
 	instance := getInterstitialTimeRangeClass().Alloc()
 	rv := objc.Send[InterstitialTimeRange](instance.ID, objc.Sel("initWithTimeRange:"), timeRange)
@@ -94,9 +101,12 @@ func NewInterstitialTimeRangeWithTimeRange(timeRange unsafe.Pointer) Interstitia
 }
 
 
+
 // The time range identified as interstitial content.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVInterstitialTimeRange/timeRange
+
 func (i_ InterstitialTimeRange) TimeRange() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("timeRange"))
 	return rv

@@ -34,8 +34,13 @@ type IAuthorizationAppleIDRequest interface {
 }
 
 // An OpenID authorization request that relies on the user’s Apple ID.
+
+
+// An OpenID authorization request that relies on the user’s Apple ID.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationAppleIDRequest
+
 type AuthorizationAppleIDRequest struct {
 	AuthorizationOpenIDRequest
 }
@@ -81,20 +86,23 @@ func NewAuthorizationAppleIDRequest() AuthorizationAppleIDRequest {
 }
 
 
+
 // An identifier associated with the user’s Apple ID.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidrequest/user
+
 func (a_ AuthorizationAppleIDRequest) User() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("user"))
 	return rv
 }
 
 
-// SetUser sets the value of the user property.
 // An identifier associated with the user’s Apple ID.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidrequest/user
+
 func (a_ AuthorizationAppleIDRequest) SetUser(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setUser:"), objc.String(value))
 }

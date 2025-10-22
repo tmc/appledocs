@@ -37,8 +37,13 @@ type IModelStructureProgramOperation interface {
 }
 
 // A class representing an Operation in a Program.
+
+
+// A class representing an Operation in a Program.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureProgramOperation
+
 type ModelStructureProgramOperation struct {
 	objectivec.Object
 }
@@ -82,33 +87,45 @@ func NewModelStructureProgramOperation() ModelStructureProgramOperation {
 }
 
 
+
 // Nested blocks for loops and conditionals, e.g., a conditional block will have two entries here.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureProgramOperation/blocks
+
 func (m_ ModelStructureProgramOperation) Blocks() []ModelStructureProgramBlock {
 	rv := objc.Send[[]ModelStructureProgramBlock](m_.ID, objc.Sel("blocks"))
 	return rv
 }
 
+
 // The arguments to the Operation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureProgramOperation/inputs
+
 func (m_ ModelStructureProgramOperation) Inputs() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("inputs"))
 	return rv
 }
 
+
 // The name of the operator, e.g., “conv”, “pool”, “softmax”, etc.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureProgramOperation/operatorName
+
 func (m_ ModelStructureProgramOperation) OperatorName() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("operatorName"))
 	return rv
 }
 
+
 // The outputs of the Operation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureProgramOperation/outputs
+
 func (m_ ModelStructureProgramOperation) Outputs() []ModelStructureProgramNamedValueType {
 	rv := objc.Send[[]ModelStructureProgramNamedValueType](m_.ID, objc.Sel("outputs"))
 	return rv

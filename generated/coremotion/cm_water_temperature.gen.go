@@ -37,8 +37,13 @@ type IWaterTemperature interface {
 }
 
 // An update that contains data about the water temperature.
+
+
+// An update that contains data about the water temperature.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMWaterTemperature
+
 type WaterTemperature struct {
 	objectivec.Object
 }
@@ -82,25 +87,34 @@ func NewWaterTemperature() WaterTemperature {
 }
 
 
+
 // The time and date when the system recorded the measurements.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMWaterTemperature/date
+
 func (w_ WaterTemperature) Date() foundation.NSDate {
 	rv := objc.Send[foundation.NSDate](w_.ID, objc.Sel("date"))
 	return rv
 }
 
+
 // The water temperature.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMWaterTemperature/temperature
+
 func (w_ WaterTemperature) Temperature() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("temperature"))
 	return rv
 }
 
+
 // The amount of uncertainty in the measurement of the water temperature.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMWaterTemperature/temperatureUncertainty
+
 func (w_ WaterTemperature) TemperatureUncertainty() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("temperatureUncertainty"))
 	return rv

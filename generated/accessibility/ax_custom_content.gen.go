@@ -46,8 +46,13 @@ type IAXCustomContent interface {
 // Objects that define custom content and the timing of its output.
 //
 // An object contains the accessibility strings for the labels you apply to your accessibility content. Combine them with the protocol to allow your users to experience the content in a more appropriate manner for each assistive technology.
+
+
+// Objects that define custom content and the timing of its output.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXCustomContent
+
 type AXCustomContent struct {
 	objectivec.Object
 }
@@ -91,92 +96,107 @@ func NewAXCustomContent() AXCustomContent {
 }
 
 
+
 // A localized attributed string that identifies the label for this content.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axcustomcontent/attributedlabel
+
 func (a_ AXCustomContent) AttributedLabel() foundation.AttributedString {
 	rv := objc.Send[foundation.AttributedString](a_.ID, objc.Sel("attributedLabel"))
 	return rv
 }
 
 
-// SetAttributedLabel sets the value of the attributedLabel property.
 // A localized attributed string that identifies the label for this content.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axcustomcontent/attributedlabel
+
 func (a_ AXCustomContent) SetAttributedLabel(value foundation.IAttributedString) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAttributedLabel:"), value)
 }
 
+
 // A localized attributed string that provides a value for the label.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axcustomcontent/attributedvalue
+
 func (a_ AXCustomContent) AttributedValue() foundation.AttributedString {
 	rv := objc.Send[foundation.AttributedString](a_.ID, objc.Sel("attributedValue"))
 	return rv
 }
 
 
-// SetAttributedValue sets the value of the attributedValue property.
 // A localized attributed string that provides a value for the label.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axcustomcontent/attributedvalue
+
 func (a_ AXCustomContent) SetAttributedValue(value foundation.IAttributedString) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAttributedValue:"), value)
 }
 
+
 // An object that determines when to output custom accessibility content.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axcustomcontent/importance-swift.property
+
 func (a_ AXCustomContent) Importance() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("importance"))
 	return rv
 }
 
 
-// SetImportance sets the value of the importance property.
 // An object that determines when to output custom accessibility content.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axcustomcontent/importance-swift.property
+
 func (a_ AXCustomContent) SetImportance(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setImportance:"), value)
 }
 
+
 // A localized string that identifies the label for this content.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axcustomcontent/label
+
 func (a_ AXCustomContent) Label() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("label"))
 	return rv
 }
 
 
-// SetLabel sets the value of the label property.
 // A localized string that identifies the label for this content.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axcustomcontent/label
+
 func (a_ AXCustomContent) SetLabel(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
 
+
 // A localized string that provides a value for the label.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axcustomcontent/value
+
 func (a_ AXCustomContent) Value() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("value"))
 	return rv
 }
 
 
-// SetValue sets the value of the value property.
 // A localized string that provides a value for the label.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axcustomcontent/value
+
 func (a_ AXCustomContent) SetValue(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setValue:"), objc.String(value))
 }

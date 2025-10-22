@@ -32,8 +32,11 @@ type ImimapLevelCount interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKTextureInfo/mimapLevelCount-c.ivar
+
 type mimapLevelCount struct {
 	objectivec.Object
 }

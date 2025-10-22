@@ -41,8 +41,13 @@ type IStatusBar interface {
 // An object that manages a collection of status items displayed within the system-wide menu bar.
 //
 // A status item (an instance of ) can be displayed with text or an icon, can provide a menu and a target-action message when clicked, or can be a fully customized view that you create. Use status items sparingly and only if the alternatives (such as a Dock menu, preference pane, or status window) are not suitable. Because there is limited space in which to display status items, status items are not guaranteed to be available at all times. For this reason, do not rely on them being available and always provide a user preference for hiding your application’s status items to free up space in the menu bar.
+
+
+// An object that manages a collection of status items displayed within the system-wide menu bar.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusBar
+
 type StatusBar struct {
 	objectivec.Object
 }
@@ -86,66 +91,89 @@ func NewStatusBar() StatusBar {
 }
 
 
+
 // Returns the system-wide status bar located in the menu bar.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusBar/system
+
 func (sc _StatusBarClass) SystemStatusBar() StatusBar {
 	rv := objc.Send[NSStatusBar](objc.ID(sc.class), objc.Sel("systemStatusBar"))
 	return rv
 }
+
+
 // Removes the specified status item from the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusBar/removeStatusItem(_:)
+
 func (s_ StatusBar) RemoveStatusItem(item IStatusItem) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("removeStatusItem:"), item)
 }
 
+
+
 // Returns a newly created status item that has been allotted a specified space within the status bar.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusBar/statusItem(withLength:)
+
 func (s_ StatusBar) StatusItemWithLength(length float64) StatusItem {
 	rv := objc.Send[StatusItem](s_.ID, objc.Sel("statusItemWithLength:"), length)
 	return rv
 }
 
+
 // A Boolean value indicating whether the status bar has a vertical orientation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusBar/isVertical
+
 func (s_ StatusBar) Vertical() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("vertical"))
 	return rv
 }
 
+
 // Returns the system-wide status bar located in the menu bar.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusBar/system
+
 func (s_ StatusBar) SystemStatusBar() NSStatusBar {
 	rv := objc.Send[NSStatusBar](s_.ID, objc.Sel("systemStatusBar"))
 	return rv
 }
 
+
 // The thickness of the status bar, in pixels.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusBar/thickness
+
 func (s_ StatusBar) Thickness() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("thickness"))
 	return rv
 }
 
+
 // A Boolean value indicating whether the status bar has a vertical orientation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsstatusbar/isvertical
+
 func (s_ StatusBar) IsVertical() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isVertical"))
 	return rv
 }
 
 
-// SetIsVertical sets the value of the isVertical property.
 // A Boolean value indicating whether the status bar has a vertical orientation.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsstatusbar/isvertical
+
 func (s_ StatusBar) SetIsVertical(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsVertical:"), value)
 }

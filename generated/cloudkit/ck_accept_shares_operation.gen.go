@@ -52,8 +52,13 @@ type ICKAcceptSharesOperation interface {
 // An operation that confirms a user’s participation in a share.
 //
 // Use this operation to accept participation in one or more shares. You create the operation with an array of share metadatas, which CloudKit provides to your app when the user taps or clicks a share’s . The method CloudKit calls varies by platform and app configuration. For more information, see . You can also fetch a share’s metadata using . If there are several metadatas, group them by their and create an operation for each container. Then add the operation to each container’s operation queue to run it. The operation executes its callbacks on a private serial queue. The operation calls once for each metadata you provide. CloudKit returns the metadata and its related share, or an error if it can’t accept the share. CloudKit also batches per-metadata errors. If the operation completes with errors, it returns a error. The error stores individual errors in its dictionary. Use the key to extract them. After CloudKit applies all record changes, the operation calls . When the closure executes, the server may continue processing residual tasks of the operation, such as creating the record zone in the user’s private database. The following example demonstrates how to accept a share that CloudKit provides to your window scene delegate. It shows how to create the operation, configure it, and execute it in the correct container:
+
+
+// An operation that confirms a user’s participation in a share.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKAcceptSharesOperation
+
 type CKAcceptSharesOperation struct {
 	CKOperation
 }
@@ -99,148 +104,173 @@ func NewCKAcceptSharesOperation() CKAcceptSharesOperation {
 }
 
 
+
 // The closure to execute when the operation finishes.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKAcceptSharesOperation/acceptSharesCompletionBlock
+
 func (c_ CKAcceptSharesOperation) AcceptSharesCompletionBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("acceptSharesCompletionBlock"))
 	return rv
 }
 
 
-// SetAcceptSharesCompletionBlock sets the value of the acceptSharesCompletionBlock property.
 // The closure to execute when the operation finishes.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKAcceptSharesOperation/acceptSharesCompletionBlock
+
 func (c_ CKAcceptSharesOperation) SetAcceptSharesCompletionBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAcceptSharesCompletionBlock:"), value)
 }
 
+
 // The block to execute as CloudKit processes individual shares.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKAcceptSharesOperation/perShareCompletionBlock
+
 func (c_ CKAcceptSharesOperation) PerShareCompletionBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("perShareCompletionBlock"))
 	return rv
 }
 
 
-// SetPerShareCompletionBlock sets the value of the perShareCompletionBlock property.
 // The block to execute as CloudKit processes individual shares.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKAcceptSharesOperation/perShareCompletionBlock
+
 func (c_ CKAcceptSharesOperation) SetPerShareCompletionBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPerShareCompletionBlock:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckacceptsharesoperation/acceptsharesresultblock
+
 func (c_ CKAcceptSharesOperation) AcceptSharesResultBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("acceptSharesResultBlock"))
 	return rv
 }
 
 
-// SetAcceptSharesResultBlock sets the value of the acceptSharesResultBlock property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckacceptsharesoperation/acceptsharesresultblock
+
 func (c_ CKAcceptSharesOperation) SetAcceptSharesResultBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAcceptSharesResultBlock:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckacceptsharesoperation/pershareresultblock
+
 func (c_ CKAcceptSharesOperation) PerShareResultBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("perShareResultBlock"))
 	return rv
 }
 
 
-// SetPerShareResultBlock sets the value of the perShareResultBlock property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckacceptsharesoperation/pershareresultblock
+
 func (c_ CKAcceptSharesOperation) SetPerShareResultBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPerShareResultBlock:"), value)
 }
 
+
 // The share metadatas to process.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckacceptsharesoperation/sharemetadatas
+
 func (c_ CKAcceptSharesOperation) ShareMetadatas() CKShareMetadata {
 	rv := objc.Send[CKShareMetadata](c_.ID, objc.Sel("shareMetadatas"))
 	return rv
 }
 
 
-// SetShareMetadatas sets the value of the shareMetadatas property.
 // The share metadatas to process.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckacceptsharesoperation/sharemetadatas
+
 func (c_ CKAcceptSharesOperation) SetShareMetadatas(value ICKShareMetadata) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setShareMetadatas:"), value)
 }
 
+
 // The key to retrieve partial errors.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckpartialerrorsbyitemidkey
+
 func (c_ CKAcceptSharesOperation) CKPartialErrorsByItemIDKey() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CKPartialErrorsByItemIDKey"))
 	return rv
 }
 
+
 // The ID of the share’s container.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckshare/metadata/containeridentifier
+
 func (c_ CKAcceptSharesOperation) ContainerIdentifier() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("containerIdentifier"))
 	return rv
 }
 
 
-// SetContainerIdentifier sets the value of the containerIdentifier property.
 // The ID of the share’s container.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckshare/metadata/containeridentifier
+
 func (c_ CKAcceptSharesOperation) SetContainerIdentifier(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setContainerIdentifier:"), objc.String(value))
 }
 
+
 // The URL for inviting participants to the share.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckshare/url
+
 func (c_ CKAcceptSharesOperation) Url() foundation.URL {
 	rv := objc.Send[foundation.URL](c_.ID, objc.Sel("url"))
 	return rv
 }
 
 
-// SetUrl sets the value of the url property.
 // The URL for inviting participants to the share.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckshare/url
+
 func (c_ CKAcceptSharesOperation) SetUrl(value foundation.IURL) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setUrl:"), value)
 }
 
+
 // The user info dictionary.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/userInfo
+
 func (c_ CKAcceptSharesOperation) UserInfo() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("userInfo"))
 	return rv
 }
 
 
-// SetUserInfo sets the value of the userInfo property.
 // The user info dictionary.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/userInfo
+
 func (c_ CKAcceptSharesOperation) SetUserInfo(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setUserInfo:"), objc.String(value))
 }

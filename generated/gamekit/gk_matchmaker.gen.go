@@ -39,8 +39,13 @@ type IMatchmaker interface {
 // An object that creates matches with other players without presenting an interface to the players.
 //
 // Use the class to auto-match players for a quicker game start, programmatically invite specific players, or implement your own interface for players to invite other players. If you want to present a familiar matchmaking GameKit interface to players, instead use either the or class. If you host a game on your own server, you can also use this class to find Game Center players. That is, you implement the networking and communication between the players through your own servers not Game Center. To find players using this class, create a object and configure it according to the parameters of your game. Then, pass the match request and a handler using the method, or the method for hosted games, to the shared object. GameKit calls the handler when players accept their invitations. Implement the handler to set the delegate of the object that GameKit sends and start the game when there are enough players. If the match doesn’t have enough players (for example, some players decline their invitations), you can create another match request and call the method repeatedly until the match’s property is zero. When you have enough players to start the match, call the method to end the matchmaking process. If you provide a SharePlay interface for inviting players, use the and methods to create a group activity on behalf of the player.
+
+
+// An object that creates matches with other players without presenting an interface to the players.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatchmaker
+
 type Matchmaker struct {
 	objectivec.Object
 }
@@ -84,34 +89,45 @@ func NewMatchmaker() Matchmaker {
 }
 
 
+
+
 // Invites additional players to an existing match.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatchmaker/addPlayers(to:matchRequest:completionHandler:)
+
 func (m_ Matchmaker) AddPlayersToMatchMatchRequestCompletionHandler(match IGKMatch, matchRequest IGKMatchRequest, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("addPlayersToMatch:matchRequest:completionHandler:"), match, matchRequest, completionHandler)
 }
 
+
+
 // Initiates a request to find players for a hosted match.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatchmaker/findPlayers(forHostedMatchRequest:withCompletionHandler:)
+
 func (m_ Matchmaker) FindPlayersForHostedMatchRequestWithCompletionHandler(request IGKMatchRequest, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("findPlayersForHostedMatchRequest:withCompletionHandler:"), request, completionHandler)
 }
 
+
 // The remaining number of players invited but not yet connected to the match.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatch/expectedplayercount
+
 func (m_ Matchmaker) ExpectedPlayerCount() int {
 	rv := objc.Send[int](m_.ID, objc.Sel("expectedPlayerCount"))
 	return rv
 }
 
 
-// SetExpectedPlayerCount sets the value of the expectedPlayerCount property.
 // The remaining number of players invited but not yet connected to the match.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatch/expectedplayercount
+
 func (m_ Matchmaker) SetExpectedPlayerCount(value int) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setExpectedPlayerCount:"), value)
 }

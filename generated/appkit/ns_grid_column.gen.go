@@ -47,8 +47,13 @@ type IGridColumn interface {
 }
 
 // A column within a grid view.
+
+
+// A column within a grid view.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridColumn
+
 type GridColumn struct {
 	objectivec.Object
 }
@@ -92,107 +97,121 @@ func NewGridColumn() GridColumn {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridColumn/leadingPadding
+
 func (g_ GridColumn) LeadingPadding() float64 {
 	rv := objc.Send[float64](g_.ID, objc.Sel("leadingPadding"))
 	return rv
 }
 
 
-// SetLeadingPadding sets the value of the leadingPadding property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridColumn/leadingPadding
+
 func (g_ GridColumn) SetLeadingPadding(value float64) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setLeadingPadding:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridColumn/trailingPadding
+
 func (g_ GridColumn) TrailingPadding() float64 {
 	rv := objc.Send[float64](g_.ID, objc.Sel("trailingPadding"))
 	return rv
 }
 
 
-// SetTrailingPadding sets the value of the trailingPadding property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridColumn/trailingPadding
+
 func (g_ GridColumn) SetTrailingPadding(value float64) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setTrailingPadding:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridColumn/xPlacement
+
 func (g_ GridColumn) XPlacement() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("xPlacement"))
 	return rv
 }
 
 
-// SetXPlacement sets the value of the xPlacement property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridColumn/xPlacement
+
 func (g_ GridColumn) SetXPlacement(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setXPlacement:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgridcolumn/gridview
+
 func (g_ GridColumn) GridView() NSGridView {
 	rv := objc.Send[NSGridView](g_.ID, objc.Sel("gridView"))
 	return rv
 }
 
 
-// SetGridView sets the value of the gridView property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgridcolumn/gridview
+
 func (g_ GridColumn) SetGridView(value IGridView) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setGridView:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgridcolumn/ishidden
+
 func (g_ GridColumn) IsHidden() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("isHidden"))
 	return rv
 }
 
 
-// SetIsHidden sets the value of the isHidden property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgridcolumn/ishidden
+
 func (g_ GridColumn) SetIsHidden(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setIsHidden:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgridcolumn/numberofcells
+
 func (g_ GridColumn) NumberOfCells() int {
 	rv := objc.Send[int](g_.ID, objc.Sel("numberOfCells"))
 	return rv
 }
 
 
-// SetNumberOfCells sets the value of the numberOfCells property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgridcolumn/numberofcells
+
 func (g_ GridColumn) SetNumberOfCells(value int) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setNumberOfCells:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgridcolumn/width
+
 func (g_ GridColumn) Width() float64 {
 	rv := objc.Send[float64](g_.ID, objc.Sel("width"))
 	return rv
 }
 
 
-// SetWidth sets the value of the width property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgridcolumn/width
+
 func (g_ GridColumn) SetWidth(value float64) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setWidth:"), value)
 }

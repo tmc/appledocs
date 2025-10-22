@@ -50,8 +50,13 @@ type IPrinter interface {
 // An object that describes a printer’s capabilities.
 //
 // provides information about a printer; it does not modify printer attributes or control a printing job. A printer object can be constructed by specifying either the printer name or the make and model of an available printer. Typically, Cocoa apps don’t create objects; instead, the printing system uses these objects to support the printing jobs and when it shows users a list of printers.
+
+
+// An object that describes a printer’s capabilities.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrinter
+
 type Printer struct {
 	objectivec.Object
 }
@@ -95,108 +100,152 @@ func NewPrinter() Printer {
 }
 
 
+
+
 // Returns the Boolean value associated with the specified key.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrinter/booleanForKey:inTable:
+
 func (p_ Printer) BooleanForKeyInTable(key string, table string) bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("booleanForKey:inTable:"), objc.String(key), objc.String(table))
 	return rv
 }
 
+
+
 // Deprecated.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrinter/imageRectForPaper:
+
 func (p_ Printer) ImageRectForPaper(paperName string) coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](p_.ID, objc.Sel("imageRectForPaper:"), objc.String(paperName))
 	return rv
 }
 
+
+
 // Deprecated.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrinter/isColor
+
 func (p_ Printer) IsColor() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isColor"))
 	return rv
 }
 
+
+
 // Returns a Boolean value that indicates whether the specified key is in the specified table.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrinter/isKey:inTable:
+
 func (p_ Printer) IsKeyInTable(key string, table string) bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isKey:inTable:"), objc.String(key), objc.String(table))
 	return rv
 }
 
+
+
 // Returns the size of the page for the specified paper type.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrinter/pageSize(forPaper:)
+
 func (p_ Printer) PageSizeForPaper(paperName unsafe.Pointer) coregraphics.CGSize {
 	rv := objc.Send[coregraphics.CGSize](p_.ID, objc.Sel("pageSizeForPaper:"), paperName)
 	return rv
 }
 
+
+
 // Returns the status of the specified table.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrinter/statusForTable:
+
 func (p_ Printer) StatusForTable(tableName string) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("statusForTable:"), objc.String(tableName))
 	return rv
 }
 
+
+
 // Returns the first occurrence of a value associated with specified key.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrinter/stringForKey:inTable:
+
 func (p_ Printer) StringForKeyInTable(key string, table string) foundation.String {
 	rv := objc.Send[foundation.String](p_.ID, objc.Sel("stringForKey:inTable:"), objc.String(key), objc.String(table))
 	return rv
 }
 
+
+
 // Returns an array of strings, one for each occurrence, associated with specified key.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrinter/stringListForKey:inTable:
+
 func (p_ Printer) StringListForKeyInTable(key string, table string) foundation.Array {
 	rv := objc.Send[foundation.Array](p_.ID, objc.Sel("stringListForKey:inTable:"), objc.String(key), objc.String(table))
 	return rv
 }
 
+
 // A dictionary of keys and values that describe the device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrinter/deviceDescription
+
 func (p_ Printer) DeviceDescription() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("deviceDescription"))
 	return rv
 }
 
+
 // The PostScript language level recognized by the printer.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrinter/languageLevel
+
 func (p_ Printer) LanguageLevel() int {
 	rv := objc.Send[int](p_.ID, objc.Sel("languageLevel"))
 	return rv
 }
 
+
 // A description of the printer’s make and model.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrinter/type
+
 func (p_ Printer) Type() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("type"))
 	return rv
 }
 
+
 // The printer’s name.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsprinter/name
+
 func (p_ Printer) Name() string {
 	rv := objc.Send[string](p_.ID, objc.Sel("name"))
 	return rv
 }
 
 
-// SetName sets the value of the name property.
 // The printer’s name.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsprinter/name
+
 func (p_ Printer) SetName(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setName:"), objc.String(value))
 }

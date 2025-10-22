@@ -37,8 +37,13 @@ type IAltitudeData interface {
 // Data for a recorded change in altitude.
 //
 // You do not create instances of this class directly. When you want to receive altimeter changes, create an instance of the class and use that object to query for events or to start the delivery of events. The altimeter object creates new instances of this class at appropriate times and delivers them to the handler you specify.
+
+
+// Data for a recorded change in altitude.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAltitudeData
+
 type AltitudeData struct {
 	LogItem
 }
@@ -84,17 +89,23 @@ func NewAltitudeData() AltitudeData {
 }
 
 
+
 // The recorded pressure, in kilopascals.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAltitudeData/pressure
+
 func (a_ AltitudeData) Pressure() foundation.Number {
 	rv := objc.Send[foundation.Number](a_.ID, objc.Sel("pressure"))
 	return rv
 }
 
+
 // The change in altitude (in meters) since the first reported event.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAltitudeData/relativeAltitude
+
 func (a_ AltitudeData) RelativeAltitude() foundation.Number {
 	rv := objc.Send[foundation.Number](a_.ID, objc.Sel("relativeAltitude"))
 	return rv

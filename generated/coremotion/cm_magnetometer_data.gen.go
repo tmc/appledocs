@@ -37,8 +37,13 @@ type IMagnetometerData interface {
 // Measurements of the Earth’s magnetic field relative to the device.
 //
 // Your application can obtain samples of magnetometer measurements, as represented by instances of this class, from the block handler of the method or from the property of the class.
+
+
+// Measurements of the Earth’s magnetic field relative to the device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMagnetometerData
+
 type MagnetometerData struct {
 	LogItem
 }
@@ -84,28 +89,34 @@ func NewMagnetometerData() MagnetometerData {
 }
 
 
+
 // Returns the magnetic field measured by the magnetometer.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMagnetometerData/magneticField
+
 func (m_ MagnetometerData) MagneticField() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("magneticField"))
 	return rv
 }
 
+
 // The latest sample of magnetometer data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremotion/cmmotionmanager/magnetometerdata
+
 func (m_ MagnetometerData) MagnetometerData() CMMagnetometerData {
 	rv := objc.Send[CMMagnetometerData](m_.ID, objc.Sel("magnetometerData"))
 	return rv
 }
 
 
-// SetMagnetometerData sets the value of the magnetometerData property.
 // The latest sample of magnetometer data.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremotion/cmmotionmanager/magnetometerdata
+
 func (m_ MagnetometerData) SetMagnetometerData(value ICMMagnetometerData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMagnetometerData:"), value)
 }

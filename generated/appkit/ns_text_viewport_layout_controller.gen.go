@@ -44,8 +44,13 @@ type ITextViewportLayoutController interface {
 // Manages the layout process inside the viewport interacting with its delegate.
 //
 // A viewport is a rectangular area within a flipped coordinate system expanding along the y-axis. With text contents, lines advance expanding the view in the current writing direction. The viewport defines the active area where the framework lays out text fragments. In most cases, the area corresponds to the user visible area with an additional over-scroll region.
+
+
+// Manages the layout process inside the viewport interacting with its delegate.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextViewportLayoutController
+
 type TextViewportLayoutController struct {
 	objectivec.Object
 }
@@ -89,74 +94,86 @@ func NewTextViewportLayoutController() TextViewportLayoutController {
 }
 
 
+
 // The delegate for the text layout manager object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextviewportlayoutcontroller/delegate
+
 func (t_ TextViewportLayoutController) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("delegate"))
 	return rv
 }
 
 
-// SetDelegate sets the value of the delegate property.
 // The delegate for the text layout manager object.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextviewportlayoutcontroller/delegate
+
 func (t_ TextViewportLayoutController) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDelegate:"), value)
 }
 
+
 // Returns the text layout manager for this viewport layout controller.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextviewportlayoutcontroller/textlayoutmanager
+
 func (t_ TextViewportLayoutController) TextLayoutManager() NSTextLayoutManager {
 	rv := objc.Send[NSTextLayoutManager](t_.ID, objc.Sel("textLayoutManager"))
 	return rv
 }
 
 
-// SetTextLayoutManager sets the value of the textLayoutManager property.
 // Returns the text layout manager for this viewport layout controller.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextviewportlayoutcontroller/textlayoutmanager
+
 func (t_ TextViewportLayoutController) SetTextLayoutManager(value ITextLayoutManager) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextLayoutManager:"), value)
 }
 
+
 // Returns the visible bounds of the view, plus the overdraw area.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextviewportlayoutcontroller/viewportbounds
+
 func (t_ TextViewportLayoutController) ViewportBounds() coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](t_.ID, objc.Sel("viewportBounds"))
 	return rv
 }
 
 
-// SetViewportBounds sets the value of the viewportBounds property.
 // Returns the visible bounds of the view, plus the overdraw area.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextviewportlayoutcontroller/viewportbounds
+
 func (t_ TextViewportLayoutController) SetViewportBounds(value coregraphics.CGRect) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setViewportBounds:"), value)
 }
 
+
 // Returns the text range of the current viewport layout.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextviewportlayoutcontroller/viewportrange
+
 func (t_ TextViewportLayoutController) ViewportRange() NSTextRange {
 	rv := objc.Send[NSTextRange](t_.ID, objc.Sel("viewportRange"))
 	return rv
 }
 
 
-// SetViewportRange sets the value of the viewportRange property.
 // Returns the text range of the current viewport layout.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextviewportlayoutcontroller/viewportrange
+
 func (t_ TextViewportLayoutController) SetViewportRange(value ITextRange) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setViewportRange:"), value)
 }

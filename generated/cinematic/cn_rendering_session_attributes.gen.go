@@ -37,8 +37,13 @@ type ICNRenderingSessionAttributes interface {
 // A structure for movie-wide attributes required for proper rendering.
 //
 // The attributes include camera intrinsics from the camera on which the video was originally recorded.
+
+
+// A structure for movie-wide attributes required for proper rendering.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNRenderingSessionAttributes
+
 type CNRenderingSessionAttributes struct {
 	objectivec.Object
 }
@@ -82,16 +87,22 @@ func NewCNRenderingSessionAttributes() CNRenderingSessionAttributes {
 }
 
 
+
 // Loads the rendering session attributes from an asset asynchronously.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNRenderingSessionAttributes/loadFromAsset:completionHandler:
+
 func (cc _CNRenderingSessionAttributesClass) LoadFromAssetCompletionHandler(asset avfoundation.IAsset, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("loadFromAsset:completionHandler:"), asset, completionHandler)
 }
 
+
 // The primary version number used to render the original Cinematic move that determines compatibility.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNRenderingSessionAttributes/renderingVersion
+
 func (c_ CNRenderingSessionAttributes) RenderingVersion() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("renderingVersion"))
 	return rv

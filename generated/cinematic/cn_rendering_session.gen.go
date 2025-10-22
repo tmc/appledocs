@@ -38,8 +38,13 @@ type ICNRenderingSession interface {
 }
 
 // An object representing the context in which rendering occurs.
+
+
+// An object representing the context in which rendering occurs.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNRenderingSession-8yghc
+
 type CNRenderingSession struct {
 	objectivec.Object
 }
@@ -83,33 +88,46 @@ func NewCNRenderingSession() CNRenderingSession {
 }
 
 
+
+
 // Encodes a command to render a shallow depth of field (SDoF) image to two metal textures as luma and chroma.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNRenderingSession-8yghc/encodeRenderToCommandBuffer:frameAttributes:sourceImage:sourceDisparity:destinationLuma:destinationChroma:
+
 func (c_ CNRenderingSession) EncodeRenderToCommandBufferFrameAttributesSourceImageSourceDisparityDestinationLumaDestinationChroma(commandBuffer objectivec.IObject, frameAttributes ICNRenderingSessionFrameAttributes, sourceImage unsafe.Pointer, sourceDisparity unsafe.Pointer, destinationLuma objectivec.IObject, destinationChroma objectivec.IObject) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("encodeRenderToCommandBuffer:frameAttributes:sourceImage:sourceDisparity:destinationLuma:destinationChroma:"), commandBuffer, frameAttributes, sourceImage, sourceDisparity, destinationLuma, destinationChroma)
 	return rv
 }
 
+
 // The command queue of a Metal device that creates the command buffer.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNRenderingSession-8yghc/commandQueue
+
 func (c_ CNRenderingSession) CommandQueue() objc.ID {
 	rv := objc.Send[objc.ID](c_.ID, objc.Sel("commandQueue"))
 	return rv
 }
 
+
 // The preferred transform of the rendered image for display purposes.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNRenderingSession-8yghc/preferredTransform
+
 func (c_ CNRenderingSession) PreferredTransform() coregraphics.CGAffineTransform {
 	rv := objc.Send[coregraphics.CGAffineTransform](c_.ID, objc.Sel("preferredTransform"))
 	return rv
 }
 
+
 // Rendering session attributes for a Cinematic asset.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNRenderingSession-8yghc/sessionAttributes
+
 func (c_ CNRenderingSession) SessionAttributes() CNRenderingSessionAttributes {
 	rv := objc.Send[CNRenderingSessionAttributes](c_.ID, objc.Sel("sessionAttributes"))
 	return rv

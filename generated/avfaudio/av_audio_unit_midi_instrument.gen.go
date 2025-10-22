@@ -34,8 +34,13 @@ type IAudioUnitMIDIInstrument interface {
 // An object that represents music devices or remote instruments.
 //
 // Use an in a chain that processes real-time (live) input and has the general concept of music events; for example, notes.
+
+
+// An object that represents music devices or remote instruments.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioUnitMIDIInstrument
+
 type AudioUnitMIDIInstrument struct {
 	AudioUnit
 }

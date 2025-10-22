@@ -33,8 +33,13 @@ type INetworkBrowserWindowController interface {
 }
 
 // A window controller that displays available network audio devices.
+
+
+// A window controller that displays available network audio devices.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/CANetworkBrowserWindowController
+
 type NetworkBrowserWindowController struct {
 	appkit.WindowController
 }
@@ -81,9 +86,12 @@ func NewNetworkBrowserWindowController() NetworkBrowserWindowController {
 
 
 
+
 // Returns a Boolean value that indicates whether the current machine hardware supports Audio Video Bridging (AVB).
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/CANetworkBrowserWindowController/isAVBSupported()
+
 func (nc _NetworkBrowserWindowControllerClass) IsAVBSupported() bool {
 	rv := objc.Send[bool](objc.ID(nc.class), objc.Sel("isAVBSupported"))
 	return rv

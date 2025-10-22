@@ -43,8 +43,13 @@ type ISubscriber interface {
 }
 
 // A cellular network subscriber.
+
+
+// A cellular network subscriber.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTSubscriber
+
 type Subscriber struct {
 	objectivec.Object
 }
@@ -88,81 +93,96 @@ func NewSubscriber() Subscriber {
 }
 
 
+
 // A delegate that receives updates on the subscriber information.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTSubscriber/delegate
+
 func (s_ Subscriber) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](s_.ID, objc.Sel("delegate"))
 	return rv
 }
 
 
-// SetDelegate sets the value of the delegate property.
 // A delegate that receives updates on the subscriber information.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTSubscriber/delegate
+
 func (s_ Subscriber) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDelegate:"), value)
 }
 
+
 // A data object containing authorization information about the subscriber.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctsubscriber/carriertoken
+
 func (s_ Subscriber) CarrierToken() foundation.Data {
 	rv := objc.Send[foundation.Data](s_.ID, objc.Sel("carrierToken"))
 	return rv
 }
 
 
-// SetCarrierToken sets the value of the carrierToken property.
 // A data object containing authorization information about the subscriber.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctsubscriber/carriertoken
+
 func (s_ Subscriber) SetCarrierToken(value foundation.IData) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setCarrierToken:"), value)
 }
 
+
 // An implementation-defined identifier used to correlate this subscriber with information vended by other APIs.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctsubscriber/identifier
+
 func (s_ Subscriber) Identifier() string {
 	rv := objc.Send[string](s_.ID, objc.Sel("identifier"))
 	return rv
 }
 
 
-// SetIdentifier sets the value of the identifier property.
 // An implementation-defined identifier used to correlate this subscriber with information vended by other APIs.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctsubscriber/identifier
+
 func (s_ Subscriber) SetIdentifier(value string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIdentifier:"), objc.String(value))
 }
 
+
 // A Boolean property that indicates whether a SIM is present.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctsubscriber/issiminserted
+
 func (s_ Subscriber) IsSIMInserted() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isSIMInserted"))
 	return rv
 }
 
 
-// SetIsSIMInserted sets the value of the isSIMInserted property.
 // A Boolean property that indicates whether a SIM is present.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctsubscriber/issiminserted
+
 func (s_ Subscriber) SetIsSIMInserted(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsSIMInserted:"), value)
 }
 
+
 // The name of the notification indicating that the carrier token is available.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctsubscribertokenrefreshed
+
 func (s_ Subscriber) CTSubscriberTokenRefreshed() string {
 	rv := objc.Send[string](s_.ID, objc.Sel("CTSubscriberTokenRefreshed"))
 	return rv

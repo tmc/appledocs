@@ -40,8 +40,13 @@ type IFSTask interface {
 // A class that enables a file system module to pass log messages and completion notifications to clients.
 //
 // FSKit creates an instance of this class for each long-running operations.
+
+
+// A class that enables a file system module to pass log messages and completion notifications to clients.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSTask
+
 type FSTask struct {
 	objectivec.Object
 }
@@ -85,31 +90,41 @@ func NewFSTask() FSTask {
 }
 
 
+
+
 // Informs the client that the task completed.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSTask/didComplete(error:)
+
 func (f_ FSTask) DidCompleteWithError(error_ foundation.IError) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("didCompleteWithError:"), error_)
 }
 
+
+
 // Logs the given string to the initiating client.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSTask/logMessage(_:)
+
 func (f_ FSTask) LogMessage(str string) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("logMessage:"), objc.String(str))
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSTask/cancellationHandler
+
 func (f_ FSTask) CancellationHandler() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("cancellationHandler"))
 	return rv
 }
 
 
-// SetCancellationHandler sets the value of the cancellationHandler property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSTask/cancellationHandler
+
 func (f_ FSTask) SetCancellationHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setCancellationHandler:"), value)
 }

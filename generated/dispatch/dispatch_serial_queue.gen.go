@@ -35,8 +35,13 @@ type IDispatchSerialQueue interface {
 // A custom dispatch queue that schedules tasks for serial execution on an arbitrary thread.
 //
 // You do not create objects of this type directly. You receive a queue of the appropriate type when you create a new object.
+
+
+// A custom dispatch queue that schedules tasks for serial execution on an arbitrary thread.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/DispatchSerialQueue
+
 type DispatchSerialQueue struct {
 	objectivec.Object
 }

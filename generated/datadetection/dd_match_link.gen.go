@@ -36,8 +36,13 @@ type IDDMatchLink interface {
 // An object that contains a web link that the data detection system matches.
 //
 // The DataDetection framework returns a link match in a object, which contains a .
+
+
+// An object that contains a web link that the data detection system matches.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchLink
+
 type DDMatchLink struct {
 	DDMatch
 }
@@ -83,9 +88,12 @@ func NewDDMatchLink() DDMatchLink {
 }
 
 
+
 // An address for a web resource, such as a webpage or image.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchLink/url
+
 func (d_ DDMatchLink) URL() foundation.URL {
 	rv := objc.Send[foundation.URL](d_.ID, objc.Sel("URL"))
 	return rv

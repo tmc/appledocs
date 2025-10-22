@@ -32,8 +32,13 @@ type IHKClinicalType interface {
 }
 
 // A type that identifies samples that contain clinical record data.
+
+
+// A type that identifies samples that contain clinical record data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKClinicalType
+
 type HKClinicalType struct {
 	HKSampleType
 }

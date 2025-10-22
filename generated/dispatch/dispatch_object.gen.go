@@ -35,8 +35,13 @@ type IDispatchObject interface {
 // The base class for most dispatch types.
 //
 // There are many types of dispatch objects, including , , and . The base dispatch object interfaces allow you to manage memory, pause and resume execution, define object context, log task data, and more.
+
+
+// The base class for most dispatch types.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/DispatchObject
+
 type DispatchObject struct {
 	objectivec.Object
 }

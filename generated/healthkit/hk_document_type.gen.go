@@ -34,8 +34,13 @@ type IHKDocumentType interface {
 // A sample type used to create queries for documents.
 //
 // To create a document type instance, use the class’s convenience method.
+
+
+// A sample type used to create queries for documents.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKDocumentType
+
 type HKDocumentType struct {
 	HKSampleType
 }

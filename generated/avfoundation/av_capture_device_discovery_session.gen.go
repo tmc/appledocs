@@ -38,8 +38,13 @@ type ICaptureDeviceDiscoverySession interface {
 // An object that finds capture devices that match specific search criteria.
 //
 // After creating a device discovery session, query its property to find a device to use for capture. You can also key-value observe this property to monitor changes to the list of available devices.
+
+
+// An object that finds capture devices that match specific search criteria.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/DiscoverySession
+
 type CaptureDeviceDiscoverySession struct {
 	objectivec.Object
 }
@@ -87,43 +92,54 @@ func NewCaptureDeviceDiscoverySession() CaptureDeviceDiscoverySession {
 
 // Creates a discovery session that finds devices that match the specified criteria.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/DiscoverySession/init(deviceTypes:mediaType:position:)
-func NewCaptureDeviceDiscoverySessionWithDeviceTypesMediaTypePosition(deviceTypes []string, mediaType MediaType, position CaptureDevicePosition) CaptureDeviceDiscoverySession {
+
+func NewCaptureDeviceDiscoverySessionWithDeviceTypesMediaTypePosition(deviceTypes []string, mediaType IMediaType, position ICaptureDevicePosition) CaptureDeviceDiscoverySession {
 	rv := objc.Send[CaptureDeviceDiscoverySession](objc.ID(getCaptureDeviceDiscoverySessionClass().class), objc.Sel("discoverySessionWithDeviceTypes:mediaType:position:"), deviceTypes, mediaType, position)
 	return rv
 }
 
 
+
 // Creates a discovery session that finds devices that match the specified criteria.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/DiscoverySession/init(deviceTypes:mediaType:position:)
-func (cc _CaptureDeviceDiscoverySessionClass) DiscoverySessionWithDeviceTypesMediaTypePosition(deviceTypes []string, mediaType MediaType, position CaptureDevicePosition) unsafe.Pointer {
+
+func (cc _CaptureDeviceDiscoverySessionClass) DiscoverySessionWithDeviceTypesMediaTypePosition(deviceTypes []string, mediaType IMediaType, position ICaptureDevicePosition) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("discoverySessionWithDeviceTypes:mediaType:position:"), deviceTypes, mediaType, position)
 	return rv
 }
 
+
 // A list of devices that match the search criteria of the discovery session.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/DiscoverySession/devices
+
 func (c_ CaptureDeviceDiscoverySession) Devices() []CaptureDevice {
 	rv := objc.Send[[]CaptureDevice](c_.ID, objc.Sel("devices"))
 	return rv
 }
 
+
 // Sets of capture devices that you can use simultaneously in a multi-camera session.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/discoverysession/supportedmulticamdevicesets
+
 func (c_ CaptureDeviceDiscoverySession) SupportedMultiCamDeviceSets() AVCaptureDevice {
 	rv := objc.Send[AVCaptureDevice](c_.ID, objc.Sel("supportedMultiCamDeviceSets"))
 	return rv
 }
 
 
-// SetSupportedMultiCamDeviceSets sets the value of the supportedMultiCamDeviceSets property.
 // Sets of capture devices that you can use simultaneously in a multi-camera session.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/discoverysession/supportedmulticamdevicesets
+
 func (c_ CaptureDeviceDiscoverySession) SetSupportedMultiCamDeviceSets(value IAVCaptureDevice) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSupportedMultiCamDeviceSets:"), value)
 }

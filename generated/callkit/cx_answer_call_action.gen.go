@@ -36,8 +36,13 @@ type ICXAnswerCallAction interface {
 // An encapsulation of the act of answering an incoming call.
 //
 // is a concrete subclass of . When an incoming call is allowed by the system and approved by the user, the provider sends to its delegate. The provider’s delegate calls the method to indicate that the action was successfully performed. To indicate that the call connected at a time other than the current time, you can instead call the .
+
+
+// An encapsulation of the act of answering an incoming call.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXAnswerCallAction
+
 type CXAnswerCallAction struct {
 	CXCallAction
 }
@@ -83,9 +88,13 @@ func NewCXAnswerCallAction() CXAnswerCallAction {
 }
 
 
+
+
 // Reports the successful execution of the action at the specified time.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXAnswerCallAction/fulfill(withDateConnected:)
+
 func (c_ CXAnswerCallAction) FulfillWithDateConnected(dateConnected foundation.IDate) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("fulfillWithDateConnected:"), dateConnected)
 }

@@ -41,8 +41,13 @@ type ITask interface {
 // An abstract base class for machine learning tasks.
 //
 // You don’t create use this class directly. Instead, use a class that inherits from this one, such as .
+
+
+// An abstract base class for machine learning tasks.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLTask
+
 type Task struct {
 	objectivec.Object
 }
@@ -86,39 +91,56 @@ func NewTask() Task {
 }
 
 
+
+
 // Cancels a machine learning task before it completes.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLTask/cancel()
+
 func (t_ Task) Cancel() {
 	objc.Send[objc.ID](t_.ID, objc.Sel("cancel"))
 }
 
+
+
 // Begins or resumes a machine learning task.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLTask/resume()
+
 func (t_ Task) Resume() {
 	objc.Send[objc.ID](t_.ID, objc.Sel("resume"))
 }
 
+
 // The underlying error if the task is in a failed state.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLTask/error
+
 func (t_ Task) Error() foundation.Error {
 	rv := objc.Send[foundation.Error](t_.ID, objc.Sel("error"))
 	return rv
 }
 
+
 // The current state of the machine learning task.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLTask/state
+
 func (t_ Task) State() TaskState {
 	rv := objc.Send[TaskState](t_.ID, objc.Sel("state"))
 	return rv
 }
 
+
 // A unique name of the task to distinguish it from all other tasks at runtime.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLTask/taskIdentifier
+
 func (t_ Task) TaskIdentifier() string {
 	rv := objc.Send[string](t_.ID, objc.Sel("taskIdentifier"))
 	return rv

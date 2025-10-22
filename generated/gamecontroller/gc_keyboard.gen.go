@@ -37,8 +37,13 @@ type IGCKeyboard interface {
 // An object that represents a physical keyboard connected to a device.
 //
 // To get the keyboard object and its input values, register for the (Swift) or (Objective-C) notification for when a keyboard connects to the device, or use the class property. Then get the input values from the keyboard object’s controller profile.
+
+
+// An object that represents a physical keyboard connected to a device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCKeyboard
+
 type GCKeyboard struct {
 	objectivec.Object
 }
@@ -82,20 +87,23 @@ func NewGCKeyboard() GCKeyboard {
 }
 
 
+
 // The controller profile for the keyboard.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gckeyboard/keyboardinput
+
 func (g_ GCKeyboard) KeyboardInput() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("keyboardInput"))
 	return rv
 }
 
 
-// SetKeyboardInput sets the value of the keyboardInput property.
 // The controller profile for the keyboard.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gckeyboard/keyboardinput
+
 func (g_ GCKeyboard) SetKeyboardInput(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setKeyboardInput:"), value)
 }

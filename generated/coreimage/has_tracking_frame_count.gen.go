@@ -32,8 +32,11 @@ type IhasTrackingFrameCount interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFaceFeature/hasTrackingFrameCount-c.ivar
+
 type hasTrackingFrameCount struct {
 	objectivec.Object
 }

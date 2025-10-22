@@ -38,8 +38,13 @@ type IIncrementalStoreNode interface {
 // A concrete class used to represent basic nodes in a Core Data incremental store.
 //
 // A node represents a single record in a persistent store. You can subclass to provide custom behavior.
+
+
+// A concrete class used to represent basic nodes in a Core Data incremental store.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSIncrementalStoreNode
+
 type IncrementalStoreNode struct {
 	objectivec.Object
 }
@@ -83,28 +88,34 @@ func NewIncrementalStoreNode() IncrementalStoreNode {
 }
 
 
+
 // The object ID that identifies the data stored by the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSIncrementalStoreNode/objectID
+
 func (i_ IncrementalStoreNode) ObjectID() NSManagedObjectID {
 	rv := objc.Send[NSManagedObjectID](i_.ID, objc.Sel("objectID"))
 	return rv
 }
 
+
 // The version of data in the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsincrementalstorenode/version
+
 func (i_ IncrementalStoreNode) Version() uint64 {
 	rv := objc.Send[uint64](i_.ID, objc.Sel("version"))
 	return rv
 }
 
 
-// SetVersion sets the value of the version property.
 // The version of data in the receiver.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsincrementalstorenode/version
+
 func (i_ IncrementalStoreNode) SetVersion(value uint64) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setVersion:"), value)
 }

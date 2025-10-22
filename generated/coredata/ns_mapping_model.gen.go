@@ -37,8 +37,13 @@ type IMappingModel interface {
 }
 
 // A model instance that specifies how to map a model from a source to a destination managed object model.
+
+
+// A model instance that specifies how to map a model from a source to a destination managed object model.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMappingModel
+
 type MappingModel struct {
 	objectivec.Object
 }
@@ -86,7 +91,9 @@ func NewMappingModel() MappingModel {
 
 // Returns the mapping model that will translate data from the source to the destination model.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMappingModel/init(from:forSourceModel:destinationModel:)
+
 func NewMappingModelFromBundlesForSourceModelDestinationModel(bundles []foundation.IBundle, sourceModel IManagedObjectModel, destinationModel IManagedObjectModel) MappingModel {
 	rv := objc.Send[MappingModel](objc.ID(getMappingModelClass().class), objc.Sel("mappingModelFromBundles:forSourceModel:destinationModel:"), bundles, sourceModel, destinationModel)
 	return rv
@@ -96,7 +103,9 @@ func NewMappingModelFromBundlesForSourceModelDestinationModel(bundles []foundati
 
 // Returns a mapping model initialized from a given URL.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMappingModel/init(contentsOf:)
+
 func NewMappingModelWithContentsOfURL(url foundation.IURL) MappingModel {
 	instance := getMappingModelClass().Alloc()
 	rv := objc.Send[MappingModel](instance.ID, objc.Sel("initWithContentsOfURL:"), url)
@@ -105,44 +114,56 @@ func NewMappingModelWithContentsOfURL(url foundation.IURL) MappingModel {
 }
 
 
+
 // Returns a newly created mapping model that will migrate data from the source to the destination model.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMappingModel/inferredMappingModel(forSourceModel:destinationModel:)
+
 func (mc _MappingModelClass) InferredMappingModelForSourceModelDestinationModelError(sourceModel IManagedObjectModel, destinationModel IManagedObjectModel, error_ unsafe.Pointer) MappingModel {
 	rv := objc.Send[MappingModel](objc.ID(mc.class), objc.Sel("inferredMappingModelForSourceModel:destinationModel:error:"), sourceModel, destinationModel, error_)
 	return rv
 }
 
+
 // Returns the mapping model that will translate data from the source to the destination model.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMappingModel/init(from:forSourceModel:destinationModel:)
+
 func (mc _MappingModelClass) MappingModelFromBundlesForSourceModelDestinationModel(bundles []foundation.IBundle, sourceModel IManagedObjectModel, destinationModel IManagedObjectModel) MappingModel {
 	rv := objc.Send[MappingModel](objc.ID(mc.class), objc.Sel("mappingModelFromBundles:forSourceModel:destinationModel:"), bundles, sourceModel, destinationModel)
 	return rv
 }
 
+
 // The entity mappings for the mapping model, keyed by name.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMappingModel/entityMappingsByName
+
 func (m_ MappingModel) EntityMappingsByName() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("entityMappingsByName"))
 	return rv
 }
 
+
 // The entity mappings for the mapping model.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmappingmodel/entitymappings
+
 func (m_ MappingModel) EntityMappings() NSEntityMapping {
 	rv := objc.Send[NSEntityMapping](m_.ID, objc.Sel("entityMappings"))
 	return rv
 }
 
 
-// SetEntityMappings sets the value of the entityMappings property.
 // The entity mappings for the mapping model.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmappingmodel/entitymappings
+
 func (m_ MappingModel) SetEntityMappings(value IEntityMapping) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEntityMappings:"), value)
 }

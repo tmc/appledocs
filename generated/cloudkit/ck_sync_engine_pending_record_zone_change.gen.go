@@ -35,8 +35,13 @@ type ICKSyncEnginePendingRecordZoneChange interface {
 }
 
 // Describes an unsent record modification.
+
+
+// Describes an unsent record modification.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEnginePendingRecordZoneChange
+
 type CKSyncEnginePendingRecordZoneChange struct {
 	objectivec.Object
 }
@@ -84,7 +89,9 @@ func NewCKSyncEnginePendingRecordZoneChange() CKSyncEnginePendingRecordZoneChang
 
 // Creates a record zone change of the specified type for the given record.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEnginePendingRecordZoneChange/initWithRecordID:type:
+
 func NewCKSyncEnginePendingRecordZoneChangeWithRecordIDType(recordID ICKRecordID, type_ CKSyncEnginePendingRecordZoneChangeType) CKSyncEnginePendingRecordZoneChange {
 	instance := getCKSyncEnginePendingRecordZoneChangeClass().Alloc()
 	rv := objc.Send[CKSyncEnginePendingRecordZoneChange](instance.ID, objc.Sel("initWithRecordID:type:"), recordID, type_)
@@ -93,17 +100,23 @@ func NewCKSyncEnginePendingRecordZoneChangeWithRecordIDType(recordID ICKRecordID
 }
 
 
+
 // The identifier of the modified record.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEnginePendingRecordZoneChange/recordID
+
 func (c_ CKSyncEnginePendingRecordZoneChange) RecordID() CKRecordID {
 	rv := objc.Send[CKRecordID](c_.ID, objc.Sel("recordID"))
 	return rv
 }
 
+
 // The type of change to make.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEnginePendingRecordZoneChange/type
+
 func (c_ CKSyncEnginePendingRecordZoneChange) Type() CKSyncEnginePendingRecordZoneChangeType {
 	rv := objc.Send[CKSyncEnginePendingRecordZoneChangeType](c_.ID, objc.Sel("type"))
 	return rv

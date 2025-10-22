@@ -53,8 +53,13 @@ type IPlayerInterstitialEventMonitor interface {
 // An object that monitors the scheduling and progress of interstitial events.
 //
 // This object monitors interstitial events that exist within the content of the primary items, such as events defined by an HLS media playlist, and also events managed by an object. You can access the schedule of interstitial events through the property. When it’s time to present an interstitial event, the system suspends playback of the primary item and changes its player’s to with a value of . When the system suspends primary playback, it creates player items based on the event’s to play interstitial content. The interstitial player temporarily assumes the primary player’s output configuration, such as routing its visual output to player layers that reference the primary player. After the interstitial player finishes playback, or its current item otherwise becomes , playback of primary content resumes.
+
+
+// An object that monitors the scheduling and progress of interstitial events.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerInterstitialEventMonitor
+
 type PlayerInterstitialEventMonitor struct {
 	objectivec.Object
 }
@@ -98,164 +103,191 @@ func NewPlayerInterstitialEventMonitor() PlayerInterstitialEventMonitor {
 }
 
 
+
 // The reason the player is currently waiting for playback to begin or resume.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayer/reasonforwaitingtoplay
+
 func (p_ PlayerInterstitialEventMonitor) ReasonForWaitingToPlay() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("reasonForWaitingToPlay"))
 	return rv
 }
 
 
-// SetReasonForWaitingToPlay sets the value of the reasonForWaitingToPlay property.
 // The reason the player is currently waiting for playback to begin or resume.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayer/reasonforwaitingtoplay
+
 func (p_ PlayerInterstitialEventMonitor) SetReasonForWaitingToPlay(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setReasonForWaitingToPlay:"), value)
 }
 
+
 // A value that indicates whether playback is in progress, paused indefinitely, or waiting for network conditions to improve.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayer/timecontrolstatus-swift.property
+
 func (p_ PlayerInterstitialEventMonitor) TimeControlStatus() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("timeControlStatus"))
 	return rv
 }
 
 
-// SetTimeControlStatus sets the value of the timeControlStatus property.
 // A value that indicates whether playback is in progress, paused indefinitely, or waiting for network conditions to improve.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayer/timecontrolstatus-swift.property
+
 func (p_ PlayerInterstitialEventMonitor) SetTimeControlStatus(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setTimeControlStatus:"), value)
 }
 
+
 // An array of player item configurations to use as templates for player items that play interstitial content.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/templateitems
+
 func (p_ PlayerInterstitialEventMonitor) TemplateItems() AVPlayerItem {
 	rv := objc.Send[AVPlayerItem](p_.ID, objc.Sel("templateItems"))
 	return rv
 }
 
 
-// SetTemplateItems sets the value of the templateItems property.
 // An array of player item configurations to use as templates for player items that play interstitial content.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/templateitems
+
 func (p_ PlayerInterstitialEventMonitor) SetTemplateItems(value IAVPlayerItem) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setTemplateItems:"), value)
 }
 
+
 // The current interstitial event.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitor/currentevent
+
 func (p_ PlayerInterstitialEventMonitor) CurrentEvent() AVPlayerInterstitialEvent {
 	rv := objc.Send[AVPlayerInterstitialEvent](p_.ID, objc.Sel("currentEvent"))
 	return rv
 }
 
 
-// SetCurrentEvent sets the value of the currentEvent property.
 // The current interstitial event.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitor/currentevent
+
 func (p_ PlayerInterstitialEventMonitor) SetCurrentEvent(value IAVPlayerInterstitialEvent) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCurrentEvent:"), value)
 }
 
+
 // The skip control label for the currentEvent.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitor/currenteventskipcontrollabel
+
 func (p_ PlayerInterstitialEventMonitor) CurrentEventSkipControlLabel() string {
 	rv := objc.Send[string](p_.ID, objc.Sel("currentEventSkipControlLabel"))
 	return rv
 }
 
 
-// SetCurrentEventSkipControlLabel sets the value of the currentEventSkipControlLabel property.
 // The skip control label for the currentEvent.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitor/currenteventskipcontrollabel
+
 func (p_ PlayerInterstitialEventMonitor) SetCurrentEventSkipControlLabel(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCurrentEventSkipControlLabel:"), objc.String(value))
 }
 
+
 // The skippable event state for the currentEvent.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitor/currenteventskippablestate
+
 func (p_ PlayerInterstitialEventMonitor) CurrentEventSkippableState() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("currentEventSkippableState"))
 	return rv
 }
 
 
-// SetCurrentEventSkippableState sets the value of the currentEventSkippableState property.
 // The skippable event state for the currentEvent.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitor/currenteventskippablestate
+
 func (p_ PlayerInterstitialEventMonitor) SetCurrentEventSkippableState(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCurrentEventSkippableState:"), value)
 }
 
+
 // The schedule of interstitial events.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitor/events
+
 func (p_ PlayerInterstitialEventMonitor) Events() AVPlayerInterstitialEvent {
 	rv := objc.Send[AVPlayerInterstitialEvent](p_.ID, objc.Sel("events"))
 	return rv
 }
 
 
-// SetEvents sets the value of the events property.
 // The schedule of interstitial events.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitor/events
+
 func (p_ PlayerInterstitialEventMonitor) SetEvents(value IAVPlayerInterstitialEvent) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setEvents:"), value)
 }
 
+
 // An object that plays interstitial content.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitor/interstitialplayer
+
 func (p_ PlayerInterstitialEventMonitor) InterstitialPlayer() AVQueuePlayer {
 	rv := objc.Send[AVQueuePlayer](p_.ID, objc.Sel("interstitialPlayer"))
 	return rv
 }
 
 
-// SetInterstitialPlayer sets the value of the interstitialPlayer property.
 // An object that plays interstitial content.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitor/interstitialplayer
+
 func (p_ PlayerInterstitialEventMonitor) SetInterstitialPlayer(value IAVQueuePlayer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setInterstitialPlayer:"), value)
 }
 
+
 // An object that plays primary content.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitor/primaryplayer
+
 func (p_ PlayerInterstitialEventMonitor) PrimaryPlayer() AVPlayer {
 	rv := objc.Send[AVPlayer](p_.ID, objc.Sel("primaryPlayer"))
 	return rv
 }
 
 
-// SetPrimaryPlayer sets the value of the primaryPlayer property.
 // An object that plays primary content.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitor/primaryplayer
+
 func (p_ PlayerInterstitialEventMonitor) SetPrimaryPlayer(value IAVPlayer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPrimaryPlayer:"), value)
 }

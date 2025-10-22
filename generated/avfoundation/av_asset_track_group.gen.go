@@ -38,8 +38,13 @@ type IAssetTrackGroup interface {
 // A group of related tracks in an asset.
 //
 // A track group describes a group of related alternative tracks, only one of which should play at a time. Groups of alternative tracks typically contain variations of the same content, like subtitles in multiple translations. You can inspect an asset’s track groups by loading the value of its property.
+
+
+// A group of related tracks in an asset.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetTrackGroup
+
 type AssetTrackGroup struct {
 	objectivec.Object
 }
@@ -83,20 +88,23 @@ func NewAssetTrackGroup() AssetTrackGroup {
 }
 
 
+
 // The IDs of the tracks in the group.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrackgroup/trackids
+
 func (a_ AssetTrackGroup) TrackIDs() foundation.Number {
 	rv := objc.Send[foundation.Number](a_.ID, objc.Sel("trackIDs"))
 	return rv
 }
 
 
-// SetTrackIDs sets the value of the trackIDs property.
 // The IDs of the tracks in the group.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrackgroup/trackids
+
 func (a_ AssetTrackGroup) SetTrackIDs(value foundation.INumber) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setTrackIDs:"), value)
 }

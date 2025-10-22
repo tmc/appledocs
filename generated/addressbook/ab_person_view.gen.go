@@ -39,8 +39,13 @@ type IABPersonView interface {
 }
 
 // An object that provides a view for displaying and editing contacts.
+
+
+// An object that provides a view for displaying and editing contacts.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPersonView
+
 type ABPersonView struct {
 	appkit.View
 }
@@ -86,56 +91,65 @@ func NewABPersonView() ABPersonView {
 }
 
 
+
 // A Boolean value that indicates whether the person view is in editing mode.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPersonView/editing
+
 func (a_ ABPersonView) Editing() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("editing"))
 	return rv
 }
 
 
-// SetEditing sets the value of the editing property.
 // A Boolean value that indicates whether the person view is in editing mode.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPersonView/editing
+
 func (a_ ABPersonView) SetEditing(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setEditing:"), value)
 }
 
+
 // The contact record being displayed.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPersonView/person
+
 func (a_ ABPersonView) Person() ABPerson {
 	rv := objc.Send[ABPerson](a_.ID, objc.Sel("person"))
 	return rv
 }
 
 
-// SetPerson sets the value of the person property.
 // The contact record being displayed.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPersonView/person
+
 func (a_ ABPersonView) SetPerson(value IABPerson) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPerson:"), value)
 }
 
+
 // Indicates whether the person view should display data from person records that are linked with the person record being displayed.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPersonView/shouldShowLinkedPeople
+
 func (a_ ABPersonView) ShouldShowLinkedPeople() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("shouldShowLinkedPeople"))
 	return rv
 }
 
 
-// SetShouldShowLinkedPeople sets the value of the shouldShowLinkedPeople property.
 // Indicates whether the person view should display data from person records that are linked with the person record being displayed.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPersonView/shouldShowLinkedPeople
+
 func (a_ ABPersonView) SetShouldShowLinkedPeople(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setShouldShowLinkedPeople:"), value)
 }

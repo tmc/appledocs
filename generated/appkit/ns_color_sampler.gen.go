@@ -36,8 +36,13 @@ type IColorSampler interface {
 // An object that displays the system’s color-sampling interface and returns the selected color to your app.
 //
 // Create an object when you want the user to select a color based on existing onscreen colors. When you call the method, AppKit shows the system’s color sampler interface and reports the selected color back to the provided block.
+
+
+// An object that displays the system’s color-sampling interface and returns the selected color to your app.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorSampler
+
 type ColorSampler struct {
 	objectivec.Object
 }
@@ -81,9 +86,13 @@ func NewColorSampler() ColorSampler {
 }
 
 
+
+
 // Displays the system color-sampling interface asynchronously and reports the selected color back to your app.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorSampler/show(selectionHandler:)
+
 func (c_ ColorSampler) ShowSamplerWithSelectionHandler(selectionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("showSamplerWithSelectionHandler:"), selectionHandler)
 }

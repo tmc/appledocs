@@ -38,8 +38,13 @@ type ICarrier interface {
 }
 
 // Information about the user’s cellular service provider, such as its unique identifier and whether it allows VoIP calls on its network.
+
+
+// Information about the user’s cellular service provider, such as its unique identifier and whether it allows VoIP calls on its network.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCarrier
+
 type Carrier struct {
 	objectivec.Object
 }
@@ -83,41 +88,56 @@ func NewCarrier() Carrier {
 }
 
 
+
 // Indicates if the carrier allows making VoIP calls on its network.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCarrier/allowsVOIP
+
 func (c_ Carrier) AllowsVOIP() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("allowsVOIP"))
 	return rv
 }
 
+
 // The name of the user’s home cellular service provider.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCarrier/carrierName
+
 func (c_ Carrier) CarrierName() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("carrierName"))
 	return rv
 }
 
+
 // The ISO country code for the user’s cellular service provider.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCarrier/isoCountryCode
+
 func (c_ Carrier) IsoCountryCode() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("isoCountryCode"))
 	return rv
 }
 
+
 // The mobile country code (MCC) for the user’s cellular service provider.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCarrier/mobileCountryCode
+
 func (c_ Carrier) MobileCountryCode() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("mobileCountryCode"))
 	return rv
 }
 
+
 // The mobile network code for the user’s cellular service provider.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCarrier/mobileNetworkCode
+
 func (c_ Carrier) MobileNetworkCode() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("mobileNetworkCode"))
 	return rv

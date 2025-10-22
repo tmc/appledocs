@@ -48,8 +48,13 @@ type IParameter interface {
 }
 
 // An object that represents a single audio unit parameter.
+
+
+// An object that represents a single audio unit parameter.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameter
+
 type Parameter struct {
 	ParameterNode
 }
@@ -95,119 +100,165 @@ func NewParameter() Parameter {
 }
 
 
+
+
 // Sets the parameter’s value, avoiding redundant notifications to the originator.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameter/setValue(_:originator:)
+
 func (p_ Parameter) SetValueOriginator(value IValue, originator IParameterObserverToken) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setValue:originator:"), value, originator)
 }
 
+
+
 // Sets the parameter’s value, preserving the host time of the gesture that initiated the change.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameter/setValue(_:originator:atHostTime:)
+
 func (p_ Parameter) SetValueOriginatorAtHostTime(value IValue, originator IParameterObserverToken, hostTime uint64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setValue:originator:atHostTime:"), value, originator, hostTime)
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameter/setValue(_:originator:atHostTime:eventType:)
+
 func (p_ Parameter) SetValueOriginatorAtHostTimeEventType(value IValue, originator IParameterObserverToken, hostTime uint64, eventType ParameterAutomationEventType) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setValue:originator:atHostTime:eventType:"), value, originator, hostTime, eventType)
 }
 
+
+
 // Gets the string representation of a parameter value.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameter/string(fromValue:)
+
 func (p_ Parameter) StringFromValue(value IAUValue) foundation.String {
 	rv := objc.Send[foundation.String](p_.ID, objc.Sel("stringFromValue:"), value)
 	return rv
 }
 
+
+
 // Converts a string into a parameter value.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameter/value(from:)
+
 func (p_ Parameter) ValueFromString(string_ string) Value {
 	rv := objc.Send[Value](p_.ID, objc.Sel("valueFromString:"), objc.String(string_))
 	return rv
 }
 
+
 // The parameter’s address.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameter/address
+
 func (p_ Parameter) Address() ParameterAddress {
 	rv := objc.Send[ParameterAddress](p_.ID, objc.Sel("address"))
 	return rv
 }
 
+
 // Any other parameter’s whose values may change as a side effect of this parameter’s value changing.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameter/dependentParameters
+
 func (p_ Parameter) DependentParameters() []foundation.Number {
 	rv := objc.Send[[]foundation.Number](p_.ID, objc.Sel("dependentParameters"))
 	return rv
 }
 
+
 // The parameter’s characteristic details.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameter/flags
+
 func (p_ Parameter) Flags() AudioUnitParameterOptions {
 	rv := objc.Send[AudioUnitParameterOptions](p_.ID, objc.Sel("flags"))
 	return rv
 }
 
+
 // The parameter’s maximum value.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameter/maxValue
+
 func (p_ Parameter) MaxValue() Value {
 	rv := objc.Send[Value](p_.ID, objc.Sel("maxValue"))
 	return rv
 }
 
+
 // The parameter’s minimum value.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameter/minValue
+
 func (p_ Parameter) MinValue() Value {
 	rv := objc.Send[Value](p_.ID, objc.Sel("minValue"))
 	return rv
 }
 
+
 // The parameter’s unit of measurement.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameter/unit
+
 func (p_ Parameter) Unit() AudioUnitParameterUnit {
 	rv := objc.Send[AudioUnitParameterUnit](p_.ID, objc.Sel("unit"))
 	return rv
 }
 
+
 // The parameter’s localized unit name.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameter/unitName
+
 func (p_ Parameter) UnitName() string {
 	rv := objc.Send[string](p_.ID, objc.Sel("unitName"))
 	return rv
 }
 
+
 // The parameter’s current value.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameter/value
+
 func (p_ Parameter) Value() Value {
 	rv := objc.Send[Value](p_.ID, objc.Sel("value"))
 	return rv
 }
 
 
-// SetValue sets the value of the value property.
 // The parameter’s current value.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameter/value
+
 func (p_ Parameter) SetValue(value IValue) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setValue:"), value)
 }
 
+
 // The parameter’s localized value strings.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameter/valueStrings
+
 func (p_ Parameter) ValueStrings() []string {
 	rv := objc.Send[[]string](p_.ID, objc.Sel("valueStrings"))
 	return rv

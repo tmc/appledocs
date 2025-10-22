@@ -34,8 +34,13 @@ type IHKElectrocardiogramQuery interface {
 // A query that returns the underlying voltage measurements for an electrocardiogram sample.
 //
 // Use the query to access the individual voltage measurements associated with an sample. The query calls the data handler once for each voltage measurement, passing a instance that contains the voltage data. After it has sent all the voltage measurements, the query calls the data handler one last time, passing . If an error occurs, it stops collecting voltage data and passes instead. Electrocardiogram queries are immutable: You set query’s properties when you create it, and they don’t change.
+
+
+// A query that returns the underlying voltage measurements for an electrocardiogram sample.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKElectrocardiogramQuery
+
 type HKElectrocardiogramQuery struct {
 	HKQuery
 }

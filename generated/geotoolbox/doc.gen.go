@@ -2,12 +2,16 @@
 
 // Package geotoolbox provides Go bindings for the GeoToolbox framework.
 //
-// Determine place descriptor information for map coordinates. [Full Topic]
+// Determine place descriptor information for map coordinates.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to GeoToolbox without requiring cgo.
+
+// Determine place descriptor information for map coordinates.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GeoToolbox
+
 package geotoolbox
 
 import (

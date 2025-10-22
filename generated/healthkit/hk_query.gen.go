@@ -44,8 +44,13 @@ type IHKQuery interface {
 // An abstract class for all the query classes in HealthKit.
 //
 // The class is the basis for all the query objects that retrieve data from the HealthKit store. The class is an abstract class. You should never instantiate it directly. Instead, you always work with one of its concrete subclasses.
+
+
+// An abstract class for all the query classes in HealthKit.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKQuery
+
 type HKQuery struct {
 	objectivec.Object
 }
@@ -89,96 +94,120 @@ func NewHKQuery() HKQuery {
 }
 
 
+
 // Returns a predicate for a specific FHIR resource.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKQuery/predicateForClinicalRecords(from:fhirResourceType:identifier:)
+
 func (hc _HKQueryClass) PredicateForClinicalRecordsFromSourceFHIRResourceTypeIdentifier(source IHKSource, resourceType HKFHIRResourceType, identifier string) foundation.Predicate {
 	rv := objc.Send[foundation.Predicate](objc.ID(hc.class), objc.Sel("predicateForClinicalRecordsFromSource:FHIRResourceType:identifier:"), source, resourceType, objc.String(identifier))
 	return rv
 }
 
+
 // Returns a predicate for a specific FHIR type.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKQuery/predicateForClinicalRecords(withFHIRResourceType:)
+
 func (hc _HKQueryClass) PredicateForClinicalRecordsWithFHIRResourceType(resourceType HKFHIRResourceType) foundation.Predicate {
 	rv := objc.Send[foundation.Predicate](objc.ID(hc.class), objc.Sel("predicateForClinicalRecordsWithFHIRResourceType:"), resourceType)
 	return rv
 }
 
+
 // Returns a predicate that matches any objects that have been associated with the provided workout.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKQuery/predicateForObjects(from:)-5irg9
+
 func (hc _HKQueryClass) PredicateForObjectsFromWorkout(workout IHKWorkout) foundation.Predicate {
 	rv := objc.Send[foundation.Predicate](objc.ID(hc.class), objc.Sel("predicateForObjectsFromWorkout:"), workout)
 	return rv
 }
 
+
 // The key path for accessing the object’s metadata dictionary inside a predicate format string.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathmetadata
+
 func (h_ HKQuery) HKPredicateKeyPathMetadata() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathMetadata"))
 	return rv
 }
 
+
 // The key path for accessing the object’s UUID inside a predicate format string.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathuuid
+
 func (h_ HKQuery) HKPredicateKeyPathUUID() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathUUID"))
 	return rv
 }
 
+
 // The type of objects being queried.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquery/objecttype
+
 func (h_ HKQuery) ObjectType() HKObjectType {
 	rv := objc.Send[HKObjectType](h_.ID, objc.Sel("objectType"))
 	return rv
 }
 
 
-// SetObjectType sets the value of the objectType property.
 // The type of objects being queried.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquery/objecttype
+
 func (h_ HKQuery) SetObjectType(value HKObjectType) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setObjectType:"), value)
 }
 
+
 // A predicate used to filter the objects returned from the HealthKit store.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquery/predicate
+
 func (h_ HKQuery) Predicate() foundation.Predicate {
 	rv := objc.Send[foundation.Predicate](h_.ID, objc.Sel("predicate"))
 	return rv
 }
 
 
-// SetPredicate sets the value of the predicate property.
 // A predicate used to filter the objects returned from the HealthKit store.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquery/predicate
+
 func (h_ HKQuery) SetPredicate(value foundation.IPredicate) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setPredicate:"), value)
 }
 
+
 // The type of objects being queried.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquery/sampletype
+
 func (h_ HKQuery) SampleType() HKSampleType {
 	rv := objc.Send[HKSampleType](h_.ID, objc.Sel("sampleType"))
 	return rv
 }
 
 
-// SetSampleType sets the value of the sampleType property.
 // The type of objects being queried.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquery/sampletype
+
 func (h_ HKQuery) SetSampleType(value HKSampleType) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setSampleType:"), value)
 }

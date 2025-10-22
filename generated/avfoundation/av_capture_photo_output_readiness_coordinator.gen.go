@@ -39,8 +39,13 @@ type ICapturePhotoOutputReadinessCoordinator interface {
 // An object that monitors changes to a photo output’s capture readiness.
 //
 // Use this object to coordinate user interface updates on the main queue with a that runs on a background queue. Adopt the protocol in your app and set its implementation as the coordinator’s delegate object to receive callbacks as the associated photo output’s state changes. You can track additional capture requests with this object by calling its method. You can use it to synchronously update shutter button availability and appearance and on the main thread while calling the photo output’s method asynchronously on a background queue.
+
+
+// An object that monitors changes to a photo output’s capture readiness.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCapturePhotoOutputReadinessCoordinator
+
 type CapturePhotoOutputReadinessCoordinator struct {
 	objectivec.Object
 }
@@ -84,38 +89,44 @@ func NewCapturePhotoOutputReadinessCoordinator() CapturePhotoOutputReadinessCoor
 }
 
 
+
 // The coordinator’s delegate object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCapturePhotoOutputReadinessCoordinator/delegate
+
 func (c_ CapturePhotoOutputReadinessCoordinator) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](c_.ID, objc.Sel("delegate"))
 	return rv
 }
 
 
-// SetDelegate sets the value of the delegate property.
 // The coordinator’s delegate object.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCapturePhotoOutputReadinessCoordinator/delegate
+
 func (c_ CapturePhotoOutputReadinessCoordinator) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDelegate:"), value)
 }
 
+
 // A value that specifies whether the photo output is ready to respond to new capture requests in a timely manner.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/capturereadiness-swift.property
+
 func (c_ CapturePhotoOutputReadinessCoordinator) CaptureReadiness() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("captureReadiness"))
 	return rv
 }
 
 
-// SetCaptureReadiness sets the value of the captureReadiness property.
 // A value that specifies whether the photo output is ready to respond to new capture requests in a timely manner.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/capturereadiness-swift.property
+
 func (c_ CapturePhotoOutputReadinessCoordinator) SetCaptureReadiness(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCaptureReadiness:"), value)
 }

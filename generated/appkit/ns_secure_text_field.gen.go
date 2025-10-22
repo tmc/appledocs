@@ -34,8 +34,13 @@ type ISecureTextField interface {
 // A text field that hides the typed text.
 //
 // A secure text field is suitable for use as a password-entry object or for any item in which the text value must be kept secret. uses to implement its user interface.
+
+
+// A text field that hides the typed text.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSecureTextField
+
 type SecureTextField struct {
 	TextField
 }

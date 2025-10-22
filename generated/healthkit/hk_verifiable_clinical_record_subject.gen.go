@@ -40,8 +40,13 @@ type IHKVerifiableClinicalRecordSubject interface {
 // The subject associated with a signed clinical record.
 //
 // objects contain data about the subject from a SMART Health Card. These cards combine both the user’s identity and clinical data into a cryptographically-signed bundle. To protect the subject’s privacy, SMART Health Cards provide the minimum required data. For more information, see .
+
+
+// The subject associated with a signed clinical record.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKVerifiableClinicalRecordSubject
+
 type HKVerifiableClinicalRecordSubject struct {
 	objectivec.Object
 }
@@ -85,38 +90,44 @@ func NewHKVerifiableClinicalRecordSubject() HKVerifiableClinicalRecordSubject {
 }
 
 
+
 // The subject’s birthdate.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordsubject/dateofbirthcomponents
+
 func (h_ HKVerifiableClinicalRecordSubject) DateOfBirthComponents() foundation.DateComponents {
 	rv := objc.Send[foundation.DateComponents](h_.ID, objc.Sel("dateOfBirthComponents"))
 	return rv
 }
 
 
-// SetDateOfBirthComponents sets the value of the dateOfBirthComponents property.
 // The subject’s birthdate.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordsubject/dateofbirthcomponents
+
 func (h_ HKVerifiableClinicalRecordSubject) SetDateOfBirthComponents(value foundation.IDateComponents) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setDateOfBirthComponents:"), value)
 }
 
+
 // The subject’s full name.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordsubject/fullname
+
 func (h_ HKVerifiableClinicalRecordSubject) FullName() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("fullName"))
 	return rv
 }
 
 
-// SetFullName sets the value of the fullName property.
 // The subject’s full name.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordsubject/fullname
+
 func (h_ HKVerifiableClinicalRecordSubject) SetFullName(value string) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setFullName:"), objc.String(value))
 }

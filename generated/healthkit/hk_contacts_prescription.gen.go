@@ -40,8 +40,13 @@ type IHKContactsPrescription interface {
 // A sample that store a prescription for contacts.
 //
 // To create a sample that stores a contacts prescription, start by defining a specification for each eye. Each lens specification object requires a parameter. This measures the lens’s strength for correcting either nearsightedness or farsightedness (measured in units). Next, create values for any of the prescription’s optional parameters. For example, if the prescription corrects for astigmatism, create the and values. The value uses units, while the uses . To add a multifocal correction for reading, create an value using units. To add fitting information for the contact lens, create and values. Both of these values use millimeters. Then you can create the lens specification. After you create your lens specifications, you can create an sample. Then save the sample to the HealthKit store. Finally, add an image or PDF of the prescription to the sample as an attachment.
+
+
+// A sample that store a prescription for contacts.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKContactsPrescription
+
 type HKContactsPrescription struct {
 	HKVisionPrescription
 }
@@ -87,56 +92,65 @@ func NewHKContactsPrescription() HKContactsPrescription {
 }
 
 
+
 // The name of the prescribed brand, based on the contact lens fitting.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcontactsprescription/brand
+
 func (h_ HKContactsPrescription) Brand() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("brand"))
 	return rv
 }
 
 
-// SetBrand sets the value of the brand property.
 // The name of the prescribed brand, based on the contact lens fitting.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcontactsprescription/brand
+
 func (h_ HKContactsPrescription) SetBrand(value string) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setBrand:"), objc.String(value))
 }
 
+
 // The lens specification for the left eye.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcontactsprescription/lefteye
+
 func (h_ HKContactsPrescription) LeftEye() HKContactsLensSpecification {
 	rv := objc.Send[HKContactsLensSpecification](h_.ID, objc.Sel("leftEye"))
 	return rv
 }
 
 
-// SetLeftEye sets the value of the leftEye property.
 // The lens specification for the left eye.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcontactsprescription/lefteye
+
 func (h_ HKContactsPrescription) SetLeftEye(value IHKContactsLensSpecification) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setLeftEye:"), value)
 }
 
+
 // The lens specification for the right eye.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcontactsprescription/righteye
+
 func (h_ HKContactsPrescription) RightEye() HKContactsLensSpecification {
 	rv := objc.Send[HKContactsLensSpecification](h_.ID, objc.Sel("rightEye"))
 	return rv
 }
 
 
-// SetRightEye sets the value of the rightEye property.
 // The lens specification for the right eye.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcontactsprescription/righteye
+
 func (h_ HKContactsPrescription) SetRightEye(value IHKContactsLensSpecification) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setRightEye:"), value)
 }

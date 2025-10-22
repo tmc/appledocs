@@ -45,8 +45,13 @@ type ICNContactFetchRequest interface {
 // An object that defines the options to use when fetching contacts.
 //
 // You need at least one contact property key to fetch a contact’s properties. Use this class with the method to execute the contact fetch request.
+
+
+// An object that defines the options to use when fetching contacts.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFetchRequest
+
 type CNContactFetchRequest struct {
 	CNFetchRequest
 }
@@ -96,7 +101,9 @@ func NewCNContactFetchRequest() CNContactFetchRequest {
 
 // Creates a fetch request for the specified keys.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFetchRequest/init(keysToFetch:)
+
 func NewCNContactFetchRequestWithKeysToFetch(keysToFetch []objc.ID) CNContactFetchRequest {
 	instance := getCNContactFetchRequestClass().Alloc()
 	rv := objc.Send[CNContactFetchRequest](instance.ID, objc.Sel("initWithKeysToFetch:"), keysToFetch)
@@ -105,20 +112,23 @@ func NewCNContactFetchRequestWithKeysToFetch(keysToFetch []objc.ID) CNContactFet
 }
 
 
+
 // The properties to fetch in the returned contacts.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFetchRequest/keysToFetch
+
 func (c_ CNContactFetchRequest) KeysToFetch() []objc.ID {
 	rv := objc.Send[[]objc.ID](c_.ID, objc.Sel("keysToFetch"))
 	return rv
 }
 
 
-// SetKeysToFetch sets the value of the keysToFetch property.
 // The properties to fetch in the returned contacts.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFetchRequest/keysToFetch
+
 func (c_ CNContactFetchRequest) SetKeysToFetch(value []objc.ID) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -133,74 +143,86 @@ func (c_ CNContactFetchRequest) SetKeysToFetch(value []objc.ID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setKeysToFetch:"), nsArray)
 }
 
+
 // A Boolean value that indicates whether to return mutable contacts.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFetchRequest/mutableObjects
+
 func (c_ CNContactFetchRequest) MutableObjects() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("mutableObjects"))
 	return rv
 }
 
 
-// SetMutableObjects sets the value of the mutableObjects property.
 // A Boolean value that indicates whether to return mutable contacts.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFetchRequest/mutableObjects
+
 func (c_ CNContactFetchRequest) SetMutableObjects(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMutableObjects:"), value)
 }
 
+
 // The predicate to match contacts against.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFetchRequest/predicate
+
 func (c_ CNContactFetchRequest) Predicate() foundation.Predicate {
 	rv := objc.Send[foundation.Predicate](c_.ID, objc.Sel("predicate"))
 	return rv
 }
 
 
-// SetPredicate sets the value of the predicate property.
 // The predicate to match contacts against.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFetchRequest/predicate
+
 func (c_ CNContactFetchRequest) SetPredicate(value foundation.IPredicate) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPredicate:"), value)
 }
 
+
 // The sort order for contacts.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFetchRequest/sortOrder
+
 func (c_ CNContactFetchRequest) SortOrder() CNContactSortOrder {
 	rv := objc.Send[CNContactSortOrder](c_.ID, objc.Sel("sortOrder"))
 	return rv
 }
 
 
-// SetSortOrder sets the value of the sortOrder property.
 // The sort order for contacts.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFetchRequest/sortOrder
+
 func (c_ CNContactFetchRequest) SetSortOrder(value ICNContactSortOrder) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSortOrder:"), value)
 }
 
+
 // A Boolean value that indicates whether to return linked contacts as unified contacts.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFetchRequest/unifyResults
+
 func (c_ CNContactFetchRequest) UnifyResults() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("unifyResults"))
 	return rv
 }
 
 
-// SetUnifyResults sets the value of the unifyResults property.
 // A Boolean value that indicates whether to return linked contacts as unified contacts.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFetchRequest/unifyResults
+
 func (c_ CNContactFetchRequest) SetUnifyResults(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setUnifyResults:"), value)
 }

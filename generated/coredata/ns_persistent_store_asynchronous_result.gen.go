@@ -37,8 +37,13 @@ type IPersistentStoreAsynchronousResult interface {
 }
 
 // A concrete class used to represent the results of an asynchronous request.
+
+
+// A concrete class used to represent the results of an asynchronous request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreAsynchronousResult
+
 type PersistentStoreAsynchronousResult struct {
 	PersistentStoreResult
 }
@@ -84,32 +89,45 @@ func NewPersistentStoreAsynchronousResult() PersistentStoreAsynchronousResult {
 }
 
 
+
+
 // Cancels the asynchronous fetch request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreAsynchronousResult/cancel()
+
 func (p_ PersistentStoreAsynchronousResult) Cancel() {
 	objc.Send[objc.ID](p_.ID, objc.Sel("cancel"))
 }
 
+
 // The managed object context for the result.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreAsynchronousResult/managedObjectContext
+
 func (p_ PersistentStoreAsynchronousResult) ManagedObjectContext() NSManagedObjectContext {
 	rv := objc.Send[NSManagedObjectContext](p_.ID, objc.Sel("managedObjectContext"))
 	return rv
 }
 
+
 // An error that contains details if the asynchronous fetch request fails.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreAsynchronousResult/operationError
+
 func (p_ PersistentStoreAsynchronousResult) OperationError() foundation.Error {
 	rv := objc.Send[foundation.Error](p_.ID, objc.Sel("operationError"))
 	return rv
 }
 
+
 // An object that reports progress for the asynchronous fetch request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreAsynchronousResult/progress
+
 func (p_ PersistentStoreAsynchronousResult) Progress() foundation.Progress {
 	rv := objc.Send[foundation.Progress](p_.ID, objc.Sel("progress"))
 	return rv

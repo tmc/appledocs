@@ -33,7 +33,7 @@ type _ABPersonPickerClass struct {
 type IABPersonPicker interface {
 	objectivec.IObject
 	Close()
-	ShowRelativeToRectOfViewPreferredEdge(positioningRect foundation.IRect, positioningView appkit.IView, preferredEdge foundation.IRectEdge)
+	ShowRelativeToRectOfViewPreferredEdge(positioningRect foundation.Rect, positioningView appkit.IView, preferredEdge foundation.IRectEdge)
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
 	Properties() objc.ID
@@ -41,8 +41,13 @@ type IABPersonPicker interface {
 }
 
 // A picker object that you display when you want the user to select contacts.
+
+
+// A picker object that you display when you want the user to select contacts.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPersonPicker
+
 type ABPersonPicker struct {
 	objectivec.Object
 }
@@ -86,52 +91,66 @@ func NewABPersonPicker() ABPersonPicker {
 }
 
 
+
+
 // Closes the picker.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPersonPicker/close
+
 func (a_ ABPersonPicker) Close() {
 	objc.Send[objc.ID](a_.ID, objc.Sel("close"))
 }
 
+
+
 // Shows the picker in a popover relative to a view.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPersonPicker/showRelativeToRect:ofView:preferredEdge:
-func (a_ ABPersonPicker) ShowRelativeToRectOfViewPreferredEdge(positioningRect foundation.IRect, positioningView appkit.IView, preferredEdge foundation.IRectEdge) {
+
+func (a_ ABPersonPicker) ShowRelativeToRectOfViewPreferredEdge(positioningRect foundation.Rect, positioningView appkit.IView, preferredEdge foundation.IRectEdge) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("showRelativeToRect:ofView:preferredEdge:"), positioningRect, positioningView, preferredEdge)
 }
 
+
 // An object the system notifies as the user interacts with the picker.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPersonPicker/delegate
+
 func (a_ ABPersonPicker) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](a_.ID, objc.Sel("delegate"))
 	return rv
 }
 
 
-// SetDelegate sets the value of the delegate property.
 // An object the system notifies as the user interacts with the picker.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPersonPicker/delegate
+
 func (a_ ABPersonPicker) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDelegate:"), value)
 }
 
+
 // An array of properties to display in the picker when the user selects a person.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPersonPicker/properties
+
 func (a_ ABPersonPicker) Properties() objc.ID {
 	rv := objc.Send[objc.ID](a_.ID, objc.Sel("properties"))
 	return rv
 }
 
 
-// SetProperties sets the value of the properties property.
 // An array of properties to display in the picker when the user selects a person.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPersonPicker/properties
+
 func (a_ ABPersonPicker) SetProperties(value objc.ID) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setProperties:"), value)
 }

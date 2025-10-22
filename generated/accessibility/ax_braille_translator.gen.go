@@ -35,8 +35,13 @@ type IAXBrailleTranslator interface {
 }
 
 // Translates print text to Braille and Braille to print text according to the given Braille table.
+
+
+// Translates print text to Braille and Braille to print text according to the given Braille table.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXBrailleTranslator
+
 type AXBrailleTranslator struct {
 	objectivec.Object
 }
@@ -80,17 +85,25 @@ func NewAXBrailleTranslator() AXBrailleTranslator {
 }
 
 
+
+
 // Input Braille should use the unicode Braille characters (0x2800-0x28FF).
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXBrailleTranslator/backTranslateBraille(_:)
+
 func (a_ AXBrailleTranslator) BackTranslateBraille(braille string) AXBrailleTranslationResult {
 	rv := objc.Send[AXBrailleTranslationResult](a_.ID, objc.Sel("backTranslateBraille:"), objc.String(braille))
 	return rv
 }
 
+
+
 // Output Braille uses the unicode Braille characters (0x2800-0x28FF).
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXBrailleTranslator/translatePrintText(_:)
+
 func (a_ AXBrailleTranslator) TranslatePrintText(printText string) AXBrailleTranslationResult {
 	rv := objc.Send[AXBrailleTranslationResult](a_.ID, objc.Sel("translatePrintText:"), objc.String(printText))
 	return rv

@@ -36,8 +36,13 @@ type IDDMatchEmailAddress interface {
 // An object that contains an email address that the data detection system matches.
 //
 // The DataDetection framework returns an email match in a object, which includes an email address, and optionally a label that categorizes the email address.
+
+
+// An object that contains an email address that the data detection system matches.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchEmailAddress
+
 type DDMatchEmailAddress struct {
 	DDMatch
 }
@@ -83,17 +88,23 @@ func NewDDMatchEmailAddress() DDMatchEmailAddress {
 }
 
 
+
 // A string that represents an email address.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchEmailAddress/emailAddress
+
 func (d_ DDMatchEmailAddress) EmailAddress() string {
 	rv := objc.Send[string](d_.ID, objc.Sel("emailAddress"))
 	return rv
 }
 
+
 // A string that categorizes an email address, such as Home or Work.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchEmailAddress/label
+
 func (d_ DDMatchEmailAddress) Label() string {
 	rv := objc.Send[string](d_.ID, objc.Sel("label"))
 	return rv

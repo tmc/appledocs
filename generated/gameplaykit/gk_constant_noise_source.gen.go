@@ -36,8 +36,13 @@ type IConstantNoiseSource interface {
 // A procedural noise generator that outputs a field of a single constant value.
 //
 // Constant noise can be useful as an input to methods that create noise by combining other noise objects through various operations. For example, when using the method you can pass constant noise for some parameters and non-constant noise for other parameters, resulting in a variable displacement along one axis but constant or no displacement along the others. Like all subclasses, a constant noise source represents a noise generation algorithm and its parameters. To make use of a noise source, first create object from it (and optionally apply operations to that noise object or combine it with other noise objects). Then create a object from your noise object, generating a concrete field of values that you can sample from directly or visualize using the or class.
+
+
+// A procedural noise generator that outputs a field of a single constant value.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKConstantNoiseSource
+
 type ConstantNoiseSource struct {
 	NoiseSource
 }
@@ -87,7 +92,9 @@ func NewConstantNoiseSource() ConstantNoiseSource {
 
 // Initializes a noise source with the specified constant value.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKConstantNoiseSource/init(value:)
+
 func NewConstantNoiseSourceWithValue(value float64) ConstantNoiseSource {
 	instance := getConstantNoiseSourceClass().Alloc()
 	rv := objc.Send[ConstantNoiseSource](instance.ID, objc.Sel("initWithValue:"), value)
@@ -96,28 +103,34 @@ func NewConstantNoiseSourceWithValue(value float64) ConstantNoiseSource {
 }
 
 
+
 // Creates a noise source with the specified constant value.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKConstantNoiseSource/constantNoise(withValue:)
+
 func (cc _ConstantNoiseSourceClass) ConstantNoiseWithValue(value float64) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("constantNoiseWithValue:"), value)
 	return rv
 }
 
+
 // The constant value for the generated noise.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKConstantNoiseSource/value
+
 func (c_ ConstantNoiseSource) Value() float64 {
 	rv := objc.Send[float64](c_.ID, objc.Sel("value"))
 	return rv
 }
 
 
-// SetValue sets the value of the value property.
 // The constant value for the generated noise.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKConstantNoiseSource/value
+
 func (c_ ConstantNoiseSource) SetValue(value float64) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setValue:"), value)
 }

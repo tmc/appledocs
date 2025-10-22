@@ -38,8 +38,13 @@ type ITKSmartCardSlotNFCSession interface {
 // NFC session that’s related to NFC smart card slot which was created.
 //
 // Lifetime of this session object is tied to the NFC smart card slot lifetime and once the NFC slot disappears (eg. after a user cancellation, calling end session, or an NFC timeout) the functions will start to fail and return error.
+
+
+// NFC session that’s related to NFC smart card slot which was created.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardSlotNFCSession
+
 type TKSmartCardSlotNFCSession struct {
 	objectivec.Object
 }
@@ -83,24 +88,35 @@ func NewTKSmartCardSlotNFCSession() TKSmartCardSlotNFCSession {
 }
 
 
+
+
 // Ends the NFC slot session and dismisses the system-presented NFC UI (if present).
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardSlotNFCSession/end()
+
 func (t_ TKSmartCardSlotNFCSession) EndSession() {
 	objc.Send[objc.ID](t_.ID, objc.Sel("endSession"))
 }
 
+
+
 // Updates the message of the system-presented NFC UI.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardSlotNFCSession/update(message:)
+
 func (t_ TKSmartCardSlotNFCSession) UpdateWithMessageError(message string, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("updateWithMessage:error:"), objc.String(message), error_)
 	return rv
 }
 
+
 // Smart card slot name of the NFC slot that was created together with this session.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardSlotNFCSession/slotName
+
 func (t_ TKSmartCardSlotNFCSession) SlotName() string {
 	rv := objc.Send[string](t_.ID, objc.Sel("slotName"))
 	return rv

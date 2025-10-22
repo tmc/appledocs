@@ -36,8 +36,13 @@ type ISpheresNoiseSource interface {
 // A procedural noise generator whose output is a 3D field of concentric spherical shells.
 //
 // All noise sources generate infinite 3D fields of noise values, but this fact is especially relevant to sphere noise: by transforming a noise object in 3D, you can sample the noise in ways that “slice” through the spheres. Use this technique (combined with other noise sources and noise processing operations) to create effects such as wood-grain textures. Like all subclasses, a sphere noise source represents a noise generation algorithm and its parameters. To make use of a noise source, first create object from it (and optionally apply operations to that noise object or combine it with other noise objects). Then create a object from your noise object, generating a concrete field of values that you can sample from directly or visualize using the or class.
+
+
+// A procedural noise generator whose output is a 3D field of concentric spherical shells.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKSpheresNoiseSource
+
 type SpheresNoiseSource struct {
 	NoiseSource
 }
@@ -87,7 +92,9 @@ func NewSpheresNoiseSource() SpheresNoiseSource {
 
 // Initializes a sphere noise source with the specified frequency.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKSpheresNoiseSource/init(frequency:)
+
 func NewSpheresNoiseSourceWithFrequency(frequency float64) SpheresNoiseSource {
 	instance := getSpheresNoiseSourceClass().Alloc()
 	rv := objc.Send[SpheresNoiseSource](instance.ID, objc.Sel("initWithFrequency:"), frequency)
@@ -96,28 +103,34 @@ func NewSpheresNoiseSourceWithFrequency(frequency float64) SpheresNoiseSource {
 }
 
 
+
 // Creates a sphere noise source with the specified frequency.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKSpheresNoiseSource/spheresNoise(withFrequency:)
+
 func (sc _SpheresNoiseSourceClass) SpheresNoiseWithFrequency(frequency float64) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("spheresNoiseWithFrequency:"), frequency)
 	return rv
 }
 
+
 // A value that determines the size and spacing of concentric spheres.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKSpheresNoiseSource/frequency
+
 func (s_ SpheresNoiseSource) Frequency() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("frequency"))
 	return rv
 }
 
 
-// SetFrequency sets the value of the frequency property.
 // A value that determines the size and spacing of concentric spheres.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKSpheresNoiseSource/frequency
+
 func (s_ SpheresNoiseSource) SetFrequency(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setFrequency:"), value)
 }

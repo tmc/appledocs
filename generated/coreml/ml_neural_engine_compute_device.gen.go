@@ -34,8 +34,13 @@ type INeuralEngineComputeDevice interface {
 }
 
 // An object that represents a Neural Engine compute device.
+
+
+// An object that represents a Neural Engine compute device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLNeuralEngineComputeDevice
+
 type NeuralEngineComputeDevice struct {
 	objectivec.Object
 }
@@ -79,9 +84,12 @@ func NewNeuralEngineComputeDevice() NeuralEngineComputeDevice {
 }
 
 
+
 // The total number of cores in the Neural Engine.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLNeuralEngineComputeDevice/totalCoreCount
+
 func (n_ NeuralEngineComputeDevice) TotalCoreCount() int {
 	rv := objc.Send[int](n_.ID, objc.Sel("totalCoreCount"))
 	return rv

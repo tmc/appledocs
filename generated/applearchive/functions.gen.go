@@ -50,61 +50,73 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 
 
 
-// AACustomArchiveStreamSetWriteBlobProc is a AppleArchive function. [Full Topic]
+// AACustomArchiveStreamSetWriteBlobProc is a AppleArchive function.
 //
 // Added in macOS 11.0.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppleArchive/AACustomArchiveStreamSetWriteBlobProc
+
 func AACustomArchiveStreamSetWriteBlobProc(s unsafe.Pointer, proc unsafe.Pointer) {
 	_AACustomArchiveStreamSetWriteBlobProc(s, proc)
 	}
 
 
-// AAEntryACLBlobCreateWithPath is a AppleArchive function. [Full Topic]
+// AAEntryACLBlobCreateWithPath is a AppleArchive function.
 //
 // Added in macOS 11.0.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppleArchive/AAEntryACLBlobCreateWithPath
+
 func AAEntryACLBlobCreateWithPath(dir unsafe.Pointer, path unsafe.Pointer, flags unsafe.Pointer) unsafe.Pointer {
 	return _AAEntryACLBlobCreateWithPath(dir, path, flags)
 	}
 
 
-// AAHeaderSetFieldUInt is a AppleArchive function. [Full Topic]
+// AAHeaderSetFieldUInt is a AppleArchive function.
 //
 // Added in macOS 11.0.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppleArchive/AAHeaderSetFieldUInt
+
 func AAHeaderSetFieldUInt(header unsafe.Pointer, i unsafe.Pointer, key unsafe.Pointer, value unsafe.Pointer) int {
 	return _AAHeaderSetFieldUInt(header, i, key, value)
 	}
 
 
-// AEAContextCreateWithEncryptedStream is a AppleArchive function. [Full Topic]
+// AEAContextCreateWithEncryptedStream is a AppleArchive function.
 //
 // Added in macOS 11.0.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppleArchive/AEAContextCreateWithEncryptedStream
+
 func AEAContextCreateWithEncryptedStream(encrypted_stream unsafe.Pointer) unsafe.Pointer {
 	return _AEAContextCreateWithEncryptedStream(encrypted_stream)
 	}
 
 
-// AEAContextGenerateFieldBlob is a AppleArchive function. [Full Topic]
+// AEAContextGenerateFieldBlob is a AppleArchive function.
 //
 // Added in macOS 12.0.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppleArchive/AEAContextGenerateFieldBlob
+
 func AEAContextGenerateFieldBlob(context unsafe.Pointer, field unsafe.Pointer) int {
 	return _AEAContextGenerateFieldBlob(context, field)
 	}
 
 
-// AEAContextGetFieldBlob is a AppleArchive function. [Full Topic]
+// AEAContextGetFieldBlob is a AppleArchive function.
 //
 // Added in macOS 11.0.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppleArchive/AEAContextGetFieldBlob
+
 func AEAContextGetFieldBlob(context unsafe.Pointer, field unsafe.Pointer, representation unsafe.Pointer, buf_capacity unsafe.Pointer, buf unsafe.Pointer, buf_size unsafe.Pointer) int {
 	return _AEAContextGetFieldBlob(context, field, representation, buf_capacity, buf, buf_size)
 	}

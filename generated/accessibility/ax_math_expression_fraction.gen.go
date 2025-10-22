@@ -34,8 +34,11 @@ type IAXMathExpressionFraction interface {
 	SetNumeratorExpression(value IAXMathExpression)
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionFraction
+
 type AXMathExpressionFraction struct {
 	AXMathExpression
 }
@@ -79,24 +82,28 @@ func NewAXMathExpressionFraction() AXMathExpressionFraction {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionFraction/denimonatorExpression
+
 func (a_ AXMathExpressionFraction) DenimonatorExpression() AXMathExpression {
 	rv := objc.Send[AXMathExpression](a_.ID, objc.Sel("denimonatorExpression"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axmathexpressionfraction/numeratorexpression
+
 func (a_ AXMathExpressionFraction) NumeratorExpression() AXMathExpression {
 	rv := objc.Send[AXMathExpression](a_.ID, objc.Sel("numeratorExpression"))
 	return rv
 }
 
 
-// SetNumeratorExpression sets the value of the numeratorExpression property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axmathexpressionfraction/numeratorexpression
+
 func (a_ AXMathExpressionFraction) SetNumeratorExpression(value IAXMathExpression) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setNumeratorExpression:"), value)
 }

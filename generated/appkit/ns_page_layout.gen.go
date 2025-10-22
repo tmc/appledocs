@@ -40,8 +40,13 @@ type IPageLayout interface {
 // A panel that queries the user for information such as paper type and orientation.
 //
 // A page layout panel is typically displayed in response to the user selecting the Page Setup menu item. You obtain an instance with the class method. The pane can then be run as a sheet using or modally using or . For design guidance, see .
+
+
+// A panel that queries the user for information such as paper type and orientation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPageLayout
+
 type PageLayout struct {
 	objectivec.Object
 }
@@ -85,51 +90,68 @@ func NewPageLayout() PageLayout {
 }
 
 
+
 // Returns a newly created page layout object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPageLayout/pageLayout
+
 func (pc _PageLayoutClass) PageLayout() PageLayout {
 	rv := objc.Send[PageLayout](objc.ID(pc.class), objc.Sel("pageLayout"))
 	return rv
 }
 
+
+
 // Returns the page layout panel’s accessory view.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPageLayout/accessoryView
+
 func (p_ PageLayout) AccessoryView() View {
 	rv := objc.Send[View](p_.ID, objc.Sel("accessoryView"))
 	return rv
 }
 
+
+
 // Adds the specified controller of an accessory view to be presented in the page setup panel.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPageLayout/addAccessoryController(_:)
+
 func (p_ PageLayout) AddAccessoryController(accessoryController IViewController) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("addAccessoryController:"), accessoryController)
 }
 
+
 // An array of accessory view controllers belonging to the page layout panel.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPageLayout/accessoryControllers
+
 func (p_ PageLayout) AccessoryControllers() []ViewController {
 	rv := objc.Send[[]ViewController](p_.ID, objc.Sel("accessoryControllers"))
 	return rv
 }
 
+
 // The printing information object used when the page layout panel is run.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspagelayout/printinfo
+
 func (p_ PageLayout) PrintInfo() NSPrintInfo {
 	rv := objc.Send[NSPrintInfo](p_.ID, objc.Sel("printInfo"))
 	return rv
 }
 
 
-// SetPrintInfo sets the value of the printInfo property.
 // The printing information object used when the page layout panel is run.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspagelayout/printinfo
+
 func (p_ PageLayout) SetPrintInfo(value IPrintInfo) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPrintInfo:"), value)
 }

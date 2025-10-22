@@ -48,8 +48,13 @@ type IWindowTab interface {
 // A tab associated with a window that is part of a tabbing group.
 //
 // describes the way a window displays as part of a tabbed window group. The properties of are configurable at any time, but only take effect when the associated displays in a tab. AppKit automatically creates an instance of for each . You can access a window’s tab object using the property.
+
+
+// A tab associated with a window that is part of a tabbing group.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTab
+
 type WindowTab struct {
 	objectivec.Object
 }
@@ -93,110 +98,128 @@ func NewWindowTab() WindowTab {
 }
 
 
+
 // An optional accessory view for the tab.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTab/accessoryView
+
 func (w_ WindowTab) AccessoryView() NSView {
 	rv := objc.Send[NSView](w_.ID, objc.Sel("accessoryView"))
 	return rv
 }
 
 
-// SetAccessoryView sets the value of the accessoryView property.
 // An optional accessory view for the tab.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTab/accessoryView
+
 func (w_ WindowTab) SetAccessoryView(value IView) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setAccessoryView:"), value)
 }
 
+
 // The title for the window tab, specified as an attributed string.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTab/attributedTitle
+
 func (w_ WindowTab) AttributedTitle() foundation.AttributedString {
 	rv := objc.Send[foundation.AttributedString](w_.ID, objc.Sel("attributedTitle"))
 	return rv
 }
 
 
-// SetAttributedTitle sets the value of the attributedTitle property.
 // The title for the window tab, specified as an attributed string.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTab/attributedTitle
+
 func (w_ WindowTab) SetAttributedTitle(value foundation.IAttributedString) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setAttributedTitle:"), value)
 }
 
+
 // The title for the window tab.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTab/title
+
 func (w_ WindowTab) Title() string {
 	rv := objc.Send[string](w_.ID, objc.Sel("title"))
 	return rv
 }
 
 
-// SetTitle sets the value of the title property.
 // The title for the window tab.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTab/title
+
 func (w_ WindowTab) SetTitle(value string) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
 
+
 // The tooltip for this window tab.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTab/toolTip
+
 func (w_ WindowTab) ToolTip() string {
 	rv := objc.Send[string](w_.ID, objc.Sel("toolTip"))
 	return rv
 }
 
 
-// SetToolTip sets the value of the toolTip property.
 // The tooltip for this window tab.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTab/toolTip
+
 func (w_ WindowTab) SetToolTip(value string) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setToolTip:"), objc.String(value))
 }
 
+
 // An object that represents information about a window when it displays as a tab.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/tab
+
 func (w_ WindowTab) Tab() NSWindowTab {
 	rv := objc.Send[NSWindowTab](w_.ID, objc.Sel("tab"))
 	return rv
 }
 
 
-// SetTab sets the value of the tab property.
 // An object that represents information about a window when it displays as a tab.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/tab
+
 func (w_ WindowTab) SetTab(value IWindowTab) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setTab:"), value)
 }
 
+
 // A value that allows a group of related windows.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/tabbingidentifier-swift.property
+
 func (w_ WindowTab) TabbingIdentifier() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("tabbingIdentifier"))
 	return rv
 }
 
 
-// SetTabbingIdentifier sets the value of the tabbingIdentifier property.
 // A value that allows a group of related windows.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/tabbingidentifier-swift.property
+
 func (w_ WindowTab) SetTabbingIdentifier(value unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setTabbingIdentifier:"), value)
 }

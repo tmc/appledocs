@@ -33,8 +33,11 @@ type IOneTimeCodeCredentialIdentity interface {
 	Label() string
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASOneTimeCodeCredentialIdentity
+
 type OneTimeCodeCredentialIdentity struct {
 	objectivec.Object
 }
@@ -76,8 +79,10 @@ func NewOneTimeCodeCredentialIdentity() OneTimeCodeCredentialIdentity {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASOneTimeCodeCredentialIdentity/label
+
 func (o_ OneTimeCodeCredentialIdentity) Label() string {
 	rv := objc.Send[string](o_.ID, objc.Sel("label"))
 	return rv

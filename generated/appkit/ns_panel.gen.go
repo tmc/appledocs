@@ -42,8 +42,13 @@ type IPanel interface {
 // A special kind of window that typically performs a function that is auxiliary to the main window.
 //
 // For details about how panels work (especially to find out how their behavior differs from window behavior), see .
+
+
+// A special kind of window that typically performs a function that is auxiliary to the main window.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPanel
+
 type Panel struct {
 	Window
 }
@@ -89,74 +94,86 @@ func NewPanel() Panel {
 }
 
 
+
 // A Boolean value that indicates whether the receiver becomes the key window only when needed.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPanel/becomesKeyOnlyIfNeeded
+
 func (p_ Panel) BecomesKeyOnlyIfNeeded() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("becomesKeyOnlyIfNeeded"))
 	return rv
 }
 
 
-// SetBecomesKeyOnlyIfNeeded sets the value of the becomesKeyOnlyIfNeeded property.
 // A Boolean value that indicates whether the receiver becomes the key window only when needed.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPanel/becomesKeyOnlyIfNeeded
+
 func (p_ Panel) SetBecomesKeyOnlyIfNeeded(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setBecomesKeyOnlyIfNeeded:"), value)
 }
 
+
 // A Boolean value that indicates whether the receiver is a floating panel.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPanel/isFloatingPanel
+
 func (p_ Panel) FloatingPanel() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("floatingPanel"))
 	return rv
 }
 
 
-// SetFloatingPanel sets the value of the floatingPanel property.
 // A Boolean value that indicates whether the receiver is a floating panel.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPanel/isFloatingPanel
+
 func (p_ Panel) SetFloatingPanel(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setFloatingPanel:"), value)
 }
 
+
 // A Boolean value that indicates whether the panel receives keyboard and mouse events even when some other window is being run modally.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPanel/worksWhenModal
+
 func (p_ Panel) WorksWhenModal() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("worksWhenModal"))
 	return rv
 }
 
 
-// SetWorksWhenModal sets the value of the worksWhenModal property.
 // A Boolean value that indicates whether the panel receives keyboard and mouse events even when some other window is being run modally.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPanel/worksWhenModal
+
 func (p_ Panel) SetWorksWhenModal(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setWorksWhenModal:"), value)
 }
 
+
 // A Boolean value that indicates whether the receiver is a floating panel.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspanel/isfloatingpanel
+
 func (p_ Panel) IsFloatingPanel() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isFloatingPanel"))
 	return rv
 }
 
 
-// SetIsFloatingPanel sets the value of the isFloatingPanel property.
 // A Boolean value that indicates whether the receiver is a floating panel.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspanel/isfloatingpanel
+
 func (p_ Panel) SetIsFloatingPanel(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsFloatingPanel:"), value)
 }

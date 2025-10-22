@@ -2,12 +2,16 @@
 
 // Package groupactivities provides Go bindings for the GroupActivities framework.
 //
-// Create app-specific activities your users can share and experience together. [Full Topic]
+// Create app-specific activities your users can share and experience together.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to GroupActivities without requiring cgo.
+
+// Create app-specific activities your users can share and experience together.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GroupActivities
+
 package groupactivities
 
 import (

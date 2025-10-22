@@ -37,8 +37,13 @@ type ISActivityItem interface {
 // An abstract base class for gathering information about an activity.
 //
 // You don’t typically use an instance of this class directly. Instead, use one of its subclasses to represent a particular activity metric. For example, use a to add a score to a activity.
+
+
+// An abstract base class for gathering information about an activity.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSActivityItem
+
 type SActivityItem struct {
 	SObject
 }
@@ -84,28 +89,34 @@ func NewSActivityItem() SActivityItem {
 }
 
 
+
 // An identifier for the activity item.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSActivityItem/identifier
+
 func (s_ SActivityItem) Identifier() string {
 	rv := objc.Send[string](s_.ID, objc.Sel("identifier"))
 	return rv
 }
 
+
 // A human readable name for the activity item.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSActivityItem/title
+
 func (s_ SActivityItem) Title() string {
 	rv := objc.Send[string](s_.ID, objc.Sel("title"))
 	return rv
 }
 
 
-// SetTitle sets the value of the title property.
 // A human readable name for the activity item.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSActivityItem/title
+
 func (s_ SActivityItem) SetTitle(value string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setTitle:"), objc.String(value))
 }

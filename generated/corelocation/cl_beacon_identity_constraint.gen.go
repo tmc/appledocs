@@ -41,8 +41,13 @@ type IBeaconIdentityConstraint interface {
 // Identity characteristics that can match one or more beacons.
 //
 // A constraint specifies beacon identity characteristics. Use constraints to check for matching beacons by comparing the beacon’s identity characteristics ( , , and ) to those in the constraint. Constraints always specify a UUID value, but the major and minor values are optional. A beacon satisfies the constraint if all three identity characteristics of the beacon match the same characteristic of the constraint. Major and minor characteristics are wildcards if they have no value. A major or minor wildcard value matches any value in the beacon’s corresponding characteristic.
+
+
+// Identity characteristics that can match one or more beacons.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeaconIdentityConstraint
+
 type BeaconIdentityConstraint struct {
 	BeaconIdentityCondition
 }
@@ -88,56 +93,65 @@ func NewBeaconIdentityConstraint() BeaconIdentityConstraint {
 }
 
 
+
 // The major value that the observed beacon transmitted.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corelocation/clbeacon/major
+
 func (b_ BeaconIdentityConstraint) Major() foundation.Number {
 	rv := objc.Send[foundation.Number](b_.ID, objc.Sel("major"))
 	return rv
 }
 
 
-// SetMajor sets the value of the major property.
 // The major value that the observed beacon transmitted.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corelocation/clbeacon/major
+
 func (b_ BeaconIdentityConstraint) SetMajor(value foundation.INumber) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setMajor:"), value)
 }
 
+
 // The minor value that the observed beacon transmitted.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corelocation/clbeacon/minor
+
 func (b_ BeaconIdentityConstraint) Minor() foundation.Number {
 	rv := objc.Send[foundation.Number](b_.ID, objc.Sel("minor"))
 	return rv
 }
 
 
-// SetMinor sets the value of the minor property.
 // The minor value that the observed beacon transmitted.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corelocation/clbeacon/minor
+
 func (b_ BeaconIdentityConstraint) SetMinor(value foundation.INumber) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setMinor:"), value)
 }
 
+
 // The UUID that the observed beacon transmitted.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corelocation/clbeacon/uuid
+
 func (b_ BeaconIdentityConstraint) Uuid() foundation.UUID {
 	rv := objc.Send[foundation.UUID](b_.ID, objc.Sel("uuid"))
 	return rv
 }
 
 
-// SetUuid sets the value of the uuid property.
 // The UUID that the observed beacon transmitted.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corelocation/clbeacon/uuid
+
 func (b_ BeaconIdentityConstraint) SetUuid(value foundation.IUUID) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setUuid:"), value)
 }

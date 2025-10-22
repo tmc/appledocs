@@ -120,7 +120,7 @@ func NewCompoundPredicateNotPredicateWithSubpredicate(predicate IPredicate) Comp
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCompoundPredicate/init(type:subpredicates:)
 
-func NewCompoundPredicateWithTypeSubpredicates(type_ CompoundPredicateType, subpredicates []Predicate) CompoundPredicate {
+func NewCompoundPredicateWithTypeSubpredicates(type_ ICompoundPredicateType, subpredicates []Predicate) CompoundPredicate {
 	instance := getCompoundPredicateClass().Alloc()
 	rv := objc.Send[CompoundPredicate](instance.ID, objc.Sel("initWithType:subpredicates:"), type_, subpredicates)
 	rv.Autorelease()

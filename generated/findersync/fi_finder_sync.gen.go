@@ -35,8 +35,13 @@ type IFIFinderSync interface {
 // A type to subclass to add badges, custom shortcut menus, and toolbar buttons to the Finder.
 //
 // Subclass the FIFinderSync class when you want to customize the appearance of the Finder. Although the FIFinderSync class doesn’t provide any developer accessible API, it does adopt the protocol. This protocol declares methods you can implement to modify the appearance of the Finder. For more information on these methods, see . To learn more about creating a Finder Sync extension, see in .
+
+
+// A type to subclass to add badges, custom shortcut menus, and toolbar buttons to the Finder.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FinderSync/FIFinderSync-swift.class
+
 type FIFinderSync struct {
 	objectivec.Object
 }

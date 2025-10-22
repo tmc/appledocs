@@ -55,8 +55,13 @@ type IAccessPoint interface {
 // An object that allows players to view and manage their Game Center information from within your game.
 //
 // The access point displays a control in a corner of your game that opens a Game Center dashboard when the player taps or clicks it. Use the property to get the shared access point object. GameKit attaches the access point to the window you specify in the property, in the corner you specify using the property. If you don’t specify a parent window, GameKit infers an appropriate location. For the location of the access point on visionOS, see . To display highlights, set the property to . Then set to to display the access point control.
+
+
+// An object that allows players to view and manage their Game Center information from within your game.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKAccessPoint
+
 type AccessPoint struct {
 	objectivec.Object
 }
@@ -100,154 +105,181 @@ func NewAccessPoint() AccessPoint {
 }
 
 
+
 // A Boolean value that indicates whether the access point is visible.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKAccessPoint/isVisible
+
 func (a_ AccessPoint) Visible() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("visible"))
 	return rv
 }
 
+
 // A Boolean value that indicates whether to display highlights for achievements and current ranks for leaderboards.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKAccessPoint/showHighlights
+
 func (a_ AccessPoint) ShowHighlights() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("showHighlights"))
 	return rv
 }
 
 
-// SetShowHighlights sets the value of the showHighlights property.
 // A Boolean value that indicates whether to display highlights for achievements and current ranks for leaderboards.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKAccessPoint/showHighlights
+
 func (a_ AccessPoint) SetShowHighlights(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setShowHighlights:"), value)
 }
 
+
 // The frame of the access point in screen coordinates.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkaccesspoint/frameinscreencoordinates
+
 func (a_ AccessPoint) FrameInScreenCoordinates() coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](a_.ID, objc.Sel("frameInScreenCoordinates"))
 	return rv
 }
 
 
-// SetFrameInScreenCoordinates sets the value of the frameInScreenCoordinates property.
 // The frame of the access point in screen coordinates.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkaccesspoint/frameinscreencoordinates
+
 func (a_ AccessPoint) SetFrameInScreenCoordinates(value coregraphics.CGRect) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setFrameInScreenCoordinates:"), value)
 }
 
+
 // A Boolean value that determines whether to display the access point.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkaccesspoint/isactive
+
 func (a_ AccessPoint) IsActive() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isActive"))
 	return rv
 }
 
 
-// SetIsActive sets the value of the isActive property.
 // A Boolean value that determines whether to display the access point.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkaccesspoint/isactive
+
 func (a_ AccessPoint) SetIsActive(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsActive:"), value)
 }
 
+
 // A Boolean value that indicates whether the access point is in focus on tvOS.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkaccesspoint/isfocused
+
 func (a_ AccessPoint) IsFocused() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isFocused"))
 	return rv
 }
 
 
-// SetIsFocused sets the value of the isFocused property.
 // A Boolean value that indicates whether the access point is in focus on tvOS.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkaccesspoint/isfocused
+
 func (a_ AccessPoint) SetIsFocused(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsFocused:"), value)
 }
 
+
 // A Boolean value that indicates whether the game is presenting the Game Center dashboard.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkaccesspoint/ispresentinggamecenter
+
 func (a_ AccessPoint) IsPresentingGameCenter() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isPresentingGameCenter"))
 	return rv
 }
 
 
-// SetIsPresentingGameCenter sets the value of the isPresentingGameCenter property.
 // A Boolean value that indicates whether the game is presenting the Game Center dashboard.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkaccesspoint/ispresentinggamecenter
+
 func (a_ AccessPoint) SetIsPresentingGameCenter(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsPresentingGameCenter:"), value)
 }
 
+
 // A Boolean value that indicates whether the access point is visible.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkaccesspoint/isvisible
+
 func (a_ AccessPoint) IsVisible() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isVisible"))
 	return rv
 }
 
 
-// SetIsVisible sets the value of the isVisible property.
 // A Boolean value that indicates whether the access point is visible.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkaccesspoint/isvisible
+
 func (a_ AccessPoint) SetIsVisible(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsVisible:"), value)
 }
 
+
 // The corner of the screen to display the access point.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkaccesspoint/location-swift.property
+
 func (a_ AccessPoint) Location() corelocation.Location {
 	rv := objc.Send[corelocation.Location](a_.ID, objc.Sel("location"))
 	return rv
 }
 
 
-// SetLocation sets the value of the location property.
 // The corner of the screen to display the access point.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkaccesspoint/location-swift.property
+
 func (a_ AccessPoint) SetLocation(value corelocation.ILocation) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setLocation:"), value)
 }
 
+
 // The window that contains the access point.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkaccesspoint/parentwindow
+
 func (a_ AccessPoint) ParentWindow() appkit.Window {
 	rv := objc.Send[appkit.Window](a_.ID, objc.Sel("parentWindow"))
 	return rv
 }
 
 
-// SetParentWindow sets the value of the parentWindow property.
 // The window that contains the access point.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkaccesspoint/parentwindow
+
 func (a_ AccessPoint) SetParentWindow(value appkit.IWindow) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setParentWindow:"), value)
 }

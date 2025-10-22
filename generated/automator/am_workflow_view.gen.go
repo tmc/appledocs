@@ -43,8 +43,13 @@ type IAMWorkflowView interface {
 // An object that lets you view and edit Automator workflows in your app.
 //
 // A workflow view displays an instance of . You can use Interface Builder to add an instance of to a window in your app. You can then add an object to the nib window and use the controller’s outlet to connect it to the workflow view. The controller object also has and actions that can be connected to buttons or other user interface elements.
+
+
+// An object that lets you view and edit Automator workflows in your app.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflowView
+
 type AMWorkflowView struct {
 	appkit.View
 }
@@ -90,74 +95,86 @@ func NewAMWorkflowView() AMWorkflowView {
 }
 
 
+
 // A Boolean value that indicates whether the workflow view is editable.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflowView/isEditable
+
 func (a_ AMWorkflowView) Editable() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("editable"))
 	return rv
 }
 
 
-// SetEditable sets the value of the editable property.
 // A Boolean value that indicates whether the workflow view is editable.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflowView/isEditable
+
 func (a_ AMWorkflowView) SetEditable(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setEditable:"), value)
 }
 
+
 // The view’s workflow controller.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflowView/workflowController
+
 func (a_ AMWorkflowView) WorkflowController() AMWorkflowController {
 	rv := objc.Send[AMWorkflowController](a_.ID, objc.Sel("workflowController"))
 	return rv
 }
 
 
-// SetWorkflowController sets the value of the workflowController property.
 // The view’s workflow controller.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflowView/workflowController
+
 func (a_ AMWorkflowView) SetWorkflowController(value IAMWorkflowController) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setWorkflowController:"), value)
 }
 
+
 // The controller’s workflow view.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automator/amworkflowcontroller/workflowview-swift.property
+
 func (a_ AMWorkflowView) WorkflowView() AMWorkflowView {
 	rv := objc.Send[AMWorkflowView](a_.ID, objc.Sel("workflowView"))
 	return rv
 }
 
 
-// SetWorkflowView sets the value of the workflowView property.
 // The controller’s workflow view.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automator/amworkflowcontroller/workflowview-swift.property
+
 func (a_ AMWorkflowView) SetWorkflowView(value IAMWorkflowView) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setWorkflowView:"), value)
 }
 
+
 // A Boolean value that indicates whether the workflow view is editable.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automator/amworkflowview/iseditable
+
 func (a_ AMWorkflowView) IsEditable() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isEditable"))
 	return rv
 }
 
 
-// SetIsEditable sets the value of the isEditable property.
 // A Boolean value that indicates whether the workflow view is editable.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automator/amworkflowview/iseditable
+
 func (a_ AMWorkflowView) SetIsEditable(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsEditable:"), value)
 }

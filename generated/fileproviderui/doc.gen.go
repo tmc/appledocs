@@ -2,12 +2,16 @@
 
 // Package fileproviderui provides Go bindings for the FileProviderUI framework.
 //
-// Add actions to the document browser’s context menu. [Full Topic]
+// Add actions to the document browser’s context menu.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to FileProviderUI without requiring cgo.
+
+// Add actions to the document browser’s context menu.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProviderUI
+
 package fileproviderui
 
 import (

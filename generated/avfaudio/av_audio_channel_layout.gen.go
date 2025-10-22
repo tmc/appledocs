@@ -42,8 +42,13 @@ type IAudioChannelLayout interface {
 // An object that describes the roles of a set of audio channels.
 //
 // The class is a thin wrapper for Core Audio’s .
+
+
+// An object that describes the roles of a set of audio channels.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioChannelLayout
+
 type AudioChannelLayout struct {
 	objectivec.Object
 }
@@ -87,62 +92,73 @@ func NewAudioChannelLayout() AudioChannelLayout {
 }
 
 
+
 // The number of channels of audio data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiochannellayout/channelcount
+
 func (a_ AudioChannelLayout) ChannelCount() AudioChannelCount {
 	rv := objc.Send[AudioChannelCount](a_.ID, objc.Sel("channelCount"))
 	return rv
 }
 
 
-// SetChannelCount sets the value of the channelCount property.
 // The number of channels of audio data.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiochannellayout/channelcount
+
 func (a_ AudioChannelLayout) SetChannelCount(value IAudioChannelCount) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setChannelCount:"), value)
 }
 
+
 // The underlying audio channel layout.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiochannellayout/layout
+
 func (a_ AudioChannelLayout) Layout() AudioChannelLayout {
 	rv := objc.Send[AudioChannelLayout](a_.ID, objc.Sel("layout"))
 	return rv
 }
 
 
-// SetLayout sets the value of the layout property.
 // The underlying audio channel layout.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiochannellayout/layout
+
 func (a_ AudioChannelLayout) SetLayout(value IAudioChannelLayout) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setLayout:"), value)
 }
 
+
 // The audio channel’s underlying layout tag.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiochannellayout/layouttag
+
 func (a_ AudioChannelLayout) LayoutTag() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("layoutTag"))
 	return rv
 }
 
 
-// SetLayoutTag sets the value of the layoutTag property.
 // The audio channel’s underlying layout tag.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiochannellayout/layouttag
+
 func (a_ AudioChannelLayout) SetLayoutTag(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setLayoutTag:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avchannellayoutkey
+
 func (a_ AudioChannelLayout) AVChannelLayoutKey() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("AVChannelLayoutKey"))
 	return rv

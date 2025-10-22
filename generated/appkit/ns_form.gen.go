@@ -34,8 +34,13 @@ type IForm interface {
 }
 
 // An object is a vertical matrix of objects to implement the fields.
+
+
+// An object is a vertical matrix of objects to implement the fields.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSForm
+
 type Form struct {
 	Matrix
 }
@@ -81,16 +86,24 @@ func NewForm() Form {
 }
 
 
+
+
 // Selects the entry at the specified index.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSForm/selectText(at:)
+
 func (f_ Form) SelectTextAtIndex(index int) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("selectTextAtIndex:"), index)
 }
 
+
+
 // Sets the alignment for all of the receiver’s editable text.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSForm/setTextAlignment(_:)
+
 func (f_ Form) SetTextAlignment(mode TextAlignment) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setTextAlignment:"), mode)
 }

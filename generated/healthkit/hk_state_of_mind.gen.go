@@ -37,8 +37,11 @@ type IHKStateOfMind interface {
 	ValenceClassification() HKStateOfMindValenceClassification
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKStateOfMind
+
 type HKStateOfMind struct {
 	HKSample
 }
@@ -82,50 +85,64 @@ func NewHKStateOfMind() HKStateOfMind {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKStateOfMind/stateOfMindWithDate:kind:valence:labels:associations:
+
 func (hc _HKStateOfMindClass) StateOfMindWithDateKindValenceLabelsAssociations(date foundation.IDate, kind HKStateOfMindKind, valence float64, labels []foundation.INumber, associations []foundation.INumber) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("stateOfMindWithDate:kind:valence:labels:associations:"), date, kind, valence, labels, associations)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKStateOfMind/stateOfMindWithDate:kind:valence:labels:associations:metadata:
+
 func (hc _HKStateOfMindClass) StateOfMindWithDateKindValenceLabelsAssociationsMetadata(date foundation.IDate, kind HKStateOfMindKind, valence float64, labels []foundation.INumber, associations []foundation.INumber, metadata unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("stateOfMindWithDate:kind:valence:labels:associations:metadata:"), date, kind, valence, labels, associations, metadata)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKStateOfMind/associations-5vfw8
+
 func (h_ HKStateOfMind) Associations() []foundation.Number {
 	rv := objc.Send[[]foundation.Number](h_.ID, objc.Sel("associations"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKStateOfMind/kind-swift.property
+
 func (h_ HKStateOfMind) Kind() HKStateOfMindKind {
 	rv := objc.Send[HKStateOfMindKind](h_.ID, objc.Sel("kind"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKStateOfMind/labels-11jl3
+
 func (h_ HKStateOfMind) Labels() []foundation.Number {
 	rv := objc.Send[[]foundation.Number](h_.ID, objc.Sel("labels"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKStateOfMind/valence
+
 func (h_ HKStateOfMind) Valence() float64 {
 	rv := objc.Send[float64](h_.ID, objc.Sel("valence"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKStateOfMind/valenceClassification-swift.property
+
 func (h_ HKStateOfMind) ValenceClassification() HKStateOfMindValenceClassification {
 	rv := objc.Send[HKStateOfMindValenceClassification](h_.ID, objc.Sel("valenceClassification"))
 	return rv

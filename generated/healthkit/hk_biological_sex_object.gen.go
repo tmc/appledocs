@@ -34,8 +34,13 @@ type IHKBiologicalSexObject interface {
 }
 
 // This class acts as a wrapper for the enumeration.
+
+
+// This class acts as a wrapper for the enumeration.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKBiologicalSexObject
+
 type HKBiologicalSexObject struct {
 	objectivec.Object
 }
@@ -79,9 +84,12 @@ func NewHKBiologicalSexObject() HKBiologicalSexObject {
 }
 
 
+
 // The biological sex.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKBiologicalSexObject/biologicalSex
+
 func (h_ HKBiologicalSexObject) BiologicalSex() HKBiologicalSex {
 	rv := objc.Send[HKBiologicalSex](h_.ID, objc.Sel("biologicalSex"))
 	return rv

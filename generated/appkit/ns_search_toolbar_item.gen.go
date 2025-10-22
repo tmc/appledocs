@@ -41,8 +41,13 @@ type ISearchToolbarItem interface {
 // A toolbar item that contains a search field optimized for performing text-based searches.
 //
 // automatically resizes to accommodate typing when the focus switches to the toolbar item. When the toolbar is low on space, the system may collapse the search item into a button representation, which then expands to a full search field when the user clicks on it.
+
+
+// A toolbar item that contains a search field optimized for performing text-based searches.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchToolbarItem
+
 type SearchToolbarItem struct {
 	ToolbarItem
 }
@@ -88,63 +93,76 @@ func NewSearchToolbarItem() SearchToolbarItem {
 }
 
 
+
+
 // Starts a search interaction and moves the keyboard focus to the search field.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchToolbarItem/beginSearchInteraction()
+
 func (s_ SearchToolbarItem) BeginSearchInteraction() {
 	objc.Send[objc.ID](s_.ID, objc.Sel("beginSearchInteraction"))
 }
 
+
 // The preferred width for the toolbar item when it has keyboard focus.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssearchtoolbaritem/preferredwidthforsearchfield
+
 func (s_ SearchToolbarItem) PreferredWidthForSearchField() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("preferredWidthForSearchField"))
 	return rv
 }
 
 
-// SetPreferredWidthForSearchField sets the value of the preferredWidthForSearchField property.
 // The preferred width for the toolbar item when it has keyboard focus.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssearchtoolbaritem/preferredwidthforsearchfield
+
 func (s_ SearchToolbarItem) SetPreferredWidthForSearchField(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setPreferredWidthForSearchField:"), value)
 }
 
+
 // A Boolean value that enables the cancel button in the search field to resign the first responder in addition to clearing the contents.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssearchtoolbaritem/resignsfirstresponderwithcancel
+
 func (s_ SearchToolbarItem) ResignsFirstResponderWithCancel() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("resignsFirstResponderWithCancel"))
 	return rv
 }
 
 
-// SetResignsFirstResponderWithCancel sets the value of the resignsFirstResponderWithCancel property.
 // A Boolean value that enables the cancel button in the search field to resign the first responder in addition to clearing the contents.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssearchtoolbaritem/resignsfirstresponderwithcancel
+
 func (s_ SearchToolbarItem) SetResignsFirstResponderWithCancel(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setResignsFirstResponderWithCancel:"), value)
 }
 
+
 // The search field inside the toolbar item.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssearchtoolbaritem/searchfield
+
 func (s_ SearchToolbarItem) SearchField() NSSearchField {
 	rv := objc.Send[NSSearchField](s_.ID, objc.Sel("searchField"))
 	return rv
 }
 
 
-// SetSearchField sets the value of the searchField property.
 // The search field inside the toolbar item.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssearchtoolbaritem/searchfield
+
 func (s_ SearchToolbarItem) SetSearchField(value ISearchField) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSearchField:"), value)
 }

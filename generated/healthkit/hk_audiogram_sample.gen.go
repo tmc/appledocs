@@ -36,8 +36,13 @@ type IHKAudiogramSample interface {
 // A sample that stores an audiogram.
 //
 // This sample stores the results from a hearing test. The sample stores the audiogram data as an array of sensitivity points.
+
+
+// A sample that stores an audiogram.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKAudiogramSample
+
 type HKAudiogramSample struct {
 	HKSample
 }
@@ -83,20 +88,23 @@ func NewHKAudiogramSample() HKAudiogramSample {
 }
 
 
+
 // An array of sensitivity point objects.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkaudiogramsample/sensitivitypoints
+
 func (h_ HKAudiogramSample) SensitivityPoints() HKAudiogramSensitivityPoint {
 	rv := objc.Send[HKAudiogramSensitivityPoint](h_.ID, objc.Sel("sensitivityPoints"))
 	return rv
 }
 
 
-// SetSensitivityPoints sets the value of the sensitivityPoints property.
 // An array of sensitivity point objects.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkaudiogramsample/sensitivitypoints
+
 func (h_ HKAudiogramSample) SetSensitivityPoints(value IHKAudiogramSensitivityPoint) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setSensitivityPoints:"), value)
 }

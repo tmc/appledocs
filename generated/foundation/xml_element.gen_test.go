@@ -9,6 +9,22 @@ import (
 // Suppress unused import errors
 var _ = foundation.NewXMLElement
 
+// ExampleNewXMLElementWithKindOptions demonstrates how to create a XMLElement instance using NewXMLElementWithKindOptions.
+func ExampleNewXMLElementWithKindOptions() {
+	_ = foundation.NewXMLElementWithKindOptions(
+		foundation.XMLNodeKind{}, // kind XMLNodeKind
+		foundation.XMLNodeOptions{}, // options XMLNodeOptions
+	)
+	// Output:
+}
+// ExampleNewXMLElementWithName demonstrates how to create a XMLElement instance using NewXMLElementWithName.
+// Returns an   object initialized with the specified name.
+func ExampleNewXMLElementWithName() {
+	_ = foundation.NewXMLElementWithName(
+		"name", // name string
+	)
+	// Output:
+}
 // ExampleNewXMLElementWithNameStringValue demonstrates how to create a XMLElement instance using NewXMLElementWithNameStringValue.
 // Returns an   object initialized with a specified name and a single text-node child containing a specified value.
 func ExampleNewXMLElementWithNameStringValue() {
@@ -24,6 +40,15 @@ func ExampleNewXMLElementWithNameURI() {
 	_ = foundation.NewXMLElementWithNameURI(
 		"name", // name string
 		"URI", // URI string
+	)
+	// Output:
+}
+// ExampleNewXMLElementWithXMLStringError demonstrates how to create a XMLElement instance using NewXMLElementWithXMLStringError.
+// Returns an   object created from a specified string containing XML markup.
+func ExampleNewXMLElementWithXMLStringError() {
+	_ = foundation.NewXMLElementWithXMLStringError(
+		"string", // string string
+		foundation.NSError{}, // error NSError
 	)
 	// Output:
 }

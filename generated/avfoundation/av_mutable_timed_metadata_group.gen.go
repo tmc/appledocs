@@ -36,8 +36,13 @@ type IMutableTimedMetadataGroup interface {
 }
 
 // A mutable collection of metadata items that are valid for use during a specific time range.
+
+
+// A mutable collection of metadata items that are valid for use during a specific time range.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMutableTimedMetadataGroup
+
 type MutableTimedMetadataGroup struct {
 	TimedMetadataGroup
 }
@@ -83,38 +88,44 @@ func NewMutableTimedMetadataGroup() MutableTimedMetadataGroup {
 }
 
 
+
 // An array of metadata items in the timed metadata group.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmutabletimedmetadatagroup/items
+
 func (m_ MutableTimedMetadataGroup) Items() AVMetadataItem {
 	rv := objc.Send[AVMetadataItem](m_.ID, objc.Sel("items"))
 	return rv
 }
 
 
-// SetItems sets the value of the items property.
 // An array of metadata items in the timed metadata group.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmutabletimedmetadatagroup/items
+
 func (m_ MutableTimedMetadataGroup) SetItems(value IAVMetadataItem) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setItems:"), value)
 }
 
+
 // The time range of the timed metadata.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmutabletimedmetadatagroup/timerange
+
 func (m_ MutableTimedMetadataGroup) TimeRange() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("timeRange"))
 	return rv
 }
 
 
-// SetTimeRange sets the value of the timeRange property.
 // The time range of the timed metadata.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmutabletimedmetadatagroup/timerange
+
 func (m_ MutableTimedMetadataGroup) SetTimeRange(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimeRange:"), value)
 }

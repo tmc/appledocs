@@ -40,8 +40,13 @@ type IFSResource interface {
 // An abstract resource a file system uses to provide data for a volume.
 //
 // is a base class to represent the various possible sources of data for a file system. These range from dedicated storage devices like hard drives and flash storage to network connections, and beyond. Subclasses define behavior specific to a given kind of resource, such as for disk partition (IOMedia) file systems. These file systems are typical disk file systems such as HFS, APFS, ExFAT, ext2fs, or NTFS. A resource’s type also determines its life cycle. Resources based on block storage devices come into being when the system probes the media underlying the volumes and container. Other kinds of resources, like those based on URLs, might have different life cycles. For example, a resource based on a URL might iniitalize when a person uses the “Connect to server” command in the macOS Finder.
+
+
+// An abstract resource a file system uses to provide data for a volume.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSResource
+
 type FSResource struct {
 	objectivec.Object
 }
@@ -85,43 +90,57 @@ func NewFSResource() FSResource {
 }
 
 
+
+
 // Creates a proxy object of this resource.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSResource/makeProxy()
+
 func (f_ FSResource) MakeProxy() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("makeProxy"))
 	return rv
 }
 
+
+
 // Revokes the resource.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSResource/revoke()
+
 func (f_ FSResource) Revoke() {
 	objc.Send[objc.ID](f_.ID, objc.Sel("revoke"))
 }
 
+
 // A Boolean value that indicates whether the resource is revoked.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSResource/isRevoked
+
 func (f_ FSResource) Revoked() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("revoked"))
 	return rv
 }
 
+
 // A Boolean value that indicates whether the resource is revoked.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsresource/isrevoked
+
 func (f_ FSResource) IsRevoked() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isRevoked"))
 	return rv
 }
 
 
-// SetIsRevoked sets the value of the isRevoked property.
 // A Boolean value that indicates whether the resource is revoked.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsresource/isrevoked
+
 func (f_ FSResource) SetIsRevoked(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIsRevoked:"), value)
 }

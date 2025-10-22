@@ -37,8 +37,13 @@ type IAuthorizationPlatformPublicKeyCredentialProvider interface {
 // A mechanism for providing public key credential requests to an app or service with iCloud Keychain.
 //
 // The credential provider accesses public-private key pairs stored in iCloud Keychain for registration or authentication with a relying party. Instantiate this object, passing in the relying party identifier for the credentials.
+
+
+// A mechanism for providing public key credential requests to an app or service with iCloud Keychain.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationPlatformPublicKeyCredentialProvider
+
 type AuthorizationPlatformPublicKeyCredentialProvider struct {
 	objectivec.Object
 }
@@ -82,20 +87,23 @@ func NewAuthorizationPlatformPublicKeyCredentialProvider() AuthorizationPlatform
 }
 
 
+
 // The domain name of the service to register or authorize against.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationplatformpublickeycredentialprovider/relyingpartyidentifier
+
 func (a_ AuthorizationPlatformPublicKeyCredentialProvider) RelyingPartyIdentifier() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("relyingPartyIdentifier"))
 	return rv
 }
 
 
-// SetRelyingPartyIdentifier sets the value of the relyingPartyIdentifier property.
 // The domain name of the service to register or authorize against.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationplatformpublickeycredentialprovider/relyingpartyidentifier
+
 func (a_ AuthorizationPlatformPublicKeyCredentialProvider) SetRelyingPartyIdentifier(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setRelyingPartyIdentifier:"), objc.String(value))
 }

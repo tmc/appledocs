@@ -2,12 +2,16 @@
 
 // Package enterpriseprogramapi provides Go bindings for the EnterpriseProgramAPI framework.
 //
-// Automate the tasks you perform on the Apple Developer website. [Full Topic]
+// Automate the tasks you perform on the Apple Developer website.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to EnterpriseProgramAPI without requiring cgo.
+
+// Automate the tasks you perform on the Apple Developer website.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EnterpriseProgramAPI
+
 package enterpriseprogramapi
 
 import (

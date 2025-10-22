@@ -38,8 +38,13 @@ type IHKCategorySample interface {
 // A sample with values from a short list of possible values.
 //
 // You can use category samples to record data associated with a . The value for the sample must come from the appropriate category value enumeration. Each category type uses its own enumeration. Individual samples represent a value and time period. Samples with different values may have overlapping time intervals. The class is a concrete subclass of the class. Category samples are immutable: You set the sample’s properties when you create it, and they can’t change.
+
+
+// A sample with values from a short list of possible values.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKCategorySample
+
 type HKCategorySample struct {
 	HKSample
 }
@@ -85,35 +90,44 @@ func NewHKCategorySample() HKCategorySample {
 }
 
 
+
 // The category type for this sample.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKCategorySample/categoryType
+
 func (h_ HKCategorySample) CategoryType() HKCategoryType {
 	rv := objc.Send[HKCategoryType](h_.ID, objc.Sel("categoryType"))
 	return rv
 }
 
+
 // The category value for this sample.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcategorysample/value
+
 func (h_ HKCategorySample) Value() int {
 	rv := objc.Send[int](h_.ID, objc.Sel("value"))
 	return rv
 }
 
 
-// SetValue sets the value of the value property.
 // The category value for this sample.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcategorysample/value
+
 func (h_ HKCategorySample) SetValue(value int) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setValue:"), value)
 }
 
+
 // The key path for accessing the category sample’s value.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathcategoryvalue
+
 func (h_ HKCategorySample) HKPredicateKeyPathCategoryValue() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathCategoryValue"))
 	return rv

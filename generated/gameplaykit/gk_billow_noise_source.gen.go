@@ -36,8 +36,13 @@ type IBillowNoiseSource interface {
 // A procedural noise generator whose output is a type of fractal coherent noise with smooth features.
 //
 // Billow noise is similar to Perlin noise (see the class), but with more rounded features resembling natural phenomena such as treetops and hills. Like all subclasses, a billow noise source represents a noise generation algorithm and its parameters. To make use of a noise source, first create object from it (and optionally apply operations to that noise object or combine it with other noise objects). Then create a object from your noise object, generating a concrete field of values that you can sample from directly or visualize using the or class.
+
+
+// A procedural noise generator whose output is a type of fractal coherent noise with smooth features.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKBillowNoiseSource
+
 type BillowNoiseSource struct {
 	CoherentNoiseSource
 }
@@ -87,7 +92,9 @@ func NewBillowNoiseSource() BillowNoiseSource {
 
 // Creates a billow noise source with the specified parameters.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKBillowNoiseSource/init(frequency:octaveCount:persistence:lacunarity:seed:)
+
 func NewBillowNoiseSourceWithFrequencyOctaveCountPersistenceLacunaritySeed(frequency float64, octaveCount int, persistence float64, lacunarity float64, seed unsafe.Pointer) BillowNoiseSource {
 	instance := getBillowNoiseSourceClass().Alloc()
 	rv := objc.Send[BillowNoiseSource](instance.ID, objc.Sel("initWithFrequency:octaveCount:persistence:lacunarity:seed:"), frequency, octaveCount, persistence, lacunarity, seed)
@@ -96,28 +103,34 @@ func NewBillowNoiseSourceWithFrequencyOctaveCountPersistenceLacunaritySeed(frequ
 }
 
 
+
 // Initializes a billow noise source with the specified parameters.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKBillowNoiseSource/billowNoiseSourceWithFrequency:octaveCount:persistence:lacunarity:seed:
+
 func (bc _BillowNoiseSourceClass) BillowNoiseSourceWithFrequencyOctaveCountPersistenceLacunaritySeed(frequency float64, octaveCount int, persistence float64, lacunarity float64, seed unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("billowNoiseSourceWithFrequency:octaveCount:persistence:lacunarity:seed:"), frequency, octaveCount, persistence, lacunarity, seed)
 	return rv
 }
 
+
 // The rate at which successive octaves of the noise function decrease in amplitude.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKBillowNoiseSource/persistence
+
 func (b_ BillowNoiseSource) Persistence() float64 {
 	rv := objc.Send[float64](b_.ID, objc.Sel("persistence"))
 	return rv
 }
 
 
-// SetPersistence sets the value of the persistence property.
 // The rate at which successive octaves of the noise function decrease in amplitude.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKBillowNoiseSource/persistence
+
 func (b_ BillowNoiseSource) SetPersistence(value float64) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setPersistence:"), value)
 }

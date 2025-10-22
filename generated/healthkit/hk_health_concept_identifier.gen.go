@@ -36,8 +36,13 @@ type IHKHealthConceptIdentifier interface {
 // A unique identifier for a specific health concept within a domain.
 //
 // Each identifier points to one concept inside a domain. For example, within the medication domain, one identifier might represent ibuprofen while another represents insulin.
+
+
+// A unique identifier for a specific health concept within a domain.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKHealthConceptIdentifier
+
 type HKHealthConceptIdentifier struct {
 	objectivec.Object
 }
@@ -81,9 +86,12 @@ func NewHKHealthConceptIdentifier() HKHealthConceptIdentifier {
 }
 
 
+
 // The domain this identifier belongs to.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKHealthConceptIdentifier/domain
+
 func (h_ HKHealthConceptIdentifier) Domain() HKHealthConceptDomain {
 	rv := objc.Send[HKHealthConceptDomain](h_.ID, objc.Sel("domain"))
 	return rv

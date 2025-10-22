@@ -42,8 +42,13 @@ type ICBDescriptor interface {
 // An object that provides further information about a remote peripheral’s characteristic.
 //
 // and its subclass represent a descriptor of a peripheral’s characteristic. In partcular, objects represent the descriptors of a remote peripheral’s characteristic. Descriptors provide further information about a characteristic’s value. For example, they may describe the value in human-readable form and describe how to format the value for presentation purposes. Characteristic descriptors also indicate whether a characteristic’s value indicates or notifies a client (a central) when the value of the characteristic changes. details six predefined descriptors and their corresponding value types. lists the predefined descriptors and the constants that represent them.
+
+
+// An object that provides further information about a remote peripheral’s characteristic.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBDescriptor
+
 type CBDescriptor struct {
 	CBAttribute
 }
@@ -89,65 +94,89 @@ func NewCBDescriptor() CBDescriptor {
 }
 
 
+
 // The characteristic to which this descriptor belongs.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBDescriptor/characteristic
+
 func (c_ CBDescriptor) Characteristic() CBCharacteristic {
 	rv := objc.Send[CBCharacteristic](c_.ID, objc.Sel("characteristic"))
 	return rv
 }
 
+
 // The value of the descriptor.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBDescriptor/value
+
 func (c_ CBDescriptor) Value() objc.ID {
 	rv := objc.Send[objc.ID](c_.ID, objc.Sel("value"))
 	return rv
 }
 
+
 // The UUID for the Aggregate Format descriptor, as a string.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corebluetooth/cbuuidcharacteristicaggregateformatstring
+
 func (c_ CBDescriptor) CBUUIDCharacteristicAggregateFormatString() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CBUUIDCharacteristicAggregateFormatString"))
 	return rv
 }
 
+
 // The UUID for the Extended Properties descriptor, as a string.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corebluetooth/cbuuidcharacteristicextendedpropertiesstring
+
 func (c_ CBDescriptor) CBUUIDCharacteristicExtendedPropertiesString() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CBUUIDCharacteristicExtendedPropertiesString"))
 	return rv
 }
 
+
 // The UUID for the Presentation Format descriptor, as a string.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corebluetooth/cbuuidcharacteristicformatstring
+
 func (c_ CBDescriptor) CBUUIDCharacteristicFormatString() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CBUUIDCharacteristicFormatString"))
 	return rv
 }
 
+
 // The UUID for the User Description descriptor, as a string.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corebluetooth/cbuuidcharacteristicuserdescriptionstring
+
 func (c_ CBDescriptor) CBUUIDCharacteristicUserDescriptionString() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CBUUIDCharacteristicUserDescriptionString"))
 	return rv
 }
 
+
 // The UUID for the Client Configuration descriptor, as a string.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corebluetooth/cbuuidclientcharacteristicconfigurationstring
+
 func (c_ CBDescriptor) CBUUIDClientCharacteristicConfigurationString() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CBUUIDClientCharacteristicConfigurationString"))
 	return rv
 }
 
+
 // The UUID for the Server Configuration descriptor, as a string.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corebluetooth/cbuuidservercharacteristicconfigurationstring
+
 func (c_ CBDescriptor) CBUUIDServerCharacteristicConfigurationString() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CBUUIDServerCharacteristicConfigurationString"))
 	return rv

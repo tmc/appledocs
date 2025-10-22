@@ -35,8 +35,13 @@ type ICNContactsUserDefaults interface {
 }
 
 // An object that defines the default options to use when displaying contacts.
+
+
+// An object that defines the default options to use when displaying contacts.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactsUserDefaults
+
 type CNContactsUserDefaults struct {
 	objectivec.Object
 }
@@ -80,25 +85,34 @@ func NewCNContactsUserDefaults() CNContactsUserDefaults {
 }
 
 
+
 // The singleton contacts user defaults object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactsUserDefaults/shared()
+
 func (cc _CNContactsUserDefaultsClass) SharedDefaults() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("sharedDefaults"))
 	return rv
 }
 
+
 // An ISO country code.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactsUserDefaults/countryCode
+
 func (c_ CNContactsUserDefaults) CountryCode() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("countryCode"))
 	return rv
 }
 
+
 // Default sorting order by name.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactsUserDefaults/sortOrder
+
 func (c_ CNContactsUserDefaults) SortOrder() CNContactSortOrder {
 	rv := objc.Send[CNContactSortOrder](c_.ID, objc.Sel("sortOrder"))
 	return rv

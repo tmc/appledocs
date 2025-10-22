@@ -43,8 +43,13 @@ type IDictionaryControllerKeyValuePair interface {
 // A set of methods implemented by arranged objects to give access to information about those objects.
 //
 // is an informal protocol that is implemented by objects returned by the method arrangedObjects. See for more information.
+
+
+// A set of methods implemented by arranged objects to give access to information about those objects.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDictionaryControllerKeyValuePair
+
 type DictionaryControllerKeyValuePair struct {
 	objectivec.Object
 }
@@ -88,62 +93,70 @@ func NewDictionaryControllerKeyValuePair() DictionaryControllerKeyValuePair {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDictionaryControllerKeyValuePair/key
+
 func (d_ DictionaryControllerKeyValuePair) Key() string {
 	rv := objc.Send[string](d_.ID, objc.Sel("key"))
 	return rv
 }
 
 
-// SetKey sets the value of the key property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDictionaryControllerKeyValuePair/key
+
 func (d_ DictionaryControllerKeyValuePair) SetKey(value string) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setKey:"), objc.String(value))
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDictionaryControllerKeyValuePair/value
+
 func (d_ DictionaryControllerKeyValuePair) Value() objc.ID {
 	rv := objc.Send[objc.ID](d_.ID, objc.Sel("value"))
 	return rv
 }
 
 
-// SetValue sets the value of the value property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDictionaryControllerKeyValuePair/value
+
 func (d_ DictionaryControllerKeyValuePair) SetValue(value objc.ID) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setValue:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdictionarycontrollerkeyvaluepair/isexplicitlyincluded
+
 func (d_ DictionaryControllerKeyValuePair) IsExplicitlyIncluded() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("isExplicitlyIncluded"))
 	return rv
 }
 
 
-// SetIsExplicitlyIncluded sets the value of the isExplicitlyIncluded property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdictionarycontrollerkeyvaluepair/isexplicitlyincluded
+
 func (d_ DictionaryControllerKeyValuePair) SetIsExplicitlyIncluded(value bool) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setIsExplicitlyIncluded:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdictionarycontrollerkeyvaluepair/localizedkey
+
 func (d_ DictionaryControllerKeyValuePair) LocalizedKey() string {
 	rv := objc.Send[string](d_.ID, objc.Sel("localizedKey"))
 	return rv
 }
 
 
-// SetLocalizedKey sets the value of the localizedKey property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdictionarycontrollerkeyvaluepair/localizedkey
+
 func (d_ DictionaryControllerKeyValuePair) SetLocalizedKey(value string) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setLocalizedKey:"), objc.String(value))
 }

@@ -50,8 +50,13 @@ type ISpeechSynthesisVoice interface {
 // A distinct voice for use in speech synthesis.
 //
 // The primary factors that distinguish a voice in speech synthesis are language, locale, and quality. Create an instance of to select a voice that’s appropriate for the text and the language, and set it as the value of the property on an instance. The voice may optionally reflect a local variant of the language, such as Australian or South African English. For a complete list of supported languages, see .
+
+
+// A distinct voice for use in speech synthesis.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesisVoice
+
 type SpeechSynthesisVoice struct {
 	objectivec.Object
 }
@@ -95,134 +100,161 @@ func NewSpeechSynthesisVoice() SpeechSynthesisVoice {
 }
 
 
+
 // The gender for a voice.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesisVoice/gender
+
 func (s_ SpeechSynthesisVoice) Gender() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("gender"))
 	return rv
 }
 
+
 // A BCP 47 code that contains the voice’s language and locale.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesisVoice/language
+
 func (s_ SpeechSynthesisVoice) Language() string {
 	rv := objc.Send[string](s_.ID, objc.Sel("language"))
 	return rv
 }
 
+
 // A dictionary that contains audio file settings.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisvoice/audiofilesettings
+
 func (s_ SpeechSynthesisVoice) AudioFileSettings() string {
 	rv := objc.Send[string](s_.ID, objc.Sel("audioFileSettings"))
 	return rv
 }
 
 
-// SetAudioFileSettings sets the value of the audioFileSettings property.
 // A dictionary that contains audio file settings.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisvoice/audiofilesettings
+
 func (s_ SpeechSynthesisVoice) SetAudioFileSettings(value string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAudioFileSettings:"), objc.String(value))
 }
 
+
 // The unique identifier of a voice.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisvoice/identifier
+
 func (s_ SpeechSynthesisVoice) Identifier() string {
 	rv := objc.Send[string](s_.ID, objc.Sel("identifier"))
 	return rv
 }
 
 
-// SetIdentifier sets the value of the identifier property.
 // The unique identifier of a voice.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisvoice/identifier
+
 func (s_ SpeechSynthesisVoice) SetIdentifier(value string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIdentifier:"), objc.String(value))
 }
 
+
 // The name of a voice.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisvoice/name
+
 func (s_ SpeechSynthesisVoice) Name() string {
 	rv := objc.Send[string](s_.ID, objc.Sel("name"))
 	return rv
 }
 
 
-// SetName sets the value of the name property.
 // The name of a voice.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisvoice/name
+
 func (s_ SpeechSynthesisVoice) SetName(value string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
+
 // The speech quality of a voice.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisvoice/quality
+
 func (s_ SpeechSynthesisVoice) Quality() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("quality"))
 	return rv
 }
 
 
-// SetQuality sets the value of the quality property.
 // The speech quality of a voice.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisvoice/quality
+
 func (s_ SpeechSynthesisVoice) SetQuality(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setQuality:"), value)
 }
 
+
 // The traits of a voice.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisvoice/voicetraits
+
 func (s_ SpeechSynthesisVoice) VoiceTraits() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("voiceTraits"))
 	return rv
 }
 
 
-// SetVoiceTraits sets the value of the voiceTraits property.
 // The traits of a voice.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisvoice/voicetraits
+
 func (s_ SpeechSynthesisVoice) SetVoiceTraits(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setVoiceTraits:"), value)
 }
 
+
 // The voice that the system identifies as Alex.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisvoiceidentifieralex
+
 func (s_ SpeechSynthesisVoice) AVSpeechSynthesisVoiceIdentifierAlex() string {
 	rv := objc.Send[string](s_.ID, objc.Sel("AVSpeechSynthesisVoiceIdentifierAlex"))
 	return rv
 }
 
+
 // The voice the speech synthesizer uses when speaking the utterance.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechutterance/voice
+
 func (s_ SpeechSynthesisVoice) Voice() AVSpeechSynthesisVoice {
 	rv := objc.Send[AVSpeechSynthesisVoice](s_.ID, objc.Sel("voice"))
 	return rv
 }
 
 
-// SetVoice sets the value of the voice property.
 // The voice the speech synthesizer uses when speaking the utterance.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechutterance/voice
+
 func (s_ SpeechSynthesisVoice) SetVoice(value IAVSpeechSynthesisVoice) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setVoice:"), value)
 }

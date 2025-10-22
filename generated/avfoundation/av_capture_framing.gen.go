@@ -40,8 +40,13 @@ type ICaptureFraming interface {
 // A framing, consisting of an aspect ratio and a zoom factor.
 //
 // An provides framing recommendations using this object.
+
+
+// A framing, consisting of an aspect ratio and a zoom factor.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureFraming
+
 type CaptureFraming struct {
 	objectivec.Object
 }
@@ -85,46 +90,55 @@ func NewCaptureFraming() CaptureFraming {
 }
 
 
+
 // A zoom factor.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureFraming/zoomFactor
+
 func (c_ CaptureFraming) ZoomFactor() float32 {
 	rv := objc.Send[float32](c_.ID, objc.Sel("zoomFactor"))
 	return rv
 }
 
+
 // A monitor owned by the device that recommends an optimal framing based on the content in the scene.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/smartframingmonitor
+
 func (c_ CaptureFraming) SmartFramingMonitor() AVCaptureSmartFramingMonitor {
 	rv := objc.Send[AVCaptureSmartFramingMonitor](c_.ID, objc.Sel("smartFramingMonitor"))
 	return rv
 }
 
 
-// SetSmartFramingMonitor sets the value of the smartFramingMonitor property.
 // A monitor owned by the device that recommends an optimal framing based on the content in the scene.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/smartframingmonitor
+
 func (c_ CaptureFraming) SetSmartFramingMonitor(value IAVCaptureSmartFramingMonitor) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSmartFramingMonitor:"), value)
 }
 
+
 // An aspect ratio.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureframing/aspectratio
+
 func (c_ CaptureFraming) AspectRatio() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("aspectRatio"))
 	return rv
 }
 
 
-// SetAspectRatio sets the value of the aspectRatio property.
 // An aspect ratio.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureframing/aspectratio
+
 func (c_ CaptureFraming) SetAspectRatio(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAspectRatio:"), value)
 }

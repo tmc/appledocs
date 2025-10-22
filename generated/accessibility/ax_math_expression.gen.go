@@ -32,8 +32,11 @@ type IAXMathExpression interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpression
+
 type AXMathExpression struct {
 	objectivec.Object
 }

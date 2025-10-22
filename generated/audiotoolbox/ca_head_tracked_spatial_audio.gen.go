@@ -36,8 +36,13 @@ type IHeadTrackedSpatialAudio interface {
 // A spatial experience that takes user motion into account.
 //
 // The Objective-C version of the Swift type.
+
+
+// A spatial experience that takes user motion into account.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAHeadTrackedSpatialAudio
+
 type HeadTrackedSpatialAudio struct {
 	SpatialAudioExperience
 }
@@ -83,8 +88,11 @@ func NewHeadTrackedSpatialAudio() HeadTrackedSpatialAudio {
 }
 
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAHeadTrackedSpatialAudio/initWithSoundStageSize:anchoringStrategy:
+
 func NewHeadTrackedSpatialAudioWithSoundStageSizeAnchoringStrategy(soundStageSize ISoundStageSize, anchoringStrategy CAAnchoringStrategy) HeadTrackedSpatialAudio {
 	instance := getHeadTrackedSpatialAudioClass().Alloc()
 	rv := objc.Send[HeadTrackedSpatialAudio](instance.ID, objc.Sel("initWithSoundStageSize:anchoringStrategy:"), soundStageSize, anchoringStrategy)
@@ -93,17 +101,23 @@ func NewHeadTrackedSpatialAudioWithSoundStageSizeAnchoringStrategy(soundStageSiz
 }
 
 
+
 // The experience’s anchoring strategy.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAHeadTrackedSpatialAudio/anchoringStrategy
+
 func (h_ HeadTrackedSpatialAudio) AnchoringStrategy() CAAnchoringStrategy {
 	rv := objc.Send[CAAnchoringStrategy](h_.ID, objc.Sel("anchoringStrategy"))
 	return rv
 }
 
+
 // The experience’s sound stage size.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAHeadTrackedSpatialAudio/soundStageSize
+
 func (h_ HeadTrackedSpatialAudio) SoundStageSize() SoundStageSize {
 	rv := objc.Send[SoundStageSize](h_.ID, objc.Sel("soundStageSize"))
 	return rv

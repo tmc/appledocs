@@ -32,8 +32,11 @@ type Ibounds interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRectangleFeature/bounds-c.ivar
+
 type bounds struct {
 	objectivec.Object
 }

@@ -34,8 +34,13 @@ type IHKWorkoutRouteQuery interface {
 // A query to access the location data stored in a workout route.
 //
 // Use a workout route query to access the location data associated with an . Because a route sample can include a large number of objects, the query asynchronously returns the locations in batches. For detailed instructions, see .
+
+
+// A query to access the location data stored in a workout route.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKWorkoutRouteQuery
+
 type HKWorkoutRouteQuery struct {
 	HKQuery
 }

@@ -44,8 +44,13 @@ type IBeacon interface {
 // Information about an observed iBeacon device and its relative distance to a person’s device.
 //
 // The class represents a beacon that was observed during beacon ranging. You do not create instances of this class directly. The location manager ( ) object reports observed beacons to its associated delegate object. The identity of a beacon is defined by its , , and properties. These values are coded into the beacon itself. For a more thorough description of the meaning of those values, see .
+
+
+// Information about an observed iBeacon device and its relative distance to a person’s device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeacon
+
 type Beacon struct {
 	objectivec.Object
 }
@@ -89,65 +94,89 @@ func NewBeacon() Beacon {
 }
 
 
+
 // The accuracy of the proximity value, measured in meters from the beacon.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeacon/accuracy
+
 func (b_ Beacon) Accuracy() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("accuracy"))
 	return rv
 }
 
+
 // The major value that the observed beacon transmitted.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeacon/major
+
 func (b_ Beacon) Major() foundation.Number {
 	rv := objc.Send[foundation.Number](b_.ID, objc.Sel("major"))
 	return rv
 }
 
+
 // The minor value that the observed beacon transmitted.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeacon/minor
+
 func (b_ Beacon) Minor() foundation.Number {
 	rv := objc.Send[foundation.Number](b_.ID, objc.Sel("minor"))
 	return rv
 }
 
+
 // The relative distance to the beacon.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeacon/proximity
+
 func (b_ Beacon) Proximity() Proximity {
 	rv := objc.Send[Proximity](b_.ID, objc.Sel("proximity"))
 	return rv
 }
 
+
 // The proximity ID of the beacon.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeacon/proximityUUID
+
 func (b_ Beacon) ProximityUUID() foundation.UUID {
 	rv := objc.Send[foundation.UUID](b_.ID, objc.Sel("proximityUUID"))
 	return rv
 }
 
+
 // The received signal strength of the beacon, measured in decibels.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeacon/rssi
+
 func (b_ Beacon) Rssi() int {
 	rv := objc.Send[int](b_.ID, objc.Sel("rssi"))
 	return rv
 }
 
+
 // A timestamp representing when the beacon was observed.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeacon/timestamp
+
 func (b_ Beacon) Timestamp() foundation.NSDate {
 	rv := objc.Send[foundation.NSDate](b_.ID, objc.Sel("timestamp"))
 	return rv
 }
 
+
 // The UUID that the observed beacon transmitted.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeacon/uuid
+
 func (b_ Beacon) UUID() foundation.UUID {
 	rv := objc.Send[foundation.UUID](b_.ID, objc.Sel("UUID"))
 	return rv

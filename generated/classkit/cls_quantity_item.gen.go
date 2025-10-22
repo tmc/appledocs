@@ -36,8 +36,13 @@ type ISQuantityItem interface {
 // Activity information that signifies a quantity.
 //
 // Use an activity item of this type to associate a discrete value with a task. For example, you might use it to indicate how many times the user requested a hint while taking a quiz.
+
+
+// Activity information that signifies a quantity.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSQuantityItem
+
 type SQuantityItem struct {
 	SActivityItem
 }
@@ -87,7 +92,9 @@ func NewSQuantityItem() SQuantityItem {
 
 // Initializes an activity item that records a discrete quantity.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSQuantityItem/init(identifier:title:)
+
 func NewSQuantityItemWithIdentifierTitle(identifier string, title string) SQuantityItem {
 	instance := getSQuantityItemClass().Alloc()
 	rv := objc.Send[SQuantityItem](instance.ID, objc.Sel("initWithIdentifier:title:"), objc.String(identifier), objc.String(title))
@@ -96,20 +103,23 @@ func NewSQuantityItemWithIdentifierTitle(identifier string, title string) SQuant
 }
 
 
+
 // A quantity associated with the task.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSQuantityItem/quantity
+
 func (s_ SQuantityItem) Quantity() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("quantity"))
 	return rv
 }
 
 
-// SetQuantity sets the value of the quantity property.
 // A quantity associated with the task.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSQuantityItem/quantity
+
 func (s_ SQuantityItem) SetQuantity(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setQuantity:"), value)
 }

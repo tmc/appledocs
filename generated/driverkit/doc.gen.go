@@ -2,12 +2,16 @@
 
 // Package driverkit provides Go bindings for the DriverKit framework.
 //
-// Develop device drivers that run in user space. [Full Topic]
+// Develop device drivers that run in user space.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to DriverKit without requiring cgo.
+
+// Develop device drivers that run in user space.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DriverKit
+
 package driverkit
 
 import (

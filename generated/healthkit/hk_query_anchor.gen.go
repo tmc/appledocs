@@ -35,8 +35,13 @@ type IHKQueryAnchor interface {
 // An object used to identify all the samples previously returned by an anchored object query.
 //
 // The system returns objects in both the anchored object query’s results handler and it’s update handler. Use the anchors to query for samples added or deleted after the result or update.
+
+
+// An object used to identify all the samples previously returned by an anchored object query.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKQueryAnchor
+
 type HKQueryAnchor struct {
 	objectivec.Object
 }

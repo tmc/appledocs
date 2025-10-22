@@ -47,8 +47,13 @@ type ICWNetwork interface {
 }
 
 // Encapsulates an IEEE 802.11 network, providing read-only accessors to various properties of the network.
+
+
+// Encapsulates an IEEE 802.11 network, providing read-only accessors to various properties of the network.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWNetwork
+
 type CWNetwork struct {
 	objectivec.Object
 }
@@ -92,105 +97,147 @@ func NewCWNetwork() CWNetwork {
 }
 
 
+
+
 // Method for determining CWNetwork object equality.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWNetwork/isEqual(to:)
+
 func (c_ CWNetwork) IsEqualToNetwork(network ICWNetwork) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isEqualToNetwork:"), network)
 	return rv
 }
 
+
+
 // Method for determining which PHY modes a network supports.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWNetwork/supportsPHYMode(_:)
+
 func (c_ CWNetwork) SupportsPHYMode(phyMode CWPHYMode) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("supportsPHYMode:"), phyMode)
 	return rv
 }
 
+
+
 // Method for determining which security types a network supports.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWNetwork/supportsSecurity(_:)
+
 func (c_ CWNetwork) SupportsSecurity(security ICWSecurity) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("supportsSecurity:"), security)
 	return rv
 }
 
+
 // The beacon interval (ms) for the network.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWNetwork/beaconInterval
+
 func (c_ CWNetwork) BeaconInterval() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("beaconInterval"))
 	return rv
 }
 
+
 // The basic service set identifier (BSSID) for the network, returned as UTF-8 string.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWNetwork/bssid
+
 func (c_ CWNetwork) Bssid() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("bssid"))
 	return rv
 }
 
+
 // The country code (ISO/IEC 3166-1:1997) for the network.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWNetwork/countryCode
+
 func (c_ CWNetwork) CountryCode() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("countryCode"))
 	return rv
 }
 
+
 // The network is an IBSS network.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWNetwork/ibss
+
 func (c_ CWNetwork) Ibss() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("ibss"))
 	return rv
 }
 
+
 // Information element data included in beacon or probe response frames.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWNetwork/informationElementData
+
 func (c_ CWNetwork) InformationElementData() foundation.NSData {
 	rv := objc.Send[foundation.NSData](c_.ID, objc.Sel("informationElementData"))
 	return rv
 }
 
+
 // The aggregate noise measurement (dBm) for the network.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWNetwork/noiseMeasurement
+
 func (c_ CWNetwork) NoiseMeasurement() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("noiseMeasurement"))
 	return rv
 }
 
+
 // The aggregate received signal strength indication (RSSI) measurement (dBm) for the network.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWNetwork/rssiValue
+
 func (c_ CWNetwork) RssiValue() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("rssiValue"))
 	return rv
 }
 
+
 // The service set identifier (SSID) for the network, encoded as a string.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWNetwork/ssid
+
 func (c_ CWNetwork) Ssid() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("ssid"))
 	return rv
 }
 
+
 // The service set identifier (SSID) for the network, returned as data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWNetwork/ssidData
+
 func (c_ CWNetwork) SsidData() foundation.NSData {
 	rv := objc.Send[foundation.NSData](c_.ID, objc.Sel("ssidData"))
 	return rv
 }
 
+
 // The channel for the network.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWNetwork/wlanChannel
+
 func (c_ CWNetwork) WlanChannel() CWChannel {
 	rv := objc.Send[CWChannel](c_.ID, objc.Sel("wlanChannel"))
 	return rv

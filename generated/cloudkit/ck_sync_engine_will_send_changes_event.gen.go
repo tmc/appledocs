@@ -32,8 +32,13 @@ type ICKSyncEngineWillSendChangesEvent interface {
 }
 
 // An object that provides information about an imminent send of local changes.
+
+
+// An object that provides information about an imminent send of local changes.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineWillSendChangesEvent
+
 type CKSyncEngineWillSendChangesEvent struct {
 	CKSyncEngineEvent
 }

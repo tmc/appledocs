@@ -35,8 +35,13 @@ type IFSDirectoryEntryPacker interface {
 // An object used to provide items during a directory enumeration.
 //
 // You use this type in your implementation of . Packing allows your implementation to provide information FSKit needs, including each item’s name, type, and identifier (such as an inode number). Some directory enumerations require other attributes, as indicated by the sent to the enumerate method.
+
+
+// An object used to provide items during a directory enumeration.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSDirectoryEntryPacker
+
 type FSDirectoryEntryPacker struct {
 	objectivec.Object
 }

@@ -32,14 +32,19 @@ type _SensorRecorderClass struct {
 type ISensorRecorder interface {
 	objectivec.IObject
 	AccelerometerDataFromDateToDate(fromDate foundation.IDate, toDate foundation.IDate) SensorDataList
-	RecordAccelerometerForDuration(duration foundation.ITimeInterval)
+	RecordAccelerometerForDuration(duration foundation.TimeInterval)
 }
 
 // An object that gathers and retrieves accelerometer data from a device.
 //
 // Use a sensor recorder to initiate the gathering of accelerometer data. Later, use the sensor recorder to fetch the recorded data so you can analyze it. You might use the recorded data to assess specific types of motion and incorporate the results into your app. To use a sensor recorder, create an instance of this class and call the method to begin recording data. You do not need to stop the recording process explicitly. The system stops recording automatically when the specified time expires and no other apps extend the recording time. The following example shows how to record 20 minutes worth of accelerometer data:
+
+
+// An object that gathers and retrieves accelerometer data from a device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMSensorRecorder
+
 type SensorRecorder struct {
 	objectivec.Object
 }
@@ -83,42 +88,59 @@ func NewSensorRecorder() SensorRecorder {
 }
 
 
+
 // Returns a value indicating whether the app is authorized to record sensor data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMSensorRecorder/authorizationStatus()
+
 func (sc _SensorRecorderClass) AuthorizationStatus() AuthorizationStatus {
 	rv := objc.Send[AuthorizationStatus](objc.ID(sc.class), objc.Sel("authorizationStatus"))
 	return rv
 }
 
+
 // Returns a Boolean value indicating whether accelerometer recording is supported on the current device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMSensorRecorder/isAccelerometerRecordingAvailable()
+
 func (sc _SensorRecorderClass) IsAccelerometerRecordingAvailable() bool {
 	rv := objc.Send[bool](objc.ID(sc.class), objc.Sel("isAccelerometerRecordingAvailable"))
 	return rv
 }
 
+
 // Returns a Boolean value indicating whether the app is authorized to record sensor data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMSensorRecorder/isAuthorizedForRecording()
+
 func (sc _SensorRecorderClass) IsAuthorizedForRecording() bool {
 	rv := objc.Send[bool](objc.ID(sc.class), objc.Sel("isAuthorizedForRecording"))
 	return rv
 }
 
+
+
 // Retrieves the accelerometer data collected between the specified dates.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMSensorRecorder/accelerometerData(from:to:)
+
 func (s_ SensorRecorder) AccelerometerDataFromDateToDate(fromDate foundation.IDate, toDate foundation.IDate) SensorDataList {
 	rv := objc.Send[SensorDataList](s_.ID, objc.Sel("accelerometerDataFromDate:toDate:"), fromDate, toDate)
 	return rv
 }
 
+
+
 // Begins recording accelerometer data for the specified period of time.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMSensorRecorder/recordAccelerometer(forDuration:)
-func (s_ SensorRecorder) RecordAccelerometerForDuration(duration foundation.ITimeInterval) {
+
+func (s_ SensorRecorder) RecordAccelerometerForDuration(duration foundation.TimeInterval) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("recordAccelerometerForDuration:"), duration)
 }
 

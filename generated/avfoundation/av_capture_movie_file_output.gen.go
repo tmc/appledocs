@@ -30,9 +30,9 @@ type _CaptureMovieFileOutputClass struct {
 type ICaptureMovieFileOutput interface {
 	ICaptureFileOutput
 	RecordsVideoOrientationAndMirroringChangesAsMetadataTrackForConnection(connection IAVCaptureConnection) bool
-	SetPrimaryConstituentDeviceSwitchingBehaviorForRecordingRestrictedSwitchingBehaviorConditions(switchingBehavior CapturePrimaryConstituentDeviceSwitchingBehavior, restrictedSwitchingBehaviorConditions ICapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions)
+	SetPrimaryConstituentDeviceSwitchingBehaviorForRecordingRestrictedSwitchingBehaviorConditions(switchingBehavior ICapturePrimaryConstituentDeviceSwitchingBehavior, restrictedSwitchingBehaviorConditions ICapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions)
 	AvailableVideoCodecTypes() VideoCodecType
-	SetAvailableVideoCodecTypes(value VideoCodecType)
+	SetAvailableVideoCodecTypes(value IVideoCodecType)
 	IsPrimaryConstituentDeviceSwitchingBehaviorForRecordingEnabled() bool
 	SetIsPrimaryConstituentDeviceSwitchingBehaviorForRecordingEnabled(value bool)
 	IsSpatialVideoCaptureEnabled() bool
@@ -52,8 +52,13 @@ type ICaptureMovieFileOutput interface {
 // A capture output that records video and audio to a QuickTime movie file.
 //
 // A movie file output provides a complete file recording interface for writing media data to QuickTime movie files. It includes the ability to configure QuickTime-specific options, including writing metadata collections to each file, specify media encoding options for each track, and specify the interval at which it writes movie fragments.
+
+
+// A capture output that records video and audio to a QuickTime movie file.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureMovieFileOutput
+
 type CaptureMovieFileOutput struct {
 	CaptureFileOutput
 }
@@ -99,161 +104,193 @@ func NewCaptureMovieFileOutput() CaptureMovieFileOutput {
 }
 
 
+
+
 // A Boolean value that indicates whether the movie file output records video orientation and mirroring information as a metadata track.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureMovieFileOutput/recordsVideoOrientationAndMirroringChangesAsMetadataTrack(for:)
+
 func (c_ CaptureMovieFileOutput) RecordsVideoOrientationAndMirroringChangesAsMetadataTrackForConnection(connection IAVCaptureConnection) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("recordsVideoOrientationAndMirroringChangesAsMetadataTrackForConnection:"), connection)
 	return rv
 }
 
+
+
 // Sets the camera switching behavior to use during recording.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureMovieFileOutput/setPrimaryConstituentDeviceSwitchingBehaviorForRecording(_:restrictedSwitchingBehaviorConditions:)
-func (c_ CaptureMovieFileOutput) SetPrimaryConstituentDeviceSwitchingBehaviorForRecordingRestrictedSwitchingBehaviorConditions(switchingBehavior CapturePrimaryConstituentDeviceSwitchingBehavior, restrictedSwitchingBehaviorConditions ICapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions) {
+
+func (c_ CaptureMovieFileOutput) SetPrimaryConstituentDeviceSwitchingBehaviorForRecordingRestrictedSwitchingBehaviorConditions(switchingBehavior ICapturePrimaryConstituentDeviceSwitchingBehavior, restrictedSwitchingBehaviorConditions ICapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPrimaryConstituentDeviceSwitchingBehaviorForRecording:restrictedSwitchingBehaviorConditions:"), switchingBehavior, restrictedSwitchingBehaviorConditions)
 }
 
+
 // The video codecs types the output supports for recording movie files.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemoviefileoutput/availablevideocodectypes
+
 func (c_ CaptureMovieFileOutput) AvailableVideoCodecTypes() VideoCodecType {
 	rv := objc.Send[VideoCodecType](c_.ID, objc.Sel("availableVideoCodecTypes"))
 	return rv
 }
 
 
-// SetAvailableVideoCodecTypes sets the value of the availableVideoCodecTypes property.
 // The video codecs types the output supports for recording movie files.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemoviefileoutput/availablevideocodectypes
-func (c_ CaptureMovieFileOutput) SetAvailableVideoCodecTypes(value VideoCodecType) {
+
+func (c_ CaptureMovieFileOutput) SetAvailableVideoCodecTypes(value IVideoCodecType) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAvailableVideoCodecTypes:"), value)
 }
 
+
 // A Boolean value that indicates whether to restrict constituent device switching behavior during recording.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemoviefileoutput/isprimaryconstituentdeviceswitchingbehaviorforrecordingenabled
+
 func (c_ CaptureMovieFileOutput) IsPrimaryConstituentDeviceSwitchingBehaviorForRecordingEnabled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isPrimaryConstituentDeviceSwitchingBehaviorForRecordingEnabled"))
 	return rv
 }
 
 
-// SetIsPrimaryConstituentDeviceSwitchingBehaviorForRecordingEnabled sets the value of the isPrimaryConstituentDeviceSwitchingBehaviorForRecordingEnabled property.
 // A Boolean value that indicates whether to restrict constituent device switching behavior during recording.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemoviefileoutput/isprimaryconstituentdeviceswitchingbehaviorforrecordingenabled
+
 func (c_ CaptureMovieFileOutput) SetIsPrimaryConstituentDeviceSwitchingBehaviorForRecordingEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsPrimaryConstituentDeviceSwitchingBehaviorForRecordingEnabled:"), value)
 }
 
+
 // A Boolean value that indicates whether a movie file output captures spatial videos.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemoviefileoutput/isspatialvideocaptureenabled
+
 func (c_ CaptureMovieFileOutput) IsSpatialVideoCaptureEnabled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isSpatialVideoCaptureEnabled"))
 	return rv
 }
 
 
-// SetIsSpatialVideoCaptureEnabled sets the value of the isSpatialVideoCaptureEnabled property.
 // A Boolean value that indicates whether a movie file output captures spatial videos.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemoviefileoutput/isspatialvideocaptureenabled
+
 func (c_ CaptureMovieFileOutput) SetIsSpatialVideoCaptureEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsSpatialVideoCaptureEnabled:"), value)
 }
 
+
 // A Boolean value that indicates whether a movie file output supports capturing spatial videos.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemoviefileoutput/isspatialvideocapturesupported
+
 func (c_ CaptureMovieFileOutput) IsSpatialVideoCaptureSupported() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isSpatialVideoCaptureSupported"))
 	return rv
 }
 
 
-// SetIsSpatialVideoCaptureSupported sets the value of the isSpatialVideoCaptureSupported property.
 // A Boolean value that indicates whether a movie file output supports capturing spatial videos.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemoviefileoutput/isspatialvideocapturesupported
+
 func (c_ CaptureMovieFileOutput) SetIsSpatialVideoCaptureSupported(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsSpatialVideoCaptureSupported:"), value)
 }
 
+
 // The metadata for the output file.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemoviefileoutput/metadata
+
 func (c_ CaptureMovieFileOutput) Metadata() AVMetadataItem {
 	rv := objc.Send[AVMetadataItem](c_.ID, objc.Sel("metadata"))
 	return rv
 }
 
 
-// SetMetadata sets the value of the metadata property.
 // The metadata for the output file.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemoviefileoutput/metadata
+
 func (c_ CaptureMovieFileOutput) SetMetadata(value IAVMetadataItem) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMetadata:"), value)
 }
 
+
 // The number of seconds of output that are written per fragment.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemoviefileoutput/moviefragmentinterval
+
 func (c_ CaptureMovieFileOutput) MovieFragmentInterval() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("movieFragmentInterval"))
 	return rv
 }
 
 
-// SetMovieFragmentInterval sets the value of the movieFragmentInterval property.
 // The number of seconds of output that are written per fragment.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemoviefileoutput/moviefragmentinterval
+
 func (c_ CaptureMovieFileOutput) SetMovieFragmentInterval(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMovieFragmentInterval:"), value)
 }
 
+
 // The conditions during which camera switching may occur while recording.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemoviefileoutput/primaryconstituentdevicerestrictedswitchingbehaviorconditionsforrecording
+
 func (c_ CaptureMovieFileOutput) PrimaryConstituentDeviceRestrictedSwitchingBehaviorConditionsForRecording() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("primaryConstituentDeviceRestrictedSwitchingBehaviorConditionsForRecording"))
 	return rv
 }
 
 
-// SetPrimaryConstituentDeviceRestrictedSwitchingBehaviorConditionsForRecording sets the value of the primaryConstituentDeviceRestrictedSwitchingBehaviorConditionsForRecording property.
 // The conditions during which camera switching may occur while recording.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemoviefileoutput/primaryconstituentdevicerestrictedswitchingbehaviorconditionsforrecording
+
 func (c_ CaptureMovieFileOutput) SetPrimaryConstituentDeviceRestrictedSwitchingBehaviorConditionsForRecording(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPrimaryConstituentDeviceRestrictedSwitchingBehaviorConditionsForRecording:"), value)
 }
 
+
 // The camera switching behavior to use for recording.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemoviefileoutput/primaryconstituentdeviceswitchingbehaviorforrecording
+
 func (c_ CaptureMovieFileOutput) PrimaryConstituentDeviceSwitchingBehaviorForRecording() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("primaryConstituentDeviceSwitchingBehaviorForRecording"))
 	return rv
 }
 
 
-// SetPrimaryConstituentDeviceSwitchingBehaviorForRecording sets the value of the primaryConstituentDeviceSwitchingBehaviorForRecording property.
 // The camera switching behavior to use for recording.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemoviefileoutput/primaryconstituentdeviceswitchingbehaviorforrecording
+
 func (c_ CaptureMovieFileOutput) SetPrimaryConstituentDeviceSwitchingBehaviorForRecording(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPrimaryConstituentDeviceSwitchingBehaviorForRecording:"), value)
 }

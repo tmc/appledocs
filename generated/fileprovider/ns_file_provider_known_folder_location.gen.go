@@ -36,8 +36,11 @@ type IFileProviderKnownFolderLocation interface {
 	SetDocumentsLocation(value IFileProviderKnownFolderLocation)
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderKnownFolderLocations/Location
+
 type FileProviderKnownFolderLocation struct {
 	objectivec.Object
 }
@@ -79,32 +82,36 @@ func NewFileProviderKnownFolderLocation() FileProviderKnownFolderLocation {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderknownfolderlocations/desktoplocation
+
 func (f_ FileProviderKnownFolderLocation) DesktopLocation() NSFileProviderKnownFolderLocation {
 	rv := objc.Send[NSFileProviderKnownFolderLocation](f_.ID, objc.Sel("desktopLocation"))
 	return rv
 }
 
 
-// SetDesktopLocation sets the value of the desktopLocation property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderknownfolderlocations/desktoplocation
+
 func (f_ FileProviderKnownFolderLocation) SetDesktopLocation(value IFileProviderKnownFolderLocation) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setDesktopLocation:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderknownfolderlocations/documentslocation
+
 func (f_ FileProviderKnownFolderLocation) DocumentsLocation() NSFileProviderKnownFolderLocation {
 	rv := objc.Send[NSFileProviderKnownFolderLocation](f_.ID, objc.Sel("documentsLocation"))
 	return rv
 }
 
 
-// SetDocumentsLocation sets the value of the documentsLocation property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderknownfolderlocations/documentslocation
+
 func (f_ FileProviderKnownFolderLocation) SetDocumentsLocation(value IFileProviderKnownFolderLocation) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setDocumentsLocation:"), value)
 }

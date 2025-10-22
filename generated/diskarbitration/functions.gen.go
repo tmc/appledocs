@@ -116,391 +116,539 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 
 
 
-// DAApprovalSessionCreate is a DiskArbitration function. [Full Topic]
+// DAApprovalSessionCreate is a DiskArbitration function.
 //
 // Added in macOS 10.4.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DAApprovalSessionCreate
+
 func DAApprovalSessionCreate(allocator unsafe.Pointer) unsafe.Pointer {
 	return _DAApprovalSessionCreate(allocator)
 	}
 
 
-// DAApprovalSessionGetTypeID is a DiskArbitration function. [Full Topic]
+// DAApprovalSessionGetTypeID is a DiskArbitration function.
 //
 // Added in macOS 10.4.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DAApprovalSessionGetTypeID
+
 func DAApprovalSessionGetTypeID() unsafe.Pointer {
 	return _DAApprovalSessionGetTypeID()
 	}
 
 
-// DAApprovalSessionScheduleWithRunLoop is a DiskArbitration function. [Full Topic]
+// DAApprovalSessionScheduleWithRunLoop is a DiskArbitration function.
 //
 // Added in macOS 10.4.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DAApprovalSessionScheduleWithRunLoop
+
 func DAApprovalSessionScheduleWithRunLoop(session unsafe.Pointer, runLoop unsafe.Pointer, runLoopMode unsafe.Pointer) {
 	_DAApprovalSessionScheduleWithRunLoop(session, runLoop, runLoopMode)
 	}
 
 
-// DAApprovalSessionUnscheduleFromRunLoop is a DiskArbitration function. [Full Topic]
+// DAApprovalSessionUnscheduleFromRunLoop is a DiskArbitration function.
 //
 // Added in macOS 10.4.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DAApprovalSessionUnscheduleFromRunLoop
+
 func DAApprovalSessionUnscheduleFromRunLoop(session unsafe.Pointer, runLoop unsafe.Pointer, runLoopMode unsafe.Pointer) {
 	_DAApprovalSessionUnscheduleFromRunLoop(session, runLoop, runLoopMode)
 	}
 
 
-// Claims the specified disk object for exclusive use. [Full Topic]
+// Claims the specified disk object for exclusive use.
 //
 // Added in macOS 10.4.
+
+// Claims the specified disk object for exclusive use.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DADiskClaim(_:_:_:_:_:_:)
+
 func DADiskClaim(disk unsafe.Pointer, options unsafe.Pointer, release unsafe.Pointer, releaseContext unsafe.Pointer, callback unsafe.Pointer, callbackContext unsafe.Pointer) {
 	_DADiskClaim(disk, options, release, releaseContext, callback, callbackContext)
 	}
 
 
-// Obtains the Disk Arbitration description of the specified disk. [Full Topic]
+// Obtains the Disk Arbitration description of the specified disk.
 //
 // Added in macOS 10.4.
+
+// Obtains the Disk Arbitration description of the specified disk.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DADiskCopyDescription(_:)
+
 func DADiskCopyDescription(disk unsafe.Pointer) unsafe.Pointer {
 	return _DADiskCopyDescription(disk)
 	}
 
 
-// Obtains the I/O Kit media object for the specified disk. [Full Topic]
+// Obtains the I/O Kit media object for the specified disk.
 //
 // Added in macOS 10.4.
+
+// Obtains the I/O Kit media object for the specified disk.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DADiskCopyIOMedia(_:)
+
 func DADiskCopyIOMedia(disk unsafe.Pointer) unsafe.Pointer {
 	return _DADiskCopyIOMedia(disk)
 	}
 
 
-// Obtain the associated whole disk object for the specified disk. [Full Topic]
+// Obtain the associated whole disk object for the specified disk.
 //
 // Added in macOS 10.4.
+
+// Obtain the associated whole disk object for the specified disk.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DADiskCopyWholeDisk(_:)
+
 func DADiskCopyWholeDisk(disk unsafe.Pointer) unsafe.Pointer {
 	return _DADiskCopyWholeDisk(disk)
 	}
 
 
-// Creates a new disk object. [Full Topic]
+// Creates a new disk object.
 //
 // Added in macOS 10.4.
+
+// Creates a new disk object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DADiskCreateFromBSDName(_:_:_:)
+
 func DADiskCreateFromBSDName(allocator unsafe.Pointer, session unsafe.Pointer, name unsafe.Pointer) unsafe.Pointer {
 	return _DADiskCreateFromBSDName(allocator, session, name)
 	}
 
 
-// Creates a new disk object. [Full Topic]
+// Creates a new disk object.
 //
 // Added in macOS 10.4.
+
+// Creates a new disk object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DADiskCreateFromIOMedia(_:_:_:)
+
 func DADiskCreateFromIOMedia(allocator unsafe.Pointer, session unsafe.Pointer, media unsafe.Pointer) unsafe.Pointer {
 	return _DADiskCreateFromIOMedia(allocator, session, media)
 	}
 
 
-// Creates a new disk object. [Full Topic]
+// Creates a new disk object.
 //
 // Added in macOS 10.7.
+
+// Creates a new disk object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DADiskCreateFromVolumePath(_:_:_:)
+
 func DADiskCreateFromVolumePath(allocator unsafe.Pointer, session unsafe.Pointer, path unsafe.Pointer) unsafe.Pointer {
 	return _DADiskCreateFromVolumePath(allocator, session, path)
 	}
 
 
-// Ejects the specified disk object. [Full Topic]
+// Ejects the specified disk object.
 //
 // Added in macOS 10.4.
+
+// Ejects the specified disk object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DADiskEject(_:_:_:_:)
+
 func DADiskEject(disk unsafe.Pointer, options unsafe.Pointer, callback unsafe.Pointer, context unsafe.Pointer) {
 	_DADiskEject(disk, options, callback, context)
 	}
 
 
-// Obtains the BSD device name for the specified disk. [Full Topic]
+// Obtains the BSD device name for the specified disk.
 //
 // Added in macOS 10.4.
+
+// Obtains the BSD device name for the specified disk.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DADiskGetBSDName(_:)
+
 func DADiskGetBSDName(disk unsafe.Pointer) unsafe.Pointer {
 	return _DADiskGetBSDName(disk)
 	}
 
 
-// Obtains the options for the specified disk. [Full Topic]
+// Obtains the options for the specified disk.
 //
 // Added in macOS 10.4.
+
+// Obtains the options for the specified disk.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DADiskGetOptions(_:)
+
 func DADiskGetOptions(disk unsafe.Pointer) unsafe.Pointer {
 	return _DADiskGetOptions(disk)
 	}
 
 
-// Returns the type identifier of all DADisk instances. [Full Topic]
+// Returns the type identifier of all DADisk instances.
 //
 // Added in macOS 10.4.
+
+// Returns the type identifier of all DADisk instances.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DADiskGetTypeID()
+
 func DADiskGetTypeID() unsafe.Pointer {
 	return _DADiskGetTypeID()
 	}
 
 
-// Reports whether or not the disk is claimed. [Full Topic]
+// Reports whether or not the disk is claimed.
 //
 // Added in macOS 10.4.
+
+// Reports whether or not the disk is claimed.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DADiskIsClaimed(_:)
+
 func DADiskIsClaimed(disk unsafe.Pointer) unsafe.Pointer {
 	return _DADiskIsClaimed(disk)
 	}
 
 
-// Mounts the volume at the specified disk object. [Full Topic]
+// Mounts the volume at the specified disk object.
 //
 // Added in macOS 10.4.
+
+// Mounts the volume at the specified disk object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DADiskMount(_:_:_:_:_:)
+
 func DADiskMount(disk unsafe.Pointer, path unsafe.Pointer, options unsafe.Pointer, callback unsafe.Pointer, context unsafe.Pointer) {
 	_DADiskMount(disk, path, options, callback, context)
 	}
 
 
-// Mounts the volume at the specified disk object, with the specified mount options. [Full Topic]
+// Mounts the volume at the specified disk object, with the specified mount options.
 //
 // Added in macOS 10.4.
+
+// Mounts the volume at the specified disk object, with the specified mount options.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DADiskMountWithArguments(_:_:_:_:_:_:)
+
 func DADiskMountWithArguments(disk unsafe.Pointer, path unsafe.Pointer, options unsafe.Pointer, callback unsafe.Pointer, context unsafe.Pointer, arguments unsafe.Pointer) {
 	_DADiskMountWithArguments(disk, path, options, callback, context, arguments)
 	}
 
 
-// Renames the volume at the specified disk object. [Full Topic]
+// Renames the volume at the specified disk object.
 //
 // Added in macOS 10.4.
+
+// Renames the volume at the specified disk object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DADiskRename(_:_:_:_:_:)
+
 func DADiskRename(disk unsafe.Pointer, name unsafe.Pointer, options unsafe.Pointer, callback unsafe.Pointer, context unsafe.Pointer) {
 	_DADiskRename(disk, name, options, callback, context)
 	}
 
 
-// Sets the options for the specified disk. [Full Topic]
+// Sets the options for the specified disk.
 //
 // Added in macOS 10.4.
+
+// Sets the options for the specified disk.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DADiskSetOptions(_:_:_:)
+
 func DADiskSetOptions(disk unsafe.Pointer, options unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
 	return _DADiskSetOptions(disk, options, value)
 	}
 
 
-// Unclaims the specified disk object. [Full Topic]
+// Unclaims the specified disk object.
 //
 // Added in macOS 10.4.
+
+// Unclaims the specified disk object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DADiskUnclaim(_:)
+
 func DADiskUnclaim(disk unsafe.Pointer) {
 	_DADiskUnclaim(disk)
 	}
 
 
-// Unmounts the volume at the specified disk object. [Full Topic]
+// Unmounts the volume at the specified disk object.
 //
 // Added in macOS 10.4.
+
+// Unmounts the volume at the specified disk object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DADiskUnmount(_:_:_:_:)
+
 func DADiskUnmount(disk unsafe.Pointer, options unsafe.Pointer, callback unsafe.Pointer, context unsafe.Pointer) {
 	_DADiskUnmount(disk, options, callback, context)
 	}
 
 
-// Creates a new dissenter object. [Full Topic]
+// Creates a new dissenter object.
 //
 // Added in macOS 10.4.
+
+// Creates a new dissenter object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DADissenterCreate(_:_:_:)
+
 func DADissenterCreate(allocator unsafe.Pointer, status unsafe.Pointer, string_ unsafe.Pointer) unsafe.Pointer {
 	return _DADissenterCreate(allocator, status, string_)
 	}
 
 
-// Obtains the return code. [Full Topic]
+// Obtains the return code.
 //
 // Added in macOS 10.4.
+
+// Obtains the return code.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DADissenterGetStatus(_:)
+
 func DADissenterGetStatus(dissenter unsafe.Pointer) unsafe.Pointer {
 	return _DADissenterGetStatus(dissenter)
 	}
 
 
-// Obtains the return code string. [Full Topic]
+// Obtains the return code string.
 //
 // Added in macOS 10.4.
+
+// Obtains the return code string.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DADissenterGetStatusString(_:)
+
 func DADissenterGetStatusString(dissenter unsafe.Pointer) unsafe.Pointer {
 	return _DADissenterGetStatusString(dissenter)
 	}
 
 
-// Registers a callback function to be called whenever a disk has appeared. [Full Topic]
+// Registers a callback function to be called whenever a disk has appeared.
 //
 // Added in macOS 10.4.
+
+// Registers a callback function to be called whenever a disk has appeared.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DARegisterDiskAppearedCallback(_:_:_:_:)
+
 func DARegisterDiskAppearedCallback(session unsafe.Pointer, match unsafe.Pointer, callback unsafe.Pointer, context unsafe.Pointer) {
 	_DARegisterDiskAppearedCallback(session, match, callback, context)
 	}
 
 
-// Registers a callback function to be called whenever a disk description has changed. [Full Topic]
+// Registers a callback function to be called whenever a disk description has changed.
 //
 // Added in macOS 10.4.
+
+// Registers a callback function to be called whenever a disk description has changed.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DARegisterDiskDescriptionChangedCallback(_:_:_:_:_:)
+
 func DARegisterDiskDescriptionChangedCallback(session unsafe.Pointer, match unsafe.Pointer, watch unsafe.Pointer, callback unsafe.Pointer, context unsafe.Pointer) {
 	_DARegisterDiskDescriptionChangedCallback(session, match, watch, callback, context)
 	}
 
 
-// Registers a callback function to be called whenever a disk has disappeared. [Full Topic]
+// Registers a callback function to be called whenever a disk has disappeared.
 //
 // Added in macOS 10.4.
+
+// Registers a callback function to be called whenever a disk has disappeared.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DARegisterDiskDisappearedCallback(_:_:_:_:)
+
 func DARegisterDiskDisappearedCallback(session unsafe.Pointer, match unsafe.Pointer, callback unsafe.Pointer, context unsafe.Pointer) {
 	_DARegisterDiskDisappearedCallback(session, match, callback, context)
 	}
 
 
-// Registers a callback function to be called whenever a volume is to be ejected. [Full Topic]
+// Registers a callback function to be called whenever a volume is to be ejected.
 //
 // Added in macOS 10.4.
+
+// Registers a callback function to be called whenever a volume is to be ejected.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DARegisterDiskEjectApprovalCallback(_:_:_:_:)
+
 func DARegisterDiskEjectApprovalCallback(session unsafe.Pointer, match unsafe.Pointer, callback unsafe.Pointer, context unsafe.Pointer) {
 	_DARegisterDiskEjectApprovalCallback(session, match, callback, context)
 	}
 
 
-// Registers a callback function to be called whenever a volume is to be mounted. [Full Topic]
+// Registers a callback function to be called whenever a volume is to be mounted.
 //
 // Added in macOS 10.4.
+
+// Registers a callback function to be called whenever a volume is to be mounted.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DARegisterDiskMountApprovalCallback(_:_:_:_:)
+
 func DARegisterDiskMountApprovalCallback(session unsafe.Pointer, match unsafe.Pointer, callback unsafe.Pointer, context unsafe.Pointer) {
 	_DARegisterDiskMountApprovalCallback(session, match, callback, context)
 	}
 
 
-// Registers a callback function to be called whenever a disk has been probed. [Full Topic]
+// Registers a callback function to be called whenever a disk has been probed.
 //
 // Added in macOS 10.4.
+
+// Registers a callback function to be called whenever a disk has been probed.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DARegisterDiskPeekCallback(_:_:_:_:_:)
+
 func DARegisterDiskPeekCallback(session unsafe.Pointer, match unsafe.Pointer, order unsafe.Pointer, callback unsafe.Pointer, context unsafe.Pointer) {
 	_DARegisterDiskPeekCallback(session, match, order, callback, context)
 	}
 
 
-// Registers a callback function to be called whenever a volume is to be unmounted. [Full Topic]
+// Registers a callback function to be called whenever a volume is to be unmounted.
 //
 // Added in macOS 10.4.
+
+// Registers a callback function to be called whenever a volume is to be unmounted.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DARegisterDiskUnmountApprovalCallback(_:_:_:_:)
+
 func DARegisterDiskUnmountApprovalCallback(session unsafe.Pointer, match unsafe.Pointer, callback unsafe.Pointer, context unsafe.Pointer) {
 	_DARegisterDiskUnmountApprovalCallback(session, match, callback, context)
 	}
 
 
-// Creates a new session. [Full Topic]
+// Creates a new session.
 //
 // Added in macOS 10.4.
+
+// Creates a new session.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DASessionCreate(_:)
+
 func DASessionCreate(allocator unsafe.Pointer) unsafe.Pointer {
 	return _DASessionCreate(allocator)
 	}
 
 
-// Returns the type identifier of all DASession instances. [Full Topic]
+// Returns the type identifier of all DASession instances.
 //
 // Added in macOS 10.4.
+
+// Returns the type identifier of all DASession instances.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DASessionGetTypeID()
+
 func DASessionGetTypeID() unsafe.Pointer {
 	return _DASessionGetTypeID()
 	}
 
 
-// Schedules the session on a run loop. [Full Topic]
+// Schedules the session on a run loop.
 //
 // Added in macOS 10.4.
+
+// Schedules the session on a run loop.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DASessionScheduleWithRunLoop(_:_:_:)
+
 func DASessionScheduleWithRunLoop(session unsafe.Pointer, runLoop unsafe.Pointer, runLoopMode unsafe.Pointer) {
 	_DASessionScheduleWithRunLoop(session, runLoop, runLoopMode)
 	}
 
 
-// Schedules the session on a dispatch queue. [Full Topic]
+// Schedules the session on a dispatch queue.
 //
 // Added in macOS 10.7.
+
+// Schedules the session on a dispatch queue.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DASessionSetDispatchQueue(_:_:)
+
 func DASessionSetDispatchQueue(session unsafe.Pointer, queue unsafe.Pointer) {
 	_DASessionSetDispatchQueue(session, queue)
 	}
 
 
-// Unschedules the session from a run loop. [Full Topic]
+// Unschedules the session from a run loop.
 //
 // Added in macOS 10.4.
+
+// Unschedules the session from a run loop.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DASessionUnscheduleFromRunLoop(_:_:_:)
+
 func DASessionUnscheduleFromRunLoop(session unsafe.Pointer, runLoop unsafe.Pointer, runLoopMode unsafe.Pointer) {
 	_DASessionUnscheduleFromRunLoop(session, runLoop, runLoopMode)
 	}
 
 
-// Unregisters a registered callback function. [Full Topic]
+// Unregisters a registered callback function.
 //
 // Added in macOS 10.4.
+
+// Unregisters a registered callback function.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DAUnregisterApprovalCallback
+
 func DAUnregisterApprovalCallback(session unsafe.Pointer, callback unsafe.Pointer, context unsafe.Pointer) {
 	_DAUnregisterApprovalCallback(session, callback, context)
 	}
 
 
-// Unregisters a registered callback function. [Full Topic]
+// Unregisters a registered callback function.
 //
 // Added in macOS 10.4.
+
+// Unregisters a registered callback function.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DAUnregisterCallback(_:_:_:)
+
 func DAUnregisterCallback(session unsafe.Pointer, callback unsafe.Pointer, context unsafe.Pointer) {
 	_DAUnregisterCallback(session, callback, context)
 	}

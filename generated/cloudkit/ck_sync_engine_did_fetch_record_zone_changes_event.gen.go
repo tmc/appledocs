@@ -35,8 +35,13 @@ type ICKSyncEngineDidFetchRecordZoneChangesEvent interface {
 }
 
 // An object that provides information about a finished record zone fetch.
+
+
+// An object that provides information about a finished record zone fetch.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineDidFetchRecordZoneChangesEvent
+
 type CKSyncEngineDidFetchRecordZoneChangesEvent struct {
 	CKSyncEngineEvent
 }
@@ -82,17 +87,23 @@ func NewCKSyncEngineDidFetchRecordZoneChangesEvent() CKSyncEngineDidFetchRecordZ
 }
 
 
+
 // An error that describes the cause of a failed fetch operation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineDidFetchRecordZoneChangesEvent/error
+
 func (c_ CKSyncEngineDidFetchRecordZoneChangesEvent) Error() foundation.Error {
 	rv := objc.Send[foundation.Error](c_.ID, objc.Sel("error"))
 	return rv
 }
 
+
 // The associated record zone’s unique identifier.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineDidFetchRecordZoneChangesEvent/zoneID
+
 func (c_ CKSyncEngineDidFetchRecordZoneChangesEvent) ZoneID() CKRecordZoneID {
 	rv := objc.Send[CKRecordZoneID](c_.ID, objc.Sel("zoneID"))
 	return rv

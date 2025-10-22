@@ -36,8 +36,13 @@ type IFPUIActionExtensionContext interface {
 }
 
 // An extension context provided to File Provider UI extensions.
+
+
+// An extension context provided to File Provider UI extensions.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProviderUI/FPUIActionExtensionContext
+
 type FPUIActionExtensionContext struct {
 	ExtensionContext
 }
@@ -83,23 +88,34 @@ func NewFPUIActionExtensionContext() FPUIActionExtensionContext {
 }
 
 
+
+
 // Cancels the action and returns the provided error.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProviderUI/FPUIActionExtensionContext/cancelRequest(withError:)
+
 func (f_ FPUIActionExtensionContext) CancelRequestWithError(error_ foundation.IError) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("cancelRequestWithError:"), error_)
 }
 
+
+
 // Marks the action as complete.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProviderUI/FPUIActionExtensionContext/completeRequest()
+
 func (f_ FPUIActionExtensionContext) CompleteRequest() {
 	objc.Send[objc.ID](f_.ID, objc.Sel("completeRequest"))
 }
 
+
 // The identifier for the domain managed by the current file provider.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProviderUI/FPUIActionExtensionContext/domainIdentifier
+
 func (f_ FPUIActionExtensionContext) DomainIdentifier() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("domainIdentifier"))
 	return rv

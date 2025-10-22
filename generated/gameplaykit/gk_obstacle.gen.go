@@ -35,8 +35,13 @@ type IObstacle interface {
 // The abstract base class for objects representing impassable areas in a game world.
 //
 // You do not use this class directly; instead, create instances of its concrete subclasses , , and . To make agents ( objects) avoid obstacles, create a goal with the goalToAvoidObstacles:timeBeforeCollisionToAvoid: method. To learn more about using goals and agents, see in . For more information, see .
+
+
+// The abstract base class for objects representing impassable areas in a game world.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKObstacle
+
 type Obstacle struct {
 	objectivec.Object
 }

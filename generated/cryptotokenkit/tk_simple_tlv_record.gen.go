@@ -33,8 +33,13 @@ type ITKSimpleTLVRecord interface {
 }
 
 // An object that implements encoding using Simple-TLV encoding according to ISO 7816-4.
+
+
+// An object that implements encoding using Simple-TLV encoding according to ISO 7816-4.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSimpleTLVRecord
+
 type TKSimpleTLVRecord struct {
 	objectivec.Object
 }

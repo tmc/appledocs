@@ -36,8 +36,13 @@ type ISKNodeComponent interface {
 // A component that manages a SpriteKit node.
 //
 // Adding a object to an entity automatically updates the property of the component’s SpriteKit node (an object) to point to that entity. When you add entities and components to a node in the Xcode SpriteKit scene editor, Xcode automatically creates a object to manage the relationship between that SpriteKit node and the object that node represents. Load the scene file with the class to access these entities and components. For more information on Entity-Component architecture, read in .
+
+
+// A component that manages a SpriteKit node.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKSKNodeComponent
+
 type SKNodeComponent struct {
 	Component
 }
@@ -87,7 +92,9 @@ func NewSKNodeComponent() SKNodeComponent {
 
 // Initializes a component to manage the specified SpriteKit node.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKSKNodeComponent/init(node:)
+
 func NewSKNodeComponentWithNode(node unsafe.Pointer) SKNodeComponent {
 	instance := getSKNodeComponentClass().Alloc()
 	rv := objc.Send[SKNodeComponent](instance.ID, objc.Sel("initWithNode:"), node)
@@ -96,28 +103,34 @@ func NewSKNodeComponentWithNode(node unsafe.Pointer) SKNodeComponent {
 }
 
 
+
 // Creates a component to manage the specified SpriteKit node.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKSKNodeComponent/componentWithNode:
+
 func (nc _SKNodeComponentClass) ComponentWithNode(node unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(nc.class), objc.Sel("componentWithNode:"), node)
 	return rv
 }
 
+
 // The SpriteKit node managed by the component.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKSKNodeComponent/node
+
 func (n_ SKNodeComponent) Node() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("node"))
 	return rv
 }
 
 
-// SetNode sets the value of the node property.
 // The SpriteKit node managed by the component.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKSKNodeComponent/node
+
 func (n_ SKNodeComponent) SetNode(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setNode:"), value)
 }

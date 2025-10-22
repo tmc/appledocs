@@ -32,8 +32,11 @@ type IhasTrackingID interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFaceFeature/hasTrackingID-c.ivar
+
 type hasTrackingID struct {
 	objectivec.Object
 }

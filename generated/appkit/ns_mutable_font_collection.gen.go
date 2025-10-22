@@ -38,8 +38,13 @@ type IMutableFontCollection interface {
 // A mutable collection of font descriptors taken together as a single object.
 //
 // You can use this class to modify the search queries for the font descriptors used by the parent class.
+
+
+// A mutable collection of font descriptors taken together as a single object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableFontCollection
+
 type MutableFontCollection struct {
 	FontCollection
 }
@@ -85,38 +90,44 @@ func NewMutableFontCollection() MutableFontCollection {
 }
 
 
+
 // The font descriptors to exclude from query results.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutablefontcollection/exclusiondescriptors
+
 func (m_ MutableFontCollection) ExclusionDescriptors() NSFontDescriptor {
 	rv := objc.Send[NSFontDescriptor](m_.ID, objc.Sel("exclusionDescriptors"))
 	return rv
 }
 
 
-// SetExclusionDescriptors sets the value of the exclusionDescriptors property.
 // The font descriptors to exclude from query results.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutablefontcollection/exclusiondescriptors
+
 func (m_ MutableFontCollection) SetExclusionDescriptors(value IFontDescriptor) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setExclusionDescriptors:"), value)
 }
 
+
 // The font descriptors to include in query results.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutablefontcollection/querydescriptors
+
 func (m_ MutableFontCollection) QueryDescriptors() NSFontDescriptor {
 	rv := objc.Send[NSFontDescriptor](m_.ID, objc.Sel("queryDescriptors"))
 	return rv
 }
 
 
-// SetQueryDescriptors sets the value of the queryDescriptors property.
 // The font descriptors to include in query results.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutablefontcollection/querydescriptors
+
 func (m_ MutableFontCollection) SetQueryDescriptors(value IFontDescriptor) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setQueryDescriptors:"), value)
 }

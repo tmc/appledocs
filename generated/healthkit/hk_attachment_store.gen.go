@@ -35,8 +35,13 @@ type IHKAttachmentStore interface {
 // The access point for attachments associated with samples in the HealthKit store.
 //
 // Use an object to manage attachments for samples that your app has saved to the HealthKit store.
+
+
+// The access point for attachments associated with samples in the HealthKit store.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKAttachmentStore
+
 type HKAttachmentStore struct {
 	objectivec.Object
 }

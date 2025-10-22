@@ -40,8 +40,13 @@ type IHKQuantitySeriesSampleBuilder interface {
 }
 
 // A builder object for incrementally building a sample that contains multiple quantities.
+
+
+// A builder object for incrementally building a sample that contains multiple quantities.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKQuantitySeriesSampleBuilder
+
 type HKQuantitySeriesSampleBuilder struct {
 	objectivec.Object
 }
@@ -85,56 +90,65 @@ func NewHKQuantitySeriesSampleBuilder() HKQuantitySeriesSampleBuilder {
 }
 
 
+
 // The device providing the data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquantityseriessamplebuilder/device
+
 func (h_ HKQuantitySeriesSampleBuilder) Device() HKDevice {
 	rv := objc.Send[HKDevice](h_.ID, objc.Sel("device"))
 	return rv
 }
 
 
-// SetDevice sets the value of the device property.
 // The device providing the data.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquantityseriessamplebuilder/device
+
 func (h_ HKQuantitySeriesSampleBuilder) SetDevice(value IHKDevice) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setDevice:"), value)
 }
 
+
 // The quantity type for the series.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquantityseriessamplebuilder/quantitytype
+
 func (h_ HKQuantitySeriesSampleBuilder) QuantityType() HKQuantityType {
 	rv := objc.Send[HKQuantityType](h_.ID, objc.Sel("quantityType"))
 	return rv
 }
 
 
-// SetQuantityType sets the value of the quantityType property.
 // The quantity type for the series.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquantityseriessamplebuilder/quantitytype
+
 func (h_ HKQuantitySeriesSampleBuilder) SetQuantityType(value HKQuantityType) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setQuantityType:"), value)
 }
 
+
 // The starting date and time for the sample.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquantityseriessamplebuilder/startdate
+
 func (h_ HKQuantitySeriesSampleBuilder) StartDate() foundation.Date {
 	rv := objc.Send[foundation.Date](h_.ID, objc.Sel("startDate"))
 	return rv
 }
 
 
-// SetStartDate sets the value of the startDate property.
 // The starting date and time for the sample.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquantityseriessamplebuilder/startdate
+
 func (h_ HKQuantitySeriesSampleBuilder) SetStartDate(value foundation.IDate) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setStartDate:"), value)
 }

@@ -34,8 +34,13 @@ type IRidgedNoiseSource interface {
 // A procedural noise generator whose output is a type of multifractal coherent noise with sharply defined features.
 //
 // Ridged noise is similar to Perlin noise (see the class), but with thinner features resembling natural phenomena such as forked lightning and mountain peaks. Like all subclasses, a ridged noise source represents a noise generation algorithm and its parameters. To make use of a noise source, first create object from it (and optionally apply operations to that noise object or combine it with other noise objects). Then create a object from your noise object, generating a concrete field of values that you can sample from directly or visualize using the or class.
+
+
+// A procedural noise generator whose output is a type of multifractal coherent noise with sharply defined features.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRidgedNoiseSource
+
 type RidgedNoiseSource struct {
 	CoherentNoiseSource
 }
@@ -85,7 +90,9 @@ func NewRidgedNoiseSource() RidgedNoiseSource {
 
 // Initializes a ridged noise source with the specified parameters.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRidgedNoiseSource/init(frequency:octaveCount:lacunarity:seed:)
+
 func NewRidgedNoiseSourceWithFrequencyOctaveCountLacunaritySeed(frequency float64, octaveCount int, lacunarity float64, seed unsafe.Pointer) RidgedNoiseSource {
 	instance := getRidgedNoiseSourceClass().Alloc()
 	rv := objc.Send[RidgedNoiseSource](instance.ID, objc.Sel("initWithFrequency:octaveCount:lacunarity:seed:"), frequency, octaveCount, lacunarity, seed)
@@ -94,9 +101,12 @@ func NewRidgedNoiseSourceWithFrequencyOctaveCountLacunaritySeed(frequency float6
 }
 
 
+
 // Creates a ridged noise source with the specified parameters.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRidgedNoiseSource/ridgedNoiseSourceWithFrequency:octaveCount:lacunarity:seed:
+
 func (rc _RidgedNoiseSourceClass) RidgedNoiseSourceWithFrequencyOctaveCountLacunaritySeed(frequency float64, octaveCount int, lacunarity float64, seed unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(rc.class), objc.Sel("ridgedNoiseSourceWithFrequency:octaveCount:lacunarity:seed:"), frequency, octaveCount, lacunarity, seed)
 	return rv

@@ -33,8 +33,13 @@ type ICKSyncEngineFetchChangesOptions interface {
 }
 
 // A set of options to use with a fetch operation.
+
+
+// A set of options to use with a fetch operation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineFetchChangesOptions
+
 type CKSyncEngineFetchChangesOptions struct {
 	objectivec.Object
 }

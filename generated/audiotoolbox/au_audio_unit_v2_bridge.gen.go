@@ -34,8 +34,13 @@ type IAudioUnitV2Bridge interface {
 // A class that wraps a version 2 audio unit as version 3 audio unit.
 //
 // A version 3 audio unit may subclass the class. If so, the audio unit’s component description should refer to a registered component with a version 2 implementation by using a factory function. The bridge will instantiate the version 2 audio unit via the factory function and communicate with it using version 2 audio unit APIs. Hosts should not access this class; it will be instantiated if needed when creating an audio unit.
+
+
+// A class that wraps a version 2 audio unit as version 3 audio unit.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitV2Bridge
+
 type AudioUnitV2Bridge struct {
 	AudioUnit
 }

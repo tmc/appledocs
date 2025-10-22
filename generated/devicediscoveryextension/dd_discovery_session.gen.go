@@ -36,8 +36,13 @@ type IDDDiscoverySession interface {
 // An object that relays device discovery events from the extension to the system.
 //
 // The system passes the extension an instance of this class when it attempts to discover a device. Device discovery starts when an app displays and the system calls the extension’s implementation.
+
+
+// An object that relays device discovery events from the extension to the system.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDiscoverySession
+
 type DDDiscoverySession struct {
 	objectivec.Object
 }
@@ -81,9 +86,13 @@ func NewDDDiscoverySession() DDDiscoverySession {
 }
 
 
+
+
 // Reports an event to the system.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDiscoverySession/report(_:)
+
 func (d_ DDDiscoverySession) ReportEvent(inEvent IDDDeviceEvent) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("reportEvent:"), inEvent)
 }

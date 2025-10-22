@@ -31,7 +31,9 @@ type _ConditionClass struct {
 type ICondition interface {
 	objectivec.IObject
 	Broadcast()
+	Signal()
 	Wait()
+	WaitUntilDate(limit IDate) bool
 	Name() string
 	SetName(value string)
 }
@@ -102,6 +104,17 @@ func (c_ Condition) Broadcast() {
 
 
 
+// Signals the condition, waking up one thread waiting on it.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCondition/signal()
+
+func (c_ Condition) Signal() {
+	objc.Send[objc.ID](c_.ID, objc.Sel("signal"))
+}
+
+
+
 // Blocks the current thread until the condition is signaled.
 //
 // [Full Topic]
@@ -112,10 +125,22 @@ func (c_ Condition) Wait() {
 }
 
 
+
+// Blocks the current thread until the condition is signaled or the specified time limit is reached.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCondition/wait(until:)
+
+func (c_ Condition) WaitUntilDate(limit IDate) bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("waitUntilDate:"), limit)
+	return rv
+}
+
+
 // The name of the condition.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscondition/name
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCondition/name
 
 func (c_ Condition) Name() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("name"))
@@ -126,7 +151,7 @@ func (c_ Condition) Name() string {
 // The name of the condition.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscondition/name
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCondition/name
 
 func (c_ Condition) SetName(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setName:"), objc.String(value))

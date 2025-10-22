@@ -36,9 +36,9 @@ type ISet interface {
 	AnyObject() unsafe.Pointer
 	ContainsObject(anObject unsafe.Pointer) bool
 	DescriptionWithLocale(locale objectivec.IObject) String
-	EnumerateIndexPathsWithOptionsUsingBlock(opts EnumerationOptions, block unsafe.Pointer)
+	EnumerateIndexPathsWithOptionsUsingBlock(opts IEnumerationOptions, block unsafe.Pointer)
 	EnumerateObjectsUsingBlock(block unsafe.Pointer)
-	EnumerateObjectsWithOptionsUsingBlock(opts EnumerationOptions, block unsafe.Pointer)
+	EnumerateObjectsWithOptionsUsingBlock(opts IEnumerationOptions, block unsafe.Pointer)
 	FilteredSetUsingPredicate(predicate IPredicate) unsafe.Pointer
 	IntersectsSet(otherSet unsafe.Pointer) bool
 	IsEqualToSet(otherSet unsafe.Pointer) bool
@@ -47,7 +47,7 @@ type ISet interface {
 	MakeObjectsPerformSelectorWithObject(aSelector objc.SEL, argument objectivec.IObject)
 	Member(object unsafe.Pointer) unsafe.Pointer
 	ObjectEnumerator() unsafe.Pointer
-	ObjectsWithOptionsPassingTest(opts EnumerationOptions, predicate unsafe.Pointer) unsafe.Pointer
+	ObjectsWithOptionsPassingTest(opts IEnumerationOptions, predicate unsafe.Pointer) unsafe.Pointer
 	ObjectsPassingTest(predicate unsafe.Pointer) unsafe.Pointer
 	SortedArrayUsingDescriptors(sortDescriptors []SortDescriptor) []objc.ID
 	AllObjects() []objc.ID
@@ -314,7 +314,7 @@ func (sc _SetClass) SetWithSet(set unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/addObserver(_:forKeyPath:options:context:)
 
-func (s_ Set) AddObserverForKeyPathOptionsContext(observer objectivec.IObject, keyPath string, options KeyValueObservingOptions, context unsafe.Pointer) {
+func (s_ Set) AddObserverForKeyPathOptionsContext(observer objectivec.IObject, keyPath string, options IKeyValueObservingOptions, context unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("addObserver:forKeyPath:options:context:"), observer, objc.String(keyPath), options, context)
 }
 
@@ -395,7 +395,7 @@ func (s_ Set) DescriptionWithLocale(locale objectivec.IObject) String {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/enumerateIndexPaths(options:using:)
 
-func (s_ Set) EnumerateIndexPathsWithOptionsUsingBlock(opts EnumerationOptions, block unsafe.Pointer) {
+func (s_ Set) EnumerateIndexPathsWithOptionsUsingBlock(opts IEnumerationOptions, block unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("enumerateIndexPathsWithOptions:usingBlock:"), opts, block)
 }
 
@@ -417,7 +417,7 @@ func (s_ Set) EnumerateObjectsUsingBlock(block unsafe.Pointer) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/enumerateObjects(options:using:)
 
-func (s_ Set) EnumerateObjectsWithOptionsUsingBlock(opts EnumerationOptions, block unsafe.Pointer) {
+func (s_ Set) EnumerateObjectsWithOptionsUsingBlock(opts IEnumerationOptions, block unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("enumerateObjectsWithOptions:usingBlock:"), opts, block)
 }
 
@@ -522,7 +522,7 @@ func (s_ Set) ObjectEnumerator() unsafe.Pointer {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/objects(options:passingTest:)
 
-func (s_ Set) ObjectsWithOptionsPassingTest(opts EnumerationOptions, predicate unsafe.Pointer) unsafe.Pointer {
+func (s_ Set) ObjectsWithOptionsPassingTest(opts IEnumerationOptions, predicate unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("objectsWithOptions:passingTest:"), opts, predicate)
 	return rv
 }

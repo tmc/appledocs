@@ -44,8 +44,13 @@ type IHelpManager interface {
 // An object for displaying online help for an app.
 //
 // The class provides an approach to displaying online help. An app contains one object.
+
+
+// An object for displaying online help for an app.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSHelpManager
+
 type HelpManager struct {
 	objectivec.Object
 }
@@ -89,89 +94,127 @@ func NewHelpManager() HelpManager {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSHelpManager/isContextHelpModeActive
+
 func (hc _HelpManagerClass) ContextHelpModeActive() bool {
 	rv := objc.Send[bool](objc.ID(hc.class), objc.Sel("contextHelpModeActive"))
 	return rv
 }
+
 // Returns the shared instance, creating it if it does not already exist.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSHelpManager/shared
+
 func (hc _HelpManagerClass) SharedHelpManager() HelpManager {
 	rv := objc.Send[NSHelpManager](objc.ID(hc.class), objc.Sel("sharedHelpManager"))
 	return rv
 }
+
+
 // Returns context-sensitive help for an object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSHelpManager/contextHelp(for:)
+
 func (h_ HelpManager) ContextHelpForObject(object objectivec.IObject) foundation.AttributedString {
 	rv := objc.Send[foundation.AttributedString](h_.ID, objc.Sel("contextHelpForObject:"), object)
 	return rv
 }
 
+
+
 // Performs a search for the specified string in the specified book.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSHelpManager/find(_:inBook:)
+
 func (h_ HelpManager) FindStringInBook(query string, book IHelpBookName) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("findString:inBook:"), objc.String(query), book)
 }
 
+
+
 // Finds and displays the text at the given anchor location in the given book.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSHelpManager/openHelpAnchor(_:inBook:)
+
 func (h_ HelpManager) OpenHelpAnchorInBook(anchor IHelpAnchorName, book IHelpBookName) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("openHelpAnchor:inBook:"), anchor, book)
 }
 
+
+
 // Registers one or more help books in the given bundle.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSHelpManager/registerBooks(in:)
+
 func (h_ HelpManager) RegisterBooksInBundle(bundle foundation.IBundle) bool {
 	rv := objc.Send[bool](h_.ID, objc.Sel("registerBooksInBundle:"), bundle)
 	return rv
 }
 
+
+
 // Removes the association between an object and its context-sensitive help.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSHelpManager/removeContextHelp(for:)
+
 func (h_ HelpManager) RemoveContextHelpForObject(object objectivec.IObject) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("removeContextHelpForObject:"), object)
 }
 
+
+
 // Associates help content with an object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSHelpManager/setContextHelp(_:for:)
+
 func (h_ HelpManager) SetContextHelpForObject(attrString foundation.IAttributedString, object objectivec.IObject) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setContextHelp:forObject:"), attrString, object)
 }
 
+
+
 // Displays the context-sensitive help for a given object at or near the point on the screen specified by a given point.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSHelpManager/showContextHelp(for:locationHint:)
+
 func (h_ HelpManager) ShowContextHelpForObjectLocationHint(object objectivec.IObject, pt coregraphics.CGPoint) bool {
 	rv := objc.Send[bool](h_.ID, objc.Sel("showContextHelpForObject:locationHint:"), object, pt)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSHelpManager/isContextHelpModeActive
+
 func (h_ HelpManager) ContextHelpModeActive() bool {
 	rv := objc.Send[bool](h_.ID, objc.Sel("contextHelpModeActive"))
 	return rv
 }
 
 
-// SetContextHelpModeActive sets the value of the contextHelpModeActive property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSHelpManager/isContextHelpModeActive
+
 func (h_ HelpManager) SetContextHelpModeActive(value bool) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setContextHelpModeActive:"), value)
 }
 
+
 // Returns the shared instance, creating it if it does not already exist.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSHelpManager/shared
+
 func (h_ HelpManager) SharedHelpManager() NSHelpManager {
 	rv := objc.Send[NSHelpManager](h_.ID, objc.Sel("sharedHelpManager"))
 	return rv

@@ -40,8 +40,13 @@ type IACAccountType interface {
 // An object that encapsulates information about all accounts of a particular type.
 //
 // You don’t create account type objects directly. To obtain an account type object, use the method or the property of an account object. Use the method to obtain all accounts of a particular type.
+
+
+// An object that encapsulates information about all accounts of a particular type.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccountType
+
 type ACAccountType struct {
 	objectivec.Object
 }
@@ -85,44 +90,56 @@ func NewACAccountType() ACAccountType {
 }
 
 
+
 // A Boolean value indicating whether the user granted the application access to accounts of this type.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccountType/accessGranted
+
 func (a_ ACAccountType) AccessGranted() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("accessGranted"))
 	return rv
 }
 
+
 // A human-readable description of the account type.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccountType/accountTypeDescription
+
 func (a_ ACAccountType) AccountTypeDescription() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("accountTypeDescription"))
 	return rv
 }
 
+
 // The unique identifier for the account type.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccountType/identifier
+
 func (a_ ACAccountType) Identifier() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("identifier"))
 	return rv
 }
 
+
 // The type of service account.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/accounts/acaccount/accounttype
+
 func (a_ ACAccountType) AccountType() ACAccountType {
 	rv := objc.Send[ACAccountType](a_.ID, objc.Sel("accountType"))
 	return rv
 }
 
 
-// SetAccountType sets the value of the accountType property.
 // The type of service account.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/accounts/acaccount/accounttype
+
 func (a_ ACAccountType) SetAccountType(value ACAccountType) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAccountType:"), value)
 }

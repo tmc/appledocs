@@ -32,8 +32,11 @@ type IAXMathExpressionNumber interface {
 	Content() string
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionNumber
+
 type AXMathExpressionNumber struct {
 	AXMathExpression
 }
@@ -77,8 +80,11 @@ func NewAXMathExpressionNumber() AXMathExpressionNumber {
 }
 
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionNumber/init(content:)
+
 func NewAXMathExpressionNumberWithContent(content string) AXMathExpressionNumber {
 	instance := getAXMathExpressionNumberClass().Alloc()
 	rv := objc.Send[AXMathExpressionNumber](instance.ID, objc.Sel("initWithContent:"), objc.String(content))
@@ -87,8 +93,10 @@ func NewAXMathExpressionNumberWithContent(content string) AXMathExpressionNumber
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionNumber/content
+
 func (a_ AXMathExpressionNumber) Content() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("content"))
 	return rv

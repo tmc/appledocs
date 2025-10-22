@@ -39,8 +39,13 @@ type ICXSetTranslatingCallAction interface {
 // An encapsulation of the act of translating a call.
 //
 // is a concrete subclass of . When a caller chooses to translate a conversation, the system provides translated captions, and a translated transcript of the call and the sends the to its delegate. The provider’s delegate calls the method to indicate that the action was successfully performed.
+
+
+// An encapsulation of the act of translating a call.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetTranslatingCallAction
+
 type CXSetTranslatingCallAction struct {
 	CXCallAction
 }
@@ -86,8 +91,11 @@ func NewCXSetTranslatingCallAction() CXSetTranslatingCallAction {
 }
 
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetTranslatingCallAction/init(call:isTranslating:localLanguage:remoteLanguage:)
+
 func NewCXSetTranslatingCallActionWithCallUUIDIsTranslatingLocalLanguageRemoteLanguage(uuid foundation.IUUID, isTranslating bool, localLanguage string, remoteLanguage string) CXSetTranslatingCallAction {
 	instance := getCXSetTranslatingCallActionClass().Alloc()
 	rv := objc.Send[CXSetTranslatingCallAction](instance.ID, objc.Sel("initWithCallUUID:isTranslating:localLanguage:remoteLanguage:"), uuid, isTranslating, objc.String(localLanguage), objc.String(remoteLanguage))
@@ -99,7 +107,9 @@ func NewCXSetTranslatingCallActionWithCallUUIDIsTranslatingLocalLanguageRemoteLa
 
 // Creates a new action to start or stop translating a call with the provided data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetTranslatingCallAction/init(coder:)
+
 func NewCXSetTranslatingCallActionWithCoder(aDecoder foundation.ICoder) CXSetTranslatingCallAction {
 	instance := getCXSetTranslatingCallActionClass().Alloc()
 	rv := objc.Send[CXSetTranslatingCallAction](instance.ID, objc.Sel("initWithCoder:"), aDecoder)
@@ -108,29 +118,39 @@ func NewCXSetTranslatingCallActionWithCoder(aDecoder foundation.ICoder) CXSetTra
 }
 
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetTranslatingCallAction/fulfill(using:)
+
 func (c_ CXSetTranslatingCallAction) FulfillUsingTranslationEngine(translationEngine ICXTranslationEngine) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("fulfillUsingTranslationEngine:"), translationEngine)
 }
 
+
 // A value that indicates whether translation is active for a call.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetTranslatingCallAction/isTranslating
+
 func (c_ CXSetTranslatingCallAction) IsTranslating() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isTranslating"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetTranslatingCallAction/localLanguage
+
 func (c_ CXSetTranslatingCallAction) LocalLanguage() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("localLanguage"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetTranslatingCallAction/remoteLanguage
+
 func (c_ CXSetTranslatingCallAction) RemoteLanguage() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("remoteLanguage"))
 	return rv

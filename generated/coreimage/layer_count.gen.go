@@ -32,8 +32,11 @@ type IlayerCount interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIAztecCodeDescriptor/layerCount-c.ivar
+
 type layerCount struct {
 	objectivec.Object
 }

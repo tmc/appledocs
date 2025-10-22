@@ -2,12 +2,16 @@
 
 // Package securityfoundation provides Go bindings for the SecurityFoundation framework.
 //
-// Restrict a user’s access to particular features in your Mac app or daemon. [Full Topic]
+// Restrict a user’s access to particular features in your Mac app or daemon.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to SecurityFoundation without requiring cgo.
+
+// Restrict a user’s access to particular features in your Mac app or daemon.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SecurityFoundation
+
 package securityfoundation
 
 import (

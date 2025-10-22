@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/quartzcore"
 )
 
@@ -31,18 +30,23 @@ type _SynchronizedLayerClass struct {
 // An interface definition for the [SynchronizedLayer] class.
 type ISynchronizedLayer interface {
 	quartzcore.ILayer
-	AVCoreAnimationBeginTimeAtZero() foundation.TimeInterval
+	AVCoreAnimationBeginTimeAtZero() unsafe.Pointer
 	PlayerItem() AVPlayerItem
 	SetPlayerItem(value IAVPlayerItem)
-	BeginTime() foundation.TimeInterval
-	SetBeginTime(value foundation.ITimeInterval)
+	BeginTime() unsafe.Pointer
+	SetBeginTime(value unsafe.Pointer)
 }
 
 // A Core Animation layer that derives its timing from a player item so that you can synchronize layer animations with media playback.
 //
 // You can create an arbitrary number of synchronized layers from the same object. A synchronized layer is similar to a object in that it doesn’t display anything itself, it just confers state upon its layer subtree. confers its timing state, synchronizing the timing of layers in its subtree with that of a player item. Any layer with animation property set that is added as a sublayer of should set the animation’s property to a non-zero positive value so animations will be interpreted on the player item’s timeline. replaces the default of 0.0 with . To start the animation from time 0, use a small positive value like . You might use a layer as shown in the following example:
+
+
+// A Core Animation layer that derives its timing from a player item so that you can synchronize layer animations with media playback.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSynchronizedLayer
+
 type SynchronizedLayer struct {
 	quartzcore.Layer
 }
@@ -88,47 +92,56 @@ func NewSynchronizedLayer() SynchronizedLayer {
 }
 
 
+
 // A value that sets an animation begin time to
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcoreanimationbegintimeatzero
-func (s_ SynchronizedLayer) AVCoreAnimationBeginTimeAtZero() foundation.TimeInterval {
-	rv := objc.Send[foundation.TimeInterval](s_.ID, objc.Sel("AVCoreAnimationBeginTimeAtZero"))
+
+func (s_ SynchronizedLayer) AVCoreAnimationBeginTimeAtZero() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("AVCoreAnimationBeginTimeAtZero"))
 	return rv
 }
 
+
 // The player item to which the timing of the layer is synchronized.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsynchronizedlayer/playeritem
+
 func (s_ SynchronizedLayer) PlayerItem() AVPlayerItem {
 	rv := objc.Send[AVPlayerItem](s_.ID, objc.Sel("playerItem"))
 	return rv
 }
 
 
-// SetPlayerItem sets the value of the playerItem property.
 // The player item to which the timing of the layer is synchronized.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsynchronizedlayer/playeritem
+
 func (s_ SynchronizedLayer) SetPlayerItem(value IAVPlayerItem) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setPlayerItem:"), value)
 }
 
+
 // Specifies the begin time of the receiver in relation to its parent object, if applicable.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAMediaTiming/beginTime
-func (s_ SynchronizedLayer) BeginTime() foundation.TimeInterval {
-	rv := objc.Send[foundation.TimeInterval](s_.ID, objc.Sel("beginTime"))
+
+func (s_ SynchronizedLayer) BeginTime() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("beginTime"))
 	return rv
 }
 
 
-// SetBeginTime sets the value of the beginTime property.
 // Specifies the begin time of the receiver in relation to its parent object, if applicable.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAMediaTiming/beginTime
-func (s_ SynchronizedLayer) SetBeginTime(value foundation.ITimeInterval) {
+
+func (s_ SynchronizedLayer) SetBeginTime(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setBeginTime:"), value)
 }
 

@@ -48,8 +48,13 @@ type IOdometerData interface {
 // A class that represents odometer data for workouts.
 //
 // To get the measurements, use the and properties. To compute distances, use the and properties.
+
+
+// A class that represents odometer data for workouts.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMOdometerData
+
 type OdometerData struct {
 	objectivec.Object
 }
@@ -93,97 +98,133 @@ func NewOdometerData() OdometerData {
 }
 
 
+
 // The change in altitude above mean sea level associated with the location, measured in meters.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMOdometerData/deltaAltitude
+
 func (o_ OdometerData) DeltaAltitude() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("deltaAltitude"))
 	return rv
 }
 
+
 // The change in distance that the user travels since the last location, measured in meters.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMOdometerData/deltaDistance
+
 func (o_ OdometerData) DeltaDistance() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("deltaDistance"))
 	return rv
 }
 
+
 // The accuracy of the change in distance value.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMOdometerData/deltaDistanceAccuracy
+
 func (o_ OdometerData) DeltaDistanceAccuracy() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("deltaDistanceAccuracy"))
 	return rv
 }
 
+
 // The time that the device stops recording the odometer data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMOdometerData/endDate
+
 func (o_ OdometerData) EndDate() foundation.NSDate {
 	rv := objc.Send[foundation.NSDate](o_.ID, objc.Sel("endDate"))
 	return rv
 }
 
+
 // The time of the GPS measurement associated with the location.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMOdometerData/gpsDate
+
 func (o_ OdometerData) GpsDate() foundation.NSDate {
 	rv := objc.Send[foundation.NSDate](o_.ID, objc.Sel("gpsDate"))
 	return rv
 }
 
+
 // The maximum absolute slope at the location toward all directions, measured in degrees.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMOdometerData/maxAbsSlope-96ulr
+
 func (o_ OdometerData) MaxAbsSlope() foundation.Number {
 	rv := objc.Send[foundation.Number](o_.ID, objc.Sel("maxAbsSlope"))
 	return rv
 }
 
+
 // The device that measures the data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMOdometerData/originDevice
+
 func (o_ OdometerData) OriginDevice() OdometerOriginDevice {
 	rv := objc.Send[OdometerOriginDevice](o_.ID, objc.Sel("originDevice"))
 	return rv
 }
 
+
 // The slope at the location toward the direction of travel, measured in degrees.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMOdometerData/slope-96hlt
+
 func (o_ OdometerData) Slope() foundation.Number {
 	rv := objc.Send[foundation.Number](o_.ID, objc.Sel("slope"))
 	return rv
 }
 
+
 // The instantaneous velocity of the device, measured in meters per second.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMOdometerData/speed
+
 func (o_ OdometerData) Speed() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("speed"))
 	return rv
 }
 
+
 // The accuracy of the speed value.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMOdometerData/speedAccuracy
+
 func (o_ OdometerData) SpeedAccuracy() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("speedAccuracy"))
 	return rv
 }
 
+
 // The time that the device starts recording the odometer data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMOdometerData/startDate
+
 func (o_ OdometerData) StartDate() foundation.NSDate {
 	rv := objc.Send[foundation.NSDate](o_.ID, objc.Sel("startDate"))
 	return rv
 }
 
+
 // The validity of the altitude values and their estimated uncertainty, measured in meters.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMOdometerData/verticalAccuracy
+
 func (o_ OdometerData) VerticalAccuracy() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("verticalAccuracy"))
 	return rv

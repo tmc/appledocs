@@ -43,8 +43,13 @@ type IRegion interface {
 // A base class representing an area that can be monitored.
 //
 // This is an abstract base class. Instantiate one of the provided subclasses that define specific types of regions. After you create a region, register it with a object with the method. The location manager generates appropriate events whenever the user crosses the boundaries of the region.
+
+
+// A base class representing an area that can be monitored.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLRegion
+
 type Region struct {
 	objectivec.Object
 }
@@ -92,7 +97,9 @@ func NewRegion() Region {
 
 // Initializes and returns a region object defining a circular area.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLRegion/init(circularRegionWithCenter:radius:identifier:)
+
 func NewRegionCircularRegionWithCenterRadiusIdentifier(center unsafe.Pointer, radius unsafe.Pointer, identifier string) Region {
 	instance := getRegionClass().Alloc()
 	rv := objc.Send[Region](instance.ID, objc.Sel("initCircularRegionWithCenter:radius:identifier:"), center, radius, objc.String(identifier))
@@ -101,69 +108,88 @@ func NewRegionCircularRegionWithCenterRadiusIdentifier(center unsafe.Pointer, ra
 }
 
 
+
+
 // Returns a Boolean value indicating whether the region contains the specified coordinate.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLRegion/contains(_:)
+
 func (r_ Region) ContainsCoordinate(coordinate unsafe.Pointer) bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("containsCoordinate:"), coordinate)
 	return rv
 }
 
+
 // The center point of the region.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLRegion/center
+
 func (r_ Region) Center() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("center"))
 	return rv
 }
 
+
 // The identifier for the region object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLRegion/identifier
+
 func (r_ Region) Identifier() string {
 	rv := objc.Send[string](r_.ID, objc.Sel("identifier"))
 	return rv
 }
 
+
 // A Boolean indicating that notifications are generated upon entry into the region.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLRegion/notifyOnEntry
+
 func (r_ Region) NotifyOnEntry() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("notifyOnEntry"))
 	return rv
 }
 
 
-// SetNotifyOnEntry sets the value of the notifyOnEntry property.
 // A Boolean indicating that notifications are generated upon entry into the region.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLRegion/notifyOnEntry
+
 func (r_ Region) SetNotifyOnEntry(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setNotifyOnEntry:"), value)
 }
 
+
 // A Boolean indicating that notifications are generated upon exit from the region.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLRegion/notifyOnExit
+
 func (r_ Region) NotifyOnExit() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("notifyOnExit"))
 	return rv
 }
 
 
-// SetNotifyOnExit sets the value of the notifyOnExit property.
 // A Boolean indicating that notifications are generated upon exit from the region.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLRegion/notifyOnExit
+
 func (r_ Region) SetNotifyOnExit(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setNotifyOnExit:"), value)
 }
 
+
 // The radius (measured in meters) that defines the region’s outer boundary.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLRegion/radius
+
 func (r_ Region) Radius() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("radius"))
 	return rv

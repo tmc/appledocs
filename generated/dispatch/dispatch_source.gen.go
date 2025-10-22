@@ -35,8 +35,13 @@ type IDispatchSource interface {
 // An object that coordinates the processing of specific low-level system events, such as file-system events, timers, and UNIX signals.
 //
 // Use the methods of this class to construct new dispatch sources of the appropriate types.
+
+
+// An object that coordinates the processing of specific low-level system events, such as file-system events, timers, and UNIX signals.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/DispatchSource
+
 type DispatchSource struct {
 	objectivec.Object
 }

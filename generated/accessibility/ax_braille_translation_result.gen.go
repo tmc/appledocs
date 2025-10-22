@@ -36,8 +36,13 @@ type IAXBrailleTranslationResult interface {
 }
 
 // The result of translation or back-translation.
+
+
+// The result of translation or back-translation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXBrailleTranslationResult
+
 type AXBrailleTranslationResult struct {
 	objectivec.Object
 }
@@ -81,17 +86,23 @@ func NewAXBrailleTranslationResult() AXBrailleTranslationResult {
 }
 
 
+
 // An array of integers that has the same length as the resultString. locationMap[i]-th character in the input string corresponds to resultString[i].
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXBrailleTranslationResult/locationMap
+
 func (a_ AXBrailleTranslationResult) LocationMap() []foundation.Number {
 	rv := objc.Send[[]foundation.Number](a_.ID, objc.Sel("locationMap"))
 	return rv
 }
 
+
 // The resulting string after translation or back-translation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXBrailleTranslationResult/resultString
+
 func (a_ AXBrailleTranslationResult) ResultString() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("resultString"))
 	return rv

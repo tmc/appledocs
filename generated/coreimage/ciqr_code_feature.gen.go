@@ -43,8 +43,13 @@ type IQRCodeFeature interface {
 // Information about a Quick Response code detected in a still or video image.
 //
 // A QR code is a two-dimensional barcode using the ISO/IEC 18004:2006 standard. The properties of a CIQRCodeFeature object identify the corners of the barcode in the image perspective and provide the decoded message. To detect QR codes in an image or video, choose type when initializing a object.
+
+
+// Information about a Quick Response code detected in a still or video image.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIQRCodeFeature
+
 type QRCodeFeature struct {
 	Feature
 }
@@ -90,65 +95,89 @@ func NewQRCodeFeature() QRCodeFeature {
 }
 
 
+
 // The image coordinate of the lower-left corner of the detected QR code.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIQRCodeFeature/bottomLeft-swift.property
+
 func (q_ QRCodeFeature) BottomLeft() coregraphics.CGPoint {
 	rv := objc.Send[coregraphics.CGPoint](q_.ID, objc.Sel("bottomLeft"))
 	return rv
 }
 
+
 // The image coordinate of the lower-right corner of the detected QR code.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIQRCodeFeature/bottomRight-swift.property
+
 func (q_ QRCodeFeature) BottomRight() coregraphics.CGPoint {
 	rv := objc.Send[coregraphics.CGPoint](q_.ID, objc.Sel("bottomRight"))
 	return rv
 }
 
+
 // A rectangle that indicates the position and extent of the QR code feature in image coordinates.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIQRCodeFeature/bounds-swift.property
+
 func (q_ QRCodeFeature) Bounds() coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](q_.ID, objc.Sel("bounds"))
 	return rv
 }
 
+
 // The string decoded from the detected barcode.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIQRCodeFeature/messageString
+
 func (q_ QRCodeFeature) MessageString() string {
 	rv := objc.Send[string](q_.ID, objc.Sel("messageString"))
 	return rv
 }
 
+
 // An abstract representation of a QR Code symbol.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIQRCodeFeature/symbolDescriptor-swift.property
+
 func (q_ QRCodeFeature) SymbolDescriptor() CIQRCodeDescriptor {
 	rv := objc.Send[CIQRCodeDescriptor](q_.ID, objc.Sel("symbolDescriptor"))
 	return rv
 }
 
+
 // The image coordinate of the upper-left corner of the detected QR code.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIQRCodeFeature/topLeft-swift.property
+
 func (q_ QRCodeFeature) TopLeft() coregraphics.CGPoint {
 	rv := objc.Send[coregraphics.CGPoint](q_.ID, objc.Sel("topLeft"))
 	return rv
 }
 
+
 // The image coordinate of the upper-right corner of the detected QR code.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIQRCodeFeature/topRight-swift.property
+
 func (q_ QRCodeFeature) TopRight() coregraphics.CGPoint {
 	rv := objc.Send[coregraphics.CGPoint](q_.ID, objc.Sel("topRight"))
 	return rv
 }
 
+
 // A detector that searches for Quick Response codes (a type of 2D barcode) in a still image or video, returning
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreimage/cidetectortypeqrcode
+
 func (q_ QRCodeFeature) CIDetectorTypeQRCode() string {
 	rv := objc.Send[string](q_.ID, objc.Sel("CIDetectorTypeQRCode"))
 	return rv

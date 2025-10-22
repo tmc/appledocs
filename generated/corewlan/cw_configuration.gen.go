@@ -39,8 +39,13 @@ type ICWConfiguration interface {
 }
 
 // Encapsulates an immutable configuration for an AirPort WLAN interface.
+
+
+// Encapsulates an immutable configuration for an AirPort WLAN interface.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWConfiguration
+
 type CWConfiguration struct {
 	objectivec.Object
 }
@@ -88,7 +93,9 @@ func NewCWConfiguration() CWConfiguration {
 
 // Creates and returns a CWConfiguration object initialized with the given CWConfiguration object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWConfiguration/init(configuration:)
+
 func NewCWConfigurationWithConfiguration(configuration ICWConfiguration) CWConfiguration {
 	instance := getCWConfigurationClass().Alloc()
 	rv := objc.Send[CWConfiguration](instance.ID, objc.Sel("initWithConfiguration:"), configuration)
@@ -97,65 +104,90 @@ func NewCWConfigurationWithConfiguration(configuration ICWConfiguration) CWConfi
 }
 
 
+
 // Convenience method for getting an empty CWConfiguration object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWConfiguration/configuration
+
 func (cc _CWConfigurationClass) Configuration() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("configuration"))
 	return rv
 }
 
+
 // Convenience method for getting a CWConfiguration object initialized with the given CWConfiguration object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWConfiguration/configurationWithConfiguration:
+
 func (cc _CWConfigurationClass) ConfigurationWithConfiguration(configuration ICWConfiguration) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("configurationWithConfiguration:"), configuration)
 	return rv
 }
 
+
+
 // Determine CWConfiguration object equality.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWConfiguration/isEqual(to:)
+
 func (c_ CWConfiguration) IsEqualToConfiguration(configuration ICWConfiguration) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isEqualToConfiguration:"), configuration)
 	return rv
 }
 
+
 // An array of remembered CWNetworkProfile objects.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWConfiguration/networkProfiles
+
 func (c_ CWConfiguration) NetworkProfiles() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("networkProfiles"))
 	return rv
 }
 
+
 // AirPort client will remember all joined networks.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWConfiguration/rememberJoinedNetworks
+
 func (c_ CWConfiguration) RememberJoinedNetworks() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("rememberJoinedNetworks"))
 	return rv
 }
 
+
 // Require an administrator password to change networks.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWConfiguration/requireAdministratorForAssociation
+
 func (c_ CWConfiguration) RequireAdministratorForAssociation() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("requireAdministratorForAssociation"))
 	return rv
 }
 
+
 // Require an administrator password to create a computer-to-computer network.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWConfiguration/requireAdministratorForIBSSMode
+
 func (c_ CWConfiguration) RequireAdministratorForIBSSMode() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("requireAdministratorForIBSSMode"))
 	return rv
 }
 
+
 // Require an administrator password to change the interface power state.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWConfiguration/requireAdministratorForPower
+
 func (c_ CWConfiguration) RequireAdministratorForPower() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("requireAdministratorForPower"))
 	return rv

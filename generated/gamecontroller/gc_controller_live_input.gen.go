@@ -43,8 +43,13 @@ type IGCControllerLiveInput interface {
 // The input profile for a controller.
 //
 // Instances of represent the current input state of a controller. You can save snapshots of the input state and receive callbacks when the input state changes. You can also get the elements of the controller and their current input values from instances. Use the  method to save a copy of the current input state. If you want Game Controller to buffer snapshots of the input states for you, use the    property to set the buffer’s queue depth to a value other than . Then use the method to get the snapshots when you’re ready to process input.
+
+
+// The input profile for a controller.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCControllerLiveInput
+
 type GCControllerLiveInput struct {
 	GCControllerInputState
 }
@@ -90,80 +95,100 @@ func NewGCControllerLiveInput() GCControllerLiveInput {
 }
 
 
+
+
 // Returns a snapshot of the physical device inputs.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCControllerLiveInput/capture()
+
 func (g_ GCControllerLiveInput) Capture() GCControllerInputState {
 	rv := objc.Send[GCControllerInputState](g_.ID, objc.Sel("capture"))
 	return rv
 }
 
+
+
 // Returns the next device input state from the queue.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCControllerLiveInput/nextInputState()
+
 func (g_ GCControllerLiveInput) NextInputState() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("nextInputState"))
 	return rv
 }
 
+
 // The live input of a controller without any system-level remapping of the controls.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCControllerLiveInput/unmapped
+
 func (g_ GCControllerLiveInput) UnmappedInput() GCControllerLiveInput {
 	rv := objc.Send[GCControllerLiveInput](g_.ID, objc.Sel("unmappedInput"))
 	return rv
 }
 
+
 // The input profile for the controller.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/input
+
 func (g_ GCControllerLiveInput) Input() GCControllerLiveInput {
 	rv := objc.Send[GCControllerLiveInput](g_.ID, objc.Sel("input"))
 	return rv
 }
 
 
-// SetInput sets the value of the input property.
 // The input profile for the controller.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/input
+
 func (g_ GCControllerLiveInput) SetInput(value IGCControllerLiveInput) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setInput:"), value)
 }
 
+
 // The live input of a controller without any system-level remapping of the controls.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerliveinput/unmapped
+
 func (g_ GCControllerLiveInput) Unmapped() GCControllerLiveInput {
 	rv := objc.Send[GCControllerLiveInput](g_.ID, objc.Sel("unmapped"))
 	return rv
 }
 
 
-// SetUnmapped sets the value of the unmapped property.
 // The live input of a controller without any system-level remapping of the controls.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerliveinput/unmapped
+
 func (g_ GCControllerLiveInput) SetUnmapped(value IGCControllerLiveInput) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setUnmapped:"), value)
 }
 
+
 // The maximum number of input values that the queue stores.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcdevicephysicalinput/inputstatequeuedepth
+
 func (g_ GCControllerLiveInput) InputStateQueueDepth() int {
 	rv := objc.Send[int](g_.ID, objc.Sel("inputStateQueueDepth"))
 	return rv
 }
 
 
-// SetInputStateQueueDepth sets the value of the inputStateQueueDepth property.
 // The maximum number of input values that the queue stores.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcdevicephysicalinput/inputstatequeuedepth
+
 func (g_ GCControllerLiveInput) SetInputStateQueueDepth(value int) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setInputStateQueueDepth:"), value)
 }

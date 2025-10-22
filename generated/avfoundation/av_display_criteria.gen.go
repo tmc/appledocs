@@ -35,8 +35,13 @@ type IDisplayCriteria interface {
 // An object the system uses to guide the selection of a display mode in tvOS.
 //
 // In tvOS, this object provides the display criteria that an uses to set an appropriate display mode, such as switching to HDR, when presenting a video asset. If your app uses for its player user interface, the system automatically applies the display critera when it presents the asset. If you use a custom player interface, load the value of an asset’s property and set it on the window’s object.
+
+
+// An object the system uses to guide the selection of a display mode in tvOS.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVDisplayCriteria
+
 type DisplayCriteria struct {
 	objectivec.Object
 }
@@ -84,7 +89,9 @@ func NewDisplayCriteria() DisplayCriteria {
 
 // Creates a display criteria object with the specified refresh rate and format description.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVDisplayCriteria/init(refreshRate:formatDescription:)
+
 func NewDisplayCriteriaWithRefreshRateFormatDescription(refreshRate float32, formatDescription unsafe.Pointer) DisplayCriteria {
 	instance := getDisplayCriteriaClass().Alloc()
 	rv := objc.Send[DisplayCriteria](instance.ID, objc.Sel("initWithRefreshRate:formatDescription:"), refreshRate, formatDescription)

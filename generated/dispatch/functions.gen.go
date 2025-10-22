@@ -116,387 +116,537 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 
 
 
-// Waits synchronously for the previously submitted block objects to finish; returns if the blocks do not complete before the specified timeout period has elapsed. [Full Topic]
+// Waits synchronously for the previously submitted block objects to finish; returns if the blocks do not complete before the specified timeout period has elapsed.
 //
 // Added in macOS 10.6.
+
+// Waits synchronously for the previously submitted block objects to finish; returns if the blocks do not complete before the specified timeout period has elapsed.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/dispatch/1452794-dispatch_group_wait
+
 func dispatch_group_wait(p0 unsafe.Pointer) unsafe.Pointer {
 	return _dispatch_group_wait(p0)
 	}
 
 
-// Submits a barrier block for asynchronous execution and returns immediately. [Full Topic]
+// Submits a barrier block for asynchronous execution and returns immediately.
 //
 // Added in macOS 10.7.
+
+// Submits a barrier block for asynchronous execution and returns immediately.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/dispatch/1452797-dispatch_barrier_async
+
 func dispatch_barrier_async(p0 unsafe.Pointer) {
 	_dispatch_barrier_async(p0)
 	}
 
 
-// Enqueues a block for execution at the specified time. [Full Topic]
+// Enqueues a block for execution at the specified time.
 //
 // Added in macOS 10.6.
+
+// Enqueues a block for execution at the specified time.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/dispatch/1452876-dispatch_after
+
 func dispatch_after(p0 unsafe.Pointer) {
 	_dispatch_after(p0)
 	}
 
 
-// Submits a block for asynchronous execution on a dispatch queue and returns immediately. [Full Topic]
+// Submits a block for asynchronous execution on a dispatch queue and returns immediately.
 //
 // Added in macOS 10.6.
+
+// Submits a block for asynchronous execution on a dispatch queue and returns immediately.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/dispatch/1453057-dispatch_async
+
 func dispatch_async(p0 unsafe.Pointer) {
 	_dispatch_async(p0)
 	}
 
 
-// Waits for (decrements) a semaphore. [Full Topic]
+// Waits for (decrements) a semaphore.
 //
 // Added in macOS 10.6.
+
+// Waits for (decrements) a semaphore.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/dispatch/1453087-dispatch_semaphore_wait
+
 func dispatch_semaphore_wait(p0 unsafe.Pointer) unsafe.Pointer {
 	return _dispatch_semaphore_wait(p0)
 	}
 
 
-// Increments the reference count (the retain count) of a dispatch object. [Full Topic]
+// Increments the reference count (the retain count) of a dispatch object.
 //
 // Added in macOS 10.6.
+
+// Increments the reference count (the retain count) of a dispatch object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/dispatch/1496306-dispatch_retain
+
 func dispatch_retain(p0 unsafe.Pointer) {
 	_dispatch_retain(p0)
 	}
 
 
-// Decrements the reference count (the retain count) of a dispatch object. [Full Topic]
+// Decrements the reference count (the retain count) of a dispatch object.
 //
 // Added in macOS 10.6.
+
+// Decrements the reference count (the retain count) of a dispatch object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/dispatch/1496328-dispatch_release
+
 func dispatch_release(p0 unsafe.Pointer) {
 	_dispatch_release(p0)
 	}
 
 
-// Explicitly indicates that a block has entered the group. [Full Topic]
+// Explicitly indicates that a block has entered the group.
 //
 // Added in macOS 10.6.
+
+// Explicitly indicates that a block has entered the group.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/DispatchGroup/enter()
+
 func dispatch_group_enter(group unsafe.Pointer) {
 	_dispatch_group_enter(group)
 	}
 
 
-// Explicitly indicates that a block in the group finished executing. [Full Topic]
+// Explicitly indicates that a block in the group finished executing.
 //
 // Added in macOS 10.6.
+
+// Explicitly indicates that a block in the group finished executing.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/DispatchGroup/leave()
+
 func dispatch_group_leave(group unsafe.Pointer) {
 	_dispatch_group_leave(group)
 	}
 
 
-// Activates the dispatch object. [Full Topic]
+// Activates the dispatch object.
 //
 // Added in macOS 10.12.
+
+// Activates the dispatch object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/DispatchObject/activate()
+
 func dispatch_activate(object unsafe.Pointer) {
 	_dispatch_activate(object)
 	}
 
 
-// Resumes the invocation of block objects on a dispatch object. [Full Topic]
+// Resumes the invocation of block objects on a dispatch object.
 //
 // Added in macOS 10.6.
+
+// Resumes the invocation of block objects on a dispatch object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/DispatchObject/resume()
+
 func dispatch_resume(object unsafe.Pointer) {
 	_dispatch_resume(object)
 	}
 
 
-// Suspends the invocation of block objects on a dispatch object. [Full Topic]
+// Suspends the invocation of block objects on a dispatch object.
 //
 // Added in macOS 10.6.
+
+// Suspends the invocation of block objects on a dispatch object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/DispatchObject/suspend()
+
 func dispatch_suspend(object unsafe.Pointer) {
 	_dispatch_suspend(object)
 	}
 
 
-// Executes blocks submitted to the main queue. [Full Topic]
+// Executes blocks submitted to the main queue.
 //
 // Added in macOS 10.6.
+
+// Executes blocks submitted to the main queue.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/dispatchMain()
+
 func dispatch_main() {
 	_dispatch_main()
 	}
 
 
-// Enqueues an app-defined function for execution at the specified time. [Full Topic]
+// Enqueues an app-defined function for execution at the specified time.
 //
 // Added in macOS 10.6.
+
+// Enqueues an app-defined function for execution at the specified time.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/dispatch_after_f
+
 func dispatch_after_f(when unsafe.Pointer, queue unsafe.Pointer, context unsafe.Pointer, work unsafe.Pointer) {
 	_dispatch_after_f(when, queue, context, work)
 	}
 
 
-// dispatch_allow_send_signals is a Dispatch function. [Full Topic]
+// dispatch_allow_send_signals is a Dispatch function.
 //
 // Added in macOS 14.4.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/dispatch_allow_send_signals(_:)
+
 func dispatch_allow_send_signals(preserve_signum int) int {
 	return _dispatch_allow_send_signals(preserve_signum)
 	}
 
 
-// Submits an app-defined function for asynchronous execution on a dispatch queue and returns immediately. [Full Topic]
+// Submits an app-defined function for asynchronous execution on a dispatch queue and returns immediately.
 //
 // Added in macOS 10.6.
+
+// Submits an app-defined function for asynchronous execution on a dispatch queue and returns immediately.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/dispatch_async_f
+
 func dispatch_async_f(queue unsafe.Pointer, context unsafe.Pointer, work unsafe.Pointer) {
 	_dispatch_async_f(queue, context, work)
 	}
 
 
-// Submits a work item for synchronous execution and marks the work as a barrier for subsequent concurrent tasks. [Full Topic]
+// Submits a work item for synchronous execution and marks the work as a barrier for subsequent concurrent tasks.
 //
 // Added in macOS 10.14.
+
+// Submits a work item for synchronous execution and marks the work as a barrier for subsequent concurrent tasks.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/dispatch_barrier_async_and_wait
+
 func dispatch_barrier_async_and_wait(queue unsafe.Pointer, block unsafe.Pointer) {
 	_dispatch_barrier_async_and_wait(queue, block)
 	}
 
 
-// Creates a new dispatch block from an existing block and the given flags, and assigns it the specified quality-of-service class and relative priority. [Full Topic]
+// Creates a new dispatch block from an existing block and the given flags, and assigns it the specified quality-of-service class and relative priority.
 //
 // Added in macOS 10.10.
+
+// Creates a new dispatch block from an existing block and the given flags, and assigns it the specified quality-of-service class and relative priority.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/dispatch_block_create_with_qos_class
+
 func dispatch_block_create_with_qos_class(flags unsafe.Pointer, qos_class unsafe.Pointer, relative_priority int, block unsafe.Pointer) unsafe.Pointer {
 	return _dispatch_block_create_with_qos_class(flags, qos_class, relative_priority, block)
 	}
 
 
-// Creates, synchronously executes, and releases a dispatch block from the specified block and flags. [Full Topic]
+// Creates, synchronously executes, and releases a dispatch block from the specified block and flags.
 //
 // Added in macOS 10.10.
+
+// Creates, synchronously executes, and releases a dispatch block from the specified block and flags.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/dispatch_block_perform
+
 func dispatch_block_perform(flags unsafe.Pointer, block unsafe.Pointer) {
 	_dispatch_block_perform(flags, block)
 	}
 
 
-// Creates a new dispatch data object with the specified memory buffer. [Full Topic]
+// Creates a new dispatch data object with the specified memory buffer.
 //
 // Added in macOS 10.7.
+
+// Creates a new dispatch data object with the specified memory buffer.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/dispatch_data_create
+
 func dispatch_data_create(buffer unsafe.Pointer, size unsafe.Pointer, queue unsafe.Pointer, destructor unsafe.Pointer) unsafe.Pointer {
 	return _dispatch_data_create(buffer, size, queue, destructor)
 	}
 
 
-// Returns a new dispatch data object containing a contiguous representation of the specified object’s memory. [Full Topic]
+// Returns a new dispatch data object containing a contiguous representation of the specified object’s memory.
 //
 // Added in macOS 10.7.
+
+// Returns a new dispatch data object containing a contiguous representation of the specified object’s memory.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/dispatch_data_create_map
+
 func dispatch_data_create_map(data unsafe.Pointer, buffer_ptr unsafe.Pointer, size_ptr unsafe.Pointer) unsafe.Pointer {
 	return _dispatch_data_create_map(data, buffer_ptr, size_ptr)
 	}
 
 
-// dispatch_debugv is a Dispatch function. [Full Topic]
-//
+// dispatch_debugv is a Dispatch function.
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/dispatch_debugv(_:_:_:)
+
 func dispatch_debugv(object unsafe.Pointer, message unsafe.Pointer, ap unsafe.Pointer) {
 	_dispatch_debugv(object, message, ap)
 	}
 
 
-// Returns the application-defined context of an object. [Full Topic]
+// Returns the application-defined context of an object.
 //
 // Added in macOS 10.6.
+
+// Returns the application-defined context of an object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/dispatch_get_context
+
 func dispatch_get_context(object unsafe.Pointer) unsafe.Pointer {
 	return _dispatch_get_context(object)
 	}
 
 
-// Returns the queue on which the currently executing block is running. [Full Topic]
+// Returns the queue on which the currently executing block is running.
+
+// Returns the queue on which the currently executing block is running.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/dispatch_get_current_queue()
+
 func dispatch_get_current_queue() unsafe.Pointer {
 	return _dispatch_get_current_queue()
 	}
 
 
-// Returns a system-defined global concurrent queue with the specified quality-of-service class. [Full Topic]
+// Returns a system-defined global concurrent queue with the specified quality-of-service class.
 //
 // Added in macOS 10.6.
+
+// Returns a system-defined global concurrent queue with the specified quality-of-service class.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/dispatch_get_global_queue
+
 func dispatch_get_global_queue(identifier unsafe.Pointer, flags unsafe.Pointer) unsafe.Pointer {
 	return _dispatch_get_global_queue(identifier, flags)
 	}
 
 
-// Submits an application-defined function to a dispatch queue and associates it with the specified dispatch group. [Full Topic]
+// Submits an application-defined function to a dispatch queue and associates it with the specified dispatch group.
 //
 // Added in macOS 10.6.
+
+// Submits an application-defined function to a dispatch queue and associates it with the specified dispatch group.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/dispatch_group_async_f
+
 func dispatch_group_async_f(group unsafe.Pointer, queue unsafe.Pointer, context unsafe.Pointer, work unsafe.Pointer) {
 	_dispatch_group_async_f(group, queue, context, work)
 	}
 
 
-// Schedules an application-defined function to be submitted to a queue when a group of previously submitted block objects have completed. [Full Topic]
+// Schedules an application-defined function to be submitted to a queue when a group of previously submitted block objects have completed.
 //
 // Added in macOS 10.6.
+
+// Schedules an application-defined function to be submitted to a queue when a group of previously submitted block objects have completed.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/dispatch_group_notify_f
+
 func dispatch_group_notify_f(group unsafe.Pointer, queue unsafe.Pointer, context unsafe.Pointer, work unsafe.Pointer) {
 	_dispatch_group_notify_f(group, queue, context, work)
 	}
 
 
-// dispatch_introspection_hook_queue_item_complete is a Dispatch function. [Full Topic]
+// dispatch_introspection_hook_queue_item_complete is a Dispatch function.
 //
 // Added in macOS 10.10.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/dispatch_introspection_hook_queue_item_complete
+
 func dispatch_introspection_hook_queue_item_complete(item unsafe.Pointer) {
 	_dispatch_introspection_hook_queue_item_complete(item)
 	}
 
 
-// Closes the specified channel to new read and write operations. [Full Topic]
+// Closes the specified channel to new read and write operations.
 //
 // Added in macOS 10.7.
+
+// Closes the specified channel to new read and write operations.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/dispatch_io_close
+
 func dispatch_io_close(channel unsafe.Pointer, flags unsafe.Pointer) {
 	_dispatch_io_close(channel, flags)
 	}
 
 
-// Returns an attribute that specifies how the dispatch queue manages autorelease pools for the blocks it executes. [Full Topic]
+// Returns an attribute that specifies how the dispatch queue manages autorelease pools for the blocks it executes.
 //
 // Added in macOS 10.12.
+
+// Returns an attribute that specifies how the dispatch queue manages autorelease pools for the blocks it executes.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/dispatch_queue_attr_make_with_autorelease_frequency
+
 func dispatch_queue_attr_make_with_autorelease_frequency(attr unsafe.Pointer, frequency unsafe.Pointer) unsafe.Pointer {
 	return _dispatch_queue_attr_make_with_autorelease_frequency(attr, frequency)
 	}
 
 
-// Associates an application-defined context with the object. [Full Topic]
+// Associates an application-defined context with the object.
 //
 // Added in macOS 10.6.
+
+// Associates an application-defined context with the object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/dispatch_set_context
+
 func dispatch_set_context(object unsafe.Pointer, context unsafe.Pointer) {
 	_dispatch_set_context(object, context)
 	}
 
 
-// Sets the finalizer function for a dispatch object. [Full Topic]
+// Sets the finalizer function for a dispatch object.
 //
 // Added in macOS 10.6.
+
+// Sets the finalizer function for a dispatch object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/dispatch_set_finalizer_f
+
 func dispatch_set_finalizer_f(object unsafe.Pointer, finalizer unsafe.Pointer) {
 	_dispatch_set_finalizer_f(object, finalizer)
 	}
 
 
-// Specifies the minimum quality-of-service level for a dispatch queue, source, or workloop. [Full Topic]
+// Specifies the minimum quality-of-service level for a dispatch queue, source, or workloop.
 //
 // Added in macOS 10.14.
+
+// Specifies the minimum quality-of-service level for a dispatch queue, source, or workloop.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/dispatch_set_qos_class_floor
+
 func dispatch_set_qos_class_floor(object unsafe.Pointer, qos_class unsafe.Pointer, relative_priority int) {
 	_dispatch_set_qos_class_floor(object, qos_class, relative_priority)
 	}
 
 
-// Creates a new dispatch source to monitor low-level system events. [Full Topic]
+// Creates a new dispatch source to monitor low-level system events.
 //
 // Added in macOS 10.6.
+
+// Creates a new dispatch source to monitor low-level system events.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/dispatch_source_create
+
 func dispatch_source_create(type_ unsafe.Pointer, handle unsafe.Pointer, mask unsafe.Pointer, queue unsafe.Pointer) unsafe.Pointer {
 	return _dispatch_source_create(type_, handle, mask, queue)
 	}
 
 
-// Returns the underlying system handle associated with the specified dispatch source. [Full Topic]
+// Returns the underlying system handle associated with the specified dispatch source.
 //
 // Added in macOS 10.6.
+
+// Returns the underlying system handle associated with the specified dispatch source.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/dispatch_source_get_handle
+
 func dispatch_source_get_handle(source unsafe.Pointer) unsafe.Pointer {
 	return _dispatch_source_get_handle(source)
 	}
 
 
-// Creates a relative to the default clock or modifies an existing . [Full Topic]
+// Creates a relative to the default clock or modifies an existing .
 //
 // Added in macOS 10.6.
+
+// Creates a relative to the default clock or modifies an existing .
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/dispatch_time
+
 func dispatch_time(when unsafe.Pointer, delta unsafe.Pointer) unsafe.Pointer {
 	return _dispatch_time(when, delta)
 	}
 
 
-// Creates a using an absolute time according to the wall clock. [Full Topic]
+// Creates a using an absolute time according to the wall clock.
 //
 // Added in macOS 10.6.
+
+// Creates a using an absolute time according to the wall clock.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/dispatch_walltime
+
 func dispatch_walltime(when unsafe.Pointer, delta unsafe.Pointer) unsafe.Pointer {
 	return _dispatch_walltime(when, delta)
 	}
 
 
-// Creates a new inactive workloop with the specified label. [Full Topic]
+// Creates a new inactive workloop with the specified label.
 //
 // Added in macOS 10.14.
+
+// Creates a new inactive workloop with the specified label.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/dispatch_workloop_create_inactive
+
 func dispatch_workloop_create_inactive(label unsafe.Pointer) unsafe.Pointer {
 	return _dispatch_workloop_create_inactive(label)
 	}
 
 
-// Configures how the workloop manages the autorelease pools for the blocks it executes. [Full Topic]
+// Configures how the workloop manages the autorelease pools for the blocks it executes.
 //
 // Added in macOS 10.14.
+
+// Configures how the workloop manages the autorelease pools for the blocks it executes.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/dispatch_workloop_set_autorelease_frequency
+
 func dispatch_workloop_set_autorelease_frequency(workloop unsafe.Pointer, frequency unsafe.Pointer) {
 	_dispatch_workloop_set_autorelease_frequency(workloop, frequency)
 	}

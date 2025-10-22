@@ -35,8 +35,13 @@ type ISensorDataList interface {
 // A list of the accelerometer data recorded by the system.
 //
 // You do not create instances of this class directly. Instead, you receive one as the result of a query for accelerometer data from a object. You use a sensor data list object to enumerate over the accelerometer data as shown in the following example:
+
+
+// A list of the accelerometer data recorded by the system.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMSensorDataList
+
 type SensorDataList struct {
 	objectivec.Object
 }

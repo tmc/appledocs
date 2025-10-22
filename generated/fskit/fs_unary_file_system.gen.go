@@ -35,8 +35,13 @@ type IFSUnaryFileSystem interface {
 // An abstract base class for implementing a minimal file system.
 //
 // is a simplified file system, which works with one and presents it as one . The one volume and its container have a shared state and lifetime, a more constrained life cycle than the design flow. Implement your app extension by providing a subclass of as a delegate object. Your delegate also needs to implement the protocol so that it can load resources.
+
+
+// An abstract base class for implementing a minimal file system.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSUnaryFileSystem
+
 type FSUnaryFileSystem struct {
 	objectivec.Object
 }

@@ -35,8 +35,13 @@ type ICNDecision interface {
 }
 
 // An object that represents a decision to focus on a particular detection, or group of detections, at a particular time.
+
+
+// An object that represents a decision to focus on a particular detection, or group of detections, at a particular time.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNDecision-c.class
+
 type CNDecision struct {
 	objectivec.Object
 }
@@ -84,7 +89,9 @@ func NewCNDecision() CNDecision {
 
 // Makes a decision to focus on the detection with the given unique detection.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNDecision-c.class/initWithTime:detectionGroupID:strong:
+
 func NewCNDecisionWithTimeDetectionGroupIDStrong(time unsafe.Pointer, detectionGroupID ICNDetectionGroupID, isStrong bool) CNDecision {
 	instance := getCNDecisionClass().Alloc()
 	rv := objc.Send[CNDecision](instance.ID, objc.Sel("initWithTime:detectionGroupID:strong:"), time, detectionGroupID, isStrong)
@@ -93,17 +100,23 @@ func NewCNDecisionWithTimeDetectionGroupIDStrong(time unsafe.Pointer, detectionG
 }
 
 
+
 // A flag representing whether this is a strong decision.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNDecision-c.class/strongDecision
+
 func (c_ CNDecision) StrongDecision() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("strongDecision"))
 	return rv
 }
 
+
 // A flag representing whether this is a user-created decision or a base decision.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNDecision-c.class/userDecision
+
 func (c_ CNDecision) UserDecision() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("userDecision"))
 	return rv

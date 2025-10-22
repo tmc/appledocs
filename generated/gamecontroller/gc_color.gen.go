@@ -39,8 +39,13 @@ type IGCColor interface {
 }
 
 // The color of a device light.
+
+
+// The color of a device light.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCColor
+
 type GCColor struct {
 	objectivec.Object
 }
@@ -88,7 +93,9 @@ func NewGCColor() GCColor {
 
 // Creates a color with the specified red, green, and blue values.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCColor/init(red:green:blue:)
+
 func NewGCColorWithRedGreenBlue(red float32, green float32, blue float32) GCColor {
 	instance := getGCColorClass().Alloc()
 	rv := objc.Send[GCColor](instance.ID, objc.Sel("initWithRed:green:blue:"), red, green, blue)
@@ -97,54 +104,66 @@ func NewGCColorWithRedGreenBlue(red float32, green float32, blue float32) GCColo
 }
 
 
+
 // The normalized value of the blue component ranging from 0 to 1.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCColor/blue
+
 func (g_ GCColor) Blue() float32 {
 	rv := objc.Send[float32](g_.ID, objc.Sel("blue"))
 	return rv
 }
 
+
 // The normalized value of the green component ranging from 0 to 1.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCColor/green
+
 func (g_ GCColor) Green() float32 {
 	rv := objc.Send[float32](g_.ID, objc.Sel("green"))
 	return rv
 }
 
+
 // The normalized value of the red component ranging from 0 to 1.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccolor/red
+
 func (g_ GCColor) Red() float32 {
 	rv := objc.Send[float32](g_.ID, objc.Sel("red"))
 	return rv
 }
 
 
-// SetRed sets the value of the red property.
 // The normalized value of the red component ranging from 0 to 1.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccolor/red
+
 func (g_ GCColor) SetRed(value float32) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setRed:"), value)
 }
 
+
 // The color of a device’s light.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcdevicelight/color
+
 func (g_ GCColor) Color() GCColor {
 	rv := objc.Send[GCColor](g_.ID, objc.Sel("color"))
 	return rv
 }
 
 
-// SetColor sets the value of the color property.
 // The color of a device’s light.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcdevicelight/color
+
 func (g_ GCColor) SetColor(value IGCColor) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setColor:"), value)
 }

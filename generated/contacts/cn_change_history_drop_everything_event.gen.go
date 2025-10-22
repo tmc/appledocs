@@ -34,8 +34,13 @@ type ICNChangeHistoryDropEverythingEvent interface {
 // An object that indicates the delegate should drop all contacts and groups before handling change events.
 //
 // The system sends this event to your delegate when the system determines that enough has changed since the last time your app fetched the history changes that an incremental update is no longer possible. Following the drop-everything event, your app receives an add event for each contact and group currently in the database. This allows you to implement full syncs and incremental syncs using the same code.
+
+
+// An object that indicates the delegate should drop all contacts and groups before handling change events.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryDropEverythingEvent
+
 type CNChangeHistoryDropEverythingEvent struct {
 	CNChangeHistoryEvent
 }

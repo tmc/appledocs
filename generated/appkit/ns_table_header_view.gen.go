@@ -42,8 +42,13 @@ type ITableHeaderView interface {
 // An object that draws headers over a table view’s columns and handles mouse events in those headers.
 //
 // uses to implement its user interface.
+
+
+// An object that draws headers over a table view’s columns and handles mouse events in those headers.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableHeaderView
+
 type TableHeaderView struct {
 	View
 }
@@ -89,60 +94,80 @@ func NewTableHeaderView() TableHeaderView {
 }
 
 
+
+
 // Returns the index of the column whose header lies under in the receiver, or –1 if no such column is found.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableHeaderView/column(at:)
+
 func (t_ TableHeaderView) ColumnAtPoint(point coregraphics.CGPoint) int {
 	rv := objc.Send[int](t_.ID, objc.Sel("columnAtPoint:"), point)
 	return rv
 }
 
+
+
 // Returns the rectangle containing the header tile for the column at .
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableHeaderView/headerRect(ofColumn:)
+
 func (t_ TableHeaderView) HeaderRectOfColumn(column int) coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](t_.ID, objc.Sel("headerRectOfColumn:"), column)
 	return rv
 }
 
+
 // The index of the column that the user is dragging.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableHeaderView/draggedColumn
+
 func (t_ TableHeaderView) DraggedColumn() int {
 	rv := objc.Send[int](t_.ID, objc.Sel("draggedColumn"))
 	return rv
 }
 
+
 // The horizontal distance that the user has dragged a column.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableHeaderView/draggedDistance
+
 func (t_ TableHeaderView) DraggedDistance() float64 {
 	rv := objc.Send[float64](t_.ID, objc.Sel("draggedDistance"))
 	return rv
 }
 
+
 // The index of the column that the user is resizing.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableHeaderView/resizedColumn
+
 func (t_ TableHeaderView) ResizedColumn() int {
 	rv := objc.Send[int](t_.ID, objc.Sel("resizedColumn"))
 	return rv
 }
 
+
 // The instance that this table header view belongs to.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableHeaderView/tableView
+
 func (t_ TableHeaderView) TableView() NSTableView {
 	rv := objc.Send[NSTableView](t_.ID, objc.Sel("tableView"))
 	return rv
 }
 
 
-// SetTableView sets the value of the tableView property.
 // The instance that this table header view belongs to.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableHeaderView/tableView
+
 func (t_ TableHeaderView) SetTableView(value ITableView) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTableView:"), value)
 }

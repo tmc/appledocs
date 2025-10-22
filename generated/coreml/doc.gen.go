@@ -2,12 +2,16 @@
 
 // Package coreml provides Go bindings for the CoreML framework.
 //
-// Integrate machine learning models into your app. [Full Topic]
+// Integrate machine learning models into your app.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to CoreML without requiring cgo.
+
+// Integrate machine learning models into your app.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML
+
 package coreml
 
 import (

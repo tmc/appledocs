@@ -2,12 +2,16 @@
 
 // Package combine provides Go bindings for the Combine framework.
 //
-// Customize handling of asynchronous events by combining event-processing operators. [Full Topic]
+// Customize handling of asynchronous events by combining event-processing operators.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to Combine without requiring cgo.
+
+// Customize handling of asynchronous events by combining event-processing operators.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Combine
+
 package combine
 
 import (

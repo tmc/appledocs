@@ -39,8 +39,13 @@ type IAudioUnitComponentManager interface {
 // An object that provides a way to search and query audio components that the system registers.
 //
 // The component manager has methods to find various information about the audio components without opening them. Currently, you can only search audio components that are audio units. The class supports system tags and arbitrary user tags. You can tag each audio unit as part of its definition. Audio unit hosts, such as Logic or GarageBand, can present groupings of audio units according to the tags. You can search for audio units in the following ways: Using a instance that contains search strings for tags or descriptions Using a block to match on a custom criteria Using an
+
+
+// An object that provides a way to search and query audio components that the system registers.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioUnitComponentManager
+
 type AudioUnitComponentManager struct {
 	objectivec.Object
 }
@@ -84,38 +89,44 @@ func NewAudioUnitComponentManager() AudioUnitComponentManager {
 }
 
 
+
 // An array of the localized standard system tags the audio units define.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitcomponentmanager/standardlocalizedtagnames
+
 func (a_ AudioUnitComponentManager) StandardLocalizedTagNames() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("standardLocalizedTagNames"))
 	return rv
 }
 
 
-// SetStandardLocalizedTagNames sets the value of the standardLocalizedTagNames property.
 // An array of the localized standard system tags the audio units define.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitcomponentmanager/standardlocalizedtagnames
+
 func (a_ AudioUnitComponentManager) SetStandardLocalizedTagNames(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setStandardLocalizedTagNames:"), objc.String(value))
 }
 
+
 // An array of all tags the audio unit associates with the current user, and the system tags the audio units define.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitcomponentmanager/tagnames
+
 func (a_ AudioUnitComponentManager) TagNames() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("tagNames"))
 	return rv
 }
 
 
-// SetTagNames sets the value of the tagNames property.
 // An array of all tags the audio unit associates with the current user, and the system tags the audio units define.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitcomponentmanager/tagnames
+
 func (a_ AudioUnitComponentManager) SetTagNames(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setTagNames:"), objc.String(value))
 }

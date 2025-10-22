@@ -40,8 +40,13 @@ type IGCVirtualControllerElementConfiguration interface {
 }
 
 // The properties of a virtual controller’s element that you can customize.
+
+
+// The properties of a virtual controller’s element that you can customize.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCVirtualController/ElementConfiguration
+
 type GCVirtualControllerElementConfiguration struct {
 	objectivec.Object
 }
@@ -85,56 +90,65 @@ func NewGCVirtualControllerElementConfiguration() GCVirtualControllerElementConf
 }
 
 
+
 // A Boolean value that determines whether the thumbstick element behaves as a touchpad.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcvirtualcontroller/elementconfiguration/actsastouchpad
+
 func (g_ GCVirtualControllerElementConfiguration) ActsAsTouchpad() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("actsAsTouchpad"))
 	return rv
 }
 
 
-// SetActsAsTouchpad sets the value of the actsAsTouchpad property.
 // A Boolean value that determines whether the thumbstick element behaves as a touchpad.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcvirtualcontroller/elementconfiguration/actsastouchpad
+
 func (g_ GCVirtualControllerElementConfiguration) SetActsAsTouchpad(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setActsAsTouchpad:"), value)
 }
 
+
 // A Boolean value that determines whether the virtual controller hides the element.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcvirtualcontroller/elementconfiguration/ishidden
+
 func (g_ GCVirtualControllerElementConfiguration) IsHidden() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("isHidden"))
 	return rv
 }
 
 
-// SetIsHidden sets the value of the isHidden property.
 // A Boolean value that determines whether the virtual controller hides the element.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcvirtualcontroller/elementconfiguration/ishidden
+
 func (g_ GCVirtualControllerElementConfiguration) SetIsHidden(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setIsHidden:"), value)
 }
 
+
 // The Bezier path for the shape of an element.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcvirtualcontroller/elementconfiguration/path
+
 func (g_ GCVirtualControllerElementConfiguration) Path() appkit.BezierPath {
 	rv := objc.Send[appkit.BezierPath](g_.ID, objc.Sel("path"))
 	return rv
 }
 
 
-// SetPath sets the value of the path property.
 // The Bezier path for the shape of an element.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcvirtualcontroller/elementconfiguration/path
+
 func (g_ GCVirtualControllerElementConfiguration) SetPath(value appkit.IBezierPath) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setPath:"), value)
 }

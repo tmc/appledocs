@@ -36,12 +36,12 @@ type IMutableArray interface {
 	RemoveAllObjects()
 	RemoveLastObject()
 	RemoveObjectIdenticalTo(anObject unsafe.Pointer)
-	RemoveObjectIdenticalToInRange(anObject unsafe.Pointer, range_ Range)
+	RemoveObjectIdenticalToInRange(anObject unsafe.Pointer, range_ IRange)
 	RemoveObjectsAtIndexes(indexes IIndexSet)
 	RemoveObjectsFromIndicesNumIndices(indices unsafe.Pointer, cnt uint)
 	ReplaceObjectAtIndexWithObject(index uint, anObject unsafe.Pointer)
 	ReplaceObjectsAtIndexesWithObjects(indexes IIndexSet, objects []objc.ID)
-	ReplaceObjectsInRangeWithObjectsFromArray(range_ Range, otherArray []objc.ID)
+	ReplaceObjectsInRangeWithObjectsFromArray(range_ IRange, otherArray []objc.ID)
 	SetObjectAtIndexedSubscript(obj unsafe.Pointer, idx uint)
 	SortUsingFunctionContext(compare unsafe.Pointer, context unsafe.Pointer)
 	SortUsingComparator(cmptr unsafe.Pointer)
@@ -227,7 +227,7 @@ func (m_ MutableArray) RemoveObjectIdenticalTo(anObject unsafe.Pointer) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableArray/removeObject(identicalTo:in:)
 
-func (m_ MutableArray) RemoveObjectIdenticalToInRange(anObject unsafe.Pointer, range_ Range) {
+func (m_ MutableArray) RemoveObjectIdenticalToInRange(anObject unsafe.Pointer, range_ IRange) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("removeObjectIdenticalTo:inRange:"), anObject, range_)
 }
 
@@ -282,7 +282,7 @@ func (m_ MutableArray) ReplaceObjectsAtIndexesWithObjects(indexes IIndexSet, obj
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableArray/replaceObjects(in:withObjectsFrom:)
 
-func (m_ MutableArray) ReplaceObjectsInRangeWithObjectsFromArray(range_ Range, otherArray []objc.ID) {
+func (m_ MutableArray) ReplaceObjectsInRangeWithObjectsFromArray(range_ IRange, otherArray []objc.ID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("replaceObjectsInRange:withObjectsFromArray:"), range_, otherArray)
 }
 

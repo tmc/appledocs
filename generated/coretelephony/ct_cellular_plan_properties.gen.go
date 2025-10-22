@@ -39,8 +39,13 @@ type ICellularPlanProperties interface {
 }
 
 // An object you use for an eSIM.
+
+
+// An object you use for an eSIM.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCellularPlanProperties
+
 type CellularPlanProperties struct {
 	objectivec.Object
 }
@@ -84,38 +89,44 @@ func NewCellularPlanProperties() CellularPlanProperties {
 }
 
 
+
 // The available type of cellular plan that your eSIM supports.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCellularPlanProperties/simCapability
+
 func (c_ CellularPlanProperties) SimCapability() CellularPlanCapability {
 	rv := objc.Send[CellularPlanCapability](c_.ID, objc.Sel("simCapability"))
 	return rv
 }
 
 
-// SetSimCapability sets the value of the simCapability property.
 // The available type of cellular plan that your eSIM supports.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCellularPlanProperties/simCapability
+
 func (c_ CellularPlanProperties) SetSimCapability(value ICellularPlanCapability) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSimCapability:"), value)
 }
 
+
 // The available regions that your eSIM supports.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCellularPlanProperties/supportedRegionCodes-5elox
+
 func (c_ CellularPlanProperties) SupportedRegionCodes() []string {
 	rv := objc.Send[[]string](c_.ID, objc.Sel("supportedRegionCodes"))
 	return rv
 }
 
 
-// SetSupportedRegionCodes sets the value of the supportedRegionCodes property.
 // The available regions that your eSIM supports.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCellularPlanProperties/supportedRegionCodes-5elox
+
 func (c_ CellularPlanProperties) SetSupportedRegionCodes(value []string) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -130,20 +141,23 @@ func (c_ CellularPlanProperties) SetSupportedRegionCodes(value []string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSupportedRegionCodes:"), nsArray)
 }
 
+
 // The integrated circuit card identifier (ICCID) that identifies a SIM.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctcellularplanproperties/associatediccid
+
 func (c_ CellularPlanProperties) AssociatedIccid() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("associatedIccid"))
 	return rv
 }
 
 
-// SetAssociatedIccid sets the value of the associatedIccid property.
 // The integrated circuit card identifier (ICCID) that identifies a SIM.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctcellularplanproperties/associatediccid
+
 func (c_ CellularPlanProperties) SetAssociatedIccid(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAssociatedIccid:"), objc.String(value))
 }

@@ -39,8 +39,13 @@ type IKey interface {
 // An abstract base class for machine learning key types.
 //
 // You don’t create use this class directly. Instead, use a class that inherits from this one, such as or .
+
+
+// An abstract base class for machine learning key types.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLKey
+
 type Key struct {
 	objectivec.Object
 }
@@ -84,38 +89,44 @@ func NewKey() Key {
 }
 
 
+
 // The name of the machine learning key.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlkey/name
+
 func (k_ Key) Name() string {
 	rv := objc.Send[string](k_.ID, objc.Sel("name"))
 	return rv
 }
 
 
-// SetName sets the value of the name property.
 // The name of the machine learning key.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlkey/name
+
 func (k_ Key) SetName(value string) {
 	objc.Send[objc.ID](k_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
+
 // The applicable scope of the machine learning key.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlkey/scope
+
 func (k_ Key) Scope() string {
 	rv := objc.Send[string](k_.ID, objc.Sel("scope"))
 	return rv
 }
 
 
-// SetScope sets the value of the scope property.
 // The applicable scope of the machine learning key.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlkey/scope
+
 func (k_ Key) SetScope(value string) {
 	objc.Send[objc.ID](k_.ID, objc.Sel("setScope:"), objc.String(value))
 }

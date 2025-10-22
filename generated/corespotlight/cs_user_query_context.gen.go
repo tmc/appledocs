@@ -44,8 +44,13 @@ type ICSUserQueryContext interface {
 // The configuration details to apply to a user query.
 //
 // Use an instance of to configure the search parameters for a object. This object stores configuration details that the query uses to modify the search results it delivers. For example, use this object to specify the maximum number of results or suggestions you want the query to return. You can also use it to enable or disable the ranking of results by Spotlight. For information about search filters and other configurable query parameters, see the parent class .
+
+
+// The configuration details to apply to a user query.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSUserQueryContext
+
 type CSUserQueryContext struct {
 	CSSearchQueryContext
 }
@@ -95,115 +100,138 @@ func NewCSUserQueryContext() CSUserQueryContext {
 
 // Creates a new query context object with an optional suggested search string.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSUserQueryContext/init(currentSuggestion:)
+
 func NewCSUserQueryContextWithCurrentSuggestion(currentSuggestion ICSSuggestion) CSUserQueryContext {
 	rv := objc.Send[CSUserQueryContext](objc.ID(getCSUserQueryContextClass().class), objc.Sel("userQueryContextWithCurrentSuggestion:"), currentSuggestion)
 	return rv
 }
 
 
+
 // Creates a new query context object with an optional suggested search string.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSUserQueryContext/init(currentSuggestion:)
+
 func (cc _CSUserQueryContextClass) UserQueryContextWithCurrentSuggestion(currentSuggestion ICSSuggestion) CSUserQueryContext {
 	rv := objc.Send[CSUserQueryContext](objc.ID(cc.class), objc.Sel("userQueryContextWithCurrentSuggestion:"), currentSuggestion)
 	return rv
 }
 
+
 // Returns the current behavior configuration for the user query.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSUserQueryContext/userQueryContext
+
 func (cc _CSUserQueryContextClass) UserQueryContext() CSUserQueryContext {
 	rv := objc.Send[CSUserQueryContext](objc.ID(cc.class), objc.Sel("userQueryContext"))
 	return rv
 }
 
+
 // A Boolean value that indicates whether to exclude semantic-based search results from the output.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSUserQueryContext/disableSemanticSearch
+
 func (c_ CSUserQueryContext) DisableSemanticSearch() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("disableSemanticSearch"))
 	return rv
 }
 
 
-// SetDisableSemanticSearch sets the value of the disableSemanticSearch property.
 // A Boolean value that indicates whether to exclude semantic-based search results from the output.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSUserQueryContext/disableSemanticSearch
+
 func (c_ CSUserQueryContext) SetDisableSemanticSearch(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDisableSemanticSearch:"), value)
 }
 
+
 // A Boolean value that indicates whether the query sorts results by their relevance.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSUserQueryContext/enableRankedResults
+
 func (c_ CSUserQueryContext) EnableRankedResults() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("enableRankedResults"))
 	return rv
 }
 
 
-// SetEnableRankedResults sets the value of the enableRankedResults property.
 // A Boolean value that indicates whether the query sorts results by their relevance.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSUserQueryContext/enableRankedResults
+
 func (c_ CSUserQueryContext) SetEnableRankedResults(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setEnableRankedResults:"), value)
 }
 
+
 // The maximum number of ranked results to return during the query.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSUserQueryContext/maxRankedResultCount
+
 func (c_ CSUserQueryContext) MaxRankedResultCount() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("maxRankedResultCount"))
 	return rv
 }
 
 
-// SetMaxRankedResultCount sets the value of the maxRankedResultCount property.
 // The maximum number of ranked results to return during the query.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSUserQueryContext/maxRankedResultCount
+
 func (c_ CSUserQueryContext) SetMaxRankedResultCount(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMaxRankedResultCount:"), value)
 }
 
+
 // The maximum number of search results for the query to return.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSUserQueryContext/maxResultCount
+
 func (c_ CSUserQueryContext) MaxResultCount() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("maxResultCount"))
 	return rv
 }
 
 
-// SetMaxResultCount sets the value of the maxResultCount property.
 // The maximum number of search results for the query to return.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSUserQueryContext/maxResultCount
+
 func (c_ CSUserQueryContext) SetMaxResultCount(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMaxResultCount:"), value)
 }
 
+
 // The maximum number of suggested text completions for the query to return.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSUserQueryContext/maxSuggestionCount
+
 func (c_ CSUserQueryContext) MaxSuggestionCount() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("maxSuggestionCount"))
 	return rv
 }
 
 
-// SetMaxSuggestionCount sets the value of the maxSuggestionCount property.
 // The maximum number of suggested text completions for the query to return.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSUserQueryContext/maxSuggestionCount
+
 func (c_ CSUserQueryContext) SetMaxSuggestionCount(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMaxSuggestionCount:"), value)
 }

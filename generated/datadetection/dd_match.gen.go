@@ -36,8 +36,13 @@ type IDDMatch interface {
 // A base class for common types of data that the data detection system matches.
 //
 // The DataDetection framework returns results in objects that are subclasses of , which are specific to the type of matching data. Each object contains the matched string.
+
+
+// A base class for common types of data that the data detection system matches.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatch
+
 type DDMatch struct {
 	objectivec.Object
 }
@@ -81,9 +86,12 @@ func NewDDMatch() DDMatch {
 }
 
 
+
 // A substring that the data detection system identifies from an original string as a common type of data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatch/matchedString
+
 func (d_ DDMatch) MatchedString() string {
 	rv := objc.Send[string](d_.ID, objc.Sel("matchedString"))
 	return rv

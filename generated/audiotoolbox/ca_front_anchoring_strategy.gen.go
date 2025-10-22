@@ -32,8 +32,13 @@ type IFrontAnchoringStrategy interface {
 }
 
 // Anchor to the front of the user’s space.
+
+
+// Anchor to the front of the user’s space.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAFrontAnchoringStrategy
+
 type FrontAnchoringStrategy struct {
 	AnchoringStrategy
 }

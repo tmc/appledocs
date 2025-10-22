@@ -9,6 +9,22 @@ import (
 // Suppress unused import errors
 var _ = foundation.NewMutableCharacterSet
 
+// ExampleNewMutableCharacterSetWithBitmapRepresentation demonstrates how to create a MutableCharacterSet instance using NewMutableCharacterSetWithBitmapRepresentation.
+// Returns a character set containing characters determined by a given bitmap representation.
+func ExampleNewMutableCharacterSetWithBitmapRepresentation() {
+	_ = foundation.NewMutableCharacterSetWithBitmapRepresentation(
+		foundation.NSData{}, // data NSData
+	)
+	// Output:
+}
+// ExampleNewMutableCharacterSetWithCharactersInString demonstrates how to create a MutableCharacterSet instance using NewMutableCharacterSetWithCharactersInString.
+// Returns a character set containing the characters in a given string.
+func ExampleNewMutableCharacterSetWithCharactersInString() {
+	_ = foundation.NewMutableCharacterSetWithCharactersInString(
+		"aString", // aString string
+	)
+	// Output:
+}
 // ExampleNewMutableCharacterSetWithContentsOfFile demonstrates how to create a MutableCharacterSet instance using NewMutableCharacterSetWithContentsOfFile.
 // Returns a character set read from the bitmap representation stored in the file a given path.
 func ExampleNewMutableCharacterSetWithContentsOfFile() {

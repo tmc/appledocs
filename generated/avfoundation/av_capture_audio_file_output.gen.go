@@ -38,8 +38,13 @@ type ICaptureAudioFileOutput interface {
 // A capture output that records audio and saves the recorded audio to a file.
 //
 // implements the complete file recording interface declared by for writing media data to audio files. In addition, you can configure options specific to the audio file formats, including writing metadata collections to each file and specifying audio encoding options. does not, however, support —use instead.
+
+
+// A capture output that records audio and saves the recorded audio to a file.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureAudioFileOutput
+
 type CaptureAudioFileOutput struct {
 	CaptureFileOutput
 }
@@ -85,38 +90,44 @@ func NewCaptureAudioFileOutput() CaptureAudioFileOutput {
 }
 
 
+
 // The settings used to decode or re-encode audio before it is output by the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureaudiofileoutput/audiosettings
+
 func (c_ CaptureAudioFileOutput) AudioSettings() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("audioSettings"))
 	return rv
 }
 
 
-// SetAudioSettings sets the value of the audioSettings property.
 // The settings used to decode or re-encode audio before it is output by the receiver.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureaudiofileoutput/audiosettings
+
 func (c_ CaptureAudioFileOutput) SetAudioSettings(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAudioSettings:"), objc.String(value))
 }
 
+
 // A collection of metadata to be written to the receiver’s output files.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureaudiofileoutput/metadata
+
 func (c_ CaptureAudioFileOutput) Metadata() AVMetadataItem {
 	rv := objc.Send[AVMetadataItem](c_.ID, objc.Sel("metadata"))
 	return rv
 }
 
 
-// SetMetadata sets the value of the metadata property.
 // A collection of metadata to be written to the receiver’s output files.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureaudiofileoutput/metadata
+
 func (c_ CaptureAudioFileOutput) SetMetadata(value IAVMetadataItem) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMetadata:"), value)
 }

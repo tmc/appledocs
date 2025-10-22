@@ -34,8 +34,13 @@ type IPasskeyAssertionCredentialExtensionInput interface {
 }
 
 // This class encapsulates input for various WebAuthn extensions during passkey assertion.
+
+
+// This class encapsulates input for various WebAuthn extensions during passkey assertion.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASPasskeyAssertionCredentialExtensionInput-c.class
+
 type PasskeyAssertionCredentialExtensionInput struct {
 	objectivec.Object
 }
@@ -79,9 +84,12 @@ func NewPasskeyAssertionCredentialExtensionInput() PasskeyAssertionCredentialExt
 }
 
 
+
 // Input for the extension in passkey assertion requests.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASPasskeyAssertionCredentialExtensionInput-c.class/largeBlob
+
 func (p_ PasskeyAssertionCredentialExtensionInput) LargeBlob() ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput {
 	rv := objc.Send[ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput](p_.ID, objc.Sel("largeBlob"))
 	return rv

@@ -36,8 +36,13 @@ type ICKDatabaseOperation interface {
 // The abstract base class for operations that act upon databases in CloudKit.
 //
 // Database operations typically involve fetching and saving records and other database objects, as well as executing queries on the contents of the database. Use this class’s property to tell the operation which database to use when you execute it. Don’t subclass this class or create instances of it. Instead, create instances of one of its concrete subclasses.
+
+
+// The abstract base class for operations that act upon databases in CloudKit.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKDatabaseOperation
+
 type CKDatabaseOperation struct {
 	CKOperation
 }
@@ -83,20 +88,23 @@ func NewCKDatabaseOperation() CKDatabaseOperation {
 }
 
 
+
 // The database that the operation uses.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckdatabaseoperation/database
+
 func (c_ CKDatabaseOperation) Database() CKDatabase {
 	rv := objc.Send[CKDatabase](c_.ID, objc.Sel("database"))
 	return rv
 }
 
 
-// SetDatabase sets the value of the database property.
 // The database that the operation uses.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckdatabaseoperation/database
+
 func (c_ CKDatabaseOperation) SetDatabase(value ICKDatabase) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDatabase:"), value)
 }

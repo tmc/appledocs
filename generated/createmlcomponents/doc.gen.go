@@ -2,12 +2,16 @@
 
 // Package createmlcomponents provides Go bindings for the CreateMLComponents framework.
 //
-// Create more customizable machine learning models in your app. [Full Topic]
+// Create more customizable machine learning models in your app.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to CreateMLComponents without requiring cgo.
+
+// Create more customizable machine learning models in your app.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CreateMLComponents
+
 package createmlcomponents
 
 import (

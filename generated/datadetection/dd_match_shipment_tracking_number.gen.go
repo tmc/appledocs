@@ -36,8 +36,13 @@ type IDDMatchShipmentTrackingNumber interface {
 // An object that contains parcel tracking information that the data detection system matches.
 //
 // The DataDetection framework returns a shipment tracking number match in a object, which contains a carrier name and tracking identifier.
+
+
+// An object that contains parcel tracking information that the data detection system matches.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchShipmentTrackingNumber
+
 type DDMatchShipmentTrackingNumber struct {
 	DDMatch
 }
@@ -83,17 +88,23 @@ func NewDDMatchShipmentTrackingNumber() DDMatchShipmentTrackingNumber {
 }
 
 
+
 // The name of a parcel carrier.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchShipmentTrackingNumber/carrier
+
 func (d_ DDMatchShipmentTrackingNumber) Carrier() string {
 	rv := objc.Send[string](d_.ID, objc.Sel("carrier"))
 	return rv
 }
 
+
 // A string that represents a carrier’s tracking identifier for a parcel.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchShipmentTrackingNumber/trackingNumber
+
 func (d_ DDMatchShipmentTrackingNumber) TrackingNumber() string {
 	rv := objc.Send[string](d_.ID, objc.Sel("trackingNumber"))
 	return rv

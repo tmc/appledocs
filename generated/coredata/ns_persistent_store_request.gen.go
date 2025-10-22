@@ -36,8 +36,13 @@ type IPersistentStoreRequest interface {
 }
 
 // Criteria used to retrieve data from or save data to a persistent store.
+
+
+// Criteria used to retrieve data from or save data to a persistent store.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreRequest
+
 type PersistentStoreRequest struct {
 	objectivec.Object
 }
@@ -81,20 +86,23 @@ func NewPersistentStoreRequest() PersistentStoreRequest {
 }
 
 
+
 // The stores the request should be sent to.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreRequest/affectedStores
+
 func (p_ PersistentStoreRequest) AffectedStores() []PersistentStore {
 	rv := objc.Send[[]PersistentStore](p_.ID, objc.Sel("affectedStores"))
 	return rv
 }
 
 
-// SetAffectedStores sets the value of the affectedStores property.
 // The stores the request should be sent to.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreRequest/affectedStores
+
 func (p_ PersistentStoreRequest) SetAffectedStores(value []PersistentStore) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -109,9 +117,12 @@ func (p_ PersistentStoreRequest) SetAffectedStores(value []PersistentStore) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAffectedStores:"), nsArray)
 }
 
+
 // The type of the fetch request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreRequest/requestType
+
 func (p_ PersistentStoreRequest) RequestType() PersistentStoreRequestType {
 	rv := objc.Send[PersistentStoreRequestType](p_.ID, objc.Sel("requestType"))
 	return rv

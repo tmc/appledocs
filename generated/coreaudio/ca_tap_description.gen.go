@@ -67,8 +67,11 @@ type ITapDescription interface {
 	SetIsProcessRestoreEnabled(value bool)
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/CATapDescription
+
 type TapDescription struct {
 	objectivec.Object
 }
@@ -110,8 +113,11 @@ func NewTapDescription() TapDescription {
 }
 
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/CATapDescription/initExcludingProcesses:andDeviceUID:withStream:
+
 func NewTapDescriptionExcludingProcessesAndDeviceUIDWithStream(processesObjectIDsToExcludeFromTap []foundation.INumber, deviceUID string, stream int) TapDescription {
 	instance := getTapDescriptionClass().Alloc()
 	rv := objc.Send[TapDescription](instance.ID, objc.Sel("initExcludingProcesses:andDeviceUID:withStream:"), processesObjectIDsToExcludeFromTap, objc.String(deviceUID), stream)
@@ -119,8 +125,11 @@ func NewTapDescriptionExcludingProcessesAndDeviceUIDWithStream(processesObjectID
 	return rv
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/CATapDescription/initMonoGlobalTapButExcludeProcesses:
+
 func NewTapDescriptionMonoGlobalTapButExcludeProcesses(processesObjectIDsToExcludeFromTap []foundation.INumber) TapDescription {
 	instance := getTapDescriptionClass().Alloc()
 	rv := objc.Send[TapDescription](instance.ID, objc.Sel("initMonoGlobalTapButExcludeProcesses:"), processesObjectIDsToExcludeFromTap)
@@ -128,8 +137,11 @@ func NewTapDescriptionMonoGlobalTapButExcludeProcesses(processesObjectIDsToExclu
 	return rv
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/CATapDescription/initMonoMixdownOfProcesses:
+
 func NewTapDescriptionMonoMixdownOfProcesses(processesObjectIDsToIncludeInTap []foundation.INumber) TapDescription {
 	instance := getTapDescriptionClass().Alloc()
 	rv := objc.Send[TapDescription](instance.ID, objc.Sel("initMonoMixdownOfProcesses:"), processesObjectIDsToIncludeInTap)
@@ -137,8 +149,11 @@ func NewTapDescriptionMonoMixdownOfProcesses(processesObjectIDsToIncludeInTap []
 	return rv
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/CATapDescription/initStereoGlobalTapButExcludeProcesses:
+
 func NewTapDescriptionStereoGlobalTapButExcludeProcesses(processesObjectIDsToExcludeFromTap []foundation.INumber) TapDescription {
 	instance := getTapDescriptionClass().Alloc()
 	rv := objc.Send[TapDescription](instance.ID, objc.Sel("initStereoGlobalTapButExcludeProcesses:"), processesObjectIDsToExcludeFromTap)
@@ -146,8 +161,11 @@ func NewTapDescriptionStereoGlobalTapButExcludeProcesses(processesObjectIDsToExc
 	return rv
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/CATapDescription/initStereoMixdownOfProcesses:
+
 func NewTapDescriptionStereoMixdownOfProcesses(processesObjectIDsToIncludeInTap []foundation.INumber) TapDescription {
 	instance := getTapDescriptionClass().Alloc()
 	rv := objc.Send[TapDescription](instance.ID, objc.Sel("initStereoMixdownOfProcesses:"), processesObjectIDsToIncludeInTap)
@@ -155,8 +173,11 @@ func NewTapDescriptionStereoMixdownOfProcesses(processesObjectIDsToIncludeInTap 
 	return rv
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/CATapDescription/initWithProcesses:andDeviceUID:withStream:
+
 func NewTapDescriptionWithProcessesAndDeviceUIDWithStream(processesObjectIDsToIncludeInTap []foundation.INumber, deviceUID string, stream int) TapDescription {
 	instance := getTapDescriptionClass().Alloc()
 	rv := objc.Send[TapDescription](instance.ID, objc.Sel("initWithProcesses:andDeviceUID:withStream:"), processesObjectIDsToIncludeInTap, objc.String(deviceUID), stream)
@@ -165,17 +186,19 @@ func NewTapDescriptionWithProcessesAndDeviceUIDWithStream(processesObjectIDsToIn
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/CATapDescription/bundleIDs
+
 func (t_ TapDescription) BundleIDs() []string {
 	rv := objc.Send[[]string](t_.ID, objc.Sel("bundleIDs"))
 	return rv
 }
 
 
-// SetBundleIDs sets the value of the bundleIDs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/CATapDescription/bundleIDs
+
 func (t_ TapDescription) SetBundleIDs(value []string) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -190,137 +213,155 @@ func (t_ TapDescription) SetBundleIDs(value []string) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setBundleIDs:"), nsArray)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/CATapDescription/deviceUID
+
 func (t_ TapDescription) DeviceUID() string {
 	rv := objc.Send[string](t_.ID, objc.Sel("deviceUID"))
 	return rv
 }
 
 
-// SetDeviceUID sets the value of the deviceUID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/CATapDescription/deviceUID
+
 func (t_ TapDescription) SetDeviceUID(value string) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDeviceUID:"), objc.String(value))
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/CATapDescription/isExclusive
+
 func (t_ TapDescription) Exclusive() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("exclusive"))
 	return rv
 }
 
 
-// SetExclusive sets the value of the exclusive property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/CATapDescription/isExclusive
+
 func (t_ TapDescription) SetExclusive(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setExclusive:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/CATapDescription/isMixdown
+
 func (t_ TapDescription) Mixdown() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("mixdown"))
 	return rv
 }
 
 
-// SetMixdown sets the value of the mixdown property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/CATapDescription/isMixdown
+
 func (t_ TapDescription) SetMixdown(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setMixdown:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/CATapDescription/isMono
+
 func (t_ TapDescription) Mono() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("mono"))
 	return rv
 }
 
 
-// SetMono sets the value of the mono property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/CATapDescription/isMono
+
 func (t_ TapDescription) SetMono(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setMono:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/CATapDescription/isPrivate
+
 func (t_ TapDescription) PrivateTap() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("privateTap"))
 	return rv
 }
 
 
-// SetPrivateTap sets the value of the privateTap property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/CATapDescription/isPrivate
+
 func (t_ TapDescription) SetPrivateTap(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setPrivateTap:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/CATapDescription/isProcessRestoreEnabled
+
 func (t_ TapDescription) ProcessRestoreEnabled() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("processRestoreEnabled"))
 	return rv
 }
 
 
-// SetProcessRestoreEnabled sets the value of the processRestoreEnabled property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/CATapDescription/isProcessRestoreEnabled
+
 func (t_ TapDescription) SetProcessRestoreEnabled(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setProcessRestoreEnabled:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/CATapDescription/muteBehavior
+
 func (t_ TapDescription) MuteBehavior() TapMuteBehavior {
 	rv := objc.Send[TapMuteBehavior](t_.ID, objc.Sel("muteBehavior"))
 	return rv
 }
 
 
-// SetMuteBehavior sets the value of the muteBehavior property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/CATapDescription/muteBehavior
+
 func (t_ TapDescription) SetMuteBehavior(value TapMuteBehavior) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setMuteBehavior:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/CATapDescription/name
+
 func (t_ TapDescription) Name() string {
 	rv := objc.Send[string](t_.ID, objc.Sel("name"))
 	return rv
 }
 
 
-// SetName sets the value of the name property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/CATapDescription/name
+
 func (t_ TapDescription) SetName(value string) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/CATapDescription/processes-3cdzw
+
 func (t_ TapDescription) Processes() []foundation.Number {
 	rv := objc.Send[[]foundation.Number](t_.ID, objc.Sel("processes"))
 	return rv
 }
 
 
-// SetProcesses sets the value of the processes property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/CATapDescription/processes-3cdzw
+
 func (t_ TapDescription) SetProcesses(value []foundation.INumber) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -335,107 +376,121 @@ func (t_ TapDescription) SetProcesses(value []foundation.INumber) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setProcesses:"), nsArray)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/CATapDescription/stream-u4ff
+
 func (t_ TapDescription) Stream() foundation.Number {
 	rv := objc.Send[foundation.Number](t_.ID, objc.Sel("stream"))
 	return rv
 }
 
 
-// SetStream sets the value of the stream property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/CATapDescription/stream-u4ff
+
 func (t_ TapDescription) SetStream(value foundation.INumber) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setStream:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/CATapDescription/uuid
+
 func (t_ TapDescription) UUID() foundation.UUID {
 	rv := objc.Send[foundation.UUID](t_.ID, objc.Sel("UUID"))
 	return rv
 }
 
 
-// SetUUID sets the value of the UUID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/CATapDescription/uuid
+
 func (t_ TapDescription) SetUUID(value foundation.IUUID) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setUUID:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreaudio/catapdescription/isexclusive
+
 func (t_ TapDescription) IsExclusive() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isExclusive"))
 	return rv
 }
 
 
-// SetIsExclusive sets the value of the isExclusive property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreaudio/catapdescription/isexclusive
+
 func (t_ TapDescription) SetIsExclusive(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsExclusive:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreaudio/catapdescription/ismixdown
+
 func (t_ TapDescription) IsMixdown() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isMixdown"))
 	return rv
 }
 
 
-// SetIsMixdown sets the value of the isMixdown property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreaudio/catapdescription/ismixdown
+
 func (t_ TapDescription) SetIsMixdown(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsMixdown:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreaudio/catapdescription/ismono
+
 func (t_ TapDescription) IsMono() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isMono"))
 	return rv
 }
 
 
-// SetIsMono sets the value of the isMono property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreaudio/catapdescription/ismono
+
 func (t_ TapDescription) SetIsMono(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsMono:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreaudio/catapdescription/isprivate
+
 func (t_ TapDescription) IsPrivate() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isPrivate"))
 	return rv
 }
 
 
-// SetIsPrivate sets the value of the isPrivate property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreaudio/catapdescription/isprivate
+
 func (t_ TapDescription) SetIsPrivate(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsPrivate:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreaudio/catapdescription/isprocessrestoreenabled
+
 func (t_ TapDescription) IsProcessRestoreEnabled() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isProcessRestoreEnabled"))
 	return rv
 }
 
 
-// SetIsProcessRestoreEnabled sets the value of the isProcessRestoreEnabled property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreaudio/catapdescription/isprocessrestoreenabled
+
 func (t_ TapDescription) SetIsProcessRestoreEnabled(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsProcessRestoreEnabled:"), value)
 }

@@ -2,12 +2,16 @@
 
 // Package gamesave provides Go bindings for the GameSave framework.
 //
-// Store and sync your application’s save files in iCloud. [Full Topic]
+// Store and sync your application’s save files in iCloud.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to GameSave without requiring cgo.
+
+// Store and sync your application’s save files in iCloud.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameSave
+
 package gamesave
 
 import (

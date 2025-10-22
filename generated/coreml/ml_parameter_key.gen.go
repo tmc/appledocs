@@ -34,14 +34,19 @@ type IParameterKey interface {
 	ModelDescription() MLModelDescription
 	SetModelDescription(value IMLModelDescription)
 	Parameters() MLParameterKey
-	SetParameters(value IMLParameterKey)
+	SetParameters(value MLParameterKey)
 }
 
 // The keys for the parameter dictionary in a model configuration or a model update context.
 //
 // Use an to retrieve a model’s parameter value using: The model’s method The dictionary of an The dictionary of an
+
+
+// The keys for the parameter dictionary in a model configuration or a model update context.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLParameterKey
+
 type ParameterKey struct {
 	Key
 }
@@ -87,57 +92,66 @@ func NewParameterKey() ParameterKey {
 }
 
 
+
 // The configuration of the model set during initialization.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodel/configuration
+
 func (p_ ParameterKey) Configuration() MLModelConfiguration {
 	rv := objc.Send[MLModelConfiguration](p_.ID, objc.Sel("configuration"))
 	return rv
 }
 
 
-// SetConfiguration sets the value of the configuration property.
 // The configuration of the model set during initialization.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodel/configuration
+
 func (p_ ParameterKey) SetConfiguration(value IMLModelConfiguration) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setConfiguration:"), value)
 }
 
+
 // Model information you use at runtime during development, which Xcode also displays in its Core ML model editor view.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodel/modeldescription
+
 func (p_ ParameterKey) ModelDescription() MLModelDescription {
 	rv := objc.Send[MLModelDescription](p_.ID, objc.Sel("modelDescription"))
 	return rv
 }
 
 
-// SetModelDescription sets the value of the modelDescription property.
 // Model information you use at runtime during development, which Xcode also displays in its Core ML model editor view.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodel/modeldescription
+
 func (p_ ParameterKey) SetModelDescription(value IMLModelDescription) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setModelDescription:"), value)
 }
 
+
 // A dictionary of configuration settings your app can override when loading a model.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodelconfiguration/parameters
+
 func (p_ ParameterKey) Parameters() MLParameterKey {
 	rv := objc.Send[MLParameterKey](p_.ID, objc.Sel("parameters"))
 	return rv
 }
 
 
-// SetParameters sets the value of the parameters property.
 // A dictionary of configuration settings your app can override when loading a model.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodelconfiguration/parameters
-func (p_ ParameterKey) SetParameters(value IMLParameterKey) {
+
+func (p_ ParameterKey) SetParameters(value MLParameterKey) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setParameters:"), value)
 }
 

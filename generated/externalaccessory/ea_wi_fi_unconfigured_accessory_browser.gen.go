@@ -43,8 +43,13 @@ type IEAWiFiUnconfiguredAccessoryBrowser interface {
 // An object you use to scan for wireless accessories and configure them for use with the user’s app.
 //
 // The class gives your app access to the MFi Wireless Accessory Configuration process. You use a browser object to scan for unconfigured accessories, connect them to the user’s Wi-Fi infrastructure, and configure attributes of the accessories. An accessory is represented by an instance of .
+
+
+// An object you use to scan for wireless accessories and configure them for use with the user’s app.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAWiFiUnconfiguredAccessoryBrowser
+
 type EAWiFiUnconfiguredAccessoryBrowser struct {
 	objectivec.Object
 }
@@ -92,7 +97,9 @@ func NewEAWiFiUnconfiguredAccessoryBrowser() EAWiFiUnconfiguredAccessoryBrowser 
 
 // Creates a browser object that scans for unconfigured accessories.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAWiFiUnconfiguredAccessoryBrowser/init(delegate:queue:)
+
 func NewEAWiFiUnconfiguredAccessoryBrowserWithDelegateQueue(delegate objectivec.IObject, queue unsafe.Pointer) EAWiFiUnconfiguredAccessoryBrowser {
 	instance := getEAWiFiUnconfiguredAccessoryBrowserClass().Alloc()
 	rv := objc.Send[EAWiFiUnconfiguredAccessoryBrowser](instance.ID, objc.Sel("initWithDelegate:queue:"), delegate, queue)
@@ -101,48 +108,66 @@ func NewEAWiFiUnconfiguredAccessoryBrowserWithDelegateQueue(delegate objectivec.
 }
 
 
+
+
 // Begins the configuration process for the specified accessory.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAWiFiUnconfiguredAccessoryBrowser/configureAccessory(_:withConfigurationUIOn:)
+
 func (e_ EAWiFiUnconfiguredAccessoryBrowser) ConfigureAccessoryWithConfigurationUIOnViewController(accessory IEAWiFiUnconfiguredAccessory, viewController appkit.IViewController) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("configureAccessory:withConfigurationUIOnViewController:"), accessory, viewController)
 }
 
+
+
 // Starts the search for unconfigured accessories that match the specified predicate.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAWiFiUnconfiguredAccessoryBrowser/startSearchingForUnconfiguredAccessories(matching:)
+
 func (e_ EAWiFiUnconfiguredAccessoryBrowser) StartSearchingForUnconfiguredAccessoriesMatchingPredicate(predicate foundation.IPredicate) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("startSearchingForUnconfiguredAccessoriesMatchingPredicate:"), predicate)
 }
 
+
+
 // Stops the search for unconfigured accessories.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAWiFiUnconfiguredAccessoryBrowser/stopSearchingForUnconfiguredAccessories()
+
 func (e_ EAWiFiUnconfiguredAccessoryBrowser) StopSearchingForUnconfiguredAccessories() {
 	objc.Send[objc.ID](e_.ID, objc.Sel("stopSearchingForUnconfiguredAccessories"))
 }
 
+
 // The object that acts as the delegate of the browser and receives browser events.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAWiFiUnconfiguredAccessoryBrowser/delegate
+
 func (e_ EAWiFiUnconfiguredAccessoryBrowser) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](e_.ID, objc.Sel("delegate"))
 	return rv
 }
 
 
-// SetDelegate sets the value of the delegate property.
 // The object that acts as the delegate of the browser and receives browser events.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAWiFiUnconfiguredAccessoryBrowser/delegate
+
 func (e_ EAWiFiUnconfiguredAccessoryBrowser) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setDelegate:"), value)
 }
 
+
 // The set of unconfigured accessories that have been discovered.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAWiFiUnconfiguredAccessoryBrowser/unconfiguredAccessories
+
 func (e_ EAWiFiUnconfiguredAccessoryBrowser) UnconfiguredAccessories() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("unconfiguredAccessories"))
 	return rv

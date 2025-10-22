@@ -45,8 +45,13 @@ type IPedometerData interface {
 // Information about the distance traveled by a user on foot.
 //
 // You do not create instances of this class yourself. Instead, you use a object to request pedometer data from the system. The data for each request is packaged into an instance of this class and delivered to the handlers you registered with the pedometer object.
+
+
+// Information about the distance traveled by a user on foot.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometerData
+
 type PedometerData struct {
 	objectivec.Object
 }
@@ -90,73 +95,100 @@ func NewPedometerData() PedometerData {
 }
 
 
+
 // The average pace of the user, measured in seconds per meter.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometerData/averageActivePace
+
 func (p_ PedometerData) AverageActivePace() foundation.Number {
 	rv := objc.Send[foundation.Number](p_.ID, objc.Sel("averageActivePace"))
 	return rv
 }
 
+
 // The rate at which steps are taken, measured in steps per second.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometerData/currentCadence
+
 func (p_ PedometerData) CurrentCadence() foundation.Number {
 	rv := objc.Send[foundation.Number](p_.ID, objc.Sel("currentCadence"))
 	return rv
 }
 
+
 // The current pace of the user, measured in seconds per meter.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometerData/currentPace
+
 func (p_ PedometerData) CurrentPace() foundation.Number {
 	rv := objc.Send[foundation.Number](p_.ID, objc.Sel("currentPace"))
 	return rv
 }
 
+
 // The estimated distance (in meters) traveled by the user.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometerData/distance
+
 func (p_ PedometerData) Distance() foundation.Number {
 	rv := objc.Send[foundation.Number](p_.ID, objc.Sel("distance"))
 	return rv
 }
 
+
 // The end time for the pedometer data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometerData/endDate
+
 func (p_ PedometerData) EndDate() foundation.NSDate {
 	rv := objc.Send[foundation.NSDate](p_.ID, objc.Sel("endDate"))
 	return rv
 }
 
+
 // The approximate number of floors ascended by walking.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometerData/floorsAscended
+
 func (p_ PedometerData) FloorsAscended() foundation.Number {
 	rv := objc.Send[foundation.Number](p_.ID, objc.Sel("floorsAscended"))
 	return rv
 }
 
+
 // The approximate number of floors descended by walking.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometerData/floorsDescended
+
 func (p_ PedometerData) FloorsDescended() foundation.Number {
 	rv := objc.Send[foundation.Number](p_.ID, objc.Sel("floorsDescended"))
 	return rv
 }
 
+
 // The number of steps taken by the user.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometerData/numberOfSteps
+
 func (p_ PedometerData) NumberOfSteps() foundation.Number {
 	rv := objc.Send[foundation.Number](p_.ID, objc.Sel("numberOfSteps"))
 	return rv
 }
 
+
 // The start time for the pedometer data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometerData/startDate
+
 func (p_ PedometerData) StartDate() foundation.NSDate {
 	rv := objc.Send[foundation.NSDate](p_.ID, objc.Sel("startDate"))
 	return rv

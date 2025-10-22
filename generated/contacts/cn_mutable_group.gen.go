@@ -36,8 +36,13 @@ type ICNMutableGroup interface {
 // A mutable object that represents a group of contacts.
 //
 // Contacts may be members of one or more groups, depending upon the accounts they come from. The class is not a thread-safe class.
+
+
+// A mutable object that represents a group of contacts.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNMutableGroup
+
 type CNMutableGroup struct {
 	CNGroup
 }
@@ -83,20 +88,23 @@ func NewCNMutableGroup() CNMutableGroup {
 }
 
 
+
 // The name of the group.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNMutableGroup/name
+
 func (c_ CNMutableGroup) Name() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("name"))
 	return rv
 }
 
 
-// SetName sets the value of the name property.
 // The name of the group.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNMutableGroup/name
+
 func (c_ CNMutableGroup) SetName(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setName:"), objc.String(value))
 }

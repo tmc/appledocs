@@ -37,8 +37,13 @@ type IAssetWriterInputMetadataAdaptor interface {
 // An object that appends timed metadata groups to an asset writer input.
 //
 // Use a metadata adaptor to append track-level metadata, packaged as instances of , to an asset writer input.
+
+
+// An object that appends timed metadata groups to an asset writer input.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriterInputMetadataAdaptor
+
 type AssetWriterInputMetadataAdaptor struct {
 	objectivec.Object
 }
@@ -82,20 +87,23 @@ func NewAssetWriterInputMetadataAdaptor() AssetWriterInputMetadataAdaptor {
 }
 
 
+
 // The input for the metadata adaptor.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriterinputmetadataadaptor/assetwriterinput
+
 func (a_ AssetWriterInputMetadataAdaptor) AssetWriterInput() AVAssetWriterInput {
 	rv := objc.Send[AVAssetWriterInput](a_.ID, objc.Sel("assetWriterInput"))
 	return rv
 }
 
 
-// SetAssetWriterInput sets the value of the assetWriterInput property.
 // The input for the metadata adaptor.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriterinputmetadataadaptor/assetwriterinput
+
 func (a_ AssetWriterInputMetadataAdaptor) SetAssetWriterInput(value IAVAssetWriterInput) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAssetWriterInput:"), value)
 }

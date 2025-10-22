@@ -35,8 +35,13 @@ type IHKCumulativeQuantitySeriesSample interface {
 }
 
 // A sample representing a series of cumulative quantity values.
+
+
+// A sample representing a series of cumulative quantity values.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKCumulativeQuantitySeriesSample
+
 type HKCumulativeQuantitySeriesSample struct {
 	HKCumulativeQuantitySample
 }
@@ -82,27 +87,33 @@ func NewHKCumulativeQuantitySeriesSample() HKCumulativeQuantitySeriesSample {
 }
 
 
+
 // The sum of all the quantities in the series.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcumulativequantityseriessample/sum
+
 func (h_ HKCumulativeQuantitySeriesSample) Sum() HKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("sum"))
 	return rv
 }
 
 
-// SetSum sets the value of the sum property.
 // The sum of all the quantities in the series.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcumulativequantityseriessample/sum
+
 func (h_ HKCumulativeQuantitySeriesSample) SetSum(value IHKQuantity) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setSum:"), value)
 }
 
+
 // The key path for accessing the sum of a quantity series inside a predicate format string.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathsum
+
 func (h_ HKCumulativeQuantitySeriesSample) HKPredicateKeyPathSum() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathSum"))
 	return rv

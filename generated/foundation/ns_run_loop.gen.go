@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,12 +31,12 @@ type _RunLoopClass struct {
 // An interface definition for the [RunLoop] class.
 type IRunLoop interface {
 	objectivec.IObject
-	AcceptInputForModeBeforeDate(mode RunLoopMode, limitDate IDate)
-	AddTimerForMode(timer ITimer, mode RunLoopMode)
-	GetCFRunLoop() unsafe.Pointer
-	LimitDateForMode(mode RunLoopMode) Date
+	AcceptInputForModeBeforeDate(mode IRunLoopMode, limitDate IDate)
+	AddTimerForMode(timer ITimer, mode IRunLoopMode)
+	GetCFRunLoop() corefoundation.RunLoopRef
+	LimitDateForMode(mode IRunLoopMode) Date
 	Run()
-	RunModeBeforeDate(mode RunLoopMode, limitDate IDate) bool
+	RunModeBeforeDate(mode IRunLoopMode, limitDate IDate) bool
 	RunUntilDate(limitDate IDate)
 	CurrentMode() RunLoopMode
 }
@@ -120,7 +121,7 @@ func (rc _RunLoopClass) MainRunLoop() RunLoop {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/RunLoop/acceptInput(forMode:before:)
 
-func (r_ RunLoop) AcceptInputForModeBeforeDate(mode RunLoopMode, limitDate IDate) {
+func (r_ RunLoop) AcceptInputForModeBeforeDate(mode IRunLoopMode, limitDate IDate) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("acceptInputForMode:beforeDate:"), mode, limitDate)
 }
 
@@ -131,7 +132,7 @@ func (r_ RunLoop) AcceptInputForModeBeforeDate(mode RunLoopMode, limitDate IDate
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/RunLoop/add(_:forMode:)-392ag
 
-func (r_ RunLoop) AddTimerForMode(timer ITimer, mode RunLoopMode) {
+func (r_ RunLoop) AddTimerForMode(timer ITimer, mode IRunLoopMode) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("addTimer:forMode:"), timer, mode)
 }
 
@@ -142,8 +143,8 @@ func (r_ RunLoop) AddTimerForMode(timer ITimer, mode RunLoopMode) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/RunLoop/getCFRunLoop()
 
-func (r_ RunLoop) GetCFRunLoop() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("getCFRunLoop"))
+func (r_ RunLoop) GetCFRunLoop() corefoundation.RunLoopRef {
+	rv := objc.Send[corefoundation.RunLoopRef](r_.ID, objc.Sel("getCFRunLoop"))
 	return rv
 }
 
@@ -154,7 +155,7 @@ func (r_ RunLoop) GetCFRunLoop() unsafe.Pointer {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/RunLoop/limitDate(forMode:)
 
-func (r_ RunLoop) LimitDateForMode(mode RunLoopMode) Date {
+func (r_ RunLoop) LimitDateForMode(mode IRunLoopMode) Date {
 	rv := objc.Send[Date](r_.ID, objc.Sel("limitDateForMode:"), mode)
 	return rv
 }
@@ -177,7 +178,7 @@ func (r_ RunLoop) Run() {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/RunLoop/run(mode:before:)
 
-func (r_ RunLoop) RunModeBeforeDate(mode RunLoopMode, limitDate IDate) bool {
+func (r_ RunLoop) RunModeBeforeDate(mode IRunLoopMode, limitDate IDate) bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("runMode:beforeDate:"), mode, limitDate)
 	return rv
 }

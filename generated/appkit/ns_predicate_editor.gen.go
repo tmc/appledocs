@@ -38,8 +38,13 @@ type IPredicateEditor interface {
 // A defined set of rules that allows the editing of predicate objects.
 //
 // provides an property— (inherited from )—that you can get and set directly, and that you can bind using Cocoa bindings (you typically configure a predicate editor in Interface Builder). depends on another class, , that describes the available predicates and how to display them. Unlike , does not depend on its delegate to populate its rows (and ). Instead, its rows are populated from its property (an instance of ). relies on instances , which are responsible for mapping back and forth between the displayed view values and various predicates. exposes one property, , which is an array of objects.
+
+
+// A defined set of rules that allows the editing of predicate objects.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPredicateEditor
+
 type PredicateEditor struct {
 	RuleEditor
 }
@@ -85,20 +90,23 @@ func NewPredicateEditor() PredicateEditor {
 }
 
 
+
 // The row templates for the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPredicateEditor/rowTemplates
+
 func (p_ PredicateEditor) RowTemplates() []PredicateEditorRowTemplate {
 	rv := objc.Send[[]PredicateEditorRowTemplate](p_.ID, objc.Sel("rowTemplates"))
 	return rv
 }
 
 
-// SetRowTemplates sets the value of the rowTemplates property.
 // The row templates for the receiver.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPredicateEditor/rowTemplates
+
 func (p_ PredicateEditor) SetRowTemplates(value []PredicateEditorRowTemplate) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -113,20 +121,23 @@ func (p_ PredicateEditor) SetRowTemplates(value []PredicateEditorRowTemplate) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setRowTemplates:"), nsArray)
 }
 
+
 // The value of the receiver’s cell as an Objective-C object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/objectvalue
+
 func (p_ PredicateEditor) ObjectValue() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("objectValue"))
 	return rv
 }
 
 
-// SetObjectValue sets the value of the objectValue property.
 // The value of the receiver’s cell as an Objective-C object.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/objectvalue
+
 func (p_ PredicateEditor) SetObjectValue(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setObjectValue:"), value)
 }

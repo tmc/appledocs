@@ -38,8 +38,13 @@ type IGameSessionSharingViewController interface {
 // A user interface you can use to invite other users into a tvOS game session.
 //
 // The sharing view controller on tvOS presents a user’s Game Center friend list, along with other people with whom the user has recently played the game. Users can select a person from the list and send them an invite using the Send button.
+
+
+// A user interface you can use to invite other users into a tvOS game session.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKGameSessionSharingViewController
+
 type GameSessionSharingViewController struct {
 	appkit.ViewController
 }
@@ -89,7 +94,9 @@ func NewGameSessionSharingViewController() GameSessionSharingViewController {
 
 // Creates a new sharing view controller for a specified session.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKGameSessionSharingViewController/init(session:)
+
 func NewGameSessionSharingViewControllerWithSession(session IGKGameSession) GameSessionSharingViewController {
 	instance := getGameSessionSharingViewControllerClass().Alloc()
 	rv := objc.Send[GameSessionSharingViewController](instance.ID, objc.Sel("initWithSession:"), session)
@@ -98,27 +105,33 @@ func NewGameSessionSharingViewControllerWithSession(session IGKGameSession) Game
 }
 
 
+
 // The delegate for the sharing view controller.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKGameSessionSharingViewController/delegate
+
 func (g_ GameSessionSharingViewController) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](g_.ID, objc.Sel("delegate"))
 	return rv
 }
 
 
-// SetDelegate sets the value of the delegate property.
 // The delegate for the sharing view controller.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKGameSessionSharingViewController/delegate
+
 func (g_ GameSessionSharingViewController) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDelegate:"), value)
 }
 
+
 // The game session associated with the view controller.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKGameSessionSharingViewController/session
+
 func (g_ GameSessionSharingViewController) Session() GKGameSession {
 	rv := objc.Send[GKGameSession](g_.ID, objc.Sel("session"))
 	return rv

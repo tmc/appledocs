@@ -49,8 +49,13 @@ type ISActivity interface {
 // A representation of user interaction with a context.
 //
 // An activity represents a student’s attempt to complete the task corresponding to a instance. For example, if a context represents a quiz, the associated activity represents the student’s attempt to take the quiz. As such, an activity is always associated with a context. In fact, you never initialize an activity in isolation or store a reference to it. Rather, you ask a context to create the activity and retrieve it from the context.
+
+
+// A representation of user interaction with a context.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSActivity
+
 type SActivity struct {
 	SObject
 }
@@ -96,115 +101,153 @@ func NewSActivity() SActivity {
 }
 
 
+
+
 // Adds an activity item to an activity.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSActivity/addAdditionalActivityItem(_:)
+
 func (s_ SActivity) AddAdditionalActivityItem(activityItem ICLSActivityItem) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("addAdditionalActivityItem:"), activityItem)
 }
 
+
+
 // Adds a progress range to a given activity.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSActivity/addProgressRange(fromStart:toEnd:)
+
 func (s_ SActivity) AddProgressRangeFromStartToEnd(start float64, end float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("addProgressRangeFromStart:toEnd:"), start, end)
 }
 
+
+
 // Deletes all activity items associated with the current activity.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSActivity/removeAllActivityItems()
+
 func (s_ SActivity) RemoveAllActivityItems() {
 	objc.Send[objc.ID](s_.ID, objc.Sel("removeAllActivityItems"))
 }
 
+
+
 // Tells an activity to start recording duration and progress for a task.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSActivity/start()
+
 func (s_ SActivity) Start() {
 	objc.Send[objc.ID](s_.ID, objc.Sel("start"))
 }
 
+
+
 // Tells an activity to stop or pause recording duration and progress for a task.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSActivity/stop()
+
 func (s_ SActivity) Stop() {
 	objc.Send[objc.ID](s_.ID, objc.Sel("stop"))
 }
 
+
 // The list of activity items associated with an activity.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSActivity/additionalActivityItems
+
 func (s_ SActivity) AdditionalActivityItems() []SActivityItem {
 	rv := objc.Send[[]SActivityItem](s_.ID, objc.Sel("additionalActivityItems"))
 	return rv
 }
 
+
 // The cumulative time in seconds that an activity has been active.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSActivity/duration
+
 func (s_ SActivity) Duration() foundation.TimeInterval {
 	rv := objc.Send[foundation.TimeInterval](s_.ID, objc.Sel("duration"))
 	return rv
 }
 
+
 // A Boolean that indicates whether an activity is running.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSActivity/isStarted
+
 func (s_ SActivity) Started() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("started"))
 	return rv
 }
 
+
 // Adds an activity item to an activity and sets it as the primary activity item.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSActivity/primaryActivityItem
+
 func (s_ SActivity) PrimaryActivityItem() CLSActivityItem {
 	rv := objc.Send[CLSActivityItem](s_.ID, objc.Sel("primaryActivityItem"))
 	return rv
 }
 
 
-// SetPrimaryActivityItem sets the value of the primaryActivityItem property.
 // Adds an activity item to an activity and sets it as the primary activity item.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSActivity/primaryActivityItem
+
 func (s_ SActivity) SetPrimaryActivityItem(value ICLSActivityItem) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setPrimaryActivityItem:"), value)
 }
 
+
 // A measure of progress through the task, given as a fraction in the range [0, 1].
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSActivity/progress
+
 func (s_ SActivity) Progress() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("progress"))
 	return rv
 }
 
 
-// SetProgress sets the value of the progress property.
 // A measure of progress through the task, given as a fraction in the range [0, 1].
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSActivity/progress
+
 func (s_ SActivity) SetProgress(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setProgress:"), value)
 }
 
+
 // A Boolean that indicates whether an activity is running.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/classkit/clsactivity/isstarted
+
 func (s_ SActivity) IsStarted() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isStarted"))
 	return rv
 }
 
 
-// SetIsStarted sets the value of the isStarted property.
 // A Boolean that indicates whether an activity is running.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/classkit/clsactivity/isstarted
+
 func (s_ SActivity) SetIsStarted(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsStarted:"), value)
 }

@@ -2,12 +2,16 @@
 
 // Package coreaudio provides Go bindings for the CoreAudio framework.
 //
-// Use the Core Audio framework to interact with device’s audio hardware. [Full Topic]
+// Use the Core Audio framework to interact with device’s audio hardware.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to CoreAudio without requiring cgo.
+
+// Use the Core Audio framework to interact with device’s audio hardware.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio
+
 package coreaudio
 
 import (

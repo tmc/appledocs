@@ -39,8 +39,13 @@ type IMIDICIProfileState interface {
 }
 
 // An object that provides the enabled and disabled profiles for a MIDI channel or port on a device.
+
+
+// An object that provides the enabled and disabled profiles for a MIDI channel or port on a device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIProfileState
+
 type MIDICIProfileState struct {
 	objectivec.Object
 }
@@ -84,56 +89,65 @@ func NewMIDICIProfileState() MIDICIProfileState {
 }
 
 
+
 // The object’s disabled profiles.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciprofilestate/disabledprofiles
+
 func (m_ MIDICIProfileState) DisabledProfiles() MIDICIProfile {
 	rv := objc.Send[MIDICIProfile](m_.ID, objc.Sel("disabledProfiles"))
 	return rv
 }
 
 
-// SetDisabledProfiles sets the value of the disabledProfiles property.
 // The object’s disabled profiles.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciprofilestate/disabledprofiles
+
 func (m_ MIDICIProfileState) SetDisabledProfiles(value IMIDICIProfile) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDisabledProfiles:"), value)
 }
 
+
 // The object’s enabled profiles.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciprofilestate/enabledprofiles
+
 func (m_ MIDICIProfileState) EnabledProfiles() MIDICIProfile {
 	rv := objc.Send[MIDICIProfile](m_.ID, objc.Sel("enabledProfiles"))
 	return rv
 }
 
 
-// SetEnabledProfiles sets the value of the enabledProfiles property.
 // The object’s enabled profiles.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciprofilestate/enabledprofiles
+
 func (m_ MIDICIProfileState) SetEnabledProfiles(value IMIDICIProfile) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEnabledProfiles:"), value)
 }
 
+
 // The MIDI channel to which this state applies.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciprofilestate/midichannel
+
 func (m_ MIDICIProfileState) MidiChannel() MIDIChannelNumber {
 	rv := objc.Send[MIDIChannelNumber](m_.ID, objc.Sel("midiChannel"))
 	return rv
 }
 
 
-// SetMidiChannel sets the value of the midiChannel property.
 // The MIDI channel to which this state applies.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciprofilestate/midichannel
+
 func (m_ MIDICIProfileState) SetMidiChannel(value IMIDIChannelNumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMidiChannel:"), value)
 }

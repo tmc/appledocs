@@ -35,8 +35,11 @@ type ICKShareBlockedIdentity interface {
 	UserIdentity() CKUserIdentity
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/BlockedIdentity
+
 type CKShareBlockedIdentity struct {
 	objectivec.Object
 }
@@ -78,17 +81,23 @@ func NewCKShareBlockedIdentity() CKShareBlockedIdentity {
 }
 
 
+
 // A displayable representing the blocked user.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/BlockedIdentity/contact
+
 func (c_ CKShareBlockedIdentity) Contact() contacts.CNContact {
 	rv := objc.Send[contacts.CNContact](c_.ID, objc.Sel("contact"))
 	return rv
 }
 
+
 // The identity of the user who has been blocked from requesting access to the share.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/BlockedIdentity/userIdentity
+
 func (c_ CKShareBlockedIdentity) UserIdentity() CKUserIdentity {
 	rv := objc.Send[CKUserIdentity](c_.ID, objc.Sel("userIdentity"))
 	return rv

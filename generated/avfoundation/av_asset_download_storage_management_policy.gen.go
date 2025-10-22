@@ -36,8 +36,13 @@ type IAssetDownloadStorageManagementPolicy interface {
 }
 
 // An object that defines a policy to automatically manage the storage of downloaded assets.
+
+
+// An object that defines a policy to automatically manage the storage of downloaded assets.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetDownloadStorageManagementPolicy
+
 type AssetDownloadStorageManagementPolicy struct {
 	objectivec.Object
 }
@@ -81,17 +86,23 @@ func NewAssetDownloadStorageManagementPolicy() AssetDownloadStorageManagementPol
 }
 
 
+
 // The expiration date for an asset.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetDownloadStorageManagementPolicy/expirationDate
+
 func (a_ AssetDownloadStorageManagementPolicy) ExpirationDate() foundation.NSDate {
 	rv := objc.Send[foundation.NSDate](a_.ID, objc.Sel("expirationDate"))
 	return rv
 }
 
+
 // The eviction priority for an asset.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetDownloadStorageManagementPolicy/priority
+
 func (a_ AssetDownloadStorageManagementPolicy) Priority() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("priority"))
 	return rv

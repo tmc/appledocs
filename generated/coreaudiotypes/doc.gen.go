@@ -2,12 +2,16 @@
 
 // Package coreaudiotypes provides Go bindings for the CoreAudioTypes framework.
 //
-// Use specialized data types to interact with audio streams, complex buffers, and audiovisual timestamps. [Full Topic]
+// Use specialized data types to interact with audio streams, complex buffers, and audiovisual timestamps.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to CoreAudioTypes without requiring cgo.
+
+// Use specialized data types to interact with audio streams, complex buffers, and audiovisual timestamps.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioTypes
+
 package coreaudiotypes
 
 import (

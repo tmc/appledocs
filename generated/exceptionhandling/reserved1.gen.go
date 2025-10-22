@@ -32,8 +32,11 @@ type Ireserved1 interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExceptionHandling/NSExceptionHandler/struct_(unnamed)/reserved1
+
 type reserved1 struct {
 	objectivec.Object
 }

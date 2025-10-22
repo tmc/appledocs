@@ -50,8 +50,13 @@ type ISampleBufferAudioRenderer interface {
 // An object used to decompress audio and play compressed or uncompressed audio.
 //
 // You must add an instance of this class to an before queuing the first sample buffer.
+
+
+// An object used to decompress audio and play compressed or uncompressed audio.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleBufferAudioRenderer
+
 type SampleBufferAudioRenderer struct {
 	objectivec.Object
 }
@@ -95,135 +100,159 @@ func NewSampleBufferAudioRenderer() SampleBufferAudioRenderer {
 }
 
 
+
 // The unique identifier of the output device used to play audio.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleBufferAudioRenderer/audioOutputDeviceUniqueID
+
 func (s_ SampleBufferAudioRenderer) AudioOutputDeviceUniqueID() string {
 	rv := objc.Send[string](s_.ID, objc.Sel("audioOutputDeviceUniqueID"))
 	return rv
 }
 
 
-// SetAudioOutputDeviceUniqueID sets the value of the audioOutputDeviceUniqueID property.
 // The unique identifier of the output device used to play audio.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleBufferAudioRenderer/audioOutputDeviceUniqueID
+
 func (s_ SampleBufferAudioRenderer) SetAudioOutputDeviceUniqueID(value string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAudioOutputDeviceUniqueID:"), objc.String(value))
 }
 
+
 // The source audio channel layouts the audio renderer supports for spatialization.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferaudiorenderer/allowedaudiospatializationformats
+
 func (s_ SampleBufferAudioRenderer) AllowedAudioSpatializationFormats() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("allowedAudioSpatializationFormats"))
 	return rv
 }
 
 
-// SetAllowedAudioSpatializationFormats sets the value of the allowedAudioSpatializationFormats property.
 // The source audio channel layouts the audio renderer supports for spatialization.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferaudiorenderer/allowedaudiospatializationformats
+
 func (s_ SampleBufferAudioRenderer) SetAllowedAudioSpatializationFormats(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAllowedAudioSpatializationFormats:"), value)
 }
 
+
 // The processing algorithm used to manage audio pitch at different rates.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferaudiorenderer/audiotimepitchalgorithm
+
 func (s_ SampleBufferAudioRenderer) AudioTimePitchAlgorithm() AudioTimePitchAlgorithm {
 	rv := objc.Send[AudioTimePitchAlgorithm](s_.ID, objc.Sel("audioTimePitchAlgorithm"))
 	return rv
 }
 
 
-// SetAudioTimePitchAlgorithm sets the value of the audioTimePitchAlgorithm property.
 // The processing algorithm used to manage audio pitch at different rates.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferaudiorenderer/audiotimepitchalgorithm
+
 func (s_ SampleBufferAudioRenderer) SetAudioTimePitchAlgorithm(value IAudioTimePitchAlgorithm) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAudioTimePitchAlgorithm:"), value)
 }
 
+
 // The error that caused the renderer to no longer render sample buffers.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferaudiorenderer/error
+
 func (s_ SampleBufferAudioRenderer) Error() Error {
 	rv := objc.Send[Error](s_.ID, objc.Sel("error"))
 	return rv
 }
 
 
-// SetError sets the value of the error property.
 // The error that caused the renderer to no longer render sample buffers.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferaudiorenderer/error
+
 func (s_ SampleBufferAudioRenderer) SetError(value IError) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setError:"), value)
 }
 
+
 // A Boolean value that indicates whether audio for the renderer is in a muted state.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferaudiorenderer/ismuted
+
 func (s_ SampleBufferAudioRenderer) IsMuted() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isMuted"))
 	return rv
 }
 
 
-// SetIsMuted sets the value of the isMuted property.
 // A Boolean value that indicates whether audio for the renderer is in a muted state.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferaudiorenderer/ismuted
+
 func (s_ SampleBufferAudioRenderer) SetIsMuted(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsMuted:"), value)
 }
 
+
 // The status of the audio renderer.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferaudiorenderer/status
+
 func (s_ SampleBufferAudioRenderer) Status() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("status"))
 	return rv
 }
 
 
-// SetStatus sets the value of the status property.
 // The status of the audio renderer.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferaudiorenderer/status
+
 func (s_ SampleBufferAudioRenderer) SetStatus(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setStatus:"), value)
 }
 
+
 // The current audio volume for the audio renderer.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferaudiorenderer/volume
+
 func (s_ SampleBufferAudioRenderer) Volume() float32 {
 	rv := objc.Send[float32](s_.ID, objc.Sel("volume"))
 	return rv
 }
 
 
-// SetVolume sets the value of the volume property.
 // The current audio volume for the audio renderer.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferaudiorenderer/volume
+
 func (s_ SampleBufferAudioRenderer) SetVolume(value float32) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setVolume:"), value)
 }
 
+
 // The key that indicates the presentation timestamp of the first queued sample that was flushed.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferaudiorendererflushtimekey
+
 func (s_ SampleBufferAudioRenderer) AVSampleBufferAudioRendererFlushTimeKey() string {
 	rv := objc.Send[string](s_.ID, objc.Sel("AVSampleBufferAudioRendererFlushTimeKey"))
 	return rv

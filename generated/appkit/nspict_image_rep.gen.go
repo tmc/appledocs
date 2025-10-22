@@ -37,8 +37,13 @@ type IPICTImageRep interface {
 }
 
 // An object that renders an image from a PICT format data stream of version 1, version 2, and extended version 2.
+
+
+// An object that renders an image from a PICT format data stream of version 1, version 2, and extended version 2.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPICTImageRep
+
 type PICTImageRep struct {
 	ImageRep
 }
@@ -84,28 +89,34 @@ func NewPICTImageRep() PICTImageRep {
 }
 
 
+
 // The image representation’s PICT data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPICTImageRep/pictRepresentation
+
 func (p_ PICTImageRep) PICTRepresentation() foundation.NSData {
 	rv := objc.Send[foundation.NSData](p_.ID, objc.Sel("PICTRepresentation"))
 	return rv
 }
 
+
 // The rectangle that bounds the image representation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspictimagerep/boundingbox
+
 func (p_ PICTImageRep) BoundingBox() coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](p_.ID, objc.Sel("boundingBox"))
 	return rv
 }
 
 
-// SetBoundingBox sets the value of the boundingBox property.
 // The rectangle that bounds the image representation.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspictimagerep/boundingbox
+
 func (p_ PICTImageRep) SetBoundingBox(value coregraphics.CGRect) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setBoundingBox:"), value)
 }

@@ -34,8 +34,11 @@ type IAXMathExpressionFenced interface {
 	OpenString() string
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionFenced
+
 type AXMathExpressionFenced struct {
 	AXMathExpression
 }
@@ -79,8 +82,11 @@ func NewAXMathExpressionFenced() AXMathExpressionFenced {
 }
 
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionFenced/init(expressions:open:close:)
+
 func NewAXMathExpressionFencedWithExpressionsOpenStringCloseString(expressions []AXMathExpression, openString string, closeString string) AXMathExpressionFenced {
 	instance := getAXMathExpressionFencedClass().Alloc()
 	rv := objc.Send[AXMathExpressionFenced](instance.ID, objc.Sel("initWithExpressions:openString:closeString:"), expressions, objc.String(openString), objc.String(closeString))
@@ -89,22 +95,28 @@ func NewAXMathExpressionFencedWithExpressionsOpenStringCloseString(expressions [
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionFenced/closeString
+
 func (a_ AXMathExpressionFenced) CloseString() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("closeString"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionFenced/expressions
+
 func (a_ AXMathExpressionFenced) Expressions() []AXMathExpression {
 	rv := objc.Send[[]AXMathExpression](a_.ID, objc.Sel("expressions"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionFenced/openString
+
 func (a_ AXMathExpressionFenced) OpenString() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("openString"))
 	return rv

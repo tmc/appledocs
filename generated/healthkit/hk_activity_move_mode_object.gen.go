@@ -34,8 +34,13 @@ type IHKActivityMoveModeObject interface {
 }
 
 // An object that contains a movement mode value.
+
+
+// An object that contains a movement mode value.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKActivityMoveModeObject
+
 type HKActivityMoveModeObject struct {
 	objectivec.Object
 }
@@ -79,9 +84,12 @@ func NewHKActivityMoveModeObject() HKActivityMoveModeObject {
 }
 
 
+
 // A property that contains the movement mode value.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKActivityMoveModeObject/activityMoveMode
+
 func (h_ HKActivityMoveModeObject) ActivityMoveMode() HKActivityMoveMode {
 	rv := objc.Send[HKActivityMoveMode](h_.ID, objc.Sel("activityMoveMode"))
 	return rv

@@ -39,8 +39,13 @@ type IDelegatingPlaybackCoordinatorBufferingCommand interface {
 // A command that indicates to start buffering data in preparation for playback.
 //
 // When your app receives this command, update its user interface to indicate that playback is buffering.
+
+
+// A command that indicates to start buffering data in preparation for playback.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVDelegatingPlaybackCoordinatorBufferingCommand
+
 type DelegatingPlaybackCoordinatorBufferingCommand struct {
 	DelegatingPlaybackCoordinatorPlaybackControlCommand
 }
@@ -86,38 +91,44 @@ func NewDelegatingPlaybackCoordinatorBufferingCommand() DelegatingPlaybackCoordi
 }
 
 
+
 // The rate at which the coordinator expects the current item to play.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinatorbufferingcommand/anticipatedplaybackrate
+
 func (d_ DelegatingPlaybackCoordinatorBufferingCommand) AnticipatedPlaybackRate() float32 {
 	rv := objc.Send[float32](d_.ID, objc.Sel("anticipatedPlaybackRate"))
 	return rv
 }
 
 
-// SetAnticipatedPlaybackRate sets the value of the anticipatedPlaybackRate property.
 // The rate at which the coordinator expects the current item to play.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinatorbufferingcommand/anticipatedplaybackrate
+
 func (d_ DelegatingPlaybackCoordinatorBufferingCommand) SetAnticipatedPlaybackRate(value float32) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setAnticipatedPlaybackRate:"), value)
 }
 
+
 // The deadline by which the coordinator expects the delegate to complete execution of a command.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinatorbufferingcommand/completionduedate
+
 func (d_ DelegatingPlaybackCoordinatorBufferingCommand) CompletionDueDate() foundation.Date {
 	rv := objc.Send[foundation.Date](d_.ID, objc.Sel("completionDueDate"))
 	return rv
 }
 
 
-// SetCompletionDueDate sets the value of the completionDueDate property.
 // The deadline by which the coordinator expects the delegate to complete execution of a command.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinatorbufferingcommand/completionduedate
+
 func (d_ DelegatingPlaybackCoordinatorBufferingCommand) SetCompletionDueDate(value foundation.IDate) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setCompletionDueDate:"), value)
 }

@@ -34,8 +34,11 @@ type ICKSyncEngineFetchChangesContext interface {
 	Reason() CKSyncEngineSyncReason
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineFetchChangesContext
+
 type CKSyncEngineFetchChangesContext struct {
 	objectivec.Object
 }
@@ -77,15 +80,19 @@ func NewCKSyncEngineFetchChangesContext() CKSyncEngineFetchChangesContext {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineFetchChangesContext/options
+
 func (c_ CKSyncEngineFetchChangesContext) Options() CKSyncEngineFetchChangesOptions {
 	rv := objc.Send[CKSyncEngineFetchChangesOptions](c_.ID, objc.Sel("options"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineFetchChangesContext/reason
+
 func (c_ CKSyncEngineFetchChangesContext) Reason() CKSyncEngineSyncReason {
 	rv := objc.Send[CKSyncEngineSyncReason](c_.ID, objc.Sel("reason"))
 	return rv

@@ -38,8 +38,13 @@ type ICNBoundsPrediction interface {
 }
 
 // An object representing the bounds of the predicted subject.
+
+
+// An object representing the bounds of the predicted subject.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNBoundsPrediction-c.class
+
 type CNBoundsPrediction struct {
 	objectivec.Object
 }
@@ -83,38 +88,44 @@ func NewCNBoundsPrediction() CNBoundsPrediction {
 }
 
 
+
 // A number between 0.0 and 1.0 representing the probability that a defined object is within the bounds.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNBoundsPrediction-c.class/confidence
+
 func (c_ CNBoundsPrediction) Confidence() float32 {
 	rv := objc.Send[float32](c_.ID, objc.Sel("confidence"))
 	return rv
 }
 
 
-// SetConfidence sets the value of the confidence property.
 // A number between 0.0 and 1.0 representing the probability that a defined object is within the bounds.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNBoundsPrediction-c.class/confidence
+
 func (c_ CNBoundsPrediction) SetConfidence(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setConfidence:"), value)
 }
 
+
 // The bounds of the detected object in normalized coordinates where (0.0, 0.0) is the upper-left corner, and (1.0, 1.0) is the lower-right.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNBoundsPrediction-c.class/normalizedBounds
+
 func (c_ CNBoundsPrediction) NormalizedBounds() coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](c_.ID, objc.Sel("normalizedBounds"))
 	return rv
 }
 
 
-// SetNormalizedBounds sets the value of the normalizedBounds property.
 // The bounds of the detected object in normalized coordinates where (0.0, 0.0) is the upper-left corner, and (1.0, 1.0) is the lower-right.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNBoundsPrediction-c.class/normalizedBounds
+
 func (c_ CNBoundsPrediction) SetNormalizedBounds(value coregraphics.CGRect) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setNormalizedBounds:"), value)
 }

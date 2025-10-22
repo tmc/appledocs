@@ -37,8 +37,13 @@ type IAudioRoutingArbiter interface {
 // An object for configuring macOS apps to participate in AirPods Automatic Switching.
 //
 // AirPods Automatic Switching is a feature of Apple operating systems that intelligently connects wireless headphones to the most appropriate audio device in a multidevice environment. For example, if a user plays a movie on iPad, and then locks the device and starts playing music on iPhone, the system automatically switches the source audio device from iPad to iPhone. iOS apps automatically participate in AirPods Automatic Switching. To enable your macOS app to participate in this behavior, use to indicate when your app starts and finishes playing or recording audio. For example, a Voice over IP (VoIP) app might request arbitration before starting a call, and when the arbitration completes, begin the VoIP session. Likewise, when the call ends, the app would end the VoIP session and leave arbitration.
+
+
+// An object for configuring macOS apps to participate in AirPods Automatic Switching.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioRoutingArbiter
+
 type AudioRoutingArbiter struct {
 	objectivec.Object
 }
@@ -82,30 +87,44 @@ func NewAudioRoutingArbiter() AudioRoutingArbiter {
 }
 
 
+
 // The shared routing arbiter object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioRoutingArbiter/shared
+
 func (ac _AudioRoutingArbiterClass) SharedRoutingArbiter() AudioRoutingArbiter {
 	rv := objc.Send[AVAudioRoutingArbiter](objc.ID(ac.class), objc.Sel("sharedRoutingArbiter"))
 	return rv
 }
+
+
 // Begins routing arbitration to take ownership of a nearby Bluetooth audio route.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioRoutingArbiter/begin(category:completionHandler:)
+
 func (a_ AudioRoutingArbiter) BeginArbitrationWithCategoryCompletionHandler(category IAudioRoutingArbitrationCategory, handler unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("beginArbitrationWithCategory:completionHandler:"), category, handler)
 }
 
+
+
 // Stops an app’s participation in audio routing arbitration.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioRoutingArbiter/leave()
+
 func (a_ AudioRoutingArbiter) LeaveArbitration() {
 	objc.Send[objc.ID](a_.ID, objc.Sel("leaveArbitration"))
 }
 
+
 // The shared routing arbiter object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioRoutingArbiter/shared
+
 func (a_ AudioRoutingArbiter) SharedRoutingArbiter() AVAudioRoutingArbiter {
 	rv := objc.Send[AVAudioRoutingArbiter](a_.ID, objc.Sel("sharedRoutingArbiter"))
 	return rv

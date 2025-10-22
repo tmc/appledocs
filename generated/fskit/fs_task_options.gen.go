@@ -36,8 +36,13 @@ type IFSTaskOptions interface {
 }
 
 // A class that passes command options to a task, optionally providing security-scoped URLs.
+
+
+// A class that passes command options to a task, optionally providing security-scoped URLs.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSTaskOptions
+
 type FSTaskOptions struct {
 	objectivec.Object
 }
@@ -81,17 +86,24 @@ func NewFSTaskOptions() FSTaskOptions {
 }
 
 
+
+
 // Retrieves a URL for a given option.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSTaskOptions/url(forOption:)
+
 func (f_ FSTaskOptions) UrlForOption(option string) foundation.URL {
 	rv := objc.Send[foundation.URL](f_.ID, objc.Sel("urlForOption:"), objc.String(option))
 	return rv
 }
 
+
 // An array of strings that represent command-line options for the task.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSTaskOptions/taskOptions
+
 func (f_ FSTaskOptions) TaskOptions() []string {
 	rv := objc.Send[[]string](f_.ID, objc.Sel("taskOptions"))
 	return rv

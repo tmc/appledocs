@@ -35,8 +35,13 @@ type IPersistentHistoryToken interface {
 // A bookmark for keeping track the most recent history that you’ve processed.
 //
 // You can save a token to disk and fetch history when your app loads based on that token. See in .
+
+
+// A bookmark for keeping track the most recent history that you’ve processed.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryToken
+
 type PersistentHistoryToken struct {
 	objectivec.Object
 }

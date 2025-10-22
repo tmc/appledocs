@@ -43,8 +43,13 @@ type IScene interface {
 // A container for associating GameplayKit objects with a SpriteKit scene.
 //
 // When you create a scene in the Xcode SpriteKit scene editor, Xcode automatically creates a object to manage any GameplayKit objects you add to the scene (entities, components, or pathfinding graphs) and archive them alongside the SpriteKit scene content. To use a SpriteKit scene that contains GameplayKit objects, load the scene file with the method. You can then use the and properties to access the (and associated ) objects and objects in the scene, and the property to access the scene’s SpriteKit content. For more information on Entity-Component architecture and pathfinding graphs, see and in .
+
+
+// A container for associating GameplayKit objects with a SpriteKit scene.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKScene
+
 type Scene struct {
 	objectivec.Object
 }
@@ -92,92 +97,126 @@ func NewScene() Scene {
 
 // Loads the specified SpriteKit scene file, creating a object containing the SpriteKit scene and associated GameplayKit objects.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKScene/init(fileNamed:)
+
 func NewSceneWithFileNamed(filename string) Scene {
 	rv := objc.Send[Scene](objc.ID(getSceneClass().class), objc.Sel("sceneWithFileNamed:"), objc.String(filename))
 	return rv
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKScene/init(fileNamed:rootNode:)
+
 func NewSceneWithFileNamedRootNode(filename string, rootNode objectivec.IObject) Scene {
 	rv := objc.Send[Scene](objc.ID(getSceneClass().class), objc.Sel("sceneWithFileNamed:rootNode:"), objc.String(filename), rootNode)
 	return rv
 }
 
 
+
 // Loads the specified SpriteKit scene file, creating a object containing the SpriteKit scene and associated GameplayKit objects.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKScene/init(fileNamed:)
+
 func (sc _SceneClass) SceneWithFileNamed(filename string) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("sceneWithFileNamed:"), objc.String(filename))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKScene/init(fileNamed:rootNode:)
+
 func (sc _SceneClass) SceneWithFileNamedRootNode(filename string, rootNode objectivec.IObject) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("sceneWithFileNamed:rootNode:"), objc.String(filename), rootNode)
 	return rv
 }
 
+
+
 // Adds a GameplayKit entity to the list of entities managed by the scene.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKScene/addEntity(_:)
+
 func (s_ Scene) AddEntity(entity IGKEntity) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("addEntity:"), entity)
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKScene/addGraph(_:name:)
+
 func (s_ Scene) AddGraphName(graph IGKGraph, name string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("addGraph:name:"), graph, objc.String(name))
 }
 
+
+
 // Removes a GameplayKit entity from the list of entities managed by the scene.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKScene/removeEntity(_:)
+
 func (s_ Scene) RemoveEntity(entity IGKEntity) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("removeEntity:"), entity)
 }
 
+
+
 // Removes a pathfinding graph from the list of graphs managed by the scene.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKScene/removeGraph(_:)
+
 func (s_ Scene) RemoveGraph(name string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("removeGraph:"), objc.String(name))
 }
 
+
 // The list of GameplayKit entities managed by the scene.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKScene/entities
+
 func (s_ Scene) Entities() []Entity {
 	rv := objc.Send[[]Entity](s_.ID, objc.Sel("entities"))
 	return rv
 }
 
+
 // The list of pathfinding graph objects managed by the scene.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKScene/graphs
+
 func (s_ Scene) Graphs() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("graphs"))
 	return rv
 }
 
+
 // The SpriteKit scene managed by this object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKScene/rootNode
+
 func (s_ Scene) RootNode() objc.ID {
 	rv := objc.Send[objc.ID](s_.ID, objc.Sel("rootNode"))
 	return rv
 }
 
 
-// SetRootNode sets the value of the rootNode property.
 // The SpriteKit scene managed by this object.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKScene/rootNode
+
 func (s_ Scene) SetRootNode(value objc.ID) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setRootNode:"), value)
 }

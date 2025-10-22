@@ -41,8 +41,13 @@ type ICBATTRequest interface {
 // A request that uses the Attribute Protocol (ATT).
 //
 // The class represents Attribute Protocol (ATT) read and write requests from remote central devices (represented by objects). Remote centrals use these ATT requests to read and write characteristic values on local peripherals (represented by objects). Local peripherals, on the other hand, use the properties of objects to respond to the read and write requests appropriately, using the method of the class.
+
+
+// A request that uses the Attribute Protocol (ATT).
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBATTRequest
+
 type CBATTRequest struct {
 	objectivec.Object
 }
@@ -86,44 +91,56 @@ func NewCBATTRequest() CBATTRequest {
 }
 
 
+
 // The remote central device that originated the request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBATTRequest/central
+
 func (c_ CBATTRequest) Central() CBCentral {
 	rv := objc.Send[CBCentral](c_.ID, objc.Sel("central"))
 	return rv
 }
 
+
 // The characteristic to read or write the value of.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBATTRequest/characteristic
+
 func (c_ CBATTRequest) Characteristic() CBCharacteristic {
 	rv := objc.Send[CBCharacteristic](c_.ID, objc.Sel("characteristic"))
 	return rv
 }
 
+
 // The zero-based index of the first byte for the read or write request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBATTRequest/offset
+
 func (c_ CBATTRequest) Offset() uint {
 	rv := objc.Send[uint](c_.ID, objc.Sel("offset"))
 	return rv
 }
 
+
 // The data that the central reads from or writes to the peripheral.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBATTRequest/value
+
 func (c_ CBATTRequest) Value() foundation.NSData {
 	rv := objc.Send[foundation.NSData](c_.ID, objc.Sel("value"))
 	return rv
 }
 
 
-// SetValue sets the value of the value property.
 // The data that the central reads from or writes to the peripheral.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBATTRequest/value
+
 func (c_ CBATTRequest) SetValue(value foundation.IData) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setValue:"), value)
 }

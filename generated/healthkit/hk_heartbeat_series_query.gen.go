@@ -32,8 +32,13 @@ type IHKHeartbeatSeriesQuery interface {
 }
 
 // A query that returns the heartbeat data contained in a heartbeat series sample.
+
+
+// A query that returns the heartbeat data contained in a heartbeat series sample.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKHeartbeatSeriesQuery
+
 type HKHeartbeatSeriesQuery struct {
 	HKQuery
 }

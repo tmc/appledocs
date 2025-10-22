@@ -39,8 +39,13 @@ type IAudioSessionCapability interface {
 }
 
 // Describes whether a specific capability is supported and if that capability is currently enabled
+
+
+// Describes whether a specific capability is supported and if that capability is currently enabled
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSessionCapability
+
 type AudioSessionCapability struct {
 	objectivec.Object
 }
@@ -84,54 +89,66 @@ func NewAudioSessionCapability() AudioSessionCapability {
 }
 
 
+
 // A Boolean value that indicates whether the capability is enabled.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSessionCapability/isEnabled
+
 func (a_ AudioSessionCapability) Enabled() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("enabled"))
 	return rv
 }
 
+
 // A Boolean value that indicates whether the capability is supported.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSessionCapability/isSupported
+
 func (a_ AudioSessionCapability) Supported() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("supported"))
 	return rv
 }
 
+
 // A Boolean value that indicates whether the capability is enabled.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessioncapability/isenabled
+
 func (a_ AudioSessionCapability) IsEnabled() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isEnabled"))
 	return rv
 }
 
 
-// SetIsEnabled sets the value of the isEnabled property.
 // A Boolean value that indicates whether the capability is enabled.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessioncapability/isenabled
+
 func (a_ AudioSessionCapability) SetIsEnabled(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsEnabled:"), value)
 }
 
+
 // A Boolean value that indicates whether the capability is supported.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessioncapability/issupported
+
 func (a_ AudioSessionCapability) IsSupported() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isSupported"))
 	return rv
 }
 
 
-// SetIsSupported sets the value of the isSupported property.
 // A Boolean value that indicates whether the capability is supported.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessioncapability/issupported
+
 func (a_ AudioSessionCapability) SetIsSupported(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsSupported:"), value)
 }

@@ -40,8 +40,13 @@ type IMediaSelectionGroup interface {
 }
 
 // An object that represents a collection of mutually exclusive options for the presentation of media within an asset.
+
+
+// An object that represents a collection of mutually exclusive options for the presentation of media within an asset.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMediaSelectionGroup
+
 type MediaSelectionGroup struct {
 	objectivec.Object
 }
@@ -85,64 +90,76 @@ func NewMediaSelectionGroup() MediaSelectionGroup {
 }
 
 
+
 // A Boolean value that indicates whether it’s possible to present none of the options in the group when an associated player item is played.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMediaSelectionGroup/allowsEmptySelection
+
 func (m_ MediaSelectionGroup) AllowsEmptySelection() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("allowsEmptySelection"))
 	return rv
 }
 
+
 // For content that has been authored with the express intent of offering an alternative selection interface for AVMediaSelectionOptions, AVCustomMediaSelectionScheme provides a collection of custom settings for controlling the presentation of the media.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselectiongroup/custommediaselectionscheme
+
 func (m_ MediaSelectionGroup) CustomMediaSelectionScheme() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("customMediaSelectionScheme"))
 	return rv
 }
 
 
-// SetCustomMediaSelectionScheme sets the value of the customMediaSelectionScheme property.
 // For content that has been authored with the express intent of offering an alternative selection interface for AVMediaSelectionOptions, AVCustomMediaSelectionScheme provides a collection of custom settings for controlling the presentation of the media.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselectiongroup/custommediaselectionscheme
+
 func (m_ MediaSelectionGroup) SetCustomMediaSelectionScheme(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCustomMediaSelectionScheme:"), value)
 }
 
+
 // The default option in the group.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselectiongroup/defaultoption
+
 func (m_ MediaSelectionGroup) DefaultOption() AVMediaSelectionOption {
 	rv := objc.Send[AVMediaSelectionOption](m_.ID, objc.Sel("defaultOption"))
 	return rv
 }
 
 
-// SetDefaultOption sets the value of the defaultOption property.
 // The default option in the group.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselectiongroup/defaultoption
+
 func (m_ MediaSelectionGroup) SetDefaultOption(value IAVMediaSelectionOption) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDefaultOption:"), value)
 }
 
+
 // A collection of mutually exclusive media selection options
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselectiongroup/options
+
 func (m_ MediaSelectionGroup) Options() AVMediaSelectionOption {
 	rv := objc.Send[AVMediaSelectionOption](m_.ID, objc.Sel("options"))
 	return rv
 }
 
 
-// SetOptions sets the value of the options property.
 // A collection of mutually exclusive media selection options
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselectiongroup/options
+
 func (m_ MediaSelectionGroup) SetOptions(value IAVMediaSelectionOption) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOptions:"), value)
 }

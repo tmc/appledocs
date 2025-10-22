@@ -37,8 +37,13 @@ type IAudioUnitViewConfiguration interface {
 }
 
 // A configuration object that describes how to present the audio unit’s user interface.
+
+
+// A configuration object that describes how to present the audio unit’s user interface.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/AUAudioUnitViewConfiguration
+
 type AudioUnitViewConfiguration struct {
 	objectivec.Object
 }
@@ -86,7 +91,9 @@ func NewAudioUnitViewConfiguration() AudioUnitViewConfiguration {
 
 // Creates a new configuration object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/AUAudioUnitViewConfiguration/init(width:height:hostHasController:)
+
 func NewAudioUnitViewConfigurationWithWidthHeightHostHasController(width float64, height float64, hostHasController bool) AudioUnitViewConfiguration {
 	instance := getAudioUnitViewConfigurationClass().Alloc()
 	rv := objc.Send[AudioUnitViewConfiguration](instance.ID, objc.Sel("initWithWidth:height:hostHasController:"), width, height, hostHasController)
@@ -95,36 +102,45 @@ func NewAudioUnitViewConfigurationWithWidthHeightHostHasController(width float64
 }
 
 
+
 // The configured height.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/AUAudioUnitViewConfiguration/height
+
 func (a_ AudioUnitViewConfiguration) Height() float64 {
 	rv := objc.Send[float64](a_.ID, objc.Sel("height"))
 	return rv
 }
 
+
 // The configured width.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/AUAudioUnitViewConfiguration/width
+
 func (a_ AudioUnitViewConfiguration) Width() float64 {
 	rv := objc.Send[float64](a_.ID, objc.Sel("width"))
 	return rv
 }
 
+
 // A Boolean value that indicates whether the host shows its own control surface in this view configuration.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreaudiokit/auaudiounitviewconfiguration/hosthascontroller
+
 func (a_ AudioUnitViewConfiguration) HostHasController() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("hostHasController"))
 	return rv
 }
 
 
-// SetHostHasController sets the value of the hostHasController property.
 // A Boolean value that indicates whether the host shows its own control surface in this view configuration.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreaudiokit/auaudiounitviewconfiguration/hosthascontroller
+
 func (a_ AudioUnitViewConfiguration) SetHostHasController(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setHostHasController:"), value)
 }

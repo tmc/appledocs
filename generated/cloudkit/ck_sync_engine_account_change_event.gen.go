@@ -32,8 +32,13 @@ type ICKSyncEngineAccountChangeEvent interface {
 }
 
 // An event that provides information about a change to the device’s iCloud account.
+
+
+// An event that provides information about a change to the device’s iCloud account.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineAccountChangeEvent
+
 type CKSyncEngineAccountChangeEvent struct {
 	CKSyncEngineEvent
 }

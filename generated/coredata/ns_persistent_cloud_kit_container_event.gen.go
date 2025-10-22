@@ -46,8 +46,13 @@ type IPersistentCloudKitContainerEvent interface {
 }
 
 // An object that represents activity in a persistent CloudKit container.
+
+
+// An object that represents activity in a persistent CloudKit container.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainer/Event
+
 type PersistentCloudKitContainerEvent struct {
 	objectivec.Object
 }
@@ -91,108 +96,129 @@ func NewPersistentCloudKitContainerEvent() PersistentCloudKitContainerEvent {
 }
 
 
+
 // An error that indicates why an operation fails.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainer/Event/error
+
 func (p_ PersistentCloudKitContainerEvent) Error() foundation.Error {
 	rv := objc.Send[foundation.Error](p_.ID, objc.Sel("error"))
 	return rv
 }
 
+
 // A Boolean value that indicates whether the operation the event represents is successful.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainer/Event/succeeded
+
 func (p_ PersistentCloudKitContainerEvent) Succeeded() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("succeeded"))
 	return rv
 }
 
+
 // The end date of the operation that the event represents.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/event/enddate
+
 func (p_ PersistentCloudKitContainerEvent) EndDate() foundation.Date {
 	rv := objc.Send[foundation.Date](p_.ID, objc.Sel("endDate"))
 	return rv
 }
 
 
-// SetEndDate sets the value of the endDate property.
 // The end date of the operation that the event represents.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/event/enddate
+
 func (p_ PersistentCloudKitContainerEvent) SetEndDate(value foundation.IDate) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setEndDate:"), value)
 }
 
+
 // A unique identifier for the event in a container.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/event/identifier
+
 func (p_ PersistentCloudKitContainerEvent) Identifier() foundation.UUID {
 	rv := objc.Send[foundation.UUID](p_.ID, objc.Sel("identifier"))
 	return rv
 }
 
 
-// SetIdentifier sets the value of the identifier property.
 // A unique identifier for the event in a container.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/event/identifier
+
 func (p_ PersistentCloudKitContainerEvent) SetIdentifier(value foundation.IUUID) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIdentifier:"), value)
 }
 
+
 // The start date of the operation that the event represents.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/event/startdate
+
 func (p_ PersistentCloudKitContainerEvent) StartDate() foundation.Date {
 	rv := objc.Send[foundation.Date](p_.ID, objc.Sel("startDate"))
 	return rv
 }
 
 
-// SetStartDate sets the value of the startDate property.
 // The start date of the operation that the event represents.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/event/startdate
+
 func (p_ PersistentCloudKitContainerEvent) SetStartDate(value foundation.IDate) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setStartDate:"), value)
 }
 
+
 // The associated store identifier in the container for the event.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/event/storeidentifier
+
 func (p_ PersistentCloudKitContainerEvent) StoreIdentifier() string {
 	rv := objc.Send[string](p_.ID, objc.Sel("storeIdentifier"))
 	return rv
 }
 
 
-// SetStoreIdentifier sets the value of the storeIdentifier property.
 // The associated store identifier in the container for the event.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/event/storeidentifier
+
 func (p_ PersistentCloudKitContainerEvent) SetStoreIdentifier(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setStoreIdentifier:"), objc.String(value))
 }
 
+
 // The type of event, either setup, import, or export.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/event/type
+
 func (p_ PersistentCloudKitContainerEvent) Type() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("type"))
 	return rv
 }
 
 
-// SetType sets the value of the type property.
 // The type of event, either setup, import, or export.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/event/type
+
 func (p_ PersistentCloudKitContainerEvent) SetType(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setType:"), value)
 }

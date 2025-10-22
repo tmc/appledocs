@@ -37,8 +37,13 @@ type ICustomRoutingEvent interface {
 // An object that represents an event that occurs on a route.
 //
 // Depending on the route’s reason, apps establish or tear down a connection to a specified route.
+
+
+// An object that represents an event that occurs on a route.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVCustomRoutingEvent
+
 type CustomRoutingEvent struct {
 	objectivec.Object
 }
@@ -82,17 +87,23 @@ func NewCustomRoutingEvent() CustomRoutingEvent {
 }
 
 
+
 // A reason for an event, such as a user request to activate or deactivate a route.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVCustomRoutingEvent/reason
+
 func (c_ CustomRoutingEvent) Reason() CustomRoutingEventReason {
 	rv := objc.Send[CustomRoutingEventReason](c_.ID, objc.Sel("reason"))
 	return rv
 }
 
+
 // A route for the event.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVCustomRoutingEvent/route
+
 func (c_ CustomRoutingEvent) Route() AVCustomDeviceRoute {
 	rv := objc.Send[AVCustomDeviceRoute](c_.ID, objc.Sel("route"))
 	return rv

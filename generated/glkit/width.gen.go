@@ -32,8 +32,11 @@ type Iwidth interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKTextureInfo/width-c.ivar
+
 type width struct {
 	objectivec.Object
 }

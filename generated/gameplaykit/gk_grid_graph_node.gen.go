@@ -35,8 +35,13 @@ type IGridGraphNode interface {
 // A node in a navigation graph, associated with a position on a discrete two-dimensional grid.
 //
 // Together, a network of nodes form a graph that describes the navigability of a game world. Use graph nodes with a object (and methods of its superclass ) to perform actions that relate to the network of nodes as a whole, such as pathfinding to determine routes through the network. To learn more about graphs and pathfinding, see in .
+
+
+// A node in a navigation graph, associated with a position on a discrete two-dimensional grid.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGridGraphNode
+
 type GridGraphNode struct {
 	GraphNode
 }
@@ -86,7 +91,9 @@ func NewGridGraphNode() GridGraphNode {
 
 // Initializes a graph node with the specified position on a grid.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGridGraphNode/init(gridPosition:)
+
 func NewGridGraphNodeWithGridPosition(gridPosition unsafe.Pointer) GridGraphNode {
 	instance := getGridGraphNodeClass().Alloc()
 	rv := objc.Send[GridGraphNode](instance.ID, objc.Sel("initWithGridPosition:"), gridPosition)
@@ -95,17 +102,23 @@ func NewGridGraphNodeWithGridPosition(gridPosition unsafe.Pointer) GridGraphNode
 }
 
 
+
 // Creates a graph node with the specified position on a grid.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGridGraphNode/nodeWithGridPosition:
+
 func (gc _GridGraphNodeClass) NodeWithGridPosition(gridPosition unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(gc.class), objc.Sel("nodeWithGridPosition:"), gridPosition)
 	return rv
 }
 
+
 // The position of the node on a discrete integer grid.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGridGraphNode/gridPosition
+
 func (g_ GridGraphNode) GridPosition() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("gridPosition"))
 	return rv

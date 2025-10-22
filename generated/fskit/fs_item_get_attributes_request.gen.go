@@ -38,8 +38,13 @@ type IFSItemGetAttributesRequest interface {
 // A request to get attributes from an item.
 //
 // Methods that retrieve attributes use this type and inspect the property to determine which attributes to provide. FSKit calls the method to determine whether the request requires a given attribute.
+
+
+// A request to get attributes from an item.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSItem/GetAttributesRequest
+
 type FSItemGetAttributesRequest struct {
 	objectivec.Object
 }
@@ -83,28 +88,35 @@ func NewFSItemGetAttributesRequest() FSItemGetAttributesRequest {
 }
 
 
+
+
 // A method that indicates whether the request wants given attribute.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSItem/GetAttributesRequest/isAttributeWanted(_:)
+
 func (f_ FSItemGetAttributesRequest) IsAttributeWanted(attribute FSItemAttribute) bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isAttributeWanted:"), attribute)
 	return rv
 }
 
+
 // The attributes requested by the request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSItem/GetAttributesRequest/wantedAttributes
+
 func (f_ FSItemGetAttributesRequest) WantedAttributes() FSItemAttribute {
 	rv := objc.Send[FSItemAttribute](f_.ID, objc.Sel("wantedAttributes"))
 	return rv
 }
 
 
-// SetWantedAttributes sets the value of the wantedAttributes property.
 // The attributes requested by the request.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSItem/GetAttributesRequest/wantedAttributes
+
 func (f_ FSItemGetAttributesRequest) SetWantedAttributes(value FSItemAttribute) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setWantedAttributes:"), value)
 }

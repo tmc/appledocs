@@ -40,8 +40,13 @@ type ICKQuery interface {
 // A query that describes the criteria to apply when searching for records in a database.
 //
 // You create a query as the first step in the search process. The query stores the search parameters, including the type of records to search, the match criteria (predicate) to apply, and the sort parameters to apply to the results. Then you use the query to initialize an instance of , which you execute to generate the results. Always designate a record type and predicate when you create a query object. The record type narrows the scope of the search to one type of record, and the predicate defines the conditions for matching records of that type. Predicates usually compare one or more fields of a record to constant values, but you can create predicates that return all records of a specific type or perform more nuanced searches. Because you can’t change the record type and predicate after initialization, you can use the same query to initialize multiple instances of , each of which targets a different database or record zone.
+
+
+// A query that describes the criteria to apply when searching for records in a database.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKQuery
+
 type CKQuery struct {
 	objectivec.Object
 }
@@ -89,7 +94,9 @@ func NewCKQuery() CKQuery {
 
 // Creates an operation group from a serialized instance.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKQuery/init(coder:)
+
 func NewCKQueryWithCoder(aDecoder foundation.ICoder) CKQuery {
 	instance := getCKQueryClass().Alloc()
 	rv := objc.Send[CKQuery](instance.ID, objc.Sel("initWithCoder:"), aDecoder)
@@ -101,7 +108,9 @@ func NewCKQueryWithCoder(aDecoder foundation.ICoder) CKQuery {
 
 // Creates a query with the specified record type and predicate.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKQuery/initWithRecordType:predicate:
+
 func NewCKQueryWithRecordTypePredicate(recordType unsafe.Pointer, predicate foundation.IPredicate) CKQuery {
 	instance := getCKQueryClass().Alloc()
 	rv := objc.Send[CKQuery](instance.ID, objc.Sel("initWithRecordType:predicate:"), recordType, predicate)
@@ -110,36 +119,45 @@ func NewCKQueryWithRecordTypePredicate(recordType unsafe.Pointer, predicate foun
 }
 
 
+
 // The predicate to use for matching records.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKQuery/predicate
+
 func (c_ CKQuery) Predicate() foundation.Predicate {
 	rv := objc.Send[foundation.Predicate](c_.ID, objc.Sel("predicate"))
 	return rv
 }
 
+
 // The record type to search.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKQuery/recordType-3clp
+
 func (c_ CKQuery) RecordType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("recordType"))
 	return rv
 }
 
+
 // The sort descriptors for organizing the query’s results.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKQuery/sortDescriptors
+
 func (c_ CKQuery) SortDescriptors() []foundation.SortDescriptor {
 	rv := objc.Send[[]foundation.SortDescriptor](c_.ID, objc.Sel("sortDescriptors"))
 	return rv
 }
 
 
-// SetSortDescriptors sets the value of the sortDescriptors property.
 // The sort descriptors for organizing the query’s results.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKQuery/sortDescriptors
+
 func (c_ CKQuery) SetSortDescriptors(value []foundation.ISortDescriptor) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID

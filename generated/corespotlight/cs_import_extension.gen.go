@@ -37,8 +37,13 @@ type ICSImportExtension interface {
 // An object that provides searchable attributes for file types that the app supports.
 //
 // To create a Spotlight File Importer extension, add a target to your app using the Spotlight File Importer template in Xcode. The template project contains a subclass of . To index content on a user’s device, Core Spotlight loads your extension and invokes the method. Core Spotlight passes a and URL of a file to the extension, and you set properties that are relevant for the file. Typically, your extension loads details about the file and uses that information to set properties of the attribute set. For example, if your app contains files that are notes the user creates, it does the following: To specify the file types your app supports, set the value of in your extension’s file to an array of file type identifiers. For more information about file type identifiers, see . The app in the previous example configures the extension’s as follows:
+
+
+// An object that provides searchable attributes for file types that the app supports.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSImportExtension
+
 type CSImportExtension struct {
 	objectivec.Object
 }
@@ -82,9 +87,13 @@ func NewCSImportExtension() CSImportExtension {
 }
 
 
+
+
 // Provides searchable attributes for a file at the specified URL.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSImportExtension/update(_:forFileAt:)
+
 func (c_ CSImportExtension) UpdateAttributesForFileAtURLError(attributes ICSSearchableItemAttributeSet, contentURL foundation.IURL, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("updateAttributes:forFileAtURL:error:"), attributes, contentURL, error_)
 	return rv

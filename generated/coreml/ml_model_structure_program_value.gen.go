@@ -33,8 +33,13 @@ type IModelStructureProgramValue interface {
 }
 
 // A class representing a constant value in the Program.
+
+
+// A class representing a constant value in the Program.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureProgramValue
+
 type ModelStructureProgramValue struct {
 	objectivec.Object
 }

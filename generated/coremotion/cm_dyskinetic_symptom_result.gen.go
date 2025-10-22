@@ -40,8 +40,13 @@ type IDyskineticSymptomResult interface {
 // A result object that contains data about the likely presence of dyskinetic symptoms during a one-minute interval.
 //
 // Dyskinesias are uncontrolled, involuntary movements that occur as a side effect of taking Levadopa to control Parkinson’s disease. Dyskinesias can manifest in a single body part, such as the arm, leg, or head, or they can affect the entire body. Particular dyskinesias resemble actions like fidgeting, writhing, wriggling, head bobbing, or body swaying. These symptoms tend to occur during the drug’s peak dosage. Dyskinesias typically occur in patients with advanced Parkinson’s disease, who may require higher dosages of Levadopa. The following equation is always true: .
+
+
+// A result object that contains data about the likely presence of dyskinetic symptoms during a one-minute interval.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMDyskineticSymptomResult
+
 type DyskineticSymptomResult struct {
 	objectivec.Object
 }
@@ -85,33 +90,45 @@ func NewDyskineticSymptomResult() DyskineticSymptomResult {
 }
 
 
+
 // The result’s end time and date.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMDyskineticSymptomResult/endDate
+
 func (d_ DyskineticSymptomResult) EndDate() foundation.NSDate {
 	rv := objc.Send[foundation.NSDate](d_.ID, objc.Sel("endDate"))
 	return rv
 }
 
+
 // The percentage of time when dyskinetic symptoms were likely.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMDyskineticSymptomResult/percentLikely
+
 func (d_ DyskineticSymptomResult) PercentLikely() float32 {
 	rv := objc.Send[float32](d_.ID, objc.Sel("percentLikely"))
 	return rv
 }
 
+
 // The percentage of time when dyskinetic symptoms were unlikely.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMDyskineticSymptomResult/percentUnlikely
+
 func (d_ DyskineticSymptomResult) PercentUnlikely() float32 {
 	rv := objc.Send[float32](d_.ID, objc.Sel("percentUnlikely"))
 	return rv
 }
 
+
 // The result’s start time and date.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMDyskineticSymptomResult/startDate
+
 func (d_ DyskineticSymptomResult) StartDate() foundation.NSDate {
 	rv := objc.Send[foundation.NSDate](d_.ID, objc.Sel("startDate"))
 	return rv

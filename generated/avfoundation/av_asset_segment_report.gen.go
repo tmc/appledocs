@@ -39,8 +39,13 @@ type IAssetSegmentReport interface {
 // An object that provides information about segment data.
 //
 // You receive a segment report through the delegate method.
+
+
+// An object that provides information about segment data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetSegmentReport
+
 type AssetSegmentReport struct {
 	objectivec.Object
 }
@@ -84,38 +89,44 @@ func NewAssetSegmentReport() AssetSegmentReport {
 }
 
 
+
 // The type of segment data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetsegmentreport/segmenttype
+
 func (a_ AssetSegmentReport) SegmentType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("segmentType"))
 	return rv
 }
 
 
-// SetSegmentType sets the value of the segmentType property.
 // The type of segment data.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetsegmentreport/segmenttype
+
 func (a_ AssetSegmentReport) SetSegmentType(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setSegmentType:"), value)
 }
 
+
 // The reports for the segment’s track data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetsegmentreport/trackreports
+
 func (a_ AssetSegmentReport) TrackReports() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("trackReports"))
 	return rv
 }
 
 
-// SetTrackReports sets the value of the trackReports property.
 // The reports for the segment’s track data.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetsegmentreport/trackreports
+
 func (a_ AssetSegmentReport) SetTrackReports(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setTrackReports:"), value)
 }

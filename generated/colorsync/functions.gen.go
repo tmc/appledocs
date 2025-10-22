@@ -150,561 +150,673 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 
 
 
-// CGDisplayCreateUUIDFromDisplayID is a ColorSync function. [Full Topic]
+// CGDisplayCreateUUIDFromDisplayID is a ColorSync function.
 //
 // Added in macOS 10.13.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/CGDisplayCreateUUIDFromDisplayID(_:)
+
 func CGDisplayCreateUUIDFromDisplayID(displayID unsafe.Pointer) unsafe.Pointer {
 	return _CGDisplayCreateUUIDFromDisplayID(displayID)
 	}
 
 
-// CGDisplayGetDisplayIDFromUUID is a ColorSync function. [Full Topic]
+// CGDisplayGetDisplayIDFromUUID is a ColorSync function.
 //
 // Added in macOS 10.13.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/CGDisplayGetDisplayIDFromUUID(_:)
+
 func CGDisplayGetDisplayIDFromUUID(uuid unsafe.Pointer) unsafe.Pointer {
 	return _CGDisplayGetDisplayIDFromUUID(uuid)
 	}
 
 
-// ColorSyncAPIVersion is a ColorSync function. [Full Topic]
+// ColorSyncAPIVersion is a ColorSync function.
 //
 // Added in macOS 10.13.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncAPIVersion()
+
 func ColorSyncAPIVersion() unsafe.Pointer {
 	return _ColorSyncAPIVersion()
 	}
 
 
-// ColorSyncCMMCopyCMMIdentifier is a ColorSync function. [Full Topic]
+// ColorSyncCMMCopyCMMIdentifier is a ColorSync function.
 //
 // Added in macOS 10.13.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncCMMCopyCMMIdentifier(_:)
+
 func ColorSyncCMMCopyCMMIdentifier(p0 unsafe.Pointer) unsafe.Pointer {
 	return _ColorSyncCMMCopyCMMIdentifier(p0)
 	}
 
 
-// ColorSyncCMMCopyLocalizedName is a ColorSync function. [Full Topic]
+// ColorSyncCMMCopyLocalizedName is a ColorSync function.
 //
 // Added in macOS 10.13.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncCMMCopyLocalizedName(_:)
+
 func ColorSyncCMMCopyLocalizedName(p0 unsafe.Pointer) unsafe.Pointer {
 	return _ColorSyncCMMCopyLocalizedName(p0)
 	}
 
 
-// ColorSyncCMMGetBundle is a ColorSync function. [Full Topic]
+// ColorSyncCMMGetBundle is a ColorSync function.
 //
 // Added in macOS 10.13.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncCMMGetBundle(_:)
+
 func ColorSyncCMMGetBundle(p0 unsafe.Pointer) unsafe.Pointer {
 	return _ColorSyncCMMGetBundle(p0)
 	}
 
 
-// ColorSyncCreateCodeFragment is a ColorSync function. [Full Topic]
+// ColorSyncCreateCodeFragment is a ColorSync function.
 //
 // Added in macOS 10.13.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncCreateCodeFragment(_:_:)
+
 func ColorSyncCreateCodeFragment(profileSequence unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
 	return _ColorSyncCreateCodeFragment(profileSequence, options)
 	}
 
 
-// ColorSyncDeviceCopyDeviceInfo is a ColorSync function. [Full Topic]
+// ColorSyncDeviceCopyDeviceInfo is a ColorSync function.
 //
 // Added in macOS 10.13.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncDeviceCopyDeviceInfo(_:_:)
+
 func ColorSyncDeviceCopyDeviceInfo(deviceClass unsafe.Pointer, devID unsafe.Pointer) unsafe.Pointer {
 	return _ColorSyncDeviceCopyDeviceInfo(deviceClass, devID)
 	}
 
 
-// ColorSyncDeviceSetCustomProfiles is a ColorSync function. [Full Topic]
+// ColorSyncDeviceSetCustomProfiles is a ColorSync function.
 //
 // Added in macOS 10.13.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncDeviceSetCustomProfiles(_:_:_:)
+
 func ColorSyncDeviceSetCustomProfiles(deviceClass unsafe.Pointer, deviceID unsafe.Pointer, profileInfo unsafe.Pointer) bool {
 	return _ColorSyncDeviceSetCustomProfiles(deviceClass, deviceID, profileInfo)
 	}
 
 
-// ColorSyncIterateInstalledCMMs is a ColorSync function. [Full Topic]
+// ColorSyncIterateInstalledCMMs is a ColorSync function.
 //
 // Added in macOS 10.13.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncIterateInstalledCMMs(_:_:)
+
 func ColorSyncIterateInstalledCMMs(callBack unsafe.Pointer, userInfo unsafe.Pointer) {
 	_ColorSyncIterateInstalledCMMs(callBack, userInfo)
 	}
 
 
-// ColorSyncIterateInstalledProfiles is a ColorSync function. [Full Topic]
+// ColorSyncIterateInstalledProfiles is a ColorSync function.
 //
 // Added in macOS 10.13.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncIterateInstalledProfiles(_:_:_:_:)
+
 func ColorSyncIterateInstalledProfiles(callBack unsafe.Pointer, seed unsafe.Pointer, userInfo unsafe.Pointer, error_ unsafe.Pointer) {
 	_ColorSyncIterateInstalledProfiles(callBack, seed, userInfo, error_)
 	}
 
 
-// ColorSyncIterateInstalledProfilesWithOptions is a ColorSync function. [Full Topic]
+// ColorSyncIterateInstalledProfilesWithOptions is a ColorSync function.
 //
 // Added in macOS 10.13.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncIterateInstalledProfilesWithOptions(_:_:_:_:_:)
+
 func ColorSyncIterateInstalledProfilesWithOptions(callBack unsafe.Pointer, seed unsafe.Pointer, userInfo unsafe.Pointer, options unsafe.Pointer, error_ unsafe.Pointer) {
 	_ColorSyncIterateInstalledProfilesWithOptions(callBack, seed, userInfo, options, error_)
 	}
 
 
-// ColorSyncProfileContainsTag is a ColorSync function. [Full Topic]
+// ColorSyncProfileContainsTag is a ColorSync function.
 //
 // Added in macOS 10.13.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncProfileContainsTag(_:_:)
+
 func ColorSyncProfileContainsTag(prof unsafe.Pointer, signature unsafe.Pointer) bool {
 	return _ColorSyncProfileContainsTag(prof, signature)
 	}
 
 
-// ColorSyncProfileCopyData is a ColorSync function. [Full Topic]
+// ColorSyncProfileCopyData is a ColorSync function.
 //
 // Added in macOS 10.13.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncProfileCopyData(_:_:)
+
 func ColorSyncProfileCopyData(prof unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
 	return _ColorSyncProfileCopyData(prof, error_)
 	}
 
 
-// ColorSyncProfileCopyDescriptionString is a ColorSync function. [Full Topic]
+// ColorSyncProfileCopyDescriptionString is a ColorSync function.
 //
 // Added in macOS 10.13.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncProfileCopyDescriptionString(_:)
+
 func ColorSyncProfileCopyDescriptionString(prof unsafe.Pointer) unsafe.Pointer {
 	return _ColorSyncProfileCopyDescriptionString(prof)
 	}
 
 
-// ColorSyncProfileCopyHeader is a ColorSync function. [Full Topic]
+// ColorSyncProfileCopyHeader is a ColorSync function.
 //
 // Added in macOS 10.13.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncProfileCopyHeader(_:)
+
 func ColorSyncProfileCopyHeader(prof unsafe.Pointer) unsafe.Pointer {
 	return _ColorSyncProfileCopyHeader(prof)
 	}
 
 
-// ColorSyncProfileCreateWithDisplayID is a ColorSync function. [Full Topic]
+// ColorSyncProfileCreateWithDisplayID is a ColorSync function.
 //
 // Added in macOS 10.13.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncProfileCreateWithDisplayID(_:)
+
 func ColorSyncProfileCreateWithDisplayID(displayID unsafe.Pointer) unsafe.Pointer {
 	return _ColorSyncProfileCreateWithDisplayID(displayID)
 	}
 
 
-// ColorSyncProfileCreateWithURL is a ColorSync function. [Full Topic]
+// ColorSyncProfileCreateWithURL is a ColorSync function.
 //
 // Added in macOS 10.13.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncProfileCreateWithURL(_:_:)
+
 func ColorSyncProfileCreateWithURL(url unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
 	return _ColorSyncProfileCreateWithURL(url, error_)
 	}
 
 
-// ColorSyncProfileCreateWithURLAndOptions is a ColorSync function. [Full Topic]
+// ColorSyncProfileCreateWithURLAndOptions is a ColorSync function.
 //
 // Added in macOS 10.13.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncProfileCreateWithURLAndOptions(_:_:_:)
+
 func ColorSyncProfileCreateWithURLAndOptions(url unsafe.Pointer, options unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
 	return _ColorSyncProfileCreateWithURLAndOptions(url, options, error_)
 	}
 
 
-// ColorSyncProfileEstimateGammaWithDisplayID is a ColorSync function. [Full Topic]
+// ColorSyncProfileEstimateGammaWithDisplayID is a ColorSync function.
 //
 // Added in macOS 10.13.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncProfileEstimateGammaWithDisplayID(_:_:)
+
 func ColorSyncProfileEstimateGammaWithDisplayID(displayID unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
 	return _ColorSyncProfileEstimateGammaWithDisplayID(displayID, error_)
 	}
 
 
-// ColorSyncProfileGetMD5 is a ColorSync function. [Full Topic]
+// ColorSyncProfileGetMD5 is a ColorSync function.
 //
 // Added in macOS 10.13.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncProfileGetMD5(_:)
+
 func ColorSyncProfileGetMD5(prof unsafe.Pointer) unsafe.Pointer {
 	return _ColorSyncProfileGetMD5(prof)
 	}
 
 
-// ColorSyncProfileGetTagCount is a ColorSync function. [Full Topic]
+// ColorSyncProfileGetTagCount is a ColorSync function.
 //
 // Added in macOS 10.13.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncProfileGetTagCount(_:)
+
 func ColorSyncProfileGetTagCount(p0 unsafe.Pointer) unsafe.Pointer {
 	return _ColorSyncProfileGetTagCount(p0)
 	}
 
 
-// ColorSyncProfileGetTypeID is a ColorSync function. [Full Topic]
+// ColorSyncProfileGetTypeID is a ColorSync function.
 //
 // Added in macOS 10.13.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncProfileGetTypeID()
+
 func ColorSyncProfileGetTypeID() unsafe.Pointer {
 	return _ColorSyncProfileGetTypeID()
 	}
 
 
-// ColorSyncProfileInstall is a ColorSync function. [Full Topic]
+// ColorSyncProfileInstall is a ColorSync function.
 //
 // Added in macOS 10.13.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncProfileInstall(_:_:_:_:)
+
 func ColorSyncProfileInstall(profile unsafe.Pointer, domain unsafe.Pointer, subpath unsafe.Pointer, error_ unsafe.Pointer) bool {
 	return _ColorSyncProfileInstall(profile, domain, subpath, error_)
 	}
 
 
-// ColorSyncProfileIsHLGBased is a ColorSync function. [Full Topic]
+// ColorSyncProfileIsHLGBased is a ColorSync function.
 //
 // Added in macOS 10.13.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncProfileIsHLGBased(_:)
+
 func ColorSyncProfileIsHLGBased(p0 unsafe.Pointer) bool {
 	return _ColorSyncProfileIsHLGBased(p0)
 	}
 
 
-// ColorSyncProfileIsMatrixBased is a ColorSync function. [Full Topic]
+// ColorSyncProfileIsMatrixBased is a ColorSync function.
 //
 // Added in macOS 10.13.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncProfileIsMatrixBased(_:)
+
 func ColorSyncProfileIsMatrixBased(p0 unsafe.Pointer) bool {
 	return _ColorSyncProfileIsMatrixBased(p0)
 	}
 
 
-// ColorSyncProfileIsPQBased is a ColorSync function. [Full Topic]
+// ColorSyncProfileIsPQBased is a ColorSync function.
 //
 // Added in macOS 10.13.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncProfileIsPQBased(_:)
+
 func ColorSyncProfileIsPQBased(p0 unsafe.Pointer) bool {
 	return _ColorSyncProfileIsPQBased(p0)
 	}
 
 
-// ColorSyncProfileIsWideGamut is a ColorSync function. [Full Topic]
+// ColorSyncProfileIsWideGamut is a ColorSync function.
 //
 // Added in macOS 10.13.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncProfileIsWideGamut(_:)
+
 func ColorSyncProfileIsWideGamut(p0 unsafe.Pointer) bool {
 	return _ColorSyncProfileIsWideGamut(p0)
 	}
 
 
-// ColorSyncProfileVerify is a ColorSync function. [Full Topic]
+// ColorSyncProfileVerify is a ColorSync function.
 //
 // Added in macOS 10.13.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncProfileVerify(_:_:_:)
+
 func ColorSyncProfileVerify(prof unsafe.Pointer, errors unsafe.Pointer, warnings unsafe.Pointer) bool {
 	return _ColorSyncProfileVerify(prof, errors, warnings)
 	}
 
 
-// ColorSyncTransformGetProfileSequence is a ColorSync function. [Full Topic]
+// ColorSyncTransformGetProfileSequence is a ColorSync function.
 //
 // Added in macOS 10.13.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncTransformGetProfileSequence(_:)
+
 func ColorSyncTransformGetProfileSequence(transform unsafe.Pointer) unsafe.Pointer {
 	return _ColorSyncTransformGetProfileSequence(transform)
 	}
 
 
-// ColorSyncCMMCreate is a ColorSync function. [Full Topic]
+// ColorSyncCMMCreate is a ColorSync function.
 //
 // Added in macOS 10.13.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncCMMCreate(_:)
+
 func ColorSyncCMMCreate(cmmBundle unsafe.Pointer) unsafe.Pointer {
 	return _ColorSyncCMMCreate(cmmBundle)
 	}
 
 
-// ColorSyncCMMGetTypeID is a ColorSync function. [Full Topic]
+// ColorSyncCMMGetTypeID is a ColorSync function.
 //
 // Added in macOS 10.13.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncCMMGetTypeID()
+
 func ColorSyncCMMGetTypeID() unsafe.Pointer {
 	return _ColorSyncCMMGetTypeID()
 	}
 
 
-// ColorSyncIterateDeviceProfiles is a ColorSync function. [Full Topic]
+// ColorSyncIterateDeviceProfiles is a ColorSync function.
 //
 // Added in macOS 10.13.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncIterateDeviceProfiles(_:_:)
+
 func ColorSyncIterateDeviceProfiles(callBack unsafe.Pointer, userInfo unsafe.Pointer) {
 	_ColorSyncIterateDeviceProfiles(callBack, userInfo)
 	}
 
 
-// ColorSyncProfileCopyTag is a ColorSync function. [Full Topic]
+// ColorSyncProfileCopyTag is a ColorSync function.
 //
 // Added in macOS 10.13.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncProfileCopyTag(_:_:)
+
 func ColorSyncProfileCopyTag(prof unsafe.Pointer, signature unsafe.Pointer) unsafe.Pointer {
 	return _ColorSyncProfileCopyTag(prof, signature)
 	}
 
 
-// ColorSyncProfileCopyTagSignatures is a ColorSync function. [Full Topic]
+// ColorSyncProfileCopyTagSignatures is a ColorSync function.
 //
 // Added in macOS 10.13.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncProfileCopyTagSignatures(_:)
+
 func ColorSyncProfileCopyTagSignatures(prof unsafe.Pointer) unsafe.Pointer {
 	return _ColorSyncProfileCopyTagSignatures(prof)
 	}
 
 
-// ColorSyncProfileCreate is a ColorSync function. [Full Topic]
+// ColorSyncProfileCreate is a ColorSync function.
 //
 // Added in macOS 10.13.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncProfileCreate(_:_:)
+
 func ColorSyncProfileCreate(data unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
 	return _ColorSyncProfileCreate(data, error_)
 	}
 
 
-// ColorSyncProfileCreateDeviceProfile is a ColorSync function. [Full Topic]
+// ColorSyncProfileCreateDeviceProfile is a ColorSync function.
 //
 // Added in macOS 10.13.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncProfileCreateDeviceProfile(_:_:_:)
+
 func ColorSyncProfileCreateDeviceProfile(deviceClass unsafe.Pointer, deviceID unsafe.Pointer, profileID unsafe.Pointer) unsafe.Pointer {
 	return _ColorSyncProfileCreateDeviceProfile(deviceClass, deviceID, profileID)
 	}
 
 
-// ColorSyncProfileCreateDisplayTransferTablesFromVCGT is a ColorSync function. [Full Topic]
+// ColorSyncProfileCreateDisplayTransferTablesFromVCGT is a ColorSync function.
 //
 // Added in macOS 10.13.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncProfileCreateDisplayTransferTablesFromVCGT(_:_:)
+
 func ColorSyncProfileCreateDisplayTransferTablesFromVCGT(profile unsafe.Pointer, nSamplesPerChannel unsafe.Pointer) unsafe.Pointer {
 	return _ColorSyncProfileCreateDisplayTransferTablesFromVCGT(profile, nSamplesPerChannel)
 	}
 
 
-// ColorSyncProfileCreateLink is a ColorSync function. [Full Topic]
+// ColorSyncProfileCreateLink is a ColorSync function.
 //
 // Added in macOS 10.13.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncProfileCreateLink(_:_:)
+
 func ColorSyncProfileCreateLink(profileInfo unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
 	return _ColorSyncProfileCreateLink(profileInfo, options)
 	}
 
 
-// ColorSyncProfileCreateMutable is a ColorSync function. [Full Topic]
+// ColorSyncProfileCreateMutable is a ColorSync function.
 //
 // Added in macOS 10.13.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncProfileCreateMutable()
+
 func ColorSyncProfileCreateMutable() unsafe.Pointer {
 	return _ColorSyncProfileCreateMutable()
 	}
 
 
-// ColorSyncProfileCreateMutableCopy is a ColorSync function. [Full Topic]
+// ColorSyncProfileCreateMutableCopy is a ColorSync function.
 //
 // Added in macOS 10.13.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncProfileCreateMutableCopy(_:)
+
 func ColorSyncProfileCreateMutableCopy(prof unsafe.Pointer) unsafe.Pointer {
 	return _ColorSyncProfileCreateMutableCopy(prof)
 	}
 
 
-// ColorSyncProfileCreateWithName is a ColorSync function. [Full Topic]
+// ColorSyncProfileCreateWithName is a ColorSync function.
 //
 // Added in macOS 10.13.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncProfileCreateWithName(_:)
+
 func ColorSyncProfileCreateWithName(name unsafe.Pointer) unsafe.Pointer {
 	return _ColorSyncProfileCreateWithName(name)
 	}
 
 
-// ColorSyncProfileEstimateGamma is a ColorSync function. [Full Topic]
+// ColorSyncProfileEstimateGamma is a ColorSync function.
 //
 // Added in macOS 10.13.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncProfileEstimateGamma(_:_:)
+
 func ColorSyncProfileEstimateGamma(prof unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
 	return _ColorSyncProfileEstimateGamma(prof, error_)
 	}
 
 
-// ColorSyncProfileGetDisplayTransferFormulaFromVCGT is a ColorSync function. [Full Topic]
+// ColorSyncProfileGetDisplayTransferFormulaFromVCGT is a ColorSync function.
 //
 // Added in macOS 10.13.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncProfileGetDisplayTransferFormulaFromVCGT(_:_:_:_:_:_:_:_:_:_:)
+
 func ColorSyncProfileGetDisplayTransferFormulaFromVCGT(profile unsafe.Pointer, redMin unsafe.Pointer, redMax unsafe.Pointer, redGamma unsafe.Pointer, greenMin unsafe.Pointer, greenMax unsafe.Pointer, greenGamma unsafe.Pointer, blueMin unsafe.Pointer, blueMax unsafe.Pointer, blueGamma unsafe.Pointer) bool {
 	return _ColorSyncProfileGetDisplayTransferFormulaFromVCGT(profile, redMin, redMax, redGamma, greenMin, greenMax, greenGamma, blueMin, blueMax, blueGamma)
 	}
 
 
-// ColorSyncProfileGetURL is a ColorSync function. [Full Topic]
+// ColorSyncProfileGetURL is a ColorSync function.
 //
 // Added in macOS 10.13.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncProfileGetURL(_:_:)
+
 func ColorSyncProfileGetURL(prof unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
 	return _ColorSyncProfileGetURL(prof, error_)
 	}
 
 
-// ColorSyncProfileRemoveTag is a ColorSync function. [Full Topic]
+// ColorSyncProfileRemoveTag is a ColorSync function.
 //
 // Added in macOS 10.13.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncProfileRemoveTag(_:_:)
+
 func ColorSyncProfileRemoveTag(prof unsafe.Pointer, signature unsafe.Pointer) {
 	_ColorSyncProfileRemoveTag(prof, signature)
 	}
 
 
-// ColorSyncProfileSetHeader is a ColorSync function. [Full Topic]
+// ColorSyncProfileSetHeader is a ColorSync function.
 //
 // Added in macOS 10.13.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncProfileSetHeader(_:_:)
+
 func ColorSyncProfileSetHeader(prof unsafe.Pointer, header unsafe.Pointer) {
 	_ColorSyncProfileSetHeader(prof, header)
 	}
 
 
-// ColorSyncProfileSetTag is a ColorSync function. [Full Topic]
+// ColorSyncProfileSetTag is a ColorSync function.
 //
 // Added in macOS 10.13.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncProfileSetTag(_:_:_:)
+
 func ColorSyncProfileSetTag(prof unsafe.Pointer, signature unsafe.Pointer, data unsafe.Pointer) {
 	_ColorSyncProfileSetTag(prof, signature, data)
 	}
 
 
-// ColorSyncProfileUninstall is a ColorSync function. [Full Topic]
+// ColorSyncProfileUninstall is a ColorSync function.
 //
 // Added in macOS 10.13.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncProfileUninstall(_:_:)
+
 func ColorSyncProfileUninstall(profile unsafe.Pointer, error_ unsafe.Pointer) bool {
 	return _ColorSyncProfileUninstall(profile, error_)
 	}
 
 
-// ColorSyncRegisterDevice is a ColorSync function. [Full Topic]
+// ColorSyncRegisterDevice is a ColorSync function.
 //
 // Added in macOS 10.13.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncRegisterDevice(_:_:_:)
+
 func ColorSyncRegisterDevice(deviceClass unsafe.Pointer, deviceID unsafe.Pointer, deviceInfo unsafe.Pointer) bool {
 	return _ColorSyncRegisterDevice(deviceClass, deviceID, deviceInfo)
 	}
 
 
-// ColorSyncTransformConvert is a ColorSync function. [Full Topic]
+// ColorSyncTransformConvert is a ColorSync function.
 //
 // Added in macOS 10.13.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncTransformConvert(_:_:_:_:_:_:_:_:_:_:_:_:)
+
 func ColorSyncTransformConvert(transform unsafe.Pointer, width unsafe.Pointer, height unsafe.Pointer, dst unsafe.Pointer, dstDepth unsafe.Pointer, dstLayout unsafe.Pointer, dstBytesPerRow unsafe.Pointer, src unsafe.Pointer, srcDepth unsafe.Pointer, srcLayout unsafe.Pointer, srcBytesPerRow unsafe.Pointer, options unsafe.Pointer) bool {
 	return _ColorSyncTransformConvert(transform, width, height, dst, dstDepth, dstLayout, dstBytesPerRow, src, srcDepth, srcLayout, srcBytesPerRow, options)
 	}
 
 
-// ColorSyncTransformCopyProperty is a ColorSync function. [Full Topic]
+// ColorSyncTransformCopyProperty is a ColorSync function.
 //
 // Added in macOS 10.13.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncTransformCopyProperty(_:_:_:)
+
 func ColorSyncTransformCopyProperty(transform unsafe.Pointer, key unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
 	return _ColorSyncTransformCopyProperty(transform, key, options)
 	}
 
 
-// ColorSyncTransformCreate is a ColorSync function. [Full Topic]
+// ColorSyncTransformCreate is a ColorSync function.
 //
 // Added in macOS 10.13.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncTransformCreate(_:_:)
+
 func ColorSyncTransformCreate(profileSequence unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
 	return _ColorSyncTransformCreate(profileSequence, options)
 	}
 
 
-// ColorSyncTransformGetTypeID is a ColorSync function. [Full Topic]
+// ColorSyncTransformGetTypeID is a ColorSync function.
 //
 // Added in macOS 10.13.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncTransformGetTypeID()
+
 func ColorSyncTransformGetTypeID() unsafe.Pointer {
 	return _ColorSyncTransformGetTypeID()
 	}
 
 
-// ColorSyncTransformSetProperty is a ColorSync function. [Full Topic]
+// ColorSyncTransformSetProperty is a ColorSync function.
 //
 // Added in macOS 10.13.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncTransformSetProperty(_:_:_:)
+
 func ColorSyncTransformSetProperty(transform unsafe.Pointer, key unsafe.Pointer, property unsafe.Pointer) {
 	_ColorSyncTransformSetProperty(transform, key, property)
 	}
 
 
-// ColorSyncUnregisterDevice is a ColorSync function. [Full Topic]
+// ColorSyncUnregisterDevice is a ColorSync function.
 //
 // Added in macOS 10.13.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncUnregisterDevice(_:_:)
+
 func ColorSyncUnregisterDevice(deviceClass unsafe.Pointer, deviceID unsafe.Pointer) bool {
 	return _ColorSyncUnregisterDevice(deviceClass, deviceID)
 	}

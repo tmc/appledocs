@@ -32,8 +32,13 @@ type ICKSyncEngineStateUpdateEvent interface {
 }
 
 // An object that provides information about an update to the sync engine’s state.
+
+
+// An object that provides information about an update to the sync engine’s state.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineStateUpdateEvent
+
 type CKSyncEngineStateUpdateEvent struct {
 	CKSyncEngineEvent
 }

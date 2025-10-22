@@ -33,6 +33,10 @@ type IExtensionContext interface {
 }
 
 // A parent class referenced by other CallKit classes.
+
+
+// A parent class referenced by other CallKit classes. [Full Topic]
+
 type ExtensionContext struct {
 	objectivec.Object
 }

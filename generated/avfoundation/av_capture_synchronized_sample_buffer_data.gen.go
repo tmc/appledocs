@@ -36,8 +36,13 @@ type ICaptureSynchronizedSampleBufferData interface {
 }
 
 // A container for video or audio samples collected using synchronized capture.
+
+
+// A container for video or audio samples collected using synchronized capture.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSynchronizedSampleBufferData
+
 type CaptureSynchronizedSampleBufferData struct {
 	CaptureSynchronizedData
 }
@@ -83,36 +88,45 @@ func NewCaptureSynchronizedSampleBufferData() CaptureSynchronizedSampleBufferDat
 }
 
 
+
 // A value indicating why the capture output failed to deliver sample buffers, if applicable.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSynchronizedSampleBufferData/droppedReason
+
 func (c_ CaptureSynchronizedSampleBufferData) DroppedReason() CaptureOutputDataDroppedReason {
 	rv := objc.Send[CaptureOutputDataDroppedReason](c_.ID, objc.Sel("droppedReason"))
 	return rv
 }
 
+
 // A Boolean value indicating whether sample buffers were discarded between capture and processing.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSynchronizedSampleBufferData/sampleBufferWasDropped
+
 func (c_ CaptureSynchronizedSampleBufferData) SampleBufferWasDropped() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("sampleBufferWasDropped"))
 	return rv
 }
 
+
 // The depth data captured at this synchronization point.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesynchronizedsamplebufferdata/samplebuffer
+
 func (c_ CaptureSynchronizedSampleBufferData) SampleBuffer() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("sampleBuffer"))
 	return rv
 }
 
 
-// SetSampleBuffer sets the value of the sampleBuffer property.
 // The depth data captured at this synchronization point.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesynchronizedsamplebufferdata/samplebuffer
+
 func (c_ CaptureSynchronizedSampleBufferData) SetSampleBuffer(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSampleBuffer:"), value)
 }

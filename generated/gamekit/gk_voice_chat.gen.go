@@ -50,8 +50,13 @@ type IVoiceChat interface {
 // A voice channel that allows players to speak with each other in a multiplayer game.
 //
 // GameKit provides the underlying mechanism to implement voice chat between players in a multiplayer game. It’s your responsibility to provide player controls and display feedback during the chat. First, configure voice chat by adding the key to the Information Property List and creating an audio session. Then, create a object using the method passing a string that identifies the voice channel. Use the method to connect players to the channel. Use the property to activate the microphone or switch the microphone between channels. Provide a handler using the property to update the interface when a player connects, speaks, or disconnects from a chat. You can also add controls that mute and set the volume using the method and property. Note that if there’s insufficient bandwidth over Wi-Fi to maintain a voice chat, GameKit may disconnect players from the channel or disband a channel.
+
+
+// A voice channel that allows players to speak with each other in a multiplayer game.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKVoiceChat
+
 type VoiceChat struct {
 	objectivec.Object
 }
@@ -95,135 +100,160 @@ func NewVoiceChat() VoiceChat {
 }
 
 
+
+
 // Ends communication with other players in a channel.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKVoiceChat/stop()
+
 func (v_ VoiceChat) Stop() {
 	objc.Send[objc.ID](v_.ID, objc.Sel("stop"))
 }
 
+
 // A Boolean value that indicates whether the channel is sampling the microphone.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkvoicechat/isactive
+
 func (v_ VoiceChat) IsActive() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("isActive"))
 	return rv
 }
 
 
-// SetIsActive sets the value of the isActive property.
 // A Boolean value that indicates whether the channel is sampling the microphone.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkvoicechat/isactive
+
 func (v_ VoiceChat) SetIsActive(value bool) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setIsActive:"), value)
 }
 
+
 // The name of the voice chat channel.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkvoicechat/name
+
 func (v_ VoiceChat) Name() string {
 	rv := objc.Send[string](v_.ID, objc.Sel("name"))
 	return rv
 }
 
 
-// SetName sets the value of the name property.
 // The name of the voice chat channel.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkvoicechat/name
+
 func (v_ VoiceChat) SetName(value string) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
+
 // An array of strings containing the player identifiers for the players connected to the channel.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkvoicechat/playerids
+
 func (v_ VoiceChat) PlayerIDs() string {
 	rv := objc.Send[string](v_.ID, objc.Sel("playerIDs"))
 	return rv
 }
 
 
-// SetPlayerIDs sets the value of the playerIDs property.
 // An array of strings containing the player identifiers for the players connected to the channel.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkvoicechat/playerids
+
 func (v_ VoiceChat) SetPlayerIDs(value string) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setPlayerIDs:"), objc.String(value))
 }
 
+
 // Handles when a player in the chat changes state.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkvoicechat/playerstateupdatehandler
+
 func (v_ VoiceChat) PlayerStateUpdateHandler() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("playerStateUpdateHandler"))
 	return rv
 }
 
 
-// SetPlayerStateUpdateHandler sets the value of the playerStateUpdateHandler property.
 // Handles when a player in the chat changes state.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkvoicechat/playerstateupdatehandler
+
 func (v_ VoiceChat) SetPlayerStateUpdateHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setPlayerStateUpdateHandler:"), value)
 }
 
+
 // A method that handles when a player’s voice chat changes state.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkvoicechat/playervoicechatstatedidchangehandler
+
 func (v_ VoiceChat) PlayerVoiceChatStateDidChangeHandler() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("playerVoiceChatStateDidChangeHandler"))
 	return rv
 }
 
 
-// SetPlayerVoiceChatStateDidChangeHandler sets the value of the playerVoiceChatStateDidChangeHandler property.
 // A method that handles when a player’s voice chat changes state.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkvoicechat/playervoicechatstatedidchangehandler
+
 func (v_ VoiceChat) SetPlayerVoiceChatStateDidChangeHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setPlayerVoiceChatStateDidChangeHandler:"), value)
 }
 
+
 // The players connected to the channel.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkvoicechat/players
+
 func (v_ VoiceChat) Players() GKPlayer {
 	rv := objc.Send[GKPlayer](v_.ID, objc.Sel("players"))
 	return rv
 }
 
 
-// SetPlayers sets the value of the players property.
 // The players connected to the channel.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkvoicechat/players
+
 func (v_ VoiceChat) SetPlayers(value IGKPlayer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setPlayers:"), value)
 }
 
+
 // The volume level for the channel.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkvoicechat/volume
+
 func (v_ VoiceChat) Volume() float32 {
 	rv := objc.Send[float32](v_.ID, objc.Sel("volume"))
 	return rv
 }
 
 
-// SetVolume sets the value of the volume property.
 // The volume level for the channel.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkvoicechat/volume
+
 func (v_ VoiceChat) SetVolume(value float32) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setVolume:"), value)
 }

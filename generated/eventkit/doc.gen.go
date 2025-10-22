@@ -2,12 +2,16 @@
 
 // Package eventkit provides Go bindings for the EventKit framework.
 //
-// Create, view, and edit calendar and reminder events. [Full Topic]
+// Create, view, and edit calendar and reminder events.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to EventKit without requiring cgo.
+
+// Create, view, and edit calendar and reminder events.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit
+
 package eventkit
 
 import (

@@ -37,8 +37,13 @@ type IFileProviderDomainVersion interface {
 // An opaque object that identifies a specific version of a domain.
 //
 // The file provider extension is responsible for assigning and updating the domain version. To specify the domain version, adopt the protocol. The system then calls your extension’s method to read the current version. The system reads the domain version after you call: The completion handler The completion handler The completion handler The completion handler The or method when enumerating the materialized set. The system always reads the domain version on the same dispatch queue as the completion handler. Your extension defines when the domain version changes. When you update the version, call the and passing the constant as the property. This notifies the system of the update. The system ignores any lower versions. When the system discovers a change on disk, it associates that change with the current domain version. It then includes the version in the object passed to the file provider extension. Only file provider extensions based on the use instances of this class. Each version object is immutable. You can use them as keys in a dictionary.
+
+
+// An opaque object that identifies a specific version of a domain.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomainVersion
+
 type FileProviderDomainVersion struct {
 	objectivec.Object
 }
@@ -82,20 +87,23 @@ func NewFileProviderDomainVersion() FileProviderDomainVersion {
 }
 
 
+
 // An opaque object that uniquely identifies the domain’s version.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderdomainstate/domainversion
+
 func (f_ FileProviderDomainVersion) DomainVersion() NSFileProviderDomainVersion {
 	rv := objc.Send[NSFileProviderDomainVersion](f_.ID, objc.Sel("domainVersion"))
 	return rv
 }
 
 
-// SetDomainVersion sets the value of the domainVersion property.
 // An opaque object that uniquely identifies the domain’s version.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderdomainstate/domainversion
+
 func (f_ FileProviderDomainVersion) SetDomainVersion(value IFileProviderDomainVersion) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setDomainVersion:"), value)
 }

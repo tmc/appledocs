@@ -34,8 +34,11 @@ type IWebAuthenticationSessionCallback interface {
 	MatchesURL(url foundation.IURL) bool
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASWebAuthenticationSession/Callback
+
 type WebAuthenticationSessionCallback struct {
 	objectivec.Object
 }
@@ -77,22 +80,29 @@ func NewWebAuthenticationSessionCallback() WebAuthenticationSessionCallback {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASWebAuthenticationSession/Callback/customScheme(_:)
+
 func (wc _WebAuthenticationSessionCallbackClass) CallbackWithCustomScheme(customScheme string) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(wc.class), objc.Sel("callbackWithCustomScheme:"), objc.String(customScheme))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASWebAuthenticationSession/Callback/https(host:path:)
+
 func (wc _WebAuthenticationSessionCallbackClass) CallbackWithHTTPSHostPath(host string, path string) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(wc.class), objc.Sel("callbackWithHTTPSHost:path:"), objc.String(host), objc.String(path))
 	return rv
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASWebAuthenticationSession/Callback/matchesURL(_:)
+
 func (w_ WebAuthenticationSessionCallback) MatchesURL(url foundation.IURL) bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("matchesURL:"), url)
 	return rv

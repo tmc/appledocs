@@ -35,8 +35,11 @@ type IBAAppExtensionInfo interface {
 	RestrictedEssentialDownloadSizeRemaining() foundation.Number
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAppExtensionInfo
+
 type BAAppExtensionInfo struct {
 	objectivec.Object
 }
@@ -78,15 +81,19 @@ func NewBAAppExtensionInfo() BAAppExtensionInfo {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAppExtensionInfo/restrictedDownloadSizeRemaining-9itic
+
 func (b_ BAAppExtensionInfo) RestrictedDownloadSizeRemaining() foundation.Number {
 	rv := objc.Send[foundation.Number](b_.ID, objc.Sel("restrictedDownloadSizeRemaining"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAppExtensionInfo/restrictedEssentialDownloadSizeRemaining-76av8
+
 func (b_ BAAppExtensionInfo) RestrictedEssentialDownloadSizeRemaining() foundation.Number {
 	rv := objc.Send[foundation.Number](b_.ID, objc.Sel("restrictedEssentialDownloadSizeRemaining"))
 	return rv

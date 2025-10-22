@@ -40,11 +40,13 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 
 
 
-// NSExceptionHandlerResume is a ExceptionHandling function. [Full Topic]
+// NSExceptionHandlerResume is a ExceptionHandling function.
 //
 // Added in macOS 10.0.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExceptionHandling/NSExceptionHandlerResume()
+
 func NSExceptionHandlerResume() {
 	_NSExceptionHandlerResume()
 	}

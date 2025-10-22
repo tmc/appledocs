@@ -36,8 +36,13 @@ type IHKCumulativeQuantitySample interface {
 // A sample that represents a cumulative quantity.
 //
 // A quantity sample contains one or more objects. Each quantity represents a single piece of data with a single numeric value and the value’s associated units. Use these samples to store data that accumulates over time, such as step count, active energy burned, or walking distance. The class is a concrete subclass of the class. Cumulative quantity samples are immutable; you set the sample’s properties when you create it, and they cannot change.
+
+
+// A sample that represents a cumulative quantity.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKCumulativeQuantitySample
+
 type HKCumulativeQuantitySample struct {
 	HKQuantitySample
 }
@@ -83,20 +88,23 @@ func NewHKCumulativeQuantitySample() HKCumulativeQuantitySample {
 }
 
 
+
 // The sum of all the quantities contained by the sample.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcumulativequantitysample/sumquantity
+
 func (h_ HKCumulativeQuantitySample) SumQuantity() HKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("sumQuantity"))
 	return rv
 }
 
 
-// SetSumQuantity sets the value of the sumQuantity property.
 // The sum of all the quantities contained by the sample.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcumulativequantitysample/sumquantity
+
 func (h_ HKCumulativeQuantitySample) SetSumQuantity(value IHKQuantity) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setSumQuantity:"), value)
 }

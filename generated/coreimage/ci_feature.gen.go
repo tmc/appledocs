@@ -42,8 +42,13 @@ type IFeature interface {
 // The abstract superclass for objects representing notable features detected in an image.
 //
 // A object represents a portion of an image that a detector believes matches its criteria. Subclasses of CIFeature holds additional information specific to the detector that discovered the feature.
+
+
+// The abstract superclass for objects representing notable features detected in an image.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFeature
+
 type Feature struct {
 	objectivec.Object
 }
@@ -87,49 +92,67 @@ func NewFeature() Feature {
 }
 
 
+
 // The rectangle that holds discovered feature.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFeature/bounds
+
 func (f_ Feature) Bounds() coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](f_.ID, objc.Sel("bounds"))
 	return rv
 }
 
+
 // The type of feature that was discovered.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFeature/type
+
 func (f_ Feature) Type() string {
 	rv := objc.Send[string](f_.ID, objc.Sel("type"))
 	return rv
 }
 
+
 // A Core Image feature type for person’s face.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreimage/cifeaturetypeface
+
 func (f_ Feature) CIFeatureTypeFace() string {
 	rv := objc.Send[string](f_.ID, objc.Sel("CIFeatureTypeFace"))
 	return rv
 }
 
+
 // A Core Image feature type for QR code object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreimage/cifeaturetypeqrcode
+
 func (f_ Feature) CIFeatureTypeQRCode() string {
 	rv := objc.Send[string](f_.ID, objc.Sel("CIFeatureTypeQRCode"))
 	return rv
 }
 
+
 // A Core Image feature type for rectangular object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreimage/cifeaturetyperectangle
+
 func (f_ Feature) CIFeatureTypeRectangle() string {
 	rv := objc.Send[string](f_.ID, objc.Sel("CIFeatureTypeRectangle"))
 	return rv
 }
 
+
 // A Core Image feature type for text.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreimage/cifeaturetypetext
+
 func (f_ Feature) CIFeatureTypeText() string {
 	rv := objc.Send[string](f_.ID, objc.Sel("CIFeatureTypeText"))
 	return rv

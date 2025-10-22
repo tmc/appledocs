@@ -35,8 +35,13 @@ type ICellularPlanStatus interface {
 // An object used for retrieving and checking the validity of a token.
 //
 // checks if the Integrated Circuit Card Identifier (ICCID) on a device is associated with a given token. Use the method to configure the instance of a view for Unified Payments Interface (UPI) device validation. This process generates your token, which you can use to help determine if there are any changes to the underlying ICCID. After you generate a token, use to retrieve the token associated with your app. Your app has 30 seconds to call before the system invalidates the token. If called in time, the framework sends and stores a token associated with your app. The token is mapped to the ICCID associated with the original instance. Use to check the status of the token. If the ICCID is present and turned-on, returns . For more information on configuring an instance for UPI device validation, see .
+
+
+// An object used for retrieving and checking the validity of a token.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCellularPlanStatus
+
 type CellularPlanStatus struct {
 	objectivec.Object
 }

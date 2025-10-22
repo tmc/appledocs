@@ -38,8 +38,13 @@ type ICBService interface {
 // A collection of data and associated behaviors that accomplish a function or feature of a device.
 //
 // objects represent services of a remote peripheral. Services are either primary or secondary and may contain multiple characteristics or included services (references to other services).
+
+
+// A collection of data and associated behaviors that accomplish a function or feature of a device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBService
+
 type CBService struct {
 	CBAttribute
 }
@@ -85,33 +90,45 @@ func NewCBService() CBService {
 }
 
 
+
 // A list of characteristics discovered in this service.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBService/characteristics
+
 func (c_ CBService) Characteristics() []CBCharacteristic {
 	rv := objc.Send[[]CBCharacteristic](c_.ID, objc.Sel("characteristics"))
 	return rv
 }
 
+
 // A list of included services discovered in this service.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBService/includedServices
+
 func (c_ CBService) IncludedServices() []CBService {
 	rv := objc.Send[[]CBService](c_.ID, objc.Sel("includedServices"))
 	return rv
 }
 
+
 // A Boolean value that indicates whether the type of service is primary or secondary.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBService/isPrimary
+
 func (c_ CBService) IsPrimary() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isPrimary"))
 	return rv
 }
 
+
 // The peripheral to which this service belongs.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBService/peripheral
+
 func (c_ CBService) Peripheral() CBPeripheral {
 	rv := objc.Send[CBPeripheral](c_.ID, objc.Sel("peripheral"))
 	return rv

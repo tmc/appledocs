@@ -48,8 +48,13 @@ type IAudioFile interface {
 // An object that represents an audio file that the system can open for reading or writing.
 //
 // Regardless of the file format, you read and write using objects. These objects contain samples as that the framework refers to as the file’s processing format. You convert to and from using the file’s actual format. Reads and writes are always sequential. Random access is possible by setting the property.
+
+
+// An object that represents an audio file that the system can open for reading or writing.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioFile
+
 type AudioFile struct {
 	objectivec.Object
 }
@@ -97,7 +102,9 @@ func NewAudioFile() AudioFile {
 
 // Opens a file for reading using the specified processing format.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioFile/init(forReading:commonFormat:interleaved:)
+
 func NewAudioFileForReadingCommonFormatInterleavedError(fileURL foundation.IURL, format AudioCommonFormat, interleaved bool, outError unsafe.Pointer) AudioFile {
 	instance := getAudioFileClass().Alloc()
 	rv := objc.Send[AudioFile](instance.ID, objc.Sel("initForReading:commonFormat:interleaved:error:"), fileURL, format, interleaved, outError)
@@ -109,7 +116,9 @@ func NewAudioFileForReadingCommonFormatInterleavedError(fileURL foundation.IURL,
 
 // Opens a file for reading using the standard, deinterleaved floating point format.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioFile/init(forReading:)
+
 func NewAudioFileForReadingError(fileURL foundation.IURL, outError unsafe.Pointer) AudioFile {
 	instance := getAudioFileClass().Alloc()
 	rv := objc.Send[AudioFile](instance.ID, objc.Sel("initForReading:error:"), fileURL, outError)
@@ -121,7 +130,9 @@ func NewAudioFileForReadingError(fileURL foundation.IURL, outError unsafe.Pointe
 
 // Opens a file for writing using a specified processing format and settings.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioFile/init(forWriting:settings:commonFormat:interleaved:)
+
 func NewAudioFileForWritingSettingsCommonFormatInterleavedError(fileURL foundation.IURL, settings unsafe.Pointer, format AudioCommonFormat, interleaved bool, outError unsafe.Pointer) AudioFile {
 	instance := getAudioFileClass().Alloc()
 	rv := objc.Send[AudioFile](instance.ID, objc.Sel("initForWriting:settings:commonFormat:interleaved:error:"), fileURL, settings, format, interleaved, outError)
@@ -133,7 +144,9 @@ func NewAudioFileForWritingSettingsCommonFormatInterleavedError(fileURL foundati
 
 // Opens a file for writing using the specified settings.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioFile/init(forWriting:settings:)
+
 func NewAudioFileForWritingSettingsError(fileURL foundation.IURL, settings unsafe.Pointer, outError unsafe.Pointer) AudioFile {
 	instance := getAudioFileClass().Alloc()
 	rv := objc.Send[AudioFile](instance.ID, objc.Sel("initForWriting:settings:error:"), fileURL, settings, outError)
@@ -142,98 +155,135 @@ func NewAudioFileForWritingSettingsError(fileURL foundation.IURL, settings unsaf
 }
 
 
+
+
 // Closes the audio file.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioFile/close()
+
 func (a_ AudioFile) Close() {
 	objc.Send[objc.ID](a_.ID, objc.Sel("close"))
 }
 
+
+
 // Reads an entire audio buffer.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioFile/read(into:)
+
 func (a_ AudioFile) ReadIntoBufferError(buffer IAVAudioPCMBuffer, outError unsafe.Pointer) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("readIntoBuffer:error:"), buffer, outError)
 	return rv
 }
 
+
+
 // Reads a portion of an audio buffer using the number of frames you specify.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioFile/read(into:frameCount:)
+
 func (a_ AudioFile) ReadIntoBufferFrameCountError(buffer IAVAudioPCMBuffer, frames IAudioFrameCount, outError unsafe.Pointer) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("readIntoBuffer:frameCount:error:"), buffer, frames, outError)
 	return rv
 }
 
+
+
 // Writes an audio buffer sequentially.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioFile/write(from:)
+
 func (a_ AudioFile) WriteFromBufferError(buffer IAVAudioPCMBuffer, outError unsafe.Pointer) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("writeFromBuffer:error:"), buffer, outError)
 	return rv
 }
 
+
 // The on-disk format of the file.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioFile/fileFormat
+
 func (a_ AudioFile) FileFormat() AVAudioFormat {
 	rv := objc.Send[AVAudioFormat](a_.ID, objc.Sel("fileFormat"))
 	return rv
 }
 
+
 // The position in the file where the next read or write operation occurs.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioFile/framePosition
+
 func (a_ AudioFile) FramePosition() AudioFramePosition {
 	rv := objc.Send[AudioFramePosition](a_.ID, objc.Sel("framePosition"))
 	return rv
 }
 
 
-// SetFramePosition sets the value of the framePosition property.
 // The position in the file where the next read or write operation occurs.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioFile/framePosition
+
 func (a_ AudioFile) SetFramePosition(value AudioFramePosition) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setFramePosition:"), value)
 }
 
+
 // A Boolean value that indicates whether the file is open.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioFile/isOpen
+
 func (a_ AudioFile) IsOpen() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isOpen"))
 	return rv
 }
 
+
 // The number of sample frames in the file.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioFile/length
+
 func (a_ AudioFile) Length() AudioFramePosition {
 	rv := objc.Send[AudioFramePosition](a_.ID, objc.Sel("length"))
 	return rv
 }
 
+
 // The processing format of the file.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioFile/processingFormat
+
 func (a_ AudioFile) ProcessingFormat() AVAudioFormat {
 	rv := objc.Send[AVAudioFormat](a_.ID, objc.Sel("processingFormat"))
 	return rv
 }
 
+
 // The location of the audio file.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioFile/url
+
 func (a_ AudioFile) Url() foundation.URL {
 	rv := objc.Send[foundation.URL](a_.ID, objc.Sel("url"))
 	return rv
 }
 
+
 // A string that indicates the audio file type.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiofiletypekey
+
 func (a_ AudioFile) AVAudioFileTypeKey() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("AVAudioFileTypeKey"))
 	return rv

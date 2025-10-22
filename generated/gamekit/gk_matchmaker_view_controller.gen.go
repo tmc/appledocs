@@ -49,8 +49,13 @@ type IMatchmakerViewController interface {
 // An interface that allows a player to invite other players to a real-time game and automatch to fill any empty slots.
 //
 // Before you create a object, create a object and configure it according to the parameters of your game. Then pass the match request to the initializer to create the view controller. Configure the view controller and set its delegate before you present it to the local player. The view controller allows the local player to choose other players and, optionally, fill empty slots using automatch. If you add the Group Activities capability to your Xcode project, the player can invite others using SharePlay. See . Implement the and protocols to handle when players send and accept invitations. Implement the delegate method to present a object, which you create using the initializer, to the player who accepts an invitation. Then, implement the delegate method to dismiss the view controller and start the game when all players accept their invitations. In iOS, you present and dismiss the view controller from another view controller in your game, using the methods from the class. If you use SwiftUI, you can get the root view controller from the object. For visionOS games, the view controller appears anchored to the window, scene, or view relative to where you present the view controller. For immersive games, set the parent window to a separate window group than the immersive space window group. For macOS games, use the class to present and dismiss the view controller. For the complete matchmaking flow with code fragments, see .
+
+
+// An interface that allows a player to invite other players to a real-time game and automatch to fill any empty slots.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatchmakerViewController
+
 type MatchmakerViewController struct {
 	appkit.ViewController
 }
@@ -100,7 +105,9 @@ func NewMatchmakerViewController() MatchmakerViewController {
 
 // Creates a matchmaker view controller for the local player to start inviting other players.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatchmakerViewController/init(matchRequest:)
+
 func NewMatchmakerViewControllerWithMatchRequest(request IGKMatchRequest) MatchmakerViewController {
 	instance := getMatchmakerViewControllerClass().Alloc()
 	rv := objc.Send[MatchmakerViewController](instance.ID, objc.Sel("initWithMatchRequest:"), request)
@@ -109,128 +116,149 @@ func NewMatchmakerViewControllerWithMatchRequest(request IGKMatchRequest) Matchm
 }
 
 
+
 // The default invitation message sent to a player.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatchmakerViewController/defaultInvitationMessage
+
 func (m_ MatchmakerViewController) DefaultInvitationMessage() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("defaultInvitationMessage"))
 	return rv
 }
 
 
-// SetDefaultInvitationMessage sets the value of the defaultInvitationMessage property.
 // The default invitation message sent to a player.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatchmakerViewController/defaultInvitationMessage
+
 func (m_ MatchmakerViewController) SetDefaultInvitationMessage(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDefaultInvitationMessage:"), objc.String(value))
 }
 
+
 // A Boolean value that indicates whether the match is hosted or peer-to-peer.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatchmakerViewController/isHosted
+
 func (m_ MatchmakerViewController) Hosted() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("hosted"))
 	return rv
 }
 
 
-// SetHosted sets the value of the hosted property.
 // A Boolean value that indicates whether the match is hosted or peer-to-peer.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatchmakerViewController/isHosted
+
 func (m_ MatchmakerViewController) SetHosted(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setHosted:"), value)
 }
 
+
 // The object that handles matchmaker view controller changes.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatchmakerViewController/matchmakerDelegate
+
 func (m_ MatchmakerViewController) MatchmakerDelegate() objc.ID {
 	rv := objc.Send[objc.ID](m_.ID, objc.Sel("matchmakerDelegate"))
 	return rv
 }
 
 
-// SetMatchmakerDelegate sets the value of the matchmakerDelegate property.
 // The object that handles matchmaker view controller changes.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatchmakerViewController/matchmakerDelegate
+
 func (m_ MatchmakerViewController) SetMatchmakerDelegate(value objc.ID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMatchmakerDelegate:"), value)
 }
 
+
 // A Boolean value that indicates whether your game can start after a minimum number of players join a match.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchmakerviewcontroller/canstartwithminimumplayers
+
 func (m_ MatchmakerViewController) CanStartWithMinimumPlayers() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("canStartWithMinimumPlayers"))
 	return rv
 }
 
 
-// SetCanStartWithMinimumPlayers sets the value of the canStartWithMinimumPlayers property.
 // A Boolean value that indicates whether your game can start after a minimum number of players join a match.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchmakerviewcontroller/canstartwithminimumplayers
+
 func (m_ MatchmakerViewController) SetCanStartWithMinimumPlayers(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCanStartWithMinimumPlayers:"), value)
 }
 
+
 // A Boolean value that indicates whether the match is hosted or peer-to-peer.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchmakerviewcontroller/ishosted
+
 func (m_ MatchmakerViewController) IsHosted() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isHosted"))
 	return rv
 }
 
 
-// SetIsHosted sets the value of the isHosted property.
 // A Boolean value that indicates whether the match is hosted or peer-to-peer.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchmakerviewcontroller/ishosted
+
 func (m_ MatchmakerViewController) SetIsHosted(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsHosted:"), value)
 }
 
+
 // The configuration for the desired match.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchmakerviewcontroller/matchrequest
+
 func (m_ MatchmakerViewController) MatchRequest() GKMatchRequest {
 	rv := objc.Send[GKMatchRequest](m_.ID, objc.Sel("matchRequest"))
 	return rv
 }
 
 
-// SetMatchRequest sets the value of the matchRequest property.
 // The configuration for the desired match.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchmakerviewcontroller/matchrequest
+
 func (m_ MatchmakerViewController) SetMatchRequest(value IGKMatchRequest) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMatchRequest:"), value)
 }
 
+
 // The mode that a multiplayer game uses to find players.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchmakerviewcontroller/matchmakingmode
+
 func (m_ MatchmakerViewController) MatchmakingMode() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("matchmakingMode"))
 	return rv
 }
 
 
-// SetMatchmakingMode sets the value of the matchmakingMode property.
 // The mode that a multiplayer game uses to find players.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchmakerviewcontroller/matchmakingmode
+
 func (m_ MatchmakerViewController) SetMatchmakingMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMatchmakingMode:"), value)
 }

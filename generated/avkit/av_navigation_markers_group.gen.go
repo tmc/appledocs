@@ -39,8 +39,13 @@ type INavigationMarkersGroup interface {
 // A set of markers for navigating playback of an audiovisual presentation.
 //
 // The most common form of a navigation markers group is a chapter list; however, you can also provide other sets of markers to allow a user to jump to significant events in the presentation. For example, a “Goals Scored” markers group might summarize key moments in a recorded sporting event. When you associate navigation markers with an object you present with an , the user interface provides options for navigating each group.
+
+
+// A set of markers for navigating playback of an audiovisual presentation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVNavigationMarkersGroup
+
 type NavigationMarkersGroup struct {
 	objectivec.Object
 }
@@ -88,7 +93,9 @@ func NewNavigationMarkersGroup() NavigationMarkersGroup {
 
 // Initializes a navigation markers group with the specified title and array of date range navigation markers.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVNavigationMarkersGroup/init(title:dateRangeNavigationMarkers:)
+
 func NewNavigationMarkersGroupWithTitleDateRangeNavigationMarkers(title string, navigationMarkers []avfoundation.IDateRangeMetadataGroup) NavigationMarkersGroup {
 	instance := getNavigationMarkersGroupClass().Alloc()
 	rv := objc.Send[NavigationMarkersGroup](instance.ID, objc.Sel("initWithTitle:dateRangeNavigationMarkers:"), objc.String(title), navigationMarkers)
@@ -100,7 +107,9 @@ func NewNavigationMarkersGroupWithTitleDateRangeNavigationMarkers(title string, 
 
 // Initializes a navigation markers group with the specified title and array of timed navigation markers.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVNavigationMarkersGroup/init(title:timedNavigationMarkers:)
+
 func NewNavigationMarkersGroupWithTitleTimedNavigationMarkers(title string, navigationMarkers []avfoundation.ITimedMetadataGroup) NavigationMarkersGroup {
 	instance := getNavigationMarkersGroupClass().Alloc()
 	rv := objc.Send[NavigationMarkersGroup](instance.ID, objc.Sel("initWithTitle:timedNavigationMarkers:"), objc.String(title), navigationMarkers)
@@ -109,25 +118,34 @@ func NewNavigationMarkersGroupWithTitleTimedNavigationMarkers(title string, navi
 }
 
 
+
 // The array of date range navigation markers for which the group provides navigation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVNavigationMarkersGroup/dateRangeNavigationMarkers
+
 func (n_ NavigationMarkersGroup) DateRangeNavigationMarkers() []avfoundation.DateRangeMetadataGroup {
 	rv := objc.Send[[]avfoundation.DateRangeMetadataGroup](n_.ID, objc.Sel("dateRangeNavigationMarkers"))
 	return rv
 }
 
+
 // The array of timed navigation markers for which the group provides navigation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVNavigationMarkersGroup/timedNavigationMarkers
+
 func (n_ NavigationMarkersGroup) TimedNavigationMarkers() []avfoundation.TimedMetadataGroup {
 	rv := objc.Send[[]avfoundation.TimedMetadataGroup](n_.ID, objc.Sel("timedNavigationMarkers"))
 	return rv
 }
 
+
 // The title of the marker group.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVNavigationMarkersGroup/title
+
 func (n_ NavigationMarkersGroup) Title() string {
 	rv := objc.Send[string](n_.ID, objc.Sel("title"))
 	return rv

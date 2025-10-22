@@ -36,8 +36,13 @@ type ICXCallAction interface {
 // A programmatic interface for objects that represent a telephony action associated with a call object.
 //
 // The CallKit framework provides the following concrete subclasses. To perform one or more actions, you add them to a new object and pass the transaction to an instance of using the method. After each action is performed by the telephony provider, the provider’s delegate calls either the method, indicating that the action was successfully performed, or the method, to indicate that an error occurred; both of these methods set the property of the action to .
+
+
+// A programmatic interface for objects that represent a telephony action associated with a call object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallAction
+
 type CXCallAction struct {
 	CXAction
 }
@@ -87,7 +92,9 @@ func NewCXCallAction() CXCallAction {
 
 // Initializes a new action for a call identified by a given UUID.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallAction/init(call:)
+
 func NewCXCallActionWithCallUUID(callUUID foundation.IUUID) CXCallAction {
 	instance := getCXCallActionClass().Alloc()
 	rv := objc.Send[CXCallAction](instance.ID, objc.Sel("initWithCallUUID:"), callUUID)
@@ -99,7 +106,9 @@ func NewCXCallActionWithCallUUID(callUUID foundation.IUUID) CXCallAction {
 
 // Creates a new action for a call with data in an unarchiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallAction/init(coder:)
+
 func NewCXCallActionWithCoder(aDecoder foundation.ICoder) CXCallAction {
 	instance := getCXCallActionClass().Alloc()
 	rv := objc.Send[CXCallAction](instance.ID, objc.Sel("initWithCoder:"), aDecoder)
@@ -108,9 +117,12 @@ func NewCXCallActionWithCoder(aDecoder foundation.ICoder) CXCallAction {
 }
 
 
+
 // The unique identifier for the call associated with the action.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallAction/callUUID
+
 func (c_ CXCallAction) CallUUID() foundation.UUID {
 	rv := objc.Send[foundation.UUID](c_.ID, objc.Sel("callUUID"))
 	return rv

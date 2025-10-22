@@ -45,8 +45,13 @@ type IAssetResourceLoader interface {
 // An object that mediates resource requests from a URL asset.
 //
 // You do not create resource loader objects yourself. Instead, you retrieve a resource loader from the property of an object and use it to assign your custom delegate object. The delegate you associate with this object must adopt the protocol. For more information, see .
+
+
+// An object that mediates resource requests from a URL asset.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetResourceLoader
+
 type AssetResourceLoader struct {
 	objectivec.Object
 }
@@ -90,92 +95,107 @@ func NewAssetResourceLoader() AssetResourceLoader {
 }
 
 
+
 // A Boolean value that indicates whether to enable attaching Common Media Client Data as HTTP request headers.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetResourceLoader/sendsCommonMediaClientDataAsHTTPHeaders
+
 func (a_ AssetResourceLoader) SendsCommonMediaClientDataAsHTTPHeaders() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("sendsCommonMediaClientDataAsHTTPHeaders"))
 	return rv
 }
 
 
-// SetSendsCommonMediaClientDataAsHTTPHeaders sets the value of the sendsCommonMediaClientDataAsHTTPHeaders property.
 // A Boolean value that indicates whether to enable attaching Common Media Client Data as HTTP request headers.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetResourceLoader/sendsCommonMediaClientDataAsHTTPHeaders
+
 func (a_ AssetResourceLoader) SetSendsCommonMediaClientDataAsHTTPHeaders(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setSendsCommonMediaClientDataAsHTTPHeaders:"), value)
 }
 
+
 // The delegate object to use when handling resource requests.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetresourceloader/delegate
+
 func (a_ AssetResourceLoader) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("delegate"))
 	return rv
 }
 
 
-// SetDelegate sets the value of the delegate property.
 // The delegate object to use when handling resource requests.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetresourceloader/delegate
+
 func (a_ AssetResourceLoader) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDelegate:"), value)
 }
 
+
 // The dispatch queue to use when handling resource requests.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetresourceloader/delegatequeue
+
 func (a_ AssetResourceLoader) DelegateQueue() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("delegateQueue"))
 	return rv
 }
 
 
-// SetDelegateQueue sets the value of the delegateQueue property.
 // The dispatch queue to use when handling resource requests.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetresourceloader/delegatequeue
+
 func (a_ AssetResourceLoader) SetDelegateQueue(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDelegateQueue:"), value)
 }
 
+
 // A Boolean value that indicates whether content keys will be loaded as quickly as possible.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetresourceloader/preloadseligiblecontentkeys
+
 func (a_ AssetResourceLoader) PreloadsEligibleContentKeys() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("preloadsEligibleContentKeys"))
 	return rv
 }
 
 
-// SetPreloadsEligibleContentKeys sets the value of the preloadsEligibleContentKeys property.
 // A Boolean value that indicates whether content keys will be loaded as quickly as possible.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetresourceloader/preloadseligiblecontentkeys
+
 func (a_ AssetResourceLoader) SetPreloadsEligibleContentKeys(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPreloadsEligibleContentKeys:"), value)
 }
 
+
 // The resource loader for the asset.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avurlasset/resourceloader
+
 func (a_ AssetResourceLoader) ResourceLoader() AVAssetResourceLoader {
 	rv := objc.Send[AVAssetResourceLoader](a_.ID, objc.Sel("resourceLoader"))
 	return rv
 }
 
 
-// SetResourceLoader sets the value of the resourceLoader property.
 // The resource loader for the asset.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avurlasset/resourceloader
+
 func (a_ AssetResourceLoader) SetResourceLoader(value IAVAssetResourceLoader) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setResourceLoader:"), value)
 }

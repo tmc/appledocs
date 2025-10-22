@@ -32,8 +32,11 @@ type IAuthorizationPublicKeyCredentialPRFRegistrationInput interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialPRFRegistrationInput-c.class
+
 type AuthorizationPublicKeyCredentialPRFRegistrationInput struct {
 	objectivec.Object
 }
@@ -75,8 +78,11 @@ func NewAuthorizationPublicKeyCredentialPRFRegistrationInput() AuthorizationPubl
 }
 
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialPRFRegistrationInput-c.class/initWithInputValues:
+
 func NewAuthorizationPublicKeyCredentialPRFRegistrationInputWithInputValues(inputValues IASAuthorizationPublicKeyCredentialPRFAssertionInputValues) AuthorizationPublicKeyCredentialPRFRegistrationInput {
 	instance := getAuthorizationPublicKeyCredentialPRFRegistrationInputClass().Alloc()
 	rv := objc.Send[AuthorizationPublicKeyCredentialPRFRegistrationInput](instance.ID, objc.Sel("initWithInputValues:"), inputValues)
@@ -85,8 +91,10 @@ func NewAuthorizationPublicKeyCredentialPRFRegistrationInputWithInputValues(inpu
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialPRFRegistrationInput-c.class/checkForSupport
+
 func (ac _AuthorizationPublicKeyCredentialPRFRegistrationInputClass) CheckForSupport() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("checkForSupport"))
 	return rv

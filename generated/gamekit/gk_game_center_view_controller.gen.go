@@ -39,8 +39,13 @@ type IGameCenterViewController interface {
 // The dashboard that allows players to access their Game Center data in your game.
 //
 // This view controller presents the dashboard from which players can browse and manage their Game Center data. You can present the dashboard in a specific state from which players can navigate to other areas, including their profile. Your game should pause other activities before presenting the dashboard. To present the dashboard, initialize a new object and set its delegate. Optionally, initialize a view controller in a specific state, to show a leaderboard with scores from a set of players or during a time period, or to show a specific achievement. Then present the view controller to the player, and GameKit calls your delegate when the player dismisses it. For visionOS games, the dashboard appears anchored to the window, scene, or view relative to where you present the view controller. For immersive games, set the parent window to a separate window group than the immersive space window group. For the visionOS location of the dashboard when using the access point, see .
+
+
+// The dashboard that allows players to access their Game Center data in your game.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKGameCenterViewController
+
 type GameCenterViewController struct {
 	appkit.ViewController
 }
@@ -90,7 +95,9 @@ func NewGameCenterViewController() GameCenterViewController {
 
 // Creates a view controller that presents a leaderboard set.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKGameCenterViewController/init(leaderboardSetID:)
+
 func NewGameCenterViewControllerWithLeaderboardSetID(leaderboardSetID string) GameCenterViewController {
 	instance := getGameCenterViewControllerClass().Alloc()
 	rv := objc.Send[GameCenterViewController](instance.ID, objc.Sel("initWithLeaderboardSetID:"), objc.String(leaderboardSetID))
@@ -102,7 +109,9 @@ func NewGameCenterViewControllerWithLeaderboardSetID(leaderboardSetID string) Ga
 
 // Creates a view controller that presents a player’s Game Center profile.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKGameCenterViewController/init(player:)
+
 func NewGameCenterViewControllerWithPlayer(player IGKPlayer) GameCenterViewController {
 	instance := getGameCenterViewControllerClass().Alloc()
 	rv := objc.Send[GameCenterViewController](instance.ID, objc.Sel("initWithPlayer:"), player)
@@ -111,38 +120,44 @@ func NewGameCenterViewControllerWithPlayer(player IGKPlayer) GameCenterViewContr
 }
 
 
+
 // The view controller’s delegate.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgamecenterviewcontroller/gamecenterdelegate
+
 func (g_ GameCenterViewController) GameCenterDelegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("gameCenterDelegate"))
 	return rv
 }
 
 
-// SetGameCenterDelegate sets the value of the gameCenterDelegate property.
 // The view controller’s delegate.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgamecenterviewcontroller/gamecenterdelegate
+
 func (g_ GameCenterViewController) SetGameCenterDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setGameCenterDelegate:"), value)
 }
 
+
 // The delegate for the event handler.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedeventhandler/delegate
+
 func (g_ GameCenterViewController) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("delegate"))
 	return rv
 }
 
 
-// SetDelegate sets the value of the delegate property.
 // The delegate for the event handler.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedeventhandler/delegate
+
 func (g_ GameCenterViewController) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDelegate:"), value)
 }

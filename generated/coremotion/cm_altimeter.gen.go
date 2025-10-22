@@ -40,8 +40,13 @@ type IAltimeter interface {
 // An object that initiates the delivery of altitude-related changes.
 //
 // Altitude events report changes in both the relative and absolute altitude. For example, a hiking app could use this object to track the user’s elevation change over the course of a hike, or to report their current absolute altitude during the hike. Because altitude events may not be available on all devices, always call the method before starting relative altitude updates, and call before starting absolute altitude updates. After checking the availability of altitude data, call the method to start receiving relative altitude data, or call the method for absolute altitude data. Core Motion generates events at regular intervals (regardless of whether the data has changed) and delivers them to the block you specified. When you no longer need the event data, call the or methods respectively.
+
+
+// An object that initiates the delivery of altitude-related changes.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAltimeter
+
 type Altimeter struct {
 	objectivec.Object
 }
@@ -85,54 +90,79 @@ func NewAltimeter() Altimeter {
 }
 
 
+
 // Returns a value indicating whether the app is authorized to retrieve altimeter data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAltimeter/authorizationStatus()
+
 func (ac _AltimeterClass) AuthorizationStatus() AuthorizationStatus {
 	rv := objc.Send[AuthorizationStatus](objc.ID(ac.class), objc.Sel("authorizationStatus"))
 	return rv
 }
 
+
 // Returns a Boolean value indicating whether the current device reports changes in the absolute altitude.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAltimeter/isAbsoluteAltitudeAvailable()
+
 func (ac _AltimeterClass) IsAbsoluteAltitudeAvailable() bool {
 	rv := objc.Send[bool](objc.ID(ac.class), objc.Sel("isAbsoluteAltitudeAvailable"))
 	return rv
 }
 
+
 // Returns a Boolean value indicating whether the current device supports generating data for relative altitude changes.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAltimeter/isRelativeAltitudeAvailable()
+
 func (ac _AltimeterClass) IsRelativeAltitudeAvailable() bool {
 	rv := objc.Send[bool](objc.ID(ac.class), objc.Sel("isRelativeAltitudeAvailable"))
 	return rv
 }
 
+
+
 // Starts the delivery of absolute altitude data to the specified handler.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAltimeter/startAbsoluteAltitudeUpdates(to:withHandler:)
+
 func (a_ Altimeter) StartAbsoluteAltitudeUpdatesToQueueWithHandler(queue foundation.IOperationQueue, handler unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("startAbsoluteAltitudeUpdatesToQueue:withHandler:"), queue, handler)
 }
 
+
+
 // Starts the delivery of relative altitude data to the specified handler.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAltimeter/startRelativeAltitudeUpdates(to:withHandler:)
+
 func (a_ Altimeter) StartRelativeAltitudeUpdatesToQueueWithHandler(queue foundation.IOperationQueue, handler unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("startRelativeAltitudeUpdatesToQueue:withHandler:"), queue, handler)
 }
 
+
+
 // Stops the delivery of absolute altitude data for this altimeter object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAltimeter/stopAbsoluteAltitudeUpdates()
+
 func (a_ Altimeter) StopAbsoluteAltitudeUpdates() {
 	objc.Send[objc.ID](a_.ID, objc.Sel("stopAbsoluteAltitudeUpdates"))
 }
 
+
+
 // Stops the delivery of relative altitude data for the altimeter object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAltimeter/stopRelativeAltitudeUpdates()
+
 func (a_ Altimeter) StopRelativeAltitudeUpdates() {
 	objc.Send[objc.ID](a_.ID, objc.Sel("stopRelativeAltitudeUpdates"))
 }

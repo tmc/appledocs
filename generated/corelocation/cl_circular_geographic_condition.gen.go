@@ -36,8 +36,13 @@ type ICircularGeographicCondition interface {
 // A circular geographic condition that a center point and radius define.
 //
 // Use to monitor events that occur in a circular geographic condition that you describe.
+
+
+// A circular geographic condition that a center point and radius define.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLCircularGeographicCondition
+
 type CircularGeographicCondition struct {
 	Condition
 }
@@ -87,7 +92,9 @@ func NewCircularGeographicCondition() CircularGeographicCondition {
 
 // Creates a new circular geographic condition with the center point and radius you provide.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLCircularGeographicCondition/initWithCenter:radius:
+
 func NewCircularGeographicConditionWithCenterRadius(center unsafe.Pointer, radius unsafe.Pointer) CircularGeographicCondition {
 	instance := getCircularGeographicConditionClass().Alloc()
 	rv := objc.Send[CircularGeographicCondition](instance.ID, objc.Sel("initWithCenter:radius:"), center, radius)
@@ -96,17 +103,23 @@ func NewCircularGeographicConditionWithCenterRadius(center unsafe.Pointer, radiu
 }
 
 
+
 // The center of the circular geographic condition.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLCircularGeographicCondition/center
+
 func (c_ CircularGeographicCondition) Center() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("center"))
 	return rv
 }
 
+
 // The radius of the circular geographic condition.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLCircularGeographicCondition/radius
+
 func (c_ CircularGeographicCondition) Radius() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("radius"))
 	return rv

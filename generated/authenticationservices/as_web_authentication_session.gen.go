@@ -46,8 +46,13 @@ type IWebAuthenticationSession interface {
 // A session that an app uses to authenticate a user through a web service.
 //
 // Use an instance to authenticate a user through a web service, including one run by a third party. Initialize the session with a URL that points to the authentication webpage. When the user starts the authentication session, the operating system shows a modal view telling them which domain the app is authenticating with and asking whether to proceed. If the user proceeds with the authentication attempt, a browser loads and displays the page, from which the user can authenticate. In iOS, the browser is a secure, embedded web view. In macOS, the system opens the user’s default browser if it supports web authentication sessions, or Safari otherwise. On completion, the service sends a callback URL to the session with an authentication token. The session passes this URL back to the app through a completion handler. ensures that only the calling app’s session receives the authentication callback, even when more than one app registers the same callback URL scheme. For more details, see .
+
+
+// A session that an app uses to authenticate a user through a web service.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASWebAuthenticationSession
+
 type WebAuthenticationSession struct {
 	objectivec.Object
 }
@@ -91,8 +96,11 @@ func NewWebAuthenticationSession() WebAuthenticationSession {
 }
 
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASWebAuthenticationSession/init(url:callback:completionHandler:)
+
 func NewWebAuthenticationSessionWithURLCallbackCompletionHandler(URL foundation.IURL, callback IASWebAuthenticationSessionCallback, completionHandler unsafe.Pointer) WebAuthenticationSession {
 	instance := getWebAuthenticationSessionClass().Alloc()
 	rv := objc.Send[WebAuthenticationSession](instance.ID, objc.Sel("initWithURL:callback:completionHandler:"), URL, callback, completionHandler)
@@ -101,83 +109,105 @@ func NewWebAuthenticationSessionWithURLCallbackCompletionHandler(URL foundation.
 }
 
 
+
+
 // Cancels a web authentication session.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASWebAuthenticationSession/cancel()
+
 func (w_ WebAuthenticationSession) Cancel() {
 	objc.Send[objc.ID](w_.ID, objc.Sel("cancel"))
 }
 
+
+
 // Starts a web authentication session.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASWebAuthenticationSession/start()
+
 func (w_ WebAuthenticationSession) Start() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("start"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASWebAuthenticationSession/additionalHeaderFields
+
 func (w_ WebAuthenticationSession) AdditionalHeaderFields() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("additionalHeaderFields"))
 	return rv
 }
 
 
-// SetAdditionalHeaderFields sets the value of the additionalHeaderFields property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASWebAuthenticationSession/additionalHeaderFields
+
 func (w_ WebAuthenticationSession) SetAdditionalHeaderFields(value unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setAdditionalHeaderFields:"), value)
 }
 
+
 // A Boolean indicating whether the session can begin.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASWebAuthenticationSession/canStart
+
 func (w_ WebAuthenticationSession) CanStart() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("canStart"))
 	return rv
 }
 
+
 // A Boolean value that indicates whether the session should ask the browser for a private authentication session.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASWebAuthenticationSession/prefersEphemeralWebBrowserSession
+
 func (w_ WebAuthenticationSession) PrefersEphemeralWebBrowserSession() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("prefersEphemeralWebBrowserSession"))
 	return rv
 }
 
 
-// SetPrefersEphemeralWebBrowserSession sets the value of the prefersEphemeralWebBrowserSession property.
 // A Boolean value that indicates whether the session should ask the browser for a private authentication session.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASWebAuthenticationSession/prefersEphemeralWebBrowserSession
+
 func (w_ WebAuthenticationSession) SetPrefersEphemeralWebBrowserSession(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setPrefersEphemeralWebBrowserSession:"), value)
 }
 
+
 // A delegate that provides a display context in which the system can present an authentication session to the user.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASWebAuthenticationSession/presentationContextProvider
+
 func (w_ WebAuthenticationSession) PresentationContextProvider() objc.ID {
 	rv := objc.Send[objc.ID](w_.ID, objc.Sel("presentationContextProvider"))
 	return rv
 }
 
 
-// SetPresentationContextProvider sets the value of the presentationContextProvider property.
 // A delegate that provides a display context in which the system can present an authentication session to the user.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASWebAuthenticationSession/presentationContextProvider
+
 func (w_ WebAuthenticationSession) SetPresentationContextProvider(value objc.ID) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setPresentationContextProvider:"), value)
 }
 
+
 // The error domain for a web authentication session.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aswebauthenticationsessionerrordomain
+
 func (w_ WebAuthenticationSession) ASWebAuthenticationSessionErrorDomain() string {
 	rv := objc.Send[string](w_.ID, objc.Sel("ASWebAuthenticationSessionErrorDomain"))
 	return rv

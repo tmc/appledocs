@@ -34,8 +34,13 @@ type ICNChangeHistoryRemoveSubgroupFromGroupEvent interface {
 }
 
 // An object that represents a user removing a subgroup from a group.
+
+
+// An object that represents a user removing a subgroup from a group.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryRemoveSubgroupFromGroupEvent
+
 type CNChangeHistoryRemoveSubgroupFromGroupEvent struct {
 	CNChangeHistoryEvent
 }
@@ -81,17 +86,23 @@ func NewCNChangeHistoryRemoveSubgroupFromGroupEvent() CNChangeHistoryRemoveSubgr
 }
 
 
+
 // The group where the user removed a subgroup.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryRemoveSubgroupFromGroupEvent/group
+
 func (c_ CNChangeHistoryRemoveSubgroupFromGroupEvent) Group() CNGroup {
 	rv := objc.Send[CNGroup](c_.ID, objc.Sel("group"))
 	return rv
 }
 
+
 // The subgroup that the user removed from the group.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryRemoveSubgroupFromGroupEvent/subgroup
+
 func (c_ CNChangeHistoryRemoveSubgroupFromGroupEvent) Subgroup() CNGroup {
 	rv := objc.Send[CNGroup](c_.ID, objc.Sel("subgroup"))
 	return rv

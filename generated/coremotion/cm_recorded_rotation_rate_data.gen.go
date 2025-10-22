@@ -36,8 +36,13 @@ type IRecordedRotationRateData interface {
 }
 
 // A data object that contains a single rotation-rate measurement at a specific time.
+
+
+// A data object that contains a single rotation-rate measurement at a specific time.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMRecordedRotationRateData
+
 type RecordedRotationRateData struct {
 	RotationRateData
 }
@@ -83,28 +88,34 @@ func NewRecordedRotationRateData() RecordedRotationRateData {
 }
 
 
+
 // The time when the gyroscope measured the rotation data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMRecordedRotationRateData/startDate
+
 func (r_ RecordedRotationRateData) StartDate() foundation.NSDate {
 	rv := objc.Send[foundation.NSDate](r_.ID, objc.Sel("startDate"))
 	return rv
 }
 
+
 // The rotation rate as measured by the device’s gyroscope.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremotion/cmgyrodata/rotationrate
+
 func (r_ RecordedRotationRateData) RotationRate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("rotationRate"))
 	return rv
 }
 
 
-// SetRotationRate sets the value of the rotationRate property.
 // The rotation rate as measured by the device’s gyroscope.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremotion/cmgyrodata/rotationrate
+
 func (r_ RecordedRotationRateData) SetRotationRate(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setRotationRate:"), value)
 }

@@ -47,8 +47,13 @@ type IFetchedPropertyDescription interface {
 // A description object used to define which properties are fetched from Core Data.
 //
 // An example might be a iTunes playlist, if expressed as a property of a containing object. Songs don’t belong to a particular playlist, especially in the case that they’re on a remote server. The playlist may remain even after the songs have been deleted, or the remote server has become inaccessible. Note, however, that unlike a playlist a fetched property is static—it does not dynamically update itself as objects in the destination entity change. The effect of a fetched property is similar to executing a fetch request yourself and placing the results in a transient attribute, although with the framework managing the details. In particular, a fetched property is not fetched until it is requested, and the results are then cached until the object is turned into a fault. You use ( ) to manually refresh the properties—this causes the fetch request associated with this property to be executed again when the object fault is next fired. Unlike other relationships, which are all sets, fetched properties are represented by an ordered object just as if you executed the fetch request yourself. The fetch request associated with the property can have a sort ordering. The value for a fetched property of a managed object does not support .
+
+
+// A description object used to define which properties are fetched from Core Data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchedPropertyDescription
+
 type FetchedPropertyDescription struct {
 	PropertyDescription
 }
@@ -94,110 +99,128 @@ func NewFetchedPropertyDescription() FetchedPropertyDescription {
 }
 
 
+
 // The fetch request of the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchedPropertyDescription/fetchRequest
+
 func (f_ FetchedPropertyDescription) FetchRequest() NSFetchRequest {
 	rv := objc.Send[NSFetchRequest](f_.ID, objc.Sel("fetchRequest"))
 	return rv
 }
 
 
-// SetFetchRequest sets the value of the fetchRequest property.
 // The fetch request of the receiver.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchedPropertyDescription/fetchRequest
+
 func (f_ FetchedPropertyDescription) SetFetchRequest(value IFetchRequest) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setFetchRequest:"), value)
 }
 
+
 // An array of persistent stores specified for the fetch request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/affectedstores
+
 func (f_ FetchedPropertyDescription) AffectedStores() NSPersistentStore {
 	rv := objc.Send[NSPersistentStore](f_.ID, objc.Sel("affectedStores"))
 	return rv
 }
 
 
-// SetAffectedStores sets the value of the affectedStores property.
 // An array of persistent stores specified for the fetch request.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/affectedstores
+
 func (f_ FetchedPropertyDescription) SetAffectedStores(value IPersistentStore) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setAffectedStores:"), value)
 }
 
+
 // The batch size of the objects specified in the fetch request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/fetchbatchsize
+
 func (f_ FetchedPropertyDescription) FetchBatchSize() int {
 	rv := objc.Send[int](f_.ID, objc.Sel("fetchBatchSize"))
 	return rv
 }
 
 
-// SetFetchBatchSize sets the value of the fetchBatchSize property.
 // The batch size of the objects specified in the fetch request.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/fetchbatchsize
+
 func (f_ FetchedPropertyDescription) SetFetchBatchSize(value int) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setFetchBatchSize:"), value)
 }
 
+
 // The fetch limit of the fetch request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/fetchlimit
+
 func (f_ FetchedPropertyDescription) FetchLimit() int {
 	rv := objc.Send[int](f_.ID, objc.Sel("fetchLimit"))
 	return rv
 }
 
 
-// SetFetchLimit sets the value of the fetchLimit property.
 // The fetch limit of the fetch request.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/fetchlimit
+
 func (f_ FetchedPropertyDescription) SetFetchLimit(value int) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setFetchLimit:"), value)
 }
 
+
 // The fetch offset of the fetch request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/fetchoffset
+
 func (f_ FetchedPropertyDescription) FetchOffset() int {
 	rv := objc.Send[int](f_.ID, objc.Sel("fetchOffset"))
 	return rv
 }
 
 
-// SetFetchOffset sets the value of the fetchOffset property.
 // The fetch offset of the fetch request.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/fetchoffset
+
 func (f_ FetchedPropertyDescription) SetFetchOffset(value int) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setFetchOffset:"), value)
 }
 
+
 // The predicate of the fetch request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/predicate
+
 func (f_ FetchedPropertyDescription) Predicate() foundation.Predicate {
 	rv := objc.Send[foundation.Predicate](f_.ID, objc.Sel("predicate"))
 	return rv
 }
 
 
-// SetPredicate sets the value of the predicate property.
 // The predicate of the fetch request.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/predicate
+
 func (f_ FetchedPropertyDescription) SetPredicate(value foundation.IPredicate) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setPredicate:"), value)
 }

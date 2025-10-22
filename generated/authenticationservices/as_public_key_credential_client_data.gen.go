@@ -37,8 +37,13 @@ type IPublicKeyCredentialClientData interface {
 }
 
 // This object represents the client data for a public key credential request, as defined in the WebAuthentication standard.
+
+
+// This object represents the client data for a public key credential request, as defined in the WebAuthentication standard.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASPublicKeyCredentialClientData-c.class
+
 type PublicKeyCredentialClientData struct {
 	objectivec.Object
 }
@@ -82,32 +87,36 @@ func NewPublicKeyCredentialClientData() PublicKeyCredentialClientData {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASPublicKeyCredentialClientData-c.class/crossOrigin
+
 func (p_ PublicKeyCredentialClientData) CrossOrigin() PublicKeyCredentialClientDataCrossOriginValue {
 	rv := objc.Send[PublicKeyCredentialClientDataCrossOriginValue](p_.ID, objc.Sel("crossOrigin"))
 	return rv
 }
 
 
-// SetCrossOrigin sets the value of the crossOrigin property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASPublicKeyCredentialClientData-c.class/crossOrigin
+
 func (p_ PublicKeyCredentialClientData) SetCrossOrigin(value IPublicKeyCredentialClientDataCrossOriginValue) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCrossOrigin:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASPublicKeyCredentialClientData-c.class/origin
+
 func (p_ PublicKeyCredentialClientData) Origin() string {
 	rv := objc.Send[string](p_.ID, objc.Sel("origin"))
 	return rv
 }
 
 
-// SetOrigin sets the value of the origin property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASPublicKeyCredentialClientData-c.class/origin
+
 func (p_ PublicKeyCredentialClientData) SetOrigin(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setOrigin:"), objc.String(value))
 }

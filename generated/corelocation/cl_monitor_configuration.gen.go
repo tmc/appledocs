@@ -36,8 +36,13 @@ type IMonitorConfiguration interface {
 }
 
 // An object for configuring a location monitor instance.
+
+
+// An object for configuring a location monitor instance.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitorConfiguration
+
 type MonitorConfiguration struct {
 	objectivec.Object
 }
@@ -81,25 +86,34 @@ func NewMonitorConfiguration() MonitorConfiguration {
 }
 
 
+
 // The block the framework calls as the event handler for the location monitor instance.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitorConfiguration/eventHandler
+
 func (m_ MonitorConfiguration) EventHandler() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("eventHandler"))
 	return rv
 }
 
+
 // The name of the monitor instance.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitorConfiguration/name
+
 func (m_ MonitorConfiguration) Name() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("name"))
 	return rv
 }
 
+
 // The dispatch queue to bind the instance of a location monitor to.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitorConfiguration/queue
+
 func (m_ MonitorConfiguration) Queue() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("queue"))
 	return rv

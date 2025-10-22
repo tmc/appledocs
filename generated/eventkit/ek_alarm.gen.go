@@ -37,7 +37,7 @@ type IEKAlarm interface {
 	Proximity() EKAlarmProximity
 	SetProximity(value IEKAlarmProximity)
 	RelativeOffset() foundation.TimeInterval
-	SetRelativeOffset(value foundation.ITimeInterval)
+	SetRelativeOffset(value foundation.TimeInterval)
 	SoundName() string
 	SetSoundName(value string)
 	StructuredLocation() EKStructuredLocation
@@ -50,8 +50,13 @@ type IEKAlarm interface {
 // A class that represents an alarm.
 //
 // An object represents an alarm in Event Kit. Use the and class methods to create an alarm and use the properties to set information about an alarm. In macOS Mountain Lion, you can specify an action to trigger when the alarm fires via the , , or property.
+
+
+// A class that represents an alarm.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKAlarm
+
 type EKAlarm struct {
 	EKObject
 }
@@ -101,7 +106,9 @@ func NewEKAlarm() EKAlarm {
 
 // Creates and returns an alarm with an absolute date.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKAlarm/init(absoluteDate:)
+
 func NewEKAlarmWithAbsoluteDate(date foundation.IDate) EKAlarm {
 	rv := objc.Send[EKAlarm](objc.ID(getEKAlarmClass().class), objc.Sel("alarmWithAbsoluteDate:"), date)
 	return rv
@@ -111,159 +118,191 @@ func NewEKAlarmWithAbsoluteDate(date foundation.IDate) EKAlarm {
 
 // Creates and returns an alarm with a relative offset.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKAlarm/init(relativeOffset:)
-func NewEKAlarmWithRelativeOffset(offset foundation.ITimeInterval) EKAlarm {
+
+func NewEKAlarmWithRelativeOffset(offset foundation.TimeInterval) EKAlarm {
 	rv := objc.Send[EKAlarm](objc.ID(getEKAlarmClass().class), objc.Sel("alarmWithRelativeOffset:"), offset)
 	return rv
 }
 
 
+
 // Creates and returns an alarm with an absolute date.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKAlarm/init(absoluteDate:)
+
 func (ec _EKAlarmClass) AlarmWithAbsoluteDate(date foundation.IDate) EKAlarm {
 	rv := objc.Send[EKAlarm](objc.ID(ec.class), objc.Sel("alarmWithAbsoluteDate:"), date)
 	return rv
 }
 
+
 // Creates and returns an alarm with a relative offset.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKAlarm/init(relativeOffset:)
-func (ec _EKAlarmClass) AlarmWithRelativeOffset(offset foundation.ITimeInterval) EKAlarm {
+
+func (ec _EKAlarmClass) AlarmWithRelativeOffset(offset foundation.TimeInterval) EKAlarm {
 	rv := objc.Send[EKAlarm](objc.ID(ec.class), objc.Sel("alarmWithRelativeOffset:"), offset)
 	return rv
 }
 
+
 // The absolute date for the alarm.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKAlarm/absoluteDate
+
 func (e_ EKAlarm) AbsoluteDate() foundation.NSDate {
 	rv := objc.Send[foundation.NSDate](e_.ID, objc.Sel("absoluteDate"))
 	return rv
 }
 
 
-// SetAbsoluteDate sets the value of the absoluteDate property.
 // The absolute date for the alarm.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKAlarm/absoluteDate
+
 func (e_ EKAlarm) SetAbsoluteDate(value foundation.IDate) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setAbsoluteDate:"), value)
 }
 
+
 // The recipient of an email to send when the alarm triggers.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKAlarm/emailAddress
+
 func (e_ EKAlarm) EmailAddress() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("emailAddress"))
 	return rv
 }
 
 
-// SetEmailAddress sets the value of the emailAddress property.
 // The recipient of an email to send when the alarm triggers.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKAlarm/emailAddress
+
 func (e_ EKAlarm) SetEmailAddress(value string) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setEmailAddress:"), objc.String(value))
 }
 
+
 // A value indicating how a location-based alarm is triggered.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKAlarm/proximity
+
 func (e_ EKAlarm) Proximity() EKAlarmProximity {
 	rv := objc.Send[EKAlarmProximity](e_.ID, objc.Sel("proximity"))
 	return rv
 }
 
 
-// SetProximity sets the value of the proximity property.
 // A value indicating how a location-based alarm is triggered.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKAlarm/proximity
+
 func (e_ EKAlarm) SetProximity(value IEKAlarmProximity) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setProximity:"), value)
 }
 
+
 // The offset from the start of an event, at which the alarm fires.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKAlarm/relativeOffset
+
 func (e_ EKAlarm) RelativeOffset() foundation.TimeInterval {
 	rv := objc.Send[foundation.TimeInterval](e_.ID, objc.Sel("relativeOffset"))
 	return rv
 }
 
 
-// SetRelativeOffset sets the value of the relativeOffset property.
 // The offset from the start of an event, at which the alarm fires.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKAlarm/relativeOffset
-func (e_ EKAlarm) SetRelativeOffset(value foundation.ITimeInterval) {
+
+func (e_ EKAlarm) SetRelativeOffset(value foundation.TimeInterval) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setRelativeOffset:"), value)
 }
 
+
 // The name of the sound to play when the alarm triggers.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKAlarm/soundName
+
 func (e_ EKAlarm) SoundName() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("soundName"))
 	return rv
 }
 
 
-// SetSoundName sets the value of the soundName property.
 // The name of the sound to play when the alarm triggers.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKAlarm/soundName
+
 func (e_ EKAlarm) SetSoundName(value string) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setSoundName:"), objc.String(value))
 }
 
+
 // The location to trigger an alarm.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKAlarm/structuredLocation
+
 func (e_ EKAlarm) StructuredLocation() EKStructuredLocation {
 	rv := objc.Send[EKStructuredLocation](e_.ID, objc.Sel("structuredLocation"))
 	return rv
 }
 
 
-// SetStructuredLocation sets the value of the structuredLocation property.
 // The location to trigger an alarm.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKAlarm/structuredLocation
+
 func (e_ EKAlarm) SetStructuredLocation(value IEKStructuredLocation) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setStructuredLocation:"), value)
 }
 
+
 // The type of action to trigger when the alarm fires.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKAlarm/type
+
 func (e_ EKAlarm) Type() EKAlarmType {
 	rv := objc.Send[EKAlarmType](e_.ID, objc.Sel("type"))
 	return rv
 }
 
+
 // The URL to open when the alarm triggers.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKAlarm/url
+
 func (e_ EKAlarm) Url() foundation.URL {
 	rv := objc.Send[foundation.URL](e_.ID, objc.Sel("url"))
 	return rv
 }
 
 
-// SetUrl sets the value of the url property.
 // The URL to open when the alarm triggers.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKAlarm/url
+
 func (e_ EKAlarm) SetUrl(value foundation.IURL) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setUrl:"), value)
 }

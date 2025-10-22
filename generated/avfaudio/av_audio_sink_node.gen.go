@@ -34,8 +34,13 @@ type IAudioSinkNode interface {
 // An object that receives audio data.
 //
 // You use an to receive audio data through . You only use it in the input chain. An audio sink node doesn’t support format conversion. When connecting, use the output format of the input for the format for the connection. The format should match the hardware input sample rate. The voice processing I/O unit is an exception to the above because it supports sample rate conversion. The input scope format (hardware format) and output scope format (client format) of the input node can differ in that case. An audio sink node doesn’t support manual rendering mode, and doesn’t have an output bus, so you can’t install a tap on it.
+
+
+// An object that receives audio data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSinkNode
+
 type AudioSinkNode struct {
 	AudioNode
 }

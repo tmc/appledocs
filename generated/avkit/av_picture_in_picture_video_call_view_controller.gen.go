@@ -37,8 +37,13 @@ type IPictureInPictureVideoCallViewController interface {
 }
 
 // A view controller that presents content from a video call in Picture in Picture.
+
+
+// A view controller that presents content from a video call in Picture in Picture.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPictureInPictureVideoCallViewController
+
 type PictureInPictureVideoCallViewController struct {
 	appkit.ViewController
 }
@@ -84,38 +89,44 @@ func NewPictureInPictureVideoCallViewController() PictureInPictureVideoCallViewC
 }
 
 
+
 // The view controller that presents the video call content.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avpictureinpicturecontroller/contentsource-swift.class/activevideocallcontentviewcontroller
+
 func (p_ PictureInPictureVideoCallViewController) ActiveVideoCallContentViewController() AVPictureInPictureVideoCallViewController {
 	rv := objc.Send[AVPictureInPictureVideoCallViewController](p_.ID, objc.Sel("activeVideoCallContentViewController"))
 	return rv
 }
 
 
-// SetActiveVideoCallContentViewController sets the value of the activeVideoCallContentViewController property.
 // The view controller that presents the video call content.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avpictureinpicturecontroller/contentsource-swift.class/activevideocallcontentviewcontroller
+
 func (p_ PictureInPictureVideoCallViewController) SetActiveVideoCallContentViewController(value IAVPictureInPictureVideoCallViewController) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setActiveVideoCallContentViewController:"), value)
 }
 
+
 // The view that contains the video content of the call.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avpictureinpicturecontroller/contentsource-swift.class/activevideocallsourceview
+
 func (p_ PictureInPictureVideoCallViewController) ActiveVideoCallSourceView() appkit.View {
 	rv := objc.Send[appkit.View](p_.ID, objc.Sel("activeVideoCallSourceView"))
 	return rv
 }
 
 
-// SetActiveVideoCallSourceView sets the value of the activeVideoCallSourceView property.
 // The view that contains the video content of the call.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avpictureinpicturecontroller/contentsource-swift.class/activevideocallsourceview
+
 func (p_ PictureInPictureVideoCallViewController) SetActiveVideoCallSourceView(value appkit.IView) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setActiveVideoCallSourceView:"), value)
 }

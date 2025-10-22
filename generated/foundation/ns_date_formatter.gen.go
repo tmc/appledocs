@@ -36,7 +36,7 @@ type IDateFormatter interface {
 	DateFormat() string
 	SetDateFormat(value string)
 	DateStyle() DateFormatterStyle
-	SetDateStyle(value DateFormatterStyle)
+	SetDateStyle(value IDateFormatterStyle)
 	EraSymbols() []string
 	SetEraSymbols(value []string)
 	FormatterBehavior() unsafe.Pointer
@@ -52,7 +52,7 @@ type IDateFormatter interface {
 	StandaloneWeekdaySymbols() []string
 	SetStandaloneWeekdaySymbols(value []string)
 	TimeStyle() DateFormatterStyle
-	SetTimeStyle(value DateFormatterStyle)
+	SetTimeStyle(value IDateFormatterStyle)
 	TimeZone() NSTimeZone
 	SetTimeZone(value ITimeZone)
 	VeryShortMonthSymbols() []string
@@ -263,7 +263,7 @@ func (d_ DateFormatter) DateStyle() DateFormatterStyle {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/dateStyle
 
-func (d_ DateFormatter) SetDateStyle(value DateFormatterStyle) {
+func (d_ DateFormatter) SetDateStyle(value IDateFormatterStyle) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDateStyle:"), value)
 }
 
@@ -482,7 +482,7 @@ func (d_ DateFormatter) TimeStyle() DateFormatterStyle {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/timeStyle
 
-func (d_ DateFormatter) SetTimeStyle(value DateFormatterStyle) {
+func (d_ DateFormatter) SetTimeStyle(value IDateFormatterStyle) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setTimeStyle:"), value)
 }
 

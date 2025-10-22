@@ -45,8 +45,13 @@ type ITextContentManager interface {
 }
 
 // An abstract class that defines the interface and a default implementation for managing the text document contents.
+
+
+// An abstract class that defines the interface and a default implementation for managing the text document contents.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContentManager
+
 type TextContentManager struct {
 	objectivec.Object
 }
@@ -90,104 +95,130 @@ func NewTextContentManager() TextContentManager {
 }
 
 
+
+
 // Performs an editing transaction and invokes a block upon completion.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContentManager/performEditingTransaction(_:)
+
 func (t_ TextContentManager) PerformEditingTransactionUsingBlock(transaction unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("performEditingTransactionUsingBlock:"), transaction)
 }
 
+
+
 // Records information about an edit action to the transaction.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContentManager/recordEditAction(in:newTextRange:)
+
 func (t_ TextContentManager) RecordEditActionInRangeNewTextRange(originalTextRange ITextRange, newTextRange ITextRange) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("recordEditActionInRange:newTextRange:"), originalTextRange, newTextRange)
 }
 
+
 // Determines if the framework should automatically synchronize all text layout managers when exiting an editing transaction.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContentManager/automaticallySynchronizesTextLayoutManagers
+
 func (t_ TextContentManager) AutomaticallySynchronizesTextLayoutManagers() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("automaticallySynchronizesTextLayoutManagers"))
 	return rv
 }
 
 
-// SetAutomaticallySynchronizesTextLayoutManagers sets the value of the automaticallySynchronizesTextLayoutManagers property.
 // Determines if the framework should automatically synchronize all text layout managers when exiting an editing transaction.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContentManager/automaticallySynchronizesTextLayoutManagers
+
 func (t_ TextContentManager) SetAutomaticallySynchronizesTextLayoutManagers(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAutomaticallySynchronizesTextLayoutManagers:"), value)
 }
 
+
 // Indicates there’s an active editing transaction from the primary text layout manager.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContentManager/hasEditingTransaction
+
 func (t_ TextContentManager) HasEditingTransaction() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("hasEditingTransaction"))
 	return rv
 }
 
+
 // The array of text layout managers associated with this text content manager.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContentManager/textLayoutManagers
+
 func (t_ TextContentManager) TextLayoutManagers() []TextLayoutManager {
 	rv := objc.Send[[]TextLayoutManager](t_.ID, objc.Sel("textLayoutManagers"))
 	return rv
 }
 
+
 // Determines whether to automatically synchronize with the backing store when an editing transaction finishes.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontentmanager/automaticallysynchronizestobackingstore
+
 func (t_ TextContentManager) AutomaticallySynchronizesToBackingStore() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("automaticallySynchronizesToBackingStore"))
 	return rv
 }
 
 
-// SetAutomaticallySynchronizesToBackingStore sets the value of the automaticallySynchronizesToBackingStore property.
 // Determines whether to automatically synchronize with the backing store when an editing transaction finishes.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontentmanager/automaticallysynchronizestobackingstore
+
 func (t_ TextContentManager) SetAutomaticallySynchronizesToBackingStore(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAutomaticallySynchronizesToBackingStore:"), value)
 }
 
+
 // The delegate for the content manager object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontentmanager/delegate
+
 func (t_ TextContentManager) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("delegate"))
 	return rv
 }
 
 
-// SetDelegate sets the value of the delegate property.
 // The delegate for the content manager object.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontentmanager/delegate
+
 func (t_ TextContentManager) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDelegate:"), value)
 }
 
+
 // The primary text layout manager for this content.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontentmanager/primarytextlayoutmanager
+
 func (t_ TextContentManager) PrimaryTextLayoutManager() NSTextLayoutManager {
 	rv := objc.Send[NSTextLayoutManager](t_.ID, objc.Sel("primaryTextLayoutManager"))
 	return rv
 }
 
 
-// SetPrimaryTextLayoutManager sets the value of the primaryTextLayoutManager property.
 // The primary text layout manager for this content.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontentmanager/primarytextlayoutmanager
+
 func (t_ TextContentManager) SetPrimaryTextLayoutManager(value ITextLayoutManager) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setPrimaryTextLayoutManager:"), value)
 }

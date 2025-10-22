@@ -35,8 +35,13 @@ type IAuthorization interface {
 }
 
 // The encapsulation of a successful authorization by a controller.
+
+
+// The encapsulation of a successful authorization by a controller.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorization
+
 type Authorization struct {
 	objectivec.Object
 }
@@ -80,17 +85,23 @@ func NewAuthorization() Authorization {
 }
 
 
+
 // Information provided about a user after successful authentication.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorization/credential
+
 func (a_ Authorization) Credential() objc.ID {
 	rv := objc.Send[objc.ID](a_.ID, objc.Sel("credential"))
 	return rv
 }
 
+
 // The provider that created the request that resulted in the successful authorization.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorization/provider
+
 func (a_ Authorization) Provider() objc.ID {
 	rv := objc.Send[objc.ID](a_.ID, objc.Sel("provider"))
 	return rv

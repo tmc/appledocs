@@ -37,8 +37,13 @@ type ICKSyncEngineSendChangesContext interface {
 // An object that describes a single attempt to send changes to the iCloud servers.
 //
 // A sync engine has two ways to send changes to iCloud — periodically, in cooperation with the system scheduler, and manually, whenever your app invokes the method. This object provides information about a single attempt to send changes that includes both the reason for the attempt and any additional options in use by the attempt.
+
+
+// An object that describes a single attempt to send changes to the iCloud servers.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineSendChangesContext
+
 type CKSyncEngineSendChangesContext struct {
 	objectivec.Object
 }
@@ -82,17 +87,23 @@ func NewCKSyncEngineSendChangesContext() CKSyncEngineSendChangesContext {
 }
 
 
+
 // The additional options for the send operation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineSendChangesContext/options
+
 func (c_ CKSyncEngineSendChangesContext) Options() CKSyncEngineSendChangesOptions {
 	rv := objc.Send[CKSyncEngineSendChangesOptions](c_.ID, objc.Sel("options"))
 	return rv
 }
 
+
 // The reason for the send operation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineSendChangesContext/reason
+
 func (c_ CKSyncEngineSendChangesContext) Reason() CKSyncEngineSyncReason {
 	rv := objc.Send[CKSyncEngineSyncReason](c_.ID, objc.Sel("reason"))
 	return rv

@@ -34,8 +34,13 @@ type IHKCharacteristicType interface {
 // A type that represents data that doesn’t typically change over time.
 //
 // The class is a concrete subclass of the class. To create a characteristic type instance, use the object type’s convenience method. Unlike the other object types, characteristic types cannot be used to create and save new HealthKit objects. Instead, users must enter and edit their characteristic data using the Health app. Similarly, you cannot create queries for characteristic types. Instead, use the HealthKit store to access the data (see Reading characteristic data). HealthKit provides five characteristic types: biological sex, blood type, birthdate, Fitzpatrick skin type, and wheelchair use. These types are used only when asking for permission to read data from the HealthKit store.
+
+
+// A type that represents data that doesn’t typically change over time.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKCharacteristicType
+
 type HKCharacteristicType struct {
 	HKObjectType
 }

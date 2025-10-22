@@ -34,8 +34,13 @@ type IHKAudiogramSampleType interface {
 // A type that identifies samples that contain audiogram data.
 //
 // The class is a concrete subclass of the class. To create an audiogram sample type instance, use the object type’s convenience method. Use audiogram sample types to: Request permission to read or write audiogram samples. Create and share audiogram samples. Query for audiogram samples.
+
+
+// A type that identifies samples that contain audiogram data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKAudiogramSampleType
+
 type HKAudiogramSampleType struct {
 	HKSampleType
 }

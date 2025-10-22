@@ -37,8 +37,13 @@ type IFloor interface {
 // The floor of a building on which the user’s device is located.
 //
 // A object specifies the floor of the building on which the device is located. In places where floor information can be determined, a object may include a floor object along with the regular location data. You do not create instances of this class directly, nor should you subclass it.
+
+
+// The floor of a building on which the user’s device is located.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLFloor
+
 type Floor struct {
 	objectivec.Object
 }
@@ -82,20 +87,23 @@ func NewFloor() Floor {
 }
 
 
+
 // The logical floor of the building.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLFloor/level
+
 func (f_ Floor) Level() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("level"))
 	return rv
 }
 
 
-// SetLevel sets the value of the level property.
 // The logical floor of the building.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLFloor/level
+
 func (f_ Floor) SetLevel(value unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setLevel:"), value)
 }

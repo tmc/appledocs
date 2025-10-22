@@ -35,8 +35,13 @@ type IModelStructurePipeline interface {
 }
 
 // A class representing the structure of a Pipeline model.
+
+
+// A class representing the structure of a Pipeline model.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructurePipeline
+
 type ModelStructurePipeline struct {
 	objectivec.Object
 }
@@ -80,17 +85,23 @@ func NewModelStructurePipeline() ModelStructurePipeline {
 }
 
 
+
 // The names of the sub models in the pipeline.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructurePipeline/subModelNames
+
 func (m_ ModelStructurePipeline) SubModelNames() []string {
 	rv := objc.Send[[]string](m_.ID, objc.Sel("subModelNames"))
 	return rv
 }
 
+
 // The structure of the sub models in the pipeline.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructurePipeline/subModels
+
 func (m_ ModelStructurePipeline) SubModels() []ModelStructure {
 	rv := objc.Send[[]ModelStructure](m_.ID, objc.Sel("subModels"))
 	return rv

@@ -47,8 +47,13 @@ type ICoreDataCoreSpotlightDelegate interface {
 }
 
 // A set of methods that enable integration with Core Spotlight.
+
+
+// A set of methods that enable integration with Core Spotlight.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSCoreDataCoreSpotlightDelegate
+
 type CoreDataCoreSpotlightDelegate struct {
 	objectivec.Object
 }
@@ -96,7 +101,9 @@ func NewCoreDataCoreSpotlightDelegate() CoreDataCoreSpotlightDelegate {
 
 // Creates a Core Spotlight delegate with the specified store description and coordinator.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSCoreDataCoreSpotlightDelegate/init(forStoreWith:coordinator:)
+
 func NewCoreDataCoreSpotlightDelegateForStoreWithDescriptionCoordinator(description IPersistentStoreDescription, psc IPersistentStoreCoordinator) CoreDataCoreSpotlightDelegate {
 	instance := getCoreDataCoreSpotlightDelegateClass().Alloc()
 	rv := objc.Send[CoreDataCoreSpotlightDelegate](instance.ID, objc.Sel("initForStoreWithDescription:coordinator:"), description, psc)
@@ -108,7 +115,9 @@ func NewCoreDataCoreSpotlightDelegateForStoreWithDescriptionCoordinator(descript
 
 // Creates a Core Spotlight delegate with the specified store description and managed object model.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSCoreDataCoreSpotlightDelegate/init(forStoreWith:model:)
+
 func NewCoreDataCoreSpotlightDelegateForStoreWithDescriptionModel(description IPersistentStoreDescription, model IManagedObjectModel) CoreDataCoreSpotlightDelegate {
 	instance := getCoreDataCoreSpotlightDelegateClass().Alloc()
 	rv := objc.Send[CoreDataCoreSpotlightDelegate](instance.ID, objc.Sel("initForStoreWithDescription:model:"), description, model)
@@ -117,94 +126,135 @@ func NewCoreDataCoreSpotlightDelegateForStoreWithDescriptionModel(description IP
 }
 
 
+
+
 // Returns the searchable attributes for the specified managed object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSCoreDataCoreSpotlightDelegate/attributeSet(for:)
+
 func (c_ CoreDataCoreSpotlightDelegate) AttributeSetForObject(object IManagedObject) corespotlight.CSSearchableItemAttributeSet {
 	rv := objc.Send[corespotlight.CSSearchableItemAttributeSet](c_.ID, objc.Sel("attributeSetForObject:"), object)
 	return rv
 }
 
+
+
 // Deletes all searchable items from the configured index.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSCoreDataCoreSpotlightDelegate/deleteSpotlightIndex(completionHandler:)
+
 func (c_ CoreDataCoreSpotlightDelegate) DeleteSpotlightIndexWithCompletionHandler(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("deleteSpotlightIndexWithCompletionHandler:"), completionHandler)
 }
 
+
+
 // Returns the domain identifier.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSCoreDataCoreSpotlightDelegate/domainIdentifier()
+
 func (c_ CoreDataCoreSpotlightDelegate) DomainIdentifier() foundation.String {
 	rv := objc.Send[foundation.String](c_.ID, objc.Sel("domainIdentifier"))
 	return rv
 }
 
+
+
 // Returns the index’s name.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSCoreDataCoreSpotlightDelegate/indexName()
+
 func (c_ CoreDataCoreSpotlightDelegate) IndexName() foundation.String {
 	rv := objc.Send[foundation.String](c_.ID, objc.Sel("indexName"))
 	return rv
 }
 
+
+
 // Reindexes all searchable items and clears any local state.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSCoreDataCoreSpotlightDelegate/searchableIndex(_:reindexAllSearchableItemsWithAcknowledgementHandler:)
+
 func (c_ CoreDataCoreSpotlightDelegate) SearchableIndexReindexAllSearchableItemsWithAcknowledgementHandler(searchableIndex corespotlight.ICSSearchableIndex, acknowledgementHandler unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("searchableIndex:reindexAllSearchableItemsWithAcknowledgementHandler:"), searchableIndex, acknowledgementHandler)
 }
 
+
+
 // Reindexes the searchable items for the specified identifiers.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSCoreDataCoreSpotlightDelegate/searchableIndex(_:reindexSearchableItemsWithIdentifiers:acknowledgementHandler:)
+
 func (c_ CoreDataCoreSpotlightDelegate) SearchableIndexReindexSearchableItemsWithIdentifiersAcknowledgementHandler(searchableIndex corespotlight.ICSSearchableIndex, identifiers []string, acknowledgementHandler unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("searchableIndex:reindexSearchableItemsWithIdentifiers:acknowledgementHandler:"), searchableIndex, identifiers, acknowledgementHandler)
 }
 
+
+
 // Starts the indexing of the store’s entities.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSCoreDataCoreSpotlightDelegate/startSpotlightIndexing()
+
 func (c_ CoreDataCoreSpotlightDelegate) StartSpotlightIndexing() {
 	objc.Send[objc.ID](c_.ID, objc.Sel("startSpotlightIndexing"))
 }
 
+
+
 // Stops the indexing of the store’s entities.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSCoreDataCoreSpotlightDelegate/stopSpotlightIndexing()
+
 func (c_ CoreDataCoreSpotlightDelegate) StopSpotlightIndexing() {
 	objc.Send[objc.ID](c_.ID, objc.Sel("stopSpotlightIndexing"))
 }
 
+
 // A Boolean value that indicates whether Core Data is currently updating the Core Spotlight index with the persistent store’s entities.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSCoreDataCoreSpotlightDelegate/isIndexingEnabled
+
 func (c_ CoreDataCoreSpotlightDelegate) IndexingEnabled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("indexingEnabled"))
 	return rv
 }
 
+
 // A Boolean value that indicates whether Core Data is currently updating the Core Spotlight index with the persistent store’s entities.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nscoredatacorespotlightdelegate/isindexingenabled
+
 func (c_ CoreDataCoreSpotlightDelegate) IsIndexingEnabled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isIndexingEnabled"))
 	return rv
 }
 
 
-// SetIsIndexingEnabled sets the value of the isIndexingEnabled property.
 // A Boolean value that indicates whether Core Data is currently updating the Core Spotlight index with the persistent store’s entities.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nscoredatacorespotlightdelegate/isindexingenabled
+
 func (c_ CoreDataCoreSpotlightDelegate) SetIsIndexingEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsIndexingEnabled:"), value)
 }
 
+
 // The key you use to specify your Core Spotlight delegate.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nscoredatacorespotlightexporter
+
 func (c_ CoreDataCoreSpotlightDelegate) NSCoreDataCoreSpotlightExporter() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("NSCoreDataCoreSpotlightExporter"))
 	return rv

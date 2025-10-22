@@ -38,8 +38,13 @@ type IHKContactsLensSpecification interface {
 // An object that contains the contacts prescription data for one eye.
 //
 // To create a sample that stores a contacts prescription, start by defining a specification for each eye. Each lens specification object requires a parameter. This measures the lens’s strength for correcting either nearsightedness or farsightedness (measured in units). Next, create values for any of the prescription’s optional parameters. For example, if the prescription corrects for astigmatism, create the and values. The value uses units, while the uses . To add a multifocal correction for reading, create an value using units. To add fitting information for the contact lens, create and values. Both of these values use millimeters. Then you can create the lens specification. After you create your lens specifications, you can create an sample. Then save the sample to the HealthKit store. Finally, add an image or PDF of the prescription to the sample as an attachment.
+
+
+// An object that contains the contacts prescription data for one eye.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKContactsLensSpecification
+
 type HKContactsLensSpecification struct {
 	HKLensSpecification
 }
@@ -85,38 +90,44 @@ func NewHKContactsLensSpecification() HKContactsLensSpecification {
 }
 
 
+
 // Part of the contact’s fit, it measures the curve of the back side of the contact, measured in mm.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcontactslensspecification/basecurve
+
 func (h_ HKContactsLensSpecification) BaseCurve() HKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("baseCurve"))
 	return rv
 }
 
 
-// SetBaseCurve sets the value of the baseCurve property.
 // Part of the contact’s fit, it measures the curve of the back side of the contact, measured in mm.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcontactslensspecification/basecurve
+
 func (h_ HKContactsLensSpecification) SetBaseCurve(value IHKQuantity) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setBaseCurve:"), value)
 }
 
+
 // Part of the contact’s fit, it measures the diameter of the lens, measured in mm.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcontactslensspecification/diameter
+
 func (h_ HKContactsLensSpecification) Diameter() HKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("diameter"))
 	return rv
 }
 
 
-// SetDiameter sets the value of the diameter property.
 // Part of the contact’s fit, it measures the diameter of the lens, measured in mm.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcontactslensspecification/diameter
+
 func (h_ HKContactsLensSpecification) SetDiameter(value IHKQuantity) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setDiameter:"), value)
 }

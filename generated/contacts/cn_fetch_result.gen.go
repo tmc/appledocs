@@ -36,8 +36,13 @@ type ICNFetchResult interface {
 }
 
 // An object that represents the result of a change-history fetch request.
+
+
+// An object that represents the result of a change-history fetch request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNFetchResult
+
 type CNFetchResult struct {
 	objectivec.Object
 }
@@ -81,17 +86,23 @@ func NewCNFetchResult() CNFetchResult {
 }
 
 
+
 // An opaque token that indicates a point in history in the user’s Contacts database.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNFetchResult/currentHistoryToken
+
 func (c_ CNFetchResult) CurrentHistoryToken() foundation.NSData {
 	rv := objc.Send[foundation.NSData](c_.ID, objc.Sel("currentHistoryToken"))
 	return rv
 }
 
+
 // The result of the fetch request, expressed as the value type you specify.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNFetchResult/value
+
 func (c_ CNFetchResult) Value() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("value"))
 	return rv

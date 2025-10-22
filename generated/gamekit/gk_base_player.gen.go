@@ -38,8 +38,13 @@ type IBasePlayer interface {
 // A class that provides common data and methods for the different player objects.
 //
 // is the abstract superclass for the classes that represent the local player running your app and remote players who may join their games. Use the subclass to initialize the local player who runs your app on their device. Then you can access the local player’s nickname, avatar, leaderboards, and achievements. You can also invite other players ( objects), and send information between players.
+
+
+// A class that provides common data and methods for the different player objects.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKBasePlayer
+
 type BasePlayer struct {
 	objectivec.Object
 }
@@ -83,28 +88,34 @@ func NewBasePlayer() BasePlayer {
 }
 
 
+
 // A unique identifier for a player.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKBasePlayer/playerID
+
 func (b_ BasePlayer) PlayerID() string {
 	rv := objc.Send[string](b_.ID, objc.Sel("playerID"))
 	return rv
 }
 
+
 // The Game Center profile name for a player.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkbaseplayer/displayname
+
 func (b_ BasePlayer) DisplayName() string {
 	rv := objc.Send[string](b_.ID, objc.Sel("displayName"))
 	return rv
 }
 
 
-// SetDisplayName sets the value of the displayName property.
 // The Game Center profile name for a player.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkbaseplayer/displayname
+
 func (b_ BasePlayer) SetDisplayName(value string) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setDisplayName:"), objc.String(value))
 }

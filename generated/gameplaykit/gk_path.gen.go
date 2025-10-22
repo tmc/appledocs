@@ -45,8 +45,13 @@ type IPath interface {
 // A polygonal path that can be followed by an agent.
 //
 // To make an agent move to or stay within the area defined by a path, create a goal with the method; to make an agent traverse along a path, create a goal with the method. A path can be expressed as a sequence of either 2D points or 3D points. Use the former to create paths for use by objects, and the latter to create paths for objects to follow. To learn more about using goals and agents, see in .
+
+
+// A polygonal path that can be followed by an agent.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKPath
+
 type Path struct {
 	objectivec.Object
 }
@@ -94,7 +99,9 @@ func NewPath() Path {
 
 // Initializes a path with the specified array of 3D points.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKPath/initWithFloat3Points:count:radius:cyclical:
+
 func NewPathWithFloat3PointsCountRadiusCyclical(points unsafe.Pointer, count Iuintptr, radius float32, cyclical bool) Path {
 	instance := getPathClass().Alloc()
 	rv := objc.Send[Path](instance.ID, objc.Sel("initWithFloat3Points:count:radius:cyclical:"), points, count, radius, cyclical)
@@ -106,7 +113,9 @@ func NewPathWithFloat3PointsCountRadiusCyclical(points unsafe.Pointer, count Iui
 
 // Initializes a path using the positions of the specified graph nodes.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKPath/init(graphNodes:radius:)
+
 func NewPathWithGraphNodesRadius(graphNodes []GraphNode, radius float32) Path {
 	instance := getPathClass().Alloc()
 	rv := objc.Send[Path](instance.ID, objc.Sel("initWithGraphNodes:radius:"), graphNodes, radius)
@@ -118,7 +127,9 @@ func NewPathWithGraphNodesRadius(graphNodes []GraphNode, radius float32) Path {
 
 // Initializes a path with the specified array of 2D points.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKPath/initWithPoints:count:radius:cyclical:
+
 func NewPathWithPointsCountRadiusCyclical(points unsafe.Pointer, count Iuintptr, radius float32, cyclical bool) Path {
 	instance := getPathClass().Alloc()
 	rv := objc.Send[Path](instance.ID, objc.Sel("initWithPoints:count:radius:cyclical:"), points, count, radius, cyclical)
@@ -127,112 +138,145 @@ func NewPathWithPointsCountRadiusCyclical(points unsafe.Pointer, count Iuintptr,
 }
 
 
+
 // Creates a path with the specified array of 3D points.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKPath/pathWithFloat3Points:count:radius:cyclical:
+
 func (pc _PathClass) PathWithFloat3PointsCountRadiusCyclical(points unsafe.Pointer, count Iuintptr, radius float32, cyclical bool) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("pathWithFloat3Points:count:radius:cyclical:"), points, count, radius, cyclical)
 	return rv
 }
 
+
 // Creates a path using the positions of the specified graph nodes.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKPath/pathWithGraphNodes:radius:
+
 func (pc _PathClass) PathWithGraphNodesRadius(graphNodes []GraphNode, radius float32) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("pathWithGraphNodes:radius:"), graphNodes, radius)
 	return rv
 }
 
+
 // Creates a path with the specified array of 2D points.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKPath/pathWithPoints:count:radius:cyclical:
+
 func (pc _PathClass) PathWithPointsCountRadiusCyclical(points unsafe.Pointer, count Iuintptr, radius float32, cyclical bool) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("pathWithPoints:count:radius:cyclical:"), points, count, radius, cyclical)
 	return rv
 }
 
+
+
 // Returns the 2D point at the specified index in the path’s list of vertices.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKPath/float2(at:)
+
 func (p_ Path) Float2AtIndex(index uint) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("float2AtIndex:"), index)
 	return rv
 }
 
+
+
 // Returns the 3D point at the specified index in the path’s list of vertices.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKPath/float3(at:)
+
 func (p_ Path) Float3AtIndex(index uint) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("float3AtIndex:"), index)
 	return rv
 }
 
+
+
 // Returns the 2D point at the specified index in the path’s list of vertices.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKPath/point(at:)
+
 func (p_ Path) PointAtIndex(index uint) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("pointAtIndex:"), index)
 	return rv
 }
 
+
 // A Boolean value that determines whether the path loops around on itself (that is, the path’s end point connects to its start point).
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKPath/isCyclical
+
 func (p_ Path) Cyclical() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("cyclical"))
 	return rv
 }
 
 
-// SetCyclical sets the value of the cyclical property.
 // A Boolean value that determines whether the path loops around on itself (that is, the path’s end point connects to its start point).
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKPath/isCyclical
+
 func (p_ Path) SetCyclical(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCyclical:"), value)
 }
 
+
 // The number of vertices in the path.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKPath/numPoints
+
 func (p_ Path) NumPoints() uint {
 	rv := objc.Send[uint](p_.ID, objc.Sel("numPoints"))
 	return rv
 }
 
+
 // The radius of the path.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKPath/radius
+
 func (p_ Path) Radius() float32 {
 	rv := objc.Send[float32](p_.ID, objc.Sel("radius"))
 	return rv
 }
 
 
-// SetRadius sets the value of the radius property.
 // The radius of the path.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKPath/radius
+
 func (p_ Path) SetRadius(value float32) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setRadius:"), value)
 }
 
+
 // A Boolean value that determines whether the path loops around on itself (that is, the path’s end point connects to its start point).
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gameplaykit/gkpath/iscyclical
+
 func (p_ Path) IsCyclical() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isCyclical"))
 	return rv
 }
 
 
-// SetIsCyclical sets the value of the isCyclical property.
 // A Boolean value that determines whether the path loops around on itself (that is, the path’s end point connects to its start point).
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gameplaykit/gkpath/iscyclical
+
 func (p_ Path) SetIsCyclical(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsCyclical:"), value)
 }

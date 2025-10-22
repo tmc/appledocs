@@ -34,8 +34,13 @@ type IAutomaticSpatialAudio interface {
 // A spatial audio experience determined by the system.
 //
 // The Objective-C version of the Swift type.
+
+
+// A spatial audio experience determined by the system.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAAutomaticSpatialAudio
+
 type AutomaticSpatialAudio struct {
 	SpatialAudioExperience
 }

@@ -35,8 +35,13 @@ type IGLKEffectProperty interface {
 // The abstract superclass for configuration information used in GLKit rendering effects.
 //
 // Subclasses of provide one or more Objective-C properties that define how that state can be configured for an effect.
+
+
+// The abstract superclass for configuration information used in GLKit rendering effects.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectProperty
+
 type GLKEffectProperty struct {
 	objectivec.Object
 }

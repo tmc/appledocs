@@ -122,28 +122,9 @@ func typeToInterfaceTypeHeuristic(goType string) string {
 		return goType
 	}
 
-	// Don't convert Foundation geometry struct types
-	geometryStructs := []string{"Point", "Size", "Rect", "Range"}
-	for _, geom := range geometryStructs {
-		if goType == geom {
-			return goType
-		}
-	}
-
-	// Don't convert enum-like types (these are typically uint-based type aliases)
-	// Common patterns for enums: *Position, *Scaling, *Flags, *Options, *Mask, *State, *Style, *Type, *Mode
-	// Also includes typedefs like TimeInterval, ErrorDomain, URLResourceKey
-	enumSuffixes := []string{
-		"Position", "Scaling", "Flags", "Options", "Mask", "State", "Style",
-		"Type", "Mode", "Direction", "Alignment", "Format", "Status", "Kind",
-		"Level", "Priority", "Policy", "Strategy", "Behavior", "Attribute",
-		"Orientation", "Gamut", "Algorithm", "Domain", "Key", "Interval",
-	}
-	for _, suffix := range enumSuffixes {
-		if strings.HasSuffix(goType, suffix) {
-			return goType
-		}
-	}
+	// DEPRECATED HEURISTIC: This fallback function is only used when Generator context
+	// isn't available. The hardcoded lists have been removed - use Generator.TypeToInterfaceType()
+	// instead for data-driven type checking that queries actual Enums, Typedefs, and Classes.
 
 	// If it already starts with I and next char is uppercase, it's already an interface
 	if strings.HasPrefix(goType, "I") && len(goType) > 1 && goType[1] >= 'A' && goType[1] <= 'Z' {

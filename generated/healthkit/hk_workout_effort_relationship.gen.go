@@ -38,8 +38,11 @@ type IHKWorkoutEffortRelationship interface {
 	SetWorkout(value IHKWorkout)
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKWorkoutEffortRelationship
+
 type HKWorkoutEffortRelationship struct {
 	objectivec.Object
 }
@@ -81,47 +84,53 @@ func NewHKWorkoutEffortRelationship() HKWorkoutEffortRelationship {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkouteffortrelationship/activity
+
 func (h_ HKWorkoutEffortRelationship) Activity() HKWorkoutActivity {
 	rv := objc.Send[HKWorkoutActivity](h_.ID, objc.Sel("activity"))
 	return rv
 }
 
 
-// SetActivity sets the value of the activity property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkouteffortrelationship/activity
+
 func (h_ HKWorkoutEffortRelationship) SetActivity(value IHKWorkoutActivity) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setActivity:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkouteffortrelationship/samples
+
 func (h_ HKWorkoutEffortRelationship) Samples() HKSample {
 	rv := objc.Send[HKSample](h_.ID, objc.Sel("samples"))
 	return rv
 }
 
 
-// SetSamples sets the value of the samples property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkouteffortrelationship/samples
+
 func (h_ HKWorkoutEffortRelationship) SetSamples(value IHKSample) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setSamples:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkouteffortrelationship/workout
+
 func (h_ HKWorkoutEffortRelationship) Workout() HKWorkout {
 	rv := objc.Send[HKWorkout](h_.ID, objc.Sel("workout"))
 	return rv
 }
 
 
-// SetWorkout sets the value of the workout property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkouteffortrelationship/workout
+
 func (h_ HKWorkoutEffortRelationship) SetWorkout(value IHKWorkout) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setWorkout:"), value)
 }

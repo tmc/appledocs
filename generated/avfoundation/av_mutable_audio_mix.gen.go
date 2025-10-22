@@ -34,8 +34,13 @@ type IMutableAudioMix interface {
 }
 
 // An object that manages the input parameters for mixing audio tracks.
+
+
+// An object that manages the input parameters for mixing audio tracks.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMutableAudioMix
+
 type MutableAudioMix struct {
 	AudioMix
 }
@@ -81,28 +86,34 @@ func NewMutableAudioMix() MutableAudioMix {
 }
 
 
+
 // Returns a new mutable audio mix.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMutableAudioMix/audioMix
+
 func (mc _MutableAudioMixClass) AudioMix() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("audioMix"))
 	return rv
 }
 
+
 // An array of input parameters for the mix.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMutableAudioMix/inputParameters
+
 func (m_ MutableAudioMix) InputParameters() []AudioMixInputParameters {
 	rv := objc.Send[[]AudioMixInputParameters](m_.ID, objc.Sel("inputParameters"))
 	return rv
 }
 
 
-// SetInputParameters sets the value of the inputParameters property.
 // An array of input parameters for the mix.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMutableAudioMix/inputParameters
+
 func (m_ MutableAudioMix) SetInputParameters(value []AudioMixInputParameters) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID

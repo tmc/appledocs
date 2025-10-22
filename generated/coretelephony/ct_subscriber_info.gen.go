@@ -40,8 +40,13 @@ type ISubscriberInfo interface {
 // An object that provides an array of cellular network subscribers.
 //
 // Use the instances provided by this class to identify individual subscribers by their or properties.
+
+
+// An object that provides an array of cellular network subscribers.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTSubscriberInfo
+
 type SubscriberInfo struct {
 	objectivec.Object
 }
@@ -85,46 +90,55 @@ func NewSubscriberInfo() SubscriberInfo {
 }
 
 
+
 // Returns the cellular network subscribers.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTSubscriberInfo/subscriber()
+
 func (sc _SubscriberInfoClass) Subscriber() Subscriber {
 	rv := objc.Send[Subscriber](objc.ID(sc.class), objc.Sel("subscriber"))
 	return rv
 }
 
+
 // A data object containing authorization information about the subscriber.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctsubscriber/carriertoken
+
 func (s_ SubscriberInfo) CarrierToken() foundation.Data {
 	rv := objc.Send[foundation.Data](s_.ID, objc.Sel("carrierToken"))
 	return rv
 }
 
 
-// SetCarrierToken sets the value of the carrierToken property.
 // A data object containing authorization information about the subscriber.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctsubscriber/carriertoken
+
 func (s_ SubscriberInfo) SetCarrierToken(value foundation.IData) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setCarrierToken:"), value)
 }
 
+
 // An implementation-defined identifier used to correlate this subscriber with information vended by other APIs.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctsubscriber/identifier
+
 func (s_ SubscriberInfo) Identifier() string {
 	rv := objc.Send[string](s_.ID, objc.Sel("identifier"))
 	return rv
 }
 
 
-// SetIdentifier sets the value of the identifier property.
 // An implementation-defined identifier used to correlate this subscriber with information vended by other APIs.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctsubscriber/identifier
+
 func (s_ SubscriberInfo) SetIdentifier(value string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIdentifier:"), objc.String(value))
 }

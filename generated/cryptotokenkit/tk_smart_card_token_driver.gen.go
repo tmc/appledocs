@@ -32,8 +32,13 @@ type ITKSmartCardTokenDriver interface {
 }
 
 // The driver that acts as an entry point for smart card app extensions.
+
+
+// The driver that acts as an entry point for smart card app extensions.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardTokenDriver
+
 type TKSmartCardTokenDriver struct {
 	TKTokenDriver
 }

@@ -40,8 +40,11 @@ type ISplitViewItemAccessoryViewController interface {
 	SetIsHidden(value bool)
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewItemAccessoryViewController
+
 type SplitViewItemAccessoryViewController struct {
 	ViewController
 }
@@ -85,77 +88,91 @@ func NewSplitViewItemAccessoryViewController() SplitViewItemAccessoryViewControl
 }
 
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewItemAccessoryViewController/viewWillDisappear()
+
 func (s_ SplitViewItemAccessoryViewController) ViewWillDisappear() {
 	objc.Send[objc.ID](s_.ID, objc.Sel("viewWillDisappear"))
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitviewitem/bottomalignedaccessoryviewcontrollers
+
 func (s_ SplitViewItemAccessoryViewController) BottomAlignedAccessoryViewControllers() NSSplitViewItemAccessoryViewController {
 	rv := objc.Send[NSSplitViewItemAccessoryViewController](s_.ID, objc.Sel("bottomAlignedAccessoryViewControllers"))
 	return rv
 }
 
 
-// SetBottomAlignedAccessoryViewControllers sets the value of the bottomAlignedAccessoryViewControllers property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitviewitem/bottomalignedaccessoryviewcontrollers
+
 func (s_ SplitViewItemAccessoryViewController) SetBottomAlignedAccessoryViewControllers(value ISplitViewItemAccessoryViewController) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setBottomAlignedAccessoryViewControllers:"), value)
 }
 
+
 // The following methods allow you to add accessory views to the top/bottom of this splitViewItem. See
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitviewitem/topalignedaccessoryviewcontrollers
+
 func (s_ SplitViewItemAccessoryViewController) TopAlignedAccessoryViewControllers() NSSplitViewItemAccessoryViewController {
 	rv := objc.Send[NSSplitViewItemAccessoryViewController](s_.ID, objc.Sel("topAlignedAccessoryViewControllers"))
 	return rv
 }
 
 
-// SetTopAlignedAccessoryViewControllers sets the value of the topAlignedAccessoryViewControllers property.
 // The following methods allow you to add accessory views to the top/bottom of this splitViewItem. See
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitviewitem/topalignedaccessoryviewcontrollers
+
 func (s_ SplitViewItemAccessoryViewController) SetTopAlignedAccessoryViewControllers(value ISplitViewItemAccessoryViewController) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setTopAlignedAccessoryViewControllers:"), value)
 }
 
+
 // Whether or not standard content insets should be applied to the view.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitviewitemaccessoryviewcontroller/automaticallyappliescontentinsets
+
 func (s_ SplitViewItemAccessoryViewController) AutomaticallyAppliesContentInsets() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("automaticallyAppliesContentInsets"))
 	return rv
 }
 
 
-// SetAutomaticallyAppliesContentInsets sets the value of the automaticallyAppliesContentInsets property.
 // Whether or not standard content insets should be applied to the view.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitviewitemaccessoryviewcontroller/automaticallyappliescontentinsets
+
 func (s_ SplitViewItemAccessoryViewController) SetAutomaticallyAppliesContentInsets(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAutomaticallyAppliesContentInsets:"), value)
 }
 
+
 // When set, this property will collapse the accessory view to 0 height (animatable) but not remove it from the window.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitviewitemaccessoryviewcontroller/ishidden
+
 func (s_ SplitViewItemAccessoryViewController) IsHidden() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isHidden"))
 	return rv
 }
 
 
-// SetIsHidden sets the value of the isHidden property.
 // When set, this property will collapse the accessory view to 0 height (animatable) but not remove it from the window.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitviewitemaccessoryviewcontroller/ishidden
+
 func (s_ SplitViewItemAccessoryViewController) SetIsHidden(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsHidden:"), value)
 }

@@ -37,8 +37,13 @@ type INSPredicateRule interface {
 // A rule for use in a rule system that uses a Foundation object to evaluate itself.
 //
 // The class is a specialized subclass of the class (which represents rules to be used by objects). Custom subclasses of use an object to evaluate a rule, rather than requiring custom logic for evaluation as is the case with custom subclasses. For more information about rules and rule systems, read in .
+
+
+// A rule for use in a rule system that uses a Foundation object to evaluate itself.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKNSPredicateRule
+
 type NSPredicateRule struct {
 	Rule
 }
@@ -88,7 +93,9 @@ func NewNSPredicateRule() NSPredicateRule {
 
 // Initializes a rule with the specified predicate.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKNSPredicateRule/init(predicate:)
+
 func NewNSPredicateRuleWithPredicate(predicate foundation.IPredicate) NSPredicateRule {
 	instance := getNSPredicateRuleClass().Alloc()
 	rv := objc.Send[NSPredicateRule](instance.ID, objc.Sel("initWithPredicate:"), predicate)
@@ -97,17 +104,24 @@ func NewNSPredicateRuleWithPredicate(predicate foundation.IPredicate) NSPredicat
 }
 
 
+
+
 // Returns a Boolean value indicating whether the rule’s predicate has been satisfied in the context of the specified rule system.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKNSPredicateRule/evaluatePredicate(in:)
+
 func (p_ NSPredicateRule) EvaluatePredicateWithSystem(system IGKRuleSystem) bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("evaluatePredicateWithSystem:"), system)
 	return rv
 }
 
+
 // A predicate to be tested when evaluating the rule.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKNSPredicateRule/predicate
+
 func (p_ NSPredicateRule) Predicate() foundation.Predicate {
 	rv := objc.Send[foundation.Predicate](p_.ID, objc.Sel("predicate"))
 	return rv

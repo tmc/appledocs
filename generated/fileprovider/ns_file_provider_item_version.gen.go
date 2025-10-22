@@ -38,8 +38,13 @@ type IFileProviderItemVersion interface {
 // The version of the item’s content and its metadata.
 //
 // Each item has a separate version object for its metadata and its content. As a result, the file provider can update an item’s metadata without uploading or downloading a new copy of its content.
+
+
+// The version of the item’s content and its metadata.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderItemVersion
+
 type FileProviderItemVersion struct {
 	objectivec.Object
 }
@@ -87,7 +92,9 @@ func NewFileProviderItemVersion() FileProviderItemVersion {
 
 // Creates a new version object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderItemVersion/init(contentVersion:metadataVersion:)
+
 func NewFileProviderItemVersionWithContentVersionMetadataVersion(contentVersion foundation.IData, metadataVersion foundation.IData) FileProviderItemVersion {
 	instance := getFileProviderItemVersionClass().Alloc()
 	rv := objc.Send[FileProviderItemVersion](instance.ID, objc.Sel("initWithContentVersion:metadataVersion:"), contentVersion, metadataVersion)
@@ -96,32 +103,44 @@ func NewFileProviderItemVersionWithContentVersionMetadataVersion(contentVersion 
 }
 
 
+
 // A Boolean value indicating that this version predates the version returned by the file provider extension.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderItemVersion/beforeFirstSyncComponent
+
 func (fc _FileProviderItemVersionClass) BeforeFirstSyncComponent() foundation.NSData {
 	rv := objc.Send[foundation.NSData](objc.ID(fc.class), objc.Sel("beforeFirstSyncComponent"))
 	return rv
 }
+
 // A Boolean value indicating that this version predates the version returned by the file provider extension.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderItemVersion/beforeFirstSyncComponent
+
 func (f_ FileProviderItemVersion) BeforeFirstSyncComponent() foundation.NSData {
 	rv := objc.Send[foundation.NSData](f_.ID, objc.Sel("beforeFirstSyncComponent"))
 	return rv
 }
 
+
 // An opaque object used to track versions of the item’s content.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderItemVersion/contentVersion
+
 func (f_ FileProviderItemVersion) ContentVersion() foundation.NSData {
 	rv := objc.Send[foundation.NSData](f_.ID, objc.Sel("contentVersion"))
 	return rv
 }
 
+
 // An opaque object used to track versions of the item’s metadata.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderItemVersion/metadataVersion
+
 func (f_ FileProviderItemVersion) MetadataVersion() foundation.NSData {
 	rv := objc.Send[foundation.NSData](f_.ID, objc.Sel("metadataVersion"))
 	return rv

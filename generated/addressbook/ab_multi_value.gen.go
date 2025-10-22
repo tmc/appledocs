@@ -45,8 +45,13 @@ type IABMultiValue interface {
 // An immutable representation of a property that might have multiple values.
 //
 // Each value in a multivalue list must be of the same type, and must have an associated predefined or user-defined label, and unique identifier. The labels, however, need not be unique. For example, you can have multiple Home phone numbers. Each multivalue object may have a primary identifier—used as a default value when a label is not provided. For example, a person record may have multiple addresses with the labels Home and Work, where Work is designated as the primary value. Instances of this class are immutable, see for methods that manipulate the content of a multivalue list. The class is “toll-free bridged” with its procedural C opaque-type counterpart. This means that the type is interchangeable in function or method calls with instances of the class.
+
+
+// An immutable representation of a property that might have multiple values.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABMultiValue-swift.class
+
 type ABMultiValue struct {
 	objectivec.Object
 }
@@ -90,73 +95,109 @@ func NewABMultiValue() ABMultiValue {
 }
 
 
+
+
 // Returns the number of entries in a multivalue list.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABMultiValue/count()
+
 func (a_ ABMultiValue) Count() uint {
 	rv := objc.Send[uint](a_.ID, objc.Sel("count"))
 	return rv
 }
 
+
+
 // Returns the identifier for the given index.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABMultiValue/identifier(at:)
+
 func (a_ ABMultiValue) IdentifierAtIndex(index uint) foundation.String {
 	rv := objc.Send[foundation.String](a_.ID, objc.Sel("identifierAtIndex:"), index)
 	return rv
 }
 
+
+
 // Returns the index for the given identifier.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABMultiValue/index(forIdentifier:)
+
 func (a_ ABMultiValue) IndexForIdentifier(identifier string) uint {
 	rv := objc.Send[uint](a_.ID, objc.Sel("indexForIdentifier:"), objc.String(identifier))
 	return rv
 }
 
+
+
 // Returns the label for the given index.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABMultiValue/label(at:)
+
 func (a_ ABMultiValue) LabelAtIndex(index uint) foundation.String {
 	rv := objc.Send[foundation.String](a_.ID, objc.Sel("labelAtIndex:"), index)
 	return rv
 }
 
+
+
 // Returns the label for the given identifier.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABMultiValue/label(forIdentifier:)
+
 func (a_ ABMultiValue) LabelForIdentifier(identifier string) objc.ID {
 	rv := objc.Send[objc.ID](a_.ID, objc.Sel("labelForIdentifier:"), objc.String(identifier))
 	return rv
 }
 
+
+
 // Returns the identifier for the primary value.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABMultiValue/primaryIdentifier()
+
 func (a_ ABMultiValue) PrimaryIdentifier() foundation.String {
 	rv := objc.Send[foundation.String](a_.ID, objc.Sel("primaryIdentifier"))
 	return rv
 }
 
+
+
 // Returns the type for the values in a multivalue list.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABMultiValue/propertyType()
+
 func (a_ ABMultiValue) PropertyType() ABPropertyType {
 	rv := objc.Send[ABPropertyType](a_.ID, objc.Sel("propertyType"))
 	return rv
 }
 
+
+
 // Returns the value for the given index.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABMultiValue/value(at:)
+
 func (a_ ABMultiValue) ValueAtIndex(index uint) objc.ID {
 	rv := objc.Send[objc.ID](a_.ID, objc.Sel("valueAtIndex:"), index)
 	return rv
 }
 
+
+
 // Returns the value for the given identifier.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABMultiValue/value(forIdentifier:)
+
 func (a_ ABMultiValue) ValueForIdentifier(identifier string) objc.ID {
 	rv := objc.Send[objc.ID](a_.ID, objc.Sel("valueForIdentifier:"), objc.String(identifier))
 	return rv

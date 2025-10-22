@@ -35,8 +35,13 @@ type IViewController interface {
 // The base class to extend when creating a custom user interface for an audio unit.
 //
 // This class doesn’t add any new methods or properties to its superclass, but it does conform to the protocol. A host app can access the view controller by calling the method on the corresponding object.
+
+
+// The base class to extend when creating a custom user interface for an audio unit.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/AUViewController
+
 type ViewController struct {
 	objectivec.Object
 }

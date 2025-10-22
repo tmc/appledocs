@@ -36,8 +36,11 @@ type ISliderAccessory interface {
 	SetIsEnabled(value bool)
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderAccessory
+
 type SliderAccessory struct {
 	objectivec.Object
 }
@@ -79,32 +82,36 @@ func NewSliderAccessory() SliderAccessory {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsslideraccessory/behavior
+
 func (s_ SliderAccessory) Behavior() NSSliderAccessoryBehavior {
 	rv := objc.Send[NSSliderAccessoryBehavior](s_.ID, objc.Sel("behavior"))
 	return rv
 }
 
 
-// SetBehavior sets the value of the behavior property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsslideraccessory/behavior
+
 func (s_ SliderAccessory) SetBehavior(value NSSliderAccessoryBehavior) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setBehavior:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsslideraccessory/isenabled
+
 func (s_ SliderAccessory) IsEnabled() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isEnabled"))
 	return rv
 }
 
 
-// SetIsEnabled sets the value of the isEnabled property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsslideraccessory/isenabled
+
 func (s_ SliderAccessory) SetIsEnabled(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsEnabled:"), value)
 }

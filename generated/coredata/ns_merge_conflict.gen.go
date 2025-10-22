@@ -41,8 +41,13 @@ type IMergeConflict interface {
 // An encapsulation of conflicts that occur during an attempt to save changes in a managed object context.
 //
 // A conflict can occur in two situations: Between the managed object context and its in-memory cached state at the persistent store coordinator layer. Between the cached state at the persistent store coordinator layer and the external store (file, database, and so forth). In this case, the merge conflict has a cached snapshot and a persisted snapshot. The source object is also provided as a convenience, but it is not directly involved in the conflict. Snapshot dictionaries include values for all attributes and to-one relationships, but not to-many relationships. Relationship values are references. To-many relationships must be pulled from the persistent store as needed.
+
+
+// An encapsulation of conflicts that occur during an attempt to save changes in a managed object context.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMergeConflict
+
 type MergeConflict struct {
 	objectivec.Object
 }
@@ -90,7 +95,9 @@ func NewMergeConflict() MergeConflict {
 
 // Initializes a merge conflict.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMergeConflict/init(source:newVersion:oldVersion:cachedSnapshot:persistedSnapshot:)
+
 func NewMergeConflictWithSourceNewVersionOldVersionCachedSnapshotPersistedSnapshot(srcObject IManagedObject, newvers uint, oldvers uint, cachesnap unsafe.Pointer, persnap unsafe.Pointer) MergeConflict {
 	instance := getMergeConflictClass().Alloc()
 	rv := objc.Send[MergeConflict](instance.ID, objc.Sel("initWithSource:newVersion:oldVersion:cachedSnapshot:persistedSnapshot:"), srcObject, newvers, oldvers, cachesnap, persnap)
@@ -99,49 +106,67 @@ func NewMergeConflictWithSourceNewVersionOldVersionCachedSnapshotPersistedSnapsh
 }
 
 
+
 // A dictionary containing the values of the source object held in the persistent store coordinator layer.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMergeConflict/cachedSnapshot
+
 func (m_ MergeConflict) CachedSnapshot() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("cachedSnapshot"))
 	return rv
 }
 
+
 // The new version number for the change.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMergeConflict/newVersionNumber
+
 func (m_ MergeConflict) NewVersionNumber() uint {
 	rv := objc.Send[uint](m_.ID, objc.Sel("newVersionNumber"))
 	return rv
 }
 
+
 // A dictionary containing the values of the source object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMergeConflict/objectSnapshot
+
 func (m_ MergeConflict) ObjectSnapshot() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("objectSnapshot"))
 	return rv
 }
 
+
 // The old version number for the change.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMergeConflict/oldVersionNumber
+
 func (m_ MergeConflict) OldVersionNumber() uint {
 	rv := objc.Send[uint](m_.ID, objc.Sel("oldVersionNumber"))
 	return rv
 }
 
+
 // A dictionary containing the values of the source object held in the persistent store.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMergeConflict/persistedSnapshot
+
 func (m_ MergeConflict) PersistedSnapshot() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("persistedSnapshot"))
 	return rv
 }
 
+
 // The source object for the conflict.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMergeConflict/sourceObject
+
 func (m_ MergeConflict) SourceObject() NSManagedObject {
 	rv := objc.Send[NSManagedObject](m_.ID, objc.Sel("sourceObject"))
 	return rv

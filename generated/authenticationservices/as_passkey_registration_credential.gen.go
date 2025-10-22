@@ -46,8 +46,13 @@ type IPasskeyRegistrationCredential interface {
 // A passkey registration credential.
 //
 // Create a passkey registration credential to provide a response to a passkey registration request from your credential provider extension. Call , passing your passkey registration credential.
+
+
+// A passkey registration credential.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASPasskeyRegistrationCredential
+
 type PasskeyRegistrationCredential struct {
 	objectivec.Object
 }
@@ -91,89 +96,103 @@ func NewPasskeyRegistrationCredential() PasskeyRegistrationCredential {
 }
 
 
+
 // The attestation object for this passkey.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasskeyregistrationcredential/attestationobject
+
 func (p_ PasskeyRegistrationCredential) AttestationObject() foundation.Data {
 	rv := objc.Send[foundation.Data](p_.ID, objc.Sel("attestationObject"))
 	return rv
 }
 
 
-// SetAttestationObject sets the value of the attestationObject property.
 // The attestation object for this passkey.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasskeyregistrationcredential/attestationobject
+
 func (p_ PasskeyRegistrationCredential) SetAttestationObject(value foundation.IData) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAttestationObject:"), value)
 }
 
+
 // A hash of the client data for this credential.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasskeyregistrationcredential/clientdatahash
+
 func (p_ PasskeyRegistrationCredential) ClientDataHash() foundation.Data {
 	rv := objc.Send[foundation.Data](p_.ID, objc.Sel("clientDataHash"))
 	return rv
 }
 
 
-// SetClientDataHash sets the value of the clientDataHash property.
 // A hash of the client data for this credential.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasskeyregistrationcredential/clientdatahash
+
 func (p_ PasskeyRegistrationCredential) SetClientDataHash(value foundation.IData) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setClientDataHash:"), value)
 }
 
+
 // The identifier for this credential.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasskeyregistrationcredential/credentialid
+
 func (p_ PasskeyRegistrationCredential) CredentialID() foundation.Data {
 	rv := objc.Send[foundation.Data](p_.ID, objc.Sel("credentialID"))
 	return rv
 }
 
 
-// SetCredentialID sets the value of the credentialID property.
 // The identifier for this credential.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasskeyregistrationcredential/credentialid
+
 func (p_ PasskeyRegistrationCredential) SetCredentialID(value foundation.IData) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCredentialID:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasskeyregistrationcredential/extensionoutput-2lf9m
+
 func (p_ PasskeyRegistrationCredential) ExtensionOutput() PasskeyRegistrationCredentialExtensionOutput {
 	rv := objc.Send[PasskeyRegistrationCredentialExtensionOutput](p_.ID, objc.Sel("extensionOutput"))
 	return rv
 }
 
 
-// SetExtensionOutput sets the value of the extensionOutput property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasskeyregistrationcredential/extensionoutput-2lf9m
+
 func (p_ PasskeyRegistrationCredential) SetExtensionOutput(value IPasskeyRegistrationCredentialExtensionOutput) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setExtensionOutput:"), value)
 }
 
+
 // The relying party associated with this passkey.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasskeyregistrationcredential/relyingparty
+
 func (p_ PasskeyRegistrationCredential) RelyingParty() string {
 	rv := objc.Send[string](p_.ID, objc.Sel("relyingParty"))
 	return rv
 }
 
 
-// SetRelyingParty sets the value of the relyingParty property.
 // The relying party associated with this passkey.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasskeyregistrationcredential/relyingparty
+
 func (p_ PasskeyRegistrationCredential) SetRelyingParty(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setRelyingParty:"), objc.String(value))
 }

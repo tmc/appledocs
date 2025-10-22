@@ -33,8 +33,13 @@ type ICNChangeHistoryUpdateGroupEvent interface {
 }
 
 // An object that represents an updated group event.
+
+
+// An object that represents an updated group event.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryUpdateGroupEvent
+
 type CNChangeHistoryUpdateGroupEvent struct {
 	CNChangeHistoryEvent
 }
@@ -80,9 +85,12 @@ func NewCNChangeHistoryUpdateGroupEvent() CNChangeHistoryUpdateGroupEvent {
 }
 
 
+
 // The group that the user updated.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryUpdateGroupEvent/group
+
 func (c_ CNChangeHistoryUpdateGroupEvent) Group() CNGroup {
 	rv := objc.Send[CNGroup](c_.ID, objc.Sel("group"))
 	return rv

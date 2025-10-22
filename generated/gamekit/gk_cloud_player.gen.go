@@ -34,8 +34,13 @@ type ICloudPlayer interface {
 }
 
 // The object representing the currently signed-in iCloud user.
+
+
+// The object representing the currently signed-in iCloud user.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKCloudPlayer
+
 type CloudPlayer struct {
 	BasePlayer
 }
@@ -81,20 +86,23 @@ func NewCloudPlayer() CloudPlayer {
 }
 
 
+
 // The delegate for the event handler.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedeventhandler/delegate
+
 func (c_ CloudPlayer) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("delegate"))
 	return rv
 }
 
 
-// SetDelegate sets the value of the delegate property.
 // The delegate for the event handler.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedeventhandler/delegate
+
 func (c_ CloudPlayer) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDelegate:"), value)
 }

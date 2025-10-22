@@ -35,8 +35,13 @@ type ICBIdentityAuthority interface {
 }
 
 // An identity authority is a database that stores information about identities. The class defines one or more identity authorities. You can search this database for identities in conjunction with the class factory methods.
+
+
+// An identity authority is a database that stores information about identities. The class defines one or more identity authorities. You can search this database for identities in conjunction with the class factory methods.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentityAuthority
+
 type CBIdentityAuthority struct {
 	objectivec.Object
 }
@@ -80,41 +85,56 @@ func NewCBIdentityAuthority() CBIdentityAuthority {
 }
 
 
+
 // Returns an identity authority specified by a given Core Services Identity authority object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentityAuthority/identityAuthorityWithCSIdentityAuthority:
+
 func (cc _CBIdentityAuthorityClass) IdentityAuthorityWithCSIdentityAuthority(CSIdentityAuthority unsafe.Pointer) CBIdentityAuthority {
 	rv := objc.Send[CBIdentityAuthority](objc.ID(cc.class), objc.Sel("identityAuthorityWithCSIdentityAuthority:"), CSIdentityAuthority)
 	return rv
 }
 
+
 // Returns the identity authority on the local system.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentityAuthority/local()
+
 func (cc _CBIdentityAuthorityClass) LocalIdentityAuthority() CBIdentityAuthority {
 	rv := objc.Send[CBIdentityAuthority](objc.ID(cc.class), objc.Sel("localIdentityAuthority"))
 	return rv
 }
 
+
 // Returns the identity authority that contains all the identities in bound network directory servers.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentityAuthority/managed()
+
 func (cc _CBIdentityAuthorityClass) ManagedIdentityAuthority() CBIdentityAuthority {
 	rv := objc.Send[CBIdentityAuthority](objc.ID(cc.class), objc.Sel("managedIdentityAuthority"))
 	return rv
 }
 
+
 // Returns an identity authority for use with the Core Services Identity API.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentityAuthority/CSIdentityAuthority
+
 func (c_ CBIdentityAuthority) CSIdentityAuthority() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("CSIdentityAuthority"))
 	return rv
 }
 
+
 // Returns the localized name of the identity authority.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentityAuthority/localizedName
+
 func (c_ CBIdentityAuthority) LocalizedName() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("localizedName"))
 	return rv

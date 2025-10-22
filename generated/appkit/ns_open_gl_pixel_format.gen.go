@@ -38,8 +38,13 @@ type IOpenGLPixelFormat interface {
 // An object that specifies the types of buffers and other attributes of the OpenGL context.
 //
 // To render with OpenGL into an , you must specify the context’s pixel format. Every object wraps a low-level, platform-specific Core OpenGL (CGL) pixel format object. Your application can retrieve the CGL pixel format object by calling the method. For more information on the underling CGL pixel format object, see .
+
+
+// An object that specifies the types of buffers and other attributes of the OpenGL context.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLPixelFormat
+
 type OpenGLPixelFormat struct {
 	objectivec.Object
 }
@@ -83,28 +88,34 @@ func NewOpenGLPixelFormat() OpenGLPixelFormat {
 }
 
 
+
 // The low-level, platform-specific Core OpenGL (CGL) pixel format object represented by the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLPixelFormat/cglPixelFormatObj
+
 func (o_ OpenGLPixelFormat) CGLPixelFormatObj() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("CGLPixelFormatObj"))
 	return rv
 }
 
+
 // The number of virtual screens associated with the OpenGL pixel format.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenglpixelformat/numberofvirtualscreens
+
 func (o_ OpenGLPixelFormat) NumberOfVirtualScreens() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("numberOfVirtualScreens"))
 	return rv
 }
 
 
-// SetNumberOfVirtualScreens sets the value of the numberOfVirtualScreens property.
 // The number of virtual screens associated with the OpenGL pixel format.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenglpixelformat/numberofvirtualscreens
+
 func (o_ OpenGLPixelFormat) SetNumberOfVirtualScreens(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setNumberOfVirtualScreens:"), value)
 }

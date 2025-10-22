@@ -116,7 +116,7 @@ func NewTextCheckingResult() TextCheckingResult {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/addressCheckingResult(range:components:)
 
-func (tc _TextCheckingResultClass) AddressCheckingResultWithRangeComponents(range_ Range, components unsafe.Pointer) TextCheckingResult {
+func (tc _TextCheckingResultClass) AddressCheckingResultWithRangeComponents(range_ IRange, components unsafe.Pointer) TextCheckingResult {
 	rv := objc.Send[TextCheckingResult](objc.ID(tc.class), objc.Sel("addressCheckingResultWithRange:components:"), range_, components)
 	return rv
 }
@@ -127,7 +127,7 @@ func (tc _TextCheckingResultClass) AddressCheckingResultWithRangeComponents(rang
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/phoneNumberCheckingResult(range:phoneNumber:)
 
-func (tc _TextCheckingResultClass) PhoneNumberCheckingResultWithRangePhoneNumber(range_ Range, phoneNumber string) TextCheckingResult {
+func (tc _TextCheckingResultClass) PhoneNumberCheckingResultWithRangePhoneNumber(range_ IRange, phoneNumber string) TextCheckingResult {
 	rv := objc.Send[TextCheckingResult](objc.ID(tc.class), objc.Sel("phoneNumberCheckingResultWithRange:phoneNumber:"), range_, objc.String(phoneNumber))
 	return rv
 }
@@ -149,7 +149,7 @@ func (tc _TextCheckingResultClass) RegularExpressionCheckingResultWithRangesCoun
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/spellCheckingResult(range:)
 
-func (tc _TextCheckingResultClass) SpellCheckingResultWithRange(range_ Range) TextCheckingResult {
+func (tc _TextCheckingResultClass) SpellCheckingResultWithRange(range_ IRange) TextCheckingResult {
 	rv := objc.Send[TextCheckingResult](objc.ID(tc.class), objc.Sel("spellCheckingResultWithRange:"), range_)
 	return rv
 }

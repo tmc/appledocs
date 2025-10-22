@@ -2,12 +2,16 @@
 
 // Package coretransferable provides Go bindings for the CoreTransferable framework.
 //
-// Declare a transfer representation for your model types [Full Topic]
+// Declare a transfer representation for your model types
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to CoreTransferable without requiring cgo.
+
+// Declare a transfer representation for your model types
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreTransferable
+
 package coretransferable
 
 import (

@@ -34,8 +34,13 @@ type IAuthorizationWebBrowserPublicKeyCredentialManager interface {
 }
 
 // A class that you use to request access to a person’s passkeys in a web browser, and that reports on the access status.
+
+
+// A class that you use to request access to a person’s passkeys in a web browser, and that reports on the access status.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationWebBrowserPublicKeyCredentialManager
+
 type AuthorizationWebBrowserPublicKeyCredentialManager struct {
 	objectivec.Object
 }
@@ -79,9 +84,12 @@ func NewAuthorizationWebBrowserPublicKeyCredentialManager() AuthorizationWebBrow
 }
 
 
+
 // Returns a value that indicates whether the browser app has access to a person’s passkeys.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationWebBrowserPublicKeyCredentialManager/authorizationStateForPlatformCredentials
+
 func (a_ AuthorizationWebBrowserPublicKeyCredentialManager) AuthorizationStateForPlatformCredentials() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("authorizationStateForPlatformCredentials"))
 	return rv

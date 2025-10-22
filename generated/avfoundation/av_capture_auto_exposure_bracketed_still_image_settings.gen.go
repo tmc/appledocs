@@ -37,8 +37,13 @@ type ICaptureAutoExposureBracketedStillImageSettings interface {
 // A configuration for defining bracketed photo captures in terms of bias relative to automatic exposure.
 //
 // An instance defines the exposure target bias setting that should be applied to one image in a bracket. An array of objects is passed to to specify the bracketing. The minimum and maximum exposure target bias are properties of the instance supplying data to an instance. If you wish to leave unchanged for this bracketed still image, you may pass the value .
+
+
+// A configuration for defining bracketed photo captures in terms of bias relative to automatic exposure.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureAutoExposureBracketedStillImageSettings
+
 type CaptureAutoExposureBracketedStillImageSettings struct {
 	objectivec.Object
 }
@@ -82,20 +87,23 @@ func NewCaptureAutoExposureBracketedStillImageSettings() CaptureAutoExposureBrac
 }
 
 
+
 // The exposure bias for the auto exposure bracketed settings
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureautoexposurebracketedstillimagesettings/exposuretargetbias
+
 func (c_ CaptureAutoExposureBracketedStillImageSettings) ExposureTargetBias() float32 {
 	rv := objc.Send[float32](c_.ID, objc.Sel("exposureTargetBias"))
 	return rv
 }
 
 
-// SetExposureTargetBias sets the value of the exposureTargetBias property.
 // The exposure bias for the auto exposure bracketed settings
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureautoexposurebracketedstillimagesettings/exposuretargetbias
+
 func (c_ CaptureAutoExposureBracketedStillImageSettings) SetExposureTargetBias(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setExposureTargetBias:"), value)
 }

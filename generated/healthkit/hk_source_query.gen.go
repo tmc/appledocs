@@ -34,8 +34,13 @@ type IHKSourceQuery interface {
 // A query that returns a list of sources, such as apps and devices, that have saved matching queries to the HealthKit store.
 //
 // Source queries return a list of sources that have saved samples matching the specified sample types. Sources can be apps or devices (like Apple Watch or Bluetooth heart-rate monitors). Source queries are immutable: Their properties are set when they are first created, and they can’t change.
+
+
+// A query that returns a list of sources, such as apps and devices, that have saved matching queries to the HealthKit store.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKSourceQuery
+
 type HKSourceQuery struct {
 	HKQuery
 }

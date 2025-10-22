@@ -42,8 +42,13 @@ type ISequence interface {
 // A machine learning collection type that stores a series of strings or integers.
 //
 // A sequence stores a series of integers or strings of any length as the underlying type of an . Some classifier models — typically natural language models, such as an — produce an feature value from their output features.
+
+
+// A machine learning collection type that stores a series of strings or integers.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLSequence
+
 type Sequence struct {
 	objectivec.Object
 }
@@ -87,56 +92,65 @@ func NewSequence() Sequence {
 }
 
 
+
 // An array of 64-bit integers in the sequence.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlsequence/int64values
+
 func (s_ Sequence) Int64Values() foundation.Number {
 	rv := objc.Send[foundation.Number](s_.ID, objc.Sel("int64Values"))
 	return rv
 }
 
 
-// SetInt64Values sets the value of the int64Values property.
 // An array of 64-bit integers in the sequence.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlsequence/int64values
+
 func (s_ Sequence) SetInt64Values(value foundation.INumber) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setInt64Values:"), value)
 }
 
+
 // An array of strings in the sequence.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlsequence/stringvalues
+
 func (s_ Sequence) StringValues() string {
 	rv := objc.Send[string](s_.ID, objc.Sel("stringValues"))
 	return rv
 }
 
 
-// SetStringValues sets the value of the stringValues property.
 // An array of strings in the sequence.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlsequence/stringvalues
+
 func (s_ Sequence) SetStringValues(value string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setStringValues:"), objc.String(value))
 }
 
+
 // The underlying type of the sequence’s elements.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlsequence/type
+
 func (s_ Sequence) Type() FeatureType {
 	rv := objc.Send[FeatureType](s_.ID, objc.Sel("type"))
 	return rv
 }
 
 
-// SetType sets the value of the type property.
 // The underlying type of the sequence’s elements.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlsequence/type
+
 func (s_ Sequence) SetType(value FeatureType) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setType:"), value)
 }

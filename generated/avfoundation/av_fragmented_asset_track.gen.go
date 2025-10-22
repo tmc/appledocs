@@ -34,8 +34,13 @@ type IFragmentedAssetTrack interface {
 // An object that provides the track-level interface to inspect a fragmented asset’s media tracks.
 //
 // This class subclasses . It has no methods or properties of its own.
+
+
+// An object that provides the track-level interface to inspect a fragmented asset’s media tracks.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVFragmentedAssetTrack
+
 type FragmentedAssetTrack struct {
 	AssetTrack
 }

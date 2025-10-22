@@ -34,8 +34,13 @@ type ICaptureMetadataInput interface {
 // A capture input for providing timed metadata to a capture session.
 //
 // This class provides input to an . An instance of can present one and only one connected to an . Provide metadata through the input port by conforming to a and supplying objects in an .
+
+
+// A capture input for providing timed metadata to a capture session.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureMetadataInput
+
 type CaptureMetadataInput struct {
 	CaptureInput
 }

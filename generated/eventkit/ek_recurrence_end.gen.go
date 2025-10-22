@@ -38,8 +38,13 @@ type IEKRecurrenceEnd interface {
 // A class that defines the end of a recurrence rule.
 //
 // The class defines the end of a recurrence rule defined by an object. The recurrence end can be specified by a date (date-based) or by a maximum count of occurrences (count-based). An event that is intended to continue indefinitely should have its set to .
+
+
+// A class that defines the end of a recurrence rule.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKRecurrenceEnd
+
 type EKRecurrenceEnd struct {
 	objectivec.Object
 }
@@ -87,7 +92,9 @@ func NewEKRecurrenceEnd() EKRecurrenceEnd {
 
 // Initializes and returns a date-based recurrence end with a given end date.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKRecurrenceEnd/init(end:)
+
 func NewEKRecurrenceEndWithEndDate(endDate foundation.IDate) EKRecurrenceEnd {
 	rv := objc.Send[EKRecurrenceEnd](objc.ID(getEKRecurrenceEndClass().class), objc.Sel("recurrenceEndWithEndDate:"), endDate)
 	return rv
@@ -97,40 +104,54 @@ func NewEKRecurrenceEndWithEndDate(endDate foundation.IDate) EKRecurrenceEnd {
 
 // Initializes and returns a count-based recurrence end with a given maximum occurrence count.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKRecurrenceEnd/init(occurrenceCount:)
+
 func NewEKRecurrenceEndWithOccurrenceCount(occurrenceCount uint) EKRecurrenceEnd {
 	rv := objc.Send[EKRecurrenceEnd](objc.ID(getEKRecurrenceEndClass().class), objc.Sel("recurrenceEndWithOccurrenceCount:"), occurrenceCount)
 	return rv
 }
 
 
+
 // Initializes and returns a date-based recurrence end with a given end date.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKRecurrenceEnd/init(end:)
+
 func (ec _EKRecurrenceEndClass) RecurrenceEndWithEndDate(endDate foundation.IDate) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ec.class), objc.Sel("recurrenceEndWithEndDate:"), endDate)
 	return rv
 }
 
+
 // Initializes and returns a count-based recurrence end with a given maximum occurrence count.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKRecurrenceEnd/init(occurrenceCount:)
+
 func (ec _EKRecurrenceEndClass) RecurrenceEndWithOccurrenceCount(occurrenceCount uint) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ec.class), objc.Sel("recurrenceEndWithOccurrenceCount:"), occurrenceCount)
 	return rv
 }
 
+
 // The end date of the recurrence end, or if the recurrence end is count-based.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKRecurrenceEnd/endDate
+
 func (e_ EKRecurrenceEnd) EndDate() foundation.NSDate {
 	rv := objc.Send[foundation.NSDate](e_.ID, objc.Sel("endDate"))
 	return rv
 }
 
+
 // The occurrence count of the recurrence end, or if the recurrence end is date-based.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKRecurrenceEnd/occurrenceCount
+
 func (e_ EKRecurrenceEnd) OccurrenceCount() uint {
 	rv := objc.Send[uint](e_.ID, objc.Sel("occurrenceCount"))
 	return rv

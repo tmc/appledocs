@@ -35,8 +35,13 @@ type IDispatchQueue interface {
 // An object that manages the execution of tasks serially or concurrently on your app’s main thread or on a background thread.
 //
 // Dispatch queues are FIFO queues to which your application can submit tasks in the form of block objects. Dispatch queues execute tasks either serially or concurrently. Work submitted to dispatch queues executes on a pool of threads managed by the system. Except for the dispatch queue representing your app’s main thread, the system makes no guarantees about which thread it uses to execute a task. You schedule work items synchronously or asynchronously. When you schedule a work item synchronously, your code waits until that item finishes execution. When you schedule a work item asynchronously, your code continues executing while the work item runs elsewhere.
+
+
+// An object that manages the execution of tasks serially or concurrently on your app’s main thread or on a background thread.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/DispatchQueue
+
 type DispatchQueue struct {
 	objectivec.Object
 }

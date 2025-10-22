@@ -36,8 +36,13 @@ type IFSExtentPacker interface {
 // A type that directs the kernel to map space on disk to a specific file managed by this file system.
 //
 // provide the kernel the logical-to-physical mapping of a given file. An extent describes a physical offset on disk, and a length and a logical offset within the file. Rather than working with extents directly, you use this type’s methods to provide or “pack” extent information, which FSKit then passes to the kernel.
+
+
+// A type that directs the kernel to map space on disk to a specific file managed by this file system.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSExtentPacker
+
 type FSExtentPacker struct {
 	objectivec.Object
 }
@@ -81,9 +86,13 @@ func NewFSExtentPacker() FSExtentPacker {
 }
 
 
+
+
 // Packs a single extent to send to the kernel.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSExtentPacker/packExtent(resource:type:logicalOffset:physicalOffset:length:)
+
 func (f_ FSExtentPacker) PackExtentWithResourceTypeLogicalOffsetPhysicalOffsetLength(resource IFSBlockDeviceResource, type_ FSExtentType, logicalOffset unsafe.Pointer, physicalOffset unsafe.Pointer, length Iuintptr) bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("packExtentWithResource:type:logicalOffset:physicalOffset:length:"), resource, type_, logicalOffset, physicalOffset, length)
 	return rv

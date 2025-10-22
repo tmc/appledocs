@@ -35,8 +35,13 @@ type ICSIndexExtensionRequestHandler interface {
 // An interface that implements an index-maintenance app extension.
 //
 // The class provides the main entry point for an index-maintenance app extension. If any issues arise with your app’s indexes and your app isn’t running, the system loads your app extension and looks for an implementation of this class. It instantiates the class it finds and uses it to perform any index-related maintenance. Define a custom subclass of in your app extension and implement methods of the protocol in it. Use those methods to perform any required updates to your app’s index files. For example, use the method to reindex all items in your app.
+
+
+// An interface that implements an index-maintenance app extension.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSIndexExtensionRequestHandler
+
 type CSIndexExtensionRequestHandler struct {
 	objectivec.Object
 }

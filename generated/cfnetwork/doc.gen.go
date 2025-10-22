@@ -2,12 +2,16 @@
 
 // Package cfnetwork provides Go bindings for the CFNetwork framework.
 //
-// Access network services and handle changes in network configurations. Build on abstractions of network protocols to simplify tasks such as working with BSD sockets, administering HTTP and FTP servers, and managing Bonjour services. [Full Topic]
+// Access network services and handle changes in network configurations. Build on abstractions of network protocols to simplify tasks such as working with BSD sockets, administering HTTP and FTP servers, and managing Bonjour services.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to CFNetwork without requiring cgo.
+
+// Access network services and handle changes in network configurations. Build on abstractions of network protocols to simplify tasks such as working with BSD sockets, administering HTTP and FTP servers, and managing Bonjour services.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork
+
 package cfnetwork
 
 import (

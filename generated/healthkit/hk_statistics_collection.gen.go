@@ -35,8 +35,13 @@ type IHKStatisticsCollection interface {
 // An object that manages a collection of statistics, representing the results calculated over separate time intervals.
 //
 // For more information on statistics objects, see . For more information on calculating statistics over consecutive time intervals, see .
+
+
+// An object that manages a collection of statistics, representing the results calculated over separate time intervals.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKStatisticsCollection
+
 type HKStatisticsCollection struct {
 	objectivec.Object
 }

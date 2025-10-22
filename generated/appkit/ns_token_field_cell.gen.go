@@ -43,8 +43,13 @@ type ITokenFieldCell interface {
 // A text field cell subclass that enables tokenized editing of an array of objects.
 //
 // is a subclass of that provides tokenized editing of an array of objects similar to the address field in the Mail app. The objects may be strings or objects that can be represented as strings. A single token field cell can be presented in an control.
+
+
+// A text field cell subclass that enables tokenized editing of an array of objects.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTokenFieldCell
+
 type TokenFieldCell struct {
 	TextFieldCell
 }
@@ -90,74 +95,86 @@ func NewTokenFieldCell() TokenFieldCell {
 }
 
 
+
 // The token style of the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTokenFieldCell/tokenStyle
+
 func (t_ TokenFieldCell) TokenStyle() TokenStyle {
 	rv := objc.Send[TokenStyle](t_.ID, objc.Sel("tokenStyle"))
 	return rv
 }
 
 
-// SetTokenStyle sets the value of the tokenStyle property.
 // The token style of the receiver.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTokenFieldCell/tokenStyle
+
 func (t_ TokenFieldCell) SetTokenStyle(value TokenStyle) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTokenStyle:"), value)
 }
 
+
 // The receiver’s completion delay to a given delay.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstokenfieldcell/completiondelay
+
 func (t_ TokenFieldCell) CompletionDelay() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("completionDelay"))
 	return rv
 }
 
 
-// SetCompletionDelay sets the value of the completionDelay property.
 // The receiver’s completion delay to a given delay.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstokenfieldcell/completiondelay
+
 func (t_ TokenFieldCell) SetCompletionDelay(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setCompletionDelay:"), value)
 }
 
+
 // The receiver’s delegate.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstokenfieldcell/delegate
+
 func (t_ TokenFieldCell) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("delegate"))
 	return rv
 }
 
 
-// SetDelegate sets the value of the delegate property.
 // The receiver’s delegate.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstokenfieldcell/delegate
+
 func (t_ TokenFieldCell) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDelegate:"), value)
 }
 
+
 // The receiver’s tokenizing character set to a given character set.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstokenfieldcell/tokenizingcharacterset
+
 func (t_ TokenFieldCell) TokenizingCharacterSet() foundation.CharacterSet {
 	rv := objc.Send[foundation.CharacterSet](t_.ID, objc.Sel("tokenizingCharacterSet"))
 	return rv
 }
 
 
-// SetTokenizingCharacterSet sets the value of the tokenizingCharacterSet property.
 // The receiver’s tokenizing character set to a given character set.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstokenfieldcell/tokenizingcharacterset
+
 func (t_ TokenFieldCell) SetTokenizingCharacterSet(value foundation.ICharacterSet) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTokenizingCharacterSet:"), value)
 }

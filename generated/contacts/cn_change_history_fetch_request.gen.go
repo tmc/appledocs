@@ -47,8 +47,13 @@ type ICNChangeHistoryFetchRequest interface {
 // An object that specifies the criteria for fetching change history.
 //
 // The system always returns changes to contacts. The system coalesces changes to remove redundant adds, updates, and deletes. Create and configure a fetch request, then call to process changes.
+
+
+// An object that specifies the criteria for fetching change history.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryFetchRequest
+
 type CNChangeHistoryFetchRequest struct {
 	CNFetchRequest
 }
@@ -94,20 +99,23 @@ func NewCNChangeHistoryFetchRequest() CNChangeHistoryFetchRequest {
 }
 
 
+
 // An array of contact property keys or key descriptors from contact objects to fetch in the returned contacts.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryFetchRequest/additionalContactKeyDescriptors
+
 func (c_ CNChangeHistoryFetchRequest) AdditionalContactKeyDescriptors() []objc.ID {
 	rv := objc.Send[[]objc.ID](c_.ID, objc.Sel("additionalContactKeyDescriptors"))
 	return rv
 }
 
 
-// SetAdditionalContactKeyDescriptors sets the value of the additionalContactKeyDescriptors property.
 // An array of contact property keys or key descriptors from contact objects to fetch in the returned contacts.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryFetchRequest/additionalContactKeyDescriptors
+
 func (c_ CNChangeHistoryFetchRequest) SetAdditionalContactKeyDescriptors(value []objc.ID) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -122,20 +130,23 @@ func (c_ CNChangeHistoryFetchRequest) SetAdditionalContactKeyDescriptors(value [
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAdditionalContactKeyDescriptors:"), nsArray)
 }
 
+
 // An array of strings that identify transaction authors to exclude from the fetch results.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryFetchRequest/excludedTransactionAuthors
+
 func (c_ CNChangeHistoryFetchRequest) ExcludedTransactionAuthors() []string {
 	rv := objc.Send[[]string](c_.ID, objc.Sel("excludedTransactionAuthors"))
 	return rv
 }
 
 
-// SetExcludedTransactionAuthors sets the value of the excludedTransactionAuthors property.
 // An array of strings that identify transaction authors to exclude from the fetch results.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryFetchRequest/excludedTransactionAuthors
+
 func (c_ CNChangeHistoryFetchRequest) SetExcludedTransactionAuthors(value []string) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -150,74 +161,86 @@ func (c_ CNChangeHistoryFetchRequest) SetExcludedTransactionAuthors(value []stri
 	objc.Send[objc.ID](c_.ID, objc.Sel("setExcludedTransactionAuthors:"), nsArray)
 }
 
+
 // A Boolean value that indicates whether the fetch should also return group changes.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryFetchRequest/includeGroupChanges
+
 func (c_ CNChangeHistoryFetchRequest) IncludeGroupChanges() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("includeGroupChanges"))
 	return rv
 }
 
 
-// SetIncludeGroupChanges sets the value of the includeGroupChanges property.
 // A Boolean value that indicates whether the fetch should also return group changes.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryFetchRequest/includeGroupChanges
+
 func (c_ CNChangeHistoryFetchRequest) SetIncludeGroupChanges(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIncludeGroupChanges:"), value)
 }
 
+
 // A Boolean value that indicates whether the fetch should return mutable contacts and groups.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryFetchRequest/mutableObjects
+
 func (c_ CNChangeHistoryFetchRequest) MutableObjects() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("mutableObjects"))
 	return rv
 }
 
 
-// SetMutableObjects sets the value of the mutableObjects property.
 // A Boolean value that indicates whether the fetch should return mutable contacts and groups.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryFetchRequest/mutableObjects
+
 func (c_ CNChangeHistoryFetchRequest) SetMutableObjects(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMutableObjects:"), value)
 }
 
+
 // A Boolean value that indicates whether the fetch should return contact changes as unified contacts.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryFetchRequest/shouldUnifyResults
+
 func (c_ CNChangeHistoryFetchRequest) ShouldUnifyResults() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("shouldUnifyResults"))
 	return rv
 }
 
 
-// SetShouldUnifyResults sets the value of the shouldUnifyResults property.
 // A Boolean value that indicates whether the fetch should return contact changes as unified contacts.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryFetchRequest/shouldUnifyResults
+
 func (c_ CNChangeHistoryFetchRequest) SetShouldUnifyResults(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setShouldUnifyResults:"), value)
 }
 
+
 // An opaque token that indicates a point in history in the user’s Contacts database.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryFetchRequest/startingToken
+
 func (c_ CNChangeHistoryFetchRequest) StartingToken() foundation.NSData {
 	rv := objc.Send[foundation.NSData](c_.ID, objc.Sel("startingToken"))
 	return rv
 }
 
 
-// SetStartingToken sets the value of the startingToken property.
 // An opaque token that indicates a point in history in the user’s Contacts database.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryFetchRequest/startingToken
+
 func (c_ CNChangeHistoryFetchRequest) SetStartingToken(value foundation.IData) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setStartingToken:"), value)
 }

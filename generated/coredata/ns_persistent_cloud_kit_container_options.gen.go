@@ -38,8 +38,13 @@ type IPersistentCloudKitContainerOptions interface {
 // An object that customizes how a store description aligns with a CloudKit database.
 //
 // Use to customize the behavior of an or to create additional store descriptions that sync to other containers. For more information about setting up multiple stores, see .
+
+
+// An object that customizes how a store description aligns with a CloudKit database.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainerOptions
+
 type PersistentCloudKitContainerOptions struct {
 	objectivec.Object
 }
@@ -87,7 +92,9 @@ func NewPersistentCloudKitContainerOptions() PersistentCloudKitContainerOptions 
 
 // Initializes container options using the given CloudKit container identifier.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainerOptions/init(containerIdentifier:)
+
 func NewPersistentCloudKitContainerOptionsWithContainerIdentifier(containerIdentifier string) PersistentCloudKitContainerOptions {
 	instance := getPersistentCloudKitContainerOptionsClass().Alloc()
 	rv := objc.Send[PersistentCloudKitContainerOptions](instance.ID, objc.Sel("initWithContainerIdentifier:"), objc.String(containerIdentifier))
@@ -96,28 +103,34 @@ func NewPersistentCloudKitContainerOptionsWithContainerIdentifier(containerIdent
 }
 
 
+
 // The identifier of the CloudKit container associated with a given store description.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainerOptions/containerIdentifier
+
 func (p_ PersistentCloudKitContainerOptions) ContainerIdentifier() string {
 	rv := objc.Send[string](p_.ID, objc.Sel("containerIdentifier"))
 	return rv
 }
 
+
 // The database scope — public, private, or shared — to use for a specified store in a persistent CloudKit container.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainerOptions/databaseScope-2784h
+
 func (p_ PersistentCloudKitContainerOptions) DatabaseScope() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("databaseScope"))
 	return rv
 }
 
 
-// SetDatabaseScope sets the value of the databaseScope property.
 // The database scope — public, private, or shared — to use for a specified store in a persistent CloudKit container.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainerOptions/databaseScope-2784h
+
 func (p_ PersistentCloudKitContainerOptions) SetDatabaseScope(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDatabaseScope:"), value)
 }

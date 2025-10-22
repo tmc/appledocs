@@ -43,8 +43,13 @@ type ICaptureView interface {
 }
 
 // A view that displays standard user interface controls for capturing media data.
+
+
+// A view that displays standard user interface controls for capturing media data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureView
+
 type CaptureView struct {
 	appkit.View
 }
@@ -90,79 +95,98 @@ func NewCaptureView() CaptureView {
 }
 
 
+
+
 // Sets the view’s capture session.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureView/setSession(_:showVideoPreview:showAudioPreview:)
+
 func (c_ CaptureView) SetSessionShowVideoPreviewShowAudioPreview(session avfoundation.ICaptureSession, showVideoPreview bool, showAudioPreview bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSession:showVideoPreview:showAudioPreview:"), session, showVideoPreview, showAudioPreview)
 }
 
+
 // The style of the capture controls presented by the view.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureView/controlsStyle
+
 func (c_ CaptureView) ControlsStyle() CaptureViewControlsStyle {
 	rv := objc.Send[CaptureViewControlsStyle](c_.ID, objc.Sel("controlsStyle"))
 	return rv
 }
 
 
-// SetControlsStyle sets the value of the controlsStyle property.
 // The style of the capture controls presented by the view.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureView/controlsStyle
+
 func (c_ CaptureView) SetControlsStyle(value CaptureViewControlsStyle) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setControlsStyle:"), value)
 }
 
+
 // The capture view’s delegate object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureView/delegate
+
 func (c_ CaptureView) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](c_.ID, objc.Sel("delegate"))
 	return rv
 }
 
 
-// SetDelegate sets the value of the delegate property.
 // The capture view’s delegate object.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureView/delegate
+
 func (c_ CaptureView) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDelegate:"), value)
 }
 
+
 // The capture file output used to record media data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureView/fileOutput
+
 func (c_ CaptureView) FileOutput() avfoundation.CaptureFileOutput {
 	rv := objc.Send[avfoundation.CaptureFileOutput](c_.ID, objc.Sel("fileOutput"))
 	return rv
 }
 
+
 // The view’s associated capture session.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureView/session
+
 func (c_ CaptureView) Session() avfoundation.CaptureSession {
 	rv := objc.Send[avfoundation.CaptureSession](c_.ID, objc.Sel("session"))
 	return rv
 }
 
+
 // A string value that defines how the capture view displays video within its bounds.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureView/videoGravity
+
 func (c_ CaptureView) VideoGravity() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("videoGravity"))
 	return rv
 }
 
 
-// SetVideoGravity sets the value of the videoGravity property.
 // A string value that defines how the capture view displays video within its bounds.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureView/videoGravity
+
 func (c_ CaptureView) SetVideoGravity(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setVideoGravity:"), value)
 }

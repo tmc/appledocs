@@ -43,8 +43,13 @@ type IPlayerLooper interface {
 // An object that loops media content using a queue player.
 //
 // You can manually implement looping playback in your app using , but provides a much simpler interface to loop a single . You create a player looper by passing it a reference to your and a template and the looper automatically manages the looping playback of this content (see example).
+
+
+// An object that loops media content using a queue player.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerLooper
+
 type PlayerLooper struct {
 	objectivec.Object
 }
@@ -88,74 +93,86 @@ func NewPlayerLooper() PlayerLooper {
 }
 
 
+
 // An error that describes the reason looping failed.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerlooper/error
+
 func (p_ PlayerLooper) Error() Error {
 	rv := objc.Send[Error](p_.ID, objc.Sel("error"))
 	return rv
 }
 
 
-// SetError sets the value of the error property.
 // An error that describes the reason looping failed.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerlooper/error
+
 func (p_ PlayerLooper) SetError(value IError) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setError:"), value)
 }
 
+
 // The number of times the object played the media.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerlooper/loopcount
+
 func (p_ PlayerLooper) LoopCount() int {
 	rv := objc.Send[int](p_.ID, objc.Sel("loopCount"))
 	return rv
 }
 
 
-// SetLoopCount sets the value of the loopCount property.
 // The number of times the object played the media.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerlooper/loopcount
+
 func (p_ PlayerLooper) SetLoopCount(value int) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setLoopCount:"), value)
 }
 
+
 // An array containing replicas of the template player item used to accomplish the looping.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerlooper/loopingplayeritems
+
 func (p_ PlayerLooper) LoopingPlayerItems() AVPlayerItem {
 	rv := objc.Send[AVPlayerItem](p_.ID, objc.Sel("loopingPlayerItems"))
 	return rv
 }
 
 
-// SetLoopingPlayerItems sets the value of the loopingPlayerItems property.
 // An array containing replicas of the template player item used to accomplish the looping.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerlooper/loopingplayeritems
+
 func (p_ PlayerLooper) SetLoopingPlayerItems(value IAVPlayerItem) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setLoopingPlayerItems:"), value)
 }
 
+
 // A status that indicates the object’s ability to loop playback.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerlooper/status-swift.property
+
 func (p_ PlayerLooper) Status() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("status"))
 	return rv
 }
 
 
-// SetStatus sets the value of the status property.
 // A status that indicates the object’s ability to loop playback.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerlooper/status-swift.property
+
 func (p_ PlayerLooper) SetStatus(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setStatus:"), value)
 }

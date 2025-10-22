@@ -2,12 +2,16 @@
 
 // Package automaticassessmentconfiguration provides Go bindings for the AutomaticAssessmentConfiguration framework.
 //
-// Enter single-app mode and prevent students from accessing specific system features while taking an exam. [Full Topic]
+// Enter single-app mode and prevent students from accessing specific system features while taking an exam.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to AutomaticAssessmentConfiguration without requiring cgo.
+
+// Enter single-app mode and prevent students from accessing specific system features while taking an exam.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration
+
 package automaticassessmentconfiguration
 
 import (

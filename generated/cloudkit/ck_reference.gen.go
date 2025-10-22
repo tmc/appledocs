@@ -41,8 +41,13 @@ type ICKReference interface {
 // A relationship between two records in a record zone.
 //
 // A object creates a many-to-one relationship between records in your database. Each reference object stores information about the one record that is the target of the reference. You then save the reference object in the fields of one or more records to create a link from those records to the target. Both records must be in the same zone of the same database. References create a stronger relationship between records than just saving the ID of a record as a string. Specifically, you can use references to create an ownership model between two records. When the reference object’s action is , the target of the reference—that is, the record in the reference’s property—becomes the owner of the source record. Deleting the target (owner) record deletes all its source records. The deletion of any owned records can trigger further deletions if those records are the owners of other records. If a record contains two or more objects with an action of , CloudKit deletes the record when it deletes any of the objects it references. To save multiple records that contain references between them, save the target records first or save all the records in one batch operation using .
+
+
+// A relationship between two records in a record zone.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/Reference
+
 type CKReference struct {
 	objectivec.Object
 }
@@ -90,7 +95,9 @@ func NewCKReference() CKReference {
 
 // Creates a reference object that points to the specified record object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/Reference/init(record:action:)
+
 func NewCKReferenceWithRecordAction(record ICKRecord, action ICKReferenceAction) CKReference {
 	instance := getCKReferenceClass().Alloc()
 	rv := objc.Send[CKReference](instance.ID, objc.Sel("initWithRecord:action:"), record, action)
@@ -102,7 +109,9 @@ func NewCKReferenceWithRecordAction(record ICKRecord, action ICKReferenceAction)
 
 // Creates a reference object that points to the record with the specified ID.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/Reference/init(recordID:action:)
+
 func NewCKReferenceWithRecordIDAction(recordID ICKRecordID, action ICKReferenceAction) CKReference {
 	instance := getCKReferenceClass().Alloc()
 	rv := objc.Send[CKReference](instance.ID, objc.Sel("initWithRecordID:action:"), recordID, action)
@@ -111,54 +120,66 @@ func NewCKReferenceWithRecordIDAction(recordID ICKRecordID, action ICKReferenceA
 }
 
 
+
 // The ownership behavior for the records.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/Reference/action-swift.property
+
 func (c_ CKReference) ReferenceAction() CKReferenceAction {
 	rv := objc.Send[CKReferenceAction](c_.ID, objc.Sel("referenceAction"))
 	return rv
 }
 
+
 // The ID of the referenced record.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/Reference/recordID
+
 func (c_ CKReference) RecordID() CKRecordID {
 	rv := objc.Send[CKRecordID](c_.ID, objc.Sel("recordID"))
 	return rv
 }
 
+
 // The ownership behavior for the records.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/reference/action-swift.property
+
 func (c_ CKReference) Action() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("action"))
 	return rv
 }
 
 
-// SetAction sets the value of the action property.
 // The ownership behavior for the records.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/reference/action-swift.property
+
 func (c_ CKReference) SetAction(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAction:"), value)
 }
 
+
 // The server change token for the record.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/recordchangetag
+
 func (c_ CKReference) RecordChangeTag() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("recordChangeTag"))
 	return rv
 }
 
 
-// SetRecordChangeTag sets the value of the recordChangeTag property.
 // The server change token for the record.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/recordchangetag
+
 func (c_ CKReference) SetRecordChangeTag(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordChangeTag:"), objc.String(value))
 }

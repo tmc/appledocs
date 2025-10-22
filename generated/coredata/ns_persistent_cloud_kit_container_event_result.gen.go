@@ -34,8 +34,13 @@ type IPersistentCloudKitContainerEventResult interface {
 }
 
 // The result of a request to fetch persistent CloudKit container events.
+
+
+// The result of a request to fetch persistent CloudKit container events.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainerEventResult
+
 type PersistentCloudKitContainerEventResult struct {
 	PersistentStoreResult
 }
@@ -81,17 +86,23 @@ func NewPersistentCloudKitContainerEventResult() PersistentCloudKitContainerEven
 }
 
 
+
 // The result of the persistent CloudKit container event request, which the result type determines.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainerEventResult/result
+
 func (p_ PersistentCloudKitContainerEventResult) Result() objc.ID {
 	rv := objc.Send[objc.ID](p_.ID, objc.Sel("result"))
 	return rv
 }
 
+
 // The type of result that the CloudKit container event fetch request returns.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainerEventResult/resultType-swift.property
+
 func (p_ PersistentCloudKitContainerEventResult) ResultType() PersistentCloudKitContainerEventResultType {
 	rv := objc.Send[PersistentCloudKitContainerEventResultType](p_.ID, objc.Sel("resultType"))
 	return rv

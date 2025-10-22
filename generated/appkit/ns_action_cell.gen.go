@@ -50,8 +50,13 @@ type IActionCell interface {
 // An active area inside a control.
 //
 // An does three things: it displays text or an icon; it provides the target object and action method used by its object; and it handles mouse (cursor) tracking by properly highlighting its area and sending action messages to its target based on cursor movement. The of an is the view in which the receiver was last drawn.
+
+
+// An active area inside a control.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSActionCell
+
 type ActionCell struct {
 	Cell
 }
@@ -97,146 +102,170 @@ func NewActionCell() ActionCell {
 }
 
 
+
 // Returns the receiver’s action-message selector.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSActionCell/action
+
 func (a_ ActionCell) Action() objc.SEL {
 	rv := objc.Send[objc.SEL](a_.ID, objc.Sel("action"))
 	return rv
 }
 
 
-// SetAction sets the value of the action property.
 // Returns the receiver’s action-message selector.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSActionCell/action
+
 func (a_ ActionCell) SetAction(value objc.SEL) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAction:"), value)
 }
 
+
 // Returns the receiver’s tag.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSActionCell/tag
+
 func (a_ ActionCell) Tag() int {
 	rv := objc.Send[int](a_.ID, objc.Sel("tag"))
 	return rv
 }
 
 
-// SetTag sets the value of the tag property.
 // Returns the receiver’s tag.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSActionCell/tag
+
 func (a_ ActionCell) SetTag(value int) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setTag:"), value)
 }
 
+
 // Returns the receiver’s target object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSActionCell/target
+
 func (a_ ActionCell) Target() objc.ID {
 	rv := objc.Send[objc.ID](a_.ID, objc.Sel("target"))
 	return rv
 }
 
 
-// SetTarget sets the value of the target property.
 // Returns the receiver’s target object.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSActionCell/target
+
 func (a_ ActionCell) SetTarget(value objc.ID) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setTarget:"), value)
 }
 
+
 // The view associated with the cell.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/controlview
+
 func (a_ ActionCell) ControlView() NSView {
 	rv := objc.Send[NSView](a_.ID, objc.Sel("controlView"))
 	return rv
 }
 
 
-// SetControlView sets the value of the controlView property.
 // The view associated with the cell.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/controlview
+
 func (a_ ActionCell) SetControlView(value IView) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setControlView:"), value)
 }
 
+
 // The cell’s value as a single-precision floating-point number.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/floatvalue
+
 func (a_ ActionCell) FloatValue() float32 {
 	rv := objc.Send[float32](a_.ID, objc.Sel("floatValue"))
 	return rv
 }
 
 
-// SetFloatValue sets the value of the floatValue property.
 // The cell’s value as a single-precision floating-point number.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/floatvalue
+
 func (a_ ActionCell) SetFloatValue(value float32) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setFloatValue:"), value)
 }
 
+
 // The cell’s value as an integer.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/intvalue
+
 func (a_ ActionCell) IntValue() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("intValue"))
 	return rv
 }
 
 
-// SetIntValue sets the value of the intValue property.
 // The cell’s value as an integer.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/intvalue
+
 func (a_ ActionCell) SetIntValue(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIntValue:"), value)
 }
 
+
 // The cell’s value as an integer value.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/integervalue
+
 func (a_ ActionCell) IntegerValue() int {
 	rv := objc.Send[int](a_.ID, objc.Sel("integerValue"))
 	return rv
 }
 
 
-// SetIntegerValue sets the value of the integerValue property.
 // The cell’s value as an integer value.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/integervalue
+
 func (a_ ActionCell) SetIntegerValue(value int) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIntegerValue:"), value)
 }
 
+
 // The cell’s value as a string.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/stringvalue
+
 func (a_ ActionCell) StringValue() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("stringValue"))
 	return rv
 }
 
 
-// SetStringValue sets the value of the stringValue property.
 // The cell’s value as a string.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/stringvalue
+
 func (a_ ActionCell) SetStringValue(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setStringValue:"), objc.String(value))
 }

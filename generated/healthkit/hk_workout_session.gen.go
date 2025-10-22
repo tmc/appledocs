@@ -56,8 +56,13 @@ type IHKWorkoutSession interface {
 // A session that tracks a person’s workout.
 //
 // The session fine-tunes Apple Watch’s sensors for the specified activity. All workout sessions generate high-frequency heart rate samples; however, an outdoor cycling activity generates accurate location data, while an indoor cycling activity doesn’t. Collecting heart rate data on iPhone or iPad requires pairing with an external heart rate sensor because these devices don’t have one. iPhone and iPad can collect various workout metrics, but the system may generate different samples than those specifically requested by an app. You can modify the default types of data collected during a workout. After someone saves a workout, you can access and display summary statistics or chart metrics over time. iPhone typically locks during workouts. For privacy reasons, health data usually isn’t accessible while the device is locked. However, the system can prompt someone to provide your app access to workout data even when their device is locked. You can then display Live Activities on the Lock Screen, providing health metrics without requiring the person to unlock their phone. Siri support extends to the Lock Screen, allowing people to start, pause, resume, or cancel workouts hands-free. You can integrate Siri intents into your apps to enable this functionality. Apple Watch runs one workout session at a time. If a second workout starts while your workout is running, your object receives an error, and your session ends.
+
+
+// A session that tracks a person’s workout.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKWorkoutSession
+
 type HKWorkoutSession struct {
 	objectivec.Object
 }
@@ -101,172 +106,215 @@ func NewHKWorkoutSession() HKWorkoutSession {
 }
 
 
+
+
 // Ends the workout session.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKWorkoutSession/end()
+
 func (h_ HKWorkoutSession) End() {
 	objc.Send[objc.ID](h_.ID, objc.Sel("end"))
 }
 
+
+
 // Ends the current workout activity.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKWorkoutSession/endCurrentActivity(on:)
+
 func (h_ HKWorkoutSession) EndCurrentActivityOnDate(date foundation.IDate) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("endCurrentActivityOnDate:"), date)
 }
 
+
+
 // Pauses the workout session.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKWorkoutSession/pause()
+
 func (h_ HKWorkoutSession) Pause() {
 	objc.Send[objc.ID](h_.ID, objc.Sel("pause"))
 }
 
+
+
 // Resumes the workout session.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKWorkoutSession/resume()
+
 func (h_ HKWorkoutSession) Resume() {
 	objc.Send[objc.ID](h_.ID, objc.Sel("resume"))
 }
 
+
 // A value that indicates whether the workout session occurred indoors or outdoors.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKWorkoutSession/locationType
+
 func (h_ HKWorkoutSession) LocationType() HKWorkoutSessionLocationType {
 	rv := objc.Send[HKWorkoutSessionLocationType](h_.ID, objc.Sel("locationType"))
 	return rv
 }
 
+
 // The workout session’s current state.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKWorkoutSession/state
+
 func (h_ HKWorkoutSession) State() HKWorkoutSessionState {
 	rv := objc.Send[HKWorkoutSessionState](h_.ID, objc.Sel("state"))
 	return rv
 }
 
+
 // The workout activity performed during this session.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutsession/activitytype
+
 func (h_ HKWorkoutSession) ActivityType() HKWorkoutActivityType {
 	rv := objc.Send[HKWorkoutActivityType](h_.ID, objc.Sel("activityType"))
 	return rv
 }
 
 
-// SetActivityType sets the value of the activityType property.
 // The workout activity performed during this session.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutsession/activitytype
+
 func (h_ HKWorkoutSession) SetActivityType(value HKWorkoutActivityType) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setActivityType:"), value)
 }
 
+
 // The current workout activity.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutsession/currentactivity
+
 func (h_ HKWorkoutSession) CurrentActivity() HKWorkoutActivity {
 	rv := objc.Send[HKWorkoutActivity](h_.ID, objc.Sel("currentActivity"))
 	return rv
 }
 
 
-// SetCurrentActivity sets the value of the currentActivity property.
 // The current workout activity.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutsession/currentactivity
+
 func (h_ HKWorkoutSession) SetCurrentActivity(value IHKWorkoutActivity) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setCurrentActivity:"), value)
 }
 
+
 // The workout session’s delegate.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutsession/delegate
+
 func (h_ HKWorkoutSession) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("delegate"))
 	return rv
 }
 
 
-// SetDelegate sets the value of the delegate property.
 // The workout session’s delegate.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutsession/delegate
+
 func (h_ HKWorkoutSession) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setDelegate:"), value)
 }
 
+
 // The ending time and date for this workout session.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutsession/enddate
+
 func (h_ HKWorkoutSession) EndDate() foundation.Date {
 	rv := objc.Send[foundation.Date](h_.ID, objc.Sel("endDate"))
 	return rv
 }
 
 
-// SetEndDate sets the value of the endDate property.
 // The ending time and date for this workout session.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutsession/enddate
+
 func (h_ HKWorkoutSession) SetEndDate(value foundation.IDate) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setEndDate:"), value)
 }
 
+
 // The starting time and date for this workout session.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutsession/startdate
+
 func (h_ HKWorkoutSession) StartDate() foundation.Date {
 	rv := objc.Send[foundation.Date](h_.ID, objc.Sel("startDate"))
 	return rv
 }
 
 
-// SetStartDate sets the value of the startDate property.
 // The starting time and date for this workout session.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutsession/startdate
+
 func (h_ HKWorkoutSession) SetStartDate(value foundation.IDate) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setStartDate:"), value)
 }
 
+
 // A value that indicates whether the session is a primary session or a mirrored session.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutsession/type
+
 func (h_ HKWorkoutSession) Type() HKWorkoutSessionType {
 	rv := objc.Send[HKWorkoutSessionType](h_.ID, objc.Sel("type"))
 	return rv
 }
 
 
-// SetType sets the value of the type property.
 // A value that indicates whether the session is a primary session or a mirrored session.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutsession/type
+
 func (h_ HKWorkoutSession) SetType(value HKWorkoutSessionType) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setType:"), value)
 }
 
+
 // The configuration object that describes this workout.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutsession/workoutconfiguration
+
 func (h_ HKWorkoutSession) WorkoutConfiguration() HKWorkoutConfiguration {
 	rv := objc.Send[HKWorkoutConfiguration](h_.ID, objc.Sel("workoutConfiguration"))
 	return rv
 }
 
 
-// SetWorkoutConfiguration sets the value of the workoutConfiguration property.
 // The configuration object that describes this workout.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutsession/workoutconfiguration
+
 func (h_ HKWorkoutSession) SetWorkoutConfiguration(value IHKWorkoutConfiguration) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setWorkoutConfiguration:"), value)
 }

@@ -30,22 +30,22 @@ type _DataClass struct {
 // An interface definition for the [Data] class.
 type IData interface {
 	objectivec.IObject
-	Base64EncodedDataWithOptions(options DataBase64EncodingOptions) Data
-	Base64EncodedStringWithOptions(options DataBase64EncodingOptions) String
+	Base64EncodedDataWithOptions(options IDataBase64EncodingOptions) Data
+	Base64EncodedStringWithOptions(options IDataBase64EncodingOptions) String
 	Base64Encoding() String
-	CompressedDataUsingAlgorithmError(algorithm DataCompressionAlgorithm, error_ IError) unsafe.Pointer
-	DecompressedDataUsingAlgorithmError(algorithm DataCompressionAlgorithm, error_ IError) unsafe.Pointer
+	CompressedDataUsingAlgorithmError(algorithm IDataCompressionAlgorithm, error_ IError) unsafe.Pointer
+	DecompressedDataUsingAlgorithmError(algorithm IDataCompressionAlgorithm, error_ IError) unsafe.Pointer
 	EnumerateByteRangesUsingBlock(block unsafe.Pointer)
 	GetBytes(buffer unsafe.Pointer)
 	GetBytesLength(buffer unsafe.Pointer, length uint)
-	GetBytesRange(buffer unsafe.Pointer, range_ Range)
+	GetBytesRange(buffer unsafe.Pointer, range_ IRange)
 	IsEqualToData(other IData) bool
-	RangeOfDataOptionsRange(dataToFind IData, mask DataSearchOptions, searchRange Range) Range
-	SubdataWithRange(range_ Range) Data
+	RangeOfDataOptionsRange(dataToFind IData, mask IDataSearchOptions, searchRange IRange) Range
+	SubdataWithRange(range_ IRange) Data
 	WriteToURLAtomically(url IURL, atomically bool) bool
-	WriteToURLOptionsError(url IURL, writeOptionsMask DataWritingOptions, errorPtr IError) bool
+	WriteToURLOptionsError(url IURL, writeOptionsMask IDataWritingOptions, errorPtr IError) bool
 	WriteToFileAtomically(path string, useAuxiliaryFile bool) bool
-	WriteToFileOptionsError(path string, writeOptionsMask DataWritingOptions, errorPtr IError) bool
+	WriteToFileOptionsError(path string, writeOptionsMask IDataWritingOptions, errorPtr IError) bool
 	Bytes() unsafe.Pointer
 	Description() string
 	Length() uint
@@ -119,7 +119,7 @@ func NewData() Data {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/init(base64EncodedData:options:)
 
-func NewDataWithBase64EncodedDataOptions(base64Data IData, options DataBase64DecodingOptions) Data {
+func NewDataWithBase64EncodedDataOptions(base64Data IData, options IDataBase64DecodingOptions) Data {
 	instance := getDataClass().Alloc()
 	rv := objc.Send[Data](instance.ID, objc.Sel("initWithBase64EncodedData:options:"), base64Data, options)
 	rv.Autorelease()
@@ -133,7 +133,7 @@ func NewDataWithBase64EncodedDataOptions(base64Data IData, options DataBase64Dec
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/init(base64EncodedString:options:)
 
-func NewDataWithBase64EncodedStringOptions(base64String string, options DataBase64DecodingOptions) Data {
+func NewDataWithBase64EncodedStringOptions(base64String string, options IDataBase64DecodingOptions) Data {
 	instance := getDataClass().Alloc()
 	rv := objc.Send[Data](instance.ID, objc.Sel("initWithBase64EncodedString:options:"), objc.String(base64String), options)
 	rv.Autorelease()
@@ -231,7 +231,7 @@ func NewDataWithContentsOfFile(path string) Data {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/init(contentsOfFile:options:)
 
-func NewDataWithContentsOfFileOptionsError(path string, readOptionsMask DataReadingOptions, errorPtr IError) Data {
+func NewDataWithContentsOfFileOptionsError(path string, readOptionsMask IDataReadingOptions, errorPtr IError) Data {
 	instance := getDataClass().Alloc()
 	rv := objc.Send[Data](instance.ID, objc.Sel("initWithContentsOfFile:options:error:"), objc.String(path), readOptionsMask, errorPtr)
 	rv.Autorelease()
@@ -273,7 +273,7 @@ func NewDataWithContentsOfURL(url IURL) Data {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/init(contentsOfURL:options:)-5abi3
 
-func NewDataWithContentsOfURLOptionsError(url IURL, readOptionsMask DataReadingOptions, errorPtr IError) Data {
+func NewDataWithContentsOfURLOptionsError(url IURL, readOptionsMask IDataReadingOptions, errorPtr IError) Data {
 	instance := getDataClass().Alloc()
 	rv := objc.Send[Data](instance.ID, objc.Sel("initWithContentsOfURL:options:error:"), url, readOptionsMask, errorPtr)
 	rv.Autorelease()
@@ -356,7 +356,7 @@ func (dc _DataClass) DataWithContentsOfFile(path string) unsafe.Pointer {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/dataWithContentsOfFile:options:error:
 
-func (dc _DataClass) DataWithContentsOfFileOptionsError(path string, readOptionsMask DataReadingOptions, errorPtr IError) unsafe.Pointer {
+func (dc _DataClass) DataWithContentsOfFileOptionsError(path string, readOptionsMask IDataReadingOptions, errorPtr IError) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("dataWithContentsOfFile:options:error:"), objc.String(path), readOptionsMask, errorPtr)
 	return rv
 }
@@ -400,7 +400,7 @@ func (dc _DataClass) DataWithContentsOfURL(url IURL) unsafe.Pointer {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/init(contentsOfURL:options:)-95rht
 
-func (dc _DataClass) DataWithContentsOfURLOptionsError(url IURL, readOptionsMask DataReadingOptions, errorPtr IError) unsafe.Pointer {
+func (dc _DataClass) DataWithContentsOfURLOptionsError(url IURL, readOptionsMask IDataReadingOptions, errorPtr IError) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("dataWithContentsOfURL:options:error:"), url, readOptionsMask, errorPtr)
 	return rv
 }
@@ -412,7 +412,7 @@ func (dc _DataClass) DataWithContentsOfURLOptionsError(url IURL, readOptionsMask
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/base64EncodedData(options:)
 
-func (d_ Data) Base64EncodedDataWithOptions(options DataBase64EncodingOptions) Data {
+func (d_ Data) Base64EncodedDataWithOptions(options IDataBase64EncodingOptions) Data {
 	rv := objc.Send[Data](d_.ID, objc.Sel("base64EncodedDataWithOptions:"), options)
 	return rv
 }
@@ -424,7 +424,7 @@ func (d_ Data) Base64EncodedDataWithOptions(options DataBase64EncodingOptions) D
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/base64EncodedString(options:)
 
-func (d_ Data) Base64EncodedStringWithOptions(options DataBase64EncodingOptions) String {
+func (d_ Data) Base64EncodedStringWithOptions(options IDataBase64EncodingOptions) String {
 	rv := objc.Send[String](d_.ID, objc.Sel("base64EncodedStringWithOptions:"), options)
 	return rv
 }
@@ -448,7 +448,7 @@ func (d_ Data) Base64Encoding() String {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/compressed(using:)
 
-func (d_ Data) CompressedDataUsingAlgorithmError(algorithm DataCompressionAlgorithm, error_ IError) unsafe.Pointer {
+func (d_ Data) CompressedDataUsingAlgorithmError(algorithm IDataCompressionAlgorithm, error_ IError) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("compressedDataUsingAlgorithm:error:"), algorithm, error_)
 	return rv
 }
@@ -460,7 +460,7 @@ func (d_ Data) CompressedDataUsingAlgorithmError(algorithm DataCompressionAlgori
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/decompressed(using:)
 
-func (d_ Data) DecompressedDataUsingAlgorithmError(algorithm DataCompressionAlgorithm, error_ IError) unsafe.Pointer {
+func (d_ Data) DecompressedDataUsingAlgorithmError(algorithm IDataCompressionAlgorithm, error_ IError) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("decompressedDataUsingAlgorithm:error:"), algorithm, error_)
 	return rv
 }
@@ -505,7 +505,7 @@ func (d_ Data) GetBytesLength(buffer unsafe.Pointer, length uint) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/getBytes(_:range:)
 
-func (d_ Data) GetBytesRange(buffer unsafe.Pointer, range_ Range) {
+func (d_ Data) GetBytesRange(buffer unsafe.Pointer, range_ IRange) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("getBytes:range:"), buffer, range_)
 }
 
@@ -528,7 +528,7 @@ func (d_ Data) IsEqualToData(other IData) bool {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/range(of:options:in:)
 
-func (d_ Data) RangeOfDataOptionsRange(dataToFind IData, mask DataSearchOptions, searchRange Range) Range {
+func (d_ Data) RangeOfDataOptionsRange(dataToFind IData, mask IDataSearchOptions, searchRange IRange) Range {
 	rv := objc.Send[Range](d_.ID, objc.Sel("rangeOfData:options:range:"), dataToFind, mask, searchRange)
 	return rv
 }
@@ -540,7 +540,7 @@ func (d_ Data) RangeOfDataOptionsRange(dataToFind IData, mask DataSearchOptions,
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/subdata(with:)
 
-func (d_ Data) SubdataWithRange(range_ Range) Data {
+func (d_ Data) SubdataWithRange(range_ IRange) Data {
 	rv := objc.Send[Data](d_.ID, objc.Sel("subdataWithRange:"), range_)
 	return rv
 }
@@ -564,7 +564,7 @@ func (d_ Data) WriteToURLAtomically(url IURL, atomically bool) bool {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/write(to:options:)
 
-func (d_ Data) WriteToURLOptionsError(url IURL, writeOptionsMask DataWritingOptions, errorPtr IError) bool {
+func (d_ Data) WriteToURLOptionsError(url IURL, writeOptionsMask IDataWritingOptions, errorPtr IError) bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("writeToURL:options:error:"), url, writeOptionsMask, errorPtr)
 	return rv
 }
@@ -588,7 +588,7 @@ func (d_ Data) WriteToFileAtomically(path string, useAuxiliaryFile bool) bool {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/write(toFile:options:)
 
-func (d_ Data) WriteToFileOptionsError(path string, writeOptionsMask DataWritingOptions, errorPtr IError) bool {
+func (d_ Data) WriteToFileOptionsError(path string, writeOptionsMask IDataWritingOptions, errorPtr IError) bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("writeToFile:options:error:"), objc.String(path), writeOptionsMask, errorPtr)
 	return rv
 }

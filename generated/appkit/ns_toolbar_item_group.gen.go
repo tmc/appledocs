@@ -42,8 +42,13 @@ type IToolbarItemGroup interface {
 // A group of subitems in a toolbar item.
 //
 // An represents a collection set of subitems in a toolbar that the system displays based on available space and settings that you specify. The system uses the views and labels of the subitems, but the parent’s attributes take precedence. This differs from other objects because they’re attached — the user drags them together as a single item rather than separately. If a subitem of the group has an action set on it, the group uses that action instead of its own when the user clicks or taps on that item. The system prefers the subitem’s action if it exists, otherwise it uses the group’s action. To configure an instance of , you first create the individual toolbar subitems: Then, you put them in a grouped item: In this configuration, you get two grouped items, and two labels. If you set a label on the parent item, you get two grouped items with one shared label: If instead you set a view on the parent item, you get two labels with one shared view:
+
+
+// A group of subitems in a toolbar item.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItemGroup
+
 type ToolbarItemGroup struct {
 	ToolbarItem
 }
@@ -89,74 +94,86 @@ func NewToolbarItemGroup() ToolbarItemGroup {
 }
 
 
+
 // The index value for the most recently selected subitem of a grouped toolbar item.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItemGroup/selectedIndex
+
 func (t_ ToolbarItemGroup) SelectedIndex() int {
 	rv := objc.Send[int](t_.ID, objc.Sel("selectedIndex"))
 	return rv
 }
 
 
-// SetSelectedIndex sets the value of the selectedIndex property.
 // The index value for the most recently selected subitem of a grouped toolbar item.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItemGroup/selectedIndex
+
 func (t_ ToolbarItemGroup) SetSelectedIndex(value int) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectedIndex:"), value)
 }
 
+
 // A value that represents how a toolbar displays a grouped toolbar item.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritemgroup/controlrepresentation-swift.property
+
 func (t_ ToolbarItemGroup) ControlRepresentation() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("controlRepresentation"))
 	return rv
 }
 
 
-// SetControlRepresentation sets the value of the controlRepresentation property.
 // A value that represents how a toolbar displays a grouped toolbar item.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritemgroup/controlrepresentation-swift.property
+
 func (t_ ToolbarItemGroup) SetControlRepresentation(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setControlRepresentation:"), value)
 }
 
+
 // The selection mode of the grouped toolbar item.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritemgroup/selectionmode-swift.property
+
 func (t_ ToolbarItemGroup) SelectionMode() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("selectionMode"))
 	return rv
 }
 
 
-// SetSelectionMode sets the value of the selectionMode property.
 // The selection mode of the grouped toolbar item.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritemgroup/selectionmode-swift.property
+
 func (t_ ToolbarItemGroup) SetSelectionMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectionMode:"), value)
 }
 
+
 // The subitems of the grouped toolbar item.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritemgroup/subitems
+
 func (t_ ToolbarItemGroup) Subitems() NSToolbarItem {
 	rv := objc.Send[NSToolbarItem](t_.ID, objc.Sel("subitems"))
 	return rv
 }
 
 
-// SetSubitems sets the value of the subitems property.
 // The subitems of the grouped toolbar item.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritemgroup/subitems
+
 func (t_ ToolbarItemGroup) SetSubitems(value IToolbarItem) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSubitems:"), value)
 }

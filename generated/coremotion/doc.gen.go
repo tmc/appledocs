@@ -2,12 +2,16 @@
 
 // Package coremotion provides Go bindings for the CoreMotion framework.
 //
-// Process accelerometer, gyroscope, pedometer, and environment-related events. [Full Topic]
+// Process accelerometer, gyroscope, pedometer, and environment-related events.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to CoreMotion without requiring cgo.
+
+// Process accelerometer, gyroscope, pedometer, and environment-related events.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion
+
 package coremotion
 
 import (

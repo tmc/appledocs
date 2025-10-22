@@ -32,8 +32,11 @@ type IrowCount interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIPDF417CodeDescriptor/rowCount-c.ivar
+
 type rowCount struct {
 	objectivec.Object
 }

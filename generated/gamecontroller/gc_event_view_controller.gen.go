@@ -37,8 +37,13 @@ type IGCEventViewController interface {
 // A view controller that delivers input either from the responder chain to views, or from game controllers to profiles.
 //
 // On systems, such as tvOS, where the player uses the game controller to both navigate the system interface and play your game, use a object as the root view controller to selectively receive input directly from the game controller. You can’t simultaneously process input through the responder chain and Game Controller input elements. By default the system delivers input events to your app using the responder chain. To get the input values through the game controller objects, set a object as the root view controller. The view controller delivers the input for its views and their subviews to the game controller’s profile. To switch back to the responder chain, set the view controller’s property to .
+
+
+// A view controller that delivers input either from the responder chain to views, or from game controllers to profiles.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCEventViewController
+
 type GCEventViewController struct {
 	appkit.ViewController
 }
@@ -84,20 +89,23 @@ func NewGCEventViewController() GCEventViewController {
 }
 
 
+
 // A Boolean value that indicates whether the system delivers game controller input to profile objects or to views using the responder chain.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCEventViewController/controllerUserInteractionEnabled
+
 func (g_ GCEventViewController) ControllerUserInteractionEnabled() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("controllerUserInteractionEnabled"))
 	return rv
 }
 
 
-// SetControllerUserInteractionEnabled sets the value of the controllerUserInteractionEnabled property.
 // A Boolean value that indicates whether the system delivers game controller input to profile objects or to views using the responder chain.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCEventViewController/controllerUserInteractionEnabled
+
 func (g_ GCEventViewController) SetControllerUserInteractionEnabled(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setControllerUserInteractionEnabled:"), value)
 }

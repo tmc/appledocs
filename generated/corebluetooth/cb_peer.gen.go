@@ -37,8 +37,13 @@ type ICBPeer interface {
 // An object that represents a remote device.
 //
 // The class is an abstract base class that defines common behavior for objects representing remote devices. You typically don’t create instances of either or its concrete subclasses. Instead, the system creates them for you during the process of peer discovery. Your app takes the role of either a central (by creating an instance of ) or a peripheral (by creating an instance of ), and interacts through the manager with remote devices in the opposite role. During the process of peer discovery, where a central device scans for peripherals advertising services, the system creates objects from the concrete subclasses of to represent discovered remote devices. The concrete subclasses of are and .
+
+
+// An object that represents a remote device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBPeer
+
 type CBPeer struct {
 	objectivec.Object
 }
@@ -82,9 +87,12 @@ func NewCBPeer() CBPeer {
 }
 
 
+
 // The UUID associated with the peer.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBPeer/identifier
+
 func (c_ CBPeer) Identifier() foundation.UUID {
 	rv := objc.Send[foundation.UUID](c_.ID, objc.Sel("identifier"))
 	return rv

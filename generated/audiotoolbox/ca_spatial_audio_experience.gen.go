@@ -35,8 +35,13 @@ type ISpatialAudioExperience interface {
 // Configure an audio stream for spatial computing.
 //
 // The Objective-C version of the Swift type.
+
+
+// Configure an audio stream for spatial computing.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CASpatialAudioExperience
+
 type SpatialAudioExperience struct {
 	objectivec.Object
 }

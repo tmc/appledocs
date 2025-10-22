@@ -43,8 +43,13 @@ type IMonteCarloStrategist interface {
 // An AI that chooses moves in turn-based games using a strategy.
 //
 // To use this strategy, you indicate whether a possible states of your game model represents a win, and the strategist randomly searches possible game model states in order to find moves that will likely result in winning the game. You provide information about your game model to the strategist by implementing the , , and protocols in your custom classes, then use the strategist’s methods to find optimal moves.
+
+
+// An AI that chooses moves in turn-based games using a strategy.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKMonteCarloStrategist
+
 type MonteCarloStrategist struct {
 	objectivec.Object
 }
@@ -88,74 +93,86 @@ func NewMonteCarloStrategist() MonteCarloStrategist {
 }
 
 
+
 // The maximum number of game model states the strategist will examine when searching for a move.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKMonteCarloStrategist/budget
+
 func (m_ MonteCarloStrategist) Budget() uint {
 	rv := objc.Send[uint](m_.ID, objc.Sel("budget"))
 	return rv
 }
 
 
-// SetBudget sets the value of the budget property.
 // The maximum number of game model states the strategist will examine when searching for a move.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKMonteCarloStrategist/budget
+
 func (m_ MonteCarloStrategist) SetBudget(value uint) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBudget:"), value)
 }
 
+
 // A value that influences whether the strategist searches more broadly or more deeply for winning game model states.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKMonteCarloStrategist/explorationParameter
+
 func (m_ MonteCarloStrategist) ExplorationParameter() uint {
 	rv := objc.Send[uint](m_.ID, objc.Sel("explorationParameter"))
 	return rv
 }
 
 
-// SetExplorationParameter sets the value of the explorationParameter property.
 // A value that influences whether the strategist searches more broadly or more deeply for winning game model states.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKMonteCarloStrategist/explorationParameter
+
 func (m_ MonteCarloStrategist) SetExplorationParameter(value uint) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setExplorationParameter:"), value)
 }
 
+
 // The model representing the current state of the game.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gameplaykit/gkstrategist/gamemodel
+
 func (m_ MonteCarloStrategist) GameModel() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("gameModel"))
 	return rv
 }
 
 
-// SetGameModel sets the value of the gameModel property.
 // The model representing the current state of the game.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gameplaykit/gkstrategist/gamemodel
+
 func (m_ MonteCarloStrategist) SetGameModel(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setGameModel:"), value)
 }
 
+
 // A randomizer object to be used when the strategist randomly selects a move.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gameplaykit/gkstrategist/randomsource
+
 func (m_ MonteCarloStrategist) RandomSource() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("randomSource"))
 	return rv
 }
 
 
-// SetRandomSource sets the value of the randomSource property.
 // A randomizer object to be used when the strategist randomly selects a move.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gameplaykit/gkstrategist/randomsource
+
 func (m_ MonteCarloStrategist) SetRandomSource(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRandomSource:"), value)
 }

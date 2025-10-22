@@ -39,8 +39,13 @@ type IGCExtendedGamepadSnapshot interface {
 // A recording of all of the values provided by a object.
 //
 // To create a gamepad snapshot, call the method on a object. The class is a subclass of the class, so you use the parent class’s properties to read the individual element values. The snapshot is stored in a device independent format. To get the flattened data representation of the snapshot data, read the property.
+
+
+// A recording of all of the values provided by a object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCExtendedGamepadSnapshot
+
 type GCExtendedGamepadSnapshot struct {
 	GCExtendedGamepad
 }
@@ -86,34 +91,41 @@ func NewGCExtendedGamepadSnapshot() GCExtendedGamepadSnapshot {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccurrentextendedgamepadsnapshotdataversion
+
 func (g_ GCExtendedGamepadSnapshot) GCCurrentExtendedGamepadSnapshotDataVersion() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("GCCurrentExtendedGamepadSnapshotDataVersion"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccurrentmicrogamepadsnapshotdataversion
+
 func (g_ GCExtendedGamepadSnapshot) GCCurrentMicroGamepadSnapshotDataVersion() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("GCCurrentMicroGamepadSnapshotDataVersion"))
 	return rv
 }
 
+
 // Flattens a snapshot into an archivable memory representation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepadsnapshot/snapshotdata
+
 func (g_ GCExtendedGamepadSnapshot) SnapshotData() foundation.Data {
 	rv := objc.Send[foundation.Data](g_.ID, objc.Sel("snapshotData"))
 	return rv
 }
 
 
-// SetSnapshotData sets the value of the snapshotData property.
 // Flattens a snapshot into an archivable memory representation.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepadsnapshot/snapshotdata
+
 func (g_ GCExtendedGamepadSnapshot) SetSnapshotData(value foundation.IData) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setSnapshotData:"), value)
 }

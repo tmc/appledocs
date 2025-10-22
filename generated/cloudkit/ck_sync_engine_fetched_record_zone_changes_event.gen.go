@@ -32,8 +32,13 @@ type ICKSyncEngineFetchedRecordZoneChangesEvent interface {
 }
 
 // An object that provides information about fetched record zone changes.
+
+
+// An object that provides information about fetched record zone changes.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineFetchedRecordZoneChangesEvent
+
 type CKSyncEngineFetchedRecordZoneChangesEvent struct {
 	CKSyncEngineEvent
 }

@@ -34,8 +34,13 @@ type IGPUComputeDevice interface {
 }
 
 // An object that represents a GPU compute device.
+
+
+// An object that represents a GPU compute device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLGPUComputeDevice
+
 type GPUComputeDevice struct {
 	objectivec.Object
 }
@@ -79,9 +84,12 @@ func NewGPUComputeDevice() GPUComputeDevice {
 }
 
 
+
 // The device that represents the underlying metal device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLGPUComputeDevice/metalDevice
+
 func (g_ GPUComputeDevice) MetalDevice() objc.ID {
 	rv := objc.Send[objc.ID](g_.ID, objc.Sel("metalDevice"))
 	return rv

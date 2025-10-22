@@ -44,8 +44,13 @@ type IAuthorizationController interface {
 // A controller that manages authorization requests that a provider creates.
 //
 // Create authorization requests for the credential types your app supports, such as for Sign in with Apple, or for password credentials. Create an authorization controller using , supplying the authorization requests you create. Set the authorization controller’s to receive responses when requests succeed or fail, and set its so that the authorization controller can present UI. Call to present inline UI to request credentials, or or to request credentials using modal UI. calls your delegate’s methods when the request completes. Set the content type of text fields in your app’s login UI so that can detect when to offer AutoFill suggestions. Use as the content type for user name text fields, and for password fields.
+
+
+// A controller that manages authorization requests that a provider creates.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationController
+
 type AuthorizationController struct {
 	objectivec.Object
 }
@@ -89,27 +94,34 @@ func NewAuthorizationController() AuthorizationController {
 }
 
 
+
+
 // Cancels any active authorization requests.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationController/cancel()
+
 func (a_ AuthorizationController) Cancel() {
 	objc.Send[objc.ID](a_.ID, objc.Sel("cancel"))
 }
 
+
 // An array of custom authorization methods for the user to choose.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationController/customAuthorizationMethods
+
 func (a_ AuthorizationController) CustomAuthorizationMethods() []string {
 	rv := objc.Send[[]string](a_.ID, objc.Sel("customAuthorizationMethods"))
 	return rv
 }
 
 
-// SetCustomAuthorizationMethods sets the value of the customAuthorizationMethods property.
 // An array of custom authorization methods for the user to choose.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationController/customAuthorizationMethods
+
 func (a_ AuthorizationController) SetCustomAuthorizationMethods(value []string) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -124,56 +136,65 @@ func (a_ AuthorizationController) SetCustomAuthorizationMethods(value []string) 
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCustomAuthorizationMethods:"), nsArray)
 }
 
+
 // A delegate that provides a display context in which the system can present an authorization interface to the user.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationController/presentationContextProvider
+
 func (a_ AuthorizationController) PresentationContextProvider() objc.ID {
 	rv := objc.Send[objc.ID](a_.ID, objc.Sel("presentationContextProvider"))
 	return rv
 }
 
 
-// SetPresentationContextProvider sets the value of the presentationContextProvider property.
 // A delegate that provides a display context in which the system can present an authorization interface to the user.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationController/presentationContextProvider
+
 func (a_ AuthorizationController) SetPresentationContextProvider(value objc.ID) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPresentationContextProvider:"), value)
 }
 
+
 // The authorization requests that the controller manages.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationcontroller/authorizationrequests
+
 func (a_ AuthorizationController) AuthorizationRequests() ASAuthorizationRequest {
 	rv := objc.Send[ASAuthorizationRequest](a_.ID, objc.Sel("authorizationRequests"))
 	return rv
 }
 
 
-// SetAuthorizationRequests sets the value of the authorizationRequests property.
 // The authorization requests that the controller manages.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationcontroller/authorizationrequests
+
 func (a_ AuthorizationController) SetAuthorizationRequests(value IASAuthorizationRequest) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAuthorizationRequests:"), value)
 }
 
+
 // A delegate that the authorization controller informs about the success or failure of an authorization attempt.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationcontroller/delegate
+
 func (a_ AuthorizationController) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("delegate"))
 	return rv
 }
 
 
-// SetDelegate sets the value of the delegate property.
 // A delegate that the authorization controller informs about the success or failure of an authorization attempt.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationcontroller/delegate
+
 func (a_ AuthorizationController) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDelegate:"), value)
 }

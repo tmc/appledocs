@@ -37,8 +37,13 @@ type ICKLocationSortDescriptor interface {
 // An object for sorting records that contain location data.
 //
 // You can add a location sort descriptor to your queries when searching for records. At creation time, you must provide the sort descriptor with a key that has a object as its value. The sort descriptor uses the value of that key to perform the sort. CloudKit computes distance by drawing a direct line between the two locations that follows the curvature of the Earth. Distances don’t account for altitude changes between the two locations.
+
+
+// An object for sorting records that contain location data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKLocationSortDescriptor
+
 type CKLocationSortDescriptor struct {
 	foundation.SortDescriptor
 }
@@ -88,7 +93,9 @@ func NewCKLocationSortDescriptor() CKLocationSortDescriptor {
 
 // Creates a location sort descriptor from a serialized instance.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKLocationSortDescriptor/init(coder:)
+
 func NewCKLocationSortDescriptorWithCoder(aDecoder foundation.ICoder) CKLocationSortDescriptor {
 	instance := getCKLocationSortDescriptorClass().Alloc()
 	rv := objc.Send[CKLocationSortDescriptor](instance.ID, objc.Sel("initWithCoder:"), aDecoder)
@@ -100,7 +107,9 @@ func NewCKLocationSortDescriptorWithCoder(aDecoder foundation.ICoder) CKLocation
 
 // Creates a location sort descriptor using the specified key and relative location.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKLocationSortDescriptor/init(key:relativeLocation:)
+
 func NewCKLocationSortDescriptorWithKeyRelativeLocation(key string, relativeLocation corelocation.ILocation) CKLocationSortDescriptor {
 	instance := getCKLocationSortDescriptorClass().Alloc()
 	rv := objc.Send[CKLocationSortDescriptor](instance.ID, objc.Sel("initWithKey:relativeLocation:"), objc.String(key), relativeLocation)
@@ -109,9 +118,12 @@ func NewCKLocationSortDescriptorWithKeyRelativeLocation(key string, relativeLoca
 }
 
 
+
 // The reference location for sorting records.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKLocationSortDescriptor/relativeLocation
+
 func (c_ CKLocationSortDescriptor) RelativeLocation() corelocation.Location {
 	rv := objc.Send[corelocation.Location](c_.ID, objc.Sel("relativeLocation"))
 	return rv

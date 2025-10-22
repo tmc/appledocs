@@ -38,8 +38,13 @@ type ICaptureEvent interface {
 // An object that describes a user interaction with a system hardware button.
 //
 // Inspect a capture event’s to determine whether the event begins, ends, or is in a canceled state.
+
+
+// An object that describes a user interaction with a system hardware button.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureEvent
+
 type CaptureEvent struct {
 	objectivec.Object
 }
@@ -83,25 +88,35 @@ func NewCaptureEvent() CaptureEvent {
 }
 
 
+
+
 // Plays the specified capture sound through AirPods.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureEvent/play(_:)
+
 func (c_ CaptureEvent) PlaySound(sound IAVCaptureEventSound) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("playSound:"), sound)
 	return rv
 }
 
+
 // The current phase of a capture event.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureEvent/phase
+
 func (c_ CaptureEvent) Phase() CaptureEventPhase {
 	rv := objc.Send[CaptureEventPhase](c_.ID, objc.Sel("phase"))
 	return rv
 }
 
+
 // A Boolean value that indicates whether you must play a sound manually.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureEvent/shouldPlaySound
+
 func (c_ CaptureEvent) ShouldPlaySound() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("shouldPlaySound"))
 	return rv

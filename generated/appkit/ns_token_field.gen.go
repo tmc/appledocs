@@ -43,8 +43,13 @@ type ITokenField interface {
 // A text field that converts text into visually distinct tokens.
 //
 // Use a token field when you want typed text to be transformed into “tokens”, which are visually distinct elements in the text field interface. For example, you might use a token field in a mail app to display email addresses for individual users. The distinct appearance of tokens makes them easy for users to distinguish from surrounding text. uses an to implement much of the control’s functionality. provides cover methods for most methods of , which invoke the corresponding cell method.
+
+
+// A text field that converts text into visually distinct tokens.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTokenField
+
 type TokenField struct {
 	TextField
 }
@@ -90,89 +95,107 @@ func NewTokenField() TokenField {
 }
 
 
+
 // Returns the default completion delay.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTokenField/defaultCompletionDelay
+
 func (tc _TokenFieldClass) DefaultCompletionDelay() float64 {
 	rv := objc.Send[float64](objc.ID(tc.class), objc.Sel("defaultCompletionDelay"))
 	return rv
 }
+
 // Returns the default completion delay.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTokenField/defaultCompletionDelay
+
 func (t_ TokenField) DefaultCompletionDelay() float64 {
 	rv := objc.Send[float64](t_.ID, objc.Sel("defaultCompletionDelay"))
 	return rv
 }
 
+
 // The recevier’s tokenizing character set to .
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTokenField/tokenizingCharacterSet
+
 func (t_ TokenField) TokenizingCharacterSet() foundation.CharacterSet {
 	rv := objc.Send[foundation.CharacterSet](t_.ID, objc.Sel("tokenizingCharacterSet"))
 	return rv
 }
 
 
-// SetTokenizingCharacterSet sets the value of the tokenizingCharacterSet property.
 // The recevier’s tokenizing character set to .
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTokenField/tokenizingCharacterSet
+
 func (t_ TokenField) SetTokenizingCharacterSet(value foundation.ICharacterSet) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTokenizingCharacterSet:"), value)
 }
 
+
 // The receiver’s completion delay.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstokenfield/completiondelay
+
 func (t_ TokenField) CompletionDelay() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("completionDelay"))
 	return rv
 }
 
 
-// SetCompletionDelay sets the value of the completionDelay property.
 // The receiver’s completion delay.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstokenfield/completiondelay
+
 func (t_ TokenField) SetCompletionDelay(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setCompletionDelay:"), value)
 }
 
+
 // Returns the token field’s delegate.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstokenfield/delegate
+
 func (t_ TokenField) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("delegate"))
 	return rv
 }
 
 
-// SetDelegate sets the value of the delegate property.
 // Returns the token field’s delegate.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstokenfield/delegate
+
 func (t_ TokenField) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDelegate:"), value)
 }
 
+
 // The token style of the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstokenfield/tokenstyle-swift.property
+
 func (t_ TokenField) TokenStyle() TokenStyle {
 	rv := objc.Send[TokenStyle](t_.ID, objc.Sel("tokenStyle"))
 	return rv
 }
 
 
-// SetTokenStyle sets the value of the tokenStyle property.
 // The token style of the receiver.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstokenfield/tokenstyle-swift.property
+
 func (t_ TokenField) SetTokenStyle(value TokenStyle) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTokenStyle:"), value)
 }

@@ -40,8 +40,13 @@ type ICSPerson interface {
 // An object that represents a person in the context of search results.
 //
 // A object represents a person in the context of search results. You can create a object when you have a display name and a contact handle of some kind, such as an email address or phone number. If you create a object to represent a specific contact, you can use the value of the contact’s identifier property for the person object’s property. Using the same value lets you avoid using names or phone numbers to look up the contact that’s associated with a person.
+
+
+// An object that represents a person in the context of search results.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSPerson
+
 type CSPerson struct {
 	objectivec.Object
 }
@@ -89,7 +94,9 @@ func NewCSPerson() CSPerson {
 
 // Returns a new object initialized with the specified display name and contact attributes.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSPerson/init(displayName:handles:handleIdentifier:)
+
 func NewCSPersonWithDisplayNameHandlesHandleIdentifier(displayName string, handles []string, handleIdentifier string) CSPerson {
 	instance := getCSPersonClass().Alloc()
 	rv := objc.Send[CSPerson](instance.ID, objc.Sel("initWithDisplayName:handles:handleIdentifier:"), objc.String(displayName), handles, objc.String(handleIdentifier))
@@ -98,43 +105,55 @@ func NewCSPersonWithDisplayNameHandlesHandleIdentifier(displayName string, handl
 }
 
 
+
 // The identifier for the contact associated with the person.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSPerson/contactIdentifier
+
 func (c_ CSPerson) ContactIdentifier() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("contactIdentifier"))
 	return rv
 }
 
 
-// SetContactIdentifier sets the value of the contactIdentifier property.
 // The identifier for the contact associated with the person.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSPerson/contactIdentifier
+
 func (c_ CSPerson) SetContactIdentifier(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setContactIdentifier:"), objc.String(value))
 }
 
+
 // A display name for the person.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSPerson/displayName
+
 func (c_ CSPerson) DisplayName() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("displayName"))
 	return rv
 }
 
+
 // A key that identifies the type of contact property represented by the person object’s handle.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSPerson/handleIdentifier
+
 func (c_ CSPerson) HandleIdentifier() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("handleIdentifier"))
 	return rv
 }
 
+
 // An array of contact handles related to the person.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSPerson/handles
+
 func (c_ CSPerson) Handles() []string {
 	rv := objc.Send[[]string](c_.ID, objc.Sel("handles"))
 	return rv

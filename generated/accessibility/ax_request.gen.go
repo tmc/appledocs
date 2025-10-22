@@ -33,8 +33,11 @@ type IAXRequest interface {
 	Technology() AXTechnology
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AccessibilityRequest
+
 type AXRequest struct {
 	objectivec.Object
 }
@@ -76,21 +79,27 @@ func NewAXRequest() AXRequest {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AccessibilityRequest/current
+
 func (ac _AXRequestClass) CurrentRequest() AXRequest {
 	rv := objc.Send[AXRequest](objc.ID(ac.class), objc.Sel("currentRequest"))
 	return rv
 }
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AccessibilityRequest/current
+
 func (a_ AXRequest) CurrentRequest() AXRequest {
 	rv := objc.Send[AXRequest](a_.ID, objc.Sel("currentRequest"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AccessibilityRequest/technology
+
 func (a_ AXRequest) Technology() AXTechnology {
 	rv := objc.Send[AXTechnology](a_.ID, objc.Sel("technology"))
 	return rv

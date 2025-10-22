@@ -40,8 +40,13 @@ type IAudioSessionRouteDescription interface {
 // An object that describes the input and output ports associated with a session’s audio route.
 //
 // You don’t create instances of this class yourself. Instead, you retrieve the current audio route from your app’s object.
+
+
+// An object that describes the input and output ports associated with a session’s audio route.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSessionRouteDescription
+
 type AudioSessionRouteDescription struct {
 	objectivec.Object
 }
@@ -85,46 +90,55 @@ func NewAudioSessionRouteDescription() AudioSessionRouteDescription {
 }
 
 
+
 // An array of audio input port descriptions.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSessionRouteDescription/inputs
+
 func (a_ AudioSessionRouteDescription) Inputs() []AudioSessionPortDescription {
 	rv := objc.Send[[]AudioSessionPortDescription](a_.ID, objc.Sel("inputs"))
 	return rv
 }
 
+
 // A description of the current audio route’s input and output ports.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosession/currentroute
+
 func (a_ AudioSessionRouteDescription) CurrentRoute() AVAudioSessionRouteDescription {
 	rv := objc.Send[AVAudioSessionRouteDescription](a_.ID, objc.Sel("currentRoute"))
 	return rv
 }
 
 
-// SetCurrentRoute sets the value of the currentRoute property.
 // A description of the current audio route’s input and output ports.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosession/currentroute
+
 func (a_ AudioSessionRouteDescription) SetCurrentRoute(value IAVAudioSessionRouteDescription) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCurrentRoute:"), value)
 }
 
+
 // An array of audio output port descriptions.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionroutedescription/outputs
+
 func (a_ AudioSessionRouteDescription) Outputs() AVAudioSessionPortDescription {
 	rv := objc.Send[AVAudioSessionPortDescription](a_.ID, objc.Sel("outputs"))
 	return rv
 }
 
 
-// SetOutputs sets the value of the outputs property.
 // An array of audio output port descriptions.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionroutedescription/outputs
+
 func (a_ AudioSessionRouteDescription) SetOutputs(value IAVAudioSessionPortDescription) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setOutputs:"), value)
 }

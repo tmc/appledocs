@@ -35,8 +35,13 @@ type IAnchoringStrategy interface {
 // The center of a head-tracked spatial experience.
 //
 // The Objective-C version of the Swift type.
+
+
+// The center of a head-tracked spatial experience.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAAnchoringStrategy
+
 type AnchoringStrategy struct {
 	objectivec.Object
 }

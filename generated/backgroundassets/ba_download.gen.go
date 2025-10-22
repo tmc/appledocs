@@ -39,8 +39,13 @@ type IBADownload interface {
 }
 
 // An object that represents an in-progress or concluded asset download.
+
+
+// An object that represents an in-progress or concluded asset download.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BADownload
+
 type BADownload struct {
 	objectivec.Object
 }
@@ -84,47 +89,64 @@ func NewBADownload() BADownload {
 }
 
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BADownload/removingEssential()
+
 func (b_ BADownload) CopyAsNonEssential() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("copyAsNonEssential"))
 	return rv
 }
 
+
 // The app-specific string that uniquely identifies the downloadable asset.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BADownload/identifier
+
 func (b_ BADownload) Identifier() string {
 	rv := objc.Send[string](b_.ID, objc.Sel("identifier"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BADownload/isEssential
+
 func (b_ BADownload) IsEssential() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("isEssential"))
 	return rv
 }
 
+
 // The download’s execution priority.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BADownload/priority-swift.property
+
 func (b_ BADownload) Priority() BADownloaderPriority {
 	rv := objc.Send[BADownloaderPriority](b_.ID, objc.Sel("priority"))
 	return rv
 }
 
+
 // The current state of the download.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BADownload/state-swift.property
+
 func (b_ BADownload) State() BADownloadState {
 	rv := objc.Send[BADownloadState](b_.ID, objc.Sel("state"))
 	return rv
 }
 
+
 // The system-provided string that uniquely identifies the download object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BADownload/uniqueIdentifier
+
 func (b_ BADownload) UniqueIdentifier() string {
 	rv := objc.Send[string](b_.ID, objc.Sel("uniqueIdentifier"))
 	return rv

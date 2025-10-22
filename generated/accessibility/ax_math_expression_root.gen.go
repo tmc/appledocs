@@ -33,8 +33,11 @@ type IAXMathExpressionRoot interface {
 	RootIndexExpression() AXMathExpression
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionRoot
+
 type AXMathExpressionRoot struct {
 	AXMathExpression
 }
@@ -78,8 +81,11 @@ func NewAXMathExpressionRoot() AXMathExpressionRoot {
 }
 
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionRoot/init(radicandExpressions:rootIndexExpression:)
+
 func NewAXMathExpressionRootWithRadicandExpressionsRootIndexExpression(radicandExpressions []AXMathExpression, rootIndexExpression IAXMathExpression) AXMathExpressionRoot {
 	instance := getAXMathExpressionRootClass().Alloc()
 	rv := objc.Send[AXMathExpressionRoot](instance.ID, objc.Sel("initWithRadicandExpressions:rootIndexExpression:"), radicandExpressions, rootIndexExpression)
@@ -88,15 +94,19 @@ func NewAXMathExpressionRootWithRadicandExpressionsRootIndexExpression(radicandE
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionRoot/radicandExpressions
+
 func (a_ AXMathExpressionRoot) RadicandExpressions() []AXMathExpression {
 	rv := objc.Send[[]AXMathExpression](a_.ID, objc.Sel("radicandExpressions"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionRoot/rootIndexExpression
+
 func (a_ AXMathExpressionRoot) RootIndexExpression() AXMathExpression {
 	rv := objc.Send[AXMathExpression](a_.ID, objc.Sel("rootIndexExpression"))
 	return rv

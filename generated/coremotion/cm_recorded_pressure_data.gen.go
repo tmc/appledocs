@@ -37,8 +37,13 @@ type IRecordedPressureData interface {
 // A recorded measurement of pressure data.
 //
 // Use SensorKit’s sensor to read ambient pressure data.
+
+
+// A recorded measurement of pressure data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMRecordedPressureData
+
 type RecordedPressureData struct {
 	AmbientPressureData
 }
@@ -84,17 +89,23 @@ func NewRecordedPressureData() RecordedPressureData {
 }
 
 
+
 // A value that uniquely identifies this measurement.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMRecordedPressureData/identifier
+
 func (r_ RecordedPressureData) Identifier() uint64 {
 	rv := objc.Send[uint64](r_.ID, objc.Sel("identifier"))
 	return rv
 }
 
+
 // The time and date when the system recorded the measurement.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMRecordedPressureData/startDate
+
 func (r_ RecordedPressureData) StartDate() foundation.NSDate {
 	rv := objc.Send[foundation.NSDate](r_.ID, objc.Sel("startDate"))
 	return rv

@@ -23,3 +23,11 @@ func ExampleNewUserDefaultsWithSuiteName() {
 	)
 	// Output:
 }
+// ExampleNewUserDefaultsWithUser demonstrates how to create a UserDefaults instance using NewUserDefaultsWithUser.
+// Creates a user defaults object initialized with the defaults for the specified user account.
+func ExampleNewUserDefaultsWithUser() {
+	_ = foundation.NewUserDefaultsWithUser(
+		"username", // username string
+	)
+	// Output:
+}

@@ -40,8 +40,13 @@ type ICaptureMultiCamSession interface {
 // A capture session that supports simultaneous capture from multiple inputs of the same media type.
 //
 // The session preset for a multicamera session is always . Set each capture device’s value to the desired quality of service. You can dynamically enable and disable this session’s individual camera inputs without interrupting capture preview. To stop an individual camera, disable all of its connections or connected ports. The camera then stops streaming data to save power and bandwidth. Other inputs that are streaming data through the session are unaffected.
+
+
+// A capture session that supports simultaneous capture from multiple inputs of the same media type.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureMultiCamSession
+
 type CaptureMultiCamSession struct {
 	CaptureSession
 }
@@ -87,56 +92,65 @@ func NewCaptureMultiCamSession() CaptureMultiCamSession {
 }
 
 
+
 // The capture format in use by the device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/activeformat
+
 func (c_ CaptureMultiCamSession) ActiveFormat() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("activeFormat"))
 	return rv
 }
 
 
-// SetActiveFormat sets the value of the activeFormat property.
 // The capture format in use by the device.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/activeformat
+
 func (c_ CaptureMultiCamSession) SetActiveFormat(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setActiveFormat:"), value)
 }
 
+
 // A value that indicates the percentage of the session’s available hardware budget currently in use.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemulticamsession/hardwarecost
+
 func (c_ CaptureMultiCamSession) HardwareCost() float32 {
 	rv := objc.Send[float32](c_.ID, objc.Sel("hardwareCost"))
 	return rv
 }
 
 
-// SetHardwareCost sets the value of the hardwareCost property.
 // A value that indicates the percentage of the session’s available hardware budget currently in use.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemulticamsession/hardwarecost
+
 func (c_ CaptureMultiCamSession) SetHardwareCost(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setHardwareCost:"), value)
 }
 
+
 // A value that indicates the system pressure cost of the current session configuration.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemulticamsession/systempressurecost
+
 func (c_ CaptureMultiCamSession) SystemPressureCost() float32 {
 	rv := objc.Send[float32](c_.ID, objc.Sel("systemPressureCost"))
 	return rv
 }
 
 
-// SetSystemPressureCost sets the value of the systemPressureCost property.
 // A value that indicates the system pressure cost of the current session configuration.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemulticamsession/systempressurecost
+
 func (c_ CaptureMultiCamSession) SetSystemPressureCost(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSystemPressureCost:"), value)
 }

@@ -32,8 +32,13 @@ type ICKSyncEngineSentDatabaseChangesEvent interface {
 }
 
 // An object that provides information about a sent batch of database changes.
+
+
+// An object that provides information about a sent batch of database changes.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineSentDatabaseChangesEvent
+
 type CKSyncEngineSentDatabaseChangesEvent struct {
 	CKSyncEngineEvent
 }

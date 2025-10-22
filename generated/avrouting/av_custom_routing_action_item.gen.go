@@ -39,8 +39,13 @@ type ICustomRoutingActionItem interface {
 // An object that represents a custom action item to display in a device route picker.
 //
 // Use this class to specify supplemental action items to display in the list of discovered routes. Tapping a custom item dismisses the picker and calls the method of .
+
+
+// An object that represents a custom action item to display in a device route picker.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVCustomRoutingActionItem
+
 type CustomRoutingActionItem struct {
 	objectivec.Object
 }
@@ -84,38 +89,44 @@ func NewCustomRoutingActionItem() CustomRoutingActionItem {
 }
 
 
+
 // A string to use to override the title of the item’s type.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVCustomRoutingActionItem/overrideTitle
+
 func (c_ CustomRoutingActionItem) OverrideTitle() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("overrideTitle"))
 	return rv
 }
 
 
-// SetOverrideTitle sets the value of the overrideTitle property.
 // A string to use to override the title of the item’s type.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVCustomRoutingActionItem/overrideTitle
+
 func (c_ CustomRoutingActionItem) SetOverrideTitle(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setOverrideTitle:"), objc.String(value))
 }
 
+
 // A type with an identifier that matches a value in the app’s configuration.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVCustomRoutingActionItem/type
+
 func (c_ CustomRoutingActionItem) Type() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("type"))
 	return rv
 }
 
 
-// SetType sets the value of the type property.
 // A type with an identifier that matches a value in the app’s configuration.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVCustomRoutingActionItem/type
+
 func (c_ CustomRoutingActionItem) SetType(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setType:"), value)
 }

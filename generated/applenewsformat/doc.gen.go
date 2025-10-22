@@ -2,12 +2,16 @@
 
 // Package applenewsformat provides Go bindings for the AppleNewsFormat framework.
 //
-// Get Apple News Format reference information, and create signature content for Apple News. [Full Topic]
+// Get Apple News Format reference information, and create signature content for Apple News.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to AppleNewsFormat without requiring cgo.
+
+// Get Apple News Format reference information, and create signature content for Apple News.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppleNewsFormat
+
 package applenewsformat
 
 import (

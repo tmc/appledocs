@@ -32,8 +32,13 @@ type IAuthorizationPasswordRequest interface {
 }
 
 // An authorization request that uses credentials stored in the keychain.
+
+
+// An authorization request that uses credentials stored in the keychain.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationPasswordRequest
+
 type AuthorizationPasswordRequest struct {
 	AuthorizationRequest
 }

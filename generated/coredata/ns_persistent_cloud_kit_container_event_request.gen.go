@@ -35,8 +35,13 @@ type IPersistentCloudKitContainerEventRequest interface {
 }
 
 // A request to fetch setup, import, or export events in a persistent CloudKit container.
+
+
+// A request to fetch setup, import, or export events in a persistent CloudKit container.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainerEventRequest
+
 type PersistentCloudKitContainerEventRequest struct {
 	PersistentStoreRequest
 }
@@ -82,52 +87,67 @@ func NewPersistentCloudKitContainerEventRequest() PersistentCloudKitContainerEve
 }
 
 
+
 // Creates a fetch request for events that occur after a specified event from a persistent CloudKit container.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainerEventRequest/fetchEvents(after:)-3yfp
+
 func (pc _PersistentCloudKitContainerEventRequestClass) FetchEventsAfterEvent(event IPersistentCloudKitContainerEvent) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("fetchEventsAfterEvent:"), event)
 	return rv
 }
 
+
 // Creates a fetch request for events after a specified date from a persistent CloudKit container.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainerEventRequest/fetchEvents(after:)-5izg7
+
 func (pc _PersistentCloudKitContainerEventRequestClass) FetchEventsAfterDate(date foundation.IDate) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("fetchEventsAfterDate:"), date)
 	return rv
 }
 
+
 // Creates a fetch request for events that match a specified fetch request from a persistent CloudKit container.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainerEventRequest/fetchEvents(matchingFetch:)
+
 func (pc _PersistentCloudKitContainerEventRequestClass) FetchEventsMatchingFetchRequest(fetchRequest IFetchRequest) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("fetchEventsMatchingFetchRequest:"), fetchRequest)
 	return rv
 }
 
+
 // Creates a fetch request for all events in a persistent CloudKit container.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainerEventRequest/fetchForEvents()
+
 func (pc _PersistentCloudKitContainerEventRequestClass) FetchRequestForEvents() FetchRequest {
 	rv := objc.Send[FetchRequest](objc.ID(pc.class), objc.Sel("fetchRequestForEvents"))
 	return rv
 }
 
+
 // The type of result that the request returns.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainerEventRequest/resultType
+
 func (p_ PersistentCloudKitContainerEventRequest) ResultType() PersistentCloudKitContainerEventResultType {
 	rv := objc.Send[PersistentCloudKitContainerEventResultType](p_.ID, objc.Sel("resultType"))
 	return rv
 }
 
 
-// SetResultType sets the value of the resultType property.
 // The type of result that the request returns.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainerEventRequest/resultType
+
 func (p_ PersistentCloudKitContainerEventRequest) SetResultType(value PersistentCloudKitContainerEventResultType) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setResultType:"), value)
 }

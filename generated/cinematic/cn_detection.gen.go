@@ -38,8 +38,13 @@ type ICNDetection interface {
 // A structure that represents a detected subject, face, torso or pet at a particular time.
 //
 // Specifies the type, distance bounds, and time of the detection. Detections obtained from the Cinematic script include a unique number that can tracks the detection over time. Some types of detections also include a unique group number that associates related detections (for example, the face and torso of the same person).
+
+
+// A structure that represents a detected subject, face, torso or pet at a particular time.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNDetection-c.class
+
 type CNDetection struct {
 	objectivec.Object
 }
@@ -83,33 +88,45 @@ func NewCNDetection() CNDetection {
 }
 
 
+
 // Determines the disparity to use to focus on the object in the rectangle.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNDetection-c.class/disparityInNormalizedRect:sourceDisparity:detectionType:priorDisparity:
+
 func (cc _CNDetectionClass) DisparityInNormalizedRectSourceDisparityDetectionTypePriorDisparity(normalizedRect coregraphics.CGRect, sourceDisparity unsafe.Pointer, detectionType CNDetectionType, priorDisparity float32) float32 {
 	rv := objc.Send[float32](objc.ID(cc.class), objc.Sel("disparityInNormalizedRect:sourceDisparity:detectionType:priorDisparity:"), normalizedRect, sourceDisparity, detectionType, priorDisparity)
 	return rv
 }
 
+
 // Determines whether a given detection ID is valid.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNDetection-c.class/isValidDetectionID:
+
 func (cc _CNDetectionClass) IsValidDetectionID(detectionID ICNDetectionID) bool {
 	rv := objc.Send[bool](objc.ID(cc.class), objc.Sel("isValidDetectionID:"), detectionID)
 	return rv
 }
 
+
 // The disparity to use in order to focus on the object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNDetection-c.class/focusDisparity
+
 func (c_ CNDetection) FocusDisparity() float32 {
 	rv := objc.Send[float32](c_.ID, objc.Sel("focusDisparity"))
 	return rv
 }
 
+
 // The rectangle within the image where the object occurs, normalized such that (0.0, 0.0) is the top-left and (1.0, 1.0) is the bottom-right.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNDetection-c.class/normalizedRect
+
 func (c_ CNDetection) NormalizedRect() coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](c_.ID, objc.Sel("normalizedRect"))
 	return rv

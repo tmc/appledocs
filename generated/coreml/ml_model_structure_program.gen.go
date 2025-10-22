@@ -34,8 +34,13 @@ type IModelStructureProgram interface {
 }
 
 // A class representing the structure of an ML Program model.
+
+
+// A class representing the structure of an ML Program model.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureProgram
+
 type ModelStructureProgram struct {
 	objectivec.Object
 }
@@ -79,9 +84,12 @@ func NewModelStructureProgram() ModelStructureProgram {
 }
 
 
+
 // The functions in the program.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureProgram/functions
+
 func (m_ ModelStructureProgram) Functions() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("functions"))
 	return rv

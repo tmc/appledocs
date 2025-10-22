@@ -37,8 +37,13 @@ type IAuthorizationAppleIDButton interface {
 // A control you add to your interface that enables users to initiate the Sign In with Apple flow.
 //
 // Choose one of the built-in button styles and types, and change the corner radius of the button by setting the property, but don’t otherwise modify the style of the button. Don’t use an Apple ID authorization button for any purpose other than to initiate the Sign In with Apple flow. After the user taps the button, create a request using the provider, and then use an instance of to execute the request. For more information about which Sign in with Apple buttons are available on different Apple platforms, see .
+
+
+// A control you add to your interface that enables users to initiate the Sign In with Apple flow.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationAppleIDButton
+
 type AuthorizationAppleIDButton struct {
 	appkit.Control
 }
@@ -88,7 +93,9 @@ func NewAuthorizationAppleIDButton() AuthorizationAppleIDButton {
 
 // Creates a new Sign In with Apple authorization button with the given type and style.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationAppleIDButton/init(authorizationButtonType:authorizationButtonStyle:)
+
 func NewAuthorizationAppleIDButtonWithAuthorizationButtonTypeAuthorizationButtonStyle(type_ AuthorizationAppleIDButtonType, style AuthorizationAppleIDButtonStyle) AuthorizationAppleIDButton {
 	instance := getAuthorizationAppleIDButtonClass().Alloc()
 	rv := objc.Send[AuthorizationAppleIDButton](instance.ID, objc.Sel("initWithAuthorizationButtonType:authorizationButtonStyle:"), type_, style)
@@ -100,35 +107,43 @@ func NewAuthorizationAppleIDButtonWithAuthorizationButtonTypeAuthorizationButton
 
 // Creates a new Sign In with Apple authorization button with the given type and style.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationAppleIDButton/init(type:style:)
+
 func NewAuthorizationAppleIDButtonWithTypeStyle(type_ AuthorizationAppleIDButtonType, style AuthorizationAppleIDButtonStyle) AuthorizationAppleIDButton {
 	rv := objc.Send[AuthorizationAppleIDButton](objc.ID(getAuthorizationAppleIDButtonClass().class), objc.Sel("buttonWithType:style:"), type_, style)
 	return rv
 }
 
 
+
 // Creates a new Sign In with Apple authorization button with the given type and style.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationAppleIDButton/init(type:style:)
+
 func (ac _AuthorizationAppleIDButtonClass) ButtonWithTypeStyle(type_ AuthorizationAppleIDButtonType, style AuthorizationAppleIDButtonStyle) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("buttonWithType:style:"), type_, style)
 	return rv
 }
 
+
 // The radius, in points, for the rounded corners on the Apple ID sign-in button.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationAppleIDButton/cornerRadius
+
 func (a_ AuthorizationAppleIDButton) CornerRadius() float64 {
 	rv := objc.Send[float64](a_.ID, objc.Sel("cornerRadius"))
 	return rv
 }
 
 
-// SetCornerRadius sets the value of the cornerRadius property.
 // The radius, in points, for the rounded corners on the Apple ID sign-in button.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationAppleIDButton/cornerRadius
+
 func (a_ AuthorizationAppleIDButton) SetCornerRadius(value float64) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCornerRadius:"), value)
 }

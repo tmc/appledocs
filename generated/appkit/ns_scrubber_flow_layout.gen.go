@@ -41,8 +41,13 @@ type IScrubberFlowLayout interface {
 // A concrete layout object that arranges items end-to-end in a linear strip.
 //
 // To set the size of items on a per-item basis, ensure that your scrubber delegate conforms to the protocol, and provides an implementation of the method.
+
+
+// A concrete layout object that arranges items end-to-end in a linear strip.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberFlowLayout
+
 type ScrubberFlowLayout struct {
 	ScrubberLayout
 }
@@ -88,45 +93,55 @@ func NewScrubberFlowLayout() ScrubberFlowLayout {
 }
 
 
+
+
 // Informs the scrubber that it should perform a new layout pass for the items at the specified indexes.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberFlowLayout/invalidateLayoutForItems(at:)
+
 func (s_ ScrubberFlowLayout) InvalidateLayoutForItemsAtIndexes(invalidItemIndexes foundation.IIndexSet) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("invalidateLayoutForItemsAtIndexes:"), invalidItemIndexes)
 }
 
+
 // The frame size for each item in the scrubber.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberflowlayout/itemsize
+
 func (s_ ScrubberFlowLayout) ItemSize() coregraphics.CGSize {
 	rv := objc.Send[coregraphics.CGSize](s_.ID, objc.Sel("itemSize"))
 	return rv
 }
 
 
-// SetItemSize sets the value of the itemSize property.
 // The frame size for each item in the scrubber.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberflowlayout/itemsize
+
 func (s_ ScrubberFlowLayout) SetItemSize(value coregraphics.CGSize) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setItemSize:"), value)
 }
 
+
 // The horizontal spacing between items, specified in points.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberflowlayout/itemspacing
+
 func (s_ ScrubberFlowLayout) ItemSpacing() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("itemSpacing"))
 	return rv
 }
 
 
-// SetItemSpacing sets the value of the itemSpacing property.
 // The horizontal spacing between items, specified in points.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberflowlayout/itemspacing
+
 func (s_ ScrubberFlowLayout) SetItemSpacing(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setItemSpacing:"), value)
 }

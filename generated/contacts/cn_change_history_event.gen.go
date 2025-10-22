@@ -34,8 +34,13 @@ type ICNChangeHistoryEvent interface {
 }
 
 // An object that represents the user adding, updating, or deleting a contact or group.
+
+
+// An object that represents the user adding, updating, or deleting a contact or group.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryEvent
+
 type CNChangeHistoryEvent struct {
 	objectivec.Object
 }
@@ -79,9 +84,13 @@ func NewCNChangeHistoryEvent() CNChangeHistoryEvent {
 }
 
 
+
+
 // Forwards the event to the delegate you provide to process the change-history event.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryEvent/accept(_:)
+
 func (c_ CNChangeHistoryEvent) AcceptEventVisitor(visitor objectivec.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("acceptEventVisitor:"), visitor)
 }

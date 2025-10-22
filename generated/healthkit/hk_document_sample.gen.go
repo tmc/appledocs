@@ -36,8 +36,13 @@ type IHKDocumentSample interface {
 // An abstract class that represents a health document in the HealthKit store.
 //
 // You should never instantiate an object directly. Instead, you always work with a concrete subclass. In iOS 10 and watchOS 3, the only concrete class is the class. Document samples are immutable: You set the sample’s properties when you create it, and they cannot change.
+
+
+// An abstract class that represents a health document in the HealthKit store.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKDocumentSample
+
 type HKDocumentSample struct {
 	HKSample
 }
@@ -83,20 +88,23 @@ func NewHKDocumentSample() HKDocumentSample {
 }
 
 
+
 // The type of document represented by the sample.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdocumentsample/documenttype
+
 func (h_ HKDocumentSample) DocumentType() HKDocumentType {
 	rv := objc.Send[HKDocumentType](h_.ID, objc.Sel("documentType"))
 	return rv
 }
 
 
-// SetDocumentType sets the value of the documentType property.
 // The type of document represented by the sample.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdocumentsample/documenttype
+
 func (h_ HKDocumentSample) SetDocumentType(value HKDocumentType) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setDocumentType:"), value)
 }

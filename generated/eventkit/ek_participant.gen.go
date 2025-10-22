@@ -47,8 +47,13 @@ type IEKParticipant interface {
 // A class that represents person, group, or room invited to a calendar event.
 //
 // Do not create objects directly. Instead, use the property attendees on to return an array of objects. EventKit cannot add participants to an event nor change participant information. Use the properties in this class to get information about a participant. A participant can be a person, group, room, or other resource.
+
+
+// A class that represents person, group, or room invited to a calendar event.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKParticipant
+
 type EKParticipant struct {
 	EKObject
 }
@@ -94,92 +99,124 @@ func NewEKParticipant() EKParticipant {
 }
 
 
+
+
 // Returns the address book record that represents the participant.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKParticipant/abPerson(in:)
+
 func (e_ EKParticipant) ABPersonInAddressBook(addressBook addressbook.IABAddressBook) addressbook.ABPerson {
 	rv := objc.Send[addressbook.ABPerson](e_.ID, objc.Sel("ABPersonInAddressBook:"), addressBook)
 	return rv
 }
 
+
+
 // Returns the address book record that represents the participant.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKParticipant/abRecord(with:)
+
 func (e_ EKParticipant) ABRecordWithAddressBook(addressBook IABAddressBookRef) ABRecordRef {
 	rv := objc.Send[ABRecordRef](e_.ID, objc.Sel("ABRecordWithAddressBook:"), addressBook)
 	return rv
 }
 
+
 // A predicate to use with the Contacts framework to retrieve the corresponding contact instance.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKParticipant/contactPredicate
+
 func (e_ EKParticipant) ContactPredicate() foundation.Predicate {
 	rv := objc.Send[foundation.Predicate](e_.ID, objc.Sel("contactPredicate"))
 	return rv
 }
 
+
 // A Boolean value indicating whether this participant represents the owner of this account.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKParticipant/isCurrentUser
+
 func (e_ EKParticipant) CurrentUser() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("currentUser"))
 	return rv
 }
 
+
 // The participant’s name.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKParticipant/name
+
 func (e_ EKParticipant) Name() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("name"))
 	return rv
 }
 
+
 // The participant’s role in the event.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKParticipant/participantRole
+
 func (e_ EKParticipant) ParticipantRole() EKParticipantRole {
 	rv := objc.Send[EKParticipantRole](e_.ID, objc.Sel("participantRole"))
 	return rv
 }
 
+
 // The participant’s attendance status.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKParticipant/participantStatus
+
 func (e_ EKParticipant) ParticipantStatus() EKParticipantStatus {
 	rv := objc.Send[EKParticipantStatus](e_.ID, objc.Sel("participantStatus"))
 	return rv
 }
 
+
 // The participant’s type.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKParticipant/participantType
+
 func (e_ EKParticipant) ParticipantType() EKParticipantType {
 	rv := objc.Send[EKParticipantType](e_.ID, objc.Sel("participantType"))
 	return rv
 }
 
+
 // The URL representing this participant.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKParticipant/url
+
 func (e_ EKParticipant) URL() foundation.URL {
 	rv := objc.Send[foundation.URL](e_.ID, objc.Sel("URL"))
 	return rv
 }
 
+
 // A Boolean value indicating whether this participant represents the owner of this account.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/eventkit/ekparticipant/iscurrentuser
+
 func (e_ EKParticipant) IsCurrentUser() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("isCurrentUser"))
 	return rv
 }
 
 
-// SetIsCurrentUser sets the value of the isCurrentUser property.
 // A Boolean value indicating whether this participant represents the owner of this account.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/eventkit/ekparticipant/iscurrentuser
+
 func (e_ EKParticipant) SetIsCurrentUser(value bool) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setIsCurrentUser:"), value)
 }

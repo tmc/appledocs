@@ -38,8 +38,13 @@ type IGoal interface {
 // An influence that motivates the movement of one or more agents.
 //
 // Goals can motivate agents ( objects) to actions such as moving toward a target, following a path, or staying aligned with a group of other agents. To give an agent one or more goals, combine those goals in a object (which includes weights for the relative influence of each goal) and assign that object to the agent’s property. Each time an agent’s method runs, the agent evaluates each goal in its behavior to find the change in direction and speed necessary to move toward fulfilling that goal (within the limits of the time delta and the agent’s maximum speed and turn rate). It then combines the effects from all the goals in its behavior, using the weights in the behavior to modulate the influence of each goal, to produce a total change in its direction and speed. To learn more about using goals and agents, see in .
+
+
+// An influence that motivates the movement of one or more agents.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGoal
+
 type Goal struct {
 	objectivec.Object
 }
@@ -87,7 +92,9 @@ func NewGoal() Goal {
 
 // Creates a goal whose effect is to make an agent align its orientation with that of other agents in a specified group.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGoal/init(toAlignWith:maxDistance:maxAngle:)
+
 func NewGoalToAlignWithAgentsMaxDistanceMaxAngle(agents []Agent, maxDistance float32, maxAngle float32) Goal {
 	rv := objc.Send[Goal](objc.ID(getGoalClass().class), objc.Sel("goalToAlignWithAgents:maxDistance:maxAngle:"), agents, maxDistance, maxAngle)
 	return rv
@@ -97,8 +104,10 @@ func NewGoalToAlignWithAgentsMaxDistanceMaxAngle(agents []Agent, maxDistance flo
 
 // Creates a goal whose effect is to make an agent avoid colliding with the specified other agents, taking into account the other agents’ movement.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGoal/init(toAvoid:maxPredictionTime:)-96a0i
-func NewGoalToAvoidAgentsMaxPredictionTime(agents []Agent, maxPredictionTime foundation.ITimeInterval) Goal {
+
+func NewGoalToAvoidAgentsMaxPredictionTime(agents []Agent, maxPredictionTime foundation.TimeInterval) Goal {
 	rv := objc.Send[Goal](objc.ID(getGoalClass().class), objc.Sel("goalToAvoidAgents:maxPredictionTime:"), agents, maxPredictionTime)
 	return rv
 }
@@ -107,8 +116,10 @@ func NewGoalToAvoidAgentsMaxPredictionTime(agents []Agent, maxPredictionTime fou
 
 // Creates a goal whose effect is to make an agent avoid colliding with the specified static obstacles.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGoal/init(toAvoid:maxPredictionTime:)-7oslq
-func NewGoalToAvoidObstaclesMaxPredictionTime(obstacles []Obstacle, maxPredictionTime foundation.ITimeInterval) Goal {
+
+func NewGoalToAvoidObstaclesMaxPredictionTime(obstacles []Obstacle, maxPredictionTime foundation.TimeInterval) Goal {
 	rv := objc.Send[Goal](objc.ID(getGoalClass().class), objc.Sel("goalToAvoidObstacles:maxPredictionTime:"), obstacles, maxPredictionTime)
 	return rv
 }
@@ -117,7 +128,9 @@ func NewGoalToAvoidObstaclesMaxPredictionTime(obstacles []Obstacle, maxPredictio
 
 // Creates a goal whose effect is to make an agent stay near the other agents in a specified group.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGoal/init(toCohereWith:maxDistance:maxAngle:)
+
 func NewGoalToCohereWithAgentsMaxDistanceMaxAngle(agents []Agent, maxDistance float32, maxAngle float32) Goal {
 	rv := objc.Send[Goal](objc.ID(getGoalClass().class), objc.Sel("goalToCohereWithAgents:maxDistance:maxAngle:"), agents, maxDistance, maxAngle)
 	return rv
@@ -127,7 +140,9 @@ func NewGoalToCohereWithAgentsMaxDistanceMaxAngle(agents []Agent, maxDistance fl
 
 // Creates a goal whose effect is to move an agent away from the current position of the specified other agent.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGoal/init(toFleeAgent:)
+
 func NewGoalToFleeAgent(agent IGKAgent) Goal {
 	rv := objc.Send[Goal](objc.ID(getGoalClass().class), objc.Sel("goalToFleeAgent:"), agent)
 	return rv
@@ -137,8 +152,10 @@ func NewGoalToFleeAgent(agent IGKAgent) Goal {
 
 // Creates a goal whose effect is to both maintain position on and traverse the specified path.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGoal/init(toFollow:maxPredictionTime:forward:)
-func NewGoalToFollowPathMaxPredictionTimeForward(path IGKPath, maxPredictionTime foundation.ITimeInterval, forward bool) Goal {
+
+func NewGoalToFollowPathMaxPredictionTimeForward(path IGKPath, maxPredictionTime foundation.TimeInterval, forward bool) Goal {
 	rv := objc.Send[Goal](objc.ID(getGoalClass().class), objc.Sel("goalToFollowPath:maxPredictionTime:forward:"), path, maxPredictionTime, forward)
 	return rv
 }
@@ -147,8 +164,10 @@ func NewGoalToFollowPathMaxPredictionTimeForward(path IGKPath, maxPredictionTime
 
 // Creates a goal whose effect is to make an agent pursue the specified other agent, taking into account the target’s movement.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGoal/init(toInterceptAgent:maxPredictionTime:)
-func NewGoalToInterceptAgentMaxPredictionTime(target IGKAgent, maxPredictionTime foundation.ITimeInterval) Goal {
+
+func NewGoalToInterceptAgentMaxPredictionTime(target IGKAgent, maxPredictionTime foundation.TimeInterval) Goal {
 	rv := objc.Send[Goal](objc.ID(getGoalClass().class), objc.Sel("goalToInterceptAgent:maxPredictionTime:"), target, maxPredictionTime)
 	return rv
 }
@@ -157,7 +176,9 @@ func NewGoalToInterceptAgentMaxPredictionTime(target IGKAgent, maxPredictionTime
 
 // Creates a goal whose effect is to accelerate or decelerate an agent until it reaches the specified speed.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGoal/init(toReachTargetSpeed:)
+
 func NewGoalToReachTargetSpeed(targetSpeed float32) Goal {
 	rv := objc.Send[Goal](objc.ID(getGoalClass().class), objc.Sel("goalToReachTargetSpeed:"), targetSpeed)
 	return rv
@@ -167,7 +188,9 @@ func NewGoalToReachTargetSpeed(targetSpeed float32) Goal {
 
 // Creates a goal whose effect is to move an agent toward the current position of the specified other agent.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGoal/init(toSeekAgent:)
+
 func NewGoalToSeekAgent(agent IGKAgent) Goal {
 	rv := objc.Send[Goal](objc.ID(getGoalClass().class), objc.Sel("goalToSeekAgent:"), agent)
 	return rv
@@ -177,7 +200,9 @@ func NewGoalToSeekAgent(agent IGKAgent) Goal {
 
 // Creates a goal whose effect is to make an agent maintain the specified distance from other agents in a specified group.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGoal/init(toSeparateFrom:maxDistance:maxAngle:)
+
 func NewGoalToSeparateFromAgentsMaxDistanceMaxAngle(agents []Agent, maxDistance float32, maxAngle float32) Goal {
 	rv := objc.Send[Goal](objc.ID(getGoalClass().class), objc.Sel("goalToSeparateFromAgents:maxDistance:maxAngle:"), agents, maxDistance, maxAngle)
 	return rv
@@ -187,8 +212,10 @@ func NewGoalToSeparateFromAgentsMaxDistanceMaxAngle(agents []Agent, maxDistance 
 
 // Creates a goal whose effect is to maintain an agent’s position within the specified path.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGoal/init(toStayOn:maxPredictionTime:)
-func NewGoalToStayOnPathMaxPredictionTime(path IGKPath, maxPredictionTime foundation.ITimeInterval) Goal {
+
+func NewGoalToStayOnPathMaxPredictionTime(path IGKPath, maxPredictionTime foundation.TimeInterval) Goal {
 	rv := objc.Send[Goal](objc.ID(getGoalClass().class), objc.Sel("goalToStayOnPath:maxPredictionTime:"), path, maxPredictionTime)
 	return rv
 }
@@ -197,123 +224,164 @@ func NewGoalToStayOnPathMaxPredictionTime(path IGKPath, maxPredictionTime founda
 
 // Creates a goal whose effect is to make an agent wander aimlessly, moving forward and turning at random.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGoal/init(toWander:)
+
 func NewGoalToWander(speed float32) Goal {
 	rv := objc.Send[Goal](objc.ID(getGoalClass().class), objc.Sel("goalToWander:"), speed)
 	return rv
 }
 
 
+
 // Creates a goal whose effect is to make an agent align its orientation with that of other agents in a specified group.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGoal/init(toAlignWith:maxDistance:maxAngle:)
+
 func (gc _GoalClass) GoalToAlignWithAgentsMaxDistanceMaxAngle(agents []Agent, maxDistance float32, maxAngle float32) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(gc.class), objc.Sel("goalToAlignWithAgents:maxDistance:maxAngle:"), agents, maxDistance, maxAngle)
 	return rv
 }
 
+
 // Creates a goal whose effect is to make an agent avoid colliding with the specified static obstacles.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGoal/init(toAvoid:maxPredictionTime:)-7oslq
-func (gc _GoalClass) GoalToAvoidObstaclesMaxPredictionTime(obstacles []Obstacle, maxPredictionTime foundation.ITimeInterval) unsafe.Pointer {
+
+func (gc _GoalClass) GoalToAvoidObstaclesMaxPredictionTime(obstacles []Obstacle, maxPredictionTime foundation.TimeInterval) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(gc.class), objc.Sel("goalToAvoidObstacles:maxPredictionTime:"), obstacles, maxPredictionTime)
 	return rv
 }
 
+
 // Creates a goal whose effect is to make an agent avoid colliding with the specified other agents, taking into account the other agents’ movement.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGoal/init(toAvoid:maxPredictionTime:)-96a0i
-func (gc _GoalClass) GoalToAvoidAgentsMaxPredictionTime(agents []Agent, maxPredictionTime foundation.ITimeInterval) unsafe.Pointer {
+
+func (gc _GoalClass) GoalToAvoidAgentsMaxPredictionTime(agents []Agent, maxPredictionTime foundation.TimeInterval) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(gc.class), objc.Sel("goalToAvoidAgents:maxPredictionTime:"), agents, maxPredictionTime)
 	return rv
 }
 
+
 // Creates a goal whose effect is to make an agent stay near the other agents in a specified group.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGoal/init(toCohereWith:maxDistance:maxAngle:)
+
 func (gc _GoalClass) GoalToCohereWithAgentsMaxDistanceMaxAngle(agents []Agent, maxDistance float32, maxAngle float32) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(gc.class), objc.Sel("goalToCohereWithAgents:maxDistance:maxAngle:"), agents, maxDistance, maxAngle)
 	return rv
 }
 
+
 // Creates a goal whose effect is to move an agent away from the current position of the specified other agent.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGoal/init(toFleeAgent:)
+
 func (gc _GoalClass) GoalToFleeAgent(agent IGKAgent) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(gc.class), objc.Sel("goalToFleeAgent:"), agent)
 	return rv
 }
 
+
 // Creates a goal whose effect is to both maintain position on and traverse the specified path.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGoal/init(toFollow:maxPredictionTime:forward:)
-func (gc _GoalClass) GoalToFollowPathMaxPredictionTimeForward(path IGKPath, maxPredictionTime foundation.ITimeInterval, forward bool) unsafe.Pointer {
+
+func (gc _GoalClass) GoalToFollowPathMaxPredictionTimeForward(path IGKPath, maxPredictionTime foundation.TimeInterval, forward bool) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(gc.class), objc.Sel("goalToFollowPath:maxPredictionTime:forward:"), path, maxPredictionTime, forward)
 	return rv
 }
 
+
 // Creates a goal whose effect is to make an agent pursue the specified other agent, taking into account the target’s movement.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGoal/init(toInterceptAgent:maxPredictionTime:)
-func (gc _GoalClass) GoalToInterceptAgentMaxPredictionTime(target IGKAgent, maxPredictionTime foundation.ITimeInterval) unsafe.Pointer {
+
+func (gc _GoalClass) GoalToInterceptAgentMaxPredictionTime(target IGKAgent, maxPredictionTime foundation.TimeInterval) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(gc.class), objc.Sel("goalToInterceptAgent:maxPredictionTime:"), target, maxPredictionTime)
 	return rv
 }
 
+
 // Creates a goal whose effect is to accelerate or decelerate an agent until it reaches the specified speed.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGoal/init(toReachTargetSpeed:)
+
 func (gc _GoalClass) GoalToReachTargetSpeed(targetSpeed float32) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(gc.class), objc.Sel("goalToReachTargetSpeed:"), targetSpeed)
 	return rv
 }
 
+
 // Creates a goal whose effect is to move an agent toward the current position of the specified other agent.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGoal/init(toSeekAgent:)
+
 func (gc _GoalClass) GoalToSeekAgent(agent IGKAgent) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(gc.class), objc.Sel("goalToSeekAgent:"), agent)
 	return rv
 }
 
+
 // Creates a goal whose effect is to make an agent maintain the specified distance from other agents in a specified group.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGoal/init(toSeparateFrom:maxDistance:maxAngle:)
+
 func (gc _GoalClass) GoalToSeparateFromAgentsMaxDistanceMaxAngle(agents []Agent, maxDistance float32, maxAngle float32) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(gc.class), objc.Sel("goalToSeparateFromAgents:maxDistance:maxAngle:"), agents, maxDistance, maxAngle)
 	return rv
 }
 
+
 // Creates a goal whose effect is to maintain an agent’s position within the specified path.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGoal/init(toStayOn:maxPredictionTime:)
-func (gc _GoalClass) GoalToStayOnPathMaxPredictionTime(path IGKPath, maxPredictionTime foundation.ITimeInterval) unsafe.Pointer {
+
+func (gc _GoalClass) GoalToStayOnPathMaxPredictionTime(path IGKPath, maxPredictionTime foundation.TimeInterval) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(gc.class), objc.Sel("goalToStayOnPath:maxPredictionTime:"), path, maxPredictionTime)
 	return rv
 }
 
+
 // Creates a goal whose effect is to make an agent wander aimlessly, moving forward and turning at random.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGoal/init(toWander:)
+
 func (gc _GoalClass) GoalToWander(speed float32) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(gc.class), objc.Sel("goalToWander:"), speed)
 	return rv
 }
 
+
 // A weighted collection of goals that influence the agent’s movement.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gameplaykit/gkagent/behavior
+
 func (g_ Goal) Behavior() GKBehavior {
 	rv := objc.Send[GKBehavior](g_.ID, objc.Sel("behavior"))
 	return rv
 }
 
 
-// SetBehavior sets the value of the behavior property.
 // A weighted collection of goals that influence the agent’s movement.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gameplaykit/gkagent/behavior
+
 func (g_ Goal) SetBehavior(value GKBehavior) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setBehavior:"), value)
 }

@@ -41,8 +41,13 @@ type ICBCharacteristic interface {
 // A characteristic of a remote peripheral’s service.
 //
 // and its subclass represent further information about a peripheral’s service. In particular, objects represent the characteristics of a remote peripheral’s service. A characteristic contains a single value and any number of descriptors describing that value. The properties of a characteristic determine how you can use a characteristic’s value, and how you access the descriptors.
+
+
+// A characteristic of a remote peripheral’s service.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBCharacteristic
+
 type CBCharacteristic struct {
 	CBAttribute
 }
@@ -88,49 +93,67 @@ func NewCBCharacteristic() CBCharacteristic {
 }
 
 
+
 // A list of the descriptors discovered in this characteristic.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBCharacteristic/descriptors
+
 func (c_ CBCharacteristic) Descriptors() []CBDescriptor {
 	rv := objc.Send[[]CBDescriptor](c_.ID, objc.Sel("descriptors"))
 	return rv
 }
 
+
 // A Boolean value that indicates whether the characteristic the service broadcasts this characteristic.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBCharacteristic/isBroadcasted
+
 func (c_ CBCharacteristic) IsBroadcasted() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isBroadcasted"))
 	return rv
 }
 
+
 // A Boolean value that indicates whether the characteristic is currently notifying a subscribed central of its value.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBCharacteristic/isNotifying
+
 func (c_ CBCharacteristic) IsNotifying() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isNotifying"))
 	return rv
 }
 
+
 // The properties of the characteristic.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBCharacteristic/properties
+
 func (c_ CBCharacteristic) Properties() CBCharacteristicProperties {
 	rv := objc.Send[CBCharacteristicProperties](c_.ID, objc.Sel("properties"))
 	return rv
 }
 
+
 // The service to which this characteristic belongs.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBCharacteristic/service
+
 func (c_ CBCharacteristic) Service() CBService {
 	rv := objc.Send[CBService](c_.ID, objc.Sel("service"))
 	return rv
 }
 
+
 // The value of the characteristic.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBCharacteristic/value
+
 func (c_ CBCharacteristic) Value() foundation.NSData {
 	rv := objc.Send[foundation.NSData](c_.ID, objc.Sel("value"))
 	return rv

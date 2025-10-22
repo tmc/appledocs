@@ -42,8 +42,13 @@ type IPlayerItemRenderedLegibleOutput interface {
 }
 
 // A player item output that vends media with a legible characteristic as rendered pixel buffers.
+
+
+// A player item output that vends media with a legible characteristic as rendered pixel buffers.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItemRenderedLegibleOutput
+
 type PlayerItemRenderedLegibleOutput struct {
 	objectivec.Object
 }
@@ -87,74 +92,86 @@ func NewPlayerItemRenderedLegibleOutput() PlayerItemRenderedLegibleOutput {
 }
 
 
+
 // Permits advance invocation of the associated delegate, if any.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemrenderedlegibleoutput/advanceintervalfordelegateinvocation
+
 func (p_ PlayerItemRenderedLegibleOutput) AdvanceIntervalForDelegateInvocation() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("advanceIntervalForDelegateInvocation"))
 	return rv
 }
 
 
-// SetAdvanceIntervalForDelegateInvocation sets the value of the advanceIntervalForDelegateInvocation property.
 // Permits advance invocation of the associated delegate, if any.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemrenderedlegibleoutput/advanceintervalfordelegateinvocation
+
 func (p_ PlayerItemRenderedLegibleOutput) SetAdvanceIntervalForDelegateInvocation(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAdvanceIntervalForDelegateInvocation:"), value)
 }
 
+
 // A delegate object for this output.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemrenderedlegibleoutput/delegate
+
 func (p_ PlayerItemRenderedLegibleOutput) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("delegate"))
 	return rv
 }
 
 
-// SetDelegate sets the value of the delegate property.
 // A delegate object for this output.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemrenderedlegibleoutput/delegate
+
 func (p_ PlayerItemRenderedLegibleOutput) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDelegate:"), value)
 }
 
+
 // The dispatch queue on which the output calls the delegate object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemrenderedlegibleoutput/delegatequeue
+
 func (p_ PlayerItemRenderedLegibleOutput) DelegateQueue() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("delegateQueue"))
 	return rv
 }
 
 
-// SetDelegateQueue sets the value of the delegateQueue property.
 // The dispatch queue on which the output calls the delegate object.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemrenderedlegibleoutput/delegatequeue
+
 func (p_ PlayerItemRenderedLegibleOutput) SetDelegateQueue(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDelegateQueue:"), value)
 }
 
+
 // Set the video display size to use for rendering of pixel buffers.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemrenderedlegibleoutput/videodisplaysize
+
 func (p_ PlayerItemRenderedLegibleOutput) VideoDisplaySize() coregraphics.CGSize {
 	rv := objc.Send[coregraphics.CGSize](p_.ID, objc.Sel("videoDisplaySize"))
 	return rv
 }
 
 
-// SetVideoDisplaySize sets the value of the videoDisplaySize property.
 // Set the video display size to use for rendering of pixel buffers.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemrenderedlegibleoutput/videodisplaysize
+
 func (p_ PlayerItemRenderedLegibleOutput) SetVideoDisplaySize(value coregraphics.CGSize) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setVideoDisplaySize:"), value)
 }

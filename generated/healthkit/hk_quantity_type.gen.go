@@ -36,8 +36,13 @@ type IHKQuantityType interface {
 // A type that identifies samples that store numerical values.
 //
 // The class is a concrete subclass of the class. To create a quantity type instance, use the object type’s convenience method. Use quantity types to: Request permission to read or write matching quantity samples. Create and share matching quantity samples. Query for matching quantity samples.
+
+
+// A type that identifies samples that store numerical values.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKQuantityType
+
 type HKQuantityType struct {
 	HKSampleType
 }
@@ -83,17 +88,24 @@ func NewHKQuantityType() HKQuantityType {
 }
 
 
+
+
 // Returns a Boolean value that indicates whether the quantity type is compatible with the given unit.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKQuantityType/is(compatibleWith:)
+
 func (h_ HKQuantityType) IsCompatibleWithUnit(unit IHKUnit) bool {
 	rv := objc.Send[bool](h_.ID, objc.Sel("isCompatibleWithUnit:"), unit)
 	return rv
 }
 
+
 // The aggregation style for the given quantity type.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKQuantityType/aggregationStyle
+
 func (h_ HKQuantityType) AggregationStyle() HKQuantityAggregationStyle {
 	rv := objc.Send[HKQuantityAggregationStyle](h_.ID, objc.Sel("aggregationStyle"))
 	return rv
