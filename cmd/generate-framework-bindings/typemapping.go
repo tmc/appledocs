@@ -429,6 +429,10 @@ func lookupTypeMapping(objcType, framework string) (string, bool) {
 			if strings.ToLower(framework) == frameworkPkg {
 				return strippedType, true
 			}
+			// NEVER qualify Go built-in primitives, even if they appear in cross-framework registry
+			if isGoPrimitive(strippedType) {
+				return strippedType, true
+			}
 			result := frameworkPkg + "." + strippedType
 			if os.Getenv("DEBUG_TYPEMAP") == "1" && strings.Contains(objcType, "Coder") {
 				fmt.Fprintf(os.Stderr, "DEBUG lookupTypeMapping: returning qualified type: %s\n", result)
@@ -450,6 +454,10 @@ func lookupTypeMapping(objcType, framework string) (string, bool) {
 		if strings.ToLower(framework) == frameworkPkg {
 			return objcType, true
 		}
+		// NEVER qualify Go built-in primitives, even if they appear in cross-framework registry
+		if isGoPrimitive(objcType) {
+			return objcType, true
+		}
 		result := frameworkPkg + "." + objcType
 		if os.Getenv("DEBUG_TYPEMAP") == "1" && (strings.Contains(objcType, "Coder") || strings.Contains(objcType, "Error") || strings.Contains(objcType, "Operation")) {
 			fmt.Fprintf(os.Stderr, "DEBUG lookupTypeMapping: returning qualified: %s\n", result)
@@ -467,11 +475,44 @@ func lookupTypeMapping(objcType, framework string) (string, bool) {
 			if strings.ToLower(framework) == frameworkPkg {
 				return objcTypeNoPtr, true
 			}
+			// NEVER qualify Go built-in primitives, even if they appear in cross-framework registry
+			if isGoPrimitive(objcTypeNoPtr) {
+				return objcTypeNoPtr, true
+			}
 			return frameworkPkg + "." + objcTypeNoPtr, true
 		}
 	}
 
 	return "", false
+}
+
+// isGoPrimitive checks if a type name is a Go built-in primitive type.
+// These types should NEVER be qualified with a package name.
+func isGoPrimitive(typeName string) bool {
+	goPrimitives := map[string]bool{
+		"string":         true,
+		"int":            true,
+		"int8":           true,
+		"int16":          true,
+		"int32":          true,
+		"int64":          true,
+		"uint":           true,
+		"uint8":          true,
+		"uint16":         true,
+		"uint32":         true,
+		"uint64":         true,
+		"float32":        true,
+		"float64":        true,
+		"bool":           true,
+		"byte":           true,
+		"rune":           true,
+		"uintptr":        true,
+		"unsafe.Pointer": true,
+		"objc.ID":        true,
+		"objc.Class":     true,
+		"objc.SEL":       true,
+	}
+	return goPrimitives[typeName]
 }
 
 // getTypeImportPath returns the import path needed for a given Go type, if any.

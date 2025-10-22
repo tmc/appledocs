@@ -489,6 +489,11 @@ func resolveType(framework, typeName string) string {
 		if strings.ToLower(framework) == frameworkPkg {
 			return typeName
 		}
+		// NEVER qualify Go built-in primitives, even if they appear in cross-framework registry
+		// This prevents errors like "appkit.string" when NSString resolves to "string"
+		if isGoPrimitive(typeName) {
+			return typeName
+		}
 		return frameworkPkg + "." + typeName
 	}
 
