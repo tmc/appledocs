@@ -3,87 +3,6 @@
 package foundation
 
 // Enum types and constants
-// NSAlignmentOptions - Values representing alignment operations.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/AlignmentOptions
-type NSAlignmentOptions uint
-
-// NSComparisonResult - Constants that indicate sort order.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/ComparisonResult
-type NSComparisonResult uint
-
-const (
-	// NSOrderedAscending - The left operand is smaller than the right operand.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/ComparisonResult/orderedAscending
-	NSOrderedAscending NSComparisonResult = -1
-	// NSOrderedDescending - The left operand is greater than the right operand.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/ComparisonResult/orderedDescending
-	NSOrderedDescending NSComparisonResult = 1
-	// NSOrderedSame - The two operands are equal.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/ComparisonResult/orderedSame
-	NSOrderedSame NSComparisonResult = 0
-)
-
-// NSDateFormatterStyle - The following constants specify predefined format styles for dates and times.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/Style
-type NSDateFormatterStyle uint
-
-const (
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/Style/full
-	NSDateFormatterFullStyle NSDateFormatterStyle = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/Style/long
-	NSDateFormatterLongStyle NSDateFormatterStyle = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/Style/medium
-	NSDateFormatterMediumStyle NSDateFormatterStyle = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/Style/none
-	NSDateFormatterNoStyle NSDateFormatterStyle = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/Style/short
-	NSDateFormatterShortStyle NSDateFormatterStyle = 0
-)
-
-// NSNotificationSuspensionBehavior - These constants specify the types of notification delivery suspension behaviors.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/DistributedNotificationCenter/SuspensionBehavior
-type NSNotificationSuspensionBehavior uint
-
-const (
-	// NSNotificationSuspensionBehaviorCoalesce - The server only queues the last notification of the specified name and object; earlier notifications are dropped. In cover methods for which suspension behavior is not an explicit argument,   is the default.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/DistributedNotificationCenter/SuspensionBehavior/coalesce
-	NSNotificationSuspensionBehaviorCoalesce NSNotificationSuspensionBehavior = 2
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/DistributedNotificationCenter/SuspensionBehavior/deliverImmediately
-	NSNotificationSuspensionBehaviorDeliverImmediately NSNotificationSuspensionBehavior = 4
-	// NSNotificationSuspensionBehaviorDrop - The server doesn’t queue any notifications with this name and object until the notification center resumes notification delivery.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/DistributedNotificationCenter/SuspensionBehavior/drop
-	NSNotificationSuspensionBehaviorDrop NSNotificationSuspensionBehavior = 1
-	// NSNotificationSuspensionBehaviorHold - The server holds all matching notifications until the queue has been filled (queue size determined by the server), at which point the server may flush queued notifications.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/DistributedNotificationCenter/SuspensionBehavior/hold
-	NSNotificationSuspensionBehaviorHold NSNotificationSuspensionBehavior = 3
-)
-
-// NSEnergyFormatterUnit - The units supported by the 
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/EnergyFormatter/Unit
-type NSEnergyFormatterUnit uint
-
-const (
-	NSEnergyFormatterUnitJoule NSEnergyFormatterUnit = 11
-	NSEnergyFormatterUnitKilojoule NSEnergyFormatterUnit = 14
-)
-
 // NSDirectoryEnumerationOptions - Options for enumerating the contents of directories.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/DirectoryEnumerationOptions
@@ -322,17 +241,6 @@ const (
 	NSVolumeEnumerationSkipHiddenVolumes NSVolumeEnumerationOptions = 1
 )
 
-// NSFormattingUnitStyle - Specifies the width of the unit, determining the textual representation.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Formatter/UnitStyle
-type NSFormattingUnitStyle uint
-
-const (
-	NSFormattingUnitStyleShort NSFormattingUnitStyle = 1
-	NSFormattingUnitStyleMedium NSFormattingUnitStyle = 2
-	NSFormattingUnitStyleLong NSFormattingUnitStyle = 3
-)
-
 // NSInlinePresentationIntent - A type that defines presentation intent for runs of characters for traits like emphasis, strikethrough, and code voice.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/InlinePresentationIntent
@@ -347,14 +255,6 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/InlinePresentationIntent/inlineHTML
 	NSInlinePresentationIntentInlineHTML NSInlinePresentationIntent = 1
-	// NSInlinePresentationIntentLineBreak - An intent that represents a line break.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/InlinePresentationIntent/lineBreak
-	NSInlinePresentationIntentLineBreak NSInlinePresentationIntent = 1
-	// NSInlinePresentationIntentSoftBreak - An intent that represents a soft line break.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/InlinePresentationIntent/softBreak
-	NSInlinePresentationIntentSoftBreak NSInlinePresentationIntent = 1
 	// NSInlinePresentationIntentStronglyEmphasized - An intent that represents a strongly emphasized presentation.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/InlinePresentationIntent/stronglyEmphasized
@@ -417,26 +317,6 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBackgroundActivityScheduler/Result/finished
 	NSBackgroundActivityResultFinished NSBackgroundActivityResult = 1
-)
-
-// NSBinarySearchingOptions - Options for searches and insertions using 
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBinarySearchingOptions
-type NSBinarySearchingOptions uint
-
-const (
-	// NSBinarySearchingFirstEqual - Specifies that the search should return the first object in the range that is equal to the given object.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBinarySearchingOptions/firstEqual
-	NSBinarySearchingFirstEqual NSBinarySearchingOptions = 0
-	// NSBinarySearchingInsertionIndex - Returns the index at which you should insert the object in order to maintain a sorted array.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBinarySearchingOptions/insertionIndex
-	NSBinarySearchingInsertionIndex NSBinarySearchingOptions = 0
-	// NSBinarySearchingLastEqual - Specifies that the search should return the last object in the range that is equal to the given object.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBinarySearchingOptions/lastEqual
-	NSBinarySearchingLastEqual NSBinarySearchingOptions = 0
 )
 
 // NSCalendarOptions - The options for arithmetic operations involving calendars.
@@ -624,36 +504,12 @@ const (
 	NSCalendarUnitYearForWeekOfYear NSCalendarUnit = 3
 )
 
-// NSCollectionChangeType - The type of change represented in computing the difference of an ordered collection.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCollectionChangeType
-type NSCollectionChangeType uint
-
-const (
-	NSCollectionChangeInsert NSCollectionChangeType = 0
-	NSCollectionChangeRemove NSCollectionChangeType = 1
-)
-
-// NSCompoundPredicateType - Constants that describe the possible types of a compound predicate.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCompoundPredicate/LogicalType
-type NSCompoundPredicateType uint
-
-const (
-	NSNotPredicateType NSCompoundPredicateType = 0
-	NSAndPredicateType NSCompoundPredicateType = 1
-	NSOrPredicateType NSCompoundPredicateType = 2
-)
-
 // NSDataBase64DecodingOptions - Options to modify the decoding algorithm used to decode Base64 encoded data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/Base64DecodingOptions
 type NSDataBase64DecodingOptions uint
 
 const (
-	// NSDataBase64DecodingIgnoreUnknownCharacters - Modify the decoding algorithm so that it ignores unknown non-Base-64 bytes, including line ending characters.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/Base64DecodingOptions/ignoreUnknownCharacters
 	NSDataBase64DecodingIgnoreUnknownCharacters NSDataBase64DecodingOptions = 1
 )
 
@@ -675,21 +531,9 @@ const (
 type NSDataCompressionAlgorithm uint
 
 const (
-	// NSDataCompressionAlgorithmLZ4 - The LZ4 compression algorithm, recommended for fast compression.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/CompressionAlgorithm/lz4
-	NSDataCompressionAlgorithmLZ4 NSDataCompressionAlgorithm = 1
-	// NSDataCompressionAlgorithmLZFSE - The LZFSE compression algorithm, recommended for use on Apple platforms.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/CompressionAlgorithm/lzfse
 	NSDataCompressionAlgorithmLZFSE NSDataCompressionAlgorithm = 0
-	// NSDataCompressionAlgorithmLZMA - The LZMA compression algorithm, recommended for high-compression ratio.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/CompressionAlgorithm/lzma
+	NSDataCompressionAlgorithmLZ4 NSDataCompressionAlgorithm = 1
 	NSDataCompressionAlgorithmLZMA NSDataCompressionAlgorithm = 2
-	// NSDataCompressionAlgorithmZlib - The zlib compression algorithm, recommended for cross-platform compression.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/CompressionAlgorithm/zlib
 	NSDataCompressionAlgorithmZlib NSDataCompressionAlgorithm = 3
 )
 
@@ -699,29 +543,11 @@ const (
 type NSDataReadingOptions uint
 
 const (
-	// NSDataReadingMappedAlways - Hint to map the file in if possible.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/ReadingOptions/alwaysMapped
-	NSDataReadingMappedAlways NSDataReadingOptions = 2
-	// NSDataReadingMapped - Deprecated name for  .
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/ReadingOptions/dataReadingMapped
-	NSDataReadingMapped NSDataReadingOptions = 3
-	// NSDataReadingMappedIfSafe - A hint indicating the file should be mapped into virtual memory, if possible and safe.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/ReadingOptions/mappedIfSafe
 	NSDataReadingMappedIfSafe NSDataReadingOptions = 1
-	// NSMappedRead - Deprecated name for  .
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/ReadingOptions/mappedRead
-	NSMappedRead NSDataReadingOptions = 4
-	// NSDataReadingUncached - A hint indicating the file should not be stored in the file-system caches.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/ReadingOptions/uncached
 	NSDataReadingUncached NSDataReadingOptions = 1
-	// NSUncachedRead - Deprecated name for  .
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/ReadingOptions/uncachedRead
+	NSDataReadingMappedAlways NSDataReadingOptions = 2
+	NSDataReadingMapped NSDataReadingOptions = 3
+	NSMappedRead NSDataReadingOptions = 4
 	NSUncachedRead NSDataReadingOptions = 5
 )
 
@@ -731,14 +557,8 @@ const (
 type NSDataSearchOptions uint
 
 const (
-	// NSDataSearchAnchored - Search is limited to start (or end, if searching backwards) of the data object.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/SearchOptions/anchored
-	NSDataSearchAnchored NSDataSearchOptions = 1
-	// NSDataSearchBackwards - Search from the end of the data object.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/SearchOptions/backwards
 	NSDataSearchBackwards NSDataSearchOptions = 1
+	NSDataSearchAnchored NSDataSearchOptions = 1
 )
 
 // NSDataWritingOptions - Options for methods used to write data objects.
@@ -747,57 +567,15 @@ const (
 type NSDataWritingOptions uint
 
 const (
-	// NSDataWritingAtomic - An option to write data to an auxiliary file first and then replace the original file with the auxiliary file when the write completes.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/WritingOptions/atomic
 	NSDataWritingAtomic NSDataWritingOptions = 1
-	// NSAtomicWrite - An option that attempts to write data to an auxiliary file first and then exchange the files.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/WritingOptions/atomicWrite
-	NSAtomicWrite NSDataWritingOptions = 9
-	// NSDataWritingFileProtectionComplete - An option to make the file accessible only while the device is unlocked.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/WritingOptions/completeFileProtection
-	NSDataWritingFileProtectionComplete NSDataWritingOptions = 4
-	// NSDataWritingFileProtectionCompleteUnlessOpen - An option to allow the file to be accessible while the device is unlocked or the file is already open.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/WritingOptions/completeFileProtectionUnlessOpen
-	NSDataWritingFileProtectionCompleteUnlessOpen NSDataWritingOptions = 5
-	// NSDataWritingFileProtectionCompleteUntilFirstUserAuthentication - An option to allow the file to be accessible after a user first unlocks the device.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/WritingOptions/completeFileProtectionUntilFirstUserAuthentication
-	NSDataWritingFileProtectionCompleteUntilFirstUserAuthentication NSDataWritingOptions = 6
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/WritingOptions/completeFileProtectionWhenUserInactive
-	NSDataWritingFileProtectionCompleteWhenUserInactive NSDataWritingOptions = 7
-	// NSDataWritingFileProtectionMask - An option the system uses when determining the file protection options that the system assigns to the data.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/WritingOptions/fileProtectionMask
-	NSDataWritingFileProtectionMask NSDataWritingOptions = 8
-	// NSDataWritingFileProtectionNone - An option to not encrypt the file when writing it out.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/WritingOptions/noFileProtection
-	NSDataWritingFileProtectionNone NSDataWritingOptions = 3
-	// NSDataWritingWithoutOverwriting - An option that attempts to write data to a file and fails with an error if the destination file already exists.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/WritingOptions/withoutOverwriting
 	NSDataWritingWithoutOverwriting NSDataWritingOptions = 2
-)
-
-// NSEnumerationOptions - Options for block enumeration operations.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSEnumerationOptions
-type NSEnumerationOptions uint
-
-const (
-	// NSEnumerationConcurrent - Specifies that the Block enumeration should be concurrent.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSEnumerationOptions/concurrent
-	NSEnumerationConcurrent NSEnumerationOptions = 0
-	// NSEnumerationReverse - Specifies that the enumeration should be performed in reverse.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSEnumerationOptions/reverse
-	NSEnumerationReverse NSEnumerationOptions = 0
+	NSDataWritingFileProtectionNone NSDataWritingOptions = 3
+	NSDataWritingFileProtectionComplete NSDataWritingOptions = 4
+	NSDataWritingFileProtectionCompleteUnlessOpen NSDataWritingOptions = 5
+	NSDataWritingFileProtectionCompleteUntilFirstUserAuthentication NSDataWritingOptions = 6
+	NSDataWritingFileProtectionCompleteWhenUserInactive NSDataWritingOptions = 7
+	NSDataWritingFileProtectionMask NSDataWritingOptions = 8
+	NSAtomicWrite NSDataWritingOptions = 9
 )
 
 // NSFileCoordinatorReadingOptions - Options to use when reading the contents or attributes of a file or directory.
@@ -836,14 +614,8 @@ const (
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileCoordinator/WritingOptions/forDeleting
 	NSFileCoordinatorWritingForDeleting NSFileCoordinatorWritingOptions = 1
 	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileCoordinator/WritingOptions/forMerging
-	NSFileCoordinatorWritingForMerging NSFileCoordinatorWritingOptions = 1
-	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileCoordinator/WritingOptions/forMoving
 	NSFileCoordinatorWritingForMoving NSFileCoordinatorWritingOptions = 1
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileCoordinator/WritingOptions/forReplacing
-	NSFileCoordinatorWritingForReplacing NSFileCoordinatorWritingOptions = 1
 )
 
 // NSFileManagerResumeSyncBehavior - The behaviors the file manager can apply to resolve conflicts when resuming a sync.
@@ -972,37 +744,6 @@ const (
 	NSGrammaticalCaseTranslative NSGrammaticalCase = 14
 )
 
-// NSGrammaticalDefiniteness enum type
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSGrammaticalDefiniteness
-type NSGrammaticalDefiniteness uint
-
-const (
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSGrammaticalDefiniteness/definite
-	NSGrammaticalDefinitenessDefinite NSGrammaticalDefiniteness = 2
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSGrammaticalDefiniteness/indefinite
-	NSGrammaticalDefinitenessIndefinite NSGrammaticalDefiniteness = 1
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSGrammaticalDefiniteness/notSet
-	NSGrammaticalDefinitenessNotSet NSGrammaticalDefiniteness = 0
-)
-
-// NSGrammaticalDetermination enum type
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSGrammaticalDetermination
-type NSGrammaticalDetermination uint
-
-const (
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSGrammaticalDetermination/dependent
-	NSGrammaticalDeterminationDependent NSGrammaticalDetermination = 2
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSGrammaticalDetermination/independent
-	NSGrammaticalDeterminationIndependent NSGrammaticalDetermination = 1
-)
-
 // NSGrammaticalPerson enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSGrammaticalPerson
@@ -1108,58 +849,6 @@ const (
 	NSItemProviderRepresentationVisibilityTeam NSItemProviderRepresentationVisibility = 1
 )
 
-// NSKeyValueChange - The kinds of changes that can be observed.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyValueChange
-type NSKeyValueChange uint
-
-const (
-	NSKeyValueChangeSetting NSKeyValueChange = 1
-	NSKeyValueChangeInsertion NSKeyValueChange = 2
-	NSKeyValueChangeRemoval NSKeyValueChange = 3
-	NSKeyValueChangeReplacement NSKeyValueChange = 4
-)
-
-// NSKeyValueObservingOptions - The values that can be returned in a change dictionary.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyValueObservingOptions
-type NSKeyValueObservingOptions uint
-
-const (
-	// NSKeyValueObservingOptionNew - Indicates that the change dictionary should provide the new attribute value, if applicable.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyValueObservingOptions/new
-	NSKeyValueObservingOptionNew NSKeyValueObservingOptions = 0
-	// NSKeyValueObservingOptionOld - Indicates that the change dictionary should contain the old attribute value, if applicable.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyValueObservingOptions/old
-	NSKeyValueObservingOptionOld NSKeyValueObservingOptions = 0
-	// NSKeyValueObservingOptionPrior - Whether separate notifications should be sent to the observer before and after each change, instead of a single notification after the change.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyValueObservingOptions/prior
-	NSKeyValueObservingOptionPrior NSKeyValueObservingOptions = 2
-)
-
-// NSKeyValueSetMutationKind enum type
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyValueSetMutationKind
-type NSKeyValueSetMutationKind uint
-
-const (
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyValueSetMutationKind/intersect
-	NSKeyValueIntersectSetMutation NSKeyValueSetMutationKind = 3
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyValueSetMutationKind/minus
-	NSKeyValueMinusSetMutation NSKeyValueSetMutationKind = 2
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyValueSetMutationKind/set
-	NSKeyValueSetSetMutation NSKeyValueSetMutationKind = 4
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyValueSetMutationKind/union
-	NSKeyValueUnionSetMutation NSKeyValueSetMutationKind = 1
-)
-
 // NSLinguisticTaggerOptions - Constants for linguistic tagger enumeration specifying which tokens to omit and whether to join names.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLinguisticTagger/Options
@@ -1171,18 +860,6 @@ const (
 	NSLinguisticTaggerOmitWhitespace NSLinguisticTaggerOptions = 1
 	NSLinguisticTaggerOmitOther NSLinguisticTaggerOptions = 1
 	NSLinguisticTaggerJoinNames NSLinguisticTaggerOptions = 1
-)
-
-// NSLinguisticTaggerUnit - Constants representing linguistic units.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLinguisticTaggerUnit
-type NSLinguisticTaggerUnit uint
-
-const (
-	NSLinguisticTaggerUnitWord NSLinguisticTaggerUnit = 0
-	NSLinguisticTaggerUnitSentence NSLinguisticTaggerUnit = 1
-	NSLinguisticTaggerUnitParagraph NSLinguisticTaggerUnit = 2
-	NSLinguisticTaggerUnitDocument NSLinguisticTaggerUnit = 3
 )
 
 // NSMachPortOptions - Used to remove access rights to a mach port when the 
@@ -1203,22 +880,6 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMachPortOptions/NSMachPortDeallocateNone
 	NSMachPortDeallocateNone NSMachPortOptions = 0
-)
-
-// NSOrderedCollectionDifferenceCalculationOptions - Constants that specify the options to use when creating an ordered collection difference.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedCollectionDifferenceCalculationOptions
-type NSOrderedCollectionDifferenceCalculationOptions uint
-
-const (
-	// NSOrderedCollectionDifferenceCalculationOmitInsertedObjects - An option that indicates that the difference should omit references to the insertions.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedCollectionDifferenceCalculationOptions/omitInsertedObjects
-	NSOrderedCollectionDifferenceCalculationOmitInsertedObjects NSOrderedCollectionDifferenceCalculationOptions = 0
-	// NSOrderedCollectionDifferenceCalculationOmitRemovedObjects - An option that indicates that the difference should omit references to the removals.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedCollectionDifferenceCalculationOptions/omitRemovedObjects
-	NSOrderedCollectionDifferenceCalculationOmitRemovedObjects NSOrderedCollectionDifferenceCalculationOptions = 0
 )
 
 // NSPointerFunctionsOptions - Defines the memory and personality options for an 
@@ -1281,50 +942,6 @@ const (
 	NSPointerFunctionsZeroingWeakMemory NSPointerFunctionsOptions = 1
 )
 
-// NSPresentationIntentKind - An enumeration of intended display styles for blocks of text like paragraphs, lists, and code blocks.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPresentationIntentKind
-type NSPresentationIntentKind uint
-
-const (
-	// NSPresentationIntentKindBlockQuote - A presentation style for a block quote.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPresentationIntentKind/NSPresentationIntentKindBlockQuote
-	NSPresentationIntentKindBlockQuote NSPresentationIntentKind = 6
-	// NSPresentationIntentKindCodeBlock - A presentation style for a block of code.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPresentationIntentKind/NSPresentationIntentKindCodeBlock
-	NSPresentationIntentKindCodeBlock NSPresentationIntentKind = 5
-	// NSPresentationIntentKindListItem - A presentation style for a list of items.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPresentationIntentKind/NSPresentationIntentKindListItem
-	NSPresentationIntentKindListItem NSPresentationIntentKind = 4
-	// NSPresentationIntentKindOrderedList - A presentation style for an ordered list of items.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPresentationIntentKind/NSPresentationIntentKindOrderedList
-	NSPresentationIntentKindOrderedList NSPresentationIntentKind = 2
-	// NSPresentationIntentKindTableCell - A presentation style for a single cell of a table.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPresentationIntentKind/NSPresentationIntentKindTableCell
-	NSPresentationIntentKindTableCell NSPresentationIntentKind = 11
-	// NSPresentationIntentKindTableHeaderRow - A presentation style for the header row of a table.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPresentationIntentKind/NSPresentationIntentKindTableHeaderRow
-	NSPresentationIntentKindTableHeaderRow NSPresentationIntentKind = 9
-)
-
-// NSPresentationIntentTableColumnAlignment - An enumeration of values for aligning the contents of table columns.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPresentationIntentTableColumnAlignment
-type NSPresentationIntentTableColumnAlignment uint
-
-const (
-	// NSPresentationIntentTableColumnAlignmentRight - A presentation style for columns with right-aligned text.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPresentationIntentTableColumnAlignment/NSPresentationIntentTableColumnAlignmentRight
-	NSPresentationIntentTableColumnAlignmentRight NSPresentationIntentTableColumnAlignment = 2
-)
-
 // NSSaveOptions - The 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSaveOptions
@@ -1343,22 +960,6 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSaveOptions/yes
 	NSSaveOptionsYes NSSaveOptions = 0
-)
-
-// NSSortOptions - Options for block sorting operations.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSortOptions
-type NSSortOptions uint
-
-const (
-	// NSSortConcurrent - Specifies that the Block sort operation should be concurrent.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSortOptions/concurrent
-	NSSortConcurrent NSSortOptions = 0
-	// NSSortStable - Specifies that the sorted results should return compared items having equal value in the order they occurred originally.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSortOptions/stable
-	NSSortStable NSSortOptions = 0
 )
 
 // NSStringCompareOptions - These values represent the options available to many of the string classes’ search and comparison methods.
@@ -1488,66 +1089,6 @@ const (
 	NSStringEnumerationSubstringNotRequired NSStringEnumerationOptions = 1
 )
 
-// NSTextCheckingType - These constants specify the type of checking the methods should do. They are returned by 
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/CheckingType
-type NSTextCheckingType uint
-
-const (
-	// NSTextCheckingTypeAddress - Attempts to locate addresses.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/CheckingType/address
-	NSTextCheckingTypeAddress NSTextCheckingType = 0
-	// NSTextCheckingTypeCorrection - Performs autocorrection on misspelled words.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/CheckingType/correction
-	NSTextCheckingTypeCorrection NSTextCheckingType = 0
-	// NSTextCheckingTypeDash - Replaces dashes with em-dashes.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/CheckingType/dash
-	NSTextCheckingTypeDash NSTextCheckingType = 0
-	// NSTextCheckingTypeDate - Attempts to locate dates.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/CheckingType/date
-	NSTextCheckingTypeDate NSTextCheckingType = 0
-	// NSTextCheckingTypeGrammar - Checks grammar.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/CheckingType/grammar
-	NSTextCheckingTypeGrammar NSTextCheckingType = 0
-	// NSTextCheckingTypeLink - Attempts to locate URL links.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/CheckingType/link
-	NSTextCheckingTypeLink NSTextCheckingType = 0
-	// NSTextCheckingTypeOrthography - Attempts to identify the language
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/CheckingType/orthography
-	NSTextCheckingTypeOrthography NSTextCheckingType = 0
-	// NSTextCheckingTypePhoneNumber - Matches a phone number.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/CheckingType/phoneNumber
-	NSTextCheckingTypePhoneNumber NSTextCheckingType = 2
-	// NSTextCheckingTypeQuote - Replaces quotes with smart quotes.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/CheckingType/quote
-	NSTextCheckingTypeQuote NSTextCheckingType = 0
-	// NSTextCheckingTypeRegularExpression - Matches a regular expression.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/CheckingType/regularExpression
-	NSTextCheckingTypeRegularExpression NSTextCheckingType = 1
-	// NSTextCheckingTypeReplacement - Replaces characters such as (c) with the appropriate symbol (in this case ©).
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/CheckingType/replacement
-	NSTextCheckingTypeReplacement NSTextCheckingType = 0
-	// NSTextCheckingTypeSpelling - Checks spelling.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/CheckingType/spelling
-	NSTextCheckingTypeSpelling NSTextCheckingType = 0
-	// NSTextCheckingTypeTransitInformation - Matches a transit information, for example, flight information.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/CheckingType/transitInformation
-	NSTextCheckingTypeTransitInformation NSTextCheckingType = 3
-)
-
 // NSTimeZoneNameStyle - Constants you use to specify a style when presenting time zone names.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/NameStyle
@@ -1641,116 +1182,22 @@ const (
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLErrorNetworkUnavailableReason
 type NSURLErrorNetworkUnavailableReason uint
 
-const (
-	// NSURLErrorNetworkUnavailableReasonCellular - A reason that indicates network is unavailable because the interface is cellular and cellular network is disabled.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLErrorNetworkUnavailableReason/NSURLErrorNetworkUnavailableReasonCellular
-	NSURLErrorNetworkUnavailableReasonCellular NSURLErrorNetworkUnavailableReason = 0
-	// NSURLErrorNetworkUnavailableReasonConstrained - A reason that indicates network is unavailable because the user enabled “Low Data Mode” in the Settings app.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLErrorNetworkUnavailableReason/NSURLErrorNetworkUnavailableReasonConstrained
-	NSURLErrorNetworkUnavailableReasonConstrained NSURLErrorNetworkUnavailableReason = 0
-	// NSURLErrorNetworkUnavailableReasonExpensive - A reason that indicates network is unavailable because the system marked the interface as expensive.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLErrorNetworkUnavailableReason/NSURLErrorNetworkUnavailableReasonExpensive
-	NSURLErrorNetworkUnavailableReasonExpensive NSURLErrorNetworkUnavailableReason = 0
-)
-
-// NSURLRequestAttribution - The entities that can make a network request.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLRequest/Attribution-swift.enum
-type NSURLRequestAttribution uint
-
-const (
-	// NSURLRequestAttributionDeveloper - A developer-initiated network request.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLRequest/Attribution-swift.enum/developer
-	NSURLRequestAttributionDeveloper NSURLRequestAttribution = 0
-	// NSURLRequestAttributionUser - The user explicitly directs the app to make a network request.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLRequest/Attribution-swift.enum/user
-	NSURLRequestAttributionUser NSURLRequestAttribution = 0
-)
-
 // NSURLRequestCachePolicy - The constants used to specify interaction with the cached responses.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLRequest/CachePolicy-swift.enum
 type NSURLRequestCachePolicy uint
 
 const (
-	// NSURLRequestReloadIgnoringCacheData - Replaced by  .
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLRequest/CachePolicy-swift.enum/reloadIgnoringCacheData
-	NSURLRequestReloadIgnoringCacheData NSURLRequestCachePolicy = 0
 	// NSURLRequestReloadIgnoringLocalAndRemoteCacheData - Ignore local cache data, and instruct proxies and other intermediates to disregard their caches so far as the protocol allows.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLRequest/CachePolicy-swift.enum/reloadIgnoringLocalAndRemoteCacheData
 	NSURLRequestReloadIgnoringLocalAndRemoteCacheData NSURLRequestCachePolicy = 0
-	// NSURLRequestReloadIgnoringLocalCacheData - The URL load should be loaded only from the originating source.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLRequest/CachePolicy-swift.enum/reloadIgnoringLocalCacheData
-	NSURLRequestReloadIgnoringLocalCacheData NSURLRequestCachePolicy = 0
-	// NSURLRequestReloadRevalidatingCacheData - Use cache data if the origin source can validate it; otherwise, load from the origin.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLRequest/CachePolicy-swift.enum/reloadRevalidatingCacheData
-	NSURLRequestReloadRevalidatingCacheData NSURLRequestCachePolicy = 0
-	// NSURLRequestReturnCacheDataDontLoad - Use existing cache data, regardless or age or expiration date, and fail if no cached data is available.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLRequest/CachePolicy-swift.enum/returnCacheDataDontLoad
-	NSURLRequestReturnCacheDataDontLoad NSURLRequestCachePolicy = 0
-	// NSURLRequestReturnCacheDataElseLoad - Use existing cache data, regardless or age or expiration date, loading from originating source only if there is no cached data.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLRequest/CachePolicy-swift.enum/returnCacheDataElseLoad
-	NSURLRequestReturnCacheDataElseLoad NSURLRequestCachePolicy = 0
-	// NSURLRequestUseProtocolCachePolicy - Use the caching logic defined in the protocol implementation, if any, for a particular URL load request.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLRequest/CachePolicy-swift.enum/useProtocolCachePolicy
-	NSURLRequestUseProtocolCachePolicy NSURLRequestCachePolicy = 0
 )
 
 // NSURLRequestNetworkServiceType - Constants that specify how a request uses network resources.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLRequest/NetworkServiceType-swift.enum
 type NSURLRequestNetworkServiceType uint
-
-const (
-	// NSURLNetworkServiceTypeAVStreaming - A service type for medium-delay tolerant, low-medium-loss tolerant, elastic flow, constant packet interval, and variable rate and size connections.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLRequest/NetworkServiceType-swift.enum/avStreaming
-	NSURLNetworkServiceTypeAVStreaming NSURLRequestNetworkServiceType = 0
-	// NSURLNetworkServiceTypeBackground - A service type for high-delay tolerant, high-loss tolerant, elastic flow, and variable size connections.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLRequest/NetworkServiceType-swift.enum/background
-	NSURLNetworkServiceTypeBackground NSURLRequestNetworkServiceType = 0
-	// NSURLNetworkServiceTypeCallSignaling - A service for low-loss tolerant, inelastic flow, jitter tolerant, short but bursty rate, and variable size connections.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLRequest/NetworkServiceType-swift.enum/callSignaling
-	NSURLNetworkServiceTypeCallSignaling NSURLRequestNetworkServiceType = 0
-	// NSURLNetworkServiceTypeDefault - A service type for standard network traffic.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLRequest/NetworkServiceType-swift.enum/default
-	NSURLNetworkServiceTypeDefault NSURLRequestNetworkServiceType = 0
-	// NSURLNetworkServiceTypeResponsiveAV - A service type for low-delay tolerant, low-to-medium-loss tolerant, elastic flow, variable packet interval, rate, size responsive and time-sensitive connections.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLRequest/NetworkServiceType-swift.enum/responsiveAV
-	NSURLNetworkServiceTypeResponsiveAV NSURLRequestNetworkServiceType = 0
-	// NSURLNetworkServiceTypeResponsiveData - A service type for medium-delay tolerant, elastic and inelastic flow, bursty, and long-lived connections.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLRequest/NetworkServiceType-swift.enum/responsiveData
-	NSURLNetworkServiceTypeResponsiveData NSURLRequestNetworkServiceType = 0
-	// NSURLNetworkServiceTypeVideo - A service type for low-delay tolerant, very low-loss tolerant, inelastic flow, and constant packet rate connections.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLRequest/NetworkServiceType-swift.enum/video
-	NSURLNetworkServiceTypeVideo NSURLRequestNetworkServiceType = 0
-	// NSURLNetworkServiceTypeVoice - A service type for low-delay tolerant, very low-loss tolerant, inelastic flow, and constant packet rate connections.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLRequest/NetworkServiceType-swift.enum/voice
-	NSURLNetworkServiceTypeVoice NSURLRequestNetworkServiceType = 0
-	// NSURLNetworkServiceTypeVoIP - A service type for VoIP traffic.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLRequest/NetworkServiceType-swift.enum/voip
-	NSURLNetworkServiceTypeVoIP NSURLRequestNetworkServiceType = 0
-)
 
 // NSURLSessionWebSocketMessageType enum type
 //
@@ -1764,46 +1211,6 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLSessionWebSocketMessageType/NSURLSessionWebSocketMessageTypeString
 	NSURLSessionWebSocketMessageTypeString NSURLSessionWebSocketMessageType = 1
-)
-
-// NSUserNotificationActivationType - These constants describe how the user notification was activated.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/ActivationType-swift.enum
-type NSUserNotificationActivationType uint
-
-const (
-	// NSUserNotificationActivationTypeReplied - The user replied to the notification.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/ActivationType-swift.enum/replied
-	NSUserNotificationActivationTypeReplied NSUserNotificationActivationType = 3
-)
-
-// NSWhoseSubelementIdentifier enum type
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSWhoseSpecifier/SubelementIdentifier
-type NSWhoseSubelementIdentifier uint
-
-const (
-	// NSEverySubelement - Every element that meets the specifier test.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSWhoseSpecifier/SubelementIdentifier/everySubelement
-	NSEverySubelement NSWhoseSubelementIdentifier = 1
-	// NSIndexSubelement - An element at a given index that meets the specifier test.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSWhoseSpecifier/SubelementIdentifier/indexSubelement
-	NSIndexSubelement NSWhoseSubelementIdentifier = 0
-	// NSMiddleSubelement - The middle element that meets the specifier test.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSWhoseSpecifier/SubelementIdentifier/middleSubelement
-	NSMiddleSubelement NSWhoseSubelementIdentifier = 2
-	// NSNoSubelement - No sub-element met the specifier test. Valid only for specifying the end sub-element.; that is, there is no end, so consider all elements.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSWhoseSpecifier/SubelementIdentifier/noSubelement
-	NSNoSubelement NSWhoseSubelementIdentifier = 4
-	// NSRandomSubelement - Any element that meets the specifier test.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSWhoseSpecifier/SubelementIdentifier/randomSubelement
-	NSRandomSubelement NSWhoseSubelementIdentifier = 3
 )
 
 // NSXPCConnectionOptions - Options that you can pass to a connection.
@@ -1879,14 +1286,6 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NotificationQueue/NotificationCoalescing/none
 	NSNotificationNoCoalescing NSNotificationCoalescing = 0
-	// NSNotificationCoalescingOnName - Coalesce notifications with the same name.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NotificationQueue/NotificationCoalescing/onName
-	NSNotificationCoalescingOnName NSNotificationCoalescing = 1
-	// NSNotificationCoalescingOnSender - Coalesce notifications with the same object.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NotificationQueue/NotificationCoalescing/onSender
-	NSNotificationCoalescingOnSender NSNotificationCoalescing = 2
 )
 
 // NSPostingStyle - The constants that specify when notifications are posted.
@@ -1907,75 +1306,6 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NotificationQueue/PostingStyle/whenIdle
 	NSPostWhenIdle NSPostingStyle = 1
-)
-
-// NSNumberFormatterBehavior - These constants specify the behavior of a number formatter. These constants are returned by the 
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/Behavior
-type NSNumberFormatterBehavior uint
-
-const (
-	NSNumberFormatterBehaviorDefault NSNumberFormatterBehavior = 0
-	NSNumberFormatterBehavior10_0 NSNumberFormatterBehavior = 1000
-	NSNumberFormatterBehavior10_4 NSNumberFormatterBehavior = 1040
-)
-
-// NSNumberFormatterPadPosition - These constants are used to specify how numbers should be padded. These constants are used by the 
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/PadPosition
-type NSNumberFormatterPadPosition uint
-
-// NSNumberFormatterRoundingMode - These constants are used to specify how numbers should be rounded. These constants are used by the 
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/RoundingMode-swift.enum
-type NSNumberFormatterRoundingMode uint
-
-// NSNumberFormatterStyle - The predefined number format styles used by the 
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/Style
-type NSNumberFormatterStyle uint
-
-const (
-	// NSNumberFormatterCurrencyStyle - A currency style format that uses the currency symbol defined by the number formatter locale.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/Style/currency
-	NSNumberFormatterCurrencyStyle NSNumberFormatterStyle = 0
-	// NSNumberFormatterCurrencyAccountingStyle - An accounting currency style format that uses the currency symbol defined by the number formatter locale.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/Style/currencyAccounting
-	NSNumberFormatterCurrencyAccountingStyle NSNumberFormatterStyle = 3
-	// NSNumberFormatterCurrencyISOCodeStyle - A currency style format that uses the ISO 4217 currency code defined by the number formatter locale.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/Style/currencyISOCode
-	NSNumberFormatterCurrencyISOCodeStyle NSNumberFormatterStyle = 1
-	// NSNumberFormatterCurrencyPluralStyle - A currency style format that uses the pluralized denomination defined by the number formatter locale.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/Style/currencyPlural
-	NSNumberFormatterCurrencyPluralStyle NSNumberFormatterStyle = 2
-	// NSNumberFormatterDecimalStyle - A decimal style format.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/Style/decimal
-	NSNumberFormatterDecimalStyle NSNumberFormatterStyle = 0
-	// NSNumberFormatterNoStyle - An integer representation.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/Style/none
-	NSNumberFormatterNoStyle NSNumberFormatterStyle = 0
-	// NSNumberFormatterOrdinalStyle - An ordinal style format.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/Style/ordinal
-	NSNumberFormatterOrdinalStyle NSNumberFormatterStyle = 0
-	// NSNumberFormatterPercentStyle - A percent style format.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/Style/percent
-	NSNumberFormatterPercentStyle NSNumberFormatterStyle = 0
-	// NSNumberFormatterScientificStyle - A scientific style format.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/Style/scientific
-	NSNumberFormatterScientificStyle NSNumberFormatterStyle = 0
-	// NSNumberFormatterSpellOutStyle - A style format in which numbers are spelled out in the language defined by the number formatter locale.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/Style/spellOut
-	NSNumberFormatterSpellOutStyle NSNumberFormatterStyle = 0
 )
 
 // NSOperationQueuePriority - These constants let you prioritize the order in which operations execute.
@@ -2016,22 +1346,10 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/ActivityOptions/animationTrackingEnabled
 	NSActivityAnimationTrackingEnabled NSActivityOptions = 0
-	// NSActivityAutomaticTerminationDisabled - A flag to prevent automatic termination.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/ActivityOptions/automaticTerminationDisabled
-	NSActivityAutomaticTerminationDisabled NSActivityOptions = 0
 	// NSActivityBackground - A flag to indicate the app has initiated some kind of work, but not as the direct result of user request.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/ActivityOptions/background
 	NSActivityBackground NSActivityOptions = 0
-	// NSActivityIdleDisplaySleepDisabled - A flag to require the screen to stay powered on.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/ActivityOptions/idleDisplaySleepDisabled
-	NSActivityIdleDisplaySleepDisabled NSActivityOptions = 0
-	// NSActivityIdleSystemSleepDisabled - A flag to prevent idle sleep.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/ActivityOptions/idleSystemSleepDisabled
-	NSActivityIdleSystemSleepDisabled NSActivityOptions = 0
 	// NSActivityLatencyCritical - A flag to indicate the activity requires the highest amount of timer and I/O precision available.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/ActivityOptions/latencyCritical
@@ -2040,10 +1358,6 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/ActivityOptions/suddenTerminationDisabled
 	NSActivitySuddenTerminationDisabled NSActivityOptions = 0
-	// NSActivityTrackingEnabled - A flag to track the activity with a signpost interval.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/ActivityOptions/trackingEnabled
-	NSActivityTrackingEnabled NSActivityOptions = 1
 	// NSActivityUserInitiated - A flag to indicate the app is performing a user-requested action.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/ActivityOptions/userInitiated
@@ -2064,22 +1378,10 @@ const (
 type NSProcessInfoThermalState uint
 
 const (
-	// NSProcessInfoThermalStateCritical - The thermal state is significantly impacting the performance of the system and the device needs to cool down.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/ThermalState-swift.enum/critical
-	NSProcessInfoThermalStateCritical NSProcessInfoThermalState = 3
-	// NSProcessInfoThermalStateFair - The thermal state is slightly elevated.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/ThermalState-swift.enum/fair
-	NSProcessInfoThermalStateFair NSProcessInfoThermalState = 1
-	// NSProcessInfoThermalStateNominal - The thermal state is within normal limits.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/ThermalState-swift.enum/nominal
 	NSProcessInfoThermalStateNominal NSProcessInfoThermalState = 0
-	// NSProcessInfoThermalStateSerious - The thermal state is high.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/ThermalState-swift.enum/serious
+	NSProcessInfoThermalStateFair NSProcessInfoThermalState = 1
 	NSProcessInfoThermalStateSerious NSProcessInfoThermalState = 2
+	NSProcessInfoThermalStateCritical NSProcessInfoThermalState = 3
 )
 
 // NSQualityOfService - Constants that indicate the nature and importance of work to the system.
@@ -2105,94 +1407,16 @@ const (
 	NSQualityOfServiceUtility NSQualityOfService = 0
 )
 
-// NSStreamEvent - Describes the constants that may be sent to the delegate as a bit field in the second parameter of 
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Stream/Event
-type NSStreamEvent uint
-
-const (
-	NSStreamEventNone NSStreamEvent = 0
-	NSStreamEventOpenCompleted NSStreamEvent = 1
-	NSStreamEventHasBytesAvailable NSStreamEvent = 1
-	NSStreamEventHasSpaceAvailable NSStreamEvent = 1
-	NSStreamEventErrorOccurred NSStreamEvent = 1
-	NSStreamEventEndEncountered NSStreamEvent = 1
-)
-
-// NSStreamStatus - The type declared for the constants listed in 
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Stream/Status
-type NSStreamStatus uint
-
-const (
-	// NSStreamStatusAtEnd - There is no more data to read, or no more data can be written to the stream. When this status is returned, the stream is in a “non-blocking” mode and no data are available.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/Stream/Status/atEnd
-	NSStreamStatusAtEnd NSStreamStatus = 5
-	// NSStreamStatusClosed - The stream is closed (  has been called on it).
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/Stream/Status/closed
-	NSStreamStatusClosed NSStreamStatus = 6
-	// NSStreamStatusError - The remote end of the connection can’t be contacted, or the connection has been severed for some other reason.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/Stream/Status/error
-	NSStreamStatusError NSStreamStatus = 7
-	// NSStreamStatusNotOpen - The stream is not open for reading or writing. This status is returned before the underlying call to open a stream but after it’s been created.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/Stream/Status/notOpen
-	NSStreamStatusNotOpen NSStreamStatus = 0
-	// NSStreamStatusOpen - The stream is open, but no reading or writing is occurring.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/Stream/Status/open
-	NSStreamStatusOpen NSStreamStatus = 2
-	// NSStreamStatusOpening - The stream is in the process of being opened for reading or for writing. For network streams, this status might include the time after the stream was opened, but while network DNS resolution is happening.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/Stream/Status/opening
-	NSStreamStatusOpening NSStreamStatus = 1
-	// NSStreamStatusReading - Data is being read from the stream. This status would be returned if code on another thread were to call   on the stream while a   call ( ) was in progress.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/Stream/Status/reading
-	NSStreamStatusReading NSStreamStatus = 3
-	// NSStreamStatusWriting - Data is being written to the stream. This status would be returned if code on another thread were to call   on the stream while a   call ( ) was in progress.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/Stream/Status/writing
-	NSStreamStatusWriting NSStreamStatus = 4
-)
-
-// NSURLCredentialPersistence - Constants that specify how long the credential will be kept.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLCredential/Persistence-swift.enum
-type NSURLCredentialPersistence uint
-
-const (
-	NSURLCredentialPersistenceNone NSURLCredentialPersistence = 0
-	NSURLCredentialPersistenceForSession NSURLCredentialPersistence = 1
-	NSURLCredentialPersistencePermanent NSURLCredentialPersistence = 2
-	NSURLCredentialPersistenceSynchronizable NSURLCredentialPersistence = 3
-)
-
 // NSURLSessionAuthChallengeDisposition - Constants passed by session or task delegates to the provided continuation block in response to an authentication challenge.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/AuthChallengeDisposition
 type NSURLSessionAuthChallengeDisposition uint
 
 const (
-	// NSURLSessionAuthChallengeCancelAuthenticationChallenge - Cancel the entire request. The provided credential parameter is ignored.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/AuthChallengeDisposition/cancelAuthenticationChallenge
-	NSURLSessionAuthChallengeCancelAuthenticationChallenge NSURLSessionAuthChallengeDisposition = 2
-	// NSURLSessionAuthChallengePerformDefaultHandling - Use the default handling for the challenge as though this delegate method were not implemented. The provided credential parameter is ignored.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/AuthChallengeDisposition/performDefaultHandling
-	NSURLSessionAuthChallengePerformDefaultHandling NSURLSessionAuthChallengeDisposition = 1
 	// NSURLSessionAuthChallengeRejectProtectionSpace - Reject this challenge, and call the authentication delegate method again with the next authentication protection space. The provided credential parameter is ignored.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/AuthChallengeDisposition/rejectProtectionSpace
 	NSURLSessionAuthChallengeRejectProtectionSpace NSURLSessionAuthChallengeDisposition = 3
-	// NSURLSessionAuthChallengeUseCredential - Use the specified credential, which may be  .
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/AuthChallengeDisposition/useCredential
-	NSURLSessionAuthChallengeUseCredential NSURLSessionAuthChallengeDisposition = 0
 )
 
 // NSURLSessionDelayedRequestDisposition - The action to take on a delayed URL session task.
@@ -2269,46 +1493,10 @@ const (
 type NSURLSessionTaskState uint
 
 const (
-	// NSURLSessionTaskStateCanceling - The task has received a   message.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/State-swift.enum/canceling
-	NSURLSessionTaskStateCanceling NSURLSessionTaskState = 2
-	// NSURLSessionTaskStateCompleted - The task has completed (without being canceled), and the task’s delegate receives no further callbacks.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/State-swift.enum/completed
-	NSURLSessionTaskStateCompleted NSURLSessionTaskState = 3
-	// NSURLSessionTaskStateRunning - The task is currently being serviced by the session.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/State-swift.enum/running
 	NSURLSessionTaskStateRunning NSURLSessionTaskState = 0
-	// NSURLSessionTaskStateSuspended - The task was suspended by the app.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/State-swift.enum/suspended
 	NSURLSessionTaskStateSuspended NSURLSessionTaskState = 1
-)
-
-// NSURLSessionWebSocketCloseCode - A code that indicates why a WebSocket connection closed.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionWebSocketTask/CloseCode-swift.enum
-type NSURLSessionWebSocketCloseCode uint
-
-const (
-	// NSURLSessionWebSocketCloseCodeInvalid - A code that indicates the connection is still open.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionWebSocketTask/CloseCode-swift.enum/invalid
-	NSURLSessionWebSocketCloseCodeInvalid NSURLSessionWebSocketCloseCode = 0
-	// NSURLSessionWebSocketCloseCodeInvalidFramePayloadData - A code that indicates the server terminated the connection because it received data inconsistent with the message’s type.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionWebSocketTask/CloseCode-swift.enum/invalidFramePayloadData
-	NSURLSessionWebSocketCloseCodeInvalidFramePayloadData NSURLSessionWebSocketCloseCode = 0
-	// NSURLSessionWebSocketCloseCodeMessageTooBig - A code that indicates an endpoint is terminating the connection because it received a message too big for it to process.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionWebSocketTask/CloseCode-swift.enum/messageTooBig
-	NSURLSessionWebSocketCloseCodeMessageTooBig NSURLSessionWebSocketCloseCode = 0
-	// NSURLSessionWebSocketCloseCodeTLSHandshakeFailure - A reserved code that indicates the connection closed due to the failure to perform a TLS handshake.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionWebSocketTask/CloseCode-swift.enum/tlsHandshakeFailure
-	NSURLSessionWebSocketCloseCodeTLSHandshakeFailure NSURLSessionWebSocketCloseCode = 0
+	NSURLSessionTaskStateCanceling NSURLSessionTaskState = 2
+	NSURLSessionTaskStateCompleted NSURLSessionTaskState = 3
 )
 
 // NSXMLDTDNodeKind - The type defined for the constants that specify the kind and subkind of DTD declaration represented by an 
@@ -2465,10 +1653,6 @@ const (
 type NSXMLNodeOptions uint
 
 const (
-	// NSXMLNodeOptionsNone - No options are requested for this input or output action.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXMLNodeOptions/NSXMLNodeOptionsNone
-	NSXMLNodeOptionsNone NSXMLNodeOptions = 0
 	// NSXMLNodePreserveDTD - Specifies that declarations in a DTD should be preserved until it the DTD is modified. For example, parameter entities are by default expanded; with this option, they are written out as they originally occur in the DTD.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/Options/nodePreserveDTD
@@ -2481,18 +1665,6 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/Options/nodeUseSingleQuotes
 	NSXMLNodeUseSingleQuotes NSXMLNodeOptions = 1
-)
-
-// NSXMLParserExternalEntityResolvingPolicy enum type
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ExternalEntityResolvingPolicy-swift.enum
-type NSXMLParserExternalEntityResolvingPolicy uint
-
-const (
-	NSXMLParserResolveExternalEntitiesNever NSXMLParserExternalEntityResolvingPolicy = 0
-	NSXMLParserResolveExternalEntitiesNoNetwork NSXMLParserExternalEntityResolvingPolicy = 1
-	NSXMLParserResolveExternalEntitiesSameOriginOnly NSXMLParserExternalEntityResolvingPolicy = 2
-	NSXMLParserResolveExternalEntitiesAlways NSXMLParserExternalEntityResolvingPolicy = 3
 )
 
 
