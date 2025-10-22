@@ -163,41 +163,6 @@ func (g *Generator) IsTypedefType(typeName string) bool {
 // GeneratorFuncs wraps a Generator and provides template functions with access to
 // the Generator's data-driven type checking (enum/typedef/class indices).
 // This allows templates to use accurate type resolution instead of heuristics.
-type GeneratorFuncs struct {
-	*Generator
-}
-
-// formatMethodParams formats method parameters for Go function signatures using data-driven type checking.
-func (gf GeneratorFuncs) formatMethodParams(method *occ2go.ParsedMethod) string {
-	if len(method.Parameters) == 0 {
-		return ""
-	}
-
-	parts := make([]string, len(method.Parameters))
-	for i, p := range method.Parameters {
-		paramName := p.Name
-		if paramName == "" {
-			paramName = fmt.Sprintf("p%d", i)
-		}
-		if isGoKeyword(paramName) {
-			paramName += "_"
-		}
-
-		goType := mapObjCTypeToGo(p.Type, gf.Framework)
-
-		// Convert objc.ID to objectivec.IObject for better type safety
-		if goType == "objc.ID" {
-			goType = "objectivec.IObject"
-		} else {
-			// Use data-driven type checking instead of heuristics
-			goType = gf.TypeToInterfaceType(goType)
-		}
-
-		parts[i] = fmt.Sprintf("%s %s", paramName, goType)
-	}
-	return strings.Join(parts, ", ")
-}
-
 func (g *Generator) TypeToInterfaceType(goType string) string {
 	// Handle qualified types (e.g., "foundation.Coder" -> "foundation.ICoder")
 	if strings.Contains(goType, ".") {
