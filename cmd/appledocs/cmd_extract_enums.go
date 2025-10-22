@@ -114,7 +114,8 @@ func extractEnumValues(framework, enumName string) (*Enum, error) {
 		}
 
 		if inEnum {
-			if strings.Contains(line, "};") {
+			// Check for closing brace (may have attributes between } and ;)
+			if strings.Contains(line, "}") {
 				break
 			}
 

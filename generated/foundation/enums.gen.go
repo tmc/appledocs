@@ -82,9 +82,6 @@ type EnergyFormatterUnit uint
 const (
 	EnergyFormatterUnitJoule EnergyFormatterUnit = 11
 	EnergyFormatterUnitKilojoule EnergyFormatterUnit = 14
-	NumberFormatterBehaviorDefault EnergyFormatterUnit = 0
-	NumberFormatterBehavior10_0 EnergyFormatterUnit = 1000
-	NumberFormatterBehavior10_4 EnergyFormatterUnit = 1040
 )
 
 // NSDirectoryEnumerationOptions - Options for enumerating the contents of directories.
@@ -670,11 +667,6 @@ const (
 	DataBase64Encoding76CharacterLineLength DataBase64EncodingOptions = 1
 	DataBase64EncodingEndLineWithCarriageReturn DataBase64EncodingOptions = 1
 	DataBase64EncodingEndLineWithLineFeed DataBase64EncodingOptions = 1
-	DataBase64DecodingIgnoreUnknownCharacters DataBase64EncodingOptions = 1
-	DataCompressionAlgorithmLZFSE DataBase64EncodingOptions = 0
-	DataCompressionAlgorithmLZ4 DataBase64EncodingOptions = 1
-	DataCompressionAlgorithmLZMA DataBase64EncodingOptions = 2
-	DataCompressionAlgorithmZlib DataBase64EncodingOptions = 3
 )
 
 // NSDataCompressionAlgorithm - An algorithm that indicates how to compress or decompress data.
@@ -906,12 +898,24 @@ const (
 	FileManagerUploadConflictPolicyFailOnConflict FileManagerUploadLocalVersionConflictPolicy = 1
 )
 
+// NSFileVersionAddingOptions - Options for adding a new file version.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileVersion/AddingOptions
+type FileVersionAddingOptions uint
+
+const (
+	FileVersionAddingByMoving FileVersionAddingOptions = 1
+)
+
 // NSFileVersionReplacingOptions - Options for replacing a file version.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileVersion/ReplacingOptions
 type FileVersionReplacingOptions uint
 
 const (
+	// FileVersionReplacingByMoving - An option to perform replacing by moving a file.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileVersion/ReplacingOptions/byMoving
 	FileVersionReplacingByMoving FileVersionReplacingOptions = 1
 )
 
@@ -1806,93 +1810,6 @@ const (
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/Options
 type XPCConnectionOptions uint
-
-const (
-	FileNoSuchFileError XPCConnectionOptions = 4
-	FileLockingError XPCConnectionOptions = 255
-	FileReadUnknownError XPCConnectionOptions = 256
-	FileReadNoPermissionError XPCConnectionOptions = 257
-	FileReadInvalidFileNameError XPCConnectionOptions = 258
-	FileReadCorruptFileError XPCConnectionOptions = 259
-	FileReadNoSuchFileError XPCConnectionOptions = 260
-	FileReadInapplicableStringEncodingError XPCConnectionOptions = 261
-	FileReadUnsupportedSchemeError XPCConnectionOptions = 262
-	FileReadTooLargeError XPCConnectionOptions = 263
-	FileReadUnknownStringEncodingError XPCConnectionOptions = 264
-	FileWriteUnknownError XPCConnectionOptions = 512
-	FileWriteNoPermissionError XPCConnectionOptions = 513
-	FileWriteInvalidFileNameError XPCConnectionOptions = 514
-	FileWriteFileExistsError XPCConnectionOptions = 515
-	FileWriteInapplicableStringEncodingError XPCConnectionOptions = 517
-	FileWriteUnsupportedSchemeError XPCConnectionOptions = 518
-	FileWriteOutOfSpaceError XPCConnectionOptions = 640
-	FileWriteVolumeReadOnlyError XPCConnectionOptions = 641
-	FileManagerUnmountUnknownError XPCConnectionOptions = 642
-	FileManagerUnmountBusyError XPCConnectionOptions = 643
-	KeyValueValidationError XPCConnectionOptions = 1024
-	FormattingError XPCConnectionOptions = 2048
-	UserCancelledError XPCConnectionOptions = 3072
-	FeatureUnsupportedError XPCConnectionOptions = 3073
-	ExecutableNotLoadableError XPCConnectionOptions = 3074
-	ExecutableArchitectureMismatchError XPCConnectionOptions = 3075
-	ExecutableRuntimeMismatchError XPCConnectionOptions = 3076
-	ExecutableLoadError XPCConnectionOptions = 3077
-	ExecutableLinkError XPCConnectionOptions = 3078
-	FileErrorMinimum XPCConnectionOptions = 0
-	FileErrorMaximum XPCConnectionOptions = 1023
-	ValidationErrorMinimum XPCConnectionOptions = 1024
-	ValidationErrorMaximum XPCConnectionOptions = 2047
-	ExecutableErrorMinimum XPCConnectionOptions = 2048
-	ExecutableErrorMaximum XPCConnectionOptions = 2049
-	FormattingErrorMinimum XPCConnectionOptions = 2048
-	FormattingErrorMaximum XPCConnectionOptions = 2559
-	PropertyListReadCorruptError XPCConnectionOptions = 2560
-	PropertyListReadUnknownVersionError XPCConnectionOptions = 2561
-	PropertyListReadStreamError XPCConnectionOptions = 2562
-	PropertyListWriteStreamError XPCConnectionOptions = 2563
-	PropertyListWriteInvalidError XPCConnectionOptions = 2564
-	PropertyListErrorMinimum XPCConnectionOptions = 2565
-	PropertyListErrorMaximum XPCConnectionOptions = 2566
-	XPCConnectionInterrupted XPCConnectionOptions = 2567
-	XPCConnectionInvalid XPCConnectionOptions = 2568
-	XPCConnectionReplyInvalid XPCConnectionOptions = 2569
-	XPCConnectionCodeSigningRequirementFailure XPCConnectionOptions = 2570
-	XPCConnectionErrorMinimum XPCConnectionOptions = 2571
-	XPCConnectionErrorMaximum XPCConnectionOptions = 2572
-	UbiquitousFileUnavailableError XPCConnectionOptions = 2573
-	UbiquitousFileNotUploadedDueToQuotaError XPCConnectionOptions = 2574
-	UbiquitousFileUbiquityServerNotAvailable XPCConnectionOptions = 2575
-	UbiquitousFileErrorMinimum XPCConnectionOptions = 2576
-	UbiquitousFileErrorMaximum XPCConnectionOptions = 2577
-	UserActivityHandoffFailedError XPCConnectionOptions = 2578
-	UserActivityConnectionUnavailableError XPCConnectionOptions = 2579
-	UserActivityRemoteApplicationTimedOutError XPCConnectionOptions = 2580
-	UserActivityHandoffUserInfoTooLargeError XPCConnectionOptions = 2581
-	UserActivityErrorMinimum XPCConnectionOptions = 2582
-	UserActivityErrorMaximum XPCConnectionOptions = 2583
-	CoderReadCorruptError XPCConnectionOptions = 2584
-	CoderValueNotFoundError XPCConnectionOptions = 2585
-	CoderInvalidValueError XPCConnectionOptions = 2586
-	CoderErrorMinimum XPCConnectionOptions = 2587
-	CoderErrorMaximum XPCConnectionOptions = 2588
-	BundleErrorMinimum XPCConnectionOptions = 2589
-	BundleErrorMaximum XPCConnectionOptions = 2590
-	BundleOnDemandResourceOutOfSpaceError XPCConnectionOptions = 2591
-	BundleOnDemandResourceExceededMaximumSizeError XPCConnectionOptions = 2592
-	BundleOnDemandResourceInvalidTagError XPCConnectionOptions = 2593
-	CloudSharingNetworkFailureError XPCConnectionOptions = 2594
-	CloudSharingQuotaExceededError XPCConnectionOptions = 2595
-	CloudSharingTooManyParticipantsError XPCConnectionOptions = 2596
-	CloudSharingConflictError XPCConnectionOptions = 2597
-	CloudSharingNoPermissionError XPCConnectionOptions = 2598
-	CloudSharingOtherError XPCConnectionOptions = 2599
-	CloudSharingErrorMinimum XPCConnectionOptions = 2600
-	CloudSharingErrorMaximum XPCConnectionOptions = 2601
-	CompressionFailedError XPCConnectionOptions = 2602
-	DecompressionFailedError XPCConnectionOptions = 2603
-	CompressionErrorMinimum XPCConnectionOptions = 2604
-	CompressionErrorMaximum XPCConnectionOptions = 2605
-)
 
 // NSNetServicesError - These constants identify errors that can occur when accessing net services.
 //
