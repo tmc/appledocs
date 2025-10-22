@@ -771,20 +771,8 @@ func generateObjcRuntimePackage(outputDir string) error {
 // enrichEnumValues calls the extract-enum-values tool to get actual enum values from macOS SDK headers.
 // It populates the IntValue field of each ParsedEnumCase with the resolved integer value.
 func enrichEnumValues(framework string, enums []*occ2go.ParsedEnum, verbose bool) error {
-	// Find the extract-enum-values tool
-	// From cmd/generate-framework-bindings, the tool is at ../extract-enum-values/extract-enum-values
-	extractToolPath := filepath.Join("..", "extract-enum-values", "extract-enum-values")
-
-	// Check if tool exists, if not try to build it
-	if _, err := os.Stat(extractToolPath); os.IsNotExist(err) {
-		if verbose {
-			fmt.Fprintf(os.Stderr, "Building extract-enum-values tool...\n")
-		}
-		cmd := exec.Command("go", "build", "-o", extractToolPath, "../extract-enum-values")
-		if output, err := cmd.CombinedOutput(); err != nil {
-			return fmt.Errorf("failed to build extract-enum-values tool: %w\nOutput: %s", err, output)
-		}
-	}
+	// Use the appledocs extract-enums subcommand
+	extractTool := "appledocs"
 
 	enrichedCount := 0
 	failedCount := 0
@@ -793,13 +781,16 @@ func enrichEnumValues(framework string, enums []*occ2go.ParsedEnum, verbose bool
 	for _, enum := range enums {
 		// Call extract-enum-values to get actual values from SDK headers
 		// This works even for enums with no cases from documentation
-		cmd := exec.Command(extractToolPath, framework, enum.Name)
+		// Try with NS prefix if enum name doesn't already have it
+		enumNameForSDK := enum.Name
+		if !strings.HasPrefix(enumNameForSDK, "NS") {
+			enumNameForSDK = "NS" + enumNameForSDK
+		}
+		cmd := exec.Command(extractTool, "extract-enums", framework, enumNameForSDK)
 		output, err := cmd.Output()
 		if err != nil {
 			failedCount++
-			if verbose {
-				fmt.Fprintf(os.Stderr, "Warning: failed to extract values for enum %s: %v\n", enum.Name, err)
-			}
+			// Enum not found in SDK - this is expected for many enums
 			continue
 		}
 
@@ -846,9 +837,25 @@ func enrichEnumValues(framework string, enums []*occ2go.ParsedEnum, verbose bool
 		// Populate IntValue field for each case
 		matchedCases := 0
 		for _, enumCase := range enum.Cases {
+			// Try exact match first
 			if val, ok := valueMap[enumCase.Name]; ok {
 				enumCase.IntValue = val
 				matchedCases++
+				continue
+			}
+			// Try with NS prefix (SDK uses NSEnumCase but docs might use EnumCase)
+			if val, ok := valueMap["NS"+enumCase.Name]; ok {
+				enumCase.IntValue = val
+				matchedCases++
+				continue
+			}
+			// Try without NS prefix (in case enum case has NS but value map doesn't)
+			nameWithoutNS := strings.TrimPrefix(enumCase.Name, "NS")
+			if nameWithoutNS != enumCase.Name {
+				if val, ok := valueMap[nameWithoutNS]; ok {
+					enumCase.IntValue = val
+					matchedCases++
+				}
 			}
 		}
 

@@ -59,9 +59,12 @@ func extractEnumValues(framework, enumName string) (*Enum, error) {
 	// Parse the output to find the enum
 	scanner := bufio.NewScanner(strings.NewReader(string(output)))
 	inEnum := false
-	enumPattern := regexp.MustCompile(`enum\s+` + regexp.QuoteMeta(enumName) + `\s*:\s*\w+\s*\{`)
-	valuePattern := regexp.MustCompile(`^\s*([A-Z][A-Za-z0-9_]+)\s*(?:__attribute__\(\([^)]+\)\)\s*)?=\s*(\d+)`)
-	namePattern := regexp.MustCompile(`^\s*([A-Z][A-Za-z0-9_]+)\s*(?:__attribute__|,)`)
+	// Match both Swift-style (enum Name : Type {) and C-style (typedef ... Name {)
+	enumPattern := regexp.MustCompile(`(?:enum\s+` + regexp.QuoteMeta(enumName) + `\s*:\s*\w+|typedef.*?` + regexp.QuoteMeta(enumName) + `)\s*\{`)
+	// Match explicit values including negative numbers and suffixes like L, UL
+	valuePattern := regexp.MustCompile(`^\s*([A-Z][A-Za-z0-9_]+)\s*(?:__attribute__\(\([^)]+\)\)\s*)?=\s*(-?\d+[UL]*)`)
+	// Match implicit values (no = assignment) - allow __attribute__, comma, or nothing (last enum case)
+	namePattern := regexp.MustCompile(`^\s*([A-Z][A-Za-z0-9_]+)\s*(?:__attribute__|,|$)`)
 
 	result := &Enum{
 		Name:   enumName,
@@ -85,7 +88,9 @@ func extractEnumValues(framework, enumName string) (*Enum, error) {
 			// Try explicit value first
 			matches := valuePattern.FindStringSubmatch(line)
 			if len(matches) >= 3 {
-				val, _ := strconv.Atoi(matches[2])
+				// Strip L, UL suffixes from the value string
+				valueStr := strings.TrimSuffix(strings.TrimSuffix(matches[2], "UL"), "L")
+				val, _ := strconv.Atoi(valueStr)
 				result.Values = append(result.Values, EnumValue{
 					Name:  matches[1],
 					Value: val,
