@@ -79,6 +79,7 @@ type Config struct {
 	PrettyJSON         bool
 	FetchBothLanguages bool
 	ChecksumValidation bool
+	MaxDepth           int // Maximum link depth to follow (0 = unlimited)
 	Verbose            bool
 	Logger             *slog.Logger
 }
@@ -355,7 +356,7 @@ func (c *Crawler) processURL(ctx context.Context, u string, urlQueue chan<- stri
 	}
 
 	// Queue new URLs for processing
-	newURLsAdded := c.queueNewURLs(newURLs, urlQueue, cfg)
+	newURLsAdded := c.queueNewURLs(newURLs, u, urlQueue, cfg)
 
 	if cfg.Verbose {
 		log.Printf("Queued %d new URLs from %s", newURLsAdded, outputPath)

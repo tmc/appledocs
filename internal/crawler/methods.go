@@ -292,8 +292,24 @@ func (c *Crawler) saveToOutputDir(path string, content []byte, cfg *Config) erro
 }
 
 // queueNewURLs adds new URLs to the processing queue if they haven't been visited
-func (c *Crawler) queueNewURLs(newURLs []string, urlQueue chan<- string, cfg *Config) int {
+func (c *Crawler) queueNewURLs(newURLs []string, parentURL string, urlQueue chan<- string, cfg *Config) int {
 	var added int
+
+	// Get parent depth
+	c.depthMutex.RLock()
+	parentDepth := c.urlDepths[parentURL]
+	c.depthMutex.RUnlock()
+
+	// Calculate child depth
+	childDepth := parentDepth + 1
+
+	// If max depth is set and we've exceeded it, don't queue any children
+	if cfg.MaxDepth > 0 && childDepth > cfg.MaxDepth {
+		if cfg.Verbose {
+			log.Printf("Max depth %d reached, skipping %d URLs from %s", cfg.MaxDepth, len(newURLs), parentURL)
+		}
+		return 0
+	}
 
 	for _, newURL := range newURLs {
 		// Get all language variants for this URL
@@ -324,6 +340,11 @@ func (c *Crawler) queueNewURLs(newURLs []string, urlQueue chan<- string, cfg *Co
 			if alreadyVisited {
 				continue
 			}
+
+			// Set depth for this URL
+			c.depthMutex.Lock()
+			c.urlDepths[resolvedURL] = childDepth
+			c.depthMutex.Unlock()
 
 			// Try to send to channel
 			select {

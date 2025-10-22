@@ -42,6 +42,7 @@ var (
 	crawlChecksum     bool
 	crawlFetchBoth    bool
 	crawlPrune        bool
+	crawlMaxDepth     int
 )
 
 func init() {
@@ -74,6 +75,8 @@ func init() {
 		"fetch both Swift and Objective-C variants")
 	crawlCmd.Flags().BoolVar(&crawlPrune, "prune", false,
 		"prune old cache files (HTML files and pre-index.json structure)")
+	crawlCmd.Flags().IntVar(&crawlMaxDepth, "max-depth", 0,
+		"maximum link depth to follow from entry point (0 = unlimited)")
 }
 
 func runCrawl(cmd *cobra.Command, args []string) error {
@@ -148,6 +151,7 @@ func runCrawl(cmd *cobra.Command, args []string) error {
 		PrettyJSON:         prettyJSON,
 		FetchBothLanguages: crawlFetchBoth,
 		ChecksumValidation: crawlChecksum,
+		MaxDepth:           crawlMaxDepth,
 		Verbose:            verbose,
 		Logger:             logger,
 	}
