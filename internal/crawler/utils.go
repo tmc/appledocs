@@ -35,7 +35,24 @@ func BuildFrameworkURLs(frameworkName string) []string {
 
 // ResolveURL resolves a potentially relative URL against the base URL
 func ResolveURL(base, relative string) string {
+	// Handle absolute URLs - convert old documentation URLs to new API format
 	if strings.HasPrefix(relative, "http://") || strings.HasPrefix(relative, "https://") {
+		// Convert old-style documentation URLs to new JSON API format
+		// https://developer.apple.com/documentation/foundation/nsdata
+		// -> https://developer.apple.com/tutorials/data/documentation/foundation/nsdata.json
+		if strings.Contains(relative, "developer.apple.com/documentation/") &&
+			!strings.Contains(relative, "/tutorials/data/") {
+			// Extract the path after /documentation/
+			parts := strings.SplitN(relative, "/documentation/", 2)
+			if len(parts) == 2 {
+				docPath := parts[1]
+				// Add .json if not present
+				if !strings.HasSuffix(docPath, ".json") {
+					docPath = docPath + ".json"
+				}
+				return base + "/tutorials/data/documentation/" + docPath
+			}
+		}
 		return relative
 	}
 

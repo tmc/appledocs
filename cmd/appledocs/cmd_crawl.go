@@ -6,6 +6,7 @@ import (
 	"os"
 	"os/signal"
 	"path/filepath"
+	"strings"
 	"syscall"
 	"time"
 
@@ -171,7 +172,7 @@ func runCrawl(cmd *cobra.Command, args []string) error {
 // 1. HTML files (should be JSON)
 // 2. Files in directories where index.json now exists (old structure)
 func pruneOldCache(cacheDir string, verbose bool) error {
-	var htmlCount, oldStructureCount int
+	var htmlCount, oldStructureCount, languageVariantCount int
 	var totalBytesRemoved int64
 
 	// Walk the cache directory
@@ -216,6 +217,13 @@ func pruneOldCache(cacheDir string, verbose bool) error {
 				reason = "old structure (index.json exists)"
 				oldStructureCount++
 			}
+		}
+
+		// Check if this is a language variant file (has .language%3D in the name)
+		if !shouldPrune && (strings.Contains(path, ".language%3D") || strings.Contains(path, "?language=")) {
+			shouldPrune = true
+			reason = "language variant duplicate"
+			languageVariantCount++
 		}
 
 		// Prune the file if needed
@@ -270,6 +278,7 @@ func pruneOldCache(cacheDir string, verbose bool) error {
 	logger.Info("Cache pruning complete",
 		"html_files_removed", htmlCount,
 		"old_structure_files_removed", oldStructureCount,
+		"language_variant_files_removed", languageVariantCount,
 		"total_bytes_removed", totalBytesRemoved,
 		"total_mb_removed", float64(totalBytesRemoved)/(1024*1024))
 
