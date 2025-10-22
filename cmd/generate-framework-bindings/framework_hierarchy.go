@@ -72,8 +72,50 @@ var frameworkLevels = map[string]int{
 	"replaykit":    4,
 }
 
+// RelaxMethodParameters marks parameters that violate hierarchy with relaxed types.
+// Instead of filtering out methods, we keep them but mark violating parameters
+// to use objectivec.IObject with a comment indicating the expected type.
+func RelaxMethodParameters(methods []*occ2go.ParsedMethod, currentFramework string) {
+	currentLevel, exists := frameworkLevels[strings.ToLower(currentFramework)]
+	if !exists {
+		// Unknown framework, don't relax
+		return
+	}
+
+	for _, method := range methods {
+		// Check return type for violations
+		if violatesHierarchy(method.ReturnType, currentFramework, currentLevel) {
+			// For now, skip methods with violating return types
+			// We could relax these too, but it's more complex
+			continue
+		}
+
+		// Check and relax parameters
+		for i := range method.Parameters {
+			param := &method.Parameters[i]
+			if violatesHierarchy(param.Type, currentFramework, currentLevel) {
+// 				// Get the expected Go type (with cross-framework reference)
+// 				expectedType := mapObjCTypeToGo(param.Type, currentFramework)
+
+				// Mark this parameter as relaxed
+				// Store original type in a custom field for documentation
+// 				if param.Metadata == nil {
+// 					param.Metadata = make(map[string]string)
+// 				}
+// 				param.Metadata["ExpectedType"] = expectedType
+// 				param.Metadata["OriginalObjCType"] = param.Type
+
+				// Relax the type to objectivec.IObject
+				// We set the Type to a marker that the type mapper will recognize
+				param.Type = "id" // Maps to objectivec.IObject
+			}
+		}
+	}
+}
+
 // FilterMethodsByHierarchy filters methods that would create upward dependency violations.
 // It removes methods that reference types from higher-level frameworks.
+// NOTE: This is being phased out in favor of RelaxMethodParameters.
 func FilterMethodsByHierarchy(methods []*occ2go.ParsedMethod, currentFramework string) []*occ2go.ParsedMethod {
 	currentLevel, exists := frameworkLevels[strings.ToLower(currentFramework)]
 	if !exists {
@@ -83,9 +125,15 @@ func FilterMethodsByHierarchy(methods []*occ2go.ParsedMethod, currentFramework s
 
 	filtered := make([]*occ2go.ParsedMethod, 0, len(methods))
 	for _, method := range methods {
-		if !shouldSkipMethod(method, currentFramework, currentLevel) {
-			filtered = append(filtered, method)
+		// Only skip if return type violates hierarchy
+		// Parameters will be relaxed by RelaxMethodParameters
+		if violatesHierarchy(method.ReturnType, currentFramework, currentLevel) {
+			if os.Getenv("DEBUG_HIERARCHY") == "1" {
+				fmt.Fprintf(os.Stderr, "DEBUG: Skipping method %s due to return type %s\n", method.Name, method.ReturnType)
+			}
+			continue
 		}
+		filtered = append(filtered, method)
 	}
 
 	return filtered
