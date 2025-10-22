@@ -1668,3 +1668,52 @@ const (
 )
 
 
+
+// NSEnumerationOptions - Options for enumerating collections.
+// Defined in Foundation SDK headers (NSObjCRuntime.h)
+type NSEnumerationOptions uint
+
+const (
+	NSEnumerationConcurrent NSEnumerationOptions = 1  // 1 << 0
+	NSEnumerationReverse    NSEnumerationOptions = 2  // 1 << 1
+)
+
+// NSSortOptions - Options for sorting operations.
+// Defined in Foundation SDK headers (NSObjCRuntime.h)
+type NSSortOptions uint
+
+const (
+	NSSortConcurrent NSSortOptions = 1   // 1 << 0
+	NSSortStable     NSSortOptions = 16  // 1 << 4
+)
+
+// NSKeyValueObservingOptions - Options for key-value observing.
+// Defined in Foundation SDK headers (NSKeyValueObserving.h)
+type NSKeyValueObservingOptions uint
+
+const (
+	NSKeyValueObservingOptionNew     NSKeyValueObservingOptions = 0x01
+	NSKeyValueObservingOptionOld     NSKeyValueObservingOptions = 0x02
+	NSKeyValueObservingOptionInitial NSKeyValueObservingOptions = 0x04
+	NSKeyValueObservingOptionPrior   NSKeyValueObservingOptions = 0x08
+)
+
+// NSBinarySearchingOptions - Options for binary search operations.
+// Defined in Foundation SDK headers (NSArray.h)
+type NSBinarySearchingOptions uint
+
+const (
+	NSBinarySearchingFirstEqual     NSBinarySearchingOptions = 256  // 1 << 8
+	NSBinarySearchingLastEqual      NSBinarySearchingOptions = 512  // 1 << 9
+	NSBinarySearchingInsertionIndex NSBinarySearchingOptions = 1024 // 1 << 10
+)
+
+// NSOrderedCollectionDifferenceCalculationOptions - Options for difference calculation.
+// Defined in Foundation SDK headers (NSOrderedCollectionDifference.h)
+type NSOrderedCollectionDifferenceCalculationOptions uint
+
+const (
+	NSOrderedCollectionDifferenceCalculationOmitInsertedObjects NSOrderedCollectionDifferenceCalculationOptions = 1 // 1 << 0
+	NSOrderedCollectionDifferenceCalculationOmitRemovedObjects  NSOrderedCollectionDifferenceCalculationOptions = 2 // 1 << 1
+	NSOrderedCollectionDifferenceCalculationInferMoves          NSOrderedCollectionDifferenceCalculationOptions = 4 // 1 << 2
+)
