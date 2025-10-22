@@ -19,6 +19,7 @@ import (
 	"regexp"
 	"sort"
 	"strings"
+	"time"
 
 	"github.com/tmc/appledocs"
 	"github.com/tmc/appledocs/occ2go"
@@ -30,6 +31,11 @@ var embeddedFS embed.FS
 var verbose bool
 
 func generateFramework(framework, inputDir, outputDir, filterRegexp string, txtarOutput bool, variant string, withRefMethods, generateTests, generateExamples bool) error {
+	startTime := time.Now()
+	if verbose {
+		fmt.Fprintf(os.Stderr, "[%s] Starting generation\n", framework)
+	}
+
 	// Check if this is an iOS-only framework and skip if so
 	_, _, iOSOnly := loadFrameworkMetadata(inputDir, framework)
 	if iOSOnly {
@@ -38,9 +44,13 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 	}
 
 	// Open the appledocs filesystem
+	phaseStart := time.Now()
 	fsys, err := appledocs.Open(inputDir)
 	if err != nil {
 		return fmt.Errorf("failed to open appledocs filesystem: %w", err)
+	}
+	if verbose {
+		fmt.Fprintf(os.Stderr, "[%s] Opened filesystem (%.2fs)\n", framework, time.Since(phaseStart).Seconds())
 	}
 
 	// Parse all symbols in the framework using the appledocs iterator
@@ -55,7 +65,11 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 	parseErrors := 0
 
 	// First, extract synthetic documents from API collection pages
+	phaseStart = time.Now()
 	syntheticDocs := extractSymbolsFromAPICollections(fsys, framework, verbose)
+	if verbose {
+		fmt.Fprintf(os.Stderr, "[%s] Extracted %d synthetic docs (%.2fs)\n", framework, len(syntheticDocs), time.Since(phaseStart).Seconds())
+	}
 
 	// Build a set of properties that have separate JSON files
 	// to avoid duplicates when extracting from class references
@@ -115,6 +129,7 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 	enumCasesMap := make(map[string][]*occ2go.ParsedEnumCase)
 
 	// Process regular symbols
+	phaseStart = time.Now()
 	for path, doc := range appledocs.Symbols(fsys, framework) {
 		processedFiles++
 
@@ -267,11 +282,12 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 	}
 
 	if verbose {
-		fmt.Fprintf(os.Stderr, "Processed %d files (%d parse errors)\n", processedFiles, parseErrors)
-		fmt.Fprintf(os.Stderr, "Found: %d functions, %d classes, %d protocols, %d enums, %d typedefs, %d constants\n", len(functions), len(classes), len(protocols), len(enums), len(typedefs), len(constants))
+		fmt.Fprintf(os.Stderr, "[%s] Parsed %d files in %.2fs (%d errors)\n", framework, processedFiles, time.Since(phaseStart).Seconds(), parseErrors)
+		fmt.Fprintf(os.Stderr, "[%s] Found: %d functions, %d classes, %d protocols, %d enums, %d typedefs, %d constants\n", framework, len(functions), len(classes), len(protocols), len(enums), len(typedefs), len(constants))
 	}
 
 	// Populate currentFrameworkClasses map for cross-framework type detection
+	phaseStart = time.Now()
 	// This helps resolve whether a type like "Number" or "AccessibilityCustomAction"
 	// exists in the current framework or is from another framework
 	currentFrameworkClasses = make(map[string]bool)
@@ -534,6 +550,10 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 	}
 
 	// Generate bindings
+	phaseStart = time.Now()
+	if verbose {
+		fmt.Fprintf(os.Stderr, "[%s] Starting code generation\n", framework)
+	}
 	if txtarOutput {
 		if err := generateTxtar(os.Stdout, framework, packageName, inputDir, functions, classes, protocols, enums, typedefs, constants, withRefMethods, generateTests, generateExamples, variant); err != nil {
 			return fmt.Errorf("failed to generate bindings: %w", err)
@@ -542,7 +562,14 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 		if err := generateFiles(outDir, framework, packageName, inputDir, functions, classes, protocols, enums, typedefs, constants, withRefMethods, generateTests, generateExamples, variant); err != nil {
 			return fmt.Errorf("failed to generate bindings: %w", err)
 		}
+		if verbose {
+			fmt.Fprintf(os.Stderr, "[%s] Generated code in %.2fs\n", framework, time.Since(phaseStart).Seconds())
+		}
 		fmt.Printf("Generated %s bindings in %s\n", framework, outDir)
+	}
+
+	if verbose {
+		fmt.Fprintf(os.Stderr, "[%s] Total time: %.2fs\n", framework, time.Since(startTime).Seconds())
 	}
 
 	return nil

@@ -22,19 +22,46 @@ func (c *Crawler) fetchWithCache(ctx context.Context, u string, cfg *Config) ([]
 	}
 
 	// Create cache path
-	cachePath := filepath.Join(cfg.CacheDir, parsed.Host, parsed.Path)
+	basePath := filepath.Join(cfg.CacheDir, parsed.Host, parsed.Path)
 
-	// Only add query params to cache path if they're NOT language params
+	// For documentation URLs, always use directory structure with index.json
+	// This prevents file/directory collisions when a path has both content and children
+	// e.g., /documentation/foundation/nsstring (has content)
+	//   and /documentation/foundation/nsstring/init (child path)
+	var cachePath string
+	var cacheDir string
+
+	if strings.Contains(parsed.Path, "/documentation/") || strings.HasSuffix(parsed.Path, ".json") {
+		// Use directory structure: path/index.json
+		cacheDir = basePath
+		// For .json URLs, strip the extension for the directory name
+		if strings.HasSuffix(cacheDir, ".json") {
+			cacheDir = strings.TrimSuffix(cacheDir, ".json")
+		}
+		cachePath = filepath.Join(cacheDir, "index.json")
+	} else {
+		// For non-documentation URLs, use the path as filename
+		cacheDir = filepath.Dir(basePath)
+		cachePath = basePath
+	}
+
+	// Add query params to filename if they're NOT language params
 	if parsed.RawQuery != "" {
 		query := parsed.Query()
 		query.Del("language")
 		if len(query) > 0 {
-			cachePath = filepath.Join(cachePath + "." + url.QueryEscape(query.Encode()))
+			queryStr := url.QueryEscape(query.Encode())
+			if strings.HasSuffix(cachePath, "index.json") {
+				// For index.json, insert query before extension
+				cachePath = filepath.Join(cacheDir, "index."+queryStr+".json")
+			} else {
+				cachePath = cachePath + "." + queryStr
+			}
 		}
 	}
 
 	// Ensure directory exists
-	if err := os.MkdirAll(filepath.Dir(cachePath), 0755); err != nil {
+	if err := os.MkdirAll(cacheDir, 0755); err != nil {
 		c.incrementErrors()
 		return nil, fmt.Errorf("create cache directory: %v", err)
 	}
