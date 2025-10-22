@@ -84,8 +84,8 @@ func NewCaptureAudioFileOutput() CaptureAudioFileOutput {
 // The settings used to decode or re-encode audio before it is output by the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureaudiofileoutput/audiosettings
-func (c_ CaptureAudioFileOutput) AudioSettings() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("audioSettings"))
+func (c_ CaptureAudioFileOutput) AudioSettings() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("audioSettings"))
 	return rv
 }
 
@@ -95,8 +95,8 @@ func (c_ CaptureAudioFileOutput) AudioSettings() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureaudiofileoutput/audiosettings
-func (c_ CaptureAudioFileOutput) SetAudioSettings(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setAudioSettings:"), value)
+func (c_ CaptureAudioFileOutput) SetAudioSettings(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setAudioSettings:"), objc.String(value))
 }
 
 // A collection of metadata to be written to the receiver’s output files.

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -34,7 +33,7 @@ type ICaptureDevice interface {
 	objectivec.IObject
 	IsFocusModeSupported(focusMode unsafe.Pointer) bool
 	LockForConfiguration(outError unsafe.Pointer) bool
-	RampToVideoZoomFactorWithRate(factor float64, rate unsafe.Pointer)
+	RampToVideoZoomFactorWithRate(factor float64, rate float32)
 	SetCameraLensSmudgeDetectionEnabledDetectionInterval(cameraLensSmudgeDetectionEnabled bool, detectionInterval unsafe.Pointer)
 	SetCinematicVideoFixedFocusAtPointFocusMode(point coregraphics.CGPoint, focusMode CaptureCinematicVideoFocusMode)
 	SetCinematicVideoTrackingFocusAtPointFocusMode(point coregraphics.CGPoint, focusMode CaptureCinematicVideoFocusMode)
@@ -97,8 +96,8 @@ func NewCaptureDevice() CaptureDevice {
 // Creates an object that represents a device with the specified identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/init(uniqueID:)
-func NewCaptureDeviceWithUniqueID(deviceUniqueID appkit.string) CaptureDevice {
-	rv := objc.Send[CaptureDevice](objc.ID(getCaptureDeviceClass().class), objc.Sel("deviceWithUniqueID:"), deviceUniqueID)
+func NewCaptureDeviceWithUniqueID(deviceUniqueID string) CaptureDevice {
+	rv := objc.Send[CaptureDevice](objc.ID(getCaptureDeviceClass().class), objc.Sel("deviceWithUniqueID:"), objc.String(deviceUniqueID))
 	return rv
 }
 
@@ -138,8 +137,8 @@ func (cc _CaptureDeviceClass) DevicesWithMediaType(mediaType MediaType) []Captur
 // Creates an object that represents a device with the specified identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/init(uniqueID:)
-func (cc _CaptureDeviceClass) DeviceWithUniqueID(deviceUniqueID appkit.string) CaptureDevice {
-	rv := objc.Send[CaptureDevice](objc.ID(cc.class), objc.Sel("deviceWithUniqueID:"), deviceUniqueID)
+func (cc _CaptureDeviceClass) DeviceWithUniqueID(deviceUniqueID string) CaptureDevice {
+	rv := objc.Send[CaptureDevice](objc.ID(cc.class), objc.Sel("deviceWithUniqueID:"), objc.String(deviceUniqueID))
 	return rv
 }
 
@@ -197,7 +196,7 @@ func (c_ CaptureDevice) LockForConfiguration(outError unsafe.Pointer) bool {
 // Begins a smooth transition from the current zoom factor to another.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/ramp(toVideoZoomFactor:withRate:)
-func (c_ CaptureDevice) RampToVideoZoomFactorWithRate(factor float64, rate unsafe.Pointer) {
+func (c_ CaptureDevice) RampToVideoZoomFactorWithRate(factor float64, rate float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("rampToVideoZoomFactor:withRate:"), factor, rate)
 }
 
@@ -634,8 +633,8 @@ func (c_ CaptureDevice) VirtualDevice() bool {
 // The current focus position of the lens.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/lensPosition
-func (c_ CaptureDevice) LensPosition() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("lensPosition"))
+func (c_ CaptureDevice) LensPosition() float32 {
+	rv := objc.Send[float32](c_.ID, objc.Sel("lensPosition"))
 	return rv
 }
 
@@ -682,8 +681,8 @@ func (c_ CaptureDevice) MinimumFocusDistance() int {
 // The nominal 35mm equivalent focal length of the capture device’s lens.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/nominalFocalLengthIn35mmFilm
-func (c_ CaptureDevice) NominalFocalLengthIn35mmFilm() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("nominalFocalLengthIn35mmFilm"))
+func (c_ CaptureDevice) NominalFocalLengthIn35mmFilm() float32 {
+	rv := objc.Send[float32](c_.ID, objc.Sel("nominalFocalLengthIn35mmFilm"))
 	return rv
 }
 
@@ -746,8 +745,8 @@ func (c_ CaptureDevice) TransportType() unsafe.Pointer {
 // An identifier that uniquely identifies the device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/uniqueID
-func (c_ CaptureDevice) UniqueID() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("uniqueID"))
+func (c_ CaptureDevice) UniqueID() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("uniqueID"))
 	return rv
 }
 
@@ -1006,8 +1005,8 @@ func (c_ CaptureDevice) SetIsVirtualDevice(value bool) {
 // A localized device name for display in the user interface.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/localizedname
-func (c_ CaptureDevice) LocalizedName() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("localizedName"))
+func (c_ CaptureDevice) LocalizedName() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("localizedName"))
 	return rv
 }
 
@@ -1017,15 +1016,15 @@ func (c_ CaptureDevice) LocalizedName() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/localizedname
-func (c_ CaptureDevice) SetLocalizedName(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setLocalizedName:"), value)
+func (c_ CaptureDevice) SetLocalizedName(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setLocalizedName:"), objc.String(value))
 }
 
 // A human-readable string for the manufacturer of the device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/manufacturer
-func (c_ CaptureDevice) Manufacturer() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("manufacturer"))
+func (c_ CaptureDevice) Manufacturer() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("manufacturer"))
 	return rv
 }
 
@@ -1035,8 +1034,8 @@ func (c_ CaptureDevice) Manufacturer() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/manufacturer
-func (c_ CaptureDevice) SetManufacturer(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setManufacturer:"), value)
+func (c_ CaptureDevice) SetManufacturer(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setManufacturer:"), objc.String(value))
 }
 
 // The maximum frame rate (expressed as a minimum duration) that can be set on an input associated with this device.
@@ -1060,8 +1059,8 @@ func (c_ CaptureDevice) SetMinSupportedLockedVideoFrameDuration(value unsafe.Poi
 // A model identifier for the device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/modelid
-func (c_ CaptureDevice) ModelID() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("modelID"))
+func (c_ CaptureDevice) ModelID() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("modelID"))
 	return rv
 }
 
@@ -1071,8 +1070,8 @@ func (c_ CaptureDevice) ModelID() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/modelid
-func (c_ CaptureDevice) SetModelID(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setModelID:"), value)
+func (c_ CaptureDevice) SetModelID(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setModelID:"), objc.String(value))
 }
 
 // The physical position of the capture device hardware.
@@ -1114,8 +1113,8 @@ func (c_ CaptureDevice) SetSpatialCaptureDiscomfortReasons(value ISpatialCapture
 // A key to retrieve a state value that indicates the system pressure level and contributing factors that caused the interruption.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesessioninterruptionsystempressurestatekey
-func (c_ CaptureDevice) AVCaptureSessionInterruptionSystemPressureStateKey() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("AVCaptureSessionInterruptionSystemPressureStateKey"))
+func (c_ CaptureDevice) AVCaptureSessionInterruptionSystemPressureStateKey() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("AVCaptureSessionInterruptionSystemPressureStateKey"))
 	return rv
 }
 

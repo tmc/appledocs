@@ -84,8 +84,8 @@ func NewDelegatingPlaybackCoordinator() DelegatingPlaybackCoordinator {
 // An identifier of the current item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinator/currentitemidentifier
-func (d_ DelegatingPlaybackCoordinator) CurrentItemIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](d_.ID, objc.Sel("currentItemIdentifier"))
+func (d_ DelegatingPlaybackCoordinator) CurrentItemIdentifier() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("currentItemIdentifier"))
 	return rv
 }
 
@@ -95,8 +95,8 @@ func (d_ DelegatingPlaybackCoordinator) CurrentItemIdentifier() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinator/currentitemidentifier
-func (d_ DelegatingPlaybackCoordinator) SetCurrentItemIdentifier(value appkit.string) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setCurrentItemIdentifier:"), value)
+func (d_ DelegatingPlaybackCoordinator) SetCurrentItemIdentifier(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setCurrentItemIdentifier:"), objc.String(value))
 }
 
 // The delegate object for the playback coordinator.

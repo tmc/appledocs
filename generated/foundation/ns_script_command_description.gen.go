@@ -137,8 +137,8 @@ func (s_ ScriptCommandDescription) SetAppleEventCodeForReturnType(value unsafe.P
 // Returns the names (or keys) for all arguments of the receiver’s command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommanddescription/argumentnames
-func (s_ ScriptCommandDescription) ArgumentNames() appkit.string {
-	rv := objc.Send[appkit.string](s_.ID, objc.Sel("argumentNames"))
+func (s_ ScriptCommandDescription) ArgumentNames() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("argumentNames"))
 	return rv
 }
 
@@ -148,15 +148,15 @@ func (s_ ScriptCommandDescription) ArgumentNames() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommanddescription/argumentnames
-func (s_ ScriptCommandDescription) SetArgumentNames(value appkit.string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setArgumentNames:"), value)
+func (s_ ScriptCommandDescription) SetArgumentNames(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setArgumentNames:"), objc.String(value))
 }
 
 // Returns the name of the class that will be instantiated to handle the command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommanddescription/commandclassname
-func (s_ ScriptCommandDescription) CommandClassName() appkit.string {
-	rv := objc.Send[appkit.string](s_.ID, objc.Sel("commandClassName"))
+func (s_ ScriptCommandDescription) CommandClassName() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("commandClassName"))
 	return rv
 }
 
@@ -166,15 +166,15 @@ func (s_ ScriptCommandDescription) CommandClassName() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommanddescription/commandclassname
-func (s_ ScriptCommandDescription) SetCommandClassName(value appkit.string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setCommandClassName:"), value)
+func (s_ ScriptCommandDescription) SetCommandClassName(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setCommandClassName:"), objc.String(value))
 }
 
 // Returns the name of the command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommanddescription/commandname
-func (s_ ScriptCommandDescription) CommandName() appkit.string {
-	rv := objc.Send[appkit.string](s_.ID, objc.Sel("commandName"))
+func (s_ ScriptCommandDescription) CommandName() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("commandName"))
 	return rv
 }
 
@@ -184,15 +184,15 @@ func (s_ ScriptCommandDescription) CommandName() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommanddescription/commandname
-func (s_ ScriptCommandDescription) SetCommandName(value appkit.string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setCommandName:"), value)
+func (s_ ScriptCommandDescription) SetCommandName(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setCommandName:"), objc.String(value))
 }
 
 // Returns the return type of the command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommanddescription/returntype
-func (s_ ScriptCommandDescription) ReturnType() appkit.string {
-	rv := objc.Send[appkit.string](s_.ID, objc.Sel("returnType"))
+func (s_ ScriptCommandDescription) ReturnType() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("returnType"))
 	return rv
 }
 
@@ -202,15 +202,15 @@ func (s_ ScriptCommandDescription) ReturnType() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommanddescription/returntype
-func (s_ ScriptCommandDescription) SetReturnType(value appkit.string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setReturnType:"), value)
+func (s_ ScriptCommandDescription) SetReturnType(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setReturnType:"), objc.String(value))
 }
 
 // Returns the name of the suite that contains the command described by the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommanddescription/suitename
-func (s_ ScriptCommandDescription) SuiteName() appkit.string {
-	rv := objc.Send[appkit.string](s_.ID, objc.Sel("suiteName"))
+func (s_ ScriptCommandDescription) SuiteName() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("suiteName"))
 	return rv
 }
 
@@ -220,8 +220,8 @@ func (s_ ScriptCommandDescription) SuiteName() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommanddescription/suitename
-func (s_ ScriptCommandDescription) SetSuiteName(value appkit.string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setSuiteName:"), value)
+func (s_ ScriptCommandDescription) SetSuiteName(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setSuiteName:"), objc.String(value))
 }
 
 

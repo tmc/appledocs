@@ -109,8 +109,8 @@ func (c_ ConditionLock) SetCondition(value int) {
 // The name associated with the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsconditionlock/name
-func (c_ ConditionLock) Name() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("name"))
+func (c_ ConditionLock) Name() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -120,8 +120,8 @@ func (c_ ConditionLock) Name() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsconditionlock/name
-func (c_ ConditionLock) SetName(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setName:"), value)
+func (c_ ConditionLock) SetName(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
 

@@ -143,8 +143,8 @@ func (p_ PositionalSpecifier) SetInsertionIndex(value int) {
 // Returns the key that identifies the relationship into which the new or copied object or objects should be inserted.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nspositionalspecifier/insertionkey
-func (p_ PositionalSpecifier) InsertionKey() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("insertionKey"))
+func (p_ PositionalSpecifier) InsertionKey() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("insertionKey"))
 	return rv
 }
 
@@ -154,8 +154,8 @@ func (p_ PositionalSpecifier) InsertionKey() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nspositionalspecifier/insertionkey
-func (p_ PositionalSpecifier) SetInsertionKey(value appkit.string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setInsertionKey:"), value)
+func (p_ PositionalSpecifier) SetInsertionKey(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setInsertionKey:"), objc.String(value))
 }
 
 // Returns a Boolean value that indicates whether evaluation has been successful and the object to be inserted should actually replace the keyed, indexed object in the insertion container.

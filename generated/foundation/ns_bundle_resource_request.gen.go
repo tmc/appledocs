@@ -236,8 +236,8 @@ func (b_ BundleResourceRequest) SetBundle(value IBundle) {
 // A hint to the system of the relative priority of the resource request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsbundleresourcerequest/loadingpriority
-func (b_ BundleResourceRequest) LoadingPriority() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("loadingPriority"))
+func (b_ BundleResourceRequest) LoadingPriority() float64 {
+	rv := objc.Send[float64](b_.ID, objc.Sel("loadingPriority"))
 	return rv
 }
 
@@ -247,15 +247,15 @@ func (b_ BundleResourceRequest) LoadingPriority() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsbundleresourcerequest/loadingpriority
-func (b_ BundleResourceRequest) SetLoadingPriority(value unsafe.Pointer) {
+func (b_ BundleResourceRequest) SetLoadingPriority(value float64) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setLoadingPriority:"), value)
 }
 
 // A set of strings, with each string specifying a tag used to mark on-demand resources managed by the request. (read-only)
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsbundleresourcerequest/tags
-func (b_ BundleResourceRequest) Tags() appkit.string {
-	rv := objc.Send[appkit.string](b_.ID, objc.Sel("tags"))
+func (b_ BundleResourceRequest) Tags() string {
+	rv := objc.Send[string](b_.ID, objc.Sel("tags"))
 	return rv
 }
 
@@ -265,14 +265,14 @@ func (b_ BundleResourceRequest) Tags() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsbundleresourcerequest/tags
-func (b_ BundleResourceRequest) SetTags(value appkit.string) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setTags:"), value)
+func (b_ BundleResourceRequest) SetTags(value string) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setTags:"), objc.String(value))
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsbundleresourcerequestloadingpriorityurgent
-func (b_ BundleResourceRequest) NSBundleResourceRequestLoadingPriorityUrgent() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("NSBundleResourceRequestLoadingPriorityUrgent"))
+func (b_ BundleResourceRequest) NSBundleResourceRequestLoadingPriorityUrgent() float64 {
+	rv := objc.Send[float64](b_.ID, objc.Sel("NSBundleResourceRequestLoadingPriorityUrgent"))
 	return rv
 }
 

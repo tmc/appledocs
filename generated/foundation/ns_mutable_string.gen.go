@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [MutableString] class.
@@ -30,14 +29,14 @@ type _MutableStringClass struct {
 // An interface definition for the [MutableString] class.
 type IMutableString interface {
 	IString
-	AppendString(aString appkit.string)
-	AppendFormat(format appkit.string)
+	AppendString(aString string)
+	AppendFormat(format string)
 	ApplyTransformReverseRangeUpdatedRange(transform IStringTransform, reverse bool, range_ IRange, resultingRange IRangePointer) bool
 	DeleteCharactersInRange(range_ IRange)
-	InsertStringAtIndex(aString appkit.string, loc uint)
-	ReplaceCharactersInRangeWithString(range_ IRange, aString appkit.string)
-	ReplaceOccurrencesOfStringWithStringOptionsRange(target appkit.string, replacement appkit.string, options StringCompareOptions, searchRange IRange) uint
-	SetString(aString appkit.string)
+	InsertStringAtIndex(aString string, loc uint)
+	ReplaceCharactersInRangeWithString(range_ IRange, aString string)
+	ReplaceOccurrencesOfStringWithStringOptionsRange(target string, replacement string, options StringCompareOptions, searchRange IRange) uint
+	SetString(aString string)
 }
 
 // A dynamic plain-text Unicode string object.
@@ -46,7 +45,7 @@ type IMutableString interface {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableString
 type MutableString struct {
-	String
+	string
 }
 
 // MutableStringFrom constructs a [MutableString] from an unsafe.Pointer.
@@ -54,7 +53,7 @@ type MutableString struct {
 // A dynamic plain-text Unicode string object.
 func MutableStringFrom(ptr unsafe.Pointer) MutableString {
 	return MutableString{
-		String: StringFrom(ptr),
+		String: stringFrom(ptr),
 	}
 }
 
@@ -114,15 +113,15 @@ func (mc _MutableStringClass) StringWithCapacity(capacity uint) MutableString {
 // Adds to the end of the receiver the characters of a given string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableString/append(_:)
-func (m_ MutableString) AppendString(aString appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("appendString:"), aString)
+func (m_ MutableString) AppendString(aString string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("appendString:"), objc.String(aString))
 }
 
 // Adds a constructed string to the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableString/appendFormat:
-func (m_ MutableString) AppendFormat(format appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("appendFormat:"), format)
+func (m_ MutableString) AppendFormat(format string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("appendFormat:"), objc.String(format))
 }
 
 // Transliterates the receiver by applying a specified ICU string transform.
@@ -143,30 +142,30 @@ func (m_ MutableString) DeleteCharactersInRange(range_ IRange) {
 // Inserts into the receiver the characters of a given string at a given location.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableString/insert(_:at:)
-func (m_ MutableString) InsertStringAtIndex(aString appkit.string, loc uint) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("insertString:atIndex:"), aString, loc)
+func (m_ MutableString) InsertStringAtIndex(aString string, loc uint) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("insertString:atIndex:"), objc.String(aString), loc)
 }
 
 // Replaces the characters from with those in .
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableString/replaceCharacters(in:with:)
-func (m_ MutableString) ReplaceCharactersInRangeWithString(range_ IRange, aString appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("replaceCharactersInRange:withString:"), range_, aString)
+func (m_ MutableString) ReplaceCharactersInRangeWithString(range_ IRange, aString string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("replaceCharactersInRange:withString:"), range_, objc.String(aString))
 }
 
 // Replaces all occurrences of a given string in a given range with another given string, returning the number of replacements.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableString/replaceOccurrences(of:with:options:range:)
-func (m_ MutableString) ReplaceOccurrencesOfStringWithStringOptionsRange(target appkit.string, replacement appkit.string, options StringCompareOptions, searchRange IRange) uint {
-	rv := objc.Send[uint](m_.ID, objc.Sel("replaceOccurrencesOfString:withString:options:range:"), target, replacement, options, searchRange)
+func (m_ MutableString) ReplaceOccurrencesOfStringWithStringOptionsRange(target string, replacement string, options StringCompareOptions, searchRange IRange) uint {
+	rv := objc.Send[uint](m_.ID, objc.Sel("replaceOccurrencesOfString:withString:options:range:"), objc.String(target), objc.String(replacement), options, searchRange)
 	return rv
 }
 
 // Replaces the characters of the receiver with those in a given string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableString/setString(_:)
-func (m_ MutableString) SetString(aString appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setString:"), aString)
+func (m_ MutableString) SetString(aString string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setString:"), objc.String(aString))
 }
 
 

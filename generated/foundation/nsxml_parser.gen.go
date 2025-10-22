@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -149,8 +148,8 @@ func (x_ XMLParser) ParserError() NSError {
 // The public identifier of the external entity referenced in the XML document.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/publicID
-func (x_ XMLParser) PublicID() appkit.string {
-	rv := objc.Send[appkit.string](x_.ID, objc.Sel("publicID"))
+func (x_ XMLParser) PublicID() string {
+	rv := objc.Send[string](x_.ID, objc.Sel("publicID"))
 	return rv
 }
 
@@ -262,8 +261,8 @@ func (x_ XMLParser) SetShouldResolveExternalEntities(value bool) {
 // The system identifier of the external entity referenced in the XML document.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/systemid
-func (x_ XMLParser) SystemID() appkit.string {
-	rv := objc.Send[appkit.string](x_.ID, objc.Sel("systemID"))
+func (x_ XMLParser) SystemID() string {
+	rv := objc.Send[string](x_.ID, objc.Sel("systemID"))
 	return rv
 }
 
@@ -273,8 +272,8 @@ func (x_ XMLParser) SystemID() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/systemid
-func (x_ XMLParser) SetSystemID(value appkit.string) {
-	objc.Send[objc.ID](x_.ID, objc.Sel("setSystemID:"), value)
+func (x_ XMLParser) SetSystemID(value string) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("setSystemID:"), objc.String(value))
 }
 
 

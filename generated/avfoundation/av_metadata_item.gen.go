@@ -154,8 +154,8 @@ func (m_ MetadataItem) SetCommonKey(value IMetadataKey) {
 // The data type of the metadata item’s value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/datatype
-func (m_ MetadataItem) DataType() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("dataType"))
+func (m_ MetadataItem) DataType() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("dataType"))
 	return rv
 }
 
@@ -165,8 +165,8 @@ func (m_ MetadataItem) DataType() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/datatype
-func (m_ MetadataItem) SetDataType(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setDataType:"), value)
+func (m_ MetadataItem) SetDataType(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDataType:"), objc.String(value))
 }
 
 // The value of the metadata item as a data value.
@@ -226,8 +226,8 @@ func (m_ MetadataItem) SetDuration(value unsafe.Pointer) {
 // The IETF BCP 47 (RFC 4646) language identifier of the metadata item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/extendedlanguagetag
-func (m_ MetadataItem) ExtendedLanguageTag() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("extendedLanguageTag"))
+func (m_ MetadataItem) ExtendedLanguageTag() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("extendedLanguageTag"))
 	return rv
 }
 
@@ -237,8 +237,8 @@ func (m_ MetadataItem) ExtendedLanguageTag() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/extendedlanguagetag
-func (m_ MetadataItem) SetExtendedLanguageTag(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setExtendedLanguageTag:"), value)
+func (m_ MetadataItem) SetExtendedLanguageTag(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setExtendedLanguageTag:"), objc.String(value))
 }
 
 // A dictionary of additional attributes for a metadata item.
@@ -370,8 +370,8 @@ func (m_ MetadataItem) SetStartDate(value foundation.IDate) {
 // The value of the metadata item as a string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/stringvalue
-func (m_ MetadataItem) StringValue() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("stringValue"))
+func (m_ MetadataItem) StringValue() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("stringValue"))
 	return rv
 }
 
@@ -381,8 +381,8 @@ func (m_ MetadataItem) StringValue() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/stringvalue
-func (m_ MetadataItem) SetStringValue(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setStringValue:"), value)
+func (m_ MetadataItem) SetStringValue(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setStringValue:"), objc.String(value))
 }
 
 // The timestamp of the metadata item.

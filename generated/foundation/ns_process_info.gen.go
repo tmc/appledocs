@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,16 +30,16 @@ type _ProcessInfoClass struct {
 // An interface definition for the [ProcessInfo] class.
 type IProcessInfo interface {
 	objectivec.IObject
-	BeginActivityWithOptionsReason(options ActivityOptions, reason appkit.string) objc.ID
-	DisableAutomaticTermination(reason appkit.string)
-	EnableAutomaticTermination(reason appkit.string)
+	BeginActivityWithOptionsReason(options ActivityOptions, reason string) objc.ID
+	DisableAutomaticTermination(reason string)
+	EnableAutomaticTermination(reason string)
 	EnableSuddenTermination()
 	EndActivity(activity objectivec.IObject)
 	IsDeviceCertifiedFor(performanceTier unsafe.Pointer) bool
 	IsOperatingSystemAtLeastVersion(version unsafe.Pointer) bool
 	OperatingSystemName() String
-	PerformActivityWithOptionsReasonUsingBlock(options ActivityOptions, reason appkit.string, block unsafe.Pointer)
-	PerformExpiringActivityWithReasonUsingBlock(reason appkit.string, block unsafe.Pointer)
+	PerformActivityWithOptionsReasonUsingBlock(options ActivityOptions, reason string, block unsafe.Pointer)
+	PerformExpiringActivityWithReasonUsingBlock(reason string, block unsafe.Pointer)
 }
 
 // A collection of information about the current process.
@@ -101,23 +100,23 @@ func (pc _ProcessInfoClass) ProcessInfo() ProcessInfo {
 // Begin an activity using the given options and reason.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/beginActivity(options:reason:)
-func (p_ ProcessInfo) BeginActivityWithOptionsReason(options ActivityOptions, reason appkit.string) objc.ID {
-	rv := objc.Send[objc.ID](p_.ID, objc.Sel("beginActivityWithOptions:reason:"), options, reason)
+func (p_ ProcessInfo) BeginActivityWithOptionsReason(options ActivityOptions, reason string) objc.ID {
+	rv := objc.Send[objc.ID](p_.ID, objc.Sel("beginActivityWithOptions:reason:"), options, objc.String(reason))
 	return rv
 }
 
 // Disables automatic termination for the application.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/disableAutomaticTermination(_:)
-func (p_ ProcessInfo) DisableAutomaticTermination(reason appkit.string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("disableAutomaticTermination:"), reason)
+func (p_ ProcessInfo) DisableAutomaticTermination(reason string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("disableAutomaticTermination:"), objc.String(reason))
 }
 
 // Enables automatic termination for the application.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/enableAutomaticTermination(_:)
-func (p_ ProcessInfo) EnableAutomaticTermination(reason appkit.string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("enableAutomaticTermination:"), reason)
+func (p_ ProcessInfo) EnableAutomaticTermination(reason string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("enableAutomaticTermination:"), objc.String(reason))
 }
 
 // Enables the application for quick killing using sudden termination.
@@ -161,15 +160,15 @@ func (p_ ProcessInfo) OperatingSystemName() String {
 // Synchronously perform an activity defined by a given block using the given options.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/performActivity(options:reason:using:)
-func (p_ ProcessInfo) PerformActivityWithOptionsReasonUsingBlock(options ActivityOptions, reason appkit.string, block unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("performActivityWithOptions:reason:usingBlock:"), options, reason, block)
+func (p_ ProcessInfo) PerformActivityWithOptionsReasonUsingBlock(options ActivityOptions, reason string, block unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("performActivityWithOptions:reason:usingBlock:"), options, objc.String(reason), block)
 }
 
 // Performs the specified block asynchronously and notifies you if the process is about to be suspended.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/performExpiringActivity(withReason:using:)
-func (p_ ProcessInfo) PerformExpiringActivityWithReasonUsingBlock(reason appkit.string, block unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("performExpiringActivityWithReason:usingBlock:"), reason, block)
+func (p_ ProcessInfo) PerformExpiringActivityWithReasonUsingBlock(reason string, block unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("performExpiringActivityWithReason:usingBlock:"), objc.String(reason), block)
 }
 
 // The number of active processing cores available on the computer.
@@ -199,16 +198,16 @@ func (p_ ProcessInfo) Environment() unsafe.Pointer {
 // Returns the full name of the current user.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/fullUserName
-func (p_ ProcessInfo) FullUserName() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("fullUserName"))
+func (p_ ProcessInfo) FullUserName() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("fullUserName"))
 	return rv
 }
 
 // Global unique identifier for the process.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/globallyUniqueString
-func (p_ ProcessInfo) GloballyUniqueString() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("globallyUniqueString"))
+func (p_ ProcessInfo) GloballyUniqueString() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("globallyUniqueString"))
 	return rv
 }
 
@@ -246,8 +245,8 @@ func (p_ ProcessInfo) IOSAppOnVision() bool {
 // A string containing the version of the operating system on which the process is executing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/operatingSystemVersionString
-func (p_ ProcessInfo) OperatingSystemVersionString() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("operatingSystemVersionString"))
+func (p_ ProcessInfo) OperatingSystemVersionString() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("operatingSystemVersionString"))
 	return rv
 }
 
@@ -262,8 +261,8 @@ func (p_ ProcessInfo) PhysicalMemory() uint64 {
 // The identifier of the process (often called process ID).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/processIdentifier
-func (p_ ProcessInfo) ProcessIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("processIdentifier"))
+func (p_ ProcessInfo) ProcessIdentifier() int {
+	rv := objc.Send[int](p_.ID, objc.Sel("processIdentifier"))
 	return rv
 }
 
@@ -278,8 +277,8 @@ func (p_ ProcessInfo) ProcessInfo() NSProcessInfo {
 // The name of the process.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/processName
-func (p_ ProcessInfo) ProcessName() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("processName"))
+func (p_ ProcessInfo) ProcessName() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("processName"))
 	return rv
 }
 
@@ -289,8 +288,8 @@ func (p_ ProcessInfo) ProcessName() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/processName
-func (p_ ProcessInfo) SetProcessName(value appkit.string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setProcessName:"), value)
+func (p_ ProcessInfo) SetProcessName(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setProcessName:"), objc.String(value))
 }
 
 // The amount of time the system has been awake since the last time it was restarted.
@@ -322,8 +321,8 @@ func (p_ ProcessInfo) SetAutomaticTerminationSupportEnabled(value bool) {
 // The name of the host computer on which the process is executing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/processinfo/hostname
-func (p_ ProcessInfo) HostName() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("hostName"))
+func (p_ ProcessInfo) HostName() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("hostName"))
 	return rv
 }
 
@@ -333,8 +332,8 @@ func (p_ ProcessInfo) HostName() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/processinfo/hostname
-func (p_ ProcessInfo) SetHostName(value appkit.string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setHostName:"), value)
+func (p_ ProcessInfo) SetHostName(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setHostName:"), objc.String(value))
 }
 
 // A Boolean value that indicates the current state of Low Power Mode.
@@ -463,8 +462,8 @@ func (p_ ProcessInfo) SetThermalState(value unsafe.Pointer) {
 // Returns the account name of the current user.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/processinfo/username
-func (p_ ProcessInfo) UserName() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("userName"))
+func (p_ ProcessInfo) UserName() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("userName"))
 	return rv
 }
 
@@ -474,8 +473,8 @@ func (p_ ProcessInfo) UserName() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/processinfo/username
-func (p_ ProcessInfo) SetUserName(value appkit.string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setUserName:"), value)
+func (p_ ProcessInfo) SetUserName(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setUserName:"), objc.String(value))
 }
 
 

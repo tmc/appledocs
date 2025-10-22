@@ -122,8 +122,8 @@ func (m_ MetadataMachineReadableCodeObject) SetDescriptor(value coreimage.IBarco
 // Returns the error-corrected data decoded into a human-readable string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadatamachinereadablecodeobject/stringvalue
-func (m_ MetadataMachineReadableCodeObject) StringValue() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("stringValue"))
+func (m_ MetadataMachineReadableCodeObject) StringValue() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("stringValue"))
 	return rv
 }
 
@@ -133,8 +133,8 @@ func (m_ MetadataMachineReadableCodeObject) StringValue() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadatamachinereadablecodeobject/stringvalue
-func (m_ MetadataMachineReadableCodeObject) SetStringValue(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setStringValue:"), value)
+func (m_ MetadataMachineReadableCodeObject) SetStringValue(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setStringValue:"), objc.String(value))
 }
 
 

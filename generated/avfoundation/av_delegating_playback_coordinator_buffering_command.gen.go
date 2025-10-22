@@ -85,8 +85,8 @@ func NewDelegatingPlaybackCoordinatorBufferingCommand() DelegatingPlaybackCoordi
 // The rate at which the coordinator expects the current item to play.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinatorbufferingcommand/anticipatedplaybackrate
-func (d_ DelegatingPlaybackCoordinatorBufferingCommand) AnticipatedPlaybackRate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("anticipatedPlaybackRate"))
+func (d_ DelegatingPlaybackCoordinatorBufferingCommand) AnticipatedPlaybackRate() float32 {
+	rv := objc.Send[float32](d_.ID, objc.Sel("anticipatedPlaybackRate"))
 	return rv
 }
 
@@ -96,7 +96,7 @@ func (d_ DelegatingPlaybackCoordinatorBufferingCommand) AnticipatedPlaybackRate(
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinatorbufferingcommand/anticipatedplaybackrate
-func (d_ DelegatingPlaybackCoordinatorBufferingCommand) SetAnticipatedPlaybackRate(value unsafe.Pointer) {
+func (d_ DelegatingPlaybackCoordinatorBufferingCommand) SetAnticipatedPlaybackRate(value float32) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setAnticipatedPlaybackRate:"), value)
 }
 

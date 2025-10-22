@@ -193,8 +193,8 @@ func (c_ CameraCalibrationData) SetLensDistortionLookupTable(value foundation.ID
 // The size, in millimeters, of one image pixel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcameracalibrationdata/pixelsize
-func (c_ CameraCalibrationData) PixelSize() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("pixelSize"))
+func (c_ CameraCalibrationData) PixelSize() float32 {
+	rv := objc.Send[float32](c_.ID, objc.Sel("pixelSize"))
 	return rv
 }
 
@@ -204,7 +204,7 @@ func (c_ CameraCalibrationData) PixelSize() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcameracalibrationdata/pixelsize
-func (c_ CameraCalibrationData) SetPixelSize(value unsafe.Pointer) {
+func (c_ CameraCalibrationData) SetPixelSize(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPixelSize:"), value)
 }
 

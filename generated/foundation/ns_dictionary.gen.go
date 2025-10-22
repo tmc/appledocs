@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -68,7 +67,7 @@ type IDictionary interface {
 	ObjectForKeyedSubscript(key unsafe.Pointer) unsafe.Pointer
 	WriteToURLError(url IURL, error_ IError) bool
 	WriteToURLAtomically(url IURL, atomically bool) bool
-	WriteToFileAtomically(path appkit.string, useAuxiliaryFile bool) bool
+	WriteToFileAtomically(path string, useAuxiliaryFile bool) bool
 }
 
 // A static collection of objects associated with unique keys.
@@ -136,9 +135,9 @@ func NewDictionaryWithCoder(coder ICoder) Dictionary {
 // Initializes a newly allocated dictionary using the keys and values found in a file at a given path.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/init(contentsOfFile:)
-func NewDictionaryWithContentsOfFile(path appkit.string) Dictionary {
+func NewDictionaryWithContentsOfFile(path string) Dictionary {
 	instance := getDictionaryClass().Alloc()
-	rv := objc.Send[Dictionary](instance.ID, objc.Sel("initWithContentsOfFile:"), path)
+	rv := objc.Send[Dictionary](instance.ID, objc.Sel("initWithContentsOfFile:"), objc.String(path))
 	rv.Autorelease()
 	return rv
 }
@@ -249,8 +248,8 @@ func (dc _DictionaryClass) Dictionary() unsafe.Pointer {
 // Creates a dictionary using the keys and values found in a file specified by a given path.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/dictionaryWithContentsOfFile:
-func (dc _DictionaryClass) DictionaryWithContentsOfFile(path appkit.string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("dictionaryWithContentsOfFile:"), path)
+func (dc _DictionaryClass) DictionaryWithContentsOfFile(path string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("dictionaryWithContentsOfFile:"), objc.String(path))
 	return rv
 }
 
@@ -597,8 +596,8 @@ func (d_ Dictionary) ObjectForKeyedSubscript(key unsafe.Pointer) unsafe.Pointer 
 // Returns the value associated with a given key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/value(forKey:)
-func (d_ Dictionary) ValueForKey(key appkit.string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("valueForKey:"), key)
+func (d_ Dictionary) ValueForKey(key string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("valueForKey:"), objc.String(key))
 	return rv
 }
 
@@ -621,8 +620,8 @@ func (d_ Dictionary) WriteToURLAtomically(url IURL, atomically bool) bool {
 // Writes a property list representation of the contents of the dictionary to a given path.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/write(toFile:atomically:)
-func (d_ Dictionary) WriteToFileAtomically(path appkit.string, useAuxiliaryFile bool) bool {
-	rv := objc.Send[bool](d_.ID, objc.Sel("writeToFile:atomically:"), path, useAuxiliaryFile)
+func (d_ Dictionary) WriteToFileAtomically(path string, useAuxiliaryFile bool) bool {
+	rv := objc.Send[bool](d_.ID, objc.Sel("writeToFile:atomically:"), objc.String(path), useAuxiliaryFile)
 	return rv
 }
 
@@ -653,16 +652,16 @@ func (d_ Dictionary) Count() uint {
 // A string that represents the contents of the dictionary, formatted as a property list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/description
-func (d_ Dictionary) Description() appkit.string {
-	rv := objc.Send[appkit.string](d_.ID, objc.Sel("description"))
+func (d_ Dictionary) Description() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("description"))
 	return rv
 }
 
 // A string that represents the contents of the dictionary, formatted in file format.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/descriptionInStringsFileFormat
-func (d_ Dictionary) DescriptionInStringsFileFormat() appkit.string {
-	rv := objc.Send[appkit.string](d_.ID, objc.Sel("descriptionInStringsFileFormat"))
+func (d_ Dictionary) DescriptionInStringsFileFormat() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("descriptionInStringsFileFormat"))
 	return rv
 }
 

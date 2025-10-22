@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,8 +30,8 @@ type _DistributedNotificationCenterClass struct {
 // An interface definition for the [DistributedNotificationCenter] class.
 type IDistributedNotificationCenter interface {
 	INotificationCenter
-	PostNotificationNameObjectUserInfo(aName INotificationName, anObject appkit.string, aUserInfo objectivec.IObject)
-	PostNotificationNameObjectUserInfoDeliverImmediately(name INotificationName, object appkit.string, userInfo objectivec.IObject, deliverImmediately bool)
+	PostNotificationNameObjectUserInfo(aName INotificationName, anObject string, aUserInfo objectivec.IObject)
+	PostNotificationNameObjectUserInfoDeliverImmediately(name INotificationName, object string, userInfo objectivec.IObject, deliverImmediately bool)
 }
 
 // A notification dispatch mechanism that enables the broadcast of notifications across task boundaries.
@@ -88,15 +87,15 @@ func NewDistributedNotificationCenter() DistributedNotificationCenter {
 // Creates a notification with information, and posts it to the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DistributedNotificationCenter/post(name:object:userInfo:)
-func (d_ DistributedNotificationCenter) PostNotificationNameObjectUserInfo(aName INotificationName, anObject appkit.string, aUserInfo objectivec.IObject) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("postNotificationName:object:userInfo:"), aName, anObject, aUserInfo)
+func (d_ DistributedNotificationCenter) PostNotificationNameObjectUserInfo(aName INotificationName, anObject string, aUserInfo objectivec.IObject) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("postNotificationName:object:userInfo:"), aName, objc.String(anObject), aUserInfo)
 }
 
 // Creates a notification with information and an immediate-delivery specifier, and posts it to the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DistributedNotificationCenter/postNotificationName(_:object:userInfo:deliverImmediately:)
-func (d_ DistributedNotificationCenter) PostNotificationNameObjectUserInfoDeliverImmediately(name INotificationName, object appkit.string, userInfo objectivec.IObject, deliverImmediately bool) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("postNotificationName:object:userInfo:deliverImmediately:"), name, object, userInfo, deliverImmediately)
+func (d_ DistributedNotificationCenter) PostNotificationNameObjectUserInfoDeliverImmediately(name INotificationName, object string, userInfo objectivec.IObject, deliverImmediately bool) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("postNotificationName:object:userInfo:deliverImmediately:"), name, objc.String(object), userInfo, deliverImmediately)
 }
 
 // Suspends or resumes notification delivery.

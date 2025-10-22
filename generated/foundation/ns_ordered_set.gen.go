@@ -162,8 +162,8 @@ func (o_ OrderedSet) SetCount(value int) {
 // A string that represents the contents of the ordered set, formatted as a property list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsorderedset/description
-func (o_ OrderedSet) Description() appkit.string {
-	rv := objc.Send[appkit.string](o_.ID, objc.Sel("description"))
+func (o_ OrderedSet) Description() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("description"))
 	return rv
 }
 
@@ -173,8 +173,8 @@ func (o_ OrderedSet) Description() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsorderedset/description
-func (o_ OrderedSet) SetDescription(value appkit.string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setDescription:"), value)
+func (o_ OrderedSet) SetDescription(value string) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setDescription:"), objc.String(value))
 }
 
 // The first object in the ordered set.

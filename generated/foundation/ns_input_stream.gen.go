@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [InputStream] class.
@@ -101,9 +100,9 @@ func NewInputStreamWithData(data IData) InputStream {
 // Initializes and returns an object that reads data from the file at a given path.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/InputStream/init(fileAtPath:)
-func NewInputStreamWithFileAtPath(path appkit.string) InputStream {
+func NewInputStreamWithFileAtPath(path string) InputStream {
 	instance := getInputStreamClass().Alloc()
-	rv := objc.Send[InputStream](instance.ID, objc.Sel("initWithFileAtPath:"), path)
+	rv := objc.Send[InputStream](instance.ID, objc.Sel("initWithFileAtPath:"), objc.String(path))
 	rv.Autorelease()
 	return rv
 }
@@ -140,8 +139,8 @@ func (ic _InputStreamClass) InputStreamWithData(data IData) unsafe.Pointer {
 // Creates and returns an initialized object that reads data from the file at a given path.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInputStream/inputStreamWithFileAtPath:
-func (ic _InputStreamClass) InputStreamWithFileAtPath(path appkit.string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("inputStreamWithFileAtPath:"), path)
+func (ic _InputStreamClass) InputStreamWithFileAtPath(path string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("inputStreamWithFileAtPath:"), objc.String(path))
 	return rv
 }
 

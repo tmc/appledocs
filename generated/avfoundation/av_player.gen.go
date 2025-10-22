@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/audiotoolbox"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
@@ -40,8 +39,8 @@ type IPlayer interface {
 	MediaSelectionCriteriaForMediaCharacteristic(mediaCharacteristic unsafe.Pointer) unsafe.Pointer
 	Pause()
 	Play()
-	PlayImmediatelyAtRate(rate unsafe.Pointer)
-	PrerollAtRateCompletionHandler(rate unsafe.Pointer, completionHandler unsafe.Pointer)
+	PlayImmediatelyAtRate(rate float32)
+	PrerollAtRateCompletionHandler(rate float32, completionHandler unsafe.Pointer)
 	RemoveTimeObserver(observer objectivec.IObject)
 	ReplaceCurrentItemWithPlayerItem(item IAVPlayerItem)
 	SeekToTime(time unsafe.Pointer)
@@ -51,7 +50,7 @@ type IPlayer interface {
 	SeekToTimeToleranceBeforeToleranceAfter(time unsafe.Pointer, toleranceBefore unsafe.Pointer, toleranceAfter unsafe.Pointer)
 	SeekToTimeToleranceBeforeToleranceAfterCompletionHandler(time unsafe.Pointer, toleranceBefore unsafe.Pointer, toleranceAfter unsafe.Pointer, completionHandler unsafe.Pointer)
 	SetMediaSelectionCriteriaForMediaCharacteristic(criteria unsafe.Pointer, mediaCharacteristic unsafe.Pointer)
-	SetRateTimeAtHostTime(rate unsafe.Pointer, itemTime unsafe.Pointer, hostClockTime unsafe.Pointer)
+	SetRateTimeAtHostTime(rate float32, itemTime unsafe.Pointer, hostClockTime unsafe.Pointer)
 }
 
 // An object that provides the interface to control the player’s transport behavior.
@@ -220,14 +219,14 @@ func (p_ Player) Play() {
 // Plays the available media data immediately, at the specified rate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/playImmediately(atRate:)
-func (p_ Player) PlayImmediatelyAtRate(rate unsafe.Pointer) {
+func (p_ Player) PlayImmediatelyAtRate(rate float32) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("playImmediatelyAtRate:"), rate)
 }
 
 // Begins loading media data to prime the media pipelines for playback.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/preroll(atRate:completionHandler:)
-func (p_ Player) PrerollAtRateCompletionHandler(rate unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (p_ Player) PrerollAtRateCompletionHandler(rate float32, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("prerollAtRate:completionHandler:"), rate, completionHandler)
 }
 
@@ -297,7 +296,7 @@ func (p_ Player) SetMediaSelectionCriteriaForMediaCharacteristic(criteria unsafe
 // Synchronizes the playback rate and time of the current item with an external source.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/setRate(_:time:atHostTime:)
-func (p_ Player) SetRateTimeAtHostTime(rate unsafe.Pointer, itemTime unsafe.Pointer, hostClockTime unsafe.Pointer) {
+func (p_ Player) SetRateTimeAtHostTime(rate float32, itemTime unsafe.Pointer, hostClockTime unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setRate:time:atHostTime:"), rate, itemTime, hostClockTime)
 }
 
@@ -376,8 +375,8 @@ func (p_ Player) SetAppliesMediaSelectionCriteriaAutomatically(value bool) {
 // Specifies the unique ID of the Core Audio output device used to play audio.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/audioOutputDeviceUniqueID
-func (p_ Player) AudioOutputDeviceUniqueID() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("audioOutputDeviceUniqueID"))
+func (p_ Player) AudioOutputDeviceUniqueID() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("audioOutputDeviceUniqueID"))
 	return rv
 }
 
@@ -387,8 +386,8 @@ func (p_ Player) AudioOutputDeviceUniqueID() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/audioOutputDeviceUniqueID
-func (p_ Player) SetAudioOutputDeviceUniqueID(value appkit.string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setAudioOutputDeviceUniqueID:"), value)
+func (p_ Player) SetAudioOutputDeviceUniqueID(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setAudioOutputDeviceUniqueID:"), objc.String(value))
 }
 
 // Whether the player’s audio output is suppressed due to being on a non-mixable audio route.
@@ -454,8 +453,8 @@ func (p_ Player) CurrentItem() AVPlayerItem {
 // A default rate at which to begin playback.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/defaultRate
-func (p_ Player) DefaultRate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("defaultRate"))
+func (p_ Player) DefaultRate() float32 {
+	rv := objc.Send[float32](p_.ID, objc.Sel("defaultRate"))
 	return rv
 }
 
@@ -465,7 +464,7 @@ func (p_ Player) DefaultRate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/defaultRate
-func (p_ Player) SetDefaultRate(value unsafe.Pointer) {
+func (p_ Player) SetDefaultRate(value float32) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDefaultRate:"), value)
 }
 
@@ -700,8 +699,8 @@ func (p_ Player) SetPreventsDisplaySleepDuringVideoPlayback(value bool) {
 // The current playback rate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/rate
-func (p_ Player) Rate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("rate"))
+func (p_ Player) Rate() float32 {
+	rv := objc.Send[float32](p_.ID, objc.Sel("rate"))
 	return rv
 }
 
@@ -711,7 +710,7 @@ func (p_ Player) Rate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/rate
-func (p_ Player) SetRate(value unsafe.Pointer) {
+func (p_ Player) SetRate(value float32) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setRate:"), value)
 }
 
@@ -814,8 +813,8 @@ func (p_ Player) SetVideoOutput(value unsafe.Pointer) {
 // The audio playback volume for the player.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/volume
-func (p_ Player) Volume() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("volume"))
+func (p_ Player) Volume() float32 {
+	rv := objc.Send[float32](p_.ID, objc.Sel("volume"))
 	return rv
 }
 
@@ -825,7 +824,7 @@ func (p_ Player) Volume() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/volume
-func (p_ Player) SetVolume(value unsafe.Pointer) {
+func (p_ Player) SetVolume(value float32) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setVolume:"), value)
 }
 

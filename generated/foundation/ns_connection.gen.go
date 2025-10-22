@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -85,8 +84,8 @@ func NewConnection() Connection {
 // Returns a proxy for the root object of the object registered with the default under a given name on a given host.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/rootProxyForConnectionWithRegisteredName:host:
-func (cc _ConnectionClass) RootProxyForConnectionWithRegisteredNameHost(name appkit.string, hostName appkit.string) DistantObject {
-	rv := objc.Send[DistantObject](objc.ID(cc.class), objc.Sel("rootProxyForConnectionWithRegisteredName:host:"), name, hostName)
+func (cc _ConnectionClass) RootProxyForConnectionWithRegisteredNameHost(name string, hostName string) DistantObject {
+	rv := objc.Send[DistantObject](objc.ID(cc.class), objc.Sel("rootProxyForConnectionWithRegisteredName:host:"), objc.String(name), objc.String(hostName))
 	return rv
 }
 

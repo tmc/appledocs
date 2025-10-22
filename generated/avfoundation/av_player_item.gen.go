@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/avkit"
 	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/foundation"
@@ -41,7 +40,7 @@ type IPlayerItem interface {
 	SelectMediaPresentationSettingForMediaSelectionGroup(mediaPresentationSetting IAVMediaPresentationSetting, mediaSelectionGroup IAVMediaSelectionGroup)
 	SelectMediaOptionInMediaSelectionGroup(mediaSelectionOption IAVMediaSelectionOption, mediaSelectionGroup IAVMediaSelectionGroup)
 	SelectMediaOptionAutomaticallyInMediaSelectionGroup(mediaSelectionGroup IAVMediaSelectionGroup)
-	SelectMediaPresentationLanguageForMediaSelectionGroup(language appkit.string, mediaSelectionGroup IAVMediaSelectionGroup)
+	SelectMediaPresentationLanguageForMediaSelectionGroup(language string, mediaSelectionGroup IAVMediaSelectionGroup)
 	SelectedMediaPresentationLanguageForMediaSelectionGroup(mediaSelectionGroup IAVMediaSelectionGroup) foundation.String
 	SelectedMediaPresentationSettingsForMediaSelectionGroup(mediaSelectionGroup IAVMediaSelectionGroup) unsafe.Pointer
 }
@@ -148,8 +147,8 @@ func (p_ PlayerItem) SelectMediaOptionAutomaticallyInMediaSelectionGroup(mediaSe
 // When the associated AVPlayer’s appliesMediaSelectionCriteriaAutomatically property is set to YES, configures the player item to prefer a particular language, replacing any previous preference for available languages of the specified group’s custom media selection scheme.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/selectMediaPresentationLanguage(_:for:)
-func (p_ PlayerItem) SelectMediaPresentationLanguageForMediaSelectionGroup(language appkit.string, mediaSelectionGroup IAVMediaSelectionGroup) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("selectMediaPresentationLanguage:forMediaSelectionGroup:"), language, mediaSelectionGroup)
+func (p_ PlayerItem) SelectMediaPresentationLanguageForMediaSelectionGroup(language string, mediaSelectionGroup IAVMediaSelectionGroup) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("selectMediaPresentationLanguage:forMediaSelectionGroup:"), objc.String(language), mediaSelectionGroup)
 }
 
 // Returns the selected media presentation language for the specified media selection group, if any language has previously been selected via use of -selectMediaPresentationLanguages:forMediaSelectionGroup:.
@@ -377,8 +376,8 @@ func (p_ PlayerItem) SetPreferredCustomMediaSelectionSchemes(value []unsafe.IPoi
 // The desired limit, in bits per second, of network bandwidth consumption for this item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/preferredPeakBitRate
-func (p_ PlayerItem) PreferredPeakBitRate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("preferredPeakBitRate"))
+func (p_ PlayerItem) PreferredPeakBitRate() float64 {
+	rv := objc.Send[float64](p_.ID, objc.Sel("preferredPeakBitRate"))
 	return rv
 }
 
@@ -388,7 +387,7 @@ func (p_ PlayerItem) PreferredPeakBitRate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/preferredPeakBitRate
-func (p_ PlayerItem) SetPreferredPeakBitRate(value unsafe.Pointer) {
+func (p_ PlayerItem) SetPreferredPeakBitRate(value float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPreferredPeakBitRate:"), value)
 }
 
@@ -529,8 +528,8 @@ func (p_ PlayerItem) SetAutomaticallyHandlesInterstitialEvents(value bool) {
 // The array of asset keys to be automatically loaded before the player item is ready to play.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/automaticallyloadedassetkeys
-func (p_ PlayerItem) AutomaticallyLoadedAssetKeys() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("automaticallyLoadedAssetKeys"))
+func (p_ PlayerItem) AutomaticallyLoadedAssetKeys() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("automaticallyLoadedAssetKeys"))
 	return rv
 }
 
@@ -540,8 +539,8 @@ func (p_ PlayerItem) AutomaticallyLoadedAssetKeys() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/automaticallyloadedassetkeys
-func (p_ PlayerItem) SetAutomaticallyLoadedAssetKeys(value appkit.string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setAutomaticallyLoadedAssetKeys:"), value)
+func (p_ PlayerItem) SetAutomaticallyLoadedAssetKeys(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setAutomaticallyLoadedAssetKeys:"), objc.String(value))
 }
 
 // A Boolean value that indicates whether the player preserves its time offset from the live time after a buffering operation.
@@ -1015,8 +1014,8 @@ func (p_ PlayerItem) SetPreferredMaximumResolutionForExpensiveNetworks(value cor
 // A limit of network bandwidth consumption by the item when connecting over expensive networks.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/preferredpeakbitrateforexpensivenetworks
-func (p_ PlayerItem) PreferredPeakBitRateForExpensiveNetworks() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("preferredPeakBitRateForExpensiveNetworks"))
+func (p_ PlayerItem) PreferredPeakBitRateForExpensiveNetworks() float64 {
+	rv := objc.Send[float64](p_.ID, objc.Sel("preferredPeakBitRateForExpensiveNetworks"))
 	return rv
 }
 
@@ -1026,7 +1025,7 @@ func (p_ PlayerItem) PreferredPeakBitRateForExpensiveNetworks() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/preferredpeakbitrateforexpensivenetworks
-func (p_ PlayerItem) SetPreferredPeakBitRateForExpensiveNetworks(value unsafe.Pointer) {
+func (p_ PlayerItem) SetPreferredPeakBitRateForExpensiveNetworks(value float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPreferredPeakBitRateForExpensiveNetworks:"), value)
 }
 

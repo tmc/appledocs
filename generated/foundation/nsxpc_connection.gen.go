@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -36,7 +35,7 @@ type IXPCConnection interface {
 	RemoteObjectProxyWithErrorHandler(handler unsafe.Pointer) objc.ID
 	Resume()
 	ScheduleSendBarrierBlock(block unsafe.Pointer)
-	SetCodeSigningRequirement(requirement appkit.string)
+	SetCodeSigningRequirement(requirement string)
 	Suspend()
 	SynchronousRemoteObjectProxyWithErrorHandler(handler unsafe.Pointer) objc.ID
 }
@@ -106,9 +105,9 @@ func NewXPCConnectionWithListenerEndpoint(endpoint IXPCListenerEndpoint) XPCConn
 // Initializes an object to connect to a LaunchAgent or LaunchDaemon with a name advertised in a .
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/init(machServiceName:options:)
-func NewXPCConnectionWithMachServiceNameOptions(name appkit.string, options XPCConnectionOptions) XPCConnection {
+func NewXPCConnectionWithMachServiceNameOptions(name string, options XPCConnectionOptions) XPCConnection {
 	instance := getXPCConnectionClass().Alloc()
-	rv := objc.Send[XPCConnection](instance.ID, objc.Sel("initWithMachServiceName:options:"), name, options)
+	rv := objc.Send[XPCConnection](instance.ID, objc.Sel("initWithMachServiceName:options:"), objc.String(name), options)
 	rv.Autorelease()
 	return rv
 }
@@ -118,9 +117,9 @@ func NewXPCConnectionWithMachServiceNameOptions(name appkit.string, options XPCC
 // Initializes an object to connect to an object in an XPC service, identified by a service name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/init(serviceName:)
-func NewXPCConnectionWithServiceName(serviceName appkit.string) XPCConnection {
+func NewXPCConnectionWithServiceName(serviceName string) XPCConnection {
 	instance := getXPCConnectionClass().Alloc()
-	rv := objc.Send[XPCConnection](instance.ID, objc.Sel("initWithServiceName:"), serviceName)
+	rv := objc.Send[XPCConnection](instance.ID, objc.Sel("initWithServiceName:"), objc.String(serviceName))
 	rv.Autorelease()
 	return rv
 }
@@ -173,8 +172,8 @@ func (x_ XPCConnection) ScheduleSendBarrierBlock(block unsafe.Pointer) {
 // Sets the code signing requirement for this connection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/setCodeSigningRequirement(_:)
-func (x_ XPCConnection) SetCodeSigningRequirement(requirement appkit.string) {
-	objc.Send[objc.ID](x_.ID, objc.Sel("setCodeSigningRequirement:"), requirement)
+func (x_ XPCConnection) SetCodeSigningRequirement(requirement string) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("setCodeSigningRequirement:"), objc.String(requirement))
 }
 
 // Suspends the connection.
@@ -332,8 +331,8 @@ func (x_ XPCConnection) RemoteObjectProxy() objc.ID {
 // The name of the XPC service that this connection was configured to connect to.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/serviceName
-func (x_ XPCConnection) ServiceName() appkit.string {
-	rv := objc.Send[appkit.string](x_.ID, objc.Sel("serviceName"))
+func (x_ XPCConnection) ServiceName() string {
+	rv := objc.Send[string](x_.ID, objc.Sel("serviceName"))
 	return rv
 }
 

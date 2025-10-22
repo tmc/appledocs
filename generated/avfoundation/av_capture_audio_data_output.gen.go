@@ -82,8 +82,8 @@ func NewCaptureAudioDataOutput() CaptureAudioDataOutput {
 // The settings used to decode or re-encode audio before it’s output.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureaudiodataoutput/audiosettings
-func (c_ CaptureAudioDataOutput) AudioSettings() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("audioSettings"))
+func (c_ CaptureAudioDataOutput) AudioSettings() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("audioSettings"))
 	return rv
 }
 
@@ -93,8 +93,8 @@ func (c_ CaptureAudioDataOutput) AudioSettings() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureaudiodataoutput/audiosettings
-func (c_ CaptureAudioDataOutput) SetAudioSettings(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setAudioSettings:"), value)
+func (c_ CaptureAudioDataOutput) SetAudioSettings(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setAudioSettings:"), objc.String(value))
 }
 
 // The queue on which delegate callbacks are invoked

@@ -129,8 +129,8 @@ func (d_ DateIntervalFormatter) SetDateStyle(value unsafe.Pointer) {
 // The template for formatting one date and time value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/dateintervalformatter/datetemplate
-func (d_ DateIntervalFormatter) DateTemplate() appkit.string {
-	rv := objc.Send[appkit.string](d_.ID, objc.Sel("dateTemplate"))
+func (d_ DateIntervalFormatter) DateTemplate() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("dateTemplate"))
 	return rv
 }
 
@@ -140,8 +140,8 @@ func (d_ DateIntervalFormatter) DateTemplate() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/dateintervalformatter/datetemplate
-func (d_ DateIntervalFormatter) SetDateTemplate(value appkit.string) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setDateTemplate:"), value)
+func (d_ DateIntervalFormatter) SetDateTemplate(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setDateTemplate:"), objc.String(value))
 }
 
 // The locale to use when formatting date and time values.

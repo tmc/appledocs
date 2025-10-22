@@ -91,7 +91,7 @@ func NewMachPort() MachPort {
 // Initializes a newly allocated object with a given Mach port.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMachPort/init(machPort:)
-func NewMachPortWithMachPort(machPort unsafe.Pointer) MachPort {
+func NewMachPortWithMachPort(machPort Iuint32) MachPort {
 	instance := getMachPortClass().Alloc()
 	rv := objc.Send[MachPort](instance.ID, objc.Sel("initWithMachPort:"), machPort)
 	rv.Autorelease()
@@ -103,7 +103,7 @@ func NewMachPortWithMachPort(machPort unsafe.Pointer) MachPort {
 // Initializes a newly allocated object with a given Mach port and the specified options.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMachPort/init(machPort:options:)
-func NewMachPortWithMachPortOptions(machPort unsafe.Pointer, f MachPortOptions) MachPort {
+func NewMachPortWithMachPortOptions(machPort Iuint32, f MachPortOptions) MachPort {
 	instance := getMachPortClass().Alloc()
 	rv := objc.Send[MachPort](instance.ID, objc.Sel("initWithMachPort:options:"), machPort, f)
 	rv.Autorelease()
@@ -114,7 +114,7 @@ func NewMachPortWithMachPortOptions(machPort unsafe.Pointer, f MachPortOptions) 
 // Creates and returns a port object configured with the given Mach port.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMachPort/port(withMachPort:)
-func (mc _MachPortClass) PortWithMachPort(machPort unsafe.Pointer) Port {
+func (mc _MachPortClass) PortWithMachPort(machPort Iuint32) Port {
 	rv := objc.Send[Port](objc.ID(mc.class), objc.Sel("portWithMachPort:"), machPort)
 	return rv
 }
@@ -122,7 +122,7 @@ func (mc _MachPortClass) PortWithMachPort(machPort unsafe.Pointer) Port {
 // Creates and returns a port object configured with the specified options and the given Mach port.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMachPort/port(withMachPort:options:)
-func (mc _MachPortClass) PortWithMachPortOptions(machPort unsafe.Pointer, f MachPortOptions) Port {
+func (mc _MachPortClass) PortWithMachPortOptions(machPort Iuint32, f MachPortOptions) Port {
 	rv := objc.Send[Port](objc.ID(mc.class), objc.Sel("portWithMachPort:options:"), machPort, f)
 	return rv
 }
@@ -159,8 +159,8 @@ func (m_ MachPort) SetDelegate(anObject objectivec.IObject) {
 // The Mach port used by the receiver, represented as an integer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMachPort/machPort
-func (m_ MachPort) MachPort() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("machPort"))
+func (m_ MachPort) MachPort() uint32 {
+	rv := objc.Send[uint32](m_.ID, objc.Sel("machPort"))
 	return rv
 }
 

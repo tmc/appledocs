@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,7 +30,7 @@ type _PortNameServerClass struct {
 // An interface definition for the [PortNameServer] class.
 type IPortNameServer interface {
 	objectivec.IObject
-	RegisterPortName(port IPort, name appkit.string) bool
+	RegisterPortName(port IPort, name string) bool
 }
 
 // An object-oriented interface to the port registration service used by the distributed objects system.
@@ -85,8 +84,8 @@ func NewPortNameServer() PortNameServer {
 // Makes a given port available on the network under a specified name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPortNameServer/registerPort:name:
-func (p_ PortNameServer) RegisterPortName(port IPort, name appkit.string) bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("registerPort:name:"), port, name)
+func (p_ PortNameServer) RegisterPortName(port IPort, name string) bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("registerPort:name:"), port, objc.String(name))
 	return rv
 }
 

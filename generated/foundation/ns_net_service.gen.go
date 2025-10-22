@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -98,9 +97,9 @@ func NewNetService() NetService {
 // Returns the receiver, initialized as a network service of a given type and sets the initial host information.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/init(domain:type:name:)
-func NewNetServiceWithDomainTypeName(domain appkit.string, type_ appkit.string, name appkit.string) NetService {
+func NewNetServiceWithDomainTypeName(domain string, type_ string, name string) NetService {
 	instance := getNetServiceClass().Alloc()
-	rv := objc.Send[NetService](instance.ID, objc.Sel("initWithDomain:type:name:"), domain, type_, name)
+	rv := objc.Send[NetService](instance.ID, objc.Sel("initWithDomain:type:name:"), objc.String(domain), objc.String(type_), objc.String(name))
 	rv.Autorelease()
 	return rv
 }
@@ -110,9 +109,9 @@ func NewNetServiceWithDomainTypeName(domain appkit.string, type_ appkit.string, 
 // Initializes the receiver for publishing a network service of type at the socket location specified by , , and .
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/init(domain:type:name:port:)
-func NewNetServiceWithDomainTypeNamePort(domain appkit.string, type_ appkit.string, name appkit.string, port unsafe.Pointer) NetService {
+func NewNetServiceWithDomainTypeNamePort(domain string, type_ string, name string, port int) NetService {
 	instance := getNetServiceClass().Alloc()
-	rv := objc.Send[NetService](instance.ID, objc.Sel("initWithDomain:type:name:port:"), domain, type_, name, port)
+	rv := objc.Send[NetService](instance.ID, objc.Sel("initWithDomain:type:name:port:"), objc.String(domain), objc.String(type_), objc.String(name), port)
 	rv.Autorelease()
 	return rv
 }
@@ -250,16 +249,16 @@ func (n_ NetService) SetDelegate(value objc.ID) {
 // A string containing the domain for this service.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/domain
-func (n_ NetService) Domain() appkit.string {
-	rv := objc.Send[appkit.string](n_.ID, objc.Sel("domain"))
+func (n_ NetService) Domain() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("domain"))
 	return rv
 }
 
 // A string containing the DNS hostname for this service.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/hostName
-func (n_ NetService) HostName() appkit.string {
-	rv := objc.Send[appkit.string](n_.ID, objc.Sel("hostName"))
+func (n_ NetService) HostName() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("hostName"))
 	return rv
 }
 
@@ -284,8 +283,8 @@ func (n_ NetService) SetIncludesPeerToPeer(value bool) {
 // A string containing the name of this service.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/name
-func (n_ NetService) Name() appkit.string {
-	rv := objc.Send[appkit.string](n_.ID, objc.Sel("name"))
+func (n_ NetService) Name() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -300,8 +299,8 @@ func (n_ NetService) Port() int {
 // The type of the published service.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/type
-func (n_ NetService) Type() appkit.string {
-	rv := objc.Send[appkit.string](n_.ID, objc.Sel("type"))
+func (n_ NetService) Type() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("type"))
 	return rv
 }
 

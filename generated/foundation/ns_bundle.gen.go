@@ -31,37 +31,37 @@ type _BundleClass struct {
 // An interface definition for the [Bundle] class.
 type IBundle interface {
 	objectivec.IObject
-	ClassNamed(className appkit.string) objc.Class
+	ClassNamed(className string) objc.Class
 	ContextHelpForKey(key unsafe.Pointer) AttributedString
 	ImageForResource(name unsafe.Pointer) appkit.Image
 	LoadAndReturnError(error_ IError) bool
 	LoadAppleScriptObjectiveCScripts()
-	LoadNibNamedOwnerOptions(name appkit.string, owner objectivec.IObject, options unsafe.Pointer) Array
+	LoadNibNamedOwnerOptions(name string, owner objectivec.IObject, options unsafe.Pointer) Array
 	LoadNibNamedOwnerTopLevelObjects(nibName unsafe.Pointer, owner objectivec.IObject, topLevelObjects objectivec.IObject) bool
-	LocalizedStringForKeyValueTable(key appkit.string, value appkit.string, tableName appkit.string) String
-	ObjectForInfoDictionaryKey(key appkit.string) objc.ID
-	PathForAuxiliaryExecutable(executableName appkit.string) String
-	PathForResourceOfType(name appkit.string, ext appkit.string) String
-	PathForResourceOfTypeInDirectory(name appkit.string, ext appkit.string, subpath appkit.string) String
-	PathForResourceOfTypeInDirectoryForLocalization(name appkit.string, ext appkit.string, subpath appkit.string, localizationName appkit.string) String
+	LocalizedStringForKeyValueTable(key string, value string, tableName string) String
+	ObjectForInfoDictionaryKey(key string) objc.ID
+	PathForAuxiliaryExecutable(executableName string) String
+	PathForResourceOfType(name string, ext string) String
+	PathForResourceOfTypeInDirectory(name string, ext string, subpath string) String
+	PathForResourceOfTypeInDirectoryForLocalization(name string, ext string, subpath string, localizationName string) String
 	PathForSoundResource(name unsafe.Pointer) String
 	PathForImageResource(name unsafe.Pointer) String
-	PathsForResourcesOfTypeInDirectory(ext appkit.string, subpath appkit.string) []string
-	PathsForResourcesOfTypeInDirectoryForLocalization(ext appkit.string, subpath appkit.string, localizationName appkit.string) []string
+	PathsForResourcesOfTypeInDirectory(ext string, subpath string) []string
+	PathsForResourcesOfTypeInDirectoryForLocalization(ext string, subpath string, localizationName string) []string
 	PreflightAndReturnError(error_ IError) bool
-	PreservationPriorityForTag(tag appkit.string) unsafe.Pointer
-	SetPreservationPriorityForTags(priority unsafe.Pointer, tags unsafe.Pointer)
+	PreservationPriorityForTag(tag string) float64
+	SetPreservationPriorityForTags(priority float64, tags unsafe.Pointer)
 	Unload() bool
-	URLForAuxiliaryExecutable(executableName appkit.string) URL
-	URLForResourceWithExtension(name appkit.string, ext appkit.string) URL
-	URLForResourceWithExtensionSubdirectory(name appkit.string, ext appkit.string, subpath appkit.string) URL
-	URLForResourceWithExtensionSubdirectoryLocalization(name appkit.string, ext appkit.string, subpath appkit.string, localizationName appkit.string) URL
+	URLForAuxiliaryExecutable(executableName string) URL
+	URLForResourceWithExtension(name string, ext string) URL
+	URLForResourceWithExtensionSubdirectory(name string, ext string, subpath string) URL
+	URLForResourceWithExtensionSubdirectoryLocalization(name string, ext string, subpath string, localizationName string) URL
 	URLForImageResource(name unsafe.Pointer) URL
-	URLsForResourcesWithExtensionSubdirectory(ext appkit.string, subpath appkit.string) []URL
-	URLsForResourcesWithExtensionSubdirectoryLocalization(ext appkit.string, subpath appkit.string, localizationName appkit.string) []URL
-	LoadNibFileExternalNameTableWithZone(fileName appkit.string, context objectivec.IObject, zone unsafe.Pointer) bool
-	LocalizedAttributedStringForKeyValueTable(key appkit.string, value appkit.string, tableName appkit.string) AttributedString
-	LocalizedStringForKeyValueTableLocalizations(key appkit.string, value appkit.string, tableName appkit.string, localizations []string) String
+	URLsForResourcesWithExtensionSubdirectory(ext string, subpath string) []URL
+	URLsForResourcesWithExtensionSubdirectoryLocalization(ext string, subpath string, localizationName string) []URL
+	LoadNibFileExternalNameTableWithZone(fileName string, context objectivec.IObject, zone unsafe.Pointer) bool
+	LocalizedAttributedStringForKeyValueTable(key string, value string, tableName string) AttributedString
+	LocalizedStringForKeyValueTableLocalizations(key string, value string, tableName string, localizations []string) String
 }
 
 // A representation of the code and resources stored in a bundle directory on disk.
@@ -127,8 +127,8 @@ func NewBundleForClass(aClass objc.Class) Bundle {
 // Returns the instance that has the specified bundle identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/init(identifier:)
-func NewBundleWithIdentifier(identifier appkit.string) Bundle {
-	rv := objc.Send[Bundle](objc.ID(getBundleClass().class), objc.Sel("bundleWithIdentifier:"), identifier)
+func NewBundleWithIdentifier(identifier string) Bundle {
+	rv := objc.Send[Bundle](objc.ID(getBundleClass().class), objc.Sel("bundleWithIdentifier:"), objc.String(identifier))
 	return rv
 }
 
@@ -137,9 +137,9 @@ func NewBundleWithIdentifier(identifier appkit.string) Bundle {
 // Returns an object initialized to correspond to the specified directory.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/init(path:)
-func NewBundleWithPath(path appkit.string) Bundle {
+func NewBundleWithPath(path string) Bundle {
 	instance := getBundleClass().Alloc()
-	rv := objc.Send[Bundle](instance.ID, objc.Sel("initWithPath:"), path)
+	rv := objc.Send[Bundle](instance.ID, objc.Sel("initWithPath:"), objc.String(path))
 	rv.Autorelease()
 	return rv
 }
@@ -168,24 +168,24 @@ func (bc _BundleClass) BundleForClass(aClass objc.Class) Bundle {
 // Returns the instance that has the specified bundle identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/init(identifier:)
-func (bc _BundleClass) BundleWithIdentifier(identifier appkit.string) Bundle {
-	rv := objc.Send[Bundle](objc.ID(bc.class), objc.Sel("bundleWithIdentifier:"), identifier)
+func (bc _BundleClass) BundleWithIdentifier(identifier string) Bundle {
+	rv := objc.Send[Bundle](objc.ID(bc.class), objc.Sel("bundleWithIdentifier:"), objc.String(identifier))
 	return rv
 }
 
 // Returns the full pathname for the resource file identified by the specified name and extension and residing in a given bundle directory.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/path(forResource:ofType:inDirectory:)-swift.type.method
-func (bc _BundleClass) PathForResourceOfTypeInDirectory(name appkit.string, ext appkit.string, bundlePath appkit.string) String {
-	rv := objc.Send[String](objc.ID(bc.class), objc.Sel("pathForResource:ofType:inDirectory:"), name, ext, bundlePath)
+func (bc _BundleClass) PathForResourceOfTypeInDirectory(name string, ext string, bundlePath string) String {
+	rv := objc.Send[String](objc.ID(bc.class), objc.Sel("pathForResource:ofType:inDirectory:"), objc.String(name), objc.String(ext), objc.String(bundlePath))
 	return rv
 }
 
 // Returns an array containing the pathnames for all bundle resources having the specified extension and residing in the bundle directory at the specified path.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/paths(forResourcesOfType:inDirectory:)-swift.type.method
-func (bc _BundleClass) PathsForResourcesOfTypeInDirectory(ext appkit.string, bundlePath appkit.string) []string {
-	rv := objc.Send[[]string](objc.ID(bc.class), objc.Sel("pathsForResourcesOfType:inDirectory:"), ext, bundlePath)
+func (bc _BundleClass) PathsForResourcesOfTypeInDirectory(ext string, bundlePath string) []string {
+	rv := objc.Send[[]string](objc.ID(bc.class), objc.Sel("pathsForResourcesOfType:inDirectory:"), objc.String(ext), objc.String(bundlePath))
 	return rv
 }
 
@@ -208,24 +208,24 @@ func (bc _BundleClass) PreferredLocalizationsFromArrayForPreferences(localizatio
 // Creates and returns a file URL for the resource with the specified name and extension in the specified bundle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/url(forResource:withExtension:subdirectory:in:)
-func (bc _BundleClass) URLForResourceWithExtensionSubdirectoryInBundleWithURL(name appkit.string, ext appkit.string, subpath appkit.string, bundleURL IURL) URL {
-	rv := objc.Send[URL](objc.ID(bc.class), objc.Sel("URLForResource:withExtension:subdirectory:inBundleWithURL:"), name, ext, subpath, bundleURL)
+func (bc _BundleClass) URLForResourceWithExtensionSubdirectoryInBundleWithURL(name string, ext string, subpath string, bundleURL IURL) URL {
+	rv := objc.Send[URL](objc.ID(bc.class), objc.Sel("URLForResource:withExtension:subdirectory:inBundleWithURL:"), objc.String(name), objc.String(ext), objc.String(subpath), bundleURL)
 	return rv
 }
 
 // Returns an array containing the file URLs for all bundle resources having the specified filename extension, residing in the specified resource subdirectory, within the specified bundle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/urls(forResourcesWithExtension:subdirectory:in:)
-func (bc _BundleClass) URLsForResourcesWithExtensionSubdirectoryInBundleWithURL(ext appkit.string, subpath appkit.string, bundleURL IURL) []URL {
-	rv := objc.Send[[]URL](objc.ID(bc.class), objc.Sel("URLsForResourcesWithExtension:subdirectory:inBundleWithURL:"), ext, subpath, bundleURL)
+func (bc _BundleClass) URLsForResourcesWithExtensionSubdirectoryInBundleWithURL(ext string, subpath string, bundleURL IURL) []URL {
+	rv := objc.Send[[]URL](objc.ID(bc.class), objc.Sel("URLsForResourcesWithExtension:subdirectory:inBundleWithURL:"), objc.String(ext), objc.String(subpath), bundleURL)
 	return rv
 }
 
 // Returns an object that corresponds to the specified directory.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBundle/bundleWithPath:
-func (bc _BundleClass) BundleWithPath(path appkit.string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("bundleWithPath:"), path)
+func (bc _BundleClass) BundleWithPath(path string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("bundleWithPath:"), objc.String(path))
 	return rv
 }
 
@@ -240,16 +240,16 @@ func (bc _BundleClass) BundleWithURL(url IURL) unsafe.Pointer {
 // Unarchives the contents of the nib file and links them to objects in your program.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBundle/loadNibFile:externalNameTable:withZone:-c.type.method
-func (bc _BundleClass) LoadNibFileExternalNameTableWithZone(fileName appkit.string, context objectivec.IObject, zone unsafe.Pointer) bool {
-	rv := objc.Send[bool](objc.ID(bc.class), objc.Sel("loadNibFile:externalNameTable:withZone:"), fileName, context, zone)
+func (bc _BundleClass) LoadNibFileExternalNameTableWithZone(fileName string, context objectivec.IObject, zone unsafe.Pointer) bool {
+	rv := objc.Send[bool](objc.ID(bc.class), objc.Sel("loadNibFile:externalNameTable:withZone:"), objc.String(fileName), context, zone)
 	return rv
 }
 
 // Unarchives the contents of the nib file and links them to a specific owner object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBundle/loadNibNamed:owner:
-func (bc _BundleClass) LoadNibNamedOwner(nibName appkit.string, owner objectivec.IObject) bool {
-	rv := objc.Send[bool](objc.ID(bc.class), objc.Sel("loadNibNamed:owner:"), nibName, owner)
+func (bc _BundleClass) LoadNibNamedOwner(nibName string, owner objectivec.IObject) bool {
+	rv := objc.Send[bool](objc.ID(bc.class), objc.Sel("loadNibNamed:owner:"), objc.String(nibName), owner)
 	return rv
 }
 
@@ -277,8 +277,8 @@ func (bc _BundleClass) MainBundle() Bundle {
 // Returns the object for the specified name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/classNamed(_:)
-func (b_ Bundle) ClassNamed(className appkit.string) objc.Class {
-	rv := objc.Send[objc.Class](b_.ID, objc.Sel("classNamed:"), className)
+func (b_ Bundle) ClassNamed(className string) objc.Class {
+	rv := objc.Send[objc.Class](b_.ID, objc.Sel("classNamed:"), objc.String(className))
 	return rv
 }
 
@@ -323,8 +323,8 @@ func (b_ Bundle) LoadAppleScriptObjectiveCScripts() {
 // Unarchives the contents of a nib file located in the receiver’s bundle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/loadNibNamed(_:owner:options:)
-func (b_ Bundle) LoadNibNamedOwnerOptions(name appkit.string, owner objectivec.IObject, options unsafe.Pointer) Array {
-	rv := objc.Send[Array](b_.ID, objc.Sel("loadNibNamed:owner:options:"), name, owner, options)
+func (b_ Bundle) LoadNibNamedOwnerOptions(name string, owner objectivec.IObject, options unsafe.Pointer) Array {
+	rv := objc.Send[Array](b_.ID, objc.Sel("loadNibNamed:owner:options:"), objc.String(name), owner, options)
 	return rv
 }
 
@@ -339,48 +339,48 @@ func (b_ Bundle) LoadNibNamedOwnerTopLevelObjects(nibName unsafe.Pointer, owner 
 // Returns a localized version of the string designated by the specified key and residing in the specified table.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/localizedString(forKey:value:table:)
-func (b_ Bundle) LocalizedStringForKeyValueTable(key appkit.string, value appkit.string, tableName appkit.string) String {
-	rv := objc.Send[String](b_.ID, objc.Sel("localizedStringForKey:value:table:"), key, value, tableName)
+func (b_ Bundle) LocalizedStringForKeyValueTable(key string, value string, tableName string) String {
+	rv := objc.Send[String](b_.ID, objc.Sel("localizedStringForKey:value:table:"), objc.String(key), objc.String(value), objc.String(tableName))
 	return rv
 }
 
 // Returns the value associated with the specified key in the receiver’s information property list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/object(forInfoDictionaryKey:)
-func (b_ Bundle) ObjectForInfoDictionaryKey(key appkit.string) objc.ID {
-	rv := objc.Send[objc.ID](b_.ID, objc.Sel("objectForInfoDictionaryKey:"), key)
+func (b_ Bundle) ObjectForInfoDictionaryKey(key string) objc.ID {
+	rv := objc.Send[objc.ID](b_.ID, objc.Sel("objectForInfoDictionaryKey:"), objc.String(key))
 	return rv
 }
 
 // Returns the full pathname of the executable with the specified name in the receiver’s bundle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/path(forAuxiliaryExecutable:)
-func (b_ Bundle) PathForAuxiliaryExecutable(executableName appkit.string) String {
-	rv := objc.Send[String](b_.ID, objc.Sel("pathForAuxiliaryExecutable:"), executableName)
+func (b_ Bundle) PathForAuxiliaryExecutable(executableName string) String {
+	rv := objc.Send[String](b_.ID, objc.Sel("pathForAuxiliaryExecutable:"), objc.String(executableName))
 	return rv
 }
 
 // Returns the full pathname for the resource identified by the specified name and file extension.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/path(forResource:ofType:)
-func (b_ Bundle) PathForResourceOfType(name appkit.string, ext appkit.string) String {
-	rv := objc.Send[String](b_.ID, objc.Sel("pathForResource:ofType:"), name, ext)
+func (b_ Bundle) PathForResourceOfType(name string, ext string) String {
+	rv := objc.Send[String](b_.ID, objc.Sel("pathForResource:ofType:"), objc.String(name), objc.String(ext))
 	return rv
 }
 
 // Returns the full pathname for the resource identified by the specified name and file extension and located in the specified bundle subdirectory.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/path(forResource:ofType:inDirectory:)-swift.method
-func (b_ Bundle) PathForResourceOfTypeInDirectory(name appkit.string, ext appkit.string, subpath appkit.string) String {
-	rv := objc.Send[String](b_.ID, objc.Sel("pathForResource:ofType:inDirectory:"), name, ext, subpath)
+func (b_ Bundle) PathForResourceOfTypeInDirectory(name string, ext string, subpath string) String {
+	rv := objc.Send[String](b_.ID, objc.Sel("pathForResource:ofType:inDirectory:"), objc.String(name), objc.String(ext), objc.String(subpath))
 	return rv
 }
 
 // Returns the full pathname for the resource identified by the specified name and file extension, located in the specified bundle subdirectory, and limited to global resources and those associated with the specified localization.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/path(forResource:ofType:inDirectory:forLocalization:)
-func (b_ Bundle) PathForResourceOfTypeInDirectoryForLocalization(name appkit.string, ext appkit.string, subpath appkit.string, localizationName appkit.string) String {
-	rv := objc.Send[String](b_.ID, objc.Sel("pathForResource:ofType:inDirectory:forLocalization:"), name, ext, subpath, localizationName)
+func (b_ Bundle) PathForResourceOfTypeInDirectoryForLocalization(name string, ext string, subpath string, localizationName string) String {
+	rv := objc.Send[String](b_.ID, objc.Sel("pathForResource:ofType:inDirectory:forLocalization:"), objc.String(name), objc.String(ext), objc.String(subpath), objc.String(localizationName))
 	return rv
 }
 
@@ -403,16 +403,16 @@ func (b_ Bundle) PathForImageResource(name unsafe.Pointer) String {
 // Returns an array containing the pathnames for all bundle resources having the specified filename extension and residing in the resource subdirectory.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/paths(forResourcesOfType:inDirectory:)-swift.method
-func (b_ Bundle) PathsForResourcesOfTypeInDirectory(ext appkit.string, subpath appkit.string) []string {
-	rv := objc.Send[[]string](b_.ID, objc.Sel("pathsForResourcesOfType:inDirectory:"), ext, subpath)
+func (b_ Bundle) PathsForResourcesOfTypeInDirectory(ext string, subpath string) []string {
+	rv := objc.Send[[]string](b_.ID, objc.Sel("pathsForResourcesOfType:inDirectory:"), objc.String(ext), objc.String(subpath))
 	return rv
 }
 
 // Returns an array containing the file for all bundle resources having the specified filename extension, residing in the specified resource subdirectory, and limited to global resources and those associated with the specified localization.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/paths(forResourcesOfType:inDirectory:forLocalization:)
-func (b_ Bundle) PathsForResourcesOfTypeInDirectoryForLocalization(ext appkit.string, subpath appkit.string, localizationName appkit.string) []string {
-	rv := objc.Send[[]string](b_.ID, objc.Sel("pathsForResourcesOfType:inDirectory:forLocalization:"), ext, subpath, localizationName)
+func (b_ Bundle) PathsForResourcesOfTypeInDirectoryForLocalization(ext string, subpath string, localizationName string) []string {
+	rv := objc.Send[[]string](b_.ID, objc.Sel("pathsForResourcesOfType:inDirectory:forLocalization:"), objc.String(ext), objc.String(subpath), objc.String(localizationName))
 	return rv
 }
 
@@ -427,15 +427,15 @@ func (b_ Bundle) PreflightAndReturnError(error_ IError) bool {
 // Returns the current preservation priority for the specified tag.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/preservationPriority(forTag:)
-func (b_ Bundle) PreservationPriorityForTag(tag appkit.string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("preservationPriorityForTag:"), tag)
+func (b_ Bundle) PreservationPriorityForTag(tag string) float64 {
+	rv := objc.Send[float64](b_.ID, objc.Sel("preservationPriorityForTag:"), objc.String(tag))
 	return rv
 }
 
 // A hint to the system of the relative order for purging tagged sets of resources in the bundle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/setPreservationPriority(_:forTags:)
-func (b_ Bundle) SetPreservationPriorityForTags(priority unsafe.Pointer, tags unsafe.Pointer) {
+func (b_ Bundle) SetPreservationPriorityForTags(priority float64, tags unsafe.Pointer) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setPreservationPriority:forTags:"), priority, tags)
 }
 
@@ -450,32 +450,32 @@ func (b_ Bundle) Unload() bool {
 // Returns the file URL of the executable with the specified name in the receiver’s bundle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/url(forAuxiliaryExecutable:)
-func (b_ Bundle) URLForAuxiliaryExecutable(executableName appkit.string) URL {
-	rv := objc.Send[URL](b_.ID, objc.Sel("URLForAuxiliaryExecutable:"), executableName)
+func (b_ Bundle) URLForAuxiliaryExecutable(executableName string) URL {
+	rv := objc.Send[URL](b_.ID, objc.Sel("URLForAuxiliaryExecutable:"), objc.String(executableName))
 	return rv
 }
 
 // Returns the file URL for the resource identified by the specified name and file extension.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/url(forResource:withExtension:)
-func (b_ Bundle) URLForResourceWithExtension(name appkit.string, ext appkit.string) URL {
-	rv := objc.Send[URL](b_.ID, objc.Sel("URLForResource:withExtension:"), name, ext)
+func (b_ Bundle) URLForResourceWithExtension(name string, ext string) URL {
+	rv := objc.Send[URL](b_.ID, objc.Sel("URLForResource:withExtension:"), objc.String(name), objc.String(ext))
 	return rv
 }
 
 // Returns the file URL for the resource file identified by the specified name and extension and residing in a given bundle directory.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/url(forResource:withExtension:subdirectory:)
-func (b_ Bundle) URLForResourceWithExtensionSubdirectory(name appkit.string, ext appkit.string, subpath appkit.string) URL {
-	rv := objc.Send[URL](b_.ID, objc.Sel("URLForResource:withExtension:subdirectory:"), name, ext, subpath)
+func (b_ Bundle) URLForResourceWithExtensionSubdirectory(name string, ext string, subpath string) URL {
+	rv := objc.Send[URL](b_.ID, objc.Sel("URLForResource:withExtension:subdirectory:"), objc.String(name), objc.String(ext), objc.String(subpath))
 	return rv
 }
 
 // Returns the file URL for the resource identified by the specified name and file extension, located in the specified bundle subdirectory, and limited to global resources and those associated with the specified localization.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/url(forResource:withExtension:subdirectory:localization:)
-func (b_ Bundle) URLForResourceWithExtensionSubdirectoryLocalization(name appkit.string, ext appkit.string, subpath appkit.string, localizationName appkit.string) URL {
-	rv := objc.Send[URL](b_.ID, objc.Sel("URLForResource:withExtension:subdirectory:localization:"), name, ext, subpath, localizationName)
+func (b_ Bundle) URLForResourceWithExtensionSubdirectoryLocalization(name string, ext string, subpath string, localizationName string) URL {
+	rv := objc.Send[URL](b_.ID, objc.Sel("URLForResource:withExtension:subdirectory:localization:"), objc.String(name), objc.String(ext), objc.String(subpath), objc.String(localizationName))
 	return rv
 }
 
@@ -490,39 +490,39 @@ func (b_ Bundle) URLForImageResource(name unsafe.Pointer) URL {
 // Returns an array of file URLs for all resources identified by the specified file extension and located in the specified bundle subdirectory.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/urls(forResourcesWithExtension:subdirectory:)
-func (b_ Bundle) URLsForResourcesWithExtensionSubdirectory(ext appkit.string, subpath appkit.string) []URL {
-	rv := objc.Send[[]URL](b_.ID, objc.Sel("URLsForResourcesWithExtension:subdirectory:"), ext, subpath)
+func (b_ Bundle) URLsForResourcesWithExtensionSubdirectory(ext string, subpath string) []URL {
+	rv := objc.Send[[]URL](b_.ID, objc.Sel("URLsForResourcesWithExtension:subdirectory:"), objc.String(ext), objc.String(subpath))
 	return rv
 }
 
 // Returns an array containing the file URLs for all bundle resources having the specified filename extension, residing in the specified resource subdirectory, and limited to global resources and those associated with the specified localization.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/urls(forResourcesWithExtension:subdirectory:localization:)
-func (b_ Bundle) URLsForResourcesWithExtensionSubdirectoryLocalization(ext appkit.string, subpath appkit.string, localizationName appkit.string) []URL {
-	rv := objc.Send[[]URL](b_.ID, objc.Sel("URLsForResourcesWithExtension:subdirectory:localization:"), ext, subpath, localizationName)
+func (b_ Bundle) URLsForResourcesWithExtensionSubdirectoryLocalization(ext string, subpath string, localizationName string) []URL {
+	rv := objc.Send[[]URL](b_.ID, objc.Sel("URLsForResourcesWithExtension:subdirectory:localization:"), objc.String(ext), objc.String(subpath), objc.String(localizationName))
 	return rv
 }
 
 // Unarchives the contents of a nib file located in the receiver’s bundle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBundle/loadNibFile:externalNameTable:withZone:-c.method
-func (b_ Bundle) LoadNibFileExternalNameTableWithZone(fileName appkit.string, context objectivec.IObject, zone unsafe.Pointer) bool {
-	rv := objc.Send[bool](b_.ID, objc.Sel("loadNibFile:externalNameTable:withZone:"), fileName, context, zone)
+func (b_ Bundle) LoadNibFileExternalNameTableWithZone(fileName string, context objectivec.IObject, zone unsafe.Pointer) bool {
+	rv := objc.Send[bool](b_.ID, objc.Sel("loadNibFile:externalNameTable:withZone:"), objc.String(fileName), context, zone)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBundle/localizedAttributedStringForKey:value:table:
-func (b_ Bundle) LocalizedAttributedStringForKeyValueTable(key appkit.string, value appkit.string, tableName appkit.string) AttributedString {
-	rv := objc.Send[AttributedString](b_.ID, objc.Sel("localizedAttributedStringForKey:value:table:"), key, value, tableName)
+func (b_ Bundle) LocalizedAttributedStringForKeyValueTable(key string, value string, tableName string) AttributedString {
+	rv := objc.Send[AttributedString](b_.ID, objc.Sel("localizedAttributedStringForKey:value:table:"), objc.String(key), objc.String(value), objc.String(tableName))
 	return rv
 }
 
 // Look up a localized string given a list of available localizations.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBundle/localizedStringForKey:value:table:localizations:
-func (b_ Bundle) LocalizedStringForKeyValueTableLocalizations(key appkit.string, value appkit.string, tableName appkit.string, localizations []string) String {
-	rv := objc.Send[String](b_.ID, objc.Sel("localizedStringForKey:value:table:localizations:"), key, value, tableName, localizations)
+func (b_ Bundle) LocalizedStringForKeyValueTableLocalizations(key string, value string, tableName string, localizations []string) String {
+	rv := objc.Send[String](b_.ID, objc.Sel("localizedStringForKey:value:table:localizations:"), objc.String(key), objc.String(value), objc.String(tableName), localizations)
 	return rv
 }
 
@@ -553,8 +553,8 @@ func (b_ Bundle) AppStoreReceiptURL() URL {
 // The full pathname of the receiver’s subdirectory containing plug-ins.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/builtInPlugInsPath
-func (b_ Bundle) BuiltInPlugInsPath() appkit.string {
-	rv := objc.Send[appkit.string](b_.ID, objc.Sel("builtInPlugInsPath"))
+func (b_ Bundle) BuiltInPlugInsPath() string {
+	rv := objc.Send[string](b_.ID, objc.Sel("builtInPlugInsPath"))
 	return rv
 }
 
@@ -569,16 +569,16 @@ func (b_ Bundle) BuiltInPlugInsURL() URL {
 // The receiver’s bundle identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/bundleIdentifier
-func (b_ Bundle) BundleIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](b_.ID, objc.Sel("bundleIdentifier"))
+func (b_ Bundle) BundleIdentifier() string {
+	rv := objc.Send[string](b_.ID, objc.Sel("bundleIdentifier"))
 	return rv
 }
 
 // The full pathname of the receiver’s bundle directory.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/bundlePath
-func (b_ Bundle) BundlePath() appkit.string {
-	rv := objc.Send[appkit.string](b_.ID, objc.Sel("bundlePath"))
+func (b_ Bundle) BundlePath() string {
+	rv := objc.Send[string](b_.ID, objc.Sel("bundlePath"))
 	return rv
 }
 
@@ -593,8 +593,8 @@ func (b_ Bundle) BundleURL() URL {
 // The localization for the development language.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/developmentLocalization
-func (b_ Bundle) DevelopmentLocalization() appkit.string {
-	rv := objc.Send[appkit.string](b_.ID, objc.Sel("developmentLocalization"))
+func (b_ Bundle) DevelopmentLocalization() string {
+	rv := objc.Send[string](b_.ID, objc.Sel("developmentLocalization"))
 	return rv
 }
 
@@ -609,8 +609,8 @@ func (b_ Bundle) ExecutableArchitectures() []Number {
 // The full pathname of the receiver’s executable file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/executablePath
-func (b_ Bundle) ExecutablePath() appkit.string {
-	rv := objc.Send[appkit.string](b_.ID, objc.Sel("executablePath"))
+func (b_ Bundle) ExecutablePath() string {
+	rv := objc.Send[string](b_.ID, objc.Sel("executablePath"))
 	return rv
 }
 
@@ -681,8 +681,8 @@ func (b_ Bundle) PrincipalClass() objc.Class {
 // The full pathname of the bundle’s subdirectory containing private frameworks.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/privateFrameworksPath
-func (b_ Bundle) PrivateFrameworksPath() appkit.string {
-	rv := objc.Send[appkit.string](b_.ID, objc.Sel("privateFrameworksPath"))
+func (b_ Bundle) PrivateFrameworksPath() string {
+	rv := objc.Send[string](b_.ID, objc.Sel("privateFrameworksPath"))
 	return rv
 }
 
@@ -697,8 +697,8 @@ func (b_ Bundle) PrivateFrameworksURL() URL {
 // The full pathname of the bundle’s subdirectory containing resources.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/resourcePath
-func (b_ Bundle) ResourcePath() appkit.string {
-	rv := objc.Send[appkit.string](b_.ID, objc.Sel("resourcePath"))
+func (b_ Bundle) ResourcePath() string {
+	rv := objc.Send[string](b_.ID, objc.Sel("resourcePath"))
 	return rv
 }
 
@@ -713,8 +713,8 @@ func (b_ Bundle) ResourceURL() URL {
 // The full pathname of the bundle’s subdirectory containing shared frameworks.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/sharedFrameworksPath
-func (b_ Bundle) SharedFrameworksPath() appkit.string {
-	rv := objc.Send[appkit.string](b_.ID, objc.Sel("sharedFrameworksPath"))
+func (b_ Bundle) SharedFrameworksPath() string {
+	rv := objc.Send[string](b_.ID, objc.Sel("sharedFrameworksPath"))
 	return rv
 }
 
@@ -729,8 +729,8 @@ func (b_ Bundle) SharedFrameworksURL() URL {
 // The full pathname of the bundle’s subdirectory containing shared support files.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/sharedSupportPath
-func (b_ Bundle) SharedSupportPath() appkit.string {
-	rv := objc.Send[appkit.string](b_.ID, objc.Sel("sharedSupportPath"))
+func (b_ Bundle) SharedSupportPath() string {
+	rv := objc.Send[string](b_.ID, objc.Sel("sharedSupportPath"))
 	return rv
 }
 
@@ -889,8 +889,8 @@ func (b_ Bundle) SetNSExecutableRuntimeMismatchError(value int) {
 // A constant used as a key for the
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsloadedclasses
-func (b_ Bundle) NSLoadedClasses() appkit.string {
-	rv := objc.Send[appkit.string](b_.ID, objc.Sel("NSLoadedClasses"))
+func (b_ Bundle) NSLoadedClasses() string {
+	rv := objc.Send[string](b_.ID, objc.Sel("NSLoadedClasses"))
 	return rv
 }
 

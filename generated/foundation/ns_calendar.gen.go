@@ -303,8 +303,8 @@ func (c_ Calendar) SetTimeZone(value ITimeZone) {
 // The symbol used to represent “AM” for this calendar.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/amsymbol
-func (c_ Calendar) AmSymbol() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("amSymbol"))
+func (c_ Calendar) AmSymbol() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("amSymbol"))
 	return rv
 }
 
@@ -314,15 +314,15 @@ func (c_ Calendar) AmSymbol() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/amsymbol
-func (c_ Calendar) SetAmSymbol(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setAmSymbol:"), value)
+func (c_ Calendar) SetAmSymbol(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setAmSymbol:"), objc.String(value))
 }
 
 // A list of era symbols for this calendar.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/erasymbols
-func (c_ Calendar) EraSymbols() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("eraSymbols"))
+func (c_ Calendar) EraSymbols() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("eraSymbols"))
 	return rv
 }
 
@@ -332,15 +332,15 @@ func (c_ Calendar) EraSymbols() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/erasymbols
-func (c_ Calendar) SetEraSymbols(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setEraSymbols:"), value)
+func (c_ Calendar) SetEraSymbols(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setEraSymbols:"), objc.String(value))
 }
 
 // A list of long era symbols for this calendar.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/longerasymbols
-func (c_ Calendar) LongEraSymbols() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("longEraSymbols"))
+func (c_ Calendar) LongEraSymbols() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("longEraSymbols"))
 	return rv
 }
 
@@ -350,8 +350,8 @@ func (c_ Calendar) LongEraSymbols() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/longerasymbols
-func (c_ Calendar) SetLongEraSymbols(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setLongEraSymbols:"), value)
+func (c_ Calendar) SetLongEraSymbols(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setLongEraSymbols:"), objc.String(value))
 }
 
 // The minimum number of days in the first week of the receiver.
@@ -375,8 +375,8 @@ func (c_ Calendar) SetMinimumDaysInFirstWeek(value int) {
 // A list of month symbols for this calendar.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/monthsymbols
-func (c_ Calendar) MonthSymbols() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("monthSymbols"))
+func (c_ Calendar) MonthSymbols() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("monthSymbols"))
 	return rv
 }
 
@@ -386,15 +386,15 @@ func (c_ Calendar) MonthSymbols() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/monthsymbols
-func (c_ Calendar) SetMonthSymbols(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setMonthSymbols:"), value)
+func (c_ Calendar) SetMonthSymbols(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setMonthSymbols:"), objc.String(value))
 }
 
 // The symbol used to represent “PM” for this calendar.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/pmsymbol
-func (c_ Calendar) PmSymbol() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("pmSymbol"))
+func (c_ Calendar) PmSymbol() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("pmSymbol"))
 	return rv
 }
 
@@ -404,15 +404,15 @@ func (c_ Calendar) PmSymbol() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/pmsymbol
-func (c_ Calendar) SetPmSymbol(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setPmSymbol:"), value)
+func (c_ Calendar) SetPmSymbol(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setPmSymbol:"), objc.String(value))
 }
 
 // A list of quarter symbols for this calendar.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/quartersymbols
-func (c_ Calendar) QuarterSymbols() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("quarterSymbols"))
+func (c_ Calendar) QuarterSymbols() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("quarterSymbols"))
 	return rv
 }
 
@@ -422,15 +422,15 @@ func (c_ Calendar) QuarterSymbols() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/quartersymbols
-func (c_ Calendar) SetQuarterSymbols(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setQuarterSymbols:"), value)
+func (c_ Calendar) SetQuarterSymbols(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setQuarterSymbols:"), objc.String(value))
 }
 
 // A list of short month symbols for this calendar.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/shortmonthsymbols
-func (c_ Calendar) ShortMonthSymbols() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("shortMonthSymbols"))
+func (c_ Calendar) ShortMonthSymbols() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("shortMonthSymbols"))
 	return rv
 }
 
@@ -440,15 +440,15 @@ func (c_ Calendar) ShortMonthSymbols() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/shortmonthsymbols
-func (c_ Calendar) SetShortMonthSymbols(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setShortMonthSymbols:"), value)
+func (c_ Calendar) SetShortMonthSymbols(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setShortMonthSymbols:"), objc.String(value))
 }
 
 // A list of short quarter symbols for this calendar.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/shortquartersymbols
-func (c_ Calendar) ShortQuarterSymbols() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("shortQuarterSymbols"))
+func (c_ Calendar) ShortQuarterSymbols() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("shortQuarterSymbols"))
 	return rv
 }
 
@@ -458,15 +458,15 @@ func (c_ Calendar) ShortQuarterSymbols() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/shortquartersymbols
-func (c_ Calendar) SetShortQuarterSymbols(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setShortQuarterSymbols:"), value)
+func (c_ Calendar) SetShortQuarterSymbols(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setShortQuarterSymbols:"), objc.String(value))
 }
 
 // A list of short standalone month symbols for this calendar.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/shortstandalonemonthsymbols
-func (c_ Calendar) ShortStandaloneMonthSymbols() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("shortStandaloneMonthSymbols"))
+func (c_ Calendar) ShortStandaloneMonthSymbols() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("shortStandaloneMonthSymbols"))
 	return rv
 }
 
@@ -476,15 +476,15 @@ func (c_ Calendar) ShortStandaloneMonthSymbols() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/shortstandalonemonthsymbols
-func (c_ Calendar) SetShortStandaloneMonthSymbols(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setShortStandaloneMonthSymbols:"), value)
+func (c_ Calendar) SetShortStandaloneMonthSymbols(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setShortStandaloneMonthSymbols:"), objc.String(value))
 }
 
 // A list of shorter-named weekdays in this calendar.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/shortweekdaysymbols
-func (c_ Calendar) ShortWeekdaySymbols() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("shortWeekdaySymbols"))
+func (c_ Calendar) ShortWeekdaySymbols() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("shortWeekdaySymbols"))
 	return rv
 }
 
@@ -494,15 +494,15 @@ func (c_ Calendar) ShortWeekdaySymbols() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/shortweekdaysymbols
-func (c_ Calendar) SetShortWeekdaySymbols(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setShortWeekdaySymbols:"), value)
+func (c_ Calendar) SetShortWeekdaySymbols(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setShortWeekdaySymbols:"), objc.String(value))
 }
 
 // A list of standalone month symbols for this calendar.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/standalonemonthsymbols
-func (c_ Calendar) StandaloneMonthSymbols() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("standaloneMonthSymbols"))
+func (c_ Calendar) StandaloneMonthSymbols() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("standaloneMonthSymbols"))
 	return rv
 }
 
@@ -512,15 +512,15 @@ func (c_ Calendar) StandaloneMonthSymbols() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/standalonemonthsymbols
-func (c_ Calendar) SetStandaloneMonthSymbols(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setStandaloneMonthSymbols:"), value)
+func (c_ Calendar) SetStandaloneMonthSymbols(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setStandaloneMonthSymbols:"), objc.String(value))
 }
 
 // A list of standalone quarter symbols for this calendar.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/standalonequartersymbols
-func (c_ Calendar) StandaloneQuarterSymbols() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("standaloneQuarterSymbols"))
+func (c_ Calendar) StandaloneQuarterSymbols() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("standaloneQuarterSymbols"))
 	return rv
 }
 
@@ -530,15 +530,15 @@ func (c_ Calendar) StandaloneQuarterSymbols() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/standalonequartersymbols
-func (c_ Calendar) SetStandaloneQuarterSymbols(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setStandaloneQuarterSymbols:"), value)
+func (c_ Calendar) SetStandaloneQuarterSymbols(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setStandaloneQuarterSymbols:"), objc.String(value))
 }
 
 // A list of standalone weekday symbols for this calendar.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/standaloneweekdaysymbols
-func (c_ Calendar) StandaloneWeekdaySymbols() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("standaloneWeekdaySymbols"))
+func (c_ Calendar) StandaloneWeekdaySymbols() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("standaloneWeekdaySymbols"))
 	return rv
 }
 
@@ -548,15 +548,15 @@ func (c_ Calendar) StandaloneWeekdaySymbols() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/standaloneweekdaysymbols
-func (c_ Calendar) SetStandaloneWeekdaySymbols(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setStandaloneWeekdaySymbols:"), value)
+func (c_ Calendar) SetStandaloneWeekdaySymbols(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setStandaloneWeekdaySymbols:"), objc.String(value))
 }
 
 // A list of very short month symbols for this calendar.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/veryshortmonthsymbols
-func (c_ Calendar) VeryShortMonthSymbols() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("veryShortMonthSymbols"))
+func (c_ Calendar) VeryShortMonthSymbols() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("veryShortMonthSymbols"))
 	return rv
 }
 
@@ -566,15 +566,15 @@ func (c_ Calendar) VeryShortMonthSymbols() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/veryshortmonthsymbols
-func (c_ Calendar) SetVeryShortMonthSymbols(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setVeryShortMonthSymbols:"), value)
+func (c_ Calendar) SetVeryShortMonthSymbols(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setVeryShortMonthSymbols:"), objc.String(value))
 }
 
 // A list of very short month symbols for this calendar.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/veryshortstandalonemonthsymbols
-func (c_ Calendar) VeryShortStandaloneMonthSymbols() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("veryShortStandaloneMonthSymbols"))
+func (c_ Calendar) VeryShortStandaloneMonthSymbols() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("veryShortStandaloneMonthSymbols"))
 	return rv
 }
 
@@ -584,15 +584,15 @@ func (c_ Calendar) VeryShortStandaloneMonthSymbols() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/veryshortstandalonemonthsymbols
-func (c_ Calendar) SetVeryShortStandaloneMonthSymbols(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setVeryShortStandaloneMonthSymbols:"), value)
+func (c_ Calendar) SetVeryShortStandaloneMonthSymbols(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setVeryShortStandaloneMonthSymbols:"), objc.String(value))
 }
 
 // A list of very short standalone weekday symbols for this calendar.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/veryshortstandaloneweekdaysymbols
-func (c_ Calendar) VeryShortStandaloneWeekdaySymbols() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("veryShortStandaloneWeekdaySymbols"))
+func (c_ Calendar) VeryShortStandaloneWeekdaySymbols() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("veryShortStandaloneWeekdaySymbols"))
 	return rv
 }
 
@@ -602,15 +602,15 @@ func (c_ Calendar) VeryShortStandaloneWeekdaySymbols() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/veryshortstandaloneweekdaysymbols
-func (c_ Calendar) SetVeryShortStandaloneWeekdaySymbols(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setVeryShortStandaloneWeekdaySymbols:"), value)
+func (c_ Calendar) SetVeryShortStandaloneWeekdaySymbols(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setVeryShortStandaloneWeekdaySymbols:"), objc.String(value))
 }
 
 // A list of very-shortly-named weekdays in this calendar.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/veryshortweekdaysymbols
-func (c_ Calendar) VeryShortWeekdaySymbols() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("veryShortWeekdaySymbols"))
+func (c_ Calendar) VeryShortWeekdaySymbols() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("veryShortWeekdaySymbols"))
 	return rv
 }
 
@@ -620,15 +620,15 @@ func (c_ Calendar) VeryShortWeekdaySymbols() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/veryshortweekdaysymbols
-func (c_ Calendar) SetVeryShortWeekdaySymbols(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setVeryShortWeekdaySymbols:"), value)
+func (c_ Calendar) SetVeryShortWeekdaySymbols(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setVeryShortWeekdaySymbols:"), objc.String(value))
 }
 
 // A list of weekdays in this calendar.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/weekdaysymbols
-func (c_ Calendar) WeekdaySymbols() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("weekdaySymbols"))
+func (c_ Calendar) WeekdaySymbols() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("weekdaySymbols"))
 	return rv
 }
 
@@ -638,8 +638,8 @@ func (c_ Calendar) WeekdaySymbols() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscalendar/weekdaysymbols
-func (c_ Calendar) SetWeekdaySymbols(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setWeekdaySymbols:"), value)
+func (c_ Calendar) SetWeekdaySymbols(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setWeekdaySymbols:"), objc.String(value))
 }
 
 

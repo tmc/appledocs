@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -87,8 +86,8 @@ func NewArchiver() Archiver {
 // Creates a temporary instance of and archives an object graph by encoding it into a data object and writing the resulting data object to a specified file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArchiver/archiveRootObject(_:toFile:)
-func (ac _ArchiverClass) ArchiveRootObjectToFile(rootObject objectivec.IObject, path appkit.string) bool {
-	rv := objc.Send[bool](objc.ID(ac.class), objc.Sel("archiveRootObject:toFile:"), rootObject, path)
+func (ac _ArchiverClass) ArchiveRootObjectToFile(rootObject objectivec.IObject, path string) bool {
+	rv := objc.Send[bool](objc.ID(ac.class), objc.Sel("archiveRootObject:toFile:"), rootObject, objc.String(path))
 	return rv
 }
 

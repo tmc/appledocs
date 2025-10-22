@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -84,8 +83,8 @@ func NewMorphologyCustomPronoun() MorphologyCustomPronoun {
 // The reflexive pronoun form to apply when using this custom pronoun behavior.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphologyCustomPronoun/reflexiveForm
-func (m_ MorphologyCustomPronoun) ReflexiveForm() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("reflexiveForm"))
+func (m_ MorphologyCustomPronoun) ReflexiveForm() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("reflexiveForm"))
 	return rv
 }
 
@@ -95,8 +94,8 @@ func (m_ MorphologyCustomPronoun) ReflexiveForm() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphologyCustomPronoun/reflexiveForm
-func (m_ MorphologyCustomPronoun) SetReflexiveForm(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setReflexiveForm:"), value)
+func (m_ MorphologyCustomPronoun) SetReflexiveForm(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setReflexiveForm:"), objc.String(value))
 }
 
 

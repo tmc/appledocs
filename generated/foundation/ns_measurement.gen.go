@@ -86,7 +86,7 @@ func NewMeasurement() Measurement {
 // Initializes a new measurement with a specified double-precision floating-point value and unit.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMeasurement/init(doubleValue:unit:)
-func NewMeasurementWithDoubleValueUnit(doubleValue unsafe.Pointer, unit unsafe.Pointer) Measurement {
+func NewMeasurementWithDoubleValueUnit(doubleValue float64, unit unsafe.Pointer) Measurement {
 	instance := getMeasurementClass().Alloc()
 	rv := objc.Send[Measurement](instance.ID, objc.Sel("initWithDoubleValue:unit:"), doubleValue, unit)
 	rv.Autorelease()
@@ -113,8 +113,8 @@ func (m_ Measurement) Unit() unsafe.Pointer {
 // The measurement value, represented as a double-precision floating-point number.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmeasurement/doublevalue
-func (m_ Measurement) DoubleValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("doubleValue"))
+func (m_ Measurement) DoubleValue() float64 {
+	rv := objc.Send[float64](m_.ID, objc.Sel("doubleValue"))
 	return rv
 }
 
@@ -124,7 +124,7 @@ func (m_ Measurement) DoubleValue() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmeasurement/doublevalue
-func (m_ Measurement) SetDoubleValue(value unsafe.Pointer) {
+func (m_ Measurement) SetDoubleValue(value float64) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDoubleValue:"), value)
 }
 

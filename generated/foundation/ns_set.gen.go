@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -260,8 +259,8 @@ func (sc _SetClass) SetWithSet(set unsafe.Pointer) unsafe.Pointer {
 // Raises an exception.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/addObserver(_:forKeyPath:options:context:)
-func (s_ Set) AddObserverForKeyPathOptionsContext(observer IObject, keyPath appkit.string, options KeyValueObservingOptions, context unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("addObserver:forKeyPath:options:context:"), observer, keyPath, options, context)
+func (s_ Set) AddObserverForKeyPathOptionsContext(observer IObject, keyPath string, options KeyValueObservingOptions, context unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("addObserver:forKeyPath:options:context:"), observer, objc.String(keyPath), options, context)
 }
 
 // Returns a new set formed by adding a given object to the receiving set.
@@ -413,22 +412,22 @@ func (s_ Set) ObjectsPassingTest(predicate unsafe.Pointer) unsafe.Pointer {
 // Raises an exception.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/removeObserver(_:forKeyPath:)
-func (s_ Set) RemoveObserverForKeyPath(observer IObject, keyPath appkit.string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("removeObserver:forKeyPath:"), observer, keyPath)
+func (s_ Set) RemoveObserverForKeyPath(observer IObject, keyPath string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("removeObserver:forKeyPath:"), observer, objc.String(keyPath))
 }
 
 // Raises an exception.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/removeObserver(_:forKeyPath:context:)
-func (s_ Set) RemoveObserverForKeyPathContext(observer IObject, keyPath appkit.string, context unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("removeObserver:forKeyPath:context:"), observer, keyPath, context)
+func (s_ Set) RemoveObserverForKeyPathContext(observer IObject, keyPath string, context unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("removeObserver:forKeyPath:context:"), observer, objc.String(keyPath), context)
 }
 
 // Invokes on each of the set’s members.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/setValue(_:forKey:)
-func (s_ Set) SetValueForKey(value objectivec.IObject, key appkit.string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setValue:forKey:"), value, key)
+func (s_ Set) SetValueForKey(value objectivec.IObject, key string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setValue:forKey:"), value, objc.String(key))
 }
 
 // Returns an array of the set’s content sorted as specified by a given array of sort descriptors.
@@ -442,8 +441,8 @@ func (s_ Set) SortedArrayUsingDescriptors(sortDescriptors []SortDescriptor) []ob
 // Return a set containing the results of invoking on each of the receiving set’s members.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/value(forKey:)
-func (s_ Set) ValueForKey(key appkit.string) objc.ID {
-	rv := objc.Send[objc.ID](s_.ID, objc.Sel("valueForKey:"), key)
+func (s_ Set) ValueForKey(key string) objc.ID {
+	rv := objc.Send[objc.ID](s_.ID, objc.Sel("valueForKey:"), objc.String(key))
 	return rv
 }
 
@@ -466,8 +465,8 @@ func (s_ Set) Count() uint {
 // A string that represents the contents of the set, formatted as a property list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/description
-func (s_ Set) Description() appkit.string {
-	rv := objc.Send[appkit.string](s_.ID, objc.Sel("description"))
+func (s_ Set) Description() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("description"))
 	return rv
 }
 

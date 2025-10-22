@@ -30,7 +30,7 @@ type _UnitConverterClass struct {
 // An interface definition for the [UnitConverter] class.
 type IUnitConverter interface {
 	objectivec.IObject
-	BaseUnitValueFromValue(value unsafe.Pointer) unsafe.Pointer
+	BaseUnitValueFromValue(value float64) float64
 }
 
 // An abstract class that provides a description of how to convert a unit to and from the base unit of its dimension.
@@ -84,8 +84,8 @@ func NewUnitConverter() UnitConverter {
 // For a given unit, returns the specified value of that unit in terms of the base unit of its dimension.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitConverter/baseUnitValue(fromValue:)
-func (u_ UnitConverter) BaseUnitValueFromValue(value unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("baseUnitValueFromValue:"), value)
+func (u_ UnitConverter) BaseUnitValueFromValue(value float64) float64 {
+	rv := objc.Send[float64](u_.ID, objc.Sel("baseUnitValueFromValue:"), value)
 	return rv
 }
 

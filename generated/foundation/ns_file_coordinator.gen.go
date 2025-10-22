@@ -126,8 +126,8 @@ func (f_ FileCoordinator) FilePresenters() []objc.ID {
 // A string that uniquely identifies the file access that was performed by this file coordinator.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsfilecoordinator/purposeidentifier
-func (f_ FileCoordinator) PurposeIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](f_.ID, objc.Sel("purposeIdentifier"))
+func (f_ FileCoordinator) PurposeIdentifier() string {
+	rv := objc.Send[string](f_.ID, objc.Sel("purposeIdentifier"))
 	return rv
 }
 
@@ -137,8 +137,8 @@ func (f_ FileCoordinator) PurposeIdentifier() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsfilecoordinator/purposeidentifier
-func (f_ FileCoordinator) SetPurposeIdentifier(value appkit.string) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setPurposeIdentifier:"), value)
+func (f_ FileCoordinator) SetPurposeIdentifier(value string) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setPurposeIdentifier:"), objc.String(value))
 }
 
 // The user canceled the operation (for example, by pressing Command-period).

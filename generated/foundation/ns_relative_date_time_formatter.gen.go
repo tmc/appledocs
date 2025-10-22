@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coreimage"
 )
 
 // The class instance for the [RelativeDateTimeFormatter] class.
@@ -121,8 +120,8 @@ func (r_ RelativeDateTimeFormatter) SetDateTimeStyle(value unsafe.Pointer) {
 // A description of where the formatted string will appear, allowing the formatter to capitalize the output appropriately.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/relativedatetimeformatter/formattingcontext
-func (r_ RelativeDateTimeFormatter) FormattingContext() coreimage.Context {
-	rv := objc.Send[coreimage.Context](r_.ID, objc.Sel("formattingContext"))
+func (r_ RelativeDateTimeFormatter) FormattingContext() int {
+	rv := objc.Send[int](r_.ID, objc.Sel("formattingContext"))
 	return rv
 }
 
@@ -132,7 +131,7 @@ func (r_ RelativeDateTimeFormatter) FormattingContext() coreimage.Context {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/relativedatetimeformatter/formattingcontext
-func (r_ RelativeDateTimeFormatter) SetFormattingContext(value coreimage.IContext) {
+func (r_ RelativeDateTimeFormatter) SetFormattingContext(value int) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setFormattingContext:"), value)
 }
 

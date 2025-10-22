@@ -102,8 +102,8 @@ func (c_ CaptureMultiCamSession) SetActiveFormat(value unsafe.Pointer) {
 // A value that indicates the percentage of the session’s available hardware budget currently in use.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemulticamsession/hardwarecost
-func (c_ CaptureMultiCamSession) HardwareCost() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("hardwareCost"))
+func (c_ CaptureMultiCamSession) HardwareCost() float32 {
+	rv := objc.Send[float32](c_.ID, objc.Sel("hardwareCost"))
 	return rv
 }
 
@@ -113,15 +113,15 @@ func (c_ CaptureMultiCamSession) HardwareCost() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemulticamsession/hardwarecost
-func (c_ CaptureMultiCamSession) SetHardwareCost(value unsafe.Pointer) {
+func (c_ CaptureMultiCamSession) SetHardwareCost(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setHardwareCost:"), value)
 }
 
 // A value that indicates the system pressure cost of the current session configuration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemulticamsession/systempressurecost
-func (c_ CaptureMultiCamSession) SystemPressureCost() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("systemPressureCost"))
+func (c_ CaptureMultiCamSession) SystemPressureCost() float32 {
+	rv := objc.Send[float32](c_.ID, objc.Sel("systemPressureCost"))
 	return rv
 }
 
@@ -131,7 +131,7 @@ func (c_ CaptureMultiCamSession) SystemPressureCost() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemulticamsession/systempressurecost
-func (c_ CaptureMultiCamSession) SetSystemPressureCost(value unsafe.Pointer) {
+func (c_ CaptureMultiCamSession) SetSystemPressureCost(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSystemPressureCost:"), value)
 }
 

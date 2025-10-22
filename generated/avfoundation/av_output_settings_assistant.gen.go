@@ -83,8 +83,8 @@ func NewOutputSettingsAssistant() OutputSettingsAssistant {
 // An audio settings dictionary.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avoutputsettingsassistant/audiosettings
-func (o_ OutputSettingsAssistant) AudioSettings() appkit.string {
-	rv := objc.Send[appkit.string](o_.ID, objc.Sel("audioSettings"))
+func (o_ OutputSettingsAssistant) AudioSettings() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("audioSettings"))
 	return rv
 }
 
@@ -94,8 +94,8 @@ func (o_ OutputSettingsAssistant) AudioSettings() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avoutputsettingsassistant/audiosettings
-func (o_ OutputSettingsAssistant) SetAudioSettings(value appkit.string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setAudioSettings:"), value)
+func (o_ OutputSettingsAssistant) SetAudioSettings(value string) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setAudioSettings:"), objc.String(value))
 }
 
 // A uniform type identifier (UTI) that indicates the type of file to write.
@@ -191,8 +191,8 @@ func (o_ OutputSettingsAssistant) SetSourceVideoMinFrameDuration(value unsafe.Po
 // A video settings dictionary.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avoutputsettingsassistant/videosettings
-func (o_ OutputSettingsAssistant) VideoSettings() appkit.string {
-	rv := objc.Send[appkit.string](o_.ID, objc.Sel("videoSettings"))
+func (o_ OutputSettingsAssistant) VideoSettings() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("videoSettings"))
 	return rv
 }
 
@@ -202,8 +202,8 @@ func (o_ OutputSettingsAssistant) VideoSettings() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avoutputsettingsassistant/videosettings
-func (o_ OutputSettingsAssistant) SetVideoSettings(value appkit.string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setVideoSettings:"), value)
+func (o_ OutputSettingsAssistant) SetVideoSettings(value string) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setVideoSettings:"), objc.String(value))
 }
 
 

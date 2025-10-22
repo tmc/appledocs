@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/gameplaykit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,11 +31,11 @@ type _ArrayClass struct {
 // An interface definition for the [Array] class.
 type IArray interface {
 	objectivec.IObject
-	AddObserverToObjectsAtIndexesForKeyPathOptionsContext(observer IObject, indexes IIndexSet, keyPath appkit.string, options KeyValueObservingOptions, context unsafe.Pointer)
+	AddObserverToObjectsAtIndexesForKeyPathOptionsContext(observer IObject, indexes IIndexSet, keyPath string, options KeyValueObservingOptions, context unsafe.Pointer)
 	ArrayByAddingObject(anObject unsafe.Pointer) []objc.ID
 	ArrayByAddingObjectsFromArray(otherArray []objc.ID) []objc.ID
 	ArrayByApplyingDifference(difference unsafe.Pointer) []objc.ID
-	ComponentsJoinedByString(separator appkit.string) String
+	ComponentsJoinedByString(separator string) String
 	ContainsObject(anObject unsafe.Pointer) bool
 	DescriptionWithLocale(locale objectivec.IObject) String
 	DescriptionWithLocaleIndent(locale objectivec.IObject, level uint) String
@@ -68,8 +67,8 @@ type IArray interface {
 	ObjectEnumerator() unsafe.Pointer
 	ObjectsAtIndexes(indexes IIndexSet) []objc.ID
 	PathsMatchingExtensions(filterTypes []string) []string
-	RemoveObserverFromObjectsAtIndexesForKeyPath(observer IObject, indexes IIndexSet, keyPath appkit.string)
-	RemoveObserverFromObjectsAtIndexesForKeyPathContext(observer IObject, indexes IIndexSet, keyPath appkit.string, context unsafe.Pointer)
+	RemoveObserverFromObjectsAtIndexesForKeyPath(observer IObject, indexes IIndexSet, keyPath string)
+	RemoveObserverFromObjectsAtIndexesForKeyPathContext(observer IObject, indexes IIndexSet, keyPath string, context unsafe.Pointer)
 	ReverseObjectEnumerator() unsafe.Pointer
 	ShuffledArray() []objc.ID
 	ShuffledArrayWithRandomSource(randomSource gameplaykit.IRandomSource) []objc.ID
@@ -83,7 +82,7 @@ type IArray interface {
 	ObjectAtIndexedSubscript(idx uint) unsafe.Pointer
 	WriteToURLError(url IURL, error_ IError) bool
 	WriteToURLAtomically(url IURL, atomically bool) bool
-	WriteToFileAtomically(path appkit.string, useAuxiliaryFile bool) bool
+	WriteToFileAtomically(path string, useAuxiliaryFile bool) bool
 }
 
 // A static ordered collection of objects.
@@ -172,9 +171,9 @@ func NewArrayWithCoder(coder ICoder) Array {
 // Initializes a newly allocated array with the contents of the file specified by a given path.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/init(contentsOfFile:)
-func NewArrayWithContentsOfFile(path appkit.string) Array {
+func NewArrayWithContentsOfFile(path string) Array {
 	instance := getArrayClass().Alloc()
-	rv := objc.Send[Array](instance.ID, objc.Sel("initWithContentsOfFile:"), path)
+	rv := objc.Send[Array](instance.ID, objc.Sel("initWithContentsOfFile:"), objc.String(path))
 	rv.Autorelease()
 	return rv
 }
@@ -254,8 +253,8 @@ func (ac _ArrayClass) ArrayWithArray(array []objc.ID) unsafe.Pointer {
 // Creates and returns an array containing the contents of the file specified by a given path.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/arrayWithContentsOfFile:
-func (ac _ArrayClass) ArrayWithContentsOfFile(path appkit.string) []objc.ID {
-	rv := objc.Send[[]objc.ID](objc.ID(ac.class), objc.Sel("arrayWithContentsOfFile:"), path)
+func (ac _ArrayClass) ArrayWithContentsOfFile(path string) []objc.ID {
+	rv := objc.Send[[]objc.ID](objc.ID(ac.class), objc.Sel("arrayWithContentsOfFile:"), objc.String(path))
 	return rv
 }
 
@@ -301,15 +300,15 @@ func (ac _ArrayClass) ArrayWithObjectsCount(objects unsafe.Pointer, cnt uint) un
 // Raises an exception.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/addObserver(_:forKeyPath:options:context:)
-func (a_ Array) AddObserverForKeyPathOptionsContext(observer IObject, keyPath appkit.string, options KeyValueObservingOptions, context unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("addObserver:forKeyPath:options:context:"), observer, keyPath, options, context)
+func (a_ Array) AddObserverForKeyPathOptionsContext(observer IObject, keyPath string, options KeyValueObservingOptions, context unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("addObserver:forKeyPath:options:context:"), observer, objc.String(keyPath), options, context)
 }
 
 // Registers an observer to receive key value observer notifications for the specified key-path relative to the objects at the indexes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/addObserver(_:toObjectsAt:forKeyPath:options:context:)
-func (a_ Array) AddObserverToObjectsAtIndexesForKeyPathOptionsContext(observer IObject, indexes IIndexSet, keyPath appkit.string, options KeyValueObservingOptions, context unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("addObserver:toObjectsAtIndexes:forKeyPath:options:context:"), observer, indexes, keyPath, options, context)
+func (a_ Array) AddObserverToObjectsAtIndexesForKeyPathOptionsContext(observer IObject, indexes IIndexSet, keyPath string, options KeyValueObservingOptions, context unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("addObserver:toObjectsAtIndexes:forKeyPath:options:context:"), observer, indexes, objc.String(keyPath), options, context)
 }
 
 // Returns a new array that is a copy of the receiving array with a given object added to the end.
@@ -339,8 +338,8 @@ func (a_ Array) ArrayByApplyingDifference(difference unsafe.Pointer) []objc.ID {
 // Constructs and returns an object that is the result of interposing a given separator between the elements of the array.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/componentsJoined(by:)
-func (a_ Array) ComponentsJoinedByString(separator appkit.string) String {
-	rv := objc.Send[String](a_.ID, objc.Sel("componentsJoinedByString:"), separator)
+func (a_ Array) ComponentsJoinedByString(separator string) String {
+	rv := objc.Send[String](a_.ID, objc.Sel("componentsJoinedByString:"), objc.String(separator))
 	return rv
 }
 
@@ -588,29 +587,29 @@ func (a_ Array) PathsMatchingExtensions(filterTypes []string) []string {
 // Raises an exception.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/removeObserver(_:forKeyPath:)
-func (a_ Array) RemoveObserverForKeyPath(observer IObject, keyPath appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("removeObserver:forKeyPath:"), observer, keyPath)
+func (a_ Array) RemoveObserverForKeyPath(observer IObject, keyPath string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("removeObserver:forKeyPath:"), observer, objc.String(keyPath))
 }
 
 // Raises an exception.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/removeObserver(_:forKeyPath:context:)
-func (a_ Array) RemoveObserverForKeyPathContext(observer IObject, keyPath appkit.string, context unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("removeObserver:forKeyPath:context:"), observer, keyPath, context)
+func (a_ Array) RemoveObserverForKeyPathContext(observer IObject, keyPath string, context unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("removeObserver:forKeyPath:context:"), observer, objc.String(keyPath), context)
 }
 
 // Removes from all key value observer notifications associated with the specified relative to the array’s objects at .
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/removeObserver(_:fromObjectsAt:forKeyPath:)
-func (a_ Array) RemoveObserverFromObjectsAtIndexesForKeyPath(observer IObject, indexes IIndexSet, keyPath appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("removeObserver:fromObjectsAtIndexes:forKeyPath:"), observer, indexes, keyPath)
+func (a_ Array) RemoveObserverFromObjectsAtIndexesForKeyPath(observer IObject, indexes IIndexSet, keyPath string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("removeObserver:fromObjectsAtIndexes:forKeyPath:"), observer, indexes, objc.String(keyPath))
 }
 
 // Raises an exception.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/removeObserver(_:fromObjectsAt:forKeyPath:context:)
-func (a_ Array) RemoveObserverFromObjectsAtIndexesForKeyPathContext(observer IObject, indexes IIndexSet, keyPath appkit.string, context unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("removeObserver:fromObjectsAtIndexes:forKeyPath:context:"), observer, indexes, keyPath, context)
+func (a_ Array) RemoveObserverFromObjectsAtIndexesForKeyPathContext(observer IObject, indexes IIndexSet, keyPath string, context unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("removeObserver:fromObjectsAtIndexes:forKeyPath:context:"), observer, indexes, objc.String(keyPath), context)
 }
 
 // Returns an enumerator object that lets you access each object in the array, in reverse order.
@@ -624,8 +623,8 @@ func (a_ Array) ReverseObjectEnumerator() unsafe.Pointer {
 // Invokes on each of the array’s items using the specified and .
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/setValue(_:forKey:)
-func (a_ Array) SetValueForKey(value objectivec.IObject, key appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setValue:forKey:"), value, key)
+func (a_ Array) SetValueForKey(value objectivec.IObject, key string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setValue:forKey:"), value, objc.String(key))
 }
 
 // Returns a new array that lists this array’s elements in a random order.
@@ -711,8 +710,8 @@ func (a_ Array) ObjectAtIndexedSubscript(idx uint) unsafe.Pointer {
 // Returns an array containing the results of invoking using on each of the array’s objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/value(forKey:)
-func (a_ Array) ValueForKey(key appkit.string) objc.ID {
-	rv := objc.Send[objc.ID](a_.ID, objc.Sel("valueForKey:"), key)
+func (a_ Array) ValueForKey(key string) objc.ID {
+	rv := objc.Send[objc.ID](a_.ID, objc.Sel("valueForKey:"), objc.String(key))
 	return rv
 }
 
@@ -734,8 +733,8 @@ func (a_ Array) WriteToURLAtomically(url IURL, atomically bool) bool {
 // Writes the contents of the array to a file at a given path.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/write(toFile:atomically:)
-func (a_ Array) WriteToFileAtomically(path appkit.string, useAuxiliaryFile bool) bool {
-	rv := objc.Send[bool](a_.ID, objc.Sel("writeToFile:atomically:"), path, useAuxiliaryFile)
+func (a_ Array) WriteToFileAtomically(path string, useAuxiliaryFile bool) bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("writeToFile:atomically:"), objc.String(path), useAuxiliaryFile)
 	return rv
 }
 
@@ -750,8 +749,8 @@ func (a_ Array) Count() uint {
 // A string that represents the contents of the array, formatted as a property list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/description
-func (a_ Array) Description() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("description"))
+func (a_ Array) Description() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("description"))
 	return rv
 }
 

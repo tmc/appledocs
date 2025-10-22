@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,9 +82,9 @@ func NewMorphologyPronoun() MorphologyPronoun {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphologyPronoun/initWithPronoun:morphology:dependentMorphology:
-func NewMorphologyPronounWithPronounMorphologyDependentMorphology(pronoun appkit.string, morphology IMorphology, dependentMorphology IMorphology) MorphologyPronoun {
+func NewMorphologyPronounWithPronounMorphologyDependentMorphology(pronoun string, morphology IMorphology, dependentMorphology IMorphology) MorphologyPronoun {
 	instance := getMorphologyPronounClass().Alloc()
-	rv := objc.Send[MorphologyPronoun](instance.ID, objc.Sel("initWithPronoun:morphology:dependentMorphology:"), pronoun, morphology, dependentMorphology)
+	rv := objc.Send[MorphologyPronoun](instance.ID, objc.Sel("initWithPronoun:morphology:dependentMorphology:"), objc.String(pronoun), morphology, dependentMorphology)
 	rv.Autorelease()
 	return rv
 }

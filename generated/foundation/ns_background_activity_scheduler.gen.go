@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -86,9 +85,9 @@ func NewBackgroundActivityScheduler() BackgroundActivityScheduler {
 // Initializes a background activity scheduler object with a specified unique identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBackgroundActivityScheduler/init(identifier:)
-func NewBackgroundActivitySchedulerWithIdentifier(identifier appkit.string) BackgroundActivityScheduler {
+func NewBackgroundActivitySchedulerWithIdentifier(identifier string) BackgroundActivityScheduler {
 	instance := getBackgroundActivitySchedulerClass().Alloc()
-	rv := objc.Send[BackgroundActivityScheduler](instance.ID, objc.Sel("initWithIdentifier:"), identifier)
+	rv := objc.Send[BackgroundActivityScheduler](instance.ID, objc.Sel("initWithIdentifier:"), objc.String(identifier))
 	rv.Autorelease()
 	return rv
 }
@@ -97,8 +96,8 @@ func NewBackgroundActivitySchedulerWithIdentifier(identifier appkit.string) Back
 // A unique reverse DNS notation string, such as
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsbackgroundactivityscheduler/identifier
-func (b_ BackgroundActivityScheduler) Identifier() appkit.string {
-	rv := objc.Send[appkit.string](b_.ID, objc.Sel("identifier"))
+func (b_ BackgroundActivityScheduler) Identifier() string {
+	rv := objc.Send[string](b_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -108,8 +107,8 @@ func (b_ BackgroundActivityScheduler) Identifier() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsbackgroundactivityscheduler/identifier
-func (b_ BackgroundActivityScheduler) SetIdentifier(value appkit.string) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setIdentifier:"), value)
+func (b_ BackgroundActivityScheduler) SetIdentifier(value string) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setIdentifier:"), objc.String(value))
 }
 
 // An integer providing a suggested interval between scheduling and invoking the activity.

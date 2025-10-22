@@ -128,8 +128,8 @@ func (c_ CapturePhotoBracketSettings) SetIsHighResolutionPhotoEnabled(value bool
 // A dictionary describing the format for delivery of preview-sized images alongside the main photo.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotosettings/previewphotoformat
-func (c_ CapturePhotoBracketSettings) PreviewPhotoFormat() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("previewPhotoFormat"))
+func (c_ CapturePhotoBracketSettings) PreviewPhotoFormat() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("previewPhotoFormat"))
 	return rv
 }
 
@@ -139,8 +139,8 @@ func (c_ CapturePhotoBracketSettings) PreviewPhotoFormat() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotosettings/previewphotoformat
-func (c_ CapturePhotoBracketSettings) SetPreviewPhotoFormat(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setPreviewPhotoFormat:"), value)
+func (c_ CapturePhotoBracketSettings) SetPreviewPhotoFormat(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setPreviewPhotoFormat:"), objc.String(value))
 }
 
 

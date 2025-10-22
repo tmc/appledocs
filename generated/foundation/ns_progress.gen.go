@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -320,8 +319,8 @@ func (p_ Progress) SetFileURL(value IURL) {
 // The fraction of the overall work that the progress object completes, including work from its suboperations.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/fractionCompleted
-func (p_ Progress) FractionCompleted() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("fractionCompleted"))
+func (p_ Progress) FractionCompleted() float64 {
+	rv := objc.Send[float64](p_.ID, objc.Sel("fractionCompleted"))
 	return rv
 }
 
@@ -414,8 +413,8 @@ func (p_ Progress) SetKind(value unsafe.Pointer) {
 // A more specific localized description of tracked progress for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/localizedAdditionalDescription
-func (p_ Progress) LocalizedAdditionalDescription() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("localizedAdditionalDescription"))
+func (p_ Progress) LocalizedAdditionalDescription() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("localizedAdditionalDescription"))
 	return rv
 }
 
@@ -425,15 +424,15 @@ func (p_ Progress) LocalizedAdditionalDescription() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/localizedAdditionalDescription
-func (p_ Progress) SetLocalizedAdditionalDescription(value appkit.string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setLocalizedAdditionalDescription:"), value)
+func (p_ Progress) SetLocalizedAdditionalDescription(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setLocalizedAdditionalDescription:"), objc.String(value))
 }
 
 // A localized description of tracked progress for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/localizedDescription
-func (p_ Progress) LocalizedDescription() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("localizedDescription"))
+func (p_ Progress) LocalizedDescription() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("localizedDescription"))
 	return rv
 }
 
@@ -443,8 +442,8 @@ func (p_ Progress) LocalizedDescription() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/localizedDescription
-func (p_ Progress) SetLocalizedDescription(value appkit.string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setLocalizedDescription:"), value)
+func (p_ Progress) SetLocalizedDescription(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setLocalizedDescription:"), objc.String(value))
 }
 
 // The block to invoke when pausing progress.

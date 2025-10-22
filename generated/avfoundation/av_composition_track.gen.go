@@ -166,8 +166,8 @@ func (c_ CompositionTrack) SetCommonMetadata(value IAVMetadataItem) {
 // The estimated data rate, in bits per second, of the media that the track references.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontrack/estimateddatarate
-func (c_ CompositionTrack) EstimatedDataRate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("estimatedDataRate"))
+func (c_ CompositionTrack) EstimatedDataRate() float32 {
+	rv := objc.Send[float32](c_.ID, objc.Sel("estimatedDataRate"))
 	return rv
 }
 
@@ -177,15 +177,15 @@ func (c_ CompositionTrack) EstimatedDataRate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontrack/estimateddatarate
-func (c_ CompositionTrack) SetEstimatedDataRate(value unsafe.Pointer) {
+func (c_ CompositionTrack) SetEstimatedDataRate(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setEstimatedDataRate:"), value)
 }
 
 // The language tag of the track.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontrack/extendedlanguagetag
-func (c_ CompositionTrack) ExtendedLanguageTag() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("extendedLanguageTag"))
+func (c_ CompositionTrack) ExtendedLanguageTag() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("extendedLanguageTag"))
 	return rv
 }
 
@@ -195,8 +195,8 @@ func (c_ CompositionTrack) ExtendedLanguageTag() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontrack/extendedlanguagetag
-func (c_ CompositionTrack) SetExtendedLanguageTag(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setExtendedLanguageTag:"), value)
+func (c_ CompositionTrack) SetExtendedLanguageTag(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setExtendedLanguageTag:"), objc.String(value))
 }
 
 // The replacement format descriptions.
@@ -328,8 +328,8 @@ func (c_ CompositionTrack) SetIsSelfContained(value bool) {
 // The language code of the track.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontrack/languagecode
-func (c_ CompositionTrack) LanguageCode() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("languageCode"))
+func (c_ CompositionTrack) LanguageCode() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("languageCode"))
 	return rv
 }
 
@@ -339,8 +339,8 @@ func (c_ CompositionTrack) LanguageCode() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontrack/languagecode
-func (c_ CompositionTrack) SetLanguageCode(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setLanguageCode:"), value)
+func (c_ CompositionTrack) SetLanguageCode(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setLanguageCode:"), objc.String(value))
 }
 
 // An array of metadata items for all metadata identifiers that have a value.
@@ -418,8 +418,8 @@ func (c_ CompositionTrack) SetNaturalTimeScale(value unsafe.Pointer) {
 // The frame rate of the track, in frames per second.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontrack/nominalframerate
-func (c_ CompositionTrack) NominalFrameRate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("nominalFrameRate"))
+func (c_ CompositionTrack) NominalFrameRate() float32 {
+	rv := objc.Send[float32](c_.ID, objc.Sel("nominalFrameRate"))
 	return rv
 }
 
@@ -429,7 +429,7 @@ func (c_ CompositionTrack) NominalFrameRate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontrack/nominalframerate
-func (c_ CompositionTrack) SetNominalFrameRate(value unsafe.Pointer) {
+func (c_ CompositionTrack) SetNominalFrameRate(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setNominalFrameRate:"), value)
 }
 
@@ -454,8 +454,8 @@ func (c_ CompositionTrack) SetPreferredTransform(value coregraphics.CGAffineTran
 // The track’s volume preference for playing its audible media.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontrack/preferredvolume
-func (c_ CompositionTrack) PreferredVolume() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("preferredVolume"))
+func (c_ CompositionTrack) PreferredVolume() float32 {
+	rv := objc.Send[float32](c_.ID, objc.Sel("preferredVolume"))
 	return rv
 }
 
@@ -465,7 +465,7 @@ func (c_ CompositionTrack) PreferredVolume() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontrack/preferredvolume
-func (c_ CompositionTrack) SetPreferredVolume(value unsafe.Pointer) {
+func (c_ CompositionTrack) SetPreferredVolume(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPreferredVolume:"), value)
 }
 

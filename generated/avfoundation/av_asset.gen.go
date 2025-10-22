@@ -249,8 +249,8 @@ func (a_ Asset) PreferredMediaSelection() AVMediaSelection {
 // The asset’s volume preference for playing its audible media.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAsset/preferredVolume
-func (a_ Asset) PreferredVolume() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("preferredVolume"))
+func (a_ Asset) PreferredVolume() float32 {
+	rv := objc.Send[float32](a_.ID, objc.Sel("preferredVolume"))
 	return rv
 }
 
@@ -499,8 +499,8 @@ func (a_ Asset) SetIsReadable(value bool) {
 // The lyrics of the asset in a language suitable for the current locale.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avasset/lyrics
-func (a_ Asset) Lyrics() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("lyrics"))
+func (a_ Asset) Lyrics() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("lyrics"))
 	return rv
 }
 
@@ -510,8 +510,8 @@ func (a_ Asset) Lyrics() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avasset/lyrics
-func (a_ Asset) SetLyrics(value appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setLyrics:"), value)
+func (a_ Asset) SetLyrics(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setLyrics:"), objc.String(value))
 }
 
 // The total duration of fragments that currently exist, or may exist in the future.
@@ -535,8 +535,8 @@ func (a_ Asset) SetOverallDurationHint(value unsafe.Pointer) {
 // The asset’s rate preference for playing its media.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avasset/preferredrate
-func (a_ Asset) PreferredRate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("preferredRate"))
+func (a_ Asset) PreferredRate() float32 {
+	rv := objc.Send[float32](a_.ID, objc.Sel("preferredRate"))
 	return rv
 }
 
@@ -546,7 +546,7 @@ func (a_ Asset) PreferredRate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avasset/preferredrate
-func (a_ Asset) SetPreferredRate(value unsafe.Pointer) {
+func (a_ Asset) SetPreferredRate(value float32) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPreferredRate:"), value)
 }
 

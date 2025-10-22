@@ -82,8 +82,8 @@ func NewProxy() Proxy {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsproxy/debugdescription
-func (p_ Proxy) DebugDescription() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("debugDescription"))
+func (p_ Proxy) DebugDescription() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("debugDescription"))
 	return rv
 }
 
@@ -91,15 +91,15 @@ func (p_ Proxy) DebugDescription() appkit.string {
 // SetDebugDescription sets the value of the debugDescription property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsproxy/debugdescription
-func (p_ Proxy) SetDebugDescription(value appkit.string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setDebugDescription:"), value)
+func (p_ Proxy) SetDebugDescription(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setDebugDescription:"), objc.String(value))
 }
 
 // A string containing the real class name and the id of the receiver as a hexadecimal number.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsproxy/description
-func (p_ Proxy) Description() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("description"))
+func (p_ Proxy) Description() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("description"))
 	return rv
 }
 
@@ -109,8 +109,8 @@ func (p_ Proxy) Description() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsproxy/description
-func (p_ Proxy) SetDescription(value appkit.string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setDescription:"), value)
+func (p_ Proxy) SetDescription(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setDescription:"), objc.String(value))
 }
 
 

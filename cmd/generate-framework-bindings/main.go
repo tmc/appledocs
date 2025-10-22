@@ -281,6 +281,24 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 		currentFrameworkClasses[strippedName] = true
 	}
 
+	// Populate enum names for current framework type resolution
+	currentFrameworkEnums = make(map[string]bool)
+	for _, enum := range enums {
+		if enum.Name != "" {
+			strippedName := stripObjCPrefix(enum.Name)
+			currentFrameworkEnums[strippedName] = true
+		}
+	}
+
+	// Populate typedef names for current framework type resolution
+	currentFrameworkTypedefs = make(map[string]bool)
+	for _, typedef := range typedefs {
+		if typedef.Name != "" {
+			strippedName := stripObjCPrefix(typedef.Name)
+			currentFrameworkTypedefs[strippedName] = true
+		}
+	}
+
 	// Second pass: collect methods for each class
 	// (Properties are already collected in the first pass)
 	if len(classes) > 0 {

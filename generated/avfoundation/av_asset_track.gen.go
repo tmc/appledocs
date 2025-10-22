@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -229,16 +228,16 @@ func (a_ AssetTrack) CommonMetadata() []MetadataItem {
 // The estimated data rate, in bits per second, of the media that the track references.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetTrack/estimatedDataRate
-func (a_ AssetTrack) EstimatedDataRate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("estimatedDataRate"))
+func (a_ AssetTrack) EstimatedDataRate() float32 {
+	rv := objc.Send[float32](a_.ID, objc.Sel("estimatedDataRate"))
 	return rv
 }
 
 // The language tag of the track.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetTrack/extendedLanguageTag
-func (a_ AssetTrack) ExtendedLanguageTag() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("extendedLanguageTag"))
+func (a_ AssetTrack) ExtendedLanguageTag() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("extendedLanguageTag"))
 	return rv
 }
 
@@ -293,8 +292,8 @@ func (a_ AssetTrack) SelfContained() bool {
 // The language code of the track.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetTrack/languageCode
-func (a_ AssetTrack) LanguageCode() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("languageCode"))
+func (a_ AssetTrack) LanguageCode() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("languageCode"))
 	return rv
 }
 
@@ -341,8 +340,8 @@ func (a_ AssetTrack) NaturalTimeScale() unsafe.Pointer {
 // The frame rate of the track, in frames per second.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetTrack/nominalFrameRate
-func (a_ AssetTrack) NominalFrameRate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("nominalFrameRate"))
+func (a_ AssetTrack) NominalFrameRate() float32 {
+	rv := objc.Send[float32](a_.ID, objc.Sel("nominalFrameRate"))
 	return rv
 }
 
@@ -357,8 +356,8 @@ func (a_ AssetTrack) PreferredTransform() coregraphics.CGAffineTransform {
 // The track’s volume preference for playing its audible media.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetTrack/preferredVolume
-func (a_ AssetTrack) PreferredVolume() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("preferredVolume"))
+func (a_ AssetTrack) PreferredVolume() float32 {
+	rv := objc.Send[float32](a_.ID, objc.Sel("preferredVolume"))
 	return rv
 }
 

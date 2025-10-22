@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -255,8 +254,8 @@ func (u_ URLSessionTask) SetPrefersIncrementalDelivery(value bool) {
 // The relative priority at which you’d like a host to handle the task, specified as a floating point value between (lowest priority) and (highest priority).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/priority
-func (u_ URLSessionTask) Priority() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("priority"))
+func (u_ URLSessionTask) Priority() float32 {
+	rv := objc.Send[float32](u_.ID, objc.Sel("priority"))
 	return rv
 }
 
@@ -266,7 +265,7 @@ func (u_ URLSessionTask) Priority() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/priority
-func (u_ URLSessionTask) SetPriority(value unsafe.Pointer) {
+func (u_ URLSessionTask) SetPriority(value float32) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setPriority:"), value)
 }
 
@@ -297,8 +296,8 @@ func (u_ URLSessionTask) State() URLSessionTaskState {
 // An app-provided string value for the current task.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/taskDescription
-func (u_ URLSessionTask) TaskDescription() appkit.string {
-	rv := objc.Send[appkit.string](u_.ID, objc.Sel("taskDescription"))
+func (u_ URLSessionTask) TaskDescription() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("taskDescription"))
 	return rv
 }
 
@@ -308,8 +307,8 @@ func (u_ URLSessionTask) TaskDescription() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/taskDescription
-func (u_ URLSessionTask) SetTaskDescription(value appkit.string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setTaskDescription:"), value)
+func (u_ URLSessionTask) SetTaskDescription(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setTaskDescription:"), objc.String(value))
 }
 
 // An identifier uniquely identifying the task within a given session.

@@ -102,8 +102,8 @@ func (c_ CaptureExternalDisplayConfigurator) SetActiveFormat(value unsafe.Pointe
 // The currently configured frame rate on the external display that’s displaying the preview layer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureexternaldisplayconfigurator/activeexternaldisplayframerate
-func (c_ CaptureExternalDisplayConfigurator) ActiveExternalDisplayFrameRate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("activeExternalDisplayFrameRate"))
+func (c_ CaptureExternalDisplayConfigurator) ActiveExternalDisplayFrameRate() float64 {
+	rv := objc.Send[float64](c_.ID, objc.Sel("activeExternalDisplayFrameRate"))
 	return rv
 }
 
@@ -113,7 +113,7 @@ func (c_ CaptureExternalDisplayConfigurator) ActiveExternalDisplayFrameRate() un
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureexternaldisplayconfigurator/activeexternaldisplayframerate
-func (c_ CaptureExternalDisplayConfigurator) SetActiveExternalDisplayFrameRate(value unsafe.Pointer) {
+func (c_ CaptureExternalDisplayConfigurator) SetActiveExternalDisplayFrameRate(value float64) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setActiveExternalDisplayFrameRate:"), value)
 }
 

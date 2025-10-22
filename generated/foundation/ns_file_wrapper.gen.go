@@ -32,9 +32,9 @@ type _FileWrapperClass struct {
 type IFileWrapper interface {
 	objectivec.IObject
 	MatchesContentsOfURL(url IURL) bool
-	NeedsToBeUpdatedFromPath(path appkit.string) bool
+	NeedsToBeUpdatedFromPath(path string) bool
 	SymbolicLinkDestination() String
-	WriteToFileAtomicallyUpdateFilenames(path appkit.string, atomicFlag bool, updateFilenamesFlag bool) bool
+	WriteToFileAtomicallyUpdateFilenames(path string, atomicFlag bool, updateFilenamesFlag bool) bool
 }
 
 // A representation of a node (a file, directory, or symbolic link) in the file system.
@@ -96,8 +96,8 @@ func (f_ FileWrapper) MatchesContentsOfURL(url IURL) bool {
 // Indicates whether the file wrapper needs to be updated to match a given file-system node.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/needsToBeUpdated(fromPath:)
-func (f_ FileWrapper) NeedsToBeUpdatedFromPath(path appkit.string) bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("needsToBeUpdatedFromPath:"), path)
+func (f_ FileWrapper) NeedsToBeUpdatedFromPath(path string) bool {
+	rv := objc.Send[bool](f_.ID, objc.Sel("needsToBeUpdatedFromPath:"), objc.String(path))
 	return rv
 }
 
@@ -112,16 +112,16 @@ func (f_ FileWrapper) SymbolicLinkDestination() String {
 // Writes a file wrapper’s contents to a given file-system node.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/write(toFile:atomically:updateFilenames:)
-func (f_ FileWrapper) WriteToFileAtomicallyUpdateFilenames(path appkit.string, atomicFlag bool, updateFilenamesFlag bool) bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("writeToFile:atomically:updateFilenames:"), path, atomicFlag, updateFilenamesFlag)
+func (f_ FileWrapper) WriteToFileAtomicallyUpdateFilenames(path string, atomicFlag bool, updateFilenamesFlag bool) bool {
+	rv := objc.Send[bool](f_.ID, objc.Sel("writeToFile:atomically:updateFilenames:"), objc.String(path), atomicFlag, updateFilenamesFlag)
 	return rv
 }
 
 // The filename of the file wrapper object
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/filename
-func (f_ FileWrapper) Filename() appkit.string {
-	rv := objc.Send[appkit.string](f_.ID, objc.Sel("filename"))
+func (f_ FileWrapper) Filename() string {
+	rv := objc.Send[string](f_.ID, objc.Sel("filename"))
 	return rv
 }
 
@@ -131,8 +131,8 @@ func (f_ FileWrapper) Filename() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/filename
-func (f_ FileWrapper) SetFilename(value appkit.string) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setFilename:"), value)
+func (f_ FileWrapper) SetFilename(value string) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setFilename:"), objc.String(value))
 }
 
 // The contents of the file wrapper as an opaque data object.
@@ -146,8 +146,8 @@ func (f_ FileWrapper) SerializedRepresentation() NSData {
 // A dictionary of file attributes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filewrapper/fileattributes
-func (f_ FileWrapper) FileAttributes() appkit.string {
-	rv := objc.Send[appkit.string](f_.ID, objc.Sel("fileAttributes"))
+func (f_ FileWrapper) FileAttributes() string {
+	rv := objc.Send[string](f_.ID, objc.Sel("fileAttributes"))
 	return rv
 }
 
@@ -157,8 +157,8 @@ func (f_ FileWrapper) FileAttributes() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filewrapper/fileattributes
-func (f_ FileWrapper) SetFileAttributes(value appkit.string) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setFileAttributes:"), value)
+func (f_ FileWrapper) SetFileAttributes(value string) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setFileAttributes:"), objc.String(value))
 }
 
 // The file wrappers contained by a directory file wrapper.
@@ -254,8 +254,8 @@ func (f_ FileWrapper) SetIsSymbolicLink(value bool) {
 // The preferred filename for the file wrapper object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filewrapper/preferredfilename
-func (f_ FileWrapper) PreferredFilename() appkit.string {
-	rv := objc.Send[appkit.string](f_.ID, objc.Sel("preferredFilename"))
+func (f_ FileWrapper) PreferredFilename() string {
+	rv := objc.Send[string](f_.ID, objc.Sel("preferredFilename"))
 	return rv
 }
 
@@ -265,8 +265,8 @@ func (f_ FileWrapper) PreferredFilename() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filewrapper/preferredfilename
-func (f_ FileWrapper) SetPreferredFilename(value appkit.string) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setPreferredFilename:"), value)
+func (f_ FileWrapper) SetPreferredFilename(value string) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setPreferredFilename:"), objc.String(value))
 }
 
 // The contents of the file-system node associated with a regular-file file wrapper.

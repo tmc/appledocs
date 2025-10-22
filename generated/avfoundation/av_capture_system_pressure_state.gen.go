@@ -137,8 +137,8 @@ func (c_ CaptureSystemPressureState) SetSystemPressureState(value AVCaptureSyste
 // A key to retrieve a state value that indicates the system pressure level and contributing factors that caused the interruption.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesessioninterruptionsystempressurestatekey
-func (c_ CaptureSystemPressureState) AVCaptureSessionInterruptionSystemPressureStateKey() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("AVCaptureSessionInterruptionSystemPressureStateKey"))
+func (c_ CaptureSystemPressureState) AVCaptureSessionInterruptionSystemPressureStateKey() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("AVCaptureSessionInterruptionSystemPressureStateKey"))
 	return rv
 }
 

@@ -17,3 +17,20 @@ func ExampleNewXPCConnectionWithListenerEndpoint() {
 	)
 	// Output:
 }
+// ExampleNewXPCConnectionWithMachServiceNameOptions demonstrates how to create a XPCConnection instance using NewXPCConnectionWithMachServiceNameOptions.
+// Initializes an   object to connect to a LaunchAgent or LaunchDaemon with a name advertised in a  .
+func ExampleNewXPCConnectionWithMachServiceNameOptions() {
+	_ = foundation.NewXPCConnectionWithMachServiceNameOptions(
+		"name", // name string
+		foundation.XPCConnectionOptions{}, // options XPCConnectionOptions
+	)
+	// Output:
+}
+// ExampleNewXPCConnectionWithServiceName demonstrates how to create a XPCConnection instance using NewXPCConnectionWithServiceName.
+// Initializes an   object to connect to an   object in an XPC service, identified by a service name.
+func ExampleNewXPCConnectionWithServiceName() {
+	_ = foundation.NewXPCConnectionWithServiceName(
+		"serviceName", // serviceName string
+	)
+	// Output:
+}

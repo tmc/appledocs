@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [XMLElement] class.
@@ -31,13 +30,13 @@ type _XMLElementClass struct {
 type IXMLElement interface {
 	IXMLNode
 	AddNamespace(aNamespace IXMLNode)
-	AttributeForLocalNameURI(localName appkit.string, URI appkit.string) XMLNode
-	AttributeForName(name appkit.string) XMLNode
-	ElementsForName(name appkit.string) []XMLElement
+	AttributeForLocalNameURI(localName string, URI string) XMLNode
+	AttributeForName(name string) XMLNode
+	ElementsForName(name string) []XMLElement
 	InsertChildAtIndex(child IXMLNode, index uint)
-	NamespaceForPrefix(name appkit.string) XMLNode
+	NamespaceForPrefix(name string) XMLNode
 	RemoveChildAtIndex(index uint)
-	RemoveNamespaceForPrefix(name appkit.string)
+	RemoveNamespaceForPrefix(name string)
 	ReplaceChildAtIndexWithNode(index uint, node IXMLNode)
 }
 
@@ -96,9 +95,9 @@ func NewXMLElement() XMLElement {
 // Returns an object initialized with a specified name and a single text-node child containing a specified value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLElement/init(name:stringValue:)
-func NewXMLElementWithNameStringValue(name appkit.string, string_ appkit.string) XMLElement {
+func NewXMLElementWithNameStringValue(name string, string_ string) XMLElement {
 	instance := getXMLElementClass().Alloc()
-	rv := objc.Send[XMLElement](instance.ID, objc.Sel("initWithName:stringValue:"), name, string_)
+	rv := objc.Send[XMLElement](instance.ID, objc.Sel("initWithName:stringValue:"), objc.String(name), objc.String(string_))
 	rv.Autorelease()
 	return rv
 }
@@ -108,9 +107,9 @@ func NewXMLElementWithNameStringValue(name appkit.string, string_ appkit.string)
 // Returns an object initialized with the specified name and URI.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLElement/init(name:uri:)
-func NewXMLElementWithNameURI(name appkit.string, URI appkit.string) XMLElement {
+func NewXMLElementWithNameURI(name string, URI string) XMLElement {
 	instance := getXMLElementClass().Alloc()
-	rv := objc.Send[XMLElement](instance.ID, objc.Sel("initWithName:URI:"), name, URI)
+	rv := objc.Send[XMLElement](instance.ID, objc.Sel("initWithName:URI:"), objc.String(name), objc.String(URI))
 	rv.Autorelease()
 	return rv
 }
@@ -126,24 +125,24 @@ func (x_ XMLElement) AddNamespace(aNamespace IXMLNode) {
 // Returns the attribute node of the receiver that is identified by a local name and URI.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLElement/attribute(forLocalName:uri:)
-func (x_ XMLElement) AttributeForLocalNameURI(localName appkit.string, URI appkit.string) XMLNode {
-	rv := objc.Send[XMLNode](x_.ID, objc.Sel("attributeForLocalName:URI:"), localName, URI)
+func (x_ XMLElement) AttributeForLocalNameURI(localName string, URI string) XMLNode {
+	rv := objc.Send[XMLNode](x_.ID, objc.Sel("attributeForLocalName:URI:"), objc.String(localName), objc.String(URI))
 	return rv
 }
 
 // Returns the attribute node of the receiver with the specified name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLElement/attribute(forName:)
-func (x_ XMLElement) AttributeForName(name appkit.string) XMLNode {
-	rv := objc.Send[XMLNode](x_.ID, objc.Sel("attributeForName:"), name)
+func (x_ XMLElement) AttributeForName(name string) XMLNode {
+	rv := objc.Send[XMLNode](x_.ID, objc.Sel("attributeForName:"), objc.String(name))
 	return rv
 }
 
 // Returns the child element nodes (as objects) of the receiver that have a specified name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLElement/elements(forName:)
-func (x_ XMLElement) ElementsForName(name appkit.string) []XMLElement {
-	rv := objc.Send[[]XMLElement](x_.ID, objc.Sel("elementsForName:"), name)
+func (x_ XMLElement) ElementsForName(name string) []XMLElement {
+	rv := objc.Send[[]XMLElement](x_.ID, objc.Sel("elementsForName:"), objc.String(name))
 	return rv
 }
 
@@ -157,8 +156,8 @@ func (x_ XMLElement) InsertChildAtIndex(child IXMLNode, index uint) {
 // Returns the namespace node with a specified prefix.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLElement/namespace(forPrefix:)
-func (x_ XMLElement) NamespaceForPrefix(name appkit.string) XMLNode {
-	rv := objc.Send[XMLNode](x_.ID, objc.Sel("namespaceForPrefix:"), name)
+func (x_ XMLElement) NamespaceForPrefix(name string) XMLNode {
+	rv := objc.Send[XMLNode](x_.ID, objc.Sel("namespaceForPrefix:"), objc.String(name))
 	return rv
 }
 
@@ -172,8 +171,8 @@ func (x_ XMLElement) RemoveChildAtIndex(index uint) {
 // Removes a namespace node that is identified by a given prefix.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLElement/removeNamespace(forPrefix:)
-func (x_ XMLElement) RemoveNamespaceForPrefix(name appkit.string) {
-	objc.Send[objc.ID](x_.ID, objc.Sel("removeNamespaceForPrefix:"), name)
+func (x_ XMLElement) RemoveNamespaceForPrefix(name string) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("removeNamespaceForPrefix:"), objc.String(name))
 }
 
 // Replaces a child node at a specified location with another child node.

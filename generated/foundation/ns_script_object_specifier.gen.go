@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -86,9 +85,9 @@ func NewScriptObjectSpecifier() ScriptObjectSpecifier {
 // Returns an object initialized with the given attributes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptObjectSpecifier/init(containerClassDescription:containerSpecifier:key:)
-func NewScriptObjectSpecifierWithContainerClassDescriptionContainerSpecifierKey(classDesc IScriptClassDescription, container IScriptObjectSpecifier, property appkit.string) ScriptObjectSpecifier {
+func NewScriptObjectSpecifierWithContainerClassDescriptionContainerSpecifierKey(classDesc IScriptClassDescription, container IScriptObjectSpecifier, property string) ScriptObjectSpecifier {
 	instance := getScriptObjectSpecifierClass().Alloc()
-	rv := objc.Send[ScriptObjectSpecifier](instance.ID, objc.Sel("initWithContainerClassDescription:containerSpecifier:key:"), classDesc, container, property)
+	rv := objc.Send[ScriptObjectSpecifier](instance.ID, objc.Sel("initWithContainerClassDescription:containerSpecifier:key:"), classDesc, container, objc.String(property))
 	rv.Autorelease()
 	return rv
 }
@@ -98,9 +97,9 @@ func NewScriptObjectSpecifierWithContainerClassDescriptionContainerSpecifierKey(
 // Returns an object initialized with a given container specifier and key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptObjectSpecifier/init(containerSpecifier:key:)
-func NewScriptObjectSpecifierWithContainerSpecifierKey(container IScriptObjectSpecifier, property appkit.string) ScriptObjectSpecifier {
+func NewScriptObjectSpecifierWithContainerSpecifierKey(container IScriptObjectSpecifier, property string) ScriptObjectSpecifier {
 	instance := getScriptObjectSpecifierClass().Alloc()
-	rv := objc.Send[ScriptObjectSpecifier](instance.ID, objc.Sel("initWithContainerSpecifier:key:"), container, property)
+	rv := objc.Send[ScriptObjectSpecifier](instance.ID, objc.Sel("initWithContainerSpecifier:key:"), container, objc.String(property))
 	rv.Autorelease()
 	return rv
 }
@@ -253,8 +252,8 @@ func (s_ ScriptObjectSpecifier) SetEvaluationErrorNumber(value int) {
 // Sets the key of the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier/key
-func (s_ ScriptObjectSpecifier) Key() appkit.string {
-	rv := objc.Send[appkit.string](s_.ID, objc.Sel("key"))
+func (s_ ScriptObjectSpecifier) Key() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("key"))
 	return rv
 }
 
@@ -264,8 +263,8 @@ func (s_ ScriptObjectSpecifier) Key() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier/key
-func (s_ ScriptObjectSpecifier) SetKey(value appkit.string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setKey:"), value)
+func (s_ ScriptObjectSpecifier) SetKey(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setKey:"), objc.String(value))
 }
 
 // Returns the class description of the objects specified by the receiver.

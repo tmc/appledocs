@@ -152,16 +152,16 @@ func (t_ Task) SetLaunchRequirementData(value IData) {
 // The receiver’s process identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/processIdentifier
-func (t_ Task) ProcessIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("processIdentifier"))
+func (t_ Task) ProcessIdentifier() int {
+	rv := objc.Send[int](t_.ID, objc.Sel("processIdentifier"))
 	return rv
 }
 
 // The command arguments that the system uses to launch the executable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/process/arguments
-func (t_ Task) Arguments() appkit.string {
-	rv := objc.Send[appkit.string](t_.ID, objc.Sel("arguments"))
+func (t_ Task) Arguments() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("arguments"))
 	return rv
 }
 
@@ -171,15 +171,15 @@ func (t_ Task) Arguments() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/process/arguments
-func (t_ Task) SetArguments(value appkit.string) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setArguments:"), value)
+func (t_ Task) SetArguments(value string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setArguments:"), objc.String(value))
 }
 
 // Sets the current directory for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/process/currentdirectorypath
-func (t_ Task) CurrentDirectoryPath() appkit.string {
-	rv := objc.Send[appkit.string](t_.ID, objc.Sel("currentDirectoryPath"))
+func (t_ Task) CurrentDirectoryPath() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("currentDirectoryPath"))
 	return rv
 }
 
@@ -189,8 +189,8 @@ func (t_ Task) CurrentDirectoryPath() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/process/currentdirectorypath
-func (t_ Task) SetCurrentDirectoryPath(value appkit.string) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setCurrentDirectoryPath:"), value)
+func (t_ Task) SetCurrentDirectoryPath(value string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setCurrentDirectoryPath:"), objc.String(value))
 }
 
 // The current directory for the receiver.
@@ -232,8 +232,8 @@ func (t_ Task) SetIsRunning(value bool) {
 // Sets the receiver’s executable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/process/launchpath
-func (t_ Task) LaunchPath() appkit.string {
-	rv := objc.Send[appkit.string](t_.ID, objc.Sel("launchPath"))
+func (t_ Task) LaunchPath() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("launchPath"))
 	return rv
 }
 
@@ -243,8 +243,8 @@ func (t_ Task) LaunchPath() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/process/launchpath
-func (t_ Task) SetLaunchPath(value appkit.string) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setLaunchPath:"), value)
+func (t_ Task) SetLaunchPath(value string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setLaunchPath:"), objc.String(value))
 }
 
 //

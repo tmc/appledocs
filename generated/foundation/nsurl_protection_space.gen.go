@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -84,8 +83,8 @@ func NewURLProtectionSpace() URLProtectionSpace {
 // The authentication method used by the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtectionSpace/authenticationMethod
-func (u_ URLProtectionSpace) AuthenticationMethod() appkit.string {
-	rv := objc.Send[appkit.string](u_.ID, objc.Sel("authenticationMethod"))
+func (u_ URLProtectionSpace) AuthenticationMethod() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("authenticationMethod"))
 	return rv
 }
 
@@ -100,16 +99,16 @@ func (u_ URLProtectionSpace) DistinguishedNames() []Data {
 // The receiver’s proxy type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtectionSpace/proxyType
-func (u_ URLProtectionSpace) ProxyType() appkit.string {
-	rv := objc.Send[appkit.string](u_.ID, objc.Sel("proxyType"))
+func (u_ URLProtectionSpace) ProxyType() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("proxyType"))
 	return rv
 }
 
 // The receiver’s host.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotectionspace/host
-func (u_ URLProtectionSpace) Host() appkit.string {
-	rv := objc.Send[appkit.string](u_.ID, objc.Sel("host"))
+func (u_ URLProtectionSpace) Host() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("host"))
 	return rv
 }
 
@@ -119,8 +118,8 @@ func (u_ URLProtectionSpace) Host() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotectionspace/host
-func (u_ URLProtectionSpace) SetHost(value appkit.string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setHost:"), value)
+func (u_ URLProtectionSpace) SetHost(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setHost:"), objc.String(value))
 }
 
 // The receiver’s port.
@@ -144,8 +143,8 @@ func (u_ URLProtectionSpace) SetPort(value int) {
 // The receiver’s protocol.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotectionspace/protocol
-func (u_ URLProtectionSpace) Protocol() appkit.string {
-	rv := objc.Send[appkit.string](u_.ID, objc.Sel("protocol"))
+func (u_ URLProtectionSpace) Protocol() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("protocol"))
 	return rv
 }
 
@@ -155,15 +154,15 @@ func (u_ URLProtectionSpace) Protocol() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotectionspace/protocol
-func (u_ URLProtectionSpace) SetProtocol(value appkit.string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setProtocol:"), value)
+func (u_ URLProtectionSpace) SetProtocol(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setProtocol:"), objc.String(value))
 }
 
 // The receiver’s authentication realm
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotectionspace/realm
-func (u_ URLProtectionSpace) Realm() appkit.string {
-	rv := objc.Send[appkit.string](u_.ID, objc.Sel("realm"))
+func (u_ URLProtectionSpace) Realm() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("realm"))
 	return rv
 }
 
@@ -173,8 +172,8 @@ func (u_ URLProtectionSpace) Realm() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotectionspace/realm
-func (u_ URLProtectionSpace) SetRealm(value appkit.string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setRealm:"), value)
+func (u_ URLProtectionSpace) SetRealm(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setRealm:"), objc.String(value))
 }
 
 // A Boolean value that indicates whether the credentials for the protection space can be sent securely.

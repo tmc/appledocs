@@ -33,7 +33,7 @@ type _SampleBufferRenderSynchronizerClass struct {
 type ISampleBufferRenderSynchronizer interface {
 	objectivec.IObject
 	AddBoundaryTimeObserverForTimesQueueUsingBlock(times []foundation.IValue, queue unsafe.Pointer, block unsafe.Pointer) objc.ID
-	SetRateTime(rate unsafe.Pointer, time unsafe.Pointer)
+	SetRateTime(rate float32, time unsafe.Pointer)
 }
 
 // An object used to synchronize multiple queued sample buffers to a single timeline.
@@ -95,7 +95,7 @@ func (s_ SampleBufferRenderSynchronizer) AddBoundaryTimeObserverForTimesQueueUsi
 // Sets the renderer’s time and rate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleBufferRenderSynchronizer/setRate(_:time:)
-func (s_ SampleBufferRenderSynchronizer) SetRateTime(rate unsafe.Pointer, time unsafe.Pointer) {
+func (s_ SampleBufferRenderSynchronizer) SetRateTime(rate float32, time unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setRate:time:"), rate, time)
 }
 
@@ -138,8 +138,8 @@ func (s_ SampleBufferRenderSynchronizer) SetIntendedSpatialAudioExperience(value
 // The current playback rate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferrendersynchronizer/rate
-func (s_ SampleBufferRenderSynchronizer) Rate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("rate"))
+func (s_ SampleBufferRenderSynchronizer) Rate() float32 {
+	rv := objc.Send[float32](s_.ID, objc.Sel("rate"))
 	return rv
 }
 
@@ -149,7 +149,7 @@ func (s_ SampleBufferRenderSynchronizer) Rate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferrendersynchronizer/rate
-func (s_ SampleBufferRenderSynchronizer) SetRate(value unsafe.Pointer) {
+func (s_ SampleBufferRenderSynchronizer) SetRate(value float32) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setRate:"), value)
 }
 

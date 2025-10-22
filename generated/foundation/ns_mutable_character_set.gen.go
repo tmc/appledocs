@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [MutableCharacterSet] class.
@@ -31,9 +30,9 @@ type _MutableCharacterSetClass struct {
 type IMutableCharacterSet interface {
 	ICharacterSet
 	AddCharactersInRange(aRange IRange)
-	AddCharactersInString(aString appkit.string)
+	AddCharactersInString(aString string)
 	Invert()
-	RemoveCharactersInString(aString appkit.string)
+	RemoveCharactersInString(aString string)
 }
 
 // An object representing a mutable set of Unicode character values for use in search operations.
@@ -91,8 +90,8 @@ func NewMutableCharacterSet() MutableCharacterSet {
 // Returns a character set read from the bitmap representation stored in the file a given path.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/init(contentsOfFile:)
-func NewMutableCharacterSetWithContentsOfFile(fName appkit.string) MutableCharacterSet {
-	rv := objc.Send[MutableCharacterSet](objc.ID(getMutableCharacterSetClass().class), objc.Sel("characterSetWithContentsOfFile:"), fName)
+func NewMutableCharacterSetWithContentsOfFile(fName string) MutableCharacterSet {
+	rv := objc.Send[MutableCharacterSet](objc.ID(getMutableCharacterSetClass().class), objc.Sel("characterSetWithContentsOfFile:"), objc.String(fName))
 	return rv
 }
 
@@ -158,8 +157,8 @@ func (mc _MutableCharacterSetClass) IllegalCharacterSet() MutableCharacterSet {
 // Returns a character set read from the bitmap representation stored in the file a given path.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/init(contentsOfFile:)
-func (mc _MutableCharacterSetClass) CharacterSetWithContentsOfFile(fName appkit.string) MutableCharacterSet {
-	rv := objc.Send[MutableCharacterSet](objc.ID(mc.class), objc.Sel("characterSetWithContentsOfFile:"), fName)
+func (mc _MutableCharacterSetClass) CharacterSetWithContentsOfFile(fName string) MutableCharacterSet {
+	rv := objc.Send[MutableCharacterSet](objc.ID(mc.class), objc.Sel("characterSetWithContentsOfFile:"), objc.String(fName))
 	return rv
 }
 
@@ -221,8 +220,8 @@ func (m_ MutableCharacterSet) AddCharactersInRange(aRange IRange) {
 // Adds to the receiver the characters in a given string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/addCharacters(in:)-7q02
-func (m_ MutableCharacterSet) AddCharactersInString(aString appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("addCharactersInString:"), aString)
+func (m_ MutableCharacterSet) AddCharactersInString(aString string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("addCharactersInString:"), objc.String(aString))
 }
 
 // Replaces all the characters in the receiver with all the characters it didn’t previously contain.
@@ -235,8 +234,8 @@ func (m_ MutableCharacterSet) Invert() {
 // Removes from the receiver the characters in a given string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/removeCharacters(in:)-762gt
-func (m_ MutableCharacterSet) RemoveCharactersInString(aString appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("removeCharactersInString:"), aString)
+func (m_ MutableCharacterSet) RemoveCharactersInString(aString string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("removeCharactersInString:"), objc.String(aString))
 }
 
 

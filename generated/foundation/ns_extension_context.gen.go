@@ -263,8 +263,8 @@ func (e_ ExtensionContext) SetWidgetLargestAvailableDisplayMode(value unsafe.Poi
 // The extension items and errors key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsextensionitemsanderrorskey
-func (e_ ExtensionContext) NSExtensionItemsAndErrorsKey() appkit.string {
-	rv := objc.Send[appkit.string](e_.ID, objc.Sel("NSExtensionItemsAndErrorsKey"))
+func (e_ ExtensionContext) NSExtensionItemsAndErrorsKey() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("NSExtensionItemsAndErrorsKey"))
 	return rv
 }
 

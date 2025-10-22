@@ -128,8 +128,8 @@ func (a_ AppleScript) SetRichTextSource(value IAttributedString) {
 // The script source for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsapplescript/source
-func (a_ AppleScript) Source() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("source"))
+func (a_ AppleScript) Source() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("source"))
 	return rv
 }
 
@@ -139,8 +139,8 @@ func (a_ AppleScript) Source() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsapplescript/source
-func (a_ AppleScript) SetSource(value appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setSource:"), value)
+func (a_ AppleScript) SetSource(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setSource:"), objc.String(value))
 }
 
 

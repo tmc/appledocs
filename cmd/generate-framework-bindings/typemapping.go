@@ -20,12 +20,17 @@ type TypeMapping struct {
 
 // typeRegistry contains all known Objective-C to Go type mappings
 var typeRegistry = []TypeMapping{
-	// ==== Geometry types - Foundation framework ====
-	// Foundation has its own geometry types that should be properly typed
+	// ==== Foundation framework types ====
+	// Foundation geometry types
 	{ObjCType: "NSRect", GoType: "Rect", Framework: "Foundation"},
 	{ObjCType: "NSSize", GoType: "Size", Framework: "Foundation"},
 	{ObjCType: "NSPoint", GoType: "Point", Framework: "Foundation"},
 	{ObjCType: "NSRange", GoType: "Range", Framework: "Foundation"},
+	// Foundation enum/typedef types that conflict with other frameworks
+	{ObjCType: "NSFormattingContext", GoType: "int", Framework: "Foundation"},  // Enum - use int to avoid coreimage.Context conflict
+	{ObjCType: "FormattingContext", GoType: "int", Framework: "Foundation"},    // Stripped version
+	{ObjCType: "Formatter.Context", GoType: "int", Framework: "Foundation"},    // Nested type (from Swift docs)
+	{ObjCType: "Context", GoType: "int", Framework: "Foundation"},              // Bare Context in Foundation = FormattingContext
 	// CG geometry types in Foundation - cross-reference to CoreGraphics
 	{ObjCType: "CGRect", GoType: "coregraphics.CGRect", Framework: "Foundation"},
 	{ObjCType: "CGSize", GoType: "coregraphics.CGSize", Framework: "Foundation"},
@@ -383,7 +388,38 @@ func lookupTypeMapping(objcType, framework string) (string, bool) {
 		fmt.Fprintf(os.Stderr, "DEBUG lookupTypeMapping: objcType=%s strippedType=%s (stripped=%v)\n",
 			objcType, strippedType, strippedType != objcType)
 	}
+
+	// IMPORTANT: Check if the stripped type exists in the current framework BEFORE checking cross-framework registry
+	// This prevents "Cursor" in CloudKit from resolving to appkit.Cursor instead of CKQueryCursor
 	if strippedType != objcType {
+		// Check if this stripped type is a class in the current framework
+		if currentFrameworkClasses[strippedType] {
+			if os.Getenv("DEBUG_IMPORTS") == "1" || os.Getenv("DEBUG_TYPEMAP") == "1" {
+				fmt.Fprintf(os.Stderr, "DEBUG lookupTypeMapping: stripped type %s found in current framework %s classes, using unqualified name\n",
+					strippedType, framework)
+			}
+			return strippedType, true
+		}
+
+		// Check if it's an enum in the current framework
+		if currentFrameworkEnums[strippedType] {
+			if os.Getenv("DEBUG_IMPORTS") == "1" || os.Getenv("DEBUG_TYPEMAP") == "1" {
+				fmt.Fprintf(os.Stderr, "DEBUG lookupTypeMapping: stripped type %s found in current framework %s enums, using unqualified name\n",
+					strippedType, framework)
+			}
+			return strippedType, true
+		}
+
+		// Check if it's a typedef in the current framework
+		if currentFrameworkTypedefs[strippedType] {
+			if os.Getenv("DEBUG_IMPORTS") == "1" || os.Getenv("DEBUG_TYPEMAP") == "1" {
+				fmt.Fprintf(os.Stderr, "DEBUG lookupTypeMapping: stripped type %s found in current framework %s typedefs, using unqualified name\n",
+					strippedType, framework)
+			}
+			return strippedType, true
+		}
+
+		// Not in current framework, check cross-framework registry
 		if frameworkPkg, found := crossFrameworkTypeRegistry[strippedType]; found {
 			if os.Getenv("DEBUG_TYPEMAP") == "1" && strings.Contains(objcType, "Coder") {
 				fmt.Fprintf(os.Stderr, "DEBUG lookupTypeMapping: stripped objcType=%s strippedType=%s frameworkPkg=%s currentFramework=%s\n",

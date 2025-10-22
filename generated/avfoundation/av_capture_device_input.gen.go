@@ -340,8 +340,8 @@ func (c_ CaptureDeviceInput) SetIsWindNoiseRemovalSupported(value bool) {
 // Shallow depth of field simulated aperture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedeviceinput/simulatedaperture
-func (c_ CaptureDeviceInput) SimulatedAperture() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("simulatedAperture"))
+func (c_ CaptureDeviceInput) SimulatedAperture() float32 {
+	rv := objc.Send[float32](c_.ID, objc.Sel("simulatedAperture"))
 	return rv
 }
 
@@ -351,7 +351,7 @@ func (c_ CaptureDeviceInput) SimulatedAperture() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedeviceinput/simulatedaperture
-func (c_ CaptureDeviceInput) SetSimulatedAperture(value unsafe.Pointer) {
+func (c_ CaptureDeviceInput) SetSimulatedAperture(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSimulatedAperture:"), value)
 }
 

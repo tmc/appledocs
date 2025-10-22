@@ -9,3 +9,11 @@ import (
 // Suppress unused import errors
 var _ = foundation.NewXMLDTDNode
 
+// ExampleNewXMLDTDNodeWithXMLString demonstrates how to create a XMLDTDNode instance using NewXMLDTDNodeWithXMLString.
+// Returns an   object initialized with the DTD declaration in a given string.
+func ExampleNewXMLDTDNodeWithXMLString() {
+	_ = foundation.NewXMLDTDNodeWithXMLString(
+		"string", // string string
+	)
+	// Output:
+}

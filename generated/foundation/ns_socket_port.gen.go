@@ -86,7 +86,7 @@ func NewSocketPort() SocketPort {
 // Initializes the receiver as a local socket with the provided arguments.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/SocketPort/init(protocolFamily:socketType:protocol:address:)
-func NewSocketPortWithProtocolFamilySocketTypeProtocolAddress(family unsafe.Pointer, type_ unsafe.Pointer, protocol_ unsafe.Pointer, address IData) SocketPort {
+func NewSocketPortWithProtocolFamilySocketTypeProtocolAddress(family int, type_ int, protocol_ int, address IData) SocketPort {
 	instance := getSocketPortClass().Alloc()
 	rv := objc.Send[SocketPort](instance.ID, objc.Sel("initWithProtocolFamily:socketType:protocol:address:"), family, type_, protocol_, address)
 	rv.Autorelease()
@@ -105,8 +105,8 @@ func (s_ SocketPort) Address() NSData {
 // The protocol that the receiver uses for communication.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/SocketPort/protocol
-func (s_ SocketPort) Protocol() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("protocol"))
+func (s_ SocketPort) Protocol() int {
+	rv := objc.Send[int](s_.ID, objc.Sel("protocol"))
 	return rv
 }
 

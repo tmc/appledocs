@@ -396,9 +396,9 @@ func resolveType(framework, typeName string) string {
 
 	// Check if the type exists in current framework FIRST before adding qualifications
 	// This prevents self-imports (e.g., coregraphics.CGAffineTransform in CoreGraphics)
-	// Strip the ObjC prefix before checking, since currentFrameworkClasses contains stripped names
+	// Check classes, enums, and typedefs - all stored with stripped ObjC prefixes
 	strippedTypeName := stripObjCPrefix(typeName)
-	if currentFrameworkClasses[strippedTypeName] {
+	if currentFrameworkClasses[strippedTypeName] || currentFrameworkEnums[strippedTypeName] || currentFrameworkTypedefs[strippedTypeName] {
 		// DEBUG: Uncomment to debug same-framework type resolution
 		// fmt.Fprintf(os.Stderr, "DEBUG resolveType: Found '%s' (stripped: '%s') in current framework '%s', returning as-is\n", typeName, strippedTypeName, framework)
 		// It's in the current framework, return as-is

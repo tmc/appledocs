@@ -195,8 +195,8 @@ func (o_ OperationQueue) SetMaxConcurrentOperationCount(value int) {
 // The name of the operation queue.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/operationqueue/name
-func (o_ OperationQueue) Name() appkit.string {
-	rv := objc.Send[appkit.string](o_.ID, objc.Sel("name"))
+func (o_ OperationQueue) Name() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -206,8 +206,8 @@ func (o_ OperationQueue) Name() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/operationqueue/name
-func (o_ OperationQueue) SetName(value appkit.string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setName:"), value)
+func (o_ OperationQueue) SetName(value string) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
 // An object that represents the total progress of the operations executing in the queue.

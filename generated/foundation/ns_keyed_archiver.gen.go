@@ -7,7 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/corefoundation"
 )
 
 // The class instance for the [KeyedArchiver] class.
@@ -30,7 +30,7 @@ type _KeyedArchiverClass struct {
 // An interface definition for the [KeyedArchiver] class.
 type IKeyedArchiver interface {
 	ICoder
-	EncodeDoubleForKey(value unsafe.Pointer, key appkit.string)
+	EncodeDoubleForKey(value float64, key string)
 }
 
 // An encoder that stores an object’s data to an archive referenced by keys.
@@ -86,8 +86,8 @@ func NewKeyedArchiver() KeyedArchiver {
 // Encodes a given value and associates it with a key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedArchiver/encode(_:forKey:)-1mkfl
-func (k_ KeyedArchiver) EncodeDoubleForKey(value unsafe.Pointer, key appkit.string) {
-	objc.Send[objc.ID](k_.ID, objc.Sel("encodeDouble:forKey:"), value, key)
+func (k_ KeyedArchiver) EncodeDoubleForKey(value float64, key string) {
+	objc.Send[objc.ID](k_.ID, objc.Sel("encodeDouble:forKey:"), value, objc.String(key))
 }
 
 // The archiver’s delegate.
@@ -129,8 +129,8 @@ func (k_ KeyedArchiver) SetEncodedData(value IData) {
 // The format in which the receiver encodes its data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nskeyedarchiver/outputformat
-func (k_ KeyedArchiver) OutputFormat() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](k_.ID, objc.Sel("outputFormat"))
+func (k_ KeyedArchiver) OutputFormat() corefoundation.PropertyListFormat {
+	rv := objc.Send[corefoundation.PropertyListFormat](k_.ID, objc.Sel("outputFormat"))
 	return rv
 }
 
@@ -140,7 +140,7 @@ func (k_ KeyedArchiver) OutputFormat() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nskeyedarchiver/outputformat
-func (k_ KeyedArchiver) SetOutputFormat(value unsafe.Pointer) {
+func (k_ KeyedArchiver) SetOutputFormat(value corefoundation.PropertyListFormat) {
 	objc.Send[objc.ID](k_.ID, objc.Sel("setOutputFormat:"), value)
 }
 

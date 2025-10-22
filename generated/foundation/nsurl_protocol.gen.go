@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -100,8 +99,8 @@ func (uc _URLProtocolClass) CanonicalRequestForRequest(request IURLRequest) URLR
 // Fetches the property associated with the specified key in the specified request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtocol/property(forKey:in:)
-func (uc _URLProtocolClass) PropertyForKeyInRequest(key appkit.string, request IURLRequest) objc.ID {
-	rv := objc.Send[objc.ID](objc.ID(uc.class), objc.Sel("propertyForKey:inRequest:"), key, request)
+func (uc _URLProtocolClass) PropertyForKeyInRequest(key string, request IURLRequest) objc.ID {
+	rv := objc.Send[objc.ID](objc.ID(uc.class), objc.Sel("propertyForKey:inRequest:"), objc.String(key), request)
 	return rv
 }
 
@@ -116,15 +115,15 @@ func (uc _URLProtocolClass) RegisterClass(protocolClass objc.Class) bool {
 // Removes the property associated with the specified key in the specified request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtocol/removeProperty(forKey:in:)
-func (uc _URLProtocolClass) RemovePropertyForKeyInRequest(key appkit.string, request IMutableURLRequest) {
-	objc.Send[objc.ID](objc.ID(uc.class), objc.Sel("removePropertyForKey:inRequest:"), key, request)
+func (uc _URLProtocolClass) RemovePropertyForKeyInRequest(key string, request IMutableURLRequest) {
+	objc.Send[objc.ID](objc.ID(uc.class), objc.Sel("removePropertyForKey:inRequest:"), objc.String(key), request)
 }
 
 // Sets the property associated with the specified key in the specified request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtocol/setProperty(_:forKey:in:)
-func (uc _URLProtocolClass) SetPropertyForKeyInRequest(value objectivec.IObject, key appkit.string, request IMutableURLRequest) {
-	objc.Send[objc.ID](objc.ID(uc.class), objc.Sel("setProperty:forKey:inRequest:"), value, key, request)
+func (uc _URLProtocolClass) SetPropertyForKeyInRequest(value objectivec.IObject, key string, request IMutableURLRequest) {
+	objc.Send[objc.ID](objc.ID(uc.class), objc.Sel("setProperty:forKey:inRequest:"), value, objc.String(key), request)
 }
 
 // Unregisters the specified subclass of .

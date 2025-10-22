@@ -200,8 +200,8 @@ func (p_ PlayerInterstitialEvent) SetDate(value foundation.IDate) {
 // An identifier for the event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/identifier
-func (p_ PlayerInterstitialEvent) Identifier() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("identifier"))
+func (p_ PlayerInterstitialEvent) Identifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -211,8 +211,8 @@ func (p_ PlayerInterstitialEvent) Identifier() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/identifier
-func (p_ PlayerInterstitialEvent) SetIdentifier(value appkit.string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setIdentifier:"), value)
+func (p_ PlayerInterstitialEvent) SetIdentifier(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIdentifier:"), objc.String(value))
 }
 
 // The planned duration of the event.
@@ -308,8 +308,8 @@ func (p_ PlayerInterstitialEvent) SetResumptionOffset(value unsafe.Pointer) {
 // The key defined in the AVPlayerInterstitialEventController’s localizedStringsBundle that points to the localized label for the skip button.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/skipcontrollocalizedlabelbundlekey
-func (p_ PlayerInterstitialEvent) SkipControlLocalizedLabelBundleKey() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("skipControlLocalizedLabelBundleKey"))
+func (p_ PlayerInterstitialEvent) SkipControlLocalizedLabelBundleKey() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("skipControlLocalizedLabelBundleKey"))
 	return rv
 }
 
@@ -319,8 +319,8 @@ func (p_ PlayerInterstitialEvent) SkipControlLocalizedLabelBundleKey() appkit.st
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/skipcontrollocalizedlabelbundlekey
-func (p_ PlayerInterstitialEvent) SetSkipControlLocalizedLabelBundleKey(value appkit.string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setSkipControlLocalizedLabelBundleKey:"), value)
+func (p_ PlayerInterstitialEvent) SetSkipControlLocalizedLabelBundleKey(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setSkipControlLocalizedLabelBundleKey:"), objc.String(value))
 }
 
 // The time range within the duration of the interstitial event for which a skip button should be displayed.

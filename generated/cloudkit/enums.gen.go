@@ -12,7 +12,7 @@ const (
 	// CKAccountStatusAvailable - The user’s iCloud account is available.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKAccountStatus/available
-	CKAccountStatusAvailable CKAccountStatus = 0
+	CKAccountStatusAvailable CKAccountStatus = 1
 	// CKAccountStatusCouldNotDetermine - CloudKit can’t determine the status of the user’s iCloud account.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKAccountStatus/couldNotDetermine
@@ -20,21 +20,65 @@ const (
 	// CKAccountStatusNoAccount - The device doesn’t have an iCloud account.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKAccountStatus/noAccount
-	CKAccountStatusNoAccount CKAccountStatus = 0
+	CKAccountStatusNoAccount CKAccountStatus = 3
 	// CKAccountStatusRestricted - The system denies access to the user’s iCloud account.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKAccountStatus/restricted
-	CKAccountStatusRestricted CKAccountStatus = 0
+	CKAccountStatusRestricted CKAccountStatus = 2
 	// CKAccountStatusTemporarilyUnavailable - The user’s iCloud account is temporarily unavailable.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKAccountStatus/temporarilyUnavailable
-	CKAccountStatusTemporarilyUnavailable CKAccountStatus = 0
+	CKAccountStatusTemporarilyUnavailable CKAccountStatus = 4
 )
 
 // CKApplicationPermissionStatus - Constants that represent the status of a permission.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKContainer/ApplicationPermissionStatus
 type CKApplicationPermissionStatus uint
+
+const (
+	CKApplicationPermissionStatusInitialState CKApplicationPermissionStatus = 0
+	CKApplicationPermissionStatusCouldNotComplete CKApplicationPermissionStatus = 1
+	CKApplicationPermissionStatusDenied CKApplicationPermissionStatus = 2
+	CKApplicationPermissionStatusGranted CKApplicationPermissionStatus = 3
+	CKErrorInternalError CKApplicationPermissionStatus = 1
+	CKErrorPartialFailure CKApplicationPermissionStatus = 2
+	CKErrorNetworkUnavailable CKApplicationPermissionStatus = 3
+	CKErrorNetworkFailure CKApplicationPermissionStatus = 4
+	CKErrorBadContainer CKApplicationPermissionStatus = 5
+	CKErrorServiceUnavailable CKApplicationPermissionStatus = 6
+	CKErrorRequestRateLimited CKApplicationPermissionStatus = 7
+	CKErrorMissingEntitlement CKApplicationPermissionStatus = 8
+	CKErrorNotAuthenticated CKApplicationPermissionStatus = 9
+	CKErrorPermissionFailure CKApplicationPermissionStatus = 10
+	CKErrorUnknownItem CKApplicationPermissionStatus = 11
+	CKErrorInvalidArguments CKApplicationPermissionStatus = 12
+	CKErrorResultsTruncated CKApplicationPermissionStatus = 13
+	CKErrorServerRecordChanged CKApplicationPermissionStatus = 14
+	CKErrorServerRejectedRequest CKApplicationPermissionStatus = 15
+	CKErrorAssetFileNotFound CKApplicationPermissionStatus = 16
+	CKErrorAssetFileModified CKApplicationPermissionStatus = 17
+	CKErrorIncompatibleVersion CKApplicationPermissionStatus = 18
+	CKErrorConstraintViolation CKApplicationPermissionStatus = 19
+	CKErrorOperationCancelled CKApplicationPermissionStatus = 20
+	CKErrorChangeTokenExpired CKApplicationPermissionStatus = 21
+	CKErrorBatchRequestFailed CKApplicationPermissionStatus = 22
+	CKErrorZoneBusy CKApplicationPermissionStatus = 23
+	CKErrorBadDatabase CKApplicationPermissionStatus = 24
+	CKErrorQuotaExceeded CKApplicationPermissionStatus = 25
+	CKErrorZoneNotFound CKApplicationPermissionStatus = 26
+	CKErrorLimitExceeded CKApplicationPermissionStatus = 27
+	CKErrorUserDeletedZone CKApplicationPermissionStatus = 28
+	CKErrorTooManyParticipants CKApplicationPermissionStatus = 29
+	CKErrorAlreadyShared CKApplicationPermissionStatus = 30
+	CKErrorReferenceViolation CKApplicationPermissionStatus = 31
+	CKErrorManagedAccountRestricted CKApplicationPermissionStatus = 32
+	CKErrorParticipantMayNeedVerification CKApplicationPermissionStatus = 33
+	CKErrorServerResponseLost CKApplicationPermissionStatus = 34
+	CKErrorAssetNotAvailable CKApplicationPermissionStatus = 35
+	CKErrorAccountTemporarilyUnavailable CKApplicationPermissionStatus = 36
+	CKErrorParticipantAlreadyInvited CKApplicationPermissionStatus = 37
+)
 
 // CKApplicationPermissions - Constants that represent the permissions that a user grants.
 //
@@ -57,11 +101,11 @@ const (
 	// CKDatabaseScopePublic - The public database.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKDatabase/Scope/public
-	CKDatabaseScopePublic CKDatabaseScope = 0
+	CKDatabaseScopePublic CKDatabaseScope = 1
 	// CKDatabaseScopeShared - The shared database.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKDatabase/Scope/shared
-	CKDatabaseScopeShared CKDatabaseScope = 0
+	CKDatabaseScopeShared CKDatabaseScope = 3
 )
 
 // CKErrorCode - The error codes that CloudKit returns.
@@ -73,151 +117,151 @@ const (
 	// CKErrorAccountTemporarilyUnavailable - An error that occurs when the user’s iCloud account is temporarily unavailable.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKError/Code/accountTemporarilyUnavailable
-	CKErrorAccountTemporarilyUnavailable CKErrorCode = 0
+	CKErrorAccountTemporarilyUnavailable CKErrorCode = 36
 	// CKErrorAlreadyShared - An error that occurs when CloudKit attempts to share a record with an existing share.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKError/Code/alreadyShared
-	CKErrorAlreadyShared CKErrorCode = 0
+	CKErrorAlreadyShared CKErrorCode = 30
 	// CKErrorAssetFileModified - An error that occurs when the system modifies an asset while saving it.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKError/Code/assetFileModified
-	CKErrorAssetFileModified CKErrorCode = 0
+	CKErrorAssetFileModified CKErrorCode = 17
 	// CKErrorAssetFileNotFound - An error that occurs when the system can’t find the specified asset.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKError/Code/assetFileNotFound
-	CKErrorAssetFileNotFound CKErrorCode = 0
+	CKErrorAssetFileNotFound CKErrorCode = 16
 	// CKErrorAssetNotAvailable - An error that occurs when the system can’t access the specified asset.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKError/Code/assetNotAvailable
-	CKErrorAssetNotAvailable CKErrorCode = 0
+	CKErrorAssetNotAvailable CKErrorCode = 35
 	// CKErrorBadContainer - An error that occurs when you use an unknown or unauthorized container.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKError/Code/badContainer
-	CKErrorBadContainer CKErrorCode = 0
+	CKErrorBadContainer CKErrorCode = 5
 	// CKErrorBadDatabase - An error that occurs when the operation can’t complete for the specified database.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKError/Code/badDatabase
-	CKErrorBadDatabase CKErrorCode = 0
+	CKErrorBadDatabase CKErrorCode = 24
 	// CKErrorBatchRequestFailed - An error that occurs when the system rejects the entire batch of changes.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKError/Code/batchRequestFailed
-	CKErrorBatchRequestFailed CKErrorCode = 0
+	CKErrorBatchRequestFailed CKErrorCode = 22
 	// CKErrorChangeTokenExpired - An error that occurs when the change token expires.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKError/Code/changeTokenExpired
-	CKErrorChangeTokenExpired CKErrorCode = 0
+	CKErrorChangeTokenExpired CKErrorCode = 21
 	// CKErrorConstraintViolation - An error that occurs when the server rejects the request because of a unique constraint violation.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKError/Code/constraintViolation
-	CKErrorConstraintViolation CKErrorCode = 0
+	CKErrorConstraintViolation CKErrorCode = 19
 	// CKErrorIncompatibleVersion - An error that occurs when the current app version is older than the oldest allowed version.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKError/Code/incompatibleVersion
-	CKErrorIncompatibleVersion CKErrorCode = 0
+	CKErrorIncompatibleVersion CKErrorCode = 18
 	// CKErrorInternalError - A nonrecoverable error that CloudKit encounters.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKError/Code/internalError
-	CKErrorInternalError CKErrorCode = 0
+	CKErrorInternalError CKErrorCode = 1
 	// CKErrorInvalidArguments - An error that occurs when the request contains invalid information.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKError/Code/invalidArguments
-	CKErrorInvalidArguments CKErrorCode = 0
+	CKErrorInvalidArguments CKErrorCode = 12
 	// CKErrorLimitExceeded - An error that occurs when a request’s size exceeds the limit.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKError/Code/limitExceeded
-	CKErrorLimitExceeded CKErrorCode = 0
+	CKErrorLimitExceeded CKErrorCode = 27
 	// CKErrorManagedAccountRestricted - An error that occurs when CloudKit rejects a request due to a managed-account restriction.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKError/Code/managedAccountRestricted
-	CKErrorManagedAccountRestricted CKErrorCode = 0
+	CKErrorManagedAccountRestricted CKErrorCode = 32
 	// CKErrorMissingEntitlement - An error that occurs when the app is missing a required entitlement.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKError/Code/missingEntitlement
-	CKErrorMissingEntitlement CKErrorCode = 0
+	CKErrorMissingEntitlement CKErrorCode = 8
 	// CKErrorNetworkFailure - An error that occurs when a network is available, but CloudKit is inaccessible.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKError/Code/networkFailure
-	CKErrorNetworkFailure CKErrorCode = 0
+	CKErrorNetworkFailure CKErrorCode = 4
 	// CKErrorNetworkUnavailable - An error that occurs when the network is unavailable.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKError/Code/networkUnavailable
-	CKErrorNetworkUnavailable CKErrorCode = 0
+	CKErrorNetworkUnavailable CKErrorCode = 3
 	// CKErrorNotAuthenticated - An error that occurs when the user is unauthenticated.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKError/Code/notAuthenticated
-	CKErrorNotAuthenticated CKErrorCode = 0
+	CKErrorNotAuthenticated CKErrorCode = 9
 	// CKErrorOperationCancelled - An error that occurs when an operation cancels.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKError/Code/operationCancelled
-	CKErrorOperationCancelled CKErrorCode = 0
+	CKErrorOperationCancelled CKErrorCode = 20
 	// CKErrorPartialFailure - An error that occurs when an operation completes with partial failures.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKError/Code/partialFailure
-	CKErrorPartialFailure CKErrorCode = 0
+	CKErrorPartialFailure CKErrorCode = 2
 	// CKErrorParticipantAlreadyInvited - The user is already an invited participant on this share. They must accept the existing share invitation before continuing.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKError/Code/participantAlreadyInvited
-	CKErrorParticipantAlreadyInvited CKErrorCode = 0
+	CKErrorParticipantAlreadyInvited CKErrorCode = 37
 	// CKErrorParticipantMayNeedVerification - An error that occurs when the user isn’t a participant of the share.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKError/Code/participantMayNeedVerification
-	CKErrorParticipantMayNeedVerification CKErrorCode = 0
+	CKErrorParticipantMayNeedVerification CKErrorCode = 33
 	// CKErrorPermissionFailure - An error that occurs when the user doesn’t have permission to save or fetch data.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKError/Code/permissionFailure
-	CKErrorPermissionFailure CKErrorCode = 0
+	CKErrorPermissionFailure CKErrorCode = 10
 	// CKErrorQuotaExceeded - An error that occurs when saving a record exceeds the user’s storage quota.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKError/Code/quotaExceeded
-	CKErrorQuotaExceeded CKErrorCode = 0
+	CKErrorQuotaExceeded CKErrorCode = 25
 	// CKErrorReferenceViolation - An error that occurs when CloudKit can’t find the target of a reference.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKError/Code/referenceViolation
-	CKErrorReferenceViolation CKErrorCode = 0
+	CKErrorReferenceViolation CKErrorCode = 31
 	// CKErrorRequestRateLimited - An error that occurs when CloudKit rate-limits requests.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKError/Code/requestRateLimited
-	CKErrorRequestRateLimited CKErrorCode = 0
+	CKErrorRequestRateLimited CKErrorCode = 7
 	// CKErrorResultsTruncated - An error that occurs when CloudKit truncates a query’s results.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKError/Code/resultsTruncated
-	CKErrorResultsTruncated CKErrorCode = 0
+	CKErrorResultsTruncated CKErrorCode = 13
 	// CKErrorServerRecordChanged - An error that occurs when CloudKit rejects a record because the server’s version is different.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKError/Code/serverRecordChanged
-	CKErrorServerRecordChanged CKErrorCode = 0
+	CKErrorServerRecordChanged CKErrorCode = 14
 	// CKErrorServerRejectedRequest - An error that occurs when CloudKit rejects the request.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKError/Code/serverRejectedRequest
-	CKErrorServerRejectedRequest CKErrorCode = 0
+	CKErrorServerRejectedRequest CKErrorCode = 15
 	// CKErrorServerResponseLost - An error that occurs when CloudKit is unable to maintain the network connection and provide a response.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKError/Code/serverResponseLost
-	CKErrorServerResponseLost CKErrorCode = 0
+	CKErrorServerResponseLost CKErrorCode = 34
 	// CKErrorServiceUnavailable - An error that occurs when CloudKit is unavailable.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKError/Code/serviceUnavailable
-	CKErrorServiceUnavailable CKErrorCode = 0
+	CKErrorServiceUnavailable CKErrorCode = 6
 	// CKErrorTooManyParticipants - An error that occurs when a share has too many participants.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKError/Code/tooManyParticipants
-	CKErrorTooManyParticipants CKErrorCode = 0
+	CKErrorTooManyParticipants CKErrorCode = 29
 	// CKErrorUnknownItem - An error that occurs when the specified record doesn’t exist.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKError/Code/unknownItem
-	CKErrorUnknownItem CKErrorCode = 0
+	CKErrorUnknownItem CKErrorCode = 11
 	// CKErrorUserDeletedZone - An error that occurs when the user deletes a record zone using the Settings app.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKError/Code/userDeletedZone
-	CKErrorUserDeletedZone CKErrorCode = 0
+	CKErrorUserDeletedZone CKErrorCode = 28
 	// CKErrorZoneBusy - An error that occurs when the server is too busy to handle the record zone operation.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKError/Code/zoneBusy
-	CKErrorZoneBusy CKErrorCode = 0
+	CKErrorZoneBusy CKErrorCode = 23
 	// CKErrorZoneNotFound - An error that occurs when the specified record zone doesn’t exist.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKError/Code/zoneNotFound
-	CKErrorZoneNotFound CKErrorCode = 0
+	CKErrorZoneNotFound CKErrorCode = 26
 )
 
 // CKRecordSavePolicy - Constants that indicate which policy to apply when saving records.
@@ -237,6 +281,22 @@ const (
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKNotification/NotificationType-swift.enum
 type CKNotificationType uint
 
+const (
+	CKNotificationTypeQuery CKNotificationType = 1
+	CKNotificationTypeRecordZone CKNotificationType = 2
+	CKNotificationTypeReadNotification CKNotificationType = 3
+	CKNotificationTypeDatabase CKNotificationType = 4
+	CKQueryNotificationReasonRecordCreated CKNotificationType = 1
+	CKQueryNotificationReasonRecordUpdated CKNotificationType = 2
+	CKQueryNotificationReasonRecordDeleted CKNotificationType = 3
+	CKRecordZoneCapabilityFetchChanges CKNotificationType = 1
+	CKRecordZoneCapabilityAtomic CKNotificationType = 1
+	CKRecordZoneCapabilitySharing CKNotificationType = 2
+	CKRecordZoneCapabilityZoneWideSharing CKNotificationType = 3
+	CKRecordZoneEncryptionScopePerRecord CKNotificationType = 4
+	CKRecordZoneEncryptionScopePerZone CKNotificationType = 5
+)
+
 // CKOperationGroupTransferSize - Constants that represent possible data transfer sizes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperationGroup/TransferSize
@@ -246,31 +306,31 @@ const (
 	// CKOperationGroupTransferSizeGigabytes - A transfer size that represents 1 or more gigabytes.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperationGroup/TransferSize/gigabytes
-	CKOperationGroupTransferSizeGigabytes CKOperationGroupTransferSize = 0
+	CKOperationGroupTransferSizeGigabytes CKOperationGroupTransferSize = 5
 	// CKOperationGroupTransferSizeHundredsOfGigabytes - A transfer size that represents hundreds of gigabytes.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperationGroup/TransferSize/hundredsOfGigabytes
-	CKOperationGroupTransferSizeHundredsOfGigabytes CKOperationGroupTransferSize = 0
+	CKOperationGroupTransferSizeHundredsOfGigabytes CKOperationGroupTransferSize = 7
 	// CKOperationGroupTransferSizeHundredsOfMegabytes - A transfer size that represents hundreds of megabytes.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperationGroup/TransferSize/hundredsOfMegabytes
-	CKOperationGroupTransferSizeHundredsOfMegabytes CKOperationGroupTransferSize = 0
+	CKOperationGroupTransferSizeHundredsOfMegabytes CKOperationGroupTransferSize = 4
 	// CKOperationGroupTransferSizeKilobytes - A transfer size that represents 1 or more kilobytes.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperationGroup/TransferSize/kilobytes
-	CKOperationGroupTransferSizeKilobytes CKOperationGroupTransferSize = 0
+	CKOperationGroupTransferSizeKilobytes CKOperationGroupTransferSize = 1
 	// CKOperationGroupTransferSizeMegabytes - A transfer size that represents 1 or more megabytes.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperationGroup/TransferSize/megabytes
-	CKOperationGroupTransferSizeMegabytes CKOperationGroupTransferSize = 0
+	CKOperationGroupTransferSizeMegabytes CKOperationGroupTransferSize = 2
 	// CKOperationGroupTransferSizeTensOfGigabytes - A transfer size that represents tens of gigabytes.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperationGroup/TransferSize/tensOfGigabytes
-	CKOperationGroupTransferSizeTensOfGigabytes CKOperationGroupTransferSize = 0
+	CKOperationGroupTransferSizeTensOfGigabytes CKOperationGroupTransferSize = 6
 	// CKOperationGroupTransferSizeTensOfMegabytes - A transfer size that represents tens of megabytes.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperationGroup/TransferSize/tensOfMegabytes
-	CKOperationGroupTransferSizeTensOfMegabytes CKOperationGroupTransferSize = 0
+	CKOperationGroupTransferSizeTensOfMegabytes CKOperationGroupTransferSize = 3
 	// CKOperationGroupTransferSizeUnknown - An unknown transfer size.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperationGroup/TransferSize/unknown
@@ -286,19 +346,19 @@ const (
 	// CKQuerySubscriptionOptionsFiresOnRecordCreation - An option that instructs CloudKit to send a push notification when it creates a record that matches a subscription’s criteria.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKQuerySubscription/Options/firesOnRecordCreation
-	CKQuerySubscriptionOptionsFiresOnRecordCreation CKQuerySubscriptionOptions = 0
+	CKQuerySubscriptionOptionsFiresOnRecordCreation CKQuerySubscriptionOptions = 1
 	// CKQuerySubscriptionOptionsFiresOnRecordDeletion - An option that instructs CloudKit to send a push notification when it deletes a record that matches a subscription’s criteria.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKQuerySubscription/Options/firesOnRecordDeletion
-	CKQuerySubscriptionOptionsFiresOnRecordDeletion CKQuerySubscriptionOptions = 0
+	CKQuerySubscriptionOptionsFiresOnRecordDeletion CKQuerySubscriptionOptions = 1
 	// CKQuerySubscriptionOptionsFiresOnRecordUpdate - An option that instructs CloudKit to send a push notification when it modifies a record that matches a subscription’s criteria.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKQuerySubscription/Options/firesOnRecordUpdate
-	CKQuerySubscriptionOptionsFiresOnRecordUpdate CKQuerySubscriptionOptions = 0
+	CKQuerySubscriptionOptionsFiresOnRecordUpdate CKQuerySubscriptionOptions = 1
 	// CKQuerySubscriptionOptionsFiresOnce - An option that instructs CloudKit to send a push notification only once.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKQuerySubscription/Options/firesOnce
-	CKQuerySubscriptionOptionsFiresOnce CKQuerySubscriptionOptions = 0
+	CKQuerySubscriptionOptionsFiresOnce CKQuerySubscriptionOptions = 1
 )
 
 // CKReferenceAction - Constants that indicate the behavior when deleting a referenced record.
@@ -310,7 +370,7 @@ const (
 	// CKReferenceActionDeleteSelf - A reference action that cascades deletions.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/ReferenceAction/deleteSelf
-	CKReferenceActionDeleteSelf CKReferenceAction = 0
+	CKReferenceActionDeleteSelf CKReferenceAction = 1
 	// CKReferenceActionNone - A reference action that has no cascading behavior.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/ReferenceAction/none
@@ -326,19 +386,19 @@ const (
 	// CKRecordZoneCapabilityAtomic - A capability that allows atomic changes of multiple records.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecordZone/Capabilities-swift.struct/atomic
-	CKRecordZoneCapabilityAtomic CKRecordZoneCapabilities = 0
+	CKRecordZoneCapabilityAtomic CKRecordZoneCapabilities = 1
 	// CKRecordZoneCapabilityFetchChanges - A capability for fetching only the changed records from a zone.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecordZone/Capabilities-swift.struct/fetchChanges
-	CKRecordZoneCapabilityFetchChanges CKRecordZoneCapabilities = 0
+	CKRecordZoneCapabilityFetchChanges CKRecordZoneCapabilities = 1
 	// CKRecordZoneCapabilitySharing - A capability for sharing a specific hierarchy of records.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecordZone/Capabilities-swift.struct/sharing
-	CKRecordZoneCapabilitySharing CKRecordZoneCapabilities = 0
+	CKRecordZoneCapabilitySharing CKRecordZoneCapabilities = 2
 	// CKRecordZoneCapabilityZoneWideSharing - A capability for sharing the entire contents of a record zone.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecordZone/Capabilities-swift.struct/zoneWideSharing
-	CKRecordZoneCapabilityZoneWideSharing CKRecordZoneCapabilities = 0
+	CKRecordZoneCapabilityZoneWideSharing CKRecordZoneCapabilities = 3
 )
 
 // CKRecordZoneEncryptionScope enum type
@@ -354,7 +414,7 @@ const (
 	// CKRecordZoneEncryptionScopePerZone - Zone uses per-zone encryption keys for encrypted values across all records and the zone-wide share, if present.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecordZone/EncryptionScope-swift.enum/perZone
-	CKRecordZoneEncryptionScopePerZone CKRecordZoneEncryptionScope = 0
+	CKRecordZoneEncryptionScopePerZone CKRecordZoneEncryptionScope = 1
 )
 
 // CKShareParticipantAcceptanceStatus - Constants that represent the status of a participant.
@@ -366,15 +426,15 @@ const (
 	// CKShareParticipantAcceptanceStatusAccepted - The participant accepted the share request.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/ParticipantAcceptanceStatus/accepted
-	CKShareParticipantAcceptanceStatusAccepted CKShareParticipantAcceptanceStatus = 0
+	CKShareParticipantAcceptanceStatusAccepted CKShareParticipantAcceptanceStatus = 2
 	// CKShareParticipantAcceptanceStatusPending - The participant’s acceptance of the share request is pending.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/ParticipantAcceptanceStatus/pending
-	CKShareParticipantAcceptanceStatusPending CKShareParticipantAcceptanceStatus = 0
+	CKShareParticipantAcceptanceStatusPending CKShareParticipantAcceptanceStatus = 1
 	// CKShareParticipantAcceptanceStatusRemoved - The system removed the participant from the share.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/ParticipantAcceptanceStatus/removed
-	CKShareParticipantAcceptanceStatusRemoved CKShareParticipantAcceptanceStatus = 0
+	CKShareParticipantAcceptanceStatusRemoved CKShareParticipantAcceptanceStatus = 3
 	// CKShareParticipantAcceptanceStatusUnknown - The participant’s status is unknown.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/ParticipantAcceptanceStatus/unknown
@@ -390,15 +450,15 @@ const (
 	// CKShareParticipantPermissionNone - The participant doesn’t have any permissions for the share.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/ParticipantPermission/none
-	CKShareParticipantPermissionNone CKShareParticipantPermission = 0
+	CKShareParticipantPermissionNone CKShareParticipantPermission = 1
 	// CKShareParticipantPermissionReadOnly - The participant has read-only permissions for the share.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/ParticipantPermission/readOnly
-	CKShareParticipantPermissionReadOnly CKShareParticipantPermission = 0
+	CKShareParticipantPermissionReadOnly CKShareParticipantPermission = 2
 	// CKShareParticipantPermissionReadWrite - The participant has read-and-write permissions for the share.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/ParticipantPermission/readWrite
-	CKShareParticipantPermissionReadWrite CKShareParticipantPermission = 0
+	CKShareParticipantPermissionReadWrite CKShareParticipantPermission = 3
 	// CKShareParticipantPermissionUnknown - The participant’s permissions are unknown.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/ParticipantPermission/unknown
@@ -413,19 +473,19 @@ type CKShareParticipantRole uint
 const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/ParticipantRole/administrator
-	CKShareParticipantRoleAdministrator CKShareParticipantRole = 0
+	CKShareParticipantRoleAdministrator CKShareParticipantRole = 5
 	// CKShareParticipantRoleOwner - The participant is the share’s owner.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/ParticipantRole/owner
-	CKShareParticipantRoleOwner CKShareParticipantRole = 0
+	CKShareParticipantRoleOwner CKShareParticipantRole = 1
 	// CKShareParticipantRolePrivateUser - The participant has the private role.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/ParticipantRole/privateUser
-	CKShareParticipantRolePrivateUser CKShareParticipantRole = 0
+	CKShareParticipantRolePrivateUser CKShareParticipantRole = 3
 	// CKShareParticipantRolePublicUser - The participant has the public role.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/ParticipantRole/publicUser
-	CKShareParticipantRolePublicUser CKShareParticipantRole = 0
+	CKShareParticipantRolePublicUser CKShareParticipantRole = 4
 	// CKShareParticipantRoleUnknown - The participant’s role is unknown.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/ParticipantRole/unknown
@@ -441,15 +501,15 @@ const (
 	// CKShareParticipantTypeOwner - The type of an owner.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/ParticipantType/owner
-	CKShareParticipantTypeOwner CKShareParticipantType = 0
+	CKShareParticipantTypeOwner CKShareParticipantType = 1
 	// CKShareParticipantTypePrivateUser - The type of a private user.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/ParticipantType/privateUser
-	CKShareParticipantTypePrivateUser CKShareParticipantType = 0
+	CKShareParticipantTypePrivateUser CKShareParticipantType = 3
 	// CKShareParticipantTypePublicUser - The type of a public owner.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/ParticipantType/publicUser
-	CKShareParticipantTypePublicUser CKShareParticipantType = 0
+	CKShareParticipantTypePublicUser CKShareParticipantType = 4
 	// CKShareParticipantTypeUnknown - An unknown role.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/ParticipantType/unknown
@@ -465,35 +525,35 @@ const (
 	// CKSyncEngineEventTypeAccountChange - An event indicating a change to the device’s iCloud account.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineEventType/accountChange
-	CKSyncEngineEventTypeAccountChange CKSyncEngineEventType = 0
+	CKSyncEngineEventTypeAccountChange CKSyncEngineEventType = 1
 	// CKSyncEngineEventTypeDidFetchChanges - An event that indicates the database fetch is done.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineEventType/didFetchChanges
-	CKSyncEngineEventTypeDidFetchChanges CKSyncEngineEventType = 0
+	CKSyncEngineEventTypeDidFetchChanges CKSyncEngineEventType = 9
 	// CKSyncEngineEventTypeDidFetchRecordZoneChanges - An event that indicates the record zone fetch is done.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineEventType/didFetchRecordZoneChanges
-	CKSyncEngineEventTypeDidFetchRecordZoneChanges CKSyncEngineEventType = 0
+	CKSyncEngineEventTypeDidFetchRecordZoneChanges CKSyncEngineEventType = 8
 	// CKSyncEngineEventTypeDidSendChanges - An event that indicates a finished send operation.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineEventType/didSendChanges
-	CKSyncEngineEventTypeDidSendChanges CKSyncEngineEventType = 0
+	CKSyncEngineEventTypeDidSendChanges CKSyncEngineEventType = 11
 	// CKSyncEngineEventTypeFetchedDatabaseChanges - An event indicating there are fetched database changes to process.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineEventType/fetchedDatabaseChanges
-	CKSyncEngineEventTypeFetchedDatabaseChanges CKSyncEngineEventType = 0
+	CKSyncEngineEventTypeFetchedDatabaseChanges CKSyncEngineEventType = 2
 	// CKSyncEngineEventTypeFetchedRecordZoneChanges - An event indicating there are fetched record zone changes to process.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineEventType/fetchedRecordZoneChanges
-	CKSyncEngineEventTypeFetchedRecordZoneChanges CKSyncEngineEventType = 0
+	CKSyncEngineEventTypeFetchedRecordZoneChanges CKSyncEngineEventType = 3
 	// CKSyncEngineEventTypeSentDatabaseChanges - An event indicating a sent batch of database changes.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineEventType/sentDatabaseChanges
-	CKSyncEngineEventTypeSentDatabaseChanges CKSyncEngineEventType = 0
+	CKSyncEngineEventTypeSentDatabaseChanges CKSyncEngineEventType = 4
 	// CKSyncEngineEventTypeSentRecordZoneChanges - An event indicating a sent batch of record zone changes.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineEventType/sentRecordZoneChanges
-	CKSyncEngineEventTypeSentRecordZoneChanges CKSyncEngineEventType = 0
+	CKSyncEngineEventTypeSentRecordZoneChanges CKSyncEngineEventType = 5
 	// CKSyncEngineEventTypeStateUpdate - An event indicating an update to the sync engine’s state.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineEventType/stateUpdate
@@ -501,15 +561,15 @@ const (
 	// CKSyncEngineEventTypeWillFetchChanges - An event indicating an imminent database fetch.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineEventType/willFetchChanges
-	CKSyncEngineEventTypeWillFetchChanges CKSyncEngineEventType = 0
+	CKSyncEngineEventTypeWillFetchChanges CKSyncEngineEventType = 6
 	// CKSyncEngineEventTypeWillFetchRecordZoneChanges - An event indicating an imminent fetch of changes in a record zone.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineEventType/willFetchRecordZoneChanges
-	CKSyncEngineEventTypeWillFetchRecordZoneChanges CKSyncEngineEventType = 0
+	CKSyncEngineEventTypeWillFetchRecordZoneChanges CKSyncEngineEventType = 7
 	// CKSyncEngineEventTypeWillSendChanges - An event indicating an imminent send of local changes.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineEventType/willSendChanges
-	CKSyncEngineEventTypeWillSendChanges CKSyncEngineEventType = 0
+	CKSyncEngineEventTypeWillSendChanges CKSyncEngineEventType = 10
 )
 
 // CKSyncEnginePendingDatabaseChangeType - Describes the type of a pending database change.
@@ -517,10 +577,20 @@ const (
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEnginePendingDatabaseChangeType
 type CKSyncEnginePendingDatabaseChangeType uint
 
+const (
+	CKSyncEnginePendingDatabaseChangeTypeSaveZone CKSyncEnginePendingDatabaseChangeType = 0
+	CKSyncEnginePendingDatabaseChangeTypeDeleteZone CKSyncEnginePendingDatabaseChangeType = 1
+)
+
 // CKSyncEnginePendingRecordZoneChangeType - Describes a type of modification a record zone change makes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEnginePendingRecordZoneChangeType
 type CKSyncEnginePendingRecordZoneChangeType uint
+
+const (
+	CKSyncEnginePendingRecordZoneChangeTypeSaveRecord CKSyncEnginePendingRecordZoneChangeType = 0
+	CKSyncEnginePendingRecordZoneChangeTypeDeleteRecord CKSyncEnginePendingRecordZoneChangeType = 1
+)
 
 // CKSyncEngineSyncReason - Describes the reason for a sync operation.
 //
@@ -531,7 +601,7 @@ const (
 	// CKSyncEngineSyncReasonManual - A manual sync operation.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineSyncReason/manual
-	CKSyncEngineSyncReasonManual CKSyncEngineSyncReason = 0
+	CKSyncEngineSyncReasonManual CKSyncEngineSyncReason = 1
 	// CKSyncEngineSyncReasonScheduled - A scheduled sync operation.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineSyncReason/scheduled

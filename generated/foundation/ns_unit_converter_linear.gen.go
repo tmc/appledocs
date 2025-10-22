@@ -86,7 +86,7 @@ func NewUnitConverterLinear() UnitConverterLinear {
 // Initializes the unit converter with the coefficient you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitConverterLinear/init(coefficient:)
-func NewUnitConverterLinearWithCoefficient(coefficient unsafe.Pointer) UnitConverterLinear {
+func NewUnitConverterLinearWithCoefficient(coefficient float64) UnitConverterLinear {
 	instance := getUnitConverterLinearClass().Alloc()
 	rv := objc.Send[UnitConverterLinear](instance.ID, objc.Sel("initWithCoefficient:"), coefficient)
 	rv.Autorelease()
@@ -97,8 +97,8 @@ func NewUnitConverterLinearWithCoefficient(coefficient unsafe.Pointer) UnitConve
 // The coefficient to use in the linear unit conversion calculation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/unitconverterlinear/coefficient
-func (u_ UnitConverterLinear) Coefficient() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("coefficient"))
+func (u_ UnitConverterLinear) Coefficient() float64 {
+	rv := objc.Send[float64](u_.ID, objc.Sel("coefficient"))
 	return rv
 }
 
@@ -108,15 +108,15 @@ func (u_ UnitConverterLinear) Coefficient() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/unitconverterlinear/coefficient
-func (u_ UnitConverterLinear) SetCoefficient(value unsafe.Pointer) {
+func (u_ UnitConverterLinear) SetCoefficient(value float64) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setCoefficient:"), value)
 }
 
 // The constant to use in the linear unit conversion calculation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/unitconverterlinear/constant
-func (u_ UnitConverterLinear) Constant() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("constant"))
+func (u_ UnitConverterLinear) Constant() float64 {
+	rv := objc.Send[float64](u_.ID, objc.Sel("constant"))
 	return rv
 }
 
@@ -126,7 +126,7 @@ func (u_ UnitConverterLinear) Constant() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/unitconverterlinear/constant
-func (u_ UnitConverterLinear) SetConstant(value unsafe.Pointer) {
+func (u_ UnitConverterLinear) SetConstant(value float64) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setConstant:"), value)
 }
 

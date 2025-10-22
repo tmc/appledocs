@@ -35,16 +35,16 @@ var (
 	_NSHomeDirectoryForUser func(unsafe.Pointer) unsafe.Pointer
 	_NSIncrementExtraRefCount func(unsafe.Pointer) unsafe.Pointer
 	_NSIntegralRectWithOptions func(coregraphics.CGRect, unsafe.Pointer) coregraphics.CGRect
-	_NSIsFreedObject func(unsafe.Pointer) unsafe.Pointer
+	_NSIsFreedObject func(unsafe.Pointer) bool
 	_NSLog func(unsafe.Pointer) unsafe.Pointer
 	_NSLogv func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_NSMouseInRect func(coregraphics.CGPoint, coregraphics.CGRect, unsafe.Pointer) unsafe.Pointer
+	_NSMouseInRect func(coregraphics.CGPoint, coregraphics.CGRect, bool) bool
 	_NSOpenStepRootDirectory func() unsafe.Pointer
 	_NSReallocateCollectable func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_NSRecordAllocationEvent func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_NSRecordAllocationEvent func(int, unsafe.Pointer) unsafe.Pointer
 	_NSReturnAddress func(unsafe.Pointer) unsafe.Pointer
 	_NSRoundUpToMultipleOfPageSize func(unsafe.Pointer) unsafe.Pointer
-	_NSSearchPathForDirectoriesInDomains func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_NSSearchPathForDirectoriesInDomains func(unsafe.Pointer, unsafe.Pointer, bool) unsafe.Pointer
 	_NSSetUncaughtExceptionHandler func() unsafe.Pointer
 	_NSSizeFromString func(unsafe.Pointer) coregraphics.CGSize
 	_NSStringFromProtocol func(unsafe.Pointer) unsafe.Pointer
@@ -306,7 +306,7 @@ func NSIntegralRectWithOptions(aRect coregraphics.CGRect, opts unsafe.Pointer) c
 // Added in macOS 10.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIsFreedObject
-func NSIsFreedObject(anObject unsafe.Pointer) unsafe.Pointer {
+func NSIsFreedObject(anObject unsafe.Pointer) bool {
 	return _NSIsFreedObject(anObject)
 	}
 
@@ -336,7 +336,7 @@ func NSLogv(format unsafe.Pointer, args unsafe.Pointer) {
 // Added in macOS 10.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMouseInRect(_:_:_:)
-func NSMouseInRect(aPoint coregraphics.CGPoint, aRect coregraphics.CGRect, flipped unsafe.Pointer) unsafe.Pointer {
+func NSMouseInRect(aPoint coregraphics.CGPoint, aRect coregraphics.CGRect, flipped bool) bool {
 	return _NSMouseInRect(aPoint, aRect, flipped)
 	}
 
@@ -366,7 +366,7 @@ func NSReallocateCollectable(ptr unsafe.Pointer, size unsafe.Pointer, options un
 // Added in macOS 10.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRecordAllocationEvent
-func NSRecordAllocationEvent(eventType unsafe.Pointer, object unsafe.Pointer) {
+func NSRecordAllocationEvent(eventType int, object unsafe.Pointer) {
 	_NSRecordAllocationEvent(eventType, object)
 	}
 
@@ -396,7 +396,7 @@ func NSRoundUpToMultipleOfPageSize(bytes unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 10.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSearchPathForDirectoriesInDomains(_:_:_:)
-func NSSearchPathForDirectoriesInDomains(directory unsafe.Pointer, domainMask unsafe.Pointer, expandTilde unsafe.Pointer) unsafe.Pointer {
+func NSSearchPathForDirectoriesInDomains(directory unsafe.Pointer, domainMask unsafe.Pointer, expandTilde bool) unsafe.Pointer {
 	return _NSSearchPathForDirectoriesInDomains(directory, domainMask, expandTilde)
 	}
 

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,7 +30,7 @@ type _SpellServerClass struct {
 // An interface definition for the [SpellServer] class.
 type ISpellServer interface {
 	objectivec.IObject
-	IsWordInUserDictionariesCaseSensitive(word appkit.string, flag bool) bool
+	IsWordInUserDictionariesCaseSensitive(word string, flag bool) bool
 	Run()
 }
 
@@ -86,8 +85,8 @@ func NewSpellServer() SpellServer {
 // Indicates whether a given word is in the user’s list of learned words or the document’s list of words to ignore.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSpellServer/isWord(inUserDictionaries:caseSensitive:)
-func (s_ SpellServer) IsWordInUserDictionariesCaseSensitive(word appkit.string, flag bool) bool {
-	rv := objc.Send[bool](s_.ID, objc.Sel("isWordInUserDictionaries:caseSensitive:"), word, flag)
+func (s_ SpellServer) IsWordInUserDictionariesCaseSensitive(word string, flag bool) bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("isWordInUserDictionaries:caseSensitive:"), objc.String(word), flag)
 	return rv
 }
 

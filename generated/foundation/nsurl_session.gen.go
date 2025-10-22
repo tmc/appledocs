@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -48,7 +47,7 @@ type IURLSession interface {
 	InvalidateAndCancel()
 	ResetWithCompletionHandler(completionHandler unsafe.Pointer)
 	StreamTaskWithNetService(service INetService) URLSessionStreamTask
-	StreamTaskWithHostNamePort(hostname appkit.string, port int) URLSessionStreamTask
+	StreamTaskWithHostNamePort(hostname string, port int) URLSessionStreamTask
 	UploadTaskWithRequestFromData(request IURLRequest, bodyData IData) URLSessionUploadTask
 	UploadTaskWithRequestFromDataCompletionHandler(request IURLRequest, bodyData IData, completionHandler unsafe.Pointer) URLSessionUploadTask
 	UploadTaskWithRequestFromFile(request IURLRequest, fileURL IURL) URLSessionUploadTask
@@ -286,8 +285,8 @@ func (u_ URLSession) StreamTaskWithNetService(service INetService) URLSessionStr
 // Creates a task that establishes a bidirectional TCP/IP connection to a specified hostname and port.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/streamTask(withHostName:port:)
-func (u_ URLSession) StreamTaskWithHostNamePort(hostname appkit.string, port int) URLSessionStreamTask {
-	rv := objc.Send[URLSessionStreamTask](u_.ID, objc.Sel("streamTaskWithHostName:port:"), hostname, port)
+func (u_ URLSession) StreamTaskWithHostNamePort(hostname string, port int) URLSessionStreamTask {
+	rv := objc.Send[URLSessionStreamTask](u_.ID, objc.Sel("streamTaskWithHostName:port:"), objc.String(hostname), port)
 	return rv
 }
 
@@ -396,8 +395,8 @@ func (u_ URLSession) DelegateQueue() NSOperationQueue {
 // An app-defined descriptive label for the session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/sessionDescription
-func (u_ URLSession) SessionDescription() appkit.string {
-	rv := objc.Send[appkit.string](u_.ID, objc.Sel("sessionDescription"))
+func (u_ URLSession) SessionDescription() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("sessionDescription"))
 	return rv
 }
 
@@ -407,8 +406,8 @@ func (u_ URLSession) SessionDescription() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/sessionDescription
-func (u_ URLSession) SetSessionDescription(value appkit.string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setSessionDescription:"), value)
+func (u_ URLSession) SetSessionDescription(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setSessionDescription:"), objc.String(value))
 }
 
 // The shared singleton session object.

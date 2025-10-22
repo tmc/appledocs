@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -85,16 +84,16 @@ func NewURLSessionConfiguration() URLSessionConfiguration {
 // Creates a session configuration object that allows HTTP and HTTPS uploads or downloads to be performed in the background.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/background(withIdentifier:)
-func (uc _URLSessionConfigurationClass) BackgroundSessionConfigurationWithIdentifier(identifier appkit.string) URLSessionConfiguration {
-	rv := objc.Send[URLSessionConfiguration](objc.ID(uc.class), objc.Sel("backgroundSessionConfigurationWithIdentifier:"), identifier)
+func (uc _URLSessionConfigurationClass) BackgroundSessionConfigurationWithIdentifier(identifier string) URLSessionConfiguration {
+	rv := objc.Send[URLSessionConfiguration](objc.ID(uc.class), objc.Sel("backgroundSessionConfigurationWithIdentifier:"), objc.String(identifier))
 	return rv
 }
 
 // Returns a session configuration object that allows HTTP and HTTPS uploads or downloads to be performed in the background.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/backgroundSessionConfiguration(_:)
-func (uc _URLSessionConfigurationClass) BackgroundSessionConfiguration(identifier appkit.string) URLSessionConfiguration {
-	rv := objc.Send[URLSessionConfiguration](objc.ID(uc.class), objc.Sel("backgroundSessionConfiguration:"), identifier)
+func (uc _URLSessionConfigurationClass) BackgroundSessionConfiguration(identifier string) URLSessionConfiguration {
+	rv := objc.Send[URLSessionConfiguration](objc.ID(uc.class), objc.Sel("backgroundSessionConfiguration:"), objc.String(identifier))
 	return rv
 }
 
@@ -339,8 +338,8 @@ func (u_ URLSessionConfiguration) SetHTTPShouldUsePipelining(value bool) {
 // The background session identifier of the configuration object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/identifier
-func (u_ URLSessionConfiguration) Identifier() appkit.string {
-	rv := objc.Send[appkit.string](u_.ID, objc.Sel("identifier"))
+func (u_ URLSessionConfiguration) Identifier() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -419,8 +418,8 @@ func (u_ URLSessionConfiguration) SetSessionSendsLaunchEvents(value bool) {
 // The identifier for the shared container into which files in background URL sessions should be downloaded.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/sharedContainerIdentifier
-func (u_ URLSessionConfiguration) SharedContainerIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](u_.ID, objc.Sel("sharedContainerIdentifier"))
+func (u_ URLSessionConfiguration) SharedContainerIdentifier() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("sharedContainerIdentifier"))
 	return rv
 }
 
@@ -430,8 +429,8 @@ func (u_ URLSessionConfiguration) SharedContainerIdentifier() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/sharedContainerIdentifier
-func (u_ URLSessionConfiguration) SetSharedContainerIdentifier(value appkit.string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setSharedContainerIdentifier:"), value)
+func (u_ URLSessionConfiguration) SetSharedContainerIdentifier(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setSharedContainerIdentifier:"), objc.String(value))
 }
 
 // A Boolean value that indicates whether TCP connections should be kept open when the app moves to the background.

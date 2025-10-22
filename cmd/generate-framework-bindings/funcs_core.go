@@ -9,6 +9,14 @@ import (
 // This is used to detect cross-framework type references
 var currentFrameworkClasses = make(map[string]bool)
 
+// currentFrameworkEnums holds the set of enum names (after prefix stripping) defined in the current framework
+// This is used to detect cross-framework type references
+var currentFrameworkEnums = make(map[string]bool)
+
+// currentFrameworkTypedefs holds the set of typedef names (after prefix stripping) defined in the current framework
+// This is used to detect cross-framework type references
+var currentFrameworkTypedefs = make(map[string]bool)
+
 // crossFrameworkTypeRegistry maps type names to their framework package names
 // This allows proper type resolution across frameworks instead of falling back to unsafe.Pointer
 // Format: map[typeName]frameworkPackage (e.g., "Window" -> "appkit", "String" -> "foundation")

@@ -456,8 +456,8 @@ func (a_ AssetExportSession) SetMetadataItemFilter(value unsafe.Pointer) {
 // The name of the preset that the asset export session uses.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/presetname
-func (a_ AssetExportSession) PresetName() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("presetName"))
+func (a_ AssetExportSession) PresetName() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("presetName"))
 	return rv
 }
 
@@ -467,15 +467,15 @@ func (a_ AssetExportSession) PresetName() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/presetname
-func (a_ AssetExportSession) SetPresetName(value appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setPresetName:"), value)
+func (a_ AssetExportSession) SetPresetName(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setPresetName:"), objc.String(value))
 }
 
 // A value that indicates the progress of the export.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/progress
-func (a_ AssetExportSession) Progress() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("progress"))
+func (a_ AssetExportSession) Progress() float32 {
+	rv := objc.Send[float32](a_.ID, objc.Sel("progress"))
 	return rv
 }
 
@@ -485,7 +485,7 @@ func (a_ AssetExportSession) Progress() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/progress
-func (a_ AssetExportSession) SetProgress(value unsafe.Pointer) {
+func (a_ AssetExportSession) SetProgress(value float32) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setProgress:"), value)
 }
 

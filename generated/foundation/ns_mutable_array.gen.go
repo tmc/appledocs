@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [MutableArray] class.
@@ -104,9 +103,9 @@ func NewMutableArray() MutableArray {
 // Initializes a newly allocated mutable array with the contents of the file specified by a given path
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableArray/initWithContentsOfFile:
-func NewMutableArrayWithContentsOfFile(path appkit.string) MutableArray {
+func NewMutableArrayWithContentsOfFile(path string) MutableArray {
 	instance := getMutableArrayClass().Alloc()
-	rv := objc.Send[MutableArray](instance.ID, objc.Sel("initWithContentsOfFile:"), path)
+	rv := objc.Send[MutableArray](instance.ID, objc.Sel("initWithContentsOfFile:"), objc.String(path))
 	rv.Autorelease()
 	return rv
 }

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -82,8 +81,8 @@ func NewPlayerItemTrack() PlayerItemTrack {
 // The current frame rate of the video track as it plays.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItemTrack/currentVideoFrameRate
-func (p_ PlayerItemTrack) CurrentVideoFrameRate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("currentVideoFrameRate"))
+func (p_ PlayerItemTrack) CurrentVideoFrameRate() float32 {
+	rv := objc.Send[float32](p_.ID, objc.Sel("currentVideoFrameRate"))
 	return rv
 }
 
@@ -108,8 +107,8 @@ func (p_ PlayerItemTrack) SetEnabled(value bool) {
 // A mode that specifies the handling of video frames that contain multiple fields.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItemTrack/videoFieldMode
-func (p_ PlayerItemTrack) VideoFieldMode() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("videoFieldMode"))
+func (p_ PlayerItemTrack) VideoFieldMode() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("videoFieldMode"))
 	return rv
 }
 
@@ -119,8 +118,8 @@ func (p_ PlayerItemTrack) VideoFieldMode() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItemTrack/videoFieldMode
-func (p_ PlayerItemTrack) SetVideoFieldMode(value appkit.string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setVideoFieldMode:"), value)
+func (p_ PlayerItemTrack) SetVideoFieldMode(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setVideoFieldMode:"), objc.String(value))
 }
 
 // An asset track that provides the media for the player item track.
@@ -162,8 +161,8 @@ func (p_ PlayerItemTrack) SetIsEnabled(value bool) {
 // A video field mode that requests deinterlacing of video fields.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemtrackvideofieldmodedeinterlacefields
-func (p_ PlayerItemTrack) AVPlayerItemTrackVideoFieldModeDeinterlaceFields() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("AVPlayerItemTrackVideoFieldModeDeinterlaceFields"))
+func (p_ PlayerItemTrack) AVPlayerItemTrackVideoFieldModeDeinterlaceFields() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("AVPlayerItemTrackVideoFieldModeDeinterlaceFields"))
 	return rv
 }
 

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -124,7 +123,7 @@ func NewNumberWithCoder(coder ICoder) Number {
 // Returns an object initialized to contain , treated as a .
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/init(value:)-15chk
-func NewNumberWithDouble(value unsafe.Pointer) Number {
+func NewNumberWithDouble(value float64) Number {
 	instance := getNumberClass().Alloc()
 	rv := objc.Send[Number](instance.ID, objc.Sel("initWithDouble:"), value)
 	rv.Autorelease()
@@ -136,7 +135,7 @@ func NewNumberWithDouble(value unsafe.Pointer) Number {
 // Returns an object initialized to contain a given value, treated as a .
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/init(value:)-2vlwk
-func NewNumberWithFloat(value unsafe.Pointer) Number {
+func NewNumberWithFloat(value float32) Number {
 	instance := getNumberClass().Alloc()
 	rv := objc.Send[Number](instance.ID, objc.Sel("initWithFloat:"), value)
 	rv.Autorelease()
@@ -148,7 +147,7 @@ func NewNumberWithFloat(value unsafe.Pointer) Number {
 // Returns an object initialized to contain a given value, treated as a signed .
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/init(value:)-7jvmg
-func NewNumberWithInt(value unsafe.Pointer) Number {
+func NewNumberWithInt(value int) Number {
 	instance := getNumberClass().Alloc()
 	rv := objc.Send[Number](instance.ID, objc.Sel("initWithInt:"), value)
 	rv.Autorelease()
@@ -295,7 +294,7 @@ func (nc _NumberClass) NumberWithChar(value unsafe.Pointer) Number {
 // Creates and returns an object containing a given value, treating it as a .
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/numberWithDouble:
-func (nc _NumberClass) NumberWithDouble(value unsafe.Pointer) Number {
+func (nc _NumberClass) NumberWithDouble(value float64) Number {
 	rv := objc.Send[Number](objc.ID(nc.class), objc.Sel("numberWithDouble:"), value)
 	return rv
 }
@@ -303,7 +302,7 @@ func (nc _NumberClass) NumberWithDouble(value unsafe.Pointer) Number {
 // Creates and returns an object containing a given value, treating it as a .
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/numberWithFloat:
-func (nc _NumberClass) NumberWithFloat(value unsafe.Pointer) Number {
+func (nc _NumberClass) NumberWithFloat(value float32) Number {
 	rv := objc.Send[Number](objc.ID(nc.class), objc.Sel("numberWithFloat:"), value)
 	return rv
 }
@@ -311,7 +310,7 @@ func (nc _NumberClass) NumberWithFloat(value unsafe.Pointer) Number {
 // Creates and returns an object containing a given value, treating it as a signed .
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/numberWithInt:
-func (nc _NumberClass) NumberWithInt(value unsafe.Pointer) Number {
+func (nc _NumberClass) NumberWithInt(value int) Number {
 	rv := objc.Send[Number](objc.ID(nc.class), objc.Sel("numberWithInt:"), value)
 	return rv
 }
@@ -439,16 +438,16 @@ func (n_ Number) DecimalValue() unsafe.Pointer {
 // The number object’s value expressed as a , converted as necessary.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/doubleValue
-func (n_ Number) DoubleValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("doubleValue"))
+func (n_ Number) DoubleValue() float64 {
+	rv := objc.Send[float64](n_.ID, objc.Sel("doubleValue"))
 	return rv
 }
 
 // The number object’s value expressed as a , converted as necessary.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/floatValue
-func (n_ Number) FloatValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("floatValue"))
+func (n_ Number) FloatValue() float32 {
+	rv := objc.Send[float32](n_.ID, objc.Sel("floatValue"))
 	return rv
 }
 
@@ -463,8 +462,8 @@ func (n_ Number) ShortValue() unsafe.Pointer {
 // The number object’s value expressed as an , converted as necessary.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/int32Value
-func (n_ Number) IntValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("intValue"))
+func (n_ Number) IntValue() int {
+	rv := objc.Send[int](n_.ID, objc.Sel("intValue"))
 	return rv
 }
 
@@ -503,8 +502,8 @@ func (n_ Number) LongValue() unsafe.Pointer {
 // The number object’s value expressed as a human-readable string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/stringValue
-func (n_ Number) StringValue() appkit.string {
-	rv := objc.Send[appkit.string](n_.ID, objc.Sel("stringValue"))
+func (n_ Number) StringValue() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("stringValue"))
 	return rv
 }
 

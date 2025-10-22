@@ -34,13 +34,13 @@ type ISimpleCString interface {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSimpleCString
 type SimpleCString struct {
-	String
+	string
 }
 
 // SimpleCStringFrom constructs a [SimpleCString] from an unsafe.Pointer.
 func SimpleCStringFrom(ptr unsafe.Pointer) SimpleCString {
 	return SimpleCString{
-		String: StringFrom(ptr),
+		String: stringFrom(ptr),
 	}
 }
 

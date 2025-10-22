@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [NameSpecifier] class.
@@ -87,9 +86,9 @@ func NewNameSpecifier() NameSpecifier {
 // Invokes the super class’s method and then sets the name instance variable to .
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNameSpecifier/init(containerClassDescription:containerSpecifier:key:name:)
-func NewNameSpecifierWithContainerClassDescriptionContainerSpecifierKeyName(classDesc IScriptClassDescription, container IScriptObjectSpecifier, property appkit.string, name appkit.string) NameSpecifier {
+func NewNameSpecifierWithContainerClassDescriptionContainerSpecifierKeyName(classDesc IScriptClassDescription, container IScriptObjectSpecifier, property string, name string) NameSpecifier {
 	instance := getNameSpecifierClass().Alloc()
-	rv := objc.Send[NameSpecifier](instance.ID, objc.Sel("initWithContainerClassDescription:containerSpecifier:key:name:"), classDesc, container, property, name)
+	rv := objc.Send[NameSpecifier](instance.ID, objc.Sel("initWithContainerClassDescription:containerSpecifier:key:name:"), classDesc, container, objc.String(property), objc.String(name))
 	rv.Autorelease()
 	return rv
 }
@@ -98,8 +97,8 @@ func NewNameSpecifierWithContainerClassDescriptionContainerSpecifierKeyName(clas
 // Sets the name encapsulated with the receiver for the specified object in the container.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsnamespecifier/name
-func (n_ NameSpecifier) Name() appkit.string {
-	rv := objc.Send[appkit.string](n_.ID, objc.Sel("name"))
+func (n_ NameSpecifier) Name() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -109,8 +108,8 @@ func (n_ NameSpecifier) Name() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsnamespecifier/name
-func (n_ NameSpecifier) SetName(value appkit.string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setName:"), value)
+func (n_ NameSpecifier) SetName(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
 

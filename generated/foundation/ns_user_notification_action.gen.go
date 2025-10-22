@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -86,8 +85,8 @@ func NewUserNotificationAction() UserNotificationAction {
 // Creates a user notification action with a specified identifier and title.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationAction/init(identifier:title:)
-func NewUserNotificationActionWithIdentifierTitle(identifier appkit.string, title appkit.string) UserNotificationAction {
-	rv := objc.Send[UserNotificationAction](objc.ID(getUserNotificationActionClass().class), objc.Sel("actionWithIdentifier:title:"), identifier, title)
+func NewUserNotificationActionWithIdentifierTitle(identifier string, title string) UserNotificationAction {
+	rv := objc.Send[UserNotificationAction](objc.ID(getUserNotificationActionClass().class), objc.Sel("actionWithIdentifier:title:"), objc.String(identifier), objc.String(title))
 	return rv
 }
 
@@ -95,24 +94,24 @@ func NewUserNotificationActionWithIdentifierTitle(identifier appkit.string, titl
 // Creates a user notification action with a specified identifier and title.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationAction/init(identifier:title:)
-func (uc _UserNotificationActionClass) ActionWithIdentifierTitle(identifier appkit.string, title appkit.string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("actionWithIdentifier:title:"), identifier, title)
+func (uc _UserNotificationActionClass) ActionWithIdentifierTitle(identifier string, title string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("actionWithIdentifier:title:"), objc.String(identifier), objc.String(title))
 	return rv
 }
 
 // The identifier for the user notification action.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationAction/identifier
-func (u_ UserNotificationAction) Identifier() appkit.string {
-	rv := objc.Send[appkit.string](u_.ID, objc.Sel("identifier"))
+func (u_ UserNotificationAction) Identifier() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("identifier"))
 	return rv
 }
 
 // The localized title shown to the user.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationAction/title
-func (u_ UserNotificationAction) Title() appkit.string {
-	rv := objc.Send[appkit.string](u_.ID, objc.Sel("title"))
+func (u_ UserNotificationAction) Title() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("title"))
 	return rv
 }
 

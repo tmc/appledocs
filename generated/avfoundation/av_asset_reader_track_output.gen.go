@@ -103,8 +103,8 @@ func (a_ AssetReaderTrackOutput) SetAudioTimePitchAlgorithm(value IAudioTimePitc
 // The output settings for this track output.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreadertrackoutput/outputsettings
-func (a_ AssetReaderTrackOutput) OutputSettings() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("outputSettings"))
+func (a_ AssetReaderTrackOutput) OutputSettings() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("outputSettings"))
 	return rv
 }
 
@@ -114,8 +114,8 @@ func (a_ AssetReaderTrackOutput) OutputSettings() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreadertrackoutput/outputsettings
-func (a_ AssetReaderTrackOutput) SetOutputSettings(value appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setOutputSettings:"), value)
+func (a_ AssetReaderTrackOutput) SetOutputSettings(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setOutputSettings:"), objc.String(value))
 }
 
 // The track from which the output reads sample buffers.
@@ -139,40 +139,40 @@ func (a_ AssetReaderTrackOutput) SetTrack(value IAVAssetTrack) {
 // A key that defines the region within the video dimension displayed during playback.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avvideocleanaperturekey
-func (a_ AssetReaderTrackOutput) AVVideoCleanApertureKey() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("AVVideoCleanApertureKey"))
+func (a_ AssetReaderTrackOutput) AVVideoCleanApertureKey() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("AVVideoCleanApertureKey"))
 	return rv
 }
 
 // A key to access the video’s pixel aspect ratio.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avvideopixelaspectratiokey
-func (a_ AssetReaderTrackOutput) AVVideoPixelAspectRatioKey() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("AVVideoPixelAspectRatioKey"))
+func (a_ AssetReaderTrackOutput) AVVideoPixelAspectRatioKey() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("AVVideoPixelAspectRatioKey"))
 	return rv
 }
 
 // A key to retrieve the video scaling mode from a dictionary.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avvideoscalingmodekey
-func (a_ AssetReaderTrackOutput) AVVideoScalingModeKey() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("AVVideoScalingModeKey"))
+func (a_ AssetReaderTrackOutput) AVVideoScalingModeKey() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("AVVideoScalingModeKey"))
 	return rv
 }
 
 // An integer value that represents the format of the audio data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVFormatIDKey
-func (a_ AssetReaderTrackOutput) AVFormatIDKey() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("AVFormatIDKey"))
+func (a_ AssetReaderTrackOutput) AVFormatIDKey() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("AVFormatIDKey"))
 	return rv
 }
 
 // An integer value that represents the audio quality for conversion.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSampleRateConverterAudioQualityKey
-func (a_ AssetReaderTrackOutput) AVSampleRateConverterAudioQualityKey() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("AVSampleRateConverterAudioQualityKey"))
+func (a_ AssetReaderTrackOutput) AVSampleRateConverterAudioQualityKey() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("AVSampleRateConverterAudioQualityKey"))
 	return rv
 }
 

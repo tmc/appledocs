@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/networkextension"
 )
 
@@ -112,8 +111,8 @@ func (m_ MutableURLRequest) SetCachePolicy(value URLRequestCachePolicy) {
 // The HTTP request method.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableURLRequest/httpMethod
-func (m_ MutableURLRequest) HTTPMethod() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("HTTPMethod"))
+func (m_ MutableURLRequest) HTTPMethod() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("HTTPMethod"))
 	return rv
 }
 
@@ -123,8 +122,8 @@ func (m_ MutableURLRequest) HTTPMethod() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableURLRequest/httpMethod
-func (m_ MutableURLRequest) SetHTTPMethod(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setHTTPMethod:"), value)
+func (m_ MutableURLRequest) SetHTTPMethod(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setHTTPMethod:"), objc.String(value))
 }
 
 // The URL being requested.
@@ -148,8 +147,8 @@ func (m_ MutableURLRequest) SetURL(value IURL) {
 // A dictionary containing all of the HTTP header fields for a request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/allhttpheaderfields
-func (m_ MutableURLRequest) AllHTTPHeaderFields() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("allHTTPHeaderFields"))
+func (m_ MutableURLRequest) AllHTTPHeaderFields() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("allHTTPHeaderFields"))
 	return rv
 }
 
@@ -159,8 +158,8 @@ func (m_ MutableURLRequest) AllHTTPHeaderFields() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/allhttpheaderfields
-func (m_ MutableURLRequest) SetAllHTTPHeaderFields(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setAllHTTPHeaderFields:"), value)
+func (m_ MutableURLRequest) SetAllHTTPHeaderFields(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAllHTTPHeaderFields:"), objc.String(value))
 }
 
 // A Boolean value that indicates whether a connection can use the device’s cellular network (if present).
@@ -282,8 +281,8 @@ func (m_ MutableURLRequest) SetAttribution(value unsafe.Pointer) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/cookiepartitionidentifier
-func (m_ MutableURLRequest) CookiePartitionIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("cookiePartitionIdentifier"))
+func (m_ MutableURLRequest) CookiePartitionIdentifier() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("cookiePartitionIdentifier"))
 	return rv
 }
 
@@ -291,8 +290,8 @@ func (m_ MutableURLRequest) CookiePartitionIdentifier() appkit.string {
 // SetCookiePartitionIdentifier sets the value of the cookiePartitionIdentifier property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/cookiepartitionidentifier
-func (m_ MutableURLRequest) SetCookiePartitionIdentifier(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setCookiePartitionIdentifier:"), value)
+func (m_ MutableURLRequest) SetCookiePartitionIdentifier(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCookiePartitionIdentifier:"), objc.String(value))
 }
 
 // The request body.

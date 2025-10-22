@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -128,7 +127,7 @@ func (tc _ThreadClass) IsMultiThreaded() bool {
 // Sets the current thread’s priority.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/setThreadPriority(_:)
-func (tc _ThreadClass) SetThreadPriority(p unsafe.Pointer) bool {
+func (tc _ThreadClass) SetThreadPriority(p float64) bool {
 	rv := objc.Send[bool](objc.ID(tc.class), objc.Sel("setThreadPriority:"), p)
 	return rv
 }
@@ -150,8 +149,8 @@ func (tc _ThreadClass) SleepUntilDate(date IDate) {
 // Returns the current thread’s priority.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/threadPriority()
-func (tc _ThreadClass) ThreadPriority() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(tc.class), objc.Sel("threadPriority"))
+func (tc _ThreadClass) ThreadPriority() float64 {
+	rv := objc.Send[float64](objc.ID(tc.class), objc.Sel("threadPriority"))
 	return rv
 }
 
@@ -271,8 +270,8 @@ func (t_ Thread) MainThread() NSThread {
 // The name of the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/name
-func (t_ Thread) Name() appkit.string {
-	rv := objc.Send[appkit.string](t_.ID, objc.Sel("name"))
+func (t_ Thread) Name() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -282,8 +281,8 @@ func (t_ Thread) Name() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/name
-func (t_ Thread) SetName(value appkit.string) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setName:"), value)
+func (t_ Thread) SetName(value string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
 //
@@ -322,8 +321,8 @@ func (t_ Thread) SetStackSize(value uint) {
 // The receiver’s priority
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/threadPriority
-func (t_ Thread) ThreadPriority() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("threadPriority"))
+func (t_ Thread) ThreadPriority() float64 {
+	rv := objc.Send[float64](t_.ID, objc.Sel("threadPriority"))
 	return rv
 }
 
@@ -333,15 +332,15 @@ func (t_ Thread) ThreadPriority() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/threadPriority
-func (t_ Thread) SetThreadPriority(value unsafe.Pointer) {
+func (t_ Thread) SetThreadPriority(value float64) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setThreadPriority:"), value)
 }
 
 // A key with a corresponding value in the thread dictionary.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsassertionhandlerkey
-func (t_ Thread) NSAssertionHandlerKey() appkit.string {
-	rv := objc.Send[appkit.string](t_.ID, objc.Sel("NSAssertionHandlerKey"))
+func (t_ Thread) NSAssertionHandlerKey() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("NSAssertionHandlerKey"))
 	return rv
 }
 

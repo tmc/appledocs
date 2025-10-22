@@ -155,8 +155,8 @@ func (c_ CapturePhoto) SetCameraCalibrationData(value IAVCameraCalibrationData) 
 // A score that summarizes the overall confidence level of a constant color photo.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephoto/constantcolorcenterweightedmeanconfidencelevel
-func (c_ CapturePhoto) ConstantColorCenterWeightedMeanConfidenceLevel() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("constantColorCenterWeightedMeanConfidenceLevel"))
+func (c_ CapturePhoto) ConstantColorCenterWeightedMeanConfidenceLevel() float32 {
+	rv := objc.Send[float32](c_.ID, objc.Sel("constantColorCenterWeightedMeanConfidenceLevel"))
 	return rv
 }
 
@@ -166,7 +166,7 @@ func (c_ CapturePhoto) ConstantColorCenterWeightedMeanConfidenceLevel() unsafe.P
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephoto/constantcolorcenterweightedmeanconfidencelevel
-func (c_ CapturePhoto) SetConstantColorCenterWeightedMeanConfidenceLevel(value unsafe.Pointer) {
+func (c_ CapturePhoto) SetConstantColorCenterWeightedMeanConfidenceLevel(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setConstantColorCenterWeightedMeanConfidenceLevel:"), value)
 }
 
@@ -209,8 +209,8 @@ func (c_ CapturePhoto) SetDepthData(value IAVDepthData) {
 // A dictionary describing the data format for a preview-sized image accompanying the captured photo.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephoto/embeddedthumbnailphotoformat
-func (c_ CapturePhoto) EmbeddedThumbnailPhotoFormat() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("embeddedThumbnailPhotoFormat"))
+func (c_ CapturePhoto) EmbeddedThumbnailPhotoFormat() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("embeddedThumbnailPhotoFormat"))
 	return rv
 }
 
@@ -220,8 +220,8 @@ func (c_ CapturePhoto) EmbeddedThumbnailPhotoFormat() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephoto/embeddedthumbnailphotoformat
-func (c_ CapturePhoto) SetEmbeddedThumbnailPhotoFormat(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setEmbeddedThumbnailPhotoFormat:"), value)
+func (c_ CapturePhoto) SetEmbeddedThumbnailPhotoFormat(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setEmbeddedThumbnailPhotoFormat:"), objc.String(value))
 }
 
 // A Boolean value that Indicates whether this photo is a fallback photo for a constant color capture.
@@ -281,8 +281,8 @@ func (c_ CapturePhoto) SetLensStabilizationStatus(value unsafe.Pointer) {
 // A dictionary of metadata describing the captured image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephoto/metadata
-func (c_ CapturePhoto) Metadata() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("metadata"))
+func (c_ CapturePhoto) Metadata() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("metadata"))
 	return rv
 }
 
@@ -292,8 +292,8 @@ func (c_ CapturePhoto) Metadata() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephoto/metadata
-func (c_ CapturePhoto) SetMetadata(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setMetadata:"), value)
+func (c_ CapturePhoto) SetMetadata(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setMetadata:"), objc.String(value))
 }
 
 // The 1-based index of this photo capture relative to other results from the same capture request.

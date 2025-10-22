@@ -145,8 +145,8 @@ func (c_ Cache) SetDelegate(value unsafe.Pointer) {
 // The name of the cache.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscache/name
-func (c_ Cache) Name() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("name"))
+func (c_ Cache) Name() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -156,8 +156,8 @@ func (c_ Cache) Name() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscache/name
-func (c_ Cache) SetName(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setName:"), value)
+func (c_ Cache) SetName(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
 // The maximum total cost that the cache can hold before it starts evicting objects.

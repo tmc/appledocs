@@ -173,8 +173,8 @@ func (a_ AssetWriterInput) SetExpectsMediaDataInRealTime(value bool) {
 // The extended language for the input’s track.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriterinput/extendedlanguagetag
-func (a_ AssetWriterInput) ExtendedLanguageTag() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("extendedLanguageTag"))
+func (a_ AssetWriterInput) ExtendedLanguageTag() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("extendedLanguageTag"))
 	return rv
 }
 
@@ -184,8 +184,8 @@ func (a_ AssetWriterInput) ExtendedLanguageTag() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriterinput/extendedlanguagetag
-func (a_ AssetWriterInput) SetExtendedLanguageTag(value appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setExtendedLanguageTag:"), value)
+func (a_ AssetWriterInput) SetExtendedLanguageTag(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setExtendedLanguageTag:"), objc.String(value))
 }
 
 // A Boolean value that indicates whether the input is ready to accept media data.
@@ -209,8 +209,8 @@ func (a_ AssetWriterInput) SetIsReadyForMoreMediaData(value bool) {
 // The language code of the input’s track.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriterinput/languagecode
-func (a_ AssetWriterInput) LanguageCode() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("languageCode"))
+func (a_ AssetWriterInput) LanguageCode() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("languageCode"))
 	return rv
 }
 
@@ -220,8 +220,8 @@ func (a_ AssetWriterInput) LanguageCode() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriterinput/languagecode
-func (a_ AssetWriterInput) SetLanguageCode(value appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setLanguageCode:"), value)
+func (a_ AssetWriterInput) SetLanguageCode(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setLanguageCode:"), objc.String(value))
 }
 
 // A Boolean value that indicates whether to enable a track in the output for playback and processing.
@@ -335,8 +335,8 @@ func (a_ AssetWriterInput) SetNaturalSize(value coregraphics.CGSize) {
 // The settings to use for encoding media data you append to the output.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriterinput/outputsettings
-func (a_ AssetWriterInput) OutputSettings() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("outputSettings"))
+func (a_ AssetWriterInput) OutputSettings() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("outputSettings"))
 	return rv
 }
 
@@ -346,8 +346,8 @@ func (a_ AssetWriterInput) OutputSettings() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriterinput/outputsettings
-func (a_ AssetWriterInput) SetOutputSettings(value appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setOutputSettings:"), value)
+func (a_ AssetWriterInput) SetOutputSettings(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setOutputSettings:"), objc.String(value))
 }
 
 // A Boolean value that indicates whether the input attempts to encode the source media data using multiple passes.
@@ -407,8 +407,8 @@ func (a_ AssetWriterInput) SetPreferredMediaChunkDuration(value unsafe.Pointer) 
 // The volume to prefer for playback of the output’s audio data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriterinput/preferredvolume
-func (a_ AssetWriterInput) PreferredVolume() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("preferredVolume"))
+func (a_ AssetWriterInput) PreferredVolume() float32 {
+	rv := objc.Send[float32](a_.ID, objc.Sel("preferredVolume"))
 	return rv
 }
 
@@ -418,7 +418,7 @@ func (a_ AssetWriterInput) PreferredVolume() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriterinput/preferredvolume
-func (a_ AssetWriterInput) SetPreferredVolume(value unsafe.Pointer) {
+func (a_ AssetWriterInput) SetPreferredVolume(value float32) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPreferredVolume:"), value)
 }
 

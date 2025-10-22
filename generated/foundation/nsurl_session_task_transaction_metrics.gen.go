@@ -458,8 +458,8 @@ func (u_ URLSessionTaskTransactionMetrics) SetIsReusedConnection(value bool) {
 // The IP address string of the local interface for the connection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/localaddress
-func (u_ URLSessionTaskTransactionMetrics) LocalAddress() appkit.string {
-	rv := objc.Send[appkit.string](u_.ID, objc.Sel("localAddress"))
+func (u_ URLSessionTaskTransactionMetrics) LocalAddress() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("localAddress"))
 	return rv
 }
 
@@ -469,8 +469,8 @@ func (u_ URLSessionTaskTransactionMetrics) LocalAddress() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/localaddress
-func (u_ URLSessionTaskTransactionMetrics) SetLocalAddress(value appkit.string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setLocalAddress:"), value)
+func (u_ URLSessionTaskTransactionMetrics) SetLocalAddress(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setLocalAddress:"), objc.String(value))
 }
 
 // The port number of the local interface for the connection.
@@ -530,8 +530,8 @@ func (u_ URLSessionTaskTransactionMetrics) SetNegotiatedTLSProtocolVersion(value
 // The network protocol used to fetch the resource.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/networkprotocolname
-func (u_ URLSessionTaskTransactionMetrics) NetworkProtocolName() appkit.string {
-	rv := objc.Send[appkit.string](u_.ID, objc.Sel("networkProtocolName"))
+func (u_ URLSessionTaskTransactionMetrics) NetworkProtocolName() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("networkProtocolName"))
 	return rv
 }
 
@@ -541,15 +541,15 @@ func (u_ URLSessionTaskTransactionMetrics) NetworkProtocolName() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/networkprotocolname
-func (u_ URLSessionTaskTransactionMetrics) SetNetworkProtocolName(value appkit.string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setNetworkProtocolName:"), value)
+func (u_ URLSessionTaskTransactionMetrics) SetNetworkProtocolName(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setNetworkProtocolName:"), objc.String(value))
 }
 
 // The IP address string of the remote interface for the connection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/remoteaddress
-func (u_ URLSessionTaskTransactionMetrics) RemoteAddress() appkit.string {
-	rv := objc.Send[appkit.string](u_.ID, objc.Sel("remoteAddress"))
+func (u_ URLSessionTaskTransactionMetrics) RemoteAddress() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("remoteAddress"))
 	return rv
 }
 
@@ -559,8 +559,8 @@ func (u_ URLSessionTaskTransactionMetrics) RemoteAddress() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/remoteaddress
-func (u_ URLSessionTaskTransactionMetrics) SetRemoteAddress(value appkit.string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setRemoteAddress:"), value)
+func (u_ URLSessionTaskTransactionMetrics) SetRemoteAddress(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setRemoteAddress:"), objc.String(value))
 }
 
 // The port number of the remote interface for the connection.

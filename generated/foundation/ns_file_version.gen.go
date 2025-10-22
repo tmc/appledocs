@@ -175,8 +175,8 @@ func (f_ FileVersion) SetIsResolved(value bool) {
 // The string containing the user-presentable name of the file version.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/localizedname
-func (f_ FileVersion) LocalizedName() appkit.string {
-	rv := objc.Send[appkit.string](f_.ID, objc.Sel("localizedName"))
+func (f_ FileVersion) LocalizedName() string {
+	rv := objc.Send[string](f_.ID, objc.Sel("localizedName"))
 	return rv
 }
 
@@ -186,15 +186,15 @@ func (f_ FileVersion) LocalizedName() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/localizedname
-func (f_ FileVersion) SetLocalizedName(value appkit.string) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setLocalizedName:"), value)
+func (f_ FileVersion) SetLocalizedName(value string) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setLocalizedName:"), objc.String(value))
 }
 
 // The user-presentable name of the computer on which the revision was saved.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/localizednameofsavingcomputer
-func (f_ FileVersion) LocalizedNameOfSavingComputer() appkit.string {
-	rv := objc.Send[appkit.string](f_.ID, objc.Sel("localizedNameOfSavingComputer"))
+func (f_ FileVersion) LocalizedNameOfSavingComputer() string {
+	rv := objc.Send[string](f_.ID, objc.Sel("localizedNameOfSavingComputer"))
 	return rv
 }
 
@@ -204,8 +204,8 @@ func (f_ FileVersion) LocalizedNameOfSavingComputer() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/localizednameofsavingcomputer
-func (f_ FileVersion) SetLocalizedNameOfSavingComputer(value appkit.string) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setLocalizedNameOfSavingComputer:"), value)
+func (f_ FileVersion) SetLocalizedNameOfSavingComputer(value string) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setLocalizedNameOfSavingComputer:"), objc.String(value))
 }
 
 // The modification date of the version.

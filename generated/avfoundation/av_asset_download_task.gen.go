@@ -121,8 +121,8 @@ func (a_ AssetDownloadTask) SetLoadedTimeRanges(value foundation.IValue) {
 // The configuration options for the task.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetdownloadtask/options
-func (a_ AssetDownloadTask) Options() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("options"))
+func (a_ AssetDownloadTask) Options() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("options"))
 	return rv
 }
 
@@ -132,8 +132,8 @@ func (a_ AssetDownloadTask) Options() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetdownloadtask/options
-func (a_ AssetDownloadTask) SetOptions(value appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setOptions:"), value)
+func (a_ AssetDownloadTask) SetOptions(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setOptions:"), objc.String(value))
 }
 
 // The asset that this task downloads.

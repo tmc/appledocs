@@ -46,8 +46,6 @@ const (
 // Fallback type aliases for undefined types
 // These types are referenced in method signatures but not fully documented.
 // Using unsafe.Pointer as fallback to allow code generation.
-type CFRunLoopRef unsafe.Pointer
-
 type Class unsafe.Pointer
 
 type FileAttributeKey unsafe.Pointer
@@ -90,8 +88,6 @@ type NSHTTPCookieAcceptPolicy unsafe.Pointer
 
 type NSHelpManagerContextHelpKey unsafe.Pointer
 
-type NSISO8601DateFormatOptions unsafe.Pointer
-
 type NSImageName unsafe.Pointer
 
 type NSInsertionPosition unsafe.Pointer
@@ -99,10 +95,6 @@ type NSInsertionPosition unsafe.Pointer
 type NSLengthFormatterUnit unsafe.Pointer
 
 type NSLineBreakMode unsafe.Pointer
-
-type NSLocaleKey unsafe.Pointer
-
-type NSLocaleLanguageDirection unsafe.Pointer
 
 type NSMetadataQueryAttributeValueTuple unsafe.Pointer
 
@@ -125,10 +117,6 @@ type NSRange unsafe.Pointer
 type NSRoundingMode unsafe.Pointer
 
 type NSSoundName unsafe.Pointer
-
-type NSStreamPropertyKey unsafe.Pointer
-
-type NSStringEncoding unsafe.Pointer
 
 type NSTestComparisonOperation unsafe.Pointer
 

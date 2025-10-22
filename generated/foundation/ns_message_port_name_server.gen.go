@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [MessagePortNameServer] class.
@@ -30,8 +29,8 @@ type _MessagePortNameServerClass struct {
 // An interface definition for the [MessagePortNameServer] class.
 type IMessagePortNameServer interface {
 	IPortNameServer
-	PortForName(name appkit.string) Port
-	PortForNameHost(name appkit.string, host appkit.string) Port
+	PortForName(name string) Port
+	PortForNameHost(name string, host string) Port
 }
 
 // A server takes and returns message ports.
@@ -95,16 +94,16 @@ func (mc _MessagePortNameServerClass) SharedInstance() objc.ID {
 // Returns the object registered under a given name on the local host.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMessagePortNameServer/portForName:
-func (m_ MessagePortNameServer) PortForName(name appkit.string) Port {
-	rv := objc.Send[Port](m_.ID, objc.Sel("portForName:"), name)
+func (m_ MessagePortNameServer) PortForName(name string) Port {
+	rv := objc.Send[Port](m_.ID, objc.Sel("portForName:"), objc.String(name))
 	return rv
 }
 
 // Returns the object registered under a given name on the local host.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMessagePortNameServer/portForName:host:
-func (m_ MessagePortNameServer) PortForNameHost(name appkit.string, host appkit.string) Port {
-	rv := objc.Send[Port](m_.ID, objc.Sel("portForName:host:"), name, host)
+func (m_ MessagePortNameServer) PortForNameHost(name string, host string) Port {
+	rv := objc.Send[Port](m_.ID, objc.Sel("portForName:host:"), objc.String(name), objc.String(host))
 	return rv
 }
 

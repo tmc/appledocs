@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,7 +31,7 @@ type _URLDownloadClass struct {
 type IURLDownload interface {
 	objectivec.IObject
 	Cancel()
-	SetDestinationAllowOverwrite(path appkit.string, allowOverwrite bool)
+	SetDestinationAllowOverwrite(path string, allowOverwrite bool)
 }
 
 // An object that downloads a resource asynchronously and saves the data to a file.
@@ -100,9 +99,9 @@ func NewURLDownloadWithRequestDelegate(request IURLRequest, delegate objectivec.
 // Returns an initialized NSURLDownload object that will resume downloading the specified data to the specified file and begins the download.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLDownload/init(resumeData:delegate:path:)
-func NewURLDownloadWithResumeDataDelegatePath(resumeData IData, delegate objectivec.IObject, path appkit.string) URLDownload {
+func NewURLDownloadWithResumeDataDelegatePath(resumeData IData, delegate objectivec.IObject, path string) URLDownload {
 	instance := getURLDownloadClass().Alloc()
-	rv := objc.Send[URLDownload](instance.ID, objc.Sel("initWithResumeData:delegate:path:"), resumeData, delegate, path)
+	rv := objc.Send[URLDownload](instance.ID, objc.Sel("initWithResumeData:delegate:path:"), resumeData, delegate, objc.String(path))
 	rv.Autorelease()
 	return rv
 }
@@ -111,8 +110,8 @@ func NewURLDownloadWithResumeDataDelegatePath(resumeData IData, delegate objecti
 // Returns whether a URL download object can resume a download that was decoded with the specified MIME type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLDownload/canResumeDownloadDecoded(withEncodingMIMEType:)
-func (uc _URLDownloadClass) CanResumeDownloadDecodedWithEncodingMIMEType(MIMEType appkit.string) bool {
-	rv := objc.Send[bool](objc.ID(uc.class), objc.Sel("canResumeDownloadDecodedWithEncodingMIMEType:"), MIMEType)
+func (uc _URLDownloadClass) CanResumeDownloadDecodedWithEncodingMIMEType(MIMEType string) bool {
+	rv := objc.Send[bool](objc.ID(uc.class), objc.Sel("canResumeDownloadDecodedWithEncodingMIMEType:"), objc.String(MIMEType))
 	return rv
 }
 
@@ -126,8 +125,8 @@ func (u_ URLDownload) Cancel() {
 // Sets the destination path of the downloaded file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLDownload/setDestination(_:allowOverwrite:)
-func (u_ URLDownload) SetDestinationAllowOverwrite(path appkit.string, allowOverwrite bool) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setDestination:allowOverwrite:"), path, allowOverwrite)
+func (u_ URLDownload) SetDestinationAllowOverwrite(path string, allowOverwrite bool) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setDestination:allowOverwrite:"), objc.String(path), allowOverwrite)
 }
 
 // Returns whether the receiver deletes partially downloaded files when a download stops prematurely.

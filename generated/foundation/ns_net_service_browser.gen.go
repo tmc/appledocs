@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -35,7 +34,7 @@ type INetServiceBrowser interface {
 	ScheduleInRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode)
 	SearchForBrowsableDomains()
 	SearchForRegistrationDomains()
-	SearchForServicesOfTypeInDomain(type_ appkit.string, domainString appkit.string)
+	SearchForServicesOfTypeInDomain(type_ string, domainString string)
 	Stop()
 }
 
@@ -119,8 +118,8 @@ func (n_ NetServiceBrowser) SearchForRegistrationDomains() {
 // Starts a search for services of a particular type within a specific domain.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetServiceBrowser/searchForServices(ofType:inDomain:)
-func (n_ NetServiceBrowser) SearchForServicesOfTypeInDomain(type_ appkit.string, domainString appkit.string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("searchForServicesOfType:inDomain:"), type_, domainString)
+func (n_ NetServiceBrowser) SearchForServicesOfTypeInDomain(type_ string, domainString string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("searchForServicesOfType:inDomain:"), objc.String(type_), objc.String(domainString))
 }
 
 // Halts a currently running search or resolution.

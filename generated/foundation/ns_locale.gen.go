@@ -7,7 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,12 +31,12 @@ type _LocaleClass struct {
 // An interface definition for the [Locale] class.
 type ILocale interface {
 	objectivec.IObject
-	DisplayNameForKeyValue(key unsafe.Pointer, value objectivec.IObject) String
-	LocalizedStringForCollatorIdentifier(collatorIdentifier appkit.string) String
-	LocalizedStringForCountryCode(countryCode appkit.string) String
-	LocalizedStringForLanguageCode(languageCode appkit.string) String
-	LocalizedStringForLocaleIdentifier(localeIdentifier appkit.string) String
-	ObjectForKey(key unsafe.Pointer) objc.ID
+	DisplayNameForKeyValue(key corefoundation.ILocaleKey, value objectivec.IObject) String
+	LocalizedStringForCollatorIdentifier(collatorIdentifier string) String
+	LocalizedStringForCountryCode(countryCode string) String
+	LocalizedStringForLanguageCode(languageCode string) String
+	LocalizedStringForLocaleIdentifier(localeIdentifier string) String
+	ObjectForKey(key corefoundation.ILocaleKey) objc.ID
 }
 
 // Information about linguistic, cultural, and technological conventions for use in formatting data for presentation.
@@ -104,9 +104,9 @@ func NewLocaleWithCoder(coder ICoder) Locale {
 // Initializes a locale using a given locale identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/init(localeIdentifier:)
-func NewLocaleWithLocaleIdentifier(string_ appkit.string) Locale {
+func NewLocaleWithLocaleIdentifier(string_ string) Locale {
 	instance := getLocaleClass().Alloc()
-	rv := objc.Send[Locale](instance.ID, objc.Sel("initWithLocaleIdentifier:"), string_)
+	rv := objc.Send[Locale](instance.ID, objc.Sel("initWithLocaleIdentifier:"), objc.String(string_))
 	rv.Autorelease()
 	return rv
 }
@@ -115,23 +115,23 @@ func NewLocaleWithLocaleIdentifier(string_ appkit.string) Locale {
 // Returns the canonical identifier for a given locale identification string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/canonicalLocaleIdentifier(from:)
-func (lc _LocaleClass) CanonicalLocaleIdentifierFromString(string_ appkit.string) String {
-	rv := objc.Send[String](objc.ID(lc.class), objc.Sel("canonicalLocaleIdentifierFromString:"), string_)
+func (lc _LocaleClass) CanonicalLocaleIdentifierFromString(string_ string) String {
+	rv := objc.Send[String](objc.ID(lc.class), objc.Sel("canonicalLocaleIdentifierFromString:"), objc.String(string_))
 	return rv
 }
 
 // Returns the direction of the sequence of characters in a line for the specified ISO language code.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/characterDirection(forLanguage:)
-func (lc _LocaleClass) CharacterDirectionForLanguage(isoLangCode appkit.string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(lc.class), objc.Sel("characterDirectionForLanguage:"), isoLangCode)
+func (lc _LocaleClass) CharacterDirectionForLanguage(isoLangCode string) corefoundation.LocaleLanguageDirection {
+	rv := objc.Send[corefoundation.LocaleLanguageDirection](objc.ID(lc.class), objc.Sel("characterDirectionForLanguage:"), objc.String(isoLangCode))
 	return rv
 }
 
 // Returns a locale identifier from a Windows locale code.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/localeIdentifier(fromWindowsLocaleCode:)
-func (lc _LocaleClass) LocaleIdentifierFromWindowsLocaleCode(lcid unsafe.Pointer) String {
+func (lc _LocaleClass) LocaleIdentifierFromWindowsLocaleCode(lcid Iuint32) String {
 	rv := objc.Send[String](objc.ID(lc.class), objc.Sel("localeIdentifierFromWindowsLocaleCode:"), lcid)
 	return rv
 }
@@ -139,8 +139,8 @@ func (lc _LocaleClass) LocaleIdentifierFromWindowsLocaleCode(lcid unsafe.Pointer
 // Returns a Window locale code from the locale identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/windowsLocaleCode(fromLocaleIdentifier:)
-func (lc _LocaleClass) WindowsLocaleCodeFromLocaleIdentifier(localeIdentifier appkit.string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(lc.class), objc.Sel("windowsLocaleCodeFromLocaleIdentifier:"), localeIdentifier)
+func (lc _LocaleClass) WindowsLocaleCodeFromLocaleIdentifier(localeIdentifier string) uint32 {
+	rv := objc.Send[uint32](objc.ID(lc.class), objc.Sel("windowsLocaleCodeFromLocaleIdentifier:"), objc.String(localeIdentifier))
 	return rv
 }
 
@@ -182,7 +182,7 @@ func (lc _LocaleClass) SystemLocale() Locale {
 // Returns the display name for the given locale component value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/displayName(forKey:value:)
-func (l_ Locale) DisplayNameForKeyValue(key unsafe.Pointer, value objectivec.IObject) String {
+func (l_ Locale) DisplayNameForKeyValue(key corefoundation.ILocaleKey, value objectivec.IObject) String {
 	rv := objc.Send[String](l_.ID, objc.Sel("displayNameForKey:value:"), key, value)
 	return rv
 }
@@ -190,39 +190,39 @@ func (l_ Locale) DisplayNameForKeyValue(key unsafe.Pointer, value objectivec.IOb
 // Returns the localized string for the specified collator identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/localizedString(forCollatorIdentifier:)
-func (l_ Locale) LocalizedStringForCollatorIdentifier(collatorIdentifier appkit.string) String {
-	rv := objc.Send[String](l_.ID, objc.Sel("localizedStringForCollatorIdentifier:"), collatorIdentifier)
+func (l_ Locale) LocalizedStringForCollatorIdentifier(collatorIdentifier string) String {
+	rv := objc.Send[String](l_.ID, objc.Sel("localizedStringForCollatorIdentifier:"), objc.String(collatorIdentifier))
 	return rv
 }
 
 // Returns the localized string for a country or region code.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/localizedString(forCountryCode:)
-func (l_ Locale) LocalizedStringForCountryCode(countryCode appkit.string) String {
-	rv := objc.Send[String](l_.ID, objc.Sel("localizedStringForCountryCode:"), countryCode)
+func (l_ Locale) LocalizedStringForCountryCode(countryCode string) String {
+	rv := objc.Send[String](l_.ID, objc.Sel("localizedStringForCountryCode:"), objc.String(countryCode))
 	return rv
 }
 
 // Returns the localized string for the specified language code.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/localizedString(forLanguageCode:)
-func (l_ Locale) LocalizedStringForLanguageCode(languageCode appkit.string) String {
-	rv := objc.Send[String](l_.ID, objc.Sel("localizedStringForLanguageCode:"), languageCode)
+func (l_ Locale) LocalizedStringForLanguageCode(languageCode string) String {
+	rv := objc.Send[String](l_.ID, objc.Sel("localizedStringForLanguageCode:"), objc.String(languageCode))
 	return rv
 }
 
 // Returns the localized string for the specified locale identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/localizedString(forLocaleIdentifier:)
-func (l_ Locale) LocalizedStringForLocaleIdentifier(localeIdentifier appkit.string) String {
-	rv := objc.Send[String](l_.ID, objc.Sel("localizedStringForLocaleIdentifier:"), localeIdentifier)
+func (l_ Locale) LocalizedStringForLocaleIdentifier(localeIdentifier string) String {
+	rv := objc.Send[String](l_.ID, objc.Sel("localizedStringForLocaleIdentifier:"), objc.String(localeIdentifier))
 	return rv
 }
 
 // Returns the value of the component corresponding to the specified key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/object(forKey:)
-func (l_ Locale) ObjectForKey(key unsafe.Pointer) objc.ID {
+func (l_ Locale) ObjectForKey(key corefoundation.ILocaleKey) objc.ID {
 	rv := objc.Send[objc.ID](l_.ID, objc.Sel("objectForKey:"), key)
 	return rv
 }
@@ -230,8 +230,8 @@ func (l_ Locale) ObjectForKey(key unsafe.Pointer) objc.ID {
 // The alternate end quotation symbol for the locale.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/alternateQuotationEndDelimiter
-func (l_ Locale) AlternateQuotationEndDelimiter() appkit.string {
-	rv := objc.Send[appkit.string](l_.ID, objc.Sel("alternateQuotationEndDelimiter"))
+func (l_ Locale) AlternateQuotationEndDelimiter() string {
+	rv := objc.Send[string](l_.ID, objc.Sel("alternateQuotationEndDelimiter"))
 	return rv
 }
 
@@ -246,24 +246,24 @@ func (l_ Locale) AvailableLocaleIdentifiers() []string {
 // The calendar identifier for the locale.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/calendarIdentifier
-func (l_ Locale) CalendarIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](l_.ID, objc.Sel("calendarIdentifier"))
+func (l_ Locale) CalendarIdentifier() string {
+	rv := objc.Send[string](l_.ID, objc.Sel("calendarIdentifier"))
 	return rv
 }
 
 // The collation identifier for the locale.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/collationIdentifier
-func (l_ Locale) CollationIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](l_.ID, objc.Sel("collationIdentifier"))
+func (l_ Locale) CollationIdentifier() string {
+	rv := objc.Send[string](l_.ID, objc.Sel("collationIdentifier"))
 	return rv
 }
 
 // The collator identifier for the locale.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/collatorIdentifier
-func (l_ Locale) CollatorIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](l_.ID, objc.Sel("collatorIdentifier"))
+func (l_ Locale) CollatorIdentifier() string {
+	rv := objc.Send[string](l_.ID, objc.Sel("collatorIdentifier"))
 	return rv
 }
 
@@ -278,8 +278,8 @@ func (l_ Locale) CommonISOCurrencyCodes() []string {
 // The currency code for the locale.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/currencyCode
-func (l_ Locale) CurrencyCode() appkit.string {
-	rv := objc.Send[appkit.string](l_.ID, objc.Sel("currencyCode"))
+func (l_ Locale) CurrencyCode() string {
+	rv := objc.Send[string](l_.ID, objc.Sel("currencyCode"))
 	return rv
 }
 
@@ -294,31 +294,31 @@ func (l_ Locale) CurrentLocale() NSLocale {
 // The decimal separator for the locale.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/decimalSeparator
-func (l_ Locale) DecimalSeparator() appkit.string {
-	rv := objc.Send[appkit.string](l_.ID, objc.Sel("decimalSeparator"))
+func (l_ Locale) DecimalSeparator() string {
+	rv := objc.Send[string](l_.ID, objc.Sel("decimalSeparator"))
 	return rv
 }
 
 // The grouping separator for the locale.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/groupingSeparator
-func (l_ Locale) GroupingSeparator() appkit.string {
-	rv := objc.Send[appkit.string](l_.ID, objc.Sel("groupingSeparator"))
+func (l_ Locale) GroupingSeparator() string {
+	rv := objc.Send[string](l_.ID, objc.Sel("groupingSeparator"))
 	return rv
 }
 
 // The language code for the locale.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/languageCode
-func (l_ Locale) LanguageCode() appkit.string {
-	rv := objc.Send[appkit.string](l_.ID, objc.Sel("languageCode"))
+func (l_ Locale) LanguageCode() string {
+	rv := objc.Send[string](l_.ID, objc.Sel("languageCode"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/languageIdentifier
-func (l_ Locale) LanguageIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](l_.ID, objc.Sel("languageIdentifier"))
+func (l_ Locale) LanguageIdentifier() string {
+	rv := objc.Send[string](l_.ID, objc.Sel("languageIdentifier"))
 	return rv
 }
 
@@ -333,31 +333,31 @@ func (l_ Locale) PreferredLanguages() []string {
 // The begin quotation symbol for the locale.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/quotationBeginDelimiter
-func (l_ Locale) QuotationBeginDelimiter() appkit.string {
-	rv := objc.Send[appkit.string](l_.ID, objc.Sel("quotationBeginDelimiter"))
+func (l_ Locale) QuotationBeginDelimiter() string {
+	rv := objc.Send[string](l_.ID, objc.Sel("quotationBeginDelimiter"))
 	return rv
 }
 
 // The end quotation symbol for the locale.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/quotationEndDelimiter
-func (l_ Locale) QuotationEndDelimiter() appkit.string {
-	rv := objc.Send[appkit.string](l_.ID, objc.Sel("quotationEndDelimiter"))
+func (l_ Locale) QuotationEndDelimiter() string {
+	rv := objc.Send[string](l_.ID, objc.Sel("quotationEndDelimiter"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/regionCode
-func (l_ Locale) RegionCode() appkit.string {
-	rv := objc.Send[appkit.string](l_.ID, objc.Sel("regionCode"))
+func (l_ Locale) RegionCode() string {
+	rv := objc.Send[string](l_.ID, objc.Sel("regionCode"))
 	return rv
 }
 
 // The script code for the locale.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/scriptCode
-func (l_ Locale) ScriptCode() appkit.string {
-	rv := objc.Send[appkit.string](l_.ID, objc.Sel("scriptCode"))
+func (l_ Locale) ScriptCode() string {
+	rv := objc.Send[string](l_.ID, objc.Sel("scriptCode"))
 	return rv
 }
 
@@ -398,8 +398,8 @@ func (l_ Locale) SetLocale(value ILocale) {
 // The alternate begin quotation symbol for the locale.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nslocale/alternatequotationbegindelimiter
-func (l_ Locale) AlternateQuotationBeginDelimiter() appkit.string {
-	rv := objc.Send[appkit.string](l_.ID, objc.Sel("alternateQuotationBeginDelimiter"))
+func (l_ Locale) AlternateQuotationBeginDelimiter() string {
+	rv := objc.Send[string](l_.ID, objc.Sel("alternateQuotationBeginDelimiter"))
 	return rv
 }
 
@@ -409,15 +409,15 @@ func (l_ Locale) AlternateQuotationBeginDelimiter() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nslocale/alternatequotationbegindelimiter
-func (l_ Locale) SetAlternateQuotationBeginDelimiter(value appkit.string) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("setAlternateQuotationBeginDelimiter:"), value)
+func (l_ Locale) SetAlternateQuotationBeginDelimiter(value string) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setAlternateQuotationBeginDelimiter:"), objc.String(value))
 }
 
 // The country or region code for the locale.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nslocale/countrycode
-func (l_ Locale) CountryCode() appkit.string {
-	rv := objc.Send[appkit.string](l_.ID, objc.Sel("countryCode"))
+func (l_ Locale) CountryCode() string {
+	rv := objc.Send[string](l_.ID, objc.Sel("countryCode"))
 	return rv
 }
 
@@ -427,15 +427,15 @@ func (l_ Locale) CountryCode() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nslocale/countrycode
-func (l_ Locale) SetCountryCode(value appkit.string) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("setCountryCode:"), value)
+func (l_ Locale) SetCountryCode(value string) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setCountryCode:"), objc.String(value))
 }
 
 // The currency symbol for the locale.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nslocale/currencysymbol
-func (l_ Locale) CurrencySymbol() appkit.string {
-	rv := objc.Send[appkit.string](l_.ID, objc.Sel("currencySymbol"))
+func (l_ Locale) CurrencySymbol() string {
+	rv := objc.Send[string](l_.ID, objc.Sel("currencySymbol"))
 	return rv
 }
 
@@ -445,8 +445,8 @@ func (l_ Locale) CurrencySymbol() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nslocale/currencysymbol
-func (l_ Locale) SetCurrencySymbol(value appkit.string) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("setCurrencySymbol:"), value)
+func (l_ Locale) SetCurrencySymbol(value string) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setCurrencySymbol:"), objc.String(value))
 }
 
 // The exemplar character set for the locale.
@@ -470,8 +470,8 @@ func (l_ Locale) SetExemplarCharacterSet(value ICharacterSet) {
 // The identifier for the locale.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nslocale/localeidentifier
-func (l_ Locale) LocaleIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](l_.ID, objc.Sel("localeIdentifier"))
+func (l_ Locale) LocaleIdentifier() string {
+	rv := objc.Send[string](l_.ID, objc.Sel("localeIdentifier"))
 	return rv
 }
 
@@ -481,15 +481,15 @@ func (l_ Locale) LocaleIdentifier() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nslocale/localeidentifier
-func (l_ Locale) SetLocaleIdentifier(value appkit.string) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("setLocaleIdentifier:"), value)
+func (l_ Locale) SetLocaleIdentifier(value string) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setLocaleIdentifier:"), objc.String(value))
 }
 
 // The variant code for the locale.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nslocale/variantcode
-func (l_ Locale) VariantCode() appkit.string {
-	rv := objc.Send[appkit.string](l_.ID, objc.Sel("variantCode"))
+func (l_ Locale) VariantCode() string {
+	rv := objc.Send[string](l_.ID, objc.Sel("variantCode"))
 	return rv
 }
 
@@ -499,8 +499,8 @@ func (l_ Locale) VariantCode() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nslocale/variantcode
-func (l_ Locale) SetVariantCode(value appkit.string) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("setVariantCode:"), value)
+func (l_ Locale) SetVariantCode(value string) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setVariantCode:"), objc.String(value))
 }
 
 

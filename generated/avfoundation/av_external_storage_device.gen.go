@@ -114,8 +114,8 @@ func (e_ ExternalStorageDevice) Connected() bool {
 // The name of an external storage device that’s appropriate for a user interface.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avexternalstoragedevice/displayname
-func (e_ ExternalStorageDevice) DisplayName() appkit.string {
-	rv := objc.Send[appkit.string](e_.ID, objc.Sel("displayName"))
+func (e_ ExternalStorageDevice) DisplayName() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("displayName"))
 	return rv
 }
 
@@ -125,8 +125,8 @@ func (e_ ExternalStorageDevice) DisplayName() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avexternalstoragedevice/displayname
-func (e_ ExternalStorageDevice) SetDisplayName(value appkit.string) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setDisplayName:"), value)
+func (e_ ExternalStorageDevice) SetDisplayName(value string) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setDisplayName:"), objc.String(value))
 }
 
 // The amount of free storage space, in bytes, that’s available on the external storage device.

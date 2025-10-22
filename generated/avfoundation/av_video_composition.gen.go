@@ -117,8 +117,8 @@ func (v_ VideoComposition) Instructions() []objc.ID {
 // The scale at which the video composition should render.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVVideoComposition/renderScale
-func (v_ VideoComposition) RenderScale() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("renderScale"))
+func (v_ VideoComposition) RenderScale() float32 {
+	rv := objc.Send[float32](v_.ID, objc.Sel("renderScale"))
 	return rv
 }
 
@@ -143,8 +143,8 @@ func (v_ VideoComposition) SetAnimationTool(value unsafe.Pointer) {
 // The color primaries used for video composition.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avvideocomposition/colorprimaries
-func (v_ VideoComposition) ColorPrimaries() appkit.string {
-	rv := objc.Send[appkit.string](v_.ID, objc.Sel("colorPrimaries"))
+func (v_ VideoComposition) ColorPrimaries() string {
+	rv := objc.Send[string](v_.ID, objc.Sel("colorPrimaries"))
 	return rv
 }
 
@@ -154,15 +154,15 @@ func (v_ VideoComposition) ColorPrimaries() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avvideocomposition/colorprimaries
-func (v_ VideoComposition) SetColorPrimaries(value appkit.string) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setColorPrimaries:"), value)
+func (v_ VideoComposition) SetColorPrimaries(value string) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setColorPrimaries:"), objc.String(value))
 }
 
 // The transfer function used for video composition.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avvideocomposition/colortransferfunction
-func (v_ VideoComposition) ColorTransferFunction() appkit.string {
-	rv := objc.Send[appkit.string](v_.ID, objc.Sel("colorTransferFunction"))
+func (v_ VideoComposition) ColorTransferFunction() string {
+	rv := objc.Send[string](v_.ID, objc.Sel("colorTransferFunction"))
 	return rv
 }
 
@@ -172,15 +172,15 @@ func (v_ VideoComposition) ColorTransferFunction() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avvideocomposition/colortransferfunction
-func (v_ VideoComposition) SetColorTransferFunction(value appkit.string) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setColorTransferFunction:"), value)
+func (v_ VideoComposition) SetColorTransferFunction(value string) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setColorTransferFunction:"), objc.String(value))
 }
 
 // The YCbCr matrix used for video composition.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avvideocomposition/colorycbcrmatrix
-func (v_ VideoComposition) ColorYCbCrMatrix() appkit.string {
-	rv := objc.Send[appkit.string](v_.ID, objc.Sel("colorYCbCrMatrix"))
+func (v_ VideoComposition) ColorYCbCrMatrix() string {
+	rv := objc.Send[string](v_.ID, objc.Sel("colorYCbCrMatrix"))
 	return rv
 }
 
@@ -190,8 +190,8 @@ func (v_ VideoComposition) ColorYCbCrMatrix() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avvideocomposition/colorycbcrmatrix
-func (v_ VideoComposition) SetColorYCbCrMatrix(value appkit.string) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setColorYCbCrMatrix:"), value)
+func (v_ VideoComposition) SetColorYCbCrMatrix(value string) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setColorYCbCrMatrix:"), objc.String(value))
 }
 
 // The output buffers of the video composition can be specified with the outputBufferDescription. The value is an array of an array of CMTag objects that describes the output buffers.

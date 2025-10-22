@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,7 +30,7 @@ type _XPCListenerClass struct {
 // An interface definition for the [XPCListener] class.
 type IXPCListener interface {
 	objectivec.IObject
-	SetConnectionCodeSigningRequirement(requirement appkit.string)
+	SetConnectionCodeSigningRequirement(requirement string)
 	Suspend()
 }
 
@@ -88,9 +87,9 @@ func NewXPCListener() XPCListener {
 // Initializes a listener in a LaunchAgent or LaunchDaemon which has a name advertised in a file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCListener/init(machServiceName:)
-func NewXPCListenerWithMachServiceName(name appkit.string) XPCListener {
+func NewXPCListenerWithMachServiceName(name string) XPCListener {
 	instance := getXPCListenerClass().Alloc()
-	rv := objc.Send[XPCListener](instance.ID, objc.Sel("initWithMachServiceName:"), name)
+	rv := objc.Send[XPCListener](instance.ID, objc.Sel("initWithMachServiceName:"), objc.String(name))
 	rv.Autorelease()
 	return rv
 }
@@ -107,8 +106,8 @@ func (xc _XPCListenerClass) AnonymousListener() XPCListener {
 // Sets the code signing requirement for connections to this listener.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCListener/setConnectionCodeSigningRequirement(_:)
-func (x_ XPCListener) SetConnectionCodeSigningRequirement(requirement appkit.string) {
-	objc.Send[objc.ID](x_.ID, objc.Sel("setConnectionCodeSigningRequirement:"), requirement)
+func (x_ XPCListener) SetConnectionCodeSigningRequirement(requirement string) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("setConnectionCodeSigningRequirement:"), objc.String(requirement))
 }
 
 // Suspends the listener.

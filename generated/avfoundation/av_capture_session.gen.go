@@ -402,8 +402,8 @@ func (c_ CaptureSession) DeferredStartDelegateCallbackQueue() unsafe.Pointer {
 // A value that indicates the percentage of the session’s available hardware budget in use.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/hardwareCost
-func (c_ CaptureSession) HardwareCost() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("hardwareCost"))
+func (c_ CaptureSession) HardwareCost() float32 {
+	rv := objc.Send[float32](c_.ID, objc.Sel("hardwareCost"))
 	return rv
 }
 

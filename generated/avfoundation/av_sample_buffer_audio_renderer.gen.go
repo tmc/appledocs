@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -84,8 +83,8 @@ func NewSampleBufferAudioRenderer() SampleBufferAudioRenderer {
 // The unique identifier of the output device used to play audio.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleBufferAudioRenderer/audioOutputDeviceUniqueID
-func (s_ SampleBufferAudioRenderer) AudioOutputDeviceUniqueID() appkit.string {
-	rv := objc.Send[appkit.string](s_.ID, objc.Sel("audioOutputDeviceUniqueID"))
+func (s_ SampleBufferAudioRenderer) AudioOutputDeviceUniqueID() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("audioOutputDeviceUniqueID"))
 	return rv
 }
 
@@ -95,8 +94,8 @@ func (s_ SampleBufferAudioRenderer) AudioOutputDeviceUniqueID() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleBufferAudioRenderer/audioOutputDeviceUniqueID
-func (s_ SampleBufferAudioRenderer) SetAudioOutputDeviceUniqueID(value appkit.string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setAudioOutputDeviceUniqueID:"), value)
+func (s_ SampleBufferAudioRenderer) SetAudioOutputDeviceUniqueID(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setAudioOutputDeviceUniqueID:"), objc.String(value))
 }
 
 // The source audio channel layouts the audio renderer supports for spatialization.
@@ -192,8 +191,8 @@ func (s_ SampleBufferAudioRenderer) SetStatus(value unsafe.Pointer) {
 // The current audio volume for the audio renderer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferaudiorenderer/volume
-func (s_ SampleBufferAudioRenderer) Volume() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("volume"))
+func (s_ SampleBufferAudioRenderer) Volume() float32 {
+	rv := objc.Send[float32](s_.ID, objc.Sel("volume"))
 	return rv
 }
 
@@ -203,15 +202,15 @@ func (s_ SampleBufferAudioRenderer) Volume() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferaudiorenderer/volume
-func (s_ SampleBufferAudioRenderer) SetVolume(value unsafe.Pointer) {
+func (s_ SampleBufferAudioRenderer) SetVolume(value float32) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setVolume:"), value)
 }
 
 // The key that indicates the presentation timestamp of the first queued sample that was flushed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferaudiorendererflushtimekey
-func (s_ SampleBufferAudioRenderer) AVSampleBufferAudioRendererFlushTimeKey() appkit.string {
-	rv := objc.Send[appkit.string](s_.ID, objc.Sel("AVSampleBufferAudioRendererFlushTimeKey"))
+func (s_ SampleBufferAudioRenderer) AVSampleBufferAudioRendererFlushTimeKey() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("AVSampleBufferAudioRendererFlushTimeKey"))
 	return rv
 }
 

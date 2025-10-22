@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -127,9 +126,9 @@ func NewDecimalNumberWithMantissaExponentIsNegative(mantissa uint64, exponent un
 // Initializes a decimal number so that its value is equivalent to that in a given numeric string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/init(string:)
-func NewDecimalNumberWithString(numberValue appkit.string) DecimalNumber {
+func NewDecimalNumberWithString(numberValue string) DecimalNumber {
 	instance := getDecimalNumberClass().Alloc()
-	rv := objc.Send[DecimalNumber](instance.ID, objc.Sel("initWithString:"), numberValue)
+	rv := objc.Send[DecimalNumber](instance.ID, objc.Sel("initWithString:"), objc.String(numberValue))
 	rv.Autorelease()
 	return rv
 }
@@ -139,9 +138,9 @@ func NewDecimalNumberWithString(numberValue appkit.string) DecimalNumber {
 // Initializes a decimal number so that its value is equivalent to that in a given numeric string, interpreted using a given locale.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/init(string:locale:)
-func NewDecimalNumberWithStringLocale(numberValue appkit.string, locale objectivec.IObject) DecimalNumber {
+func NewDecimalNumberWithStringLocale(numberValue string, locale objectivec.IObject) DecimalNumber {
 	instance := getDecimalNumberClass().Alloc()
-	rv := objc.Send[DecimalNumber](instance.ID, objc.Sel("initWithString:locale:"), numberValue, locale)
+	rv := objc.Send[DecimalNumber](instance.ID, objc.Sel("initWithString:locale:"), objc.String(numberValue), locale)
 	rv.Autorelease()
 	return rv
 }
@@ -166,16 +165,16 @@ func (dc _DecimalNumberClass) DecimalNumberWithMantissaExponentIsNegative(mantis
 // Creates a decimal number whose value is equivalent to that in a given numeric string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/decimalNumberWithString:
-func (dc _DecimalNumberClass) DecimalNumberWithString(numberValue appkit.string) DecimalNumber {
-	rv := objc.Send[DecimalNumber](objc.ID(dc.class), objc.Sel("decimalNumberWithString:"), numberValue)
+func (dc _DecimalNumberClass) DecimalNumberWithString(numberValue string) DecimalNumber {
+	rv := objc.Send[DecimalNumber](objc.ID(dc.class), objc.Sel("decimalNumberWithString:"), objc.String(numberValue))
 	return rv
 }
 
 // Creates a decimal number whose value is equivalent to that in a given numeric string, interpreted using a given locale.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/decimalNumberWithString:locale:
-func (dc _DecimalNumberClass) DecimalNumberWithStringLocale(numberValue appkit.string, locale objectivec.IObject) DecimalNumber {
-	rv := objc.Send[DecimalNumber](objc.ID(dc.class), objc.Sel("decimalNumberWithString:locale:"), numberValue, locale)
+func (dc _DecimalNumberClass) DecimalNumberWithStringLocale(numberValue string, locale objectivec.IObject) DecimalNumber {
+	rv := objc.Send[DecimalNumber](objc.ID(dc.class), objc.Sel("decimalNumberWithString:locale:"), objc.String(numberValue), locale)
 	return rv
 }
 
@@ -370,8 +369,8 @@ func (d_ DecimalNumber) SetDefaultBehavior(value objc.ID) {
 // The decimal number’s closest approximate value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/doubleValue
-func (d_ DecimalNumber) DoubleValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("doubleValue"))
+func (d_ DecimalNumber) DoubleValue() float64 {
+	rv := objc.Send[float64](d_.ID, objc.Sel("doubleValue"))
 	return rv
 }
 

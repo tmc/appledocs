@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -98,8 +97,8 @@ func (u_ URLRequest) AllowsPersistentDNS() bool {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLRequest/cookiePartitionIdentifier
-func (u_ URLRequest) CookiePartitionIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](u_.ID, objc.Sel("cookiePartitionIdentifier"))
+func (u_ URLRequest) CookiePartitionIdentifier() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("cookiePartitionIdentifier"))
 	return rv
 }
 
@@ -122,8 +121,8 @@ func (u_ URLRequest) NetworkServiceType() URLRequestNetworkServiceType {
 // A dictionary containing all of the HTTP header fields for a request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/allhttpheaderfields
-func (u_ URLRequest) AllHTTPHeaderFields() appkit.string {
-	rv := objc.Send[appkit.string](u_.ID, objc.Sel("allHTTPHeaderFields"))
+func (u_ URLRequest) AllHTTPHeaderFields() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("allHTTPHeaderFields"))
 	return rv
 }
 
@@ -133,8 +132,8 @@ func (u_ URLRequest) AllHTTPHeaderFields() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/allhttpheaderfields
-func (u_ URLRequest) SetAllHTTPHeaderFields(value appkit.string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setAllHTTPHeaderFields:"), value)
+func (u_ URLRequest) SetAllHTTPHeaderFields(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setAllHTTPHeaderFields:"), objc.String(value))
 }
 
 // A Boolean value that indicates whether the request is allowed to use the cellular radio (if present).
@@ -278,8 +277,8 @@ func (u_ URLRequest) SetHttpBodyStream(value IInputStream) {
 // The HTTP request method.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/httpmethod
-func (u_ URLRequest) HttpMethod() appkit.string {
-	rv := objc.Send[appkit.string](u_.ID, objc.Sel("httpMethod"))
+func (u_ URLRequest) HttpMethod() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("httpMethod"))
 	return rv
 }
 
@@ -289,8 +288,8 @@ func (u_ URLRequest) HttpMethod() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/httpmethod
-func (u_ URLRequest) SetHttpMethod(value appkit.string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setHttpMethod:"), value)
+func (u_ URLRequest) SetHttpMethod(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setHttpMethod:"), objc.String(value))
 }
 
 // A Boolean value that indicates whether the request should continue transmitting data before receiving a response from an earlier transmission.

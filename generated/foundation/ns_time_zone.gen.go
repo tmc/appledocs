@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -99,8 +98,8 @@ func NewTimeZoneForSecondsFromGMT(seconds int) TimeZone {
 // Returns the time zone object identified by a given abbreviation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/init(abbreviation:)
-func NewTimeZoneWithAbbreviation(abbreviation appkit.string) TimeZone {
-	rv := objc.Send[TimeZone](objc.ID(getTimeZoneClass().class), objc.Sel("timeZoneWithAbbreviation:"), abbreviation)
+func NewTimeZoneWithAbbreviation(abbreviation string) TimeZone {
+	rv := objc.Send[TimeZone](objc.ID(getTimeZoneClass().class), objc.Sel("timeZoneWithAbbreviation:"), objc.String(abbreviation))
 	return rv
 }
 
@@ -109,9 +108,9 @@ func NewTimeZoneWithAbbreviation(abbreviation appkit.string) TimeZone {
 // Returns a time zone initialized with a given identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/init(name:)
-func NewTimeZoneWithName(tzName appkit.string) TimeZone {
+func NewTimeZoneWithName(tzName string) TimeZone {
 	instance := getTimeZoneClass().Alloc()
-	rv := objc.Send[TimeZone](instance.ID, objc.Sel("initWithName:"), tzName)
+	rv := objc.Send[TimeZone](instance.ID, objc.Sel("initWithName:"), objc.String(tzName))
 	rv.Autorelease()
 	return rv
 }
@@ -120,8 +119,8 @@ func NewTimeZoneWithName(tzName appkit.string) TimeZone {
 // Returns the time zone object identified by a given abbreviation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/init(abbreviation:)
-func (tc _TimeZoneClass) TimeZoneWithAbbreviation(abbreviation appkit.string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(tc.class), objc.Sel("timeZoneWithAbbreviation:"), abbreviation)
+func (tc _TimeZoneClass) TimeZoneWithAbbreviation(abbreviation string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(tc.class), objc.Sel("timeZoneWithAbbreviation:"), objc.String(abbreviation))
 	return rv
 }
 
@@ -143,8 +142,8 @@ func (tc _TimeZoneClass) ResetSystemTimeZone() {
 // Returns the time zone object identified by a given identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/timeZoneWithName:
-func (tc _TimeZoneClass) TimeZoneWithName(tzName appkit.string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(tc.class), objc.Sel("timeZoneWithName:"), tzName)
+func (tc _TimeZoneClass) TimeZoneWithName(tzName string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(tc.class), objc.Sel("timeZoneWithName:"), objc.String(tzName))
 	return rv
 }
 
@@ -247,8 +246,8 @@ func (t_ TimeZone) SetDefaultTimeZone(value ITimeZone) {
 // A textual description of the time zone including the name, abbreviation, offset from GMT, and whether or not daylight saving time is currently in effect.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/description
-func (t_ TimeZone) Description() appkit.string {
-	rv := objc.Send[appkit.string](t_.ID, objc.Sel("description"))
+func (t_ TimeZone) Description() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("description"))
 	return rv
 }
 
@@ -263,8 +262,8 @@ func (t_ TimeZone) LocalTimeZone() NSTimeZone {
 // The geopolitical region ID that identifies the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/name
-func (t_ TimeZone) Name() appkit.string {
-	rv := objc.Send[appkit.string](t_.ID, objc.Sel("name"))
+func (t_ TimeZone) Name() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -279,8 +278,8 @@ func (t_ TimeZone) SystemTimeZone() NSTimeZone {
 // The abbreviation for the receiver, such as “EDT” (Eastern Daylight Time).
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstimezone/abbreviation
-func (t_ TimeZone) Abbreviation() appkit.string {
-	rv := objc.Send[appkit.string](t_.ID, objc.Sel("abbreviation"))
+func (t_ TimeZone) Abbreviation() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("abbreviation"))
 	return rv
 }
 
@@ -290,8 +289,8 @@ func (t_ TimeZone) Abbreviation() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstimezone/abbreviation
-func (t_ TimeZone) SetAbbreviation(value appkit.string) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setAbbreviation:"), value)
+func (t_ TimeZone) SetAbbreviation(value string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setAbbreviation:"), objc.String(value))
 }
 
 // The current daylight saving time offset of the receiver.

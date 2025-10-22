@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [XMLDocument] class.
@@ -33,7 +32,7 @@ type IXMLDocument interface {
 	AddChild(child IXMLNode)
 	InsertChildrenAtIndex(children []XMLNode, index uint)
 	ObjectByApplyingXSLTArgumentsError(xslt IData, arguments unsafe.Pointer, error_ IError) objc.ID
-	ObjectByApplyingXSLTStringArgumentsError(xslt appkit.string, arguments unsafe.Pointer, error_ IError) objc.ID
+	ObjectByApplyingXSLTStringArgumentsError(xslt string, arguments unsafe.Pointer, error_ IError) objc.ID
 	RemoveChildAtIndex(index uint)
 	RootElement() XMLElement
 	SetRootElement(root IXMLElement)
@@ -127,8 +126,8 @@ func (x_ XMLDocument) ObjectByApplyingXSLTArgumentsError(xslt IData, arguments u
 // Applies the XSLT pattern rules and templates (specified as a string) to the receiver and returns a document object containing transformed XML or HTML markup.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDocument/object(byApplyingXSLTString:arguments:)
-func (x_ XMLDocument) ObjectByApplyingXSLTStringArgumentsError(xslt appkit.string, arguments unsafe.Pointer, error_ IError) objc.ID {
-	rv := objc.Send[objc.ID](x_.ID, objc.Sel("objectByApplyingXSLTString:arguments:error:"), xslt, arguments, error_)
+func (x_ XMLDocument) ObjectByApplyingXSLTStringArgumentsError(xslt string, arguments unsafe.Pointer, error_ IError) objc.ID {
+	rv := objc.Send[objc.ID](x_.ID, objc.Sel("objectByApplyingXSLTString:arguments:error:"), objc.String(xslt), arguments, error_)
 	return rv
 }
 
@@ -157,8 +156,8 @@ func (x_ XMLDocument) SetRootElement(root IXMLElement) {
 // Returns the MIME type for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDocument/mimeType
-func (x_ XMLDocument) MIMEType() appkit.string {
-	rv := objc.Send[appkit.string](x_.ID, objc.Sel("MIMEType"))
+func (x_ XMLDocument) MIMEType() string {
+	rv := objc.Send[string](x_.ID, objc.Sel("MIMEType"))
 	return rv
 }
 
@@ -168,8 +167,8 @@ func (x_ XMLDocument) MIMEType() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDocument/mimeType
-func (x_ XMLDocument) SetMIMEType(value appkit.string) {
-	objc.Send[objc.ID](x_.ID, objc.Sel("setMIMEType:"), value)
+func (x_ XMLDocument) SetMIMEType(value string) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("setMIMEType:"), objc.String(value))
 }
 
 // Returns the XML string representation of the receiver—that is, the entire document—encapsulated in a data object.
@@ -183,8 +182,8 @@ func (x_ XMLDocument) XMLData() NSData {
 // Sets the character encoding of the receiver to
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmldocument/characterencoding
-func (x_ XMLDocument) CharacterEncoding() appkit.string {
-	rv := objc.Send[appkit.string](x_.ID, objc.Sel("characterEncoding"))
+func (x_ XMLDocument) CharacterEncoding() string {
+	rv := objc.Send[string](x_.ID, objc.Sel("characterEncoding"))
 	return rv
 }
 
@@ -194,8 +193,8 @@ func (x_ XMLDocument) CharacterEncoding() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmldocument/characterencoding
-func (x_ XMLDocument) SetCharacterEncoding(value appkit.string) {
-	objc.Send[objc.ID](x_.ID, objc.Sel("setCharacterEncoding:"), value)
+func (x_ XMLDocument) SetCharacterEncoding(value string) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("setCharacterEncoding:"), objc.String(value))
 }
 
 // Sets the kind of output content for the receiver.
@@ -255,8 +254,8 @@ func (x_ XMLDocument) SetIsStandalone(value bool) {
 // Sets the version of the receiver’s XML.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmldocument/version
-func (x_ XMLDocument) Version() appkit.string {
-	rv := objc.Send[appkit.string](x_.ID, objc.Sel("version"))
+func (x_ XMLDocument) Version() string {
+	rv := objc.Send[string](x_.ID, objc.Sel("version"))
 	return rv
 }
 
@@ -266,8 +265,8 @@ func (x_ XMLDocument) Version() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmldocument/version
-func (x_ XMLDocument) SetVersion(value appkit.string) {
-	objc.Send[objc.ID](x_.ID, objc.Sel("setVersion:"), value)
+func (x_ XMLDocument) SetVersion(value string) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("setVersion:"), objc.String(value))
 }
 
 

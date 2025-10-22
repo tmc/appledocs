@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -88,9 +87,9 @@ func NewUniqueIDSpecifier() UniqueIDSpecifier {
 // Returns an object, initialized with the given arguments.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUniqueIDSpecifier/init(containerClassDescription:containerSpecifier:key:uniqueID:)
-func NewUniqueIDSpecifierWithContainerClassDescriptionContainerSpecifierKeyUniqueID(classDesc IScriptClassDescription, container IScriptObjectSpecifier, property appkit.string, uniqueID objectivec.IObject) UniqueIDSpecifier {
+func NewUniqueIDSpecifierWithContainerClassDescriptionContainerSpecifierKeyUniqueID(classDesc IScriptClassDescription, container IScriptObjectSpecifier, property string, uniqueID objectivec.IObject) UniqueIDSpecifier {
 	instance := getUniqueIDSpecifierClass().Alloc()
-	rv := objc.Send[UniqueIDSpecifier](instance.ID, objc.Sel("initWithContainerClassDescription:containerSpecifier:key:uniqueID:"), classDesc, container, property, uniqueID)
+	rv := objc.Send[UniqueIDSpecifier](instance.ID, objc.Sel("initWithContainerClassDescription:containerSpecifier:key:uniqueID:"), classDesc, container, objc.String(property), uniqueID)
 	rv.Autorelease()
 	return rv
 }

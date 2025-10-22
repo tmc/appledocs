@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,9 +30,9 @@ type _UserDefaultsClass struct {
 // An interface definition for the [UserDefaults] class.
 type IUserDefaults interface {
 	objectivec.IObject
-	SetURLForKey(url IURL, defaultName appkit.string)
-	SetObjectForKey(value objectivec.IObject, defaultName appkit.string)
-	StringForKey(defaultName appkit.string) String
+	SetURLForKey(url IURL, defaultName string)
+	SetObjectForKey(value objectivec.IObject, defaultName string)
+	StringForKey(defaultName string) String
 }
 
 // An interface to the user’s defaults database, where you store key-value pairs persistently across launches of your app.
@@ -89,9 +88,9 @@ func NewUserDefaults() UserDefaults {
 // Creates a user defaults object initialized with the defaults for the specified database name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UserDefaults/init(suiteName:)
-func NewUserDefaultsWithSuiteName(suitename appkit.string) UserDefaults {
+func NewUserDefaultsWithSuiteName(suitename string) UserDefaults {
 	instance := getUserDefaultsClass().Alloc()
-	rv := objc.Send[UserDefaults](instance.ID, objc.Sel("initWithSuiteName:"), suitename)
+	rv := objc.Send[UserDefaults](instance.ID, objc.Sel("initWithSuiteName:"), objc.String(suitename))
 	rv.Autorelease()
 	return rv
 }
@@ -107,22 +106,22 @@ func (uc _UserDefaultsClass) StandardUserDefaults() UserDefaults {
 // Sets the value of the specified default key to the specified URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UserDefaults/set(_:forKey:)-2bqjt
-func (u_ UserDefaults) SetURLForKey(url IURL, defaultName appkit.string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setURL:forKey:"), url, defaultName)
+func (u_ UserDefaults) SetURLForKey(url IURL, defaultName string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setURL:forKey:"), url, objc.String(defaultName))
 }
 
 // Sets the value of the specified default key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UserDefaults/set(_:forKey:)-8ab6d
-func (u_ UserDefaults) SetObjectForKey(value objectivec.IObject, defaultName appkit.string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setObject:forKey:"), value, defaultName)
+func (u_ UserDefaults) SetObjectForKey(value objectivec.IObject, defaultName string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setObject:forKey:"), value, objc.String(defaultName))
 }
 
 // Returns the string associated with the specified key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UserDefaults/string(forKey:)
-func (u_ UserDefaults) StringForKey(defaultName appkit.string) String {
-	rv := objc.Send[String](u_.ID, objc.Sel("stringForKey:"), defaultName)
+func (u_ UserDefaults) StringForKey(defaultName string) String {
+	rv := objc.Send[String](u_.ID, objc.Sel("stringForKey:"), objc.String(defaultName))
 	return rv
 }
 
@@ -137,8 +136,8 @@ func (u_ UserDefaults) StandardUserDefaults() NSUserDefaults {
 // The current volatile domain names.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/userdefaults/volatiledomainnames
-func (u_ UserDefaults) VolatileDomainNames() appkit.string {
-	rv := objc.Send[appkit.string](u_.ID, objc.Sel("volatileDomainNames"))
+func (u_ UserDefaults) VolatileDomainNames() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("volatileDomainNames"))
 	return rv
 }
 
@@ -148,8 +147,8 @@ func (u_ UserDefaults) VolatileDomainNames() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/userdefaults/volatiledomainnames
-func (u_ UserDefaults) SetVolatileDomainNames(value appkit.string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setVolatileDomainNames:"), value)
+func (u_ UserDefaults) SetVolatileDomainNames(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setVolatileDomainNames:"), objc.String(value))
 }
 
 

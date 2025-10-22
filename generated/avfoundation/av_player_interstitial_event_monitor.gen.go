@@ -155,8 +155,8 @@ func (p_ PlayerInterstitialEventMonitor) SetCurrentEvent(value IAVPlayerIntersti
 // The skip control label for the currentEvent.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitor/currenteventskipcontrollabel
-func (p_ PlayerInterstitialEventMonitor) CurrentEventSkipControlLabel() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("currentEventSkipControlLabel"))
+func (p_ PlayerInterstitialEventMonitor) CurrentEventSkipControlLabel() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("currentEventSkipControlLabel"))
 	return rv
 }
 
@@ -166,8 +166,8 @@ func (p_ PlayerInterstitialEventMonitor) CurrentEventSkipControlLabel() appkit.s
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitor/currenteventskipcontrollabel
-func (p_ PlayerInterstitialEventMonitor) SetCurrentEventSkipControlLabel(value appkit.string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setCurrentEventSkipControlLabel:"), value)
+func (p_ PlayerInterstitialEventMonitor) SetCurrentEventSkipControlLabel(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setCurrentEventSkipControlLabel:"), objc.String(value))
 }
 
 // The skippable event state for the currentEvent.

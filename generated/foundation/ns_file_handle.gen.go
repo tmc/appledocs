@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -103,8 +102,8 @@ func NewFileHandle() FileHandle {
 // Returns a file handle initialized for reading the file, device, or named socket at the specified path.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/init(forReadingAtPath:)
-func NewFileHandleForReadingAtPath(path appkit.string) FileHandle {
-	rv := objc.Send[FileHandle](objc.ID(getFileHandleClass().class), objc.Sel("fileHandleForReadingAtPath:"), path)
+func NewFileHandleForReadingAtPath(path string) FileHandle {
+	rv := objc.Send[FileHandle](objc.ID(getFileHandleClass().class), objc.Sel("fileHandleForReadingAtPath:"), objc.String(path))
 	return rv
 }
 
@@ -123,8 +122,8 @@ func NewFileHandleForReadingFromURLError(url IURL, error_ IError) FileHandle {
 // Returns a file handle initialized for reading and writing to the file, device, or named socket at the specified path.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/init(forUpdatingAtPath:)
-func NewFileHandleForUpdatingAtPath(path appkit.string) FileHandle {
-	rv := objc.Send[FileHandle](objc.ID(getFileHandleClass().class), objc.Sel("fileHandleForUpdatingAtPath:"), path)
+func NewFileHandleForUpdatingAtPath(path string) FileHandle {
+	rv := objc.Send[FileHandle](objc.ID(getFileHandleClass().class), objc.Sel("fileHandleForUpdatingAtPath:"), objc.String(path))
 	return rv
 }
 
@@ -143,8 +142,8 @@ func NewFileHandleForUpdatingURLError(url IURL, error_ IError) FileHandle {
 // Returns a file handle initialized for writing to the file, device, or named socket at the specified path.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/init(forWritingAtPath:)
-func NewFileHandleForWritingAtPath(path appkit.string) FileHandle {
-	rv := objc.Send[FileHandle](objc.ID(getFileHandleClass().class), objc.Sel("fileHandleForWritingAtPath:"), path)
+func NewFileHandleForWritingAtPath(path string) FileHandle {
+	rv := objc.Send[FileHandle](objc.ID(getFileHandleClass().class), objc.Sel("fileHandleForWritingAtPath:"), objc.String(path))
 	return rv
 }
 
@@ -175,7 +174,7 @@ func NewFileHandleWithCoder(coder ICoder) FileHandle {
 // Creates and returns a file handle object associated with the specified file descriptor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/init(fileDescriptor:)
-func NewFileHandleWithFileDescriptor(fd unsafe.Pointer) FileHandle {
+func NewFileHandleWithFileDescriptor(fd int) FileHandle {
 	instance := getFileHandleClass().Alloc()
 	rv := objc.Send[FileHandle](instance.ID, objc.Sel("initWithFileDescriptor:"), fd)
 	rv.Autorelease()
@@ -187,7 +186,7 @@ func NewFileHandleWithFileDescriptor(fd unsafe.Pointer) FileHandle {
 // Creates and returns a file handle object associated with the specified file descriptor and deallocation policy.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/init(fileDescriptor:closeOnDealloc:)
-func NewFileHandleWithFileDescriptorCloseOnDealloc(fd unsafe.Pointer, closeopt bool) FileHandle {
+func NewFileHandleWithFileDescriptorCloseOnDealloc(fd int, closeopt bool) FileHandle {
 	instance := getFileHandleClass().Alloc()
 	rv := objc.Send[FileHandle](instance.ID, objc.Sel("initWithFileDescriptor:closeOnDealloc:"), fd, closeopt)
 	rv.Autorelease()
@@ -198,8 +197,8 @@ func NewFileHandleWithFileDescriptorCloseOnDealloc(fd unsafe.Pointer, closeopt b
 // Returns a file handle initialized for reading the file, device, or named socket at the specified path.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/init(forReadingAtPath:)
-func (fc _FileHandleClass) FileHandleForReadingAtPath(path appkit.string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("fileHandleForReadingAtPath:"), path)
+func (fc _FileHandleClass) FileHandleForReadingAtPath(path string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("fileHandleForReadingAtPath:"), objc.String(path))
 	return rv
 }
 
@@ -214,8 +213,8 @@ func (fc _FileHandleClass) FileHandleForReadingFromURLError(url IURL, error_ IEr
 // Returns a file handle initialized for reading and writing to the file, device, or named socket at the specified path.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/init(forUpdatingAtPath:)
-func (fc _FileHandleClass) FileHandleForUpdatingAtPath(path appkit.string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("fileHandleForUpdatingAtPath:"), path)
+func (fc _FileHandleClass) FileHandleForUpdatingAtPath(path string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("fileHandleForUpdatingAtPath:"), objc.String(path))
 	return rv
 }
 
@@ -230,8 +229,8 @@ func (fc _FileHandleClass) FileHandleForUpdatingURLError(url IURL, error_ IError
 // Returns a file handle initialized for writing to the file, device, or named socket at the specified path.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/init(forWritingAtPath:)
-func (fc _FileHandleClass) FileHandleForWritingAtPath(path appkit.string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("fileHandleForWritingAtPath:"), path)
+func (fc _FileHandleClass) FileHandleForWritingAtPath(path string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("fileHandleForWritingAtPath:"), objc.String(path))
 	return rv
 }
 
@@ -519,8 +518,8 @@ func (f_ FileHandle) SetFileDescriptor(value unsafe.Pointer) {
 // Currently unused.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsfilehandlenotificationmonitormodes
-func (f_ FileHandle) NSFileHandleNotificationMonitorModes() appkit.string {
-	rv := objc.Send[appkit.string](f_.ID, objc.Sel("NSFileHandleNotificationMonitorModes"))
+func (f_ FileHandle) NSFileHandleNotificationMonitorModes() string {
+	rv := objc.Send[string](f_.ID, objc.Sel("NSFileHandleNotificationMonitorModes"))
 	return rv
 }
 

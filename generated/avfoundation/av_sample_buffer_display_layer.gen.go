@@ -227,8 +227,8 @@ func (s_ SampleBufferDisplayLayer) SetVideoGravity(value ILayerVideoGravity) {
 // The key for the corresponding error.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferdisplaylayerfailedtodecodenotificationerrorkey
-func (s_ SampleBufferDisplayLayer) AVSampleBufferDisplayLayerFailedToDecodeNotificationErrorKey() appkit.string {
-	rv := objc.Send[appkit.string](s_.ID, objc.Sel("AVSampleBufferDisplayLayerFailedToDecodeNotificationErrorKey"))
+func (s_ SampleBufferDisplayLayer) AVSampleBufferDisplayLayerFailedToDecodeNotificationErrorKey() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("AVSampleBufferDisplayLayerFailedToDecodeNotificationErrorKey"))
 	return rv
 }
 

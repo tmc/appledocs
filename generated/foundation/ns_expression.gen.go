@@ -232,8 +232,8 @@ func (e_ Expression) SetFalse(value IExpression) {
 // The function for the expression.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/function
-func (e_ Expression) Function() appkit.string {
-	rv := objc.Send[appkit.string](e_.ID, objc.Sel("function"))
+func (e_ Expression) Function() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("function"))
 	return rv
 }
 
@@ -243,15 +243,15 @@ func (e_ Expression) Function() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/function
-func (e_ Expression) SetFunction(value appkit.string) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setFunction:"), value)
+func (e_ Expression) SetFunction(value string) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setFunction:"), objc.String(value))
 }
 
 // The key path for the expression.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/keypath
-func (e_ Expression) KeyPath() appkit.string {
-	rv := objc.Send[appkit.string](e_.ID, objc.Sel("keyPath"))
+func (e_ Expression) KeyPath() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("keyPath"))
 	return rv
 }
 
@@ -261,8 +261,8 @@ func (e_ Expression) KeyPath() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/keypath
-func (e_ Expression) SetKeyPath(value appkit.string) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setKeyPath:"), value)
+func (e_ Expression) SetKeyPath(value string) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setKeyPath:"), objc.String(value))
 }
 
 // The left expression of an aggregate expression.
@@ -340,8 +340,8 @@ func (e_ Expression) SetTrue(value IExpression) {
 // The variable for the expression.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/variable
-func (e_ Expression) Variable() appkit.string {
-	rv := objc.Send[appkit.string](e_.ID, objc.Sel("variable"))
+func (e_ Expression) Variable() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("variable"))
 	return rv
 }
 
@@ -351,8 +351,8 @@ func (e_ Expression) Variable() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/variable
-func (e_ Expression) SetVariable(value appkit.string) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setVariable:"), value)
+func (e_ Expression) SetVariable(value string) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setVariable:"), objc.String(value))
 }
 
 

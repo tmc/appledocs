@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -92,8 +91,8 @@ func (tc _TextCheckingResultClass) AddressCheckingResultWithRangeComponents(rang
 // Creates and returns a text checking result with the specified phone number.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/phoneNumberCheckingResult(range:phoneNumber:)
-func (tc _TextCheckingResultClass) PhoneNumberCheckingResultWithRangePhoneNumber(range_ IRange, phoneNumber appkit.string) TextCheckingResult {
-	rv := objc.Send[TextCheckingResult](objc.ID(tc.class), objc.Sel("phoneNumberCheckingResultWithRange:phoneNumber:"), range_, phoneNumber)
+func (tc _TextCheckingResultClass) PhoneNumberCheckingResultWithRangePhoneNumber(range_ IRange, phoneNumber string) TextCheckingResult {
+	rv := objc.Send[TextCheckingResult](objc.ID(tc.class), objc.Sel("phoneNumberCheckingResultWithRange:phoneNumber:"), range_, objc.String(phoneNumber))
 	return rv
 }
 
@@ -132,8 +131,8 @@ func (t_ TextCheckingResult) Duration() TimeInterval {
 // The phone number of a type checking result.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/phoneNumber
-func (t_ TextCheckingResult) PhoneNumber() appkit.string {
-	rv := objc.Send[appkit.string](t_.ID, objc.Sel("phoneNumber"))
+func (t_ TextCheckingResult) PhoneNumber() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("phoneNumber"))
 	return rv
 }
 
@@ -172,8 +171,8 @@ func (t_ TextCheckingResult) NSNotFound() int {
 // The address dictionary of a type checking result.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/addresscomponents
-func (t_ TextCheckingResult) AddressComponents() appkit.string {
-	rv := objc.Send[appkit.string](t_.ID, objc.Sel("addressComponents"))
+func (t_ TextCheckingResult) AddressComponents() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("addressComponents"))
 	return rv
 }
 
@@ -183,14 +182,14 @@ func (t_ TextCheckingResult) AddressComponents() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/addresscomponents
-func (t_ TextCheckingResult) SetAddressComponents(value appkit.string) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setAddressComponents:"), value)
+func (t_ TextCheckingResult) SetAddressComponents(value string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setAddressComponents:"), objc.String(value))
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/alternativestrings
-func (t_ TextCheckingResult) AlternativeStrings() appkit.string {
-	rv := objc.Send[appkit.string](t_.ID, objc.Sel("alternativeStrings"))
+func (t_ TextCheckingResult) AlternativeStrings() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("alternativeStrings"))
 	return rv
 }
 
@@ -198,15 +197,15 @@ func (t_ TextCheckingResult) AlternativeStrings() appkit.string {
 // SetAlternativeStrings sets the value of the alternativeStrings property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/alternativestrings
-func (t_ TextCheckingResult) SetAlternativeStrings(value appkit.string) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setAlternativeStrings:"), value)
+func (t_ TextCheckingResult) SetAlternativeStrings(value string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setAlternativeStrings:"), objc.String(value))
 }
 
 // A dictionary containing the components of a type checking result.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/components
-func (t_ TextCheckingResult) Components() appkit.string {
-	rv := objc.Send[appkit.string](t_.ID, objc.Sel("components"))
+func (t_ TextCheckingResult) Components() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("components"))
 	return rv
 }
 
@@ -216,15 +215,15 @@ func (t_ TextCheckingResult) Components() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/components
-func (t_ TextCheckingResult) SetComponents(value appkit.string) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setComponents:"), value)
+func (t_ TextCheckingResult) SetComponents(value string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setComponents:"), objc.String(value))
 }
 
 // The details of a located grammatical type checking result.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/grammardetails
-func (t_ TextCheckingResult) GrammarDetails() appkit.string {
-	rv := objc.Send[appkit.string](t_.ID, objc.Sel("grammarDetails"))
+func (t_ TextCheckingResult) GrammarDetails() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("grammarDetails"))
 	return rv
 }
 
@@ -234,8 +233,8 @@ func (t_ TextCheckingResult) GrammarDetails() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/grammardetails
-func (t_ TextCheckingResult) SetGrammarDetails(value appkit.string) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setGrammarDetails:"), value)
+func (t_ TextCheckingResult) SetGrammarDetails(value string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setGrammarDetails:"), objc.String(value))
 }
 
 // Returns the number of ranges.
@@ -277,8 +276,8 @@ func (t_ TextCheckingResult) SetOrthography(value IOrthography) {
 // A replacement string from one of a number of replacement checking results.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/replacementstring
-func (t_ TextCheckingResult) ReplacementString() appkit.string {
-	rv := objc.Send[appkit.string](t_.ID, objc.Sel("replacementString"))
+func (t_ TextCheckingResult) ReplacementString() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("replacementString"))
 	return rv
 }
 
@@ -288,8 +287,8 @@ func (t_ TextCheckingResult) ReplacementString() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/replacementstring
-func (t_ TextCheckingResult) SetReplacementString(value appkit.string) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setReplacementString:"), value)
+func (t_ TextCheckingResult) SetReplacementString(value string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setReplacementString:"), objc.String(value))
 }
 
 // The time zone component of a type checking result.

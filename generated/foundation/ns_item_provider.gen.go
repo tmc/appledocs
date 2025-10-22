@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/cloudkit"
 	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
@@ -34,12 +33,12 @@ type _ItemProviderClass struct {
 type IItemProvider interface {
 	objectivec.IObject
 	CanLoadObjectOfClass(aClass unsafe.Pointer) bool
-	LoadDataRepresentationForTypeIdentifierCompletionHandler(typeIdentifier appkit.string, completionHandler unsafe.Pointer) Progress
-	LoadFileRepresentationForTypeIdentifierCompletionHandler(typeIdentifier appkit.string, completionHandler unsafe.Pointer) Progress
-	LoadInPlaceFileRepresentationForTypeIdentifierCompletionHandler(typeIdentifier appkit.string, completionHandler unsafe.Pointer) Progress
+	LoadDataRepresentationForTypeIdentifierCompletionHandler(typeIdentifier string, completionHandler unsafe.Pointer) Progress
+	LoadFileRepresentationForTypeIdentifierCompletionHandler(typeIdentifier string, completionHandler unsafe.Pointer) Progress
+	LoadInPlaceFileRepresentationForTypeIdentifierCompletionHandler(typeIdentifier string, completionHandler unsafe.Pointer) Progress
 	LoadObjectOfClassCompletionHandler(aClass unsafe.Pointer, completionHandler unsafe.Pointer) Progress
 	RegisterCKShareWithContainerAllowedSharingOptionsPreparationHandler(container cloudkit.ICKContainer, allowedOptions cloudkit.CKAllowedSharingOptions, preparationHandler unsafe.Pointer)
-	RegisterFileRepresentationForTypeIdentifierFileOptionsVisibilityLoadHandler(typeIdentifier appkit.string, fileOptions ItemProviderFileOptions, visibility IItemProviderRepresentationVisibility, loadHandler unsafe.Pointer)
+	RegisterFileRepresentationForTypeIdentifierFileOptionsVisibilityLoadHandler(typeIdentifier string, fileOptions ItemProviderFileOptions, visibility IItemProviderRepresentationVisibility, loadHandler unsafe.Pointer)
 }
 
 // An item provider for conveying data or a file between processes during drag-and-drop or copy-and-paste activities, or from a host app to an app extension.
@@ -114,24 +113,24 @@ func (i_ ItemProvider) CanLoadObjectOfClass(aClass unsafe.Pointer) bool {
 // Asynchronously copies the provided, typed data into a generic data object, returning a progress object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSItemProvider/loadDataRepresentation(forTypeIdentifier:completionHandler:)
-func (i_ ItemProvider) LoadDataRepresentationForTypeIdentifierCompletionHandler(typeIdentifier appkit.string, completionHandler unsafe.Pointer) Progress {
-	rv := objc.Send[Progress](i_.ID, objc.Sel("loadDataRepresentationForTypeIdentifier:completionHandler:"), typeIdentifier, completionHandler)
+func (i_ ItemProvider) LoadDataRepresentationForTypeIdentifierCompletionHandler(typeIdentifier string, completionHandler unsafe.Pointer) Progress {
+	rv := objc.Send[Progress](i_.ID, objc.Sel("loadDataRepresentationForTypeIdentifier:completionHandler:"), objc.String(typeIdentifier), completionHandler)
 	return rv
 }
 
 // Asynchronously writes a copy of the provided, typed data to a temporary file, returning a progress object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSItemProvider/loadFileRepresentation(forTypeIdentifier:completionHandler:)
-func (i_ ItemProvider) LoadFileRepresentationForTypeIdentifierCompletionHandler(typeIdentifier appkit.string, completionHandler unsafe.Pointer) Progress {
-	rv := objc.Send[Progress](i_.ID, objc.Sel("loadFileRepresentationForTypeIdentifier:completionHandler:"), typeIdentifier, completionHandler)
+func (i_ ItemProvider) LoadFileRepresentationForTypeIdentifierCompletionHandler(typeIdentifier string, completionHandler unsafe.Pointer) Progress {
+	rv := objc.Send[Progress](i_.ID, objc.Sel("loadFileRepresentationForTypeIdentifier:completionHandler:"), objc.String(typeIdentifier), completionHandler)
 	return rv
 }
 
 // Asynchronously opens a file in place, if possible, returning a progress object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSItemProvider/loadInPlaceFileRepresentation(forTypeIdentifier:completionHandler:)
-func (i_ ItemProvider) LoadInPlaceFileRepresentationForTypeIdentifierCompletionHandler(typeIdentifier appkit.string, completionHandler unsafe.Pointer) Progress {
-	rv := objc.Send[Progress](i_.ID, objc.Sel("loadInPlaceFileRepresentationForTypeIdentifier:completionHandler:"), typeIdentifier, completionHandler)
+func (i_ ItemProvider) LoadInPlaceFileRepresentationForTypeIdentifierCompletionHandler(typeIdentifier string, completionHandler unsafe.Pointer) Progress {
+	rv := objc.Send[Progress](i_.ID, objc.Sel("loadInPlaceFileRepresentationForTypeIdentifier:completionHandler:"), objc.String(typeIdentifier), completionHandler)
 	return rv
 }
 
@@ -153,8 +152,8 @@ func (i_ ItemProvider) RegisterCKShareWithContainerAllowedSharingOptionsPreparat
 // Registers a file-backed representation for an item, specifying file options, item visibility, and a load handler.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSItemProvider/registerFileRepresentation(forTypeIdentifier:fileOptions:visibility:loadHandler:)
-func (i_ ItemProvider) RegisterFileRepresentationForTypeIdentifierFileOptionsVisibilityLoadHandler(typeIdentifier appkit.string, fileOptions ItemProviderFileOptions, visibility IItemProviderRepresentationVisibility, loadHandler unsafe.Pointer) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("registerFileRepresentationForTypeIdentifier:fileOptions:visibility:loadHandler:"), typeIdentifier, fileOptions, visibility, loadHandler)
+func (i_ ItemProvider) RegisterFileRepresentationForTypeIdentifierFileOptionsVisibilityLoadHandler(typeIdentifier string, fileOptions ItemProviderFileOptions, visibility IItemProviderRepresentationVisibility, loadHandler unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("registerFileRepresentationForTypeIdentifier:fileOptions:visibility:loadHandler:"), objc.String(typeIdentifier), fileOptions, visibility, loadHandler)
 }
 
 // The preferred style for presenting the item provider’s data.
@@ -294,8 +293,8 @@ func (i_ ItemProvider) SetRegisteredContentTypesForOpenInPlace(value unsafe.Poin
 // Returns the array of type identifiers for the item provider, in the same order they were registered.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsitemprovider/registeredtypeidentifiers
-func (i_ ItemProvider) RegisteredTypeIdentifiers() appkit.string {
-	rv := objc.Send[appkit.string](i_.ID, objc.Sel("registeredTypeIdentifiers"))
+func (i_ ItemProvider) RegisteredTypeIdentifiers() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("registeredTypeIdentifiers"))
 	return rv
 }
 
@@ -305,15 +304,15 @@ func (i_ ItemProvider) RegisteredTypeIdentifiers() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsitemprovider/registeredtypeidentifiers
-func (i_ ItemProvider) SetRegisteredTypeIdentifiers(value appkit.string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setRegisteredTypeIdentifiers:"), value)
+func (i_ ItemProvider) SetRegisteredTypeIdentifiers(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setRegisteredTypeIdentifiers:"), objc.String(value))
 }
 
 // The filename to use when writing the provided data to a file on disk.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsitemprovider/suggestedname
-func (i_ ItemProvider) SuggestedName() appkit.string {
-	rv := objc.Send[appkit.string](i_.ID, objc.Sel("suggestedName"))
+func (i_ ItemProvider) SuggestedName() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("suggestedName"))
 	return rv
 }
 
@@ -323,8 +322,8 @@ func (i_ ItemProvider) SuggestedName() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsitemprovider/suggestedname
-func (i_ ItemProvider) SetSuggestedName(value appkit.string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setSuggestedName:"), value)
+func (i_ ItemProvider) SetSuggestedName(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setSuggestedName:"), objc.String(value))
 }
 
 // The collection of data an app uses to hold private team information during drag and drop.

@@ -480,8 +480,8 @@ func (c_ Composition) SetIsReadable(value bool) {
 // The lyrics of the asset in a language suitable for the current locale.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcomposition/lyrics
-func (c_ Composition) Lyrics() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("lyrics"))
+func (c_ Composition) Lyrics() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("lyrics"))
 	return rv
 }
 
@@ -491,8 +491,8 @@ func (c_ Composition) Lyrics() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcomposition/lyrics
-func (c_ Composition) SetLyrics(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setLyrics:"), value)
+func (c_ Composition) SetLyrics(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setLyrics:"), objc.String(value))
 }
 
 // A time value that indicates how closely playback follows the latest live stream content.
@@ -552,8 +552,8 @@ func (c_ Composition) SetPreferredMediaSelection(value IAVMediaSelection) {
 // The asset’s rate preference for playing its media.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcomposition/preferredrate
-func (c_ Composition) PreferredRate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("preferredRate"))
+func (c_ Composition) PreferredRate() float32 {
+	rv := objc.Send[float32](c_.ID, objc.Sel("preferredRate"))
 	return rv
 }
 
@@ -563,7 +563,7 @@ func (c_ Composition) PreferredRate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcomposition/preferredrate
-func (c_ Composition) SetPreferredRate(value unsafe.Pointer) {
+func (c_ Composition) SetPreferredRate(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPreferredRate:"), value)
 }
 
@@ -588,8 +588,8 @@ func (c_ Composition) SetPreferredTransform(value coregraphics.CGAffineTransform
 // The asset’s volume preference for playing its audible media.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcomposition/preferredvolume
-func (c_ Composition) PreferredVolume() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("preferredVolume"))
+func (c_ Composition) PreferredVolume() float32 {
+	rv := objc.Send[float32](c_.ID, objc.Sel("preferredVolume"))
 	return rv
 }
 
@@ -599,7 +599,7 @@ func (c_ Composition) PreferredVolume() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcomposition/preferredvolume
-func (c_ Composition) SetPreferredVolume(value unsafe.Pointer) {
+func (c_ Composition) SetPreferredVolume(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPreferredVolume:"), value)
 }
 
@@ -624,8 +624,8 @@ func (c_ Composition) SetProvidesPreciseDurationAndTiming(value bool) {
 // The options you used to create a composition.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcomposition/urlassetinitializationoptions
-func (c_ Composition) UrlAssetInitializationOptions() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("urlAssetInitializationOptions"))
+func (c_ Composition) UrlAssetInitializationOptions() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("urlAssetInitializationOptions"))
 	return rv
 }
 
@@ -635,8 +635,8 @@ func (c_ Composition) UrlAssetInitializationOptions() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcomposition/urlassetinitializationoptions
-func (c_ Composition) SetUrlAssetInitializationOptions(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setUrlAssetInitializationOptions:"), value)
+func (c_ Composition) SetUrlAssetInitializationOptions(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setUrlAssetInitializationOptions:"), objc.String(value))
 }
 
 

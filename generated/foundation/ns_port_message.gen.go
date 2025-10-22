@@ -113,8 +113,8 @@ func (p_ PortMessage) Components() objc.ID {
 // Returns the identifier for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/PortMessage/msgid
-func (p_ PortMessage) Msgid() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("msgid"))
+func (p_ PortMessage) Msgid() uint32 {
+	rv := objc.Send[uint32](p_.ID, objc.Sel("msgid"))
 	return rv
 }
 
@@ -124,7 +124,7 @@ func (p_ PortMessage) Msgid() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/PortMessage/msgid
-func (p_ PortMessage) SetMsgid(value unsafe.Pointer) {
+func (p_ PortMessage) SetMsgid(value Iuint32) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMsgid:"), value)
 }
 

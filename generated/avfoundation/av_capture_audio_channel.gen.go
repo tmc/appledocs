@@ -83,8 +83,8 @@ func NewCaptureAudioChannel() CaptureAudioChannel {
 // The instantaneous average power level in decibels.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureaudiochannel/averagepowerlevel
-func (c_ CaptureAudioChannel) AveragePowerLevel() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("averagePowerLevel"))
+func (c_ CaptureAudioChannel) AveragePowerLevel() float32 {
+	rv := objc.Send[float32](c_.ID, objc.Sel("averagePowerLevel"))
 	return rv
 }
 
@@ -94,7 +94,7 @@ func (c_ CaptureAudioChannel) AveragePowerLevel() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureaudiochannel/averagepowerlevel
-func (c_ CaptureAudioChannel) SetAveragePowerLevel(value unsafe.Pointer) {
+func (c_ CaptureAudioChannel) SetAveragePowerLevel(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAveragePowerLevel:"), value)
 }
 
@@ -119,8 +119,8 @@ func (c_ CaptureAudioChannel) SetIsEnabled(value bool) {
 // The peak hold power level in decibels.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureaudiochannel/peakholdlevel
-func (c_ CaptureAudioChannel) PeakHoldLevel() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("peakHoldLevel"))
+func (c_ CaptureAudioChannel) PeakHoldLevel() float32 {
+	rv := objc.Send[float32](c_.ID, objc.Sel("peakHoldLevel"))
 	return rv
 }
 
@@ -130,15 +130,15 @@ func (c_ CaptureAudioChannel) PeakHoldLevel() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureaudiochannel/peakholdlevel
-func (c_ CaptureAudioChannel) SetPeakHoldLevel(value unsafe.Pointer) {
+func (c_ CaptureAudioChannel) SetPeakHoldLevel(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPeakHoldLevel:"), value)
 }
 
 // The current volume (gain) of the channel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureaudiochannel/volume
-func (c_ CaptureAudioChannel) Volume() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("volume"))
+func (c_ CaptureAudioChannel) Volume() float32 {
+	rv := objc.Send[float32](c_.ID, objc.Sel("volume"))
 	return rv
 }
 
@@ -148,7 +148,7 @@ func (c_ CaptureAudioChannel) Volume() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureaudiochannel/volume
-func (c_ CaptureAudioChannel) SetVolume(value unsafe.Pointer) {
+func (c_ CaptureAudioChannel) SetVolume(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setVolume:"), value)
 }
 

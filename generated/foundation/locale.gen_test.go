@@ -17,3 +17,11 @@ func ExampleNewLocaleWithCoder() {
 	)
 	// Output:
 }
+// ExampleNewLocaleWithLocaleIdentifier demonstrates how to create a Locale instance using NewLocaleWithLocaleIdentifier.
+// Initializes a locale using a given locale identifier.
+func ExampleNewLocaleWithLocaleIdentifier() {
+	_ = foundation.NewLocaleWithLocaleIdentifier(
+		"string", // string string
+	)
+	// Output:
+}

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -87,9 +86,9 @@ func NewException() Exception {
 // Initializes and returns a newly allocated exception object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSException/init(name:reason:userInfo:)
-func NewExceptionWithNameReasonUserInfo(aName IExceptionName, aReason appkit.string, aUserInfo objectivec.IObject) Exception {
+func NewExceptionWithNameReasonUserInfo(aName IExceptionName, aReason string, aUserInfo objectivec.IObject) Exception {
 	instance := getExceptionClass().Alloc()
-	rv := objc.Send[Exception](instance.ID, objc.Sel("initWithName:reason:userInfo:"), aName, aReason, aUserInfo)
+	rv := objc.Send[Exception](instance.ID, objc.Sel("initWithName:reason:userInfo:"), aName, objc.String(aReason), aUserInfo)
 	rv.Autorelease()
 	return rv
 }
@@ -98,23 +97,23 @@ func NewExceptionWithNameReasonUserInfo(aName IExceptionName, aReason appkit.str
 // Creates and returns an exception object .
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSException/exceptionWithName:reason:userInfo:
-func (ec _ExceptionClass) ExceptionWithNameReasonUserInfo(name IExceptionName, reason appkit.string, userInfo objectivec.IObject) Exception {
-	rv := objc.Send[Exception](objc.ID(ec.class), objc.Sel("exceptionWithName:reason:userInfo:"), name, reason, userInfo)
+func (ec _ExceptionClass) ExceptionWithNameReasonUserInfo(name IExceptionName, reason string, userInfo objectivec.IObject) Exception {
+	rv := objc.Send[Exception](objc.ID(ec.class), objc.Sel("exceptionWithName:reason:userInfo:"), name, objc.String(reason), userInfo)
 	return rv
 }
 
 // Creates and raises an exception with the specified name, reason, and arguments.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSException/raise(_:format:arguments:)
-func (ec _ExceptionClass) RaiseFormatArguments(name IExceptionName, format appkit.string, argList unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(ec.class), objc.Sel("raise:format:arguments:"), name, format, argList)
+func (ec _ExceptionClass) RaiseFormatArguments(name IExceptionName, format string, argList unsafe.Pointer) {
+	objc.Send[objc.ID](objc.ID(ec.class), objc.Sel("raise:format:arguments:"), name, objc.String(format), argList)
 }
 
 // A convenience method that creates and raises an exception.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSException/raise:format:
-func (ec _ExceptionClass) RaiseFormat(name IExceptionName, format appkit.string) {
-	objc.Send[objc.ID](objc.ID(ec.class), objc.Sel("raise:format:"), name, format)
+func (ec _ExceptionClass) RaiseFormat(name IExceptionName, format string) {
+	objc.Send[objc.ID](objc.ID(ec.class), objc.Sel("raise:format:"), name, objc.String(format))
 }
 
 // Raises the receiver, causing program flow to jump to the local exception handler.
@@ -151,8 +150,8 @@ func (e_ Exception) Name() ExceptionName {
 // A string containing a “human-readable” reason for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSException/reason-swift.property
-func (e_ Exception) Reason() appkit.string {
-	rv := objc.Send[appkit.string](e_.ID, objc.Sel("reason"))
+func (e_ Exception) Reason() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("reason"))
 	return rv
 }
 

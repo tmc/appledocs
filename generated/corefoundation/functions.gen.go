@@ -73,10 +73,10 @@ var (
 	_CFAttributedStringGetAttributeAndLongestEffectiveRange func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CFAttributedStringGetAttributes func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CFAttributedStringGetAttributesAndLongestEffectiveRange func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFAttributedStringGetBidiLevelsAndResolvedDirections func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CFAttributedStringGetBidiLevelsAndResolvedDirections func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
 	_CFAttributedStringGetLength func(unsafe.Pointer) unsafe.Pointer
 	_CFAttributedStringGetMutableString func(unsafe.Pointer) unsafe.Pointer
-	_CFAttributedStringGetStatisticalWritingDirections func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CFAttributedStringGetStatisticalWritingDirections func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
 	_CFAttributedStringGetString func(unsafe.Pointer) unsafe.Pointer
 	_CFAttributedStringGetTypeID func() unsafe.Pointer
 	_CFAttributedStringRemoveAttribute func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
@@ -2193,7 +2193,7 @@ func CFAttributedStringGetAttributesAndLongestEffectiveRange(aStr unsafe.Pointer
 // CFAttributedStringGetBidiLevelsAndResolvedDirections is a CoreFoundation function. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAttributedStringGetBidiLevelsAndResolvedDirections(_:_:_:_:_:)
-func CFAttributedStringGetBidiLevelsAndResolvedDirections(attributedString unsafe.Pointer, range_ unsafe.Pointer, baseDirection unsafe.Pointer, bidiLevels unsafe.Pointer, baseDirections unsafe.Pointer) unsafe.Pointer {
+func CFAttributedStringGetBidiLevelsAndResolvedDirections(attributedString unsafe.Pointer, range_ unsafe.Pointer, baseDirection unsafe.Pointer, bidiLevels unsafe.Pointer, baseDirections unsafe.Pointer) bool {
 	return _CFAttributedStringGetBidiLevelsAndResolvedDirections(attributedString, range_, baseDirection, bidiLevels, baseDirections)
 	}
 
@@ -2219,7 +2219,7 @@ func CFAttributedStringGetMutableString(aStr unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 26.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAttributedStringGetStatisticalWritingDirections(_:_:_:_:_:)
-func CFAttributedStringGetStatisticalWritingDirections(attributedString unsafe.Pointer, range_ unsafe.Pointer, baseDirection unsafe.Pointer, bidiLevels unsafe.Pointer, baseDirections unsafe.Pointer) unsafe.Pointer {
+func CFAttributedStringGetStatisticalWritingDirections(attributedString unsafe.Pointer, range_ unsafe.Pointer, baseDirection unsafe.Pointer, bidiLevels unsafe.Pointer, baseDirections unsafe.Pointer) bool {
 	return _CFAttributedStringGetStatisticalWritingDirections(attributedString, range_, baseDirection, bidiLevels, baseDirections)
 	}
 

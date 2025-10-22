@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
@@ -86,8 +85,8 @@ func NewPlayerInterstitialEventController() PlayerInterstitialEventController {
 // The name of the table in the bundle that contains the localized strings to be used by the AVPlayerInterstitialEventController.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerInterstitialEventController/localizedStringsTableName
-func (p_ PlayerInterstitialEventController) LocalizedStringsTableName() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("localizedStringsTableName"))
+func (p_ PlayerInterstitialEventController) LocalizedStringsTableName() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("localizedStringsTableName"))
 	return rv
 }
 
@@ -97,8 +96,8 @@ func (p_ PlayerInterstitialEventController) LocalizedStringsTableName() appkit.s
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerInterstitialEventController/localizedStringsTableName
-func (p_ PlayerInterstitialEventController) SetLocalizedStringsTableName(value appkit.string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setLocalizedStringsTableName:"), value)
+func (p_ PlayerInterstitialEventController) SetLocalizedStringsTableName(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setLocalizedStringsTableName:"), objc.String(value))
 }
 
 // The current schedule of interstitial events.

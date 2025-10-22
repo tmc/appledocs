@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -120,9 +119,9 @@ func NewURLCredentialWithTrust(trust unsafe.Pointer) URLCredential {
 // Creates a URL credential instance initialized with a given user name and password, using a given persistence setting.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLCredential/init(user:password:persistence:)
-func NewURLCredentialWithUserPasswordPersistence(user appkit.string, password appkit.string, persistence IURLCredentialPersistence) URLCredential {
+func NewURLCredentialWithUserPasswordPersistence(user string, password string, persistence IURLCredentialPersistence) URLCredential {
 	instance := getURLCredentialClass().Alloc()
-	rv := objc.Send[URLCredential](instance.ID, objc.Sel("initWithUser:password:persistence:"), user, password, persistence)
+	rv := objc.Send[URLCredential](instance.ID, objc.Sel("initWithUser:password:persistence:"), objc.String(user), objc.String(password), persistence)
 	rv.Autorelease()
 	return rv
 }
@@ -139,8 +138,8 @@ func (uc _URLCredentialClass) CredentialWithIdentityCertificatesPersistence(iden
 // Creates a URL credential instance for internet password authentication with a given user name and password, using a given persistence setting.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLCredential/credentialWithUser:password:persistence:
-func (uc _URLCredentialClass) CredentialWithUserPasswordPersistence(user appkit.string, password appkit.string, persistence IURLCredentialPersistence) URLCredential {
-	rv := objc.Send[URLCredential](objc.ID(uc.class), objc.Sel("credentialWithUser:password:persistence:"), user, password, persistence)
+func (uc _URLCredentialClass) CredentialWithUserPasswordPersistence(user string, password string, persistence IURLCredentialPersistence) URLCredential {
+	rv := objc.Send[URLCredential](objc.ID(uc.class), objc.Sel("credentialWithUser:password:persistence:"), objc.String(user), objc.String(password), persistence)
 	return rv
 }
 
@@ -179,8 +178,8 @@ func (u_ URLCredential) Identity() unsafe.Pointer {
 // The credential’s password.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLCredential/password
-func (u_ URLCredential) Password() appkit.string {
-	rv := objc.Send[appkit.string](u_.ID, objc.Sel("password"))
+func (u_ URLCredential) Password() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("password"))
 	return rv
 }
 
@@ -195,8 +194,8 @@ func (u_ URLCredential) Persistence() URLCredentialPersistence {
 // The credential’s user name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLCredential/user
-func (u_ URLCredential) User() appkit.string {
-	rv := objc.Send[appkit.string](u_.ID, objc.Sel("user"))
+func (u_ URLCredential) User() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("user"))
 	return rv
 }
 

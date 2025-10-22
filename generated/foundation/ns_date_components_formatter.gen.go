@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coreimage"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -184,8 +183,8 @@ func (d_ DateComponentsFormatter) SetCollapsesLargestUnit(value bool) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/datecomponentsformatter/formattingcontext
-func (d_ DateComponentsFormatter) FormattingContext() coreimage.Context {
-	rv := objc.Send[coreimage.Context](d_.ID, objc.Sel("formattingContext"))
+func (d_ DateComponentsFormatter) FormattingContext() int {
+	rv := objc.Send[int](d_.ID, objc.Sel("formattingContext"))
 	return rv
 }
 
@@ -193,7 +192,7 @@ func (d_ DateComponentsFormatter) FormattingContext() coreimage.Context {
 // SetFormattingContext sets the value of the formattingContext property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/datecomponentsformatter/formattingcontext
-func (d_ DateComponentsFormatter) SetFormattingContext(value coreimage.IContext) {
+func (d_ DateComponentsFormatter) SetFormattingContext(value int) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setFormattingContext:"), value)
 }
 

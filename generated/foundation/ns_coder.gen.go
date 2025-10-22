@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,33 +31,33 @@ type _CoderClass struct {
 type ICoder interface {
 	objectivec.IObject
 	DecodeArrayOfObjCTypeCountAt(itemType unsafe.Pointer, count uint, array unsafe.Pointer)
-	DecodeBoolForKey(key appkit.string) bool
-	DecodeBytesForKeyReturnedLength(key appkit.string, lengthp unsafe.Pointer) unsafe.Pointer
+	DecodeBoolForKey(key string) bool
+	DecodeBytesForKeyReturnedLength(key string, lengthp unsafe.Pointer) unsafe.Pointer
 	DecodeBytesWithReturnedLength(lengthp unsafe.Pointer)
-	DecodeIntForKey(key appkit.string) unsafe.Pointer
+	DecodeIntForKey(key string) int
 	DecodeDataObject() Data
-	DecodeDoubleForKey(key appkit.string) unsafe.Pointer
-	DecodeFloatForKey(key appkit.string) unsafe.Pointer
-	DecodeInt32ForKey(key appkit.string) unsafe.Pointer
-	DecodeInt64ForKey(key appkit.string) unsafe.Pointer
-	DecodeIntegerForKey(key appkit.string) int
+	DecodeDoubleForKey(key string) float64
+	DecodeFloatForKey(key string) float32
+	DecodeInt32ForKey(key string) unsafe.Pointer
+	DecodeInt64ForKey(key string) unsafe.Pointer
+	DecodeIntegerForKey(key string) int
 	DecodeNXObject() objc.ID
 	DecodeObject() objc.ID
-	DecodeObjectForKey(key appkit.string) objc.ID
-	DecodeObjectOfClassForKey(aClass objc.Class, key appkit.string) objc.ID
+	DecodeObjectForKey(key string) objc.ID
+	DecodeObjectOfClassForKey(aClass objc.Class, key string) objc.ID
 	DecodePoint() Point
 	EncodeDataObject(data IData)
 	EncodePoint(point IPoint)
-	EncodeObjectForKey(object objectivec.IObject, key appkit.string)
-	EncodeIntegerForKey(value int, key appkit.string)
-	EncodeInt32ForKey(value unsafe.Pointer, key appkit.string)
-	EncodeBoolForKey(value bool, key appkit.string)
-	EncodeFloatForKey(value unsafe.Pointer, key appkit.string)
-	EncodeDoubleForKey(value unsafe.Pointer, key appkit.string)
-	EncodeInt64ForKey(value unsafe.Pointer, key appkit.string)
-	EncodeBytesLengthForKey(bytes unsafe.Pointer, length uint, key appkit.string)
-	EncodeIntForKey(value unsafe.Pointer, key appkit.string)
-	EncodeConditionalObjectForKey(object objectivec.IObject, key appkit.string)
+	EncodeObjectForKey(object objectivec.IObject, key string)
+	EncodeIntegerForKey(value int, key string)
+	EncodeInt32ForKey(value unsafe.Pointer, key string)
+	EncodeBoolForKey(value bool, key string)
+	EncodeFloatForKey(value float32, key string)
+	EncodeDoubleForKey(value float64, key string)
+	EncodeInt64ForKey(value unsafe.Pointer, key string)
+	EncodeBytesLengthForKey(bytes unsafe.Pointer, length uint, key string)
+	EncodeIntForKey(value int, key string)
+	EncodeConditionalObjectForKey(object objectivec.IObject, key string)
 	EncodeNXObject(object objectivec.IObject)
 }
 
@@ -120,16 +119,16 @@ func (c_ Coder) DecodeArrayOfObjCTypeCountAt(itemType unsafe.Pointer, count uint
 // Decodes and returns a boolean value that was previously encoded with and associated with the string .
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCoder/decodeBool(forKey:)
-func (c_ Coder) DecodeBoolForKey(key appkit.string) bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("decodeBoolForKey:"), key)
+func (c_ Coder) DecodeBoolForKey(key string) bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("decodeBoolForKey:"), objc.String(key))
 	return rv
 }
 
 // Decodes a buffer of data that was previously encoded with and associated with the string .
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCoder/decodeBytes(forKey:returnedLength:)
-func (c_ Coder) DecodeBytesForKeyReturnedLength(key appkit.string, lengthp unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("decodeBytesForKey:returnedLength:"), key, lengthp)
+func (c_ Coder) DecodeBytesForKeyReturnedLength(key string, lengthp unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("decodeBytesForKey:returnedLength:"), objc.String(key), lengthp)
 	return rv
 }
 
@@ -143,8 +142,8 @@ func (c_ Coder) DecodeBytesWithReturnedLength(lengthp unsafe.Pointer) {
 // Decodes and returns an int value that was previously encoded with , , , or and associated with the string .
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCoder/decodeCInt(forKey:)
-func (c_ Coder) DecodeIntForKey(key appkit.string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("decodeIntForKey:"), key)
+func (c_ Coder) DecodeIntForKey(key string) int {
+	rv := objc.Send[int](c_.ID, objc.Sel("decodeIntForKey:"), objc.String(key))
 	return rv
 }
 
@@ -159,40 +158,40 @@ func (c_ Coder) DecodeDataObject() Data {
 // Decodes and returns a double value that was previously encoded with either or and associated with the string .
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCoder/decodeDouble(forKey:)
-func (c_ Coder) DecodeDoubleForKey(key appkit.string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("decodeDoubleForKey:"), key)
+func (c_ Coder) DecodeDoubleForKey(key string) float64 {
+	rv := objc.Send[float64](c_.ID, objc.Sel("decodeDoubleForKey:"), objc.String(key))
 	return rv
 }
 
 // Decodes and returns a float value that was previously encoded with or and associated with the string .
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCoder/decodeFloat(forKey:)
-func (c_ Coder) DecodeFloatForKey(key appkit.string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("decodeFloatForKey:"), key)
+func (c_ Coder) DecodeFloatForKey(key string) float32 {
+	rv := objc.Send[float32](c_.ID, objc.Sel("decodeFloatForKey:"), objc.String(key))
 	return rv
 }
 
 // Decodes and returns a 32-bit integer value that was previously encoded with , , , or and associated with the string .
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCoder/decodeInt32(forKey:)
-func (c_ Coder) DecodeInt32ForKey(key appkit.string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("decodeInt32ForKey:"), key)
+func (c_ Coder) DecodeInt32ForKey(key string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("decodeInt32ForKey:"), objc.String(key))
 	return rv
 }
 
 // Decodes and returns a 64-bit integer value that was previously encoded with , , , or and associated with the string .
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCoder/decodeInt64(forKey:)
-func (c_ Coder) DecodeInt64ForKey(key appkit.string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("decodeInt64ForKey:"), key)
+func (c_ Coder) DecodeInt64ForKey(key string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("decodeInt64ForKey:"), objc.String(key))
 	return rv
 }
 
 // Decodes and returns an NSInteger value that was previously encoded with , , , or and associated with the string .
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCoder/decodeInteger(forKey:)
-func (c_ Coder) DecodeIntegerForKey(key appkit.string) int {
-	rv := objc.Send[int](c_.ID, objc.Sel("decodeIntegerForKey:"), key)
+func (c_ Coder) DecodeIntegerForKey(key string) int {
+	rv := objc.Send[int](c_.ID, objc.Sel("decodeIntegerForKey:"), objc.String(key))
 	return rv
 }
 
@@ -215,16 +214,16 @@ func (c_ Coder) DecodeObject() objc.ID {
 // Decodes and returns a previously-encoded object that was previously encoded with or and associated with the string .
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCoder/decodeObject(forKey:)
-func (c_ Coder) DecodeObjectForKey(key appkit.string) objc.ID {
-	rv := objc.Send[objc.ID](c_.ID, objc.Sel("decodeObjectForKey:"), key)
+func (c_ Coder) DecodeObjectForKey(key string) objc.ID {
+	rv := objc.Send[objc.ID](c_.ID, objc.Sel("decodeObjectForKey:"), objc.String(key))
 	return rv
 }
 
 // Decodes an object for the key, restricted to the specified class.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCoder/decodeObjectOfClass:forKey:
-func (c_ Coder) DecodeObjectOfClassForKey(aClass objc.Class, key appkit.string) objc.ID {
-	rv := objc.Send[objc.ID](c_.ID, objc.Sel("decodeObjectOfClass:forKey:"), aClass, key)
+func (c_ Coder) DecodeObjectOfClassForKey(aClass objc.Class, key string) objc.ID {
+	rv := objc.Send[objc.ID](c_.ID, objc.Sel("decodeObjectOfClass:forKey:"), aClass, objc.String(key))
 	return rv
 }
 
@@ -253,71 +252,71 @@ func (c_ Coder) EncodePoint(point IPoint) {
 // Encodes an object and associates it with the string key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCoder/encode(_:forKey:)-1mlmu
-func (c_ Coder) EncodeObjectForKey(object objectivec.IObject, key appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("encodeObject:forKey:"), object, key)
+func (c_ Coder) EncodeObjectForKey(object objectivec.IObject, key string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("encodeObject:forKey:"), object, objc.String(key))
 }
 
 // Encodes an integer value and associates it with the string key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCoder/encode(_:forKey:)-2dprz
-func (c_ Coder) EncodeIntegerForKey(value int, key appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("encodeInteger:forKey:"), value, key)
+func (c_ Coder) EncodeIntegerForKey(value int, key string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("encodeInteger:forKey:"), value, objc.String(key))
 }
 
 // Encodes a 32-bit integer value and associates it with the string key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCoder/encode(_:forKey:)-5sk4z
-func (c_ Coder) EncodeInt32ForKey(value unsafe.Pointer, key appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("encodeInt32:forKey:"), value, key)
+func (c_ Coder) EncodeInt32ForKey(value unsafe.Pointer, key string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("encodeInt32:forKey:"), value, objc.String(key))
 }
 
 // Encodes a Boolean value and associates it with the string .
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCoder/encode(_:forKey:)-7o6mu
-func (c_ Coder) EncodeBoolForKey(value bool, key appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("encodeBool:forKey:"), value, key)
+func (c_ Coder) EncodeBoolForKey(value bool, key string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("encodeBool:forKey:"), value, objc.String(key))
 }
 
 // Encodes a floating point value and associates it with the string key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCoder/encode(_:forKey:)-84cez
-func (c_ Coder) EncodeFloatForKey(value unsafe.Pointer, key appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("encodeFloat:forKey:"), value, key)
+func (c_ Coder) EncodeFloatForKey(value float32, key string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("encodeFloat:forKey:"), value, objc.String(key))
 }
 
 // Encodes a double-precision floating point value and associates it with the string key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCoder/encode(_:forKey:)-9xiiu
-func (c_ Coder) EncodeDoubleForKey(value unsafe.Pointer, key appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("encodeDouble:forKey:"), value, key)
+func (c_ Coder) EncodeDoubleForKey(value float64, key string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("encodeDouble:forKey:"), value, objc.String(key))
 }
 
 // Encodes a 64-bit integer value and associates it with the string key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCoder/encode(_:forKey:)-dixg
-func (c_ Coder) EncodeInt64ForKey(value unsafe.Pointer, key appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("encodeInt64:forKey:"), value, key)
+func (c_ Coder) EncodeInt64ForKey(value unsafe.Pointer, key string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("encodeInt64:forKey:"), value, objc.String(key))
 }
 
 // Encodes a buffer of data, given its length and a pointer, and associates it with a string key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCoder/encodeBytes(_:length:forKey:)
-func (c_ Coder) EncodeBytesLengthForKey(bytes unsafe.Pointer, length uint, key appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("encodeBytes:length:forKey:"), bytes, length, key)
+func (c_ Coder) EncodeBytesLengthForKey(bytes unsafe.Pointer, length uint, key string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("encodeBytes:length:forKey:"), bytes, length, objc.String(key))
 }
 
 // Encodes a C integer value and associates it with the string key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCoder/encodeCInt(_:forKey:)
-func (c_ Coder) EncodeIntForKey(value unsafe.Pointer, key appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("encodeInt:forKey:"), value, key)
+func (c_ Coder) EncodeIntForKey(value int, key string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("encodeInt:forKey:"), value, objc.String(key))
 }
 
 // An encoding method for subclasses to override to conditionally encode an object, preserving common references to it, only if it has been unconditionally encoded.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCoder/encodeConditionalObject(_:forKey:)
-func (c_ Coder) EncodeConditionalObjectForKey(object objectivec.IObject, key appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("encodeConditionalObject:forKey:"), object, key)
+func (c_ Coder) EncodeConditionalObjectForKey(object objectivec.IObject, key string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("encodeConditionalObject:forKey:"), object, objc.String(key))
 }
 
 // Encodes an old-style object onto the coder.

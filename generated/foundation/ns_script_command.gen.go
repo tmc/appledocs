@@ -136,8 +136,8 @@ func (s_ ScriptCommand) SetAppleEvent(value IAppleEventDescriptor) {
 // Sets the arguments of the command to
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommand/arguments
-func (s_ ScriptCommand) Arguments() appkit.string {
-	rv := objc.Send[appkit.string](s_.ID, objc.Sel("arguments"))
+func (s_ ScriptCommand) Arguments() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("arguments"))
 	return rv
 }
 
@@ -147,8 +147,8 @@ func (s_ ScriptCommand) Arguments() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommand/arguments
-func (s_ ScriptCommand) SetArguments(value appkit.string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setArguments:"), value)
+func (s_ ScriptCommand) SetArguments(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setArguments:"), objc.String(value))
 }
 
 // Returns the command description for the command.
@@ -190,8 +190,8 @@ func (s_ ScriptCommand) SetDirectParameter(value unsafe.Pointer) {
 // Returns a dictionary containing the arguments of the command, evaluated from object specifiers to objects if necessary. The keys in the dictionary are the argument names.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommand/evaluatedarguments
-func (s_ ScriptCommand) EvaluatedArguments() appkit.string {
-	rv := objc.Send[appkit.string](s_.ID, objc.Sel("evaluatedArguments"))
+func (s_ ScriptCommand) EvaluatedArguments() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("evaluatedArguments"))
 	return rv
 }
 
@@ -201,8 +201,8 @@ func (s_ ScriptCommand) EvaluatedArguments() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommand/evaluatedarguments
-func (s_ ScriptCommand) SetEvaluatedArguments(value appkit.string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setEvaluatedArguments:"), value)
+func (s_ ScriptCommand) SetEvaluatedArguments(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setEvaluatedArguments:"), objc.String(value))
 }
 
 // Returns a Boolean value indicating whether the receiver is well formed according to its command description.
@@ -280,8 +280,8 @@ func (s_ ScriptCommand) SetScriptErrorOffendingObjectDescriptor(value IAppleEven
 // Sets a script error string that is associated with execution of the command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommand/scripterrorstring
-func (s_ ScriptCommand) ScriptErrorString() appkit.string {
-	rv := objc.Send[appkit.string](s_.ID, objc.Sel("scriptErrorString"))
+func (s_ ScriptCommand) ScriptErrorString() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("scriptErrorString"))
 	return rv
 }
 
@@ -291,8 +291,8 @@ func (s_ ScriptCommand) ScriptErrorString() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommand/scripterrorstring
-func (s_ ScriptCommand) SetScriptErrorString(value appkit.string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setScriptErrorString:"), value)
+func (s_ ScriptCommand) SetScriptErrorString(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setScriptErrorString:"), objc.String(value))
 }
 
 

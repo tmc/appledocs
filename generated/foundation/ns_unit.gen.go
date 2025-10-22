@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -86,9 +85,9 @@ func NewUnit() Unit {
 // Initializes a new unit with the specified symbol.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Unit/init(symbol:)
-func NewUnitWithSymbol(symbol appkit.string) Unit {
+func NewUnitWithSymbol(symbol string) Unit {
 	instance := getUnitClass().Alloc()
-	rv := objc.Send[Unit](instance.ID, objc.Sel("initWithSymbol:"), symbol)
+	rv := objc.Send[Unit](instance.ID, objc.Sel("initWithSymbol:"), objc.String(symbol))
 	rv.Autorelease()
 	return rv
 }
@@ -97,8 +96,8 @@ func NewUnitWithSymbol(symbol appkit.string) Unit {
 // The symbolic representation of the unit.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Unit/symbol
-func (u_ Unit) Symbol() appkit.string {
-	rv := objc.Send[appkit.string](u_.ID, objc.Sel("symbol"))
+func (u_ Unit) Symbol() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("symbol"))
 	return rv
 }
 

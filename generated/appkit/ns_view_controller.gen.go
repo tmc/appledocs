@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/callkit"
 	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
@@ -359,8 +358,8 @@ func (v_ ViewController) SetChildViewControllers(value []ViewController) {
 // For a view controller that is part of an app extension, the app extension context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/extensionContext
-func (v_ ViewController) ExtensionContext() callkit.ExtensionContext {
-	rv := objc.Send[callkit.ExtensionContext](v_.ID, objc.Sel("extensionContext"))
+func (v_ ViewController) ExtensionContext() foundation.NSExtensionContext {
+	rv := objc.Send[foundation.NSExtensionContext](v_.ID, objc.Sel("extensionContext"))
 	return rv
 }
 

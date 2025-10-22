@@ -24,6 +24,30 @@ func ExampleNewNumberWithCoder() {
 	)
 	// Output:
 }
+// ExampleNewNumberWithDouble demonstrates how to create a Number instance using NewNumberWithDouble.
+// Returns an   object initialized to contain  , treated as a  .
+func ExampleNewNumberWithDouble() {
+	_ = foundation.NewNumberWithDouble(
+		0.0, // value float64
+	)
+	// Output:
+}
+// ExampleNewNumberWithFloat demonstrates how to create a Number instance using NewNumberWithFloat.
+// Returns an   object initialized to contain a given value, treated as a  .
+func ExampleNewNumberWithFloat() {
+	_ = foundation.NewNumberWithFloat(
+		0.0, // value float32
+	)
+	// Output:
+}
+// ExampleNewNumberWithInt demonstrates how to create a Number instance using NewNumberWithInt.
+// Returns an   object initialized to contain a given value, treated as a signed  .
+func ExampleNewNumberWithInt() {
+	_ = foundation.NewNumberWithInt(
+		0, // value int
+	)
+	// Output:
+}
 // ExampleNewNumberWithInteger demonstrates how to create a Number instance using NewNumberWithInteger.
 // Returns an   object initialized to contain a given value, treated as an  .
 func ExampleNewNumberWithInteger() {

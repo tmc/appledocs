@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [DateFormatter] class.
@@ -30,8 +29,8 @@ type _DateFormatterClass struct {
 // An interface definition for the [DateFormatter] class.
 type IDateFormatter interface {
 	IFormatter
-	DateFromString(string_ appkit.string) Date
-	SetLocalizedDateFormatFromTemplate(dateFormatTemplate appkit.string)
+	DateFromString(string_ string) Date
+	SetLocalizedDateFormatFromTemplate(dateFormatTemplate string)
 }
 
 // A formatter that converts between dates and their textual representations.
@@ -89,9 +88,9 @@ func NewDateFormatter() DateFormatter {
 // Initializes and returns an instance that uses the OS X 10.0 formatting behavior and the given date format string in its conversions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateFormatter/initWithDateFormat:allowNaturalLanguage:
-func NewDateFormatterWithDateFormatAllowNaturalLanguage(format appkit.string, flag bool) DateFormatter {
+func NewDateFormatterWithDateFormatAllowNaturalLanguage(format string, flag bool) DateFormatter {
 	instance := getDateFormatterClass().Alloc()
-	rv := objc.Send[DateFormatter](instance.ID, objc.Sel("initWithDateFormat:allowNaturalLanguage:"), format, flag)
+	rv := objc.Send[DateFormatter](instance.ID, objc.Sel("initWithDateFormat:allowNaturalLanguage:"), objc.String(format), flag)
 	rv.Autorelease()
 	return rv
 }
@@ -107,16 +106,16 @@ func (dc _DateFormatterClass) DefaultFormatterBehavior() unsafe.Pointer {
 // Returns a date representation of a specified string that the system interprets using the receiver’s current settings.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/date(from:)
-func (d_ DateFormatter) DateFromString(string_ appkit.string) Date {
-	rv := objc.Send[Date](d_.ID, objc.Sel("dateFromString:"), string_)
+func (d_ DateFormatter) DateFromString(string_ string) Date {
+	rv := objc.Send[Date](d_.ID, objc.Sel("dateFromString:"), objc.String(string_))
 	return rv
 }
 
 // Sets the date format from a template using the specified locale for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/setLocalizedDateFormatFromTemplate(_:)
-func (d_ DateFormatter) SetLocalizedDateFormatFromTemplate(dateFormatTemplate appkit.string) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setLocalizedDateFormatFromTemplate:"), dateFormatTemplate)
+func (d_ DateFormatter) SetLocalizedDateFormatFromTemplate(dateFormatTemplate string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setLocalizedDateFormatFromTemplate:"), objc.String(dateFormatTemplate))
 }
 
 // The calendar for the receiver.
@@ -140,8 +139,8 @@ func (d_ DateFormatter) SetCalendar(value ICalendar) {
 // The date format string used by the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/dateFormat
-func (d_ DateFormatter) DateFormat() appkit.string {
-	rv := objc.Send[appkit.string](d_.ID, objc.Sel("dateFormat"))
+func (d_ DateFormatter) DateFormat() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("dateFormat"))
 	return rv
 }
 
@@ -151,8 +150,8 @@ func (d_ DateFormatter) DateFormat() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/dateFormat
-func (d_ DateFormatter) SetDateFormat(value appkit.string) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setDateFormat:"), value)
+func (d_ DateFormatter) SetDateFormat(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setDateFormat:"), objc.String(value))
 }
 
 // The date style of the receiver.
@@ -240,8 +239,8 @@ func (d_ DateFormatter) SetFormatterBehavior(value unsafe.Pointer) {
 // The capitalization formatting context used when formatting a date.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/formattingContext
-func (d_ DateFormatter) FormattingContext() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("formattingContext"))
+func (d_ DateFormatter) FormattingContext() int {
+	rv := objc.Send[int](d_.ID, objc.Sel("formattingContext"))
 	return rv
 }
 
@@ -251,7 +250,7 @@ func (d_ DateFormatter) FormattingContext() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/formattingContext
-func (d_ DateFormatter) SetFormattingContext(value unsafe.Pointer) {
+func (d_ DateFormatter) SetFormattingContext(value int) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setFormattingContext:"), value)
 }
 
@@ -414,8 +413,8 @@ func (d_ DateFormatter) SetVeryShortMonthSymbols(value []string) {
 // The AM symbol for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/amsymbol
-func (d_ DateFormatter) AmSymbol() appkit.string {
-	rv := objc.Send[appkit.string](d_.ID, objc.Sel("amSymbol"))
+func (d_ DateFormatter) AmSymbol() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("amSymbol"))
 	return rv
 }
 
@@ -425,8 +424,8 @@ func (d_ DateFormatter) AmSymbol() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/amsymbol
-func (d_ DateFormatter) SetAmSymbol(value appkit.string) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setAmSymbol:"), value)
+func (d_ DateFormatter) SetAmSymbol(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setAmSymbol:"), objc.String(value))
 }
 
 // The default date for the receiver.
@@ -504,8 +503,8 @@ func (d_ DateFormatter) SetIsLenient(value bool) {
 // The long era symbols for the receiver
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/longerasymbols
-func (d_ DateFormatter) LongEraSymbols() appkit.string {
-	rv := objc.Send[appkit.string](d_.ID, objc.Sel("longEraSymbols"))
+func (d_ DateFormatter) LongEraSymbols() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("longEraSymbols"))
 	return rv
 }
 
@@ -515,15 +514,15 @@ func (d_ DateFormatter) LongEraSymbols() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/longerasymbols
-func (d_ DateFormatter) SetLongEraSymbols(value appkit.string) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setLongEraSymbols:"), value)
+func (d_ DateFormatter) SetLongEraSymbols(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setLongEraSymbols:"), objc.String(value))
 }
 
 // The month symbols for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/monthsymbols
-func (d_ DateFormatter) MonthSymbols() appkit.string {
-	rv := objc.Send[appkit.string](d_.ID, objc.Sel("monthSymbols"))
+func (d_ DateFormatter) MonthSymbols() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("monthSymbols"))
 	return rv
 }
 
@@ -533,15 +532,15 @@ func (d_ DateFormatter) MonthSymbols() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/monthsymbols
-func (d_ DateFormatter) SetMonthSymbols(value appkit.string) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setMonthSymbols:"), value)
+func (d_ DateFormatter) SetMonthSymbols(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setMonthSymbols:"), objc.String(value))
 }
 
 // The PM symbol for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/pmsymbol
-func (d_ DateFormatter) PmSymbol() appkit.string {
-	rv := objc.Send[appkit.string](d_.ID, objc.Sel("pmSymbol"))
+func (d_ DateFormatter) PmSymbol() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("pmSymbol"))
 	return rv
 }
 
@@ -551,15 +550,15 @@ func (d_ DateFormatter) PmSymbol() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/pmsymbol
-func (d_ DateFormatter) SetPmSymbol(value appkit.string) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setPmSymbol:"), value)
+func (d_ DateFormatter) SetPmSymbol(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setPmSymbol:"), objc.String(value))
 }
 
 // The array of short month symbols for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/shortmonthsymbols
-func (d_ DateFormatter) ShortMonthSymbols() appkit.string {
-	rv := objc.Send[appkit.string](d_.ID, objc.Sel("shortMonthSymbols"))
+func (d_ DateFormatter) ShortMonthSymbols() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("shortMonthSymbols"))
 	return rv
 }
 
@@ -569,15 +568,15 @@ func (d_ DateFormatter) ShortMonthSymbols() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/shortmonthsymbols
-func (d_ DateFormatter) SetShortMonthSymbols(value appkit.string) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setShortMonthSymbols:"), value)
+func (d_ DateFormatter) SetShortMonthSymbols(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setShortMonthSymbols:"), objc.String(value))
 }
 
 // The short quarter symbols for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/shortquartersymbols
-func (d_ DateFormatter) ShortQuarterSymbols() appkit.string {
-	rv := objc.Send[appkit.string](d_.ID, objc.Sel("shortQuarterSymbols"))
+func (d_ DateFormatter) ShortQuarterSymbols() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("shortQuarterSymbols"))
 	return rv
 }
 
@@ -587,15 +586,15 @@ func (d_ DateFormatter) ShortQuarterSymbols() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/shortquartersymbols
-func (d_ DateFormatter) SetShortQuarterSymbols(value appkit.string) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setShortQuarterSymbols:"), value)
+func (d_ DateFormatter) SetShortQuarterSymbols(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setShortQuarterSymbols:"), objc.String(value))
 }
 
 // The short standalone month symbols for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/shortstandalonemonthsymbols
-func (d_ DateFormatter) ShortStandaloneMonthSymbols() appkit.string {
-	rv := objc.Send[appkit.string](d_.ID, objc.Sel("shortStandaloneMonthSymbols"))
+func (d_ DateFormatter) ShortStandaloneMonthSymbols() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("shortStandaloneMonthSymbols"))
 	return rv
 }
 
@@ -605,15 +604,15 @@ func (d_ DateFormatter) ShortStandaloneMonthSymbols() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/shortstandalonemonthsymbols
-func (d_ DateFormatter) SetShortStandaloneMonthSymbols(value appkit.string) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setShortStandaloneMonthSymbols:"), value)
+func (d_ DateFormatter) SetShortStandaloneMonthSymbols(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setShortStandaloneMonthSymbols:"), objc.String(value))
 }
 
 // The short standalone quarter symbols for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/shortstandalonequartersymbols
-func (d_ DateFormatter) ShortStandaloneQuarterSymbols() appkit.string {
-	rv := objc.Send[appkit.string](d_.ID, objc.Sel("shortStandaloneQuarterSymbols"))
+func (d_ DateFormatter) ShortStandaloneQuarterSymbols() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("shortStandaloneQuarterSymbols"))
 	return rv
 }
 
@@ -623,15 +622,15 @@ func (d_ DateFormatter) ShortStandaloneQuarterSymbols() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/shortstandalonequartersymbols
-func (d_ DateFormatter) SetShortStandaloneQuarterSymbols(value appkit.string) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setShortStandaloneQuarterSymbols:"), value)
+func (d_ DateFormatter) SetShortStandaloneQuarterSymbols(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setShortStandaloneQuarterSymbols:"), objc.String(value))
 }
 
 // The array of short standalone weekday symbols for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/shortstandaloneweekdaysymbols
-func (d_ DateFormatter) ShortStandaloneWeekdaySymbols() appkit.string {
-	rv := objc.Send[appkit.string](d_.ID, objc.Sel("shortStandaloneWeekdaySymbols"))
+func (d_ DateFormatter) ShortStandaloneWeekdaySymbols() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("shortStandaloneWeekdaySymbols"))
 	return rv
 }
 
@@ -641,15 +640,15 @@ func (d_ DateFormatter) ShortStandaloneWeekdaySymbols() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/shortstandaloneweekdaysymbols
-func (d_ DateFormatter) SetShortStandaloneWeekdaySymbols(value appkit.string) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setShortStandaloneWeekdaySymbols:"), value)
+func (d_ DateFormatter) SetShortStandaloneWeekdaySymbols(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setShortStandaloneWeekdaySymbols:"), objc.String(value))
 }
 
 // The array of short weekday symbols for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/shortweekdaysymbols
-func (d_ DateFormatter) ShortWeekdaySymbols() appkit.string {
-	rv := objc.Send[appkit.string](d_.ID, objc.Sel("shortWeekdaySymbols"))
+func (d_ DateFormatter) ShortWeekdaySymbols() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("shortWeekdaySymbols"))
 	return rv
 }
 
@@ -659,15 +658,15 @@ func (d_ DateFormatter) ShortWeekdaySymbols() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/shortweekdaysymbols
-func (d_ DateFormatter) SetShortWeekdaySymbols(value appkit.string) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setShortWeekdaySymbols:"), value)
+func (d_ DateFormatter) SetShortWeekdaySymbols(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setShortWeekdaySymbols:"), objc.String(value))
 }
 
 // The standalone month symbols for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/standalonemonthsymbols
-func (d_ DateFormatter) StandaloneMonthSymbols() appkit.string {
-	rv := objc.Send[appkit.string](d_.ID, objc.Sel("standaloneMonthSymbols"))
+func (d_ DateFormatter) StandaloneMonthSymbols() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("standaloneMonthSymbols"))
 	return rv
 }
 
@@ -677,15 +676,15 @@ func (d_ DateFormatter) StandaloneMonthSymbols() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/standalonemonthsymbols
-func (d_ DateFormatter) SetStandaloneMonthSymbols(value appkit.string) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setStandaloneMonthSymbols:"), value)
+func (d_ DateFormatter) SetStandaloneMonthSymbols(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setStandaloneMonthSymbols:"), objc.String(value))
 }
 
 // The standalone quarter symbols for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/standalonequartersymbols
-func (d_ DateFormatter) StandaloneQuarterSymbols() appkit.string {
-	rv := objc.Send[appkit.string](d_.ID, objc.Sel("standaloneQuarterSymbols"))
+func (d_ DateFormatter) StandaloneQuarterSymbols() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("standaloneQuarterSymbols"))
 	return rv
 }
 
@@ -695,8 +694,8 @@ func (d_ DateFormatter) StandaloneQuarterSymbols() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/standalonequartersymbols
-func (d_ DateFormatter) SetStandaloneQuarterSymbols(value appkit.string) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setStandaloneQuarterSymbols:"), value)
+func (d_ DateFormatter) SetStandaloneQuarterSymbols(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setStandaloneQuarterSymbols:"), objc.String(value))
 }
 
 // The earliest date that can be denoted by a two-digit year specifier.
@@ -720,8 +719,8 @@ func (d_ DateFormatter) SetTwoDigitStartDate(value IDate) {
 // The very short month symbols for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/veryshortstandalonemonthsymbols
-func (d_ DateFormatter) VeryShortStandaloneMonthSymbols() appkit.string {
-	rv := objc.Send[appkit.string](d_.ID, objc.Sel("veryShortStandaloneMonthSymbols"))
+func (d_ DateFormatter) VeryShortStandaloneMonthSymbols() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("veryShortStandaloneMonthSymbols"))
 	return rv
 }
 
@@ -731,15 +730,15 @@ func (d_ DateFormatter) VeryShortStandaloneMonthSymbols() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/veryshortstandalonemonthsymbols
-func (d_ DateFormatter) SetVeryShortStandaloneMonthSymbols(value appkit.string) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setVeryShortStandaloneMonthSymbols:"), value)
+func (d_ DateFormatter) SetVeryShortStandaloneMonthSymbols(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setVeryShortStandaloneMonthSymbols:"), objc.String(value))
 }
 
 // The array of very short standalone weekday symbols for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/veryshortstandaloneweekdaysymbols
-func (d_ DateFormatter) VeryShortStandaloneWeekdaySymbols() appkit.string {
-	rv := objc.Send[appkit.string](d_.ID, objc.Sel("veryShortStandaloneWeekdaySymbols"))
+func (d_ DateFormatter) VeryShortStandaloneWeekdaySymbols() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("veryShortStandaloneWeekdaySymbols"))
 	return rv
 }
 
@@ -749,15 +748,15 @@ func (d_ DateFormatter) VeryShortStandaloneWeekdaySymbols() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/veryshortstandaloneweekdaysymbols
-func (d_ DateFormatter) SetVeryShortStandaloneWeekdaySymbols(value appkit.string) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setVeryShortStandaloneWeekdaySymbols:"), value)
+func (d_ DateFormatter) SetVeryShortStandaloneWeekdaySymbols(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setVeryShortStandaloneWeekdaySymbols:"), objc.String(value))
 }
 
 // The array of very short weekday symbols for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/veryshortweekdaysymbols
-func (d_ DateFormatter) VeryShortWeekdaySymbols() appkit.string {
-	rv := objc.Send[appkit.string](d_.ID, objc.Sel("veryShortWeekdaySymbols"))
+func (d_ DateFormatter) VeryShortWeekdaySymbols() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("veryShortWeekdaySymbols"))
 	return rv
 }
 
@@ -767,15 +766,15 @@ func (d_ DateFormatter) VeryShortWeekdaySymbols() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/veryshortweekdaysymbols
-func (d_ DateFormatter) SetVeryShortWeekdaySymbols(value appkit.string) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setVeryShortWeekdaySymbols:"), value)
+func (d_ DateFormatter) SetVeryShortWeekdaySymbols(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setVeryShortWeekdaySymbols:"), objc.String(value))
 }
 
 // The array of weekday symbols for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/weekdaysymbols
-func (d_ DateFormatter) WeekdaySymbols() appkit.string {
-	rv := objc.Send[appkit.string](d_.ID, objc.Sel("weekdaySymbols"))
+func (d_ DateFormatter) WeekdaySymbols() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("weekdaySymbols"))
 	return rv
 }
 
@@ -785,8 +784,8 @@ func (d_ DateFormatter) WeekdaySymbols() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/weekdaysymbols
-func (d_ DateFormatter) SetWeekdaySymbols(value appkit.string) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setWeekdaySymbols:"), value)
+func (d_ DateFormatter) SetWeekdaySymbols(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setWeekdaySymbols:"), objc.String(value))
 }
 
 

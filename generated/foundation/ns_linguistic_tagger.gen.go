@@ -91,8 +91,8 @@ func (l_ LinguisticTagger) EnumerateTagsInRangeSchemeOptionsUsingBlock(range_ IR
 // Returns the dominant language of the string set for the linguistic tagger.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nslinguistictagger/dominantlanguage
-func (l_ LinguisticTagger) DominantLanguage() appkit.string {
-	rv := objc.Send[appkit.string](l_.ID, objc.Sel("dominantLanguage"))
+func (l_ LinguisticTagger) DominantLanguage() string {
+	rv := objc.Send[string](l_.ID, objc.Sel("dominantLanguage"))
 	return rv
 }
 
@@ -102,15 +102,15 @@ func (l_ LinguisticTagger) DominantLanguage() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nslinguistictagger/dominantlanguage
-func (l_ LinguisticTagger) SetDominantLanguage(value appkit.string) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("setDominantLanguage:"), value)
+func (l_ LinguisticTagger) SetDominantLanguage(value string) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setDominantLanguage:"), objc.String(value))
 }
 
 // The string being analyzed by the linguistic tagger.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nslinguistictagger/string
-func (l_ LinguisticTagger) String() appkit.string {
-	rv := objc.Send[appkit.string](l_.ID, objc.Sel("string"))
+func (l_ LinguisticTagger) String() string {
+	rv := objc.Send[string](l_.ID, objc.Sel("string"))
 	return rv
 }
 
@@ -120,8 +120,8 @@ func (l_ LinguisticTagger) String() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nslinguistictagger/string
-func (l_ LinguisticTagger) SetString(value appkit.string) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("setString:"), value)
+func (l_ LinguisticTagger) SetString(value string) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setString:"), objc.String(value))
 }
 
 // Returns the tag schemes configured for this linguistic tagger. For possible values, see

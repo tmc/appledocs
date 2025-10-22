@@ -83,8 +83,8 @@ func NewCaptureFraming() CaptureFraming {
 // A zoom factor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureFraming/zoomFactor
-func (c_ CaptureFraming) ZoomFactor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("zoomFactor"))
+func (c_ CaptureFraming) ZoomFactor() float32 {
+	rv := objc.Send[float32](c_.ID, objc.Sel("zoomFactor"))
 	return rv
 }
 

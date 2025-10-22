@@ -161,8 +161,8 @@ func (a_ AppleEventDescriptor) AeDesc() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleEventDescriptor/doubleValue
-func (a_ AppleEventDescriptor) DoubleValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("doubleValue"))
+func (a_ AppleEventDescriptor) DoubleValue() float64 {
+	rv := objc.Send[float64](a_.ID, objc.Sel("doubleValue"))
 	return rv
 }
 
@@ -376,8 +376,8 @@ func (a_ AppleEventDescriptor) SetReturnID(value unsafe.Pointer) {
 // The contents of the receiver as a Unicode text string, coercing to
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsappleeventdescriptor/stringvalue
-func (a_ AppleEventDescriptor) StringValue() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("stringValue"))
+func (a_ AppleEventDescriptor) StringValue() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("stringValue"))
 	return rv
 }
 
@@ -387,8 +387,8 @@ func (a_ AppleEventDescriptor) StringValue() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsappleeventdescriptor/stringvalue
-func (a_ AppleEventDescriptor) SetStringValue(value appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setStringValue:"), value)
+func (a_ AppleEventDescriptor) SetStringValue(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setStringValue:"), objc.String(value))
 }
 
 // The receiver’s transaction ID, if any.

@@ -91,8 +91,8 @@ func (h_ HTTPCookie) Properties() unsafe.Pointer {
 // The cookie’s comment string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/comment
-func (h_ HTTPCookie) Comment() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("comment"))
+func (h_ HTTPCookie) Comment() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("comment"))
 	return rv
 }
 
@@ -102,8 +102,8 @@ func (h_ HTTPCookie) Comment() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/comment
-func (h_ HTTPCookie) SetComment(value appkit.string) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setComment:"), value)
+func (h_ HTTPCookie) SetComment(value string) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setComment:"), objc.String(value))
 }
 
 // The cookie’s comment URL.
@@ -127,8 +127,8 @@ func (h_ HTTPCookie) SetCommentURL(value IURL) {
 // The domain of the cookie.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/domain
-func (h_ HTTPCookie) Domain() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("domain"))
+func (h_ HTTPCookie) Domain() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("domain"))
 	return rv
 }
 
@@ -138,8 +138,8 @@ func (h_ HTTPCookie) Domain() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/domain
-func (h_ HTTPCookie) SetDomain(value appkit.string) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setDomain:"), value)
+func (h_ HTTPCookie) SetDomain(value string) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setDomain:"), objc.String(value))
 }
 
 // The cookie’s expiration date.
@@ -217,8 +217,8 @@ func (h_ HTTPCookie) SetIsSessionOnly(value bool) {
 // The cookie’s name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/name
-func (h_ HTTPCookie) Name() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("name"))
+func (h_ HTTPCookie) Name() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -228,15 +228,15 @@ func (h_ HTTPCookie) Name() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/name
-func (h_ HTTPCookie) SetName(value appkit.string) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setName:"), value)
+func (h_ HTTPCookie) SetName(value string) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
 // The cookie’s path.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/path
-func (h_ HTTPCookie) Path() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("path"))
+func (h_ HTTPCookie) Path() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("path"))
 	return rv
 }
 
@@ -246,8 +246,8 @@ func (h_ HTTPCookie) Path() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/path
-func (h_ HTTPCookie) SetPath(value appkit.string) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setPath:"), value)
+func (h_ HTTPCookie) SetPath(value string) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setPath:"), objc.String(value))
 }
 
 // The cookie’s port list.
@@ -289,8 +289,8 @@ func (h_ HTTPCookie) SetSameSitePolicy(value unsafe.Pointer) {
 // The cookie’s string value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/value
-func (h_ HTTPCookie) Value() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("value"))
+func (h_ HTTPCookie) Value() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("value"))
 	return rv
 }
 
@@ -300,8 +300,8 @@ func (h_ HTTPCookie) Value() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/value
-func (h_ HTTPCookie) SetValue(value appkit.string) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setValue:"), value)
+func (h_ HTTPCookie) SetValue(value string) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setValue:"), objc.String(value))
 }
 
 // The cookie’s version.

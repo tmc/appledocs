@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [Dimension] class.
@@ -87,9 +86,9 @@ func NewDimension() Dimension {
 // Initializes a dimensional unit with the symbol and unit converter you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Dimension/init(symbol:converter:)
-func NewDimensionWithSymbolConverter(symbol appkit.string, converter IUnitConverter) Dimension {
+func NewDimensionWithSymbolConverter(symbol string, converter IUnitConverter) Dimension {
 	instance := getDimensionClass().Alloc()
-	rv := objc.Send[Dimension](instance.ID, objc.Sel("initWithSymbol:converter:"), symbol, converter)
+	rv := objc.Send[Dimension](instance.ID, objc.Sel("initWithSymbol:converter:"), objc.String(symbol), converter)
 	rv.Autorelease()
 	return rv
 }
@@ -114,8 +113,8 @@ func (d_ Dimension) Converter() NSUnitConverter {
 // The coefficient to use in the linear unit conversion calculation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/unitconverterlinear/coefficient
-func (d_ Dimension) Coefficient() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("coefficient"))
+func (d_ Dimension) Coefficient() float64 {
+	rv := objc.Send[float64](d_.ID, objc.Sel("coefficient"))
 	return rv
 }
 
@@ -125,7 +124,7 @@ func (d_ Dimension) Coefficient() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/unitconverterlinear/coefficient
-func (d_ Dimension) SetCoefficient(value unsafe.Pointer) {
+func (d_ Dimension) SetCoefficient(value float64) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setCoefficient:"), value)
 }
 

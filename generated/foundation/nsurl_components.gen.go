@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -87,9 +86,9 @@ func NewURLComponents() URLComponents {
 // Creates a URL components object by parsing a URL in string form.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents/init(string:)
-func NewURLComponentsWithString(URLString appkit.string) URLComponents {
+func NewURLComponentsWithString(URLString string) URLComponents {
 	instance := getURLComponentsClass().Alloc()
-	rv := objc.Send[URLComponents](instance.ID, objc.Sel("initWithString:"), URLString)
+	rv := objc.Send[URLComponents](instance.ID, objc.Sel("initWithString:"), objc.String(URLString))
 	rv.Autorelease()
 	return rv
 }
@@ -99,9 +98,9 @@ func NewURLComponentsWithString(URLString appkit.string) URLComponents {
 // Creates a URL components instance from the provided string, optionally IDNA- and percent-encoding any invalid characters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents/init(string:encodingInvalidCharacters:)
-func NewURLComponentsWithStringEncodingInvalidCharacters(URLString appkit.string, encodingInvalidCharacters bool) URLComponents {
+func NewURLComponentsWithStringEncodingInvalidCharacters(URLString string, encodingInvalidCharacters bool) URLComponents {
 	instance := getURLComponentsClass().Alloc()
-	rv := objc.Send[URLComponents](instance.ID, objc.Sel("initWithString:encodingInvalidCharacters:"), URLString, encodingInvalidCharacters)
+	rv := objc.Send[URLComponents](instance.ID, objc.Sel("initWithString:encodingInvalidCharacters:"), objc.String(URLString), encodingInvalidCharacters)
 	rv.Autorelease()
 	return rv
 }
@@ -122,16 +121,16 @@ func NewURLComponentsWithURLResolvingAgainstBaseURL(url IURL, resolve bool) URLC
 // Returns a URL components object by parsing a URL in string form.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents/componentsWithString:
-func (uc _URLComponentsClass) ComponentsWithString(URLString appkit.string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("componentsWithString:"), URLString)
+func (uc _URLComponentsClass) ComponentsWithString(URLString string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("componentsWithString:"), objc.String(URLString))
 	return rv
 }
 
 // Returns a URL components instance from the provided string, optionally IDNA- and percent-encoding any invalid characters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents/componentsWithString:encodingInvalidCharacters:
-func (uc _URLComponentsClass) ComponentsWithStringEncodingInvalidCharacters(URLString appkit.string, encodingInvalidCharacters bool) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("componentsWithString:encodingInvalidCharacters:"), URLString, encodingInvalidCharacters)
+func (uc _URLComponentsClass) ComponentsWithStringEncodingInvalidCharacters(URLString string, encodingInvalidCharacters bool) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("componentsWithString:encodingInvalidCharacters:"), objc.String(URLString), encodingInvalidCharacters)
 	return rv
 }
 
@@ -154,8 +153,8 @@ func (u_ URLComponents) URLRelativeToURL(baseURL IURL) URL {
 // The host URL subcomponent expressed as a URL-encoded string, or if not present.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents/percentEncodedHost
-func (u_ URLComponents) PercentEncodedHost() appkit.string {
-	rv := objc.Send[appkit.string](u_.ID, objc.Sel("percentEncodedHost"))
+func (u_ URLComponents) PercentEncodedHost() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("percentEncodedHost"))
 	return rv
 }
 
@@ -165,15 +164,15 @@ func (u_ URLComponents) PercentEncodedHost() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents/percentEncodedHost
-func (u_ URLComponents) SetPercentEncodedHost(value appkit.string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setPercentEncodedHost:"), value)
+func (u_ URLComponents) SetPercentEncodedHost(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setPercentEncodedHost:"), objc.String(value))
 }
 
 // A URL derived from the components object, in string form.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents/string
-func (u_ URLComponents) String() appkit.string {
-	rv := objc.Send[appkit.string](u_.ID, objc.Sel("string"))
+func (u_ URLComponents) String() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("string"))
 	return rv
 }
 
@@ -188,8 +187,8 @@ func (u_ URLComponents) URL() URL {
 // The host subcomponent, percent-encoded.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/encodedhost
-func (u_ URLComponents) EncodedHost() appkit.string {
-	rv := objc.Send[appkit.string](u_.ID, objc.Sel("encodedHost"))
+func (u_ URLComponents) EncodedHost() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("encodedHost"))
 	return rv
 }
 
@@ -199,15 +198,15 @@ func (u_ URLComponents) EncodedHost() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/encodedhost
-func (u_ URLComponents) SetEncodedHost(value appkit.string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setEncodedHost:"), value)
+func (u_ URLComponents) SetEncodedHost(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setEncodedHost:"), objc.String(value))
 }
 
 // The fragment URL component (the part after a
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/fragment
-func (u_ URLComponents) Fragment() appkit.string {
-	rv := objc.Send[appkit.string](u_.ID, objc.Sel("fragment"))
+func (u_ URLComponents) Fragment() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("fragment"))
 	return rv
 }
 
@@ -217,15 +216,15 @@ func (u_ URLComponents) Fragment() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/fragment
-func (u_ URLComponents) SetFragment(value appkit.string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setFragment:"), value)
+func (u_ URLComponents) SetFragment(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setFragment:"), objc.String(value))
 }
 
 // The host URL subcomponent, or nil if not present.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/host
-func (u_ URLComponents) Host() appkit.string {
-	rv := objc.Send[appkit.string](u_.ID, objc.Sel("host"))
+func (u_ URLComponents) Host() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("host"))
 	return rv
 }
 
@@ -235,15 +234,15 @@ func (u_ URLComponents) Host() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/host
-func (u_ URLComponents) SetHost(value appkit.string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setHost:"), value)
+func (u_ URLComponents) SetHost(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setHost:"), objc.String(value))
 }
 
 // The password URL subcomponent, or nil if not present.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/password
-func (u_ URLComponents) Password() appkit.string {
-	rv := objc.Send[appkit.string](u_.ID, objc.Sel("password"))
+func (u_ URLComponents) Password() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("password"))
 	return rv
 }
 
@@ -253,15 +252,15 @@ func (u_ URLComponents) Password() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/password
-func (u_ URLComponents) SetPassword(value appkit.string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setPassword:"), value)
+func (u_ URLComponents) SetPassword(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setPassword:"), objc.String(value))
 }
 
 // The path URL component, or nil if not present.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/path
-func (u_ URLComponents) Path() appkit.string {
-	rv := objc.Send[appkit.string](u_.ID, objc.Sel("path"))
+func (u_ URLComponents) Path() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("path"))
 	return rv
 }
 
@@ -271,15 +270,15 @@ func (u_ URLComponents) Path() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/path
-func (u_ URLComponents) SetPath(value appkit.string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setPath:"), value)
+func (u_ URLComponents) SetPath(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setPath:"), objc.String(value))
 }
 
 // The fragment URL component (the part after a
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/percentencodedfragment
-func (u_ URLComponents) PercentEncodedFragment() appkit.string {
-	rv := objc.Send[appkit.string](u_.ID, objc.Sel("percentEncodedFragment"))
+func (u_ URLComponents) PercentEncodedFragment() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("percentEncodedFragment"))
 	return rv
 }
 
@@ -289,15 +288,15 @@ func (u_ URLComponents) PercentEncodedFragment() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/percentencodedfragment
-func (u_ URLComponents) SetPercentEncodedFragment(value appkit.string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setPercentEncodedFragment:"), value)
+func (u_ URLComponents) SetPercentEncodedFragment(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setPercentEncodedFragment:"), objc.String(value))
 }
 
 // The password URL subcomponent expressed as a URL-encoded string, or
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/percentencodedpassword
-func (u_ URLComponents) PercentEncodedPassword() appkit.string {
-	rv := objc.Send[appkit.string](u_.ID, objc.Sel("percentEncodedPassword"))
+func (u_ URLComponents) PercentEncodedPassword() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("percentEncodedPassword"))
 	return rv
 }
 
@@ -307,15 +306,15 @@ func (u_ URLComponents) PercentEncodedPassword() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/percentencodedpassword
-func (u_ URLComponents) SetPercentEncodedPassword(value appkit.string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setPercentEncodedPassword:"), value)
+func (u_ URLComponents) SetPercentEncodedPassword(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setPercentEncodedPassword:"), objc.String(value))
 }
 
 // The path URL component expressed as a URL-encoded string, or
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/percentencodedpath
-func (u_ URLComponents) PercentEncodedPath() appkit.string {
-	rv := objc.Send[appkit.string](u_.ID, objc.Sel("percentEncodedPath"))
+func (u_ URLComponents) PercentEncodedPath() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("percentEncodedPath"))
 	return rv
 }
 
@@ -325,15 +324,15 @@ func (u_ URLComponents) PercentEncodedPath() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/percentencodedpath
-func (u_ URLComponents) SetPercentEncodedPath(value appkit.string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setPercentEncodedPath:"), value)
+func (u_ URLComponents) SetPercentEncodedPath(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setPercentEncodedPath:"), objc.String(value))
 }
 
 // The query URL component expressed as a URL-encoded string, or
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/percentencodedquery
-func (u_ URLComponents) PercentEncodedQuery() appkit.string {
-	rv := objc.Send[appkit.string](u_.ID, objc.Sel("percentEncodedQuery"))
+func (u_ URLComponents) PercentEncodedQuery() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("percentEncodedQuery"))
 	return rv
 }
 
@@ -343,8 +342,8 @@ func (u_ URLComponents) PercentEncodedQuery() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/percentencodedquery
-func (u_ URLComponents) SetPercentEncodedQuery(value appkit.string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setPercentEncodedQuery:"), value)
+func (u_ URLComponents) SetPercentEncodedQuery(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setPercentEncodedQuery:"), objc.String(value))
 }
 
 //
@@ -365,8 +364,8 @@ func (u_ URLComponents) SetPercentEncodedQueryItems(value IURLQueryItem) {
 // The username URL subcomponent expressed as a URL-encoded string, or
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/percentencodeduser
-func (u_ URLComponents) PercentEncodedUser() appkit.string {
-	rv := objc.Send[appkit.string](u_.ID, objc.Sel("percentEncodedUser"))
+func (u_ URLComponents) PercentEncodedUser() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("percentEncodedUser"))
 	return rv
 }
 
@@ -376,8 +375,8 @@ func (u_ URLComponents) PercentEncodedUser() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/percentencodeduser
-func (u_ URLComponents) SetPercentEncodedUser(value appkit.string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setPercentEncodedUser:"), value)
+func (u_ URLComponents) SetPercentEncodedUser(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setPercentEncodedUser:"), objc.String(value))
 }
 
 // The port number URL component, or nil if not present.
@@ -401,8 +400,8 @@ func (u_ URLComponents) SetPort(value INumber) {
 // The query URL component as a string, or nil if not present.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/query
-func (u_ URLComponents) Query() appkit.string {
-	rv := objc.Send[appkit.string](u_.ID, objc.Sel("query"))
+func (u_ URLComponents) Query() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("query"))
 	return rv
 }
 
@@ -412,8 +411,8 @@ func (u_ URLComponents) Query() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/query
-func (u_ URLComponents) SetQuery(value appkit.string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setQuery:"), value)
+func (u_ URLComponents) SetQuery(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setQuery:"), objc.String(value))
 }
 
 // The query URL component as an array of name/value pairs.
@@ -581,8 +580,8 @@ func (u_ URLComponents) SetRangeOfUser(value IRange) {
 // The scheme URL component, or nil if not present.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/scheme
-func (u_ URLComponents) Scheme() appkit.string {
-	rv := objc.Send[appkit.string](u_.ID, objc.Sel("scheme"))
+func (u_ URLComponents) Scheme() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("scheme"))
 	return rv
 }
 
@@ -592,15 +591,15 @@ func (u_ URLComponents) Scheme() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/scheme
-func (u_ URLComponents) SetScheme(value appkit.string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setScheme:"), value)
+func (u_ URLComponents) SetScheme(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setScheme:"), objc.String(value))
 }
 
 // The username URL subcomponent, or nil if not present.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/user
-func (u_ URLComponents) User() appkit.string {
-	rv := objc.Send[appkit.string](u_.ID, objc.Sel("user"))
+func (u_ URLComponents) User() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("user"))
 	return rv
 }
 
@@ -610,8 +609,8 @@ func (u_ URLComponents) User() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/user
-func (u_ URLComponents) SetUser(value appkit.string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setUser:"), value)
+func (u_ URLComponents) SetUser(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setUser:"), objc.String(value))
 }
 
 

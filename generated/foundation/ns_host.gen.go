@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -86,8 +85,8 @@ func NewHost() Host {
 // Returns the with the Internet address .
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Host/init(address:)
-func NewHostWithAddress(address appkit.string) Host {
-	rv := objc.Send[Host](objc.ID(getHostClass().class), objc.Sel("hostWithAddress:"), address)
+func NewHostWithAddress(address string) Host {
+	rv := objc.Send[Host](objc.ID(getHostClass().class), objc.Sel("hostWithAddress:"), objc.String(address))
 	return rv
 }
 
@@ -96,8 +95,8 @@ func NewHostWithAddress(address appkit.string) Host {
 // Returns a host with a specific name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Host/init(name:)
-func NewHostWithName(name appkit.string) Host {
-	rv := objc.Send[Host](objc.ID(getHostClass().class), objc.Sel("hostWithName:"), name)
+func NewHostWithName(name string) Host {
+	rv := objc.Send[Host](objc.ID(getHostClass().class), objc.Sel("hostWithName:"), objc.String(name))
 	return rv
 }
 
@@ -113,16 +112,16 @@ func (hc _HostClass) CurrentHost() unsafe.Pointer {
 // Returns the with the Internet address .
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Host/init(address:)
-func (hc _HostClass) HostWithAddress(address appkit.string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("hostWithAddress:"), address)
+func (hc _HostClass) HostWithAddress(address string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("hostWithAddress:"), objc.String(address))
 	return rv
 }
 
 // Returns a host with a specific name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Host/init(name:)
-func (hc _HostClass) HostWithName(name appkit.string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("hostWithName:"), name)
+func (hc _HostClass) HostWithName(name string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("hostWithName:"), objc.String(name))
 	return rv
 }
 
@@ -144,24 +143,24 @@ func (h_ Host) Addresses() []string {
 // Returns the name used as by default when publishing .
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Host/localizedName
-func (h_ Host) LocalizedName() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("localizedName"))
+func (h_ Host) LocalizedName() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("localizedName"))
 	return rv
 }
 
 // Returns one of the hostnames of the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Host/name
-func (h_ Host) Name() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("name"))
+func (h_ Host) Name() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("name"))
 	return rv
 }
 
 // Returns one of the network addresses of the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/host/address
-func (h_ Host) Address() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("address"))
+func (h_ Host) Address() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("address"))
 	return rv
 }
 
@@ -171,15 +170,15 @@ func (h_ Host) Address() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/host/address
-func (h_ Host) SetAddress(value appkit.string) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setAddress:"), value)
+func (h_ Host) SetAddress(value string) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setAddress:"), objc.String(value))
 }
 
 // Returns all the hostnames of the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/host/names
-func (h_ Host) Names() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("names"))
+func (h_ Host) Names() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("names"))
 	return rv
 }
 
@@ -189,8 +188,8 @@ func (h_ Host) Names() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/host/names
-func (h_ Host) SetNames(value appkit.string) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setNames:"), value)
+func (h_ Host) SetNames(value string) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setNames:"), objc.String(value))
 }
 
 

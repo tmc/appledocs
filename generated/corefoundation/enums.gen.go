@@ -130,6 +130,13 @@ const (
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNotificationSuspensionBehavior
 type NotificationSuspensionBehavior uint
 
+const (
+	NotificationSuspensionBehaviorDrop NotificationSuspensionBehavior = 1
+	NotificationSuspensionBehaviorCoalesce NotificationSuspensionBehavior = 2
+	NotificationSuspensionBehaviorHold NotificationSuspensionBehavior = 3
+	NotificationSuspensionBehaviorDeliverImmediately NotificationSuspensionBehavior = 4
+)
+
 // CFNumberFormatterOptionFlags - Type for constants specifying how numbers should be parsed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNumberFormatterOptionFlags

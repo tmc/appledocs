@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,8 +33,8 @@ type ISFAuthorization interface {
 	objectivec.IObject
 	AuthorizationRef() unsafe.Pointer
 	InvalidateCredentials()
-	ObtainWithRightFlagsError(rightName unsafe.Pointer, flags unsafe.Pointer, error_ unsafe.Pointer) bool
-	ObtainWithRightsFlagsEnvironmentAuthorizedRightsError(rights unsafe.Pointer, flags unsafe.Pointer, environment unsafe.Pointer, authorizedRights unsafe.Pointer, error_ unsafe.Pointer) bool
+	ObtainWithRightFlagsError(rightName unsafe.Pointer, flags unsafe.Pointer, error_ foundation.IError) bool
+	ObtainWithRightsFlagsEnvironmentAuthorizedRightsError(rights unsafe.Pointer, flags unsafe.Pointer, environment unsafe.Pointer, authorizedRights unsafe.Pointer, error_ foundation.IError) bool
 	PermitWithRightFlags(rightName unsafe.Pointer, flags unsafe.Pointer) unsafe.Pointer
 	PermitWithRightsFlagsEnvironmentAuthorizedRights(rights unsafe.Pointer, flags unsafe.Pointer, environment unsafe.Pointer, authorizedRights unsafe.Pointer) unsafe.Pointer
 }
@@ -133,7 +134,7 @@ func (s_ SFAuthorization) InvalidateCredentials() {
 // Authorizes and preauthorizes one specific right.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SecurityFoundation/SFAuthorization/obtain(withRight:flags:)
-func (s_ SFAuthorization) ObtainWithRightFlagsError(rightName unsafe.Pointer, flags unsafe.Pointer, error_ unsafe.Pointer) bool {
+func (s_ SFAuthorization) ObtainWithRightFlagsError(rightName unsafe.Pointer, flags unsafe.Pointer, error_ foundation.IError) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("obtainWithRight:flags:error:"), rightName, flags, error_)
 	return rv
 }
@@ -141,7 +142,7 @@ func (s_ SFAuthorization) ObtainWithRightFlagsError(rightName unsafe.Pointer, fl
 // Authorizes and preauthorizes rights to access a privileged operation and returns the granted rights.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SecurityFoundation/SFAuthorization/obtain(withRights:flags:environment:authorizedRights:)
-func (s_ SFAuthorization) ObtainWithRightsFlagsEnvironmentAuthorizedRightsError(rights unsafe.Pointer, flags unsafe.Pointer, environment unsafe.Pointer, authorizedRights unsafe.Pointer, error_ unsafe.Pointer) bool {
+func (s_ SFAuthorization) ObtainWithRightsFlagsEnvironmentAuthorizedRightsError(rights unsafe.Pointer, flags unsafe.Pointer, environment unsafe.Pointer, authorizedRights unsafe.Pointer, error_ foundation.IError) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("obtainWithRights:flags:environment:authorizedRights:error:"), rights, flags, environment, authorizedRights, error_)
 	return rv
 }

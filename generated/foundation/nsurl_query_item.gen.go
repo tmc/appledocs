@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -84,8 +83,8 @@ func NewURLQueryItem() URLQueryItem {
 // The value for the query item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLQueryItem/value
-func (u_ URLQueryItem) Value() appkit.string {
-	rv := objc.Send[appkit.string](u_.ID, objc.Sel("value"))
+func (u_ URLQueryItem) Value() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("value"))
 	return rv
 }
 
@@ -110,8 +109,8 @@ func (u_ URLQueryItem) SetQueryItems(value IURLQueryItem) {
 // The name of the query item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlqueryitem/name
-func (u_ URLQueryItem) Name() appkit.string {
-	rv := objc.Send[appkit.string](u_.ID, objc.Sel("name"))
+func (u_ URLQueryItem) Name() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -121,8 +120,8 @@ func (u_ URLQueryItem) Name() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlqueryitem/name
-func (u_ URLQueryItem) SetName(value appkit.string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setName:"), value)
+func (u_ URLQueryItem) SetName(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
 

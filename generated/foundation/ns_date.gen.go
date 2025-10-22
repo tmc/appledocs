@@ -146,8 +146,8 @@ func (d_ Date) SetCustomPlaygroundQuickLook(value unsafe.Pointer) {
 // A string representation of the date object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdate/description
-func (d_ Date) Description() appkit.string {
-	rv := objc.Send[appkit.string](d_.ID, objc.Sel("description"))
+func (d_ Date) Description() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("description"))
 	return rv
 }
 
@@ -157,8 +157,8 @@ func (d_ Date) Description() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdate/description
-func (d_ Date) SetDescription(value appkit.string) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setDescription:"), value)
+func (d_ Date) SetDescription(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setDescription:"), objc.String(value))
 }
 
 //
@@ -215,8 +215,8 @@ func (d_ Date) SetTimeIntervalSinceNow(value ITimeInterval) {
 // The number of seconds from 1 January 1970 to the reference date, 1 January 2001.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstimeintervalsince1970
-func (d_ Date) NSTimeIntervalSince1970() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("NSTimeIntervalSince1970"))
+func (d_ Date) NSTimeIntervalSince1970() float64 {
+	rv := objc.Send[float64](d_.ID, objc.Sel("NSTimeIntervalSince1970"))
 	return rv
 }
 
@@ -226,7 +226,7 @@ func (d_ Date) NSTimeIntervalSince1970() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstimeintervalsince1970
-func (d_ Date) SetNSTimeIntervalSince1970(value unsafe.Pointer) {
+func (d_ Date) SetNSTimeIntervalSince1970(value float64) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setNSTimeIntervalSince1970:"), value)
 }
 

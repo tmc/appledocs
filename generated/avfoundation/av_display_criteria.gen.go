@@ -85,7 +85,7 @@ func NewDisplayCriteria() DisplayCriteria {
 // Creates a display criteria object with the specified refresh rate and format description.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVDisplayCriteria/init(refreshRate:formatDescription:)
-func NewDisplayCriteriaWithRefreshRateFormatDescription(refreshRate unsafe.Pointer, formatDescription unsafe.Pointer) DisplayCriteria {
+func NewDisplayCriteriaWithRefreshRateFormatDescription(refreshRate float32, formatDescription unsafe.Pointer) DisplayCriteria {
 	instance := getDisplayCriteriaClass().Alloc()
 	rv := objc.Send[DisplayCriteria](instance.ID, objc.Sel("initWithRefreshRate:formatDescription:"), refreshRate, formatDescription)
 	rv.Autorelease()

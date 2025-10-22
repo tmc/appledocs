@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -206,8 +205,8 @@ func (o_ Operation) Ready() bool {
 // The name of the operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/name
-func (o_ Operation) Name() appkit.string {
-	rv := objc.Send[appkit.string](o_.ID, objc.Sel("name"))
+func (o_ Operation) Name() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -217,8 +216,8 @@ func (o_ Operation) Name() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/name
-func (o_ Operation) SetName(value appkit.string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setName:"), value)
+func (o_ Operation) SetName(value string) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
 // The relative amount of importance for granting system resources to the operation.
@@ -260,8 +259,8 @@ func (o_ Operation) SetQueuePriority(value OperationQueuePriority) {
 // The thread priority to use when executing the operation
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/threadPriority
-func (o_ Operation) ThreadPriority() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("threadPriority"))
+func (o_ Operation) ThreadPriority() float64 {
+	rv := objc.Send[float64](o_.ID, objc.Sel("threadPriority"))
 	return rv
 }
 
@@ -271,7 +270,7 @@ func (o_ Operation) ThreadPriority() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/threadPriority
-func (o_ Operation) SetThreadPriority(value unsafe.Pointer) {
+func (o_ Operation) SetThreadPriority(value float64) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setThreadPriority:"), value)
 }
 

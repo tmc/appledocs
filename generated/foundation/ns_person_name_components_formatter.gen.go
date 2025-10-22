@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [PersonNameComponentsFormatter] class.
@@ -30,7 +29,7 @@ type _PersonNameComponentsFormatterClass struct {
 // An interface definition for the [PersonNameComponentsFormatter] class.
 type IPersonNameComponentsFormatter interface {
 	IFormatter
-	PersonNameComponentsFromString(string_ appkit.string) PersonNameComponents
+	PersonNameComponentsFromString(string_ string) PersonNameComponents
 }
 
 // A formatter that provides localized representations of the components of a person’s name.
@@ -86,8 +85,8 @@ func NewPersonNameComponentsFormatter() PersonNameComponentsFormatter {
 // Returns a person name components object from a given string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/PersonNameComponentsFormatter/personNameComponents(from:)
-func (p_ PersonNameComponentsFormatter) PersonNameComponentsFromString(string_ appkit.string) PersonNameComponents {
-	rv := objc.Send[PersonNameComponents](p_.ID, objc.Sel("personNameComponentsFromString:"), string_)
+func (p_ PersonNameComponentsFormatter) PersonNameComponentsFromString(string_ string) PersonNameComponents {
+	rv := objc.Send[PersonNameComponents](p_.ID, objc.Sel("personNameComponentsFromString:"), objc.String(string_))
 	return rv
 }
 

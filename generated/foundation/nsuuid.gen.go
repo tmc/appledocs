@@ -92,8 +92,8 @@ func (u_ UUID) Compare(otherUUID IUUID) ComparisonResult {
 // The UUID as a string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsuuid/uuidstring
-func (u_ UUID) UuidString() appkit.string {
-	rv := objc.Send[appkit.string](u_.ID, objc.Sel("uuidString"))
+func (u_ UUID) UuidString() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("uuidString"))
 	return rv
 }
 
@@ -103,8 +103,8 @@ func (u_ UUID) UuidString() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsuuid/uuidstring
-func (u_ UUID) SetUuidString(value appkit.string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setUuidString:"), value)
+func (u_ UUID) SetUuidString(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setUuidString:"), objc.String(value))
 }
 
 

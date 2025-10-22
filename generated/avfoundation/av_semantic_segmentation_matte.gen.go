@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,7 +31,7 @@ type _SemanticSegmentationMatteClass struct {
 // An interface definition for the [SemanticSegmentationMatte] class.
 type ISemanticSegmentationMatte interface {
 	objectivec.IObject
-	DictionaryRepresentationForAuxiliaryDataType(outAuxDataType appkit.string) foundation.Dictionary
+	DictionaryRepresentationForAuxiliaryDataType(outAuxDataType string) foundation.Dictionary
 }
 
 // An object that wraps a matting image for a particular semantic segmentation.
@@ -86,8 +85,8 @@ func NewSemanticSegmentationMatte() SemanticSegmentationMatte {
 // Returns a dictionary of primitive map information to use when writing an image file with a semantic segmentation matte.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSemanticSegmentationMatte/dictionaryRepresentation(forAuxiliaryDataType:)
-func (s_ SemanticSegmentationMatte) DictionaryRepresentationForAuxiliaryDataType(outAuxDataType appkit.string) foundation.Dictionary {
-	rv := objc.Send[foundation.Dictionary](s_.ID, objc.Sel("dictionaryRepresentationForAuxiliaryDataType:"), outAuxDataType)
+func (s_ SemanticSegmentationMatte) DictionaryRepresentationForAuxiliaryDataType(outAuxDataType string) foundation.Dictionary {
+	rv := objc.Send[foundation.Dictionary](s_.ID, objc.Sel("dictionaryRepresentationForAuxiliaryDataType:"), objc.String(outAuxDataType))
 	return rv
 }
 

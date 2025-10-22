@@ -101,8 +101,8 @@ func (p_ PointerFunctions) SetPointerFunctions(value IPointerFunctions) {
 // The function used to describe elements.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nspointerfunctions/descriptionfunction
-func (p_ PointerFunctions) DescriptionFunction() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("descriptionFunction"))
+func (p_ PointerFunctions) DescriptionFunction() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("descriptionFunction"))
 	return rv
 }
 
@@ -112,8 +112,8 @@ func (p_ PointerFunctions) DescriptionFunction() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nspointerfunctions/descriptionfunction
-func (p_ PointerFunctions) SetDescriptionFunction(value appkit.string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setDescriptionFunction:"), value)
+func (p_ PointerFunctions) SetDescriptionFunction(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setDescriptionFunction:"), objc.String(value))
 }
 
 // The hash function.

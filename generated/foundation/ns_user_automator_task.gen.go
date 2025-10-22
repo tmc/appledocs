@@ -93,8 +93,8 @@ func (u_ UserAutomatorTask) ExecuteWithInputCompletionHandler(input objectivec.I
 // The variables required by the Automator workflow.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsuserautomatortask/variables
-func (u_ UserAutomatorTask) Variables() appkit.string {
-	rv := objc.Send[appkit.string](u_.ID, objc.Sel("variables"))
+func (u_ UserAutomatorTask) Variables() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("variables"))
 	return rv
 }
 
@@ -104,8 +104,8 @@ func (u_ UserAutomatorTask) Variables() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsuserautomatortask/variables
-func (u_ UserAutomatorTask) SetVariables(value appkit.string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setVariables:"), value)
+func (u_ UserAutomatorTask) SetVariables(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setVariables:"), objc.String(value))
 }
 
 

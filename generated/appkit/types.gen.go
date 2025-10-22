@@ -18,6 +18,8 @@ type CGColor unsafe.Pointer
 
 type CGColorSpace unsafe.Pointer
 
+type CGGlyph unsafe.Pointer
+
 type CGImage unsafe.Pointer
 
 type CIFilter unsafe.Pointer

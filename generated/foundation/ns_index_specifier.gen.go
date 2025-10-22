@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [IndexSpecifier] class.
@@ -87,9 +86,9 @@ func NewIndexSpecifier() IndexSpecifier {
 // Initializes an allocated object with a class description, container specifier, collection key, and object index.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSpecifier/init(containerClassDescription:containerSpecifier:key:index:)
-func NewIndexSpecifierWithContainerClassDescriptionContainerSpecifierKeyIndex(classDesc IScriptClassDescription, container IScriptObjectSpecifier, property appkit.string, index int) IndexSpecifier {
+func NewIndexSpecifierWithContainerClassDescriptionContainerSpecifierKeyIndex(classDesc IScriptClassDescription, container IScriptObjectSpecifier, property string, index int) IndexSpecifier {
 	instance := getIndexSpecifierClass().Alloc()
-	rv := objc.Send[IndexSpecifier](instance.ID, objc.Sel("initWithContainerClassDescription:containerSpecifier:key:index:"), classDesc, container, property, index)
+	rv := objc.Send[IndexSpecifier](instance.ID, objc.Sel("initWithContainerClassDescription:containerSpecifier:key:index:"), classDesc, container, objc.String(property), index)
 	rv.Autorelease()
 	return rv
 }

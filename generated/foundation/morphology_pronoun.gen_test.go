@@ -9,3 +9,12 @@ import (
 // Suppress unused import errors
 var _ = foundation.NewMorphologyPronoun
 
+// ExampleNewMorphologyPronounWithPronounMorphologyDependentMorphology demonstrates how to create a MorphologyPronoun instance using NewMorphologyPronounWithPronounMorphologyDependentMorphology.
+func ExampleNewMorphologyPronounWithPronounMorphologyDependentMorphology() {
+	_ = foundation.NewMorphologyPronounWithPronounMorphologyDependentMorphology(
+		"pronoun", // pronoun string
+		foundation.NSMorphology{}, // morphology NSMorphology
+		foundation.NSMorphology{}, // dependentMorphology NSMorphology
+	)
+	// Output:
+}
