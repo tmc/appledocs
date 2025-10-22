@@ -69,6 +69,7 @@ var frameworkLevels = map[string]int{
 	"messages":     4,
 	"storekit":     4,
 	"usernotifications": 4,
+	"replaykit":    4,
 }
 
 // FilterMethodsByHierarchy filters methods that would create upward dependency violations.
@@ -152,7 +153,7 @@ func violatesHierarchy(objcType, currentFramework string, currentLevel int) bool
 	goType := mapObjCTypeToGo(objcType, currentFramework)
 
 	debug := os.Getenv("DEBUG_HIERARCHY") == "1"
-	if debug && (strings.Contains(objcType, "Hotspot") || strings.Contains(goType, "networkextension")) {
+	if debug && (strings.Contains(objcType, "Hotspot") || strings.Contains(objcType, "Broadcast") || strings.Contains(objcType, "RPBroadcast") || strings.Contains(goType, "networkextension") || strings.Contains(goType, "replaykit")) {
 		fmt.Fprintf(os.Stderr, "DEBUG violatesHierarchy: objcType=%s goType=%s currentFramework=%s currentLevel=%d\n",
 			objcType, goType, currentFramework, currentLevel)
 	}

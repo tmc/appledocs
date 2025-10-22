@@ -382,6 +382,17 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 		skippedPropertyCount := 0
 		for i := range classes {
 			if methods, ok := classMethodsMap[classes[i].Name]; ok {
+				// Debug: log methods for NSExtensionContext
+				if classes[i].Name == "NSExtensionContext" && os.Getenv("DEBUG_HIERARCHY") == "1" {
+					for _, m := range methods {
+						if strings.Contains(m.Name, "Broadcast") {
+							fmt.Fprintf(os.Stderr, "DEBUG main: NSExtensionContext method %s has %d params\n", m.Name, len(m.Parameters))
+							for j, p := range m.Parameters {
+								fmt.Fprintf(os.Stderr, "DEBUG main:   param[%d] name=%s type=%s\n", j, p.Name, p.Type)
+							}
+						}
+					}
+				}
 				// Filter out methods that would create upward dependency violations
 				originalCount := len(methods)
 				classes[i].Methods = FilterMethodsByHierarchy(methods, framework)

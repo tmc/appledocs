@@ -33,7 +33,7 @@ func mapObjCTypeToGo(objcType, framework string) string {
 	objcType = strings.TrimSpace(objcType)
 
 	if os.Getenv("DEBUG_TYPEMAP") == "1" {
-		if strings.Contains(objcType, "Hotspot") || (framework == "Foundation" && strings.Contains(objcType, "NE")) {
+		if strings.Contains(objcType, "Hotspot") || strings.Contains(objcType, "RPBroadcast") || strings.Contains(objcType, "Broadcast") || (framework == "Foundation" && strings.Contains(objcType, "NE")) {
 			fmt.Fprintf(os.Stderr, "DEBUG mapObjCTypeToGo ENTRY: objcType=%q framework=%s\n", objcType, framework)
 		}
 	}
@@ -242,12 +242,19 @@ func mapObjCTypeToGo(objcType, framework string) string {
 
 	// Check for framework hierarchy violations - if resolved type references a higher-level framework,
 	// map to generic objectivec.IObject instead to avoid import cycles
+	// This handles both struct types (e.g., "replaykit.BroadcastConfiguration") and interface types
+	// (e.g., "replaykit.IRPBroadcastConfiguration")
 	if strings.Contains(goType, ".") && framework != "" {
 		parts := strings.Split(goType, ".")
 		if len(parts) >= 2 {
 			targetFramework := parts[0]
 			currentLevel := getFrameworkLevel(strings.ToLower(framework))
 			targetLevel := getFrameworkLevel(targetFramework)
+
+			if os.Getenv("DEBUG_TYPEMAP") == "1" && strings.Contains(goType, "replaykit") {
+				fmt.Fprintf(os.Stderr, "DEBUG mapObjCTypeToGo: checking hierarchy goType=%s framework=%s currentLevel=%d targetFramework=%s targetLevel=%d\n",
+					goType, framework, currentLevel, targetFramework, targetLevel)
+			}
 
 			if currentLevel >= 0 && targetLevel > currentLevel {
 				// Hierarchy violation - map to objectivec.IObject
@@ -320,6 +327,7 @@ func getFrameworkLevel(framework string) int {
 		"messages":         4,
 		"storekit":         4,
 		"usernotifications": 4,
+		"replaykit":        4,
 	}
 	if level, ok := levels[strings.ToLower(framework)]; ok {
 		return level
