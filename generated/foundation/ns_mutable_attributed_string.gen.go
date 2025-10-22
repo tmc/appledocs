@@ -42,6 +42,7 @@ type IMutableAttributedString interface {
 //
 // The class declares additional methods for mutating the content of an attributed string. You can add and remove characters (raw strings) and attributes separately or together as attributed strings. See the class description for for more information about attributed strings. adds two primitive methods to those of . These primitive methods provide the basis for all the other methods in its class. The primitive method replaces a range of characters with those from a string, leaving all attribute information outside that range intact. The primitive method sets attributes and values for a given range of characters, replacing any previous attributes and values for that range. In macOS, AppKit also uses and its subclass to encapsulate the paragraph or ruler attributes used by the classes. Note that the default font for objects is Helvetica 12-point, which may differ from the macOS system font, so you may wish to create the string with non-default attributes suitable for your application using, for example, . is “toll-free bridged” with its Core Foundation counterpart, . See for more information.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableAttributedString
 type MutableAttributedString struct {
 	AttributedString

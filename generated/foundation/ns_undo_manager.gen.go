@@ -79,6 +79,7 @@ type IUndoManager interface {
 //
 // You register an undo operation by calling one of the methods described in Registering undo operations. You specify the name of the object that’s changing (or the owner of that object) and provide a closure, method, or invocation to revert its state. After you register an undo operation, you can call on the undo manager to revert to the state of the last undo operation. When undoing an action, saves the operations you revert to so that you can call automatically. Typically, apps with UI interactions work with . For example, UIKit implements undo and redo in its text view object, making it easy for you to undo and redo actions in objects along the responder chain. also serves as a general-purpose state manager, which you can use to undo and redo many kinds of actions. For example, an interactive command-line utility can use this class to undo the last command run, or a networking library can undo a request by sending another request that invalidates the previous one.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager
 type UndoManager struct {
 	objectivec.Object

@@ -109,355 +109,530 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 
 
 
-// Allocates collectable memory. [Full Topic]
+// Allocates collectable memory.
 //
 // Added in macOS 10.0.
 //
+
+// Allocates collectable memory.
+//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAllocateCollectable
+
 func NSAllocateCollectable(size unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
 	return _NSAllocateCollectable(size, options)
 	}
 
 
-// Allocates a new block of memory. [Full Topic]
+// Allocates a new block of memory.
 //
 // Added in macOS 10.0.
 //
+
+// Allocates a new block of memory.
+//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAllocateMemoryPages(_:)
+
 func NSAllocateMemoryPages(bytes unsafe.Pointer) unsafe.Pointer {
 	return _NSAllocateMemoryPages(bytes)
 	}
 
 
-// Obtains a class by name. [Full Topic]
+// Obtains a class by name.
 //
 // Added in macOS 10.0.
 //
+
+// Obtains a class by name.
+//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSClassFromString(_:)
+
 func NSClassFromString(aClassName unsafe.Pointer) unsafe.Pointer {
 	return _NSClassFromString(aClassName)
 	}
 
 
-// Copies a block of memory. [Full Topic]
+// Copies a block of memory.
 //
 // Added in macOS 10.0.
 //
+
+// Copies a block of memory.
+//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCopyMemoryPages(_:_:_:)
+
 func NSCopyMemoryPages(source unsafe.Pointer, dest unsafe.Pointer, bytes unsafe.Pointer) {
 	_NSCopyMemoryPages(source, dest, bytes)
 	}
 
 
-// Creates an exact copy of an object. [Full Topic]
+// Creates an exact copy of an object.
 //
 // Deprecated: This function was deprecated in macOS 10.8.
 //
 // Added in macOS 10.0.
 //
+
+// Creates an exact copy of an object.
+//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCopyObject
+
 func NSCopyObject(object unsafe.Pointer, extraBytes unsafe.Pointer, zone unsafe.Pointer) unsafe.Pointer {
 	return _NSCopyObject(object, extraBytes, zone)
 	}
 
 
-// Returns the number of call frames on the stack. [Full Topic]
+// Returns the number of call frames on the stack.
 //
 // Added in macOS 10.0.
 //
+
+// Returns the number of call frames on the stack.
+//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCountFrames
+
 func NSCountFrames() unsafe.Pointer {
 	return _NSCountFrames()
 	}
 
 
-// Compacts the decimal structure for efficiency. [Full Topic]
+// Compacts the decimal structure for efficiency.
 //
 // Added in macOS 10.0.
 //
+
+// Compacts the decimal structure for efficiency.
+//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalCompact(_:)
+
 func NSDecimalCompact(number unsafe.Pointer) {
 	_NSDecimalCompact(number)
 	}
 
 
-// Raises the decimal value to the specified power. [Full Topic]
+// Raises the decimal value to the specified power.
 //
 // Added in macOS 10.0.
 //
+
+// Raises the decimal value to the specified power.
+//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalPower(_:_:_:_:)
+
 func NSDecimalPower(result unsafe.Pointer, number unsafe.Pointer, power unsafe.Pointer, roundingMode unsafe.Pointer) unsafe.Pointer {
 	return _NSDecimalPower(result, number, power, roundingMode)
 	}
 
 
-// Returns the specified object’s reference count. [Full Topic]
+// Returns the specified object’s reference count.
 //
 // Added in macOS 10.0.
 //
+
+// Returns the specified object’s reference count.
+//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtraRefCount
+
 func NSExtraRefCount(object unsafe.Pointer) unsafe.Pointer {
 	return _NSExtraRefCount(object)
 	}
 
 
-// Returns a string encoding a file type code. [Full Topic]
+// Returns a string encoding a file type code.
 //
 // Added in macOS 10.0.
 //
+
+// Returns a string encoding a file type code.
+//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileTypeForHFSTypeCode(_:)
+
 func NSFileTypeForHFSTypeCode(hfsFileTypeCode unsafe.Pointer) unsafe.Pointer {
 	return _NSFileTypeForHFSTypeCode(hfsFileTypeCode)
 	}
 
 
-// Returns the value of the frame pointer of the specified frame. [Full Topic]
+// Returns the value of the frame pointer of the specified frame.
 //
 // Added in macOS 10.0.
 //
+
+// Returns the value of the frame pointer of the specified frame.
+//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFrameAddress
+
 func NSFrameAddress(frame unsafe.Pointer) unsafe.Pointer {
 	return _NSFrameAddress(frame)
 	}
 
 
-// Returns a string containing the full name of the current user. [Full Topic]
+// Returns a string containing the full name of the current user.
 //
 // Added in macOS 10.0.
 //
+
+// Returns a string containing the full name of the current user.
+//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFullUserName()
+
 func NSFullUserName() unsafe.Pointer {
 	return _NSFullUserName()
 	}
 
 
-// Returns the top-level error handler. [Full Topic]
+// Returns the top-level error handler.
 //
 // Added in macOS 10.0.
 //
+
+// Returns the top-level error handler.
+//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSGetUncaughtExceptionHandler()
+
 func NSGetUncaughtExceptionHandler() unsafe.Pointer {
 	return _NSGetUncaughtExceptionHandler()
 	}
 
 
-// Returns a file type code. [Full Topic]
+// Returns a file type code.
 //
 // Added in macOS 10.0.
 //
+
+// Returns a file type code.
+//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHFSTypeCodeFromFileType(_:)
+
 func NSHFSTypeCodeFromFileType(fileTypeString unsafe.Pointer) unsafe.Pointer {
 	return _NSHFSTypeCodeFromFileType(fileTypeString)
 	}
 
 
-// Returns a string encoding a file type. [Full Topic]
+// Returns a string encoding a file type.
 //
 // Added in macOS 10.0.
 //
+
+// Returns a string encoding a file type.
+//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHFSTypeOfFile(_:)
+
 func NSHFSTypeOfFile(fullFilePath unsafe.Pointer) unsafe.Pointer {
 	return _NSHFSTypeOfFile(fullFilePath)
 	}
 
 
-// Returns the path to either the user’s or application’s home directory, depending on the platform. [Full Topic]
+// Returns the path to either the user’s or application’s home directory, depending on the platform.
 //
 // Added in macOS 10.0.
 //
+
+// Returns the path to either the user’s or application’s home directory, depending on the platform.
+//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHomeDirectory()
+
 func NSHomeDirectory() unsafe.Pointer {
 	return _NSHomeDirectory()
 	}
 
 
-// Returns the path to a given user’s home directory. [Full Topic]
+// Returns the path to a given user’s home directory.
 //
 // Added in macOS 10.0.
 //
+
+// Returns the path to a given user’s home directory.
+//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHomeDirectoryForUser(_:)
+
 func NSHomeDirectoryForUser(userName unsafe.Pointer) unsafe.Pointer {
 	return _NSHomeDirectoryForUser(userName)
 	}
 
 
-// Increments the specified object’s reference count. [Full Topic]
+// Increments the specified object’s reference count.
 //
 // Added in macOS 10.0.
 //
+
+// Increments the specified object’s reference count.
+//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIncrementExtraRefCount
+
 func NSIncrementExtraRefCount(object unsafe.Pointer) {
 	_NSIncrementExtraRefCount(object)
 	}
 
 
-// Adjusts the sides of a rectangle to integral values using the specified options. [Full Topic]
+// Adjusts the sides of a rectangle to integral values using the specified options.
 //
 // Added in macOS 10.7.
 //
+
+// Adjusts the sides of a rectangle to integral values using the specified options.
+//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIntegralRectWithOptions(_:_:)
+
 func NSIntegralRectWithOptions(aRect coregraphics.CGRect, opts unsafe.Pointer) coregraphics.CGRect {
 	return _NSIntegralRectWithOptions(aRect, opts)
 	}
 
 
-// Returns a Boolean indicating whether the specified object has been freed. [Full Topic]
+// Returns a Boolean indicating whether the specified object has been freed.
 //
 // Added in macOS 10.0.
 //
+
+// Returns a Boolean indicating whether the specified object has been freed.
+//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIsFreedObject
+
 func NSIsFreedObject(anObject unsafe.Pointer) bool {
 	return _NSIsFreedObject(anObject)
 	}
 
 
-// Logs an error message to the Apple System Log facility. [Full Topic]
+// Logs an error message to the Apple System Log facility.
 //
 // Added in macOS 10.0.
 //
+
+// Logs an error message to the Apple System Log facility.
+//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLog
+
 func NSLog(format unsafe.Pointer) {
 	_NSLog(format)
 	}
 
 
-// Logs an error message to the Apple System Log facility. [Full Topic]
+// Logs an error message to the Apple System Log facility.
 //
 // Added in macOS 10.0.
 //
+
+// Logs an error message to the Apple System Log facility.
+//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLogv(_:_:)
+
 func NSLogv(format unsafe.Pointer, args unsafe.Pointer) {
 	_NSLogv(format, args)
 	}
 
 
-// Returns a Boolean value that indicates whether the point is in the specified rectangle. [Full Topic]
+// Returns a Boolean value that indicates whether the point is in the specified rectangle.
 //
 // Added in macOS 10.0.
 //
+
+// Returns a Boolean value that indicates whether the point is in the specified rectangle.
+//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMouseInRect(_:_:_:)
+
 func NSMouseInRect(aPoint coregraphics.CGPoint, aRect coregraphics.CGRect, flipped bool) bool {
 	return _NSMouseInRect(aPoint, aRect, flipped)
 	}
 
 
-// Returns the root directory of the user’s system. [Full Topic]
+// Returns the root directory of the user’s system.
 //
 // Added in macOS 10.0.
 //
+
+// Returns the root directory of the user’s system.
+//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOpenStepRootDirectory()
+
 func NSOpenStepRootDirectory() unsafe.Pointer {
 	return _NSOpenStepRootDirectory()
 	}
 
 
-// Reallocates collectable memory. [Full Topic]
+// Reallocates collectable memory.
 //
 // Added in macOS 10.0.
 //
+
+// Reallocates collectable memory.
+//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSReallocateCollectable
+
 func NSReallocateCollectable(ptr unsafe.Pointer, size unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
 	return _NSReallocateCollectable(ptr, size, options)
 	}
 
 
-// Notes an object or zone allocation event and various other statistics, such as the time and current thread. [Full Topic]
+// Notes an object or zone allocation event and various other statistics, such as the time and current thread.
 //
 // Added in macOS 10.0.
 //
+
+// Notes an object or zone allocation event and various other statistics, such as the time and current thread.
+//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRecordAllocationEvent
+
 func NSRecordAllocationEvent(eventType int, object unsafe.Pointer) {
 	_NSRecordAllocationEvent(eventType, object)
 	}
 
 
-// Returns the value of the return address of the specified frame. [Full Topic]
+// Returns the value of the return address of the specified frame.
 //
 // Added in macOS 10.0.
 //
+
+// Returns the value of the return address of the specified frame.
+//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSReturnAddress
+
 func NSReturnAddress(frame unsafe.Pointer) unsafe.Pointer {
 	return _NSReturnAddress(frame)
 	}
 
 
-// Returns the specified number of bytes rounded up to a multiple of the page size. [Full Topic]
+// Returns the specified number of bytes rounded up to a multiple of the page size.
 //
 // Added in macOS 10.0.
 //
+
+// Returns the specified number of bytes rounded up to a multiple of the page size.
+//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRoundUpToMultipleOfPageSize(_:)
+
 func NSRoundUpToMultipleOfPageSize(bytes unsafe.Pointer) unsafe.Pointer {
 	return _NSRoundUpToMultipleOfPageSize(bytes)
 	}
 
 
-// Creates a list of directory search paths. [Full Topic]
+// Creates a list of directory search paths.
 //
 // Added in macOS 10.0.
 //
+
+// Creates a list of directory search paths.
+//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSearchPathForDirectoriesInDomains(_:_:_:)
+
 func NSSearchPathForDirectoriesInDomains(directory unsafe.Pointer, domainMask unsafe.Pointer, expandTilde bool) unsafe.Pointer {
 	return _NSSearchPathForDirectoriesInDomains(directory, domainMask, expandTilde)
 	}
 
 
-// Changes the top-level error handler. [Full Topic]
+// Changes the top-level error handler.
 //
 // Added in macOS 10.0.
 //
+
+// Changes the top-level error handler.
+//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSetUncaughtExceptionHandler(_:)
+
 func NSSetUncaughtExceptionHandler() {
 	_NSSetUncaughtExceptionHandler()
 	}
 
 
-// Returns an from a text-based representation. [Full Topic]
+// Returns an from a text-based representation.
 //
 // Added in macOS 10.0.
 //
+
+// Returns an from a text-based representation.
+//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSizeFromString(_:)
+
 func NSSizeFromString(aString unsafe.Pointer) coregraphics.CGSize {
 	return _NSSizeFromString(aString)
 	}
 
 
-// Returns the name of a protocol as a string. [Full Topic]
+// Returns the name of a protocol as a string.
 //
 // Added in macOS 10.5.
 //
+
+// Returns the name of a protocol as a string.
+//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSStringFromProtocol(_:)
+
 func NSStringFromProtocol(proto unsafe.Pointer) unsafe.Pointer {
 	return _NSStringFromProtocol(proto)
 	}
 
 
-// Returns the path of the temporary directory for the current user. [Full Topic]
+// Returns the path of the temporary directory for the current user.
 //
 // Added in macOS 10.0.
 //
+
+// Returns the path of the temporary directory for the current user.
+//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTemporaryDirectory()
+
 func NSTemporaryDirectory() unsafe.Pointer {
 	return _NSTemporaryDirectory()
 	}
 
 
-// Returns the logon name of the current user. [Full Topic]
+// Returns the logon name of the current user.
 //
 // Added in macOS 10.0.
 //
+
+// Returns the logon name of the current user.
+//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserName()
+
 func NSUserName() unsafe.Pointer {
 	return _NSUserName()
 	}
 
 
-// Returns the next object from the coder. [Full Topic]
+// Returns the next object from the coder.
 //
 // Deprecated: This function was deprecated in macOS 10.5.
 //
 // Added in macOS 10.0.
 //
+
+// Returns the next object from the coder.
+//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NXReadNSObjectFromCoder
+
 func NXReadNSObjectFromCoder(decoder unsafe.Pointer) unsafe.Pointer {
 	return _NXReadNSObjectFromCoder(decoder)
 	}

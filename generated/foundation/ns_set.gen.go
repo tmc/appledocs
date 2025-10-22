@@ -59,6 +59,7 @@ type ISet interface {
 //
 // The , , and classes declare the programmatic interface to an unordered collection of objects. declares the programmatic interface for static sets of distinct objects. You establish a static set’s entries when it’s created, and can’t modify the entries after that. , on the other hand, declares a programmatic interface for dynamic sets of distinct objects. A dynamic — or mutable — set allows the addition and deletion of entries at any time, automatically allocating memory as needed. Use sets as an alternative to arrays when the order of elements isn’t important and you need to consider performance in testing whether the set contains an object. With an array, testing for membership is slower than with sets. is “toll-free bridged” with its Core Foundation counterpart, . See for more information on toll-free bridging. In Swift, use this class instead of a constant in cases where you require reference semantics.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet
 type Set struct {
 	objectivec.Object
@@ -105,9 +106,12 @@ func NewSet() Set {
 
 
 
+
 // Initializes a newly allocated set with the objects that are contained in a given array.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/init(array:)
+
 func NewSetWithArray(array []objc.ID) Set {
 	instance := getSetClass().Alloc()
 	rv := objc.Send[Set](instance.ID, objc.Sel("initWithArray:"), array)
@@ -115,8 +119,13 @@ func NewSetWithArray(array []objc.ID) Set {
 	return rv
 }
 
+
+
+
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/init(coder:)
+
 func NewSetWithCoder(coder ICoder) Set {
 	instance := getSetClass().Alloc()
 	rv := objc.Send[Set](instance.ID, objc.Sel("initWithCoder:"), coder)
@@ -124,15 +133,25 @@ func NewSetWithCoder(coder ICoder) Set {
 	return rv
 }
 
+
+
+
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/init(collectionViewIndexPath:)
+
 func NewSetWithCollectionViewIndexPath(indexPath IIndexPath) Set {
 	rv := objc.Send[Set](objc.ID(getSetClass().class), objc.Sel("setWithCollectionViewIndexPath:"), indexPath)
 	return rv
 }
 
+
+
+
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/init(collectionViewIndexPaths:)
+
 func NewSetWithCollectionViewIndexPaths(indexPaths []IndexPath) Set {
 	rv := objc.Send[Set](objc.ID(getSetClass().class), objc.Sel("setWithCollectionViewIndexPaths:"), indexPaths)
 	return rv
@@ -140,9 +159,12 @@ func NewSetWithCollectionViewIndexPaths(indexPaths []IndexPath) Set {
 
 
 
+
 // Creates and returns a set that contains a single given object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/init(object:)
+
 func NewSetWithObject(object unsafe.Pointer) Set {
 	rv := objc.Send[Set](objc.ID(getSetClass().class), objc.Sel("setWithObject:"), object)
 	return rv
@@ -150,9 +172,12 @@ func NewSetWithObject(object unsafe.Pointer) Set {
 
 
 
+
 // Initializes a newly allocated set with members taken from the specified list of objects.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/initWithObjects:
+
 func NewSetWithObjects(firstObj unsafe.Pointer) Set {
 	instance := getSetClass().Alloc()
 	rv := objc.Send[Set](instance.ID, objc.Sel("initWithObjects:"), firstObj)
@@ -162,9 +187,12 @@ func NewSetWithObjects(firstObj unsafe.Pointer) Set {
 
 
 
+
 // Initializes a newly allocated set with a specified number of objects from a given C array of objects.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/init(objects:count:)-7kift
+
 func NewSetWithObjectsCount(objects unsafe.Pointer, cnt uint) Set {
 	instance := getSetClass().Alloc()
 	rv := objc.Send[Set](instance.ID, objc.Sel("initWithObjects:count:"), objects, cnt)
@@ -174,9 +202,12 @@ func NewSetWithObjectsCount(objects unsafe.Pointer, cnt uint) Set {
 
 
 
+
 // Initializes a newly allocated set and adds to it objects from another given set.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/init(set:)-1xovx
+
 func NewSetWithSet(set unsafe.Pointer) Set {
 	instance := getSetClass().Alloc()
 	rv := objc.Send[Set](instance.ID, objc.Sel("initWithSet:"), set)
@@ -186,9 +217,12 @@ func NewSetWithSet(set unsafe.Pointer) Set {
 
 
 
+
 // Initializes a newly allocated set and adds to it members of another given set.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/init(set:copyItems:)
+
 func NewSetWithSetCopyItems(set unsafe.Pointer, flag bool) Set {
 	instance := getSetClass().Alloc()
 	rv := objc.Send[Set](instance.ID, objc.Sel("initWithSet:copyItems:"), set, flag)
@@ -197,63 +231,87 @@ func NewSetWithSetCopyItems(set unsafe.Pointer, flag bool) Set {
 }
 
 
+
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/init(collectionViewIndexPath:)
+
 func (sc _SetClass) SetWithCollectionViewIndexPath(indexPath IIndexPath) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("setWithCollectionViewIndexPath:"), indexPath)
 	return rv
 }
 
+
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/init(collectionViewIndexPaths:)
+
 func (sc _SetClass) SetWithCollectionViewIndexPaths(indexPaths []IndexPath) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("setWithCollectionViewIndexPaths:"), indexPaths)
 	return rv
 }
 
+
 // Creates and returns a set that contains a single given object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/init(object:)
+
 func (sc _SetClass) SetWithObject(object unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("setWithObject:"), object)
 	return rv
 }
 
+
 // Creates and returns a set containing a specified number of objects from a given C array of objects.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/init(objects:count:)-65ni4
+
 func (sc _SetClass) SetWithObjectsCount(objects unsafe.Pointer, cnt uint) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("setWithObjects:count:"), objects, cnt)
 	return rv
 }
 
+
 // Creates and returns an empty set.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/set
+
 func (sc _SetClass) Set() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("set"))
 	return rv
 }
 
+
 // Creates and returns a set containing a uniqued collection of the objects contained in a given array.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/setWithArray:
+
 func (sc _SetClass) SetWithArray(array []objc.ID) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("setWithArray:"), array)
 	return rv
 }
 
+
 // Creates and returns a set containing the objects in a given argument list.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/setWithObjects:
+
 func (sc _SetClass) SetWithObjects(firstObj unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("setWithObjects:"), firstObj)
 	return rv
 }
 
+
 // Creates and returns a set containing the objects from another set.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/setWithSet:
+
 func (sc _SetClass) SetWithSet(set unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("setWithSet:"), set)
 	return rv
@@ -262,7 +320,7 @@ func (sc _SetClass) SetWithSet(set unsafe.Pointer) unsafe.Pointer {
 // Raises an exception.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/addObserver(_:forKeyPath:options:context:)
-func (s_ Set) AddObserverForKeyPathOptionsContext(observer IObject, keyPath string, options KeyValueObservingOptions, context unsafe.Pointer) {
+func (s_ Set) AddObserverForKeyPathOptionsContext(observer objectivec.IObject, keyPath string, options KeyValueObservingOptions, context unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("addObserver:forKeyPath:options:context:"), observer, objc.String(keyPath), options, context)
 }
 
@@ -415,14 +473,14 @@ func (s_ Set) ObjectsPassingTest(predicate unsafe.Pointer) unsafe.Pointer {
 // Raises an exception.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/removeObserver(_:forKeyPath:)
-func (s_ Set) RemoveObserverForKeyPath(observer IObject, keyPath string) {
+func (s_ Set) RemoveObserverForKeyPath(observer objectivec.IObject, keyPath string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("removeObserver:forKeyPath:"), observer, objc.String(keyPath))
 }
 
 // Raises an exception.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/removeObserver(_:forKeyPath:context:)
-func (s_ Set) RemoveObserverForKeyPathContext(observer IObject, keyPath string, context unsafe.Pointer) {
+func (s_ Set) RemoveObserverForKeyPathContext(observer objectivec.IObject, keyPath string, context unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("removeObserver:forKeyPath:context:"), observer, objc.String(keyPath), context)
 }
 

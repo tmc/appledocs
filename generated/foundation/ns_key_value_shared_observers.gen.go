@@ -33,6 +33,7 @@ type IKeyValueSharedObservers interface {
 }
 
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyValueSharedObservers
 type KeyValueSharedObservers struct {
 	objectivec.Object

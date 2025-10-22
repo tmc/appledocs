@@ -33,6 +33,7 @@ type IremotePort interface {
 }
 
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPortMessage/remotePort
 type remotePort struct {
 	objectivec.Object

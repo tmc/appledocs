@@ -58,6 +58,7 @@ type INetService interface {
 //
 // The class represents a network service, either one your application publishes or is a client of. This class and the class use multicast DNS to convey information about network services to and from your application. The API of provides a convenient way to publish the services offered by your application and to resolve the socket address for a service. The types of services you access using are the same types that you access directly using BSD sockets. HTTP and FTP are two services commonly provided by systems. (For a list of common services and the ports used by those services, see the file .) Applications can also define their own custom services to provide specific data to clients. You can use the class as either a publisher of a service or a client of a service. If your application publishes a service, your code must acquire a port and prepare a socket to communicate with clients. Once your socket is ready, you use the class to notify clients that your service is ready. If your application is the client of a network service, you can either create an object directly (if you know the exact host and port information) or use an object to browse for services. To publish a service, initialize your object with the service name, domain, type, and port information. All of this information must be valid for the socket created by your application. Once initialized, call the method to broadcast your service information to the network. When connecting to a service, use the class to locate the service on the network and obtain the corresponding object. Once you have the object, call the method to verify that the service is available and ready for your application. If it is, the property provides the socket information you can use to connect to the service. The methods of operate asynchronously so your application is not impacted by the speed of the network. All information about a service is returned to your application through the object’s delegate. You must provide a delegate object to respond to messages and to handle errors appropriately.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService
 type NetService struct {
 	objectivec.Object
@@ -104,9 +105,12 @@ func NewNetService() NetService {
 
 
 
+
 // Returns the receiver, initialized as a network service of a given type and sets the initial host information.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/init(domain:type:name:)
+
 func NewNetServiceWithDomainTypeName(domain string, type_ string, name string) NetService {
 	instance := getNetServiceClass().Alloc()
 	rv := objc.Send[NetService](instance.ID, objc.Sel("initWithDomain:type:name:"), objc.String(domain), objc.String(type_), objc.String(name))
@@ -116,9 +120,12 @@ func NewNetServiceWithDomainTypeName(domain string, type_ string, name string) N
 
 
 
+
 // Initializes the receiver for publishing a network service of type at the socket location specified by , , and .
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/init(domain:type:name:port:)
+
 func NewNetServiceWithDomainTypeNamePort(domain string, type_ string, name string, port int) NetService {
 	instance := getNetServiceClass().Alloc()
 	rv := objc.Send[NetService](instance.ID, objc.Sel("initWithDomain:type:name:port:"), objc.String(domain), objc.String(type_), objc.String(name), port)
@@ -127,17 +134,23 @@ func NewNetServiceWithDomainTypeNamePort(domain string, type_ string, name strin
 }
 
 
+
 // Returns an object representing a TXT record formed from a given dictionary.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/data(fromTXTRecord:)
+
 func (nc _NetServiceClass) DataFromTXTRecordDictionary(txtDictionary unsafe.Pointer) Data {
 	rv := objc.Send[Data](objc.ID(nc.class), objc.Sel("dataFromTXTRecordDictionary:"), txtDictionary)
 	return rv
 }
 
+
 // Returns a dictionary representing a TXT record given as an object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/dictionary(fromTXTRecord:)
+
 func (nc _NetServiceClass) DictionaryFromTXTRecordData(txtData IData) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(nc.class), objc.Sel("dictionaryFromTXTRecordData:"), txtData)
 	return rv

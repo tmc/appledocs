@@ -37,6 +37,7 @@ type IMessagePortNameServer interface {
 //
 // This port name server takes and returns instances of . Port removal functionality is not supported in ; if you want to cancel a service, you have to destroy the port (invalidate the object given to ).
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMessagePortNameServer
 type MessagePortNameServer struct {
 	PortNameServer
@@ -83,9 +84,12 @@ func NewMessagePortNameServer() MessagePortNameServer {
 }
 
 
+
 // Returns the singleton instance of .
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMessagePortNameServer/sharedInstance
+
 func (mc _MessagePortNameServerClass) SharedInstance() objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("sharedInstance"))
 	return rv

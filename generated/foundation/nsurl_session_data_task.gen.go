@@ -35,6 +35,7 @@ type IURLSessionDataTask interface {
 //
 // A is a concrete subclass of . The methods in the class are documented in . A data task returns data directly to the app (in memory) as one or more objects. When you use a data task: During upload of the body data (if your app provides any), the session periodically calls its delegate’s method with status information. After receiving an initial response, the session calls its delegate’s method to let you examine the status code and headers, and optionally convert the data task into a download task. During the transfer, the session calls its delegate’s method to provide your app with the content as it arrives. Upon completion, the session calls its delegate’s method to let you determine whether the response should be cached. For examples of using data tasks for fetching and uploading data, see and .
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionDataTask
 type URLSessionDataTask struct {
 	URLSessionTask

@@ -81,6 +81,7 @@ type IProcessInfo interface {
 //
 // Each process has a single, shared object known as a that can return information such as arguments, environment variables, host name, and process name. The class method returns the shared agent for the current process. For example, the following line returns the object, which then provides the name of the current process: The class also includes the property, which returns an structure identifying the operating system version on which the process is executing. objects attempt to interpret environment variables and command-line arguments in the user’s default C string encoding if they can’t convert to Unicode as UTF-8 strings. If neither the Unicode nor C string conversion works, the object ignores these values.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo
 type ProcessInfo struct {
 	objectivec.Object

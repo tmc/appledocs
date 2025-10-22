@@ -35,6 +35,7 @@ type IUnitIlluminance interface {
 //
 // You typically use instances of to represent specific quantities of illuminance using the class.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitIlluminance
 type UnitIlluminance struct {
 	Dimension

@@ -33,6 +33,7 @@ type IhostName interface {
 }
 
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSProcessInfo/hostName-c.ivar
 type hostName struct {
 	objectivec.Object

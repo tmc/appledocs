@@ -38,6 +38,7 @@ type IGarbageCollector interface {
 //
 // Cocoa’s garbage collector is a conservative generational garbage collector. It uses “write-barriers” to detect cross generational stores of pointers so that “young” objects can be collected quickly. You enable garbage collection (GC) by using the option. This switch causes the generation of the write-barrier assignment primitives. You must use this option on your main application file , including frameworks and bundles. Bundles are ignored if they are not GC-capable. The collector determines what is garbage by recursively examining all nodes starting with globals, possible nodes referenced from the thread stacks, and all nodes marked as having “external” references. Nodes not reached by this search are deemed garbage. Weak references to garbage nodes are then cleared. Garbage nodes that are objects are sent (in an arbitrary order) a message, and after all messages have been sent their memory is recovered. It is a runtime error (referred to as “resurrection”) to store a object being finalized into one that is not. For more details, see Implementing a finalize Method in Garbage Collection Programming Guide. You can request collection from any thread (see and ).
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSGarbageCollector
 type GarbageCollector struct {
 	objectivec.Object

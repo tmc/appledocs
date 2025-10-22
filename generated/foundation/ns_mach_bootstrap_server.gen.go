@@ -35,6 +35,7 @@ type IMachBootstrapServer interface {
 //
 // Port removal functionality is not supported in ; if you want to cancel a service, you have to destroy the port (invalidate the given to ).
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMachBootstrapServer
 type MachBootstrapServer struct {
 	PortNameServer

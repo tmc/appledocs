@@ -39,6 +39,7 @@ type IXPCCoder interface {
 //
 // If you want to perform custom encoding or decoding of objects that your app sends over an , use to determine if the coder provided to your object is a kind of .
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCCoder
 type XPCCoder struct {
 	Coder

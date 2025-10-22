@@ -37,6 +37,7 @@ type IUnit interface {
 //
 // Each instance of an subclass consists of a , which can be used to create string representations of objects with the class. The subclass is an abstract class that represents a dimensional unit, which can be converted into different units of the same type. The Foundation framework provides several concrete subclasses to represent the most common physical quantities, including mass, length, duration, and speed.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Unit
 type Unit struct {
 	objectivec.Object
@@ -83,9 +84,12 @@ func NewUnit() Unit {
 
 
 
+
 // Initializes a new unit with the specified symbol.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Unit/init(symbol:)
+
 func NewUnitWithSymbol(symbol string) Unit {
 	instance := getUnitClass().Alloc()
 	rv := objc.Send[Unit](instance.ID, objc.Sel("initWithSymbol:"), objc.String(symbol))

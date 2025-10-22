@@ -39,6 +39,7 @@ type IRangeSpecifier interface {
 //
 // An object specifies a range (that is, an uninterrupted series) of objects in a container through two delimiting objects. The range is represented by two object specifiers, a start specifier and an end specifier, which can be of any specifier type (such as or object). These specifiers are evaluated in the context of the same container object as the range specifier itself. You don’t normally subclass .
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRangeSpecifier
 type RangeSpecifier struct {
 	ScriptObjectSpecifier

@@ -37,6 +37,7 @@ type IMorphologyPronoun interface {
 //
 // Create instances of  when you need to define custom pronouns for a localized term of address. For examples of how to create custom pronouns, see .
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphologyPronoun
 type MorphologyPronoun struct {
 	objectivec.Object
@@ -81,8 +82,13 @@ func NewMorphologyPronoun() MorphologyPronoun {
 }
 
 
+
+
+
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphologyPronoun/initWithPronoun:morphology:dependentMorphology:
+
 func NewMorphologyPronounWithPronounMorphologyDependentMorphology(pronoun string, morphology IMorphology, dependentMorphology IMorphology) MorphologyPronoun {
 	instance := getMorphologyPronounClass().Alloc()
 	rv := objc.Send[MorphologyPronoun](instance.ID, objc.Sel("initWithPronoun:morphology:dependentMorphology:"), objc.String(pronoun), morphology, dependentMorphology)

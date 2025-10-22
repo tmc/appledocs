@@ -34,6 +34,7 @@ type IAttributedStringMarkdownSourcePosition interface {
 
 // The position of attributed string text in its original Markdown source string.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedStringMarkdownSourcePosition
 type AttributedStringMarkdownSourcePosition struct {
 	objectivec.Object
@@ -80,9 +81,12 @@ func NewAttributedStringMarkdownSourcePosition() AttributedStringMarkdownSourceP
 
 
 
+
 // Creates a Markdown source position instance from its start and end line and column.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedStringMarkdownSourcePosition/initWithStartLine:startColumn:endLine:endColumn:
+
 func NewAttributedStringMarkdownSourcePositionWithStartLineStartColumnEndLineEndColumn(startLine int, startColumn int, endLine int, endColumn int) AttributedStringMarkdownSourcePosition {
 	instance := getAttributedStringMarkdownSourcePositionClass().Alloc()
 	rv := objc.Send[AttributedStringMarkdownSourcePosition](instance.ID, objc.Sel("initWithStartLine:startColumn:endLine:endColumn:"), startLine, startColumn, endLine, endColumn)

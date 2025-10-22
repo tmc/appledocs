@@ -44,6 +44,7 @@ type IURLSessionStreamTask interface {
 //
 // is a concrete subclass of . Many of the methods in the class are documented in . The class provides an interface a TCP/IP connection created via . Tasks may be created from an using the and methods. They may also be created as a result of an being upgraded via the HTTP response header and appropriate use of the option of . A object performs asynchronous reads and writes, which are enqueued and executed serially, calling a handler upon completion being on the session delegate queue. If the task is canceled, all enqueued reads and writes will call their completion handlers with an appropriate error. When working with APIs that accept objects, you can create and objects from an object by calling the method.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionStreamTask
 type URLSessionStreamTask struct {
 	URLSessionTask

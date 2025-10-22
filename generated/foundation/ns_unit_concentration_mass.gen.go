@@ -35,6 +35,7 @@ type IUnitConcentrationMass interface {
 //
 // You typically use instances of to represent specific quantities of concentration using the class.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitConcentrationMass
 type UnitConcentrationMass struct {
 	Dimension

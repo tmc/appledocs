@@ -35,6 +35,7 @@ type IUnitDuration interface {
 //
 // You typically use instances of to represent specific quantities of planar angle using the class.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitDuration
 type UnitDuration struct {
 	Dimension

@@ -40,6 +40,7 @@ type IDistributedNotificationCenter interface {
 //
 // A instance broadcasts objects to objects in other tasks that have registered for the notification with their task’s default distributed notification center.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DistributedNotificationCenter
 type DistributedNotificationCenter struct {
 	NotificationCenter

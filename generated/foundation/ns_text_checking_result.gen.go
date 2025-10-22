@@ -61,6 +61,7 @@ type ITextCheckingResult interface {
 //
 // On both iOS and macOS, instances of are returned by the class and the class to indicate the discovery of content. In those cases, what is found may be a match for a regular expression or a date, address, phone number, and so on. In macOS, instances of are returned by the object to describe the results of spelling, grammar, or text-substitution actions.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult
 type TextCheckingResult struct {
 	objectivec.Object
@@ -105,33 +106,45 @@ func NewTextCheckingResult() TextCheckingResult {
 }
 
 
+
 // Creates and returns a text checking result with the specified address components.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/addressCheckingResult(range:components:)
+
 func (tc _TextCheckingResultClass) AddressCheckingResultWithRangeComponents(range_ IRange, components unsafe.Pointer) TextCheckingResult {
 	rv := objc.Send[TextCheckingResult](objc.ID(tc.class), objc.Sel("addressCheckingResultWithRange:components:"), range_, components)
 	return rv
 }
 
+
 // Creates and returns a text checking result with the specified phone number.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/phoneNumberCheckingResult(range:phoneNumber:)
+
 func (tc _TextCheckingResultClass) PhoneNumberCheckingResultWithRangePhoneNumber(range_ IRange, phoneNumber string) TextCheckingResult {
 	rv := objc.Send[TextCheckingResult](objc.ID(tc.class), objc.Sel("phoneNumberCheckingResultWithRange:phoneNumber:"), range_, objc.String(phoneNumber))
 	return rv
 }
 
+
 // Creates and returns a type checking result with the specified regular expression data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/regularExpressionCheckingResult(ranges:count:regularExpression:)
+
 func (tc _TextCheckingResultClass) RegularExpressionCheckingResultWithRangesCountRegularExpression(ranges IRangePointer, count uint, regularExpression IRegularExpression) TextCheckingResult {
 	rv := objc.Send[TextCheckingResult](objc.ID(tc.class), objc.Sel("regularExpressionCheckingResultWithRanges:count:regularExpression:"), ranges, count, regularExpression)
 	return rv
 }
 
+
 // Creates and returns a text checking result with the range of a misspelled word.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/spellCheckingResult(range:)
+
 func (tc _TextCheckingResultClass) SpellCheckingResultWithRange(range_ IRange) TextCheckingResult {
 	rv := objc.Send[TextCheckingResult](objc.ID(tc.class), objc.Sel("spellCheckingResultWithRange:"), range_)
 	return rv

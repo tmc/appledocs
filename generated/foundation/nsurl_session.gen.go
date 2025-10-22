@@ -69,6 +69,7 @@ type IURLSession interface {
 //
 // The class and related classes provide an API for downloading data from and uploading data to endpoints indicated by URLs. Your app can also use this API to perform background downloads when your app isn’t running or, in iOS, while your app is suspended. You can use the related and to support authentication and receive events like redirection and task completion. Your app creates one or more instances, each of which coordinates a group of related data-transfer tasks. For example, if you’re creating a web browser, your app might create one session per tab or window, or one session for interactive use and another for background downloads. Within each session, your app adds a series of tasks, each of which represents a request for a specific URL (following HTTP redirects, if necessary).
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession
 type URLSession struct {
 	objectivec.Object
@@ -115,9 +116,12 @@ func NewURLSession() URLSession {
 
 
 
+
 // Creates a session with the specified session configuration.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/init(configuration:)
+
 func NewURLSessionWithConfiguration(configuration IURLSessionConfiguration) URLSession {
 	rv := objc.Send[URLSession](objc.ID(getURLSessionClass().class), objc.Sel("sessionWithConfiguration:"), configuration)
 	return rv
@@ -125,26 +129,35 @@ func NewURLSessionWithConfiguration(configuration IURLSessionConfiguration) URLS
 
 
 
+
 // Creates a session with the specified session configuration, delegate, and operation queue.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/init(configuration:delegate:delegateQueue:)
+
 func NewURLSessionWithConfigurationDelegateDelegateQueue(configuration IURLSessionConfiguration, delegate objectivec.IObject, queue IOperationQueue) URLSession {
 	rv := objc.Send[URLSession](objc.ID(getURLSessionClass().class), objc.Sel("sessionWithConfiguration:delegate:delegateQueue:"), configuration, delegate, queue)
 	return rv
 }
 
 
+
 // Creates a session with the specified session configuration.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/init(configuration:)
+
 func (uc _URLSessionClass) SessionWithConfiguration(configuration IURLSessionConfiguration) URLSession {
 	rv := objc.Send[URLSession](objc.ID(uc.class), objc.Sel("sessionWithConfiguration:"), configuration)
 	return rv
 }
 
+
 // Creates a session with the specified session configuration, delegate, and operation queue.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/init(configuration:delegate:delegateQueue:)
+
 func (uc _URLSessionClass) SessionWithConfigurationDelegateDelegateQueue(configuration IURLSessionConfiguration, delegate objectivec.IObject, queue IOperationQueue) URLSession {
 	rv := objc.Send[URLSession](objc.ID(uc.class), objc.Sel("sessionWithConfiguration:delegate:delegateQueue:"), configuration, delegate, queue)
 	return rv

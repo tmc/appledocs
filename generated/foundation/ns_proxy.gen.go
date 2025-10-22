@@ -40,6 +40,7 @@ type IProxy interface {
 //
 // Typically, a message to a proxy is forwarded to the real object or causes the proxy to load (or transform itself into) the real object. Subclasses of can be used to implement transparent distributed messaging (for example, ) or for lazy instantiation of objects that are expensive to create. implements the basic methods required of a root class, including those defined in the protocol. However, as an abstract class it doesn’t provide an initialization method, and it raises an exception upon receiving any message it doesn’t respond to. A concrete subclass must therefore provide an initialization or creation method and override the and methods to handle messages that it doesn’t implement itself. A subclass’s implementation of should do whatever is needed to process the invocation, such as forwarding the invocation over the network or loading the real object and passing it the invocation. is required to provide argument type information for a given message; a subclass’s implementation should be able to determine the argument types for the messages it needs to forward and should construct an object accordingly. See the , , and class specifications for more information.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSProxy
 type Proxy struct {
 	objectivec.Object

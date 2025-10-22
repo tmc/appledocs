@@ -41,6 +41,7 @@ type IURLQueryItem interface {
 //
 // In Swift, this object bridges to ; use when you need reference semantics or other Foundation-specific behavior. You use query items with the property of an object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLQueryItem
 type URLQueryItem struct {
 	objectivec.Object

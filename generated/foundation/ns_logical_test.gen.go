@@ -35,6 +35,7 @@ type ILogicalTest interface {
 //
 // Instances of this class perform logical operations of , , and on Boolean expressions represented by objects. These operators are equivalent to “ ”, “ ”, and “ ” in the C language. For and operations, an object is typically initialized with an array containing two or more objects. —inherited from —evaluates the array in a manner appropriate to the logical operation. For operations, an object is initialized with only one object; it simply reverses the Boolean outcome of the method. You don’t normally subclass .
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLogicalTest
 type LogicalTest struct {
 	ScriptWhoseTest
@@ -83,9 +84,12 @@ func NewLogicalTest() LogicalTest {
 
 
 
+
 // Returns an object initialized to perform an operation with the objects in a given array.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLogicalTest/init(andTestWith:)
+
 func NewLogicalTestAndTestWithTests(subTests []SpecifierTest) LogicalTest {
 	instance := getLogicalTestClass().Alloc()
 	rv := objc.Send[LogicalTest](instance.ID, objc.Sel("initAndTestWithTests:"), subTests)
@@ -95,9 +99,12 @@ func NewLogicalTestAndTestWithTests(subTests []SpecifierTest) LogicalTest {
 
 
 
+
 // Returns an object initialized to perform an operation with the objects in a given array.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLogicalTest/init(orTestWith:)
+
 func NewLogicalTestOrTestWithTests(subTests []SpecifierTest) LogicalTest {
 	instance := getLogicalTestClass().Alloc()
 	rv := objc.Send[LogicalTest](instance.ID, objc.Sel("initOrTestWithTests:"), subTests)

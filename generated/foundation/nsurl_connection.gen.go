@@ -43,6 +43,7 @@ type IURLConnection interface {
 //
 // An object lets you load the contents of a URL by providing a URL request object. The interface for is sparse, providing only the controls to start and cancel asynchronous loads of a URL request. You perform most of your configuration on the URL request object itself. The class provides convenience class methods to load URL requests both asynchronously using a callback block and synchronously. For greater control, you can create a URL connection object with a delegate object that conforms to the and protocols. The connection calls methods on that delegate to provide you with progress and status as the URL request is loaded asynchronously. The connection also calls delegate methods to let you override the connection’s default behavior (for example, specifying how a particular redirect should be handled). These delegate methods are called on the thread that initiated the asynchronous load operation. For more information about errors, see the header, , and URL Loading System Error Codes in .
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLConnection
 type URLConnection struct {
 	objectivec.Object
@@ -89,9 +90,12 @@ func NewURLConnection() URLConnection {
 
 
 
+
 // Returns an initialized URL connection and begins to load the data for the URL request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLConnection/init(request:delegate:)
+
 func NewURLConnectionWithRequestDelegate(request IURLRequest, delegate objectivec.IObject) URLConnection {
 	instance := getURLConnectionClass().Alloc()
 	rv := objc.Send[URLConnection](instance.ID, objc.Sel("initWithRequest:delegate:"), request, delegate)
@@ -101,9 +105,12 @@ func NewURLConnectionWithRequestDelegate(request IURLRequest, delegate objective
 
 
 
+
 // Returns an initialized URL connection and begins to load the data for the URL request, if specified.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLConnection/init(request:delegate:startImmediately:)
+
 func NewURLConnectionWithRequestDelegateStartImmediately(request IURLRequest, delegate objectivec.IObject, startImmediately bool) URLConnection {
 	instance := getURLConnectionClass().Alloc()
 	rv := objc.Send[URLConnection](instance.ID, objc.Sel("initWithRequest:delegate:startImmediately:"), request, delegate, startImmediately)
@@ -112,32 +119,44 @@ func NewURLConnectionWithRequestDelegateStartImmediately(request IURLRequest, de
 }
 
 
+
 // Returns whether a request can be handled based on a preflight evaluation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLConnection/canHandle(_:)
+
 func (uc _URLConnectionClass) CanHandleRequest(request IURLRequest) bool {
 	rv := objc.Send[bool](objc.ID(uc.class), objc.Sel("canHandleRequest:"), request)
 	return rv
 }
 
+
 // Creates and returns an initialized URL connection and begins to load the data for the URL request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLConnection/connectionWithRequest:delegate:
+
 func (uc _URLConnectionClass) ConnectionWithRequestDelegate(request IURLRequest, delegate objectivec.IObject) URLConnection {
 	rv := objc.Send[URLConnection](objc.ID(uc.class), objc.Sel("connectionWithRequest:delegate:"), request, delegate)
 	return rv
 }
 
+
 // Loads the data for a URL request and executes a handler block on an operation queue when the request completes or fails.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLConnection/sendAsynchronousRequest(_:queue:completionHandler:)
+
 func (uc _URLConnectionClass) SendAsynchronousRequestQueueCompletionHandler(request IURLRequest, queue IOperationQueue, handler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(uc.class), objc.Sel("sendAsynchronousRequest:queue:completionHandler:"), request, queue, handler)
 }
 
+
 // Performs a synchronous load of the specified URL request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLConnection/sendSynchronousRequest(_:returning:)
+
 func (uc _URLConnectionClass) SendSynchronousRequestReturningResponseError(request IURLRequest, response IURLResponse, error_ IError) Data {
 	rv := objc.Send[Data](objc.ID(uc.class), objc.Sel("sendSynchronousRequest:returningResponse:error:"), request, response, error_)
 	return rv

@@ -78,6 +78,7 @@ type IUserNotification interface {
 //
 // When the system delivers a notification, information about when the notification was actually presented to the user (if at all) and other details are provided in the notification object. User applications can create objects and register them with the object to notify the user when an application requires attention.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification
 type UserNotification struct {
 	objectivec.Object

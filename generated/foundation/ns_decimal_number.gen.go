@@ -55,6 +55,7 @@ type IDecimalNumber interface {
 //
 // In Swift, this object bridges to ; use when you need reference semantics or other Foundation-specific behavior. , an immutable subclass of , provides an object-oriented wrapper for doing base-10 arithmetic. An instance can represent any number that can be expressed as where mantissa is a decimal integer up to 38 digits long, and exponent is an integer from –128 through 127.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber
 type DecimalNumber struct {
 	Number
@@ -103,9 +104,12 @@ func NewDecimalNumber() DecimalNumber {
 
 
 
+
 // Initializes a decimal number to represent a given decimal.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/init(decimal:)
+
 func NewDecimalNumberWithDecimal(dcm unsafe.Pointer) DecimalNumber {
 	instance := getDecimalNumberClass().Alloc()
 	rv := objc.Send[DecimalNumber](instance.ID, objc.Sel("initWithDecimal:"), dcm)
@@ -115,9 +119,12 @@ func NewDecimalNumberWithDecimal(dcm unsafe.Pointer) DecimalNumber {
 
 
 
+
 // Initializes a decimal number using the given mantissa, exponent, and sign.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/init(mantissa:exponent:isNegative:)
+
 func NewDecimalNumberWithMantissaExponentIsNegative(mantissa uint64, exponent unsafe.Pointer, flag bool) DecimalNumber {
 	instance := getDecimalNumberClass().Alloc()
 	rv := objc.Send[DecimalNumber](instance.ID, objc.Sel("initWithMantissa:exponent:isNegative:"), mantissa, exponent, flag)
@@ -127,9 +134,12 @@ func NewDecimalNumberWithMantissaExponentIsNegative(mantissa uint64, exponent un
 
 
 
+
 // Initializes a decimal number so that its value is equivalent to that in a given numeric string.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/init(string:)
+
 func NewDecimalNumberWithString(numberValue string) DecimalNumber {
 	instance := getDecimalNumberClass().Alloc()
 	rv := objc.Send[DecimalNumber](instance.ID, objc.Sel("initWithString:"), objc.String(numberValue))
@@ -139,9 +149,12 @@ func NewDecimalNumberWithString(numberValue string) DecimalNumber {
 
 
 
+
 // Initializes a decimal number so that its value is equivalent to that in a given numeric string, interpreted using a given locale.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/init(string:locale:)
+
 func NewDecimalNumberWithStringLocale(numberValue string, locale objectivec.IObject) DecimalNumber {
 	instance := getDecimalNumberClass().Alloc()
 	rv := objc.Send[DecimalNumber](instance.ID, objc.Sel("initWithString:locale:"), objc.String(numberValue), locale)
@@ -150,33 +163,45 @@ func NewDecimalNumberWithStringLocale(numberValue string, locale objectivec.IObj
 }
 
 
+
 // Creates and returns a decimal number equivalent to a given decimal structure.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/decimalNumberWithDecimal:
+
 func (dc _DecimalNumberClass) DecimalNumberWithDecimal(dcm unsafe.Pointer) DecimalNumber {
 	rv := objc.Send[DecimalNumber](objc.ID(dc.class), objc.Sel("decimalNumberWithDecimal:"), dcm)
 	return rv
 }
 
+
 // Creates and returns a decimal number equivalent to the number specified by the arguments.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/decimalNumberWithMantissa:exponent:isNegative:
+
 func (dc _DecimalNumberClass) DecimalNumberWithMantissaExponentIsNegative(mantissa uint64, exponent unsafe.Pointer, flag bool) DecimalNumber {
 	rv := objc.Send[DecimalNumber](objc.ID(dc.class), objc.Sel("decimalNumberWithMantissa:exponent:isNegative:"), mantissa, exponent, flag)
 	return rv
 }
 
+
 // Creates a decimal number whose value is equivalent to that in a given numeric string.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/decimalNumberWithString:
+
 func (dc _DecimalNumberClass) DecimalNumberWithString(numberValue string) DecimalNumber {
 	rv := objc.Send[DecimalNumber](objc.ID(dc.class), objc.Sel("decimalNumberWithString:"), objc.String(numberValue))
 	return rv
 }
 
+
 // Creates a decimal number whose value is equivalent to that in a given numeric string, interpreted using a given locale.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/decimalNumberWithString:locale:
+
 func (dc _DecimalNumberClass) DecimalNumberWithStringLocale(numberValue string, locale objectivec.IObject) DecimalNumber {
 	rv := objc.Send[DecimalNumber](objc.ID(dc.class), objc.Sel("decimalNumberWithString:locale:"), objc.String(numberValue), locale)
 	return rv

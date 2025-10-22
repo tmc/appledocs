@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/networkextension"
 )
 
 // The class instance for the [MutableURLRequest] class.
@@ -30,7 +29,6 @@ type _MutableURLRequestClass struct {
 // An interface definition for the [MutableURLRequest] class.
 type IMutableURLRequest interface {
 	IURLRequest
-	BindToHotspotHelperCommand(command networkextension.INEHotspotHelperCommand)
 	CachePolicy() URLRequestCachePolicy
 	SetCachePolicy(value URLRequestCachePolicy)
 	HTTPMethod() string
@@ -77,6 +75,7 @@ type IMutableURLRequest interface {
 //
 // In Swift, this object bridges to and you use when you need reference semantics or other Foundation-specific behavior. is a subclass of that allows you to change the request’s properties. only represents information about the request. Use other classes, such as , to send the request to a server. See and for an introduction to these techniques. Classes that create a network operation based on a request make a deep copy of that request. Thus, changing the request after creating a network operation has no effect on the ongoing operation. For example, if you use to create a data task from a request, and then later change the request, the data task continues using the original request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableURLRequest
 type MutableURLRequest struct {
 	URLRequest
@@ -122,13 +121,6 @@ func NewMutableURLRequest() MutableURLRequest {
 	return getMutableURLRequestClass().New()
 }
 
-
-// Binds a URL request to the network interface associated with the hotspot helper command instance.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableURLRequest/bind(to:)
-func (m_ MutableURLRequest) BindToHotspotHelperCommand(command networkextension.INEHotspotHelperCommand) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("bindToHotspotHelperCommand:"), command)
-}
 
 // The request’s cache policy.
 //

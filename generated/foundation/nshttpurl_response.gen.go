@@ -37,6 +37,7 @@ type IHTTPURLResponse interface {
 //
 // The class is a subclass of that provides methods for accessing information specific to HTTP protocol responses. Whenever you make HTTP URL load requests, any response objects you get back from the , , or class are instances of the class.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/HTTPURLResponse
 type HTTPURLResponse struct {
 	URLResponse
@@ -83,9 +84,12 @@ func NewHTTPURLResponse() HTTPURLResponse {
 }
 
 
+
 // Returns a localized string corresponding to a specified HTTP status code.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/HTTPURLResponse/localizedString(forStatusCode:)
+
 func (hc _HTTPURLResponseClass) LocalizedStringForStatusCode(statusCode int) String {
 	rv := objc.Send[String](objc.ID(hc.class), objc.Sel("localizedStringForStatusCode:"), statusCode)
 	return rv

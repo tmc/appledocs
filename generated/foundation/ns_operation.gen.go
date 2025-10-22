@@ -71,6 +71,7 @@ type IOperation interface {
 //
 // Because the class is an abstract class, you do not use it directly but instead subclass or use one of the system-defined subclasses ( or ) to perform the actual task. Despite being abstract, the base implementation of does include significant logic to coordinate the safe execution of your task. The presence of this built-in logic allows you to focus on the actual implementation of your task, rather than on the glue code needed to ensure it works correctly with other system objects. An operation object is a single-shot object—that is, it executes its task once and cannot be used to execute it again. You typically execute operations by adding them to an operation queue (an instance of the class). An operation queue executes its operations either directly, by running them on secondary threads, or indirectly using the library (also known as Grand Central Dispatch). For more information about how queues execute operations, see . If you do not want to use an operation queue, you can execute an operation yourself by calling its method directly from your code. Executing operations manually does put more of a burden on your code, because starting an operation that is not in the ready state triggers an exception. The property reports on the operation’s readiness.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation
 type Operation struct {
 	objectivec.Object

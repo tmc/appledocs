@@ -40,6 +40,7 @@ type ILock interface {
 //
 // An object can be used to mediate access to an application’s global data or to protect a critical section of code, allowing it to run atomically. You should not use this class to implement a recursive lock. Calling the method twice on the same thread will lock up your thread permanently. Use the class to implement recursive locks instead. Unlocking a lock that is not locked is considered a programmer error and should be fixed in your code. The class reports such errors by printing an error message to the console when they occur.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLock
 type Lock struct {
 	objectivec.Object

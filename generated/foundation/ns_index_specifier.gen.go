@@ -37,6 +37,7 @@ type IIndexSpecifier interface {
 //
 // The script terms and specify the object with index , while specifies the object with index of . A negative index indicates a location by counting backward from the last object in the collection. You don’t normally subclass .
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSpecifier
 type IndexSpecifier struct {
 	ScriptObjectSpecifier
@@ -85,9 +86,12 @@ func NewIndexSpecifier() IndexSpecifier {
 
 
 
+
 // Initializes an allocated object with a class description, container specifier, collection key, and object index.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSpecifier/init(containerClassDescription:containerSpecifier:key:index:)
+
 func NewIndexSpecifierWithContainerClassDescriptionContainerSpecifierKeyIndex(classDesc IScriptClassDescription, container IScriptObjectSpecifier, property string, index int) IndexSpecifier {
 	instance := getIndexSpecifierClass().Alloc()
 	rv := objc.Send[IndexSpecifier](instance.ID, objc.Sel("initWithContainerClassDescription:containerSpecifier:key:index:"), classDesc, container, objc.String(property), index)

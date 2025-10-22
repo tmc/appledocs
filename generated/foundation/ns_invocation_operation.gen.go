@@ -38,6 +38,7 @@ type IInvocationOperation interface {
 //
 // The class is a concrete subclass of that you use to initiate an operation that consists of invoking a selector on a specified object. This class implements a non-concurrent operation. For more information on concurrent versus non-concurrent operations, see .
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInvocationOperation
 type InvocationOperation struct {
 	Operation
@@ -86,9 +87,12 @@ func NewInvocationOperation() InvocationOperation {
 
 
 
+
 // Returns an object initialized with the specified invocation object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInvocationOperation/initWithInvocation:
+
 func NewInvocationOperationWithInvocation(inv IInvocation) InvocationOperation {
 	instance := getInvocationOperationClass().Alloc()
 	rv := objc.Send[InvocationOperation](instance.ID, objc.Sel("initWithInvocation:"), inv)
@@ -98,9 +102,12 @@ func NewInvocationOperationWithInvocation(inv IInvocation) InvocationOperation {
 
 
 
+
 // Returns an object initialized with the specified target and selector.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInvocationOperation/initWithTarget:selector:object:
+
 func NewInvocationOperationWithTargetSelectorObject(target objectivec.IObject, sel objc.SEL, arg objectivec.IObject) InvocationOperation {
 	instance := getInvocationOperationClass().Alloc()
 	rv := objc.Send[InvocationOperation](instance.ID, objc.Sel("initWithTarget:selector:object:"), target, sel, arg)

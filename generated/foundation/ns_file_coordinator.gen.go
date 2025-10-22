@@ -41,6 +41,7 @@ type IFileCoordinator interface {
 //
 // The class coordinates the reading and writing of files and directories among multiple processes and objects in the same process. You use instances of this class as is to read from, write to, modify the attributes of, change the location of, or delete a file or directory, but before your code to perform those actions executes, the file coordinator lets registered file presenter objects perform any tasks that they might require to ensure their own integrity. For example, if you want to change the location of a file, other objects interested in that file need to know where you intend to move it so that they can update their references. Objects that adopt the protocol must register themselves with the class to be notified of any pending changes. They do this by calling the class method. A file presenter must balance calls to with a call to before being released, even in a garbage-collected application. The file presenter class maintains a list of active file presenter objects in the current application and uses that list, plus the file coordinator classes in other processes, to deliver notifications to all of the objects interested in a particular item. Instances of are meant to be used on a per-file-operation basis, where a file operation is something like opening and reading the contents of a file or moving a batch of files and directories to a new location. There is no benefit to keeping a file coordinator object past the length of the planned operation. In fact, because file coordinators retain file presenter objects, keeping one around could prevent the file presenter objects from being released in a timely manner. For information about implementing a file presenter object to receive file-related notifications, see .
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileCoordinator
 type FileCoordinator struct {
 	objectivec.Object
@@ -87,9 +88,12 @@ func NewFileCoordinator() FileCoordinator {
 
 
 
+
 // Initializes and returns a file coordinator object using the specified file presenter.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileCoordinator/init(filePresenter:)
+
 func NewFileCoordinatorWithFilePresenter(filePresenterOrNil objectivec.IObject) FileCoordinator {
 	instance := getFileCoordinatorClass().Alloc()
 	rv := objc.Send[FileCoordinator](instance.ID, objc.Sel("initWithFilePresenter:"), filePresenterOrNil)
@@ -98,9 +102,12 @@ func NewFileCoordinatorWithFilePresenter(filePresenterOrNil objectivec.IObject) 
 }
 
 
+
 // Unregisters the specified file presenter object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileCoordinator/removeFilePresenter(_:)
+
 func (fc _FileCoordinatorClass) RemoveFilePresenter(filePresenter objectivec.IObject) {
 	objc.Send[objc.ID](objc.ID(fc.class), objc.Sel("removeFilePresenter:"), filePresenter)
 }

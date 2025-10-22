@@ -33,6 +33,7 @@ type Ireserved interface {
 }
 
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/reserved
 type reserved struct {
 	objectivec.Object

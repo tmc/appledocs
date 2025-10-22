@@ -96,6 +96,7 @@ type IProgress interface {
 //
 // The class provides a self-contained mechanism for progress reporting. It makes it easy for code that performs work to report the progress of that work, and for user interface code to observe that progress for presentation to the user. Specifically, you can use a progress object to show the user a progress bar and explanatory text that update as you do work. It also allows the user to cancel or pause work.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress
 type Progress struct {
 	objectivec.Object
@@ -142,9 +143,12 @@ func NewProgress() Progress {
 
 
 
+
 // Creates a new progress instance.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/init(parent:userInfo:)
+
 func NewProgressWithParentUserInfo(parentProgressOrNil IProgress, userInfoOrNil unsafe.Pointer) Progress {
 	instance := getProgressClass().Alloc()
 	rv := objc.Send[Progress](instance.ID, objc.Sel("initWithParent:userInfo:"), parentProgressOrNil, userInfoOrNil)
@@ -154,42 +158,57 @@ func NewProgressWithParentUserInfo(parentProgressOrNil IProgress, userInfoOrNil 
 
 
 
+
 // Creates and returns a progress instance.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/init(totalUnitCount:)
+
 func NewProgressWithTotalUnitCount(unitCount unsafe.Pointer) Progress {
 	rv := objc.Send[Progress](objc.ID(getProgressClass().class), objc.Sel("progressWithTotalUnitCount:"), unitCount)
 	return rv
 }
 
 
+
 // Returns the progress instance, if any.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/current()
+
 func (pc _ProgressClass) CurrentProgress() Progress {
 	rv := objc.Send[Progress](objc.ID(pc.class), objc.Sel("currentProgress"))
 	return rv
 }
 
+
 // Creates and returns a progress instance with the specified unit count that isn’t part of any existing progress tree.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/discreteProgress(totalUnitCount:)
+
 func (pc _ProgressClass) DiscreteProgressWithTotalUnitCount(unitCount unsafe.Pointer) Progress {
 	rv := objc.Send[Progress](objc.ID(pc.class), objc.Sel("discreteProgressWithTotalUnitCount:"), unitCount)
 	return rv
 }
 
+
 // Creates and returns a progress instance.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/init(totalUnitCount:)
+
 func (pc _ProgressClass) ProgressWithTotalUnitCount(unitCount unsafe.Pointer) Progress {
 	rv := objc.Send[Progress](objc.ID(pc.class), objc.Sel("progressWithTotalUnitCount:"), unitCount)
 	return rv
 }
 
+
 // Removes a proxy progress object that the add subscriber method returns.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/removeSubscriber(_:)
+
 func (pc _ProgressClass) RemoveSubscriber(subscriber objectivec.IObject) {
 	objc.Send[objc.ID](objc.ID(pc.class), objc.Sel("removeSubscriber:"), subscriber)
 }

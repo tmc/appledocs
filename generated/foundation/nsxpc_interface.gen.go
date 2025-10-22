@@ -43,6 +43,7 @@ type IXPCInterface interface {
 //
 // This object holds all information about the interface of an exported object or remote object proxy. It describes what messages are allowed, what kinds of objects are allowed as arguments, what the signature of any reply blocks are, and information about additional proxy objects.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCInterface
 type XPCInterface struct {
 	objectivec.Object
@@ -89,18 +90,24 @@ func NewXPCInterface() XPCInterface {
 
 
 
+
 // Returns an NSXPCInterface instance for a given protocol.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCInterface/init(with:)
+
 func NewXPCInterfaceWithProtocol(protocol_ objectivec.Protocol) XPCInterface {
 	rv := objc.Send[XPCInterface](objc.ID(getXPCInterfaceClass().class), objc.Sel("interfaceWithProtocol:"), protocol_)
 	return rv
 }
 
 
+
 // Returns an NSXPCInterface instance for a given protocol.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCInterface/init(with:)
+
 func (xc _XPCInterfaceClass) InterfaceWithProtocol(protocol_ objectivec.Protocol) XPCInterface {
 	rv := objc.Send[XPCInterface](objc.ID(xc.class), objc.Sel("interfaceWithProtocol:"), protocol_)
 	return rv

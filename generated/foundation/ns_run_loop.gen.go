@@ -44,6 +44,7 @@ type IRunLoop interface {
 //
 // A object processes input for sources, such as mouse and keyboard events from the window system and objects. A object also processes events. Your application neither creates nor explicitly manages objects. The system creates a object as needed for each object, including the application’s main thread. If you need to access the current thread’s run loop, use the class method . Note that from the perspective of , objects aren’t “input”—they’re a special type, and they don’t cause the run loop to return when they fire.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/RunLoop
 type RunLoop struct {
 	objectivec.Object

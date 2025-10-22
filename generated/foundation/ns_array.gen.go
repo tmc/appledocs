@@ -30,7 +30,7 @@ type _ArrayClass struct {
 // An interface definition for the [Array] class.
 type IArray interface {
 	objectivec.IObject
-	AddObserverToObjectsAtIndexesForKeyPathOptionsContext(observer IObject, indexes IIndexSet, keyPath string, options KeyValueObservingOptions, context unsafe.Pointer)
+	AddObserverToObjectsAtIndexesForKeyPathOptionsContext(observer objectivec.IObject, indexes IIndexSet, keyPath string, options KeyValueObservingOptions, context unsafe.Pointer)
 	ArrayByAddingObject(anObject unsafe.Pointer) []objc.ID
 	ArrayByAddingObjectsFromArray(otherArray []objc.ID) []objc.ID
 	ArrayByApplyingDifference(difference unsafe.Pointer) []objc.ID
@@ -66,8 +66,8 @@ type IArray interface {
 	ObjectEnumerator() unsafe.Pointer
 	ObjectsAtIndexes(indexes IIndexSet) []objc.ID
 	PathsMatchingExtensions(filterTypes []string) []string
-	RemoveObserverFromObjectsAtIndexesForKeyPath(observer IObject, indexes IIndexSet, keyPath string)
-	RemoveObserverFromObjectsAtIndexesForKeyPathContext(observer IObject, indexes IIndexSet, keyPath string, context unsafe.Pointer)
+	RemoveObserverFromObjectsAtIndexesForKeyPath(observer objectivec.IObject, indexes IIndexSet, keyPath string)
+	RemoveObserverFromObjectsAtIndexesForKeyPathContext(observer objectivec.IObject, indexes IIndexSet, keyPath string, context unsafe.Pointer)
 	ReverseObjectEnumerator() unsafe.Pointer
 	ShuffledArray() []objc.ID
 	SortedArrayUsingFunctionContext(comparator unsafe.Pointer, context unsafe.Pointer) []objc.ID
@@ -92,6 +92,7 @@ type IArray interface {
 //
 // You can use this type in Swift instead of an constant in cases that require reference semantics. and its subclass manage ordered collections of objects called . creates static arrays, and creates dynamic arrays. You can use arrays when you need an ordered collection of objects. is “toll-free bridged” with its Core Foundation counterpart, . See for more information on toll-free bridging.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray
 type Array struct {
 	objectivec.Object
@@ -138,9 +139,12 @@ func NewArray() Array {
 
 
 
+
 // Initializes a newly allocated array by placing in it the objects contained in a given array.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/init(array:)-o72h
+
 func NewArrayWithArray(array []objc.ID) Array {
 	instance := getArrayClass().Alloc()
 	rv := objc.Send[Array](instance.ID, objc.Sel("initWithArray:"), array)
@@ -150,9 +154,12 @@ func NewArrayWithArray(array []objc.ID) Array {
 
 
 
+
 // Initializes a newly allocated array using as the source of data objects for the array.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/init(array:copyItems:)
+
 func NewArrayWithArrayCopyItems(array []objc.ID, flag bool) Array {
 	instance := getArrayClass().Alloc()
 	rv := objc.Send[Array](instance.ID, objc.Sel("initWithArray:copyItems:"), array, flag)
@@ -160,8 +167,13 @@ func NewArrayWithArrayCopyItems(array []objc.ID, flag bool) Array {
 	return rv
 }
 
+
+
+
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/init(coder:)
+
 func NewArrayWithCoder(coder ICoder) Array {
 	instance := getArrayClass().Alloc()
 	rv := objc.Send[Array](instance.ID, objc.Sel("initWithCoder:"), coder)
@@ -171,9 +183,12 @@ func NewArrayWithCoder(coder ICoder) Array {
 
 
 
+
 // Initializes a newly allocated array with the contents of the file specified by a given path.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/init(contentsOfFile:)
+
 func NewArrayWithContentsOfFile(path string) Array {
 	instance := getArrayClass().Alloc()
 	rv := objc.Send[Array](instance.ID, objc.Sel("initWithContentsOfFile:"), objc.String(path))
@@ -183,9 +198,12 @@ func NewArrayWithContentsOfFile(path string) Array {
 
 
 
+
 // Initializes a newly allocated array with the contents of the location specified by a given URL.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/init(contentsOfURL:)-5lo2y
+
 func NewArrayWithContentsOfURL(url IURL) Array {
 	instance := getArrayClass().Alloc()
 	rv := objc.Send[Array](instance.ID, objc.Sel("initWithContentsOfURL:"), url)
@@ -193,8 +211,13 @@ func NewArrayWithContentsOfURL(url IURL) Array {
 	return rv
 }
 
+
+
+
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/init(contentsOfURL:error:)
+
 func NewArrayWithContentsOfURLError(url IURL, error_ IError) Array {
 	instance := getArrayClass().Alloc()
 	rv := objc.Send[Array](instance.ID, objc.Sel("initWithContentsOfURL:error:"), url, error_)
@@ -204,9 +227,12 @@ func NewArrayWithContentsOfURLError(url IURL, error_ IError) Array {
 
 
 
+
 // Creates and returns an array containing a given object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/init(object:)
+
 func NewArrayWithObject(anObject unsafe.Pointer) Array {
 	rv := objc.Send[Array](objc.ID(getArrayClass().class), objc.Sel("arrayWithObject:"), anObject)
 	return rv
@@ -214,9 +240,12 @@ func NewArrayWithObject(anObject unsafe.Pointer) Array {
 
 
 
+
 // Initializes a newly allocated array by placing in it the objects in the argument list.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/initWithObjects:
+
 func NewArrayWithObjects(firstObj unsafe.Pointer) Array {
 	instance := getArrayClass().Alloc()
 	rv := objc.Send[Array](instance.ID, objc.Sel("initWithObjects:"), firstObj)
@@ -226,9 +255,12 @@ func NewArrayWithObjects(firstObj unsafe.Pointer) Array {
 
 
 
+
 // Initializes a newly allocated array to include a given number of objects from a given C array.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/init(objects:count:)-5odxv
+
 func NewArrayWithObjectsCount(objects unsafe.Pointer, cnt uint) Array {
 	instance := getArrayClass().Alloc()
 	rv := objc.Send[Array](instance.ID, objc.Sel("initWithObjects:count:"), objects, cnt)
@@ -237,64 +269,88 @@ func NewArrayWithObjectsCount(objects unsafe.Pointer, cnt uint) Array {
 }
 
 
+
 // Creates and returns an empty array.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/array
+
 func (ac _ArrayClass) Array() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("array"))
 	return rv
 }
 
+
 // Creates and returns an array containing the objects in another given array.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/arrayWithArray:
+
 func (ac _ArrayClass) ArrayWithArray(array []objc.ID) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("arrayWithArray:"), array)
 	return rv
 }
 
+
 // Creates and returns an array containing the contents of the file specified by a given path.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/arrayWithContentsOfFile:
+
 func (ac _ArrayClass) ArrayWithContentsOfFile(path string) []objc.ID {
 	rv := objc.Send[[]objc.ID](objc.ID(ac.class), objc.Sel("arrayWithContentsOfFile:"), objc.String(path))
 	return rv
 }
 
+
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/arrayWithContentsOfURL:error:
+
 func (ac _ArrayClass) ArrayWithContentsOfURLError(url IURL, error_ IError) []objc.ID {
 	rv := objc.Send[[]objc.ID](objc.ID(ac.class), objc.Sel("arrayWithContentsOfURL:error:"), url, error_)
 	return rv
 }
 
+
 // Creates and returns an array containing the objects in the argument list.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/arrayWithObjects:
+
 func (ac _ArrayClass) ArrayWithObjects(firstObj unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("arrayWithObjects:"), firstObj)
 	return rv
 }
 
+
 // Creates and returns an array containing the contents specified by a given URL.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/init(contentsOfURL:)-fk8x
+
 func (ac _ArrayClass) ArrayWithContentsOfURL(url IURL) []objc.ID {
 	rv := objc.Send[[]objc.ID](objc.ID(ac.class), objc.Sel("arrayWithContentsOfURL:"), url)
 	return rv
 }
 
+
 // Creates and returns an array containing a given object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/init(object:)
+
 func (ac _ArrayClass) ArrayWithObject(anObject unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("arrayWithObject:"), anObject)
 	return rv
 }
 
+
 // Creates and returns an array that includes a given number of objects from a given C array.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/init(objects:count:)-7dct1
+
 func (ac _ArrayClass) ArrayWithObjectsCount(objects unsafe.Pointer, cnt uint) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("arrayWithObjects:count:"), objects, cnt)
 	return rv
@@ -303,14 +359,14 @@ func (ac _ArrayClass) ArrayWithObjectsCount(objects unsafe.Pointer, cnt uint) un
 // Raises an exception.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/addObserver(_:forKeyPath:options:context:)
-func (a_ Array) AddObserverForKeyPathOptionsContext(observer IObject, keyPath string, options KeyValueObservingOptions, context unsafe.Pointer) {
+func (a_ Array) AddObserverForKeyPathOptionsContext(observer objectivec.IObject, keyPath string, options KeyValueObservingOptions, context unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("addObserver:forKeyPath:options:context:"), observer, objc.String(keyPath), options, context)
 }
 
 // Registers an observer to receive key value observer notifications for the specified key-path relative to the objects at the indexes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/addObserver(_:toObjectsAt:forKeyPath:options:context:)
-func (a_ Array) AddObserverToObjectsAtIndexesForKeyPathOptionsContext(observer IObject, indexes IIndexSet, keyPath string, options KeyValueObservingOptions, context unsafe.Pointer) {
+func (a_ Array) AddObserverToObjectsAtIndexesForKeyPathOptionsContext(observer objectivec.IObject, indexes IIndexSet, keyPath string, options KeyValueObservingOptions, context unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("addObserver:toObjectsAtIndexes:forKeyPath:options:context:"), observer, indexes, objc.String(keyPath), options, context)
 }
 
@@ -590,28 +646,28 @@ func (a_ Array) PathsMatchingExtensions(filterTypes []string) []string {
 // Raises an exception.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/removeObserver(_:forKeyPath:)
-func (a_ Array) RemoveObserverForKeyPath(observer IObject, keyPath string) {
+func (a_ Array) RemoveObserverForKeyPath(observer objectivec.IObject, keyPath string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("removeObserver:forKeyPath:"), observer, objc.String(keyPath))
 }
 
 // Raises an exception.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/removeObserver(_:forKeyPath:context:)
-func (a_ Array) RemoveObserverForKeyPathContext(observer IObject, keyPath string, context unsafe.Pointer) {
+func (a_ Array) RemoveObserverForKeyPathContext(observer objectivec.IObject, keyPath string, context unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("removeObserver:forKeyPath:context:"), observer, objc.String(keyPath), context)
 }
 
 // Removes from all key value observer notifications associated with the specified relative to the array’s objects at .
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/removeObserver(_:fromObjectsAt:forKeyPath:)
-func (a_ Array) RemoveObserverFromObjectsAtIndexesForKeyPath(observer IObject, indexes IIndexSet, keyPath string) {
+func (a_ Array) RemoveObserverFromObjectsAtIndexesForKeyPath(observer objectivec.IObject, indexes IIndexSet, keyPath string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("removeObserver:fromObjectsAtIndexes:forKeyPath:"), observer, indexes, objc.String(keyPath))
 }
 
 // Raises an exception.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/removeObserver(_:fromObjectsAt:forKeyPath:context:)
-func (a_ Array) RemoveObserverFromObjectsAtIndexesForKeyPathContext(observer IObject, indexes IIndexSet, keyPath string, context unsafe.Pointer) {
+func (a_ Array) RemoveObserverFromObjectsAtIndexesForKeyPathContext(observer objectivec.IObject, indexes IIndexSet, keyPath string, context unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("removeObserver:fromObjectsAtIndexes:forKeyPath:context:"), observer, indexes, objc.String(keyPath), context)
 }
 

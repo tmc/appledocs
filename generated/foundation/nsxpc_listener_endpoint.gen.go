@@ -36,6 +36,7 @@ type IXPCListenerEndpoint interface {
 //
 // An instance of may be retrieved from an instance and sent over existing s. A process may then use the endpoint to create a new to the original . This pattern is useful if you have a service which multiplexes work to other services. The service can act as an intermediate helper. The requesting application does not need to know specifically which service it is connecting to, just that it implements a known .
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCListenerEndpoint
 type XPCListenerEndpoint struct {
 	objectivec.Object

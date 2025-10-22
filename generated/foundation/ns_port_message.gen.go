@@ -42,6 +42,7 @@ type IPortMessage interface {
 //
 // Port messages are used primarily by the distributed objects system. You should implement inter-application communication using distributed objects whenever possible and use only when necessary. An object has three major parts: the send and receive ports, which are objects that link the sender of the message to the receiver, and the components, which form the body of the message. The components are held as an object containing and objects. The message sends the components out through the send port; any replies to the message arrive on the receive port. See the class specification for information on handling incoming messages. An instance can be initialized with a pair of objects and an array of components. A port message’s body can contain only objects or objects. In the distributed objects system the byte/character arrays are usually encoded objects that are being forwarded from a proxy to the corresponding real object. An object also maintains a message identifier, which can be used to indicate the class of a message, such as an Objective-C method invocation, a connection request, an error, and so on. Use the and methods to access the identifier.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/PortMessage
 type PortMessage struct {
 	objectivec.Object
@@ -88,9 +89,12 @@ func NewPortMessage() PortMessage {
 
 
 
+
 // Initializes a newly allocated object to send given data on a given port and to receiver replies on another given port.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/PortMessage/init(send:receive:components:)
+
 func NewPortMessageWithSendPortReceivePortComponents(sendPort IPort, replyPort IPort, components objectivec.IObject) PortMessage {
 	instance := getPortMessageClass().Alloc()
 	rv := objc.Send[PortMessage](instance.ID, objc.Sel("initWithSendPort:receivePort:components:"), sendPort, replyPort, components)

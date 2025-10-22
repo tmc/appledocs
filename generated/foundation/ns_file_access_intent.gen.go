@@ -37,6 +37,7 @@ type IFileAccessIntent interface {
 //
 // Use this class when performing asynchronous operations with a file coordinator using the coordinator’s method.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileAccessIntent
 type FileAccessIntent struct {
 	objectivec.Object
@@ -81,9 +82,12 @@ func NewFileAccessIntent() FileAccessIntent {
 }
 
 
+
 // Returns a file access intent object for reading the given URL with the provided options.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileAccessIntent/readingIntent(with:options:)
+
 func (fc _FileAccessIntentClass) ReadingIntentWithURLOptions(url IURL, options unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("readingIntentWithURL:options:"), url, options)
 	return rv

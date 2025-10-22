@@ -63,6 +63,7 @@ type IHTTPCookie interface {
 //
 // An object is immutable, initialized from a dictionary that contains the attributes of the cookie. This class supports two different cookie versions: Version 0: The original cookie format defined by Netscape. Most cookies are in this format. Version 1: The cookie format defined in , HTTP State Management Mechanism.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/HTTPCookie
 type HTTPCookie struct {
 	objectivec.Object

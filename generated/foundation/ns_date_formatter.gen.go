@@ -105,6 +105,7 @@ type IDateFormatter interface {
 //
 // Instances of create string representations of objects, and convert textual representations of dates and times into objects. For user-visible representations of dates and times, provides a variety of localized presets and configuration options. For fixed format representations of dates and times, you can specify a custom format string. When working with date representations in ISO 8601 format, use instead. To represent an interval between two objects, use instead. To represent a quantity of time specified by an object, use instead.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter
 type DateFormatter struct {
 	Formatter
@@ -153,9 +154,12 @@ func NewDateFormatter() DateFormatter {
 
 
 
+
 // Initializes and returns an instance that uses the OS X 10.0 formatting behavior and the given date format string in its conversions.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateFormatter/initWithDateFormat:allowNaturalLanguage:
+
 func NewDateFormatterWithDateFormatAllowNaturalLanguage(format string, flag bool) DateFormatter {
 	instance := getDateFormatterClass().Alloc()
 	rv := objc.Send[DateFormatter](instance.ID, objc.Sel("initWithDateFormat:allowNaturalLanguage:"), objc.String(format), flag)

@@ -64,6 +64,7 @@ type IMutableDictionary interface {
 //
 // In Swift, you can use this type instead of a variable in cases that require reference semantics. The class declares the programmatic interface to objects that manage mutable associations of keys and values. It adds modification operations to the basic operations it inherits from . is “toll-free bridged” with its Core Foundation counterpart, . See for more information on toll-free bridging.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary
 type MutableDictionary struct {
 	Dictionary
@@ -112,9 +113,12 @@ func NewMutableDictionary() MutableDictionary {
 
 
 
+
 // Initializes a newly allocated mutable dictionary, allocating enough memory to hold entries.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/init(capacity:)
+
 func NewMutableDictionaryWithCapacity(numItems uint) MutableDictionary {
 	instance := getMutableDictionaryClass().Alloc()
 	rv := objc.Send[MutableDictionary](instance.ID, objc.Sel("initWithCapacity:"), numItems)
@@ -122,8 +126,13 @@ func NewMutableDictionaryWithCapacity(numItems uint) MutableDictionary {
 	return rv
 }
 
+
+
+
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/init(coder:)
+
 func NewMutableDictionaryWithCoder(coder ICoder) MutableDictionary {
 	instance := getMutableDictionaryClass().Alloc()
 	rv := objc.Send[MutableDictionary](instance.ID, objc.Sel("initWithCoder:"), coder)
@@ -131,8 +140,13 @@ func NewMutableDictionaryWithCoder(coder ICoder) MutableDictionary {
 	return rv
 }
 
+
+
+
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/initWithContentsOfFile:
+
 func NewMutableDictionaryWithContentsOfFile(path string) MutableDictionary {
 	instance := getMutableDictionaryClass().Alloc()
 	rv := objc.Send[MutableDictionary](instance.ID, objc.Sel("initWithContentsOfFile:"), objc.String(path))
@@ -140,8 +154,13 @@ func NewMutableDictionaryWithContentsOfFile(path string) MutableDictionary {
 	return rv
 }
 
+
+
+
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/initWithContentsOfURL:
+
 func NewMutableDictionaryWithContentsOfURL(url IURL) MutableDictionary {
 	instance := getMutableDictionaryClass().Alloc()
 	rv := objc.Send[MutableDictionary](instance.ID, objc.Sel("initWithContentsOfURL:"), url)
@@ -149,15 +168,25 @@ func NewMutableDictionaryWithContentsOfURL(url IURL) MutableDictionary {
 	return rv
 }
 
+
+
+
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/init(OBEXHeadersData:)
+
 func NewMutableDictionaryWithOBEXHeadersData(inHeadersData IData) MutableDictionary {
 	rv := objc.Send[MutableDictionary](objc.ID(getMutableDictionaryClass().class), objc.Sel("dictionaryWithOBEXHeadersData:"), inHeadersData)
 	return rv
 }
 
+
+
+
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/init(OBEXHeadersData:headersDataSize:)
+
 func NewMutableDictionaryWithOBEXHeadersDataHeadersDataSize(inHeadersData unsafe.Pointer, inDataSize Iuintptr) MutableDictionary {
 	rv := objc.Send[MutableDictionary](objc.ID(getMutableDictionaryClass().class), objc.Sel("dictionaryWithOBEXHeadersData:headersDataSize:"), inHeadersData, inDataSize)
 	return rv
@@ -165,61 +194,85 @@ func NewMutableDictionaryWithOBEXHeadersDataHeadersDataSize(inHeadersData unsafe
 
 
 
+
 // Creates a mutable dictionary which is optimized for dealing with a known set of keys.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/init(sharedKeySet:)
+
 func NewMutableDictionaryWithSharedKeySet(keyset objectivec.IObject) MutableDictionary {
 	rv := objc.Send[MutableDictionary](objc.ID(getMutableDictionaryClass().class), objc.Sel("dictionaryWithSharedKeySet:"), keyset)
 	return rv
 }
 
 
+
 // Creates and returns a mutable dictionary, initially giving it enough allocated memory to hold a given number of entries.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/dictionaryWithCapacity:
+
 func (mc _MutableDictionaryClass) DictionaryWithCapacity(numItems uint) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("dictionaryWithCapacity:"), numItems)
 	return rv
 }
 
+
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/dictionaryWithContentsOfFile:
+
 func (mc _MutableDictionaryClass) DictionaryWithContentsOfFile(path string) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("dictionaryWithContentsOfFile:"), objc.String(path))
 	return rv
 }
 
+
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/init(OBEXHeadersData:)
+
 func (mc _MutableDictionaryClass) DictionaryWithOBEXHeadersData(inHeadersData IData) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("dictionaryWithOBEXHeadersData:"), inHeadersData)
 	return rv
 }
 
+
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/init(OBEXHeadersData:headersDataSize:)
+
 func (mc _MutableDictionaryClass) DictionaryWithOBEXHeadersDataHeadersDataSize(inHeadersData unsafe.Pointer, inDataSize Iuintptr) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("dictionaryWithOBEXHeadersData:headersDataSize:"), inHeadersData, inDataSize)
 	return rv
 }
 
+
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/init(contentsOfURL:)
+
 func (mc _MutableDictionaryClass) DictionaryWithContentsOfURL(url IURL) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("dictionaryWithContentsOfURL:"), url)
 	return rv
 }
 
+
 // Creates a mutable dictionary which is optimized for dealing with a known set of keys.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/init(sharedKeySet:)
+
 func (mc _MutableDictionaryClass) DictionaryWithSharedKeySet(keyset objectivec.IObject) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("dictionaryWithSharedKeySet:"), keyset)
 	return rv
 }
 
+
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/withOBEXHeadersData:headersDataSize:
+
 func (mc _MutableDictionaryClass) WithOBEXHeadersDataHeadersDataSize(inHeadersData unsafe.Pointer, inDataSize Iuintptr) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("withOBEXHeadersData:headersDataSize:"), inHeadersData, inDataSize)
 	return rv

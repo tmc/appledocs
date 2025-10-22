@@ -43,6 +43,7 @@ type IMeasurementFormatter interface {
 //
 // You use the method to create a localized representation of an object, and you use the method to create a localized representation of an object. The formatter takes into account the specified , , and when producing string representations of units and measurements.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/MeasurementFormatter
 type MeasurementFormatter struct {
 	Formatter

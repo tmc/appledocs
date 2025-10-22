@@ -42,6 +42,7 @@ type IURLDownload interface {
 //
 // The interface for provides methods to initialize a download, set the destination path and cancel loading the request. The delegate object assigned to each instance of this class should implement the methods defined by the protocol. These methods provide the delegate with the current status of in-progress asynchronous downloads and allow the delegate to customize the URL loading process. These delegate methods are called on the thread that started the asynchronous load operation for the associated object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLDownload
 type URLDownload struct {
 	objectivec.Object
@@ -88,9 +89,12 @@ func NewURLDownload() URLDownload {
 
 
 
+
 // Returns an initialized URL download for a URL request and begins to download the data for the request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLDownload/init(request:delegate:)
+
 func NewURLDownloadWithRequestDelegate(request IURLRequest, delegate objectivec.IObject) URLDownload {
 	instance := getURLDownloadClass().Alloc()
 	rv := objc.Send[URLDownload](instance.ID, objc.Sel("initWithRequest:delegate:"), request, delegate)
@@ -100,9 +104,12 @@ func NewURLDownloadWithRequestDelegate(request IURLRequest, delegate objectivec.
 
 
 
+
 // Returns an initialized NSURLDownload object that will resume downloading the specified data to the specified file and begins the download.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLDownload/init(resumeData:delegate:path:)
+
 func NewURLDownloadWithResumeDataDelegatePath(resumeData IData, delegate objectivec.IObject, path string) URLDownload {
 	instance := getURLDownloadClass().Alloc()
 	rv := objc.Send[URLDownload](instance.ID, objc.Sel("initWithResumeData:delegate:path:"), resumeData, delegate, objc.String(path))
@@ -111,9 +118,12 @@ func NewURLDownloadWithResumeDataDelegatePath(resumeData IData, delegate objecti
 }
 
 
+
 // Returns whether a URL download object can resume a download that was decoded with the specified MIME type.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLDownload/canResumeDownloadDecoded(withEncodingMIMEType:)
+
 func (uc _URLDownloadClass) CanResumeDownloadDecodedWithEncodingMIMEType(MIMEType string) bool {
 	rv := objc.Send[bool](objc.ID(uc.class), objc.Sel("canResumeDownloadDecodedWithEncodingMIMEType:"), objc.String(MIMEType))
 	return rv

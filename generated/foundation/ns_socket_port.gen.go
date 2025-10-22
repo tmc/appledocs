@@ -42,6 +42,7 @@ type ISocketPort interface {
 //
 // A object can be used as an endpoint for distributed object connections. Companion classes, and , allow for local (on the same machine) communication only. The class allows for both local and remote communication, but may be more expensive than the others for the local case.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/SocketPort
 type SocketPort struct {
 	Port
@@ -90,9 +91,12 @@ func NewSocketPort() SocketPort {
 
 
 
+
 // Initializes the receiver as a local socket with the provided arguments.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/SocketPort/init(protocolFamily:socketType:protocol:address:)
+
 func NewSocketPortWithProtocolFamilySocketTypeProtocolAddress(family int, type_ int, protocol_ int, address IData) SocketPort {
 	instance := getSocketPortClass().Alloc()
 	rv := objc.Send[SocketPort](instance.ID, objc.Sel("initWithProtocolFamily:socketType:protocol:address:"), family, type_, protocol_, address)

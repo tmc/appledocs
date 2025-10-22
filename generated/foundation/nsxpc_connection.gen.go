@@ -73,6 +73,7 @@ type IXPCConnection interface {
 //
 // This class is the primary means of creating and configuring the communication mechanism between two processes. Each process has one instance of this class to represent the endpoint in the communication channel.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection
 type XPCConnection struct {
 	objectivec.Object
@@ -119,9 +120,12 @@ func NewXPCConnection() XPCConnection {
 
 
 
+
 // Initializes an object to connect to an object in another process, identified by an object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/init(listenerEndpoint:)
+
 func NewXPCConnectionWithListenerEndpoint(endpoint IXPCListenerEndpoint) XPCConnection {
 	instance := getXPCConnectionClass().Alloc()
 	rv := objc.Send[XPCConnection](instance.ID, objc.Sel("initWithListenerEndpoint:"), endpoint)
@@ -131,9 +135,12 @@ func NewXPCConnectionWithListenerEndpoint(endpoint IXPCListenerEndpoint) XPCConn
 
 
 
+
 // Initializes an object to connect to a LaunchAgent or LaunchDaemon with a name advertised in a .
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/init(machServiceName:options:)
+
 func NewXPCConnectionWithMachServiceNameOptions(name string, options XPCConnectionOptions) XPCConnection {
 	instance := getXPCConnectionClass().Alloc()
 	rv := objc.Send[XPCConnection](instance.ID, objc.Sel("initWithMachServiceName:options:"), objc.String(name), options)
@@ -143,9 +150,12 @@ func NewXPCConnectionWithMachServiceNameOptions(name string, options XPCConnecti
 
 
 
+
 // Initializes an object to connect to an object in an XPC service, identified by a service name.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/init(serviceName:)
+
 func NewXPCConnectionWithServiceName(serviceName string) XPCConnection {
 	instance := getXPCConnectionClass().Alloc()
 	rv := objc.Send[XPCConnection](instance.ID, objc.Sel("initWithServiceName:"), objc.String(serviceName))
@@ -154,9 +164,12 @@ func NewXPCConnectionWithServiceName(serviceName string) XPCConnection {
 }
 
 
+
 // Returns the current connection, in the context of a call to a method on your exported object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/current()
+
 func (xc _XPCConnectionClass) CurrentConnection() XPCConnection {
 	rv := objc.Send[XPCConnection](objc.ID(xc.class), objc.Sel("currentConnection"))
 	return rv

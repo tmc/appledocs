@@ -33,6 +33,7 @@ type Ibytes interface {
 }
 
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSimpleCString/bytes
 type bytes struct {
 	objectivec.Object

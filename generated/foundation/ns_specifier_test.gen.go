@@ -38,6 +38,7 @@ type ISpecifierTest interface {
 //
 // Instances of this class represent a Boolean expression; they evaluate an object specifier and compare the resulting object to another object using a given comparison method. For more information on , see the method description for its sole public method, its initializer, . When an object is properly initialized, it holds two objects: A “value” or “test” object used as the basis of the comparison; this object can be a regular object or object specifier (such as “blue” in “words whose color is blue”). An object specifier evaluating to the container (“words”). The instance also encapsulates a selector identifying the method performing this comparison. The informal protocol defines a set of comparison methods useful for this purpose, while describes additional methods you may need to use for scripting. The test object is compared, using the selector, against each object in the container. Specifiers in these tests usually have invoked on their topmost container. You should rarely need to subclass .
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSpecifierTest
 type SpecifierTest struct {
 	ScriptWhoseTest
@@ -86,9 +87,12 @@ func NewSpecifierTest() SpecifierTest {
 
 
 
+
 // Returns a specifier test initialized to evaluate a test object against an object specified by an object specifier using a given comparison operation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSpecifierTest/init(objectSpecifier:comparisonOperator:test:)
+
 func NewSpecifierTestWithObjectSpecifierComparisonOperatorTestObject(obj1 IScriptObjectSpecifier, compOp unsafe.Pointer, obj2 objectivec.IObject) SpecifierTest {
 	instance := getSpecifierTestClass().Alloc()
 	rv := objc.Send[SpecifierTest](instance.ID, objc.Sel("initWithObjectSpecifier:comparisonOperator:testObject:"), obj1, compOp, obj2)

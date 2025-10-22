@@ -42,6 +42,7 @@ type IDateInterval interface {
 //
 // In Swift, this object bridges to ; use when you need reference semantics or other Foundation-specific behavior. An object represents a closed interval between two dates. The class provides a programmatic interface for calculating the duration of a time interval and determining whether a date falls within it, as well as comparing date intervals and checking to see whether they intersect. An object consists of a and an . The and of a date interval can be equal, in which case its is . However, cannot occur earlier than . You can use the class to create string representations of objects that are suitable for display in the current locale.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateInterval
 type DateInterval struct {
 	objectivec.Object
@@ -88,9 +89,12 @@ func NewDateInterval() DateInterval {
 
 
 
+
 // Initializes a date interval with a given start date and duration.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateInterval/init(start:duration:)
+
 func NewDateIntervalWithStartDateDuration(startDate IDate, duration ITimeInterval) DateInterval {
 	instance := getDateIntervalClass().Alloc()
 	rv := objc.Send[DateInterval](instance.ID, objc.Sel("initWithStartDate:duration:"), startDate, duration)

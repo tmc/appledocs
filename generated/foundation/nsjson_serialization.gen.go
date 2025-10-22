@@ -36,6 +36,7 @@ type IJSONSerialization interface {
 //
 // You use the class to convert JSON to Foundation objects and convert Foundation objects to JSON. To convert a Foundation object to JSON, the object must have the following properties: The top level object is an or , unless you set the option. All objects are instances of , , , , or . All dictionary keys are instances of . Numbers are neither nor infinity. Other rules may apply. Calling or attempting a conversion are the definitive ways to tell if the class can convert given object to JSON data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/JSONSerialization
 type JSONSerialization struct {
 	objectivec.Object
@@ -80,9 +81,12 @@ func NewJSONSerialization() JSONSerialization {
 }
 
 
+
 // Returns a Boolean value that indicates whether the serializer can convert a given object to JSON data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/JSONSerialization/isValidJSONObject(_:)
+
 func (jc _JSONSerializationClass) IsValidJSONObject(obj objectivec.IObject) bool {
 	rv := objc.Send[bool](objc.ID(jc.class), objc.Sel("isValidJSONObject:"), obj)
 	return rv

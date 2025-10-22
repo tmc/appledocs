@@ -35,6 +35,7 @@ type IUnitLength interface {
 //
 // You typically use instances of to represent specific quantities of length using the class.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitLength
 type UnitLength struct {
 	Dimension

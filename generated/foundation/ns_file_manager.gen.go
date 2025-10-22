@@ -113,6 +113,7 @@ type IFileManager interface {
 //
 // A file manager object lets you examine the contents of the file system and make changes to it. The class provides convenient access to a shared file manager object that is suitable for most types of file-related manipulations. A file manager object is typically your primary mode of interaction with the file system. You use it to locate, create, copy, and move files and directories. You also use it to get information about a file or directory or change some of its attributes. When specifying the location of files, you can use either or objects. The use of the class is generally preferred for specifying file-system items because URLs can convert path information to a more efficient representation internally. You can also obtain a bookmark from an object, which is similar to an alias and offers a more sure way of locating the file or directory later. If you are moving, copying, linking, or removing files or directories, you can use a delegate in conjunction with a file manager object to manage those operations. The delegate’s role is to affirm the operation and to decide whether to proceed when errors occur. In macOS 10.7 and later, the delegate must conform to the protocol. In iOS 5.0 and later and in macOS 10.7 and later, includes methods for managing items stored in iCloud. Files and directories tagged for cloud storage are synced to iCloud so that they can be made available to the user’s iOS devices and Macintosh computers. Changes to an item in one location are propagated to all other locations to ensure the items stay in sync.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager
 type FileManager struct {
 	objectivec.Object
@@ -159,18 +160,24 @@ func NewFileManager() FileManager {
 
 
 
+
 // Initializes a file manager object that is authorized to perform privileged file system operations.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/init(authorization:)
+
 func NewFileManagerWithAuthorization(authorization unsafe.Pointer) FileManager {
 	rv := objc.Send[FileManager](objc.ID(getFileManagerClass().class), objc.Sel("fileManagerWithAuthorization:"), authorization)
 	return rv
 }
 
 
+
 // Initializes a file manager object that is authorized to perform privileged file system operations.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/init(authorization:)
+
 func (fc _FileManagerClass) FileManagerWithAuthorization(authorization unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("fileManagerWithAuthorization:"), authorization)
 	return rv

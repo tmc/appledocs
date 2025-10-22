@@ -59,6 +59,7 @@ type IExtensionContext interface {
 //
 // When a host app sends a request to an app extension, it provides an extension context. For many app extensions, the most important part of the context is the data the user wants to work with, which is contained in the property.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtensionContext
 type ExtensionContext struct {
 	objectivec.Object

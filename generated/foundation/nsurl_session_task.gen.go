@@ -65,6 +65,7 @@ type IURLSessionTask interface {
 //
 // The class is the base class for tasks in a URL session. Tasks are always part of a session; you create a task by calling one of the task creation methods on a instance. The method you call determines the type of task. Use ‘s and related methods to create instances. Data tasks request a resource, returning the server’s response as one or more objects in memory. They are supported in default, ephemeral, and shared sessions, but are not supported in background sessions. Use ‘s and related methods to create instances. Upload tasks are like data tasks, except that they make it easier to provide a request body so you can upload data before retrieving the server’s response. Additionally, upload tasks are supported in background sessions. Use ’s and related methods to create instances. Download tasks download a resource directly to a file on disk. Download tasks are supported in any type of session. Use ’s or to create instances. Stream tasks establish a TCP/IP connection from a host name and port or a net service object. After you create a task, you start it by calling its method. The session then maintains a strong reference to the task until the request finishes or fails; you don’t need to maintain a reference to the task unless it’s useful for your app’s internal bookkeeping.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask
 type URLSessionTask struct {
 	objectivec.Object

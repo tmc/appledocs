@@ -39,6 +39,7 @@ type IURLSessionTaskMetrics interface {
 //
 // Each object contains the and , as well as metrics for each request-and-response transaction made during the execution of the task.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTaskMetrics
 type URLSessionTaskMetrics struct {
 	objectivec.Object

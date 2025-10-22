@@ -57,6 +57,19 @@
 {{template "examples_test.gen.go" .}}
 {{end -}}
 
+-- _doc_comment.tmpl --
+{{/* Reusable template for documentation comments with [Full Topic] links */}}
+{{define "doc_comment"}}
+{{- if .Abstract}}
+// {{commentLine .Abstract}}{{if not .DocURL}} [Full Topic]{{end}}
+{{- end}}
+{{- if .DocURL}}
+{{if .Abstract}}//{{else}}//{{end}}
+// [Full Topic]
+// [Full Topic]: {{convertDocURL .DocURL}}
+{{- end}}
+{{end}}
+
 -- generate.go --
 // Code generated from Apple documentation for {{.Framework}}. DO NOT EDIT.
 
@@ -80,8 +93,7 @@ package {{.PackageName}}
 // provide purego-based access to {{.Framework}} without requiring cgo.
 {{if .DocURL -}}
 //
-// [Full Topic]
-// [Full Topic]: {{convertDocURL .DocURL}}
+{{template "doc_comment" .}}
 {{end -}}
 package {{.PackageName}}
 
@@ -315,7 +327,7 @@ func init() {
 
 {{range .Functions -}}
 {{- $docData := prepareFunctionDocData . $.Framework}}
-{{if $docData.Abstract}}// {{commentLine $docData.Abstract}} [Full Topic]{{else}}// {{$docData.Name}} is a {{$docData.Framework}} function. [Full Topic]{{end}}
+{{if $docData.Abstract}}// {{commentLine $docData.Abstract}}{{if not $docData.DocURL}} [Full Topic]{{end}}{{else}}// {{$docData.Name}} is a {{$docData.Framework}} function.{{if not $docData.DocURL}} [Full Topic]{{end}}{{end}}
 {{if $docData.HasAvailability -}}
 //
 {{if $docData.IsDeprecated -}}
@@ -326,8 +338,7 @@ func init() {
 {{end -}}
 {{if $docData.DocURL -}}
 //
-// [Full Topic]
-// [Full Topic]: {{convertDocURL $docData.DocURL}}
+{{template "doc_comment" $docData}}
 {{end -}}
 func {{$docData.Name}}({{range $i, $p := $docData.Parameters}}{{if $i}}, {{end}}{{$p.Name}} {{$p.Type}}{{end}}){{if $docData.ReturnType}} {{$docData.ReturnType}}{{end}} {
 	{{if $.WithRefMethods -}}
@@ -462,12 +473,9 @@ type I{{$structName}} interface {
 {{if .Overview}}//
 // {{commentLine .Overview}}
 {{end -}}
-{{if .DocURL}}//
-// [Full Topic]: {{convertDocURL .DocURL}}
-{{end}}{{end -}}
-{{if and (not .Abstract) .DocURL -}}
-//
-// [Full Topic]: {{convertDocURL .DocURL}}
+{{end -}}
+{{if or .Abstract .DocURL}}
+{{template "doc_comment" .}}
 {{end -}}
 type {{$structName}} struct {
 	{{getStructEmbeddedField . $.Framework}}
@@ -518,18 +526,10 @@ func New{{$structName}}() {{$structName}} {
 {{- if ne .Selector "init"}}
 {{- $constructorName := initMethodToConstructorName $className .Selector}}
 {{- $paramNames := formatMethodParamNamesWithFramework . $framework}}
-{{- if .Abstract}}
+{{- if or .Abstract .DocURL}}
 
 
-// {{commentLine .Abstract}}{{if not .DocURL}} [Full Topic]{{end}}
-{{if .DocURL}}//
-// [Full Topic]
-// [Full Topic]: {{convertDocURL .DocURL}}
-{{end}}{{end -}}
-{{- if and (not .Abstract) .DocURL}}
-//
-// [Full Topic]
-// [Full Topic]: {{convertDocURL .DocURL}}
+{{template "doc_comment" .}}
 {{end -}}
 func {{$constructorName}}({{formatMethodParams . $framework}}) {{$structName}} {
 {{getConstructorBody . $structName $paramNames}}
@@ -545,16 +545,8 @@ func {{$constructorName}}({{formatMethodParams . $framework}}) {{$structName}} {
 {{- $returnType := $goType}}
 {{- if eq $goType $className}}{{$returnType = $structName}}{{end}}
 
-{{- if .Abstract}}
-// {{commentLine .Abstract}}{{if not .DocURL}} [Full Topic]{{end}}
-{{if .DocURL}}//
-// [Full Topic]
-// [Full Topic]: {{convertDocURL .DocURL}}
-{{end}}{{end -}}
-{{- if and (not .Abstract) .DocURL}}
-//
-// [Full Topic]
-// [Full Topic]: {{convertDocURL .DocURL}}
+{{- if or .Abstract .DocURL}}
+{{template "doc_comment" .}}
 {{end -}}
 func ({{$classReceiver}} {{$classTypeName}}) {{.Name}}({{formatMethodParams . $framework}}){{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$returnType}}{{end}} {
 	{{- if and (ne .ReturnType "") (ne .ReturnType "void")}}
@@ -576,16 +568,8 @@ func ({{$classReceiver}} {{$classTypeName}}) {{.Name}}({{formatMethodParams . $f
 {{- $conflictsWithParent := propertyConflictsWithParent $className $.Class.SuperClass .Name}}
 {{- if and (ne $goType "") (not $conflictsWithParent)}}
 
-{{- if .Abstract}}
-// {{commentLine .Abstract}}{{if not .DocURL}} [Full Topic]{{end}}
-{{if .DocURL}}//
-// [Full Topic]
-// [Full Topic]: {{convertDocURL .DocURL}}
-{{end}}{{end -}}
-{{- if and (not .Abstract) .DocURL}}
-//
-// [Full Topic]
-// [Full Topic]: {{convertDocURL .DocURL}}
+{{- if or .Abstract .DocURL}}
+{{template "doc_comment" .}}
 {{end -}}
 func ({{$classReceiver}} {{$classTypeName}}) {{$capitalizedName}}() {{$returnType}} {
 	rv := objc.Send[{{$goType}}](objc.ID({{$classReceiver}}.class), objc.Sel("{{.Name}}"))
@@ -602,16 +586,8 @@ func ({{$classReceiver}} {{$classTypeName}}) {{$capitalizedName}}() {{$returnTyp
 {{- $hasValidReturnType := or $isInitMethod (eq .ReturnType "") (eq .ReturnType "void") (ne $goType "")}}
 {{- if $hasValidReturnType}}
 
-{{- if .Abstract}}
-// {{commentLine .Abstract}}{{if not .DocURL}} [Full Topic]{{end}}
-{{if .DocURL}}//
-// [Full Topic]
-// [Full Topic]: {{convertDocURL .DocURL}}
-{{end}}{{end -}}
-{{- if and (not .Abstract) .DocURL}}
-//
-// [Full Topic]
-// [Full Topic]: {{convertDocURL .DocURL}}
+{{- if or .Abstract .DocURL}}
+{{template "doc_comment" .}}
 {{end -}}
 func ({{$instReceiver}} {{$structName}}) {{.Name}}({{formatMethodParams . $framework}}){{if $isInitMethod}} {{$structName}}{{else}}{{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$goType}}{{end}}{{end}} {
 	{{- if $isInitMethod}}
@@ -709,14 +685,9 @@ type I{{$structName}} interface {
 {{if .Overview}}//
 // {{commentLine .Overview}}
 {{end -}}
-{{if .DocURL}}//
-// [Full Topic]
-// [Full Topic]: {{convertDocURL .DocURL}}
-{{end}}{{end -}}
-{{if and (not .Abstract) .DocURL -}}
-//
-// [Full Topic]
-// [Full Topic]: {{convertDocURL .DocURL}}
+{{end -}}
+{{if or .Abstract .DocURL}}
+{{template "doc_comment" .}}
 {{end -}}
 type {{$structName}} struct {
 	{{getStructEmbeddedField . $.Framework}}
@@ -767,18 +738,10 @@ func New{{$structName}}() {{$structName}} {
 {{- if ne .Selector "init"}}
 {{- $constructorName := initMethodToConstructorName $className .Selector}}
 {{- $paramNames := formatMethodParamNamesWithFramework . $framework}}
-{{- if .Abstract}}
+{{- if or .Abstract .DocURL}}
 
 
-// {{commentLine .Abstract}}{{if not .DocURL}} [Full Topic]{{end}}
-{{if .DocURL}}//
-// [Full Topic]
-// [Full Topic]: {{convertDocURL .DocURL}}
-{{end}}{{end -}}
-{{- if and (not .Abstract) .DocURL}}
-//
-// [Full Topic]
-// [Full Topic]: {{convertDocURL .DocURL}}
+{{template "doc_comment" .}}
 {{end -}}
 func {{$constructorName}}({{formatMethodParams . $framework}}) {{$structName}} {
 {{getConstructorBody . $structName $paramNames}}
@@ -794,16 +757,8 @@ func {{$constructorName}}({{formatMethodParams . $framework}}) {{$structName}} {
 {{- $returnType := $goType}}
 {{- if eq $goType $className}}{{$returnType = $structName}}{{end}}
 
-{{- if .Abstract}}
-// {{commentLine .Abstract}}{{if not .DocURL}} [Full Topic]{{end}}
-{{if .DocURL}}//
-// [Full Topic]
-// [Full Topic]: {{convertDocURL .DocURL}}
-{{end}}{{end -}}
-{{- if and (not .Abstract) .DocURL}}
-//
-// [Full Topic]
-// [Full Topic]: {{convertDocURL .DocURL}}
+{{- if or .Abstract .DocURL}}
+{{template "doc_comment" .}}
 {{end -}}
 func ({{$classReceiver}} {{$classTypeName}}) {{.Name}}({{formatMethodParams . $framework}}){{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$returnType}}{{end}} {
 	{{- if and (ne .ReturnType "") (ne .ReturnType "void")}}

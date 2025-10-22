@@ -37,6 +37,7 @@ type INameSpecifier interface {
 //
 // As an example, the following script specifies both an application and a window by name. In this script, the named window’s implicitly specified container is the Finder application’s list of open windows. This specifier works only for objects that have a name property. You don’t normally subclass . The evaluation of an instance of follows these steps until the specified object is found: If the container implements a method whose selector matches the relevant pattern established by scripting key-value coding, the method is invoked. This method can potentially be very fast, and it may be relatively easy to implement. As is the case when evaluating any script object specifier, the container of the specified object is given a chance to evaluate the object specifier. If the container class implements the method, the method is invoked. This method can potentially be very fast, but it is relatively difficult to implement. An instance of that specifies the first object whose relevant attribute matches the name is synthesized and evaluated. The instance of must search through all of the keyed elements in the container, looking for a match. The search is potentially very slow.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNameSpecifier
 type NameSpecifier struct {
 	ScriptObjectSpecifier
@@ -85,9 +86,12 @@ func NewNameSpecifier() NameSpecifier {
 
 
 
+
 // Invokes the super class’s method and then sets the name instance variable to .
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNameSpecifier/init(containerClassDescription:containerSpecifier:key:name:)
+
 func NewNameSpecifierWithContainerClassDescriptionContainerSpecifierKeyName(classDesc IScriptClassDescription, container IScriptObjectSpecifier, property string, name string) NameSpecifier {
 	instance := getNameSpecifierClass().Alloc()
 	rv := objc.Send[NameSpecifier](instance.ID, objc.Sel("initWithContainerClassDescription:containerSpecifier:key:name:"), classDesc, container, objc.String(property), objc.String(name))

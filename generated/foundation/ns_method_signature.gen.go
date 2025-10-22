@@ -36,6 +36,7 @@ type IMethodSignature interface {
 //
 // Use an object to forward messages that the receiving object does not respond to—most notably in the case of distributed objects. You typically create an object using the instance method (in macOS 10.5 and later you can also use ). It is then used to create an object, which is passed as the argument to a message to send the invocation on to whatever other object can handle the message. In the default case, invokes , which raises an exception. For distributed objects, the object is encoded using the information in the object and sent to the real object represented by the receiver of the message.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMethodSignature
 type MethodSignature struct {
 	objectivec.Object

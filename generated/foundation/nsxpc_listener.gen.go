@@ -41,6 +41,7 @@ type IXPCListener interface {
 //
 // Each XPC service, launchd agent, or launchd daemon typically has at least one object that listens for connections to a specified service name. Each listener must have a delegate that conforms to the protocol. When the listener receives a new connection request, it creates a new object, then asks the delegate to inspect, configure, and resume the connection object by calling the delegate’s method.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCListener
 type XPCListener struct {
 	objectivec.Object
@@ -87,9 +88,12 @@ func NewXPCListener() XPCListener {
 
 
 
+
 // Initializes a listener in a LaunchAgent or LaunchDaemon which has a name advertised in a file.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCListener/init(machServiceName:)
+
 func NewXPCListenerWithMachServiceName(name string) XPCListener {
 	instance := getXPCListenerClass().Alloc()
 	rv := objc.Send[XPCListener](instance.ID, objc.Sel("initWithMachServiceName:"), objc.String(name))
@@ -98,9 +102,12 @@ func NewXPCListenerWithMachServiceName(name string) XPCListener {
 }
 
 
+
 // Returns a new anonymous listener connection.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCListener/anonymous()
+
 func (xc _XPCListenerClass) AnonymousListener() XPCListener {
 	rv := objc.Send[XPCListener](objc.ID(xc.class), objc.Sel("anonymousListener"))
 	return rv

@@ -41,6 +41,7 @@ type ICountedSet interface {
 //
 // Each distinct object inserted into an object has a counter associated with it. keeps track of the number of times objects are inserted and requires that objects be removed the same number of times. Thus, there is only one instance of an object in an object even if the object has been added to the set multiple times. The method defined by the superclass has special significance; it returns the number of distinct objects, not the total number of times objects are represented in the set. The and classes are provided for static and dynamic sets, respectively, whose elements are distinct. While and are not toll-free bridged, they provide similar functionality. For more information about , see the .
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCountedSet
 type CountedSet struct {
 	MutableSet
@@ -89,9 +90,12 @@ func NewCountedSet() CountedSet {
 
 
 
+
 // Returns a counted set object initialized with the contents of a given array.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCountedSet/init(array:)
+
 func NewCountedSetWithArray(array []objc.ID) CountedSet {
 	instance := getCountedSetClass().Alloc()
 	rv := objc.Send[CountedSet](instance.ID, objc.Sel("initWithArray:"), array)
@@ -101,9 +105,12 @@ func NewCountedSetWithArray(array []objc.ID) CountedSet {
 
 
 
+
 // Returns a counted set object initialized with enough memory to hold a given number of objects.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCountedSet/init(capacity:)
+
 func NewCountedSetWithCapacity(numItems uint) CountedSet {
 	instance := getCountedSetClass().Alloc()
 	rv := objc.Send[CountedSet](instance.ID, objc.Sel("initWithCapacity:"), numItems)
@@ -113,9 +120,12 @@ func NewCountedSetWithCapacity(numItems uint) CountedSet {
 
 
 
+
 // Returns a counted set object initialized with the contents of a given set.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCountedSet/init(set:)
+
 func NewCountedSetWithSet(set unsafe.Pointer) CountedSet {
 	instance := getCountedSetClass().Alloc()
 	rv := objc.Send[CountedSet](instance.ID, objc.Sel("initWithSet:"), set)

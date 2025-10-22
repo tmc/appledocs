@@ -38,6 +38,7 @@ type ICompoundPredicate interface {
 //
 // Use to create an or compound predicate of one or more other predicates, or the of a single predicate. For the logical and operations: An predicate with no subpredicates evaluates to . An predicate with no subpredicates evaluates to . A compound predicate with one or more subpredicates evaluates to the truth of its subpredicates.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCompoundPredicate
 type CompoundPredicate struct {
 	Predicate
@@ -86,9 +87,12 @@ func NewCompoundPredicate() CompoundPredicate {
 
 
 
+
 // Returns a new predicate that you form using an AND operation on the predicates in a specified array.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCompoundPredicate/init(andPredicateWithSubpredicates:)
+
 func NewCompoundPredicateAndPredicateWithSubpredicates(subpredicates []Predicate) CompoundPredicate {
 	rv := objc.Send[CompoundPredicate](objc.ID(getCompoundPredicateClass().class), objc.Sel("andPredicateWithSubpredicates:"), subpredicates)
 	return rv
@@ -96,9 +100,12 @@ func NewCompoundPredicateAndPredicateWithSubpredicates(subpredicates []Predicate
 
 
 
+
 // Returns a new predicate that you form using a NOT operation on a specified predicate.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCompoundPredicate/init(notPredicateWithSubpredicate:)
+
 func NewCompoundPredicateNotPredicateWithSubpredicate(predicate IPredicate) CompoundPredicate {
 	rv := objc.Send[CompoundPredicate](objc.ID(getCompoundPredicateClass().class), objc.Sel("notPredicateWithSubpredicate:"), predicate)
 	return rv
@@ -106,9 +113,12 @@ func NewCompoundPredicateNotPredicateWithSubpredicate(predicate IPredicate) Comp
 
 
 
+
 // Returns the receiver that a specified type initializes using predicates from a specified array.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCompoundPredicate/init(type:subpredicates:)
+
 func NewCompoundPredicateWithTypeSubpredicates(type_ CompoundPredicateType, subpredicates []Predicate) CompoundPredicate {
 	instance := getCompoundPredicateClass().Alloc()
 	rv := objc.Send[CompoundPredicate](instance.ID, objc.Sel("initWithType:subpredicates:"), type_, subpredicates)
@@ -117,17 +127,23 @@ func NewCompoundPredicateWithTypeSubpredicates(type_ CompoundPredicateType, subp
 }
 
 
+
 // Returns a new predicate that you form using an AND operation on the predicates in a specified array.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCompoundPredicate/init(andPredicateWithSubpredicates:)
+
 func (cc _CompoundPredicateClass) AndPredicateWithSubpredicates(subpredicates []Predicate) CompoundPredicate {
 	rv := objc.Send[CompoundPredicate](objc.ID(cc.class), objc.Sel("andPredicateWithSubpredicates:"), subpredicates)
 	return rv
 }
 
+
 // Returns a new predicate that you form using a NOT operation on a specified predicate.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCompoundPredicate/init(notPredicateWithSubpredicate:)
+
 func (cc _CompoundPredicateClass) NotPredicateWithSubpredicate(predicate IPredicate) CompoundPredicate {
 	rv := objc.Send[CompoundPredicate](objc.ID(cc.class), objc.Sel("notPredicateWithSubpredicate:"), predicate)
 	return rv

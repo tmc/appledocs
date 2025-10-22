@@ -44,6 +44,7 @@ type IURLAuthenticationChallenge interface {
 //
 // Your app receives authentication challenges in various , , and delegate methods, such as . These objects provide the information you’ll need when deciding how to handle a server’s request for authentication. At the core of that authentication challenge is a that defines the type of authentication being requested, the host and port number, the networking protocol, and (where applicable) the authentication realm (a group of related URLs on the same server that share a single set of credentials).
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLAuthenticationChallenge
 type URLAuthenticationChallenge struct {
 	objectivec.Object

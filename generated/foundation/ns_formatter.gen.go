@@ -40,6 +40,7 @@ type IFormatter interface {
 //
 // The Foundation framework provides several concrete subclasses of , including , , , , , , and .
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Formatter
 type Formatter struct {
 	objectivec.Object

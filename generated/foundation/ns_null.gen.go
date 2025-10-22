@@ -37,6 +37,7 @@ type INull interface {
 //
 // is “toll-free bridged” with its Core Foundation counterpart, . See for more information on toll-free bridging.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNull
 type Null struct {
 	objectivec.Object
@@ -81,9 +82,12 @@ func NewNull() Null {
 }
 
 
+
 // Returns the singleton instance of .
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNull/null
+
 func (nc _NullClass) Null() Null {
 	rv := objc.Send[Null](objc.ID(nc.class), objc.Sel("null"))
 	return rv

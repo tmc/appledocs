@@ -43,6 +43,7 @@ type IDirectoryEnumerator interface {
 //
 // You obtain a directory enumerator using ’s method. The enumeration provides the pathnames of all files and directories contained within that directory. These pathnames are relative to the directory. An enumeration is recursive, including the files of all subdirectories, and crosses device boundaries. An enumeration does not resolve symbolic links, or attempt to traverse symbolic links that point to directories.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/DirectoryEnumerator
 type DirectoryEnumerator struct {
 	Enumerator

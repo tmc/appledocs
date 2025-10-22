@@ -37,6 +37,7 @@ type IScriptCoercionHandler interface {
 //
 // A shared instance of this class coerces (converts) object values to objects of another class using information supplied by classes that register with it. Coercions frequently are required during key-value coding.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptCoercionHandler
 type ScriptCoercionHandler struct {
 	objectivec.Object

@@ -50,6 +50,7 @@ type IPersonNameComponents interface {
 //
 // You can use this type in Swift when you need reference semantics or other Foundation-specific behavior. An object encapsulates the components of a person’s name in an extendable, object-oriented manner. It is used to specify a person’s name by providing the components comprising a full name: given name, middle name, family name, prefix, suffix, nickname, and phonetic representation. objects can be used by an instance of to create string representations suitable for display in the current locale.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPersonNameComponents
 type PersonNameComponents struct {
 	objectivec.Object

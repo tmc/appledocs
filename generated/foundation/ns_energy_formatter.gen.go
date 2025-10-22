@@ -39,6 +39,7 @@ type IEnergyFormatter interface {
 
 // A formatter that provides localized descriptions of energy values.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/EnergyFormatter
 type EnergyFormatter struct {
 	Formatter

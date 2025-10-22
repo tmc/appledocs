@@ -41,6 +41,7 @@ type IMachPort interface {
 //
 // is a subclass of that wraps a Mach port, the fundamental communication port in macOS. allows for local (on the same machine) communication only. A companion class, , allows for both local and remote distributed object communication, but may be more expensive than for the local case. To use effectively, you should be familiar with Mach ports, port access rights, and Mach messages. See the Mach OS documentation for more information.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMachPort
 type MachPort struct {
 	Port
@@ -89,9 +90,12 @@ func NewMachPort() MachPort {
 
 
 
+
 // Initializes a newly allocated object with a given Mach port.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMachPort/init(machPort:)
+
 func NewMachPortWithMachPort(machPort Iuint32) MachPort {
 	instance := getMachPortClass().Alloc()
 	rv := objc.Send[MachPort](instance.ID, objc.Sel("initWithMachPort:"), machPort)
@@ -101,9 +105,12 @@ func NewMachPortWithMachPort(machPort Iuint32) MachPort {
 
 
 
+
 // Initializes a newly allocated object with a given Mach port and the specified options.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMachPort/init(machPort:options:)
+
 func NewMachPortWithMachPortOptions(machPort Iuint32, f MachPortOptions) MachPort {
 	instance := getMachPortClass().Alloc()
 	rv := objc.Send[MachPort](instance.ID, objc.Sel("initWithMachPort:options:"), machPort, f)
@@ -112,17 +119,23 @@ func NewMachPortWithMachPortOptions(machPort Iuint32, f MachPortOptions) MachPor
 }
 
 
+
 // Creates and returns a port object configured with the given Mach port.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMachPort/port(withMachPort:)
+
 func (mc _MachPortClass) PortWithMachPort(machPort Iuint32) Port {
 	rv := objc.Send[Port](objc.ID(mc.class), objc.Sel("portWithMachPort:"), machPort)
 	return rv
 }
 
+
 // Creates and returns a port object configured with the specified options and the given Mach port.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMachPort/port(withMachPort:options:)
+
 func (mc _MachPortClass) PortWithMachPortOptions(machPort Iuint32, f MachPortOptions) Port {
 	rv := objc.Send[Port](objc.ID(mc.class), objc.Sel("portWithMachPort:options:"), machPort, f)
 	return rv

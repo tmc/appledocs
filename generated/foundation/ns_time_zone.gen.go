@@ -52,6 +52,7 @@ type ITimeZone interface {
 //
 // In Swift, this type bridges to ; use when you need reference semantics or other Foundation-specific behavior. Time zones represent the standard time policies for a geopolitical region. Time zones have identifiers like “America/Los_Angeles” and can also be identified by abbreviations, such as PST for Pacific Standard Time. You can create time zone objects by ID with and by abbreviation with . Time zones can also represent a temporal offset—either plus or minus—from Greenwich Mean Time (GMT). For example, the temporal offset of Pacific Standard Time is 8 hours behind Greenwich Mean Time (GMT-8). You can create time zone objects with a temporal offset by using . You typically work with system time zones rather than creating time zones by identifier or by offset. The class property returns the time zone currently used by the system, if known. This value is cached once the property is accessed and doesn’t reflect any system time zone changes until you call the method. The class property returns an autoupdating proxy object that always returns the current time zone used by the system. You can also set the class property to make your app run as if it were in a different time zone than the system. is with its Core Foundation counterpart, . See for more information on toll-free bridging.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone
 type TimeZone struct {
 	objectivec.Object
@@ -98,9 +99,12 @@ func NewTimeZone() TimeZone {
 
 
 
+
 // Returns a time zone object offset from Greenwich Mean Time by a given number of seconds.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/init(forSecondsFromGMT:)
+
 func NewTimeZoneForSecondsFromGMT(seconds int) TimeZone {
 	rv := objc.Send[TimeZone](objc.ID(getTimeZoneClass().class), objc.Sel("timeZoneForSecondsFromGMT:"), seconds)
 	return rv
@@ -108,9 +112,12 @@ func NewTimeZoneForSecondsFromGMT(seconds int) TimeZone {
 
 
 
+
 // Returns the time zone object identified by a given abbreviation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/init(abbreviation:)
+
 func NewTimeZoneWithAbbreviation(abbreviation string) TimeZone {
 	rv := objc.Send[TimeZone](objc.ID(getTimeZoneClass().class), objc.Sel("timeZoneWithAbbreviation:"), objc.String(abbreviation))
 	return rv
@@ -118,9 +125,12 @@ func NewTimeZoneWithAbbreviation(abbreviation string) TimeZone {
 
 
 
+
 // Returns a time zone initialized with a given identifier.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/init(name:)
+
 func NewTimeZoneWithName(tzName string) TimeZone {
 	instance := getTimeZoneClass().Alloc()
 	rv := objc.Send[TimeZone](instance.ID, objc.Sel("initWithName:"), objc.String(tzName))
@@ -129,32 +139,44 @@ func NewTimeZoneWithName(tzName string) TimeZone {
 }
 
 
+
 // Returns the time zone object identified by a given abbreviation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/init(abbreviation:)
+
 func (tc _TimeZoneClass) TimeZoneWithAbbreviation(abbreviation string) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(tc.class), objc.Sel("timeZoneWithAbbreviation:"), objc.String(abbreviation))
 	return rv
 }
 
+
 // Returns a time zone object offset from Greenwich Mean Time by a given number of seconds.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/init(forSecondsFromGMT:)
+
 func (tc _TimeZoneClass) TimeZoneForSecondsFromGMT(seconds int) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(tc.class), objc.Sel("timeZoneForSecondsFromGMT:"), seconds)
 	return rv
 }
 
+
 // Clears any time zone value cached for the property.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/resetSystemTimeZone()
+
 func (tc _TimeZoneClass) ResetSystemTimeZone() {
 	objc.Send[objc.ID](objc.ID(tc.class), objc.Sel("resetSystemTimeZone"))
 }
 
+
 // Returns the time zone object identified by a given identifier.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/timeZoneWithName:
+
 func (tc _TimeZoneClass) TimeZoneWithName(tzName string) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(tc.class), objc.Sel("timeZoneWithName:"), objc.String(tzName))
 	return rv

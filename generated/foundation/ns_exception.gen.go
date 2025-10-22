@@ -42,6 +42,7 @@ type IException interface {
 //
 // Use to implement exception handling. An exception is a special condition that interrupts the normal flow of program execution. Each application can interrupt the program for different reasons. For example, one application might interpret saving a file in a directory that is write-protected as an exception. In this sense, the exception is equivalent to an error. Another application might interpret the user’s key-press (for example, Control-C) as an exception: an indication that a long-running process should abort.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSException
 type Exception struct {
 	objectivec.Object
@@ -88,9 +89,12 @@ func NewException() Exception {
 
 
 
+
 // Initializes and returns a newly allocated exception object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSException/init(name:reason:userInfo:)
+
 func NewExceptionWithNameReasonUserInfo(aName IExceptionName, aReason string, aUserInfo objectivec.IObject) Exception {
 	instance := getExceptionClass().Alloc()
 	rv := objc.Send[Exception](instance.ID, objc.Sel("initWithName:reason:userInfo:"), aName, objc.String(aReason), aUserInfo)
@@ -99,24 +103,33 @@ func NewExceptionWithNameReasonUserInfo(aName IExceptionName, aReason string, aU
 }
 
 
+
 // Creates and returns an exception object .
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSException/exceptionWithName:reason:userInfo:
+
 func (ec _ExceptionClass) ExceptionWithNameReasonUserInfo(name IExceptionName, reason string, userInfo objectivec.IObject) Exception {
 	rv := objc.Send[Exception](objc.ID(ec.class), objc.Sel("exceptionWithName:reason:userInfo:"), name, objc.String(reason), userInfo)
 	return rv
 }
 
+
 // Creates and raises an exception with the specified name, reason, and arguments.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSException/raise(_:format:arguments:)
+
 func (ec _ExceptionClass) RaiseFormatArguments(name IExceptionName, format string, argList unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(ec.class), objc.Sel("raise:format:arguments:"), name, objc.String(format), argList)
 }
 
+
 // A convenience method that creates and raises an exception.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSException/raise:format:
+
 func (ec _ExceptionClass) RaiseFormat(name IExceptionName, format string) {
 	objc.Send[objc.ID](objc.ID(ec.class), objc.Sel("raise:format:"), name, objc.String(format))
 }

@@ -60,6 +60,7 @@ type IThread interface {
 //
 // Use this class when you want to have an Objective-C method run in its own thread of execution. Threads are especially useful when you need to perform a lengthy task, but don’t want it to block the execution of the rest of the application. In particular, you can use threads to avoid blocking the main thread of the application, which handles user interface and event-related actions. Threads can also be used to divide a large job into several smaller jobs, which can lead to performance increases on multi-core computers. The class supports semantics similar to those of for monitoring the runtime condition of a thread. You can use these semantics to cancel the execution of a thread or determine if the thread is still executing or has finished its task. Canceling a thread requires support from your thread code; see the description for for more information.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread
 type Thread struct {
 	objectivec.Object
@@ -106,9 +107,12 @@ func NewThread() Thread {
 
 
 
+
 // Returns an object initialized with the given arguments.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/init(target:selector:object:)
+
 func NewThreadWithTargetSelectorObject(target objectivec.IObject, selector objc.SEL, argument objectivec.IObject) Thread {
 	instance := getThreadClass().Alloc()
 	rv := objc.Send[Thread](instance.ID, objc.Sel("initWithTarget:selector:object:"), target, selector, argument)
@@ -117,59 +121,83 @@ func NewThreadWithTargetSelectorObject(target objectivec.IObject, selector objc.
 }
 
 
+
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/detachNewThread(_:)
+
 func (tc _ThreadClass) DetachNewThreadWithBlock(block unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(tc.class), objc.Sel("detachNewThreadWithBlock:"), block)
 }
 
+
 // Detaches a new thread and uses the specified selector as the thread entry point.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/detachNewThreadSelector(_:toTarget:with:)
+
 func (tc _ThreadClass) DetachNewThreadSelectorToTargetWithObject(selector objc.SEL, target objectivec.IObject, argument objectivec.IObject) {
 	objc.Send[objc.ID](objc.ID(tc.class), objc.Sel("detachNewThreadSelector:toTarget:withObject:"), selector, target, argument)
 }
 
+
 // Terminates the current thread.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/exit()
+
 func (tc _ThreadClass) Exit() {
 	objc.Send[objc.ID](objc.ID(tc.class), objc.Sel("exit"))
 }
 
+
 // Returns whether the application is multithreaded.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/isMultiThreaded()
+
 func (tc _ThreadClass) IsMultiThreaded() bool {
 	rv := objc.Send[bool](objc.ID(tc.class), objc.Sel("isMultiThreaded"))
 	return rv
 }
 
+
 // Sets the current thread’s priority.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/setThreadPriority(_:)
+
 func (tc _ThreadClass) SetThreadPriority(p float64) bool {
 	rv := objc.Send[bool](objc.ID(tc.class), objc.Sel("setThreadPriority:"), p)
 	return rv
 }
 
+
 // Sleeps the thread for a given time interval.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/sleep(forTimeInterval:)
+
 func (tc _ThreadClass) SleepForTimeInterval(ti ITimeInterval) {
 	objc.Send[objc.ID](objc.ID(tc.class), objc.Sel("sleepForTimeInterval:"), ti)
 }
 
+
 // Blocks the current thread until the time specified.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/sleep(until:)
+
 func (tc _ThreadClass) SleepUntilDate(date IDate) {
 	objc.Send[objc.ID](objc.ID(tc.class), objc.Sel("sleepUntilDate:"), date)
 }
 
+
 // Returns the current thread’s priority.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/threadPriority()
+
 func (tc _ThreadClass) ThreadPriority() float64 {
 	rv := objc.Send[float64](objc.ID(tc.class), objc.Sel("threadPriority"))
 	return rv

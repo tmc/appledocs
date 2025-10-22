@@ -39,6 +39,7 @@ type IUUID interface {
 //
 // In Swift, this object bridges to ; use when you need reference semantics or other Foundation-specific behavior. UUIDs (Universally Unique Identifiers), also known as GUIDs (Globally Unique Identifiers) or IIDs (Interface Identifiers), are 128-bit values. UUIDs created by conform to RFC 4122 version 4 and are created with random bytes. The standard format for UUIDs represented in ASCII is a string punctuated by hyphens, for example . The hex representation looks, as you might expect, like a list of numerical values preceded by 0x. For example, , , , , , , , , , , , , , , , . Because a UUID is expressed simply as an array of bytes, there are no endianness considerations for different platforms. The class is toll-free bridged with CoreFoundation’s . Use UUID strings to convert between and , if needed. Two objects are not guaranteed to be comparable by pointer value (as is); use to compare two instances.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUUID
 type UUID struct {
 	objectivec.Object

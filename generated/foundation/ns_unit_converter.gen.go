@@ -37,6 +37,7 @@ type IUnitConverter interface {
 //
 // For units that can be converted by a scale factor or linear equation, use the concrete subclass .
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitConverter
 type UnitConverter struct {
 	objectivec.Object

@@ -33,6 +33,7 @@ type Imsgid interface {
 }
 
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPortMessage/msgid-c.ivar
 type msgid struct {
 	objectivec.Object

@@ -39,6 +39,7 @@ type IRelativeSpecifier interface {
 //
 // You don’t normally subclass .
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRelativeSpecifier
 type RelativeSpecifier struct {
 	ScriptObjectSpecifier

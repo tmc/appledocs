@@ -41,6 +41,7 @@ type IPredicate interface {
 //
 // Predicates represent logical conditions, which you can use to filter collections of objects. Although it’s common to create predicates directly from instances of , , and , you often create predicates from a format string that the class methods parse on . Examples of predicate format strings include: Simple comparisons, such as or Case- and diacritic-insensitive lookups, such as Logical operations, such as Temporal range constraints, such as Relational conditions, such as Aggregate operations, such as For a complete syntax reference, refer to the . You can also create predicates that include variables using the method so that you can predefine the predicate before substituting concrete values at runtime.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate
 type Predicate struct {
 	objectivec.Object
@@ -87,9 +88,12 @@ func NewPredicate() Predicate {
 
 
 
+
 // Creates a predicate with a metadata query string.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/init(fromMetadataQueryString:)
+
 func NewPredicateFromMetadataQueryString(queryString string) Predicate {
 	rv := objc.Send[Predicate](objc.ID(getPredicateClass().class), objc.Sel("predicateFromMetadataQueryString:"), objc.String(queryString))
 	return rv
@@ -97,9 +101,12 @@ func NewPredicateFromMetadataQueryString(queryString string) Predicate {
 
 
 
+
 // Creates a predicate that evaluates using a specified block object and bindings dictionary.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/init(block:)
+
 func NewPredicateWithBlock(block unsafe.Pointer) Predicate {
 	rv := objc.Send[Predicate](objc.ID(getPredicateClass().class), objc.Sel("predicateWithBlock:"), block)
 	return rv
@@ -107,9 +114,12 @@ func NewPredicateWithBlock(block unsafe.Pointer) Predicate {
 
 
 
+
 // Creates a predicate by substituting the values in a specified array into a format string and parsing the result.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/init(format:argumentArray:)
+
 func NewPredicateWithFormatArgumentArray(predicateFormat string, arguments objectivec.IObject) Predicate {
 	rv := objc.Send[Predicate](objc.ID(getPredicateClass().class), objc.Sel("predicateWithFormat:argumentArray:"), objc.String(predicateFormat), arguments)
 	return rv
@@ -117,9 +127,12 @@ func NewPredicateWithFormatArgumentArray(predicateFormat string, arguments objec
 
 
 
+
 // Creates a predicate by substituting the values in an argument list into a format string and parsing the result.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/init(format:arguments:)
+
 func NewPredicateWithFormatArguments(predicateFormat string, argList unsafe.Pointer) Predicate {
 	rv := objc.Send[Predicate](objc.ID(getPredicateClass().class), objc.Sel("predicateWithFormat:arguments:"), objc.String(predicateFormat), argList)
 	return rv
@@ -127,58 +140,79 @@ func NewPredicateWithFormatArguments(predicateFormat string, argList unsafe.Poin
 
 
 
+
 // Creates and returns a predicate that always evaluates to a specified Boolean value.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/init(value:)
+
 func NewPredicateWithValue(value bool) Predicate {
 	rv := objc.Send[Predicate](objc.ID(getPredicateClass().class), objc.Sel("predicateWithValue:"), value)
 	return rv
 }
 
 
+
 // Creates a predicate that evaluates using a specified block object and bindings dictionary.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/init(block:)
+
 func (pc _PredicateClass) PredicateWithBlock(block unsafe.Pointer) Predicate {
 	rv := objc.Send[Predicate](objc.ID(pc.class), objc.Sel("predicateWithBlock:"), block)
 	return rv
 }
 
+
 // Creates a predicate by substituting the values in a specified array into a format string and parsing the result.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/init(format:argumentArray:)
+
 func (pc _PredicateClass) PredicateWithFormatArgumentArray(predicateFormat string, arguments objectivec.IObject) Predicate {
 	rv := objc.Send[Predicate](objc.ID(pc.class), objc.Sel("predicateWithFormat:argumentArray:"), objc.String(predicateFormat), arguments)
 	return rv
 }
 
+
 // Creates a predicate by substituting the values in an argument list into a format string and parsing the result.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/init(format:arguments:)
+
 func (pc _PredicateClass) PredicateWithFormatArguments(predicateFormat string, argList unsafe.Pointer) Predicate {
 	rv := objc.Send[Predicate](objc.ID(pc.class), objc.Sel("predicateWithFormat:arguments:"), objc.String(predicateFormat), argList)
 	return rv
 }
 
+
 // Creates a predicate with a metadata query string.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/init(fromMetadataQueryString:)
+
 func (pc _PredicateClass) PredicateFromMetadataQueryString(queryString string) Predicate {
 	rv := objc.Send[Predicate](objc.ID(pc.class), objc.Sel("predicateFromMetadataQueryString:"), objc.String(queryString))
 	return rv
 }
 
+
 // Creates and returns a predicate that always evaluates to a specified Boolean value.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/init(value:)
+
 func (pc _PredicateClass) PredicateWithValue(value bool) Predicate {
 	rv := objc.Send[Predicate](objc.ID(pc.class), objc.Sel("predicateWithValue:"), value)
 	return rv
 }
 
+
 // Creates and returns a new predicate formed by creating a new string with a specified format and parsing the result.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/predicateWithFormat:
+
 func (pc _PredicateClass) PredicateWithFormat(predicateFormat string) Predicate {
 	rv := objc.Send[Predicate](objc.ID(pc.class), objc.Sel("predicateWithFormat:"), objc.String(predicateFormat))
 	return rv

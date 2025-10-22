@@ -44,6 +44,7 @@ type IMutableSet interface {
 //
 // You can use this type in Swift instead of a in cases that require reference semantics. The class declares the programmatic interface to a mutable, unordered collection of distinct objects. The class, which is a concrete subclass of , supports mutable sets that can contain multiple instances of the same element. The class supports creating and managing immutable sets. NSMutableSet is “toll-free bridged” with its Core Foundation counterpart, . See for more information.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableSet
 type MutableSet struct {
 	Set
@@ -92,9 +93,12 @@ func NewMutableSet() MutableSet {
 
 
 
+
 // Returns an initialized mutable set with a given initial capacity.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableSet/init(capacity:)
+
 func NewMutableSetWithCapacity(numItems uint) MutableSet {
 	instance := getMutableSetClass().Alloc()
 	rv := objc.Send[MutableSet](instance.ID, objc.Sel("initWithCapacity:"), numItems)
@@ -102,8 +106,13 @@ func NewMutableSetWithCapacity(numItems uint) MutableSet {
 	return rv
 }
 
+
+
+
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableSet/init(coder:)
+
 func NewMutableSetWithCoder(coder ICoder) MutableSet {
 	instance := getMutableSetClass().Alloc()
 	rv := objc.Send[MutableSet](instance.ID, objc.Sel("initWithCoder:"), coder)
@@ -112,9 +121,12 @@ func NewMutableSetWithCoder(coder ICoder) MutableSet {
 }
 
 
+
 // Creates and returns a mutable set with a given initial capacity.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableSet/setWithCapacity:
+
 func (mc _MutableSetClass) SetWithCapacity(numItems uint) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("setWithCapacity:"), numItems)
 	return rv

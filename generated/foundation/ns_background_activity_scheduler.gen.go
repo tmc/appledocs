@@ -48,6 +48,7 @@ type IBackgroundActivityScheduler interface {
 //
 // Use an object to schedule an arbitrary maintenance or background task. It’s similar to an object, in that it lets you schedule a repeating or non-repeating task. However, gives the system flexibility to determine the most efficient time to execute based on energy usage, thermal conditions, and CPU use. For example, use an object to schedule: Automatic saves Backups Data maintenance Periodic content fetches Installation of updates Activities occurring in intervals of 10 minutes or more Any other deferrable task For information about performing non-deferrable tasks efficiently, see in .
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBackgroundActivityScheduler
 type BackgroundActivityScheduler struct {
 	objectivec.Object
@@ -94,9 +95,12 @@ func NewBackgroundActivityScheduler() BackgroundActivityScheduler {
 
 
 
+
 // Initializes a background activity scheduler object with a specified unique identifier.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBackgroundActivityScheduler/init(identifier:)
+
 func NewBackgroundActivitySchedulerWithIdentifier(identifier string) BackgroundActivityScheduler {
 	instance := getBackgroundActivitySchedulerClass().Alloc()
 	rv := objc.Send[BackgroundActivityScheduler](instance.ID, objc.Sel("initWithIdentifier:"), objc.String(identifier))

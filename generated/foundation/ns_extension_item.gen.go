@@ -42,6 +42,7 @@ type IExtensionItem interface {
 
 // An immutable collection of values representing different aspects of an item for an extension to act upon.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtensionItem
 type ExtensionItem struct {
 	objectivec.Object

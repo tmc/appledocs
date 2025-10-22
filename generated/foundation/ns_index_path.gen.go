@@ -42,6 +42,7 @@ type IIndexPath interface {
 //
 // In Swift, this object bridges to ; use when you need reference semantics or other Foundation-specific behavior. Each index in an index path represents the index into an array of children from one node in the tree to another, deeper, node. For example, the index path specifies the path shown in .
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexPath
 type IndexPath struct {
 	objectivec.Object

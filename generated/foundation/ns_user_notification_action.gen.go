@@ -42,6 +42,7 @@ type IUserNotificationAction interface {
 //
 // User notifications can specify one or more actions to show to the user by using the or properties. objects contain the localized title shown to the user and an identifier used to differentiate between presented actions.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationAction
 type UserNotificationAction struct {
 	objectivec.Object
@@ -88,18 +89,24 @@ func NewUserNotificationAction() UserNotificationAction {
 
 
 
+
 // Creates a user notification action with a specified identifier and title.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationAction/init(identifier:title:)
+
 func NewUserNotificationActionWithIdentifierTitle(identifier string, title string) UserNotificationAction {
 	rv := objc.Send[UserNotificationAction](objc.ID(getUserNotificationActionClass().class), objc.Sel("actionWithIdentifier:title:"), objc.String(identifier), objc.String(title))
 	return rv
 }
 
 
+
 // Creates a user notification action with a specified identifier and title.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationAction/init(identifier:title:)
+
 func (uc _UserNotificationActionClass) ActionWithIdentifierTitle(identifier string, title string) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("actionWithIdentifier:title:"), objc.String(identifier), objc.String(title))
 	return rv

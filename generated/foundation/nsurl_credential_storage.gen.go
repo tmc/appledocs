@@ -40,6 +40,7 @@ type IURLCredentialStorage interface {
 //
 // The shared cache stores and retrieves instances of . You can store password-based credentials permanently, based on the they were created with. Certificate-based credentials are never stored permanently.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLCredentialStorage
 type URLCredentialStorage struct {
 	objectivec.Object

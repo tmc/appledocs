@@ -35,6 +35,7 @@ type IUnitTemperature interface {
 //
 // You typically use instances of to represent specific quantities of temperature using the class.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitTemperature
 type UnitTemperature struct {
 	Dimension

@@ -43,6 +43,7 @@ type IOrthography interface {
 //
 // Use objects to describe the linguistic content of a piece of text, including which scripts the text contains, a dominant language (and possibly other languages) for each script, and a dominant script and language for the text as a whole. Scripts are uniformly described by four-letter ISO 15924 script codes, such as , , and . The supertags and are typically used for Japanese and Korean text, and and are typically used for Chinese text. The tag is used if a specific script cannot be identified. See for more information. Languages are uniformly described by BCP-47 tags (preferably in canonical form). The tag is used if a specific language cannot be determined. You typically work with orthography objects returned from methods and properties for classes like and .
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrthography
 type Orthography struct {
 	objectivec.Object
@@ -87,8 +88,13 @@ func NewOrthography() Orthography {
 }
 
 
+
+
+
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrthography/init(coder:)
+
 func NewOrthographyWithCoder(coder ICoder) Orthography {
 	instance := getOrthographyClass().Alloc()
 	rv := objc.Send[Orthography](instance.ID, objc.Sel("initWithCoder:"), coder)
@@ -98,9 +104,12 @@ func NewOrthographyWithCoder(coder ICoder) Orthography {
 
 
 
+
 // Creates an orthography object with the specified dominant script and language map.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrthography/init(dominantScript:languageMap:)
+
 func NewOrthographyWithDominantScriptLanguageMap(script string, map_ unsafe.Pointer) Orthography {
 	instance := getOrthographyClass().Alloc()
 	rv := objc.Send[Orthography](instance.ID, objc.Sel("initWithDominantScript:languageMap:"), objc.String(script), map_)
@@ -109,17 +118,23 @@ func NewOrthographyWithDominantScriptLanguageMap(script string, map_ unsafe.Poin
 }
 
 
+
 // Creates and returns an orthography object with the default language map for the specified language.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrthography/defaultOrthography(forLanguage:)
+
 func (oc _OrthographyClass) DefaultOrthographyForLanguage(language string) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(oc.class), objc.Sel("defaultOrthographyForLanguage:"), objc.String(language))
 	return rv
 }
 
+
 // Creates and returns an orthography object with the specified dominant script and language map.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrthography/orthographyWithDominantScript:languageMap:
+
 func (oc _OrthographyClass) OrthographyWithDominantScriptLanguageMap(script string, map_ unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(oc.class), objc.Sel("orthographyWithDominantScript:languageMap:"), objc.String(script), map_)
 	return rv

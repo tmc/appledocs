@@ -56,6 +56,7 @@ type IXMLParser interface {
 //
 // An notifies its delegate about the items (elements, attributes, CDATA blocks, comments, and so on) that it encounters as it processes an XML document. It does not itself do anything with those parsed items except report them. It also reports parsing errors. For convenience, an object in the following descriptions is sometimes referred to as a parser object. Unless used in a callback, the is a thread-safe class as long as any given instance is only used in one thread.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser
 type XMLParser struct {
 	objectivec.Object
@@ -102,9 +103,12 @@ func NewXMLParser() XMLParser {
 
 
 
+
 // Initializes a parser with the XML contents encapsulated in a given data object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/init(data:)
+
 func NewXMLParserWithData(data IData) XMLParser {
 	instance := getXMLParserClass().Alloc()
 	rv := objc.Send[XMLParser](instance.ID, objc.Sel("initWithData:"), data)
@@ -114,9 +118,12 @@ func NewXMLParserWithData(data IData) XMLParser {
 
 
 
+
 // Initializes a parser with the XML contents from the specified stream and parses it.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/init(stream:)
+
 func NewXMLParserWithStream(stream IInputStream) XMLParser {
 	instance := getXMLParserClass().Alloc()
 	rv := objc.Send[XMLParser](instance.ID, objc.Sel("initWithStream:"), stream)

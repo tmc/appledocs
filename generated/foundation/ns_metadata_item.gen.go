@@ -219,6 +219,7 @@ type IMetadataItem interface {
 //
 // Metadata items provide a simple interface to retrieve the available attribute names and values.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataItem
 type MetadataItem struct {
 	objectivec.Object

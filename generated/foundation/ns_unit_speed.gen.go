@@ -35,6 +35,7 @@ type IUnitSpeed interface {
 //
 // You typically use instances of to represent specific quantities of speed using the class.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitSpeed
 type UnitSpeed struct {
 	Dimension

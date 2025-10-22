@@ -35,6 +35,7 @@ type IUnitElectricCurrent interface {
 //
 // You typically use instances of to represent specific quantities of electric current using the class.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricCurrent
 type UnitElectricCurrent struct {
 	Dimension

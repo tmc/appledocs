@@ -42,6 +42,7 @@ type IHTTPCookieStorage interface {
 //
 // Each stored cookie is represented by an instance of the class.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/HTTPCookieStorage
 type HTTPCookieStorage struct {
 	objectivec.Object

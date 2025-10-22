@@ -48,6 +48,7 @@ type IDateIntervalFormatter interface {
 //
 // A object creates user-readable strings from pairs of dates. Use a date interval formatter to create user-readable strings of the form for your app’s interface, where and are date values that you supply. The formatter uses locale and language information, along with custom formatting options, to define the content of the resulting string. You can specify different styles for the date and time information in each date value. To use this class, create an instance, configure its properties, and call the method to generate a string. The properties of this class let you configure the calendar and specify the style to apply to date and time values. Given a current date of January 16, 2015, Configuring the Formatter Options shows how to configure a formatter object and generate the string “1/16/15 - 1/17/15”. Configuring a formatter object The method may be called safely from any thread of your app. It is also safe to share a single instance of this class from multiple threads, with the caveat that you should not change the configuration of the object while another thread is using it to generate a string.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateIntervalFormatter
 type DateIntervalFormatter struct {
 	Formatter

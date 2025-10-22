@@ -38,6 +38,7 @@ type IURLSessionDownloadTask interface {
 //
 // An is a concrete subclass of , which provides most of the methods for this class. Download tasks directly write the server’s response data to a temporary file, providing your app with progress updates as data arrives from the server. When you use download tasks in background sessions, these downloads continue even when your app is in the suspended state or otherwise not running. You can pause (cancel) download tasks and resume them later (assuming the server supports doing so). You can also resume downloads that failed because of network connectivity problems.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionDownloadTask
 type URLSessionDownloadTask struct {
 	URLSessionTask

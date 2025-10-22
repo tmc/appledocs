@@ -45,6 +45,7 @@ type IXMLDTDNode interface {
 //
 // objects are the sole children of a object (possibly along with comment nodes and processing-instruction nodes). They themselves cannot have any children. objects can be of four kinds—element, attribute-list, entity, or notation declaration—and can also be of a subkind, as specified by a constant. For example, a DTD entity-declaration node could represent an unparsed entity declaration ( ) rather than a parameter entity declaration ( ). You can use a DTD node’s subkind to help determine how to handle the value of the node. You can create an object with the method, the class method , or with the initializer (in the latter method supplying the appropriate constant). Setting the object value or string value of an objects affects different parts of different kinds of declaration. See the related programming topic for more information.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTDNode
 type XMLDTDNode struct {
 	XMLNode
@@ -93,9 +94,12 @@ func NewXMLDTDNode() XMLDTDNode {
 
 
 
+
 // Returns an object initialized with the DTD declaration in a given string.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTDNode/init(xmlString:)
+
 func NewXMLDTDNodeWithXMLString(string_ string) XMLDTDNode {
 	instance := getXMLDTDNodeClass().Alloc()
 	rv := objc.Send[XMLDTDNode](instance.ID, objc.Sel("initWithXMLString:"), objc.String(string_))

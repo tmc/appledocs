@@ -64,6 +64,7 @@ type IItemProvider interface {
 //
 // Starting in iOS 11, item providers play a central role in drag and drop, and in copy and paste. They continue to play a role with app extensions. The system uses an internal queue when calling the completion blocks for the class. When using an item provider with drag and drop, ensure that UI updates take place on the main queue as follows:
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSItemProvider
 type ItemProvider struct {
 	objectivec.Object
@@ -110,9 +111,12 @@ func NewItemProvider() ItemProvider {
 
 
 
+
 // Creates a new item provider, employing a specified object’s type identifiers to specify the data representations eligible for the provider to load.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSItemProvider/init(object:)
+
 func NewItemProviderWithObject(object objectivec.IObject) ItemProvider {
 	instance := getItemProviderClass().Alloc()
 	rv := objc.Send[ItemProvider](instance.ID, objc.Sel("initWithObject:"), object)

@@ -43,6 +43,7 @@ type IMutableString interface {
 //
 // In Swift, you can use this type instead of a in cases that require reference semantics. The class declares the programmatic interface to an object that manages a mutable string—that is, a string whose contents can be edited—that conceptually represents an array of Unicode characters. To construct and manage an immutable string—or a string that cannot be changed after it has been created—use an object of the class. The class adds one primitive method— —to the basic string-handling behavior inherited from . All other methods that modify a string work through this method. For example, simply replaces the characters in a range of length, while replaces the characters in a given range with no characters. NSMutableString is “toll-free bridged” with its Core Foundation counterpart, . See for more information.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableString
 type MutableString struct {
 	string
@@ -91,9 +92,12 @@ func NewMutableString() MutableString {
 
 
 
+
 // Returns an object initialized with initial storage for a given number of characters,
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableString/init(capacity:)
+
 func NewMutableStringWithCapacity(capacity uint) MutableString {
 	instance := getMutableStringClass().Alloc()
 	rv := objc.Send[MutableString](instance.ID, objc.Sel("initWithCapacity:"), capacity)
@@ -102,9 +106,12 @@ func NewMutableStringWithCapacity(capacity uint) MutableString {
 }
 
 
+
 // Returns an empty object with initial storage for a given number of characters.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableString/stringWithCapacity:
+
 func (mc _MutableStringClass) StringWithCapacity(capacity uint) MutableString {
 	rv := objc.Send[MutableString](objc.ID(mc.class), objc.Sel("stringWithCapacity:"), capacity)
 	return rv

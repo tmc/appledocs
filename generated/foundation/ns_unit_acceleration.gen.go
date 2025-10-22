@@ -35,6 +35,7 @@ type IUnitAcceleration interface {
 //
 // You typically use instances of to represent specific quantities of acceleration using the class.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitAcceleration
 type UnitAcceleration struct {
 	Dimension

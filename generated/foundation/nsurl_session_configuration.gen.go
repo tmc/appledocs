@@ -105,6 +105,7 @@ type IURLSessionConfiguration interface {
 //
 // An object defines the behavior and policies to use when uploading and downloading data using an object. When uploading or downloading data, creating a configuration object is always the first step you must take. You use this object to configure the timeout values, caching policies, connection requirements, and other types of information that you intend to use with your object. It is important to configure your object appropriately before using it to initialize a session object. Session objects make a copy of the configuration settings you provide and use those settings to configure the session. Once configured, the session object ignores any changes you make to the object. If you need to modify your transfer policies, you must update the session configuration object and use it to create a new object. For more information about using configuration objects to create sessions, see .
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration
 type URLSessionConfiguration struct {
 	objectivec.Object
@@ -150,17 +151,23 @@ func NewURLSessionConfiguration() URLSessionConfiguration {
 
 
 
+
 // Creates a session configuration object that allows HTTP and HTTPS uploads or downloads to be performed in the background.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/background(withIdentifier:)
+
 func (uc _URLSessionConfigurationClass) BackgroundSessionConfigurationWithIdentifier(identifier string) URLSessionConfiguration {
 	rv := objc.Send[URLSessionConfiguration](objc.ID(uc.class), objc.Sel("backgroundSessionConfigurationWithIdentifier:"), objc.String(identifier))
 	return rv
 }
 
+
 // Returns a session configuration object that allows HTTP and HTTPS uploads or downloads to be performed in the background.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/backgroundSessionConfiguration(_:)
+
 func (uc _URLSessionConfigurationClass) BackgroundSessionConfiguration(identifier string) URLSessionConfiguration {
 	rv := objc.Send[URLSessionConfiguration](objc.ID(uc.class), objc.Sel("backgroundSessionConfiguration:"), objc.String(identifier))
 	return rv

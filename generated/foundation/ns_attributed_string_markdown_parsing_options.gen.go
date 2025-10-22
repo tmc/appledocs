@@ -34,6 +34,7 @@ type IAttributedStringMarkdownParsingOptions interface {
 
 // Options that affect the parsing of Markdown content into an attributed string.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedStringMarkdownParsingOptions
 type AttributedStringMarkdownParsingOptions struct {
 	objectivec.Object

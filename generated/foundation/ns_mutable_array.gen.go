@@ -52,6 +52,7 @@ type IMutableArray interface {
 //
 // You can use this type in Swift instead of an variable in cases that require reference semantics. The class declares the programmatic interface to objects that manage a modifiable array of objects. This class adds insertion and deletion operations to the basic array-handling behavior inherited from . NSMutableArray is “toll-free bridged” with its Core Foundation counterpart, . See for more information.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableArray
 type MutableArray struct {
 	Array
@@ -100,9 +101,12 @@ func NewMutableArray() MutableArray {
 
 
 
+
 // Initializes a newly allocated mutable array with the contents of the file specified by a given path
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableArray/initWithContentsOfFile:
+
 func NewMutableArrayWithContentsOfFile(path string) MutableArray {
 	instance := getMutableArrayClass().Alloc()
 	rv := objc.Send[MutableArray](instance.ID, objc.Sel("initWithContentsOfFile:"), objc.String(path))
@@ -112,9 +116,12 @@ func NewMutableArrayWithContentsOfFile(path string) MutableArray {
 
 
 
+
 // Initialized a newly allocated mutable array with the contents of the location specified by a given URL.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableArray/initWithContentsOfURL:
+
 func NewMutableArrayWithContentsOfURL(url IURL) MutableArray {
 	instance := getMutableArrayClass().Alloc()
 	rv := objc.Send[MutableArray](instance.ID, objc.Sel("initWithContentsOfURL:"), url)
@@ -123,9 +130,12 @@ func NewMutableArrayWithContentsOfURL(url IURL) MutableArray {
 }
 
 
+
 // Creates and returns a mutable array containing the contents specified by a given URL.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableArray/init(contentsOfURL:)
+
 func (mc _MutableArrayClass) ArrayWithContentsOfURL(url IURL) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("arrayWithContentsOfURL:"), url)
 	return rv

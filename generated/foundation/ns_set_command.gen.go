@@ -37,6 +37,7 @@ type ISetCommand interface {
 //
 // An instance of sets one or more attributes or relationships to one or more values; for example, it may set the (x, y) coordinates for a window’s position or set the name of a document. is part of Cocoa’s built-in scripting support. It works automatically to support the command through key-value coding. Most applications don’t need to subclass or call its methods. uses available scripting class descriptions to determine whether it should set a value for an attribute (or property), or set a value for all elements (to-many objects). For the latter, it invokes ; for the former, it invokes (or, if the receiver overrides , it invokes that method, to support backward binary compatibility.) For information on working with commands, see in .
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSetCommand
 type SetCommand struct {
 	ScriptCommand

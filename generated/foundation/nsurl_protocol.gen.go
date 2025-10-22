@@ -46,6 +46,7 @@ type IURLProtocol interface {
 //
 // Don’t instantiate a subclass directly. Instead, create subclasses for any custom protocols or URL schemes that your app supports. When a download starts, the system creates the appropriate protocol object to handle the corresponding URL request. You define your protocol class and call the class method during your app’s launch time so that the system is aware of your protocol. To support the customization of protocol-specific requests, create extensions to the class to provide any custom API that you need. You can store and retrieve protocol-specific request data by using ’s class methods and . Create a for each request your subclass processes successfully. You may want to create a custom class to provide protocol specific information.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtocol
 type URLProtocol struct {
 	objectivec.Object
@@ -90,55 +91,76 @@ func NewURLProtocol() URLProtocol {
 }
 
 
+
 // Determines whether the protocol subclass can handle the specified request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtocol/canInit(with:)-76brg
+
 func (uc _URLProtocolClass) CanInitWithRequest(request IURLRequest) bool {
 	rv := objc.Send[bool](objc.ID(uc.class), objc.Sel("canInitWithRequest:"), request)
 	return rv
 }
 
+
 // Returns a canonical version of the specified request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtocol/canonicalRequest(for:)
+
 func (uc _URLProtocolClass) CanonicalRequestForRequest(request IURLRequest) URLRequest {
 	rv := objc.Send[URLRequest](objc.ID(uc.class), objc.Sel("canonicalRequestForRequest:"), request)
 	return rv
 }
 
+
 // Fetches the property associated with the specified key in the specified request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtocol/property(forKey:in:)
+
 func (uc _URLProtocolClass) PropertyForKeyInRequest(key string, request IURLRequest) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(uc.class), objc.Sel("propertyForKey:inRequest:"), objc.String(key), request)
 	return rv
 }
 
+
 // Attempts to register a subclass of , making it visible to the URL loading system.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtocol/registerClass(_:)
+
 func (uc _URLProtocolClass) RegisterClass(protocolClass objc.Class) bool {
 	rv := objc.Send[bool](objc.ID(uc.class), objc.Sel("registerClass:"), protocolClass)
 	return rv
 }
 
+
 // Removes the property associated with the specified key in the specified request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtocol/removeProperty(forKey:in:)
+
 func (uc _URLProtocolClass) RemovePropertyForKeyInRequest(key string, request IMutableURLRequest) {
 	objc.Send[objc.ID](objc.ID(uc.class), objc.Sel("removePropertyForKey:inRequest:"), objc.String(key), request)
 }
 
+
 // Sets the property associated with the specified key in the specified request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtocol/setProperty(_:forKey:in:)
+
 func (uc _URLProtocolClass) SetPropertyForKeyInRequest(value objectivec.IObject, key string, request IMutableURLRequest) {
 	objc.Send[objc.ID](objc.ID(uc.class), objc.Sel("setProperty:forKey:inRequest:"), value, objc.String(key), request)
 }
 
+
 // Unregisters the specified subclass of .
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtocol/unregisterClass(_:)
+
 func (uc _URLProtocolClass) UnregisterClass(protocolClass objc.Class) {
 	objc.Send[objc.ID](objc.ID(uc.class), objc.Sel("unregisterClass:"), protocolClass)
 }

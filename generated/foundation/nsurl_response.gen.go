@@ -45,6 +45,7 @@ type IURLResponse interface {
 //
 // The related class is a commonly used subclass of whose objects represent a response to an HTTP URL load request and store additional protocol-specific information such as the response headers. Whenever you make an HTTP request, the object you get back is actually an instance of the class.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLResponse
 type URLResponse struct {
 	objectivec.Object

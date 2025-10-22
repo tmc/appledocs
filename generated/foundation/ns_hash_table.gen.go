@@ -46,6 +46,7 @@ type IHashTable interface {
 //
 // The hash table is modeled after with the following differences: It can hold weak references to its members. Its members may be copied on input or may use pointer identity for equality and hashing. It can contain arbitrary pointers (its members are not constrained to being objects). You can configure an instance to operate on arbitrary pointers and not just objects, although typically you are encouraged to use the C function API for void * pointers. The object-based API (such as ) will not work for non-object pointers without type-casting. Because of its options, is not a set because it can behave differently (for example, if pointer equality is specified two strings will both be entered). When configuring hash tables, note that only the options listed in guarantee that the rest of the API will work correctly—including copying, archiving, and fast enumeration. While other options are used for certain configurations, such as to hold arbitrary pointers, not all combinations of the options are valid. With some combinations the hash table may not work correctly, or may not even be initialized correctly.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHashTable
 type HashTable struct {
 	objectivec.Object
@@ -92,26 +93,35 @@ func NewHashTable() HashTable {
 
 
 
+
 // Returns a hash table with given pointer functions options.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHashTable/init(options:)
+
 func NewHashTableWithOptions(options PointerFunctionsOptions) HashTable {
 	rv := objc.Send[HashTable](objc.ID(getHashTableClass().class), objc.Sel("hashTableWithOptions:"), options)
 	return rv
 }
 
 
+
 // Returns a new hash table for storing weak references to its contents.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHashTable/hashTableWithWeakObjects
+
 func (hc _HashTableClass) HashTableWithWeakObjects() objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(hc.class), objc.Sel("hashTableWithWeakObjects"))
 	return rv
 }
 
+
 // Returns a hash table with given pointer functions options.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHashTable/init(options:)
+
 func (hc _HashTableClass) HashTableWithOptions(options PointerFunctionsOptions) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("hashTableWithOptions:"), options)
 	return rv

@@ -89,6 +89,7 @@ type IURLComponents interface {
 //
 // In Swift, this object bridges to ; use when you need reference semantics or other Foundation-specific behavior. The class is a class that is designed to parse URLs based on and to construct URLs from their constituent parts. Its behavior differs subtly from the class, which conforms to older RFCs. However, you can easily obtain an object based on the contents of a URL components object or vice versa. You create a URL components object in one of three ways: from an object that contains a URL, from an object, or from scratch by using the default initializer. From there, you can modify the URL’s individual components and subcomponents by modifying various properties, either in unencoded form or in URL-encoded form. If you set the unencoded property, you can then obtain the encoded equivalent by reading the encoded property value and vice versa.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents
 type URLComponents struct {
 	objectivec.Object
@@ -135,9 +136,12 @@ func NewURLComponents() URLComponents {
 
 
 
+
 // Creates a URL components object by parsing a URL in string form.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents/init(string:)
+
 func NewURLComponentsWithString(URLString string) URLComponents {
 	instance := getURLComponentsClass().Alloc()
 	rv := objc.Send[URLComponents](instance.ID, objc.Sel("initWithString:"), objc.String(URLString))
@@ -147,9 +151,12 @@ func NewURLComponentsWithString(URLString string) URLComponents {
 
 
 
+
 // Creates a URL components instance from the provided string, optionally IDNA- and percent-encoding any invalid characters.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents/init(string:encodingInvalidCharacters:)
+
 func NewURLComponentsWithStringEncodingInvalidCharacters(URLString string, encodingInvalidCharacters bool) URLComponents {
 	instance := getURLComponentsClass().Alloc()
 	rv := objc.Send[URLComponents](instance.ID, objc.Sel("initWithString:encodingInvalidCharacters:"), objc.String(URLString), encodingInvalidCharacters)
@@ -159,9 +166,12 @@ func NewURLComponentsWithStringEncodingInvalidCharacters(URLString string, encod
 
 
 
+
 // Creates a URL components object by parsing the URL from an object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents/init(url:resolvingAgainstBaseURL:)
+
 func NewURLComponentsWithURLResolvingAgainstBaseURL(url IURL, resolve bool) URLComponents {
 	instance := getURLComponentsClass().Alloc()
 	rv := objc.Send[URLComponents](instance.ID, objc.Sel("initWithURL:resolvingAgainstBaseURL:"), url, resolve)
@@ -170,25 +180,34 @@ func NewURLComponentsWithURLResolvingAgainstBaseURL(url IURL, resolve bool) URLC
 }
 
 
+
 // Returns a URL components object by parsing a URL in string form.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents/componentsWithString:
+
 func (uc _URLComponentsClass) ComponentsWithString(URLString string) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("componentsWithString:"), objc.String(URLString))
 	return rv
 }
 
+
 // Returns a URL components instance from the provided string, optionally IDNA- and percent-encoding any invalid characters.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents/componentsWithString:encodingInvalidCharacters:
+
 func (uc _URLComponentsClass) ComponentsWithStringEncodingInvalidCharacters(URLString string, encodingInvalidCharacters bool) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("componentsWithString:encodingInvalidCharacters:"), objc.String(URLString), encodingInvalidCharacters)
 	return rv
 }
 
+
 // Returns a URL components object by parsing the URL from an object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents/componentsWithURL:resolvingAgainstBaseURL:
+
 func (uc _URLComponentsClass) ComponentsWithURLResolvingAgainstBaseURL(url IURL, resolve bool) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("componentsWithURL:resolvingAgainstBaseURL:"), url, resolve)
 	return rv

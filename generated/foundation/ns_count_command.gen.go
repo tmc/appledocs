@@ -35,6 +35,7 @@ type ICountCommand interface {
 //
 // An instance of counts the number of objects of a specified class in the specified object container (such as the number of words in a paragraph or document) and returns the result. is part of Cocoa’s built-in scripting support. It works automatically to support the command through key-value coding. Most applications don’t need to subclass or call its methods.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCountCommand
 type CountCommand struct {
 	ScriptCommand

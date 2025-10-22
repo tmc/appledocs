@@ -35,6 +35,7 @@ type IExistsCommand interface {
 //
 // An instance of determines whether a specified scriptable object, such as a word, paragraph, or image, exists. When an instance of is executed, it evaluates the receiver specifier for the command to determine if it specifies any objects. is part of Cocoa’s built-in scripting support. Most applications don’t need to subclass .
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExistsCommand
 type ExistsCommand struct {
 	ScriptCommand

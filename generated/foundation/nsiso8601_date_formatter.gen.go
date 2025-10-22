@@ -39,6 +39,7 @@ type IISO8601DateFormatter interface {
 //
 // The class generates and parses string representations of dates following the standard. Use this class to create ISO 8601 representations of dates and create dates from text strings in ISO 8601 format.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ISO8601DateFormatter
 type ISO8601DateFormatter struct {
 	Formatter
@@ -86,9 +87,12 @@ func NewISO8601DateFormatter() ISO8601DateFormatter {
 
 
 
+
 // Creates a representation of the specified date with a given time zone and format options.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ISO8601DateFormatter/string(from:timeZone:formatOptions:)
+
 func (ic _ISO8601DateFormatterClass) StringFromDateTimeZoneFormatOptions(date IDate, timeZone ITimeZone, formatOptions unsafe.Pointer) String {
 	rv := objc.Send[String](objc.ID(ic.class), objc.Sel("stringFromDate:timeZone:formatOptions:"), date, timeZone, formatOptions)
 	return rv

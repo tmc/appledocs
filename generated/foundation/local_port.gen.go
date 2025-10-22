@@ -33,6 +33,7 @@ type IlocalPort interface {
 }
 
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPortMessage/localPort
 type localPort struct {
 	objectivec.Object

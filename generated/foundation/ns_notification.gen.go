@@ -39,6 +39,7 @@ type INotification interface {
 //
 // In Swift, this object bridges to ; use when you need reference semantics or other Foundation-specific behavior. A notification contains a name, an object, and an optional dictionary, and is broadcast to by instances of or . The name is a tag identifying the notification. The object is any object that the poster of the notification wants to send to observers of that notification (typically, the object posting the notification). The dictionary stores other related objects, if any. objects are immutable. You don’t usually create your own notifications directly, but instead call the methods and .
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNotification
 type Notification struct {
 	objectivec.Object
@@ -85,9 +86,12 @@ func NewNotification() Notification {
 
 
 
+
 // Initializes a notification with the data from an unarchiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNotification/init(coder:)
+
 func NewNotificationWithCoder(coder ICoder) Notification {
 	instance := getNotificationClass().Alloc()
 	rv := objc.Send[Notification](instance.ID, objc.Sel("initWithCoder:"), coder)
@@ -97,9 +101,12 @@ func NewNotificationWithCoder(coder ICoder) Notification {
 
 
 
+
 // Returns a new notification object with a specified name and object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNotification/init(name:object:)
+
 func NewNotificationWithNameObject(aName INotificationName, anObject objectivec.IObject) Notification {
 	rv := objc.Send[Notification](objc.ID(getNotificationClass().class), objc.Sel("notificationWithName:object:"), aName, anObject)
 	return rv
@@ -107,9 +114,12 @@ func NewNotificationWithNameObject(aName INotificationName, anObject objectivec.
 
 
 
+
 // Initializes a notification with a specified name, object, and user information.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNotification/init(name:object:userInfo:)
+
 func NewNotificationWithNameObjectUserInfo(name INotificationName, object objectivec.IObject, userInfo objectivec.IObject) Notification {
 	instance := getNotificationClass().Alloc()
 	rv := objc.Send[Notification](instance.ID, objc.Sel("initWithName:object:userInfo:"), name, object, userInfo)
@@ -118,17 +128,23 @@ func NewNotificationWithNameObjectUserInfo(name INotificationName, object object
 }
 
 
+
 // Returns a new notification object with a specified name and object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNotification/init(name:object:)
+
 func (nc _NotificationClass) NotificationWithNameObject(aName INotificationName, anObject objectivec.IObject) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(nc.class), objc.Sel("notificationWithName:object:"), aName, anObject)
 	return rv
 }
 
+
 // Returns a notification object with a specified name, object, and user information.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNotification/notificationWithName:object:userInfo:
+
 func (nc _NotificationClass) NotificationWithNameObjectUserInfo(aName INotificationName, anObject objectivec.IObject, aUserInfo objectivec.IObject) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(nc.class), objc.Sel("notificationWithName:object:userInfo:"), aName, anObject, aUserInfo)
 	return rv

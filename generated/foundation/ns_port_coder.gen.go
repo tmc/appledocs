@@ -35,6 +35,7 @@ type IPortCoder interface {
 //
 // is a concrete subclass of used in the distributed objects system to transmit object proxies (and sometimes objects themselves) between objects. An instance is always created and used by an object; you should never need to explicitly create or use one directly yourself.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPortCoder
 type PortCoder struct {
 	Coder

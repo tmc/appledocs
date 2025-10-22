@@ -35,6 +35,7 @@ type IUnitPressure interface {
 //
 // You typically use instances of to represent specific quantities of pressure using the class.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPressure
 type UnitPressure struct {
 	Dimension

@@ -47,6 +47,7 @@ type IURLSessionWebSocketTask interface {
 //
 // is a concrete subclass of that provides a message-oriented transport protocol over TCP and TLS in the form of WebSocket framing. It follows the WebSocket Protocol defined in . You create a with either a or URL. When creating the task, you can also provide a list of protocols to advertise during the handshake phase. Once the handshake completes, your app receives notifications through the session’s . You send data with and receive data with . The task performs reads and writes asynchronously, and allows you to send and receive messages that contain both binary frames and UTF-8 encoded text frames. The task enqueues any reads or writes you perform prior to the handshake’s completion, and executes them after the handshake completes. supports redirection and authentication like other types of tasks do, using the methods in . The WebSocket task calls the redirection and authentication delegate methods prior to completing the handshake. The WebSocket task also supports cookies, by storing cookies to the session configuration’s , and attaches cookies to outgoing HTTP handshake requests.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionWebSocketTask
 type URLSessionWebSocketTask struct {
 	URLSessionTask

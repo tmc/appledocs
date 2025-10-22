@@ -38,6 +38,7 @@ type IInputStream interface {
 //
 // is “toll-free bridged” with its Core Foundation counterpart, . For more information on toll-free bridging, see .
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/InputStream
 type InputStream struct {
 	Stream
@@ -86,9 +87,12 @@ func NewInputStream() InputStream {
 
 
 
+
 // Initializes and returns an object for reading from a given object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/InputStream/init(data:)
+
 func NewInputStreamWithData(data IData) InputStream {
 	instance := getInputStreamClass().Alloc()
 	rv := objc.Send[InputStream](instance.ID, objc.Sel("initWithData:"), data)
@@ -98,9 +102,12 @@ func NewInputStreamWithData(data IData) InputStream {
 
 
 
+
 // Initializes and returns an object that reads data from the file at a given path.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/InputStream/init(fileAtPath:)
+
 func NewInputStreamWithFileAtPath(path string) InputStream {
 	instance := getInputStreamClass().Alloc()
 	rv := objc.Send[InputStream](instance.ID, objc.Sel("initWithFileAtPath:"), objc.String(path))
@@ -110,9 +117,12 @@ func NewInputStreamWithFileAtPath(path string) InputStream {
 
 
 
+
 // Initializes and returns an object that reads data from the file at a given URL.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/InputStream/init(url:)-1lfmj
+
 func NewInputStreamWithURL(url IURL) InputStream {
 	instance := getInputStreamClass().Alloc()
 	rv := objc.Send[InputStream](instance.ID, objc.Sel("initWithURL:"), url)
@@ -121,25 +131,34 @@ func NewInputStreamWithURL(url IURL) InputStream {
 }
 
 
+
 // Creates and returns an initialized object that reads data from the file at a given URL.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/InputStream/init(URL:)-y5k
+
 func (ic _InputStreamClass) InputStreamWithURL(url IURL) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("inputStreamWithURL:"), url)
 	return rv
 }
 
+
 // Creates and returns an initialized object for reading from a given object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInputStream/inputStreamWithData:
+
 func (ic _InputStreamClass) InputStreamWithData(data IData) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("inputStreamWithData:"), data)
 	return rv
 }
 
+
 // Creates and returns an initialized object that reads data from the file at a given path.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInputStream/inputStreamWithFileAtPath:
+
 func (ic _InputStreamClass) InputStreamWithFileAtPath(path string) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("inputStreamWithFileAtPath:"), objc.String(path))
 	return rv

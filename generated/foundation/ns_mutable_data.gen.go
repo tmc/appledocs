@@ -47,6 +47,7 @@ type IMutableData interface {
 //
 // In Swift, this object bridges to ; use when you need reference semantics or other Foundation-specific behavior. and its superclass provide data objects, or object-oriented wrappers for byte buffers. Data objects let simple allocated buffers (that is, data with no embedded pointers) take on the behavior of Foundation objects. They are typically used for data storage and are also useful in Distributed Objects applications, where data contained in data objects can be copied or moved between applications. creates static data objects, and creates dynamic data objects. You can easily convert one type of data object to the other with the initializer that takes an object or an object as an argument. The following methods change when used on a mutable data object: When called, the bytes are immediately copied and then the buffer is freed. is “toll-free bridged” with its Core Foundation counterpart, . See for more information on toll-free bridging.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableData
 type MutableData struct {
 	Data

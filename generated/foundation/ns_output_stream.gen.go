@@ -37,6 +37,7 @@ type IOutputStream interface {
 //
 // is “toll-free bridged” with its Core Foundation counterpart, . For more information on toll-free bridging, see .
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/OutputStream
 type OutputStream struct {
 	Stream
@@ -85,9 +86,12 @@ func NewOutputStream() OutputStream {
 
 
 
+
 // Returns an initialized output stream that can write to a provided buffer.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/OutputStream/init(toBuffer:capacity:)
+
 func NewOutputStreamToBufferCapacity(buffer unsafe.Pointer, capacity uint) OutputStream {
 	instance := getOutputStreamClass().Alloc()
 	rv := objc.Send[OutputStream](instance.ID, objc.Sel("initToBuffer:capacity:"), buffer, capacity)
@@ -97,9 +101,12 @@ func NewOutputStreamToBufferCapacity(buffer unsafe.Pointer, capacity uint) Outpu
 
 
 
+
 // Returns an initialized output stream for writing to a specified file.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/OutputStream/init(toFileAtPath:append:)
+
 func NewOutputStreamToFileAtPathAppend(path string, shouldAppend bool) OutputStream {
 	instance := getOutputStreamClass().Alloc()
 	rv := objc.Send[OutputStream](instance.ID, objc.Sel("initToFileAtPath:append:"), objc.String(path), shouldAppend)
@@ -109,9 +116,12 @@ func NewOutputStreamToFileAtPathAppend(path string, shouldAppend bool) OutputStr
 
 
 
+
 // Returns an initialized output stream that will write to memory.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/OutputStream/init(toMemory:)
+
 func NewOutputStreamToMemory() OutputStream {
 	instance := getOutputStreamClass().Alloc()
 	rv := objc.Send[OutputStream](instance.ID, objc.Sel("initToMemory"))
@@ -121,9 +131,12 @@ func NewOutputStreamToMemory() OutputStream {
 
 
 
+
 // Returns an initialized output stream for writing to a specified URL.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/OutputStream/init(url:append:)-5soau
+
 func NewOutputStreamWithURLAppend(url IURL, shouldAppend bool) OutputStream {
 	instance := getOutputStreamClass().Alloc()
 	rv := objc.Send[OutputStream](instance.ID, objc.Sel("initWithURL:append:"), url, shouldAppend)
@@ -132,33 +145,45 @@ func NewOutputStreamWithURLAppend(url IURL, shouldAppend bool) OutputStream {
 }
 
 
+
 // Creates and returns an initialized output stream that can write to a provided buffer.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOutputStream/outputStreamToBuffer:capacity:
+
 func (oc _OutputStreamClass) OutputStreamToBufferCapacity(buffer unsafe.Pointer, capacity uint) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(oc.class), objc.Sel("outputStreamToBuffer:capacity:"), buffer, capacity)
 	return rv
 }
 
+
 // Creates and returns an initialized output stream for writing to a specified file.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOutputStream/outputStreamToFileAtPath:append:
+
 func (oc _OutputStreamClass) OutputStreamToFileAtPathAppend(path string, shouldAppend bool) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(oc.class), objc.Sel("outputStreamToFileAtPath:append:"), objc.String(path), shouldAppend)
 	return rv
 }
 
+
 // Creates and returns an initialized output stream for writing to a specified URL.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/OutputStream/init(URL:append:)-8e5le
+
 func (oc _OutputStreamClass) OutputStreamWithURLAppend(url IURL, shouldAppend bool) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(oc.class), objc.Sel("outputStreamWithURL:append:"), url, shouldAppend)
 	return rv
 }
 
+
 // Creates and returns an initialized output stream that will write stream data to memory.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/OutputStream/toMemory()
+
 func (oc _OutputStreamClass) OutputStreamToMemory() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(oc.class), objc.Sel("outputStreamToMemory"))
 	return rv

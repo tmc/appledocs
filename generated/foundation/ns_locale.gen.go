@@ -70,6 +70,7 @@ type ILocale interface {
 //
 // In Swift, this object bridges to ; use when you need reference semantics or other Foundation-specific behavior. You typically use a locale to format and interpret information about and according to the user’s customs and preferences. You can initialize any number of locale instances with using one of the locale identifiers found in the array. However, you usually use a locale configured to match the preferences of the current user. Use the property to get the locale matching the current user’s preferences. If you need to be alerted when the user does make changes to region settings, register for the notification. Alternatively, you can use the property to get a locale that automatically updates with the user’s configuration settings: You can inspect a locale by reading its properties, as listed in Getting Information About a Locale. For properties containing a code or identifier, you can then obtain a string suitable for presentation to the user with the methods listed in Getting Display Information About a Locale. For example, you can report the user’s language as a string localized in that language using the autoupdating locale obtained in the previous example: You frequently use a locale in conjunction with a formatter. For example, the class has a property that ensures dates are converted to strings that match the user’s expectations about date formatting. By default, this property indicates the user’s current locale, which is usually the behavior you want, but you can instead set it to another locale instance to obtain a different output. See for more information about working with formatters. is with its Core Foundation counterpart, . See for more information on toll-free bridging.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale
 type Locale struct {
 	objectivec.Object
@@ -116,9 +117,12 @@ func NewLocale() Locale {
 
 
 
+
 // Returns a locale initialized from data in the given unarchiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/init(coder:)
+
 func NewLocaleWithCoder(coder ICoder) Locale {
 	instance := getLocaleClass().Alloc()
 	rv := objc.Send[Locale](instance.ID, objc.Sel("initWithCoder:"), coder)
@@ -128,9 +132,12 @@ func NewLocaleWithCoder(coder ICoder) Locale {
 
 
 
+
 // Initializes a locale using a given locale identifier.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/init(localeIdentifier:)
+
 func NewLocaleWithLocaleIdentifier(string_ string) Locale {
 	instance := getLocaleClass().Alloc()
 	rv := objc.Send[Locale](instance.ID, objc.Sel("initWithLocaleIdentifier:"), objc.String(string_))
@@ -139,33 +146,45 @@ func NewLocaleWithLocaleIdentifier(string_ string) Locale {
 }
 
 
+
 // Returns the canonical identifier for a given locale identification string.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/canonicalLocaleIdentifier(from:)
+
 func (lc _LocaleClass) CanonicalLocaleIdentifierFromString(string_ string) String {
 	rv := objc.Send[String](objc.ID(lc.class), objc.Sel("canonicalLocaleIdentifierFromString:"), objc.String(string_))
 	return rv
 }
 
+
 // Returns the direction of the sequence of characters in a line for the specified ISO language code.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/characterDirection(forLanguage:)
+
 func (lc _LocaleClass) CharacterDirectionForLanguage(isoLangCode string) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(lc.class), objc.Sel("characterDirectionForLanguage:"), objc.String(isoLangCode))
 	return rv
 }
 
+
 // Returns a locale identifier from a Windows locale code.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/localeIdentifier(fromWindowsLocaleCode:)
+
 func (lc _LocaleClass) LocaleIdentifierFromWindowsLocaleCode(lcid Iuint32) String {
 	rv := objc.Send[String](objc.ID(lc.class), objc.Sel("localeIdentifierFromWindowsLocaleCode:"), lcid)
 	return rv
 }
 
+
 // Returns a Window locale code from the locale identifier.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/windowsLocaleCode(fromLocaleIdentifier:)
+
 func (lc _LocaleClass) WindowsLocaleCodeFromLocaleIdentifier(localeIdentifier string) uint32 {
 	rv := objc.Send[uint32](objc.ID(lc.class), objc.Sel("windowsLocaleCodeFromLocaleIdentifier:"), objc.String(localeIdentifier))
 	return rv

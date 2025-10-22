@@ -51,6 +51,7 @@ type IURLProtectionSpace interface {
 //
 // A protection space defines a series of matching constraints that determine which credential should be provided. For example, if a request provides your delegate with a object that requests a client username and password, your app should provide the correct username and password for the particular host, port, protocol, and realm, as specified in the challenge’s protection space.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtectionSpace
 type URLProtectionSpace struct {
 	objectivec.Object

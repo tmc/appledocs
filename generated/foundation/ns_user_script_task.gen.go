@@ -38,6 +38,7 @@ type IUserScriptTask interface {
 //
 // The class is able to run all the scripts normally run by the one of its subclasses, however it ignores the results. It is intended to execute user-supplied scripts and will execute them outside of the application’s sandbox, if any. If you need to execute scripts and get the input and output information use the , , and sub classes.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserScriptTask
 type UserScriptTask struct {
 	objectivec.Object
@@ -84,9 +85,12 @@ func NewUserScriptTask() UserScriptTask {
 
 
 
+
 // Return a user script task instance given a URL for a script file.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserScriptTask/init(url:)
+
 func NewUserScriptTaskWithURLError(url IURL, error_ IError) UserScriptTask {
 	instance := getUserScriptTaskClass().Alloc()
 	rv := objc.Send[UserScriptTask](instance.ID, objc.Sel("initWithURL:error:"), url, error_)

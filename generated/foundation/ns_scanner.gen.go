@@ -54,6 +54,7 @@ type IScanner interface {
 //
 // A object interprets and converts the characters of a into number and string values. You assign the scanner’s string when you create the scanner, and the scanner progresses through the characters of that string from beginning to end as you request items. Because of the nature of class clusters, a scanner object isn’t an actual instance of the class, but is one of its private subclasses. Although a scanner object’s class is private, its interface is public, as declared by this abstract superclass, . The objects you create using this class are referred to as scanner objects (and when no confusion will result, merely as scanners). To set a object to ignore a set of characters as it scans the string, use the property. Characters in the skip set are skipped over before the target is scanned. The default set of characters to skip is the whitespace and newline character set. To retrieve the unscanned remainder of the string, use .
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Scanner
 type Scanner struct {
 	objectivec.Object
@@ -98,9 +99,12 @@ func NewScanner() Scanner {
 }
 
 
+
 // Returns an object that scans a given string according to the user’s default locale.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Scanner/localizedScanner(with:)
+
 func (sc _ScannerClass) LocalizedScannerWithString(string_ string) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("localizedScannerWithString:"), objc.String(string_))
 	return rv

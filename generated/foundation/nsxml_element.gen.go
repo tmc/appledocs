@@ -48,6 +48,7 @@ type IXMLElement interface {
 //
 // An object may have child nodes, specifically comment nodes, processing-instruction nodes, text nodes, and other nodes. It may also have attribute nodes and namespace nodes associated with it (however, namespace and attribute nodes are not considered children). Any attempt to add a node, node, namespace node, or attribute node as a child raises an exception. If you add a child node to an object and that child already has a parent, raises an exception; the child must be detached or copied first.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLElement
 type XMLElement struct {
 	XMLNode
@@ -96,9 +97,12 @@ func NewXMLElement() XMLElement {
 
 
 
+
 // Returns an object initialized with a specified name and a single text-node child containing a specified value.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLElement/init(name:stringValue:)
+
 func NewXMLElementWithNameStringValue(name string, string_ string) XMLElement {
 	instance := getXMLElementClass().Alloc()
 	rv := objc.Send[XMLElement](instance.ID, objc.Sel("initWithName:stringValue:"), objc.String(name), objc.String(string_))
@@ -108,9 +112,12 @@ func NewXMLElementWithNameStringValue(name string, string_ string) XMLElement {
 
 
 
+
 // Returns an object initialized with the specified name and URI.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLElement/init(name:uri:)
+
 func NewXMLElementWithNameURI(name string, URI string) XMLElement {
 	instance := getXMLElementClass().Alloc()
 	rv := objc.Send[XMLElement](instance.ID, objc.Sel("initWithName:URI:"), objc.String(name), objc.String(URI))

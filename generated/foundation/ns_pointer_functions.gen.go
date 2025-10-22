@@ -50,6 +50,7 @@ type IPointerFunctions interface {
 //
 // The functions specified by an instance of are separated into two clusters—those that define “personality” such as “object” or “C-string”, and those that describe memory management issues such as a memory deallocation function. There are constants for common personalities and memory manager selections (see ). , , and use an object to define the acquisition and retention behavior for the pointers they manage. Note, however, that not all combinations of personality and memory management behavior are valid for these collections. The pointer collection objects copy the object on input and output, so you cannot usefully subclass .
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerFunctions
 type PointerFunctions struct {
 	objectivec.Object

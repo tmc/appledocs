@@ -35,6 +35,7 @@ type IPropertySpecifier interface {
 //
 // You don’t typically subclass .
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPropertySpecifier
 type PropertySpecifier struct {
 	ScriptObjectSpecifier

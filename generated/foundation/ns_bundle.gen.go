@@ -107,6 +107,7 @@ type IBundle interface {
 //
 // Apple uses bundles to represent apps, frameworks, plug-ins, and many other specific types of content. Bundles organize their contained resources into well-defined subdirectories, and bundle structures vary depending on the platform and the type of the bundle. By using a bundle object, you can access a bundle’s resources without knowing the structure of the bundle. The bundle object provides a single interface for locating items, taking into account the bundle structure, user preferences, available localizations, and other relevant factors. Any executable can use a bundle object to locate resources, either inside an app’s bundle or in a known bundle located elsewhere. You don’t use a bundle object to locate files in a container directory or in other parts of the file system. The general pattern for using a bundle object is as follows: Create a bundle object for the intended bundle directory. Use the methods of the bundle object to locate or load the needed resource. Use other system APIs to interact with the resource. Some types of frequently used resources can be located and opened without a bundle. For example, when loading images, you store images in asset catalogs and load them using the methods of or . Similarly, for string resources, you use to load individual strings instead of loading the entire file yourself.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle
 type Bundle struct {
 	objectivec.Object
@@ -153,9 +154,12 @@ func NewBundle() Bundle {
 
 
 
+
 // Returns the object with which the specified class is associated.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/init(for:)
+
 func NewBundleForClass(aClass objc.Class) Bundle {
 	rv := objc.Send[Bundle](objc.ID(getBundleClass().class), objc.Sel("bundleForClass:"), aClass)
 	return rv
@@ -163,9 +167,12 @@ func NewBundleForClass(aClass objc.Class) Bundle {
 
 
 
+
 // Returns the instance that has the specified bundle identifier.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/init(identifier:)
+
 func NewBundleWithIdentifier(identifier string) Bundle {
 	rv := objc.Send[Bundle](objc.ID(getBundleClass().class), objc.Sel("bundleWithIdentifier:"), objc.String(identifier))
 	return rv
@@ -173,9 +180,12 @@ func NewBundleWithIdentifier(identifier string) Bundle {
 
 
 
+
 // Returns an object initialized to correspond to the specified directory.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/init(path:)
+
 func NewBundleWithPath(path string) Bundle {
 	instance := getBundleClass().Alloc()
 	rv := objc.Send[Bundle](instance.ID, objc.Sel("initWithPath:"), objc.String(path))
@@ -185,9 +195,12 @@ func NewBundleWithPath(path string) Bundle {
 
 
 
+
 // Returns an object initialized to correspond to the specified file URL.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/init(url:)
+
 func NewBundleWithURL(url IURL) Bundle {
 	instance := getBundleClass().Alloc()
 	rv := objc.Send[Bundle](instance.ID, objc.Sel("initWithURL:"), url)
@@ -196,97 +209,133 @@ func NewBundleWithURL(url IURL) Bundle {
 }
 
 
+
 // Returns the object with which the specified class is associated.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/init(for:)
+
 func (bc _BundleClass) BundleForClass(aClass objc.Class) Bundle {
 	rv := objc.Send[Bundle](objc.ID(bc.class), objc.Sel("bundleForClass:"), aClass)
 	return rv
 }
 
+
 // Returns the instance that has the specified bundle identifier.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/init(identifier:)
+
 func (bc _BundleClass) BundleWithIdentifier(identifier string) Bundle {
 	rv := objc.Send[Bundle](objc.ID(bc.class), objc.Sel("bundleWithIdentifier:"), objc.String(identifier))
 	return rv
 }
 
+
 // Returns the full pathname for the resource file identified by the specified name and extension and residing in a given bundle directory.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/path(forResource:ofType:inDirectory:)-swift.type.method
+
 func (bc _BundleClass) PathForResourceOfTypeInDirectory(name string, ext string, bundlePath string) String {
 	rv := objc.Send[String](objc.ID(bc.class), objc.Sel("pathForResource:ofType:inDirectory:"), objc.String(name), objc.String(ext), objc.String(bundlePath))
 	return rv
 }
 
+
 // Returns an array containing the pathnames for all bundle resources having the specified extension and residing in the bundle directory at the specified path.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/paths(forResourcesOfType:inDirectory:)-swift.type.method
+
 func (bc _BundleClass) PathsForResourcesOfTypeInDirectory(ext string, bundlePath string) []string {
 	rv := objc.Send[[]string](objc.ID(bc.class), objc.Sel("pathsForResourcesOfType:inDirectory:"), objc.String(ext), objc.String(bundlePath))
 	return rv
 }
 
+
 // Returns one or more localizations from the specified list that a bundle object would use to locate resources for the current user.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/preferredLocalizations(from:)
+
 func (bc _BundleClass) PreferredLocalizationsFromArray(localizationsArray []string) []string {
 	rv := objc.Send[[]string](objc.ID(bc.class), objc.Sel("preferredLocalizationsFromArray:"), localizationsArray)
 	return rv
 }
 
+
 // Returns locale identifiers for which a bundle would provide localized content, given a specified list of candidates for a user’s language preferences.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/preferredLocalizations(from:forPreferences:)
+
 func (bc _BundleClass) PreferredLocalizationsFromArrayForPreferences(localizationsArray []string, preferencesArray []string) []string {
 	rv := objc.Send[[]string](objc.ID(bc.class), objc.Sel("preferredLocalizationsFromArray:forPreferences:"), localizationsArray, preferencesArray)
 	return rv
 }
 
+
 // Creates and returns a file URL for the resource with the specified name and extension in the specified bundle.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/url(forResource:withExtension:subdirectory:in:)
+
 func (bc _BundleClass) URLForResourceWithExtensionSubdirectoryInBundleWithURL(name string, ext string, subpath string, bundleURL IURL) URL {
 	rv := objc.Send[URL](objc.ID(bc.class), objc.Sel("URLForResource:withExtension:subdirectory:inBundleWithURL:"), objc.String(name), objc.String(ext), objc.String(subpath), bundleURL)
 	return rv
 }
 
+
 // Returns an array containing the file URLs for all bundle resources having the specified filename extension, residing in the specified resource subdirectory, within the specified bundle.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/urls(forResourcesWithExtension:subdirectory:in:)
+
 func (bc _BundleClass) URLsForResourcesWithExtensionSubdirectoryInBundleWithURL(ext string, subpath string, bundleURL IURL) []URL {
 	rv := objc.Send[[]URL](objc.ID(bc.class), objc.Sel("URLsForResourcesWithExtension:subdirectory:inBundleWithURL:"), objc.String(ext), objc.String(subpath), bundleURL)
 	return rv
 }
 
+
 // Returns an object that corresponds to the specified directory.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBundle/bundleWithPath:
+
 func (bc _BundleClass) BundleWithPath(path string) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("bundleWithPath:"), objc.String(path))
 	return rv
 }
 
+
 // Returns an object that corresponds to the specified file URL.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBundle/bundleWithURL:
+
 func (bc _BundleClass) BundleWithURL(url IURL) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("bundleWithURL:"), url)
 	return rv
 }
 
+
 // Unarchives the contents of the nib file and links them to objects in your program.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBundle/loadNibFile:externalNameTable:withZone:-c.type.method
+
 func (bc _BundleClass) LoadNibFileExternalNameTableWithZone(fileName string, context objectivec.IObject, zone unsafe.Pointer) bool {
 	rv := objc.Send[bool](objc.ID(bc.class), objc.Sel("loadNibFile:externalNameTable:withZone:"), objc.String(fileName), context, zone)
 	return rv
 }
 
+
 // Unarchives the contents of the nib file and links them to a specific owner object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBundle/loadNibNamed:owner:
+
 func (bc _BundleClass) LoadNibNamedOwner(nibName string, owner objectivec.IObject) bool {
 	rv := objc.Send[bool](objc.ID(bc.class), objc.Sel("loadNibNamed:owner:"), objc.String(nibName), owner)
 	return rv

@@ -39,6 +39,7 @@ type IMutableCharacterSet interface {
 //
 // In Swift, this object bridges to ; use when you need reference semantics or other Foundation-specific behavior. The class declares the programmatic interface to objects that manage a modifiable set of Unicode characters. You can add or remove characters from a mutable character set as numeric values in structures or as character values in strings, combine character sets by union or intersection, and invert a character set. Mutable character sets are less efficient to use than immutable character sets. If you don’t need to change a character set after creating it, create an immutable copy with and use that. defines no primitive methods. Subclasses must implement all methods declared by this class in addition to the primitives of . They must also implement . is “toll-free bridged” with its Core Foundation counterpart, . See for more information.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet
 type MutableCharacterSet struct {
 	CharacterSet
@@ -87,9 +88,12 @@ func NewMutableCharacterSet() MutableCharacterSet {
 
 
 
+
 // Returns a character set read from the bitmap representation stored in the file a given path.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/init(contentsOfFile:)
+
 func NewMutableCharacterSetWithContentsOfFile(fName string) MutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(getMutableCharacterSetClass().class), objc.Sel("characterSetWithContentsOfFile:"), objc.String(fName))
 	return rv
@@ -97,114 +101,156 @@ func NewMutableCharacterSetWithContentsOfFile(fName string) MutableCharacterSet 
 
 
 
+
 // Returns a character set containing characters with Unicode values in a given range.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/init(range:)
+
 func NewMutableCharacterSetWithRange(aRange IRange) MutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(getMutableCharacterSetClass().class), objc.Sel("characterSetWithRange:"), aRange)
 	return rv
 }
 
 
+
 // Returns a character set containing the characters in Unicode General Categories L*, M*, and N*.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/alphanumeric()
+
 func (mc _MutableCharacterSetClass) AlphanumericCharacterSet() MutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(mc.class), objc.Sel("alphanumericCharacterSet"))
 	return rv
 }
 
+
 // Returns a character set containing the characters in Unicode General Category Lt.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/capitalizedLetter()
+
 func (mc _MutableCharacterSetClass) CapitalizedLetterCharacterSet() MutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(mc.class), objc.Sel("capitalizedLetterCharacterSet"))
 	return rv
 }
 
+
 // Returns a character set containing the characters in Unicode General Category Cc and Cf.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/control()
+
 func (mc _MutableCharacterSetClass) ControlCharacterSet() MutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(mc.class), objc.Sel("controlCharacterSet"))
 	return rv
 }
 
+
 // Returns a character set containing the characters in the category of decimal numbers.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/decimalDigit()
+
 func (mc _MutableCharacterSetClass) DecimalDigitCharacterSet() MutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(mc.class), objc.Sel("decimalDigitCharacterSet"))
 	return rv
 }
 
+
 // Returns a character set containing individual Unicode characters that can also be represented as composed character sequences (such as for letters with accents), by the definition of “standard decomposition” in version 3.2 of the Unicode character encoding standard.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/decomposable()
+
 func (mc _MutableCharacterSetClass) DecomposableCharacterSet() MutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(mc.class), objc.Sel("decomposableCharacterSet"))
 	return rv
 }
 
+
 // Returns a character set containing values in the category of Non-Characters or that have not yet been defined in version 3.2 of the Unicode standard.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/illegal()
+
 func (mc _MutableCharacterSetClass) IllegalCharacterSet() MutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(mc.class), objc.Sel("illegalCharacterSet"))
 	return rv
 }
 
+
 // Returns a character set read from the bitmap representation stored in the file a given path.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/init(contentsOfFile:)
+
 func (mc _MutableCharacterSetClass) CharacterSetWithContentsOfFile(fName string) MutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(mc.class), objc.Sel("characterSetWithContentsOfFile:"), objc.String(fName))
 	return rv
 }
 
+
 // Returns a character set containing characters with Unicode values in a given range.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/init(range:)
+
 func (mc _MutableCharacterSetClass) CharacterSetWithRange(aRange IRange) MutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(mc.class), objc.Sel("characterSetWithRange:"), aRange)
 	return rv
 }
 
+
 // Returns a character set containing the newline characters ( ~ , , , and ).
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/newline()
+
 func (mc _MutableCharacterSetClass) NewlineCharacterSet() MutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(mc.class), objc.Sel("newlineCharacterSet"))
 	return rv
 }
 
+
 // Returns a character set containing the characters in Unicode General Category P*.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/punctuation()
+
 func (mc _MutableCharacterSetClass) PunctuationCharacterSet() MutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(mc.class), objc.Sel("punctuationCharacterSet"))
 	return rv
 }
 
+
 // Returns a character set containing the characters in Unicode General Category S*.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/symbol()
+
 func (mc _MutableCharacterSetClass) SymbolCharacterSet() MutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(mc.class), objc.Sel("symbolCharacterSet"))
 	return rv
 }
 
+
 // Returns a character set containing the characters in Unicode General Category Lu and Lt.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/uppercaseLetter()
+
 func (mc _MutableCharacterSetClass) UppercaseLetterCharacterSet() MutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(mc.class), objc.Sel("uppercaseLetterCharacterSet"))
 	return rv
 }
 
+
 // Returns a character set containing the characters in Unicode General Category Zs and ( ).
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/whitespace()
+
 func (mc _MutableCharacterSetClass) WhitespaceCharacterSet() MutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(mc.class), objc.Sel("whitespaceCharacterSet"))
 	return rv

@@ -51,6 +51,7 @@ type IXMLDTD interface {
 //
 // An instance of the class is held as a property of an instance, accessed through the property . In the data model, an object is conceptually similar to namespace and attribute nodes: it is not considered to be a child of the object although it is closely associated with it. It is at the “root” of a shallow tree consisting primarily of nodes representing DTD declarations. Acceptable child nodes are instances of the class as well as objects representing comment nodes and processing-instruction nodes. You create an object in one of three ways: By processing an XML document with its own internal (in-line) DTD By process a standalone (external) DTD Programmatically Once an instance is in place, you can add, remove, and change the objects representing various DTD declarations. When you write the document out as XML, the new or modified internal DTD is included (assuming you set the DTD in the instance). You may also programmatically create an external DTD and write that out to its own file.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTD
 type XMLDTD struct {
 	XMLNode
@@ -99,9 +100,12 @@ func NewXMLDTD() XMLDTD {
 
 
 
+
 // Initializes and returns an object created from the DTD declarations in a URL-referenced source.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTD/init(contentsOf:options:)
+
 func NewXMLDTDWithContentsOfURLOptionsError(url IURL, mask XMLNodeOptions, error_ IError) XMLDTD {
 	instance := getXMLDTDClass().Alloc()
 	rv := objc.Send[XMLDTD](instance.ID, objc.Sel("initWithContentsOfURL:options:error:"), url, mask, error_)
@@ -111,9 +115,12 @@ func NewXMLDTDWithContentsOfURLOptionsError(url IURL, mask XMLNodeOptions, error
 
 
 
+
 // Initializes and returns an object created from the DTD declarations encapsulated in an object
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTD/init(data:options:)
+
 func NewXMLDTDWithDataOptionsError(data IData, mask XMLNodeOptions, error_ IError) XMLDTD {
 	instance := getXMLDTDClass().Alloc()
 	rv := objc.Send[XMLDTD](instance.ID, objc.Sel("initWithData:options:error:"), data, mask, error_)
@@ -121,8 +128,13 @@ func NewXMLDTDWithDataOptionsError(data IData, mask XMLNodeOptions, error_ IErro
 	return rv
 }
 
+
+
+
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXMLDTD/initWithKind:options:
+
 func NewXMLDTDWithKindOptions(kind XMLNodeKind, options XMLNodeOptions) XMLDTD {
 	instance := getXMLDTDClass().Alloc()
 	rv := objc.Send[XMLDTD](instance.ID, objc.Sel("initWithKind:options:"), kind, options)
@@ -131,9 +143,12 @@ func NewXMLDTDWithKindOptions(kind XMLNodeKind, options XMLNodeOptions) XMLDTD {
 }
 
 
+
 // Returns a DTD node representing the predefined entity declaration with the specified name.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTD/predefinedEntityDeclaration(forName:)
+
 func (xc _XMLDTDClass) PredefinedEntityDeclarationForName(name string) XMLDTDNode {
 	rv := objc.Send[XMLDTDNode](objc.ID(xc.class), objc.Sel("predefinedEntityDeclarationForName:"), objc.String(name))
 	return rv

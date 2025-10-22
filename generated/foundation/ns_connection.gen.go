@@ -37,6 +37,7 @@ type IConnection interface {
 //
 // Connection objects form the backbone of the distributed objects mechanism and normally operate in the background. You use the methods of explicitly when vending an object to other applications, when accessing such a vended object through a proxy, and when altering default communication parameters. At other times, you simply interact with a vended object or its proxy. A single connection object may be shared by multiple threads and used to access a vended object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection
 type Connection struct {
 	objectivec.Object
@@ -81,9 +82,12 @@ func NewConnection() Connection {
 }
 
 
+
 // Returns a proxy for the root object of the object registered with the default under a given name on a given host.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/rootProxyForConnectionWithRegisteredName:host:
+
 func (cc _ConnectionClass) RootProxyForConnectionWithRegisteredNameHost(name string, hostName string) DistantObject {
 	rv := objc.Send[DistantObject](objc.ID(cc.class), objc.Sel("rootProxyForConnectionWithRegisteredName:host:"), objc.String(name), objc.String(hostName))
 	return rv

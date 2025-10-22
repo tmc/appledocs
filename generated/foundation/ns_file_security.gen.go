@@ -36,6 +36,7 @@ type IFileSecurity interface {
 //
 // contains no methods of its own. Instead, it is transparently bridged to .
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileSecurity
 type FileSecurity struct {
 	objectivec.Object
@@ -80,8 +81,13 @@ func NewFileSecurity() FileSecurity {
 }
 
 
+
+
+
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileSecurity/init(coder:)
+
 func NewFileSecurityWithCoder(coder ICoder) FileSecurity {
 	instance := getFileSecurityClass().Alloc()
 	rv := objc.Send[FileSecurity](instance.ID, objc.Sel("initWithCoder:"), coder)

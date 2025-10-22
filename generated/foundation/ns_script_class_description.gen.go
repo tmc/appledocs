@@ -48,6 +48,7 @@ type IScriptClassDescription interface {
 //
 // A scriptable application provides scriptability information that describes the commands and objects scripters can use in scripts that target the application. That includes information about the classes those scriptable objects are created from. An application’s scriptability information is collected automatically by an instance of . The registry object creates an for each class it finds and caches these objects in memory. Cocoa scripting uses registry information in handling scripting requests that target the application. A class description instance stores the name, attributes, relationships, and supported commands for a class. For example, a scriptable class for a drawing application might support attributes such as and , relationships such as collections of , , and , and commands such as and . As with many of the classes in Cocoa’s built-in scripting support, your application may never need to directly work with instances of . However, one case where you might need access to a class description is if you override in a scriptable class. For information on how to do this, see in . Another case where your application may need access to class description information is if you override in a specifier class. Although you can subclass , it is unlikely that you would need to do so, or even to create instances of it.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptClassDescription
 type ScriptClassDescription struct {
 	ClassDescription

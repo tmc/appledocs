@@ -110,6 +110,7 @@ type IURLSessionTaskTransactionMetrics interface {
 //
 // Each object consists of a and property, corresponding to the request and response of the corresponding task. It also contains temporal metrics, starting with and ending with , as well as other characteristics like and .
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTaskTransactionMetrics
 type URLSessionTaskTransactionMetrics struct {
 	objectivec.Object

@@ -37,6 +37,7 @@ type IScriptWhoseTest interface {
 //
 // is an abstract class whose sole method is . Two concrete subclasses of generate objects representing Boolean expressions comparing one object with another and objects representing multiple Boolean expressions connected by logical operators ( , , ). These classes are, respectively, and . In evaluating itself, an invokes the method of its “test” object. You shouldn’t need to subclass , and you should rarely need to subclass one of its subclasses.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptWhoseTest
 type ScriptWhoseTest struct {
 	objectivec.Object
@@ -81,8 +82,13 @@ func NewScriptWhoseTest() ScriptWhoseTest {
 }
 
 
+
+
+
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptWhoseTest/init(coder:)
+
 func NewScriptWhoseTestWithCoder(inCoder ICoder) ScriptWhoseTest {
 	instance := getScriptWhoseTestClass().Alloc()
 	rv := objc.Send[ScriptWhoseTest](instance.ID, objc.Sel("initWithCoder:"), inCoder)
