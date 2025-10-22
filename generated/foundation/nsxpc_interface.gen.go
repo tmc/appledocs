@@ -94,7 +94,6 @@ func NewXPCInterface() XPCInterface {
 
 
 
-
 // Returns an NSXPCInterface instance for a given protocol.
 //
 // [Full Topic]
@@ -118,6 +117,7 @@ func (xc _XPCInterfaceClass) InterfaceWithProtocol(protocol_ objectivec.Protocol
 }
 
 
+
 // Returns the current list of allowed classes that can appear within the specified collection object argument to the specified method.
 //
 // [Full Topic]
@@ -127,6 +127,7 @@ func (x_ XPCInterface) ClassesForSelectorArgumentIndexOfReply(sel objc.SEL, arg 
 	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("classesForSelector:argumentIndex:ofReply:"), sel, arg, ofReply)
 	return rv
 }
+
 
 
 // Returns the interface previously set for the specified selector and parameter.
@@ -140,6 +141,7 @@ func (x_ XPCInterface) InterfaceForSelectorArgumentIndexOfReply(sel objc.SEL, ar
 }
 
 
+
 // Sets the classes that can appear within the (numerically) specified collection object argument to the specified method.
 //
 // [Full Topic]
@@ -150,6 +152,7 @@ func (x_ XPCInterface) SetClassesForSelectorArgumentIndexOfReply(classes unsafe.
 }
 
 
+
 // Configures a specific parameter of a method to be sent as a proxy object instead of copied.
 //
 // [Full Topic]
@@ -158,6 +161,7 @@ func (x_ XPCInterface) SetClassesForSelectorArgumentIndexOfReply(classes unsafe.
 func (x_ XPCInterface) SetInterfaceForSelectorArgumentIndexOfReply(ifc IXPCInterface, sel objc.SEL, arg uint, ofReply bool) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setInterface:forSelector:argumentIndex:ofReply:"), ifc, sel, arg, ofReply)
 }
+
 
 
 // [Full Topic]

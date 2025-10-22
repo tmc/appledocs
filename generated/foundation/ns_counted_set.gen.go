@@ -94,7 +94,6 @@ func NewCountedSet() CountedSet {
 
 
 
-
 // Returns a counted set object initialized with the contents of a given array.
 //
 // [Full Topic]
@@ -106,7 +105,6 @@ func NewCountedSetWithArray(array []objc.ID) CountedSet {
 	rv.Autorelease()
 	return rv
 }
-
 
 
 
@@ -124,7 +122,6 @@ func NewCountedSetWithCapacity(numItems uint) CountedSet {
 
 
 
-
 // Returns a counted set object initialized with the contents of a given set.
 //
 // [Full Topic]
@@ -139,6 +136,7 @@ func NewCountedSetWithSet(set unsafe.Pointer) CountedSet {
 
 
 
+
 // Adds a given object to the set.
 //
 // [Full Topic]
@@ -147,6 +145,7 @@ func NewCountedSetWithSet(set unsafe.Pointer) CountedSet {
 func (c_ CountedSet) AddObject(object unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("addObject:"), object)
 }
+
 
 
 // Returns the count associated with a given object in the set.
@@ -160,6 +159,7 @@ func (c_ CountedSet) CountForObject(object unsafe.Pointer) uint {
 }
 
 
+
 // Returns an enumerator object that lets you access each object in the set once, independent of its count.
 //
 // [Full Topic]
@@ -169,6 +169,7 @@ func (c_ CountedSet) ObjectEnumerator() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("objectEnumerator"))
 	return rv
 }
+
 
 
 // Removes a given object from the set.

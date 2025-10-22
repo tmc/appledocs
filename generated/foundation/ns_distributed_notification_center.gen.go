@@ -92,6 +92,7 @@ func NewDistributedNotificationCenter() DistributedNotificationCenter {
 
 
 
+
 // Creates a notification with information, and posts it to the receiver.
 //
 // [Full Topic]
@@ -100,6 +101,7 @@ func NewDistributedNotificationCenter() DistributedNotificationCenter {
 func (d_ DistributedNotificationCenter) PostNotificationNameObjectUserInfo(aName INotificationName, anObject string, aUserInfo objectivec.IObject) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("postNotificationName:object:userInfo:"), aName, objc.String(anObject), aUserInfo)
 }
+
 
 
 // Creates a notification with information and an immediate-delivery specifier, and posts it to the receiver.

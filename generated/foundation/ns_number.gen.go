@@ -129,7 +129,6 @@ func NewNumber() Number {
 
 
 
-
 // Returns an object initialized to contain a given value, treated as a .
 //
 // [Full Topic]
@@ -141,7 +140,6 @@ func NewNumberWithBool(value bool) Number {
 	rv.Autorelease()
 	return rv
 }
-
 
 
 
@@ -159,7 +157,6 @@ func NewNumberWithChar(value unsafe.Pointer) Number {
 
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/init(coder:)
 
@@ -169,7 +166,6 @@ func NewNumberWithCoder(coder ICoder) Number {
 	rv.Autorelease()
 	return rv
 }
-
 
 
 
@@ -187,7 +183,6 @@ func NewNumberWithDouble(value float64) Number {
 
 
 
-
 // Returns an object initialized to contain a given value, treated as a .
 //
 // [Full Topic]
@@ -199,7 +194,6 @@ func NewNumberWithFloat(value float32) Number {
 	rv.Autorelease()
 	return rv
 }
-
 
 
 
@@ -217,7 +211,6 @@ func NewNumberWithInt(value int) Number {
 
 
 
-
 // Returns an object initialized to contain a given value, treated as an .
 //
 // [Full Topic]
@@ -229,7 +222,6 @@ func NewNumberWithInteger(value int) Number {
 	rv.Autorelease()
 	return rv
 }
-
 
 
 
@@ -247,7 +239,6 @@ func NewNumberWithLong(value unsafe.Pointer) Number {
 
 
 
-
 // Returns an object initialized to contain , treated as a signed .
 //
 // [Full Topic]
@@ -259,7 +250,6 @@ func NewNumberWithLongLong(value unsafe.Pointer) Number {
 	rv.Autorelease()
 	return rv
 }
-
 
 
 
@@ -277,7 +267,6 @@ func NewNumberWithShort(value unsafe.Pointer) Number {
 
 
 
-
 // Returns an object initialized to contain a given value, treated as an .
 //
 // [Full Topic]
@@ -289,7 +278,6 @@ func NewNumberWithUnsignedChar(value unsafe.Pointer) Number {
 	rv.Autorelease()
 	return rv
 }
-
 
 
 
@@ -307,7 +295,6 @@ func NewNumberWithUnsignedInt(value unsafe.Pointer) Number {
 
 
 
-
 // Returns an object initialized to contain a given value, treated as an .
 //
 // [Full Topic]
@@ -319,7 +306,6 @@ func NewNumberWithUnsignedInteger(value uint) Number {
 	rv.Autorelease()
 	return rv
 }
-
 
 
 
@@ -337,7 +323,6 @@ func NewNumberWithUnsignedLong(value unsafe.Pointer) Number {
 
 
 
-
 // Returns an object initialized to contain a given value, treated as an .
 //
 // [Full Topic]
@@ -349,7 +334,6 @@ func NewNumberWithUnsignedLongLong(value uint64) Number {
 	rv.Autorelease()
 	return rv
 }
-
 
 
 
@@ -532,6 +516,7 @@ func (nc _NumberClass) NumberWithUnsignedShort(value unsafe.Pointer) Number {
 }
 
 
+
 // Returns an value that indicates whether the number object’s value is greater than, equal to, or less than a given number.
 //
 // [Full Topic]
@@ -543,6 +528,7 @@ func (n_ Number) Compare(otherNumber INumber) ComparisonResult {
 }
 
 
+
 // Returns a string that represents the contents of the number object for a given locale.
 //
 // [Full Topic]
@@ -552,6 +538,7 @@ func (n_ Number) DescriptionWithLocale(locale objectivec.IObject) String {
 	rv := objc.Send[String](n_.ID, objc.Sel("descriptionWithLocale:"), locale)
 	return rv
 }
+
 
 
 // Returns a Boolean value that indicates whether the number object’s value and a given number are equal.

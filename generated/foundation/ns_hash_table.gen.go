@@ -97,7 +97,6 @@ func NewHashTable() HashTable {
 
 
 
-
 // Returns a hash table with given pointer functions options.
 //
 // [Full Topic]
@@ -130,6 +129,7 @@ func (hc _HashTableClass) HashTableWithOptions(options PointerFunctionsOptions) 
 	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("hashTableWithOptions:"), options)
 	return rv
 }
+
 
 
 // Adds a given object to the hash table.

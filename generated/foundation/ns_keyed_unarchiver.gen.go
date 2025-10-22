@@ -96,6 +96,7 @@ func NewKeyedUnarchiver() KeyedUnarchiver {
 
 
 
+
 // Decodes a Boolean value associated with a given key.
 //
 // [Full Topic]
@@ -107,6 +108,7 @@ func (k_ KeyedUnarchiver) DecodeBoolForKey(key string) bool {
 }
 
 
+
 // Decodes an integer value associated with a given key.
 //
 // [Full Topic]
@@ -116,6 +118,7 @@ func (k_ KeyedUnarchiver) DecodeIntForKey(key string) int {
 	rv := objc.Send[int](k_.ID, objc.Sel("decodeIntForKey:"), objc.String(key))
 	return rv
 }
+
 
 
 // Decodes and returns an object associated with a given key.

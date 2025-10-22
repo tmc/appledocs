@@ -92,7 +92,6 @@ func NewUnitConverterLinear() UnitConverterLinear {
 
 
 
-
 // Initializes the unit converter with the coefficient you specify.
 //
 // [Full Topic]

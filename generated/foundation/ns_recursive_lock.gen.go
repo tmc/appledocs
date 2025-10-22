@@ -89,6 +89,7 @@ func NewRecursiveLock() RecursiveLock {
 
 
 
+
 // Attempts to acquire a lock, and immediately returns a Boolean value that indicates whether the attempt was successful.
 //
 // [Full Topic]

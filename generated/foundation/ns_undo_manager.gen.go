@@ -129,6 +129,7 @@ func NewUndoManager() UndoManager {
 
 
 
+
 // Marks the beginning of an undo group.
 //
 // [Full Topic]
@@ -137,6 +138,7 @@ func NewUndoManager() UndoManager {
 func (u_ UndoManager) BeginUndoGrouping() {
 	objc.Send[objc.ID](u_.ID, objc.Sel("beginUndoGrouping"))
 }
+
 
 
 // Marks the end of an undo group.
@@ -149,6 +151,7 @@ func (u_ UndoManager) EndUndoGrouping() {
 }
 
 
+
 // Performs the operations in the last group on the redo stack, if there are any, recording them on the undo stack as a single group.
 //
 // [Full Topic]
@@ -157,6 +160,7 @@ func (u_ UndoManager) EndUndoGrouping() {
 func (u_ UndoManager) Redo() {
 	objc.Send[objc.ID](u_.ID, objc.Sel("redo"))
 }
+
 
 
 // Registers the selector of the specified target to implement a single undo operation that the target receives.
@@ -169,6 +173,7 @@ func (u_ UndoManager) RegisterUndoWithTargetSelectorObject(target objectivec.IOb
 }
 
 
+
 // Clears the undo and redo stacks and reenables the manager.
 //
 // [Full Topic]
@@ -177,6 +182,7 @@ func (u_ UndoManager) RegisterUndoWithTargetSelectorObject(target objectivec.IOb
 func (u_ UndoManager) RemoveAllActions() {
 	objc.Send[objc.ID](u_.ID, objc.Sel("removeAllActions"))
 }
+
 
 
 // Sets whether the next undo or redo action is discardable.
@@ -189,6 +195,7 @@ func (u_ UndoManager) SetActionIsDiscardable(discardable bool) {
 }
 
 
+
 // Sets the name of the action associated with the Undo or Redo command.
 //
 // [Full Topic]
@@ -197,6 +204,7 @@ func (u_ UndoManager) SetActionIsDiscardable(discardable bool) {
 func (u_ UndoManager) SetActionName(actionName string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setActionName:"), objc.String(actionName))
 }
+
 
 
 // Sets a user info value for an undo or redo action.
@@ -209,6 +217,7 @@ func (u_ UndoManager) SetActionUserInfoValueForKey(info objectivec.IObject, key 
 }
 
 
+
 // Closes the top-level undo group if necessary, and then performs undo operations on the group.
 //
 // [Full Topic]
@@ -217,6 +226,7 @@ func (u_ UndoManager) SetActionUserInfoValueForKey(info objectivec.IObject, key 
 func (u_ UndoManager) Undo() {
 	objc.Send[objc.ID](u_.ID, objc.Sel("undo"))
 }
+
 
 
 // Retrieves the undo action’s user info value for the given key.
@@ -230,6 +240,7 @@ func (u_ UndoManager) UndoActionUserInfoValueForKey(key unsafe.Pointer) objc.ID 
 }
 
 
+
 // Returns the localized title of the Undo menu command for the identified action.
 //
 // [Full Topic]
@@ -239,6 +250,7 @@ func (u_ UndoManager) UndoMenuTitleForUndoActionName(actionName string) String {
 	rv := objc.Send[String](u_.ID, objc.Sel("undoMenuTitleForUndoActionName:"), objc.String(actionName))
 	return rv
 }
+
 
 
 // Performs the undo operations in the last undo group (whether top-level or nested), recording the operations on the redo stack as a single group.

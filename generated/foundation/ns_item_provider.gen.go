@@ -43,7 +43,7 @@ type IItemProvider interface {
 	Attachments() NSItemProvider
 	SetAttachments(value IItemProvider)
 	ContainerFrame() Rect
-	SetContainerFrame(value IRect)
+	SetContainerFrame(value Rect)
 	PreferredPresentationSize() coregraphics.CGSize
 	SetPreferredPresentationSize(value coregraphics.CGSize)
 	PreviewImageHandler() unsafe.Pointer
@@ -115,7 +115,6 @@ func NewItemProvider() ItemProvider {
 
 
 
-
 // Creates a new item provider, employing a specified object’s type identifiers to specify the data representations eligible for the provider to load.
 //
 // [Full Topic]
@@ -130,6 +129,7 @@ func NewItemProviderWithObject(object objectivec.IObject) ItemProvider {
 
 
 
+
 // Returns a Boolean value indicating whether an item provider can load objects of a specified class.
 //
 // [Full Topic]
@@ -139,6 +139,7 @@ func (i_ ItemProvider) CanLoadObjectOfClass(aClass unsafe.Pointer) bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("canLoadObjectOfClass:"), aClass)
 	return rv
 }
+
 
 
 // Asynchronously copies the provided, typed data into a generic data object, returning a progress object.
@@ -152,6 +153,7 @@ func (i_ ItemProvider) LoadDataRepresentationForTypeIdentifierCompletionHandler(
 }
 
 
+
 // Asynchronously writes a copy of the provided, typed data to a temporary file, returning a progress object.
 //
 // [Full Topic]
@@ -161,6 +163,7 @@ func (i_ ItemProvider) LoadFileRepresentationForTypeIdentifierCompletionHandler(
 	rv := objc.Send[Progress](i_.ID, objc.Sel("loadFileRepresentationForTypeIdentifier:completionHandler:"), objc.String(typeIdentifier), completionHandler)
 	return rv
 }
+
 
 
 // Asynchronously opens a file in place, if possible, returning a progress object.
@@ -174,6 +177,7 @@ func (i_ ItemProvider) LoadInPlaceFileRepresentationForTypeIdentifierCompletionH
 }
 
 
+
 // Asynchronously loads an object of a specified class to an item provider, returning a progress object.
 //
 // [Full Topic]
@@ -183,6 +187,7 @@ func (i_ ItemProvider) LoadObjectOfClassCompletionHandler(aClass unsafe.Pointer,
 	rv := objc.Send[Progress](i_.ID, objc.Sel("loadObjectOfClass:completionHandler:"), aClass, completionHandler)
 	return rv
 }
+
 
 
 // Registers a file-backed representation for an item, specifying file options, item visibility, and a load handler.
@@ -264,7 +269,7 @@ func (i_ ItemProvider) ContainerFrame() Rect {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsitemprovider/containerframe
 
-func (i_ ItemProvider) SetContainerFrame(value IRect) {
+func (i_ ItemProvider) SetContainerFrame(value Rect) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setContainerFrame:"), value)
 }
 

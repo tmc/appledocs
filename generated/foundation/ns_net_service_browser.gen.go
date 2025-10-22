@@ -97,6 +97,7 @@ func NewNetServiceBrowser() NetServiceBrowser {
 
 
 
+
 // Removes the receiver from the specified run loop.
 //
 // [Full Topic]
@@ -105,6 +106,7 @@ func NewNetServiceBrowser() NetServiceBrowser {
 func (n_ NetServiceBrowser) RemoveFromRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("removeFromRunLoop:forMode:"), aRunLoop, mode)
 }
+
 
 
 // Adds the receiver to the specified run loop.
@@ -117,6 +119,7 @@ func (n_ NetServiceBrowser) ScheduleInRunLoopForMode(aRunLoop IRunLoop, mode Run
 }
 
 
+
 // Initiates a search for domains visible to the host. This method returns immediately.
 //
 // [Full Topic]
@@ -125,6 +128,7 @@ func (n_ NetServiceBrowser) ScheduleInRunLoopForMode(aRunLoop IRunLoop, mode Run
 func (n_ NetServiceBrowser) SearchForBrowsableDomains() {
 	objc.Send[objc.ID](n_.ID, objc.Sel("searchForBrowsableDomains"))
 }
+
 
 
 // Initiates a search for domains in which the host may register services.
@@ -137,6 +141,7 @@ func (n_ NetServiceBrowser) SearchForRegistrationDomains() {
 }
 
 
+
 // Starts a search for services of a particular type within a specific domain.
 //
 // [Full Topic]
@@ -145,6 +150,7 @@ func (n_ NetServiceBrowser) SearchForRegistrationDomains() {
 func (n_ NetServiceBrowser) SearchForServicesOfTypeInDomain(type_ string, domainString string) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("searchForServicesOfType:inDomain:"), objc.String(type_), objc.String(domainString))
 }
+
 
 
 // Halts a currently running search or resolution.

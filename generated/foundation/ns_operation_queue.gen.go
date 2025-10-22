@@ -107,6 +107,7 @@ func NewOperationQueue() OperationQueue {
 
 
 
+
 // Invokes a block when the queue finishes all enqueued operations, and prevents subsequent operations from starting until the block has completed.
 //
 // [Full Topic]
@@ -117,6 +118,7 @@ func (o_ OperationQueue) AddBarrierBlock(barrier unsafe.Pointer) {
 }
 
 
+
 // Adds the specified operation to the receiver.
 //
 // [Full Topic]
@@ -125,6 +127,7 @@ func (o_ OperationQueue) AddBarrierBlock(barrier unsafe.Pointer) {
 func (o_ OperationQueue) AddOperation(op IOperation) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("addOperation:"), op)
 }
+
 
 
 // Cancels all queued and executing operations.

@@ -91,6 +91,7 @@ func NewXPCCoder() XPCCoder {
 
 
 
+
 // Encodes an object to send over an XPC connection.
 //
 // [Full Topic]

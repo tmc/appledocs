@@ -116,6 +116,7 @@ func (sc _StreamClass) GetStreamsToHostWithNamePortInputStreamOutputStream(hostn
 }
 
 
+
 // Closes the receiver.
 //
 // [Full Topic]
@@ -126,6 +127,7 @@ func (s_ Stream) Close() {
 }
 
 
+
 // Opens the receiving stream.
 //
 // [Full Topic]
@@ -134,6 +136,7 @@ func (s_ Stream) Close() {
 func (s_ Stream) Open() {
 	objc.Send[objc.ID](s_.ID, objc.Sel("open"))
 }
+
 
 
 // Returns the receiver’s property for a given key.
@@ -147,6 +150,7 @@ func (s_ Stream) PropertyForKey(key unsafe.Pointer) objc.ID {
 }
 
 
+
 // Removes the receiver from a given run loop running in a given mode.
 //
 // [Full Topic]
@@ -157,6 +161,7 @@ func (s_ Stream) RemoveFromRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode) {
 }
 
 
+
 // Schedules the receiver on a given run loop in a given mode.
 //
 // [Full Topic]
@@ -165,6 +170,7 @@ func (s_ Stream) RemoveFromRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode) {
 func (s_ Stream) ScheduleInRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("scheduleInRunLoop:forMode:"), aRunLoop, mode)
 }
+
 
 
 // Attempts to set the value of a given property of the receiver and returns a Boolean value that indicates whether the value is accepted by the receiver.

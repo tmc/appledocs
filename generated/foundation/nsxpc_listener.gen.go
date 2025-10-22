@@ -92,7 +92,6 @@ func NewXPCListener() XPCListener {
 
 
 
-
 // Initializes a listener in a LaunchAgent or LaunchDaemon which has a name advertised in a file.
 //
 // [Full Topic]
@@ -118,6 +117,7 @@ func (xc _XPCListenerClass) AnonymousListener() XPCListener {
 }
 
 
+
 // Sets the code signing requirement for connections to this listener.
 //
 // [Full Topic]
@@ -126,6 +126,7 @@ func (xc _XPCListenerClass) AnonymousListener() XPCListener {
 func (x_ XPCListener) SetConnectionCodeSigningRequirement(requirement string) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setConnectionCodeSigningRequirement:"), objc.String(requirement))
 }
+
 
 
 // Suspends the listener.

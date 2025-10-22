@@ -90,7 +90,6 @@ func NewNotificationQueue() NotificationQueue {
 
 
 
-
 // Initializes and returns a notification queue for the specified notification center.
 //
 // [Full Topic]
@@ -115,6 +114,7 @@ func (nc _NotificationQueueClass) DefaultQueue() NotificationQueue {
 	return rv
 }
 
+
 // Removes all notifications from the queue that match a provided notification using provided matching criteria.
 //
 // [Full Topic]
@@ -125,6 +125,7 @@ func (n_ NotificationQueue) DequeueNotificationsMatchingCoalesceMask(notificatio
 }
 
 
+
 // Adds a notification to the notification queue with a specified posting style.
 //
 // [Full Topic]
@@ -133,6 +134,7 @@ func (n_ NotificationQueue) DequeueNotificationsMatchingCoalesceMask(notificatio
 func (n_ NotificationQueue) EnqueueNotificationPostingStyle(notification INotification, postingStyle unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("enqueueNotification:postingStyle:"), notification, postingStyle)
 }
+
 
 
 // Adds a notification to the notification queue with a specified posting style, criteria for coalescing, and run loop mode.

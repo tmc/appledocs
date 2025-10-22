@@ -105,13 +105,12 @@ func NewError() Error {
 
 
 
-
 // Returns an object initialized for a given domain and code with a given dictionary.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/init(domain:code:userInfo:)
 
-func NewErrorWithDomainCodeUserInfo(domain IErrorDomain, code int, dict unsafe.Pointer) Error {
+func NewErrorWithDomainCodeUserInfo(domain ErrorDomain, code int, dict unsafe.Pointer) Error {
 	instance := getErrorClass().Alloc()
 	rv := objc.Send[Error](instance.ID, objc.Sel("initWithDomain:code:userInfo:"), domain, code, dict)
 	rv.Autorelease()
@@ -125,7 +124,7 @@ func NewErrorWithDomainCodeUserInfo(domain IErrorDomain, code int, dict unsafe.P
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/errorWithDomain:code:userInfo:
 
-func (ec _ErrorClass) ErrorWithDomainCodeUserInfo(domain IErrorDomain, code int, dict unsafe.Pointer) unsafe.Pointer {
+func (ec _ErrorClass) ErrorWithDomainCodeUserInfo(domain ErrorDomain, code int, dict unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ec.class), objc.Sel("errorWithDomain:code:userInfo:"), domain, code, dict)
 	return rv
 }
@@ -165,7 +164,7 @@ func (ec _ErrorClass) FileProviderErrorForRejectedDeletionOfItem(updatedVersion 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/setUserInfoValueProvider(forDomain:provider:)
 
-func (ec _ErrorClass) SetUserInfoValueProviderForDomainProvider(errorDomain IErrorDomain, provider unsafe.Pointer) {
+func (ec _ErrorClass) SetUserInfoValueProviderForDomainProvider(errorDomain ErrorDomain, provider unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(ec.class), objc.Sel("setUserInfoValueProviderForDomain:provider:"), errorDomain, provider)
 }
 
@@ -175,7 +174,7 @@ func (ec _ErrorClass) SetUserInfoValueProviderForDomainProvider(errorDomain IErr
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/userInfoValueProvider(forDomain:)
 
-func (ec _ErrorClass) UserInfoValueProviderForDomain(errorDomain IErrorDomain) {
+func (ec _ErrorClass) UserInfoValueProviderForDomain(errorDomain ErrorDomain) {
 	objc.Send[objc.ID](objc.ID(ec.class), objc.Sel("userInfoValueProviderForDomain:"), errorDomain)
 }
 

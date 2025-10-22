@@ -100,6 +100,7 @@ func (mc _MessagePortNameServerClass) SharedInstance() objc.ID {
 }
 
 
+
 // Returns the object registered under a given name on the local host.
 //
 // [Full Topic]
@@ -109,6 +110,7 @@ func (m_ MessagePortNameServer) PortForName(name string) Port {
 	rv := objc.Send[Port](m_.ID, objc.Sel("portForName:"), objc.String(name))
 	return rv
 }
+
 
 
 // Returns the object registered under a given name on the local host.

@@ -100,6 +100,7 @@ func (ic _InvocationClass) InvocationWithMethodSignature(sig IMethodSignature) I
 }
 
 
+
 // If the receiver hasn’t already done so, retains the target and all object arguments of the receiver and copies all of its C-string arguments and blocks. If a returnvalue has been set, this is also retained or copied.
 //
 // [Full Topic]

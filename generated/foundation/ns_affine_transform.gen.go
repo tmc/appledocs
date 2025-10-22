@@ -30,7 +30,7 @@ type _AffineTransformClass struct {
 // An interface definition for the [AffineTransform] class.
 type IAffineTransform interface {
 	objectivec.IObject
-	TransformPoint(aPoint IPoint) Point
+	TransformPoint(aPoint Point) Point
 	TranslateXByYBy(deltaX float64, deltaY float64)
 	TransformStruct() unsafe.Pointer
 	SetTransformStruct(value unsafe.Pointer)
@@ -90,15 +90,17 @@ func NewAffineTransform() AffineTransform {
 
 
 
+
 // Applies the receiver’s transform to the specified point and returns the result.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAffineTransform/transform(_:)-41p16
 
-func (a_ AffineTransform) TransformPoint(aPoint IPoint) Point {
+func (a_ AffineTransform) TransformPoint(aPoint Point) Point {
 	rv := objc.Send[Point](a_.ID, objc.Sel("transformPoint:"), aPoint)
 	return rv
 }
+
 
 
 // Applies the specified translation factors to the receiver’s transformation matrix.

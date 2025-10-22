@@ -32,7 +32,7 @@ type IMutableAttributedString interface {
 	AppendAttributedString(attrString IAttributedString)
 	AppendLocalizedFormat(format IAttributedString)
 	InsertAttributedStringAtIndex(attrString IAttributedString, loc uint)
-	ReplaceCharactersInRangeWithAttributedString(range_ IRange, attrString IAttributedString)
+	ReplaceCharactersInRangeWithAttributedString(range_ Range, attrString IAttributedString)
 	SetAttributedString(attrString IAttributedString)
 	MutableString() NSMutableString
 	SetMutableString(value IMutableString)
@@ -94,6 +94,7 @@ func NewMutableAttributedString() MutableAttributedString {
 
 
 
+
 // Adds the characters and attributes of a given attributed string to the end of the receiver.
 //
 // [Full Topic]
@@ -104,12 +105,14 @@ func (m_ MutableAttributedString) AppendAttributedString(attrString IAttributedS
 }
 
 
+
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableAttributedString/appendLocalizedFormat:
 
 func (m_ MutableAttributedString) AppendLocalizedFormat(format IAttributedString) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("appendLocalizedFormat:"), format)
 }
+
 
 
 // Inserts the characters and attributes of the given attributed string into the receiver at the given index.
@@ -122,14 +125,16 @@ func (m_ MutableAttributedString) InsertAttributedStringAtIndex(attrString IAttr
 }
 
 
+
 // Replaces the characters and attributes in a given range with the characters and attributes of the given attributed string.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableAttributedString/replaceCharacters(in:with:)-1uaw7
 
-func (m_ MutableAttributedString) ReplaceCharactersInRangeWithAttributedString(range_ IRange, attrString IAttributedString) {
+func (m_ MutableAttributedString) ReplaceCharactersInRangeWithAttributedString(range_ Range, attrString IAttributedString) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("replaceCharactersInRange:withAttributedString:"), range_, attrString)
 }
+
 
 
 // Replaces the receiver’s entire contents with the characters and attributes of the given attributed string.

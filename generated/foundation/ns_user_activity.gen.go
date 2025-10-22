@@ -161,7 +161,6 @@ func NewUserActivity() UserActivity {
 
 
 
-
 // Creates a user activity object with the specified type.
 //
 // [Full Topic]
@@ -196,6 +195,7 @@ func (uc _UserActivityClass) DeleteSavedUserActivitiesWithPersistentIdentifiersC
 }
 
 
+
 // Adds the contents of the specified dictionary to the user info dictionary.
 //
 // [Full Topic]
@@ -204,6 +204,7 @@ func (uc _UserActivityClass) DeleteSavedUserActivitiesWithPersistentIdentifiersC
 func (u_ UserActivity) AddUserInfoEntriesFromDictionary(otherDictionary objectivec.IObject) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("addUserInfoEntriesFromDictionary:"), otherDictionary)
 }
+
 
 
 // Marks the activity as currently in use by the user.
@@ -216,6 +217,7 @@ func (u_ UserActivity) BecomeCurrent() {
 }
 
 
+
 // Requests streams back to the originating app.
 //
 // [Full Topic]
@@ -226,6 +228,7 @@ func (u_ UserActivity) GetContinuationStreamsWithCompletionHandler(completionHan
 }
 
 
+
 // Invalidates an activity and marks it as no longer eligible for continuation.
 //
 // [Full Topic]
@@ -234,6 +237,7 @@ func (u_ UserActivity) GetContinuationStreamsWithCompletionHandler(completionHan
 func (u_ UserActivity) Invalidate() {
 	objc.Send[objc.ID](u_.ID, objc.Sel("invalidate"))
 }
+
 
 
 // Marks this activity object as inactive without invalidating it.

@@ -109,7 +109,6 @@ func NewNetService() NetService {
 
 
 
-
 // Returns the receiver, initialized as a network service of a given type and sets the initial host information.
 //
 // [Full Topic]
@@ -121,7 +120,6 @@ func NewNetServiceWithDomainTypeName(domain string, type_ string, name string) N
 	rv.Autorelease()
 	return rv
 }
-
 
 
 
@@ -161,6 +159,7 @@ func (nc _NetServiceClass) DictionaryFromTXTRecordData(txtData IData) unsafe.Poi
 }
 
 
+
 // Creates a pair of input and output streams for the receiver and returns a Boolean value that indicates whether they were retrieved successfully.
 //
 // [Full Topic]
@@ -170,6 +169,7 @@ func (n_ NetService) GetInputStreamOutputStream(inputStream IInputStream, output
 	rv := objc.Send[bool](n_.ID, objc.Sel("getInputStream:outputStream:"), inputStream, outputStream)
 	return rv
 }
+
 
 
 // Attempts to advertise the receiver’s on the network.
@@ -182,6 +182,7 @@ func (n_ NetService) Publish() {
 }
 
 
+
 // Attempts to advertise the receiver on the network, with the given options.
 //
 // [Full Topic]
@@ -190,6 +191,7 @@ func (n_ NetService) Publish() {
 func (n_ NetService) PublishWithOptions(options NetServiceOptions) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("publishWithOptions:"), options)
 }
+
 
 
 // Removes the service from the given run loop for a given mode.
@@ -202,6 +204,7 @@ func (n_ NetService) RemoveFromRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMod
 }
 
 
+
 // Starts a resolve process for the service.
 //
 // [Full Topic]
@@ -210,6 +213,7 @@ func (n_ NetService) RemoveFromRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMod
 func (n_ NetService) Resolve() {
 	objc.Send[objc.ID](n_.ID, objc.Sel("resolve"))
 }
+
 
 
 // Starts a resolve process of a finite duration for the service.
@@ -222,6 +226,7 @@ func (n_ NetService) ResolveWithTimeout(timeout ITimeInterval) {
 }
 
 
+
 // Adds the service to the specified run loop.
 //
 // [Full Topic]
@@ -230,6 +235,7 @@ func (n_ NetService) ResolveWithTimeout(timeout ITimeInterval) {
 func (n_ NetService) ScheduleInRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("scheduleInRunLoop:forMode:"), aRunLoop, mode)
 }
+
 
 
 // Sets the TXT record for the receiver, and returns a Boolean value that indicates whether the operation was successful.
@@ -243,6 +249,7 @@ func (n_ NetService) SetTXTRecordData(recordData IData) bool {
 }
 
 
+
 // Starts the monitoring of TXT-record updates for the receiver.
 //
 // [Full Topic]
@@ -251,6 +258,7 @@ func (n_ NetService) SetTXTRecordData(recordData IData) bool {
 func (n_ NetService) StartMonitoring() {
 	objc.Send[objc.ID](n_.ID, objc.Sel("startMonitoring"))
 }
+
 
 
 // Halts a currently running attempt to publish or resolve a service.
@@ -263,6 +271,7 @@ func (n_ NetService) Stop() {
 }
 
 
+
 // Stops the monitoring of TXT-record updates for the receiver.
 //
 // [Full Topic]
@@ -271,6 +280,7 @@ func (n_ NetService) Stop() {
 func (n_ NetService) StopMonitoring() {
 	objc.Send[objc.ID](n_.ID, objc.Sel("stopMonitoring"))
 }
+
 
 
 // Returns the TXT record for the receiver.

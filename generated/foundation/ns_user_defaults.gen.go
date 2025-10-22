@@ -92,7 +92,6 @@ func NewUserDefaults() UserDefaults {
 
 
 
-
 // Creates a user defaults object initialized with the defaults for the specified database name.
 //
 // [Full Topic]
@@ -117,6 +116,7 @@ func (uc _UserDefaultsClass) StandardUserDefaults() UserDefaults {
 	return rv
 }
 
+
 // Sets the value of the specified default key to the specified URL.
 //
 // [Full Topic]
@@ -127,6 +127,7 @@ func (u_ UserDefaults) SetURLForKey(url IURL, defaultName string) {
 }
 
 
+
 // Sets the value of the specified default key.
 //
 // [Full Topic]
@@ -135,6 +136,7 @@ func (u_ UserDefaults) SetURLForKey(url IURL, defaultName string) {
 func (u_ UserDefaults) SetObjectForKey(value objectivec.IObject, defaultName string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setObject:forKey:"), value, objc.String(defaultName))
 }
+
 
 
 // Returns the string associated with the specified key.

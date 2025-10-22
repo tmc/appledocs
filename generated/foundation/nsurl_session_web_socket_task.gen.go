@@ -99,6 +99,7 @@ func NewURLSessionWebSocketTask() URLSessionWebSocketTask {
 
 
 
+
 // Reads a WebSocket message once all the frames of the message are available.
 //
 // [Full Topic]
@@ -107,6 +108,7 @@ func NewURLSessionWebSocketTask() URLSessionWebSocketTask {
 func (u_ URLSessionWebSocketTask) ReceiveMessageWithCompletionHandler(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("receiveMessageWithCompletionHandler:"), completionHandler)
 }
+
 
 
 // Sends a WebSocket message, receiving the result in a completion handler.
@@ -119,6 +121,7 @@ func (u_ URLSessionWebSocketTask) SendMessageCompletionHandler(message IURLSessi
 }
 
 
+
 // Sends a close frame with the given close code and optional close reason.
 //
 // [Full Topic]
@@ -127,6 +130,7 @@ func (u_ URLSessionWebSocketTask) SendMessageCompletionHandler(message IURLSessi
 func (u_ URLSessionWebSocketTask) CancelWithCloseCodeReason(closeCode IURLSessionWebSocketCloseCode, reason IData) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("cancelWithCloseCode:reason:"), closeCode, reason)
 }
+
 
 
 // Sends a ping frame from the client side, with a closure to receive the pong from the server endpoint.

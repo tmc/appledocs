@@ -108,7 +108,6 @@ func NewBundleResourceRequest() BundleResourceRequest {
 
 
 
-
 // Initializes a resource request for managing the on-demand resources marked with any of the set of specified tags. The managed resources are loaded into the main bundle.
 //
 // [Full Topic]
@@ -123,6 +122,7 @@ func NewBundleResourceRequestWithTags(tags unsafe.Pointer) BundleResourceRequest
 
 
 
+
 // Requests access to the resources marked with the managed tags. If any of the resources are not on the device, they are requested from the App Store.
 //
 // [Full Topic]
@@ -133,6 +133,7 @@ func (b_ BundleResourceRequest) BeginAccessingResourcesWithCompletionHandler(com
 }
 
 
+
 // Checks whether the resources marked with the tags managed by the request are already on the device. If all of the resources are on the device, you can begin accessing those resources.
 //
 // [Full Topic]
@@ -141,6 +142,7 @@ func (b_ BundleResourceRequest) BeginAccessingResourcesWithCompletionHandler(com
 func (b_ BundleResourceRequest) ConditionallyBeginAccessingResourcesWithCompletionHandler(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("conditionallyBeginAccessingResourcesWithCompletionHandler:"), completionHandler)
 }
+
 
 
 // Informs the system that you have finished accessing the resources marked with the tags managed by the request.

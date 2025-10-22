@@ -91,7 +91,6 @@ func NewMeasurement() Measurement {
 
 
 
-
 // Initializes a new measurement with a specified double-precision floating-point value and unit.
 //
 // [Full Topic]
@@ -103,6 +102,7 @@ func NewMeasurementWithDoubleValueUnit(doubleValue float64, unit unsafe.Pointer)
 	rv.Autorelease()
 	return rv
 }
+
 
 
 

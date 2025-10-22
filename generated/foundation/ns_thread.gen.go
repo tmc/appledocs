@@ -111,7 +111,6 @@ func NewThread() Thread {
 
 
 
-
 // Returns an object initialized with the given arguments.
 //
 // [Full Topic]
@@ -247,6 +246,7 @@ func (tc _ThreadClass) MainThread() Thread {
 	return rv
 }
 
+
 // Changes the cancelled state of the receiver to indicate that it should exit.
 //
 // [Full Topic]
@@ -257,6 +257,7 @@ func (t_ Thread) Cancel() {
 }
 
 
+
 // The main entry point routine for the thread.
 //
 // [Full Topic]
@@ -265,6 +266,7 @@ func (t_ Thread) Cancel() {
 func (t_ Thread) Main() {
 	objc.Send[objc.ID](t_.ID, objc.Sel("main"))
 }
+
 
 
 // Starts the receiver.

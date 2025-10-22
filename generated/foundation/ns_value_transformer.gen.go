@@ -89,7 +89,6 @@ func NewValueTransformer() ValueTransformer {
 
 
 
-
 // Returns the value transformer identified by a given identifier.
 //
 // [Full Topic]
@@ -156,6 +155,7 @@ func (vc _ValueTransformerClass) ValueTransformerNames() []string {
 }
 
 
+
 // Returns the result of the reverse transformation of a given value.
 //
 // [Full Topic]
@@ -165,6 +165,7 @@ func (v_ ValueTransformer) ReverseTransformedValue(value objectivec.IObject) obj
 	rv := objc.Send[objc.ID](v_.ID, objc.Sel("reverseTransformedValue:"), value)
 	return rv
 }
+
 
 
 // Returns the result of transforming a given value.

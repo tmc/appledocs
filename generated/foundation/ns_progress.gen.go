@@ -147,7 +147,6 @@ func NewProgress() Progress {
 
 
 
-
 // Creates a new progress instance.
 //
 // [Full Topic]
@@ -159,7 +158,6 @@ func NewProgressWithParentUserInfo(parentProgressOrNil IProgress, userInfoOrNil 
 	rv.Autorelease()
 	return rv
 }
-
 
 
 
@@ -218,6 +216,7 @@ func (pc _ProgressClass) RemoveSubscriber(subscriber objectivec.IObject) {
 }
 
 
+
 // Retrieves the current thread’s progress object, executes the specified block, and increments the progress object by the specified units of work.
 //
 // [Full Topic]
@@ -226,6 +225,7 @@ func (pc _ProgressClass) RemoveSubscriber(subscriber objectivec.IObject) {
 func (p_ Progress) PerformAsCurrentWithPendingUnitCountUsingBlock(unitCount unsafe.Pointer, work unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("performAsCurrentWithPendingUnitCount:usingBlock:"), unitCount, work)
 }
+
 
 
 // Adds a process object as a suboperation of a progress tree.
@@ -238,6 +238,7 @@ func (p_ Progress) AddChildWithPendingUnitCount(child IProgress, inUnitCount uns
 }
 
 
+
 // Sets the progress object as the current object of the current thread, and assigns the amount of work for the next suboperation progress object to perform.
 //
 // [Full Topic]
@@ -246,6 +247,7 @@ func (p_ Progress) AddChildWithPendingUnitCount(child IProgress, inUnitCount uns
 func (p_ Progress) BecomeCurrentWithPendingUnitCount(unitCount unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("becomeCurrentWithPendingUnitCount:"), unitCount)
 }
+
 
 
 // Cancels progress tracking.
@@ -258,6 +260,7 @@ func (p_ Progress) Cancel() {
 }
 
 
+
 // Pauses progress tracking.
 //
 // [Full Topic]
@@ -268,6 +271,7 @@ func (p_ Progress) Pause() {
 }
 
 
+
 // Restores the previous progress object to become the current progress object on the thread.
 //
 // [Full Topic]
@@ -276,6 +280,7 @@ func (p_ Progress) Pause() {
 func (p_ Progress) ResignCurrent() {
 	objc.Send[objc.ID](p_.ID, objc.Sel("resignCurrent"))
 }
+
 
 
 // Resumes progress tracking.

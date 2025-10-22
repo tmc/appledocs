@@ -119,6 +119,7 @@ func NewMetadataQuery() MetadataQuery {
 
 
 
+
 // Enumerates the current set of results using the given block.
 //
 // [Full Topic]
@@ -127,6 +128,7 @@ func NewMetadataQuery() MetadataQuery {
 func (m_ MetadataQuery) EnumerateResultsUsingBlock(block unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("enumerateResultsUsingBlock:"), block)
 }
+
 
 
 // Returns the query result at a specific index.

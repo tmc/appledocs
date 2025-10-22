@@ -31,7 +31,7 @@ type _IndexSetClass struct {
 type IIndexSet interface {
 	objectivec.IObject
 	EnumerateIndexesUsingBlock(block unsafe.Pointer)
-	EnumerateIndexesInRangeOptionsUsingBlock(range_ IRange, opts EnumerationOptions, block unsafe.Pointer)
+	EnumerateIndexesInRangeOptionsUsingBlock(range_ Range, opts EnumerationOptions, block unsafe.Pointer)
 	EnumerateIndexesWithOptionsUsingBlock(opts EnumerationOptions, block unsafe.Pointer)
 	Count() int
 	SetCount(value int)
@@ -96,7 +96,6 @@ func NewIndexSet() IndexSet {
 
 
 
-
 // Initializes an allocated object with an index.
 //
 // [Full Topic]
@@ -111,6 +110,7 @@ func NewIndexSetWithIndex(value uint) IndexSet {
 
 
 
+
 // Executes a given Block using each object in the index set.
 //
 // [Full Topic]
@@ -121,14 +121,16 @@ func (i_ IndexSet) EnumerateIndexesUsingBlock(block unsafe.Pointer) {
 }
 
 
+
 // Executes a given Block using the indexes in the specified range, using the specified enumeration options.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSet/enumerate(in:options:using:)
 
-func (i_ IndexSet) EnumerateIndexesInRangeOptionsUsingBlock(range_ IRange, opts EnumerationOptions, block unsafe.Pointer) {
+func (i_ IndexSet) EnumerateIndexesInRangeOptionsUsingBlock(range_ Range, opts EnumerationOptions, block unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("enumerateIndexesInRange:options:usingBlock:"), range_, opts, block)
 }
+
 
 
 // Executes a given Block over the index set’s indexes, using the specified enumeration options.

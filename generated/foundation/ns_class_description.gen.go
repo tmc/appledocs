@@ -93,7 +93,6 @@ func NewClassDescription() ClassDescription {
 
 
 
-
 // Returns the class description for a given class.
 //
 // [Full Topic]

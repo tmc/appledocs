@@ -103,6 +103,7 @@ func (nc _NotificationCenterClass) DefaultCenter() NotificationCenter {
 	return rv
 }
 
+
 // Adds an entry to the notification center to call the provided selector with the notification.
 //
 // [Full Topic]
@@ -111,6 +112,7 @@ func (nc _NotificationCenterClass) DefaultCenter() NotificationCenter {
 func (n_ NotificationCenter) AddObserverSelectorNameObject(observer objectivec.IObject, aSelector objc.SEL, aName INotificationName, anObject objectivec.IObject) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("addObserver:selector:name:object:"), observer, aSelector, aName, anObject)
 }
+
 
 
 // Adds an entry to the notification center to receive notifications that passed to the provided block.
@@ -124,6 +126,7 @@ func (n_ NotificationCenter) AddObserverForNameObjectQueueUsingBlock(name INotif
 }
 
 
+
 // Posts a given notification to the notification center.
 //
 // [Full Topic]
@@ -132,6 +135,7 @@ func (n_ NotificationCenter) AddObserverForNameObjectQueueUsingBlock(name INotif
 func (n_ NotificationCenter) PostNotification(notification INotification) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("postNotification:"), notification)
 }
+
 
 
 // Creates a notification with a given name and sender and posts it to the notification center.
@@ -144,6 +148,7 @@ func (n_ NotificationCenter) PostNotificationNameObject(aName INotificationName,
 }
 
 
+
 // Creates a notification with a given name, sender, and information and posts it to the notification center.
 //
 // [Full Topic]
@@ -154,6 +159,7 @@ func (n_ NotificationCenter) PostNotificationNameObjectUserInfo(aName INotificat
 }
 
 
+
 // Removes all entries specifying an observer from the notification center’s dispatch table.
 //
 // [Full Topic]
@@ -162,6 +168,7 @@ func (n_ NotificationCenter) PostNotificationNameObjectUserInfo(aName INotificat
 func (n_ NotificationCenter) RemoveObserver(observer objectivec.IObject) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("removeObserver:"), observer)
 }
+
 
 
 // Removes matching entries from the notification center’s dispatch table.

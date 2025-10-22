@@ -87,7 +87,6 @@ func NewFileSecurity() FileSecurity {
 
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileSecurity/init(coder:)
 

@@ -93,7 +93,6 @@ func NewDateInterval() DateInterval {
 
 
 
-
 // Initializes a date interval with a given start date and duration.
 //
 // [Full Topic]
@@ -105,6 +104,7 @@ func NewDateIntervalWithStartDateDuration(startDate IDate, duration ITimeInterva
 	rv.Autorelease()
 	return rv
 }
+
 
 
 

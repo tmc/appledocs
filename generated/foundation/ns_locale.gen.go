@@ -121,7 +121,6 @@ func NewLocale() Locale {
 
 
 
-
 // Returns a locale initialized from data in the given unarchiver.
 //
 // [Full Topic]
@@ -133,7 +132,6 @@ func NewLocaleWithCoder(coder ICoder) Locale {
 	rv.Autorelease()
 	return rv
 }
-
 
 
 
@@ -245,6 +243,7 @@ func (lc _LocaleClass) SystemLocale() Locale {
 	return rv
 }
 
+
 // Returns the display name for the given locale component value.
 //
 // [Full Topic]
@@ -254,6 +253,7 @@ func (l_ Locale) DisplayNameForKeyValue(key unsafe.Pointer, value objectivec.IOb
 	rv := objc.Send[String](l_.ID, objc.Sel("displayNameForKey:value:"), key, value)
 	return rv
 }
+
 
 
 // Returns the localized string for the specified collator identifier.
@@ -267,6 +267,7 @@ func (l_ Locale) LocalizedStringForCollatorIdentifier(collatorIdentifier string)
 }
 
 
+
 // Returns the localized string for a country or region code.
 //
 // [Full Topic]
@@ -276,6 +277,7 @@ func (l_ Locale) LocalizedStringForCountryCode(countryCode string) String {
 	rv := objc.Send[String](l_.ID, objc.Sel("localizedStringForCountryCode:"), objc.String(countryCode))
 	return rv
 }
+
 
 
 // Returns the localized string for the specified language code.
@@ -289,6 +291,7 @@ func (l_ Locale) LocalizedStringForLanguageCode(languageCode string) String {
 }
 
 
+
 // Returns the localized string for the specified locale identifier.
 //
 // [Full Topic]
@@ -298,6 +301,7 @@ func (l_ Locale) LocalizedStringForLocaleIdentifier(localeIdentifier string) Str
 	rv := objc.Send[String](l_.ID, objc.Sel("localizedStringForLocaleIdentifier:"), objc.String(localeIdentifier))
 	return rv
 }
+
 
 
 // Returns the value of the component corresponding to the specified key.

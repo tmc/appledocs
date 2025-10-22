@@ -30,9 +30,9 @@ type _DirectoryEnumeratorClass struct {
 type IDirectoryEnumerator interface {
 	IEnumerator
 	DirectoryAttributes() FileAttributeKey
-	SetDirectoryAttributes(value IFileAttributeKey)
+	SetDirectoryAttributes(value FileAttributeKey)
 	FileAttributes() FileAttributeKey
-	SetFileAttributes(value IFileAttributeKey)
+	SetFileAttributes(value FileAttributeKey)
 	IsEnumeratingDirectoryPostOrder() bool
 	SetIsEnumeratingDirectoryPostOrder(value bool)
 	Level() int
@@ -111,7 +111,7 @@ func (d_ DirectoryEnumerator) DirectoryAttributes() FileAttributeKey {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filemanager/directoryenumerator/directoryattributes
 
-func (d_ DirectoryEnumerator) SetDirectoryAttributes(value IFileAttributeKey) {
+func (d_ DirectoryEnumerator) SetDirectoryAttributes(value FileAttributeKey) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDirectoryAttributes:"), value)
 }
 
@@ -132,7 +132,7 @@ func (d_ DirectoryEnumerator) FileAttributes() FileAttributeKey {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filemanager/directoryenumerator/fileattributes
 
-func (d_ DirectoryEnumerator) SetFileAttributes(value IFileAttributeKey) {
+func (d_ DirectoryEnumerator) SetFileAttributes(value FileAttributeKey) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setFileAttributes:"), value)
 }
 

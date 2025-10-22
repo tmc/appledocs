@@ -110,6 +110,7 @@ func NewScriptCommand() ScriptCommand {
 
 
 
+
 // Overridden by subclasses to provide a default implementation for the command represented by the receiver.
 //
 // [Full Topic]

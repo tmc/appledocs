@@ -103,6 +103,7 @@ func NewOrderedSet() OrderedSet {
 
 
 
+
 // Returns a string that represents the contents of the ordered set, formatted as a property list.
 //
 // [Full Topic]
@@ -112,6 +113,7 @@ func (o_ OrderedSet) DescriptionWithLocaleIndent(locale objectivec.IObject, leve
 	rv := objc.Send[String](o_.ID, objc.Sel("descriptionWithLocale:indent:"), locale, level)
 	return rv
 }
+
 
 
 // Executes a given block using each object in the set, using the specified enumeration options.
@@ -124,6 +126,7 @@ func (o_ OrderedSet) EnumerateObjectsWithOptionsUsingBlock(opts EnumerationOptio
 }
 
 
+
 // Returns the index of the object in the ordered set that passes a test in a given block.
 //
 // [Full Topic]
@@ -133,6 +136,7 @@ func (o_ OrderedSet) IndexOfObjectPassingTest(predicate unsafe.Pointer) uint {
 	rv := objc.Send[uint](o_.ID, objc.Sel("indexOfObjectPassingTest:"), predicate)
 	return rv
 }
+
 
 
 // Returns the object at the specified index of the set.

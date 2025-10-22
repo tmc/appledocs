@@ -91,7 +91,6 @@ func NewDistantObject() DistantObject {
 
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistantObject/initWithCoder:
 
@@ -101,7 +100,6 @@ func NewDistantObjectWithCoder(inCoder ICoder) DistantObject {
 	rv.Autorelease()
 	return rv
 }
-
 
 
 
@@ -116,7 +114,6 @@ func NewDistantObjectWithLocalConnection(target objectivec.IObject, connection I
 	rv.Autorelease()
 	return rv
 }
-
 
 
 
@@ -154,6 +151,7 @@ func (dc _DistantObjectClass) ProxyWithTargetConnection(target objectivec.IObjec
 	rv := objc.Send[objc.ID](objc.ID(dc.class), objc.Sel("proxyWithTarget:connection:"), target, connection)
 	return rv
 }
+
 
 
 // Sets the methods known to be handled by the receiver to those in a given protocol.

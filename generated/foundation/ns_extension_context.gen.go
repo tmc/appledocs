@@ -107,6 +107,7 @@ func NewExtensionContext() ExtensionContext {
 
 
 
+
 // Tells the host app to cancel the app extension request, with a supplied error.
 //
 // [Full Topic]
@@ -115,6 +116,7 @@ func NewExtensionContext() ExtensionContext {
 func (e_ ExtensionContext) CancelRequestWithError(error_ IError) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("cancelRequestWithError:"), error_)
 }
+
 
 
 // Tells the host app to complete the app extension request with an array of result items.
@@ -127,6 +129,7 @@ func (e_ ExtensionContext) CompleteRequestReturningItemsCompletionHandler(items 
 }
 
 
+
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtensionContext/completeRequest(withBroadcast:setupInfo:)
 
@@ -135,12 +138,14 @@ func (e_ ExtensionContext) CompleteRequestWithBroadcastURLSetupInfo(broadcastURL
 }
 
 
+
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtensionContext/dismissNotificationContentExtension()
 
 func (e_ ExtensionContext) DismissNotificationContentExtension() {
 	objc.Send[objc.ID](e_.ID, objc.Sel("dismissNotificationContentExtension"))
 }
+
 
 
 // Returns a human-readable string describing the data that SiriKit displays to the user when you handle an intent.
@@ -154,12 +159,14 @@ func (e_ ExtensionContext) InterfaceParametersDescription() String {
 }
 
 
+
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtensionContext/loadBroadcastingApplicationInfo(completion:)
 
 func (e_ ExtensionContext) LoadBroadcastingApplicationInfoWithCompletion(handler unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("loadBroadcastingApplicationInfoWithCompletion:"), handler)
 }
+
 
 
 // Tells the system that the Notification Content app extension stopped playing a media file.
@@ -172,6 +179,7 @@ func (e_ ExtensionContext) MediaPlayingPaused() {
 }
 
 
+
 // Tells the system that the Notification Content app extension began playing a media file.
 //
 // [Full Topic]
@@ -180,6 +188,7 @@ func (e_ ExtensionContext) MediaPlayingPaused() {
 func (e_ ExtensionContext) MediaPlayingStarted() {
 	objc.Send[objc.ID](e_.ID, objc.Sel("mediaPlayingStarted"))
 }
+
 
 
 // Asks the system to open a URL on behalf of the currently running app extension.
@@ -192,12 +201,14 @@ func (e_ ExtensionContext) OpenURLCompletionHandler(URL IURL, completionHandler 
 }
 
 
+
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtensionContext/performNotificationDefaultAction()
 
 func (e_ ExtensionContext) PerformNotificationDefaultAction() {
 	objc.Send[objc.ID](e_.ID, objc.Sel("performNotificationDefaultAction"))
 }
+
 
 
 // Returns the maximum size for the specified widget display mode.

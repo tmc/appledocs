@@ -123,7 +123,6 @@ func NewAppleEventDescriptor() AppleEventDescriptor {
 
 
 
-
 // Initializes a newly allocated instance as a descriptor for the specified Carbon structure.
 //
 // [Full Topic]
@@ -171,6 +170,7 @@ func (ac _AppleEventDescriptorClass) NullDescriptor() AppleEventDescriptor {
 }
 
 
+
 // Returns the descriptor at the specified (one-based) position in the receiving descriptor list.
 //
 // [Full Topic]
@@ -180,6 +180,7 @@ func (a_ AppleEventDescriptor) DescriptorAtIndex(index int) AppleEventDescriptor
 	rv := objc.Send[AppleEventDescriptor](a_.ID, objc.Sel("descriptorAtIndex:"), index)
 	return rv
 }
+
 
 
 // Returns a descriptor for the receiver’s Apple event attribute identified by the specified keyword.
@@ -193,6 +194,7 @@ func (a_ AppleEventDescriptor) AttributeDescriptorForKeyword(keyword unsafe.Poin
 }
 
 
+
 // Inserts a descriptor at the specified (one-based) position in the receiving descriptor list, replacing the existing descriptor, if any, at that position.
 //
 // [Full Topic]
@@ -201,6 +203,7 @@ func (a_ AppleEventDescriptor) AttributeDescriptorForKeyword(keyword unsafe.Poin
 func (a_ AppleEventDescriptor) InsertDescriptorAtIndex(descriptor IAppleEventDescriptor, index int) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("insertDescriptor:atIndex:"), descriptor, index)
 }
+
 
 
 // Removes the receiver’s descriptor identified by the specified keyword.

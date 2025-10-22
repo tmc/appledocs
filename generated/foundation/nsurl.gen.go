@@ -41,21 +41,21 @@ type IURL interface {
 	CheckResourceIsReachableAndReturnError(error_ IError) bool
 	FileReferenceURL() URL
 	GetFileSystemRepresentationMaxLength(buffer unsafe.Pointer, maxBufferLength uint) bool
-	GetPromisedItemResourceValueForKeyError(value objectivec.IObject, key IURLResourceKey, error_ IError) bool
-	GetResourceValueForKeyError(value objectivec.IObject, key IURLResourceKey, error_ IError) bool
+	GetPromisedItemResourceValueForKeyError(value objectivec.IObject, key URLResourceKey, error_ IError) bool
+	GetResourceValueForKeyError(value objectivec.IObject, key URLResourceKey, error_ IError) bool
 	IsFileReferenceURL() bool
 	LoadResourceDataNotifyingClientUsingCache(client objectivec.IObject, shouldUseCache bool)
 	PromisedItemResourceValuesForKeysError(keys []string, error_ IError) unsafe.Pointer
 	PropertyForKey(propertyKey string) objc.ID
 	RemoveAllCachedResourceValues()
-	RemoveCachedResourceValueForKey(key IURLResourceKey)
+	RemoveCachedResourceValueForKey(key URLResourceKey)
 	ResourceDataUsingCache(shouldUseCache bool) Data
 	ResourceValuesForKeysError(keys []string, error_ IError) unsafe.Pointer
 	SetPropertyForKey(property objectivec.IObject, propertyKey string) bool
 	SetResourceData(data IData) bool
-	SetResourceValueForKeyError(value objectivec.IObject, key IURLResourceKey, error_ IError) bool
+	SetResourceValueForKeyError(value objectivec.IObject, key URLResourceKey, error_ IError) bool
 	SetResourceValuesError(keyedValues unsafe.Pointer, error_ IError) bool
-	SetTemporaryResourceValueForKey(value objectivec.IObject, key IURLResourceKey)
+	SetTemporaryResourceValueForKey(value objectivec.IObject, key URLResourceKey)
 	StartAccessingSecurityScopedResource() bool
 	StopAccessingSecurityScopedResource()
 	AbsoluteString() string
@@ -157,7 +157,6 @@ func NewURL() URL {
 
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(absoluteURLWithDataRepresentation:relativeTo:)
 
@@ -170,7 +169,6 @@ func NewURLAbsoluteURLWithDataRepresentationRelativeToURL(data IData, baseURL IU
 
 
 
-
 // Returns a new URL made by resolving the alias file at .
 //
 // [Full Topic]
@@ -180,7 +178,6 @@ func NewURLByResolvingAliasFileAtURLOptionsError(url IURL, options URLBookmarkRe
 	rv := objc.Send[URL](objc.ID(getURLClass().class), objc.Sel("URLByResolvingAliasFileAtURL:options:error:"), url, options, error_)
 	return rv
 }
-
 
 
 
@@ -198,7 +195,6 @@ func NewURLByResolvingBookmarkDataOptionsRelativeToURLBookmarkDataIsStaleError(b
 
 
 
-
 // Initializes a URL object with a C string representing a local file system path.
 //
 // [Full Topic]
@@ -210,7 +206,6 @@ func NewURLFileURLWithFileSystemRepresentationIsDirectoryRelativeToURL(path unsa
 	rv.Autorelease()
 	return rv
 }
-
 
 
 
@@ -228,7 +223,6 @@ func NewURLFileURLWithPath(path string) URL {
 
 
 
-
 // Initializes a newly created NSURL referencing the local file or directory at .
 //
 // [Full Topic]
@@ -240,7 +234,6 @@ func NewURLFileURLWithPathIsDirectory(path string, isDir bool) URL {
 	rv.Autorelease()
 	return rv
 }
-
 
 
 
@@ -256,7 +249,6 @@ func NewURLFileURLWithPathIsDirectoryRelativeToURL(path string, isDir bool, base
 
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(fileURLWithPath:relativeTo:)
 
@@ -269,7 +261,6 @@ func NewURLFileURLWithPathRelativeToURL(path string, baseURL IURL) URL {
 
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(dataRepresentation:relativeTo:)
 
@@ -279,7 +270,6 @@ func NewURLWithDataRepresentationRelativeToURL(data IData, baseURL IURL) URL {
 	rv.Autorelease()
 	return rv
 }
-
 
 
 
@@ -297,7 +287,6 @@ func NewURLWithSchemeHostPath(scheme string, host string, path string) URL {
 
 
 
-
 // Initializes an NSURL object with a provided URL string.
 //
 // [Full Topic]
@@ -312,7 +301,6 @@ func NewURLWithString(URLString string) URL {
 
 
 
-
 // Creates an instance from the provided string, optionally IDNA- and percent-encoding any invalid characters.
 //
 // [Full Topic]
@@ -324,7 +312,6 @@ func NewURLWithStringEncodingInvalidCharacters(URLString string, encodingInvalid
 	rv.Autorelease()
 	return rv
 }
-
 
 
 
@@ -510,6 +497,7 @@ func (uc _URLClass) WriteBookmarkDataToURLOptionsError(bookmarkData IData, bookm
 }
 
 
+
 // Returns a URL handle to service the receiver.
 //
 // [Full Topic]
@@ -519,6 +507,7 @@ func (u_ URL) URLHandleUsingCache(shouldUseCache bool) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("URLHandleUsingCache:"), shouldUseCache)
 	return rv
 }
+
 
 
 // Returns a new URL by appending a path component to the original URL.
@@ -532,6 +521,7 @@ func (u_ URL) URLByAppendingPathComponent(pathComponent string) URL {
 }
 
 
+
 // Returns a URL by appending the specified path component with the file extension for a uniform type identifier.
 //
 // [Full Topic]
@@ -541,6 +531,7 @@ func (u_ URL) URLByAppendingPathComponentConformingToType(partialName string, co
 	rv := objc.Send[URL](u_.ID, objc.Sel("URLByAppendingPathComponent:conformingToType:"), objc.String(partialName), contentType)
 	return rv
 }
+
 
 
 // Returns a new URL by appending a path component to the original URL, along with a trailing slash if the component is a directory.
@@ -554,6 +545,7 @@ func (u_ URL) URLByAppendingPathComponentIsDirectory(pathComponent string, isDir
 }
 
 
+
 // Returns a new URL by appending a path extension to the original URL.
 //
 // [Full Topic]
@@ -563,6 +555,7 @@ func (u_ URL) URLByAppendingPathExtension(pathExtension string) URL {
 	rv := objc.Send[URL](u_.ID, objc.Sel("URLByAppendingPathExtension:"), objc.String(pathExtension))
 	return rv
 }
+
 
 
 // Returns a URL by appending the path extension for a uniform type identifier.
@@ -576,6 +569,7 @@ func (u_ URL) URLByAppendingPathExtensionForType(contentType unsafe.Pointer) URL
 }
 
 
+
 // Returns a bookmark for the URL, created with specified options and resource values.
 //
 // [Full Topic]
@@ -585,6 +579,7 @@ func (u_ URL) BookmarkDataWithOptionsIncludingResourceValuesForKeysRelativeToURL
 	rv := objc.Send[Data](u_.ID, objc.Sel("bookmarkDataWithOptions:includingResourceValuesForKeys:relativeToURL:error:"), options, keys, relativeURL, error_)
 	return rv
 }
+
 
 
 // Returns whether the promised item can be reached.
@@ -598,6 +593,7 @@ func (u_ URL) CheckPromisedItemIsReachableAndReturnError(error_ IError) bool {
 }
 
 
+
 // Returns whether the resource pointed to by a file URL can be reached.
 //
 // [Full Topic]
@@ -607,6 +603,7 @@ func (u_ URL) CheckResourceIsReachableAndReturnError(error_ IError) bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("checkResourceIsReachableAndReturnError:"), error_)
 	return rv
 }
+
 
 
 // Returns a new file reference URL that points to the same resource as the receiver.
@@ -620,6 +617,7 @@ func (u_ URL) FileReferenceURL() URL {
 }
 
 
+
 // Fills the provided buffer with a C string representing a local file system path.
 //
 // [Full Topic]
@@ -631,15 +629,17 @@ func (u_ URL) GetFileSystemRepresentationMaxLength(buffer unsafe.Pointer, maxBuf
 }
 
 
+
 // Returns the value of the resource property for the specified key.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/getPromisedItemResourceValue(_:forKey:)
 
-func (u_ URL) GetPromisedItemResourceValueForKeyError(value objectivec.IObject, key IURLResourceKey, error_ IError) bool {
+func (u_ URL) GetPromisedItemResourceValueForKeyError(value objectivec.IObject, key URLResourceKey, error_ IError) bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("getPromisedItemResourceValue:forKey:error:"), value, key, error_)
 	return rv
 }
+
 
 
 // Returns the value of the resource property for the specified key.
@@ -647,10 +647,11 @@ func (u_ URL) GetPromisedItemResourceValueForKeyError(value objectivec.IObject, 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/getResourceValue(_:forKey:)
 
-func (u_ URL) GetResourceValueForKeyError(value objectivec.IObject, key IURLResourceKey, error_ IError) bool {
+func (u_ URL) GetResourceValueForKeyError(value objectivec.IObject, key URLResourceKey, error_ IError) bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("getResourceValue:forKey:error:"), value, key, error_)
 	return rv
 }
+
 
 
 // Returns whether the URL is a file reference URL.
@@ -664,6 +665,7 @@ func (u_ URL) IsFileReferenceURL() bool {
 }
 
 
+
 // Loads the receiver’s resource data in the background.
 //
 // [Full Topic]
@@ -672,6 +674,7 @@ func (u_ URL) IsFileReferenceURL() bool {
 func (u_ URL) LoadResourceDataNotifyingClientUsingCache(client objectivec.IObject, shouldUseCache bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("loadResourceDataNotifyingClient:usingCache:"), client, shouldUseCache)
 }
+
 
 
 // Returns the resource values for the properties identified by specified array of keys.
@@ -685,6 +688,7 @@ func (u_ URL) PromisedItemResourceValuesForKeysError(keys []string, error_ IErro
 }
 
 
+
 // Returns the specified property of the receiver’s resource.
 //
 // [Full Topic]
@@ -694,6 +698,7 @@ func (u_ URL) PropertyForKey(propertyKey string) objc.ID {
 	rv := objc.Send[objc.ID](u_.ID, objc.Sel("propertyForKey:"), objc.String(propertyKey))
 	return rv
 }
+
 
 
 // Removes all cached resource values and temporary resource values from the URL object.
@@ -706,14 +711,16 @@ func (u_ URL) RemoveAllCachedResourceValues() {
 }
 
 
+
 // Removes the cached resource value identified by a given key from the URL object.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/removeCachedResourceValue(forKey:)
 
-func (u_ URL) RemoveCachedResourceValueForKey(key IURLResourceKey) {
+func (u_ URL) RemoveCachedResourceValueForKey(key URLResourceKey) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("removeCachedResourceValueForKey:"), key)
 }
+
 
 
 // Returns the receiver’s resource data, loading it if necessary.
@@ -727,6 +734,7 @@ func (u_ URL) ResourceDataUsingCache(shouldUseCache bool) Data {
 }
 
 
+
 // Returns the resource values for the properties identified by specified array of keys.
 //
 // [Full Topic]
@@ -736,6 +744,7 @@ func (u_ URL) ResourceValuesForKeysError(keys []string, error_ IError) unsafe.Po
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("resourceValuesForKeys:error:"), keys, error_)
 	return rv
 }
+
 
 
 // Changes the specified property of the receiver’s resource.
@@ -749,6 +758,7 @@ func (u_ URL) SetPropertyForKey(property objectivec.IObject, propertyKey string)
 }
 
 
+
 // Attempts to set the resource data for the receiver.
 //
 // [Full Topic]
@@ -760,15 +770,17 @@ func (u_ URL) SetResourceData(data IData) bool {
 }
 
 
+
 // Sets the URL’s resource property for a given key to a given value.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/setResourceValue(_:forKey:)
 
-func (u_ URL) SetResourceValueForKeyError(value objectivec.IObject, key IURLResourceKey, error_ IError) bool {
+func (u_ URL) SetResourceValueForKeyError(value objectivec.IObject, key URLResourceKey, error_ IError) bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("setResourceValue:forKey:error:"), value, key, error_)
 	return rv
 }
+
 
 
 // Sets the URL’s resource properties for a given set of keys to a given set of values.
@@ -782,14 +794,16 @@ func (u_ URL) SetResourceValuesError(keyedValues unsafe.Pointer, error_ IError) 
 }
 
 
+
 // Sets a temporary resource value on the URL object.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/setTemporaryResourceValue(_:forKey:)
 
-func (u_ URL) SetTemporaryResourceValueForKey(value objectivec.IObject, key IURLResourceKey) {
+func (u_ URL) SetTemporaryResourceValueForKey(value objectivec.IObject, key URLResourceKey) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setTemporaryResourceValue:forKey:"), value, key)
 }
+
 
 
 // In an app that has adopted App Sandbox, makes the resource pointed to by a security-scoped URL available to the app.
@@ -801,6 +815,7 @@ func (u_ URL) StartAccessingSecurityScopedResource() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("startAccessingSecurityScopedResource"))
 	return rv
 }
+
 
 
 // In an app that adopts App Sandbox, revokes access to the resource pointed to by a security-scoped URL.

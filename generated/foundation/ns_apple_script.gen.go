@@ -93,6 +93,7 @@ func NewAppleScript() AppleScript {
 
 
 
+
 // Executes an Apple event in the context of the receiver, as a means of allowing the application to invoke a handler in the script.
 //
 // [Full Topic]

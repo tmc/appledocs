@@ -130,7 +130,6 @@ func NewDictionary() Dictionary {
 
 
 
-
 // Creates a dictionary initialized from data in the provided unarchiver.
 //
 // [Full Topic]
@@ -142,7 +141,6 @@ func NewDictionaryWithCoder(coder ICoder) Dictionary {
 	rv.Autorelease()
 	return rv
 }
-
 
 
 
@@ -160,7 +158,6 @@ func NewDictionaryWithContentsOfFile(path string) Dictionary {
 
 
 
-
 // Initializes a newly allocated dictionary using the keys and values found at a given URL.
 //
 // [Full Topic]
@@ -172,7 +169,6 @@ func NewDictionaryWithContentsOfURL(url IURL) Dictionary {
 	rv.Autorelease()
 	return rv
 }
-
 
 
 
@@ -190,7 +186,6 @@ func NewDictionaryWithContentsOfURLError(url IURL, error_ IError) Dictionary {
 
 
 
-
 // Initializes a newly allocated dictionary by placing in it the keys and values contained in another given dictionary.
 //
 // [Full Topic]
@@ -202,7 +197,6 @@ func NewDictionaryWithDictionary(otherDictionary unsafe.Pointer) Dictionary {
 	rv.Autorelease()
 	return rv
 }
-
 
 
 
@@ -220,7 +214,6 @@ func NewDictionaryWithDictionaryCopyItems(otherDictionary unsafe.Pointer, flag b
 
 
 
-
 // Creates a dictionary containing a given key and value.
 //
 // [Full Topic]
@@ -230,7 +223,6 @@ func NewDictionaryWithObjectForKey(object unsafe.Pointer, key objectivec.IObject
 	rv := objc.Send[Dictionary](objc.ID(getDictionaryClass().class), objc.Sel("dictionaryWithObject:forKey:"), object, key)
 	return rv
 }
-
 
 
 
@@ -248,7 +240,6 @@ func NewDictionaryWithObjectsAndKeys(firstObject objectivec.IObject) Dictionary 
 
 
 
-
 // Initializes a newly allocated dictionary with key-value pairs constructed from the provided arrays of keys and objects.
 //
 // [Full Topic]
@@ -260,7 +251,6 @@ func NewDictionaryWithObjectsForKeys(objects []objc.ID, keys []objc.ID) Dictiona
 	rv.Autorelease()
 	return rv
 }
-
 
 
 
@@ -388,6 +378,7 @@ func (dc _DictionaryClass) SharedKeySetForKeys(keys []objc.ID) objc.ID {
 }
 
 
+
 // Returns a new array containing the keys corresponding to all occurrences of a given object in the dictionary.
 //
 // [Full Topic]
@@ -397,6 +388,7 @@ func (d_ Dictionary) AllKeysForObject(anObject unsafe.Pointer) []objc.ID {
 	rv := objc.Send[[]objc.ID](d_.ID, objc.Sel("allKeysForObject:"), anObject)
 	return rv
 }
+
 
 
 // Returns by reference a C array of objects over which the sender should iterate.
@@ -410,6 +402,7 @@ func (d_ Dictionary) CountByEnumeratingWithStateObjectsCount(state unsafe.Pointe
 }
 
 
+
 // Returns a string object that represents the contents of the dictionary, formatted as a property list.
 //
 // [Full Topic]
@@ -419,6 +412,7 @@ func (d_ Dictionary) DescriptionWithLocale(locale objectivec.IObject) String {
 	rv := objc.Send[String](d_.ID, objc.Sel("descriptionWithLocale:"), locale)
 	return rv
 }
+
 
 
 // Returns a string object that represents the contents of the dictionary, formatted as a property list.
@@ -432,6 +426,7 @@ func (d_ Dictionary) DescriptionWithLocaleIndent(locale objectivec.IObject, leve
 }
 
 
+
 // Applies a given block object to the entries of the dictionary.
 //
 // [Full Topic]
@@ -442,6 +437,7 @@ func (d_ Dictionary) EnumerateKeysAndObjectsUsingBlock(block unsafe.Pointer) {
 }
 
 
+
 // Applies a given block object to the entries of the dictionary, with options specifying how the enumeration is performed.
 //
 // [Full Topic]
@@ -450,6 +446,7 @@ func (d_ Dictionary) EnumerateKeysAndObjectsUsingBlock(block unsafe.Pointer) {
 func (d_ Dictionary) EnumerateKeysAndObjectsWithOptionsUsingBlock(opts EnumerationOptions, block unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("enumerateKeysAndObjectsWithOptions:usingBlock:"), opts, block)
 }
+
 
 
 // Returns the file’s creation date.
@@ -463,6 +460,7 @@ func (d_ Dictionary) FileCreationDate() Date {
 }
 
 
+
 // Returns a Boolean value indicating whether the file hides its extension.
 //
 // [Full Topic]
@@ -472,6 +470,7 @@ func (d_ Dictionary) FileExtensionHidden() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("fileExtensionHidden"))
 	return rv
 }
+
 
 
 // Returns file’s group owner account ID.
@@ -485,6 +484,7 @@ func (d_ Dictionary) FileGroupOwnerAccountID() Number {
 }
 
 
+
 // Returns the file’s group owner account name.
 //
 // [Full Topic]
@@ -494,6 +494,7 @@ func (d_ Dictionary) FileGroupOwnerAccountName() String {
 	rv := objc.Send[String](d_.ID, objc.Sel("fileGroupOwnerAccountName"))
 	return rv
 }
+
 
 
 // Returns the file’s HFS creator code.
@@ -507,6 +508,7 @@ func (d_ Dictionary) FileHFSCreatorCode() unsafe.Pointer {
 }
 
 
+
 // Returns file’s HFS type code.
 //
 // [Full Topic]
@@ -516,6 +518,7 @@ func (d_ Dictionary) FileHFSTypeCode() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("fileHFSTypeCode"))
 	return rv
 }
+
 
 
 // Returns a Boolean value indicating whether the file is append only.
@@ -529,6 +532,7 @@ func (d_ Dictionary) FileIsAppendOnly() bool {
 }
 
 
+
 // Returns a Boolean value indicating whether the file is immutable.
 //
 // [Full Topic]
@@ -538,6 +542,7 @@ func (d_ Dictionary) FileIsImmutable() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("fileIsImmutable"))
 	return rv
 }
+
 
 
 // Returns file’s modification date.
@@ -551,6 +556,7 @@ func (d_ Dictionary) FileModificationDate() Date {
 }
 
 
+
 // Returns the file’s owner account ID.
 //
 // [Full Topic]
@@ -560,6 +566,7 @@ func (d_ Dictionary) FileOwnerAccountID() Number {
 	rv := objc.Send[Number](d_.ID, objc.Sel("fileOwnerAccountID"))
 	return rv
 }
+
 
 
 // Returns the file’s owner account name.
@@ -573,6 +580,7 @@ func (d_ Dictionary) FileOwnerAccountName() String {
 }
 
 
+
 // Returns the file’s POSIX permissions.
 //
 // [Full Topic]
@@ -582,6 +590,7 @@ func (d_ Dictionary) FilePosixPermissions() uint {
 	rv := objc.Send[uint](d_.ID, objc.Sel("filePosixPermissions"))
 	return rv
 }
+
 
 
 // Returns the file’s size, in bytes.
@@ -595,6 +604,7 @@ func (d_ Dictionary) FileSize() uint64 {
 }
 
 
+
 // Returns the filesystem file number.
 //
 // [Full Topic]
@@ -604,6 +614,7 @@ func (d_ Dictionary) FileSystemFileNumber() uint {
 	rv := objc.Send[uint](d_.ID, objc.Sel("fileSystemFileNumber"))
 	return rv
 }
+
 
 
 // Returns the filesystem number.
@@ -617,6 +628,7 @@ func (d_ Dictionary) FileSystemNumber() int {
 }
 
 
+
 // Returns the file type.
 //
 // [Full Topic]
@@ -626,6 +638,7 @@ func (d_ Dictionary) FileType() String {
 	rv := objc.Send[String](d_.ID, objc.Sel("fileType"))
 	return rv
 }
+
 
 
 // Returns by reference C arrays of the keys and values in the dictionary.
@@ -638,6 +651,7 @@ func (d_ Dictionary) GetObjectsAndKeys(objects unsafe.Pointer, keys unsafe.Point
 }
 
 
+
 // Returns by reference C arrays of the keys and values in the dictionary.
 //
 // [Full Topic]
@@ -646,6 +660,7 @@ func (d_ Dictionary) GetObjectsAndKeys(objects unsafe.Pointer, keys unsafe.Point
 func (d_ Dictionary) GetObjectsAndKeysCount(objects unsafe.Pointer, keys unsafe.Pointer, count uint) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("getObjects:andKeys:count:"), objects, keys, count)
 }
+
 
 
 // Returns a Boolean value that indicates whether the contents of the receiving dictionary are equal to the contents of another given dictionary.
@@ -659,6 +674,7 @@ func (d_ Dictionary) IsEqualToDictionary(otherDictionary unsafe.Pointer) bool {
 }
 
 
+
 // Provides an enumerator to access the keys in the dictionary.
 //
 // [Full Topic]
@@ -668,6 +684,7 @@ func (d_ Dictionary) KeyEnumerator() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("keyEnumerator"))
 	return rv
 }
+
 
 
 // Returns the set of keys whose corresponding value satisfies a constraint described by a block object.
@@ -681,6 +698,7 @@ func (d_ Dictionary) KeysOfEntriesWithOptionsPassingTest(opts EnumerationOptions
 }
 
 
+
 // Returns the set of keys whose corresponding value satisfies a constraint described by a block object.
 //
 // [Full Topic]
@@ -690,6 +708,7 @@ func (d_ Dictionary) KeysOfEntriesPassingTest(predicate unsafe.Pointer) unsafe.P
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("keysOfEntriesPassingTest:"), predicate)
 	return rv
 }
+
 
 
 // Returns an array of the dictionary’s keys, in the order they would be in if the dictionary were sorted by its values using a given comparator block.
@@ -703,6 +722,7 @@ func (d_ Dictionary) KeysSortedByValueUsingComparator(cmptr unsafe.Pointer) []ob
 }
 
 
+
 // Returns an array of the dictionary’s keys, in the order they would be in if the dictionary were sorted by its values using a given comparator block and a specified set of options.
 //
 // [Full Topic]
@@ -712,6 +732,7 @@ func (d_ Dictionary) KeysSortedByValueWithOptionsUsingComparator(opts SortOption
 	rv := objc.Send[[]objc.ID](d_.ID, objc.Sel("keysSortedByValueWithOptions:usingComparator:"), opts, cmptr)
 	return rv
 }
+
 
 
 // Returns an array of the dictionary’s keys, in the order they would be in if the dictionary were sorted by its values.
@@ -725,6 +746,7 @@ func (d_ Dictionary) KeysSortedByValueUsingSelector(comparator objc.SEL) []objc.
 }
 
 
+
 // Returns the value associated with a given key.
 //
 // [Full Topic]
@@ -734,6 +756,7 @@ func (d_ Dictionary) ObjectForKey(aKey unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("objectForKey:"), aKey)
 	return rv
 }
+
 
 
 // Returns an enumerator object that lets you access each value in the dictionary.
@@ -747,6 +770,7 @@ func (d_ Dictionary) ObjectEnumerator() unsafe.Pointer {
 }
 
 
+
 // Returns as a static array the set of objects from the dictionary that corresponds to the specified keys.
 //
 // [Full Topic]
@@ -756,6 +780,7 @@ func (d_ Dictionary) ObjectsForKeysNotFoundMarker(keys []objc.ID, marker unsafe.
 	rv := objc.Send[[]objc.ID](d_.ID, objc.Sel("objectsForKeys:notFoundMarker:"), keys, marker)
 	return rv
 }
+
 
 
 // Returns the value associated with a given key.
@@ -769,6 +794,7 @@ func (d_ Dictionary) ObjectForKeyedSubscript(key unsafe.Pointer) unsafe.Pointer 
 }
 
 
+
 // Returns the value associated with a given key.
 //
 // [Full Topic]
@@ -778,6 +804,7 @@ func (d_ Dictionary) ValueForKey(key string) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("valueForKey:"), objc.String(key))
 	return rv
 }
+
 
 
 // Writes a property list representation of the contents of the dictionary to a given URL.
@@ -791,6 +818,7 @@ func (d_ Dictionary) WriteToURLError(url IURL, error_ IError) bool {
 }
 
 
+
 // Writes a property list representation of the contents of the dictionary to a given URL.
 //
 // [Full Topic]
@@ -800,6 +828,7 @@ func (d_ Dictionary) WriteToURLAtomically(url IURL, atomically bool) bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("writeToURL:atomically:"), url, atomically)
 	return rv
 }
+
 
 
 // Writes a property list representation of the contents of the dictionary to a given path.

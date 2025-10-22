@@ -117,6 +117,7 @@ func NewExpression() Expression {
 
 
 
+
 // Forces a securely decoded expression to allow evaluation.
 //
 // [Full Topic]
@@ -125,6 +126,7 @@ func NewExpression() Expression {
 func (e_ Expression) AllowEvaluation() {
 	objc.Send[objc.ID](e_.ID, objc.Sel("allowEvaluation"))
 }
+
 
 
 // Evaluates an expression using a specified object and context.

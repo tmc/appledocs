@@ -97,7 +97,6 @@ func NewMutableSet() MutableSet {
 
 
 
-
 // Returns an initialized mutable set with a given initial capacity.
 //
 // [Full Topic]
@@ -109,7 +108,6 @@ func NewMutableSetWithCapacity(numItems uint) MutableSet {
 	rv.Autorelease()
 	return rv
 }
-
 
 
 
@@ -136,6 +134,7 @@ func (mc _MutableSetClass) SetWithCapacity(numItems uint) unsafe.Pointer {
 }
 
 
+
 // Adds a given object to the set, if it is not already a member.
 //
 // [Full Topic]
@@ -144,6 +143,7 @@ func (mc _MutableSetClass) SetWithCapacity(numItems uint) unsafe.Pointer {
 func (m_ MutableSet) AddObject(object unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("addObject:"), object)
 }
+
 
 
 // Adds to the set each object contained in a given array that is not already a member.
@@ -156,6 +156,7 @@ func (m_ MutableSet) AddObjectsFromArray(array []objc.ID) {
 }
 
 
+
 // Evaluates a given predicate against the set’s content and removes from the set those objects for which the predicate returns false.
 //
 // [Full Topic]
@@ -164,6 +165,7 @@ func (m_ MutableSet) AddObjectsFromArray(array []objc.ID) {
 func (m_ MutableSet) FilterUsingPredicate(predicate IPredicate) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("filterUsingPredicate:"), predicate)
 }
+
 
 
 // Removes from the receiving set each object that isn’t a member of another given set.
@@ -176,6 +178,7 @@ func (m_ MutableSet) IntersectSet(otherSet unsafe.Pointer) {
 }
 
 
+
 // Removes each object in another given set from the receiving set, if present.
 //
 // [Full Topic]
@@ -184,6 +187,7 @@ func (m_ MutableSet) IntersectSet(otherSet unsafe.Pointer) {
 func (m_ MutableSet) MinusSet(otherSet unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("minusSet:"), otherSet)
 }
+
 
 
 // Removes a given object from the set.
@@ -196,6 +200,7 @@ func (m_ MutableSet) RemoveObject(object unsafe.Pointer) {
 }
 
 
+
 // Empties the set of all of its members.
 //
 // [Full Topic]
@@ -206,6 +211,7 @@ func (m_ MutableSet) RemoveAllObjects() {
 }
 
 
+
 // Empties the receiving set, then adds each object contained in another given set.
 //
 // [Full Topic]
@@ -214,6 +220,7 @@ func (m_ MutableSet) RemoveAllObjects() {
 func (m_ MutableSet) SetSet(otherSet unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSet:"), otherSet)
 }
+
 
 
 // Adds each object in another given set to the receiving set, if not present.

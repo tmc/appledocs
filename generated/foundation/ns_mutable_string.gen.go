@@ -31,11 +31,11 @@ type IMutableString interface {
 	IString
 	AppendString(aString string)
 	AppendFormat(format string)
-	ApplyTransformReverseRangeUpdatedRange(transform IStringTransform, reverse bool, range_ IRange, resultingRange IRangePointer) bool
-	DeleteCharactersInRange(range_ IRange)
+	ApplyTransformReverseRangeUpdatedRange(transform IStringTransform, reverse bool, range_ Range, resultingRange IRangePointer) bool
+	DeleteCharactersInRange(range_ Range)
 	InsertStringAtIndex(aString string, loc uint)
-	ReplaceCharactersInRangeWithString(range_ IRange, aString string)
-	ReplaceOccurrencesOfStringWithStringOptionsRange(target string, replacement string, options StringCompareOptions, searchRange IRange) uint
+	ReplaceCharactersInRangeWithString(range_ Range, aString string)
+	ReplaceOccurrencesOfStringWithStringOptionsRange(target string, replacement string, options StringCompareOptions, searchRange Range) uint
 	SetString(aString string)
 }
 
@@ -96,7 +96,6 @@ func NewMutableString() MutableString {
 
 
 
-
 // Returns an object initialized with initial storage for a given number of characters,
 //
 // [Full Topic]
@@ -122,6 +121,7 @@ func (mc _MutableStringClass) StringWithCapacity(capacity uint) MutableString {
 }
 
 
+
 // Adds to the end of the receiver the characters of a given string.
 //
 // [Full Topic]
@@ -130,6 +130,7 @@ func (mc _MutableStringClass) StringWithCapacity(capacity uint) MutableString {
 func (m_ MutableString) AppendString(aString string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("appendString:"), objc.String(aString))
 }
+
 
 
 // Adds a constructed string to the receiver.
@@ -142,15 +143,17 @@ func (m_ MutableString) AppendFormat(format string) {
 }
 
 
+
 // Transliterates the receiver by applying a specified ICU string transform.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableString/applyTransform(_:reverse:range:updatedRange:)
 
-func (m_ MutableString) ApplyTransformReverseRangeUpdatedRange(transform IStringTransform, reverse bool, range_ IRange, resultingRange IRangePointer) bool {
+func (m_ MutableString) ApplyTransformReverseRangeUpdatedRange(transform IStringTransform, reverse bool, range_ Range, resultingRange IRangePointer) bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("applyTransform:reverse:range:updatedRange:"), transform, reverse, range_, resultingRange)
 	return rv
 }
+
 
 
 // Removes from the receiver the characters in a given range.
@@ -158,9 +161,10 @@ func (m_ MutableString) ApplyTransformReverseRangeUpdatedRange(transform IString
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableString/deleteCharacters(in:)
 
-func (m_ MutableString) DeleteCharactersInRange(range_ IRange) {
+func (m_ MutableString) DeleteCharactersInRange(range_ Range) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("deleteCharactersInRange:"), range_)
 }
+
 
 
 // Inserts into the receiver the characters of a given string at a given location.
@@ -173,14 +177,16 @@ func (m_ MutableString) InsertStringAtIndex(aString string, loc uint) {
 }
 
 
+
 // Replaces the characters from with those in .
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableString/replaceCharacters(in:with:)
 
-func (m_ MutableString) ReplaceCharactersInRangeWithString(range_ IRange, aString string) {
+func (m_ MutableString) ReplaceCharactersInRangeWithString(range_ Range, aString string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("replaceCharactersInRange:withString:"), range_, objc.String(aString))
 }
+
 
 
 // Replaces all occurrences of a given string in a given range with another given string, returning the number of replacements.
@@ -188,10 +194,11 @@ func (m_ MutableString) ReplaceCharactersInRangeWithString(range_ IRange, aStrin
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableString/replaceOccurrences(of:with:options:range:)
 
-func (m_ MutableString) ReplaceOccurrencesOfStringWithStringOptionsRange(target string, replacement string, options StringCompareOptions, searchRange IRange) uint {
+func (m_ MutableString) ReplaceOccurrencesOfStringWithStringOptionsRange(target string, replacement string, options StringCompareOptions, searchRange Range) uint {
 	rv := objc.Send[uint](m_.ID, objc.Sel("replaceOccurrencesOfString:withString:options:range:"), objc.String(target), objc.String(replacement), options, searchRange)
 	return rv
 }
+
 
 
 // Replaces the characters of the receiver with those in a given string.

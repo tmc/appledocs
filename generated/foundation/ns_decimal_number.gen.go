@@ -108,7 +108,6 @@ func NewDecimalNumber() DecimalNumber {
 
 
 
-
 // Initializes a decimal number to represent a given decimal.
 //
 // [Full Topic]
@@ -120,7 +119,6 @@ func NewDecimalNumberWithDecimal(dcm unsafe.Pointer) DecimalNumber {
 	rv.Autorelease()
 	return rv
 }
-
 
 
 
@@ -138,7 +136,6 @@ func NewDecimalNumberWithMantissaExponentIsNegative(mantissa uint64, exponent un
 
 
 
-
 // Initializes a decimal number so that its value is equivalent to that in a given numeric string.
 //
 // [Full Topic]
@@ -150,7 +147,6 @@ func NewDecimalNumberWithString(numberValue string) DecimalNumber {
 	rv.Autorelease()
 	return rv
 }
-
 
 
 
@@ -272,6 +268,7 @@ func (dc _DecimalNumberClass) Zero() DecimalNumber {
 	return rv
 }
 
+
 // Adds this number to another given number.
 //
 // [Full Topic]
@@ -281,6 +278,7 @@ func (d_ DecimalNumber) DecimalNumberByAdding(decimalNumber IDecimalNumber) Deci
 	rv := objc.Send[DecimalNumber](d_.ID, objc.Sel("decimalNumberByAdding:"), decimalNumber)
 	return rv
 }
+
 
 
 // Adds this number to another given number using the specified behavior.
@@ -294,6 +292,7 @@ func (d_ DecimalNumber) DecimalNumberByAddingWithBehavior(decimalNumber IDecimal
 }
 
 
+
 // Compares this decimal number and another.
 //
 // [Full Topic]
@@ -303,6 +302,7 @@ func (d_ DecimalNumber) Compare(decimalNumber INumber) ComparisonResult {
 	rv := objc.Send[ComparisonResult](d_.ID, objc.Sel("compare:"), decimalNumber)
 	return rv
 }
+
 
 
 // Returns a string representation of the decimal number appropriate for the specified locale.
@@ -316,6 +316,7 @@ func (d_ DecimalNumber) DescriptionWithLocale(locale objectivec.IObject) String 
 }
 
 
+
 // Divides the number by another given number.
 //
 // [Full Topic]
@@ -325,6 +326,7 @@ func (d_ DecimalNumber) DecimalNumberByDividingBy(decimalNumber IDecimalNumber) 
 	rv := objc.Send[DecimalNumber](d_.ID, objc.Sel("decimalNumberByDividingBy:"), decimalNumber)
 	return rv
 }
+
 
 
 // Divides this number by another given number using the specified behavior.
@@ -338,6 +340,7 @@ func (d_ DecimalNumber) DecimalNumberByDividingByWithBehavior(decimalNumber IDec
 }
 
 
+
 // Multiplies the number by another given number.
 //
 // [Full Topic]
@@ -347,6 +350,7 @@ func (d_ DecimalNumber) DecimalNumberByMultiplyingBy(decimalNumber IDecimalNumbe
 	rv := objc.Send[DecimalNumber](d_.ID, objc.Sel("decimalNumberByMultiplyingBy:"), decimalNumber)
 	return rv
 }
+
 
 
 // Multiplies this number by another given number using the specified behavior.
@@ -360,6 +364,7 @@ func (d_ DecimalNumber) DecimalNumberByMultiplyingByWithBehavior(decimalNumber I
 }
 
 
+
 // Multiplies the number by 10 raised to the given power.
 //
 // [Full Topic]
@@ -369,6 +374,7 @@ func (d_ DecimalNumber) DecimalNumberByMultiplyingByPowerOf10(power unsafe.Point
 	rv := objc.Send[DecimalNumber](d_.ID, objc.Sel("decimalNumberByMultiplyingByPowerOf10:"), power)
 	return rv
 }
+
 
 
 // Multiplies the number by 10 raised to the given power using the specified behavior.
@@ -382,6 +388,7 @@ func (d_ DecimalNumber) DecimalNumberByMultiplyingByPowerOf10WithBehavior(power 
 }
 
 
+
 // Raises the number to a given power.
 //
 // [Full Topic]
@@ -391,6 +398,7 @@ func (d_ DecimalNumber) DecimalNumberByRaisingToPower(power uint) DecimalNumber 
 	rv := objc.Send[DecimalNumber](d_.ID, objc.Sel("decimalNumberByRaisingToPower:"), power)
 	return rv
 }
+
 
 
 // Raises the number to a given power using the specified behavior.
@@ -404,6 +412,7 @@ func (d_ DecimalNumber) DecimalNumberByRaisingToPowerWithBehavior(power uint, be
 }
 
 
+
 // Returns a rounded version of the decimal number using the specified rounding behavior.
 //
 // [Full Topic]
@@ -415,6 +424,7 @@ func (d_ DecimalNumber) DecimalNumberByRoundingAccordingToBehavior(behavior obje
 }
 
 
+
 // Subtracts another given number from this one.
 //
 // [Full Topic]
@@ -424,6 +434,7 @@ func (d_ DecimalNumber) DecimalNumberBySubtracting(decimalNumber IDecimalNumber)
 	rv := objc.Send[DecimalNumber](d_.ID, objc.Sel("decimalNumberBySubtracting:"), decimalNumber)
 	return rv
 }
+
 
 
 // Subtracts this a given number from this one using the specified behavior.

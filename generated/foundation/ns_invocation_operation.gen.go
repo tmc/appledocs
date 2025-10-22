@@ -91,7 +91,6 @@ func NewInvocationOperation() InvocationOperation {
 
 
 
-
 // Returns an object initialized with the specified invocation object.
 //
 // [Full Topic]
@@ -103,7 +102,6 @@ func NewInvocationOperationWithInvocation(inv IInvocation) InvocationOperation {
 	rv.Autorelease()
 	return rv
 }
-
 
 
 

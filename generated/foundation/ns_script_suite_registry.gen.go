@@ -94,6 +94,7 @@ func NewScriptSuiteRegistry() ScriptSuiteRegistry {
 
 
 
+
 // Returns the command description identified by a suite’s four-character Apple event code of the class ( ) and the four-character Apple event code of the command ( ).
 //
 // [Full Topic]
@@ -103,6 +104,7 @@ func (s_ ScriptSuiteRegistry) CommandDescriptionWithAppleEventClassAndAppleEvent
 	rv := objc.Send[ScriptCommandDescription](s_.ID, objc.Sel("commandDescriptionWithAppleEventClass:andAppleEventCode:"), appleEventClassCode, appleEventIDCode)
 	return rv
 }
+
 
 
 // Loads the suite definition encapsulated in ; previously, this suite definition was parsed from a property list contained in a framework or in .
@@ -115,6 +117,7 @@ func (s_ ScriptSuiteRegistry) LoadSuiteWithDictionaryFromBundle(suiteDeclaration
 }
 
 
+
 // Loads the suite definitions in bundle , invoking for each suite found.
 //
 // [Full Topic]
@@ -123,6 +126,7 @@ func (s_ ScriptSuiteRegistry) LoadSuiteWithDictionaryFromBundle(suiteDeclaration
 func (s_ ScriptSuiteRegistry) LoadSuitesFromBundle(bundle IBundle) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("loadSuitesFromBundle:"), bundle)
 }
+
 
 
 // Registers command description for use by Cocoa’s built-in scripting support by storing it in a per-suite internal dictionary under the command name.
@@ -135,6 +139,7 @@ func (s_ ScriptSuiteRegistry) RegisterCommandDescription(commandDescription IScr
 }
 
 
+
 // Registers class description for use by Cocoa’s built-in scripting support by storing it in a per-suite internal dictionary under the class name.
 //
 // [Full Topic]
@@ -143,6 +148,7 @@ func (s_ ScriptSuiteRegistry) RegisterCommandDescription(commandDescription IScr
 func (s_ ScriptSuiteRegistry) RegisterClassDescription(classDescription IScriptClassDescription) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("registerClassDescription:"), classDescription)
 }
+
 
 
 // Returns the name of the suite definition associated with the given four-character Apple event code, .

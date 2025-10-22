@@ -90,6 +90,7 @@ func NewCondition() Condition {
 
 
 
+
 // Signals the condition, waking up all threads waiting on it.
 //
 // [Full Topic]
@@ -98,6 +99,7 @@ func NewCondition() Condition {
 func (c_ Condition) Broadcast() {
 	objc.Send[objc.ID](c_.ID, objc.Sel("broadcast"))
 }
+
 
 
 // Blocks the current thread until the condition is signaled.

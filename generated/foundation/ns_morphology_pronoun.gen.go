@@ -88,7 +88,6 @@ func NewMorphologyPronoun() MorphologyPronoun {
 
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphologyPronoun/initWithPronoun:morphology:dependentMorphology:
 

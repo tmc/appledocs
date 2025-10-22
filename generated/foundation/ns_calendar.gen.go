@@ -143,7 +143,6 @@ func NewCalendar() Calendar {
 
 
 
-
 // Initializes a calendar according to a given identifier.
 //
 // [Full Topic]
@@ -155,7 +154,6 @@ func NewCalendarWithCalendarIdentifier(ident ICalendarIdentifier) Calendar {
 	rv.Autorelease()
 	return rv
 }
-
 
 
 
@@ -202,6 +200,7 @@ func (cc _CalendarClass) CurrentCalendar() Calendar {
 	return rv
 }
 
+
 // Returns the date components representing a given date.
 //
 // [Full Topic]
@@ -211,6 +210,7 @@ func (c_ Calendar) ComponentsFromDate(unitFlags ICalendarUnit, date IDate) DateC
 	rv := objc.Send[DateComponents](c_.ID, objc.Sel("components:fromDate:"), unitFlags, date)
 	return rv
 }
+
 
 
 // Returns a date representing the absolute time calculated from given components.
@@ -224,6 +224,7 @@ func (c_ Calendar) DateFromComponents(comps IDateComponents) Date {
 }
 
 
+
 // Indicates whether the given date is in “today.”
 //
 // [Full Topic]
@@ -233,6 +234,7 @@ func (c_ Calendar) IsDateInToday(date IDate) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isDateInToday:"), date)
 	return rv
 }
+
 
 
 // Returns the minimum range limits of the values that a given unit can take on.
@@ -246,6 +248,7 @@ func (c_ Calendar) MinimumRangeOfUnit(unit ICalendarUnit) Range {
 }
 
 
+
 // Returns the next date after a given date matching the given calendar unit value.
 //
 // [Full Topic]
@@ -255,6 +258,7 @@ func (c_ Calendar) NextDateAfterDateMatchingUnitValueOptions(date IDate, unit IC
 	rv := objc.Send[Date](c_.ID, objc.Sel("nextDateAfterDate:matchingUnit:value:options:"), date, unit, value, options)
 	return rv
 }
+
 
 
 // Returns the next date after a given date that matches the given hour, minute, and second, component values.
@@ -268,6 +272,7 @@ func (c_ Calendar) NextDateAfterDateMatchingHourMinuteSecondOptions(date IDate, 
 }
 
 
+
 // Returns, for a given absolute time, the ordinal number of a smaller calendar unit (such as a day) within a specified larger calendar unit (such as a week).
 //
 // [Full Topic]
@@ -279,6 +284,7 @@ func (c_ Calendar) OrdinalityOfUnitInUnitForDate(smaller ICalendarUnit, larger I
 }
 
 
+
 // Returns the range of absolute time values that a smaller calendar unit (such as a day) can take on in a larger calendar unit (such as a month) that includes a specified absolute time.
 //
 // [Full Topic]
@@ -288,6 +294,7 @@ func (c_ Calendar) RangeOfUnitInUnitForDate(smaller ICalendarUnit, larger ICalen
 	rv := objc.Send[Range](c_.ID, objc.Sel("rangeOfUnit:inUnit:forDate:"), smaller, larger, date)
 	return rv
 }
+
 
 
 // Returns whether a given date falls within a weekend period, and if so, returns by reference the start date and time interval of the weekend range.

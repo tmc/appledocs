@@ -36,12 +36,12 @@ type IMutableArray interface {
 	RemoveAllObjects()
 	RemoveLastObject()
 	RemoveObjectIdenticalTo(anObject unsafe.Pointer)
-	RemoveObjectIdenticalToInRange(anObject unsafe.Pointer, range_ IRange)
+	RemoveObjectIdenticalToInRange(anObject unsafe.Pointer, range_ Range)
 	RemoveObjectsAtIndexes(indexes IIndexSet)
 	RemoveObjectsFromIndicesNumIndices(indices unsafe.Pointer, cnt uint)
 	ReplaceObjectAtIndexWithObject(index uint, anObject unsafe.Pointer)
 	ReplaceObjectsAtIndexesWithObjects(indexes IIndexSet, objects []objc.ID)
-	ReplaceObjectsInRangeWithObjectsFromArray(range_ IRange, otherArray []objc.ID)
+	ReplaceObjectsInRangeWithObjectsFromArray(range_ Range, otherArray []objc.ID)
 	SetObjectAtIndexedSubscript(obj unsafe.Pointer, idx uint)
 	SortUsingFunctionContext(compare unsafe.Pointer, context unsafe.Pointer)
 	SortUsingComparator(cmptr unsafe.Pointer)
@@ -105,7 +105,6 @@ func NewMutableArray() MutableArray {
 
 
 
-
 // Initializes a newly allocated mutable array with the contents of the file specified by a given path
 //
 // [Full Topic]
@@ -117,7 +116,6 @@ func NewMutableArrayWithContentsOfFile(path string) MutableArray {
 	rv.Autorelease()
 	return rv
 }
-
 
 
 
@@ -146,6 +144,7 @@ func (mc _MutableArrayClass) ArrayWithContentsOfURL(url IURL) unsafe.Pointer {
 }
 
 
+
 // Inserts a given object at the end of the array.
 //
 // [Full Topic]
@@ -154,6 +153,7 @@ func (mc _MutableArrayClass) ArrayWithContentsOfURL(url IURL) unsafe.Pointer {
 func (m_ MutableArray) AddObject(anObject unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("addObject:"), anObject)
 }
+
 
 
 // Evaluates a given predicate against the array’s content and leaves only objects that match.
@@ -166,6 +166,7 @@ func (m_ MutableArray) FilterUsingPredicate(predicate IPredicate) {
 }
 
 
+
 // Inserts a given object into the array’s contents at a given index.
 //
 // [Full Topic]
@@ -174,6 +175,7 @@ func (m_ MutableArray) FilterUsingPredicate(predicate IPredicate) {
 func (m_ MutableArray) InsertObjectAtIndex(anObject unsafe.Pointer, index uint) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("insertObject:atIndex:"), anObject, index)
 }
+
 
 
 // Removes all occurrences in the array of a given object.
@@ -186,6 +188,7 @@ func (m_ MutableArray) RemoveObject(anObject unsafe.Pointer) {
 }
 
 
+
 // Empties the array of all its elements.
 //
 // [Full Topic]
@@ -194,6 +197,7 @@ func (m_ MutableArray) RemoveObject(anObject unsafe.Pointer) {
 func (m_ MutableArray) RemoveAllObjects() {
 	objc.Send[objc.ID](m_.ID, objc.Sel("removeAllObjects"))
 }
+
 
 
 // Removes the object with the highest-valued index in the array
@@ -206,6 +210,7 @@ func (m_ MutableArray) RemoveLastObject() {
 }
 
 
+
 // Removes all occurrences of a given object in the array.
 //
 // [Full Topic]
@@ -216,14 +221,16 @@ func (m_ MutableArray) RemoveObjectIdenticalTo(anObject unsafe.Pointer) {
 }
 
 
+
 // Removes all occurrences of within the specified range in the array.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableArray/removeObject(identicalTo:in:)
 
-func (m_ MutableArray) RemoveObjectIdenticalToInRange(anObject unsafe.Pointer, range_ IRange) {
+func (m_ MutableArray) RemoveObjectIdenticalToInRange(anObject unsafe.Pointer, range_ Range) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("removeObjectIdenticalTo:inRange:"), anObject, range_)
 }
+
 
 
 // Removes the objects at the specified indexes from the array.
@@ -236,6 +243,7 @@ func (m_ MutableArray) RemoveObjectsAtIndexes(indexes IIndexSet) {
 }
 
 
+
 // Removes the specified number of objects from the array, beginning at the specified index.
 //
 // [Full Topic]
@@ -244,6 +252,7 @@ func (m_ MutableArray) RemoveObjectsAtIndexes(indexes IIndexSet) {
 func (m_ MutableArray) RemoveObjectsFromIndicesNumIndices(indices unsafe.Pointer, cnt uint) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("removeObjectsFromIndices:numIndices:"), indices, cnt)
 }
+
 
 
 // Replaces the object at with .
@@ -256,6 +265,7 @@ func (m_ MutableArray) ReplaceObjectAtIndexWithObject(index uint, anObject unsaf
 }
 
 
+
 // Replaces the objects in the receiving array at locations specified with the objects from a given array.
 //
 // [Full Topic]
@@ -266,14 +276,16 @@ func (m_ MutableArray) ReplaceObjectsAtIndexesWithObjects(indexes IIndexSet, obj
 }
 
 
+
 // Replaces the objects in the receiving array specified by a given range with all of the objects from a given array.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableArray/replaceObjects(in:withObjectsFrom:)
 
-func (m_ MutableArray) ReplaceObjectsInRangeWithObjectsFromArray(range_ IRange, otherArray []objc.ID) {
+func (m_ MutableArray) ReplaceObjectsInRangeWithObjectsFromArray(range_ Range, otherArray []objc.ID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("replaceObjectsInRange:withObjectsFromArray:"), range_, otherArray)
 }
+
 
 
 // Replaces the object at the index with the new object, possibly adding the object.
@@ -286,6 +298,7 @@ func (m_ MutableArray) SetObjectAtIndexedSubscript(obj unsafe.Pointer, idx uint)
 }
 
 
+
 // Sorts the receiver in ascending order as defined by the comparison function .
 //
 // [Full Topic]
@@ -296,6 +309,7 @@ func (m_ MutableArray) SortUsingFunctionContext(compare unsafe.Pointer, context 
 }
 
 
+
 // Sorts the receiver in ascending order using the comparison method specified by a given block.
 //
 // [Full Topic]
@@ -304,6 +318,7 @@ func (m_ MutableArray) SortUsingFunctionContext(compare unsafe.Pointer, context 
 func (m_ MutableArray) SortUsingComparator(cmptr unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("sortUsingComparator:"), cmptr)
 }
+
 
 
 // Sorts the receiver using a given array of sort descriptors.

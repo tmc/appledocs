@@ -98,7 +98,6 @@ func NewTimer() Timer {
 
 
 
-
 // Initializes a timer for the specified date and time interval with the specified block.
 //
 // [Full Topic]
@@ -110,7 +109,6 @@ func NewTimerWithFireDateIntervalRepeatsBlock(date IDate, interval ITimeInterval
 	rv.Autorelease()
 	return rv
 }
-
 
 
 
@@ -128,7 +126,6 @@ func NewTimerWithFireDateIntervalTargetSelectorUserInfoRepeats(date IDate, ti IT
 
 
 
-
 // Initializes a timer object with the specified invocation object.
 //
 // [Full Topic]
@@ -141,7 +138,6 @@ func NewTimerWithTimeIntervalInvocationRepeats(ti ITimeInterval, invocation IInv
 
 
 
-
 // Initializes a timer object with the specified time interval and block.
 //
 // [Full Topic]
@@ -151,7 +147,6 @@ func NewTimerWithTimeIntervalRepeatsBlock(interval ITimeInterval, repeats bool, 
 	rv := objc.Send[Timer](objc.ID(getTimerClass().class), objc.Sel("timerWithTimeInterval:repeats:block:"), interval, repeats, block)
 	return rv
 }
-
 
 
 
@@ -233,6 +228,7 @@ func (tc _TimerClass) ScheduledTimerWithTimeIntervalRepeatsBlock(interval ITimeI
 }
 
 
+
 // Causes the timer’s message to be sent to its target.
 //
 // [Full Topic]
@@ -241,6 +237,7 @@ func (tc _TimerClass) ScheduledTimerWithTimeIntervalRepeatsBlock(interval ITimeI
 func (t_ Timer) Fire() {
 	objc.Send[objc.ID](t_.ID, objc.Sel("fire"))
 }
+
 
 
 // Stops the timer from ever firing again and requests its removal from its run loop.

@@ -92,7 +92,6 @@ func NewFileCoordinator() FileCoordinator {
 
 
 
-
 // Initializes and returns a file coordinator object using the specified file presenter.
 //
 // [Full Topic]
@@ -126,6 +125,7 @@ func (fc _FileCoordinatorClass) FilePresenters() []objc.ID {
 	rv := objc.Send[[]objc.ID](objc.ID(fc.class), objc.Sel("filePresenters"))
 	return rv
 }
+
 
 // Performs a number of coordinated-read or -write operations asynchronously.
 //

@@ -90,6 +90,7 @@ func NewDistributedLock() DistributedLock {
 
 
 
+
 // Forces the lock to be relinquished.
 //
 // [Full Topic]
@@ -98,6 +99,7 @@ func NewDistributedLock() DistributedLock {
 func (d_ DistributedLock) BreakLock() {
 	objc.Send[objc.ID](d_.ID, objc.Sel("breakLock"))
 }
+
 
 
 // Attempts to acquire the receiver and immediately returns a Boolean value that indicates whether the attempt was successful.
@@ -109,6 +111,7 @@ func (d_ DistributedLock) TryLock() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("tryLock"))
 	return rv
 }
+
 
 
 // Relinquishes the receiver.

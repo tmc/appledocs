@@ -128,7 +128,6 @@ func NewValue() Value {
 
 
 
-
 // Initializes a value object to contain the specified value, interpreted with the specified Objective-C type.
 //
 // [Full Topic]
@@ -140,7 +139,6 @@ func NewValueWithBytesObjCType(value unsafe.Pointer, type_ unsafe.Pointer) Value
 	rv.Autorelease()
 	return rv
 }
-
 
 
 
@@ -156,7 +154,6 @@ func NewValueWithCATransform3D(t unsafe.Pointer) Value {
 
 
 
-
 // Creates a new value object containing the specified CoreGraphics affine transform structure.
 //
 // [Full Topic]
@@ -166,7 +163,6 @@ func NewValueWithCGAffineTransform(transform coregraphics.CGAffineTransform) Val
 	rv := objc.Send[Value](objc.ID(getValueClass().class), objc.Sel("valueWithCGAffineTransform:"), transform)
 	return rv
 }
-
 
 
 
@@ -182,7 +178,6 @@ func NewValueWithCGPoint(point coregraphics.CGPoint) Value {
 
 
 
-
 // Creates a new value object containing the specified CoreGraphics rectangle structure.
 //
 // [Full Topic]
@@ -192,7 +187,6 @@ func NewValueWithCGRect(rect coregraphics.CGRect) Value {
 	rv := objc.Send[Value](objc.ID(getValueClass().class), objc.Sel("valueWithCGRect:"), rect)
 	return rv
 }
-
 
 
 
@@ -208,7 +202,6 @@ func NewValueWithCGSize(size coregraphics.CGSize) Value {
 
 
 
-
 // Creates a new value object containing the specified CoreGraphics vector structure.
 //
 // [Full Topic]
@@ -218,7 +211,6 @@ func NewValueWithCGVector(vector coregraphics.CGVector) Value {
 	rv := objc.Send[Value](objc.ID(getValueClass().class), objc.Sel("valueWithCGVector:"), vector)
 	return rv
 }
-
 
 
 
@@ -234,7 +226,6 @@ func NewValueWithCMTime(time unsafe.Pointer) Value {
 
 
 
-
 // Creates a new value object containing the specified CoreMedia time mapping structure.
 //
 // [Full Topic]
@@ -244,7 +235,6 @@ func NewValueWithCMTimeMapping(timeMapping unsafe.Pointer) Value {
 	rv := objc.Send[Value](objc.ID(getValueClass().class), objc.Sel("valueWithCMTimeMapping:"), timeMapping)
 	return rv
 }
-
 
 
 
@@ -260,7 +250,6 @@ func NewValueWithCMTimeRange(timeRange unsafe.Pointer) Value {
 
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSValue/init(CMVideoDimensions:)
 
@@ -268,7 +257,6 @@ func NewValueWithCMVideoDimensions(dimensions unsafe.Pointer) Value {
 	rv := objc.Send[Value](objc.ID(getValueClass().class), objc.Sel("valueWithCMVideoDimensions:"), dimensions)
 	return rv
 }
-
 
 
 
@@ -284,7 +272,6 @@ func NewValueWithCoder(coder ICoder) Value {
 
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSValue/init(directionalEdgeInsets:)
 
@@ -292,7 +279,6 @@ func NewValueWithDirectionalEdgeInsets(insets unsafe.Pointer) Value {
 	rv := objc.Send[Value](objc.ID(getValueClass().class), objc.Sel("valueWithDirectionalEdgeInsets:"), insets)
 	return rv
 }
-
 
 
 
@@ -306,7 +292,6 @@ func NewValueWithEdgeInsets(insets unsafe.Pointer) Value {
 
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSValue/init(GCPoint2:)
 
@@ -314,7 +299,6 @@ func NewValueWithGCPoint2(point unsafe.Pointer) Value {
 	rv := objc.Send[Value](objc.ID(getValueClass().class), objc.Sel("valueWithGCPoint2:"), point)
 	return rv
 }
-
 
 
 
@@ -330,7 +314,6 @@ func NewValueWithMKCoordinate(coordinate unsafe.Pointer) Value {
 
 
 
-
 // Creates a new value object containing the specified MapKit coordinate span structure.
 //
 // [Full Topic]
@@ -340,7 +323,6 @@ func NewValueWithMKCoordinateSpan(span unsafe.Pointer) Value {
 	rv := objc.Send[Value](objc.ID(getValueClass().class), objc.Sel("valueWithMKCoordinateSpan:"), span)
 	return rv
 }
-
 
 
 
@@ -356,7 +338,6 @@ func NewValueWithNonretainedObject(anObject objectivec.IObject) Value {
 
 
 
-
 // Creates a value object containing the specified value, interpreted with the specified Objective-C type.
 //
 // [Full Topic]
@@ -369,17 +350,15 @@ func NewValueWithObjCType(value unsafe.Pointer, type_ unsafe.Pointer) Value {
 
 
 
-
 // Creates a new value object containing the specified Foundation point structure.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSValue/init(point:)
 
-func NewValueWithPoint(point IPoint) Value {
+func NewValueWithPoint(point Point) Value {
 	rv := objc.Send[Value](objc.ID(getValueClass().class), objc.Sel("valueWithPoint:"), point)
 	return rv
 }
-
 
 
 
@@ -395,17 +374,15 @@ func NewValueWithPointer(pointer unsafe.Pointer) Value {
 
 
 
-
 // Creates a new value object containing the specified Foundation range structure.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSValue/init(range:)
 
-func NewValueWithRange(range_ IRange) Value {
+func NewValueWithRange(range_ Range) Value {
 	rv := objc.Send[Value](objc.ID(getValueClass().class), objc.Sel("valueWithRange:"), range_)
 	return rv
 }
-
 
 
 
@@ -414,11 +391,10 @@ func NewValueWithRange(range_ IRange) Value {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSValue/init(rect:)
 
-func NewValueWithRect(rect IRect) Value {
+func NewValueWithRect(rect Rect) Value {
 	rv := objc.Send[Value](objc.ID(getValueClass().class), objc.Sel("valueWithRect:"), rect)
 	return rv
 }
-
 
 
 
@@ -434,7 +410,6 @@ func NewValueWithSCNMatrix4(v unsafe.Pointer) Value {
 
 
 
-
 // Creates a value object that contains the specified three-element SceneKit vector.
 //
 // [Full Topic]
@@ -444,7 +419,6 @@ func NewValueWithSCNVector3(v unsafe.Pointer) Value {
 	rv := objc.Send[Value](objc.ID(getValueClass().class), objc.Sel("valueWithSCNVector3:"), v)
 	return rv
 }
-
 
 
 
@@ -460,17 +434,15 @@ func NewValueWithSCNVector4(v unsafe.Pointer) Value {
 
 
 
-
 // Creates a new value object containing the specified Foundation size structure.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSValue/init(size:)
 
-func NewValueWithSize(size ISize) Value {
+func NewValueWithSize(size Size) Value {
 	rv := objc.Send[Value](objc.ID(getValueClass().class), objc.Sel("valueWithSize:"), size)
 	return rv
 }
-
 
 
 
@@ -483,7 +455,6 @@ func NewValueWithUIEdgeInsets(insets unsafe.Pointer) Value {
 	rv := objc.Send[Value](objc.ID(getValueClass().class), objc.Sel("valueWithUIEdgeInsets:"), insets)
 	return rv
 }
-
 
 
 
@@ -738,7 +709,7 @@ func (vc _ValueClass) ValueWithNonretainedObject(anObject objectivec.IObject) Va
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSValue/init(point:)
 
-func (vc _ValueClass) ValueWithPoint(point IPoint) Value {
+func (vc _ValueClass) ValueWithPoint(point Point) Value {
 	rv := objc.Send[Value](objc.ID(vc.class), objc.Sel("valueWithPoint:"), point)
 	return rv
 }
@@ -760,7 +731,7 @@ func (vc _ValueClass) ValueWithPointer(pointer unsafe.Pointer) Value {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSValue/init(range:)
 
-func (vc _ValueClass) ValueWithRange(range_ IRange) Value {
+func (vc _ValueClass) ValueWithRange(range_ Range) Value {
 	rv := objc.Send[Value](objc.ID(vc.class), objc.Sel("valueWithRange:"), range_)
 	return rv
 }
@@ -771,7 +742,7 @@ func (vc _ValueClass) ValueWithRange(range_ IRange) Value {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSValue/init(rect:)
 
-func (vc _ValueClass) ValueWithRect(rect IRect) Value {
+func (vc _ValueClass) ValueWithRect(rect Rect) Value {
 	rv := objc.Send[Value](objc.ID(vc.class), objc.Sel("valueWithRect:"), rect)
 	return rv
 }
@@ -782,7 +753,7 @@ func (vc _ValueClass) ValueWithRect(rect IRect) Value {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSValue/init(size:)
 
-func (vc _ValueClass) ValueWithSize(size ISize) Value {
+func (vc _ValueClass) ValueWithSize(size Size) Value {
 	rv := objc.Send[Value](objc.ID(vc.class), objc.Sel("valueWithSize:"), size)
 	return rv
 }
@@ -799,6 +770,7 @@ func (vc _ValueClass) ValueWithBytesObjCType(value unsafe.Pointer, type_ unsafe.
 }
 
 
+
 // Copies the value into the specified buffer.
 //
 // [Full Topic]
@@ -809,12 +781,14 @@ func (v_ Value) GetValue(value unsafe.Pointer) {
 }
 
 
+
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSValue/getValue(_:size:)
 
 func (v_ Value) GetValueSize(value unsafe.Pointer, size uint) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("getValue:size:"), value, size)
 }
+
 
 
 // Returns a Boolean value that indicates whether the value object and another value object are equal.

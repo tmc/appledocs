@@ -91,7 +91,6 @@ func NewDimension() Dimension {
 
 
 
-
 // Initializes a dimensional unit with the symbol and unit converter you specify.
 //
 // [Full Topic]

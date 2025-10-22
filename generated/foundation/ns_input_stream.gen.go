@@ -91,7 +91,6 @@ func NewInputStream() InputStream {
 
 
 
-
 // Initializes and returns an object for reading from a given object.
 //
 // [Full Topic]
@@ -106,7 +105,6 @@ func NewInputStreamWithData(data IData) InputStream {
 
 
 
-
 // Initializes and returns an object that reads data from the file at a given path.
 //
 // [Full Topic]
@@ -118,7 +116,6 @@ func NewInputStreamWithFileAtPath(path string) InputStream {
 	rv.Autorelease()
 	return rv
 }
-
 
 
 
@@ -169,6 +166,7 @@ func (ic _InputStreamClass) InputStreamWithFileAtPath(path string) unsafe.Pointe
 }
 
 
+
 // Returns by reference a pointer to a read buffer and, by reference, the number of bytes available, and returns a Boolean value that indicates whether the buffer is available.
 //
 // [Full Topic]
@@ -178,6 +176,7 @@ func (i_ InputStream) GetBufferLength(buffer unsafe.Pointer, len_ unsafe.Pointer
 	rv := objc.Send[bool](i_.ID, objc.Sel("getBuffer:length:"), buffer, len_)
 	return rv
 }
+
 
 
 // Reads up to a given number of bytes into a given buffer.

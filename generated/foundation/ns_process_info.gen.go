@@ -141,6 +141,7 @@ func (pc _ProcessInfoClass) ProcessInfo() ProcessInfo {
 	return rv
 }
 
+
 // Begin an activity using the given options and reason.
 //
 // [Full Topic]
@@ -150,6 +151,7 @@ func (p_ ProcessInfo) BeginActivityWithOptionsReason(options ActivityOptions, re
 	rv := objc.Send[objc.ID](p_.ID, objc.Sel("beginActivityWithOptions:reason:"), options, objc.String(reason))
 	return rv
 }
+
 
 
 // Disables automatic termination for the application.
@@ -162,6 +164,7 @@ func (p_ ProcessInfo) DisableAutomaticTermination(reason string) {
 }
 
 
+
 // Enables automatic termination for the application.
 //
 // [Full Topic]
@@ -170,6 +173,7 @@ func (p_ ProcessInfo) DisableAutomaticTermination(reason string) {
 func (p_ ProcessInfo) EnableAutomaticTermination(reason string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("enableAutomaticTermination:"), objc.String(reason))
 }
+
 
 
 // Enables the application for quick killing using sudden termination.
@@ -182,6 +186,7 @@ func (p_ ProcessInfo) EnableSuddenTermination() {
 }
 
 
+
 // Ends the given activity.
 //
 // [Full Topic]
@@ -190,6 +195,7 @@ func (p_ ProcessInfo) EnableSuddenTermination() {
 func (p_ ProcessInfo) EndActivity(activity objectivec.IObject) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("endActivity:"), activity)
 }
+
 
 
 // Indicates whether the device supports the requested performance tier.
@@ -203,6 +209,7 @@ func (p_ ProcessInfo) IsDeviceCertifiedFor(performanceTier unsafe.Pointer) bool 
 }
 
 
+
 // Returns a Boolean value indicating whether the version of the operating system on which the process is executing is the same or later than the given version.
 //
 // [Full Topic]
@@ -212,6 +219,7 @@ func (p_ ProcessInfo) IsOperatingSystemAtLeastVersion(version unsafe.Pointer) bo
 	rv := objc.Send[bool](p_.ID, objc.Sel("isOperatingSystemAtLeastVersion:"), version)
 	return rv
 }
+
 
 
 // Returns a string containing the name of the operating system on which the process is executing.
@@ -225,6 +233,7 @@ func (p_ ProcessInfo) OperatingSystemName() String {
 }
 
 
+
 // Synchronously perform an activity defined by a given block using the given options.
 //
 // [Full Topic]
@@ -233,6 +242,7 @@ func (p_ ProcessInfo) OperatingSystemName() String {
 func (p_ ProcessInfo) PerformActivityWithOptionsReasonUsingBlock(options ActivityOptions, reason string, block unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("performActivityWithOptions:reason:usingBlock:"), options, objc.String(reason), block)
 }
+
 
 
 // Performs the specified block asynchronously and notifies you if the process is about to be suspended.

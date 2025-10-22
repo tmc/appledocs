@@ -107,7 +107,6 @@ func NewXMLParser() XMLParser {
 
 
 
-
 // Initializes a parser with the XML contents encapsulated in a given data object.
 //
 // [Full Topic]
@@ -122,7 +121,6 @@ func NewXMLParserWithData(data IData) XMLParser {
 
 
 
-
 // Initializes a parser with the XML contents from the specified stream and parses it.
 //
 // [Full Topic]
@@ -134,6 +132,7 @@ func NewXMLParserWithStream(stream IInputStream) XMLParser {
 	rv.Autorelease()
 	return rv
 }
+
 
 
 

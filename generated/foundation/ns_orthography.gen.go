@@ -94,7 +94,6 @@ func NewOrthography() Orthography {
 
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrthography/init(coder:)
 
@@ -104,7 +103,6 @@ func NewOrthographyWithCoder(coder ICoder) Orthography {
 	rv.Autorelease()
 	return rv
 }
-
 
 
 
@@ -144,6 +142,7 @@ func (oc _OrthographyClass) OrthographyWithDominantScriptLanguageMap(script stri
 }
 
 
+
 // Returns the dominant language for the specified script.
 //
 // [Full Topic]
@@ -153,6 +152,7 @@ func (o_ Orthography) DominantLanguageForScript(script string) String {
 	rv := objc.Send[String](o_.ID, objc.Sel("dominantLanguageForScript:"), objc.String(script))
 	return rv
 }
+
 
 
 // Returns the list of languages for the specified script.

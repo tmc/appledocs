@@ -97,6 +97,7 @@ func NewURLSessionStreamTask() URLSessionStreamTask {
 
 
 
+
 // Completes any already enqueued reads and writes, and then invokes the delegate message.
 //
 // [Full Topic]
@@ -105,6 +106,7 @@ func NewURLSessionStreamTask() URLSessionStreamTask {
 func (u_ URLSessionStreamTask) CaptureStreams() {
 	objc.Send[objc.ID](u_.ID, objc.Sel("captureStreams"))
 }
+
 
 
 // Completes any enqueued reads and writes, and then closes the read side of the underlying socket.
@@ -117,6 +119,7 @@ func (u_ URLSessionStreamTask) CloseRead() {
 }
 
 
+
 // Completes any enqueued reads and writes, and then closes the write side of the underlying socket.
 //
 // [Full Topic]
@@ -125,6 +128,7 @@ func (u_ URLSessionStreamTask) CloseRead() {
 func (u_ URLSessionStreamTask) CloseWrite() {
 	objc.Send[objc.ID](u_.ID, objc.Sel("closeWrite"))
 }
+
 
 
 // Asynchronously reads a number of bytes from the stream, and calls a handler upon completion.
@@ -137,6 +141,7 @@ func (u_ URLSessionStreamTask) ReadDataOfMinLengthMaxLengthTimeoutCompletionHand
 }
 
 
+
 // Completes any enqueued reads and writes, and establishes a secure connection.
 //
 // [Full Topic]
@@ -147,6 +152,7 @@ func (u_ URLSessionStreamTask) StartSecureConnection() {
 }
 
 
+
 // Completes any enqueued reads and writes, and closes the secure connection.
 //
 // [Full Topic]
@@ -155,6 +161,7 @@ func (u_ URLSessionStreamTask) StartSecureConnection() {
 func (u_ URLSessionStreamTask) StopSecureConnection() {
 	objc.Send[objc.ID](u_.ID, objc.Sel("stopSecureConnection"))
 }
+
 
 
 // Asynchronously writes the specified data to the stream, and calls a handler upon completion.

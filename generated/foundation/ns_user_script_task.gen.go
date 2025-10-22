@@ -89,7 +89,6 @@ func NewUserScriptTask() UserScriptTask {
 
 
 
-
 // Return a user script task instance given a URL for a script file.
 //
 // [Full Topic]
@@ -101,6 +100,7 @@ func NewUserScriptTaskWithURLError(url IURL, error_ IError) UserScriptTask {
 	rv.Autorelease()
 	return rv
 }
+
 
 
 

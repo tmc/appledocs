@@ -158,7 +158,6 @@ func NewBundle() Bundle {
 
 
 
-
 // Returns the object with which the specified class is associated.
 //
 // [Full Topic]
@@ -168,7 +167,6 @@ func NewBundleForClass(aClass objc.Class) Bundle {
 	rv := objc.Send[Bundle](objc.ID(getBundleClass().class), objc.Sel("bundleForClass:"), aClass)
 	return rv
 }
-
 
 
 
@@ -184,7 +182,6 @@ func NewBundleWithIdentifier(identifier string) Bundle {
 
 
 
-
 // Returns an object initialized to correspond to the specified directory.
 //
 // [Full Topic]
@@ -196,7 +193,6 @@ func NewBundleWithPath(path string) Bundle {
 	rv.Autorelease()
 	return rv
 }
-
 
 
 
@@ -376,6 +372,7 @@ func (bc _BundleClass) MainBundle() Bundle {
 	return rv
 }
 
+
 // Returns the object for the specified name.
 //
 // [Full Topic]
@@ -385,6 +382,7 @@ func (b_ Bundle) ClassNamed(className string) objc.Class {
 	rv := objc.Send[objc.Class](b_.ID, objc.Sel("classNamed:"), objc.String(className))
 	return rv
 }
+
 
 
 // Returns the context-sensitive help for the specified key from the bundle’s help file.
@@ -398,6 +396,7 @@ func (b_ Bundle) ContextHelpForKey(key unsafe.Pointer) AttributedString {
 }
 
 
+
 // Dynamically loads the bundle’s executable code into a running program, if the code has not already been loaded.
 //
 // [Full Topic]
@@ -407,6 +406,7 @@ func (b_ Bundle) Load() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("load"))
 	return rv
 }
+
 
 
 // Loads the bundle’s executable code and returns any errors.
@@ -420,12 +420,14 @@ func (b_ Bundle) LoadAndReturnError(error_ IError) bool {
 }
 
 
+
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/loadAppleScriptObjectiveCScripts()
 
 func (b_ Bundle) LoadAppleScriptObjectiveCScripts() {
 	objc.Send[objc.ID](b_.ID, objc.Sel("loadAppleScriptObjectiveCScripts"))
 }
+
 
 
 // Unarchives the contents of a nib file located in the receiver’s bundle.
@@ -439,6 +441,7 @@ func (b_ Bundle) LoadNibNamedOwnerOptions(name string, owner objectivec.IObject,
 }
 
 
+
 // Loads a nib from the bundle with the specified file name and owner.
 //
 // [Full Topic]
@@ -448,6 +451,7 @@ func (b_ Bundle) LoadNibNamedOwnerTopLevelObjects(nibName unsafe.Pointer, owner 
 	rv := objc.Send[bool](b_.ID, objc.Sel("loadNibNamed:owner:topLevelObjects:"), nibName, owner, topLevelObjects)
 	return rv
 }
+
 
 
 // Returns a localized version of the string designated by the specified key and residing in the specified table.
@@ -461,6 +465,7 @@ func (b_ Bundle) LocalizedStringForKeyValueTable(key string, value string, table
 }
 
 
+
 // Returns the value associated with the specified key in the receiver’s information property list.
 //
 // [Full Topic]
@@ -470,6 +475,7 @@ func (b_ Bundle) ObjectForInfoDictionaryKey(key string) objc.ID {
 	rv := objc.Send[objc.ID](b_.ID, objc.Sel("objectForInfoDictionaryKey:"), objc.String(key))
 	return rv
 }
+
 
 
 // Returns the full pathname of the executable with the specified name in the receiver’s bundle.
@@ -483,6 +489,7 @@ func (b_ Bundle) PathForAuxiliaryExecutable(executableName string) String {
 }
 
 
+
 // Returns the full pathname for the resource identified by the specified name and file extension.
 //
 // [Full Topic]
@@ -492,6 +499,7 @@ func (b_ Bundle) PathForResourceOfType(name string, ext string) String {
 	rv := objc.Send[String](b_.ID, objc.Sel("pathForResource:ofType:"), objc.String(name), objc.String(ext))
 	return rv
 }
+
 
 
 // Returns the full pathname for the resource identified by the specified name and file extension and located in the specified bundle subdirectory.
@@ -505,6 +513,7 @@ func (b_ Bundle) PathForResourceOfTypeInDirectory(name string, ext string, subpa
 }
 
 
+
 // Returns the full pathname for the resource identified by the specified name and file extension, located in the specified bundle subdirectory, and limited to global resources and those associated with the specified localization.
 //
 // [Full Topic]
@@ -514,6 +523,7 @@ func (b_ Bundle) PathForResourceOfTypeInDirectoryForLocalization(name string, ex
 	rv := objc.Send[String](b_.ID, objc.Sel("pathForResource:ofType:inDirectory:forLocalization:"), objc.String(name), objc.String(ext), objc.String(subpath), objc.String(localizationName))
 	return rv
 }
+
 
 
 // Returns the location of the specified sound resource file.
@@ -527,6 +537,7 @@ func (b_ Bundle) PathForSoundResource(name unsafe.Pointer) String {
 }
 
 
+
 // Returns the location of the specified image resource file.
 //
 // [Full Topic]
@@ -536,6 +547,7 @@ func (b_ Bundle) PathForImageResource(name unsafe.Pointer) String {
 	rv := objc.Send[String](b_.ID, objc.Sel("pathForImageResource:"), name)
 	return rv
 }
+
 
 
 // Returns an array containing the pathnames for all bundle resources having the specified filename extension and residing in the resource subdirectory.
@@ -549,6 +561,7 @@ func (b_ Bundle) PathsForResourcesOfTypeInDirectory(ext string, subpath string) 
 }
 
 
+
 // Returns an array containing the file for all bundle resources having the specified filename extension, residing in the specified resource subdirectory, and limited to global resources and those associated with the specified localization.
 //
 // [Full Topic]
@@ -558,6 +571,7 @@ func (b_ Bundle) PathsForResourcesOfTypeInDirectoryForLocalization(ext string, s
 	rv := objc.Send[[]string](b_.ID, objc.Sel("pathsForResourcesOfType:inDirectory:forLocalization:"), objc.String(ext), objc.String(subpath), objc.String(localizationName))
 	return rv
 }
+
 
 
 // Returns a Boolean value indicating whether the bundle’s executable code could be loaded successfully.
@@ -571,6 +585,7 @@ func (b_ Bundle) PreflightAndReturnError(error_ IError) bool {
 }
 
 
+
 // Returns the current preservation priority for the specified tag.
 //
 // [Full Topic]
@@ -582,6 +597,7 @@ func (b_ Bundle) PreservationPriorityForTag(tag string) float64 {
 }
 
 
+
 // A hint to the system of the relative order for purging tagged sets of resources in the bundle.
 //
 // [Full Topic]
@@ -590,6 +606,7 @@ func (b_ Bundle) PreservationPriorityForTag(tag string) float64 {
 func (b_ Bundle) SetPreservationPriorityForTags(priority float64, tags unsafe.Pointer) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setPreservationPriority:forTags:"), priority, tags)
 }
+
 
 
 // Unloads the code associated with the receiver.
@@ -603,6 +620,7 @@ func (b_ Bundle) Unload() bool {
 }
 
 
+
 // Returns the file URL of the executable with the specified name in the receiver’s bundle.
 //
 // [Full Topic]
@@ -612,6 +630,7 @@ func (b_ Bundle) URLForAuxiliaryExecutable(executableName string) URL {
 	rv := objc.Send[URL](b_.ID, objc.Sel("URLForAuxiliaryExecutable:"), objc.String(executableName))
 	return rv
 }
+
 
 
 // Returns the file URL for the resource identified by the specified name and file extension.
@@ -625,6 +644,7 @@ func (b_ Bundle) URLForResourceWithExtension(name string, ext string) URL {
 }
 
 
+
 // Returns the file URL for the resource file identified by the specified name and extension and residing in a given bundle directory.
 //
 // [Full Topic]
@@ -634,6 +654,7 @@ func (b_ Bundle) URLForResourceWithExtensionSubdirectory(name string, ext string
 	rv := objc.Send[URL](b_.ID, objc.Sel("URLForResource:withExtension:subdirectory:"), objc.String(name), objc.String(ext), objc.String(subpath))
 	return rv
 }
+
 
 
 // Returns the file URL for the resource identified by the specified name and file extension, located in the specified bundle subdirectory, and limited to global resources and those associated with the specified localization.
@@ -647,6 +668,7 @@ func (b_ Bundle) URLForResourceWithExtensionSubdirectoryLocalization(name string
 }
 
 
+
 // Returns the location of the specified image resource as an NSURL.
 //
 // [Full Topic]
@@ -656,6 +678,7 @@ func (b_ Bundle) URLForImageResource(name unsafe.Pointer) URL {
 	rv := objc.Send[URL](b_.ID, objc.Sel("URLForImageResource:"), name)
 	return rv
 }
+
 
 
 // Returns an array of file URLs for all resources identified by the specified file extension and located in the specified bundle subdirectory.
@@ -669,6 +692,7 @@ func (b_ Bundle) URLsForResourcesWithExtensionSubdirectory(ext string, subpath s
 }
 
 
+
 // Returns an array containing the file URLs for all bundle resources having the specified filename extension, residing in the specified resource subdirectory, and limited to global resources and those associated with the specified localization.
 //
 // [Full Topic]
@@ -678,6 +702,7 @@ func (b_ Bundle) URLsForResourcesWithExtensionSubdirectoryLocalization(ext strin
 	rv := objc.Send[[]URL](b_.ID, objc.Sel("URLsForResourcesWithExtension:subdirectory:localization:"), objc.String(ext), objc.String(subpath), objc.String(localizationName))
 	return rv
 }
+
 
 
 // Unarchives the contents of a nib file located in the receiver’s bundle.
@@ -691,6 +716,7 @@ func (b_ Bundle) LoadNibFileExternalNameTableWithZone(fileName string, context o
 }
 
 
+
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBundle/localizedAttributedStringForKey:value:table:
 
@@ -698,6 +724,7 @@ func (b_ Bundle) LocalizedAttributedStringForKeyValueTable(key string, value str
 	rv := objc.Send[AttributedString](b_.ID, objc.Sel("localizedAttributedStringForKey:value:table:"), objc.String(key), objc.String(value), objc.String(tableName))
 	return rv
 }
+
 
 
 // Look up a localized string given a list of available localizations.

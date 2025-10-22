@@ -92,7 +92,6 @@ func NewPredicate() Predicate {
 
 
 
-
 // Creates a predicate with a metadata query string.
 //
 // [Full Topic]
@@ -102,7 +101,6 @@ func NewPredicateFromMetadataQueryString(queryString string) Predicate {
 	rv := objc.Send[Predicate](objc.ID(getPredicateClass().class), objc.Sel("predicateFromMetadataQueryString:"), objc.String(queryString))
 	return rv
 }
-
 
 
 
@@ -118,7 +116,6 @@ func NewPredicateWithBlock(block unsafe.Pointer) Predicate {
 
 
 
-
 // Creates a predicate by substituting the values in a specified array into a format string and parsing the result.
 //
 // [Full Topic]
@@ -131,7 +128,6 @@ func NewPredicateWithFormatArgumentArray(predicateFormat string, arguments objec
 
 
 
-
 // Creates a predicate by substituting the values in an argument list into a format string and parsing the result.
 //
 // [Full Topic]
@@ -141,7 +137,6 @@ func NewPredicateWithFormatArguments(predicateFormat string, argList unsafe.Poin
 	rv := objc.Send[Predicate](objc.ID(getPredicateClass().class), objc.Sel("predicateWithFormat:arguments:"), objc.String(predicateFormat), argList)
 	return rv
 }
-
 
 
 
@@ -223,6 +218,7 @@ func (pc _PredicateClass) PredicateWithFormat(predicateFormat string) Predicate 
 }
 
 
+
 // Forces a securely decoded predicate to allow evaluation.
 //
 // [Full Topic]
@@ -231,6 +227,7 @@ func (pc _PredicateClass) PredicateWithFormat(predicateFormat string) Predicate 
 func (p_ Predicate) AllowEvaluation() {
 	objc.Send[objc.ID](p_.ID, objc.Sel("allowEvaluation"))
 }
+
 
 
 // Returns a Boolean value that indicates whether the specified object matches the conditions that the predicate specifies.
@@ -244,6 +241,7 @@ func (p_ Predicate) EvaluateWithObject(object objectivec.IObject) bool {
 }
 
 
+
 // Returns a Boolean value that indicates whether the specified object matches the conditions that the predicate specifies after substituting in the values from a specified variables dictionary.
 //
 // [Full Topic]
@@ -253,6 +251,7 @@ func (p_ Predicate) EvaluateWithObjectSubstitutionVariables(object objectivec.IO
 	rv := objc.Send[bool](p_.ID, objc.Sel("evaluateWithObject:substitutionVariables:"), object, bindings)
 	return rv
 }
+
 
 
 // Returns a copy of the predicate and substitutes the predicates variables with specified values from a specified substitution variables dictionary.

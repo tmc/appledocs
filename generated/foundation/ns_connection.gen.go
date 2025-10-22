@@ -98,6 +98,7 @@ func (cc _ConnectionClass) RootProxyForConnectionWithRegisteredNameHost(name str
 }
 
 
+
 // Configures the receiver to allow requests from multiple threads to the remote object, without requiring each thread to each maintain its own connection.
 //
 // [Full Topic]

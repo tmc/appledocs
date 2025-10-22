@@ -90,7 +90,6 @@ func NewBlockOperation() BlockOperation {
 
 
 
-
 // Creates and returns an object and adds the specified block to it.
 //
 // [Full Topic]
@@ -112,6 +111,7 @@ func (bc _BlockOperationClass) BlockOperationWithBlock(block unsafe.Pointer) uns
 	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("blockOperationWithBlock:"), block)
 	return rv
 }
+
 
 
 // Adds the specified block to the receiver’s list of blocks to perform.

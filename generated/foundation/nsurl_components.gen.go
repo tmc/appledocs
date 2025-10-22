@@ -64,21 +64,21 @@ type IURLComponents interface {
 	QueryItems() URLQueryItem
 	SetQueryItems(value IURLQueryItem)
 	RangeOfFragment() Range
-	SetRangeOfFragment(value IRange)
+	SetRangeOfFragment(value Range)
 	RangeOfHost() Range
-	SetRangeOfHost(value IRange)
+	SetRangeOfHost(value Range)
 	RangeOfPassword() Range
-	SetRangeOfPassword(value IRange)
+	SetRangeOfPassword(value Range)
 	RangeOfPath() Range
-	SetRangeOfPath(value IRange)
+	SetRangeOfPath(value Range)
 	RangeOfPort() Range
-	SetRangeOfPort(value IRange)
+	SetRangeOfPort(value Range)
 	RangeOfQuery() Range
-	SetRangeOfQuery(value IRange)
+	SetRangeOfQuery(value Range)
 	RangeOfScheme() Range
-	SetRangeOfScheme(value IRange)
+	SetRangeOfScheme(value Range)
 	RangeOfUser() Range
-	SetRangeOfUser(value IRange)
+	SetRangeOfUser(value Range)
 	Scheme() string
 	SetScheme(value string)
 	User() string
@@ -140,7 +140,6 @@ func NewURLComponents() URLComponents {
 
 
 
-
 // Creates a URL components object by parsing a URL in string form.
 //
 // [Full Topic]
@@ -155,7 +154,6 @@ func NewURLComponentsWithString(URLString string) URLComponents {
 
 
 
-
 // Creates a URL components instance from the provided string, optionally IDNA- and percent-encoding any invalid characters.
 //
 // [Full Topic]
@@ -167,7 +165,6 @@ func NewURLComponentsWithStringEncodingInvalidCharacters(URLString string, encod
 	rv.Autorelease()
 	return rv
 }
-
 
 
 
@@ -216,6 +213,7 @@ func (uc _URLComponentsClass) ComponentsWithURLResolvingAgainstBaseURL(url IURL,
 	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("componentsWithURL:resolvingAgainstBaseURL:"), url, resolve)
 	return rv
 }
+
 
 
 // Returns a URL object derived from the components object.
@@ -578,7 +576,7 @@ func (u_ URLComponents) RangeOfFragment() Range {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/rangeoffragment
 
-func (u_ URLComponents) SetRangeOfFragment(value IRange) {
+func (u_ URLComponents) SetRangeOfFragment(value Range) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setRangeOfFragment:"), value)
 }
 
@@ -599,7 +597,7 @@ func (u_ URLComponents) RangeOfHost() Range {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/rangeofhost
 
-func (u_ URLComponents) SetRangeOfHost(value IRange) {
+func (u_ URLComponents) SetRangeOfHost(value Range) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setRangeOfHost:"), value)
 }
 
@@ -620,7 +618,7 @@ func (u_ URLComponents) RangeOfPassword() Range {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/rangeofpassword
 
-func (u_ URLComponents) SetRangeOfPassword(value IRange) {
+func (u_ URLComponents) SetRangeOfPassword(value Range) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setRangeOfPassword:"), value)
 }
 
@@ -641,7 +639,7 @@ func (u_ URLComponents) RangeOfPath() Range {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/rangeofpath
 
-func (u_ URLComponents) SetRangeOfPath(value IRange) {
+func (u_ URLComponents) SetRangeOfPath(value Range) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setRangeOfPath:"), value)
 }
 
@@ -662,7 +660,7 @@ func (u_ URLComponents) RangeOfPort() Range {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/rangeofport
 
-func (u_ URLComponents) SetRangeOfPort(value IRange) {
+func (u_ URLComponents) SetRangeOfPort(value Range) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setRangeOfPort:"), value)
 }
 
@@ -683,7 +681,7 @@ func (u_ URLComponents) RangeOfQuery() Range {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/rangeofquery
 
-func (u_ URLComponents) SetRangeOfQuery(value IRange) {
+func (u_ URLComponents) SetRangeOfQuery(value Range) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setRangeOfQuery:"), value)
 }
 
@@ -704,7 +702,7 @@ func (u_ URLComponents) RangeOfScheme() Range {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/rangeofscheme
 
-func (u_ URLComponents) SetRangeOfScheme(value IRange) {
+func (u_ URLComponents) SetRangeOfScheme(value Range) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setRangeOfScheme:"), value)
 }
 
@@ -725,7 +723,7 @@ func (u_ URLComponents) RangeOfUser() Range {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/rangeofuser
 
-func (u_ URLComponents) SetRangeOfUser(value IRange) {
+func (u_ URLComponents) SetRangeOfUser(value Range) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setRangeOfUser:"), value)
 }
 

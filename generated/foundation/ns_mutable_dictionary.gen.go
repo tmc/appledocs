@@ -117,7 +117,6 @@ func NewMutableDictionary() MutableDictionary {
 
 
 
-
 // Initializes a newly allocated mutable dictionary, allocating enough memory to hold entries.
 //
 // [Full Topic]
@@ -129,7 +128,6 @@ func NewMutableDictionaryWithCapacity(numItems uint) MutableDictionary {
 	rv.Autorelease()
 	return rv
 }
-
 
 
 
@@ -145,7 +143,6 @@ func NewMutableDictionaryWithCoder(coder ICoder) MutableDictionary {
 
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/initWithContentsOfFile:
 
@@ -155,7 +152,6 @@ func NewMutableDictionaryWithContentsOfFile(path string) MutableDictionary {
 	rv.Autorelease()
 	return rv
 }
-
 
 
 
@@ -171,7 +167,6 @@ func NewMutableDictionaryWithContentsOfURL(url IURL) MutableDictionary {
 
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/init(OBEXHeadersData:)
 
@@ -182,7 +177,6 @@ func NewMutableDictionaryWithOBEXHeadersData(inHeadersData IData) MutableDiction
 
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/init(OBEXHeadersData:headersDataSize:)
 
@@ -190,7 +184,6 @@ func NewMutableDictionaryWithOBEXHeadersDataHeadersDataSize(inHeadersData unsafe
 	rv := objc.Send[MutableDictionary](objc.ID(getMutableDictionaryClass().class), objc.Sel("dictionaryWithOBEXHeadersData:headersDataSize:"), inHeadersData, inDataSize)
 	return rv
 }
-
 
 
 
@@ -273,6 +266,7 @@ func (mc _MutableDictionaryClass) WithOBEXHeadersDataHeadersDataSize(inHeadersDa
 }
 
 
+
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/addApplicationParameterHeader(_:length:)
 
@@ -280,6 +274,7 @@ func (m_ MutableDictionary) AddApplicationParameterHeaderLength(inHeaderData uns
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("addApplicationParameterHeader:length:"), inHeaderData, inHeaderDataLength)
 	return rv
 }
+
 
 
 // [Full Topic]
@@ -291,6 +286,7 @@ func (m_ MutableDictionary) AddAuthorizationChallengeHeaderLength(inHeaderData u
 }
 
 
+
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/addAuthorizationResponseHeader(_:length:)
 
@@ -298,6 +294,7 @@ func (m_ MutableDictionary) AddAuthorizationResponseHeaderLength(inHeaderData un
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("addAuthorizationResponseHeader:length:"), inHeaderData, inHeaderDataLength)
 	return rv
 }
+
 
 
 // [Full Topic]
@@ -309,6 +306,7 @@ func (m_ MutableDictionary) AddBodyHeaderLengthEndOfBody(inHeaderData unsafe.Poi
 }
 
 
+
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/addByteSequenceHeader(_:length:)
 
@@ -316,6 +314,7 @@ func (m_ MutableDictionary) AddByteSequenceHeaderLength(inHeaderData unsafe.Poin
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("addByteSequenceHeader:length:"), inHeaderData, inHeaderDataLength)
 	return rv
 }
+
 
 
 // [Full Topic]
@@ -327,6 +326,7 @@ func (m_ MutableDictionary) AddConnectionIDHeaderLength(inHeaderData unsafe.Poin
 }
 
 
+
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/addCountHeader(_:)
 
@@ -336,6 +336,7 @@ func (m_ MutableDictionary) AddCountHeader(inCount Iuint32) unsafe.Pointer {
 }
 
 
+
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/addDescriptionHeader(_:)
 
@@ -343,6 +344,7 @@ func (m_ MutableDictionary) AddDescriptionHeader(inDescriptionString string) uns
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("addDescriptionHeader:"), objc.String(inDescriptionString))
 	return rv
 }
+
 
 
 // Adds to the receiving dictionary the entries from another dictionary.
@@ -355,6 +357,7 @@ func (m_ MutableDictionary) AddEntriesFromDictionary(otherDictionary unsafe.Poin
 }
 
 
+
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/addHTTPHeader(_:length:)
 
@@ -362,6 +365,7 @@ func (m_ MutableDictionary) AddHTTPHeaderLength(inHeaderData unsafe.Pointer, inH
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("addHTTPHeader:length:"), inHeaderData, inHeaderDataLength)
 	return rv
 }
+
 
 
 // [Full Topic]
@@ -373,6 +377,7 @@ func (m_ MutableDictionary) AddImageDescriptorHeaderLength(inHeaderData unsafe.P
 }
 
 
+
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/addImageHandleHeader(_:)
 
@@ -380,6 +385,7 @@ func (m_ MutableDictionary) AddImageHandleHeader(type_ string) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("addImageHandleHeader:"), objc.String(type_))
 	return rv
 }
+
 
 
 // [Full Topic]
@@ -391,6 +397,7 @@ func (m_ MutableDictionary) AddLengthHeader(length Iuint32) unsafe.Pointer {
 }
 
 
+
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/addNameHeader(_:)
 
@@ -398,6 +405,7 @@ func (m_ MutableDictionary) AddNameHeader(inNameString string) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("addNameHeader:"), objc.String(inNameString))
 	return rv
 }
+
 
 
 // [Full Topic]
@@ -409,6 +417,7 @@ func (m_ MutableDictionary) AddObjectClassHeaderLength(inHeaderData unsafe.Point
 }
 
 
+
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/addTargetHeader(_:length:)
 
@@ -416,6 +425,7 @@ func (m_ MutableDictionary) AddTargetHeaderLength(inHeaderData unsafe.Pointer, i
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("addTargetHeader:length:"), inHeaderData, inHeaderDataLength)
 	return rv
 }
+
 
 
 // [Full Topic]
@@ -427,6 +437,7 @@ func (m_ MutableDictionary) AddTime4ByteHeader(time4Byte Iuint32) unsafe.Pointer
 }
 
 
+
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/addTimeISOHeader(_:length:)
 
@@ -434,6 +445,7 @@ func (m_ MutableDictionary) AddTimeISOHeaderLength(inHeaderData unsafe.Pointer, 
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("addTimeISOHeader:length:"), inHeaderData, inHeaderDataLength)
 	return rv
 }
+
 
 
 // [Full Topic]
@@ -445,6 +457,7 @@ func (m_ MutableDictionary) AddTypeHeader(type_ string) unsafe.Pointer {
 }
 
 
+
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/addUserDefinedHeader(_:length:)
 
@@ -452,6 +465,7 @@ func (m_ MutableDictionary) AddUserDefinedHeaderLength(inHeaderData unsafe.Point
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("addUserDefinedHeader:length:"), inHeaderData, inHeaderDataLength)
 	return rv
 }
+
 
 
 // [Full Topic]
@@ -463,6 +477,7 @@ func (m_ MutableDictionary) AddWhoHeaderLength(inHeaderData unsafe.Pointer, inHe
 }
 
 
+
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/getHeaderBytes()
 
@@ -470,6 +485,7 @@ func (m_ MutableDictionary) GetHeaderBytes() MutableData {
 	rv := objc.Send[MutableData](m_.ID, objc.Sel("getHeaderBytes"))
 	return rv
 }
+
 
 
 // Empties the dictionary of its entries.
@@ -482,6 +498,7 @@ func (m_ MutableDictionary) RemoveAllObjects() {
 }
 
 
+
 // Removes a given key and its associated value from the dictionary.
 //
 // [Full Topic]
@@ -490,6 +507,7 @@ func (m_ MutableDictionary) RemoveAllObjects() {
 func (m_ MutableDictionary) RemoveObjectForKey(aKey unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("removeObjectForKey:"), aKey)
 }
+
 
 
 // Removes from the dictionary entries specified by elements in a given array.
@@ -502,6 +520,7 @@ func (m_ MutableDictionary) RemoveObjectsForKeys(keyArray []objc.ID) {
 }
 
 
+
 // Sets the contents of the receiving dictionary to entries in a given dictionary.
 //
 // [Full Topic]
@@ -510,6 +529,7 @@ func (m_ MutableDictionary) RemoveObjectsForKeys(keyArray []objc.ID) {
 func (m_ MutableDictionary) SetDictionary(otherDictionary unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDictionary:"), otherDictionary)
 }
+
 
 
 // Adds a given key-value pair to the dictionary.
@@ -522,6 +542,7 @@ func (m_ MutableDictionary) SetObjectForKey(anObject unsafe.Pointer, aKey object
 }
 
 
+
 // Adds a given key-value pair to the dictionary.
 //
 // [Full Topic]
@@ -530,6 +551,7 @@ func (m_ MutableDictionary) SetObjectForKey(anObject unsafe.Pointer, aKey object
 func (m_ MutableDictionary) SetObjectForKeyedSubscript(obj unsafe.Pointer, key objectivec.IObject) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setObject:forKeyedSubscript:"), obj, key)
 }
+
 
 
 // Adds a given key-value pair to the dictionary.

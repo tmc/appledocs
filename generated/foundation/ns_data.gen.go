@@ -33,15 +33,15 @@ type IData interface {
 	Base64EncodedDataWithOptions(options DataBase64EncodingOptions) Data
 	Base64EncodedStringWithOptions(options DataBase64EncodingOptions) String
 	Base64Encoding() String
-	CompressedDataUsingAlgorithmError(algorithm IDataCompressionAlgorithm, error_ IError) unsafe.Pointer
-	DecompressedDataUsingAlgorithmError(algorithm IDataCompressionAlgorithm, error_ IError) unsafe.Pointer
+	CompressedDataUsingAlgorithmError(algorithm DataCompressionAlgorithm, error_ IError) unsafe.Pointer
+	DecompressedDataUsingAlgorithmError(algorithm DataCompressionAlgorithm, error_ IError) unsafe.Pointer
 	EnumerateByteRangesUsingBlock(block unsafe.Pointer)
 	GetBytes(buffer unsafe.Pointer)
 	GetBytesLength(buffer unsafe.Pointer, length uint)
-	GetBytesRange(buffer unsafe.Pointer, range_ IRange)
+	GetBytesRange(buffer unsafe.Pointer, range_ Range)
 	IsEqualToData(other IData) bool
-	RangeOfDataOptionsRange(dataToFind IData, mask DataSearchOptions, searchRange IRange) Range
-	SubdataWithRange(range_ IRange) Data
+	RangeOfDataOptionsRange(dataToFind IData, mask DataSearchOptions, searchRange Range) Range
+	SubdataWithRange(range_ Range) Data
 	WriteToURLAtomically(url IURL, atomically bool) bool
 	WriteToURLOptionsError(url IURL, writeOptionsMask DataWritingOptions, errorPtr IError) bool
 	WriteToFileAtomically(path string, useAuxiliaryFile bool) bool
@@ -114,7 +114,6 @@ func NewData() Data {
 
 
 
-
 // Initializes a data object with the given Base64 encoded data.
 //
 // [Full Topic]
@@ -126,7 +125,6 @@ func NewDataWithBase64EncodedDataOptions(base64Data IData, options DataBase64Dec
 	rv.Autorelease()
 	return rv
 }
-
 
 
 
@@ -144,7 +142,6 @@ func NewDataWithBase64EncodedStringOptions(base64String string, options DataBase
 
 
 
-
 // Initializes a data object initialized with the given Base64 encoded string.
 //
 // [Full Topic]
@@ -156,7 +153,6 @@ func NewDataWithBase64Encoding(base64String string) Data {
 	rv.Autorelease()
 	return rv
 }
-
 
 
 
@@ -174,7 +170,6 @@ func NewDataWithBytesLength(bytes unsafe.Pointer, length uint) Data {
 
 
 
-
 // Initializes a data object filled with a given number of bytes of data from a given buffer.
 //
 // [Full Topic]
@@ -186,7 +181,6 @@ func NewDataWithBytesNoCopyLength(bytes unsafe.Pointer, length uint) Data {
 	rv.Autorelease()
 	return rv
 }
-
 
 
 
@@ -204,7 +198,6 @@ func NewDataWithBytesNoCopyLengthDeallocator(bytes unsafe.Pointer, length uint, 
 
 
 
-
 // Initializes a newly allocated data object by adding the given number of bytes from the given buffer.
 //
 // [Full Topic]
@@ -216,7 +209,6 @@ func NewDataWithBytesNoCopyLengthFreeWhenDone(bytes unsafe.Pointer, length uint,
 	rv.Autorelease()
 	return rv
 }
-
 
 
 
@@ -234,7 +226,6 @@ func NewDataWithContentsOfFile(path string) Data {
 
 
 
-
 // Initializes a data object with the content of the file at a given path.
 //
 // [Full Topic]
@@ -246,7 +237,6 @@ func NewDataWithContentsOfFileOptionsError(path string, readOptionsMask DataRead
 	rv.Autorelease()
 	return rv
 }
-
 
 
 
@@ -264,7 +254,6 @@ func NewDataWithContentsOfMappedFile(path string) Data {
 
 
 
-
 // Creates a data object from the data at the specified file URL, or returns if the system can’t create one.
 //
 // [Full Topic]
@@ -279,7 +268,6 @@ func NewDataWithContentsOfURL(url IURL) Data {
 
 
 
-
 // Creates a data object from the data at the provided file URL using specific reading options.
 //
 // [Full Topic]
@@ -291,7 +279,6 @@ func NewDataWithContentsOfURLOptionsError(url IURL, readOptionsMask DataReadingO
 	rv.Autorelease()
 	return rv
 }
-
 
 
 
@@ -419,6 +406,7 @@ func (dc _DataClass) DataWithContentsOfURLOptionsError(url IURL, readOptionsMask
 }
 
 
+
 // Creates a Base64, UTF-8 encoded data object from the string using the given options.
 //
 // [Full Topic]
@@ -428,6 +416,7 @@ func (d_ Data) Base64EncodedDataWithOptions(options DataBase64EncodingOptions) D
 	rv := objc.Send[Data](d_.ID, objc.Sel("base64EncodedDataWithOptions:"), options)
 	return rv
 }
+
 
 
 // Creates a Base64 encoded string from the string using the given options.
@@ -441,6 +430,7 @@ func (d_ Data) Base64EncodedStringWithOptions(options DataBase64EncodingOptions)
 }
 
 
+
 // Initializes a Base64 encoded string from the string.
 //
 // [Full Topic]
@@ -452,15 +442,17 @@ func (d_ Data) Base64Encoding() String {
 }
 
 
+
 // Returns a new data object by compressing the data object’s bytes.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/compressed(using:)
 
-func (d_ Data) CompressedDataUsingAlgorithmError(algorithm IDataCompressionAlgorithm, error_ IError) unsafe.Pointer {
+func (d_ Data) CompressedDataUsingAlgorithmError(algorithm DataCompressionAlgorithm, error_ IError) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("compressedDataUsingAlgorithm:error:"), algorithm, error_)
 	return rv
 }
+
 
 
 // Returns a new data object by decompressing data object’s bytes.
@@ -468,10 +460,11 @@ func (d_ Data) CompressedDataUsingAlgorithmError(algorithm IDataCompressionAlgor
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/decompressed(using:)
 
-func (d_ Data) DecompressedDataUsingAlgorithmError(algorithm IDataCompressionAlgorithm, error_ IError) unsafe.Pointer {
+func (d_ Data) DecompressedDataUsingAlgorithmError(algorithm DataCompressionAlgorithm, error_ IError) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("decompressedDataUsingAlgorithm:error:"), algorithm, error_)
 	return rv
 }
+
 
 
 // Enumerates each range of bytes in the data object using a block.
@@ -484,6 +477,7 @@ func (d_ Data) EnumerateByteRangesUsingBlock(block unsafe.Pointer) {
 }
 
 
+
 // Copies a data object’s contents into a given buffer.
 //
 // [Full Topic]
@@ -492,6 +486,7 @@ func (d_ Data) EnumerateByteRangesUsingBlock(block unsafe.Pointer) {
 func (d_ Data) GetBytes(buffer unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("getBytes:"), buffer)
 }
+
 
 
 // Copies a number of bytes from the start of the data object into a given buffer.
@@ -504,14 +499,16 @@ func (d_ Data) GetBytesLength(buffer unsafe.Pointer, length uint) {
 }
 
 
+
 // Copies a range of bytes from the data object into a given buffer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/getBytes(_:range:)
 
-func (d_ Data) GetBytesRange(buffer unsafe.Pointer, range_ IRange) {
+func (d_ Data) GetBytesRange(buffer unsafe.Pointer, range_ Range) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("getBytes:range:"), buffer, range_)
 }
+
 
 
 // Returns a Boolean value indicating whether this data object is the same as another.
@@ -525,15 +522,17 @@ func (d_ Data) IsEqualToData(other IData) bool {
 }
 
 
+
 // Finds and returns the range of the first occurrence of the given data, within the given range, subject to given options.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/range(of:options:in:)
 
-func (d_ Data) RangeOfDataOptionsRange(dataToFind IData, mask DataSearchOptions, searchRange IRange) Range {
+func (d_ Data) RangeOfDataOptionsRange(dataToFind IData, mask DataSearchOptions, searchRange Range) Range {
 	rv := objc.Send[Range](d_.ID, objc.Sel("rangeOfData:options:range:"), dataToFind, mask, searchRange)
 	return rv
 }
+
 
 
 // Returns a new data object containing the data object’s bytes that fall within the limits specified by a given range.
@@ -541,10 +540,11 @@ func (d_ Data) RangeOfDataOptionsRange(dataToFind IData, mask DataSearchOptions,
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/subdata(with:)
 
-func (d_ Data) SubdataWithRange(range_ IRange) Data {
+func (d_ Data) SubdataWithRange(range_ Range) Data {
 	rv := objc.Send[Data](d_.ID, objc.Sel("subdataWithRange:"), range_)
 	return rv
 }
+
 
 
 // Writes the data object’s bytes to the location specified by a given URL.
@@ -558,6 +558,7 @@ func (d_ Data) WriteToURLAtomically(url IURL, atomically bool) bool {
 }
 
 
+
 // Writes the data object’s bytes to the location specified by a given URL.
 //
 // [Full Topic]
@@ -569,6 +570,7 @@ func (d_ Data) WriteToURLOptionsError(url IURL, writeOptionsMask DataWritingOpti
 }
 
 
+
 // Writes the data object’s bytes to the file specified by a given path.
 //
 // [Full Topic]
@@ -578,6 +580,7 @@ func (d_ Data) WriteToFileAtomically(path string, useAuxiliaryFile bool) bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("writeToFile:atomically:"), objc.String(path), useAuxiliaryFile)
 	return rv
 }
+
 
 
 // Writes the data object’s bytes to the file specified by a given path.

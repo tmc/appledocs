@@ -95,7 +95,6 @@ func NewSocketPort() SocketPort {
 
 
 
-
 // Initializes the receiver as a local socket with the provided arguments.
 //
 // [Full Topic]

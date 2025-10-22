@@ -91,7 +91,6 @@ func NewCompoundPredicate() CompoundPredicate {
 
 
 
-
 // Returns a new predicate that you form using an AND operation on the predicates in a specified array.
 //
 // [Full Topic]
@@ -104,7 +103,6 @@ func NewCompoundPredicateAndPredicateWithSubpredicates(subpredicates []Predicate
 
 
 
-
 // Returns a new predicate that you form using a NOT operation on a specified predicate.
 //
 // [Full Topic]
@@ -114,7 +112,6 @@ func NewCompoundPredicateNotPredicateWithSubpredicate(predicate IPredicate) Comp
 	rv := objc.Send[CompoundPredicate](objc.ID(getCompoundPredicateClass().class), objc.Sel("notPredicateWithSubpredicate:"), predicate)
 	return rv
 }
-
 
 
 

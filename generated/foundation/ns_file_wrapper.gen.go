@@ -109,6 +109,7 @@ func NewFileWrapper() FileWrapper {
 
 
 
+
 // Indicates whether the contents of a file wrapper matches a directory, regular file, or symbolic link on disk.
 //
 // [Full Topic]
@@ -118,6 +119,7 @@ func (f_ FileWrapper) MatchesContentsOfURL(url IURL) bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("matchesContentsOfURL:"), url)
 	return rv
 }
+
 
 
 // Indicates whether the file wrapper needs to be updated to match a given file-system node.
@@ -131,6 +133,7 @@ func (f_ FileWrapper) NeedsToBeUpdatedFromPath(path string) bool {
 }
 
 
+
 // Provides the pathname referenced by the file wrapper object, which must be a symbolic-link file wrapper.
 //
 // [Full Topic]
@@ -140,6 +143,7 @@ func (f_ FileWrapper) SymbolicLinkDestination() String {
 	rv := objc.Send[String](f_.ID, objc.Sel("symbolicLinkDestination"))
 	return rv
 }
+
 
 
 // Writes a file wrapper’s contents to a given file-system node.

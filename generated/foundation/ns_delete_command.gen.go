@@ -89,6 +89,7 @@ func NewDeleteCommand() DeleteCommand {
 
 
 
+
 // Sets the receiver’s object specifier.
 //
 // [Full Topic]

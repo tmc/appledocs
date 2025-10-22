@@ -88,7 +88,6 @@ func NewLogicalTest() LogicalTest {
 
 
 
-
 // Returns an object initialized to perform an operation with the objects in a given array.
 //
 // [Full Topic]
@@ -100,7 +99,6 @@ func NewLogicalTestAndTestWithTests(subTests []SpecifierTest) LogicalTest {
 	rv.Autorelease()
 	return rv
 }
-
 
 
 

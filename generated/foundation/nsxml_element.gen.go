@@ -101,7 +101,6 @@ func NewXMLElement() XMLElement {
 
 
 
-
 // Returns an object initialized with a specified name and a single text-node child containing a specified value.
 //
 // [Full Topic]
@@ -113,7 +112,6 @@ func NewXMLElementWithNameStringValue(name string, string_ string) XMLElement {
 	rv.Autorelease()
 	return rv
 }
-
 
 
 
@@ -131,6 +129,7 @@ func NewXMLElementWithNameURI(name string, URI string) XMLElement {
 
 
 
+
 // Adds a namespace node to the receiver.
 //
 // [Full Topic]
@@ -139,6 +138,7 @@ func NewXMLElementWithNameURI(name string, URI string) XMLElement {
 func (x_ XMLElement) AddNamespace(aNamespace IXMLNode) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("addNamespace:"), aNamespace)
 }
+
 
 
 // Returns the attribute node of the receiver that is identified by a local name and URI.
@@ -152,6 +152,7 @@ func (x_ XMLElement) AttributeForLocalNameURI(localName string, URI string) XMLN
 }
 
 
+
 // Returns the attribute node of the receiver with the specified name.
 //
 // [Full Topic]
@@ -161,6 +162,7 @@ func (x_ XMLElement) AttributeForName(name string) XMLNode {
 	rv := objc.Send[XMLNode](x_.ID, objc.Sel("attributeForName:"), objc.String(name))
 	return rv
 }
+
 
 
 // Returns the child element nodes (as objects) of the receiver that have a specified name.
@@ -174,6 +176,7 @@ func (x_ XMLElement) ElementsForName(name string) []XMLElement {
 }
 
 
+
 // Inserts a new child node at a specified location in the receiver’s list of child nodes.
 //
 // [Full Topic]
@@ -182,6 +185,7 @@ func (x_ XMLElement) ElementsForName(name string) []XMLElement {
 func (x_ XMLElement) InsertChildAtIndex(child IXMLNode, index uint) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("insertChild:atIndex:"), child, index)
 }
+
 
 
 // Returns the namespace node with a specified prefix.
@@ -195,6 +199,7 @@ func (x_ XMLElement) NamespaceForPrefix(name string) XMLNode {
 }
 
 
+
 // Removes the child node of the receiver identified by a given index.
 //
 // [Full Topic]
@@ -205,6 +210,7 @@ func (x_ XMLElement) RemoveChildAtIndex(index uint) {
 }
 
 
+
 // Removes a namespace node that is identified by a given prefix.
 //
 // [Full Topic]
@@ -213,6 +219,7 @@ func (x_ XMLElement) RemoveChildAtIndex(index uint) {
 func (x_ XMLElement) RemoveNamespaceForPrefix(name string) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("removeNamespaceForPrefix:"), objc.String(name))
 }
+
 
 
 // Replaces a child node at a specified location with another child node.

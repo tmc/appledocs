@@ -94,7 +94,6 @@ func NewMachPort() MachPort {
 
 
 
-
 // Initializes a newly allocated object with a given Mach port.
 //
 // [Full Topic]
@@ -106,7 +105,6 @@ func NewMachPortWithMachPort(machPort Iuint32) MachPort {
 	rv.Autorelease()
 	return rv
 }
-
 
 
 
@@ -146,6 +144,7 @@ func (mc _MachPortClass) PortWithMachPortOptions(machPort Iuint32, f MachPortOpt
 }
 
 
+
 // Returns the receiver’s delegate.
 //
 // [Full Topic]
@@ -155,6 +154,7 @@ func (m_ MachPort) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](m_.ID, objc.Sel("delegate"))
 	return rv
 }
+
 
 
 // Removes the receiver from the run loop mode of .
@@ -167,6 +167,7 @@ func (m_ MachPort) RemoveFromRunLoopForMode(runLoop IRunLoop, mode RunLoopMode) 
 }
 
 
+
 // Schedules the receiver into the run loop mode of .
 //
 // [Full Topic]
@@ -175,6 +176,7 @@ func (m_ MachPort) RemoveFromRunLoopForMode(runLoop IRunLoop, mode RunLoopMode) 
 func (m_ MachPort) ScheduleInRunLoopForMode(runLoop IRunLoop, mode RunLoopMode) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("scheduleInRunLoop:forMode:"), runLoop, mode)
 }
+
 
 
 // Sets the receiver’s delegate to a given object.

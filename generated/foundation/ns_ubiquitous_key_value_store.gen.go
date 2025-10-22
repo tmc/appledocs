@@ -118,6 +118,7 @@ func (uc _UbiquitousKeyValueStoreClass) DefaultStore() UbiquitousKeyValueStore {
 	return rv
 }
 
+
 // Returns the array associated with the specified key.
 //
 // [Full Topic]
@@ -127,6 +128,7 @@ func (u_ UbiquitousKeyValueStore) ArrayForKey(aKey string) Array {
 	rv := objc.Send[Array](u_.ID, objc.Sel("arrayForKey:"), objc.String(aKey))
 	return rv
 }
+
 
 
 // Returns the Boolean value associated with the specified key.
@@ -140,6 +142,7 @@ func (u_ UbiquitousKeyValueStore) BoolForKey(aKey string) bool {
 }
 
 
+
 // Returns the data object associated with the specified key.
 //
 // [Full Topic]
@@ -149,6 +152,7 @@ func (u_ UbiquitousKeyValueStore) DataForKey(aKey string) Data {
 	rv := objc.Send[Data](u_.ID, objc.Sel("dataForKey:"), objc.String(aKey))
 	return rv
 }
+
 
 
 // Returns the dictionary object associated with the specified key.
@@ -162,6 +166,7 @@ func (u_ UbiquitousKeyValueStore) DictionaryForKey(aKey string) unsafe.Pointer {
 }
 
 
+
 // Returns the double value associated with the specified key.
 //
 // [Full Topic]
@@ -171,6 +176,7 @@ func (u_ UbiquitousKeyValueStore) DoubleForKey(aKey string) float64 {
 	rv := objc.Send[float64](u_.ID, objc.Sel("doubleForKey:"), objc.String(aKey))
 	return rv
 }
+
 
 
 // Returns the value associated with the specified key.
@@ -184,6 +190,7 @@ func (u_ UbiquitousKeyValueStore) LongLongForKey(aKey string) unsafe.Pointer {
 }
 
 
+
 // Returns the object associated with the specified key.
 //
 // [Full Topic]
@@ -193,6 +200,7 @@ func (u_ UbiquitousKeyValueStore) ObjectForKey(aKey string) objc.ID {
 	rv := objc.Send[objc.ID](u_.ID, objc.Sel("objectForKey:"), objc.String(aKey))
 	return rv
 }
+
 
 
 // Removes the value associated with the specified key from the key-value store.
@@ -205,6 +213,7 @@ func (u_ UbiquitousKeyValueStore) RemoveObjectForKey(aKey string) {
 }
 
 
+
 // Sets a double value for the specified key in the key-value store.
 //
 // [Full Topic]
@@ -213,6 +222,7 @@ func (u_ UbiquitousKeyValueStore) RemoveObjectForKey(aKey string) {
 func (u_ UbiquitousKeyValueStore) SetDoubleForKey(value float64, aKey string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setDouble:forKey:"), value, objc.String(aKey))
 }
+
 
 
 // Sets a string object for the specified key in the key-value store.
@@ -225,6 +235,7 @@ func (u_ UbiquitousKeyValueStore) SetStringForKey(aString string, aKey string) {
 }
 
 
+
 // Sets a data object for the specified key in the key-value store.
 //
 // [Full Topic]
@@ -233,6 +244,7 @@ func (u_ UbiquitousKeyValueStore) SetStringForKey(aString string, aKey string) {
 func (u_ UbiquitousKeyValueStore) SetDataForKey(aData IData, aKey string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setData:forKey:"), aData, objc.String(aKey))
 }
+
 
 
 // Sets an array object for the specified key in the key-value store.
@@ -245,6 +257,7 @@ func (u_ UbiquitousKeyValueStore) SetArrayForKey(anArray objectivec.IObject, aKe
 }
 
 
+
 // Sets a value for the specified key in the key-value store.
 //
 // [Full Topic]
@@ -253,6 +266,7 @@ func (u_ UbiquitousKeyValueStore) SetArrayForKey(anArray objectivec.IObject, aKe
 func (u_ UbiquitousKeyValueStore) SetLongLongForKey(value unsafe.Pointer, aKey string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setLongLong:forKey:"), value, objc.String(aKey))
 }
+
 
 
 // Sets a Boolean value for the specified key in the key-value store.
@@ -265,6 +279,7 @@ func (u_ UbiquitousKeyValueStore) SetBoolForKey(value bool, aKey string) {
 }
 
 
+
 // Sets an object for the specified key in the key-value store.
 //
 // [Full Topic]
@@ -273,6 +288,7 @@ func (u_ UbiquitousKeyValueStore) SetBoolForKey(value bool, aKey string) {
 func (u_ UbiquitousKeyValueStore) SetObjectForKey(anObject objectivec.IObject, aKey string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setObject:forKey:"), anObject, objc.String(aKey))
 }
+
 
 
 // Sets a dictionary object for the specified key in the key-value store.
@@ -285,6 +301,7 @@ func (u_ UbiquitousKeyValueStore) SetDictionaryForKey(aDictionary unsafe.Pointer
 }
 
 
+
 // Returns the string associated with the specified key.
 //
 // [Full Topic]
@@ -294,6 +311,7 @@ func (u_ UbiquitousKeyValueStore) StringForKey(aKey string) String {
 	rv := objc.Send[String](u_.ID, objc.Sel("stringForKey:"), objc.String(aKey))
 	return rv
 }
+
 
 
 // Explicitly synchronizes in-memory keys and values with those stored on disk.

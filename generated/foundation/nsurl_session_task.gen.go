@@ -116,6 +116,7 @@ func NewURLSessionTask() URLSessionTask {
 
 
 
+
 // Cancels the task.
 //
 // [Full Topic]
@@ -126,6 +127,7 @@ func (u_ URLSessionTask) Cancel() {
 }
 
 
+
 // Resumes the task, if it is suspended.
 //
 // [Full Topic]
@@ -134,6 +136,7 @@ func (u_ URLSessionTask) Cancel() {
 func (u_ URLSessionTask) Resume() {
 	objc.Send[objc.ID](u_.ID, objc.Sel("resume"))
 }
+
 
 
 // Temporarily suspends a task.

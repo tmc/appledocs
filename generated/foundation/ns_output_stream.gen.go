@@ -90,7 +90,6 @@ func NewOutputStream() OutputStream {
 
 
 
-
 // Returns an initialized output stream that can write to a provided buffer.
 //
 // [Full Topic]
@@ -102,7 +101,6 @@ func NewOutputStreamToBufferCapacity(buffer unsafe.Pointer, capacity uint) Outpu
 	rv.Autorelease()
 	return rv
 }
-
 
 
 
@@ -120,7 +118,6 @@ func NewOutputStreamToFileAtPathAppend(path string, shouldAppend bool) OutputStr
 
 
 
-
 // Returns an initialized output stream that will write to memory.
 //
 // [Full Topic]
@@ -132,7 +129,6 @@ func NewOutputStreamToMemory() OutputStream {
 	rv.Autorelease()
 	return rv
 }
-
 
 
 
@@ -192,6 +188,7 @@ func (oc _OutputStreamClass) OutputStreamToMemory() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(oc.class), objc.Sel("outputStreamToMemory"))
 	return rv
 }
+
 
 
 // Writes the contents of a provided data buffer to the receiver.

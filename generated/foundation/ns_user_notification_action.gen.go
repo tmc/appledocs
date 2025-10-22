@@ -93,7 +93,6 @@ func NewUserNotificationAction() UserNotificationAction {
 
 
 
-
 // Creates a user notification action with a specified identifier and title.
 //
 // [Full Topic]

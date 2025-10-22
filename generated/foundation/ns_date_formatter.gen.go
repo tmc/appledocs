@@ -158,7 +158,6 @@ func NewDateFormatter() DateFormatter {
 
 
 
-
 // Initializes and returns an instance that uses the OS X 10.0 formatting behavior and the given date format string in its conversions.
 //
 // [Full Topic]
@@ -183,6 +182,7 @@ func (dc _DateFormatterClass) DefaultFormatterBehavior() unsafe.Pointer {
 	return rv
 }
 
+
 // Returns a date representation of a specified string that the system interprets using the receiver’s current settings.
 //
 // [Full Topic]
@@ -192,6 +192,7 @@ func (d_ DateFormatter) DateFromString(string_ string) Date {
 	rv := objc.Send[Date](d_.ID, objc.Sel("dateFromString:"), objc.String(string_))
 	return rv
 }
+
 
 
 // Sets the date format from a template using the specified locale for the receiver.

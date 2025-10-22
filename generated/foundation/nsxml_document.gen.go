@@ -108,7 +108,6 @@ func NewXMLDocument() XMLDocument {
 
 
 
-
 // Initializes and returns an object created from an object.
 //
 // [Full Topic]
@@ -123,6 +122,7 @@ func NewXMLDocumentWithDataOptionsError(data IData, mask XMLNodeOptions, error_ 
 
 
 
+
 // Adds a child node after the last of the receiver’s existing children.
 //
 // [Full Topic]
@@ -133,6 +133,7 @@ func (x_ XMLDocument) AddChild(child IXMLNode) {
 }
 
 
+
 // Inserts an array of children at a specified position in the receiver’s array of children.
 //
 // [Full Topic]
@@ -141,6 +142,7 @@ func (x_ XMLDocument) AddChild(child IXMLNode) {
 func (x_ XMLDocument) InsertChildrenAtIndex(children []XMLNode, index uint) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("insertChildren:atIndex:"), children, index)
 }
+
 
 
 // Applies the XSLT pattern rules and templates (specified as a data object) to the receiver and returns a document object containing transformed XML or HTML markup.
@@ -154,6 +156,7 @@ func (x_ XMLDocument) ObjectByApplyingXSLTArgumentsError(xslt IData, arguments u
 }
 
 
+
 // Applies the XSLT pattern rules and templates (specified as a string) to the receiver and returns a document object containing transformed XML or HTML markup.
 //
 // [Full Topic]
@@ -163,6 +166,7 @@ func (x_ XMLDocument) ObjectByApplyingXSLTStringArgumentsError(xslt string, argu
 	rv := objc.Send[objc.ID](x_.ID, objc.Sel("objectByApplyingXSLTString:arguments:error:"), objc.String(xslt), arguments, error_)
 	return rv
 }
+
 
 
 // Removes the child node of the receiver located at a specified position in its array of children.
@@ -175,6 +179,7 @@ func (x_ XMLDocument) RemoveChildAtIndex(index uint) {
 }
 
 
+
 // Returns the root element of the receiver.
 //
 // [Full Topic]
@@ -184,6 +189,7 @@ func (x_ XMLDocument) RootElement() XMLElement {
 	rv := objc.Send[XMLElement](x_.ID, objc.Sel("rootElement"))
 	return rv
 }
+
 
 
 // Set the root element of the receiver.

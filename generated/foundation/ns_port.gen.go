@@ -104,6 +104,7 @@ func (pc _PortClass) Port() Port {
 }
 
 
+
 // Returns the receiver’s delegate.
 //
 // [Full Topic]
@@ -115,6 +116,7 @@ func (p_ Port) Delegate() objc.ID {
 }
 
 
+
 // Marks the receiver as invalid and posts an to the default notification center.
 //
 // [Full Topic]
@@ -123,6 +125,7 @@ func (p_ Port) Delegate() objc.ID {
 func (p_ Port) Invalidate() {
 	objc.Send[objc.ID](p_.ID, objc.Sel("invalidate"))
 }
+
 
 
 // This method is provided for subclasses that have custom types of .

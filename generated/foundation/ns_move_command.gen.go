@@ -89,6 +89,7 @@ func NewMoveCommand() MoveCommand {
 
 
 
+
 // Sets the receiver’s object specifier.
 //
 // [Full Topic]

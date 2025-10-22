@@ -88,6 +88,7 @@ func NewEnumerator() Enumerator {
 
 
 
+
 // Returns the next object from the collection being enumerated.
 //
 // [Full Topic]

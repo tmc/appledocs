@@ -115,6 +115,7 @@ func (sc _ScannerClass) LocalizedScannerWithString(string_ string) objc.ID {
 }
 
 
+
 // Scans for a double value, returning a found value by reference.
 //
 // [Full Topic]
@@ -126,6 +127,7 @@ func (s_ Scanner) ScanDouble(result unsafe.Pointer) bool {
 }
 
 
+
 // Scans for a float value, returning a found value by reference.
 //
 // [Full Topic]
@@ -135,6 +137,7 @@ func (s_ Scanner) ScanFloat(result unsafe.Pointer) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("scanFloat:"), result)
 	return rv
 }
+
 
 
 // Scans for an int value from a decimal representation, returning a found value by reference.

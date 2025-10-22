@@ -39,7 +39,7 @@ type IString interface {
 	StringByAppendingPathExtension(str string) String
 	StringByAppendingPathExtensionForType(contentType unsafe.Pointer) String
 	StringByApplyingTransformReverse(transform IStringTransform, reverse bool) String
-	BoundingRectWithSizeOptionsAttributes(size ISize, options StringDrawingOptions, attributes unsafe.Pointer) Rect
+	BoundingRectWithSizeOptionsAttributes(size Size, options StringDrawingOptions, attributes unsafe.Pointer) Rect
 	CString() unsafe.Pointer
 	CStringUsingEncoding(encoding unsafe.Pointer) unsafe.Pointer
 	CStringLength() uint
@@ -50,8 +50,8 @@ type IString interface {
 	CommonPrefixWithStringOptions(str string, mask StringCompareOptions) String
 	Compare(string_ string) ComparisonResult
 	CompareOptions(string_ string, mask StringCompareOptions) ComparisonResult
-	CompareOptionsRange(string_ string, mask StringCompareOptions, rangeOfReceiverToCompare IRange) ComparisonResult
-	CompareOptionsRangeLocale(string_ string, mask StringCompareOptions, rangeOfReceiverToCompare IRange, locale objectivec.IObject) ComparisonResult
+	CompareOptionsRange(string_ string, mask StringCompareOptions, rangeOfReceiverToCompare Range) ComparisonResult
+	CompareOptionsRangeLocale(string_ string, mask StringCompareOptions, rangeOfReceiverToCompare Range, locale objectivec.IObject) ComparisonResult
 	CompletePathIntoStringCaseSensitiveMatchesIntoArrayFilterTypes(outputName string, flag bool, outputArray []string, filterTypes []string) uint
 	ComponentsSeparatedByString(separator string) []string
 	ComponentsSeparatedByCharactersInSet(separator ICharacterSet) []string
@@ -60,27 +60,27 @@ type IString interface {
 	DataUsingEncodingAllowLossyConversion(encoding unsafe.Pointer, lossy bool) Data
 	DrawAtPointWithAttributes(point coregraphics.CGPoint, attrs unsafe.Pointer)
 	DrawInRectWithAttributes(rect coregraphics.CGRect, attrs unsafe.Pointer)
-	DrawWithRectOptionsAttributes(rect IRect, options StringDrawingOptions, attributes unsafe.Pointer)
+	DrawWithRectOptionsAttributes(rect Rect, options StringDrawingOptions, attributes unsafe.Pointer)
 	EnumerateLinesUsingBlock(block unsafe.Pointer)
-	EnumerateLinguisticTagsInRangeSchemeOptionsOrthographyUsingBlock(range_ IRange, scheme ILinguisticTagScheme, options LinguisticTaggerOptions, orthography IOrthography, block unsafe.Pointer)
-	EnumerateSubstringsInRangeOptionsUsingBlock(range_ IRange, opts StringEnumerationOptions, block unsafe.Pointer)
+	EnumerateLinguisticTagsInRangeSchemeOptionsOrthographyUsingBlock(range_ Range, scheme ILinguisticTagScheme, options LinguisticTaggerOptions, orthography IOrthography, block unsafe.Pointer)
+	EnumerateSubstringsInRangeOptionsUsingBlock(range_ Range, opts StringEnumerationOptions, block unsafe.Pointer)
 	StringByFoldingWithOptionsLocale(options StringCompareOptions, locale ILocale) String
-	GetBytesMaxLengthUsedLengthEncodingOptionsRangeRemainingRange(buffer unsafe.Pointer, maxBufferCount uint, usedBufferCount unsafe.Pointer, encoding unsafe.Pointer, options StringEncodingConversionOptions, range_ IRange, leftover IRangePointer) bool
+	GetBytesMaxLengthUsedLengthEncodingOptionsRangeRemainingRange(buffer unsafe.Pointer, maxBufferCount uint, usedBufferCount unsafe.Pointer, encoding unsafe.Pointer, options StringEncodingConversionOptions, range_ Range, leftover IRangePointer) bool
 	GetCString(bytes unsafe.Pointer)
 	GetCStringMaxLength(bytes unsafe.Pointer, maxLength uint)
 	GetCStringMaxLengthEncoding(buffer unsafe.Pointer, maxBufferCount uint, encoding unsafe.Pointer) bool
-	GetCStringMaxLengthRangeRemainingRange(bytes unsafe.Pointer, maxLength uint, aRange IRange, leftoverRange IRangePointer)
+	GetCStringMaxLengthRangeRemainingRange(bytes unsafe.Pointer, maxLength uint, aRange Range, leftoverRange IRangePointer)
 	GetCharacters(buffer Iunichar)
-	GetCharactersRange(buffer Iunichar, range_ IRange)
+	GetCharactersRange(buffer Iunichar, range_ Range)
 	GetFileSystemRepresentationMaxLength(cname unsafe.Pointer, max uint) bool
-	GetLineStartEndContentsEndForRange(startPtr unsafe.Pointer, lineEndPtr unsafe.Pointer, contentsEndPtr unsafe.Pointer, range_ IRange)
-	GetParagraphStartEndContentsEndForRange(startPtr unsafe.Pointer, parEndPtr unsafe.Pointer, contentsEndPtr unsafe.Pointer, range_ IRange)
+	GetLineStartEndContentsEndForRange(startPtr unsafe.Pointer, lineEndPtr unsafe.Pointer, contentsEndPtr unsafe.Pointer, range_ Range)
+	GetParagraphStartEndContentsEndForRange(startPtr unsafe.Pointer, parEndPtr unsafe.Pointer, contentsEndPtr unsafe.Pointer, range_ Range)
 	HasPrefix(str string) bool
 	HasSuffix(str string) bool
 	IsEqualToString(aString string) bool
 	LengthOfBytesUsingEncoding(enc unsafe.Pointer) uint
-	LineRangeForRange(range_ IRange) Range
-	LinguisticTagsInRangeSchemeOptionsOrthographyTokenRanges(range_ IRange, scheme ILinguisticTagScheme, options LinguisticTaggerOptions, orthography IOrthography, tokenRanges []Value) []string
+	LineRangeForRange(range_ Range) Range
+	LinguisticTagsInRangeSchemeOptionsOrthographyTokenRanges(range_ Range, scheme ILinguisticTagScheme, options LinguisticTaggerOptions, orthography IOrthography, tokenRanges []Value) []string
 	LocalizedCaseInsensitiveCompare(string_ string) ComparisonResult
 	LocalizedCaseInsensitiveContainsString(str string) bool
 	LocalizedCompare(string_ string) ComparisonResult
@@ -91,21 +91,21 @@ type IString interface {
 	LowercaseStringWithLocale(locale ILocale) String
 	MaximumLengthOfBytesUsingEncoding(enc unsafe.Pointer) uint
 	StringByPaddingToLengthWithStringStartingAtIndex(newLength uint, padString string, padIndex uint) String
-	ParagraphRangeForRange(range_ IRange) Range
+	ParagraphRangeForRange(range_ Range) Range
 	PropertyList() objc.ID
 	PropertyListFromStringsFileFormat() Dictionary
 	RangeOfString(searchString string) Range
 	RangeOfStringOptions(searchString string, mask StringCompareOptions) Range
-	RangeOfStringOptionsRange(searchString string, mask StringCompareOptions, rangeOfReceiverToSearch IRange) Range
-	RangeOfStringOptionsRangeLocale(searchString string, mask StringCompareOptions, rangeOfReceiverToSearch IRange, locale ILocale) Range
+	RangeOfStringOptionsRange(searchString string, mask StringCompareOptions, rangeOfReceiverToSearch Range) Range
+	RangeOfStringOptionsRangeLocale(searchString string, mask StringCompareOptions, rangeOfReceiverToSearch Range, locale ILocale) Range
 	RangeOfCharacterFromSet(searchSet ICharacterSet) Range
 	RangeOfCharacterFromSetOptions(searchSet ICharacterSet, mask StringCompareOptions) Range
-	RangeOfCharacterFromSetOptionsRange(searchSet ICharacterSet, mask StringCompareOptions, rangeOfReceiverToSearch IRange) Range
+	RangeOfCharacterFromSetOptionsRange(searchSet ICharacterSet, mask StringCompareOptions, rangeOfReceiverToSearch Range) Range
 	RangeOfComposedCharacterSequenceAtIndex(index uint) Range
-	RangeOfComposedCharacterSequencesForRange(range_ IRange) Range
-	StringByReplacingCharactersInRangeWithString(range_ IRange, replacement string) String
+	RangeOfComposedCharacterSequencesForRange(range_ Range) Range
+	StringByReplacingCharactersInRangeWithString(range_ Range, replacement string) String
 	StringByReplacingOccurrencesOfStringWithString(target string, replacement string) String
-	StringByReplacingOccurrencesOfStringWithStringOptionsRange(target string, replacement string, options StringCompareOptions, searchRange IRange) String
+	StringByReplacingOccurrencesOfStringWithStringOptionsRange(target string, replacement string, options StringCompareOptions, searchRange Range) String
 	StringByReplacingPercentEscapesUsingEncoding(enc unsafe.Pointer) String
 	SizeWithAttributes(attrs unsafe.Pointer) coregraphics.CGSize
 	Sr_sensorForDeletionRecordsFromSensor() unsafe.Pointer
@@ -113,7 +113,7 @@ type IString interface {
 	StringsByAppendingPaths(paths []string) []string
 	SubstringFromIndex(from uint) String
 	SubstringToIndex(to uint) String
-	SubstringWithRange(range_ IRange) String
+	SubstringWithRange(range_ Range) String
 	StringByTrimmingCharactersInSet(set ICharacterSet) String
 	UppercaseStringWithLocale(locale ILocale) String
 	VariantFittingPresentationWidth(width int) String
@@ -242,7 +242,6 @@ func NewString() String {
 
 
 
-
 // Returns an initialized object containing a given number of bytes from a given buffer of bytes interpreted in a given encoding.
 //
 // [Full Topic]
@@ -257,7 +256,6 @@ func NewStringWithBytesLengthEncoding(bytes unsafe.Pointer, len_ uint, encoding 
 
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(bytesNoCopy:length:encoding:deallocator:)
 
@@ -267,7 +265,6 @@ func NewStringWithBytesNoCopyLengthEncodingDeallocator(bytes unsafe.Pointer, len
 	rv.Autorelease()
 	return rv
 }
-
 
 
 
@@ -285,7 +282,6 @@ func NewStringWithBytesNoCopyLengthEncodingFreeWhenDone(bytes unsafe.Pointer, le
 
 
 
-
 // Initializes the receiver, a newly allocated object, by converting the data in a given C-string from the default C-string encoding into the Unicode character encoding.
 //
 // [Full Topic]
@@ -297,7 +293,6 @@ func NewStringWithCString(bytes unsafe.Pointer) String {
 	rv.Autorelease()
 	return rv
 }
-
 
 
 
@@ -315,7 +310,6 @@ func NewStringWithCStringEncoding(nullTerminatedCString unsafe.Pointer, encoding
 
 
 
-
 // Initializes the receiver, a newly allocated object, by converting the data in a given C-string from the default C-string encoding into the Unicode character encoding.
 //
 // [Full Topic]
@@ -327,7 +321,6 @@ func NewStringWithCStringLength(bytes unsafe.Pointer, length uint) String {
 	rv.Autorelease()
 	return rv
 }
-
 
 
 
@@ -345,7 +338,6 @@ func NewStringWithCStringNoCopyLengthFreeWhenDone(bytes unsafe.Pointer, length u
 
 
 
-
 // Returns an initialized object that contains a given number of characters from a given C array of UTF-16 code units.
 //
 // [Full Topic]
@@ -360,7 +352,6 @@ func NewStringWithCharactersLength(characters Iunichar, length uint) String {
 
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(charactersNoCopy:length:deallocator:)
 
@@ -370,7 +361,6 @@ func NewStringWithCharactersNoCopyLengthDeallocator(chars Iunichar, len_ uint, d
 	rv.Autorelease()
 	return rv
 }
-
 
 
 
@@ -388,7 +378,6 @@ func NewStringWithCharactersNoCopyLengthFreeWhenDone(characters Iunichar, length
 
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(coder:)
 
@@ -398,7 +387,6 @@ func NewStringWithCoder(coder ICoder) String {
 	rv.Autorelease()
 	return rv
 }
-
 
 
 
@@ -416,7 +404,6 @@ func NewStringWithContentsOfFile(path string) String {
 
 
 
-
 // Returns an object initialized by reading data from the file at a given path using a given encoding.
 //
 // [Full Topic]
@@ -428,7 +415,6 @@ func NewStringWithContentsOfFileEncodingError(path string, enc unsafe.Pointer, e
 	rv.Autorelease()
 	return rv
 }
-
 
 
 
@@ -446,7 +432,6 @@ func NewStringWithContentsOfFileUsedEncodingError(path string, enc unsafe.Pointe
 
 
 
-
 // Initializes the receiver, a newly allocated object, by reading data from the location named by a given URL.
 //
 // [Full Topic]
@@ -458,7 +443,6 @@ func NewStringWithContentsOfURL(url IURL) String {
 	rv.Autorelease()
 	return rv
 }
-
 
 
 
@@ -476,7 +460,6 @@ func NewStringWithContentsOfURLEncodingError(url IURL, enc unsafe.Pointer, error
 
 
 
-
 // Returns an object initialized by reading data from a given URL and returns by reference the encoding used to interpret the data.
 //
 // [Full Topic]
@@ -488,7 +471,6 @@ func NewStringWithContentsOfURLUsedEncodingError(url IURL, enc unsafe.Pointer, e
 	rv.Autorelease()
 	return rv
 }
-
 
 
 
@@ -506,7 +488,6 @@ func NewStringWithDataEncoding(data IData, encoding unsafe.Pointer) String {
 
 
 
-
 // Returns an object initialized by using a given format string as a template into which the remaining argument values are substituted.
 //
 // [Full Topic]
@@ -518,7 +499,6 @@ func NewStringWithFormat(format string) String {
 	rv.Autorelease()
 	return rv
 }
-
 
 
 
@@ -536,7 +516,6 @@ func NewStringWithFormatArguments(format string, argList unsafe.Pointer) String 
 
 
 
-
 // Returns an object initialized by using a given format string as a template into which the remaining argument values are substituted according to given locale.
 //
 // [Full Topic]
@@ -548,7 +527,6 @@ func NewStringWithFormatLocale(format string, locale objectivec.IObject) String 
 	rv.Autorelease()
 	return rv
 }
-
 
 
 
@@ -566,7 +544,6 @@ func NewStringWithFormatLocaleArguments(format string, locale objectivec.IObject
 
 
 
-
 // Returns an object initialized by copying the characters from another given string.
 //
 // [Full Topic]
@@ -578,7 +555,6 @@ func NewStringWithString(aString string) String {
 	rv.Autorelease()
 	return rv
 }
-
 
 
 
@@ -596,7 +572,6 @@ func NewStringWithUTF8String(nullTerminatedCString unsafe.Pointer) String {
 
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/initWithValidatedFormat:validFormatSpecifiers:arguments:error:
 
@@ -606,7 +581,6 @@ func NewStringWithValidatedFormatValidFormatSpecifiersArgumentsError(format stri
 	rv.Autorelease()
 	return rv
 }
-
 
 
 
@@ -622,7 +596,6 @@ func NewStringWithValidatedFormatValidFormatSpecifiersError(format string, valid
 
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/initWithValidatedFormat:validFormatSpecifiers:locale:arguments:error:
 
@@ -632,7 +605,6 @@ func NewStringWithValidatedFormatValidFormatSpecifiersLocaleArgumentsError(forma
 	rv.Autorelease()
 	return rv
 }
-
 
 
 
@@ -922,6 +894,7 @@ func (sc _StringClass) DefaultCStringEncoding() unsafe.Pointer {
 	return rv
 }
 
+
 // Returns a new string made from the receiver by replacing all characters not in the specified set with percent-encoded characters.
 //
 // [Full Topic]
@@ -931,6 +904,7 @@ func (s_ String) StringByAddingPercentEncodingWithAllowedCharacters(allowedChara
 	rv := objc.Send[String](s_.ID, objc.Sel("stringByAddingPercentEncodingWithAllowedCharacters:"), allowedCharacters)
 	return rv
 }
+
 
 
 // Returns a representation of the receiver using a given encoding to determine the percent escapes necessary to convert the receiver into a legal URL string.
@@ -944,6 +918,7 @@ func (s_ String) StringByAddingPercentEscapesUsingEncoding(enc unsafe.Pointer) S
 }
 
 
+
 // Returns a new string made by appending a given string to the receiver.
 //
 // [Full Topic]
@@ -953,6 +928,7 @@ func (s_ String) StringByAppendingString(aString string) String {
 	rv := objc.Send[String](s_.ID, objc.Sel("stringByAppendingString:"), objc.String(aString))
 	return rv
 }
+
 
 
 // Returns a new string made by appending to the receiver a given string.
@@ -966,6 +942,7 @@ func (s_ String) StringByAppendingPathComponent(str string) String {
 }
 
 
+
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/appendingPathComponent(_:conformingTo:)
 
@@ -973,6 +950,7 @@ func (s_ String) StringByAppendingPathComponentConformingToType(partialName stri
 	rv := objc.Send[String](s_.ID, objc.Sel("stringByAppendingPathComponent:conformingToType:"), objc.String(partialName), contentType)
 	return rv
 }
+
 
 
 // Returns a new string made by appending to the receiver an extension separator followed by a given extension.
@@ -986,6 +964,7 @@ func (s_ String) StringByAppendingPathExtension(str string) String {
 }
 
 
+
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/appendingPathExtension(for:)
 
@@ -993,6 +972,7 @@ func (s_ String) StringByAppendingPathExtensionForType(contentType unsafe.Pointe
 	rv := objc.Send[String](s_.ID, objc.Sel("stringByAppendingPathExtensionForType:"), contentType)
 	return rv
 }
+
 
 
 // Returns a new string by applying a specified transform to the string.
@@ -1006,15 +986,17 @@ func (s_ String) StringByApplyingTransformReverse(transform IStringTransform, re
 }
 
 
+
 // Calculates and returns the bounding rect for the receiver drawn using the given options and display characteristics, within the specified rectangle in the current graphics context.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/boundingRect(with:options:attributes:)
 
-func (s_ String) BoundingRectWithSizeOptionsAttributes(size ISize, options StringDrawingOptions, attributes unsafe.Pointer) Rect {
+func (s_ String) BoundingRectWithSizeOptionsAttributes(size Size, options StringDrawingOptions, attributes unsafe.Pointer) Rect {
 	rv := objc.Send[Rect](s_.ID, objc.Sel("boundingRectWithSize:options:attributes:"), size, options, attributes)
 	return rv
 }
+
 
 
 // Returns a representation of the receiver as a C string in the default C-string encoding.
@@ -1028,6 +1010,7 @@ func (s_ String) CString() unsafe.Pointer {
 }
 
 
+
 // Returns a representation of the string as a C string using a given encoding.
 //
 // [Full Topic]
@@ -1037,6 +1020,7 @@ func (s_ String) CStringUsingEncoding(encoding unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("cStringUsingEncoding:"), encoding)
 	return rv
 }
+
 
 
 // Returns the length in char-sized units of the receiver’s C-string representation in the default C-string encoding.
@@ -1050,6 +1034,7 @@ func (s_ String) CStringLength() uint {
 }
 
 
+
 // Returns a Boolean value that indicates whether the receiver can be converted to a given encoding without loss of information.
 //
 // [Full Topic]
@@ -1059,6 +1044,7 @@ func (s_ String) CanBeConvertedToEncoding(encoding unsafe.Pointer) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("canBeConvertedToEncoding:"), encoding)
 	return rv
 }
+
 
 
 // Returns a capitalized representation of the receiver using the specified locale.
@@ -1072,6 +1058,7 @@ func (s_ String) CapitalizedStringWithLocale(locale ILocale) String {
 }
 
 
+
 // Returns the result of invoking with as the only option.
 //
 // [Full Topic]
@@ -1081,6 +1068,7 @@ func (s_ String) CaseInsensitiveCompare(string_ string) ComparisonResult {
 	rv := objc.Send[ComparisonResult](s_.ID, objc.Sel("caseInsensitiveCompare:"), objc.String(string_))
 	return rv
 }
+
 
 
 // Returns the character at a given UTF-16 code unit index.
@@ -1094,6 +1082,7 @@ func (s_ String) CharacterAtIndex(index uint) unichar {
 }
 
 
+
 // Returns a string containing characters the receiver and a given string have in common, starting from the beginning of each up to the first characters that aren’t equivalent.
 //
 // [Full Topic]
@@ -1103,6 +1092,7 @@ func (s_ String) CommonPrefixWithStringOptions(str string, mask StringCompareOpt
 	rv := objc.Send[String](s_.ID, objc.Sel("commonPrefixWithString:options:"), objc.String(str), mask)
 	return rv
 }
+
 
 
 // Returns the result of invoking with no options and the receiver’s full extent as the range.
@@ -1116,6 +1106,7 @@ func (s_ String) Compare(string_ string) ComparisonResult {
 }
 
 
+
 // Compares the string with the specified string using the given options.
 //
 // [Full Topic]
@@ -1127,15 +1118,17 @@ func (s_ String) CompareOptions(string_ string, mask StringCompareOptions) Compa
 }
 
 
+
 // Returns the result of invoking with a locale.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/compare(_:options:range:)
 
-func (s_ String) CompareOptionsRange(string_ string, mask StringCompareOptions, rangeOfReceiverToCompare IRange) ComparisonResult {
+func (s_ String) CompareOptionsRange(string_ string, mask StringCompareOptions, rangeOfReceiverToCompare Range) ComparisonResult {
 	rv := objc.Send[ComparisonResult](s_.ID, objc.Sel("compare:options:range:"), objc.String(string_), mask, rangeOfReceiverToCompare)
 	return rv
 }
+
 
 
 // Compares the string using the specified options and returns the lexical ordering for the range.
@@ -1143,10 +1136,11 @@ func (s_ String) CompareOptionsRange(string_ string, mask StringCompareOptions, 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/compare(_:options:range:locale:)
 
-func (s_ String) CompareOptionsRangeLocale(string_ string, mask StringCompareOptions, rangeOfReceiverToCompare IRange, locale objectivec.IObject) ComparisonResult {
+func (s_ String) CompareOptionsRangeLocale(string_ string, mask StringCompareOptions, rangeOfReceiverToCompare Range, locale objectivec.IObject) ComparisonResult {
 	rv := objc.Send[ComparisonResult](s_.ID, objc.Sel("compare:options:range:locale:"), objc.String(string_), mask, rangeOfReceiverToCompare, locale)
 	return rv
 }
+
 
 
 // Interprets the receiver as a path in the file system and attempts to perform filename completion, returning a numeric value that indicates whether a match was possible, and by reference the longest path that matches the receiver.
@@ -1160,6 +1154,7 @@ func (s_ String) CompletePathIntoStringCaseSensitiveMatchesIntoArrayFilterTypes(
 }
 
 
+
 // Returns an array containing substrings from the receiver that have been divided by a given separator.
 //
 // [Full Topic]
@@ -1169,6 +1164,7 @@ func (s_ String) ComponentsSeparatedByString(separator string) []string {
 	rv := objc.Send[[]string](s_.ID, objc.Sel("componentsSeparatedByString:"), objc.String(separator))
 	return rv
 }
+
 
 
 // Returns an array containing substrings from the receiver that have been divided by characters in a given set.
@@ -1182,6 +1178,7 @@ func (s_ String) ComponentsSeparatedByCharactersInSet(separator ICharacterSet) [
 }
 
 
+
 // Returns a Boolean value indicating whether the string contains a given string by performing a case-sensitive, locale-unaware search.
 //
 // [Full Topic]
@@ -1191,6 +1188,7 @@ func (s_ String) ContainsString(str string) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("containsString:"), objc.String(str))
 	return rv
 }
+
 
 
 // Returns an object containing a representation of the receiver encoded using a given encoding.
@@ -1204,6 +1202,7 @@ func (s_ String) DataUsingEncoding(encoding unsafe.Pointer) Data {
 }
 
 
+
 // Returns an object containing a representation of the receiver encoded using a given encoding.
 //
 // [Full Topic]
@@ -1213,6 +1212,7 @@ func (s_ String) DataUsingEncodingAllowLossyConversion(encoding unsafe.Pointer, 
 	rv := objc.Send[Data](s_.ID, objc.Sel("dataUsingEncoding:allowLossyConversion:"), encoding, lossy)
 	return rv
 }
+
 
 
 // Draws the receiver with the font and other display characteristics of the given attributes, at the specified point in the current graphics context.
@@ -1225,6 +1225,7 @@ func (s_ String) DrawAtPointWithAttributes(point coregraphics.CGPoint, attrs uns
 }
 
 
+
 // Draws the attributed string inside the specified bounding rectangle.
 //
 // [Full Topic]
@@ -1235,14 +1236,16 @@ func (s_ String) DrawInRectWithAttributes(rect coregraphics.CGRect, attrs unsafe
 }
 
 
+
 // Draws the receiver with the specified options and other display characteristics of the given attributes, within the specified rectangle in the current graphics context.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/draw(with:options:attributes:)
 
-func (s_ String) DrawWithRectOptionsAttributes(rect IRect, options StringDrawingOptions, attributes unsafe.Pointer) {
+func (s_ String) DrawWithRectOptionsAttributes(rect Rect, options StringDrawingOptions, attributes unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("drawWithRect:options:attributes:"), rect, options, attributes)
 }
+
 
 
 // Enumerates all the lines in the string.
@@ -1255,14 +1258,16 @@ func (s_ String) EnumerateLinesUsingBlock(block unsafe.Pointer) {
 }
 
 
+
 // Performs linguistic analysis on the specified string by enumerating the specific range of the string, providing the Block with the located tags.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/enumerateLinguisticTags(in:scheme:options:orthography:using:)
 
-func (s_ String) EnumerateLinguisticTagsInRangeSchemeOptionsOrthographyUsingBlock(range_ IRange, scheme ILinguisticTagScheme, options LinguisticTaggerOptions, orthography IOrthography, block unsafe.Pointer) {
+func (s_ String) EnumerateLinguisticTagsInRangeSchemeOptionsOrthographyUsingBlock(range_ Range, scheme ILinguisticTagScheme, options LinguisticTaggerOptions, orthography IOrthography, block unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("enumerateLinguisticTagsInRange:scheme:options:orthography:usingBlock:"), range_, scheme, options, orthography, block)
 }
+
 
 
 // Enumerates the substrings of the specified type in the specified range of the string.
@@ -1270,9 +1275,10 @@ func (s_ String) EnumerateLinguisticTagsInRangeSchemeOptionsOrthographyUsingBloc
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/enumerateSubstrings(in:options:using:)
 
-func (s_ String) EnumerateSubstringsInRangeOptionsUsingBlock(range_ IRange, opts StringEnumerationOptions, block unsafe.Pointer) {
+func (s_ String) EnumerateSubstringsInRangeOptionsUsingBlock(range_ Range, opts StringEnumerationOptions, block unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("enumerateSubstringsInRange:options:usingBlock:"), range_, opts, block)
 }
+
 
 
 // Creates a string suitable for comparison by removing the specified character distinctions from a string.
@@ -1286,15 +1292,17 @@ func (s_ String) StringByFoldingWithOptionsLocale(options StringCompareOptions, 
 }
 
 
+
 // Gets a given range of characters as bytes in a specified encoding.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/getBytes(_:maxLength:usedLength:encoding:options:range:remaining:)
 
-func (s_ String) GetBytesMaxLengthUsedLengthEncodingOptionsRangeRemainingRange(buffer unsafe.Pointer, maxBufferCount uint, usedBufferCount unsafe.Pointer, encoding unsafe.Pointer, options StringEncodingConversionOptions, range_ IRange, leftover IRangePointer) bool {
+func (s_ String) GetBytesMaxLengthUsedLengthEncodingOptionsRangeRemainingRange(buffer unsafe.Pointer, maxBufferCount uint, usedBufferCount unsafe.Pointer, encoding unsafe.Pointer, options StringEncodingConversionOptions, range_ Range, leftover IRangePointer) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("getBytes:maxLength:usedLength:encoding:options:range:remainingRange:"), buffer, maxBufferCount, usedBufferCount, encoding, options, range_, leftover)
 	return rv
 }
+
 
 
 // Invokes with as the maximum length, the receiver’s entire extent as the range, and for the remaining range.
@@ -1307,6 +1315,7 @@ func (s_ String) GetCString(bytes unsafe.Pointer) {
 }
 
 
+
 // Invokes with as the maximum length in char-sized units, the receiver’s entire extent as the range, and for the remaining range.
 //
 // [Full Topic]
@@ -1315,6 +1324,7 @@ func (s_ String) GetCString(bytes unsafe.Pointer) {
 func (s_ String) GetCStringMaxLength(bytes unsafe.Pointer, maxLength uint) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("getCString:maxLength:"), bytes, maxLength)
 }
+
 
 
 // Converts the string to a given encoding and stores it in a buffer.
@@ -1328,14 +1338,16 @@ func (s_ String) GetCStringMaxLengthEncoding(buffer unsafe.Pointer, maxBufferCou
 }
 
 
+
 // Converts the receiver’s content to the default C-string encoding and stores them in a given buffer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/getCString(_:maxLength:range:remaining:)
 
-func (s_ String) GetCStringMaxLengthRangeRemainingRange(bytes unsafe.Pointer, maxLength uint, aRange IRange, leftoverRange IRangePointer) {
+func (s_ String) GetCStringMaxLengthRangeRemainingRange(bytes unsafe.Pointer, maxLength uint, aRange Range, leftoverRange IRangePointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("getCString:maxLength:range:remainingRange:"), bytes, maxLength, aRange, leftoverRange)
 }
+
 
 
 // Copies all characters from the receiver into a given buffer.
@@ -1348,14 +1360,16 @@ func (s_ String) GetCharacters(buffer Iunichar) {
 }
 
 
+
 // Copies characters from a given range in the receiver into a given buffer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/getCharacters(_:range:)
 
-func (s_ String) GetCharactersRange(buffer Iunichar, range_ IRange) {
+func (s_ String) GetCharactersRange(buffer Iunichar, range_ Range) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("getCharacters:range:"), buffer, range_)
 }
+
 
 
 // Interprets the receiver as a system-independent path and fills a buffer with a C-string in a format and encoding suitable for use with file-system calls.
@@ -1369,14 +1383,16 @@ func (s_ String) GetFileSystemRepresentationMaxLength(cname unsafe.Pointer, max 
 }
 
 
+
 // Returns by reference the beginning of the first line and the end of the last line touched by the given range.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/getLineStart(_:end:contentsEnd:for:)
 
-func (s_ String) GetLineStartEndContentsEndForRange(startPtr unsafe.Pointer, lineEndPtr unsafe.Pointer, contentsEndPtr unsafe.Pointer, range_ IRange) {
+func (s_ String) GetLineStartEndContentsEndForRange(startPtr unsafe.Pointer, lineEndPtr unsafe.Pointer, contentsEndPtr unsafe.Pointer, range_ Range) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("getLineStart:end:contentsEnd:forRange:"), startPtr, lineEndPtr, contentsEndPtr, range_)
 }
+
 
 
 // Returns by reference the beginning of the first paragraph and the end of the last paragraph touched by the given range.
@@ -1384,9 +1400,10 @@ func (s_ String) GetLineStartEndContentsEndForRange(startPtr unsafe.Pointer, lin
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/getParagraphStart(_:end:contentsEnd:for:)
 
-func (s_ String) GetParagraphStartEndContentsEndForRange(startPtr unsafe.Pointer, parEndPtr unsafe.Pointer, contentsEndPtr unsafe.Pointer, range_ IRange) {
+func (s_ String) GetParagraphStartEndContentsEndForRange(startPtr unsafe.Pointer, parEndPtr unsafe.Pointer, contentsEndPtr unsafe.Pointer, range_ Range) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("getParagraphStart:end:contentsEnd:forRange:"), startPtr, parEndPtr, contentsEndPtr, range_)
 }
+
 
 
 // Returns a Boolean value that indicates whether a given string matches the beginning characters of the receiver.
@@ -1400,6 +1417,7 @@ func (s_ String) HasPrefix(str string) bool {
 }
 
 
+
 // Returns a Boolean value that indicates whether a given string matches the ending characters of the receiver.
 //
 // [Full Topic]
@@ -1409,6 +1427,7 @@ func (s_ String) HasSuffix(str string) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("hasSuffix:"), objc.String(str))
 	return rv
 }
+
 
 
 // Returns a Boolean value that indicates whether a given string is equal to the receiver using a literal Unicode-based comparison.
@@ -1422,6 +1441,7 @@ func (s_ String) IsEqualToString(aString string) bool {
 }
 
 
+
 // Returns the number of bytes required to store the receiver in a given encoding.
 //
 // [Full Topic]
@@ -1433,15 +1453,17 @@ func (s_ String) LengthOfBytesUsingEncoding(enc unsafe.Pointer) uint {
 }
 
 
+
 // Returns the range of characters representing the line or lines containing a given range.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/lineRange(for:)
 
-func (s_ String) LineRangeForRange(range_ IRange) Range {
+func (s_ String) LineRangeForRange(range_ Range) Range {
 	rv := objc.Send[Range](s_.ID, objc.Sel("lineRangeForRange:"), range_)
 	return rv
 }
+
 
 
 // Returns an array of linguistic tags for the specified range and requested tags within the receiving string.
@@ -1449,10 +1471,11 @@ func (s_ String) LineRangeForRange(range_ IRange) Range {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/linguisticTags(in:scheme:options:orthography:tokenRanges:)
 
-func (s_ String) LinguisticTagsInRangeSchemeOptionsOrthographyTokenRanges(range_ IRange, scheme ILinguisticTagScheme, options LinguisticTaggerOptions, orthography IOrthography, tokenRanges []Value) []string {
+func (s_ String) LinguisticTagsInRangeSchemeOptionsOrthographyTokenRanges(range_ Range, scheme ILinguisticTagScheme, options LinguisticTaggerOptions, orthography IOrthography, tokenRanges []Value) []string {
 	rv := objc.Send[[]string](s_.ID, objc.Sel("linguisticTagsInRange:scheme:options:orthography:tokenRanges:"), range_, scheme, options, orthography, tokenRanges)
 	return rv
 }
+
 
 
 // Compares the string with a given string using a case-insensitive, localized, comparison.
@@ -1466,6 +1489,7 @@ func (s_ String) LocalizedCaseInsensitiveCompare(string_ string) ComparisonResul
 }
 
 
+
 // Returns a Boolean value indicating whether the string contains a given string by performing a case-insensitive, locale-aware search.
 //
 // [Full Topic]
@@ -1475,6 +1499,7 @@ func (s_ String) LocalizedCaseInsensitiveContainsString(str string) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("localizedCaseInsensitiveContainsString:"), objc.String(str))
 	return rv
 }
+
 
 
 // Compares the string and a given string using a localized comparison.
@@ -1488,6 +1513,7 @@ func (s_ String) LocalizedCompare(string_ string) ComparisonResult {
 }
 
 
+
 // Compares strings as sorted by the Finder.
 //
 // [Full Topic]
@@ -1497,6 +1523,7 @@ func (s_ String) LocalizedStandardCompare(string_ string) ComparisonResult {
 	rv := objc.Send[ComparisonResult](s_.ID, objc.Sel("localizedStandardCompare:"), objc.String(string_))
 	return rv
 }
+
 
 
 // Returns a Boolean value indicating whether the string contains a given string by performing a case and diacritic insensitive, locale-aware search.
@@ -1510,6 +1537,7 @@ func (s_ String) LocalizedStandardContainsString(str string) bool {
 }
 
 
+
 // Finds and returns the range of the first occurrence of a given string within the string by performing a case and diacritic insensitive, locale-aware search.
 //
 // [Full Topic]
@@ -1519,6 +1547,7 @@ func (s_ String) LocalizedStandardRangeOfString(str string) Range {
 	rv := objc.Send[Range](s_.ID, objc.Sel("localizedStandardRangeOfString:"), objc.String(str))
 	return rv
 }
+
 
 
 // Returns a representation of the receiver as a C string in the default C-string encoding, possibly losing information in converting to that encoding.
@@ -1532,6 +1561,7 @@ func (s_ String) LossyCString() unsafe.Pointer {
 }
 
 
+
 // Returns a version of the string with all letters converted to lowercase, taking into account the specified locale.
 //
 // [Full Topic]
@@ -1541,6 +1571,7 @@ func (s_ String) LowercaseStringWithLocale(locale ILocale) String {
 	rv := objc.Send[String](s_.ID, objc.Sel("lowercaseStringWithLocale:"), locale)
 	return rv
 }
+
 
 
 // Returns the maximum number of bytes needed to store the receiver in a given encoding.
@@ -1554,6 +1585,7 @@ func (s_ String) MaximumLengthOfBytesUsingEncoding(enc unsafe.Pointer) uint {
 }
 
 
+
 // Returns a new string formed from the receiver by either removing characters from the end, or by appending as many occurrences as necessary of a given pad string.
 //
 // [Full Topic]
@@ -1565,15 +1597,17 @@ func (s_ String) StringByPaddingToLengthWithStringStartingAtIndex(newLength uint
 }
 
 
+
 // Returns the range of characters representing the paragraph or paragraphs containing a given range.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/paragraphRange(for:)
 
-func (s_ String) ParagraphRangeForRange(range_ IRange) Range {
+func (s_ String) ParagraphRangeForRange(range_ Range) Range {
 	rv := objc.Send[Range](s_.ID, objc.Sel("paragraphRangeForRange:"), range_)
 	return rv
 }
+
 
 
 // Parses the receiver as a text representation of a property list, returning an , , , or object, according to the topmost element.
@@ -1587,6 +1621,7 @@ func (s_ String) PropertyList() objc.ID {
 }
 
 
+
 // Returns a dictionary object initialized with the keys and values found in the receiver.
 //
 // [Full Topic]
@@ -1596,6 +1631,7 @@ func (s_ String) PropertyListFromStringsFileFormat() Dictionary {
 	rv := objc.Send[Dictionary](s_.ID, objc.Sel("propertyListFromStringsFileFormat"))
 	return rv
 }
+
 
 
 // Finds and returns the range of the first occurrence of a given string within the string.
@@ -1609,6 +1645,7 @@ func (s_ String) RangeOfString(searchString string) Range {
 }
 
 
+
 // Finds and returns the range of the first occurrence of a given string within the string, subject to given options.
 //
 // [Full Topic]
@@ -1620,15 +1657,17 @@ func (s_ String) RangeOfStringOptions(searchString string, mask StringCompareOpt
 }
 
 
+
 // Finds and returns the range of the first occurrence of a given string, within the given range of the string, subject to given options.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/range(of:options:range:)
 
-func (s_ String) RangeOfStringOptionsRange(searchString string, mask StringCompareOptions, rangeOfReceiverToSearch IRange) Range {
+func (s_ String) RangeOfStringOptionsRange(searchString string, mask StringCompareOptions, rangeOfReceiverToSearch Range) Range {
 	rv := objc.Send[Range](s_.ID, objc.Sel("rangeOfString:options:range:"), objc.String(searchString), mask, rangeOfReceiverToSearch)
 	return rv
 }
+
 
 
 // Finds and returns the range of the first occurrence of a given string within a given range of the string, subject to given options, using the specified locale, if any.
@@ -1636,10 +1675,11 @@ func (s_ String) RangeOfStringOptionsRange(searchString string, mask StringCompa
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/range(of:options:range:locale:)
 
-func (s_ String) RangeOfStringOptionsRangeLocale(searchString string, mask StringCompareOptions, rangeOfReceiverToSearch IRange, locale ILocale) Range {
+func (s_ String) RangeOfStringOptionsRangeLocale(searchString string, mask StringCompareOptions, rangeOfReceiverToSearch Range, locale ILocale) Range {
 	rv := objc.Send[Range](s_.ID, objc.Sel("rangeOfString:options:range:locale:"), objc.String(searchString), mask, rangeOfReceiverToSearch, locale)
 	return rv
 }
+
 
 
 // Finds and returns the range in the string of the first character from a given character set.
@@ -1653,6 +1693,7 @@ func (s_ String) RangeOfCharacterFromSet(searchSet ICharacterSet) Range {
 }
 
 
+
 // Finds and returns the range in the string of the first character, using given options, from a given character set.
 //
 // [Full Topic]
@@ -1664,15 +1705,17 @@ func (s_ String) RangeOfCharacterFromSetOptions(searchSet ICharacterSet, mask St
 }
 
 
+
 // Finds and returns the range in the string of the first character from a given character set found in a given range with given options.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/rangeOfCharacter(from:options:range:)
 
-func (s_ String) RangeOfCharacterFromSetOptionsRange(searchSet ICharacterSet, mask StringCompareOptions, rangeOfReceiverToSearch IRange) Range {
+func (s_ String) RangeOfCharacterFromSetOptionsRange(searchSet ICharacterSet, mask StringCompareOptions, rangeOfReceiverToSearch Range) Range {
 	rv := objc.Send[Range](s_.ID, objc.Sel("rangeOfCharacterFromSet:options:range:"), searchSet, mask, rangeOfReceiverToSearch)
 	return rv
 }
+
 
 
 // Returns the range in the receiver of the composed character sequence located at a given index.
@@ -1686,15 +1729,17 @@ func (s_ String) RangeOfComposedCharacterSequenceAtIndex(index uint) Range {
 }
 
 
+
 // Returns the range in the string of the composed character sequences for a given range.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/rangeOfComposedCharacterSequences(for:)
 
-func (s_ String) RangeOfComposedCharacterSequencesForRange(range_ IRange) Range {
+func (s_ String) RangeOfComposedCharacterSequencesForRange(range_ Range) Range {
 	rv := objc.Send[Range](s_.ID, objc.Sel("rangeOfComposedCharacterSequencesForRange:"), range_)
 	return rv
 }
+
 
 
 // Returns a new string in which the characters in a specified range of the receiver are replaced by a given string.
@@ -1702,10 +1747,11 @@ func (s_ String) RangeOfComposedCharacterSequencesForRange(range_ IRange) Range 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/replacingCharacters(in:with:)
 
-func (s_ String) StringByReplacingCharactersInRangeWithString(range_ IRange, replacement string) String {
+func (s_ String) StringByReplacingCharactersInRangeWithString(range_ Range, replacement string) String {
 	rv := objc.Send[String](s_.ID, objc.Sel("stringByReplacingCharactersInRange:withString:"), range_, objc.String(replacement))
 	return rv
 }
+
 
 
 // Returns a new string in which all occurrences of a target string in the receiver are replaced by another given string.
@@ -1719,15 +1765,17 @@ func (s_ String) StringByReplacingOccurrencesOfStringWithString(target string, r
 }
 
 
+
 // Returns a new string in which all occurrences of a target string in a specified range of the receiver are replaced by another given string.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/replacingOccurrences(of:with:options:range:)
 
-func (s_ String) StringByReplacingOccurrencesOfStringWithStringOptionsRange(target string, replacement string, options StringCompareOptions, searchRange IRange) String {
+func (s_ String) StringByReplacingOccurrencesOfStringWithStringOptionsRange(target string, replacement string, options StringCompareOptions, searchRange Range) String {
 	rv := objc.Send[String](s_.ID, objc.Sel("stringByReplacingOccurrencesOfString:withString:options:range:"), objc.String(target), objc.String(replacement), options, searchRange)
 	return rv
 }
+
 
 
 // Returns a new string made by replacing in the receiver all percent escapes with the matching characters as determined by a given encoding.
@@ -1741,6 +1789,7 @@ func (s_ String) StringByReplacingPercentEscapesUsingEncoding(enc unsafe.Pointer
 }
 
 
+
 // Returns the bounding box size the receiver occupies when drawn with the given attributes.
 //
 // [Full Topic]
@@ -1752,6 +1801,7 @@ func (s_ String) SizeWithAttributes(attrs unsafe.Pointer) coregraphics.CGSize {
 }
 
 
+
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/sr_sensorForDeletionRecordsFromSensor()
 
@@ -1759,6 +1809,7 @@ func (s_ String) Sr_sensorForDeletionRecordsFromSensor() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("sr_sensorForDeletionRecordsFromSensor"))
 	return rv
 }
+
 
 
 // Returns a string made by appending to the receiver a string constructed from a given format string and the following arguments.
@@ -1772,6 +1823,7 @@ func (s_ String) StringByAppendingFormat(format string) String {
 }
 
 
+
 // Returns an array of strings made by separately appending to the receiver each string in a given array.
 //
 // [Full Topic]
@@ -1781,6 +1833,7 @@ func (s_ String) StringsByAppendingPaths(paths []string) []string {
 	rv := objc.Send[[]string](s_.ID, objc.Sel("stringsByAppendingPaths:"), paths)
 	return rv
 }
+
 
 
 // Returns a new string containing the characters of the receiver from the one at a given index to the end.
@@ -1794,6 +1847,7 @@ func (s_ String) SubstringFromIndex(from uint) String {
 }
 
 
+
 // Returns a new string containing the characters of the receiver up to, but not including, the one at a given index.
 //
 // [Full Topic]
@@ -1805,15 +1859,17 @@ func (s_ String) SubstringToIndex(to uint) String {
 }
 
 
+
 // Returns a string object containing the characters of the receiver that lie within a given range.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/substring(with:)
 
-func (s_ String) SubstringWithRange(range_ IRange) String {
+func (s_ String) SubstringWithRange(range_ Range) String {
 	rv := objc.Send[String](s_.ID, objc.Sel("substringWithRange:"), range_)
 	return rv
 }
+
 
 
 // Returns a new string made by removing from both ends of the receiver characters contained in a given character set.
@@ -1827,6 +1883,7 @@ func (s_ String) StringByTrimmingCharactersInSet(set ICharacterSet) String {
 }
 
 
+
 // Returns a version of the string with all letters converted to uppercase, taking into account the specified locale.
 //
 // [Full Topic]
@@ -1836,6 +1893,7 @@ func (s_ String) UppercaseStringWithLocale(locale ILocale) String {
 	rv := objc.Send[String](s_.ID, objc.Sel("uppercaseStringWithLocale:"), locale)
 	return rv
 }
+
 
 
 // Returns a string variation suitable for the specified presentation width.
@@ -1849,6 +1907,7 @@ func (s_ String) VariantFittingPresentationWidth(width int) String {
 }
 
 
+
 // Writes the contents of the receiver to the location specified by a given URL.
 //
 // [Full Topic]
@@ -1858,6 +1917,7 @@ func (s_ String) WriteToURLAtomically(url IURL, atomically bool) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("writeToURL:atomically:"), url, atomically)
 	return rv
 }
+
 
 
 // Writes the contents of the receiver to the URL specified by using the specified encoding.
@@ -1871,6 +1931,7 @@ func (s_ String) WriteToURLAtomicallyEncodingError(url IURL, useAuxiliaryFile bo
 }
 
 
+
 // Writes the contents of the receiver to the file specified by a given path.
 //
 // [Full Topic]
@@ -1880,6 +1941,7 @@ func (s_ String) WriteToFileAtomically(path string, useAuxiliaryFile bool) bool 
 	rv := objc.Send[bool](s_.ID, objc.Sel("writeToFile:atomically:"), objc.String(path), useAuxiliaryFile)
 	return rv
 }
+
 
 
 // Writes the contents of the receiver to a file at a given path using a given encoding.

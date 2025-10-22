@@ -114,6 +114,7 @@ func (rc _RunLoopClass) MainRunLoop() RunLoop {
 	return rv
 }
 
+
 // Runs the loop once or until the specified date, accepting input only for the specified mode.
 //
 // [Full Topic]
@@ -124,6 +125,7 @@ func (r_ RunLoop) AcceptInputForModeBeforeDate(mode RunLoopMode, limitDate IDate
 }
 
 
+
 // Registers a given timer with a given input mode.
 //
 // [Full Topic]
@@ -132,6 +134,7 @@ func (r_ RunLoop) AcceptInputForModeBeforeDate(mode RunLoopMode, limitDate IDate
 func (r_ RunLoop) AddTimerForMode(timer ITimer, mode RunLoopMode) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("addTimer:forMode:"), timer, mode)
 }
+
 
 
 // Returns the receiver’s underlying run loop object.
@@ -145,6 +148,7 @@ func (r_ RunLoop) GetCFRunLoop() unsafe.Pointer {
 }
 
 
+
 // Performs one pass through the run loop in the specified mode and returns the date at which the next timer is scheduled to fire.
 //
 // [Full Topic]
@@ -154,6 +158,7 @@ func (r_ RunLoop) LimitDateForMode(mode RunLoopMode) Date {
 	rv := objc.Send[Date](r_.ID, objc.Sel("limitDateForMode:"), mode)
 	return rv
 }
+
 
 
 // Puts the receiver into a permanent loop, during which time it processes data from all attached input sources.
@@ -166,6 +171,7 @@ func (r_ RunLoop) Run() {
 }
 
 
+
 // Runs the loop once, blocking for input in the specified mode until a given date.
 //
 // [Full Topic]
@@ -175,6 +181,7 @@ func (r_ RunLoop) RunModeBeforeDate(mode RunLoopMode, limitDate IDate) bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("runMode:beforeDate:"), mode, limitDate)
 	return rv
 }
+
 
 
 // Runs the loop until the specified date, during which time it processes data from all attached input sources.

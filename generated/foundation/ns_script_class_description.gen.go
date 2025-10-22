@@ -100,6 +100,7 @@ func NewScriptClassDescription() ScriptClassDescription {
 
 
 
+
 // Returns the name of the declared type of the attribute or relationship identified by the passed key.
 //
 // [Full Topic]

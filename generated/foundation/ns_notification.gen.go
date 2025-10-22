@@ -90,7 +90,6 @@ func NewNotification() Notification {
 
 
 
-
 // Initializes a notification with the data from an unarchiver.
 //
 // [Full Topic]
@@ -105,7 +104,6 @@ func NewNotificationWithCoder(coder ICoder) Notification {
 
 
 
-
 // Returns a new notification object with a specified name and object.
 //
 // [Full Topic]
@@ -115,7 +113,6 @@ func NewNotificationWithNameObject(aName INotificationName, anObject objectivec.
 	rv := objc.Send[Notification](objc.ID(getNotificationClass().class), objc.Sel("notificationWithName:object:"), aName, anObject)
 	return rv
 }
-
 
 
 

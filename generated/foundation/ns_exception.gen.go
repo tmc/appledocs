@@ -93,7 +93,6 @@ func NewException() Exception {
 
 
 
-
 // Initializes and returns a newly allocated exception object.
 //
 // [Full Topic]
@@ -137,6 +136,7 @@ func (ec _ExceptionClass) RaiseFormatArguments(name IExceptionName, format strin
 func (ec _ExceptionClass) RaiseFormat(name IExceptionName, format string) {
 	objc.Send[objc.ID](objc.ID(ec.class), objc.Sel("raise:format:"), name, objc.String(format))
 }
+
 
 
 // Raises the receiver, causing program flow to jump to the local exception handler.

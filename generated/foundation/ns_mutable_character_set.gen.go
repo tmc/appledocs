@@ -29,7 +29,7 @@ type _MutableCharacterSetClass struct {
 // An interface definition for the [MutableCharacterSet] class.
 type IMutableCharacterSet interface {
 	ICharacterSet
-	AddCharactersInRange(aRange IRange)
+	AddCharactersInRange(aRange Range)
 	AddCharactersInString(aString string)
 	Invert()
 	RemoveCharactersInString(aString string)
@@ -92,7 +92,6 @@ func NewMutableCharacterSet() MutableCharacterSet {
 
 
 
-
 // Returns a character set read from the bitmap representation stored in the file a given path.
 //
 // [Full Topic]
@@ -105,13 +104,12 @@ func NewMutableCharacterSetWithContentsOfFile(fName string) MutableCharacterSet 
 
 
 
-
 // Returns a character set containing characters with Unicode values in a given range.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/init(range:)
 
-func NewMutableCharacterSetWithRange(aRange IRange) MutableCharacterSet {
+func NewMutableCharacterSetWithRange(aRange Range) MutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(getMutableCharacterSetClass().class), objc.Sel("characterSetWithRange:"), aRange)
 	return rv
 }
@@ -200,7 +198,7 @@ func (mc _MutableCharacterSetClass) CharacterSetWithContentsOfFile(fName string)
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/init(range:)
 
-func (mc _MutableCharacterSetClass) CharacterSetWithRange(aRange IRange) MutableCharacterSet {
+func (mc _MutableCharacterSetClass) CharacterSetWithRange(aRange Range) MutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(mc.class), objc.Sel("characterSetWithRange:"), aRange)
 	return rv
 }
@@ -261,14 +259,16 @@ func (mc _MutableCharacterSetClass) WhitespaceCharacterSet() MutableCharacterSet
 }
 
 
+
 // Adds to the receiver the characters whose Unicode values are in a given range.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/addCharacters(in:)-4ppyw
 
-func (m_ MutableCharacterSet) AddCharactersInRange(aRange IRange) {
+func (m_ MutableCharacterSet) AddCharactersInRange(aRange Range) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("addCharactersInRange:"), aRange)
 }
+
 
 
 // Adds to the receiver the characters in a given string.
@@ -281,6 +281,7 @@ func (m_ MutableCharacterSet) AddCharactersInString(aString string) {
 }
 
 
+
 // Replaces all the characters in the receiver with all the characters it didn’t previously contain.
 //
 // [Full Topic]
@@ -289,6 +290,7 @@ func (m_ MutableCharacterSet) AddCharactersInString(aString string) {
 func (m_ MutableCharacterSet) Invert() {
 	objc.Send[objc.ID](m_.ID, objc.Sel("invert"))
 }
+
 
 
 // Removes from the receiver the characters in a given string.

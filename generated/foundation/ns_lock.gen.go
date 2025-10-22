@@ -90,6 +90,7 @@ func NewLock() Lock {
 
 
 
+
 // Attempts to acquire a lock before a given time and returns a Boolean value indicating whether the attempt was successful.
 //
 // [Full Topic]
@@ -99,6 +100,7 @@ func (l_ Lock) LockBeforeDate(limit IDate) bool {
 	rv := objc.Send[bool](l_.ID, objc.Sel("lockBeforeDate:"), limit)
 	return rv
 }
+
 
 
 // Attempts to acquire a lock and immediately returns a Boolean value that indicates whether the attempt was successful.

@@ -120,7 +120,6 @@ func NewURLSession() URLSession {
 
 
 
-
 // Creates a session with the specified session configuration.
 //
 // [Full Topic]
@@ -130,7 +129,6 @@ func NewURLSessionWithConfiguration(configuration IURLSessionConfiguration) URLS
 	rv := objc.Send[URLSession](objc.ID(getURLSessionClass().class), objc.Sel("sessionWithConfiguration:"), configuration)
 	return rv
 }
-
 
 
 
@@ -178,6 +176,7 @@ func (uc _URLSessionClass) SharedSession() URLSession {
 	return rv
 }
 
+
 // Creates a task that retrieves the contents of the specified URL.
 //
 // [Full Topic]
@@ -187,6 +186,7 @@ func (u_ URLSession) DataTaskWithURL(url IURL) URLSessionDataTask {
 	rv := objc.Send[URLSessionDataTask](u_.ID, objc.Sel("dataTaskWithURL:"), url)
 	return rv
 }
+
 
 
 // Creates a task that retrieves the contents of a URL based on the specified URL request object.
@@ -200,6 +200,7 @@ func (u_ URLSession) DataTaskWithRequest(request IURLRequest) URLSessionDataTask
 }
 
 
+
 // Creates a task that retrieves the contents of the specified URL, then calls a handler upon completion.
 //
 // [Full Topic]
@@ -209,6 +210,7 @@ func (u_ URLSession) DataTaskWithURLCompletionHandler(url IURL, completionHandle
 	rv := objc.Send[URLSessionDataTask](u_.ID, objc.Sel("dataTaskWithURL:completionHandler:"), url, completionHandler)
 	return rv
 }
+
 
 
 // Creates a task that retrieves the contents of a URL based on the specified URL request object, and calls a handler upon completion.
@@ -222,6 +224,7 @@ func (u_ URLSession) DataTaskWithRequestCompletionHandler(request IURLRequest, c
 }
 
 
+
 // Creates a download task that retrieves the contents of the specified URL and saves the results to a file.
 //
 // [Full Topic]
@@ -231,6 +234,7 @@ func (u_ URLSession) DownloadTaskWithURL(url IURL) URLSessionDownloadTask {
 	rv := objc.Send[URLSessionDownloadTask](u_.ID, objc.Sel("downloadTaskWithURL:"), url)
 	return rv
 }
+
 
 
 // Creates a download task that retrieves the contents of a URL based on the specified URL request object and saves the results to a file.
@@ -244,6 +248,7 @@ func (u_ URLSession) DownloadTaskWithRequest(request IURLRequest) URLSessionDown
 }
 
 
+
 // Creates a download task that retrieves the contents of a URL based on the specified URL request object, saves the results to a file, and calls a handler upon completion.
 //
 // [Full Topic]
@@ -253,6 +258,7 @@ func (u_ URLSession) DownloadTaskWithRequestCompletionHandler(request IURLReques
 	rv := objc.Send[URLSessionDownloadTask](u_.ID, objc.Sel("downloadTaskWithRequest:completionHandler:"), request, completionHandler)
 	return rv
 }
+
 
 
 // Creates a download task that retrieves the contents of the specified URL, saves the results to a file, and calls a handler upon completion.
@@ -266,6 +272,7 @@ func (u_ URLSession) DownloadTaskWithURLCompletionHandler(url IURL, completionHa
 }
 
 
+
 // Creates a download task to resume a previously canceled or failed download.
 //
 // [Full Topic]
@@ -275,6 +282,7 @@ func (u_ URLSession) DownloadTaskWithResumeData(resumeData IData) URLSessionDown
 	rv := objc.Send[URLSessionDownloadTask](u_.ID, objc.Sel("downloadTaskWithResumeData:"), resumeData)
 	return rv
 }
+
 
 
 // Creates a download task to resume a previously canceled or failed download and calls a handler upon completion.
@@ -288,6 +296,7 @@ func (u_ URLSession) DownloadTaskWithResumeDataCompletionHandler(resumeData IDat
 }
 
 
+
 // Invalidates the session, allowing any outstanding tasks to finish.
 //
 // [Full Topic]
@@ -296,6 +305,7 @@ func (u_ URLSession) DownloadTaskWithResumeDataCompletionHandler(resumeData IDat
 func (u_ URLSession) FinishTasksAndInvalidate() {
 	objc.Send[objc.ID](u_.ID, objc.Sel("finishTasksAndInvalidate"))
 }
+
 
 
 // Flushes cookies and credentials to disk, clears transient caches, and ensures that future requests occur on a new TCP connection.
@@ -308,6 +318,7 @@ func (u_ URLSession) FlushWithCompletionHandler(completionHandler unsafe.Pointer
 }
 
 
+
 // Asynchronously calls a completion callback with all tasks in a session
 //
 // [Full Topic]
@@ -316,6 +327,7 @@ func (u_ URLSession) FlushWithCompletionHandler(completionHandler unsafe.Pointer
 func (u_ URLSession) GetAllTasksWithCompletionHandler(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("getAllTasksWithCompletionHandler:"), completionHandler)
 }
+
 
 
 // Asynchronously calls a completion callback with all data, upload, and download tasks in a session.
@@ -328,6 +340,7 @@ func (u_ URLSession) GetTasksWithCompletionHandler(completionHandler unsafe.Poin
 }
 
 
+
 // Cancels all outstanding tasks and then invalidates the session.
 //
 // [Full Topic]
@@ -338,6 +351,7 @@ func (u_ URLSession) InvalidateAndCancel() {
 }
 
 
+
 // Empties all cookies, caches and credential stores, removes disk files, flushes in-progress downloads to disk, and ensures that future requests occur on a new socket.
 //
 // [Full Topic]
@@ -346,6 +360,7 @@ func (u_ URLSession) InvalidateAndCancel() {
 func (u_ URLSession) ResetWithCompletionHandler(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("resetWithCompletionHandler:"), completionHandler)
 }
+
 
 
 // Creates a task that establishes a bidirectional TCP/IP connection using a specified network service.
@@ -359,6 +374,7 @@ func (u_ URLSession) StreamTaskWithNetService(service INetService) URLSessionStr
 }
 
 
+
 // Creates a task that establishes a bidirectional TCP/IP connection to a specified hostname and port.
 //
 // [Full Topic]
@@ -368,6 +384,7 @@ func (u_ URLSession) StreamTaskWithHostNamePort(hostname string, port int) URLSe
 	rv := objc.Send[URLSessionStreamTask](u_.ID, objc.Sel("streamTaskWithHostName:port:"), objc.String(hostname), port)
 	return rv
 }
+
 
 
 // Creates a task that performs an HTTP request for the specified URL request object and uploads the provided data.
@@ -381,6 +398,7 @@ func (u_ URLSession) UploadTaskWithRequestFromData(request IURLRequest, bodyData
 }
 
 
+
 // Creates a task that performs an HTTP request for the specified URL request object, uploads the provided data, and calls a handler upon completion.
 //
 // [Full Topic]
@@ -390,6 +408,7 @@ func (u_ URLSession) UploadTaskWithRequestFromDataCompletionHandler(request IURL
 	rv := objc.Send[URLSessionUploadTask](u_.ID, objc.Sel("uploadTaskWithRequest:fromData:completionHandler:"), request, bodyData, completionHandler)
 	return rv
 }
+
 
 
 // Creates a task that performs an HTTP request for uploading the specified file.
@@ -403,6 +422,7 @@ func (u_ URLSession) UploadTaskWithRequestFromFile(request IURLRequest, fileURL 
 }
 
 
+
 // Creates a task that performs an HTTP request for uploading the specified file, then calls a handler upon completion.
 //
 // [Full Topic]
@@ -414,6 +434,7 @@ func (u_ URLSession) UploadTaskWithRequestFromFileCompletionHandler(request IURL
 }
 
 
+
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/uploadTask(withResumeData:)
 
@@ -423,6 +444,7 @@ func (u_ URLSession) UploadTaskWithResumeData(resumeData IData) URLSessionUpload
 }
 
 
+
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/uploadTask(withResumeData:completionHandler:)
 
@@ -430,6 +452,7 @@ func (u_ URLSession) UploadTaskWithResumeDataCompletionHandler(resumeData IData,
 	rv := objc.Send[URLSessionUploadTask](u_.ID, objc.Sel("uploadTaskWithResumeData:completionHandler:"), resumeData, completionHandler)
 	return rv
 }
+
 
 
 // Creates a task that performs an HTTP request for uploading data based on the specified URL request.
@@ -443,6 +466,7 @@ func (u_ URLSession) UploadTaskWithStreamedRequest(request IURLRequest) URLSessi
 }
 
 
+
 // Creates a WebSocket task for the provided URL.
 //
 // [Full Topic]
@@ -454,6 +478,7 @@ func (u_ URLSession) WebSocketTaskWithURL(url IURL) URLSessionWebSocketTask {
 }
 
 
+
 // Creates a WebSocket task for the provided URL request.
 //
 // [Full Topic]
@@ -463,6 +488,7 @@ func (u_ URLSession) WebSocketTaskWithRequest(request IURLRequest) URLSessionWeb
 	rv := objc.Send[URLSessionWebSocketTask](u_.ID, objc.Sel("webSocketTaskWithRequest:"), request)
 	return rv
 }
+
 
 
 // Creates a WebSocket task given a URL and an array of protocols.

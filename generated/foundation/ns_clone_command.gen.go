@@ -90,6 +90,7 @@ func NewCloneCommand() CloneCommand {
 
 
 
+
 // Sets the receiver’s object specifier;.
 //
 // [Full Topic]

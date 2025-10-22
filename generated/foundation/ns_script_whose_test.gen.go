@@ -88,7 +88,6 @@ func NewScriptWhoseTest() ScriptWhoseTest {
 
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptWhoseTest/init(coder:)
 
@@ -98,6 +97,7 @@ func NewScriptWhoseTestWithCoder(inCoder ICoder) ScriptWhoseTest {
 	rv.Autorelease()
 	return rv
 }
+
 
 
 

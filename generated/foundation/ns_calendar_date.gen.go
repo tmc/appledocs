@@ -108,6 +108,7 @@ func (cc _CalendarDateClass) DistantPast() unsafe.Pointer {
 }
 
 
+
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendarDate/dayOfCommonEra
 
@@ -115,6 +116,7 @@ func (c_ CalendarDate) DayOfCommonEra() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("dayOfCommonEra"))
 	return rv
 }
+
 
 
 // [Full Topic]
@@ -126,6 +128,7 @@ func (c_ CalendarDate) DescriptionWithCalendarFormat(format string) String {
 }
 
 
+
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendarDate/descriptionWithCalendarFormat:locale:
 
@@ -133,6 +136,7 @@ func (c_ CalendarDate) DescriptionWithCalendarFormatLocale(format string, locale
 	rv := objc.Send[String](c_.ID, objc.Sel("descriptionWithCalendarFormat:locale:"), objc.String(format), locale)
 	return rv
 }
+
 
 
 // [Full Topic]

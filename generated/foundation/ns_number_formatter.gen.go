@@ -30,7 +30,7 @@ type _NumberFormatterClass struct {
 // An interface definition for the [NumberFormatter] class.
 type INumberFormatter interface {
 	IFormatter
-	GetObjectValueForStringRangeError(obj objectivec.IObject, string_ string, rangep IRange, error_ IError) bool
+	GetObjectValueForStringRangeError(obj objectivec.IObject, string_ string, rangep Range, error_ IError) bool
 	NumberFromString(string_ string) Number
 	StringFromNumber(number INumber) String
 	AllowsFloats() bool
@@ -259,15 +259,17 @@ func (nc _NumberFormatterClass) SetDefaultFormatterBehavior(behavior NumberForma
 }
 
 
+
 // Returns by reference a cell-content object after creating it from a range of characters in a given string.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/getObjectValue(_:for:range:)
 
-func (n_ NumberFormatter) GetObjectValueForStringRangeError(obj objectivec.IObject, string_ string, rangep IRange, error_ IError) bool {
+func (n_ NumberFormatter) GetObjectValueForStringRangeError(obj objectivec.IObject, string_ string, rangep Range, error_ IError) bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("getObjectValue:forString:range:error:"), obj, objc.String(string_), rangep, error_)
 	return rv
 }
+
 
 
 // Returns an object created by parsing a given string.
@@ -279,6 +281,7 @@ func (n_ NumberFormatter) NumberFromString(string_ string) Number {
 	rv := objc.Send[Number](n_.ID, objc.Sel("numberFromString:"), objc.String(string_))
 	return rv
 }
+
 
 
 // Returns a string containing the formatted value of the provided number object.

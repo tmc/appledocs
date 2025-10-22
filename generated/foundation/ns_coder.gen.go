@@ -47,7 +47,7 @@ type ICoder interface {
 	DecodeObjectOfClassForKey(aClass objc.Class, key string) objc.ID
 	DecodePoint() Point
 	EncodeDataObject(data IData)
-	EncodePoint(point IPoint)
+	EncodePoint(point Point)
 	EncodeObjectForKey(object objectivec.IObject, key string)
 	EncodeIntegerForKey(value int, key string)
 	EncodeInt32ForKey(value unsafe.Pointer, key string)
@@ -134,6 +134,7 @@ func NewCoder() Coder {
 
 
 
+
 // Decodes an array of items, whose Objective-C type is given by .
 //
 // [Full Topic]
@@ -142,6 +143,7 @@ func NewCoder() Coder {
 func (c_ Coder) DecodeArrayOfObjCTypeCountAt(itemType unsafe.Pointer, count uint, array unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("decodeArrayOfObjCType:count:at:"), itemType, count, array)
 }
+
 
 
 // Decodes and returns a boolean value that was previously encoded with and associated with the string .
@@ -155,6 +157,7 @@ func (c_ Coder) DecodeBoolForKey(key string) bool {
 }
 
 
+
 // Decodes a buffer of data that was previously encoded with and associated with the string .
 //
 // [Full Topic]
@@ -166,6 +169,7 @@ func (c_ Coder) DecodeBytesForKeyReturnedLength(key string, lengthp unsafe.Point
 }
 
 
+
 // Decodes a buffer of data whose types are unspecified.
 //
 // [Full Topic]
@@ -174,6 +178,7 @@ func (c_ Coder) DecodeBytesForKeyReturnedLength(key string, lengthp unsafe.Point
 func (c_ Coder) DecodeBytesWithReturnedLength(lengthp unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("decodeBytesWithReturnedLength:"), lengthp)
 }
+
 
 
 // Decodes and returns an int value that was previously encoded with , , , or and associated with the string .
@@ -187,6 +192,7 @@ func (c_ Coder) DecodeIntForKey(key string) int {
 }
 
 
+
 // Decodes and returns an object that was previously encoded with . Subclasses must override this method.
 //
 // [Full Topic]
@@ -196,6 +202,7 @@ func (c_ Coder) DecodeDataObject() Data {
 	rv := objc.Send[Data](c_.ID, objc.Sel("decodeDataObject"))
 	return rv
 }
+
 
 
 // Decodes and returns a double value that was previously encoded with either or and associated with the string .
@@ -209,6 +216,7 @@ func (c_ Coder) DecodeDoubleForKey(key string) float64 {
 }
 
 
+
 // Decodes and returns a float value that was previously encoded with or and associated with the string .
 //
 // [Full Topic]
@@ -218,6 +226,7 @@ func (c_ Coder) DecodeFloatForKey(key string) float32 {
 	rv := objc.Send[float32](c_.ID, objc.Sel("decodeFloatForKey:"), objc.String(key))
 	return rv
 }
+
 
 
 // Decodes and returns a 32-bit integer value that was previously encoded with , , , or and associated with the string .
@@ -231,6 +240,7 @@ func (c_ Coder) DecodeInt32ForKey(key string) unsafe.Pointer {
 }
 
 
+
 // Decodes and returns a 64-bit integer value that was previously encoded with , , , or and associated with the string .
 //
 // [Full Topic]
@@ -240,6 +250,7 @@ func (c_ Coder) DecodeInt64ForKey(key string) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("decodeInt64ForKey:"), objc.String(key))
 	return rv
 }
+
 
 
 // Decodes and returns an NSInteger value that was previously encoded with , , , or and associated with the string .
@@ -253,6 +264,7 @@ func (c_ Coder) DecodeIntegerForKey(key string) int {
 }
 
 
+
 // Decodes an object previously written with .
 //
 // [Full Topic]
@@ -262,6 +274,7 @@ func (c_ Coder) DecodeNXObject() objc.ID {
 	rv := objc.Send[objc.ID](c_.ID, objc.Sel("decodeNXObject"))
 	return rv
 }
+
 
 
 // Decodes and returns an object that was previously encoded with any of the methods.
@@ -275,6 +288,7 @@ func (c_ Coder) DecodeObject() objc.ID {
 }
 
 
+
 // Decodes and returns a previously-encoded object that was previously encoded with or and associated with the string .
 //
 // [Full Topic]
@@ -284,6 +298,7 @@ func (c_ Coder) DecodeObjectForKey(key string) objc.ID {
 	rv := objc.Send[objc.ID](c_.ID, objc.Sel("decodeObjectForKey:"), objc.String(key))
 	return rv
 }
+
 
 
 // Decodes an object for the key, restricted to the specified class.
@@ -297,6 +312,7 @@ func (c_ Coder) DecodeObjectOfClassForKey(aClass objc.Class, key string) objc.ID
 }
 
 
+
 // Decodes and returns an NSPoint structure that was previously encoded with .
 //
 // [Full Topic]
@@ -306,6 +322,7 @@ func (c_ Coder) DecodePoint() Point {
 	rv := objc.Send[Point](c_.ID, objc.Sel("decodePoint"))
 	return rv
 }
+
 
 
 // Encodes a given data object.
@@ -318,14 +335,16 @@ func (c_ Coder) EncodeDataObject(data IData) {
 }
 
 
+
 // Encodes a point.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCoder/encode(_:)-75jv4
 
-func (c_ Coder) EncodePoint(point IPoint) {
+func (c_ Coder) EncodePoint(point Point) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("encodePoint:"), point)
 }
+
 
 
 // Encodes an object and associates it with the string key.
@@ -338,6 +357,7 @@ func (c_ Coder) EncodeObjectForKey(object objectivec.IObject, key string) {
 }
 
 
+
 // Encodes an integer value and associates it with the string key.
 //
 // [Full Topic]
@@ -346,6 +366,7 @@ func (c_ Coder) EncodeObjectForKey(object objectivec.IObject, key string) {
 func (c_ Coder) EncodeIntegerForKey(value int, key string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("encodeInteger:forKey:"), value, objc.String(key))
 }
+
 
 
 // Encodes a 32-bit integer value and associates it with the string key.
@@ -358,6 +379,7 @@ func (c_ Coder) EncodeInt32ForKey(value unsafe.Pointer, key string) {
 }
 
 
+
 // Encodes a Boolean value and associates it with the string .
 //
 // [Full Topic]
@@ -366,6 +388,7 @@ func (c_ Coder) EncodeInt32ForKey(value unsafe.Pointer, key string) {
 func (c_ Coder) EncodeBoolForKey(value bool, key string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("encodeBool:forKey:"), value, objc.String(key))
 }
+
 
 
 // Encodes a floating point value and associates it with the string key.
@@ -378,6 +401,7 @@ func (c_ Coder) EncodeFloatForKey(value float32, key string) {
 }
 
 
+
 // Encodes a double-precision floating point value and associates it with the string key.
 //
 // [Full Topic]
@@ -386,6 +410,7 @@ func (c_ Coder) EncodeFloatForKey(value float32, key string) {
 func (c_ Coder) EncodeDoubleForKey(value float64, key string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("encodeDouble:forKey:"), value, objc.String(key))
 }
+
 
 
 // Encodes a 64-bit integer value and associates it with the string key.
@@ -398,6 +423,7 @@ func (c_ Coder) EncodeInt64ForKey(value unsafe.Pointer, key string) {
 }
 
 
+
 // Encodes a buffer of data, given its length and a pointer, and associates it with a string key.
 //
 // [Full Topic]
@@ -406,6 +432,7 @@ func (c_ Coder) EncodeInt64ForKey(value unsafe.Pointer, key string) {
 func (c_ Coder) EncodeBytesLengthForKey(bytes unsafe.Pointer, length uint, key string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("encodeBytes:length:forKey:"), bytes, length, objc.String(key))
 }
+
 
 
 // Encodes a C integer value and associates it with the string key.
@@ -418,6 +445,7 @@ func (c_ Coder) EncodeIntForKey(value int, key string) {
 }
 
 
+
 // An encoding method for subclasses to override to conditionally encode an object, preserving common references to it, only if it has been unconditionally encoded.
 //
 // [Full Topic]
@@ -426,6 +454,7 @@ func (c_ Coder) EncodeIntForKey(value int, key string) {
 func (c_ Coder) EncodeConditionalObjectForKey(object objectivec.IObject, key string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("encodeConditionalObject:forKey:"), object, objc.String(key))
 }
+
 
 
 // Encodes an old-style object onto the coder.

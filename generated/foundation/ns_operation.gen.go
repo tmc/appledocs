@@ -121,6 +121,7 @@ func NewOperation() Operation {
 
 
 
+
 // Makes the receiver dependent on the completion of the specified operation.
 //
 // [Full Topic]
@@ -129,6 +130,7 @@ func NewOperation() Operation {
 func (o_ Operation) AddDependency(op IOperation) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("addDependency:"), op)
 }
+
 
 
 // Advises the operation object that it should stop executing its task.
@@ -141,6 +143,7 @@ func (o_ Operation) Cancel() {
 }
 
 
+
 // Performs the receiver’s non-concurrent task.
 //
 // [Full Topic]
@@ -149,6 +152,7 @@ func (o_ Operation) Cancel() {
 func (o_ Operation) Main() {
 	objc.Send[objc.ID](o_.ID, objc.Sel("main"))
 }
+
 
 
 // Removes the receiver’s dependence on the specified operation.
@@ -161,6 +165,7 @@ func (o_ Operation) RemoveDependency(op IOperation) {
 }
 
 
+
 // Begins the execution of the operation.
 //
 // [Full Topic]
@@ -169,6 +174,7 @@ func (o_ Operation) RemoveDependency(op IOperation) {
 func (o_ Operation) Start() {
 	objc.Send[objc.ID](o_.ID, objc.Sel("start"))
 }
+
 
 
 // Blocks execution of the current thread until the operation object finishes its task.

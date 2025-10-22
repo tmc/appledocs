@@ -91,7 +91,6 @@ func NewUniqueIDSpecifier() UniqueIDSpecifier {
 
 
 
-
 // Returns an object, initialized with the given arguments.
 //
 // [Full Topic]

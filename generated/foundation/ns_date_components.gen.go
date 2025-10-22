@@ -139,6 +139,7 @@ func NewDateComponents() DateComponents {
 
 
 
+
 // Returns a Boolean value that indicates whether the current combination of properties represents a date which exists in the specified calendar.
 //
 // [Full Topic]
@@ -148,6 +149,7 @@ func (d_ DateComponents) IsValidDateInCalendar(calendar ICalendar) bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("isValidDateInCalendar:"), calendar)
 	return rv
 }
+
 
 
 // Sets a value for a given calendar unit.
@@ -160,6 +162,7 @@ func (d_ DateComponents) SetValueForComponent(value int, unit ICalendarUnit) {
 }
 
 
+
 // Sets the number of weeks.
 //
 // [Full Topic]
@@ -168,6 +171,7 @@ func (d_ DateComponents) SetValueForComponent(value int, unit ICalendarUnit) {
 func (d_ DateComponents) SetWeek(v int) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setWeek:"), v)
 }
+
 
 
 // Returns the value for a given calendar unit.
@@ -179,6 +183,7 @@ func (d_ DateComponents) ValueForComponent(unit ICalendarUnit) int {
 	rv := objc.Send[int](d_.ID, objc.Sel("valueForComponent:"), unit)
 	return rv
 }
+
 
 
 // Returns the number of weeks.

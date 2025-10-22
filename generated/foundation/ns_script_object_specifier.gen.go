@@ -109,7 +109,6 @@ func NewScriptObjectSpecifier() ScriptObjectSpecifier {
 
 
 
-
 // Returns an object initialized with the given attributes.
 //
 // [Full Topic]
@@ -121,7 +120,6 @@ func NewScriptObjectSpecifierWithContainerClassDescriptionContainerSpecifierKey(
 	rv.Autorelease()
 	return rv
 }
-
 
 
 

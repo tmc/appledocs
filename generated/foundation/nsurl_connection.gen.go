@@ -94,7 +94,6 @@ func NewURLConnection() URLConnection {
 
 
 
-
 // Returns an initialized URL connection and begins to load the data for the URL request.
 //
 // [Full Topic]
@@ -106,7 +105,6 @@ func NewURLConnectionWithRequestDelegate(request IURLRequest, delegate objective
 	rv.Autorelease()
 	return rv
 }
-
 
 
 
@@ -167,6 +165,7 @@ func (uc _URLConnectionClass) SendSynchronousRequestReturningResponseError(reque
 }
 
 
+
 // Cancels an asynchronous load of a request.
 //
 // [Full Topic]
@@ -175,6 +174,7 @@ func (uc _URLConnectionClass) SendSynchronousRequestReturningResponseError(reque
 func (u_ URLConnection) Cancel() {
 	objc.Send[objc.ID](u_.ID, objc.Sel("cancel"))
 }
+
 
 
 // Determines the run loop and mode that the connection uses to call methods on its delegate.
@@ -187,6 +187,7 @@ func (u_ URLConnection) ScheduleInRunLoopForMode(aRunLoop IRunLoop, mode RunLoop
 }
 
 
+
 // Determines the operation queue that is used to call methods on the connection’s delegate.
 //
 // [Full Topic]
@@ -197,6 +198,7 @@ func (u_ URLConnection) SetDelegateQueue(queue IOperationQueue) {
 }
 
 
+
 // Causes the connection to begin loading data, if it has not already.
 //
 // [Full Topic]
@@ -205,6 +207,7 @@ func (u_ URLConnection) SetDelegateQueue(queue IOperationQueue) {
 func (u_ URLConnection) Start() {
 	objc.Send[objc.ID](u_.ID, objc.Sel("start"))
 }
+
 
 
 // Causes the connection to stop calling delegate methods in the specified run loop and mode.

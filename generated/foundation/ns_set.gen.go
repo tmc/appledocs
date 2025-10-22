@@ -110,7 +110,6 @@ func NewSet() Set {
 
 
 
-
 // Initializes a newly allocated set with the objects that are contained in a given array.
 //
 // [Full Topic]
@@ -122,7 +121,6 @@ func NewSetWithArray(array []objc.ID) Set {
 	rv.Autorelease()
 	return rv
 }
-
 
 
 
@@ -138,7 +136,6 @@ func NewSetWithCoder(coder ICoder) Set {
 
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/init(collectionViewIndexPath:)
 
@@ -146,7 +143,6 @@ func NewSetWithCollectionViewIndexPath(indexPath IIndexPath) Set {
 	rv := objc.Send[Set](objc.ID(getSetClass().class), objc.Sel("setWithCollectionViewIndexPath:"), indexPath)
 	return rv
 }
-
 
 
 
@@ -160,7 +156,6 @@ func NewSetWithCollectionViewIndexPaths(indexPaths []IndexPath) Set {
 
 
 
-
 // Creates and returns a set that contains a single given object.
 //
 // [Full Topic]
@@ -170,7 +165,6 @@ func NewSetWithObject(object unsafe.Pointer) Set {
 	rv := objc.Send[Set](objc.ID(getSetClass().class), objc.Sel("setWithObject:"), object)
 	return rv
 }
-
 
 
 
@@ -188,7 +182,6 @@ func NewSetWithObjects(firstObj unsafe.Pointer) Set {
 
 
 
-
 // Initializes a newly allocated set with a specified number of objects from a given C array of objects.
 //
 // [Full Topic]
@@ -203,7 +196,6 @@ func NewSetWithObjectsCount(objects unsafe.Pointer, cnt uint) Set {
 
 
 
-
 // Initializes a newly allocated set and adds to it objects from another given set.
 //
 // [Full Topic]
@@ -215,7 +207,6 @@ func NewSetWithSet(set unsafe.Pointer) Set {
 	rv.Autorelease()
 	return rv
 }
-
 
 
 
@@ -317,6 +308,7 @@ func (sc _SetClass) SetWithSet(set unsafe.Pointer) unsafe.Pointer {
 }
 
 
+
 // Raises an exception.
 //
 // [Full Topic]
@@ -325,6 +317,7 @@ func (sc _SetClass) SetWithSet(set unsafe.Pointer) unsafe.Pointer {
 func (s_ Set) AddObserverForKeyPathOptionsContext(observer objectivec.IObject, keyPath string, options KeyValueObservingOptions, context unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("addObserver:forKeyPath:options:context:"), observer, objc.String(keyPath), options, context)
 }
+
 
 
 // Returns a new set formed by adding a given object to the receiving set.
@@ -338,6 +331,7 @@ func (s_ Set) SetByAddingObject(anObject unsafe.Pointer) unsafe.Pointer {
 }
 
 
+
 // Returns a new set formed by adding the objects in a given set to the receiving set.
 //
 // [Full Topic]
@@ -347,6 +341,7 @@ func (s_ Set) SetByAddingObjectsFromSet(other unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("setByAddingObjectsFromSet:"), other)
 	return rv
 }
+
 
 
 // Returns a new set formed by adding the objects in a given array to the receiving set.
@@ -360,6 +355,7 @@ func (s_ Set) SetByAddingObjectsFromArray(other []objc.ID) unsafe.Pointer {
 }
 
 
+
 // Returns one of the objects in the set, or if the set contains no objects.
 //
 // [Full Topic]
@@ -369,6 +365,7 @@ func (s_ Set) AnyObject() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("anyObject"))
 	return rv
 }
+
 
 
 // Returns a Boolean value that indicates whether a given object is present in the set.
@@ -382,6 +379,7 @@ func (s_ Set) ContainsObject(anObject unsafe.Pointer) bool {
 }
 
 
+
 // Returns a string that represents the contents of the set, formatted as a property list.
 //
 // [Full Topic]
@@ -393,12 +391,14 @@ func (s_ Set) DescriptionWithLocale(locale objectivec.IObject) String {
 }
 
 
+
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/enumerateIndexPaths(options:using:)
 
 func (s_ Set) EnumerateIndexPathsWithOptionsUsingBlock(opts EnumerationOptions, block unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("enumerateIndexPathsWithOptions:usingBlock:"), opts, block)
 }
+
 
 
 // Executes a given block using each object in the set.
@@ -411,6 +411,7 @@ func (s_ Set) EnumerateObjectsUsingBlock(block unsafe.Pointer) {
 }
 
 
+
 // Executes a given block using each object in the set, using the specified enumeration options.
 //
 // [Full Topic]
@@ -419,6 +420,7 @@ func (s_ Set) EnumerateObjectsUsingBlock(block unsafe.Pointer) {
 func (s_ Set) EnumerateObjectsWithOptionsUsingBlock(opts EnumerationOptions, block unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("enumerateObjectsWithOptions:usingBlock:"), opts, block)
 }
+
 
 
 // Evaluates a given predicate against each object in the receiving set and returns a new set containing the objects for which the predicate returns true.
@@ -432,6 +434,7 @@ func (s_ Set) FilteredSetUsingPredicate(predicate IPredicate) unsafe.Pointer {
 }
 
 
+
 // Returns a Boolean value that indicates whether at least one object in the receiving set is also present in another given set.
 //
 // [Full Topic]
@@ -441,6 +444,7 @@ func (s_ Set) IntersectsSet(otherSet unsafe.Pointer) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("intersectsSet:"), otherSet)
 	return rv
 }
+
 
 
 // Compares the receiving set to another set.
@@ -454,6 +458,7 @@ func (s_ Set) IsEqualToSet(otherSet unsafe.Pointer) bool {
 }
 
 
+
 // Returns a Boolean value that indicates whether every object in the receiving set is also present in another given set.
 //
 // [Full Topic]
@@ -463,6 +468,7 @@ func (s_ Set) IsSubsetOfSet(otherSet unsafe.Pointer) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isSubsetOfSet:"), otherSet)
 	return rv
 }
+
 
 
 // Sends a message specified by a given selector to each object in the set.
@@ -475,6 +481,7 @@ func (s_ Set) MakeObjectsPerformSelector(aSelector objc.SEL) {
 }
 
 
+
 // Sends a message specified by a given selector to each object in the set.
 //
 // [Full Topic]
@@ -483,6 +490,7 @@ func (s_ Set) MakeObjectsPerformSelector(aSelector objc.SEL) {
 func (s_ Set) MakeObjectsPerformSelectorWithObject(aSelector objc.SEL, argument objectivec.IObject) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("makeObjectsPerformSelector:withObject:"), aSelector, argument)
 }
+
 
 
 // Determines whether a given object is present in the set, and returns that object if it is.
@@ -496,6 +504,7 @@ func (s_ Set) Member(object unsafe.Pointer) unsafe.Pointer {
 }
 
 
+
 // Returns an enumerator object that lets you access each object in the set.
 //
 // [Full Topic]
@@ -505,6 +514,7 @@ func (s_ Set) ObjectEnumerator() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("objectEnumerator"))
 	return rv
 }
+
 
 
 // Returns a set of objects that pass a test in a given block, using the specified enumeration options.
@@ -518,6 +528,7 @@ func (s_ Set) ObjectsWithOptionsPassingTest(opts EnumerationOptions, predicate u
 }
 
 
+
 // Returns a set of objects that pass a test in a given block.
 //
 // [Full Topic]
@@ -527,6 +538,7 @@ func (s_ Set) ObjectsPassingTest(predicate unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("objectsPassingTest:"), predicate)
 	return rv
 }
+
 
 
 // Raises an exception.
@@ -539,6 +551,7 @@ func (s_ Set) RemoveObserverForKeyPath(observer objectivec.IObject, keyPath stri
 }
 
 
+
 // Raises an exception.
 //
 // [Full Topic]
@@ -547,6 +560,7 @@ func (s_ Set) RemoveObserverForKeyPath(observer objectivec.IObject, keyPath stri
 func (s_ Set) RemoveObserverForKeyPathContext(observer objectivec.IObject, keyPath string, context unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("removeObserver:forKeyPath:context:"), observer, objc.String(keyPath), context)
 }
+
 
 
 // Invokes on each of the set’s members.
@@ -559,6 +573,7 @@ func (s_ Set) SetValueForKey(value objectivec.IObject, key string) {
 }
 
 
+
 // Returns an array of the set’s content sorted as specified by a given array of sort descriptors.
 //
 // [Full Topic]
@@ -568,6 +583,7 @@ func (s_ Set) SortedArrayUsingDescriptors(sortDescriptors []SortDescriptor) []ob
 	rv := objc.Send[[]objc.ID](s_.ID, objc.Sel("sortedArrayUsingDescriptors:"), sortDescriptors)
 	return rv
 }
+
 
 
 // Return a set containing the results of invoking on each of the receiving set’s members.

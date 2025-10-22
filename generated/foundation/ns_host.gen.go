@@ -94,7 +94,6 @@ func NewHost() Host {
 
 
 
-
 // Returns the with the Internet address .
 //
 // [Full Topic]
@@ -104,7 +103,6 @@ func NewHostWithAddress(address string) Host {
 	rv := objc.Send[Host](objc.ID(getHostClass().class), objc.Sel("hostWithAddress:"), objc.String(address))
 	return rv
 }
-
 
 
 

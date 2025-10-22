@@ -104,7 +104,6 @@ func NewXMLDTD() XMLDTD {
 
 
 
-
 // Initializes and returns an object created from the DTD declarations in a URL-referenced source.
 //
 // [Full Topic]
@@ -119,7 +118,6 @@ func NewXMLDTDWithContentsOfURLOptionsError(url IURL, mask XMLNodeOptions, error
 
 
 
-
 // Initializes and returns an object created from the DTD declarations encapsulated in an object
 //
 // [Full Topic]
@@ -131,7 +129,6 @@ func NewXMLDTDWithDataOptionsError(data IData, mask XMLNodeOptions, error_ IErro
 	rv.Autorelease()
 	return rv
 }
-
 
 
 
@@ -158,6 +155,7 @@ func (xc _XMLDTDClass) PredefinedEntityDeclarationForName(name string) XMLDTDNod
 }
 
 
+
 // Adds a child node to the end of the list of existing children.
 //
 // [Full Topic]
@@ -166,6 +164,7 @@ func (xc _XMLDTDClass) PredefinedEntityDeclarationForName(name string) XMLDTDNod
 func (x_ XMLDTD) AddChild(child IXMLNode) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("addChild:"), child)
 }
+
 
 
 // Returns the DTD node representing an attribute-list declaration for a given attribute and its element.
@@ -179,6 +178,7 @@ func (x_ XMLDTD) AttributeDeclarationForNameElementName(name string, elementName
 }
 
 
+
 // Returns the DTD node representing an element declaration for a specified element.
 //
 // [Full Topic]
@@ -188,6 +188,7 @@ func (x_ XMLDTD) ElementDeclarationForName(name string) XMLDTDNode {
 	rv := objc.Send[XMLDTDNode](x_.ID, objc.Sel("elementDeclarationForName:"), objc.String(name))
 	return rv
 }
+
 
 
 // Returns the DTD node representing the entity declaration for a specified entity.
@@ -201,6 +202,7 @@ func (x_ XMLDTD) EntityDeclarationForName(name string) XMLDTDNode {
 }
 
 
+
 // Inserts a child node in the receiver’s list of children at a specific location in the list.
 //
 // [Full Topic]
@@ -211,6 +213,7 @@ func (x_ XMLDTD) InsertChildAtIndex(child IXMLNode, index uint) {
 }
 
 
+
 // Inserts an array of child nodes at a specified location in the receiver’s list of children.
 //
 // [Full Topic]
@@ -219,6 +222,7 @@ func (x_ XMLDTD) InsertChildAtIndex(child IXMLNode, index uint) {
 func (x_ XMLDTD) InsertChildrenAtIndex(children []XMLNode, index uint) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("insertChildren:atIndex:"), children, index)
 }
+
 
 
 // Returns the DTD node representing the notation declaration identified by the specified notation name.
@@ -232,6 +236,7 @@ func (x_ XMLDTD) NotationDeclarationForName(name string) XMLDTDNode {
 }
 
 
+
 // Removes the child node at a particular location in the receiver’s list of children.
 //
 // [Full Topic]
@@ -242,6 +247,7 @@ func (x_ XMLDTD) RemoveChildAtIndex(index uint) {
 }
 
 
+
 // Replaces a child at a particular index with another child.
 //
 // [Full Topic]
@@ -250,6 +256,7 @@ func (x_ XMLDTD) RemoveChildAtIndex(index uint) {
 func (x_ XMLDTD) ReplaceChildAtIndexWithNode(index uint, node IXMLNode) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("replaceChildAtIndex:withNode:"), index, node)
 }
+
 
 
 // Removes all existing children of the receiver and replaces them with an array of new child nodes.

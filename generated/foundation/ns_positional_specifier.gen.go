@@ -97,6 +97,7 @@ func NewPositionalSpecifier() PositionalSpecifier {
 
 
 
+
 // Sets the class description for the object or objects to be inserted.
 //
 // [Full Topic]

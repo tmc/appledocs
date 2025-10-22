@@ -126,7 +126,6 @@ func NewXMLNode() XMLNode {
 
 
 
-
 // Returns an instance initialized with the constant indicating node kind.
 //
 // [Full Topic]
@@ -138,7 +137,6 @@ func NewXMLNodeWithKind(kind XMLNodeKind) XMLNode {
 	rv.Autorelease()
 	return rv
 }
-
 
 
 
@@ -310,6 +308,7 @@ func (xc _XMLNodeClass) TextWithStringValue(stringValue string) objc.ID {
 }
 
 
+
 // Returns the child node of the receiver at the specified location.
 //
 // [Full Topic]
@@ -321,6 +320,7 @@ func (x_ XMLNode) ChildAtIndex(index uint) XMLNode {
 }
 
 
+
 // Sets the content of the receiver as a string value and, optionally, resolves character references, predefined entities, and user-defined entities as declared in the associated DTD.
 //
 // [Full Topic]
@@ -329,6 +329,7 @@ func (x_ XMLNode) ChildAtIndex(index uint) XMLNode {
 func (x_ XMLNode) SetStringValueResolvingEntities(string_ string, resolve bool) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setStringValue:resolvingEntities:"), objc.String(string_), resolve)
 }
+
 
 
 // Returns the string representation of the receiver as it would appear in an XML document, with one or more output options specified.

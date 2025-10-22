@@ -92,7 +92,6 @@ func NewOrderedCollectionDifference() OrderedCollectionDifference {
 
 
 
-
 // Creates an ordered collection difference from arrays of inserted and removed objects with corresponding sets of indices.
 //
 // [Full Topic]
@@ -107,7 +106,6 @@ func NewOrderedCollectionDifferenceWithInsertIndexesInsertedObjectsRemoveIndexes
 
 
 
-
 // Creates an ordered collection difference from arrays of inserted and removed objects with corresponding sets of indices, in addition to an array of ordered collection changes.
 //
 // [Full Topic]
@@ -119,6 +117,7 @@ func NewOrderedCollectionDifferenceWithInsertIndexesInsertedObjectsRemoveIndexes
 	rv.Autorelease()
 	return rv
 }
+
 
 
 

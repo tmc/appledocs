@@ -116,7 +116,6 @@ func NewFileHandle() FileHandle {
 
 
 
-
 // Returns a file handle initialized for reading the file, device, or named socket at the specified path.
 //
 // [Full Topic]
@@ -126,7 +125,6 @@ func NewFileHandleForReadingAtPath(path string) FileHandle {
 	rv := objc.Send[FileHandle](objc.ID(getFileHandleClass().class), objc.Sel("fileHandleForReadingAtPath:"), objc.String(path))
 	return rv
 }
-
 
 
 
@@ -142,7 +140,6 @@ func NewFileHandleForReadingFromURLError(url IURL, error_ IError) FileHandle {
 
 
 
-
 // Returns a file handle initialized for reading and writing to the file, device, or named socket at the specified path.
 //
 // [Full Topic]
@@ -152,7 +149,6 @@ func NewFileHandleForUpdatingAtPath(path string) FileHandle {
 	rv := objc.Send[FileHandle](objc.ID(getFileHandleClass().class), objc.Sel("fileHandleForUpdatingAtPath:"), objc.String(path))
 	return rv
 }
-
 
 
 
@@ -168,7 +164,6 @@ func NewFileHandleForUpdatingURLError(url IURL, error_ IError) FileHandle {
 
 
 
-
 // Returns a file handle initialized for writing to the file, device, or named socket at the specified path.
 //
 // [Full Topic]
@@ -181,7 +176,6 @@ func NewFileHandleForWritingAtPath(path string) FileHandle {
 
 
 
-
 // Returns a file handle initialized for writing to the file, device, or named socket at the specified URL.
 //
 // [Full Topic]
@@ -191,7 +185,6 @@ func NewFileHandleForWritingToURLError(url IURL, error_ IError) FileHandle {
 	rv := objc.Send[FileHandle](objc.ID(getFileHandleClass().class), objc.Sel("fileHandleForWritingToURL:error:"), url, error_)
 	return rv
 }
-
 
 
 
@@ -209,7 +202,6 @@ func NewFileHandleWithCoder(coder ICoder) FileHandle {
 
 
 
-
 // Creates and returns a file handle object associated with the specified file descriptor.
 //
 // [Full Topic]
@@ -221,7 +213,6 @@ func NewFileHandleWithFileDescriptor(fd int) FileHandle {
 	rv.Autorelease()
 	return rv
 }
-
 
 
 
@@ -335,6 +326,7 @@ func (fc _FileHandleClass) FileHandleWithStandardInput() FileHandle {
 	return rv
 }
 
+
 // Disallows further access to the represented file or communications channel and signals end of file on communications channels that permit writing.
 //
 // [Full Topic]
@@ -346,6 +338,7 @@ func (f_ FileHandle) CloseAndReturnError(error_ IError) bool {
 }
 
 
+
 // Disallows further access to the represented file or communications channel and signals end of file on communications channels that permit writing.
 //
 // [Full Topic]
@@ -354,6 +347,7 @@ func (f_ FileHandle) CloseAndReturnError(error_ IError) bool {
 func (f_ FileHandle) CloseFile() {
 	objc.Send[objc.ID](f_.ID, objc.Sel("closeFile"))
 }
+
 
 
 // Reads data synchronously up to the specified number of bytes.
@@ -367,6 +361,7 @@ func (f_ FileHandle) ReadDataOfLength(length uint) Data {
 }
 
 
+
 // Reads the available data synchronously up to the end of file or maximum number of bytes.
 //
 // [Full Topic]
@@ -376,6 +371,7 @@ func (f_ FileHandle) ReadDataToEndOfFile() Data {
 	rv := objc.Send[Data](f_.ID, objc.Sel("readDataToEndOfFile"))
 	return rv
 }
+
 
 
 // Reads from the file or communications channel in the background and posts a notification when finished.
@@ -388,6 +384,7 @@ func (f_ FileHandle) ReadInBackgroundAndNotifyForModes(modes []string) {
 }
 
 
+
 // Moves the file pointer to the specified offset within the file represented by the receiver.
 //
 // [Full Topic]
@@ -396,6 +393,7 @@ func (f_ FileHandle) ReadInBackgroundAndNotifyForModes(modes []string) {
 func (f_ FileHandle) SeekToFileOffset(offset uint64) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("seekToFileOffset:"), offset)
 }
+
 
 
 // Moves the file pointer to the specified offset within the file.
@@ -409,6 +407,7 @@ func (f_ FileHandle) SeekToOffsetError(offset uint64, error_ IError) bool {
 }
 
 
+
 // Places the file pointer at the end of the file referenced by the file handle and returns the new file offset.
 //
 // [Full Topic]
@@ -418,6 +417,7 @@ func (f_ FileHandle) SeekToEndOfFile() uint64 {
 	rv := objc.Send[uint64](f_.ID, objc.Sel("seekToEndOfFile"))
 	return rv
 }
+
 
 
 // Causes all in-memory data and attributes of the file represented by the file handle to write to permanent storage.
@@ -431,6 +431,7 @@ func (f_ FileHandle) SynchronizeAndReturnError(error_ IError) bool {
 }
 
 
+
 // Causes all in-memory data and attributes of the file represented by the handle to write to permanent storage.
 //
 // [Full Topic]
@@ -439,6 +440,7 @@ func (f_ FileHandle) SynchronizeAndReturnError(error_ IError) bool {
 func (f_ FileHandle) SynchronizeFile() {
 	objc.Send[objc.ID](f_.ID, objc.Sel("synchronizeFile"))
 }
+
 
 
 // Truncates or extends the file represented by the file handle to a specified offset within the file and puts the file pointer at that position.
@@ -452,6 +454,7 @@ func (f_ FileHandle) TruncateAtOffsetError(offset uint64, error_ IError) bool {
 }
 
 
+
 // Truncates or extends the file represented by the file handle to a specified offset within the file and puts the file pointer at that position.
 //
 // [Full Topic]
@@ -462,6 +465,7 @@ func (f_ FileHandle) TruncateFileAtOffset(offset uint64) {
 }
 
 
+
 // Writes the specified data synchronously to the file handle.
 //
 // [Full Topic]
@@ -470,6 +474,7 @@ func (f_ FileHandle) TruncateFileAtOffset(offset uint64) {
 func (f_ FileHandle) WriteData(data IData) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("writeData:"), data)
 }
+
 
 
 // Get the current position of the file pointer within the file.
@@ -483,6 +488,7 @@ func (f_ FileHandle) GetOffsetError(offsetInFile unsafe.Pointer, error_ IError) 
 }
 
 
+
 // Reads the available data synchronously up to the end of file or maximum number of bytes.
 //
 // [Full Topic]
@@ -494,6 +500,7 @@ func (f_ FileHandle) ReadDataToEndOfFileAndReturnError(error_ IError) Data {
 }
 
 
+
 // Reads data synchronously up to the specified number of bytes.
 //
 // [Full Topic]
@@ -503,6 +510,7 @@ func (f_ FileHandle) ReadDataUpToLengthError(length uint, error_ IError) Data {
 	rv := objc.Send[Data](f_.ID, objc.Sel("readDataUpToLength:error:"), length, error_)
 	return rv
 }
+
 
 
 // Places the file pointer at the end of the file referenced by the file handle and returns the new file offset.

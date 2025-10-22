@@ -100,7 +100,6 @@ func NewSortDescriptor() SortDescriptor {
 
 
 
-
 // Creates a sort descriptor by decoding from the coder you specify.
 //
 // [Full Topic]
@@ -112,7 +111,6 @@ func NewSortDescriptorWithCoder(coder ICoder) SortDescriptor {
 	rv.Autorelease()
 	return rv
 }
-
 
 
 
@@ -130,7 +128,6 @@ func NewSortDescriptorWithKeyAscending(key string, ascending bool) SortDescripto
 
 
 
-
 // Creates a sort descriptor with a specified string key path and ordering, and a comparator block.
 //
 // [Full Topic]
@@ -142,7 +139,6 @@ func NewSortDescriptorWithKeyAscendingComparator(key string, ascending bool, cmp
 	rv.Autorelease()
 	return rv
 }
-
 
 
 
@@ -169,6 +165,7 @@ func (sc _SortDescriptorClass) SortDescriptorWithKeyAscendingComparator(key stri
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("sortDescriptorWithKey:ascending:comparator:"), objc.String(key), ascending, cmptr)
 	return rv
 }
+
 
 
 // Returns a comparison result value that indicates the sort order of two objects.

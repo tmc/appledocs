@@ -124,7 +124,6 @@ func NewXPCConnection() XPCConnection {
 
 
 
-
 // Initializes an object to connect to an object in another process, identified by an object.
 //
 // [Full Topic]
@@ -139,7 +138,6 @@ func NewXPCConnectionWithListenerEndpoint(endpoint IXPCListenerEndpoint) XPCConn
 
 
 
-
 // Initializes an object to connect to a LaunchAgent or LaunchDaemon with a name advertised in a .
 //
 // [Full Topic]
@@ -151,7 +149,6 @@ func NewXPCConnectionWithMachServiceNameOptions(name string, options XPCConnecti
 	rv.Autorelease()
 	return rv
 }
-
 
 
 
@@ -180,6 +177,7 @@ func (xc _XPCConnectionClass) CurrentConnection() XPCConnection {
 }
 
 
+
 // Activates the connection.
 //
 // [Full Topic]
@@ -190,6 +188,7 @@ func (x_ XPCConnection) Activate() {
 }
 
 
+
 // Invalidates the connection.
 //
 // [Full Topic]
@@ -198,6 +197,7 @@ func (x_ XPCConnection) Activate() {
 func (x_ XPCConnection) Invalidate() {
 	objc.Send[objc.ID](x_.ID, objc.Sel("invalidate"))
 }
+
 
 
 // Returns a proxy for the remote object (that is, the object exported from the other side of this connection) with the specified error handler.
@@ -211,6 +211,7 @@ func (x_ XPCConnection) RemoteObjectProxyWithErrorHandler(handler unsafe.Pointer
 }
 
 
+
 // Starts or resumes handling of messages on a connection.
 //
 // [Full Topic]
@@ -219,6 +220,7 @@ func (x_ XPCConnection) RemoteObjectProxyWithErrorHandler(handler unsafe.Pointer
 func (x_ XPCConnection) Resume() {
 	objc.Send[objc.ID](x_.ID, objc.Sel("resume"))
 }
+
 
 
 // Add a barrier block to execute on the connection.
@@ -231,6 +233,7 @@ func (x_ XPCConnection) ScheduleSendBarrierBlock(block unsafe.Pointer) {
 }
 
 
+
 // Sets the code signing requirement for this connection.
 //
 // [Full Topic]
@@ -241,6 +244,7 @@ func (x_ XPCConnection) SetCodeSigningRequirement(requirement string) {
 }
 
 
+
 // Suspends the connection.
 //
 // [Full Topic]
@@ -249,6 +253,7 @@ func (x_ XPCConnection) SetCodeSigningRequirement(requirement string) {
 func (x_ XPCConnection) Suspend() {
 	objc.Send[objc.ID](x_.ID, objc.Sel("suspend"))
 }
+
 
 
 // [Full Topic]

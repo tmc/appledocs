@@ -90,6 +90,7 @@ func NewSpellServer() SpellServer {
 
 
 
+
 // Indicates whether a given word is in the user’s list of learned words or the document’s list of words to ignore.
 //
 // [Full Topic]
@@ -99,6 +100,7 @@ func (s_ SpellServer) IsWordInUserDictionariesCaseSensitive(word string, flag bo
 	rv := objc.Send[bool](s_.ID, objc.Sel("isWordInUserDictionaries:caseSensitive:"), objc.String(word), flag)
 	return rv
 }
+
 
 
 // Causes the receiver to start listening for spell-checking requests.

@@ -103,7 +103,6 @@ func NewTimeZone() TimeZone {
 
 
 
-
 // Returns a time zone object offset from Greenwich Mean Time by a given number of seconds.
 //
 // [Full Topic]
@@ -116,7 +115,6 @@ func NewTimeZoneForSecondsFromGMT(seconds int) TimeZone {
 
 
 
-
 // Returns the time zone object identified by a given abbreviation.
 //
 // [Full Topic]
@@ -126,7 +124,6 @@ func NewTimeZoneWithAbbreviation(abbreviation string) TimeZone {
 	rv := objc.Send[TimeZone](objc.ID(getTimeZoneClass().class), objc.Sel("timeZoneWithAbbreviation:"), objc.String(abbreviation))
 	return rv
 }
-
 
 
 
@@ -227,6 +224,7 @@ func (tc _TimeZoneClass) SystemTimeZone() TimeZone {
 	return rv
 }
 
+
 // Indicates whether the receiver uses daylight saving time on a given date.
 //
 // [Full Topic]
@@ -238,6 +236,7 @@ func (t_ TimeZone) IsDaylightSavingTimeForDate(aDate IDate) bool {
 }
 
 
+
 // Indicates whether the receiver has the same name and data as the specified time zone.
 //
 // [Full Topic]
@@ -247,6 +246,7 @@ func (t_ TimeZone) IsEqualToTimeZone(aTimeZone ITimeZone) bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isEqualToTimeZone:"), aTimeZone)
 	return rv
 }
+
 
 
 // Returns the next daylight saving time transition after a given date.

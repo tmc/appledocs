@@ -88,6 +88,7 @@ func NewUserAppleScriptTask() UserAppleScriptTask {
 
 
 
+
 // Execute the AppleScript script by sending it the specified Apple event.
 //
 // [Full Topic]

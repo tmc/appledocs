@@ -90,6 +90,7 @@ func NewURLCredentialStorage() URLCredentialStorage {
 
 
 
+
 // Returns a dictionary containing the credentials for the specified protection space.
 //
 // [Full Topic]
@@ -99,6 +100,7 @@ func (u_ URLCredentialStorage) CredentialsForProtectionSpace(space IURLProtectio
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("credentialsForProtectionSpace:"), space)
 	return rv
 }
+
 
 
 // Sets the default credential for a specified protection space.

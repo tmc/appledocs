@@ -88,7 +88,6 @@ func NewUnit() Unit {
 
 
 
-
 // Initializes a new unit with the specified symbol.
 //
 // [Full Topic]

@@ -93,7 +93,6 @@ func NewURLDownload() URLDownload {
 
 
 
-
 // Returns an initialized URL download for a URL request and begins to download the data for the request.
 //
 // [Full Topic]
@@ -105,7 +104,6 @@ func NewURLDownloadWithRequestDelegate(request IURLRequest, delegate objectivec.
 	rv.Autorelease()
 	return rv
 }
-
 
 
 
@@ -134,6 +132,7 @@ func (uc _URLDownloadClass) CanResumeDownloadDecodedWithEncodingMIMEType(MIMETyp
 }
 
 
+
 // Cancels the receiver’s download and deletes the downloaded file.
 //
 // [Full Topic]
@@ -142,6 +141,7 @@ func (uc _URLDownloadClass) CanResumeDownloadDecodedWithEncodingMIMEType(MIMETyp
 func (u_ URLDownload) Cancel() {
 	objc.Send[objc.ID](u_.ID, objc.Sel("cancel"))
 }
+
 
 
 // Sets the destination path of the downloaded file.

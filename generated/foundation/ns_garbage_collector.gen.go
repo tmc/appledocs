@@ -88,6 +88,7 @@ func NewGarbageCollector() GarbageCollector {
 
 
 
+
 // Specifies that a given pointer will not be collected.
 //
 // [Full Topic]
@@ -96,6 +97,7 @@ func NewGarbageCollector() GarbageCollector {
 func (g_ GarbageCollector) DisableCollectorForPointer(ptr unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("disableCollectorForPointer:"), ptr)
 }
+
 
 
 // Specifies that a given pointer may be collected.

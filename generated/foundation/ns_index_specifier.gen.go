@@ -90,7 +90,6 @@ func NewIndexSpecifier() IndexSpecifier {
 
 
 
-
 // Initializes an allocated object with a class description, container specifier, collection key, and object index.
 //
 // [Full Topic]
