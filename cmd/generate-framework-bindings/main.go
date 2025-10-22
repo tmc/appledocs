@@ -149,8 +149,6 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 				// Only include classes that actually belong to this framework
 				if classbelongsToFramework(doc, framework) {
 					classes = append(classes, cls)
-				} else if verbose {
-					fmt.Fprintf(os.Stderr, "Skipping class %s (belongs to different framework: %s)\n", cls.Name, getClassFramework(doc))
 				}
 			}
 			if proto != nil {
@@ -164,9 +162,6 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 			property, propErr := occ2go.ParseProperty(doc)
 			if propErr != nil {
 				parseErrors++
-				if verbose {
-					fmt.Fprintf(os.Stderr, "Warning: failed to parse property %s: %v\n", path, propErr)
-				}
 			} else if property != nil {
 				// Extract class name from external ID
 				externalID := doc.Metadata.ExternalID
@@ -217,8 +212,6 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 						enum.Abstract = doc.Abstract[0].Text
 					}
 					enums = append(enums, enum)
-				} else if verbose {
-					fmt.Fprintf(os.Stderr, "Warning: failed to parse enum declaration for %s (tokens: %+v)\n", parts[2], tokens)
 				}
 			} else if len(parts) >= 4 {
 				// This is an enum case (c:@E@EnumName@CaseName)
@@ -226,8 +219,6 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 				if enumCaseErr == nil && enumCase != nil {
 					enumName := parts[2]
 					enumCasesMap[enumName] = append(enumCasesMap[enumName], enumCase)
-				} else if verbose {
-					fmt.Fprintf(os.Stderr, "Warning: failed to parse enum case %s: %v\n", path, enumCaseErr)
 				}
 			}
 		} else if strings.HasPrefix(doc.Metadata.ExternalID, "c:@T@") {
@@ -244,14 +235,11 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 			}
 		} else {
 			parseErrors++
-			if verbose {
-				fmt.Fprintf(os.Stderr, "Warning: failed to parse %s: %v\n", path, err)
-			}
 		}
 	}
 
 	// Also process synthetic documents from API collection references
-	for identifier, doc := range syntheticDocs {
+	for _, doc := range syntheticDocs {
 		processedFiles++
 		fn, cls, proto, err := occ2go.ParseDocument(doc)
 		if err == nil {
@@ -262,8 +250,6 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 				// Only include classes that actually belong to this framework
 				if classbelongsToFramework(doc, framework) {
 					classes = append(classes, cls)
-				} else if verbose {
-					fmt.Fprintf(os.Stderr, "Skipping class %s (belongs to different framework: %s)\n", cls.Name, getClassFramework(doc))
 				}
 			}
 			if proto != nil {
@@ -271,9 +257,6 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 			}
 		} else {
 			parseErrors++
-			if verbose {
-				fmt.Fprintf(os.Stderr, "Warning: failed to parse synthetic document %s: %v\n", identifier, err)
-			}
 		}
 	}
 
@@ -452,9 +435,7 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 		}
 
 		// Enrich enum values from macOS SDK headers using extract-enum-values tool
-		if err := enrichEnumValues(framework, enums, verbose); err != nil && verbose {
-			fmt.Fprintf(os.Stderr, "Warning: failed to enrich enum values: %v\n", err)
-		}
+		_ = enrichEnumValues(framework, enums, verbose)
 	}
 
 	// Build type registry from parsed data (source of truth)
@@ -632,20 +613,13 @@ func main() {
 
 	// Initialize framework registry
 	baseModule := "github.com/tmc/appledocs/generated"
-	if err := initializeFrameworkRegistry(baseModule, *outputDir); err != nil {
-		fmt.Fprintf(os.Stderr, "Warning: failed to initialize framework registry: %v\n", err)
-	} else if verbose && globalRegistry != nil {
+	if err := initializeFrameworkRegistry(baseModule, *outputDir); err == nil && verbose && globalRegistry != nil {
 		allFrameworks := globalRegistry.All()
 		fmt.Fprintf(os.Stderr, "Initialized framework registry with %d frameworks\n", len(allFrameworks))
 	}
 
 	// Build cross-framework type registry for proper type resolution
-	if err := buildCrossFrameworkTypeRegistry(*outputDir); err != nil {
-		// Non-fatal: warn but continue (registry just won't be populated)
-		if verbose {
-			fmt.Fprintf(os.Stderr, "Warning: failed to build cross-framework type registry: %v\n", err)
-		}
-	} else if verbose && len(crossFrameworkTypeRegistry) > 0 {
+	if err := buildCrossFrameworkTypeRegistry(*outputDir); err == nil && verbose && len(crossFrameworkTypeRegistry) > 0 {
 		fmt.Fprintf(os.Stderr, "Built cross-framework type registry with %d types\n", len(crossFrameworkTypeRegistry))
 	}
 
