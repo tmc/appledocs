@@ -38,9 +38,13 @@ type IListFormatter interface {
 // An object that provides locale-correct formatting of a list of items using the appropriate separator and conjunction.
 //
 // The list formatter isn’t aware of the context where the formatted string will be used and doesn’t provide capitalization customization of the list items. The formatted result may not be grammatically correct if placed in a sentence, and it should only be used in a standalone manner.
+
+
+// An object that provides locale-correct formatting of a list of items using the appropriate separator and conjunction.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ListFormatter
+
 type ListFormatter struct {
 	Formatter
 }
@@ -86,38 +90,44 @@ func NewListFormatter() ListFormatter {
 }
 
 
+
 // An object that formats each item in the list.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/listformatter/itemformatter
+
 func (l_ ListFormatter) ItemFormatter() NSFormatter {
 	rv := objc.Send[NSFormatter](l_.ID, objc.Sel("itemFormatter"))
 	return rv
 }
 
 
-// SetItemFormatter sets the value of the itemFormatter property.
 // An object that formats each item in the list.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/listformatter/itemformatter
+
 func (l_ ListFormatter) SetItemFormatter(value IFormatter) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setItemFormatter:"), value)
 }
 
+
 // The locale to use when formatting items in the list.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/listformatter/locale
+
 func (l_ ListFormatter) Locale() Locale {
 	rv := objc.Send[Locale](l_.ID, objc.Sel("locale"))
 	return rv
 }
 
 
-// SetLocale sets the value of the locale property.
 // The locale to use when formatting items in the list.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/listformatter/locale
+
 func (l_ ListFormatter) SetLocale(value ILocale) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setLocale:"), value)
 }

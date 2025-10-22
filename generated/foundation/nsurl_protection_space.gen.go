@@ -50,9 +50,13 @@ type IURLProtectionSpace interface {
 // A server or an area on a server, commonly referred to as a realm, that requires authentication.
 //
 // A protection space defines a series of matching constraints that determine which credential should be provided. For example, if a request provides your delegate with a object that requests a client username and password, your app should provide the correct username and password for the particular host, port, protocol, and realm, as specified in the challenge’s protection space.
+
+
+// A server or an area on a server, commonly referred to as a realm, that requires authentication.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtectionSpace
+
 type URLProtectionSpace struct {
 	objectivec.Object
 }
@@ -96,134 +100,161 @@ func NewURLProtectionSpace() URLProtectionSpace {
 }
 
 
+
 // The authentication method used by the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtectionSpace/authenticationMethod
+
 func (u_ URLProtectionSpace) AuthenticationMethod() string {
 	rv := objc.Send[string](u_.ID, objc.Sel("authenticationMethod"))
 	return rv
 }
 
+
 // The acceptable certificate-issuing authorities for client certificate authentication.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtectionSpace/distinguishedNames
+
 func (u_ URLProtectionSpace) DistinguishedNames() []Data {
 	rv := objc.Send[[]Data](u_.ID, objc.Sel("distinguishedNames"))
 	return rv
 }
 
+
 // The receiver’s proxy type.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtectionSpace/proxyType
+
 func (u_ URLProtectionSpace) ProxyType() string {
 	rv := objc.Send[string](u_.ID, objc.Sel("proxyType"))
 	return rv
 }
 
+
 // The receiver’s host.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotectionspace/host
+
 func (u_ URLProtectionSpace) Host() string {
 	rv := objc.Send[string](u_.ID, objc.Sel("host"))
 	return rv
 }
 
 
-// SetHost sets the value of the host property.
 // The receiver’s host.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotectionspace/host
+
 func (u_ URLProtectionSpace) SetHost(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setHost:"), objc.String(value))
 }
 
+
 // The receiver’s port.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotectionspace/port
+
 func (u_ URLProtectionSpace) Port() int {
 	rv := objc.Send[int](u_.ID, objc.Sel("port"))
 	return rv
 }
 
 
-// SetPort sets the value of the port property.
 // The receiver’s port.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotectionspace/port
+
 func (u_ URLProtectionSpace) SetPort(value int) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setPort:"), value)
 }
 
+
 // The receiver’s protocol.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotectionspace/protocol
+
 func (u_ URLProtectionSpace) Protocol() string {
 	rv := objc.Send[string](u_.ID, objc.Sel("protocol"))
 	return rv
 }
 
 
-// SetProtocol sets the value of the protocol property.
 // The receiver’s protocol.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotectionspace/protocol
+
 func (u_ URLProtectionSpace) SetProtocol(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setProtocol:"), objc.String(value))
 }
 
+
 // The receiver’s authentication realm
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotectionspace/realm
+
 func (u_ URLProtectionSpace) Realm() string {
 	rv := objc.Send[string](u_.ID, objc.Sel("realm"))
 	return rv
 }
 
 
-// SetRealm sets the value of the realm property.
 // The receiver’s authentication realm
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotectionspace/realm
+
 func (u_ URLProtectionSpace) SetRealm(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setRealm:"), objc.String(value))
 }
 
+
 // A Boolean value that indicates whether the credentials for the protection space can be sent securely.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotectionspace/receivescredentialsecurely
+
 func (u_ URLProtectionSpace) ReceivesCredentialSecurely() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("receivesCredentialSecurely"))
 	return rv
 }
 
 
-// SetReceivesCredentialSecurely sets the value of the receivesCredentialSecurely property.
 // A Boolean value that indicates whether the credentials for the protection space can be sent securely.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotectionspace/receivescredentialsecurely
+
 func (u_ URLProtectionSpace) SetReceivesCredentialSecurely(value bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setReceivesCredentialSecurely:"), value)
 }
 
+
 // A representation of the server’s SSL transaction state.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotectionspace/servertrust
+
 func (u_ URLProtectionSpace) ServerTrust() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("serverTrust"))
 	return rv
 }
 
 
-// SetServerTrust sets the value of the serverTrust property.
 // A representation of the server’s SSL transaction state.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotectionspace/servertrust
+
 func (u_ URLProtectionSpace) SetServerTrust(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setServerTrust:"), value)
 }

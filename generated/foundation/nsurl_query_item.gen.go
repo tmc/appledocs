@@ -40,9 +40,13 @@ type IURLQueryItem interface {
 // An object representing a single name/value pair for an item in the query portion of a URL.
 //
 // In Swift, this object bridges to ; use when you need reference semantics or other Foundation-specific behavior. You use query items with the property of an object.
+
+
+// An object representing a single name/value pair for an item in the query portion of a URL.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLQueryItem
+
 type URLQueryItem struct {
 	objectivec.Object
 }
@@ -86,46 +90,55 @@ func NewURLQueryItem() URLQueryItem {
 }
 
 
+
 // The value for the query item.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLQueryItem/value
+
 func (u_ URLQueryItem) Value() string {
 	rv := objc.Send[string](u_.ID, objc.Sel("value"))
 	return rv
 }
 
+
 // The query URL component as an array of name/value pairs.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/queryitems
+
 func (u_ URLQueryItem) QueryItems() URLQueryItem {
 	rv := objc.Send[URLQueryItem](u_.ID, objc.Sel("queryItems"))
 	return rv
 }
 
 
-// SetQueryItems sets the value of the queryItems property.
 // The query URL component as an array of name/value pairs.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/queryitems
+
 func (u_ URLQueryItem) SetQueryItems(value IURLQueryItem) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setQueryItems:"), value)
 }
 
+
 // The name of the query item.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlqueryitem/name
+
 func (u_ URLQueryItem) Name() string {
 	rv := objc.Send[string](u_.ID, objc.Sel("name"))
 	return rv
 }
 
 
-// SetName sets the value of the name property.
 // The name of the query item.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlqueryitem/name
+
 func (u_ URLQueryItem) SetName(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setName:"), objc.String(value))
 }

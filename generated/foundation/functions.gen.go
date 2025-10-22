@@ -112,7 +112,6 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 // Allocates collectable memory.
 //
 // Added in macOS 10.0.
-//
 
 // Allocates collectable memory.
 //
@@ -127,7 +126,6 @@ func NSAllocateCollectable(size unsafe.Pointer, options unsafe.Pointer) unsafe.P
 // Allocates a new block of memory.
 //
 // Added in macOS 10.0.
-//
 
 // Allocates a new block of memory.
 //
@@ -142,7 +140,6 @@ func NSAllocateMemoryPages(bytes unsafe.Pointer) unsafe.Pointer {
 // Obtains a class by name.
 //
 // Added in macOS 10.0.
-//
 
 // Obtains a class by name.
 //
@@ -157,7 +154,6 @@ func NSClassFromString(aClassName unsafe.Pointer) unsafe.Pointer {
 // Copies a block of memory.
 //
 // Added in macOS 10.0.
-//
 
 // Copies a block of memory.
 //
@@ -174,7 +170,6 @@ func NSCopyMemoryPages(source unsafe.Pointer, dest unsafe.Pointer, bytes unsafe.
 // Deprecated: This function was deprecated in macOS 10.8.
 //
 // Added in macOS 10.0.
-//
 
 // Creates an exact copy of an object.
 //
@@ -189,7 +184,6 @@ func NSCopyObject(object unsafe.Pointer, extraBytes unsafe.Pointer, zone unsafe.
 // Returns the number of call frames on the stack.
 //
 // Added in macOS 10.0.
-//
 
 // Returns the number of call frames on the stack.
 //
@@ -204,7 +198,6 @@ func NSCountFrames() unsafe.Pointer {
 // Compacts the decimal structure for efficiency.
 //
 // Added in macOS 10.0.
-//
 
 // Compacts the decimal structure for efficiency.
 //
@@ -219,7 +212,6 @@ func NSDecimalCompact(number unsafe.Pointer) {
 // Raises the decimal value to the specified power.
 //
 // Added in macOS 10.0.
-//
 
 // Raises the decimal value to the specified power.
 //
@@ -234,7 +226,6 @@ func NSDecimalPower(result unsafe.Pointer, number unsafe.Pointer, power unsafe.P
 // Returns the specified object’s reference count.
 //
 // Added in macOS 10.0.
-//
 
 // Returns the specified object’s reference count.
 //
@@ -249,7 +240,6 @@ func NSExtraRefCount(object unsafe.Pointer) unsafe.Pointer {
 // Returns a string encoding a file type code.
 //
 // Added in macOS 10.0.
-//
 
 // Returns a string encoding a file type code.
 //
@@ -264,7 +254,6 @@ func NSFileTypeForHFSTypeCode(hfsFileTypeCode unsafe.Pointer) unsafe.Pointer {
 // Returns the value of the frame pointer of the specified frame.
 //
 // Added in macOS 10.0.
-//
 
 // Returns the value of the frame pointer of the specified frame.
 //
@@ -279,7 +268,6 @@ func NSFrameAddress(frame unsafe.Pointer) unsafe.Pointer {
 // Returns a string containing the full name of the current user.
 //
 // Added in macOS 10.0.
-//
 
 // Returns a string containing the full name of the current user.
 //
@@ -294,7 +282,6 @@ func NSFullUserName() unsafe.Pointer {
 // Returns the top-level error handler.
 //
 // Added in macOS 10.0.
-//
 
 // Returns the top-level error handler.
 //
@@ -309,7 +296,6 @@ func NSGetUncaughtExceptionHandler() unsafe.Pointer {
 // Returns a file type code.
 //
 // Added in macOS 10.0.
-//
 
 // Returns a file type code.
 //
@@ -324,7 +310,6 @@ func NSHFSTypeCodeFromFileType(fileTypeString unsafe.Pointer) unsafe.Pointer {
 // Returns a string encoding a file type.
 //
 // Added in macOS 10.0.
-//
 
 // Returns a string encoding a file type.
 //
@@ -339,7 +324,6 @@ func NSHFSTypeOfFile(fullFilePath unsafe.Pointer) unsafe.Pointer {
 // Returns the path to either the user’s or application’s home directory, depending on the platform.
 //
 // Added in macOS 10.0.
-//
 
 // Returns the path to either the user’s or application’s home directory, depending on the platform.
 //
@@ -354,7 +338,6 @@ func NSHomeDirectory() unsafe.Pointer {
 // Returns the path to a given user’s home directory.
 //
 // Added in macOS 10.0.
-//
 
 // Returns the path to a given user’s home directory.
 //
@@ -369,7 +352,6 @@ func NSHomeDirectoryForUser(userName unsafe.Pointer) unsafe.Pointer {
 // Increments the specified object’s reference count.
 //
 // Added in macOS 10.0.
-//
 
 // Increments the specified object’s reference count.
 //
@@ -384,7 +366,6 @@ func NSIncrementExtraRefCount(object unsafe.Pointer) {
 // Adjusts the sides of a rectangle to integral values using the specified options.
 //
 // Added in macOS 10.7.
-//
 
 // Adjusts the sides of a rectangle to integral values using the specified options.
 //
@@ -399,7 +380,6 @@ func NSIntegralRectWithOptions(aRect coregraphics.CGRect, opts unsafe.Pointer) c
 // Returns a Boolean indicating whether the specified object has been freed.
 //
 // Added in macOS 10.0.
-//
 
 // Returns a Boolean indicating whether the specified object has been freed.
 //
@@ -414,7 +394,6 @@ func NSIsFreedObject(anObject unsafe.Pointer) bool {
 // Logs an error message to the Apple System Log facility.
 //
 // Added in macOS 10.0.
-//
 
 // Logs an error message to the Apple System Log facility.
 //
@@ -429,7 +408,6 @@ func NSLog(format unsafe.Pointer) {
 // Logs an error message to the Apple System Log facility.
 //
 // Added in macOS 10.0.
-//
 
 // Logs an error message to the Apple System Log facility.
 //
@@ -444,7 +422,6 @@ func NSLogv(format unsafe.Pointer, args unsafe.Pointer) {
 // Returns a Boolean value that indicates whether the point is in the specified rectangle.
 //
 // Added in macOS 10.0.
-//
 
 // Returns a Boolean value that indicates whether the point is in the specified rectangle.
 //
@@ -459,7 +436,6 @@ func NSMouseInRect(aPoint coregraphics.CGPoint, aRect coregraphics.CGRect, flipp
 // Returns the root directory of the user’s system.
 //
 // Added in macOS 10.0.
-//
 
 // Returns the root directory of the user’s system.
 //
@@ -474,7 +450,6 @@ func NSOpenStepRootDirectory() unsafe.Pointer {
 // Reallocates collectable memory.
 //
 // Added in macOS 10.0.
-//
 
 // Reallocates collectable memory.
 //
@@ -489,7 +464,6 @@ func NSReallocateCollectable(ptr unsafe.Pointer, size unsafe.Pointer, options un
 // Notes an object or zone allocation event and various other statistics, such as the time and current thread.
 //
 // Added in macOS 10.0.
-//
 
 // Notes an object or zone allocation event and various other statistics, such as the time and current thread.
 //
@@ -504,7 +478,6 @@ func NSRecordAllocationEvent(eventType int, object unsafe.Pointer) {
 // Returns the value of the return address of the specified frame.
 //
 // Added in macOS 10.0.
-//
 
 // Returns the value of the return address of the specified frame.
 //
@@ -519,7 +492,6 @@ func NSReturnAddress(frame unsafe.Pointer) unsafe.Pointer {
 // Returns the specified number of bytes rounded up to a multiple of the page size.
 //
 // Added in macOS 10.0.
-//
 
 // Returns the specified number of bytes rounded up to a multiple of the page size.
 //
@@ -534,7 +506,6 @@ func NSRoundUpToMultipleOfPageSize(bytes unsafe.Pointer) unsafe.Pointer {
 // Creates a list of directory search paths.
 //
 // Added in macOS 10.0.
-//
 
 // Creates a list of directory search paths.
 //
@@ -549,7 +520,6 @@ func NSSearchPathForDirectoriesInDomains(directory unsafe.Pointer, domainMask un
 // Changes the top-level error handler.
 //
 // Added in macOS 10.0.
-//
 
 // Changes the top-level error handler.
 //
@@ -564,7 +534,6 @@ func NSSetUncaughtExceptionHandler() {
 // Returns an from a text-based representation.
 //
 // Added in macOS 10.0.
-//
 
 // Returns an from a text-based representation.
 //
@@ -579,7 +548,6 @@ func NSSizeFromString(aString unsafe.Pointer) coregraphics.CGSize {
 // Returns the name of a protocol as a string.
 //
 // Added in macOS 10.5.
-//
 
 // Returns the name of a protocol as a string.
 //
@@ -594,7 +562,6 @@ func NSStringFromProtocol(proto unsafe.Pointer) unsafe.Pointer {
 // Returns the path of the temporary directory for the current user.
 //
 // Added in macOS 10.0.
-//
 
 // Returns the path of the temporary directory for the current user.
 //
@@ -609,7 +576,6 @@ func NSTemporaryDirectory() unsafe.Pointer {
 // Returns the logon name of the current user.
 //
 // Added in macOS 10.0.
-//
 
 // Returns the logon name of the current user.
 //
@@ -626,7 +592,6 @@ func NSUserName() unsafe.Pointer {
 // Deprecated: This function was deprecated in macOS 10.5.
 //
 // Added in macOS 10.0.
-//
 
 // Returns the next object from the coder.
 //

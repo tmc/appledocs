@@ -74,9 +74,13 @@ type IXMLNode interface {
 // The nodes in the abstract, logical tree structure that represents an XML document.
 //
 // Node objects can be of different kinds, corresponding to the following markup constructs in an XML document: element, attribute, text, processing instruction, namespace, and comment. In addition, a document-node object (specifically, an instance of ) represents an XML document in its entirety. objects can also represent document type declarations as well as declarations in Document Type Definitions (DTDs). Class factory methods of enable you to create nodes of each kind. Only document, element, and DTD nodes may have child nodes. Among the XML family of classes (excluding ) the class is the base class. Inheriting from it are the classes , , , and . specifies the interface common to all XML node objects and defines common node behavior and attributes, for example hierarchy level, node name and value, tree traversal, and the ability to emit representative XML markup text.
+
+
+// The nodes in the abstract, logical tree structure that represents an XML document.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode
+
 type XMLNode struct {
 	objectivec.Object
 }
@@ -305,342 +309,412 @@ func (xc _XMLNodeClass) TextWithStringValue(stringValue string) objc.ID {
 	return rv
 }
 
+
 // Returns the child node of the receiver at the specified location.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/child(at:)
+
 func (x_ XMLNode) ChildAtIndex(index uint) XMLNode {
 	rv := objc.Send[XMLNode](x_.ID, objc.Sel("childAtIndex:"), index)
 	return rv
 }
 
+
 // Sets the content of the receiver as a string value and, optionally, resolves character references, predefined entities, and user-defined entities as declared in the associated DTD.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/setStringValue(_:resolvingEntities:)
+
 func (x_ XMLNode) SetStringValueResolvingEntities(string_ string, resolve bool) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setStringValue:resolvingEntities:"), objc.String(string_), resolve)
 }
 
+
 // Returns the string representation of the receiver as it would appear in an XML document, with one or more output options specified.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/xmlString(options:)
+
 func (x_ XMLNode) XMLStringWithOptions(options XMLNodeOptions) String {
 	rv := objc.Send[String](x_.ID, objc.Sel("XMLStringWithOptions:"), options)
 	return rv
 }
 
+
 // Returns the index of the receiver identifying its position relative to its sibling nodes.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/index
+
 func (x_ XMLNode) Index() uint {
 	rv := objc.Send[uint](x_.ID, objc.Sel("index"))
 	return rv
 }
 
+
 // Returns the kind of node the receiver is as a constant of type .
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/kind-swift.property
+
 func (x_ XMLNode) Kind() XMLNodeKind {
 	rv := objc.Send[XMLNodeKind](x_.ID, objc.Sel("kind"))
 	return rv
 }
 
+
 // Returns the nesting level of the receiver within the tree hierarchy.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/level
+
 func (x_ XMLNode) Level() uint {
 	rv := objc.Send[uint](x_.ID, objc.Sel("level"))
 	return rv
 }
 
+
 // Returns the name of the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/name
+
 func (x_ XMLNode) Name() string {
 	rv := objc.Send[string](x_.ID, objc.Sel("name"))
 	return rv
 }
 
 
-// SetName sets the value of the name property.
 // Returns the name of the receiver.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/name
+
 func (x_ XMLNode) SetName(value string) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
+
 // Returns the object value of the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/objectValue
+
 func (x_ XMLNode) ObjectValue() objc.ID {
 	rv := objc.Send[objc.ID](x_.ID, objc.Sel("objectValue"))
 	return rv
 }
 
 
-// SetObjectValue sets the value of the objectValue property.
 // Returns the object value of the receiver.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/objectValue
+
 func (x_ XMLNode) SetObjectValue(value objc.ID) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setObjectValue:"), value)
 }
 
+
 // Returns the parent node of the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/parent
+
 func (x_ XMLNode) Parent() NSXMLNode {
 	rv := objc.Send[NSXMLNode](x_.ID, objc.Sel("parent"))
 	return rv
 }
 
+
 // Returns the content of the receiver as a string value.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/stringValue
+
 func (x_ XMLNode) StringValue() string {
 	rv := objc.Send[string](x_.ID, objc.Sel("stringValue"))
 	return rv
 }
 
 
-// SetStringValue sets the value of the stringValue property.
 // Returns the content of the receiver as a string value.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/stringValue
+
 func (x_ XMLNode) SetStringValue(value string) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setStringValue:"), objc.String(value))
 }
 
+
 // Returns the URI associated with the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/uri
+
 func (x_ XMLNode) URI() string {
 	rv := objc.Send[string](x_.ID, objc.Sel("URI"))
 	return rv
 }
 
 
-// SetURI sets the value of the URI property.
 // Returns the URI associated with the receiver.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/uri
+
 func (x_ XMLNode) SetURI(value string) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setURI:"), objc.String(value))
 }
 
+
 // Returns the number of child nodes the receiver has.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/childcount
+
 func (x_ XMLNode) ChildCount() int {
 	rv := objc.Send[int](x_.ID, objc.Sel("childCount"))
 	return rv
 }
 
 
-// SetChildCount sets the value of the childCount property.
 // Returns the number of child nodes the receiver has.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/childcount
+
 func (x_ XMLNode) SetChildCount(value int) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setChildCount:"), value)
 }
 
+
 // Returns an immutable array containing the child nodes of the receiver (as
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/children
+
 func (x_ XMLNode) Children() NSXMLNode {
 	rv := objc.Send[NSXMLNode](x_.ID, objc.Sel("children"))
 	return rv
 }
 
 
-// SetChildren sets the value of the children property.
 // Returns an immutable array containing the child nodes of the receiver (as
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/children
+
 func (x_ XMLNode) SetChildren(value IXMLNode) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setChildren:"), value)
 }
 
+
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/description
+
 func (x_ XMLNode) Description() string {
 	rv := objc.Send[string](x_.ID, objc.Sel("description"))
 	return rv
 }
 
 
-// SetDescription sets the value of the description property.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/description
+
 func (x_ XMLNode) SetDescription(value string) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setDescription:"), objc.String(value))
 }
 
+
 // Returns the local name of the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/localname
+
 func (x_ XMLNode) LocalName() string {
 	rv := objc.Send[string](x_.ID, objc.Sel("localName"))
 	return rv
 }
 
 
-// SetLocalName sets the value of the localName property.
 // Returns the local name of the receiver.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/localname
+
 func (x_ XMLNode) SetLocalName(value string) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setLocalName:"), objc.String(value))
 }
 
+
 // Returns the next
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/next
+
 func (x_ XMLNode) Next() NSXMLNode {
 	rv := objc.Send[NSXMLNode](x_.ID, objc.Sel("next"))
 	return rv
 }
 
 
-// SetNext sets the value of the next property.
 // Returns the next
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/next
+
 func (x_ XMLNode) SetNext(value IXMLNode) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setNext:"), value)
 }
 
+
 // Returns the next
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/nextsibling
+
 func (x_ XMLNode) NextSibling() NSXMLNode {
 	rv := objc.Send[NSXMLNode](x_.ID, objc.Sel("nextSibling"))
 	return rv
 }
 
 
-// SetNextSibling sets the value of the nextSibling property.
 // Returns the next
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/nextsibling
+
 func (x_ XMLNode) SetNextSibling(value IXMLNode) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setNextSibling:"), value)
 }
 
+
 // Returns the prefix of the receiver’s name.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/prefix
+
 func (x_ XMLNode) Prefix() string {
 	rv := objc.Send[string](x_.ID, objc.Sel("prefix"))
 	return rv
 }
 
 
-// SetPrefix sets the value of the prefix property.
 // Returns the prefix of the receiver’s name.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/prefix
+
 func (x_ XMLNode) SetPrefix(value string) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setPrefix:"), objc.String(value))
 }
 
+
 // Returns the previous
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/previous
+
 func (x_ XMLNode) Previous() NSXMLNode {
 	rv := objc.Send[NSXMLNode](x_.ID, objc.Sel("previous"))
 	return rv
 }
 
 
-// SetPrevious sets the value of the previous property.
 // Returns the previous
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/previous
+
 func (x_ XMLNode) SetPrevious(value IXMLNode) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setPrevious:"), value)
 }
 
+
 // Returns the previous
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/previoussibling
+
 func (x_ XMLNode) PreviousSibling() NSXMLNode {
 	rv := objc.Send[NSXMLNode](x_.ID, objc.Sel("previousSibling"))
 	return rv
 }
 
 
-// SetPreviousSibling sets the value of the previousSibling property.
 // Returns the previous
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/previoussibling
+
 func (x_ XMLNode) SetPreviousSibling(value IXMLNode) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setPreviousSibling:"), value)
 }
 
+
 // Returns the
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/rootdocument
+
 func (x_ XMLNode) RootDocument() NSXMLDocument {
 	rv := objc.Send[NSXMLDocument](x_.ID, objc.Sel("rootDocument"))
 	return rv
 }
 
 
-// SetRootDocument sets the value of the rootDocument property.
 // Returns the
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/rootdocument
+
 func (x_ XMLNode) SetRootDocument(value IXMLDocument) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setRootDocument:"), value)
 }
 
+
 // Returns the XPath expression identifying the receiver’s location in the document tree.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/xpath
+
 func (x_ XMLNode) XPath() string {
 	rv := objc.Send[string](x_.ID, objc.Sel("xPath"))
 	return rv
 }
 
 
-// SetXPath sets the value of the xPath property.
 // Returns the XPath expression identifying the receiver’s location in the document tree.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/xpath
+
 func (x_ XMLNode) SetXPath(value string) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setXPath:"), objc.String(value))
 }
 
+
 // Returns the string representation of the receiver as it would appear in an XML document.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/xmlstring
+
 func (x_ XMLNode) XmlString() string {
 	rv := objc.Send[string](x_.ID, objc.Sel("xmlString"))
 	return rv
 }
 
 
-// SetXmlString sets the value of the xmlString property.
 // Returns the string representation of the receiver as it would appear in an XML document.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/xmlstring
+
 func (x_ XMLNode) SetXmlString(value string) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setXmlString:"), objc.String(value))
 }

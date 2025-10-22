@@ -36,9 +36,13 @@ type IConnection interface {
 // An object that manages the communication between objects in different threads or between a thread and a process running on a local or remote system.
 //
 // Connection objects form the backbone of the distributed objects mechanism and normally operate in the background. You use the methods of explicitly when vending an object to other applications, when accessing such a vended object through a proxy, and when altering default communication parameters. At other times, you simply interact with a vended object or its proxy. A single connection object may be shared by multiple threads and used to access a vended object.
+
+
+// An object that manages the communication between objects in different threads or between a thread and a process running on a local or remote system.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection
+
 type Connection struct {
 	objectivec.Object
 }
@@ -93,9 +97,12 @@ func (cc _ConnectionClass) RootProxyForConnectionWithRegisteredNameHost(name str
 	return rv
 }
 
+
 // Configures the receiver to allow requests from multiple threads to the remote object, without requiring each thread to each maintain its own connection.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/enableMultipleThreads
+
 func (c_ Connection) EnableMultipleThreads() {
 	objc.Send[objc.ID](c_.ID, objc.Sel("enableMultipleThreads"))
 }

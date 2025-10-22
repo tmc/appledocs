@@ -63,9 +63,13 @@ type IMutableDictionary interface {
 // A dynamic collection of objects associated with unique keys.
 //
 // In Swift, you can use this type instead of a variable in cases that require reference semantics. The class declares the programmatic interface to objects that manage mutable associations of keys and values. It adds modification operations to the basic operations it inherits from . is “toll-free bridged” with its Core Foundation counterpart, . See for more information on toll-free bridging.
+
+
+// A dynamic collection of objects associated with unique keys.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary
+
 type MutableDictionary struct {
 	Dictionary
 }
@@ -278,205 +282,292 @@ func (mc _MutableDictionaryClass) WithOBEXHeadersDataHeadersDataSize(inHeadersDa
 	return rv
 }
 
+
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/addApplicationParameterHeader(_:length:)
+
 func (m_ MutableDictionary) AddApplicationParameterHeaderLength(inHeaderData unsafe.Pointer, inHeaderDataLength Iuint32) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("addApplicationParameterHeader:length:"), inHeaderData, inHeaderDataLength)
 	return rv
 }
 
+
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/addAuthorizationChallengeHeader(_:length:)
+
 func (m_ MutableDictionary) AddAuthorizationChallengeHeaderLength(inHeaderData unsafe.Pointer, inHeaderDataLength Iuint32) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("addAuthorizationChallengeHeader:length:"), inHeaderData, inHeaderDataLength)
 	return rv
 }
 
+
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/addAuthorizationResponseHeader(_:length:)
+
 func (m_ MutableDictionary) AddAuthorizationResponseHeaderLength(inHeaderData unsafe.Pointer, inHeaderDataLength Iuint32) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("addAuthorizationResponseHeader:length:"), inHeaderData, inHeaderDataLength)
 	return rv
 }
 
+
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/addBodyHeader(_:length:endOfBody:)
+
 func (m_ MutableDictionary) AddBodyHeaderLengthEndOfBody(inHeaderData unsafe.Pointer, inHeaderDataLength Iuint32, isEndOfBody bool) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("addBodyHeader:length:endOfBody:"), inHeaderData, inHeaderDataLength, isEndOfBody)
 	return rv
 }
 
+
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/addByteSequenceHeader(_:length:)
+
 func (m_ MutableDictionary) AddByteSequenceHeaderLength(inHeaderData unsafe.Pointer, inHeaderDataLength Iuint32) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("addByteSequenceHeader:length:"), inHeaderData, inHeaderDataLength)
 	return rv
 }
 
+
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/addConnectionIDHeader(_:length:)
+
 func (m_ MutableDictionary) AddConnectionIDHeaderLength(inHeaderData unsafe.Pointer, inHeaderDataLength Iuint32) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("addConnectionIDHeader:length:"), inHeaderData, inHeaderDataLength)
 	return rv
 }
 
+
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/addCountHeader(_:)
+
 func (m_ MutableDictionary) AddCountHeader(inCount Iuint32) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("addCountHeader:"), inCount)
 	return rv
 }
 
+
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/addDescriptionHeader(_:)
+
 func (m_ MutableDictionary) AddDescriptionHeader(inDescriptionString string) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("addDescriptionHeader:"), objc.String(inDescriptionString))
 	return rv
 }
 
+
 // Adds to the receiving dictionary the entries from another dictionary.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/addEntries(from:)
+
 func (m_ MutableDictionary) AddEntriesFromDictionary(otherDictionary unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("addEntriesFromDictionary:"), otherDictionary)
 }
 
+
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/addHTTPHeader(_:length:)
+
 func (m_ MutableDictionary) AddHTTPHeaderLength(inHeaderData unsafe.Pointer, inHeaderDataLength Iuint32) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("addHTTPHeader:length:"), inHeaderData, inHeaderDataLength)
 	return rv
 }
 
+
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/addImageDescriptorHeader(_:length:)
+
 func (m_ MutableDictionary) AddImageDescriptorHeaderLength(inHeaderData unsafe.Pointer, inHeaderDataLength Iuint32) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("addImageDescriptorHeader:length:"), inHeaderData, inHeaderDataLength)
 	return rv
 }
 
+
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/addImageHandleHeader(_:)
+
 func (m_ MutableDictionary) AddImageHandleHeader(type_ string) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("addImageHandleHeader:"), objc.String(type_))
 	return rv
 }
 
+
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/addLengthHeader(_:)
+
 func (m_ MutableDictionary) AddLengthHeader(length Iuint32) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("addLengthHeader:"), length)
 	return rv
 }
 
+
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/addNameHeader(_:)
+
 func (m_ MutableDictionary) AddNameHeader(inNameString string) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("addNameHeader:"), objc.String(inNameString))
 	return rv
 }
 
+
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/addObjectClassHeader(_:length:)
+
 func (m_ MutableDictionary) AddObjectClassHeaderLength(inHeaderData unsafe.Pointer, inHeaderDataLength Iuint32) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("addObjectClassHeader:length:"), inHeaderData, inHeaderDataLength)
 	return rv
 }
 
+
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/addTargetHeader(_:length:)
+
 func (m_ MutableDictionary) AddTargetHeaderLength(inHeaderData unsafe.Pointer, inHeaderDataLength Iuint32) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("addTargetHeader:length:"), inHeaderData, inHeaderDataLength)
 	return rv
 }
 
+
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/addTime4ByteHeader(_:)
+
 func (m_ MutableDictionary) AddTime4ByteHeader(time4Byte Iuint32) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("addTime4ByteHeader:"), time4Byte)
 	return rv
 }
 
+
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/addTimeISOHeader(_:length:)
+
 func (m_ MutableDictionary) AddTimeISOHeaderLength(inHeaderData unsafe.Pointer, inHeaderDataLength Iuint32) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("addTimeISOHeader:length:"), inHeaderData, inHeaderDataLength)
 	return rv
 }
 
+
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/addTypeHeader(_:)
+
 func (m_ MutableDictionary) AddTypeHeader(type_ string) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("addTypeHeader:"), objc.String(type_))
 	return rv
 }
 
+
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/addUserDefinedHeader(_:length:)
+
 func (m_ MutableDictionary) AddUserDefinedHeaderLength(inHeaderData unsafe.Pointer, inHeaderDataLength Iuint32) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("addUserDefinedHeader:length:"), inHeaderData, inHeaderDataLength)
 	return rv
 }
 
+
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/addWhoHeader(_:length:)
+
 func (m_ MutableDictionary) AddWhoHeaderLength(inHeaderData unsafe.Pointer, inHeaderDataLength Iuint32) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("addWhoHeader:length:"), inHeaderData, inHeaderDataLength)
 	return rv
 }
 
+
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/getHeaderBytes()
+
 func (m_ MutableDictionary) GetHeaderBytes() MutableData {
 	rv := objc.Send[MutableData](m_.ID, objc.Sel("getHeaderBytes"))
 	return rv
 }
 
+
 // Empties the dictionary of its entries.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/removeAllObjects()
+
 func (m_ MutableDictionary) RemoveAllObjects() {
 	objc.Send[objc.ID](m_.ID, objc.Sel("removeAllObjects"))
 }
 
+
 // Removes a given key and its associated value from the dictionary.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/removeObject(forKey:)
+
 func (m_ MutableDictionary) RemoveObjectForKey(aKey unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("removeObjectForKey:"), aKey)
 }
 
+
 // Removes from the dictionary entries specified by elements in a given array.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/removeObjects(forKeys:)
+
 func (m_ MutableDictionary) RemoveObjectsForKeys(keyArray []objc.ID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("removeObjectsForKeys:"), keyArray)
 }
 
+
 // Sets the contents of the receiving dictionary to entries in a given dictionary.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/setDictionary(_:)
+
 func (m_ MutableDictionary) SetDictionary(otherDictionary unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDictionary:"), otherDictionary)
 }
 
+
 // Adds a given key-value pair to the dictionary.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/setObject(_:forKey:)
+
 func (m_ MutableDictionary) SetObjectForKey(anObject unsafe.Pointer, aKey objectivec.IObject) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setObject:forKey:"), anObject, aKey)
 }
 
+
 // Adds a given key-value pair to the dictionary.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/setObject:forKeyedSubscript:
+
 func (m_ MutableDictionary) SetObjectForKeyedSubscript(obj unsafe.Pointer, key objectivec.IObject) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setObject:forKeyedSubscript:"), obj, key)
 }
 
+
 // Adds a given key-value pair to the dictionary.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/setValue(_:forKey:)
+
 func (m_ MutableDictionary) SetValueForKey(value unsafe.Pointer, key string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:forKey:"), value, objc.String(key))
 }

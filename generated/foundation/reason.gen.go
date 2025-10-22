@@ -32,9 +32,12 @@ type Ireason interface {
 	objectivec.IObject
 }
 
+
+
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSException/reason-c.ivar
+
 type reason struct {
 	objectivec.Object
 }

@@ -35,9 +35,13 @@ type ITermOfAddress interface {
 // The type for representing grammatical gender in localized text.
 //
 // Many languages rely on gender for their grammar. Without knowing the subject’s gender or pronoun preferences, some localized strings may have grammatical errors, resulting in a poor user experience. is a type that enables the system to make pronoun substitutions in localized text based on gender. You don’t create instances of this type directly. Instead, use the predefined types to specify the gender to use when referring to people in translated text. Or define your own pronoun terms for a specific language when the predefined types are insufficient. For example, to substitute the masculine pronoun , for the neutral pronoun , do the following: If the , , and terms of address are insufficient, create your own term of address specifying the pronouns and language. For examples of how to use terms of address, see:
+
+
+// The type for representing grammatical gender in localized text.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTermOfAddress
+
 type TermOfAddress struct {
 	objectivec.Object
 }

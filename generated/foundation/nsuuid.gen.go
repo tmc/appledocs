@@ -38,9 +38,13 @@ type IUUID interface {
 // A universally unique value that can be used to identify types, interfaces, and other items.
 //
 // In Swift, this object bridges to ; use when you need reference semantics or other Foundation-specific behavior. UUIDs (Universally Unique Identifiers), also known as GUIDs (Globally Unique Identifiers) or IIDs (Interface Identifiers), are 128-bit values. UUIDs created by conform to RFC 4122 version 4 and are created with random bytes. The standard format for UUIDs represented in ASCII is a string punctuated by hyphens, for example . The hex representation looks, as you might expect, like a list of numerical values preceded by 0x. For example, , , , , , , , , , , , , , , , . Because a UUID is expressed simply as an array of bytes, there are no endianness considerations for different platforms. The class is toll-free bridged with CoreFoundation’s . Use UUID strings to convert between and , if needed. Two objects are not guaranteed to be comparable by pointer value (as is); use to compare two instances.
+
+
+// A universally unique value that can be used to identify types, interfaces, and other items.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUUID
+
 type UUID struct {
 	objectivec.Object
 }
@@ -85,27 +89,33 @@ func NewUUID() UUID {
 
 
 
+
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUUID/compare(_:)
+
 func (u_ UUID) Compare(otherUUID IUUID) ComparisonResult {
 	rv := objc.Send[ComparisonResult](u_.ID, objc.Sel("compare:"), otherUUID)
 	return rv
 }
 
+
 // The UUID as a string.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsuuid/uuidstring
+
 func (u_ UUID) UuidString() string {
 	rv := objc.Send[string](u_.ID, objc.Sel("uuidString"))
 	return rv
 }
 
 
-// SetUuidString sets the value of the uuidString property.
 // The UUID as a string.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsuuid/uuidstring
+
 func (u_ UUID) SetUuidString(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setUuidString:"), objc.String(value))
 }

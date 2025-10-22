@@ -42,9 +42,13 @@ type IMeasurementFormatter interface {
 // A formatter that provides localized representations of units and measurements.
 //
 // You use the method to create a localized representation of an object, and you use the method to create a localized representation of an object. The formatter takes into account the specified , , and when producing string representations of units and measurements.
+
+
+// A formatter that provides localized representations of units and measurements.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/MeasurementFormatter
+
 type MeasurementFormatter struct {
 	Formatter
 }
@@ -90,74 +94,86 @@ func NewMeasurementFormatter() MeasurementFormatter {
 }
 
 
+
 // The locale of the formatter.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/measurementformatter/locale
+
 func (m_ MeasurementFormatter) Locale() Locale {
 	rv := objc.Send[Locale](m_.ID, objc.Sel("locale"))
 	return rv
 }
 
 
-// SetLocale sets the value of the locale property.
 // The locale of the formatter.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/measurementformatter/locale
+
 func (m_ MeasurementFormatter) SetLocale(value ILocale) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLocale:"), value)
 }
 
+
 // The number formatter used to format the quantity of a measurement.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/measurementformatter/numberformatter
+
 func (m_ MeasurementFormatter) NumberFormatter() NSNumberFormatter {
 	rv := objc.Send[NSNumberFormatter](m_.ID, objc.Sel("numberFormatter"))
 	return rv
 }
 
 
-// SetNumberFormatter sets the value of the numberFormatter property.
 // The number formatter used to format the quantity of a measurement.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/measurementformatter/numberformatter
+
 func (m_ MeasurementFormatter) SetNumberFormatter(value INumberFormatter) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNumberFormatter:"), value)
 }
 
+
 // The options for how the unit is formatted.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/measurementformatter/unitoptions-swift.property
+
 func (m_ MeasurementFormatter) UnitOptions() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("unitOptions"))
 	return rv
 }
 
 
-// SetUnitOptions sets the value of the unitOptions property.
 // The options for how the unit is formatted.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/measurementformatter/unitoptions-swift.property
+
 func (m_ MeasurementFormatter) SetUnitOptions(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUnitOptions:"), value)
 }
 
+
 // The unit style.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/measurementformatter/unitstyle
+
 func (m_ MeasurementFormatter) UnitStyle() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("unitStyle"))
 	return rv
 }
 
 
-// SetUnitStyle sets the value of the unitStyle property.
 // The unit style.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/measurementformatter/unitstyle
+
 func (m_ MeasurementFormatter) SetUnitStyle(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUnitStyle:"), value)
 }

@@ -37,9 +37,13 @@ type ICalendarDate interface {
 }
 
 // A specialized date object with embedded calendar information.
+
+
+// A specialized date object with embedded calendar information.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendarDate
+
 type CalendarDate struct {
 	Date
 }
@@ -105,29 +109,41 @@ func (cc _CalendarDateClass) DistantPast() unsafe.Pointer {
 	return rv
 }
 
+
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendarDate/dayOfCommonEra
+
 func (c_ CalendarDate) DayOfCommonEra() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("dayOfCommonEra"))
 	return rv
 }
 
+
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendarDate/descriptionWithCalendarFormat:
+
 func (c_ CalendarDate) DescriptionWithCalendarFormat(format string) String {
 	rv := objc.Send[String](c_.ID, objc.Sel("descriptionWithCalendarFormat:"), objc.String(format))
 	return rv
 }
 
+
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendarDate/descriptionWithCalendarFormat:locale:
+
 func (c_ CalendarDate) DescriptionWithCalendarFormatLocale(format string, locale objectivec.IObject) String {
 	rv := objc.Send[String](c_.ID, objc.Sel("descriptionWithCalendarFormat:locale:"), objc.String(format), locale)
 	return rv
 }
 
+
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendarDate/hourOfDay
+
 func (c_ CalendarDate) HourOfDay() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("hourOfDay"))
 	return rv

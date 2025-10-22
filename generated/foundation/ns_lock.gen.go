@@ -39,9 +39,13 @@ type ILock interface {
 // An object that coordinates the operation of multiple threads of execution within the same application.
 //
 // An object can be used to mediate access to an application’s global data or to protect a critical section of code, allowing it to run atomically. You should not use this class to implement a recursive lock. Calling the method twice on the same thread will lock up your thread permanently. Use the class to implement recursive locks instead. Unlocking a lock that is not locked is considered a programmer error and should be fixed in your code. The class reports such errors by printing an error message to the console when they occur.
+
+
+// An object that coordinates the operation of multiple threads of execution within the same application.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLock
+
 type Lock struct {
 	objectivec.Object
 }
@@ -85,36 +89,45 @@ func NewLock() Lock {
 }
 
 
+
 // Attempts to acquire a lock before a given time and returns a Boolean value indicating whether the attempt was successful.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLock/lock(before:)
+
 func (l_ Lock) LockBeforeDate(limit IDate) bool {
 	rv := objc.Send[bool](l_.ID, objc.Sel("lockBeforeDate:"), limit)
 	return rv
 }
 
+
 // Attempts to acquire a lock and immediately returns a Boolean value that indicates whether the attempt was successful.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLock/try()
+
 func (l_ Lock) TryLock() bool {
 	rv := objc.Send[bool](l_.ID, objc.Sel("tryLock"))
 	return rv
 }
 
+
 // The name associated with the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLock/name
+
 func (l_ Lock) Name() string {
 	rv := objc.Send[string](l_.ID, objc.Sel("name"))
 	return rv
 }
 
 
-// SetName sets the value of the name property.
 // The name associated with the receiver.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLock/name
+
 func (l_ Lock) SetName(value string) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setName:"), objc.String(value))
 }

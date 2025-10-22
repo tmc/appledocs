@@ -53,9 +53,13 @@ type IError interface {
 // Information about an error condition including a domain, a domain-specific error code, and application-specific information.
 //
 // Objective-C methods can signal an error condition by returning an object by reference, which provides additional information about the kind of error and any underlying cause, if one can be determined. An object may also provide localized error descriptions suitable for display to the user in its user info dictionary. See for more information. Methods in Foundation and other Cocoa frameworks most often produce errors in the Cocoa error domain ( ); error codes for the Cocoa Error Domain are documented in the . There are also predefined domains corresponding to Mach ( ), POSIX ( ), and Carbon ( ) errors. is “toll-free bridged” with its Core Foundation counterpart, . See for more information.
+
+
+// Information about an error condition including a domain, a domain-specific error code, and application-specific information.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError
+
 type Error struct {
 	objectivec.Object
 }
@@ -177,144 +181,198 @@ func (ec _ErrorClass) UserInfoValueProviderForDomain(errorDomain IErrorDomain) {
 	objc.Send[objc.ID](objc.ID(ec.class), objc.Sel("userInfoValueProviderForDomain:"), errorDomain)
 }
 
+
 // The error code.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/code
+
 func (e_ Error) Code() int {
 	rv := objc.Send[int](e_.ID, objc.Sel("code"))
 	return rv
 }
 
+
 // A string containing the error domain.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/domain
+
 func (e_ Error) Domain() ErrorDomain {
 	rv := objc.Send[ErrorDomain](e_.ID, objc.Sel("domain"))
 	return rv
 }
 
+
 // A string to display in response to an alert panel help anchor button being pressed.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/helpAnchor
+
 func (e_ Error) HelpAnchor() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("helpAnchor"))
 	return rv
 }
 
+
 // A string containing the localized description of the error.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/localizedDescription
+
 func (e_ Error) LocalizedDescription() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("localizedDescription"))
 	return rv
 }
 
+
 // A string containing the localized explanation of the reason for the error.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/localizedFailureReason
+
 func (e_ Error) LocalizedFailureReason() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("localizedFailureReason"))
 	return rv
 }
 
+
 // An array containing the localized titles of buttons appropriate for displaying in an alert panel.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/localizedRecoveryOptions
+
 func (e_ Error) LocalizedRecoveryOptions() []string {
 	rv := objc.Send[[]string](e_.ID, objc.Sel("localizedRecoveryOptions"))
 	return rv
 }
 
+
 // A string containing the localized recovery suggestion for the error.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/localizedRecoverySuggestion
+
 func (e_ Error) LocalizedRecoverySuggestion() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("localizedRecoverySuggestion"))
 	return rv
 }
 
+
 // The object in the user info dictionary corresponding to the key.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/recoveryAttempter
+
 func (e_ Error) RecoveryAttempter() objc.ID {
 	rv := objc.Send[objc.ID](e_.ID, objc.Sel("recoveryAttempter"))
 	return rv
 }
 
+
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/underlyingErrors
+
 func (e_ Error) UnderlyingErrors() []Error {
 	rv := objc.Send[[]Error](e_.ID, objc.Sel("underlyingErrors"))
 	return rv
 }
 
+
 // The user info dictionary.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/userInfo
+
 func (e_ Error) UserInfo() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("userInfo"))
 	return rv
 }
 
+
 // Cocoa errors
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscocoaerrordomain
+
 func (e_ Error) NSCocoaErrorDomain() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("NSCocoaErrorDomain"))
 	return rv
 }
 
+
 // Mach errors
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmacherrordomain
+
 func (e_ Error) NSMachErrorDomain() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("NSMachErrorDomain"))
 	return rv
 }
 
+
 // Mac OS 9/Carbon errors
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsosstatuserrordomain
+
 func (e_ Error) NSOSStatusErrorDomain() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("NSOSStatusErrorDomain"))
 	return rv
 }
 
+
 // POSIX/BSD errors
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsposixerrordomain
+
 func (e_ Error) NSPOSIXErrorDomain() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("NSPOSIXErrorDomain"))
 	return rv
 }
 
+
 // The corresponding value is an object that conforms to the NSErrorRecoveryAttempting informal protocol.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsrecoveryattemptererrorkey
+
 func (e_ Error) NSRecoveryAttempterErrorKey() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("NSRecoveryAttempterErrorKey"))
 	return rv
 }
 
+
 // The error domain used by
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsstreamsockserrordomain
+
 func (e_ Error) NSStreamSOCKSErrorDomain() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("NSStreamSOCKSErrorDomain"))
 	return rv
 }
 
+
 // The error domain used by
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsstreamsocketsslerrordomain
+
 func (e_ Error) NSStreamSocketSSLErrorDomain() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("NSStreamSocketSSLErrorDomain"))
 	return rv
 }
 
+
 // URL loading system errors
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlerrordomain
+
 func (e_ Error) NSURLErrorDomain() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("NSURLErrorDomain"))
 	return rv

@@ -36,9 +36,13 @@ type INull interface {
 // A singleton object used to represent null values in collection objects that don’t allow values.
 //
 // is “toll-free bridged” with its Core Foundation counterpart, . See for more information on toll-free bridging.
+
+
+// A singleton object used to represent null values in collection objects that don’t allow values.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNull
+
 type Null struct {
 	objectivec.Object
 }
@@ -93,9 +97,12 @@ func (nc _NullClass) Null() Null {
 	return rv
 }
 
+
 // A value indicating that a requested item couldn’t be found or doesn’t exist.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsnotfound-4qp9h
+
 func (n_ Null) NSNotFound() int {
 	rv := objc.Send[int](n_.ID, objc.Sel("NSNotFound"))
 	return rv

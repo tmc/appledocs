@@ -36,9 +36,13 @@ type ISetCommand interface {
 // A command that sets one or more attributes or relationships to one or more values.
 //
 // An instance of sets one or more attributes or relationships to one or more values; for example, it may set the (x, y) coordinates for a window’s position or set the name of a document. is part of Cocoa’s built-in scripting support. It works automatically to support the command through key-value coding. Most applications don’t need to subclass or call its methods. uses available scripting class descriptions to determine whether it should set a value for an attribute (or property), or set a value for all elements (to-many objects). For the latter, it invokes ; for the former, it invokes (or, if the receiver overrides , it invokes that method, to support backward binary compatibility.) For information on working with commands, see in .
+
+
+// A command that sets one or more attributes or relationships to one or more values.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSetCommand
+
 type SetCommand struct {
 	ScriptCommand
 }
@@ -84,20 +88,23 @@ func NewSetCommand() SetCommand {
 }
 
 
+
 // Returns a specifier that identifies the attribute or relationship that is to be set for the receiver of the
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nssetcommand/keyspecifier
+
 func (s_ SetCommand) KeySpecifier() NSScriptObjectSpecifier {
 	rv := objc.Send[NSScriptObjectSpecifier](s_.ID, objc.Sel("keySpecifier"))
 	return rv
 }
 
 
-// SetKeySpecifier sets the value of the keySpecifier property.
 // Returns a specifier that identifies the attribute or relationship that is to be set for the receiver of the
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nssetcommand/keyspecifier
+
 func (s_ SetCommand) SetKeySpecifier(value IScriptObjectSpecifier) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setKeySpecifier:"), value)
 }

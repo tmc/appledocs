@@ -45,9 +45,13 @@ type IDataDetector interface {
 // A specialized regular expression object that matches natural language text for predefined data patterns.
 //
 // Find dates, addresses, links, phone numbers, and transit information in natural language text with . returns the results of matching content in objects. The objects that returns are different from those that returns. The results are one of the data detector’s types and contain the corresponding properties. For example, results of type have a , , and ; and results of type have a .
+
+
+// A specialized regular expression object that matches natural language text for predefined data patterns.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDataDetector
+
 type DataDetector struct {
 	RegularExpression
 }
@@ -93,100 +97,118 @@ func NewDataDetector() DataDetector {
 }
 
 
+
 // Returns the checking types for the data detector.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdatadetector/checkingtypes
+
 func (d_ DataDetector) CheckingTypes() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("checkingTypes"))
 	return rv
 }
 
 
-// SetCheckingTypes sets the value of the checkingTypes property.
 // Returns the checking types for the data detector.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdatadetector/checkingtypes
+
 func (d_ DataDetector) SetCheckingTypes(value unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setCheckingTypes:"), value)
 }
 
+
 // A value indicating that a requested item couldn’t be found or doesn’t exist.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsnotfound-4qp9h
+
 func (d_ DataDetector) NSNotFound() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("NSNotFound"))
 	return rv
 }
 
+
 // The date component of a type checking result.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/date
+
 func (d_ DataDetector) Date() Date {
 	rv := objc.Send[Date](d_.ID, objc.Sel("date"))
 	return rv
 }
 
 
-// SetDate sets the value of the date property.
 // The date component of a type checking result.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/date
+
 func (d_ DataDetector) SetDate(value IDate) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDate:"), value)
 }
 
+
 // The duration component of a type checking result.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/duration
+
 func (d_ DataDetector) Duration() TimeInterval {
 	rv := objc.Send[TimeInterval](d_.ID, objc.Sel("duration"))
 	return rv
 }
 
 
-// SetDuration sets the value of the duration property.
 // The duration component of a type checking result.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/duration
+
 func (d_ DataDetector) SetDuration(value ITimeInterval) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDuration:"), value)
 }
 
+
 // The time zone component of a type checking result.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/timezone
+
 func (d_ DataDetector) TimeZone() TimeZone {
 	rv := objc.Send[TimeZone](d_.ID, objc.Sel("timeZone"))
 	return rv
 }
 
 
-// SetTimeZone sets the value of the timeZone property.
 // The time zone component of a type checking result.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/timezone
+
 func (d_ DataDetector) SetTimeZone(value ITimeZone) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setTimeZone:"), value)
 }
 
+
 // The URL of a type checking result.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/url
+
 func (d_ DataDetector) Url() URL {
 	rv := objc.Send[URL](d_.ID, objc.Sel("url"))
 	return rv
 }
 
 
-// SetUrl sets the value of the url property.
 // The URL of a type checking result.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/url
+
 func (d_ DataDetector) SetUrl(value IURL) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setUrl:"), value)
 }

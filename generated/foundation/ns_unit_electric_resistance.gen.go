@@ -34,9 +34,13 @@ type IUnitElectricResistance interface {
 // A unit of measure for electric resistance.
 //
 // You typically use instances of to represent specific quantities of electric resistance using the class.
+
+
+// A unit of measure for electric resistance.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricResistance
+
 type UnitElectricResistance struct {
 	Dimension
 }
@@ -82,16 +86,22 @@ func NewUnitElectricResistance() UnitElectricResistance {
 }
 
 
+
 // The ohms unit of electric resistance.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricResistance/ohms
+
 func (uc _UnitElectricResistanceClass) Ohms() UnitElectricResistance {
 	rv := objc.Send[NSUnitElectricResistance](objc.ID(uc.class), objc.Sel("ohms"))
 	return rv
 }
+
 // The ohms unit of electric resistance.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricResistance/ohms
+
 func (u_ UnitElectricResistance) Ohms() NSUnitElectricResistance {
 	rv := objc.Send[NSUnitElectricResistance](u_.ID, objc.Sel("ohms"))
 	return rv

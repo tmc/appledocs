@@ -34,9 +34,13 @@ type IUnitDuration interface {
 // A unit of measure for a duration of time.
 //
 // You typically use instances of to represent specific quantities of planar angle using the class.
+
+
+// A unit of measure for a duration of time.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitDuration
+
 type UnitDuration struct {
 	Dimension
 }
@@ -82,16 +86,22 @@ func NewUnitDuration() UnitDuration {
 }
 
 
+
 // The second unit of duration.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitDuration/seconds
+
 func (uc _UnitDurationClass) Seconds() UnitDuration {
 	rv := objc.Send[NSUnitDuration](objc.ID(uc.class), objc.Sel("seconds"))
 	return rv
 }
+
 // The second unit of duration.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitDuration/seconds
+
 func (u_ UnitDuration) Seconds() NSUnitDuration {
 	rv := objc.Send[NSUnitDuration](u_.ID, objc.Sel("seconds"))
 	return rv

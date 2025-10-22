@@ -38,9 +38,13 @@ type IInvocation interface {
 // An Objective-C message rendered as an object.
 //
 // objects are used to store and forward messages between objects and between applications, primarily by objects and the distributed objects system. An object contains all the elements of an Objective-C message: a target, a selector, arguments, and the return value. Each of these elements can be set directly, and the return value is set automatically when the object is dispatched. An object can be repeatedly dispatched to different targets; its arguments can be modified between dispatch for varying results; even its selector can be changed to another with the same method signature (argument and return types). This flexibility makes useful for repeating messages with many arguments and variations; rather than retyping a slightly different expression for each message, you modify the object as needed each time before dispatching it to a new target. does not support invocations of methods with either variable numbers of arguments or arguments. You should use the class method to create objects; you should not create these objects using and . This class does not retain the arguments for the contained invocation by default. If those objects might disappear between the time you create your instance of and the time you use it, you should explicitly retain the objects yourself or invoke the method to have the invocation object retain them itself.
+
+
+// An Objective-C message rendered as an object.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInvocation
+
 type Invocation struct {
 	objectivec.Object
 }
@@ -95,27 +99,33 @@ func (ic _InvocationClass) InvocationWithMethodSignature(sig IMethodSignature) I
 	return rv
 }
 
+
 // If the receiver hasn’t already done so, retains the target and all object arguments of the receiver and copies all of its C-string arguments and blocks. If a returnvalue has been set, this is also retained or copied.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInvocation/retainArguments
+
 func (i_ Invocation) RetainArguments() {
 	objc.Send[objc.ID](i_.ID, objc.Sel("retainArguments"))
 }
 
+
 // The receiver’s target, or if the receiver has no target.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInvocation/target
+
 func (i_ Invocation) Target() objc.ID {
 	rv := objc.Send[objc.ID](i_.ID, objc.Sel("target"))
 	return rv
 }
 
 
-// SetTarget sets the value of the target property.
 // The receiver’s target, or if the receiver has no target.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInvocation/target
+
 func (i_ Invocation) SetTarget(value objc.ID) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setTarget:"), value)
 }

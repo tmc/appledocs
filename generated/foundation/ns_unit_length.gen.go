@@ -34,9 +34,13 @@ type IUnitLength interface {
 // A unit of measure for length.
 //
 // You typically use instances of to represent specific quantities of length using the class.
+
+
+// A unit of measure for length.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitLength
+
 type UnitLength struct {
 	Dimension
 }
@@ -82,16 +86,22 @@ func NewUnitLength() UnitLength {
 }
 
 
+
 // The hectometers unit of length.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitLength/hectometers
+
 func (uc _UnitLengthClass) Hectometers() UnitLength {
 	rv := objc.Send[NSUnitLength](objc.ID(uc.class), objc.Sel("hectometers"))
 	return rv
 }
+
 // The hectometers unit of length.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitLength/hectometers
+
 func (u_ UnitLength) Hectometers() NSUnitLength {
 	rv := objc.Send[NSUnitLength](u_.ID, objc.Sel("hectometers"))
 	return rv

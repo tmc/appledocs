@@ -36,9 +36,13 @@ type IMutableOrderedSet interface {
 // A dynamic, ordered collection of unique objects.
 //
 // objects are not like C arrays. That is, even though you may specify a size when you create a mutable ordered set, the specified size is regarded as a “hint”; the actual size of the set is still 0. This means that you cannot insert an object at an index greater than the current count of an set. For example, if a set contains two objects, its size is 2, so you can add objects at indices 0, 1, or 2. Index 3 is illegal and out of bounds; if you try to add an object at index 3 (when the size of the array is 2), raises an exception.
+
+
+// A dynamic, ordered collection of unique objects.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet
+
 type MutableOrderedSet struct {
 	OrderedSet
 }
@@ -84,16 +88,22 @@ func NewMutableOrderedSet() MutableOrderedSet {
 }
 
 
+
 // Removes from the mutable ordered set each of the objects within a given range.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet/removeObjects(in:)-9jkis
+
 func (m_ MutableOrderedSet) RemoveObjectsInRange(range_ IRange) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("removeObjectsInRange:"), range_)
 }
 
+
 // Replaces the objects at the specified indexes with the new objects.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet/replaceObjects(at:with:)
+
 func (m_ MutableOrderedSet) ReplaceObjectsAtIndexesWithObjects(indexes IIndexSet, objects []objc.ID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("replaceObjectsAtIndexes:withObjects:"), indexes, objects)
 }

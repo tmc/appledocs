@@ -56,9 +56,13 @@ type IBundleResourceRequest interface {
 // A resource manager you use to download content hosted on the App Store at the time your app needs it.
 //
 // You identify on-demand resources during development by creating string identifiers known as tags and assigning one or more tags to each resource. An object manages the resources marked by one or more tags. You use the resource request to inform the system when the managed tags are needed and when you have finished accessing them. The resource request manages the downloading of any resources marked with the managed tags that are not already on the device and informs your app when the resources are ready for use. The system will not attempt to purge the resources marked with a tag from on-device storage as long as at least one object is managing the tag. Apps can access resources after the completion handler of either or is called successfully. Management ends after a call to or after the resource request object is deallocated. Other properties and methods let you track the progress of a download, change the priority of a download, and check whether the resources marked by a set of tags are already on the device. Methods in indicate to the system the relative importance of preserving a tag in memory after it is no longer in use. For more information, see and .
+
+
+// A resource manager you use to download content hosted on the App Store at the time your app needs it.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBundleResourceRequest
+
 type BundleResourceRequest struct {
 	objectivec.Object
 }
@@ -118,181 +122,220 @@ func NewBundleResourceRequestWithTags(tags unsafe.Pointer) BundleResourceRequest
 }
 
 
+
 // Requests access to the resources marked with the managed tags. If any of the resources are not on the device, they are requested from the App Store.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBundleResourceRequest/beginAccessingResources(completionHandler:)
+
 func (b_ BundleResourceRequest) BeginAccessingResourcesWithCompletionHandler(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("beginAccessingResourcesWithCompletionHandler:"), completionHandler)
 }
 
+
 // Checks whether the resources marked with the tags managed by the request are already on the device. If all of the resources are on the device, you can begin accessing those resources.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBundleResourceRequest/conditionallyBeginAccessingResources(completionHandler:)
+
 func (b_ BundleResourceRequest) ConditionallyBeginAccessingResourcesWithCompletionHandler(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("conditionallyBeginAccessingResourcesWithCompletionHandler:"), completionHandler)
 }
 
+
 // Informs the system that you have finished accessing the resources marked with the tags managed by the request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBundleResourceRequest/endAccessingResources()
+
 func (b_ BundleResourceRequest) EndAccessingResources() {
 	objc.Send[objc.ID](b_.ID, objc.Sel("endAccessingResources"))
 }
 
+
 // A reference to the progress object associated with the specified resource request. (read-only)
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBundleResourceRequest/progress
+
 func (b_ BundleResourceRequest) Progress() NSProgress {
 	rv := objc.Send[NSProgress](b_.ID, objc.Sel("progress"))
 	return rv
 }
 
+
 // The end of the range of error codes reserved for bundle errors.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsbundleerrormaximum-swift.var
+
 func (b_ BundleResourceRequest) NSBundleErrorMaximum() int {
 	rv := objc.Send[int](b_.ID, objc.Sel("NSBundleErrorMaximum"))
 	return rv
 }
 
 
-// SetNSBundleErrorMaximum sets the value of the NSBundleErrorMaximum property.
 // The end of the range of error codes reserved for bundle errors.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsbundleerrormaximum-swift.var
+
 func (b_ BundleResourceRequest) SetNSBundleErrorMaximum(value int) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setNSBundleErrorMaximum:"), value)
 }
 
+
 // The start of the range of error codes reserved for bundle errors.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsbundleerrorminimum-swift.var
+
 func (b_ BundleResourceRequest) NSBundleErrorMinimum() int {
 	rv := objc.Send[int](b_.ID, objc.Sel("NSBundleErrorMinimum"))
 	return rv
 }
 
 
-// SetNSBundleErrorMinimum sets the value of the NSBundleErrorMinimum property.
 // The start of the range of error codes reserved for bundle errors.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsbundleerrorminimum-swift.var
+
 func (b_ BundleResourceRequest) SetNSBundleErrorMinimum(value int) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setNSBundleErrorMinimum:"), value)
 }
 
+
 // The application exceeded the amount of on-demand resources content in use at one time.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsbundleondemandresourceexceededmaximumsizeerror-swift.var
+
 func (b_ BundleResourceRequest) NSBundleOnDemandResourceExceededMaximumSizeError() int {
 	rv := objc.Send[int](b_.ID, objc.Sel("NSBundleOnDemandResourceExceededMaximumSizeError"))
 	return rv
 }
 
 
-// SetNSBundleOnDemandResourceExceededMaximumSizeError sets the value of the NSBundleOnDemandResourceExceededMaximumSizeError property.
 // The application exceeded the amount of on-demand resources content in use at one time.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsbundleondemandresourceexceededmaximumsizeerror-swift.var
+
 func (b_ BundleResourceRequest) SetNSBundleOnDemandResourceExceededMaximumSizeError(value int) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setNSBundleOnDemandResourceExceededMaximumSizeError:"), value)
 }
 
+
 // The application specified a tag that the system couldn’t find in the application tag manifest.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsbundleondemandresourceinvalidtagerror-swift.var
+
 func (b_ BundleResourceRequest) NSBundleOnDemandResourceInvalidTagError() int {
 	rv := objc.Send[int](b_.ID, objc.Sel("NSBundleOnDemandResourceInvalidTagError"))
 	return rv
 }
 
 
-// SetNSBundleOnDemandResourceInvalidTagError sets the value of the NSBundleOnDemandResourceInvalidTagError property.
 // The application specified a tag that the system couldn’t find in the application tag manifest.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsbundleondemandresourceinvalidtagerror-swift.var
+
 func (b_ BundleResourceRequest) SetNSBundleOnDemandResourceInvalidTagError(value int) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setNSBundleOnDemandResourceInvalidTagError:"), value)
 }
 
+
 // Insufficient space available to download the requested on-demand resources.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsbundleondemandresourceoutofspaceerror-swift.var
+
 func (b_ BundleResourceRequest) NSBundleOnDemandResourceOutOfSpaceError() int {
 	rv := objc.Send[int](b_.ID, objc.Sel("NSBundleOnDemandResourceOutOfSpaceError"))
 	return rv
 }
 
 
-// SetNSBundleOnDemandResourceOutOfSpaceError sets the value of the NSBundleOnDemandResourceOutOfSpaceError property.
 // Insufficient space available to download the requested on-demand resources.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsbundleondemandresourceoutofspaceerror-swift.var
+
 func (b_ BundleResourceRequest) SetNSBundleOnDemandResourceOutOfSpaceError(value int) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setNSBundleOnDemandResourceOutOfSpaceError:"), value)
 }
 
+
 // A reference to the bundle used for storing the downloaded resources. (read-only)
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsbundleresourcerequest/bundle
+
 func (b_ BundleResourceRequest) Bundle() NSBundle {
 	rv := objc.Send[NSBundle](b_.ID, objc.Sel("bundle"))
 	return rv
 }
 
 
-// SetBundle sets the value of the bundle property.
 // A reference to the bundle used for storing the downloaded resources. (read-only)
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsbundleresourcerequest/bundle
+
 func (b_ BundleResourceRequest) SetBundle(value IBundle) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setBundle:"), value)
 }
 
+
 // A hint to the system of the relative priority of the resource request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsbundleresourcerequest/loadingpriority
+
 func (b_ BundleResourceRequest) LoadingPriority() float64 {
 	rv := objc.Send[float64](b_.ID, objc.Sel("loadingPriority"))
 	return rv
 }
 
 
-// SetLoadingPriority sets the value of the loadingPriority property.
 // A hint to the system of the relative priority of the resource request.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsbundleresourcerequest/loadingpriority
+
 func (b_ BundleResourceRequest) SetLoadingPriority(value float64) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setLoadingPriority:"), value)
 }
 
+
 // A set of strings, with each string specifying a tag used to mark on-demand resources managed by the request. (read-only)
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsbundleresourcerequest/tags
+
 func (b_ BundleResourceRequest) Tags() string {
 	rv := objc.Send[string](b_.ID, objc.Sel("tags"))
 	return rv
 }
 
 
-// SetTags sets the value of the tags property.
 // A set of strings, with each string specifying a tag used to mark on-demand resources managed by the request. (read-only)
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsbundleresourcerequest/tags
+
 func (b_ BundleResourceRequest) SetTags(value string) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setTags:"), objc.String(value))
 }
 
+
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsbundleresourcerequestloadingpriorityurgent
+
 func (b_ BundleResourceRequest) NSBundleResourceRequestLoadingPriorityUrgent() float64 {
 	rv := objc.Send[float64](b_.ID, objc.Sel("NSBundleResourceRequestLoadingPriorityUrgent"))
 	return rv

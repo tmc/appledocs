@@ -41,9 +41,13 @@ type IDecimalNumberHandler interface {
 // A class that adopts the decimal number behaviors protocol.
 //
 // This class allows you to set the way an object rounds off and handles errors, without having to create a custom class. You can use an instance of this class as an argument to any of the methods that end with . If you don’t think you need special behavior, you probably don’t need this class—it is likely that ’s default behavior will suit your needs. For more information, see the protocol specification.
+
+
+// A class that adopts the decimal number behaviors protocol.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumberHandler
+
 type DecimalNumberHandler struct {
 	objectivec.Object
 }
@@ -87,56 +91,65 @@ func NewDecimalNumberHandler() DecimalNumberHandler {
 }
 
 
+
 // The rounding behavior used by the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/roundingbehavior
+
 func (d_ DecimalNumberHandler) RoundingBehavior() NSDecimalNumberHandler {
 	rv := objc.Send[NSDecimalNumberHandler](d_.ID, objc.Sel("roundingBehavior"))
 	return rv
 }
 
 
-// SetRoundingBehavior sets the value of the roundingBehavior property.
 // The rounding behavior used by the receiver.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/roundingbehavior
+
 func (d_ DecimalNumberHandler) SetRoundingBehavior(value IDecimalNumberHandler) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setRoundingBehavior:"), value)
 }
 
+
 // The rounding increment used by the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/roundingincrement
+
 func (d_ DecimalNumberHandler) RoundingIncrement() Number {
 	rv := objc.Send[Number](d_.ID, objc.Sel("roundingIncrement"))
 	return rv
 }
 
 
-// SetRoundingIncrement sets the value of the roundingIncrement property.
 // The rounding increment used by the receiver.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/roundingincrement
+
 func (d_ DecimalNumberHandler) SetRoundingIncrement(value INumber) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setRoundingIncrement:"), value)
 }
 
+
 // The rounding mode used by the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/roundingmode-swift.property
+
 func (d_ DecimalNumberHandler) RoundingMode() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("roundingMode"))
 	return rv
 }
 
 
-// SetRoundingMode sets the value of the roundingMode property.
 // The rounding mode used by the receiver.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/roundingmode-swift.property
+
 func (d_ DecimalNumberHandler) SetRoundingMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setRoundingMode:"), value)
 }

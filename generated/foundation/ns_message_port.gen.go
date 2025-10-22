@@ -34,9 +34,13 @@ type IMessagePort interface {
 // A port that can be used as an endpoint for distributed object connections (or raw messaging).
 //
 // is a subclass of that allows for local (on the same machine) communication only. A companion class, , allows for both local and remote communication, but may be more expensive than for the local case. defines no additional methods over those already defined by .
+
+
+// A port that can be used as an endpoint for distributed object connections (or raw messaging).
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/MessagePort
+
 type MessagePort struct {
 	Port
 }

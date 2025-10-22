@@ -42,9 +42,13 @@ type IDirectoryEnumerator interface {
 // An object that enumerates the contents of a directory.
 //
 // You obtain a directory enumerator using ’s method. The enumeration provides the pathnames of all files and directories contained within that directory. These pathnames are relative to the directory. An enumeration is recursive, including the files of all subdirectories, and crosses device boundaries. An enumeration does not resolve symbolic links, or attempt to traverse symbolic links that point to directories.
+
+
+// An object that enumerates the contents of a directory.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/DirectoryEnumerator
+
 type DirectoryEnumerator struct {
 	Enumerator
 }
@@ -90,71 +94,84 @@ func NewDirectoryEnumerator() DirectoryEnumerator {
 }
 
 
+
 // A dictionary with the attributes of the directory at which enumeration started.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filemanager/directoryenumerator/directoryattributes
+
 func (d_ DirectoryEnumerator) DirectoryAttributes() FileAttributeKey {
 	rv := objc.Send[FileAttributeKey](d_.ID, objc.Sel("directoryAttributes"))
 	return rv
 }
 
 
-// SetDirectoryAttributes sets the value of the directoryAttributes property.
 // A dictionary with the attributes of the directory at which enumeration started.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filemanager/directoryenumerator/directoryattributes
+
 func (d_ DirectoryEnumerator) SetDirectoryAttributes(value IFileAttributeKey) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDirectoryAttributes:"), value)
 }
 
+
 // A dictionary with the attributes of the most recently returned file or subdirectory (as referenced by the pathname).
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filemanager/directoryenumerator/fileattributes
+
 func (d_ DirectoryEnumerator) FileAttributes() FileAttributeKey {
 	rv := objc.Send[FileAttributeKey](d_.ID, objc.Sel("fileAttributes"))
 	return rv
 }
 
 
-// SetFileAttributes sets the value of the fileAttributes property.
 // A dictionary with the attributes of the most recently returned file or subdirectory (as referenced by the pathname).
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filemanager/directoryenumerator/fileattributes
+
 func (d_ DirectoryEnumerator) SetFileAttributes(value IFileAttributeKey) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setFileAttributes:"), value)
 }
 
+
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filemanager/directoryenumerator/isenumeratingdirectorypostorder
+
 func (d_ DirectoryEnumerator) IsEnumeratingDirectoryPostOrder() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("isEnumeratingDirectoryPostOrder"))
 	return rv
 }
 
 
-// SetIsEnumeratingDirectoryPostOrder sets the value of the isEnumeratingDirectoryPostOrder property.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filemanager/directoryenumerator/isenumeratingdirectorypostorder
+
 func (d_ DirectoryEnumerator) SetIsEnumeratingDirectoryPostOrder(value bool) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setIsEnumeratingDirectoryPostOrder:"), value)
 }
 
+
 // The number of levels deep the current object is in the directory hierarchy being enumerated.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filemanager/directoryenumerator/level
+
 func (d_ DirectoryEnumerator) Level() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("level"))
 	return rv
 }
 
 
-// SetLevel sets the value of the level property.
 // The number of levels deep the current object is in the directory hierarchy being enumerated.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filemanager/directoryenumerator/level
+
 func (d_ DirectoryEnumerator) SetLevel(value int) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setLevel:"), value)
 }

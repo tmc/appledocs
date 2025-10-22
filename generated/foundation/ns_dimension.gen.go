@@ -37,9 +37,13 @@ type IDimension interface {
 // An abstract class representing a dimensional unit of measure.
 //
 // The Foundation framework provides concrete subclasses for many of the most common types of physical units. Table 1: subclasses. Each instance of a subclass has a , which represents the unit in terms of the dimension’s . For example, the class uses as its base unit. The system defines the predefined unit by a with a of , which corresponds to the conversion ratio of miles to meters (1 mi = 1609.34 m); the system defines the predefined unit by a with a of because it’s the base unit. You typically use an subclass in conjunction with the class to represent specific quantities of a particular unit.
+
+
+// An abstract class representing a dimensional unit of measure.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Dimension
+
 type Dimension struct {
 	Unit
 }
@@ -112,28 +116,34 @@ func (dc _DimensionClass) BaseUnit() unsafe.Pointer {
 	return rv
 }
 
+
 // The unit converter that represents the unit in terms of the dimension’s base unit.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Dimension/converter
+
 func (d_ Dimension) Converter() NSUnitConverter {
 	rv := objc.Send[NSUnitConverter](d_.ID, objc.Sel("converter"))
 	return rv
 }
 
+
 // The coefficient to use in the linear unit conversion calculation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/unitconverterlinear/coefficient
+
 func (d_ Dimension) Coefficient() float64 {
 	rv := objc.Send[float64](d_.ID, objc.Sel("coefficient"))
 	return rv
 }
 
 
-// SetCoefficient sets the value of the coefficient property.
 // The coefficient to use in the linear unit conversion calculation.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/unitconverterlinear/coefficient
+
 func (d_ Dimension) SetCoefficient(value float64) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setCoefficient:"), value)
 }

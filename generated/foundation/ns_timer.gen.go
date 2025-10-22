@@ -46,9 +46,13 @@ type ITimer interface {
 // A timer that fires after a certain time interval has elapsed, sending a specified message to a target object.
 //
 // Timers work in conjunction with run loops. Run loops maintain strong references to their timers, so you don’t have to maintain your own strong reference to a timer after you have added it to a run loop. To use a timer effectively, you should be aware of how run loops operate. See for more information. A timer is not a real-time mechanism. If a timer’s firing time occurs during a long run loop callout or while the run loop is in a mode that isn’t monitoring the timer, the timer doesn’t fire until the next time the run loop checks the timer. Therefore, the actual time at which a timer fires can be significantly later. See also . is toll-free bridged with its Core Foundation counterpart, . See for more information.
+
+
+// A timer that fires after a certain time interval has elapsed, sending a specified message to a target object.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Timer
+
 type Timer struct {
 	objectivec.Object
 }
@@ -228,94 +232,118 @@ func (tc _TimerClass) ScheduledTimerWithTimeIntervalRepeatsBlock(interval ITimeI
 	return rv
 }
 
+
 // Causes the timer’s message to be sent to its target.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Timer/fire()
+
 func (t_ Timer) Fire() {
 	objc.Send[objc.ID](t_.ID, objc.Sel("fire"))
 }
 
+
 // Stops the timer from ever firing again and requests its removal from its run loop.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Timer/invalidate()
+
 func (t_ Timer) Invalidate() {
 	objc.Send[objc.ID](t_.ID, objc.Sel("invalidate"))
 }
 
+
 // The date at which the timer will fire.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Timer/fireDate
+
 func (t_ Timer) FireDate() NSDate {
 	rv := objc.Send[NSDate](t_.ID, objc.Sel("fireDate"))
 	return rv
 }
 
 
-// SetFireDate sets the value of the fireDate property.
 // The date at which the timer will fire.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Timer/fireDate
+
 func (t_ Timer) SetFireDate(value IDate) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setFireDate:"), value)
 }
 
+
 // A Boolean value that indicates whether the timer is currently valid.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Timer/isValid
+
 func (t_ Timer) Valid() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("valid"))
 	return rv
 }
 
+
 // The timer’s time interval, in seconds.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Timer/timeInterval
+
 func (t_ Timer) TimeInterval() TimeInterval {
 	rv := objc.Send[TimeInterval](t_.ID, objc.Sel("timeInterval"))
 	return rv
 }
 
+
 // The amount of time after the scheduled fire date that the timer may fire.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Timer/tolerance
+
 func (t_ Timer) Tolerance() TimeInterval {
 	rv := objc.Send[TimeInterval](t_.ID, objc.Sel("tolerance"))
 	return rv
 }
 
 
-// SetTolerance sets the value of the tolerance property.
 // The amount of time after the scheduled fire date that the timer may fire.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Timer/tolerance
+
 func (t_ Timer) SetTolerance(value ITimeInterval) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTolerance:"), value)
 }
 
+
 // The receiver’s object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Timer/userInfo
+
 func (t_ Timer) UserInfo() objc.ID {
 	rv := objc.Send[objc.ID](t_.ID, objc.Sel("userInfo"))
 	return rv
 }
 
+
 // A Boolean value that indicates whether the timer is currently valid.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/timer/isvalid
+
 func (t_ Timer) IsValid() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isValid"))
 	return rv
 }
 
 
-// SetIsValid sets the value of the isValid property.
 // A Boolean value that indicates whether the timer is currently valid.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/timer/isvalid
+
 func (t_ Timer) SetIsValid(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsValid:"), value)
 }

@@ -41,9 +41,13 @@ type IURLCredential interface {
 // n authentication credential consisting of information specific to the type of credential and the type of persistent storage to use, if any.
 //
 // The URL Loading System supports password-based user credentials, certificate-based user credentials, and certificate-based server credentials. When you create a credential, you can specify it for a single request, persist it temporarily (until your app quits), or persist it permanently. Permanent persistence can be local persistence in the keychain, or synchronized persistence across the user’s devices, based on their Apple ID.
+
+
+// n authentication credential consisting of information specific to the type of credential and the type of persistent storage to use, if any.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLCredential
+
 type URLCredential struct {
 	objectivec.Object
 }
@@ -179,49 +183,67 @@ func (uc _URLCredentialClass) CredentialForTrust(trust unsafe.Pointer) URLCreden
 	return rv
 }
 
+
 // The intermediate certificates of the credential, if it is a client certificate credential.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLCredential/certificates
+
 func (u_ URLCredential) Certificates() objc.ID {
 	rv := objc.Send[objc.ID](u_.ID, objc.Sel("certificates"))
 	return rv
 }
 
+
 // A Boolean value that indicates whether the credential has a password.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLCredential/hasPassword
+
 func (u_ URLCredential) HasPassword() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("hasPassword"))
 	return rv
 }
 
+
 // The identity of this credential if it is a client certificate credential.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLCredential/identity
+
 func (u_ URLCredential) Identity() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("identity"))
 	return rv
 }
 
+
 // The credential’s password.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLCredential/password
+
 func (u_ URLCredential) Password() string {
 	rv := objc.Send[string](u_.ID, objc.Sel("password"))
 	return rv
 }
 
+
 // The credential’s persistence setting.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLCredential/persistence-swift.property
+
 func (u_ URLCredential) Persistence() URLCredentialPersistence {
 	rv := objc.Send[URLCredentialPersistence](u_.ID, objc.Sel("persistence"))
 	return rv
 }
 
+
 // The credential’s user name.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLCredential/user
+
 func (u_ URLCredential) User() string {
 	rv := objc.Send[string](u_.ID, objc.Sel("user"))
 	return rv

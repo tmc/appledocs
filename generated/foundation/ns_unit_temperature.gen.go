@@ -34,9 +34,13 @@ type IUnitTemperature interface {
 // A unit of measure for temperature.
 //
 // You typically use instances of to represent specific quantities of temperature using the class.
+
+
+// A unit of measure for temperature.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitTemperature
+
 type UnitTemperature struct {
 	Dimension
 }
@@ -82,46 +86,64 @@ func NewUnitTemperature() UnitTemperature {
 }
 
 
+
 // The degree Celsius unit of temperature.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitTemperature/celsius
+
 func (uc _UnitTemperatureClass) Celsius() UnitTemperature {
 	rv := objc.Send[NSUnitTemperature](objc.ID(uc.class), objc.Sel("celsius"))
 	return rv
 }
+
 // The degree Fahrenheit unit of temperature.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitTemperature/fahrenheit
+
 func (uc _UnitTemperatureClass) Fahrenheit() UnitTemperature {
 	rv := objc.Send[NSUnitTemperature](objc.ID(uc.class), objc.Sel("fahrenheit"))
 	return rv
 }
+
 // The kelvin unit of temperature.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitTemperature/kelvin
+
 func (uc _UnitTemperatureClass) Kelvin() UnitTemperature {
 	rv := objc.Send[NSUnitTemperature](objc.ID(uc.class), objc.Sel("kelvin"))
 	return rv
 }
+
 // The degree Celsius unit of temperature.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitTemperature/celsius
+
 func (u_ UnitTemperature) Celsius() NSUnitTemperature {
 	rv := objc.Send[NSUnitTemperature](u_.ID, objc.Sel("celsius"))
 	return rv
 }
 
+
 // The degree Fahrenheit unit of temperature.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitTemperature/fahrenheit
+
 func (u_ UnitTemperature) Fahrenheit() NSUnitTemperature {
 	rv := objc.Send[NSUnitTemperature](u_.ID, objc.Sel("fahrenheit"))
 	return rv
 }
 
+
 // The kelvin unit of temperature.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitTemperature/kelvin
+
 func (u_ UnitTemperature) Kelvin() NSUnitTemperature {
 	rv := objc.Send[NSUnitTemperature](u_.ID, objc.Sel("kelvin"))
 	return rv

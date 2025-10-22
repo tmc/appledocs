@@ -54,9 +54,13 @@ type IXMLDocument interface {
 // An XML document as internalized into a logical tree structure.
 //
 // An object can have multiple child nodes but only one element, the root element. Any other node must be a object representing a comment or a processing instruction. If you attempt to add any other kind of child node to an object, such as an attribute, namespace, another document object, or an element other than the root, raises an exception. If you add a valid child node and that object already has a parent, raises an exception. An object may also have document-global attributes, such as XML version, character encoding, referenced DTD, and MIME type. The initializers of the class read an external source of XML, whether it be a local file or remote website, parse it, and process it into the tree representation. You can also construct an programmatically. There are accessor methods for getting and setting document attributes, methods for transforming documents using XSLT, a method for dynamically validating a document, and methods for printing out the content of an as XML, XHTML, HTML, or plain text. The class is thread-safe as long as any given instance is used only in one thread.
+
+
+// An XML document as internalized into a logical tree structure.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDocument
+
 type XMLDocument struct {
 	XMLNode
 }
@@ -118,170 +122,212 @@ func NewXMLDocumentWithDataOptionsError(data IData, mask XMLNodeOptions, error_ 
 }
 
 
+
 // Adds a child node after the last of the receiver’s existing children.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDocument/addChild(_:)
+
 func (x_ XMLDocument) AddChild(child IXMLNode) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("addChild:"), child)
 }
 
+
 // Inserts an array of children at a specified position in the receiver’s array of children.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDocument/insertChildren(_:at:)
+
 func (x_ XMLDocument) InsertChildrenAtIndex(children []XMLNode, index uint) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("insertChildren:atIndex:"), children, index)
 }
 
+
 // Applies the XSLT pattern rules and templates (specified as a data object) to the receiver and returns a document object containing transformed XML or HTML markup.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDocument/object(byApplyingXSLT:arguments:)
+
 func (x_ XMLDocument) ObjectByApplyingXSLTArgumentsError(xslt IData, arguments unsafe.Pointer, error_ IError) objc.ID {
 	rv := objc.Send[objc.ID](x_.ID, objc.Sel("objectByApplyingXSLT:arguments:error:"), xslt, arguments, error_)
 	return rv
 }
 
+
 // Applies the XSLT pattern rules and templates (specified as a string) to the receiver and returns a document object containing transformed XML or HTML markup.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDocument/object(byApplyingXSLTString:arguments:)
+
 func (x_ XMLDocument) ObjectByApplyingXSLTStringArgumentsError(xslt string, arguments unsafe.Pointer, error_ IError) objc.ID {
 	rv := objc.Send[objc.ID](x_.ID, objc.Sel("objectByApplyingXSLTString:arguments:error:"), objc.String(xslt), arguments, error_)
 	return rv
 }
 
+
 // Removes the child node of the receiver located at a specified position in its array of children.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDocument/removeChild(at:)
+
 func (x_ XMLDocument) RemoveChildAtIndex(index uint) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("removeChildAtIndex:"), index)
 }
 
+
 // Returns the root element of the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDocument/rootElement()
+
 func (x_ XMLDocument) RootElement() XMLElement {
 	rv := objc.Send[XMLElement](x_.ID, objc.Sel("rootElement"))
 	return rv
 }
 
+
 // Set the root element of the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDocument/setRootElement(_:)
+
 func (x_ XMLDocument) SetRootElement(root IXMLElement) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setRootElement:"), root)
 }
 
+
 // Returns the MIME type for the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDocument/mimeType
+
 func (x_ XMLDocument) MIMEType() string {
 	rv := objc.Send[string](x_.ID, objc.Sel("MIMEType"))
 	return rv
 }
 
 
-// SetMIMEType sets the value of the MIMEType property.
 // Returns the MIME type for the receiver.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDocument/mimeType
+
 func (x_ XMLDocument) SetMIMEType(value string) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setMIMEType:"), objc.String(value))
 }
 
+
 // Returns the XML string representation of the receiver—that is, the entire document—encapsulated in a data object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDocument/xmlData
+
 func (x_ XMLDocument) XMLData() NSData {
 	rv := objc.Send[NSData](x_.ID, objc.Sel("XMLData"))
 	return rv
 }
 
+
 // Sets the character encoding of the receiver to
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmldocument/characterencoding
+
 func (x_ XMLDocument) CharacterEncoding() string {
 	rv := objc.Send[string](x_.ID, objc.Sel("characterEncoding"))
 	return rv
 }
 
 
-// SetCharacterEncoding sets the value of the characterEncoding property.
 // Sets the character encoding of the receiver to
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmldocument/characterencoding
+
 func (x_ XMLDocument) SetCharacterEncoding(value string) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setCharacterEncoding:"), objc.String(value))
 }
 
+
 // Sets the kind of output content for the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmldocument/documentcontentkind
+
 func (x_ XMLDocument) DocumentContentKind() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("documentContentKind"))
 	return rv
 }
 
 
-// SetDocumentContentKind sets the value of the documentContentKind property.
 // Sets the kind of output content for the receiver.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmldocument/documentcontentkind
+
 func (x_ XMLDocument) SetDocumentContentKind(value unsafe.Pointer) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setDocumentContentKind:"), value)
 }
 
+
 // Returns an
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmldocument/dtd
+
 func (x_ XMLDocument) Dtd() NSXMLDTD {
 	rv := objc.Send[NSXMLDTD](x_.ID, objc.Sel("dtd"))
 	return rv
 }
 
 
-// SetDtd sets the value of the dtd property.
 // Returns an
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmldocument/dtd
+
 func (x_ XMLDocument) SetDtd(value IXMLDTD) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setDtd:"), value)
 }
 
+
 // Sets a Boolean value that specifies whether the receiver represents a standalone XML document.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmldocument/isstandalone
+
 func (x_ XMLDocument) IsStandalone() bool {
 	rv := objc.Send[bool](x_.ID, objc.Sel("isStandalone"))
 	return rv
 }
 
 
-// SetIsStandalone sets the value of the isStandalone property.
 // Sets a Boolean value that specifies whether the receiver represents a standalone XML document.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmldocument/isstandalone
+
 func (x_ XMLDocument) SetIsStandalone(value bool) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setIsStandalone:"), value)
 }
 
+
 // Sets the version of the receiver’s XML.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmldocument/version
+
 func (x_ XMLDocument) Version() string {
 	rv := objc.Send[string](x_.ID, objc.Sel("version"))
 	return rv
 }
 
 
-// SetVersion sets the value of the version property.
 // Sets the version of the receiver’s XML.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmldocument/version
+
 func (x_ XMLDocument) SetVersion(value string) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setVersion:"), objc.String(value))
 }

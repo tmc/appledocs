@@ -38,9 +38,13 @@ type INotificationQueue interface {
 // A notification center buffer.
 //
 // Whereas a notification center distributes notifications when posted, notifications placed into the queue can be delayed until the end of the current pass through the run loop or until the run loop is idle. Duplicate notifications can be coalesced so that only one notification is sent although multiple notifications are posted. A notification queue maintains notifications in first in, first out (FIFO) order. When a notification moves to the front of the queue, the queue posts it to the notification center, which in turn dispatches the notification to all objects registered as observers. Every thread has a default notification queue, which is associated with the default notification center for the process. You can create your own notification queues and have multiple queues per center and thread.
+
+
+// A notification center buffer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NotificationQueue
+
 type NotificationQueue struct {
 	objectivec.Object
 }
@@ -100,37 +104,52 @@ func NewNotificationQueueWithNotificationCenter(notificationCenter INotification
 }
 
 
+
 // Returns the default notification queue for the current thread.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NotificationQueue/default
+
 func (nc _NotificationQueueClass) DefaultQueue() NotificationQueue {
 	rv := objc.Send[NSNotificationQueue](objc.ID(nc.class), objc.Sel("defaultQueue"))
 	return rv
 }
+
 // Removes all notifications from the queue that match a provided notification using provided matching criteria.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NotificationQueue/dequeueNotifications(matching:coalesceMask:)
+
 func (n_ NotificationQueue) DequeueNotificationsMatchingCoalesceMask(notification INotification, coalesceMask uint) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("dequeueNotificationsMatching:coalesceMask:"), notification, coalesceMask)
 }
 
+
 // Adds a notification to the notification queue with a specified posting style.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NotificationQueue/enqueue(_:postingStyle:)
+
 func (n_ NotificationQueue) EnqueueNotificationPostingStyle(notification INotification, postingStyle unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("enqueueNotification:postingStyle:"), notification, postingStyle)
 }
 
+
 // Adds a notification to the notification queue with a specified posting style, criteria for coalescing, and run loop mode.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NotificationQueue/enqueue(_:postingStyle:coalesceMask:forModes:)
+
 func (n_ NotificationQueue) EnqueueNotificationPostingStyleCoalesceMaskForModes(notification INotification, postingStyle unsafe.Pointer, coalesceMask INotificationCoalescing, modes []string) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("enqueueNotification:postingStyle:coalesceMask:forModes:"), notification, postingStyle, coalesceMask, modes)
 }
 
+
 // Returns the default notification queue for the current thread.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NotificationQueue/default
+
 func (n_ NotificationQueue) DefaultQueue() NSNotificationQueue {
 	rv := objc.Send[NSNotificationQueue](n_.ID, objc.Sel("defaultQueue"))
 	return rv

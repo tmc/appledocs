@@ -43,9 +43,13 @@ type IURLAuthenticationChallenge interface {
 // A challenge from a server requiring authentication from the client.
 //
 // Your app receives authentication challenges in various , , and delegate methods, such as . These objects provide the information you’ll need when deciding how to handle a server’s request for authentication. At the core of that authentication challenge is a that defines the type of authentication being requested, the host and port number, the networking protocol, and (where applicable) the authentication realm (a group of related URLs on the same server that share a single set of credentials).
+
+
+// A challenge from a server requiring authentication from the client.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLAuthenticationChallenge
+
 type URLAuthenticationChallenge struct {
 	objectivec.Object
 }
@@ -89,70 +93,88 @@ func NewURLAuthenticationChallenge() URLAuthenticationChallenge {
 }
 
 
+
 // The URL response object representing the last authentication failure.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLAuthenticationChallenge/failureResponse
+
 func (u_ URLAuthenticationChallenge) FailureResponse() NSURLResponse {
 	rv := objc.Send[NSURLResponse](u_.ID, objc.Sel("failureResponse"))
 	return rv
 }
 
+
 // The receiver’s count of failed authentication attempts.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLAuthenticationChallenge/previousFailureCount
+
 func (u_ URLAuthenticationChallenge) PreviousFailureCount() int {
 	rv := objc.Send[int](u_.ID, objc.Sel("previousFailureCount"))
 	return rv
 }
 
+
 // The proposed credential for this challenge.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLAuthenticationChallenge/proposedCredential
+
 func (u_ URLAuthenticationChallenge) ProposedCredential() NSURLCredential {
 	rv := objc.Send[NSURLCredential](u_.ID, objc.Sel("proposedCredential"))
 	return rv
 }
 
+
 // The sender of the challenge.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLAuthenticationChallenge/sender
+
 func (u_ URLAuthenticationChallenge) Sender() objc.ID {
 	rv := objc.Send[objc.ID](u_.ID, objc.Sel("sender"))
 	return rv
 }
 
+
 // The error object representing the last authentication failure.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlauthenticationchallenge/error
+
 func (u_ URLAuthenticationChallenge) Error() Error {
 	rv := objc.Send[Error](u_.ID, objc.Sel("error"))
 	return rv
 }
 
 
-// SetError sets the value of the error property.
 // The error object representing the last authentication failure.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlauthenticationchallenge/error
+
 func (u_ URLAuthenticationChallenge) SetError(value IError) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setError:"), value)
 }
 
+
 // The receiver’s protection space.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlauthenticationchallenge/protectionspace
+
 func (u_ URLAuthenticationChallenge) ProtectionSpace() NSURLProtectionSpace {
 	rv := objc.Send[NSURLProtectionSpace](u_.ID, objc.Sel("protectionSpace"))
 	return rv
 }
 
 
-// SetProtectionSpace sets the value of the protectionSpace property.
 // The receiver’s protection space.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlauthenticationchallenge/protectionspace
+
 func (u_ URLAuthenticationChallenge) SetProtectionSpace(value IURLProtectionSpace) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setProtectionSpace:"), value)
 }

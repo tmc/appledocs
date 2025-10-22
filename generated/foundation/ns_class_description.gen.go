@@ -41,9 +41,13 @@ type IClassDescription interface {
 // An abstract class that provides the interface for querying the relationships and properties of a class.
 //
 // Concrete subclasses of provide the available attributes of objects of a particular class and the relationships between that class and other classes. Defining these relationships between classes allows for more intelligent and flexible manipulation of objects with key-value coding. It is important to note that there are no class descriptions by default. To use objects in your code you have to implement them for your model classes. For all concrete subclasses, you must provide implementations for all instance methods of . ( provides only the implementation for the class methods that maintain the cache of registered class descriptions.) Once created, you must register a class description with the method . You can use the objects in the arrays returned by methods such as and to access—using key-value coding—the properties of an instance of the class to which a class description object corresponds. For more about attributes and relationships, see Cocoa Fundamentals Guide. For more about key-value coding, see . , which is used to map the relationships between scriptable classes, is the only concrete subclass of provided as part of the Cocoa framework.
+
+
+// An abstract class that provides the interface for querying the relationships and properties of a class.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSClassDescription
+
 type ClassDescription struct {
 	objectivec.Object
 }
@@ -112,56 +116,65 @@ func (cc _ClassDescriptionClass) ClassDescriptionForClass(aClass objc.Class) Cla
 	return rv
 }
 
+
 // Overridden by subclasses to return the names of attributes of instances of the described class.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsclassdescription/attributekeys
+
 func (c_ ClassDescription) AttributeKeys() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("attributeKeys"))
 	return rv
 }
 
 
-// SetAttributeKeys sets the value of the attributeKeys property.
 // Overridden by subclasses to return the names of attributes of instances of the described class.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsclassdescription/attributekeys
+
 func (c_ ClassDescription) SetAttributeKeys(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAttributeKeys:"), objc.String(value))
 }
 
+
 // Overridden by subclasses to return the keys for the to-many relationship properties of instances of the described class.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsclassdescription/tomanyrelationshipkeys
+
 func (c_ ClassDescription) ToManyRelationshipKeys() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("toManyRelationshipKeys"))
 	return rv
 }
 
 
-// SetToManyRelationshipKeys sets the value of the toManyRelationshipKeys property.
 // Overridden by subclasses to return the keys for the to-many relationship properties of instances of the described class.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsclassdescription/tomanyrelationshipkeys
+
 func (c_ ClassDescription) SetToManyRelationshipKeys(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setToManyRelationshipKeys:"), objc.String(value))
 }
 
+
 // Overridden by subclasses to return the keys for the to-one relationship properties of instances of the described class.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsclassdescription/toonerelationshipkeys
+
 func (c_ ClassDescription) ToOneRelationshipKeys() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("toOneRelationshipKeys"))
 	return rv
 }
 
 
-// SetToOneRelationshipKeys sets the value of the toOneRelationshipKeys property.
 // Overridden by subclasses to return the keys for the to-one relationship properties of instances of the described class.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsclassdescription/toonerelationshipkeys
+
 func (c_ ClassDescription) SetToOneRelationshipKeys(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setToOneRelationshipKeys:"), objc.String(value))
 }

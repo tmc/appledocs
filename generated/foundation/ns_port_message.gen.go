@@ -41,9 +41,13 @@ type IPortMessage interface {
 // A low-level, operating system-independent type for inter-application (and inter-thread) messages.
 //
 // Port messages are used primarily by the distributed objects system. You should implement inter-application communication using distributed objects whenever possible and use only when necessary. An object has three major parts: the send and receive ports, which are objects that link the sender of the message to the receiver, and the components, which form the body of the message. The components are held as an object containing and objects. The message sends the components out through the send port; any replies to the message arrive on the receive port. See the class specification for information on handling incoming messages. An instance can be initialized with a pair of objects and an array of components. A port message’s body can contain only objects or objects. In the distributed objects system the byte/character arrays are usually encoded objects that are being forwarded from a proxy to the corresponding real object. An object also maintains a message identifier, which can be used to indicate the class of a message, such as an Objective-C method invocation, a connection request, an error, and so on. Use the and methods to access the identifier.
+
+
+// A low-level, operating system-independent type for inter-application (and inter-thread) messages.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/PortMessage
+
 type PortMessage struct {
 	objectivec.Object
 }
@@ -103,51 +107,66 @@ func NewPortMessageWithSendPortReceivePortComponents(sendPort IPort, replyPort I
 }
 
 
+
 // Attempts to send the message before the specified date.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/PortMessage/send(before:)
+
 func (p_ PortMessage) SendBeforeDate(date IDate) bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("sendBeforeDate:"), date)
 	return rv
 }
 
+
 // Returns the data components of the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/PortMessage/components
+
 func (p_ PortMessage) Components() objc.ID {
 	rv := objc.Send[objc.ID](p_.ID, objc.Sel("components"))
 	return rv
 }
 
+
 // Returns the identifier for the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/PortMessage/msgid
+
 func (p_ PortMessage) Msgid() uint32 {
 	rv := objc.Send[uint32](p_.ID, objc.Sel("msgid"))
 	return rv
 }
 
 
-// SetMsgid sets the value of the msgid property.
 // Returns the identifier for the receiver.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/PortMessage/msgid
+
 func (p_ PortMessage) SetMsgid(value Iuint32) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMsgid:"), value)
 }
 
+
 // For an outgoing message, returns the port on which replies to the receiver will arrive. For an incoming message, returns the port the receiver did arrive on.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/PortMessage/receivePort
+
 func (p_ PortMessage) ReceivePort() NSPort {
 	rv := objc.Send[NSPort](p_.ID, objc.Sel("receivePort"))
 	return rv
 }
 
+
 // For an outgoing message, returns the port the receiver will send itself through. For an incoming message, returns the port replies to the receiver should be sent through.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/PortMessage/sendPort
+
 func (p_ PortMessage) SendPort() NSPort {
 	rv := objc.Send[NSPort](p_.ID, objc.Sel("sendPort"))
 	return rv

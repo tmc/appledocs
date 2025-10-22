@@ -38,9 +38,13 @@ type IURLSessionTaskMetrics interface {
 // An object encapsulating the metrics for a session task.
 //
 // Each object contains the and , as well as metrics for each request-and-response transaction made during the execution of the task.
+
+
+// An object encapsulating the metrics for a session task.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTaskMetrics
+
 type URLSessionTaskMetrics struct {
 	objectivec.Object
 }
@@ -85,25 +89,34 @@ func NewURLSessionTaskMetrics() URLSessionTaskMetrics {
 
 
 
+
 // The number of redirects that occurred during the execution of the task.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTaskMetrics/redirectCount
+
 func (u_ URLSessionTaskMetrics) RedirectCount() uint {
 	rv := objc.Send[uint](u_.ID, objc.Sel("redirectCount"))
 	return rv
 }
 
+
 // The time interval between when a task is instantiated and when the task is completed.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTaskMetrics/taskInterval
+
 func (u_ URLSessionTaskMetrics) TaskInterval() NSDateInterval {
 	rv := objc.Send[NSDateInterval](u_.ID, objc.Sel("taskInterval"))
 	return rv
 }
 
+
 // An array of metrics for each individual request-response transaction made during the execution of the task.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTaskMetrics/transactionMetrics
+
 func (u_ URLSessionTaskMetrics) TransactionMetrics() []URLSessionTaskTransactionMetrics {
 	rv := objc.Send[[]URLSessionTaskTransactionMetrics](u_.ID, objc.Sel("transactionMetrics"))
 	return rv

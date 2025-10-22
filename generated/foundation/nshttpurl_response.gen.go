@@ -36,9 +36,13 @@ type IHTTPURLResponse interface {
 // The metadata associated with the response to an HTTP protocol URL load request.
 //
 // The class is a subclass of that provides methods for accessing information specific to HTTP protocol responses. Whenever you make HTTP URL load requests, any response objects you get back from the , , or class are instances of the class.
+
+
+// The metadata associated with the response to an HTTP protocol URL load request.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/HTTPURLResponse
+
 type HTTPURLResponse struct {
 	URLResponse
 }
@@ -95,17 +99,23 @@ func (hc _HTTPURLResponseClass) LocalizedStringForStatusCode(statusCode int) Str
 	return rv
 }
 
+
 // All HTTP header fields of the response.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/HTTPURLResponse/allHeaderFields
+
 func (h_ HTTPURLResponse) AllHeaderFields() objc.ID {
 	rv := objc.Send[objc.ID](h_.ID, objc.Sel("allHeaderFields"))
 	return rv
 }
 
+
 // The response’s HTTP status code.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/HTTPURLResponse/statusCode
+
 func (h_ HTTPURLResponse) StatusCode() int {
 	rv := objc.Send[int](h_.ID, objc.Sel("statusCode"))
 	return rv

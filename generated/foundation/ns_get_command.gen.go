@@ -34,9 +34,13 @@ type IGetCommand interface {
 // A command that retrieves a value or object from a scriptable object.
 //
 // An instance of gets the specified value or object from the specified scriptable object: for example, the words from a paragraph or the name of a document. When an instance of is executed, it evaluates the specified receivers, gathers the specified data, if any, and packages it in a return Apple event. is part of Cocoa’s built-in scripting support. It works automatically to support the command through key-value coding. Most applications don’t need to subclass or call its methods. For information on working with commands, see in .
+
+
+// A command that retrieves a value or object from a scriptable object.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSGetCommand
+
 type GetCommand struct {
 	ScriptCommand
 }

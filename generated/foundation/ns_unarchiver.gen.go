@@ -38,9 +38,13 @@ type IUnarchiver interface {
 // A decoder that restores data from an archive.
 //
 // , a concrete subclass of , defines methods for decoding a set of Objective-C objects from an archive. Such archives are produced by objects of the class. In macOS 10.2 and later, and have been replaced by and respectively—see .
+
+
+// A decoder that restores data from an archive.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUnarchiver
+
 type Unarchiver struct {
 	Coder
 }
@@ -123,38 +127,44 @@ func (uc _UnarchiverClass) UnarchiveObjectWithData(data IData) objc.ID {
 	return rv
 }
 
+
 // A Boolean value that indicates whether the receiver has reached the end of the encoded data while decoding.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsunarchiver/isatend
+
 func (u_ Unarchiver) IsAtEnd() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("isAtEnd"))
 	return rv
 }
 
 
-// SetIsAtEnd sets the value of the isAtEnd property.
 // A Boolean value that indicates whether the receiver has reached the end of the encoded data while decoding.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsunarchiver/isatend
+
 func (u_ Unarchiver) SetIsAtEnd(value bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setIsAtEnd:"), value)
 }
 
+
 // The system version number in effect when the archive was created.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsunarchiver/systemversion-swift.property
+
 func (u_ Unarchiver) SystemVersion() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("systemVersion"))
 	return rv
 }
 
 
-// SetSystemVersion sets the value of the systemVersion property.
 // The system version number in effect when the archive was created.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsunarchiver/systemversion-swift.property
+
 func (u_ Unarchiver) SetSystemVersion(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setSystemVersion:"), value)
 }

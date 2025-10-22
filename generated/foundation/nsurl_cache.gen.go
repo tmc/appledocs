@@ -43,9 +43,13 @@ type IURLCache interface {
 // An object that maps URL requests to cached response objects.
 //
 // The class implements the caching of responses to URL load requests, by mapping objects to objects. It provides a composite in-memory and on-disk cache, and lets you manipulate the sizes of both the in-memory and on-disk portions. You can also control the path where cache data is persistently stored.
+
+
+// An object that maps URL requests to cached response objects.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLCache
+
 type URLCache struct {
 	objectivec.Object
 }
@@ -89,74 +93,86 @@ func NewURLCache() URLCache {
 }
 
 
+
 // The current size of the on-disk cache, in bytes.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlcache/currentdiskusage
+
 func (u_ URLCache) CurrentDiskUsage() int {
 	rv := objc.Send[int](u_.ID, objc.Sel("currentDiskUsage"))
 	return rv
 }
 
 
-// SetCurrentDiskUsage sets the value of the currentDiskUsage property.
 // The current size of the on-disk cache, in bytes.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlcache/currentdiskusage
+
 func (u_ URLCache) SetCurrentDiskUsage(value int) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setCurrentDiskUsage:"), value)
 }
 
+
 // The current size of the in-memory cache, in bytes.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlcache/currentmemoryusage
+
 func (u_ URLCache) CurrentMemoryUsage() int {
 	rv := objc.Send[int](u_.ID, objc.Sel("currentMemoryUsage"))
 	return rv
 }
 
 
-// SetCurrentMemoryUsage sets the value of the currentMemoryUsage property.
 // The current size of the in-memory cache, in bytes.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlcache/currentmemoryusage
+
 func (u_ URLCache) SetCurrentMemoryUsage(value int) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setCurrentMemoryUsage:"), value)
 }
 
+
 // The capacity of the on-disk cache, in bytes.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlcache/diskcapacity
+
 func (u_ URLCache) DiskCapacity() int {
 	rv := objc.Send[int](u_.ID, objc.Sel("diskCapacity"))
 	return rv
 }
 
 
-// SetDiskCapacity sets the value of the diskCapacity property.
 // The capacity of the on-disk cache, in bytes.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlcache/diskcapacity
+
 func (u_ URLCache) SetDiskCapacity(value int) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setDiskCapacity:"), value)
 }
 
+
 // The capacity of the in-memory cache, in bytes.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlcache/memorycapacity
+
 func (u_ URLCache) MemoryCapacity() int {
 	rv := objc.Send[int](u_.ID, objc.Sel("memoryCapacity"))
 	return rv
 }
 
 
-// SetMemoryCapacity sets the value of the memoryCapacity property.
 // The capacity of the in-memory cache, in bytes.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlcache/memorycapacity
+
 func (u_ URLCache) SetMemoryCapacity(value int) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setMemoryCapacity:"), value)
 }

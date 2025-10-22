@@ -42,9 +42,13 @@ type IAppleScript interface {
 // An object that provides the ability to load, compile, and execute scripts.
 //
 // This class provides applications with the ability to load a script from a URL or from a text string compile or execute a script or an individual Apple event obtain an containing the reply from an executed script or event obtain an attributed string for a compiled script, suitable for display in a script editor obtain various kinds of information about any errors that may occur When you create an instance of object, you can use a URL to specify a script that can be in either text or compiled form, or you can supply the script as a string. Should an error occur when compiling or executing the script, several of the methods return a dictionary containing error information. The keys for obtaining error information, such as , are described in the Constants section. See also NSAppleScript Additions Reference in the Application Kit framework, which defines a method that returns the syntax-highlighted source code for a script.
+
+
+// An object that provides the ability to load, compile, and execute scripts.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleScript
+
 type AppleScript struct {
 	objectivec.Object
 }
@@ -88,64 +92,76 @@ func NewAppleScript() AppleScript {
 }
 
 
+
 // Executes an Apple event in the context of the receiver, as a means of allowing the application to invoke a handler in the script.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleScript/executeAppleEvent(_:error:)
+
 func (a_ AppleScript) ExecuteAppleEventError(event IAppleEventDescriptor, errorInfo unsafe.Pointer) AppleEventDescriptor {
 	rv := objc.Send[AppleEventDescriptor](a_.ID, objc.Sel("executeAppleEvent:error:"), event, errorInfo)
 	return rv
 }
 
+
 // A Boolean value that indicates whether the receiver’s script has been compiled.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsapplescript/iscompiled
+
 func (a_ AppleScript) IsCompiled() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isCompiled"))
 	return rv
 }
 
 
-// SetIsCompiled sets the value of the isCompiled property.
 // A Boolean value that indicates whether the receiver’s script has been compiled.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsapplescript/iscompiled
+
 func (a_ AppleScript) SetIsCompiled(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsCompiled:"), value)
 }
 
+
 // Returns the syntax-highlighted source code of the receiver if the receiver has been compiled and its source code is available.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsapplescript/richtextsource
+
 func (a_ AppleScript) RichTextSource() NSAttributedString {
 	rv := objc.Send[NSAttributedString](a_.ID, objc.Sel("richTextSource"))
 	return rv
 }
 
 
-// SetRichTextSource sets the value of the richTextSource property.
 // Returns the syntax-highlighted source code of the receiver if the receiver has been compiled and its source code is available.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsapplescript/richtextsource
+
 func (a_ AppleScript) SetRichTextSource(value IAttributedString) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setRichTextSource:"), value)
 }
 
+
 // The script source for the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsapplescript/source
+
 func (a_ AppleScript) Source() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("source"))
 	return rv
 }
 
 
-// SetSource sets the value of the source property.
 // The script source for the receiver.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsapplescript/source
+
 func (a_ AppleScript) SetSource(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setSource:"), objc.String(value))
 }

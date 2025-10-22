@@ -38,9 +38,13 @@ type IUserAutomatorTask interface {
 // An object that executes Automator workflows.
 //
 // The class is intended to run Automator workflows from your application. It is intended to execute user-supplied workflows, and will execute them outside of the application’s sandbox, if any. The class is not intended to execute scripts built into an application; for that, use one of the or classes. If the application is sandboxed, then the script must be in the folder. A sandboxed application may read from, but not write to, this folder. If you simply need to execute scripts without regard to input or output, use , which can execute any of the specific types. If you need specific control over the input to or output from the workflow, use this class.
+
+
+// An object that executes Automator workflows.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserAutomatorTask
+
 type UserAutomatorTask struct {
 	UserScriptTask
 }
@@ -86,27 +90,33 @@ func NewUserAutomatorTask() UserAutomatorTask {
 }
 
 
+
 // Execute the Automator workflow by providing it as securely coded input.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserAutomatorTask/execute(withInput:completionHandler:)
+
 func (u_ UserAutomatorTask) ExecuteWithInputCompletionHandler(input objectivec.IObject, handler unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("executeWithInput:completionHandler:"), input, handler)
 }
 
+
 // The variables required by the Automator workflow.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsuserautomatortask/variables
+
 func (u_ UserAutomatorTask) Variables() string {
 	rv := objc.Send[string](u_.ID, objc.Sel("variables"))
 	return rv
 }
 
 
-// SetVariables sets the value of the variables property.
 // The variables required by the Automator workflow.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsuserautomatortask/variables
+
 func (u_ UserAutomatorTask) SetVariables(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setVariables:"), objc.String(value))
 }

@@ -36,9 +36,13 @@ type IIndexSpecifier interface {
 // A specifier representing an object in a collection (or container) with an index number.
 //
 // The script terms and specify the object with index , while specifies the object with index of . A negative index indicates a location by counting backward from the last object in the collection. You don’t normally subclass .
+
+
+// A specifier representing an object in a collection (or container) with an index number.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSpecifier
+
 type IndexSpecifier struct {
 	ScriptObjectSpecifier
 }
@@ -100,20 +104,23 @@ func NewIndexSpecifierWithContainerClassDescriptionContainerSpecifierKeyIndex(cl
 }
 
 
+
 // Sets the value of the receiver’s property.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSpecifier/index
+
 func (i_ IndexSpecifier) Index() int {
 	rv := objc.Send[int](i_.ID, objc.Sel("index"))
 	return rv
 }
 
 
-// SetIndex sets the value of the index property.
 // Sets the value of the receiver’s property.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSpecifier/index
+
 func (i_ IndexSpecifier) SetIndex(value int) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIndex:"), value)
 }

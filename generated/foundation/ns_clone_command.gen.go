@@ -37,9 +37,13 @@ type ICloneCommand interface {
 // A command that clones one or more scriptable objects.
 //
 // An instance of clones the specified scriptable object or objects (such as words, paragraphs, images, and so on) and inserts them in the specified location, or the default location if no location is specified. The cloned scriptable objects typically correspond to objects in the application, but aren’t required to. This command corresponds to AppleScript’s command. is part of Cocoa’s built-in scripting support. It works automatically to support the command through key-value coding. Most applications don’t need to subclass or invoke its methods. When an instance of is executed, it clones the specified objects by sending them messages.
+
+
+// A command that clones one or more scriptable objects.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCloneCommand
+
 type CloneCommand struct {
 	ScriptCommand
 }
@@ -85,27 +89,33 @@ func NewCloneCommand() CloneCommand {
 }
 
 
+
 // Sets the receiver’s object specifier;.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCloneCommand/setReceiversSpecifier(_:)
+
 func (c_ CloneCommand) SetReceiversSpecifier(receiversRef IScriptObjectSpecifier) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setReceiversSpecifier:"), receiversRef)
 }
 
+
 // Returns a specifier for the object or objects to be cloned.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsclonecommand/keyspecifier
+
 func (c_ CloneCommand) KeySpecifier() NSScriptObjectSpecifier {
 	rv := objc.Send[NSScriptObjectSpecifier](c_.ID, objc.Sel("keySpecifier"))
 	return rv
 }
 
 
-// SetKeySpecifier sets the value of the keySpecifier property.
 // Returns a specifier for the object or objects to be cloned.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsclonecommand/keyspecifier
+
 func (c_ CloneCommand) SetKeySpecifier(value IScriptObjectSpecifier) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setKeySpecifier:"), value)
 }

@@ -38,9 +38,13 @@ type IMutableCharacterSet interface {
 // An object representing a mutable set of Unicode character values for use in search operations.
 //
 // In Swift, this object bridges to ; use when you need reference semantics or other Foundation-specific behavior. The class declares the programmatic interface to objects that manage a modifiable set of Unicode characters. You can add or remove characters from a mutable character set as numeric values in structures or as character values in strings, combine character sets by union or intersection, and invert a character set. Mutable character sets are less efficient to use than immutable character sets. If you don’t need to change a character set after creating it, create an immutable copy with and use that. defines no primitive methods. Subclasses must implement all methods declared by this class in addition to the primitives of . They must also implement . is “toll-free bridged” with its Core Foundation counterpart, . See for more information.
+
+
+// An object representing a mutable set of Unicode character values for use in search operations.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet
+
 type MutableCharacterSet struct {
 	CharacterSet
 }
@@ -256,30 +260,42 @@ func (mc _MutableCharacterSetClass) WhitespaceCharacterSet() MutableCharacterSet
 	return rv
 }
 
+
 // Adds to the receiver the characters whose Unicode values are in a given range.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/addCharacters(in:)-4ppyw
+
 func (m_ MutableCharacterSet) AddCharactersInRange(aRange IRange) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("addCharactersInRange:"), aRange)
 }
 
+
 // Adds to the receiver the characters in a given string.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/addCharacters(in:)-7q02
+
 func (m_ MutableCharacterSet) AddCharactersInString(aString string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("addCharactersInString:"), objc.String(aString))
 }
 
+
 // Replaces all the characters in the receiver with all the characters it didn’t previously contain.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/invert()
+
 func (m_ MutableCharacterSet) Invert() {
 	objc.Send[objc.ID](m_.ID, objc.Sel("invert"))
 }
 
+
 // Removes from the receiver the characters in a given string.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/removeCharacters(in:)-762gt
+
 func (m_ MutableCharacterSet) RemoveCharactersInString(aString string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("removeCharactersInString:"), objc.String(aString))
 }

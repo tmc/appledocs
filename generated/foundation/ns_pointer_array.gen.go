@@ -41,9 +41,13 @@ type IPointerArray interface {
 // A collection similar to an array, but with a broader range of available memory semantics.
 //
 // The pointer array class is modeled after , but can also hold values. You can insert or remove values which contribute to the array’s . A pointer array can be initialized to maintain strong or weak references to objects, or according to any of the memory or personality options defined by . The and protocols are applicable only when a pointer array is initialized to maintain strong or weak references to objects. When enumerating a pointer array with using , the loop will yield any values present in the array. See in for more information.
+
+
+// A collection similar to an array, but with a broader range of available memory semantics.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerArray
+
 type PointerArray struct {
 	objectivec.Object
 }
@@ -131,53 +135,65 @@ func (pc _PointerArrayClass) WeakObjectsPointerArray() PointerArray {
 	return rv
 }
 
+
 // Removes the pointer at a given index.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerArray/removePointer(at:)
+
 func (p_ PointerArray) RemovePointerAtIndex(index uint) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("removePointerAtIndex:"), index)
 }
 
+
 // All the objects in the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerArray/allObjects
+
 func (p_ PointerArray) AllObjects() objc.ID {
 	rv := objc.Send[objc.ID](p_.ID, objc.Sel("allObjects"))
 	return rv
 }
 
+
 // The number of elements in the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerArray/count
+
 func (p_ PointerArray) Count() uint {
 	rv := objc.Send[uint](p_.ID, objc.Sel("count"))
 	return rv
 }
 
 
-// SetCount sets the value of the count property.
 // The number of elements in the receiver.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerArray/count
+
 func (p_ PointerArray) SetCount(value uint) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCount:"), value)
 }
 
+
 // The functions in use by the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nspointerarray/pointerfunctions
+
 func (p_ PointerArray) PointerFunctions() NSPointerFunctions {
 	rv := objc.Send[NSPointerFunctions](p_.ID, objc.Sel("pointerFunctions"))
 	return rv
 }
 
 
-// SetPointerFunctions sets the value of the pointerFunctions property.
 // The functions in use by the receiver.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nspointerarray/pointerfunctions
+
 func (p_ PointerArray) SetPointerFunctions(value IPointerFunctions) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPointerFunctions:"), value)
 }

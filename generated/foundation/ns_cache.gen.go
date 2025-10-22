@@ -46,9 +46,13 @@ type ICache interface {
 // A mutable collection you use to temporarily store transient key-value pairs that are subject to eviction when resources are low.
 //
 // Cache objects differ from other mutable collections in a few ways: The class incorporates various auto-eviction policies, which ensure that a cache doesn’t use too much of the system’s memory. If memory is needed by other applications, these policies remove some items from the cache, minimizing its memory footprint. You can add, remove, and query items in the cache from different threads without having to lock the cache yourself. Unlike an object, a cache does not copy the key objects that are put into it. You typically use objects to temporarily store objects with transient data that are expensive to create. Reusing these objects can provide performance benefits, because their values do not have to be recalculated. However, the objects are not critical to the application and can be discarded if memory is tight. If discarded, their values will have to be recomputed again when needed. Objects that have subcomponents that can be discarded when not being used can adopt the protocol to improve cache eviction behavior. By default, objects in a cache are automatically removed if their content is discarded, although this automatic removal policy can be changed. If an object is put into the cache, the cache calls on it upon its removal.
+
+
+// A mutable collection you use to temporarily store transient key-value pairs that are subject to eviction when resources are low.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCache
+
 type Cache struct {
 	objectivec.Object
 }
@@ -92,99 +96,117 @@ func NewCache() Cache {
 }
 
 
+
 // Sets the value of the specified key in the cache, and associates the key-value pair with the specified cost.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCache/setObject(_:forKey:cost:)
+
 func (c_ Cache) SetObjectForKeyCost(obj unsafe.Pointer, key unsafe.Pointer, g uint) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setObject:forKey:cost:"), obj, key, g)
 }
 
+
 // Whether the cache will automatically evict discardable-content objects whose content has been discarded.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCache/evictsObjectsWithDiscardedContent
+
 func (c_ Cache) EvictsObjectsWithDiscardedContent() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("evictsObjectsWithDiscardedContent"))
 	return rv
 }
 
 
-// SetEvictsObjectsWithDiscardedContent sets the value of the evictsObjectsWithDiscardedContent property.
 // Whether the cache will automatically evict discardable-content objects whose content has been discarded.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCache/evictsObjectsWithDiscardedContent
+
 func (c_ Cache) SetEvictsObjectsWithDiscardedContent(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setEvictsObjectsWithDiscardedContent:"), value)
 }
 
+
 // The maximum number of objects the cache should hold.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscache/countlimit
+
 func (c_ Cache) CountLimit() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("countLimit"))
 	return rv
 }
 
 
-// SetCountLimit sets the value of the countLimit property.
 // The maximum number of objects the cache should hold.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscache/countlimit
+
 func (c_ Cache) SetCountLimit(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCountLimit:"), value)
 }
 
+
 // The cache’s delegate.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscache/delegate
+
 func (c_ Cache) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("delegate"))
 	return rv
 }
 
 
-// SetDelegate sets the value of the delegate property.
 // The cache’s delegate.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscache/delegate
+
 func (c_ Cache) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDelegate:"), value)
 }
 
+
 // The name of the cache.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscache/name
+
 func (c_ Cache) Name() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("name"))
 	return rv
 }
 
 
-// SetName sets the value of the name property.
 // The name of the cache.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscache/name
+
 func (c_ Cache) SetName(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
+
 // The maximum total cost that the cache can hold before it starts evicting objects.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscache/totalcostlimit
+
 func (c_ Cache) TotalCostLimit() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("totalCostLimit"))
 	return rv
 }
 
 
-// SetTotalCostLimit sets the value of the totalCostLimit property.
 // The maximum total cost that the cache can hold before it starts evicting objects.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscache/totalcostlimit
+
 func (c_ Cache) SetTotalCostLimit(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setTotalCostLimit:"), value)
 }

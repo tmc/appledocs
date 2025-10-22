@@ -36,9 +36,13 @@ type IPortNameServer interface {
 // An object-oriented interface to the port registration service used by the distributed objects system.
 //
 // objects use this interface to contact each other and to distribute objects over the network; you should rarely need to interact directly with an . You get an object by using the class method—never allocate and initialize an instance directly. With the default server object you can register an object under a given name, making it available on the network, and also unregister it so that it can’t be looked up (although other applications that have already looked up the object can still use it until it becomes invalid). See the class specification for more information.
+
+
+// An object-oriented interface to the port registration service used by the distributed objects system.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPortNameServer
+
 type PortNameServer struct {
 	objectivec.Object
 }
@@ -82,9 +86,12 @@ func NewPortNameServer() PortNameServer {
 }
 
 
+
 // Makes a given port available on the network under a specified name.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPortNameServer/registerPort:name:
+
 func (p_ PortNameServer) RegisterPortName(port IPort, name string) bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("registerPort:name:"), port, objc.String(name))
 	return rv

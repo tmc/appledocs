@@ -6,7 +6,6 @@
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to Foundation without requiring cgo.
-//
 
 // Access essential data types, collections, and operating-system services to define the base layer of functionality for your app.
 //

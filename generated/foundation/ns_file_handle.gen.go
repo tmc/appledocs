@@ -64,9 +64,13 @@ type IFileHandle interface {
 // An object-oriented wrapper for a file descriptor.
 //
 // You use file handle objects to access data associated with files, sockets, pipes, and devices. For files, you can read, write, and seek within the file. For sockets, pipes, and devices, you can use a file handle object to monitor the device and process data asynchronously. Most creation methods for cause the file handle object to take ownership of the associated file descriptor. This means that the file handle object both creates the file descriptor and is responsible for closing it later, usually when the system deallocates the file handle object. If you want to use a file handle object with a file descriptor that you created, use the method or use the method and pass for the parameter.
+
+
+// An object-oriented wrapper for a file descriptor.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle
+
 type FileHandle struct {
 	objectivec.Object
 }
@@ -300,282 +304,372 @@ func (fc _FileHandleClass) FileHandleForWritingToURLError(url IURL, error_ IErro
 	return rv
 }
 
+
 // The file handle associated with a null device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/nullDevice
+
 func (fc _FileHandleClass) FileHandleWithNullDevice() FileHandle {
 	rv := objc.Send[NSFileHandle](objc.ID(fc.class), objc.Sel("fileHandleWithNullDevice"))
 	return rv
 }
+
 // The file handle associated with the standard error file.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/standardError
+
 func (fc _FileHandleClass) FileHandleWithStandardError() FileHandle {
 	rv := objc.Send[NSFileHandle](objc.ID(fc.class), objc.Sel("fileHandleWithStandardError"))
 	return rv
 }
+
 // The file handle associated with the standard input file.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/standardInput
+
 func (fc _FileHandleClass) FileHandleWithStandardInput() FileHandle {
 	rv := objc.Send[NSFileHandle](objc.ID(fc.class), objc.Sel("fileHandleWithStandardInput"))
 	return rv
 }
+
 // Disallows further access to the represented file or communications channel and signals end of file on communications channels that permit writing.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/close()
+
 func (f_ FileHandle) CloseAndReturnError(error_ IError) bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("closeAndReturnError:"), error_)
 	return rv
 }
 
+
 // Disallows further access to the represented file or communications channel and signals end of file on communications channels that permit writing.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/closeFile()
+
 func (f_ FileHandle) CloseFile() {
 	objc.Send[objc.ID](f_.ID, objc.Sel("closeFile"))
 }
 
+
 // Reads data synchronously up to the specified number of bytes.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/readData(ofLength:)
+
 func (f_ FileHandle) ReadDataOfLength(length uint) Data {
 	rv := objc.Send[Data](f_.ID, objc.Sel("readDataOfLength:"), length)
 	return rv
 }
 
+
 // Reads the available data synchronously up to the end of file or maximum number of bytes.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/readDataToEndOfFile()
+
 func (f_ FileHandle) ReadDataToEndOfFile() Data {
 	rv := objc.Send[Data](f_.ID, objc.Sel("readDataToEndOfFile"))
 	return rv
 }
 
+
 // Reads from the file or communications channel in the background and posts a notification when finished.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/readInBackgroundAndNotify(forModes:)
+
 func (f_ FileHandle) ReadInBackgroundAndNotifyForModes(modes []string) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("readInBackgroundAndNotifyForModes:"), modes)
 }
 
+
 // Moves the file pointer to the specified offset within the file represented by the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/seek(toFileOffset:)
+
 func (f_ FileHandle) SeekToFileOffset(offset uint64) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("seekToFileOffset:"), offset)
 }
 
+
 // Moves the file pointer to the specified offset within the file.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/seek(toOffset:)
+
 func (f_ FileHandle) SeekToOffsetError(offset uint64, error_ IError) bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("seekToOffset:error:"), offset, error_)
 	return rv
 }
 
+
 // Places the file pointer at the end of the file referenced by the file handle and returns the new file offset.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/seekToEndOfFile()
+
 func (f_ FileHandle) SeekToEndOfFile() uint64 {
 	rv := objc.Send[uint64](f_.ID, objc.Sel("seekToEndOfFile"))
 	return rv
 }
 
+
 // Causes all in-memory data and attributes of the file represented by the file handle to write to permanent storage.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/synchronize()
+
 func (f_ FileHandle) SynchronizeAndReturnError(error_ IError) bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("synchronizeAndReturnError:"), error_)
 	return rv
 }
 
+
 // Causes all in-memory data and attributes of the file represented by the handle to write to permanent storage.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/synchronizeFile()
+
 func (f_ FileHandle) SynchronizeFile() {
 	objc.Send[objc.ID](f_.ID, objc.Sel("synchronizeFile"))
 }
 
+
 // Truncates or extends the file represented by the file handle to a specified offset within the file and puts the file pointer at that position.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/truncate(atOffset:)
+
 func (f_ FileHandle) TruncateAtOffsetError(offset uint64, error_ IError) bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("truncateAtOffset:error:"), offset, error_)
 	return rv
 }
 
+
 // Truncates or extends the file represented by the file handle to a specified offset within the file and puts the file pointer at that position.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/truncateFile(atOffset:)
+
 func (f_ FileHandle) TruncateFileAtOffset(offset uint64) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("truncateFileAtOffset:"), offset)
 }
 
+
 // Writes the specified data synchronously to the file handle.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/write(_:)
+
 func (f_ FileHandle) WriteData(data IData) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("writeData:"), data)
 }
 
+
 // Get the current position of the file pointer within the file.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileHandle/getOffset:error:
+
 func (f_ FileHandle) GetOffsetError(offsetInFile unsafe.Pointer, error_ IError) bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("getOffset:error:"), offsetInFile, error_)
 	return rv
 }
 
+
 // Reads the available data synchronously up to the end of file or maximum number of bytes.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileHandle/readDataToEndOfFileAndReturnError:
+
 func (f_ FileHandle) ReadDataToEndOfFileAndReturnError(error_ IError) Data {
 	rv := objc.Send[Data](f_.ID, objc.Sel("readDataToEndOfFileAndReturnError:"), error_)
 	return rv
 }
 
+
 // Reads data synchronously up to the specified number of bytes.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileHandle/readDataUpToLength:error:
+
 func (f_ FileHandle) ReadDataUpToLengthError(length uint, error_ IError) Data {
 	rv := objc.Send[Data](f_.ID, objc.Sel("readDataUpToLength:error:"), length, error_)
 	return rv
 }
 
+
 // Places the file pointer at the end of the file referenced by the file handle and returns the new file offset.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileHandle/seekToEndReturningOffset:error:
+
 func (f_ FileHandle) SeekToEndReturningOffsetError(offsetInFile unsafe.Pointer, error_ IError) bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("seekToEndReturningOffset:error:"), offsetInFile, error_)
 	return rv
 }
 
+
 // The file handle associated with a null device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/nullDevice
+
 func (f_ FileHandle) FileHandleWithNullDevice() NSFileHandle {
 	rv := objc.Send[NSFileHandle](f_.ID, objc.Sel("fileHandleWithNullDevice"))
 	return rv
 }
 
+
 // The position of the file pointer within the file represented by the file handle.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/offsetInFile
+
 func (f_ FileHandle) OffsetInFile() uint64 {
 	rv := objc.Send[uint64](f_.ID, objc.Sel("offsetInFile"))
 	return rv
 }
 
+
 // The block to use for reading the contents of the file handle asynchronously.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/readabilityHandler
+
 func (f_ FileHandle) ReadabilityHandler() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("readabilityHandler"))
 	return rv
 }
 
 
-// SetReadabilityHandler sets the value of the readabilityHandler property.
 // The block to use for reading the contents of the file handle asynchronously.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/readabilityHandler
+
 func (f_ FileHandle) SetReadabilityHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setReadabilityHandler:"), value)
 }
 
+
 // The file handle associated with the standard error file.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/standardError
+
 func (f_ FileHandle) FileHandleWithStandardError() NSFileHandle {
 	rv := objc.Send[NSFileHandle](f_.ID, objc.Sel("fileHandleWithStandardError"))
 	return rv
 }
 
+
 // The file handle associated with the standard input file.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/standardInput
+
 func (f_ FileHandle) FileHandleWithStandardInput() NSFileHandle {
 	rv := objc.Send[NSFileHandle](f_.ID, objc.Sel("fileHandleWithStandardInput"))
 	return rv
 }
 
+
 // The block to use for writing the contents of the file handle asynchronously.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/writeabilityHandler
+
 func (f_ FileHandle) WriteabilityHandler() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("writeabilityHandler"))
 	return rv
 }
 
 
-// SetWriteabilityHandler sets the value of the writeabilityHandler property.
 // The block to use for writing the contents of the file handle asynchronously.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/writeabilityHandler
+
 func (f_ FileHandle) SetWriteabilityHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setWriteabilityHandler:"), value)
 }
 
+
 // The data currently available in the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filehandle/availabledata
+
 func (f_ FileHandle) AvailableData() Data {
 	rv := objc.Send[Data](f_.ID, objc.Sel("availableData"))
 	return rv
 }
 
 
-// SetAvailableData sets the value of the availableData property.
 // The data currently available in the receiver.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filehandle/availabledata
+
 func (f_ FileHandle) SetAvailableData(value IData) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setAvailableData:"), value)
 }
 
+
 // The file’s contents, as an asynchronous sequence of bytes.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filehandle/bytes
+
 func (f_ FileHandle) Bytes() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("bytes"))
 	return rv
 }
 
 
-// SetBytes sets the value of the bytes property.
 // The file’s contents, as an asynchronous sequence of bytes.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filehandle/bytes
+
 func (f_ FileHandle) SetBytes(value unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setBytes:"), value)
 }
 
+
 // The POSIX file descriptor associated with the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filehandle/filedescriptor
+
 func (f_ FileHandle) FileDescriptor() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("fileDescriptor"))
 	return rv
 }
 
 
-// SetFileDescriptor sets the value of the fileDescriptor property.
 // The POSIX file descriptor associated with the receiver.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filehandle/filedescriptor
+
 func (f_ FileHandle) SetFileDescriptor(value unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setFileDescriptor:"), value)
 }
 
+
 // Currently unused.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsfilehandlenotificationmonitormodes
+
 func (f_ FileHandle) NSFileHandleNotificationMonitorModes() string {
 	rv := objc.Send[string](f_.ID, objc.Sel("NSFileHandleNotificationMonitorModes"))
 	return rv

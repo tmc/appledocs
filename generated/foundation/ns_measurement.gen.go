@@ -39,9 +39,13 @@ type IMeasurement interface {
 // A numeric quantity labeled with a unit of measure, with support for unit conversion and unit-aware calculations.
 //
 // Use this object in Swift when you need reference semantics or other Foundation-specific behavior. An object represents a quantity and unit of measure. The class provides a programmatic interface to converting measurements into different units, as well as calculating the sum or difference between two measurements. objects are initialized with an object and value. objects are immutable, and cannot be changed after being created. You can use the class to create localized string representations of objects.
+
+
+// A numeric quantity labeled with a unit of measure, with support for unit conversion and unit-aware calculations.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMeasurement
+
 type Measurement struct {
 	objectivec.Object
 }
@@ -101,36 +105,45 @@ func NewMeasurementWithDoubleValueUnit(doubleValue float64, unit unsafe.Pointer)
 }
 
 
+
 // Indicates whether the measurement can be converted to the given unit.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMeasurement/canBeConverted(to:)
+
 func (m_ Measurement) CanBeConvertedToUnit(unit IUnit) bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("canBeConvertedToUnit:"), unit)
 	return rv
 }
 
+
 // The unit of measure.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMeasurement/unit
+
 func (m_ Measurement) Unit() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("unit"))
 	return rv
 }
 
+
 // The measurement value, represented as a double-precision floating-point number.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmeasurement/doublevalue
+
 func (m_ Measurement) DoubleValue() float64 {
 	rv := objc.Send[float64](m_.ID, objc.Sel("doubleValue"))
 	return rv
 }
 
 
-// SetDoubleValue sets the value of the doubleValue property.
 // The measurement value, represented as a double-precision floating-point number.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmeasurement/doublevalue
+
 func (m_ Measurement) SetDoubleValue(value float64) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDoubleValue:"), value)
 }

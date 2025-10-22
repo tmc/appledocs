@@ -32,9 +32,12 @@ type ILocalizedNumberFormatRule interface {
 	objectivec.IObject
 }
 
+
+
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocalizedNumberFormatRule
+
 type LocalizedNumberFormatRule struct {
 	objectivec.Object
 }

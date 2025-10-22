@@ -42,9 +42,13 @@ type IURLConnection interface {
 // An object that enables you to start and stop URL requests.
 //
 // An object lets you load the contents of a URL by providing a URL request object. The interface for is sparse, providing only the controls to start and cancel asynchronous loads of a URL request. You perform most of your configuration on the URL request object itself. The class provides convenience class methods to load URL requests both asynchronously using a callback block and synchronously. For greater control, you can create a URL connection object with a delegate object that conforms to the and protocols. The connection calls methods on that delegate to provide you with progress and status as the URL request is loaded asynchronously. The connection also calls delegate methods to let you override the connection’s default behavior (for example, specifying how a particular redirect should be handled). These delegate methods are called on the thread that initiated the asynchronous load operation. For more information about errors, see the header, , and URL Loading System Error Codes in .
+
+
+// An object that enables you to start and stop URL requests.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLConnection
+
 type URLConnection struct {
 	objectivec.Object
 }
@@ -162,52 +166,73 @@ func (uc _URLConnectionClass) SendSynchronousRequestReturningResponseError(reque
 	return rv
 }
 
+
 // Cancels an asynchronous load of a request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLConnection/cancel()
+
 func (u_ URLConnection) Cancel() {
 	objc.Send[objc.ID](u_.ID, objc.Sel("cancel"))
 }
 
+
 // Determines the run loop and mode that the connection uses to call methods on its delegate.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLConnection/schedule(in:forMode:)
+
 func (u_ URLConnection) ScheduleInRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("scheduleInRunLoop:forMode:"), aRunLoop, mode)
 }
 
+
 // Determines the operation queue that is used to call methods on the connection’s delegate.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLConnection/setDelegateQueue(_:)
+
 func (u_ URLConnection) SetDelegateQueue(queue IOperationQueue) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setDelegateQueue:"), queue)
 }
 
+
 // Causes the connection to begin loading data, if it has not already.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLConnection/start()
+
 func (u_ URLConnection) Start() {
 	objc.Send[objc.ID](u_.ID, objc.Sel("start"))
 }
 
+
 // Causes the connection to stop calling delegate methods in the specified run loop and mode.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLConnection/unschedule(from:forMode:)
+
 func (u_ URLConnection) UnscheduleFromRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("unscheduleFromRunLoop:forMode:"), aRunLoop, mode)
 }
 
+
 // The current connection request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLConnection/currentRequest
+
 func (u_ URLConnection) CurrentRequest() NSURLRequest {
 	rv := objc.Send[NSURLRequest](u_.ID, objc.Sel("currentRequest"))
 	return rv
 }
 
+
 // A deep copy of the original connection request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLConnection/originalRequest
+
 func (u_ URLConnection) OriginalRequest() NSURLRequest {
 	rv := objc.Send[NSURLRequest](u_.ID, objc.Sel("originalRequest"))
 	return rv

@@ -41,9 +41,13 @@ type IException interface {
 // An object that represents a special condition that interrupts the normal flow of program execution.
 //
 // Use to implement exception handling. An exception is a special condition that interrupts the normal flow of program execution. Each application can interrupt the program for different reasons. For example, one application might interpret saving a file in a directory that is write-protected as an exception. In this sense, the exception is equivalent to an error. Another application might interpret the user’s key-press (for example, Control-C) as an exception: an indication that a long-running process should abort.
+
+
+// An object that represents a special condition that interrupts the normal flow of program execution.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSException
+
 type Exception struct {
 	objectivec.Object
 }
@@ -134,48 +138,66 @@ func (ec _ExceptionClass) RaiseFormat(name IExceptionName, format string) {
 	objc.Send[objc.ID](objc.ID(ec.class), objc.Sel("raise:format:"), name, objc.String(format))
 }
 
+
 // Raises the receiver, causing program flow to jump to the local exception handler.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSException/raise()
+
 func (e_ Exception) Raise() {
 	objc.Send[objc.ID](e_.ID, objc.Sel("raise"))
 }
 
+
 // The call return addresses related to a raised exception.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSException/callStackReturnAddresses
+
 func (e_ Exception) CallStackReturnAddresses() []Number {
 	rv := objc.Send[[]Number](e_.ID, objc.Sel("callStackReturnAddresses"))
 	return rv
 }
 
+
 // An array containing the current call stack symbols.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSException/callStackSymbols
+
 func (e_ Exception) CallStackSymbols() []string {
 	rv := objc.Send[[]string](e_.ID, objc.Sel("callStackSymbols"))
 	return rv
 }
 
+
 // A string used to uniquely identify the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSException/name-swift.property
+
 func (e_ Exception) Name() ExceptionName {
 	rv := objc.Send[ExceptionName](e_.ID, objc.Sel("name"))
 	return rv
 }
 
+
 // A string containing a “human-readable” reason for the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSException/reason-swift.property
+
 func (e_ Exception) Reason() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("reason"))
 	return rv
 }
 
+
 // A dictionary containing application-specific data pertaining to the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSException/userInfo-swift.property
+
 func (e_ Exception) UserInfo() objc.ID {
 	rv := objc.Send[objc.ID](e_.ID, objc.Sel("userInfo"))
 	return rv

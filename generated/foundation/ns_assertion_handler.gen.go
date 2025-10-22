@@ -37,9 +37,13 @@ type IAssertionHandler interface {
 // An object that logs an assertion to the console.
 //
 // objects are automatically created to handle false assertions. Assertion macros, such as and , are used to evaluate a condition, and if the condition evaluates to false, the macros pass a string to an object describing the failure. Each thread has its own object. When invoked, an assertion handler prints an error message that includes the method and class (or function) containing the assertion and raises an . You create assertions only using the assertion macros—you rarely need to invoke methods directly. The macros for use inside methods and functions send and messages respectively to the current assertion handler. The assertion handler for the current thread is obtained using the class method. See if you need to customize the behavior of .
+
+
+// An object that logs an assertion to the console.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAssertionHandler
+
 type AssertionHandler struct {
 	objectivec.Object
 }
@@ -83,28 +87,40 @@ func NewAssertionHandler() AssertionHandler {
 }
 
 
+
 // Returns the object associated with the current thread.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAssertionHandler/current
+
 func (ac _AssertionHandlerClass) CurrentHandler() AssertionHandler {
 	rv := objc.Send[NSAssertionHandler](objc.ID(ac.class), objc.Sel("currentHandler"))
 	return rv
 }
+
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAssertionHandler/handleFailureInFunction:file:lineNumber:description:
+
 func (a_ AssertionHandler) HandleFailureInFunctionFileLineNumberDescription(functionName string, fileName string, line int, format string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("handleFailureInFunction:file:lineNumber:description:"), objc.String(functionName), objc.String(fileName), line, objc.String(format))
 }
 
+
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAssertionHandler/handleFailureInMethod:object:file:lineNumber:description:
+
 func (a_ AssertionHandler) HandleFailureInMethodObjectFileLineNumberDescription(selector objc.SEL, object objectivec.IObject, fileName string, line int, format string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("handleFailureInMethod:object:file:lineNumber:description:"), selector, object, objc.String(fileName), line, objc.String(format))
 }
 
+
 // Returns the object associated with the current thread.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAssertionHandler/current
+
 func (a_ AssertionHandler) CurrentHandler() NSAssertionHandler {
 	rv := objc.Send[NSAssertionHandler](a_.ID, objc.Sel("currentHandler"))
 	return rv

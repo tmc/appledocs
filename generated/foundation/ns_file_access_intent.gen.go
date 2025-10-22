@@ -36,9 +36,13 @@ type IFileAccessIntent interface {
 // The details of a coordinated-read or coordinated-write operation.
 //
 // Use this class when performing asynchronous operations with a file coordinator using the coordinator’s method.
+
+
+// The details of a coordinated-read or coordinated-write operation.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileAccessIntent
+
 type FileAccessIntent struct {
 	objectivec.Object
 }
@@ -93,9 +97,12 @@ func (fc _FileAccessIntentClass) ReadingIntentWithURLOptions(url IURL, options u
 	return rv
 }
 
+
 // The current URL for the item managed by the file access intent instance. (read-only)
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileAccessIntent/url
+
 func (f_ FileAccessIntent) URL() URL {
 	rv := objc.Send[URL](f_.ID, objc.Sel("URL"))
 	return rv

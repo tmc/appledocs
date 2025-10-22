@@ -34,9 +34,13 @@ type IMachBootstrapServer interface {
 // A port name server that takes and returns Mach port objects.
 //
 // Port removal functionality is not supported in ; if you want to cancel a service, you have to destroy the port (invalidate the given to ).
+
+
+// A port name server that takes and returns Mach port objects.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMachBootstrapServer
+
 type MachBootstrapServer struct {
 	PortNameServer
 }

@@ -49,9 +49,13 @@ type IPersonNameComponents interface {
 // An object that manages the separate parts of a person’s name to allow locale-aware formatting.
 //
 // You can use this type in Swift when you need reference semantics or other Foundation-specific behavior. An object encapsulates the components of a person’s name in an extendable, object-oriented manner. It is used to specify a person’s name by providing the components comprising a full name: given name, middle name, family name, prefix, suffix, nickname, and phonetic representation. objects can be used by an instance of to create string representations suitable for display in the current locale.
+
+
+// An object that manages the separate parts of a person’s name to allow locale-aware formatting.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPersonNameComponents
+
 type PersonNameComponents struct {
 	objectivec.Object
 }
@@ -95,128 +99,149 @@ func NewPersonNameComponents() PersonNameComponents {
 }
 
 
+
 // Name bestowed upon an individual to denote membership in a group or family. .
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPersonNameComponents/familyName
+
 func (p_ PersonNameComponents) FamilyName() string {
 	rv := objc.Send[string](p_.ID, objc.Sel("familyName"))
 	return rv
 }
 
 
-// SetFamilyName sets the value of the familyName property.
 // Name bestowed upon an individual to denote membership in a group or family. .
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPersonNameComponents/familyName
+
 func (p_ PersonNameComponents) SetFamilyName(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setFamilyName:"), objc.String(value))
 }
 
+
 // Name bestowed upon an individual to differentiate them from other members of a group that share a family name .
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPersonNameComponents/givenName
+
 func (p_ PersonNameComponents) GivenName() string {
 	rv := objc.Send[string](p_.ID, objc.Sel("givenName"))
 	return rv
 }
 
 
-// SetGivenName sets the value of the givenName property.
 // Name bestowed upon an individual to differentiate them from other members of a group that share a family name .
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPersonNameComponents/givenName
+
 func (p_ PersonNameComponents) SetGivenName(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setGivenName:"), objc.String(value))
 }
 
+
 // Secondary name bestowed upon an individual to differentiate them from others that have the same given name .
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPersonNameComponents/middleName
+
 func (p_ PersonNameComponents) MiddleName() string {
 	rv := objc.Send[string](p_.ID, objc.Sel("middleName"))
 	return rv
 }
 
 
-// SetMiddleName sets the value of the middleName property.
 // Secondary name bestowed upon an individual to differentiate them from others that have the same given name .
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPersonNameComponents/middleName
+
 func (p_ PersonNameComponents) SetMiddleName(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMiddleName:"), objc.String(value))
 }
 
+
 // The portion of a name’s full form of address that precedes the name itself .
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPersonNameComponents/namePrefix
+
 func (p_ PersonNameComponents) NamePrefix() string {
 	rv := objc.Send[string](p_.ID, objc.Sel("namePrefix"))
 	return rv
 }
 
 
-// SetNamePrefix sets the value of the namePrefix property.
 // The portion of a name’s full form of address that precedes the name itself .
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPersonNameComponents/namePrefix
+
 func (p_ PersonNameComponents) SetNamePrefix(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setNamePrefix:"), objc.String(value))
 }
 
+
 // The portion of a name’s full form of address that follows the name itself .
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPersonNameComponents/nameSuffix
+
 func (p_ PersonNameComponents) NameSuffix() string {
 	rv := objc.Send[string](p_.ID, objc.Sel("nameSuffix"))
 	return rv
 }
 
 
-// SetNameSuffix sets the value of the nameSuffix property.
 // The portion of a name’s full form of address that follows the name itself .
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPersonNameComponents/nameSuffix
+
 func (p_ PersonNameComponents) SetNameSuffix(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setNameSuffix:"), objc.String(value))
 }
 
+
 // Name substituted for the purposes of familiarity .
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPersonNameComponents/nickname
+
 func (p_ PersonNameComponents) Nickname() string {
 	rv := objc.Send[string](p_.ID, objc.Sel("nickname"))
 	return rv
 }
 
 
-// SetNickname sets the value of the nickname property.
 // Name substituted for the purposes of familiarity .
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPersonNameComponents/nickname
+
 func (p_ PersonNameComponents) SetNickname(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setNickname:"), objc.String(value))
 }
 
+
 // The phonetic representation name components of the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPersonNameComponents/phoneticRepresentation
+
 func (p_ PersonNameComponents) PhoneticRepresentation() NSPersonNameComponents {
 	rv := objc.Send[NSPersonNameComponents](p_.ID, objc.Sel("phoneticRepresentation"))
 	return rv
 }
 
 
-// SetPhoneticRepresentation sets the value of the phoneticRepresentation property.
 // The phonetic representation name components of the receiver.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPersonNameComponents/phoneticRepresentation
+
 func (p_ PersonNameComponents) SetPhoneticRepresentation(value IPersonNameComponents) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPhoneticRepresentation:"), value)
 }

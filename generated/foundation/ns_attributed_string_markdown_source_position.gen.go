@@ -33,9 +33,13 @@ type IAttributedStringMarkdownSourcePosition interface {
 }
 
 // The position of attributed string text in its original Markdown source string.
+
+
+// The position of attributed string text in its original Markdown source string.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedStringMarkdownSourcePosition
+
 type AttributedStringMarkdownSourcePosition struct {
 	objectivec.Object
 }

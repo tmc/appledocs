@@ -36,9 +36,13 @@ type IBlockOperation interface {
 // An operation that manages the concurrent execution of one or more blocks.
 //
 // The class is a concrete subclass of that manages the concurrent execution of one or more blocks. You can use this object to execute several blocks at once without having to create separate operation objects for each. When executing more than one block, the operation itself is considered finished only when all blocks have finished executing. Blocks added to a block operation are dispatched with default priority to an appropriate work queue. The blocks themselves should not make any assumptions about the configuration of their execution environment. For more information about blocks, see .
+
+
+// An operation that manages the concurrent execution of one or more blocks.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/BlockOperation
+
 type BlockOperation struct {
 	Operation
 }
@@ -109,16 +113,22 @@ func (bc _BlockOperationClass) BlockOperationWithBlock(block unsafe.Pointer) uns
 	return rv
 }
 
+
 // Adds the specified block to the receiver’s list of blocks to perform.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/BlockOperation/addExecutionBlock(_:)
+
 func (b_ BlockOperation) AddExecutionBlock(block unsafe.Pointer) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("addExecutionBlock:"), block)
 }
 
+
 // The blocks associated with the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/BlockOperation/executionBlocks
+
 func (b_ BlockOperation) ExecutionBlocks() []func() {
 	rv := objc.Send[[]func()](b_.ID, objc.Sel("executionBlocks"))
 	return rv

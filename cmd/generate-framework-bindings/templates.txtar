@@ -92,7 +92,6 @@ package {{.PackageName}}
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to {{.Framework}} without requiring cgo.
 {{if .DocURL -}}
-//
 {{template "doc_comment" .}}
 {{end -}}
 package {{.PackageName}}
@@ -337,7 +336,6 @@ func init() {
 // Added in {{$docData.IntroducedPlatform}} {{$docData.IntroducedVersion}}.
 {{end -}}
 {{if $docData.DocURL -}}
-//
 {{template "doc_comment" $docData}}
 {{end -}}
 func {{$docData.Name}}({{range $i, $p := $docData.Parameters}}{{if $i}}, {{end}}{{$p.Name}} {{$p.Type}}{{end}}){{if $docData.ReturnType}} {{$docData.ReturnType}}{{end}} {
@@ -780,14 +778,8 @@ func ({{$classReceiver}} {{$classTypeName}}) {{.Name}}({{formatMethodParams . $f
 {{- $conflictsWithParent := propertyConflictsWithParent $className $.Class.SuperClass .Name}}
 {{- if and (ne $goType "") (not $conflictsWithParent)}}
 
-{{- if .Abstract}}
-// {{commentLine .Abstract}}{{if not .DocURL}} [Full Topic]{{end}}
-{{if .DocURL}}//
-// [Full Topic]: {{convertDocURL .DocURL}}
-{{end}}{{end -}}
-{{- if and (not .Abstract) .DocURL}}
-//
-// [Full Topic]: {{convertDocURL .DocURL}}
+{{- if or .Abstract .DocURL}}
+{{template "doc_comment" .}}
 {{end -}}
 func ({{$classReceiver}} {{$classTypeName}}) {{$capitalizedName}}() {{$returnType}} {
 	rv := objc.Send[{{$goType}}](objc.ID({{$classReceiver}}.class), objc.Sel("{{.Name}}"))
@@ -807,14 +799,8 @@ func ({{$classReceiver}} {{$classTypeName}}) {{$capitalizedName}}() {{$returnTyp
 {{- $hasValidReturnType := or $isInitMethod (eq .ReturnType "") (eq .ReturnType "void") (ne $goType "")}}
 {{- if $hasValidReturnType}}
 
-{{- if .Abstract}}
-// {{commentLine .Abstract}}{{if not .DocURL}} [Full Topic]{{end}}
-{{if .DocURL}}//
-// [Full Topic]: {{convertDocURL .DocURL}}
-{{end}}{{end -}}
-{{- if and (not .Abstract) .DocURL}}
-//
-// [Full Topic]: {{convertDocURL .DocURL}}
+{{- if or .Abstract .DocURL}}
+{{template "doc_comment" .}}
 {{end -}}
 func ({{$instReceiver}} {{$structName}}) {{.Name}}({{formatMethodParams . $framework}}){{if $isInitMethod}} {{$structName}}{{else}}{{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$returnType}}{{end}}{{end}} {
 	{{- if $isInitMethod}}
@@ -837,14 +823,8 @@ func ({{$instReceiver}} {{$structName}}) {{.Name}}({{formatMethodParams . $frame
 {{- $capitalizedName := capitalize .Name}}
 {{- $conflictsWithParent := propertyConflictsWithParent $className $.Class.SuperClass .Name}}
 {{- if and (ne $goType "") (not $conflictsWithParent)}}
-{{- if .Abstract}}
-// {{commentLine .Abstract}}{{if not .DocURL}} [Full Topic]{{end}}
-{{if .DocURL}}//
-// [Full Topic]: {{convertDocURL .DocURL}}
-{{end}}{{end -}}
-{{- if and (not .Abstract) .DocURL}}
-//
-// [Full Topic]: {{convertDocURL .DocURL}}
+{{- if or .Abstract .DocURL}}
+{{template "doc_comment" .}}
 {{end -}}
 func ({{$instReceiver}} {{$structName}}) {{$capitalizedName}}() {{$goType}} {
 	rv := objc.Send[{{$goType}}]({{$instReceiver}}.ID, objc.Sel("{{.Name}}"))
@@ -854,13 +834,10 @@ func ({{$instReceiver}} {{$structName}}) {{$capitalizedName}}() {{$goType}} {
 {{- if not $isReadOnly}}
 {{- $setterParamType := typeToInterfaceType $goType}}
 
+{{- if or .Abstract .DocURL}}
+{{template "doc_comment" .}}
+{{else}}
 // Set{{$capitalizedName}} sets the value of the {{.Name}} property.
-{{- if .Abstract}}
-// {{commentLine .Abstract}}
-{{end -}}
-{{- if .DocURL}}
-//
-// [Full Topic]: {{convertDocURL .DocURL}}
 {{end -}}
 func ({{$instReceiver}} {{$structName}}) Set{{$capitalizedName}}(value {{$setterParamType}}) {
 	{{- if hasPrefix $goType "[]"}}
@@ -1024,7 +1001,7 @@ import "unsafe"
 {{range $typeName, $methods := .TypeMethods -}}
 {{range $methods -}}
 {{- $docData := prepareFunctionDocData . $.Framework}}
-{{if $docData.Abstract}}// {{commentLine $docData.Abstract}} [Full Topic]{{else}}// {{$docData.MethodName}} is a {{$docData.Framework}} function. [Full Topic]{{end}}
+{{if $docData.Abstract}}// {{commentLine $docData.Abstract}}{{if not $docData.DocURL}} [Full Topic]{{end}}{{else}}// {{$docData.MethodName}} is a {{$docData.Framework}} function.{{if not $docData.DocURL}} [Full Topic]{{end}}{{end}}
 {{if $docData.HasAvailability -}}
 //
 {{if $docData.IsDeprecated -}}
@@ -1034,8 +1011,7 @@ import "unsafe"
 // Added in {{$docData.IntroducedPlatform}} {{$docData.IntroducedVersion}}.
 {{end -}}
 {{if $docData.DocURL -}}
-//
-// [Full Topic]: {{$docData.DocURL}}
+{{template "doc_comment" $docData}}
 {{end -}}
 func (c {{index $.TypeToRef $typeName}}) {{$docData.MethodName}}({{range $i, $p := $docData.MethodParameters}}{{if $i}}, {{end}}{{$p.Name}} {{$p.Type}}{{end}}){{if $docData.ReturnType}} {{$docData.ReturnType}}{{end}} {
 	{{if $docData.ReturnType}}return {{end}}{{$docData.Name}}(c.Ptr(){{if $docData.MethodParameters}}, {{end}}{{range $i, $p := $docData.MethodParameters}}{{if $i}}, {{end}}{{$p.Name}}{{end}})

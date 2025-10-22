@@ -38,9 +38,13 @@ type IMutableIndexSet interface {
 // A mutable collection of unique integer values that represent indexes in another collection.
 //
 // In Swift, this type bridges to ; use when you need reference semantics or other Foundation-specific behavior. The class represents a mutable collection of unique unsigned integers, known as because of the way they are used. This collection is referred to as a . The inclusive range of valid indexes is ; trying to use indexes outside this range is invalid. The values in a mutable index set are always sorted, so the order in which values are added is irrelevant. Do not subclass the class.
+
+
+// A mutable collection of unique integer values that represent indexes in another collection.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableIndexSet
+
 type MutableIndexSet struct {
 	IndexSet
 }
@@ -86,30 +90,42 @@ func NewMutableIndexSet() MutableIndexSet {
 }
 
 
+
 // Adds an index to the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableIndexSet/add(_:)-6dtkj
+
 func (m_ MutableIndexSet) AddIndex(value uint) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("addIndex:"), value)
 }
 
+
 // Removes the indexes in an index set from the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableIndexSet/remove(_:)-196u2
+
 func (m_ MutableIndexSet) RemoveIndexes(indexSet IIndexSet) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("removeIndexes:"), indexSet)
 }
 
+
 // Removes an index from the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableIndexSet/remove(_:)-5li0r
+
 func (m_ MutableIndexSet) RemoveIndex(value uint) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("removeIndex:"), value)
 }
 
+
 // Removes the indexes in an index range from the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableIndexSet/remove(in:)
+
 func (m_ MutableIndexSet) RemoveIndexesInRange(range_ IRange) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("removeIndexesInRange:"), range_)
 }

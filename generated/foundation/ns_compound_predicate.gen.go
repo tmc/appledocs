@@ -37,9 +37,13 @@ type ICompoundPredicate interface {
 // A specialized predicate that evaluates logical combinations of other predicates.
 //
 // Use to create an or compound predicate of one or more other predicates, or the of a single predicate. For the logical and operations: An predicate with no subpredicates evaluates to . An predicate with no subpredicates evaluates to . A compound predicate with one or more subpredicates evaluates to the truth of its subpredicates.
+
+
+// A specialized predicate that evaluates logical combinations of other predicates.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCompoundPredicate
+
 type CompoundPredicate struct {
 	Predicate
 }
@@ -149,28 +153,34 @@ func (cc _CompoundPredicateClass) NotPredicateWithSubpredicate(predicate IPredic
 	return rv
 }
 
+
 // The predicate type for the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCompoundPredicate/compoundPredicateType
+
 func (c_ CompoundPredicate) CompoundPredicateType() CompoundPredicateType {
 	rv := objc.Send[CompoundPredicateType](c_.ID, objc.Sel("compoundPredicateType"))
 	return rv
 }
 
+
 // The receiver’s subpredicates.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscompoundpredicate/subpredicates
+
 func (c_ CompoundPredicate) Subpredicates() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("subpredicates"))
 	return rv
 }
 
 
-// SetSubpredicates sets the value of the subpredicates property.
 // The receiver’s subpredicates.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscompoundpredicate/subpredicates
+
 func (c_ CompoundPredicate) SetSubpredicates(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSubpredicates:"), value)
 }

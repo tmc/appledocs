@@ -34,9 +34,13 @@ type ISecureUnarchiveFromDataTransformer interface {
 // A value transformer that converts data to and from classes that support secure coding.
 //
 // This class provides a default implementation for secure decoding. This class attempts to decode data into the classes listed within , which includes , , , , , , , , , and . To archive or unarchive other classes that support , create a subclass and override to list the classes to transform. To use with , use the name of this class, or the name of a subclass you implement, as the name of the transformer for an entity’s attribute within a Core Data Model. If you use your own transformer subclass, register it with your app before intializing your persistent container with Core Data. For an example of subclassing , see , which has a class that transforms to and the reverse, to support archiving instances of .
+
+
+// A value transformer that converts data to and from classes that support secure coding.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSecureUnarchiveFromDataTransformer
+
 type SecureUnarchiveFromDataTransformer struct {
 	ValueTransformer
 }
@@ -82,16 +86,22 @@ func NewSecureUnarchiveFromDataTransformer() SecureUnarchiveFromDataTransformer 
 }
 
 
+
 // A list of allowed classes the top-level object in an archive must conform to, for encoding and decoding.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSecureUnarchiveFromDataTransformer/allowedTopLevelClasses
+
 func (sc _SecureUnarchiveFromDataTransformerClass) AllowedTopLevelClasses() []objc.Class {
 	rv := objc.Send[[]objc.Class](objc.ID(sc.class), objc.Sel("allowedTopLevelClasses"))
 	return rv
 }
+
 // A list of allowed classes the top-level object in an archive must conform to, for encoding and decoding.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSecureUnarchiveFromDataTransformer/allowedTopLevelClasses
+
 func (s_ SecureUnarchiveFromDataTransformer) AllowedTopLevelClasses() []objc.Class {
 	rv := objc.Send[[]objc.Class](s_.ID, objc.Sel("allowedTopLevelClasses"))
 	return rv

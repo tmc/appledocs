@@ -34,9 +34,13 @@ type IUnitIlluminance interface {
 // A unit of measure for illuminance.
 //
 // You typically use instances of to represent specific quantities of illuminance using the class.
+
+
+// A unit of measure for illuminance.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitIlluminance
+
 type UnitIlluminance struct {
 	Dimension
 }
@@ -82,16 +86,22 @@ func NewUnitIlluminance() UnitIlluminance {
 }
 
 
+
 // The lux unit of illuminance.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitIlluminance/lux
+
 func (uc _UnitIlluminanceClass) Lux() UnitIlluminance {
 	rv := objc.Send[NSUnitIlluminance](objc.ID(uc.class), objc.Sel("lux"))
 	return rv
 }
+
 // The lux unit of illuminance.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitIlluminance/lux
+
 func (u_ UnitIlluminance) Lux() NSUnitIlluminance {
 	rv := objc.Send[NSUnitIlluminance](u_.ID, objc.Sel("lux"))
 	return rv

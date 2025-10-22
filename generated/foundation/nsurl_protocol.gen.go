@@ -45,9 +45,13 @@ type IURLProtocol interface {
 // An abstract class that handles the loading of protocol-specific URL data.
 //
 // Don’t instantiate a subclass directly. Instead, create subclasses for any custom protocols or URL schemes that your app supports. When a download starts, the system creates the appropriate protocol object to handle the corresponding URL request. You define your protocol class and call the class method during your app’s launch time so that the system is aware of your protocol. To support the customization of protocol-specific requests, create extensions to the class to provide any custom API that you need. You can store and retrieve protocol-specific request data by using ’s class methods and . Create a for each request your subclass processes successfully. You may want to create a custom class to provide protocol specific information.
+
+
+// An abstract class that handles the loading of protocol-specific URL data.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtocol
+
 type URLProtocol struct {
 	objectivec.Object
 }
@@ -165,92 +169,107 @@ func (uc _URLProtocolClass) UnregisterClass(protocolClass objc.Class) {
 	objc.Send[objc.ID](objc.ID(uc.class), objc.Sel("unregisterClass:"), protocolClass)
 }
 
+
 // The protocol’s cached response.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotocol/cachedresponse
+
 func (u_ URLProtocol) CachedResponse() NSCachedURLResponse {
 	rv := objc.Send[NSCachedURLResponse](u_.ID, objc.Sel("cachedResponse"))
 	return rv
 }
 
 
-// SetCachedResponse sets the value of the cachedResponse property.
 // The protocol’s cached response.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotocol/cachedresponse
+
 func (u_ URLProtocol) SetCachedResponse(value ICachedURLResponse) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setCachedResponse:"), value)
 }
 
+
 // The object the protocol uses to communicate with the URL loading system.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotocol/client
+
 func (u_ URLProtocol) Client() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("client"))
 	return rv
 }
 
 
-// SetClient sets the value of the client property.
 // The object the protocol uses to communicate with the URL loading system.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotocol/client
+
 func (u_ URLProtocol) SetClient(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setClient:"), value)
 }
 
+
 // The protocol’s request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotocol/request
+
 func (u_ URLProtocol) Request() URLRequest {
 	rv := objc.Send[URLRequest](u_.ID, objc.Sel("request"))
 	return rv
 }
 
 
-// SetRequest sets the value of the request property.
 // The protocol’s request.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotocol/request
+
 func (u_ URLProtocol) SetRequest(value IURLRequest) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setRequest:"), value)
 }
 
+
 // The protocol’s task.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotocol/task
+
 func (u_ URLProtocol) Task() NSURLSessionTask {
 	rv := objc.Send[NSURLSessionTask](u_.ID, objc.Sel("task"))
 	return rv
 }
 
 
-// SetTask sets the value of the task property.
 // The protocol’s task.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotocol/task
+
 func (u_ URLProtocol) SetTask(value IURLSessionTask) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setTask:"), value)
 }
 
+
 // An array of extra protocol subclasses that handle requests in a session.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/protocolclasses
+
 func (u_ URLProtocol) ProtocolClasses() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("protocolClasses"))
 	return rv
 }
 
 
-// SetProtocolClasses sets the value of the protocolClasses property.
 // An array of extra protocol subclasses that handle requests in a session.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/protocolclasses
+
 func (u_ URLProtocol) SetProtocolClasses(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setProtocolClasses:"), value)
 }

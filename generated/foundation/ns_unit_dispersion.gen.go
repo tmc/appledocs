@@ -34,9 +34,13 @@ type IUnitDispersion interface {
 // A unit of measure for specific quantities of dispersion.
 //
 // You typically use instances of to represent specific quantities of dispersion using the class.
+
+
+// A unit of measure for specific quantities of dispersion.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitDispersion
+
 type UnitDispersion struct {
 	Dimension
 }
@@ -82,16 +86,22 @@ func NewUnitDispersion() UnitDispersion {
 }
 
 
+
 // The parts per million unit.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitDispersion/partsPerMillion
+
 func (uc _UnitDispersionClass) PartsPerMillion() UnitDispersion {
 	rv := objc.Send[NSUnitDispersion](objc.ID(uc.class), objc.Sel("partsPerMillion"))
 	return rv
 }
+
 // The parts per million unit.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitDispersion/partsPerMillion
+
 func (u_ UnitDispersion) PartsPerMillion() NSUnitDispersion {
 	rv := objc.Send[NSUnitDispersion](u_.ID, objc.Sel("partsPerMillion"))
 	return rv

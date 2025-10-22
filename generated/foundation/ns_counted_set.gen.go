@@ -40,9 +40,13 @@ type ICountedSet interface {
 // A mutable, unordered collection of distinct objects that may appear more than once in the collection.
 //
 // Each distinct object inserted into an object has a counter associated with it. keeps track of the number of times objects are inserted and requires that objects be removed the same number of times. Thus, there is only one instance of an object in an object even if the object has been added to the set multiple times. The method defined by the superclass has special significance; it returns the number of distinct objects, not the total number of times objects are represented in the set. The and classes are provided for static and dynamic sets, respectively, whose elements are distinct. While and are not toll-free bridged, they provide similar functionality. For more information about , see the .
+
+
+// A mutable, unordered collection of distinct objects that may appear more than once in the collection.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCountedSet
+
 type CountedSet struct {
 	MutableSet
 }
@@ -134,50 +138,65 @@ func NewCountedSetWithSet(set unsafe.Pointer) CountedSet {
 }
 
 
+
 // Adds a given object to the set.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCountedSet/add(_:)
+
 func (c_ CountedSet) AddObject(object unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("addObject:"), object)
 }
 
+
 // Returns the count associated with a given object in the set.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCountedSet/count(for:)
+
 func (c_ CountedSet) CountForObject(object unsafe.Pointer) uint {
 	rv := objc.Send[uint](c_.ID, objc.Sel("countForObject:"), object)
 	return rv
 }
 
+
 // Returns an enumerator object that lets you access each object in the set once, independent of its count.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCountedSet/objectEnumerator()
+
 func (c_ CountedSet) ObjectEnumerator() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("objectEnumerator"))
 	return rv
 }
 
+
 // Removes a given object from the set.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCountedSet/remove(_:)
+
 func (c_ CountedSet) RemoveObject(object unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("removeObject:"), object)
 }
 
+
 // The number of members in the set.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsset/count
+
 func (c_ CountedSet) Count() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("count"))
 	return rv
 }
 
 
-// SetCount sets the value of the count property.
 // The number of members in the set.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsset/count
+
 func (c_ CountedSet) SetCount(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCount:"), value)
 }

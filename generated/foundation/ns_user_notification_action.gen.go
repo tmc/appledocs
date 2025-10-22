@@ -41,9 +41,13 @@ type IUserNotificationAction interface {
 // An action that the user can take in response to receiving a notification.
 //
 // User notifications can specify one or more actions to show to the user by using the or properties. objects contain the localized title shown to the user and an identifier used to differentiate between presented actions.
+
+
+// An action that the user can take in response to receiving a notification.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationAction
+
 type UserNotificationAction struct {
 	objectivec.Object
 }
@@ -112,54 +116,66 @@ func (uc _UserNotificationActionClass) ActionWithIdentifierTitle(identifier stri
 	return rv
 }
 
+
 // The identifier for the user notification action.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationAction/identifier
+
 func (u_ UserNotificationAction) Identifier() string {
 	rv := objc.Send[string](u_.ID, objc.Sel("identifier"))
 	return rv
 }
 
+
 // The localized title shown to the user.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationAction/title
+
 func (u_ UserNotificationAction) Title() string {
 	rv := objc.Send[string](u_.ID, objc.Sel("title"))
 	return rv
 }
 
+
 // The actions that can be taken on a notification in addition to the default action.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/additionalactions
+
 func (u_ UserNotificationAction) AdditionalActions() NSUserNotificationAction {
 	rv := objc.Send[NSUserNotificationAction](u_.ID, objc.Sel("additionalActions"))
 	return rv
 }
 
 
-// SetAdditionalActions sets the value of the additionalActions property.
 // The actions that can be taken on a notification in addition to the default action.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/additionalactions
+
 func (u_ UserNotificationAction) SetAdditionalActions(value IUserNotificationAction) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setAdditionalActions:"), value)
 }
 
+
 // An additional action selected by the user.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/additionalactivationaction
+
 func (u_ UserNotificationAction) AdditionalActivationAction() NSUserNotificationAction {
 	rv := objc.Send[NSUserNotificationAction](u_.ID, objc.Sel("additionalActivationAction"))
 	return rv
 }
 
 
-// SetAdditionalActivationAction sets the value of the additionalActivationAction property.
 // An additional action selected by the user.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/additionalactivationaction
+
 func (u_ UserNotificationAction) SetAdditionalActivationAction(value IUserNotificationAction) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setAdditionalActivationAction:"), value)
 }

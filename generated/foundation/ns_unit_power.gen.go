@@ -34,9 +34,13 @@ type IUnitPower interface {
 // A unit of measure for power.
 //
 // You typically use instances of to represent specific quantities of power using the class.
+
+
+// A unit of measure for power.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPower
+
 type UnitPower struct {
 	Dimension
 }
@@ -82,31 +86,43 @@ func NewUnitPower() UnitPower {
 }
 
 
+
 // The kilowatts unit of power.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPower/kilowatts
+
 func (uc _UnitPowerClass) Kilowatts() UnitPower {
 	rv := objc.Send[NSUnitPower](objc.ID(uc.class), objc.Sel("kilowatts"))
-	return rv
-}
-// The microwatts unit of power.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPower/microwatts
-func (uc _UnitPowerClass) Microwatts() UnitPower {
-	rv := objc.Send[NSUnitPower](objc.ID(uc.class), objc.Sel("microwatts"))
-	return rv
-}
-// The kilowatts unit of power.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPower/kilowatts
-func (u_ UnitPower) Kilowatts() NSUnitPower {
-	rv := objc.Send[NSUnitPower](u_.ID, objc.Sel("kilowatts"))
 	return rv
 }
 
 // The microwatts unit of power.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPower/microwatts
+
+func (uc _UnitPowerClass) Microwatts() UnitPower {
+	rv := objc.Send[NSUnitPower](objc.ID(uc.class), objc.Sel("microwatts"))
+	return rv
+}
+
+// The kilowatts unit of power.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPower/kilowatts
+
+func (u_ UnitPower) Kilowatts() NSUnitPower {
+	rv := objc.Send[NSUnitPower](u_.ID, objc.Sel("kilowatts"))
+	return rv
+}
+
+
+// The microwatts unit of power.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPower/microwatts
+
 func (u_ UnitPower) Microwatts() NSUnitPower {
 	rv := objc.Send[NSUnitPower](u_.ID, objc.Sel("microwatts"))
 	return rv

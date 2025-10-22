@@ -34,9 +34,13 @@ type IUnitConcentrationMass interface {
 // A unit of measure for concentration of mass.
 //
 // You typically use instances of to represent specific quantities of concentration using the class.
+
+
+// A unit of measure for concentration of mass.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitConcentrationMass
+
 type UnitConcentrationMass struct {
 	Dimension
 }
@@ -82,16 +86,22 @@ func NewUnitConcentrationMass() UnitConcentrationMass {
 }
 
 
+
 // The grams per liter unit of concentration.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitConcentrationMass/gramsPerLiter
+
 func (uc _UnitConcentrationMassClass) GramsPerLiter() UnitConcentrationMass {
 	rv := objc.Send[NSUnitConcentrationMass](objc.ID(uc.class), objc.Sel("gramsPerLiter"))
 	return rv
 }
+
 // The grams per liter unit of concentration.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitConcentrationMass/gramsPerLiter
+
 func (u_ UnitConcentrationMass) GramsPerLiter() NSUnitConcentrationMass {
 	rv := objc.Send[NSUnitConcentrationMass](u_.ID, objc.Sel("gramsPerLiter"))
 	return rv

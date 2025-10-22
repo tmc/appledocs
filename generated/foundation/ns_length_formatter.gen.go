@@ -39,9 +39,13 @@ type ILengthFormatter interface {
 }
 
 // A formatter that provides localized descriptions of linear distances, such as length and height measurements.
+
+
+// A formatter that provides localized descriptions of linear distances, such as length and height measurements.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/LengthFormatter
+
 type LengthFormatter struct {
 	Formatter
 }
@@ -87,64 +91,76 @@ func NewLengthFormatter() LengthFormatter {
 }
 
 
+
 // Returns the unit string based on the provided value and unit.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/LengthFormatter/unitString(fromValue:unit:)
+
 func (l_ LengthFormatter) UnitStringFromValueUnit(value float64, unit unsafe.Pointer) String {
 	rv := objc.Send[String](l_.ID, objc.Sel("unitStringFromValue:unit:"), value, unit)
 	return rv
 }
 
+
 // The number formatter used to format the numbers in length strings.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/LengthFormatter/numberFormatter
+
 func (l_ LengthFormatter) NumberFormatter() NSNumberFormatter {
 	rv := objc.Send[NSNumberFormatter](l_.ID, objc.Sel("numberFormatter"))
 	return rv
 }
 
 
-// SetNumberFormatter sets the value of the numberFormatter property.
 // The number formatter used to format the numbers in length strings.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/LengthFormatter/numberFormatter
+
 func (l_ LengthFormatter) SetNumberFormatter(value INumberFormatter) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setNumberFormatter:"), value)
 }
 
+
 // A Boolean value that indicates whether the resulting string represents a person’s height.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/lengthformatter/isforpersonheightuse
+
 func (l_ LengthFormatter) IsForPersonHeightUse() bool {
 	rv := objc.Send[bool](l_.ID, objc.Sel("isForPersonHeightUse"))
 	return rv
 }
 
 
-// SetIsForPersonHeightUse sets the value of the isForPersonHeightUse property.
 // A Boolean value that indicates whether the resulting string represents a person’s height.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/lengthformatter/isforpersonheightuse
+
 func (l_ LengthFormatter) SetIsForPersonHeightUse(value bool) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setIsForPersonHeightUse:"), value)
 }
 
+
 // The unit style used by this formatter.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/lengthformatter/unitstyle
+
 func (l_ LengthFormatter) UnitStyle() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("unitStyle"))
 	return rv
 }
 
 
-// SetUnitStyle sets the value of the unitStyle property.
 // The unit style used by this formatter.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/lengthformatter/unitstyle
+
 func (l_ LengthFormatter) SetUnitStyle(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setUnitStyle:"), value)
 }

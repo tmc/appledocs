@@ -35,9 +35,13 @@ type IQuitCommand interface {
 // A command that quits the specified app.
 //
 // The quit command may optionally specify how to handle modified documents (automatically save changes, don’t save them, or ask the user). For details, see the description for the command in “Apple Events Sent By the Mac OS” in in . is part of Cocoa’s built-in scripting support. Most applications don’t need to subclass or call its methods.
+
+
+// A command that quits the specified app.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSQuitCommand
+
 type QuitCommand struct {
 	ScriptCommand
 }
@@ -83,9 +87,12 @@ func NewQuitCommand() QuitCommand {
 }
 
 
+
 // Returns a constant indicating how to deal with closing any modified documents.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSQuitCommand/saveOptions
+
 func (q_ QuitCommand) SaveOptions() SaveOptions {
 	rv := objc.Send[SaveOptions](q_.ID, objc.Sel("saveOptions"))
 	return rv

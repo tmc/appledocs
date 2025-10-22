@@ -34,9 +34,13 @@ type IUnitFuelEfficiency interface {
 // A unit of measure for fuel efficiency.
 //
 // You typically use instances of to represent specific quantities of fuel efficiency using the class.
+
+
+// A unit of measure for fuel efficiency.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitFuelEfficiency
+
 type UnitFuelEfficiency struct {
 	Dimension
 }
@@ -82,31 +86,43 @@ func NewUnitFuelEfficiency() UnitFuelEfficiency {
 }
 
 
+
 // The miles per gallon unit of fuel efficiency.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitFuelEfficiency/milesPerGallon
+
 func (uc _UnitFuelEfficiencyClass) MilesPerGallon() UnitFuelEfficiency {
 	rv := objc.Send[NSUnitFuelEfficiency](objc.ID(uc.class), objc.Sel("milesPerGallon"))
-	return rv
-}
-// The miles per imperial gallon unit of fuel efficiency.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitFuelEfficiency/milesPerImperialGallon
-func (uc _UnitFuelEfficiencyClass) MilesPerImperialGallon() UnitFuelEfficiency {
-	rv := objc.Send[NSUnitFuelEfficiency](objc.ID(uc.class), objc.Sel("milesPerImperialGallon"))
-	return rv
-}
-// The miles per gallon unit of fuel efficiency.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitFuelEfficiency/milesPerGallon
-func (u_ UnitFuelEfficiency) MilesPerGallon() NSUnitFuelEfficiency {
-	rv := objc.Send[NSUnitFuelEfficiency](u_.ID, objc.Sel("milesPerGallon"))
 	return rv
 }
 
 // The miles per imperial gallon unit of fuel efficiency.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitFuelEfficiency/milesPerImperialGallon
+
+func (uc _UnitFuelEfficiencyClass) MilesPerImperialGallon() UnitFuelEfficiency {
+	rv := objc.Send[NSUnitFuelEfficiency](objc.ID(uc.class), objc.Sel("milesPerImperialGallon"))
+	return rv
+}
+
+// The miles per gallon unit of fuel efficiency.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitFuelEfficiency/milesPerGallon
+
+func (u_ UnitFuelEfficiency) MilesPerGallon() NSUnitFuelEfficiency {
+	rv := objc.Send[NSUnitFuelEfficiency](u_.ID, objc.Sel("milesPerGallon"))
+	return rv
+}
+
+
+// The miles per imperial gallon unit of fuel efficiency.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitFuelEfficiency/milesPerImperialGallon
+
 func (u_ UnitFuelEfficiency) MilesPerImperialGallon() NSUnitFuelEfficiency {
 	rv := objc.Send[NSUnitFuelEfficiency](u_.ID, objc.Sel("milesPerImperialGallon"))
 	return rv

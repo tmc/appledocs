@@ -36,9 +36,13 @@ type IOutputStream interface {
 // A stream that provides write-only stream functionality.
 //
 // is “toll-free bridged” with its Core Foundation counterpart, . For more information on toll-free bridging, see .
+
+
+// A stream that provides write-only stream functionality.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/OutputStream
+
 type OutputStream struct {
 	Stream
 }
@@ -189,17 +193,23 @@ func (oc _OutputStreamClass) OutputStreamToMemory() unsafe.Pointer {
 	return rv
 }
 
+
 // Writes the contents of a provided data buffer to the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/OutputStream/write(_:maxLength:)
+
 func (o_ OutputStream) WriteMaxLength(buffer unsafe.Pointer, len_ uint) int {
 	rv := objc.Send[int](o_.ID, objc.Sel("write:maxLength:"), buffer, len_)
 	return rv
 }
 
+
 // A boolean value that indicates whether the receiver can be written to.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/OutputStream/hasSpaceAvailable
+
 func (o_ OutputStream) HasSpaceAvailable() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("hasSpaceAvailable"))
 	return rv

@@ -34,9 +34,13 @@ type IUnitSpeed interface {
 // A unit of measure for speed.
 //
 // You typically use instances of to represent specific quantities of speed using the class.
+
+
+// A unit of measure for speed.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitSpeed
+
 type UnitSpeed struct {
 	Dimension
 }
@@ -82,16 +86,22 @@ func NewUnitSpeed() UnitSpeed {
 }
 
 
+
 // The meter per second unit of speed.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitSpeed/metersPerSecond
+
 func (uc _UnitSpeedClass) MetersPerSecond() UnitSpeed {
 	rv := objc.Send[NSUnitSpeed](objc.ID(uc.class), objc.Sel("metersPerSecond"))
 	return rv
 }
+
 // The meter per second unit of speed.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitSpeed/metersPerSecond
+
 func (u_ UnitSpeed) MetersPerSecond() NSUnitSpeed {
 	rv := objc.Send[NSUnitSpeed](u_.ID, objc.Sel("metersPerSecond"))
 	return rv

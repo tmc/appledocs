@@ -39,9 +39,13 @@ type IAffineTransform interface {
 // A graphics coordinate transformation.
 //
 // In Swift, this object bridges to ; use when you need reference semantics or other Foundation-specific behavior. A transformation specifies how points in one coordinate system are transformed to points in another coordinate system. An affine transformation is a special type of transformation that preserves parallel lines in a path but does not necessarily preserve lengths or angles. Scaling, rotation, and translation are the most commonly used manipulations supported by affine transforms, but shearing is also possible. Methods for applying affine transformations to the current graphics context and a method for applying an affine transformation to an object are described in NSAffineTransform Additions Reference in the Application Kit.
+
+
+// A graphics coordinate transformation.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAffineTransform
+
 type AffineTransform struct {
 	objectivec.Object
 }
@@ -85,35 +89,44 @@ func NewAffineTransform() AffineTransform {
 }
 
 
+
 // Applies the receiver’s transform to the specified point and returns the result.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAffineTransform/transform(_:)-41p16
+
 func (a_ AffineTransform) TransformPoint(aPoint IPoint) Point {
 	rv := objc.Send[Point](a_.ID, objc.Sel("transformPoint:"), aPoint)
 	return rv
 }
 
+
 // Applies the specified translation factors to the receiver’s transformation matrix.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAffineTransform/translateX(by:yBy:)
+
 func (a_ AffineTransform) TranslateXByYBy(deltaX float64, deltaY float64) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("translateXBy:yBy:"), deltaX, deltaY)
 }
 
+
 // The matrix coefficients stored as the transformation matrix.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsaffinetransform/transformstruct
+
 func (a_ AffineTransform) TransformStruct() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("transformStruct"))
 	return rv
 }
 
 
-// SetTransformStruct sets the value of the transformStruct property.
 // The matrix coefficients stored as the transformation matrix.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsaffinetransform/transformstruct
+
 func (a_ AffineTransform) SetTransformStruct(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setTransformStruct:"), value)
 }

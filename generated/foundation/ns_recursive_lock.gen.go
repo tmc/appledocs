@@ -38,9 +38,13 @@ type IRecursiveLock interface {
 // A lock that may be acquired multiple times by the same thread without causing a deadlock.
 //
 // defines a lock that may be acquired multiple times by the same thread without causing a deadlock, a situation where a thread is permanently blocked waiting for itself to relinquish a lock. While the locking thread has one or more locks, all other threads are prevented from accessing the code protected by the lock.
+
+
+// A lock that may be acquired multiple times by the same thread without causing a deadlock.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRecursiveLock
+
 type RecursiveLock struct {
 	objectivec.Object
 }
@@ -84,28 +88,34 @@ func NewRecursiveLock() RecursiveLock {
 }
 
 
+
 // Attempts to acquire a lock, and immediately returns a Boolean value that indicates whether the attempt was successful.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRecursiveLock/try()
+
 func (r_ RecursiveLock) TryLock() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("tryLock"))
 	return rv
 }
 
+
 // The name associated with the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRecursiveLock/name
+
 func (r_ RecursiveLock) Name() string {
 	rv := objc.Send[string](r_.ID, objc.Sel("name"))
 	return rv
 }
 
 
-// SetName sets the value of the name property.
 // The name associated with the receiver.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRecursiveLock/name
+
 func (r_ RecursiveLock) SetName(value string) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setName:"), objc.String(value))
 }

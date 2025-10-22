@@ -34,9 +34,13 @@ type IUnitMass interface {
 // A unit of measure for mass.
 //
 // You typically use instances of to represent specific quantities of mass using the class.
+
+
+// A unit of measure for mass.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitMass
+
 type UnitMass struct {
 	Dimension
 }
@@ -82,16 +86,22 @@ func NewUnitMass() UnitMass {
 }
 
 
+
 // The kilograms unit of mass.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitMass/kilograms
+
 func (uc _UnitMassClass) Kilograms() UnitMass {
 	rv := objc.Send[NSUnitMass](objc.ID(uc.class), objc.Sel("kilograms"))
 	return rv
 }
+
 // The kilograms unit of mass.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitMass/kilograms
+
 func (u_ UnitMass) Kilograms() NSUnitMass {
 	rv := objc.Send[NSUnitMass](u_.ID, objc.Sel("kilograms"))
 	return rv

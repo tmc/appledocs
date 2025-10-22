@@ -42,9 +42,13 @@ type IMapTable interface {
 // A collection similar to a dictionary, but with a broader range of available memory semantics.
 //
 // The map table is modeled after with the following differences: Keys and/or values are optionally held “weakly” such that entries are removed when one of the objects is reclaimed. Its keys or values may be copied on input or may use pointer identity for equality and hashing. It can contain arbitrary pointers (its contents are not constrained to being objects). You can configure an instance to operate on arbitrary pointers and not just objects, although typically you are encouraged to use the C function API for void * pointers. The object-based API (such as ) will not work for non-object pointers without type-casting. When configuring map tables, note that only the options listed in guarantee that the rest of the API will work correctly—including copying, archiving, and fast enumeration. While other options are used for certain configurations, such as to hold arbitrary pointers, not all combinations of the options are valid. With some combinations the map table may not work correctly, or may not even be initialized correctly.
+
+
+// A collection similar to a dictionary, but with a broader range of available memory semantics.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMapTable
+
 type MapTable struct {
 	objectivec.Object
 }
@@ -88,63 +92,75 @@ func NewMapTable() MapTable {
 }
 
 
+
 // Adds a given key-value pair to the map table.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMapTable/setObject(_:forKey:)
+
 func (m_ MapTable) SetObjectForKey(anObject unsafe.Pointer, aKey unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setObject:forKey:"), anObject, aKey)
 }
 
+
 // The number of key-value pairs in the map table.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmaptable/count
+
 func (m_ MapTable) Count() int {
 	rv := objc.Send[int](m_.ID, objc.Sel("count"))
 	return rv
 }
 
 
-// SetCount sets the value of the count property.
 // The number of key-value pairs in the map table.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmaptable/count
+
 func (m_ MapTable) SetCount(value int) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCount:"), value)
 }
 
+
 // The pointer functions the map table uses to manage keys.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmaptable/keypointerfunctions
+
 func (m_ MapTable) KeyPointerFunctions() NSPointerFunctions {
 	rv := objc.Send[NSPointerFunctions](m_.ID, objc.Sel("keyPointerFunctions"))
 	return rv
 }
 
 
-// SetKeyPointerFunctions sets the value of the keyPointerFunctions property.
 // The pointer functions the map table uses to manage keys.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmaptable/keypointerfunctions
+
 func (m_ MapTable) SetKeyPointerFunctions(value IPointerFunctions) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setKeyPointerFunctions:"), value)
 }
 
+
 // The pointer functions the map table uses to manage values.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmaptable/valuepointerfunctions
+
 func (m_ MapTable) ValuePointerFunctions() NSPointerFunctions {
 	rv := objc.Send[NSPointerFunctions](m_.ID, objc.Sel("valuePointerFunctions"))
 	return rv
 }
 
 
-// SetValuePointerFunctions sets the value of the valuePointerFunctions property.
 // The pointer functions the map table uses to manage values.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmaptable/valuepointerfunctions
+
 func (m_ MapTable) SetValuePointerFunctions(value IPointerFunctions) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValuePointerFunctions:"), value)
 }

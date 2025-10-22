@@ -39,9 +39,13 @@ type IURLCredentialStorage interface {
 // The manager of a shared credentials cache.
 //
 // The shared cache stores and retrieves instances of . You can store password-based credentials permanently, based on the they were created with. Certificate-based credentials are never stored permanently.
+
+
+// The manager of a shared credentials cache.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLCredentialStorage
+
 type URLCredentialStorage struct {
 	objectivec.Object
 }
@@ -85,35 +89,44 @@ func NewURLCredentialStorage() URLCredentialStorage {
 }
 
 
+
 // Returns a dictionary containing the credentials for the specified protection space.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLCredentialStorage/credentials(for:)
+
 func (u_ URLCredentialStorage) CredentialsForProtectionSpace(space IURLProtectionSpace) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("credentialsForProtectionSpace:"), space)
 	return rv
 }
 
+
 // Sets the default credential for a specified protection space.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLCredentialStorage/setDefaultCredential(_:for:)
+
 func (u_ URLCredentialStorage) SetDefaultCredentialForProtectionSpace(credential IURLCredential, space IURLProtectionSpace) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setDefaultCredential:forProtectionSpace:"), credential, space)
 }
 
+
 // The credentials for all available protection spaces.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlcredentialstorage/allcredentials
+
 func (u_ URLCredentialStorage) AllCredentials() NSURLCredential {
 	rv := objc.Send[NSURLCredential](u_.ID, objc.Sel("allCredentials"))
 	return rv
 }
 
 
-// SetAllCredentials sets the value of the allCredentials property.
 // The credentials for all available protection spaces.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlcredentialstorage/allcredentials
+
 func (u_ URLCredentialStorage) SetAllCredentials(value IURLCredential) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setAllCredentials:"), value)
 }

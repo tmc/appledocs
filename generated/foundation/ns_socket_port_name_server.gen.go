@@ -34,9 +34,13 @@ type ISocketPortNameServer interface {
 // A port name server that takes and returns socket ports.
 //
 // Port removal functionality is supported by the method and should be used to remove invalid socket ports. Unlike the other port name servers, can operate over a network. By registering your socket ports, you make them available to other computers on the local network without hard-coding the TCP port numbers. Clients just need to know the name of the port. is implemented using and registers ports in the local network domain. The registered name of a port must be unique within the local domain, not just the local host. The name server only supports TCP/IP (either IPv4 or IPv6) sockets.
+
+
+// A port name server that takes and returns socket ports.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSocketPortNameServer
+
 type SocketPortNameServer struct {
 	PortNameServer
 }

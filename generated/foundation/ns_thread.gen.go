@@ -59,9 +59,13 @@ type IThread interface {
 // A thread of execution.
 //
 // Use this class when you want to have an Objective-C method run in its own thread of execution. Threads are especially useful when you need to perform a lengthy task, but don’t want it to block the execution of the rest of the application. In particular, you can use threads to avoid blocking the main thread of the application, which handles user interface and event-related actions. Threads can also be used to divide a large job into several smaller jobs, which can lead to performance increases on multi-core computers. The class supports semantics similar to those of for monitoring the runtime condition of a thread. You can use these semantics to cancel the execution of a thread or determine if the thread is still executing or has finished its task. Canceling a thread requires support from your thread code; see the description for for more information.
+
+
+// A thread of execution.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread
+
 type Thread struct {
 	objectivec.Object
 }
@@ -203,264 +207,337 @@ func (tc _ThreadClass) ThreadPriority() float64 {
 	return rv
 }
 
+
 // Returns an array containing the call stack return addresses.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/callStackReturnAddresses
+
 func (tc _ThreadClass) CallStackReturnAddresses() []Number {
 	rv := objc.Send[[]Number](objc.ID(tc.class), objc.Sel("callStackReturnAddresses"))
 	return rv
 }
+
 // Returns an array containing the call stack symbols.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/callStackSymbols
+
 func (tc _ThreadClass) CallStackSymbols() []string {
 	rv := objc.Send[[]string](objc.ID(tc.class), objc.Sel("callStackSymbols"))
 	return rv
 }
+
 // Returns the thread object representing the current thread of execution.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/current
+
 func (tc _ThreadClass) CurrentThread() Thread {
 	rv := objc.Send[NSThread](objc.ID(tc.class), objc.Sel("currentThread"))
 	return rv
 }
+
 // Returns the object representing the main thread.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/main
+
 func (tc _ThreadClass) MainThread() Thread {
 	rv := objc.Send[NSThread](objc.ID(tc.class), objc.Sel("mainThread"))
 	return rv
 }
+
 // Changes the cancelled state of the receiver to indicate that it should exit.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/cancel()
+
 func (t_ Thread) Cancel() {
 	objc.Send[objc.ID](t_.ID, objc.Sel("cancel"))
 }
 
+
 // The main entry point routine for the thread.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/main()
+
 func (t_ Thread) Main() {
 	objc.Send[objc.ID](t_.ID, objc.Sel("main"))
 }
 
+
 // Starts the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/start()
+
 func (t_ Thread) Start() {
 	objc.Send[objc.ID](t_.ID, objc.Sel("start"))
 }
 
+
 // Returns an array containing the call stack return addresses.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/callStackReturnAddresses
+
 func (t_ Thread) CallStackReturnAddresses() []Number {
 	rv := objc.Send[[]Number](t_.ID, objc.Sel("callStackReturnAddresses"))
 	return rv
 }
 
+
 // Returns an array containing the call stack symbols.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/callStackSymbols
+
 func (t_ Thread) CallStackSymbols() []string {
 	rv := objc.Send[[]string](t_.ID, objc.Sel("callStackSymbols"))
 	return rv
 }
 
+
 // Returns the thread object representing the current thread of execution.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/current
+
 func (t_ Thread) CurrentThread() NSThread {
 	rv := objc.Send[NSThread](t_.ID, objc.Sel("currentThread"))
 	return rv
 }
 
+
 // A Boolean value that indicates whether the receiver is cancelled.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/isCancelled
+
 func (t_ Thread) Cancelled() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("cancelled"))
 	return rv
 }
 
+
 // A Boolean value that indicates whether the receiver is executing.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/isExecuting
+
 func (t_ Thread) Executing() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("executing"))
 	return rv
 }
 
+
 // A Boolean value that indicates whether the receiver has finished execution.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/isFinished
+
 func (t_ Thread) Finished() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("finished"))
 	return rv
 }
 
+
 // A Boolean value that indicates whether the receiver is the main thread.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/isMainThread-swift.property
+
 func (t_ Thread) IsMainThread() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isMainThread"))
 	return rv
 }
 
+
 // Returns the object representing the main thread.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/main
+
 func (t_ Thread) MainThread() NSThread {
 	rv := objc.Send[NSThread](t_.ID, objc.Sel("mainThread"))
 	return rv
 }
 
+
 // The name of the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/name
+
 func (t_ Thread) Name() string {
 	rv := objc.Send[string](t_.ID, objc.Sel("name"))
 	return rv
 }
 
 
-// SetName sets the value of the name property.
 // The name of the receiver.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/name
+
 func (t_ Thread) SetName(value string) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
+
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/qualityOfService
+
 func (t_ Thread) QualityOfService() QualityOfService {
 	rv := objc.Send[QualityOfService](t_.ID, objc.Sel("qualityOfService"))
 	return rv
 }
 
 
-// SetQualityOfService sets the value of the qualityOfService property.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/qualityOfService
+
 func (t_ Thread) SetQualityOfService(value IQualityOfService) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setQualityOfService:"), value)
 }
 
+
 // The stack size of the receiver, in bytes.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/stackSize
+
 func (t_ Thread) StackSize() uint {
 	rv := objc.Send[uint](t_.ID, objc.Sel("stackSize"))
 	return rv
 }
 
 
-// SetStackSize sets the value of the stackSize property.
 // The stack size of the receiver, in bytes.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/stackSize
+
 func (t_ Thread) SetStackSize(value uint) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setStackSize:"), value)
 }
 
+
 // The receiver’s priority
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/threadPriority
+
 func (t_ Thread) ThreadPriority() float64 {
 	rv := objc.Send[float64](t_.ID, objc.Sel("threadPriority"))
 	return rv
 }
 
 
-// SetThreadPriority sets the value of the threadPriority property.
 // The receiver’s priority
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/threadPriority
+
 func (t_ Thread) SetThreadPriority(value float64) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setThreadPriority:"), value)
 }
 
+
 // A key with a corresponding value in the thread dictionary.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsassertionhandlerkey
+
 func (t_ Thread) NSAssertionHandlerKey() string {
 	rv := objc.Send[string](t_.ID, objc.Sel("NSAssertionHandlerKey"))
 	return rv
 }
 
+
 // A Boolean value that indicates whether the receiver is cancelled.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/thread/iscancelled
+
 func (t_ Thread) IsCancelled() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isCancelled"))
 	return rv
 }
 
 
-// SetIsCancelled sets the value of the isCancelled property.
 // A Boolean value that indicates whether the receiver is cancelled.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/thread/iscancelled
+
 func (t_ Thread) SetIsCancelled(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsCancelled:"), value)
 }
 
+
 // A Boolean value that indicates whether the receiver is executing.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/thread/isexecuting
+
 func (t_ Thread) IsExecuting() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isExecuting"))
 	return rv
 }
 
 
-// SetIsExecuting sets the value of the isExecuting property.
 // A Boolean value that indicates whether the receiver is executing.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/thread/isexecuting
+
 func (t_ Thread) SetIsExecuting(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsExecuting:"), value)
 }
 
+
 // A Boolean value that indicates whether the receiver has finished execution.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/thread/isfinished
+
 func (t_ Thread) IsFinished() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isFinished"))
 	return rv
 }
 
 
-// SetIsFinished sets the value of the isFinished property.
 // A Boolean value that indicates whether the receiver has finished execution.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/thread/isfinished
+
 func (t_ Thread) SetIsFinished(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsFinished:"), value)
 }
 
+
 // The thread object’s dictionary.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/thread/threaddictionary
+
 func (t_ Thread) ThreadDictionary() NSMutableDictionary {
 	rv := objc.Send[NSMutableDictionary](t_.ID, objc.Sel("threadDictionary"))
 	return rv
 }
 
 
-// SetThreadDictionary sets the value of the threadDictionary property.
 // The thread object’s dictionary.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/thread/threaddictionary
+
 func (t_ Thread) SetThreadDictionary(value IMutableDictionary) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setThreadDictionary:"), value)
 }

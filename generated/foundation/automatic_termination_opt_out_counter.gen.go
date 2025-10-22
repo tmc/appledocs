@@ -32,9 +32,12 @@ type IautomaticTerminationOptOutCounter interface {
 	objectivec.IObject
 }
 
+
+
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSProcessInfo/automaticTerminationOptOutCounter
+
 type automaticTerminationOptOutCounter struct {
 	objectivec.Object
 }

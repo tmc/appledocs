@@ -37,9 +37,13 @@ type IURLSessionDownloadTask interface {
 // A URL session task that stores downloaded data to a file.
 //
 // An is a concrete subclass of , which provides most of the methods for this class. Download tasks directly write the server’s response data to a temporary file, providing your app with progress updates as data arrives from the server. When you use download tasks in background sessions, these downloads continue even when your app is in the suspended state or otherwise not running. You can pause (cancel) download tasks and resume them later (assuming the server supports doing so). You can also resume downloads that failed because of network connectivity problems.
+
+
+// A URL session task that stores downloaded data to a file.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionDownloadTask
+
 type URLSessionDownloadTask struct {
 	URLSessionTask
 }
@@ -85,27 +89,33 @@ func NewURLSessionDownloadTask() URLSessionDownloadTask {
 }
 
 
+
 // Cancels a download and calls a callback with resume data for later use.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionDownloadTask/cancel(byProducingResumeData:)
+
 func (u_ URLSessionDownloadTask) CancelByProducingResumeData(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("cancelByProducingResumeData:"), completionHandler)
 }
 
+
 // The server’s response to the currently active request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontask/response
+
 func (u_ URLSessionDownloadTask) Response() NSURLResponse {
 	rv := objc.Send[NSURLResponse](u_.ID, objc.Sel("response"))
 	return rv
 }
 
 
-// SetResponse sets the value of the response property.
 // The server’s response to the currently active request.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontask/response
+
 func (u_ URLSessionDownloadTask) SetResponse(value IURLResponse) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setResponse:"), value)
 }

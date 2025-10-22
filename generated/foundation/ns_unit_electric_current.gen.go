@@ -34,9 +34,13 @@ type IUnitElectricCurrent interface {
 // A unit of measure for electric current.
 //
 // You typically use instances of to represent specific quantities of electric current using the class.
+
+
+// A unit of measure for electric current.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricCurrent
+
 type UnitElectricCurrent struct {
 	Dimension
 }
@@ -82,16 +86,22 @@ func NewUnitElectricCurrent() UnitElectricCurrent {
 }
 
 
+
 // The amperes unit of electric current.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricCurrent/amperes
+
 func (uc _UnitElectricCurrentClass) Amperes() UnitElectricCurrent {
 	rv := objc.Send[NSUnitElectricCurrent](objc.ID(uc.class), objc.Sel("amperes"))
 	return rv
 }
+
 // The amperes unit of electric current.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricCurrent/amperes
+
 func (u_ UnitElectricCurrent) Amperes() NSUnitElectricCurrent {
 	rv := objc.Send[NSUnitElectricCurrent](u_.ID, objc.Sel("amperes"))
 	return rv

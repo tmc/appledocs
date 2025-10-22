@@ -41,9 +41,13 @@ type IDateInterval interface {
 // An object representing the span of time between a specific start date and end date.
 //
 // In Swift, this object bridges to ; use when you need reference semantics or other Foundation-specific behavior. An object represents a closed interval between two dates. The class provides a programmatic interface for calculating the duration of a time interval and determining whether a date falls within it, as well as comparing date intervals and checking to see whether they intersect. An object consists of a and an . The and of a date interval can be equal, in which case its is . However, cannot occur earlier than . You can use the class to create string representations of objects that are suitable for display in the current locale.
+
+
+// An object representing the span of time between a specific start date and end date.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateInterval
+
 type DateInterval struct {
 	objectivec.Object
 }
@@ -103,54 +107,66 @@ func NewDateIntervalWithStartDateDuration(startDate IDate, duration ITimeInterva
 }
 
 
+
 // Compares the receiver with the specified date interval.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateInterval/compare(_:)
+
 func (d_ DateInterval) Compare(dateInterval IDateInterval) ComparisonResult {
 	rv := objc.Send[ComparisonResult](d_.ID, objc.Sel("compare:"), dateInterval)
 	return rv
 }
 
+
 // The start date of the date interval.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateInterval/startDate
+
 func (d_ DateInterval) StartDate() NSDate {
 	rv := objc.Send[NSDate](d_.ID, objc.Sel("startDate"))
 	return rv
 }
 
+
 // The duration of the date interval.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdateinterval/duration
+
 func (d_ DateInterval) Duration() TimeInterval {
 	rv := objc.Send[TimeInterval](d_.ID, objc.Sel("duration"))
 	return rv
 }
 
 
-// SetDuration sets the value of the duration property.
 // The duration of the date interval.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdateinterval/duration
+
 func (d_ DateInterval) SetDuration(value ITimeInterval) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDuration:"), value)
 }
 
+
 // The end date of the date interval.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdateinterval/enddate
+
 func (d_ DateInterval) EndDate() Date {
 	rv := objc.Send[Date](d_.ID, objc.Sel("endDate"))
 	return rv
 }
 
 
-// SetEndDate sets the value of the endDate property.
 // The end date of the date interval.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdateinterval/enddate
+
 func (d_ DateInterval) SetEndDate(value IDate) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setEndDate:"), value)
 }

@@ -38,9 +38,13 @@ type IRelativeSpecifier interface {
 // A specifier that indicates an object in a collection by its position relative to another object.
 //
 // You don’t normally subclass .
+
+
+// A specifier that indicates an object in a collection by its position relative to another object.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRelativeSpecifier
+
 type RelativeSpecifier struct {
 	ScriptObjectSpecifier
 }
@@ -86,38 +90,44 @@ func NewRelativeSpecifier() RelativeSpecifier {
 }
 
 
+
 // Sets the specifier for the base object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsrelativespecifier/basespecifier
+
 func (r_ RelativeSpecifier) BaseSpecifier() NSScriptObjectSpecifier {
 	rv := objc.Send[NSScriptObjectSpecifier](r_.ID, objc.Sel("baseSpecifier"))
 	return rv
 }
 
 
-// SetBaseSpecifier sets the value of the baseSpecifier property.
 // Sets the specifier for the base object.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsrelativespecifier/basespecifier
+
 func (r_ RelativeSpecifier) SetBaseSpecifier(value IScriptObjectSpecifier) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setBaseSpecifier:"), value)
 }
 
+
 // Sets the relative position encapsulated by the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsrelativespecifier/relativeposition-swift.property
+
 func (r_ RelativeSpecifier) RelativePosition() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("relativePosition"))
 	return rv
 }
 
 
-// SetRelativePosition sets the value of the relativePosition property.
 // Sets the relative position encapsulated by the receiver.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsrelativespecifier/relativeposition-swift.property
+
 func (r_ RelativeSpecifier) SetRelativePosition(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setRelativePosition:"), value)
 }

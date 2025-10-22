@@ -39,9 +39,13 @@ type IFormatter interface {
 // An abstract class that declares an interface for objects that create, interpret, and validate the textual representation of values.
 //
 // The Foundation framework provides several concrete subclasses of , including , , , , , , and .
+
+
+// An abstract class that declares an interface for objects that create, interpret, and validate the textual representation of values.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Formatter
+
 type Formatter struct {
 	objectivec.Object
 }
@@ -85,33 +89,45 @@ func NewFormatter() Formatter {
 }
 
 
+
 // The default implementation returns to indicate that the formatter object does not provide an attributed string.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Formatter/attributedString(for:withDefaultAttributes:)
+
 func (f_ Formatter) AttributedStringForObjectValueWithDefaultAttributes(obj objectivec.IObject, attrs unsafe.Pointer) AttributedString {
 	rv := objc.Send[AttributedString](f_.ID, objc.Sel("attributedStringForObjectValue:withDefaultAttributes:"), obj, attrs)
 	return rv
 }
 
+
 // The default implementation of this method raises an exception.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Formatter/getObjectValue(_:for:errorDescription:)
+
 func (f_ Formatter) GetObjectValueForStringErrorDescription(obj objectivec.IObject, string_ string, error_ string) bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("getObjectValue:forString:errorDescription:"), obj, objc.String(string_), objc.String(error_))
 	return rv
 }
 
+
 // This method should be implemented in subclasses that want to validate user changes to a string in a field, where the user changes are not necessarily at the end of the string, and preserve the selection (or set a different one, such as selecting the erroneous part of the string the user has typed).
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Formatter/isPartialStringValid(_:proposedSelectedRange:originalString:originalSelectedRange:errorDescription:)
+
 func (f_ Formatter) IsPartialStringValidProposedSelectedRangeOriginalStringOriginalSelectedRangeErrorDescription(partialStringPtr string, proposedSelRangePtr IRangePointer, origString string, origSelRange IRange, error_ string) bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isPartialStringValid:proposedSelectedRange:originalString:originalSelectedRange:errorDescription:"), objc.String(partialStringPtr), proposedSelRangePtr, objc.String(origString), origSelRange, objc.String(error_))
 	return rv
 }
 
+
 // The default implementation of this method raises an exception.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Formatter/string(for:)
+
 func (f_ Formatter) StringForObjectValue(obj objectivec.IObject) String {
 	rv := objc.Send[String](f_.ID, objc.Sel("stringForObjectValue:"), obj)
 	return rv

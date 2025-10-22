@@ -34,9 +34,13 @@ type IUnitPressure interface {
 // A unit of measure for pressure.
 //
 // You typically use instances of to represent specific quantities of pressure using the class.
+
+
+// A unit of measure for pressure.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPressure
+
 type UnitPressure struct {
 	Dimension
 }
@@ -82,16 +86,22 @@ func NewUnitPressure() UnitPressure {
 }
 
 
+
 // The newtons per square meter unit of pressure.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPressure/newtonsPerMetersSquared
+
 func (uc _UnitPressureClass) NewtonsPerMetersSquared() UnitPressure {
 	rv := objc.Send[NSUnitPressure](objc.ID(uc.class), objc.Sel("newtonsPerMetersSquared"))
 	return rv
 }
+
 // The newtons per square meter unit of pressure.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPressure/newtonsPerMetersSquared
+
 func (u_ UnitPressure) NewtonsPerMetersSquared() NSUnitPressure {
 	rv := objc.Send[NSUnitPressure](u_.ID, objc.Sel("newtonsPerMetersSquared"))
 	return rv

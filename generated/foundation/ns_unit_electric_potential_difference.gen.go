@@ -34,9 +34,13 @@ type IUnitElectricPotentialDifference interface {
 // A unit of measure for electric potential difference.
 //
 // You typically use instances of to represent specific quantities of electric potential difference using the class.
+
+
+// A unit of measure for electric potential difference.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricPotentialDifference
+
 type UnitElectricPotentialDifference struct {
 	Dimension
 }
@@ -82,31 +86,43 @@ func NewUnitElectricPotentialDifference() UnitElectricPotentialDifference {
 }
 
 
+
 // The megavolts unit of electric potential difference.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricPotentialDifference/megavolts
+
 func (uc _UnitElectricPotentialDifferenceClass) Megavolts() UnitElectricPotentialDifference {
 	rv := objc.Send[NSUnitElectricPotentialDifference](objc.ID(uc.class), objc.Sel("megavolts"))
-	return rv
-}
-// The volts unit of electric potential difference.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricPotentialDifference/volts
-func (uc _UnitElectricPotentialDifferenceClass) Volts() UnitElectricPotentialDifference {
-	rv := objc.Send[NSUnitElectricPotentialDifference](objc.ID(uc.class), objc.Sel("volts"))
-	return rv
-}
-// The megavolts unit of electric potential difference.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricPotentialDifference/megavolts
-func (u_ UnitElectricPotentialDifference) Megavolts() NSUnitElectricPotentialDifference {
-	rv := objc.Send[NSUnitElectricPotentialDifference](u_.ID, objc.Sel("megavolts"))
 	return rv
 }
 
 // The volts unit of electric potential difference.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricPotentialDifference/volts
+
+func (uc _UnitElectricPotentialDifferenceClass) Volts() UnitElectricPotentialDifference {
+	rv := objc.Send[NSUnitElectricPotentialDifference](objc.ID(uc.class), objc.Sel("volts"))
+	return rv
+}
+
+// The megavolts unit of electric potential difference.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricPotentialDifference/megavolts
+
+func (u_ UnitElectricPotentialDifference) Megavolts() NSUnitElectricPotentialDifference {
+	rv := objc.Send[NSUnitElectricPotentialDifference](u_.ID, objc.Sel("megavolts"))
+	return rv
+}
+
+
+// The volts unit of electric potential difference.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricPotentialDifference/volts
+
 func (u_ UnitElectricPotentialDifference) Volts() NSUnitElectricPotentialDifference {
 	rv := objc.Send[NSUnitElectricPotentialDifference](u_.ID, objc.Sel("volts"))
 	return rv

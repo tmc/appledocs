@@ -35,9 +35,13 @@ type IInflectionRule interface {
 // A rule that affects how an attributed string performs automatic grammatical agreement.
 //
 // Most apps can rely on loading localized strings to perform automatic grammar agreement. Typically, your app’s strings files use the Markdown extension syntax to indicate portions of the string that may require inflection to agree grammatically. This transformation occurs when you load the attributed string with methods like . However, if the system lacks information about the words in the string, you may need to apply an inflection rule programmatically. For example, a social networking app may have gender information about other users that you want to apply at runtime. When performing manual inflection at runtime, you use an inflection rule to indicate to the system what portions of a string should be automatically edited, and what to match. Add the attribute with an on an , then call to perform the grammar agreement and produce an edited string.
+
+
+// A rule that affects how an attributed string performs automatic grammatical agreement.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInflectionRule
+
 type InflectionRule struct {
 	objectivec.Object
 }
@@ -92,16 +96,22 @@ func (ic _InflectionRuleClass) CanInflectLanguage(language string) bool {
 	return rv
 }
 
+
 // A Boolean value that indicates whether the rule can inflect the user’s current preferred localization.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInflectionRule/canInflectPreferredLocalization
+
 func (ic _InflectionRuleClass) CanInflectPreferredLocalization() bool {
 	rv := objc.Send[bool](objc.ID(ic.class), objc.Sel("canInflectPreferredLocalization"))
 	return rv
 }
+
 // A Boolean value that indicates whether the rule can inflect the user’s current preferred localization.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInflectionRule/canInflectPreferredLocalization
+
 func (i_ InflectionRule) CanInflectPreferredLocalization() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("canInflectPreferredLocalization"))
 	return rv

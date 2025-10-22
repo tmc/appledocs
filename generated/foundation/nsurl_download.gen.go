@@ -41,9 +41,13 @@ type IURLDownload interface {
 // An object that downloads a resource asynchronously and saves the data to a file.
 //
 // The interface for provides methods to initialize a download, set the destination path and cancel loading the request. The delegate object assigned to each instance of this class should implement the methods defined by the protocol. These methods provide the delegate with the current status of in-progress asynchronous downloads and allow the delegate to customize the URL loading process. These delegate methods are called on the thread that started the asynchronous load operation for the associated object.
+
+
+// An object that downloads a resource asynchronously and saves the data to a file.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLDownload
+
 type URLDownload struct {
 	objectivec.Object
 }
@@ -129,49 +133,64 @@ func (uc _URLDownloadClass) CanResumeDownloadDecodedWithEncodingMIMEType(MIMETyp
 	return rv
 }
 
+
 // Cancels the receiver’s download and deletes the downloaded file.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLDownload/cancel()
+
 func (u_ URLDownload) Cancel() {
 	objc.Send[objc.ID](u_.ID, objc.Sel("cancel"))
 }
 
+
 // Sets the destination path of the downloaded file.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLDownload/setDestination(_:allowOverwrite:)
+
 func (u_ URLDownload) SetDestinationAllowOverwrite(path string, allowOverwrite bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setDestination:allowOverwrite:"), objc.String(path), allowOverwrite)
 }
 
+
 // Returns whether the receiver deletes partially downloaded files when a download stops prematurely.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLDownload/deletesFileUponFailure
+
 func (u_ URLDownload) DeletesFileUponFailure() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("deletesFileUponFailure"))
 	return rv
 }
 
 
-// SetDeletesFileUponFailure sets the value of the deletesFileUponFailure property.
 // Returns whether the receiver deletes partially downloaded files when a download stops prematurely.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLDownload/deletesFileUponFailure
+
 func (u_ URLDownload) SetDeletesFileUponFailure(value bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setDeletesFileUponFailure:"), value)
 }
 
+
 // Returns the request that initiated the receiver’s download.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLDownload/request
+
 func (u_ URLDownload) Request() NSURLRequest {
 	rv := objc.Send[NSURLRequest](u_.ID, objc.Sel("request"))
 	return rv
 }
 
+
 // Returns the resume data for a download that is not yet complete.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLDownload/resumeData
+
 func (u_ URLDownload) ResumeData() NSData {
 	rv := objc.Send[NSData](u_.ID, objc.Sel("resumeData"))
 	return rv

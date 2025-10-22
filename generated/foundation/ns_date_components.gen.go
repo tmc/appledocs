@@ -88,9 +88,13 @@ type IDateComponents interface {
 // An object that specifies a date or time in terms of units (such as year, month, day, hour, and minute) to be evaluated in a calendar system and time zone.
 //
 // In Swift, this object bridges to ; use when you need reference semantics or other Foundation-specific behavior. encapsulates the components of a date in an extendable, object-oriented manner. It’s used to specify a date by providing the temporal components that make up a date and time: hour, minutes, seconds, day, month, year, and so on. You can also use it to specify a duration of time, for example, 5 hours and 16 minutes. An object is not required to define all the component fields. When a new instance of is created, the date components are set to . An instance of is not responsible for answering questions about a date beyond the information with which it was initialized. For example, if you initialize one with May 4, 2017, its weekday is , not Thursday. To get the correct day of the week, you must create a suitable instance of , create an object using and then use to retrieve the weekday—as illustrated in the following example. For more details, see in .
+
+
+// An object that specifies a date or time in terms of units (such as year, month, day, hour, and minute) to be evaluated in a calendar system and time zone.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateComponents
+
 type DateComponents struct {
 	objectivec.Object
 }
@@ -134,461 +138,554 @@ func NewDateComponents() DateComponents {
 }
 
 
+
 // Returns a Boolean value that indicates whether the current combination of properties represents a date which exists in the specified calendar.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateComponents/isValidDate(in:)
+
 func (d_ DateComponents) IsValidDateInCalendar(calendar ICalendar) bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("isValidDateInCalendar:"), calendar)
 	return rv
 }
 
+
 // Sets a value for a given calendar unit.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateComponents/setValue(_:forComponent:)
+
 func (d_ DateComponents) SetValueForComponent(value int, unit ICalendarUnit) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setValue:forComponent:"), value, unit)
 }
 
+
 // Sets the number of weeks.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateComponents/setWeek(_:)
+
 func (d_ DateComponents) SetWeek(v int) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setWeek:"), v)
 }
 
+
 // Returns the value for a given calendar unit.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateComponents/value(forComponent:)
+
 func (d_ DateComponents) ValueForComponent(unit ICalendarUnit) int {
 	rv := objc.Send[int](d_.ID, objc.Sel("valueForComponent:"), unit)
 	return rv
 }
 
+
 // Returns the number of weeks.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateComponents/week()
+
 func (d_ DateComponents) Week() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("week"))
 	return rv
 }
 
+
 // The calendar used to interpret the date components.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateComponents/calendar
+
 func (d_ DateComponents) Calendar() NSCalendar {
 	rv := objc.Send[NSCalendar](d_.ID, objc.Sel("calendar"))
 	return rv
 }
 
 
-// SetCalendar sets the value of the calendar property.
 // The calendar used to interpret the date components.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateComponents/calendar
+
 func (d_ DateComponents) SetCalendar(value ICalendar) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setCalendar:"), value)
 }
 
+
 // The date calculated from the current components using the stored calendar.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateComponents/date
+
 func (d_ DateComponents) Date() NSDate {
 	rv := objc.Send[NSDate](d_.ID, objc.Sel("date"))
 	return rv
 }
 
+
 // The number of days.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateComponents/day
+
 func (d_ DateComponents) Day() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("day"))
 	return rv
 }
 
 
-// SetDay sets the value of the day property.
 // The number of days.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateComponents/day
+
 func (d_ DateComponents) SetDay(value int) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDay:"), value)
 }
 
+
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateComponents/dayOfYear
+
 func (d_ DateComponents) DayOfYear() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("dayOfYear"))
 	return rv
 }
 
 
-// SetDayOfYear sets the value of the dayOfYear property.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateComponents/dayOfYear
+
 func (d_ DateComponents) SetDayOfYear(value int) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDayOfYear:"), value)
 }
 
+
 // The number of eras.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateComponents/era
+
 func (d_ DateComponents) Era() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("era"))
 	return rv
 }
 
 
-// SetEra sets the value of the era property.
 // The number of eras.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateComponents/era
+
 func (d_ DateComponents) SetEra(value int) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setEra:"), value)
 }
 
+
 // The number of hour units for the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateComponents/hour
+
 func (d_ DateComponents) Hour() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("hour"))
 	return rv
 }
 
 
-// SetHour sets the value of the hour property.
 // The number of hour units for the receiver.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateComponents/hour
+
 func (d_ DateComponents) SetHour(value int) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setHour:"), value)
 }
 
+
 // A Boolean value that indicates whether the month is a leap month.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateComponents/isLeapMonth
+
 func (d_ DateComponents) LeapMonth() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("leapMonth"))
 	return rv
 }
 
 
-// SetLeapMonth sets the value of the leapMonth property.
 // A Boolean value that indicates whether the month is a leap month.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateComponents/isLeapMonth
+
 func (d_ DateComponents) SetLeapMonth(value bool) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setLeapMonth:"), value)
 }
 
+
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateComponents/isRepeatedDay
+
 func (d_ DateComponents) RepeatedDay() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("repeatedDay"))
 	return rv
 }
 
 
-// SetRepeatedDay sets the value of the repeatedDay property.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateComponents/isRepeatedDay
+
 func (d_ DateComponents) SetRepeatedDay(value bool) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setRepeatedDay:"), value)
 }
 
+
 // A Boolean value that indicates whether the current combination of properties represents a date which exists in the current calendar.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateComponents/isValidDate
+
 func (d_ DateComponents) ValidDate() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("validDate"))
 	return rv
 }
 
+
 // The number of minute units for the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateComponents/minute
+
 func (d_ DateComponents) Minute() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("minute"))
 	return rv
 }
 
 
-// SetMinute sets the value of the minute property.
 // The number of minute units for the receiver.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateComponents/minute
+
 func (d_ DateComponents) SetMinute(value int) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setMinute:"), value)
 }
 
+
 // The number of months.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateComponents/month
+
 func (d_ DateComponents) Month() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("month"))
 	return rv
 }
 
 
-// SetMonth sets the value of the month property.
 // The number of months.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateComponents/month
+
 func (d_ DateComponents) SetMonth(value int) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setMonth:"), value)
 }
 
+
 // The number of nanosecond units for the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateComponents/nanosecond
+
 func (d_ DateComponents) Nanosecond() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("nanosecond"))
 	return rv
 }
 
 
-// SetNanosecond sets the value of the nanosecond property.
 // The number of nanosecond units for the receiver.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateComponents/nanosecond
+
 func (d_ DateComponents) SetNanosecond(value int) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setNanosecond:"), value)
 }
 
+
 // The number of quarters.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateComponents/quarter
+
 func (d_ DateComponents) Quarter() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("quarter"))
 	return rv
 }
 
 
-// SetQuarter sets the value of the quarter property.
 // The number of quarters.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateComponents/quarter
+
 func (d_ DateComponents) SetQuarter(value int) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setQuarter:"), value)
 }
 
+
 // The number of second units for the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateComponents/second
+
 func (d_ DateComponents) Second() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("second"))
 	return rv
 }
 
 
-// SetSecond sets the value of the second property.
 // The number of second units for the receiver.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateComponents/second
+
 func (d_ DateComponents) SetSecond(value int) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setSecond:"), value)
 }
 
+
 // The time zone used to interpret the date components.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateComponents/timeZone
+
 func (d_ DateComponents) TimeZone() NSTimeZone {
 	rv := objc.Send[NSTimeZone](d_.ID, objc.Sel("timeZone"))
 	return rv
 }
 
 
-// SetTimeZone sets the value of the timeZone property.
 // The time zone used to interpret the date components.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateComponents/timeZone
+
 func (d_ DateComponents) SetTimeZone(value ITimeZone) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setTimeZone:"), value)
 }
 
+
 // The week number of the months.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateComponents/weekOfMonth
+
 func (d_ DateComponents) WeekOfMonth() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("weekOfMonth"))
 	return rv
 }
 
 
-// SetWeekOfMonth sets the value of the weekOfMonth property.
 // The week number of the months.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateComponents/weekOfMonth
+
 func (d_ DateComponents) SetWeekOfMonth(value int) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setWeekOfMonth:"), value)
 }
 
+
 // The ISO 8601 week date of the year.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateComponents/weekOfYear
+
 func (d_ DateComponents) WeekOfYear() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("weekOfYear"))
 	return rv
 }
 
 
-// SetWeekOfYear sets the value of the weekOfYear property.
 // The ISO 8601 week date of the year.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateComponents/weekOfYear
+
 func (d_ DateComponents) SetWeekOfYear(value int) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setWeekOfYear:"), value)
 }
 
+
 // The number of the weekdays.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateComponents/weekday
+
 func (d_ DateComponents) Weekday() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("weekday"))
 	return rv
 }
 
 
-// SetWeekday sets the value of the weekday property.
 // The number of the weekdays.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateComponents/weekday
+
 func (d_ DateComponents) SetWeekday(value int) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setWeekday:"), value)
 }
 
+
 // The ordinal number of weekdays.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateComponents/weekdayOrdinal
+
 func (d_ DateComponents) WeekdayOrdinal() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("weekdayOrdinal"))
 	return rv
 }
 
 
-// SetWeekdayOrdinal sets the value of the weekdayOrdinal property.
 // The ordinal number of weekdays.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateComponents/weekdayOrdinal
+
 func (d_ DateComponents) SetWeekdayOrdinal(value int) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setWeekdayOrdinal:"), value)
 }
 
+
 // The number of years.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateComponents/year
+
 func (d_ DateComponents) Year() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("year"))
 	return rv
 }
 
 
-// SetYear sets the value of the year property.
 // The number of years.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateComponents/year
+
 func (d_ DateComponents) SetYear(value int) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setYear:"), value)
 }
 
+
 // The ISO 8601 week-numbering year.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateComponents/yearForWeekOfYear
+
 func (d_ DateComponents) YearForWeekOfYear() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("yearForWeekOfYear"))
 	return rv
 }
 
 
-// SetYearForWeekOfYear sets the value of the yearForWeekOfYear property.
 // The ISO 8601 week-numbering year.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateComponents/yearForWeekOfYear
+
 func (d_ DateComponents) SetYearForWeekOfYear(value int) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setYearForWeekOfYear:"), value)
 }
 
+
 // Specifies a date component without a value.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdatecomponentundefined
+
 func (d_ DateComponents) NSDateComponentUndefined() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("NSDateComponentUndefined"))
 	return rv
 }
 
 
-// SetNSDateComponentUndefined sets the value of the NSDateComponentUndefined property.
 // Specifies a date component without a value.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdatecomponentundefined
+
 func (d_ DateComponents) SetNSDateComponentUndefined(value int) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setNSDateComponentUndefined:"), value)
 }
 
+
 // A Boolean value that indicates whether the month is a leap month.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdatecomponents/isleapmonth
+
 func (d_ DateComponents) IsLeapMonth() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("isLeapMonth"))
 	return rv
 }
 
 
-// SetIsLeapMonth sets the value of the isLeapMonth property.
 // A Boolean value that indicates whether the month is a leap month.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdatecomponents/isleapmonth
+
 func (d_ DateComponents) SetIsLeapMonth(value bool) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setIsLeapMonth:"), value)
 }
 
+
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdatecomponents/isrepeatedday
+
 func (d_ DateComponents) IsRepeatedDay() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("isRepeatedDay"))
 	return rv
 }
 
 
-// SetIsRepeatedDay sets the value of the isRepeatedDay property.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdatecomponents/isrepeatedday
+
 func (d_ DateComponents) SetIsRepeatedDay(value bool) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setIsRepeatedDay:"), value)
 }
 
+
 // A Boolean value that indicates whether the current combination of properties represents a date which exists in the current calendar.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdatecomponents/isvaliddate
+
 func (d_ DateComponents) IsValidDate() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("isValidDate"))
 	return rv
 }
 
 
-// SetIsValidDate sets the value of the isValidDate property.
 // A Boolean value that indicates whether the current combination of properties represents a date which exists in the current calendar.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdatecomponents/isvaliddate
+
 func (d_ DateComponents) SetIsValidDate(value bool) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setIsValidDate:"), value)
 }

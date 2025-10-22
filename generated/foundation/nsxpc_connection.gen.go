@@ -72,9 +72,13 @@ type IXPCConnection interface {
 // A bidirectional communication channel between two processes.
 //
 // This class is the primary means of creating and configuring the communication mechanism between two processes. Each process has one instance of this class to represent the endpoint in the communication channel.
+
+
+// A bidirectional communication channel between two processes.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection
+
 type XPCConnection struct {
 	objectivec.Object
 }
@@ -175,313 +179,391 @@ func (xc _XPCConnectionClass) CurrentConnection() XPCConnection {
 	return rv
 }
 
+
 // Activates the connection.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/activate()
+
 func (x_ XPCConnection) Activate() {
 	objc.Send[objc.ID](x_.ID, objc.Sel("activate"))
 }
 
+
 // Invalidates the connection.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/invalidate()
+
 func (x_ XPCConnection) Invalidate() {
 	objc.Send[objc.ID](x_.ID, objc.Sel("invalidate"))
 }
 
+
 // Returns a proxy for the remote object (that is, the object exported from the other side of this connection) with the specified error handler.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/remoteObjectProxyWithErrorHandler(_:)
+
 func (x_ XPCConnection) RemoteObjectProxyWithErrorHandler(handler unsafe.Pointer) objc.ID {
 	rv := objc.Send[objc.ID](x_.ID, objc.Sel("remoteObjectProxyWithErrorHandler:"), handler)
 	return rv
 }
 
+
 // Starts or resumes handling of messages on a connection.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/resume()
+
 func (x_ XPCConnection) Resume() {
 	objc.Send[objc.ID](x_.ID, objc.Sel("resume"))
 }
 
+
 // Add a barrier block to execute on the connection.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/scheduleSendBarrierBlock(_:)
+
 func (x_ XPCConnection) ScheduleSendBarrierBlock(block unsafe.Pointer) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("scheduleSendBarrierBlock:"), block)
 }
 
+
 // Sets the code signing requirement for this connection.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/setCodeSigningRequirement(_:)
+
 func (x_ XPCConnection) SetCodeSigningRequirement(requirement string) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setCodeSigningRequirement:"), objc.String(requirement))
 }
 
+
 // Suspends the connection.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/suspend()
+
 func (x_ XPCConnection) Suspend() {
 	objc.Send[objc.ID](x_.ID, objc.Sel("suspend"))
 }
 
+
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/synchronousRemoteObjectProxyWithErrorHandler(_:)
+
 func (x_ XPCConnection) SynchronousRemoteObjectProxyWithErrorHandler(handler unsafe.Pointer) objc.ID {
 	rv := objc.Send[objc.ID](x_.ID, objc.Sel("synchronousRemoteObjectProxyWithErrorHandler:"), handler)
 	return rv
 }
 
+
 // The BSM audit session identifier for the connecting process.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/auditSessionIdentifier
+
 func (x_ XPCConnection) AuditSessionIdentifier() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("auditSessionIdentifier"))
 	return rv
 }
 
+
 // The effective group ID (EGID) of the connecting process.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/effectiveGroupIdentifier
+
 func (x_ XPCConnection) EffectiveGroupIdentifier() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("effectiveGroupIdentifier"))
 	return rv
 }
 
+
 // The effective user ID (EUID) of the connecting process.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/effectiveUserIdentifier
+
 func (x_ XPCConnection) EffectiveUserIdentifier() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("effectiveUserIdentifier"))
 	return rv
 }
 
+
 // If the connection was created with an object, returns the endpoint object used.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/endpoint
+
 func (x_ XPCConnection) Endpoint() NSXPCListenerEndpoint {
 	rv := objc.Send[NSXPCListenerEndpoint](x_.ID, objc.Sel("endpoint"))
 	return rv
 }
 
+
 // The object that describes the protocol for the exported object on this connection.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/exportedInterface
+
 func (x_ XPCConnection) ExportedInterface() NSXPCInterface {
 	rv := objc.Send[NSXPCInterface](x_.ID, objc.Sel("exportedInterface"))
 	return rv
 }
 
 
-// SetExportedInterface sets the value of the exportedInterface property.
 // The object that describes the protocol for the exported object on this connection.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/exportedInterface
+
 func (x_ XPCConnection) SetExportedInterface(value IXPCInterface) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setExportedInterface:"), value)
 }
 
+
 // An exported object for the connection.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/exportedObject
+
 func (x_ XPCConnection) ExportedObject() objc.ID {
 	rv := objc.Send[objc.ID](x_.ID, objc.Sel("exportedObject"))
 	return rv
 }
 
 
-// SetExportedObject sets the value of the exportedObject property.
 // An exported object for the connection.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/exportedObject
+
 func (x_ XPCConnection) SetExportedObject(value objc.ID) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setExportedObject:"), value)
 }
 
+
 // An interruption handler that is called if the remote process exits or crashes.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/interruptionHandler
+
 func (x_ XPCConnection) InterruptionHandler() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("interruptionHandler"))
 	return rv
 }
 
 
-// SetInterruptionHandler sets the value of the interruptionHandler property.
 // An interruption handler that is called if the remote process exits or crashes.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/interruptionHandler
+
 func (x_ XPCConnection) SetInterruptionHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setInterruptionHandler:"), value)
 }
 
+
 // An invalidation handler that is called if the connection can not be formed or the connection has terminated and may not be re-established.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/invalidationHandler
+
 func (x_ XPCConnection) InvalidationHandler() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("invalidationHandler"))
 	return rv
 }
 
 
-// SetInvalidationHandler sets the value of the invalidationHandler property.
 // An invalidation handler that is called if the connection can not be formed or the connection has terminated and may not be re-established.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/invalidationHandler
+
 func (x_ XPCConnection) SetInvalidationHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setInvalidationHandler:"), value)
 }
 
+
 // The process ID (PID) of the connecting process.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/processIdentifier
+
 func (x_ XPCConnection) ProcessIdentifier() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("processIdentifier"))
 	return rv
 }
 
+
 // Defines the object that describes the protocol for the object represented by the .
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/remoteObjectInterface
+
 func (x_ XPCConnection) RemoteObjectInterface() NSXPCInterface {
 	rv := objc.Send[NSXPCInterface](x_.ID, objc.Sel("remoteObjectInterface"))
 	return rv
 }
 
 
-// SetRemoteObjectInterface sets the value of the remoteObjectInterface property.
 // Defines the object that describes the protocol for the object represented by the .
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/remoteObjectInterface
+
 func (x_ XPCConnection) SetRemoteObjectInterface(value IXPCInterface) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setRemoteObjectInterface:"), value)
 }
 
+
 // Returns a proxy for the remote object (that is, the from the other side of this connection).
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/remoteObjectProxy
+
 func (x_ XPCConnection) RemoteObjectProxy() objc.ID {
 	rv := objc.Send[objc.ID](x_.ID, objc.Sel("remoteObjectProxy"))
 	return rv
 }
 
+
 // The name of the XPC service that this connection was configured to connect to.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/serviceName
+
 func (x_ XPCConnection) ServiceName() string {
 	rv := objc.Send[string](x_.ID, objc.Sel("serviceName"))
 	return rv
 }
 
+
 // A code-signing requirement check failed.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsxpcconnectioncodesigningrequirementfailure-swift.var
+
 func (x_ XPCConnection) NSXPCConnectionCodeSigningRequirementFailure() int {
 	rv := objc.Send[int](x_.ID, objc.Sel("NSXPCConnectionCodeSigningRequirementFailure"))
 	return rv
 }
 
 
-// SetNSXPCConnectionCodeSigningRequirementFailure sets the value of the NSXPCConnectionCodeSigningRequirementFailure property.
 // A code-signing requirement check failed.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsxpcconnectioncodesigningrequirementfailure-swift.var
+
 func (x_ XPCConnection) SetNSXPCConnectionCodeSigningRequirementFailure(value int) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setNSXPCConnectionCodeSigningRequirementFailure:"), value)
 }
 
+
 // The upper bounds of XPC connection error code values.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsxpcconnectionerrormaximum-swift.var
+
 func (x_ XPCConnection) NSXPCConnectionErrorMaximum() int {
 	rv := objc.Send[int](x_.ID, objc.Sel("NSXPCConnectionErrorMaximum"))
 	return rv
 }
 
 
-// SetNSXPCConnectionErrorMaximum sets the value of the NSXPCConnectionErrorMaximum property.
 // The upper bounds of XPC connection error code values.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsxpcconnectionerrormaximum-swift.var
+
 func (x_ XPCConnection) SetNSXPCConnectionErrorMaximum(value int) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setNSXPCConnectionErrorMaximum:"), value)
 }
 
+
 // The lower bounds of XPC connection error code values.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsxpcconnectionerrorminimum-swift.var
+
 func (x_ XPCConnection) NSXPCConnectionErrorMinimum() int {
 	rv := objc.Send[int](x_.ID, objc.Sel("NSXPCConnectionErrorMinimum"))
 	return rv
 }
 
 
-// SetNSXPCConnectionErrorMinimum sets the value of the NSXPCConnectionErrorMinimum property.
 // The lower bounds of XPC connection error code values.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsxpcconnectionerrorminimum-swift.var
+
 func (x_ XPCConnection) SetNSXPCConnectionErrorMinimum(value int) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setNSXPCConnectionErrorMinimum:"), value)
 }
 
+
 // The XPC connection was interrupted.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsxpcconnectioninterrupted-swift.var
+
 func (x_ XPCConnection) NSXPCConnectionInterrupted() int {
 	rv := objc.Send[int](x_.ID, objc.Sel("NSXPCConnectionInterrupted"))
 	return rv
 }
 
 
-// SetNSXPCConnectionInterrupted sets the value of the NSXPCConnectionInterrupted property.
 // The XPC connection was interrupted.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsxpcconnectioninterrupted-swift.var
+
 func (x_ XPCConnection) SetNSXPCConnectionInterrupted(value int) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setNSXPCConnectionInterrupted:"), value)
 }
 
+
 // The XPC connection was invalid.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsxpcconnectioninvalid-swift.var
+
 func (x_ XPCConnection) NSXPCConnectionInvalid() int {
 	rv := objc.Send[int](x_.ID, objc.Sel("NSXPCConnectionInvalid"))
 	return rv
 }
 
 
-// SetNSXPCConnectionInvalid sets the value of the NSXPCConnectionInvalid property.
 // The XPC connection was invalid.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsxpcconnectioninvalid-swift.var
+
 func (x_ XPCConnection) SetNSXPCConnectionInvalid(value int) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setNSXPCConnectionInvalid:"), value)
 }
 
+
 // The XPC connection reply was invalid.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsxpcconnectionreplyinvalid-swift.var
+
 func (x_ XPCConnection) NSXPCConnectionReplyInvalid() int {
 	rv := objc.Send[int](x_.ID, objc.Sel("NSXPCConnectionReplyInvalid"))
 	return rv
 }
 
 
-// SetNSXPCConnectionReplyInvalid sets the value of the NSXPCConnectionReplyInvalid property.
 // The XPC connection reply was invalid.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsxpcconnectionreplyinvalid-swift.var
+
 func (x_ XPCConnection) SetNSXPCConnectionReplyInvalid(value int) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setNSXPCConnectionReplyInvalid:"), value)
 }

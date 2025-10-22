@@ -36,9 +36,13 @@ type ICreateCommand interface {
 // A command that creates a scriptable object.
 //
 // An instance of creates the specified scriptable object (such as a document), optionally supplying the new object with the specified attributes. This command corresponds to AppleScript’s command. is part of Cocoa’s built-in scripting support. Most applications don’t need to subclass or invoke its methods. When an instance of is executed, it creates a new object using (where is the class of the object to be created), unless the command has a argument. In the latter case, the new object is created by invoking . Any properties specified by a argument are then set in the new object using . If an object with no argument corresponding to the parameter is executed (for example, ), and the receiver of the command (not necessarily the application object) has a to-many relationship to objects of the class to be instantiated, and the class description for the receiving class returns when sent an message, the object creates a new object and sends the receiver an message to place the new object in the container. This is part of Cocoa’s scripting support for inserting newly-created objects into containers without explicitly specifying a location.
+
+
+// A command that creates a scriptable object.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCreateCommand
+
 type CreateCommand struct {
 	ScriptCommand
 }
@@ -84,17 +88,23 @@ func NewCreateCommand() CreateCommand {
 }
 
 
+
 // Returns the class description for the class that is to be created.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCreateCommand/createClassDescription
+
 func (c_ CreateCommand) CreateClassDescription() NSScriptClassDescription {
 	rv := objc.Send[NSScriptClassDescription](c_.ID, objc.Sel("createClassDescription"))
 	return rv
 }
 
+
 // Returns a dictionary that contains the properties that were specified in the Apple event command that has been converted to this object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCreateCommand/resolvedKeyDictionary
+
 func (c_ CreateCommand) ResolvedKeyDictionary() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("resolvedKeyDictionary"))
 	return rv

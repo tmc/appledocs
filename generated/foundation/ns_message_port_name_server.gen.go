@@ -36,9 +36,13 @@ type IMessagePortNameServer interface {
 // A server takes and returns message ports.
 //
 // This port name server takes and returns instances of . Port removal functionality is not supported in ; if you want to cancel a service, you have to destroy the port (invalidate the object given to ).
+
+
+// A server takes and returns message ports.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMessagePortNameServer
+
 type MessagePortNameServer struct {
 	PortNameServer
 }
@@ -95,17 +99,23 @@ func (mc _MessagePortNameServerClass) SharedInstance() objc.ID {
 	return rv
 }
 
+
 // Returns the object registered under a given name on the local host.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMessagePortNameServer/portForName:
+
 func (m_ MessagePortNameServer) PortForName(name string) Port {
 	rv := objc.Send[Port](m_.ID, objc.Sel("portForName:"), objc.String(name))
 	return rv
 }
 
+
 // Returns the object registered under a given name on the local host.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMessagePortNameServer/portForName:host:
+
 func (m_ MessagePortNameServer) PortForNameHost(name string, host string) Port {
 	rv := objc.Send[Port](m_.ID, objc.Sel("portForName:host:"), objc.String(name), objc.String(host))
 	return rv

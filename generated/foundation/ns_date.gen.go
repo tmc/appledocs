@@ -47,9 +47,13 @@ type IDate interface {
 // A representation of a specific point in time, independent of any calendar or time zone.
 //
 // In Swift, use this type when you need reference semantics or other Foundation-specific behavior. objects encapsulate a single point in time, independent of any particular calendrical system or time zone. Date objects are immutable, representing an invariant time interval relative to an absolute reference date (00:00:00 UTC on 1 January 2001). The class provides methods for comparing dates, calculating the time interval between two dates, and creating a new date from a time interval relative to another date. objects can be used in conjunction with objects to create localized representations of dates and times, as well as with objects to perform calendar arithmetic. is with its Core Foundation counterpart, . See for more information on toll-free bridging.
+
+
+// A representation of a specific point in time, independent of any calendar or time zone.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate
+
 type Date struct {
 	objectivec.Object
 }
@@ -93,152 +97,189 @@ func NewDate() Date {
 }
 
 
+
 // A date object representing a date in the distant future.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/distantFuture
+
 func (dc _DateClass) DistantFuture() Date {
 	rv := objc.Send[NSDate](objc.ID(dc.class), objc.Sel("distantFuture"))
 	return rv
 }
+
 // A date object representing a date in the distant past.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/distantPast
+
 func (dc _DateClass) DistantPast() Date {
 	rv := objc.Send[NSDate](objc.ID(dc.class), objc.Sel("distantPast"))
 	return rv
 }
+
 // The interval between 00:00:00 UTC on 1 January 2001 and the current date and time.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/timeIntervalSinceReferenceDate-swift.type.property
+
 func (dc _DateClass) TimeIntervalSinceReferenceDate() TimeInterval {
 	rv := objc.Send[TimeInterval](objc.ID(dc.class), objc.Sel("timeIntervalSinceReferenceDate"))
 	return rv
 }
+
 // A date object representing a date in the distant future.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/distantFuture
+
 func (d_ Date) DistantFuture() NSDate {
 	rv := objc.Send[NSDate](d_.ID, objc.Sel("distantFuture"))
 	return rv
 }
 
+
 // A date object representing a date in the distant past.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/distantPast
+
 func (d_ Date) DistantPast() NSDate {
 	rv := objc.Send[NSDate](d_.ID, objc.Sel("distantPast"))
 	return rv
 }
 
+
 // The interval between 00:00:00 UTC on 1 January 2001 and the current date and time.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/timeIntervalSinceReferenceDate-swift.type.property
+
 func (d_ Date) TimeIntervalSinceReferenceDate() TimeInterval {
 	rv := objc.Send[TimeInterval](d_.ID, objc.Sel("timeIntervalSinceReferenceDate"))
 	return rv
 }
 
+
 // A custom playground Quick Look for this object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdate/customplaygroundquicklook
+
 func (d_ Date) CustomPlaygroundQuickLook() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("customPlaygroundQuickLook"))
 	return rv
 }
 
 
-// SetCustomPlaygroundQuickLook sets the value of the customPlaygroundQuickLook property.
 // A custom playground Quick Look for this object.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdate/customplaygroundquicklook
+
 func (d_ Date) SetCustomPlaygroundQuickLook(value unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setCustomPlaygroundQuickLook:"), value)
 }
 
+
 // A string representation of the date object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdate/description
+
 func (d_ Date) Description() string {
 	rv := objc.Send[string](d_.ID, objc.Sel("description"))
 	return rv
 }
 
 
-// SetDescription sets the value of the description property.
 // A string representation of the date object.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdate/description
+
 func (d_ Date) SetDescription(value string) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDescription:"), objc.String(value))
 }
 
+
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdate/srabsolutetime
+
 func (d_ Date) SrAbsoluteTime() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("srAbsoluteTime"))
 	return rv
 }
 
 
-// SetSrAbsoluteTime sets the value of the srAbsoluteTime property.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdate/srabsolutetime
+
 func (d_ Date) SetSrAbsoluteTime(value unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setSrAbsoluteTime:"), value)
 }
 
+
 // The interval between the date object and 00:00:00 UTC on 1 January 1970.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdate/timeintervalsince1970
+
 func (d_ Date) TimeIntervalSince1970() TimeInterval {
 	rv := objc.Send[TimeInterval](d_.ID, objc.Sel("timeIntervalSince1970"))
 	return rv
 }
 
 
-// SetTimeIntervalSince1970 sets the value of the timeIntervalSince1970 property.
 // The interval between the date object and 00:00:00 UTC on 1 January 1970.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdate/timeintervalsince1970
+
 func (d_ Date) SetTimeIntervalSince1970(value ITimeInterval) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setTimeIntervalSince1970:"), value)
 }
 
+
 // The interval between the date object and the current date and time.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdate/timeintervalsincenow
+
 func (d_ Date) TimeIntervalSinceNow() TimeInterval {
 	rv := objc.Send[TimeInterval](d_.ID, objc.Sel("timeIntervalSinceNow"))
 	return rv
 }
 
 
-// SetTimeIntervalSinceNow sets the value of the timeIntervalSinceNow property.
 // The interval between the date object and the current date and time.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdate/timeintervalsincenow
+
 func (d_ Date) SetTimeIntervalSinceNow(value ITimeInterval) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setTimeIntervalSinceNow:"), value)
 }
 
+
 // The number of seconds from 1 January 1970 to the reference date, 1 January 2001.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstimeintervalsince1970
+
 func (d_ Date) NSTimeIntervalSince1970() float64 {
 	rv := objc.Send[float64](d_.ID, objc.Sel("NSTimeIntervalSince1970"))
 	return rv
 }
 
 
-// SetNSTimeIntervalSince1970 sets the value of the NSTimeIntervalSince1970 property.
 // The number of seconds from 1 January 1970 to the reference date, 1 January 2001.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstimeintervalsince1970
+
 func (d_ Date) SetNSTimeIntervalSince1970(value float64) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setNSTimeIntervalSince1970:"), value)
 }

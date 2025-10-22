@@ -37,9 +37,13 @@ type IDistantObject interface {
 // A proxy for objects in other applications or threads.
 //
 // When a distant object receives a message, in most cases it forwards the message through its object to the real object in another application, supplying the return value to the sender of the message if one is received, and propagating any exception back to the invoker of the method that raised it. is a concrete subclass of , adding two useful instance methods of its own: returns the object that handles the receiver; establishes the set of methods the real object is known to respond to, saving the network traffic required to determine the argument and return types the first time a particular selector is forwarded to the remote proxy. There are two kinds of distant object: local proxies and remote proxies. A local proxy is created by an object the first time an object is sent to another application. It is used by the connection for bookkeeping purposes and should be considered private. The local proxy is transmitted over the network using the protocol to create the remote proxy, which is the object that the other application uses. defines methods for an object to create instances, but they’re intended only for subclasses to override—you should never invoke them directly. Use the method of , which sets up all the required state for an object-proxy pair.
+
+
+// A proxy for objects in other applications or threads.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistantObject
+
 type DistantObject struct {
 	Proxy
 }
@@ -152,16 +156,22 @@ func (dc _DistantObjectClass) ProxyWithTargetConnection(target objectivec.IObjec
 	return rv
 }
 
+
 // Sets the methods known to be handled by the receiver to those in a given protocol.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistantObject/setProtocolForProxy:
+
 func (d_ DistantObject) SetProtocolForProxy(proto objectivec.Protocol) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setProtocolForProxy:"), proto)
 }
 
+
 // Returns the connection used by the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistantObject/connectionForProxy
+
 func (d_ DistantObject) ConnectionForProxy() NSConnection {
 	rv := objc.Send[NSConnection](d_.ID, objc.Sel("connectionForProxy"))
 	return rv

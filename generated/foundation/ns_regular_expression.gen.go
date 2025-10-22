@@ -44,9 +44,13 @@ type IRegularExpression interface {
 // An immutable representation of a compiled regular expression that you apply to Unicode strings.
 //
 // The fundamental matching method for is a Block iterator method that allows clients to supply a Block object which will be invoked each time the regular expression matches a portion of the target string. There are additional convenience methods for returning all the matches as an array, the total number of matches, the first match, and the range of the first match. An individual match is represented by an instance of the class, which carries information about the overall matched range (via its property), and the range of each individual capture group (via the method). For basic objects, these match results will be of type , but subclasses may use other types.
+
+
+// An immutable representation of a compiled regular expression that you apply to Unicode strings.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRegularExpression
+
 type RegularExpression struct {
 	objectivec.Object
 }
@@ -90,82 +94,97 @@ func NewRegularExpression() RegularExpression {
 }
 
 
+
 // A value indicating that a requested item couldn’t be found or doesn’t exist.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsnotfound-4qp9h
+
 func (r_ RegularExpression) NSNotFound() int {
 	rv := objc.Send[int](r_.ID, objc.Sel("NSNotFound"))
 	return rv
 }
 
+
 // Returns the number of capture groups in the regular expression.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsregularexpression/numberofcapturegroups
+
 func (r_ RegularExpression) NumberOfCaptureGroups() int {
 	rv := objc.Send[int](r_.ID, objc.Sel("numberOfCaptureGroups"))
 	return rv
 }
 
 
-// SetNumberOfCaptureGroups sets the value of the numberOfCaptureGroups property.
 // Returns the number of capture groups in the regular expression.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsregularexpression/numberofcapturegroups
+
 func (r_ RegularExpression) SetNumberOfCaptureGroups(value int) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setNumberOfCaptureGroups:"), value)
 }
 
+
 // Returns the options used when the regular expression option was created.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsregularexpression/options-swift.property
+
 func (r_ RegularExpression) Options() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("options"))
 	return rv
 }
 
 
-// SetOptions sets the value of the options property.
 // Returns the options used when the regular expression option was created.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsregularexpression/options-swift.property
+
 func (r_ RegularExpression) SetOptions(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setOptions:"), value)
 }
 
+
 // Returns the regular expression pattern.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsregularexpression/pattern
+
 func (r_ RegularExpression) Pattern() string {
 	rv := objc.Send[string](r_.ID, objc.Sel("pattern"))
 	return rv
 }
 
 
-// SetPattern sets the value of the pattern property.
 // Returns the regular expression pattern.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsregularexpression/pattern
+
 func (r_ RegularExpression) SetPattern(value string) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setPattern:"), objc.String(value))
 }
 
+
 // Returns the range of the result that the receiver represents.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/range
+
 func (r_ RegularExpression) Range() Range {
 	rv := objc.Send[Range](r_.ID, objc.Sel("range"))
 	return rv
 }
 
 
-// SetRange sets the value of the range property.
 // Returns the range of the result that the receiver represents.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/range
+
 func (r_ RegularExpression) SetRange(value IRange) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setRange:"), value)
 }

@@ -40,9 +40,13 @@ type IPredicate interface {
 // A definition of logical conditions for constraining a search for a fetch or for in-memory filtering.
 //
 // Predicates represent logical conditions, which you can use to filter collections of objects. Although it’s common to create predicates directly from instances of , , and , you often create predicates from a format string that the class methods parse on . Examples of predicate format strings include: Simple comparisons, such as or Case- and diacritic-insensitive lookups, such as Logical operations, such as Temporal range constraints, such as Relational conditions, such as Aggregate operations, such as For a complete syntax reference, refer to the . You can also create predicates that include variables using the method so that you can predefine the predicate before substituting concrete values at runtime.
+
+
+// A definition of logical conditions for constraining a search for a fetch or for in-memory filtering.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate
+
 type Predicate struct {
 	objectivec.Object
 }
@@ -218,40 +222,55 @@ func (pc _PredicateClass) PredicateWithFormat(predicateFormat string) Predicate 
 	return rv
 }
 
+
 // Forces a securely decoded predicate to allow evaluation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/allowEvaluation()
+
 func (p_ Predicate) AllowEvaluation() {
 	objc.Send[objc.ID](p_.ID, objc.Sel("allowEvaluation"))
 }
 
+
 // Returns a Boolean value that indicates whether the specified object matches the conditions that the predicate specifies.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/evaluate(with:)
+
 func (p_ Predicate) EvaluateWithObject(object objectivec.IObject) bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("evaluateWithObject:"), object)
 	return rv
 }
 
+
 // Returns a Boolean value that indicates whether the specified object matches the conditions that the predicate specifies after substituting in the values from a specified variables dictionary.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/evaluate(with:substitutionVariables:)
+
 func (p_ Predicate) EvaluateWithObjectSubstitutionVariables(object objectivec.IObject, bindings unsafe.Pointer) bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("evaluateWithObject:substitutionVariables:"), object, bindings)
 	return rv
 }
 
+
 // Returns a copy of the predicate and substitutes the predicates variables with specified values from a specified substitution variables dictionary.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/withSubstitutionVariables(_:)
+
 func (p_ Predicate) PredicateWithSubstitutionVariables(variables unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("predicateWithSubstitutionVariables:"), variables)
 	return rv
 }
 
+
 // The predicate’s format string.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/predicateFormat
+
 func (p_ Predicate) PredicateFormat() string {
 	rv := objc.Send[string](p_.ID, objc.Sel("predicateFormat"))
 	return rv

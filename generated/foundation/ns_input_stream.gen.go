@@ -37,9 +37,13 @@ type IInputStream interface {
 // A stream that provides read-only stream functionality.
 //
 // is “toll-free bridged” with its Core Foundation counterpart, . For more information on toll-free bridging, see .
+
+
+// A stream that provides read-only stream functionality.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/InputStream
+
 type InputStream struct {
 	Stream
 }
@@ -164,25 +168,34 @@ func (ic _InputStreamClass) InputStreamWithFileAtPath(path string) unsafe.Pointe
 	return rv
 }
 
+
 // Returns by reference a pointer to a read buffer and, by reference, the number of bytes available, and returns a Boolean value that indicates whether the buffer is available.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/InputStream/getBuffer(_:length:)
+
 func (i_ InputStream) GetBufferLength(buffer unsafe.Pointer, len_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("getBuffer:length:"), buffer, len_)
 	return rv
 }
 
+
 // Reads up to a given number of bytes into a given buffer.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/InputStream/read(_:maxLength:)
+
 func (i_ InputStream) ReadMaxLength(buffer unsafe.Pointer, len_ uint) int {
 	rv := objc.Send[int](i_.ID, objc.Sel("read:maxLength:"), buffer, len_)
 	return rv
 }
 
+
 // A Boolean value that indicates whether the receiver has bytes available to read.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/InputStream/hasBytesAvailable
+
 func (i_ InputStream) HasBytesAvailable() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("hasBytesAvailable"))
 	return rv

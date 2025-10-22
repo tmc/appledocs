@@ -37,9 +37,13 @@ type ISpecifierTest interface {
 // A comparison between an object specifier and a test object.
 //
 // Instances of this class represent a Boolean expression; they evaluate an object specifier and compare the resulting object to another object using a given comparison method. For more information on , see the method description for its sole public method, its initializer, . When an object is properly initialized, it holds two objects: A “value” or “test” object used as the basis of the comparison; this object can be a regular object or object specifier (such as “blue” in “words whose color is blue”). An object specifier evaluating to the container (“words”). The instance also encapsulates a selector identifying the method performing this comparison. The informal protocol defines a set of comparison methods useful for this purpose, while describes additional methods you may need to use for scripting. The test object is compared, using the selector, against each object in the container. Specifiers in these tests usually have invoked on their topmost container. You should rarely need to subclass .
+
+
+// A comparison between an object specifier and a test object.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSpecifierTest
+
 type SpecifierTest struct {
 	ScriptWhoseTest
 }
@@ -101,20 +105,23 @@ func NewSpecifierTestWithObjectSpecifierComparisonOperatorTestObject(obj1 IScrip
 }
 
 
+
 // Sets whether the receiver’s container should be an object involved in a filter reference or the top-level object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier/containerisobjectbeingtested
+
 func (s_ SpecifierTest) ContainerIsObjectBeingTested() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("containerIsObjectBeingTested"))
 	return rv
 }
 
 
-// SetContainerIsObjectBeingTested sets the value of the containerIsObjectBeingTested property.
 // Sets whether the receiver’s container should be an object involved in a filter reference or the top-level object.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier/containerisobjectbeingtested
+
 func (s_ SpecifierTest) SetContainerIsObjectBeingTested(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setContainerIsObjectBeingTested:"), value)
 }

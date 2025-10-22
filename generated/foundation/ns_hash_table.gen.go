@@ -45,9 +45,13 @@ type IHashTable interface {
 // A collection similar to a set, but with broader range of available memory semantics.
 //
 // The hash table is modeled after with the following differences: It can hold weak references to its members. Its members may be copied on input or may use pointer identity for equality and hashing. It can contain arbitrary pointers (its members are not constrained to being objects). You can configure an instance to operate on arbitrary pointers and not just objects, although typically you are encouraged to use the C function API for void * pointers. The object-based API (such as ) will not work for non-object pointers without type-casting. Because of its options, is not a set because it can behave differently (for example, if pointer equality is specified two strings will both be entered). When configuring hash tables, note that only the options listed in guarantee that the rest of the API will work correctly—including copying, archiving, and fast enumeration. While other options are used for certain configurations, such as to hold arbitrary pointers, not all combinations of the options are valid. With some combinations the hash table may not work correctly, or may not even be initialized correctly.
+
+
+// A collection similar to a set, but with broader range of available memory semantics.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHashTable
+
 type HashTable struct {
 	objectivec.Object
 }
@@ -127,89 +131,107 @@ func (hc _HashTableClass) HashTableWithOptions(options PointerFunctionsOptions) 
 	return rv
 }
 
+
 // Adds a given object to the hash table.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHashTable/add(_:)
+
 func (h_ HashTable) AddObject(object unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("addObject:"), object)
 }
 
+
 // The number of elements in the hash table.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHashTable/count
+
 func (h_ HashTable) Count() uint {
 	rv := objc.Send[uint](h_.ID, objc.Sel("count"))
 	return rv
 }
 
+
 // The hash table’s members.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nshashtable/allobjects
+
 func (h_ HashTable) AllObjects() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("allObjects"))
 	return rv
 }
 
 
-// SetAllObjects sets the value of the allObjects property.
 // The hash table’s members.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nshashtable/allobjects
+
 func (h_ HashTable) SetAllObjects(value unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setAllObjects:"), value)
 }
 
+
 // One of the objects in the hash table.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nshashtable/anyobject
+
 func (h_ HashTable) AnyObject() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("anyObject"))
 	return rv
 }
 
 
-// SetAnyObject sets the value of the anyObject property.
 // One of the objects in the hash table.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nshashtable/anyobject
+
 func (h_ HashTable) SetAnyObject(value unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setAnyObject:"), value)
 }
 
+
 // The pointer functions for the hash table.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nshashtable/pointerfunctions
+
 func (h_ HashTable) PointerFunctions() NSPointerFunctions {
 	rv := objc.Send[NSPointerFunctions](h_.ID, objc.Sel("pointerFunctions"))
 	return rv
 }
 
 
-// SetPointerFunctions sets the value of the pointerFunctions property.
 // The pointer functions for the hash table.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nshashtable/pointerfunctions
+
 func (h_ HashTable) SetPointerFunctions(value IPointerFunctions) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setPointerFunctions:"), value)
 }
 
+
 // A set that contains the hash table’s members.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nshashtable/setrepresentation
+
 func (h_ HashTable) SetRepresentation() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("setRepresentation"))
 	return rv
 }
 
 
-// SetSetRepresentation sets the value of the setRepresentation property.
 // A set that contains the hash table’s members.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nshashtable/setrepresentation
+
 func (h_ HashTable) SetSetRepresentation(value unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setSetRepresentation:"), value)
 }

@@ -44,9 +44,13 @@ type IURLResponse interface {
 // The metadata associated with the response to a URL load request, independent of protocol and URL scheme.
 //
 // The related class is a commonly used subclass of whose objects represent a response to an HTTP URL load request and store additional protocol-specific information such as the response headers. Whenever you make an HTTP request, the object you get back is actually an instance of the class.
+
+
+// The metadata associated with the response to a URL load request, independent of protocol and URL scheme.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLResponse
+
 type URLResponse struct {
 	objectivec.Object
 }
@@ -90,82 +94,97 @@ func NewURLResponse() URLResponse {
 }
 
 
+
 // The URL for the response.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLResponse/url
+
 func (u_ URLResponse) URL() URL {
 	rv := objc.Send[URL](u_.ID, objc.Sel("URL"))
 	return rv
 }
 
+
 // The expected length of the response’s content.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlresponse/expectedcontentlength
+
 func (u_ URLResponse) ExpectedContentLength() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("expectedContentLength"))
 	return rv
 }
 
 
-// SetExpectedContentLength sets the value of the expectedContentLength property.
 // The expected length of the response’s content.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlresponse/expectedcontentlength
+
 func (u_ URLResponse) SetExpectedContentLength(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setExpectedContentLength:"), value)
 }
 
+
 // The MIME type of the response.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlresponse/mimetype
+
 func (u_ URLResponse) MimeType() string {
 	rv := objc.Send[string](u_.ID, objc.Sel("mimeType"))
 	return rv
 }
 
 
-// SetMimeType sets the value of the mimeType property.
 // The MIME type of the response.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlresponse/mimetype
+
 func (u_ URLResponse) SetMimeType(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setMimeType:"), objc.String(value))
 }
 
+
 // A suggested filename for the response data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlresponse/suggestedfilename
+
 func (u_ URLResponse) SuggestedFilename() string {
 	rv := objc.Send[string](u_.ID, objc.Sel("suggestedFilename"))
 	return rv
 }
 
 
-// SetSuggestedFilename sets the value of the suggestedFilename property.
 // A suggested filename for the response data.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlresponse/suggestedfilename
+
 func (u_ URLResponse) SetSuggestedFilename(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setSuggestedFilename:"), objc.String(value))
 }
 
+
 // The name of the text encoding provided by the response’s originating source.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlresponse/textencodingname
+
 func (u_ URLResponse) TextEncodingName() string {
 	rv := objc.Send[string](u_.ID, objc.Sel("textEncodingName"))
 	return rv
 }
 
 
-// SetTextEncodingName sets the value of the textEncodingName property.
 // The name of the text encoding provided by the response’s originating source.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlresponse/textencodingname
+
 func (u_ URLResponse) SetTextEncodingName(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setTextEncodingName:"), objc.String(value))
 }

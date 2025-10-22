@@ -42,9 +42,13 @@ type IHost interface {
 // A representation of an individual host on the network.
 //
 // The class provides methods to access the network name and address information for a host. Instances of the class represent individual on a network. Use objects to get the current host’s names and addresses and to look up other hosts by name or by address. To create an object, use the , , or class methods (don’t use and ). These methods use available network administration services to discover all names and addresses for the host requested. They don’t attempt to contact the host itself, however. This approach avoids untimely delays due to a host being unavailable, but it may result in incomplete information about the host. An object contains all of the network addresses and names discovered for a given host by the network administration services. Each object may contain several addresses and have more than one name. If an object has more than one name, the additional names are variations on the same name, typically the basic host name plus the fully qualified domain name. For example, with a host name in the domain , an object can hold both the names and . methods are thread-safe.
+
+
+// A representation of an individual host on the network.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Host
+
 type Host struct {
 	objectivec.Object
 }
@@ -158,62 +162,77 @@ func (hc _HostClass) SetHostCacheEnabled(flag bool) {
 	objc.Send[objc.ID](objc.ID(hc.class), objc.Sel("setHostCacheEnabled:"), flag)
 }
 
+
 // Returns all the network addresses of the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Host/addresses
+
 func (h_ Host) Addresses() []string {
 	rv := objc.Send[[]string](h_.ID, objc.Sel("addresses"))
 	return rv
 }
 
+
 // Returns the name used as by default when publishing .
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Host/localizedName
+
 func (h_ Host) LocalizedName() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("localizedName"))
 	return rv
 }
 
+
 // Returns one of the hostnames of the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Host/name
+
 func (h_ Host) Name() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("name"))
 	return rv
 }
 
+
 // Returns one of the network addresses of the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/host/address
+
 func (h_ Host) Address() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("address"))
 	return rv
 }
 
 
-// SetAddress sets the value of the address property.
 // Returns one of the network addresses of the receiver.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/host/address
+
 func (h_ Host) SetAddress(value string) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setAddress:"), objc.String(value))
 }
 
+
 // Returns all the hostnames of the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/host/names
+
 func (h_ Host) Names() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("names"))
 	return rv
 }
 
 
-// SetNames sets the value of the names property.
 // Returns all the hostnames of the receiver.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/host/names
+
 func (h_ Host) SetNames(value string) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setNames:"), objc.String(value))
 }

@@ -32,9 +32,12 @@ type Iisa interface {
 	objectivec.IObject
 }
 
+
+
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSProxy/isa
+
 type isa struct {
 	objectivec.Object
 }

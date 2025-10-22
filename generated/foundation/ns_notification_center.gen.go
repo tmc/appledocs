@@ -42,9 +42,13 @@ type INotificationCenter interface {
 // A notification dispatch mechanism that enables the broadcast of information to registered observers.
 //
 // Callers register with a notification center to receive one or both of the following: objects, when working in Objective-C or with frameworks that only support . Objects register with a notification center to receive notifications ( objects) using the or methods, specifying a notification name and optionally a source object. When a caller adds itself as an observer, it specifies which notifications it should receive. and instances for use with Swift code, providing strong typing, appropriate actor isolation, and a more idiomatic Swift experience. Callers register with the notification center using the various flavors of the method, specifying either a message type or a convenience to identify the notification messages to receive. See for more information about this API. Callers may add observers for many different notifications, or even the same notification name or message type as produced by different source objects. Each running app has a notification center, and you can create new notification centers to organize communications in particular contexts. A notification center can deliver notifications only within a single program. On macOS, if you want to post a notification to other processes or receive notifications from other processes, use instead.
+
+
+// A notification dispatch mechanism that enables the broadcast of information to registered observers.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NotificationCenter
+
 type NotificationCenter struct {
 	objectivec.Object
 }
@@ -88,66 +92,93 @@ func NewNotificationCenter() NotificationCenter {
 }
 
 
+
 // The app’s default notification center.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NotificationCenter/default
+
 func (nc _NotificationCenterClass) DefaultCenter() NotificationCenter {
 	rv := objc.Send[NSNotificationCenter](objc.ID(nc.class), objc.Sel("defaultCenter"))
 	return rv
 }
+
 // Adds an entry to the notification center to call the provided selector with the notification.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NotificationCenter/addObserver(_:selector:name:object:)
+
 func (n_ NotificationCenter) AddObserverSelectorNameObject(observer objectivec.IObject, aSelector objc.SEL, aName INotificationName, anObject objectivec.IObject) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("addObserver:selector:name:object:"), observer, aSelector, aName, anObject)
 }
 
+
 // Adds an entry to the notification center to receive notifications that passed to the provided block.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NotificationCenter/addObserver(forName:object:queue:using:)
+
 func (n_ NotificationCenter) AddObserverForNameObjectQueueUsingBlock(name INotificationName, obj objectivec.IObject, queue IOperationQueue, block unsafe.Pointer) objc.ID {
 	rv := objc.Send[objc.ID](n_.ID, objc.Sel("addObserverForName:object:queue:usingBlock:"), name, obj, queue, block)
 	return rv
 }
 
+
 // Posts a given notification to the notification center.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NotificationCenter/post(_:)-3x2st
+
 func (n_ NotificationCenter) PostNotification(notification INotification) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("postNotification:"), notification)
 }
 
+
 // Creates a notification with a given name and sender and posts it to the notification center.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NotificationCenter/post(name:object:)
+
 func (n_ NotificationCenter) PostNotificationNameObject(aName INotificationName, anObject objectivec.IObject) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("postNotificationName:object:"), aName, anObject)
 }
 
+
 // Creates a notification with a given name, sender, and information and posts it to the notification center.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NotificationCenter/post(name:object:userInfo:)
+
 func (n_ NotificationCenter) PostNotificationNameObjectUserInfo(aName INotificationName, anObject objectivec.IObject, aUserInfo objectivec.IObject) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("postNotificationName:object:userInfo:"), aName, anObject, aUserInfo)
 }
 
+
 // Removes all entries specifying an observer from the notification center’s dispatch table.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NotificationCenter/removeObserver(_:)-2yciv
+
 func (n_ NotificationCenter) RemoveObserver(observer objectivec.IObject) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("removeObserver:"), observer)
 }
 
+
 // Removes matching entries from the notification center’s dispatch table.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NotificationCenter/removeObserver(_:name:object:)
+
 func (n_ NotificationCenter) RemoveObserverNameObject(observer objectivec.IObject, aName INotificationName, anObject objectivec.IObject) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("removeObserver:name:object:"), observer, aName, anObject)
 }
 
+
 // The app’s default notification center.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NotificationCenter/default
+
 func (n_ NotificationCenter) DefaultCenter() NSNotificationCenter {
 	rv := objc.Send[NSNotificationCenter](n_.ID, objc.Sel("defaultCenter"))
 	return rv

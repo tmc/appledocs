@@ -32,9 +32,12 @@ type IKeyValueSharedObserversSnapshot interface {
 	objectivec.IObject
 }
 
+
+
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyValueSharedObserversSnapshot
+
 type KeyValueSharedObserversSnapshot struct {
 	objectivec.Object
 }

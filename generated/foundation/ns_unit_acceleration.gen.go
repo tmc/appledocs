@@ -34,9 +34,13 @@ type IUnitAcceleration interface {
 // A unit of measure for acceleration.
 //
 // You typically use instances of to represent specific quantities of acceleration using the class.
+
+
+// A unit of measure for acceleration.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitAcceleration
+
 type UnitAcceleration struct {
 	Dimension
 }
@@ -82,16 +86,22 @@ func NewUnitAcceleration() UnitAcceleration {
 }
 
 
+
 // Returns the meter per second squared unit of acceleration.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitAcceleration/metersPerSecondSquared
+
 func (uc _UnitAccelerationClass) MetersPerSecondSquared() UnitAcceleration {
 	rv := objc.Send[NSUnitAcceleration](objc.ID(uc.class), objc.Sel("metersPerSecondSquared"))
 	return rv
 }
+
 // Returns the meter per second squared unit of acceleration.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitAcceleration/metersPerSecondSquared
+
 func (u_ UnitAcceleration) MetersPerSecondSquared() NSUnitAcceleration {
 	rv := objc.Send[NSUnitAcceleration](u_.ID, objc.Sel("metersPerSecondSquared"))
 	return rv

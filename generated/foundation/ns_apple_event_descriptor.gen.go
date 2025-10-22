@@ -71,9 +71,13 @@ type IAppleEventDescriptor interface {
 // A wrapper for the Apple event descriptor data type.
 //
 // An instance of represents a descriptor—the basic building block for Apple events. This class is a wrapper for the underlying Apple event descriptor data type, . Scriptable Cocoa applications frequently work with instances of , but should rarely need to work directly with the data structure. A is a data structure that stores data and an accompanying four-character code. A descriptor can store a value, or it can store a list of other descriptors (which may also be lists). All the information in an Apple event is stored in descriptors and lists of descriptors, and every Apple event is itself a descriptor list that matches certain criteria. Descriptors can be used to build arbitrarily complex containers, so that one Apple event can represent a script statement such as . In working with Apple event descriptors, it can be useful to understand some of the underlying data types. You’ll find terms such as descriptor, descriptor list, Apple event record, and Apple event defined in Building an Apple Event in Apple Events Programming Guide. You’ll also find information on the four-character codes used to identify information within a descriptor. Apple event data types are defined in . The values of many four-character codes used by Apple (and in some cases reused by developers) can be found in . The most common reason to construct an Apple event with an instance of is to supply information in a return Apple event. The most common situation where you might need to extract information from an Apple event (as an instance of ) is when an Apple event handler installed by your application is invoked, as described in “Installing an Apple Event Handler” in . In addition, if you execute an AppleScript script using the class, you get an instance of as the return value, from which you can extract any required information. When you work with an instance of , you can access the underlying descriptor directly, if necessary, with the method. Other methods, including make it possible to create and initialize instances of without creating temporary instances of . The designated initializer for is . However, it is unlikely that you will need to create a subclass of . Cocoa doesn’t currently provide a mechanism for applications to directly send raw Apple events (though compiling and executing an AppleScript script with may result in Apple events being sent). However, Cocoa applications have full access to the Apple Event Manager C APIs for working with Apple events. So, for example, you might use an instance of to assemble an Apple event and call the Apple Event Manager function to send it. If you need to send Apple events, or if you need more information on some of the Apple event concepts described here, see Apple Events Programming Guide and .
+
+
+// A wrapper for the Apple event descriptor data type.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleEventDescriptor
+
 type AppleEventDescriptor struct {
 	objectivec.Object
 }
@@ -166,308 +170,374 @@ func (ac _AppleEventDescriptorClass) NullDescriptor() AppleEventDescriptor {
 	return rv
 }
 
+
 // Returns the descriptor at the specified (one-based) position in the receiving descriptor list.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleEventDescriptor/atIndex(_:)
+
 func (a_ AppleEventDescriptor) DescriptorAtIndex(index int) AppleEventDescriptor {
 	rv := objc.Send[AppleEventDescriptor](a_.ID, objc.Sel("descriptorAtIndex:"), index)
 	return rv
 }
 
+
 // Returns a descriptor for the receiver’s Apple event attribute identified by the specified keyword.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleEventDescriptor/attributeDescriptor(forKeyword:)
+
 func (a_ AppleEventDescriptor) AttributeDescriptorForKeyword(keyword unsafe.Pointer) AppleEventDescriptor {
 	rv := objc.Send[AppleEventDescriptor](a_.ID, objc.Sel("attributeDescriptorForKeyword:"), keyword)
 	return rv
 }
 
+
 // Inserts a descriptor at the specified (one-based) position in the receiving descriptor list, replacing the existing descriptor, if any, at that position.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleEventDescriptor/insert(_:at:)
+
 func (a_ AppleEventDescriptor) InsertDescriptorAtIndex(descriptor IAppleEventDescriptor, index int) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("insertDescriptor:atIndex:"), descriptor, index)
 }
 
+
 // Removes the receiver’s descriptor identified by the specified keyword.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleEventDescriptor/remove(withKeyword:)
+
 func (a_ AppleEventDescriptor) RemoveDescriptorWithKeyword(keyword unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("removeDescriptorWithKeyword:"), keyword)
 }
 
+
 // The structure encapsulated by the receiver, if it has one.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleEventDescriptor/aeDesc
+
 func (a_ AppleEventDescriptor) AeDesc() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("aeDesc"))
 	return rv
 }
 
+
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleEventDescriptor/doubleValue
+
 func (a_ AppleEventDescriptor) DoubleValue() float64 {
 	rv := objc.Send[float64](a_.ID, objc.Sel("doubleValue"))
 	return rv
 }
 
+
 // The contents of the receiver as a Boolean value, coercing (to
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsappleeventdescriptor/booleanvalue
+
 func (a_ AppleEventDescriptor) BooleanValue() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("booleanValue"))
 	return rv
 }
 
 
-// SetBooleanValue sets the value of the booleanValue property.
 // The contents of the receiver as a Boolean value, coercing (to
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsappleeventdescriptor/booleanvalue
+
 func (a_ AppleEventDescriptor) SetBooleanValue(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setBooleanValue:"), value)
 }
 
+
 // The receiver’s data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsappleeventdescriptor/data
+
 func (a_ AppleEventDescriptor) Data() Data {
 	rv := objc.Send[Data](a_.ID, objc.Sel("data"))
 	return rv
 }
 
 
-// SetData sets the value of the data property.
 // The receiver’s data.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsappleeventdescriptor/data
+
 func (a_ AppleEventDescriptor) SetData(value IData) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setData:"), value)
 }
 
+
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsappleeventdescriptor/datevalue
+
 func (a_ AppleEventDescriptor) DateValue() Date {
 	rv := objc.Send[Date](a_.ID, objc.Sel("dateValue"))
 	return rv
 }
 
 
-// SetDateValue sets the value of the dateValue property.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsappleeventdescriptor/datevalue
+
 func (a_ AppleEventDescriptor) SetDateValue(value IDate) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDateValue:"), value)
 }
 
+
 // The descriptor type of the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsappleeventdescriptor/descriptortype
+
 func (a_ AppleEventDescriptor) DescriptorType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("descriptorType"))
 	return rv
 }
 
 
-// SetDescriptorType sets the value of the descriptorType property.
 // The descriptor type of the receiver.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsappleeventdescriptor/descriptortype
+
 func (a_ AppleEventDescriptor) SetDescriptorType(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDescriptorType:"), value)
 }
 
+
 // The contents of the receiver as an enumeration type, coercing to
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsappleeventdescriptor/enumcodevalue
+
 func (a_ AppleEventDescriptor) EnumCodeValue() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("enumCodeValue"))
 	return rv
 }
 
 
-// SetEnumCodeValue sets the value of the enumCodeValue property.
 // The contents of the receiver as an enumeration type, coercing to
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsappleeventdescriptor/enumcodevalue
+
 func (a_ AppleEventDescriptor) SetEnumCodeValue(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setEnumCodeValue:"), value)
 }
 
+
 // The event class for the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsappleeventdescriptor/eventclass
+
 func (a_ AppleEventDescriptor) EventClass() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("eventClass"))
 	return rv
 }
 
 
-// SetEventClass sets the value of the eventClass property.
 // The event class for the receiver.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsappleeventdescriptor/eventclass
+
 func (a_ AppleEventDescriptor) SetEventClass(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setEventClass:"), value)
 }
 
+
 // The event ID for the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsappleeventdescriptor/eventid
+
 func (a_ AppleEventDescriptor) EventID() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("eventID"))
 	return rv
 }
 
 
-// SetEventID sets the value of the eventID property.
 // The event ID for the receiver.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsappleeventdescriptor/eventid
+
 func (a_ AppleEventDescriptor) SetEventID(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setEventID:"), value)
 }
 
+
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsappleeventdescriptor/fileurlvalue
+
 func (a_ AppleEventDescriptor) FileURLValue() URL {
 	rv := objc.Send[URL](a_.ID, objc.Sel("fileURLValue"))
 	return rv
 }
 
 
-// SetFileURLValue sets the value of the fileURLValue property.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsappleeventdescriptor/fileurlvalue
+
 func (a_ AppleEventDescriptor) SetFileURLValue(value IURL) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setFileURLValue:"), value)
 }
 
+
 // The contents of the receiver as an integer, coercing (to
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsappleeventdescriptor/int32value
+
 func (a_ AppleEventDescriptor) Int32Value() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("int32Value"))
 	return rv
 }
 
 
-// SetInt32Value sets the value of the int32Value property.
 // The contents of the receiver as an integer, coercing (to
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsappleeventdescriptor/int32value
+
 func (a_ AppleEventDescriptor) SetInt32Value(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setInt32Value:"), value)
 }
 
+
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsappleeventdescriptor/isrecorddescriptor
+
 func (a_ AppleEventDescriptor) IsRecordDescriptor() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isRecordDescriptor"))
 	return rv
 }
 
 
-// SetIsRecordDescriptor sets the value of the isRecordDescriptor property.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsappleeventdescriptor/isrecorddescriptor
+
 func (a_ AppleEventDescriptor) SetIsRecordDescriptor(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsRecordDescriptor:"), value)
 }
 
+
 // The number of descriptors in the receiver’s descriptor list.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsappleeventdescriptor/numberofitems
+
 func (a_ AppleEventDescriptor) NumberOfItems() int {
 	rv := objc.Send[int](a_.ID, objc.Sel("numberOfItems"))
 	return rv
 }
 
 
-// SetNumberOfItems sets the value of the numberOfItems property.
 // The number of descriptors in the receiver’s descriptor list.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsappleeventdescriptor/numberofitems
+
 func (a_ AppleEventDescriptor) SetNumberOfItems(value int) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setNumberOfItems:"), value)
 }
 
+
 // The receiver’s return ID (the ID for a reply Apple event).
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsappleeventdescriptor/returnid
+
 func (a_ AppleEventDescriptor) ReturnID() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("returnID"))
 	return rv
 }
 
 
-// SetReturnID sets the value of the returnID property.
 // The receiver’s return ID (the ID for a reply Apple event).
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsappleeventdescriptor/returnid
+
 func (a_ AppleEventDescriptor) SetReturnID(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setReturnID:"), value)
 }
 
+
 // The contents of the receiver as a Unicode text string, coercing to
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsappleeventdescriptor/stringvalue
+
 func (a_ AppleEventDescriptor) StringValue() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("stringValue"))
 	return rv
 }
 
 
-// SetStringValue sets the value of the stringValue property.
 // The contents of the receiver as a Unicode text string, coercing to
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsappleeventdescriptor/stringvalue
+
 func (a_ AppleEventDescriptor) SetStringValue(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setStringValue:"), objc.String(value))
 }
 
+
 // The receiver’s transaction ID, if any.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsappleeventdescriptor/transactionid
+
 func (a_ AppleEventDescriptor) TransactionID() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("transactionID"))
 	return rv
 }
 
 
-// SetTransactionID sets the value of the transactionID property.
 // The receiver’s transaction ID, if any.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsappleeventdescriptor/transactionid
+
 func (a_ AppleEventDescriptor) SetTransactionID(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setTransactionID:"), value)
 }
 
+
 // The contents of the receiver as a type, coercing to
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsappleeventdescriptor/typecodevalue
+
 func (a_ AppleEventDescriptor) TypeCodeValue() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("typeCodeValue"))
 	return rv
 }
 
 
-// SetTypeCodeValue sets the value of the typeCodeValue property.
 // The contents of the receiver as a type, coercing to
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsappleeventdescriptor/typecodevalue
+
 func (a_ AppleEventDescriptor) SetTypeCodeValue(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setTypeCodeValue:"), value)
 }

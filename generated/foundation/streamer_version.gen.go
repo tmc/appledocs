@@ -32,9 +32,12 @@ type IstreamerVersion interface {
 	objectivec.IObject
 }
 
+
+
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUnarchiver/streamerVersion
+
 type streamerVersion struct {
 	objectivec.Object
 }

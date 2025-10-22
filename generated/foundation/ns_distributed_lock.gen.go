@@ -39,9 +39,13 @@ type IDistributedLock interface {
 // A lock that multiple applications on multiple hosts can use to restrict access to some shared resource, such as a file.
 //
 // The lock is implemented by an entry (such as a file or directory) in the file system. For multiple applications to use an object to coordinate their activities, the lock must be writable on a file system accessible to all hosts on which the applications might be running. Use the method to attempt to acquire a lock. You should generally use the method to release the lock rather than . doesn’t conform to the protocol, nor does it have a method. The protocol’s method is intended to block the execution of the thread until successful. For an object, this could mean polling the file system at some predetermined rate. A better solution is to provide the method and let you determine the polling frequency that makes sense for your application.
+
+
+// A lock that multiple applications on multiple hosts can use to restrict access to some shared resource, such as a file.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistributedLock
+
 type DistributedLock struct {
 	objectivec.Object
 }
@@ -85,31 +89,43 @@ func NewDistributedLock() DistributedLock {
 }
 
 
+
 // Forces the lock to be relinquished.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistributedLock/break()
+
 func (d_ DistributedLock) BreakLock() {
 	objc.Send[objc.ID](d_.ID, objc.Sel("breakLock"))
 }
 
+
 // Attempts to acquire the receiver and immediately returns a Boolean value that indicates whether the attempt was successful.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistributedLock/try()
+
 func (d_ DistributedLock) TryLock() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("tryLock"))
 	return rv
 }
 
+
 // Relinquishes the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistributedLock/unlock()
+
 func (d_ DistributedLock) Unlock() {
 	objc.Send[objc.ID](d_.ID, objc.Sel("unlock"))
 }
 
+
 // Returns the time the receiver was acquired by any of the objects using the same path.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistributedLock/lockDate
+
 func (d_ DistributedLock) LockDate() NSDate {
 	rv := objc.Send[NSDate](d_.ID, objc.Sel("lockDate"))
 	return rv

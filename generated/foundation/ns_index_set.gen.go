@@ -44,9 +44,13 @@ type IIndexSet interface {
 // An immutable collection of unique integer values that represent indexes in another collection.
 //
 // In Swift, this type bridges to ; use when you need reference semantics or other Foundation-specific behavior. The class represents an immutable collection of unique unsigned integers, known as because of the way they are used. This collection is referred to as an . Indexes must be in the range . You use index sets in your code to store indexes into some other data structure. For example, given an object, you could use an index set to identify a subset of objects in that array. You should not use index sets to store an arbitrary collection of integer values because index sets store indexes as sorted ranges. This makes them more efficient than storing a collection of individual integers. It also means that each index value can only appear once in the index set. The designated initializers of the class are: , , and . You must not subclass the class. The mutable subclass of is .
+
+
+// An immutable collection of unique integer values that represent indexes in another collection.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSet
+
 type IndexSet struct {
 	objectivec.Object
 }
@@ -106,77 +110,95 @@ func NewIndexSetWithIndex(value uint) IndexSet {
 }
 
 
+
 // Executes a given Block using each object in the index set.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSet/enumerate(_:)
+
 func (i_ IndexSet) EnumerateIndexesUsingBlock(block unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("enumerateIndexesUsingBlock:"), block)
 }
 
+
 // Executes a given Block using the indexes in the specified range, using the specified enumeration options.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSet/enumerate(in:options:using:)
+
 func (i_ IndexSet) EnumerateIndexesInRangeOptionsUsingBlock(range_ IRange, opts EnumerationOptions, block unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("enumerateIndexesInRange:options:usingBlock:"), range_, opts, block)
 }
 
+
 // Executes a given Block over the index set’s indexes, using the specified enumeration options.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSet/enumerate(options:using:)
+
 func (i_ IndexSet) EnumerateIndexesWithOptionsUsingBlock(opts EnumerationOptions, block unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("enumerateIndexesWithOptions:usingBlock:"), opts, block)
 }
 
+
 // The number of indexes in the index set.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsindexset/count
+
 func (i_ IndexSet) Count() int {
 	rv := objc.Send[int](i_.ID, objc.Sel("count"))
 	return rv
 }
 
 
-// SetCount sets the value of the count property.
 // The number of indexes in the index set.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsindexset/count
+
 func (i_ IndexSet) SetCount(value int) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCount:"), value)
 }
 
+
 // The first index in the index set.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsindexset/firstindex
+
 func (i_ IndexSet) FirstIndex() int {
 	rv := objc.Send[int](i_.ID, objc.Sel("firstIndex"))
 	return rv
 }
 
 
-// SetFirstIndex sets the value of the firstIndex property.
 // The first index in the index set.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsindexset/firstindex
+
 func (i_ IndexSet) SetFirstIndex(value int) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setFirstIndex:"), value)
 }
 
+
 // The last index in the index set.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsindexset/lastindex
+
 func (i_ IndexSet) LastIndex() int {
 	rv := objc.Send[int](i_.ID, objc.Sel("lastIndex"))
 	return rv
 }
 
 
-// SetLastIndex sets the value of the lastIndex property.
 // The last index in the index set.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsindexset/lastindex
+
 func (i_ IndexSet) SetLastIndex(value int) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setLastIndex:"), value)
 }

@@ -39,9 +39,13 @@ type ISpellServer interface {
 // A server that your app uses to provide a spell checker service to other apps running in the system.
 //
 // A is an application that declares its availability in a standard way, so that any other applications that wish to use it can do so. If you build a spelling checker that makes use of the class and list it as an available service, then users of any application that makes use of or includes a Services menu will see your spelling checker as one of the available dictionaries.
+
+
+// A server that your app uses to provide a spell checker service to other apps running in the system.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSpellServer
+
 type SpellServer struct {
 	objectivec.Object
 }
@@ -85,35 +89,44 @@ func NewSpellServer() SpellServer {
 }
 
 
+
 // Indicates whether a given word is in the user’s list of learned words or the document’s list of words to ignore.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSpellServer/isWord(inUserDictionaries:caseSensitive:)
+
 func (s_ SpellServer) IsWordInUserDictionariesCaseSensitive(word string, flag bool) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isWordInUserDictionaries:caseSensitive:"), objc.String(word), flag)
 	return rv
 }
 
+
 // Causes the receiver to start listening for spell-checking requests.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSpellServer/run()
+
 func (s_ SpellServer) Run() {
 	objc.Send[objc.ID](s_.ID, objc.Sel("run"))
 }
 
+
 // Returns the receiver’s delegate.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsspellserver/delegate
+
 func (s_ SpellServer) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("delegate"))
 	return rv
 }
 
 
-// SetDelegate sets the value of the delegate property.
 // Returns the receiver’s delegate.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsspellserver/delegate
+
 func (s_ SpellServer) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDelegate:"), value)
 }

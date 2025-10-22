@@ -35,9 +35,13 @@ type IDistantObjectRequest interface {
 // An object used by the distributed objects system to help handle invocations between different processes.
 //
 // Do not create objects directly. Unless you are getting involved with the low-level details of distributed objects, there should never be a need to access an . To intercept and possibly process requests yourself, implement the delegate method .
+
+
+// An object used by the distributed objects system to help handle invocations between different processes.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistantObjectRequest
+
 type DistantObjectRequest struct {
 	objectivec.Object
 }

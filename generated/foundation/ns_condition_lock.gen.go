@@ -40,9 +40,13 @@ type IConditionLock interface {
 // A lock that can be associated with specific, user-defined conditions.
 //
 // Using an object, you can ensure that a thread can acquire a lock only if a certain condition is met. Once it has acquired the lock and executed the critical section of code, the thread can relinquish the lock and set the associated condition to something new. The conditions themselves are arbitrary: you define them as needed for your application.
+
+
+// A lock that can be associated with specific, user-defined conditions.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConditionLock
+
 type ConditionLock struct {
 	objectivec.Object
 }
@@ -86,45 +90,54 @@ func NewConditionLock() ConditionLock {
 }
 
 
+
 // Attempts to acquire a lock.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConditionLock/lock(whenCondition:)
+
 func (c_ ConditionLock) LockWhenCondition(condition int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("lockWhenCondition:"), condition)
 }
 
+
 // The condition associated with the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsconditionlock/condition
+
 func (c_ ConditionLock) Condition() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("condition"))
 	return rv
 }
 
 
-// SetCondition sets the value of the condition property.
 // The condition associated with the receiver.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsconditionlock/condition
+
 func (c_ ConditionLock) SetCondition(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCondition:"), value)
 }
 
+
 // The name associated with the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsconditionlock/name
+
 func (c_ ConditionLock) Name() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("name"))
 	return rv
 }
 
 
-// SetName sets the value of the name property.
 // The name associated with the receiver.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsconditionlock/name
+
 func (c_ ConditionLock) SetName(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setName:"), objc.String(value))
 }

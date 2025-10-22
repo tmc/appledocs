@@ -34,9 +34,13 @@ type IUnitArea interface {
 // A unit of measure for area.
 //
 // You typically use instances of to represent specific quantities of area using the class.
+
+
+// A unit of measure for area.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitArea
+
 type UnitArea struct {
 	Dimension
 }
