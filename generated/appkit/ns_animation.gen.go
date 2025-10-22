@@ -31,6 +31,26 @@ type _AnimationClass struct {
 // An interface definition for the [Animation] class.
 type IAnimation interface {
 	objectivec.IObject
+	CurrentProgress() AnimationProgress
+	SetCurrentProgress(value IAnimationProgress)
+	AnimationBlockingMode() unsafe.Pointer
+	SetAnimationBlockingMode(value unsafe.Pointer)
+	AnimationCurve() unsafe.Pointer
+	SetAnimationCurve(value unsafe.Pointer)
+	CurrentValue() float32
+	SetCurrentValue(value float32)
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
+	Duration() unsafe.Pointer
+	SetDuration(value unsafe.Pointer)
+	FrameRate() float32
+	SetFrameRate(value float32)
+	IsAnimating() bool
+	SetIsAnimating(value bool)
+	ProgressMarks() foundation.Number
+	SetProgressMarks(value foundation.INumber)
+	RunLoopModesForAnimating() unsafe.Pointer
+	SetRunLoopModesForAnimating(value unsafe.Pointer)
 }
 
 // An object that manages the timing and progress of animations in the user interface.

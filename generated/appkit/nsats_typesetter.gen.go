@@ -30,6 +30,26 @@ type _ATSTypesetterClass struct {
 // An interface definition for the [ATSTypesetter] class.
 type IATSTypesetter interface {
 	ITypesetter
+	AttributedString() foundation.AttributedString
+	SetAttributedString(value foundation.IAttributedString)
+	BidiProcessingEnabled() bool
+	SetBidiProcessingEnabled(value bool)
+	CurrentTextContainer() NSTextContainer
+	SetCurrentTextContainer(value ITextContainer)
+	HyphenationFactor() float32
+	SetHyphenationFactor(value float32)
+	LayoutManager() NSLayoutManager
+	SetLayoutManager(value ILayoutManager)
+	LineFragmentPadding() float64
+	SetLineFragmentPadding(value float64)
+	ParagraphGlyphRange() foundation.Range
+	SetParagraphGlyphRange(value foundation.IRange)
+	ParagraphSeparatorGlyphRange() foundation.Range
+	SetParagraphSeparatorGlyphRange(value foundation.IRange)
+	TypesetterBehavior() unsafe.Pointer
+	SetTypesetterBehavior(value unsafe.Pointer)
+	UsesFontLeading() bool
+	SetUsesFontLeading(value bool)
 }
 
 // A concrete typesetter object that places glyphs during the text layout process.

@@ -32,6 +32,20 @@ type _PDFInfoClass struct {
 // An interface definition for the [PDFInfo] class.
 type IPDFInfo interface {
 	objectivec.IObject
+	FileExtensionHidden() bool
+	SetFileExtensionHidden(value bool)
+	Orientation() PaperOrientation
+	SetOrientation(value PaperOrientation)
+	TagNames() []string
+	SetTagNames(value []string)
+	Attributes() foundation.MutableDictionary
+	SetAttributes(value foundation.IMutableDictionary)
+	IsFileExtensionHidden() bool
+	SetIsFileExtensionHidden(value bool)
+	PaperSize() coregraphics.CGSize
+	SetPaperSize(value coregraphics.CGSize)
+	Url() foundation.URL
+	SetUrl(value foundation.IURL)
 }
 
 // An object that stores information associated with the creation of a PDF file, such as its URL, tag names, page orientation, and paper size.

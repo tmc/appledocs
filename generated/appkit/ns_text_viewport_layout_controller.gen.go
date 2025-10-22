@@ -31,6 +31,14 @@ type _TextViewportLayoutControllerClass struct {
 // An interface definition for the [TextViewportLayoutController] class.
 type ITextViewportLayoutController interface {
 	objectivec.IObject
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
+	TextLayoutManager() NSTextLayoutManager
+	SetTextLayoutManager(value ITextLayoutManager)
+	ViewportBounds() coregraphics.CGRect
+	SetViewportBounds(value coregraphics.CGRect)
+	ViewportRange() NSTextRange
+	SetViewportRange(value ITextRange)
 }
 
 // Manages the layout process inside the viewport interacting with its delegate.

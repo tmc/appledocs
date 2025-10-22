@@ -31,6 +31,9 @@ type _StoryboardSegueClass struct {
 type IStoryboardSegue interface {
 	objectivec.IObject
 	Perform()
+	DestinationController() objc.ID
+	Identifier() StoryboardSegueIdentifier
+	SourceController() objc.ID
 }
 
 // A transition or containment relationship between two scenes in a storyboard.

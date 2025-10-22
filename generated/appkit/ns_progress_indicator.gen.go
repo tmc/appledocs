@@ -38,6 +38,34 @@ type IProgressIndicator interface {
 	SizeToFit()
 	StartAnimation(sender objectivec.IObject)
 	StopAnimation(sender objectivec.IObject)
+	ControlSize() ControlSize
+	SetControlSize(value IControlSize)
+	ControlTint() ControlTint
+	SetControlTint(value IControlTint)
+	DoubleValue() float64
+	SetDoubleValue(value float64)
+	Bezeled() bool
+	SetBezeled(value bool)
+	DisplayedWhenStopped() bool
+	SetDisplayedWhenStopped(value bool)
+	Indeterminate() bool
+	SetIndeterminate(value bool)
+	MaxValue() float64
+	SetMaxValue(value float64)
+	MinValue() float64
+	SetMinValue(value float64)
+	ObservedProgress() foundation.Progress
+	SetObservedProgress(value foundation.IProgress)
+	Style() ProgressIndicatorStyle
+	SetStyle(value ProgressIndicatorStyle)
+	UsesThreadedAnimation() bool
+	SetUsesThreadedAnimation(value bool)
+	IsBezeled() bool
+	SetIsBezeled(value bool)
+	IsDisplayedWhenStopped() bool
+	SetIsDisplayedWhenStopped(value bool)
+	IsIndeterminate() bool
+	SetIsIndeterminate(value bool)
 }
 
 // An interface that provides visual feedback to the user about the status of an ongoing task.

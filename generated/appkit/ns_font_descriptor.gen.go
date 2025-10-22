@@ -32,6 +32,18 @@ type _FontDescriptorClass struct {
 type IFontDescriptor interface {
 	objectivec.IObject
 	ObjectForKey(attribute unsafe.Pointer) objc.ID
+	Matrix() coregraphics.AffineTransform
+	SymbolicTraits() FontDescriptorSymbolicTraits
+	FontAttributes() unsafe.Pointer
+	SetFontAttributes(value unsafe.Pointer)
+	PointSize() float64
+	SetPointSize(value float64)
+	PostscriptName() string
+	SetPostscriptName(value string)
+	RequiresFontAssetRequest() bool
+	SetRequiresFontAssetRequest(value bool)
+	NSFontFamilyClassMask() unsafe.Pointer
+	SetNSFontFamilyClassMask(value unsafe.Pointer)
 }
 
 // A dictionary of attributes that describe a font.

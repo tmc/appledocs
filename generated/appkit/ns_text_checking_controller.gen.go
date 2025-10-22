@@ -30,6 +30,10 @@ type _TextCheckingControllerClass struct {
 // An interface definition for the [TextCheckingController] class.
 type ITextCheckingController interface {
 	objectivec.IObject
+	Client() unsafe.Pointer
+	SetClient(value unsafe.Pointer)
+	SpellCheckerDocumentTag() int
+	SetSpellCheckerDocumentTag(value int)
 }
 
 //

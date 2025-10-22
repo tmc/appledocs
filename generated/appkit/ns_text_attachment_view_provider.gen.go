@@ -30,6 +30,16 @@ type _TextAttachmentViewProviderClass struct {
 // An interface definition for the [TextAttachmentViewProvider] class.
 type ITextAttachmentViewProvider interface {
 	objectivec.IObject
+	Location() unsafe.Pointer
+	SetLocation(value unsafe.Pointer)
+	TextAttachment() NSTextAttachment
+	SetTextAttachment(value ITextAttachment)
+	TextLayoutManager() NSTextLayoutManager
+	SetTextLayoutManager(value ITextLayoutManager)
+	TracksTextAttachmentViewBounds() bool
+	SetTracksTextAttachmentViewBounds(value bool)
+	View() NSView
+	SetView(value IView)
 }
 
 // A container object that associates a text attachment at a particular document location with a view object.

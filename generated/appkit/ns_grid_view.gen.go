@@ -46,6 +46,18 @@ type IGridView interface {
 	RemoveColumnAtIndex(index int)
 	RemoveRowAtIndex(index int)
 	RowAtIndex(index int) unsafe.Pointer
+	ColumnSpacing() float64
+	SetColumnSpacing(value float64)
+	NumberOfColumns() int
+	NumberOfRows() int
+	RowAlignment() unsafe.Pointer
+	SetRowAlignment(value unsafe.Pointer)
+	RowSpacing() float64
+	SetRowSpacing(value float64)
+	XPlacement() unsafe.Pointer
+	SetXPlacement(value unsafe.Pointer)
+	YPlacement() unsafe.Pointer
+	SetYPlacement(value unsafe.Pointer)
 }
 
 // A container that aligns views in a flexible grid of rows and columns.

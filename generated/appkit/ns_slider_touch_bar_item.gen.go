@@ -29,6 +29,30 @@ type _SliderTouchBarItemClass struct {
 // An interface definition for the [SliderTouchBarItem] class.
 type ISliderTouchBarItem interface {
 	ITouchBarItem
+	CustomizationLabel() string
+	SetCustomizationLabel(value string)
+	MinimumValueAccessory() NSSliderAccessory
+	SetMinimumValueAccessory(value ISliderAccessory)
+	Action() unsafe.Pointer
+	SetAction(value unsafe.Pointer)
+	DoubleValue() float64
+	SetDoubleValue(value float64)
+	Label() string
+	SetLabel(value string)
+	MaximumSliderWidth() float64
+	SetMaximumSliderWidth(value float64)
+	MaximumValueAccessory() NSSliderAccessory
+	SetMaximumValueAccessory(value ISliderAccessory)
+	MinimumSliderWidth() float64
+	SetMinimumSliderWidth(value float64)
+	Slider() NSSlider
+	SetSlider(value ISlider)
+	Target() unsafe.Pointer
+	SetTarget(value unsafe.Pointer)
+	ValueAccessoryWidth() unsafe.Pointer
+	SetValueAccessoryWidth(value unsafe.Pointer)
+	View() unsafe.Pointer
+	SetView(value unsafe.Pointer)
 }
 
 // A bar item that provides a slider control for choosing a value in a range.

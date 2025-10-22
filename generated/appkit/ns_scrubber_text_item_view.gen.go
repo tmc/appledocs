@@ -29,6 +29,9 @@ type _ScrubberTextItemViewClass struct {
 // An interface definition for the [ScrubberTextItemView] class.
 type IScrubberTextItemView interface {
 	IScrubberItemView
+	TextField() NSTextField
+	Title() string
+	SetTitle(value string)
 }
 
 // A concrete view subclass for displaying text for an item in a scrubber.

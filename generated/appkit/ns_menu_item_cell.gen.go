@@ -29,6 +29,22 @@ type _MenuItemCellClass struct {
 // An interface definition for the [MenuItemCell] class.
 type IMenuItemCell interface {
 	IButtonCell
+	ImageWidth() float64
+	SetImageWidth(value float64)
+	KeyEquivalentWidth() float64
+	SetKeyEquivalentWidth(value float64)
+	MenuItem() NSMenuItem
+	SetMenuItem(value IMenuItem)
+	NeedsDisplay() bool
+	SetNeedsDisplay(value bool)
+	NeedsSizing() bool
+	SetNeedsSizing(value bool)
+	StateImageWidth() float64
+	SetStateImageWidth(value float64)
+	Tag() int
+	SetTag(value int)
+	TitleWidth() float64
+	SetTitleWidth(value float64)
 }
 
 // An object that handles the measurement and display of a single menu item in its encompassing frame.

@@ -29,6 +29,22 @@ type _ScrollerClass struct {
 // An interface definition for the [Scroller] class.
 type IScroller interface {
 	IControl
+	ArrowsPosition() unsafe.Pointer
+	SetArrowsPosition(value unsafe.Pointer)
+	ControlSize() ControlSize
+	SetControlSize(value IControlSize)
+	ControlTint() ControlTint
+	SetControlTint(value IControlTint)
+	HitPart() unsafe.Pointer
+	SetHitPart(value unsafe.Pointer)
+	KnobProportion() float64
+	SetKnobProportion(value float64)
+	KnobStyle() unsafe.Pointer
+	SetKnobStyle(value unsafe.Pointer)
+	ScrollerStyle() unsafe.Pointer
+	SetScrollerStyle(value unsafe.Pointer)
+	UsableParts() unsafe.Pointer
+	SetUsableParts(value unsafe.Pointer)
 }
 
 // An object that controls scrolling of a document view within a scroll view or other type of container view.

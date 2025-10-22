@@ -30,6 +30,12 @@ type _PDFPanelClass struct {
 // An interface definition for the [PDFPanel] class.
 type IPDFPanel interface {
 	objectivec.IObject
+	AccessoryController() NSViewController
+	SetAccessoryController(value IViewController)
+	DefaultFileName() string
+	SetDefaultFileName(value string)
+	Options() unsafe.Pointer
+	SetOptions(value unsafe.Pointer)
 }
 
 // A Save or Export as PDF panel that’s consistent with the macOS user interface.

@@ -30,6 +30,11 @@ type _MenuItemBadgeClass struct {
 // An interface definition for the [MenuItemBadge] class.
 type IMenuItemBadge interface {
 	objectivec.IObject
+	ItemCount() int
+	StringValue() string
+	Type() MenuItemBadgeType
+	Badge() NSMenuItemBadge
+	SetBadge(value IMenuItemBadge)
 }
 
 // A control that provides additional quantitative information specific to a menu item, such as the number of available updates.

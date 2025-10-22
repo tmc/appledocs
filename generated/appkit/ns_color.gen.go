@@ -43,6 +43,42 @@ type IColor interface {
 	ColorUsingType(type_ ColorType) Color
 	ColorWithAlphaComponent(alpha float64) Color
 	ColorWithSystemEffect(systemEffect IColorSystemEffect) Color
+	BlackComponent() float64
+	BrightnessComponent() float64
+	CatalogNameComponent() ColorListName
+	ColorSpace() NSColorSpace
+	CyanComponent() float64
+	HueComponent() float64
+	LocalizedCatalogNameComponent() string
+	NumberOfComponents() int
+	PatternImage() Image
+	RedComponent() float64
+	SaturationComponent() float64
+	StandardDynamicRangeColor() NSColor
+	Type() ColorType
+	YellowComponent() float64
+	AlphaComponent() float64
+	SetAlphaComponent(value float64)
+	BlueComponent() float64
+	SetBlueComponent(value float64)
+	CgColor() Color
+	SetCgColor(value IColor)
+	ColorNameComponent() unsafe.Pointer
+	SetColorNameComponent(value unsafe.Pointer)
+	ColorSpaceName() ColorSpaceName
+	SetColorSpaceName(value IColorSpaceName)
+	GreenComponent() float64
+	SetGreenComponent(value float64)
+	LinearExposure() float64
+	SetLinearExposure(value float64)
+	LocalizedColorNameComponent() string
+	SetLocalizedColorNameComponent(value string)
+	MagentaComponent() float64
+	SetMagentaComponent(value float64)
+	StandardDynamicRange() NSColor
+	SetStandardDynamicRange(value IColor)
+	WhiteComponent() float64
+	SetWhiteComponent(value float64)
 }
 
 // An object that stores color data and sometimes opacity (alpha value).

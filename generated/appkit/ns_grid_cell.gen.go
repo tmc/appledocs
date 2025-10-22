@@ -30,6 +30,20 @@ type _GridCellClass struct {
 // An interface definition for the [GridCell] class.
 type IGridCell interface {
 	objectivec.IObject
+	Column() NSGridColumn
+	SetColumn(value IGridColumn)
+	ContentView() NSView
+	SetContentView(value IView)
+	CustomPlacementConstraints() NSLayoutConstraint
+	SetCustomPlacementConstraints(value ILayoutConstraint)
+	Row() unsafe.Pointer
+	SetRow(value unsafe.Pointer)
+	RowAlignment() unsafe.Pointer
+	SetRowAlignment(value unsafe.Pointer)
+	XPlacement() unsafe.Pointer
+	SetXPlacement(value unsafe.Pointer)
+	YPlacement() unsafe.Pointer
+	SetYPlacement(value unsafe.Pointer)
 }
 
 // An individual content area within a grid view, typically at the intersection of a row and a column.

@@ -29,6 +29,12 @@ type _RotationGestureRecognizerClass struct {
 // An interface definition for the [RotationGestureRecognizer] class.
 type IRotationGestureRecognizer interface {
 	IGestureRecognizer
+	DelaysRotationEvents() bool
+	SetDelaysRotationEvents(value bool)
+	Rotation() float64
+	SetRotation(value float64)
+	RotationInDegrees() float64
+	SetRotationInDegrees(value float64)
 }
 
 // A continuous gesture recognizer that tracks two trackpad touches moving opposite each other in a circular motion.

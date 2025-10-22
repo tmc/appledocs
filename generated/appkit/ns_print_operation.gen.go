@@ -34,6 +34,34 @@ type IPrintOperation interface {
 	objectivec.IObject
 	CleanUpOperation()
 	RunOperationModalForWindowDelegateDidRunSelectorContextInfo(docWindow IWindow, delegate objectivec.IObject, didRunSelector objc.SEL, contextInfo unsafe.Pointer)
+	CopyingOperation() bool
+	PDFPanel() NSPDFPanel
+	SetPDFPanel(value IPDFPanel)
+	PrintInfo() NSPrintInfo
+	SetPrintInfo(value IPrintInfo)
+	View() NSView
+	CanSpawnSeparateThread() bool
+	SetCanSpawnSeparateThread(value bool)
+	Context() NSGraphicsContext
+	SetContext(value IGraphicsContext)
+	CurrentPage() int
+	SetCurrentPage(value int)
+	IsCopyingOperation() bool
+	SetIsCopyingOperation(value bool)
+	JobTitle() string
+	SetJobTitle(value string)
+	PageOrder() unsafe.Pointer
+	SetPageOrder(value unsafe.Pointer)
+	PageRange() foundation.Range
+	SetPageRange(value foundation.IRange)
+	PreferredRenderingQuality() unsafe.Pointer
+	SetPreferredRenderingQuality(value unsafe.Pointer)
+	PrintPanel() NSPrintPanel
+	SetPrintPanel(value IPrintPanel)
+	ShowsPrintPanel() bool
+	SetShowsPrintPanel(value bool)
+	ShowsProgressPanel() bool
+	SetShowsProgressPanel(value bool)
 }
 
 // An object that controls operations that generate Encapsulated PostScript (EPS) code, Portable Document Format (PDF) code, or print jobs.

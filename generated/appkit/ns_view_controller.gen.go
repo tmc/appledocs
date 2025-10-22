@@ -60,6 +60,37 @@ type IViewController interface {
 	ViewWillDisappear()
 	ViewWillLayout()
 	ViewWillTransitionToSize(newSize coregraphics.CGSize)
+	ChildViewControllers() []ViewController
+	SetChildViewControllers(value []ViewController)
+	ExtensionContext() foundation.NSExtensionContext
+	ViewLoaded() bool
+	NibBundle() foundation.Bundle
+	NibName() NibName
+	ParentViewController() NSViewController
+	PreferredContentSize() coregraphics.CGSize
+	SetPreferredContentSize(value coregraphics.CGSize)
+	PreferredMaximumSize() coregraphics.CGSize
+	PreferredMinimumSize() coregraphics.CGSize
+	PreferredScreenOrigin() coregraphics.CGPoint
+	SetPreferredScreenOrigin(value coregraphics.CGPoint)
+	PresentedViewControllers() []ViewController
+	PresentingViewController() NSViewController
+	RepresentedObject() objc.ID
+	SetRepresentedObject(value objc.ID)
+	SourceItemView() NSView
+	SetSourceItemView(value IView)
+	Storyboard() NSStoryboard
+	Title() string
+	SetTitle(value string)
+	View() NSView
+	SetView(value IView)
+	ViewIfLoaded() NSView
+	Children() NSViewController
+	SetChildren(value IViewController)
+	IsViewLoaded() bool
+	SetIsViewLoaded(value bool)
+	Parent() NSViewController
+	SetParent(value IViewController)
 }
 
 // A controller that manages a view, typically loaded from a nib file.

@@ -30,6 +30,28 @@ type _BitmapImageRepClass struct {
 // An interface definition for the [BitmapImageRep] class.
 type IBitmapImageRep interface {
 	IImageRep
+	BitmapData() unsafe.Pointer
+	SetBitmapData(value unsafe.Pointer)
+	BitmapFormat() unsafe.Pointer
+	SetBitmapFormat(value unsafe.Pointer)
+	BitsPerPixel() int
+	SetBitsPerPixel(value int)
+	BytesPerPlane() int
+	SetBytesPerPlane(value int)
+	BytesPerRow() int
+	SetBytesPerRow(value int)
+	CgImage() Image
+	SetCgImage(value IImage)
+	ColorSpace() NSColorSpace
+	SetColorSpace(value IColorSpace)
+	IsPlanar() bool
+	SetIsPlanar(value bool)
+	NumberOfPlanes() int
+	SetNumberOfPlanes(value int)
+	SamplesPerPixel() int
+	SetSamplesPerPixel(value int)
+	TiffRepresentation() foundation.Data
+	SetTiffRepresentation(value foundation.IData)
 }
 
 // An object that renders an image from bitmap data.

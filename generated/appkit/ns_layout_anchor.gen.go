@@ -30,6 +30,19 @@ type _LayoutAnchorClass struct {
 // An interface definition for the [LayoutAnchor] class.
 type ILayoutAnchor interface {
 	objectivec.IObject
+	HasAmbiguousLayout() bool
+	ConstraintsAffectingLayout() NSLayoutConstraint
+	SetConstraintsAffectingLayout(value ILayoutConstraint)
+	Item() unsafe.Pointer
+	SetItem(value unsafe.Pointer)
+	Name() string
+	SetName(value string)
+	BottomAnchor() NSLayoutYAxisAnchor
+	SetBottomAnchor(value ILayoutYAxisAnchor)
+	LeadingAnchor() NSLayoutXAxisAnchor
+	SetLeadingAnchor(value ILayoutXAxisAnchor)
+	LeftAnchor() NSLayoutXAxisAnchor
+	SetLeftAnchor(value ILayoutXAxisAnchor)
 }
 
 // A factory class for creating layout constraint objects using a fluent API.

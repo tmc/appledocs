@@ -31,6 +31,8 @@ type _PressureConfigurationClass struct {
 type IPressureConfiguration interface {
 	objectivec.IObject
 	Set()
+	PressureBehavior() unsafe.Pointer
+	SetPressureBehavior(value unsafe.Pointer)
 }
 
 // An encapsulation of the behavior and progression of a Force Touch trackpad as it responds to specific events.

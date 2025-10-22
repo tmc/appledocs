@@ -29,6 +29,12 @@ type _TrackingSeparatorToolbarItemClass struct {
 // An interface definition for the [TrackingSeparatorToolbarItem] class.
 type ITrackingSeparatorToolbarItem interface {
 	IToolbarItem
+	SplitView() NSSplitView
+	SetSplitView(value ISplitView)
+	Target() unsafe.Pointer
+	SetTarget(value unsafe.Pointer)
+	DividerIndex() int
+	SetDividerIndex(value int)
 }
 
 // A toolbar separator that aligns with the vertical split view in the same window.

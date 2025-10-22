@@ -31,6 +31,13 @@ type _WritingToolsCoordinatorContextClass struct {
 // An interface definition for the [WritingToolsCoordinatorContext] class.
 type IWritingToolsCoordinatorContext interface {
 	objectivec.IObject
+	Range() foundation.Range
+	AttributedString() foundation.AttributedString
+	SetAttributedString(value foundation.IAttributedString)
+	Identifier() foundation.UUID
+	SetIdentifier(value foundation.IUUID)
+	ResolvedRange() foundation.Range
+	SetResolvedRange(value foundation.IRange)
 }
 
 // A data object that you use to share your custom view’s text with Writing Tools.

@@ -29,6 +29,7 @@ type _CIImageRepClass struct {
 // An interface definition for the [CIImageRep] class.
 type ICIImageRep interface {
 	IImageRep
+	CIImage() Image
 }
 
 // An object that can render an image from a Core Image object.

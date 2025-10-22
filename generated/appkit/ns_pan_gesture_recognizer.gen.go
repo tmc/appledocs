@@ -29,6 +29,12 @@ type _PanGestureRecognizerClass struct {
 // An interface definition for the [PanGestureRecognizer] class.
 type IPanGestureRecognizer interface {
 	IGestureRecognizer
+	ButtonMask() uint
+	SetButtonMask(value uint)
+	NumberOfTouchesRequired() int
+	SetNumberOfTouchesRequired(value int)
+	DelaysPrimaryMouseButtonEvents() bool
+	SetDelaysPrimaryMouseButtonEvents(value bool)
 }
 
 // A continuous gesture recognizer for panning gestures.

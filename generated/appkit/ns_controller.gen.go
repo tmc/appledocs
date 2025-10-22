@@ -30,6 +30,8 @@ type _ControllerClass struct {
 // An interface definition for the [Controller] class.
 type IController interface {
 	objectivec.IObject
+	IsEditing() bool
+	SetIsEditing(value bool)
 }
 
 // An abstract class that implements the and informal protocols required for controller classes.

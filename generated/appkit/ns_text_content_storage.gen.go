@@ -35,6 +35,14 @@ type ITextContentStorage interface {
 	LocationFromLocationWithOffset(location objectivec.IObject, offset int) objc.ID
 	OffsetFromLocationToLocation(from objectivec.IObject, to objectivec.IObject) int
 	TextElementForAttributedString(attributedString foundation.IAttributedString) TextElement
+	AttributedString() foundation.AttributedString
+	SetAttributedString(value foundation.IAttributedString)
+	IncludesTextListMarkers() bool
+	SetIncludesTextListMarkers(value bool)
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
+	DocumentRange() NSTextRange
+	SetDocumentRange(value ITextRange)
 }
 
 // A concrete object for managing your view’s text content and generating the text elements necessary for layout.

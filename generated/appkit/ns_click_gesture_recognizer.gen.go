@@ -29,6 +29,18 @@ type _ClickGestureRecognizerClass struct {
 // An interface definition for the [ClickGestureRecognizer] class.
 type IClickGestureRecognizer interface {
 	IGestureRecognizer
+	ButtonMask() int
+	SetButtonMask(value int)
+	NumberOfClicksRequired() int
+	SetNumberOfClicksRequired(value int)
+	NumberOfTouchesRequired() int
+	SetNumberOfTouchesRequired(value int)
+	DelaysOtherMouseButtonEvents() bool
+	SetDelaysOtherMouseButtonEvents(value bool)
+	DelaysPrimaryMouseButtonEvents() bool
+	SetDelaysPrimaryMouseButtonEvents(value bool)
+	DelaysSecondaryMouseButtonEvents() bool
+	SetDelaysSecondaryMouseButtonEvents(value bool)
 }
 
 // A discrete gesture recognizer that tracks a specified number of mouse clicks.

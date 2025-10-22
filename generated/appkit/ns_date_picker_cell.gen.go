@@ -30,6 +30,34 @@ type _DatePickerCellClass struct {
 // An interface definition for the [DatePickerCell] class.
 type IDatePickerCell interface {
 	IActionCell
+	MaxDate() foundation.NSDate
+	SetMaxDate(value foundation.IDate)
+	BackgroundColor() NSColor
+	SetBackgroundColor(value IColor)
+	Calendar() foundation.Calendar
+	SetCalendar(value foundation.ICalendar)
+	DatePickerElements() unsafe.Pointer
+	SetDatePickerElements(value unsafe.Pointer)
+	DatePickerMode() unsafe.Pointer
+	SetDatePickerMode(value unsafe.Pointer)
+	DatePickerStyle() unsafe.Pointer
+	SetDatePickerStyle(value unsafe.Pointer)
+	DateValue() foundation.Date
+	SetDateValue(value foundation.IDate)
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
+	DrawsBackground() bool
+	SetDrawsBackground(value bool)
+	Locale() foundation.Locale
+	SetLocale(value foundation.ILocale)
+	MinDate() foundation.Date
+	SetMinDate(value foundation.IDate)
+	TextColor() NSColor
+	SetTextColor(value IColor)
+	TimeInterval() unsafe.Pointer
+	SetTimeInterval(value unsafe.Pointer)
+	TimeZone() foundation.TimeZone
+	SetTimeZone(value foundation.ITimeZone)
 }
 
 // An object that controls the behavior of a date picker, or of a single date picker cell in a matrix.

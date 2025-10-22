@@ -32,6 +32,10 @@ type _ScrubberFlowLayoutClass struct {
 type IScrubberFlowLayout interface {
 	IScrubberLayout
 	InvalidateLayoutForItemsAtIndexes(invalidItemIndexes foundation.IIndexSet)
+	ItemSize() coregraphics.CGSize
+	SetItemSize(value coregraphics.CGSize)
+	ItemSpacing() float64
+	SetItemSpacing(value float64)
 }
 
 // A concrete layout object that arranges items end-to-end in a linear strip.

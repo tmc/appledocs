@@ -30,6 +30,15 @@ type _GlyphInfoClass struct {
 // An interface definition for the [GlyphInfo] class.
 type IGlyphInfo interface {
 	objectivec.IObject
+	CharacterIdentifier() uint
+	BaseString() string
+	SetBaseString(value string)
+	CharacterCollection() unsafe.Pointer
+	SetCharacterCollection(value unsafe.Pointer)
+	GlyphID() Glyph
+	SetGlyphID(value IGlyph)
+	GlyphName() string
+	SetGlyphName(value string)
 }
 
 // A glyph attribute in an attributed string.

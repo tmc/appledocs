@@ -31,6 +31,21 @@ type IVisualEffectView interface {
 	IView
 	ViewDidMoveToWindow()
 	ViewWillMoveToWindow(newWindow IWindow)
+	BlendingMode() VisualEffectBlendingMode
+	SetBlendingMode(value VisualEffectBlendingMode)
+	InteriorBackgroundStyle() BackgroundStyle
+	Emphasized() bool
+	SetEmphasized(value bool)
+	MaskImage() Image
+	SetMaskImage(value IImage)
+	Material() VisualEffectMaterial
+	SetMaterial(value IVisualEffectMaterial)
+	State() VisualEffectState
+	SetState(value VisualEffectState)
+	AllowsVibrancy() bool
+	SetAllowsVibrancy(value bool)
+	IsEmphasized() bool
+	SetIsEmphasized(value bool)
 }
 
 // A view that adds translucency and vibrancy effects to the views in your interface.

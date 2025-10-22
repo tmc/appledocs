@@ -29,6 +29,10 @@ type _PredicateEditorClass struct {
 // An interface definition for the [PredicateEditor] class.
 type IPredicateEditor interface {
 	IRuleEditor
+	RowTemplates() []PredicateEditorRowTemplate
+	SetRowTemplates(value []PredicateEditorRowTemplate)
+	ObjectValue() unsafe.Pointer
+	SetObjectValue(value unsafe.Pointer)
 }
 
 // A defined set of rules that allows the editing of predicate objects.

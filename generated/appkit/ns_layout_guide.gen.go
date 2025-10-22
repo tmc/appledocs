@@ -31,6 +31,32 @@ type _LayoutGuideClass struct {
 // An interface definition for the [LayoutGuide] class.
 type ILayoutGuide interface {
 	objectivec.IObject
+	BottomAnchor() NSLayoutYAxisAnchor
+	Identifier() UserInterfaceItemIdentifier
+	SetIdentifier(value IUserInterfaceItemIdentifier)
+	LeadingAnchor() NSLayoutXAxisAnchor
+	CenterXAnchor() NSLayoutXAxisAnchor
+	SetCenterXAnchor(value ILayoutXAxisAnchor)
+	CenterYAnchor() NSLayoutYAxisAnchor
+	SetCenterYAnchor(value ILayoutYAxisAnchor)
+	Frame() coregraphics.CGRect
+	SetFrame(value coregraphics.CGRect)
+	HasAmbiguousLayout() bool
+	SetHasAmbiguousLayout(value bool)
+	HeightAnchor() NSLayoutDimension
+	SetHeightAnchor(value ILayoutDimension)
+	LeftAnchor() NSLayoutXAxisAnchor
+	SetLeftAnchor(value ILayoutXAxisAnchor)
+	OwningView() NSView
+	SetOwningView(value IView)
+	RightAnchor() NSLayoutXAxisAnchor
+	SetRightAnchor(value ILayoutXAxisAnchor)
+	TopAnchor() NSLayoutYAxisAnchor
+	SetTopAnchor(value ILayoutYAxisAnchor)
+	TrailingAnchor() NSLayoutXAxisAnchor
+	SetTrailingAnchor(value ILayoutXAxisAnchor)
+	WidthAnchor() NSLayoutDimension
+	SetWidthAnchor(value ILayoutDimension)
 }
 
 // A rectangular area that can interact with Auto Layout.

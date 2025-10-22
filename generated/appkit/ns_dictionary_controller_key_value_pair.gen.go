@@ -30,6 +30,14 @@ type _DictionaryControllerKeyValuePairClass struct {
 // An interface definition for the [DictionaryControllerKeyValuePair] class.
 type IDictionaryControllerKeyValuePair interface {
 	objectivec.IObject
+	Key() string
+	SetKey(value string)
+	Value() objc.ID
+	SetValue(value objc.ID)
+	IsExplicitlyIncluded() bool
+	SetIsExplicitlyIncluded(value bool)
+	LocalizedKey() string
+	SetLocalizedKey(value string)
 }
 
 // A set of methods implemented by arranged objects to give access to information about those objects.

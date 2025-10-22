@@ -30,6 +30,29 @@ type _CollectionViewFlowLayoutClass struct {
 // An interface definition for the [CollectionViewFlowLayout] class.
 type ICollectionViewFlowLayout interface {
 	ICollectionViewLayout
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
+	EstimatedItemSize() coregraphics.CGSize
+	SetEstimatedItemSize(value coregraphics.CGSize)
+	FooterReferenceSize() coregraphics.CGSize
+	SetFooterReferenceSize(value coregraphics.CGSize)
+	HeaderReferenceSize() coregraphics.CGSize
+	SetHeaderReferenceSize(value coregraphics.CGSize)
+	ItemSize() coregraphics.CGSize
+	SetItemSize(value coregraphics.CGSize)
+	MinimumInteritemSpacing() float64
+	SetMinimumInteritemSpacing(value float64)
+	MinimumLineSpacing() float64
+	SetMinimumLineSpacing(value float64)
+	ScrollDirection() unsafe.Pointer
+	SetScrollDirection(value unsafe.Pointer)
+	SectionFootersPinToVisibleBounds() bool
+	SetSectionFootersPinToVisibleBounds(value bool)
+	SectionHeadersPinToVisibleBounds() bool
+	SetSectionHeadersPinToVisibleBounds(value bool)
+	SectionInset() unsafe.Pointer
+	SetSectionInset(value unsafe.Pointer)
+	NSZeroSize() coregraphics.CGSize
 }
 
 // A layout that organizes items into a flexible and configurable arrangement.

@@ -55,6 +55,11 @@ type IPasteboard interface {
 	WriteFileWrapper(wrapper foundation.IFileWrapper) bool
 	WriteFileContents(filename string) bool
 	WriteObjects(objects []objc.ID) bool
+	AccessBehavior() PasteboardAccessBehavior
+	ChangeCount() int
+	Name() PasteboardName
+	PasteboardItems() []PasteboardItem
+	Types() []string
 }
 
 // An object that transfers data to and from the pasteboard server.

@@ -33,6 +33,46 @@ type _PrintInfoClass struct {
 type IPrintInfo interface {
 	objectivec.IObject
 	Dictionary() unsafe.Pointer
+	HorizontallyCentered() bool
+	SetHorizontallyCentered(value bool)
+	SelectionOnly() bool
+	SetSelectionOnly(value bool)
+	JobDisposition() unsafe.Pointer
+	SetJobDisposition(value unsafe.Pointer)
+	BottomMargin() float64
+	SetBottomMargin(value float64)
+	HorizontalPagination() unsafe.Pointer
+	SetHorizontalPagination(value unsafe.Pointer)
+	ImageablePageBounds() coregraphics.CGRect
+	SetImageablePageBounds(value coregraphics.CGRect)
+	IsHorizontallyCentered() bool
+	SetIsHorizontallyCentered(value bool)
+	IsSelectionOnly() bool
+	SetIsSelectionOnly(value bool)
+	IsVerticallyCentered() bool
+	SetIsVerticallyCentered(value bool)
+	LeftMargin() float64
+	SetLeftMargin(value float64)
+	LocalizedPaperName() string
+	SetLocalizedPaperName(value string)
+	Orientation() PaperOrientation
+	SetOrientation(value PaperOrientation)
+	PaperName() unsafe.Pointer
+	SetPaperName(value unsafe.Pointer)
+	PaperSize() coregraphics.CGSize
+	SetPaperSize(value coregraphics.CGSize)
+	PrintSettings() foundation.MutableDictionary
+	SetPrintSettings(value foundation.IMutableDictionary)
+	Printer() NSPrinter
+	SetPrinter(value IPrinter)
+	RightMargin() float64
+	SetRightMargin(value float64)
+	ScalingFactor() float64
+	SetScalingFactor(value float64)
+	TopMargin() float64
+	SetTopMargin(value float64)
+	VerticalPagination() unsafe.Pointer
+	SetVerticalPagination(value unsafe.Pointer)
 }
 
 // An object that stores information that’s used to generate printed output.

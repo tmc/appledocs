@@ -39,6 +39,14 @@ type ICursor interface {
 	Set()
 	SetOnMouseEntered(flag bool)
 	SetOnMouseExited(flag bool)
+	HotSpot() coregraphics.CGPoint
+	Image() Image
+	SetOnMouseEntered() bool
+	SetOnMouseExited() bool
+	IsSetOnMouseEntered() bool
+	SetIsSetOnMouseEntered(value bool)
+	IsSetOnMouseExited() bool
+	SetIsSetOnMouseExited(value bool)
 }
 
 // A pointer (also called a cursor).

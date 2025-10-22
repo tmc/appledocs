@@ -33,6 +33,19 @@ type ITouch interface {
 	objectivec.IObject
 	LocationInView(view IView) coregraphics.CGPoint
 	PreviousLocationInView(view IView) coregraphics.CGPoint
+	Resting() bool
+	NormalizedPosition() coregraphics.CGPoint
+	Phase() unsafe.Pointer
+	Device() unsafe.Pointer
+	SetDevice(value unsafe.Pointer)
+	DeviceSize() coregraphics.CGSize
+	SetDeviceSize(value coregraphics.CGSize)
+	Identity() unsafe.Pointer
+	SetIdentity(value unsafe.Pointer)
+	IsResting() bool
+	SetIsResting(value bool)
+	Type() TouchType
+	SetType(value TouchType)
 }
 
 // A snapshot of a particular touch at an instant in time.

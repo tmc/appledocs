@@ -29,6 +29,36 @@ type _PopUpButtonCellClass struct {
 // An interface definition for the [PopUpButtonCell] class.
 type IPopUpButtonCell interface {
 	IMenuItemCell
+	Image() Image
+	SetImage(value IImage)
+	AltersStateOfSelectedItem() bool
+	SetAltersStateOfSelectedItem(value bool)
+	ArrowPosition() unsafe.Pointer
+	SetArrowPosition(value unsafe.Pointer)
+	AutoenablesItems() bool
+	SetAutoenablesItems(value bool)
+	IndexOfSelectedItem() int
+	SetIndexOfSelectedItem(value int)
+	ItemArray() NSMenuItem
+	SetItemArray(value IMenuItem)
+	ItemTitles() string
+	SetItemTitles(value string)
+	LastItem() NSMenuItem
+	SetLastItem(value IMenuItem)
+	Menu() NSMenu
+	SetMenu(value IMenu)
+	NumberOfItems() int
+	SetNumberOfItems(value int)
+	PreferredEdge() int
+	SetPreferredEdge(value int)
+	PullsDown() bool
+	SetPullsDown(value bool)
+	SelectedItem() NSMenuItem
+	SetSelectedItem(value IMenuItem)
+	TitleOfSelectedItem() string
+	SetTitleOfSelectedItem(value string)
+	UsesItemFromMenu() bool
+	SetUsesItemFromMenu(value bool)
 }
 
 // The class defines the visual appearance of pop-up buttons that display pop-up or pull-down menus. Pop-up menus present the user with a set of choices, much the way radio buttons do, but using much less space. Pull-down menus also provide a set of choices but present the information in a slightly different way, usually to provide a set of commands from which the user can choose.

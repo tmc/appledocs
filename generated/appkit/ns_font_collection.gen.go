@@ -30,6 +30,12 @@ type _FontCollectionClass struct {
 // An interface definition for the [FontCollection] class.
 type IFontCollection interface {
 	objectivec.IObject
+	ExclusionDescriptors() NSFontDescriptor
+	SetExclusionDescriptors(value IFontDescriptor)
+	MatchingDescriptors() NSFontDescriptor
+	SetMatchingDescriptors(value IFontDescriptor)
+	QueryDescriptors() NSFontDescriptor
+	SetQueryDescriptors(value IFontDescriptor)
 }
 
 // A font collection, which is a group of font descriptors taken together as a single object.

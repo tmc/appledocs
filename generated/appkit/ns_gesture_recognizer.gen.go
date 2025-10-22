@@ -37,6 +37,38 @@ type IGestureRecognizer interface {
 	TouchesCancelledWithEvent(event IEvent)
 	TouchesEndedWithEvent(event IEvent)
 	TouchesMovedWithEvent(event IEvent)
+	AllowedTouchTypes() TouchTypeMask
+	SetAllowedTouchTypes(value TouchTypeMask)
+	DelaysKeyEvents() bool
+	SetDelaysKeyEvents(value bool)
+	DelaysMagnificationEvents() bool
+	SetDelaysMagnificationEvents(value bool)
+	DelaysOtherMouseButtonEvents() bool
+	SetDelaysOtherMouseButtonEvents(value bool)
+	DelaysPrimaryMouseButtonEvents() bool
+	SetDelaysPrimaryMouseButtonEvents(value bool)
+	DelaysRotationEvents() bool
+	SetDelaysRotationEvents(value bool)
+	DelaysSecondaryMouseButtonEvents() bool
+	SetDelaysSecondaryMouseButtonEvents(value bool)
+	Action() unsafe.Pointer
+	SetAction(value unsafe.Pointer)
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
+	IsEnabled() bool
+	SetIsEnabled(value bool)
+	ModifierFlags() unsafe.Pointer
+	SetModifierFlags(value unsafe.Pointer)
+	Name() string
+	SetName(value string)
+	PressureConfiguration() NSPressureConfiguration
+	SetPressureConfiguration(value IPressureConfiguration)
+	State() coreml.State
+	SetState(value coreml.State)
+	Target() unsafe.Pointer
+	SetTarget(value unsafe.Pointer)
+	View() NSView
+	SetView(value IView)
 }
 
 // An object that monitors events and calls its action method when a predefined sequence of events occur.

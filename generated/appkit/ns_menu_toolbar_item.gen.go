@@ -29,6 +29,12 @@ type _MenuToolbarItemClass struct {
 // An interface definition for the [MenuToolbarItem] class.
 type IMenuToolbarItem interface {
 	IToolbarItem
+	Menu() NSMenu
+	SetMenu(value IMenu)
+	ItemMenu() Menu
+	SetItemMenu(value IMenu)
+	ShowsIndicator() bool
+	SetShowsIndicator(value bool)
 }
 
 // A control that presents a menu in a window’s toolbar.

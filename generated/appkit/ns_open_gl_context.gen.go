@@ -32,6 +32,13 @@ type IOpenGLContext interface {
 	objectivec.IObject
 	ClearDrawable()
 	CopyAttributesFromContextWithMask(context IOpenGLContext, mask unsafe.Pointer)
+	CGLContextObj() unsafe.Pointer
+	CurrentVirtualScreen() unsafe.Pointer
+	SetCurrentVirtualScreen(value unsafe.Pointer)
+	PixelFormat() NSOpenGLPixelFormat
+	SetPixelFormat(value NSOpenGLPixelFormat)
+	View() NSView
+	SetView(value IView)
 }
 
 // An object that represents an OpenGL graphics context, into which all OpenGL calls are rendered.

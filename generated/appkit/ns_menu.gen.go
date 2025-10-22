@@ -68,6 +68,46 @@ type IMenu interface {
 	SubmenuAction(sender objectivec.IObject)
 	TearOffMenuRepresentation() objc.ID
 	Update()
+	AllowsContextMenuPlugIns() bool
+	SetAllowsContextMenuPlugIns(value bool)
+	AutoenablesItems() bool
+	SetAutoenablesItems(value bool)
+	AutomaticallyInsertsWritingToolsItems() bool
+	SetAutomaticallyInsertsWritingToolsItems(value bool)
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	Font() NSFont
+	SetFont(value IFont)
+	HighlightedItem() NSMenuItem
+	TornOff() bool
+	ItemArray() []MenuItem
+	SetItemArray(value []MenuItem)
+	MenuBarHeight() float64
+	MenuChangedMessagesEnabled() bool
+	SetMenuChangedMessagesEnabled(value bool)
+	MinimumWidth() float64
+	SetMinimumWidth(value float64)
+	NumberOfItems() int
+	PresentationStyle() MenuPresentationStyle
+	SetPresentationStyle(value MenuPresentationStyle)
+	PropertiesToUpdate() MenuProperties
+	SelectedItems() []MenuItem
+	SetSelectedItems(value []MenuItem)
+	SelectionMode() MenuSelectionMode
+	SetSelectionMode(value MenuSelectionMode)
+	ShowsStateColumn() bool
+	SetShowsStateColumn(value bool)
+	Size() coregraphics.CGSize
+	Supermenu() NSMenu
+	SetSupermenu(value IMenu)
+	Title() string
+	SetTitle(value string)
+	UserInterfaceLayoutDirection() UserInterfaceLayoutDirection
+	SetUserInterfaceLayoutDirection(value UserInterfaceLayoutDirection)
+	IsTornOff() bool
+	SetIsTornOff(value bool)
+	Items() NSMenuItem
+	SetItems(value IMenuItem)
 }
 
 // An object that manages an app’s menus.

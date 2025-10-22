@@ -34,6 +34,14 @@ type IOpenGLView interface {
 	PrepareOpenGL()
 	Reshape()
 	Update()
+	OpenGLContext() NSOpenGLContext
+	SetOpenGLContext(value IOpenGLContext)
+	PixelFormat() NSOpenGLPixelFormat
+	SetPixelFormat(value NSOpenGLPixelFormat)
+	WantsBestResolutionOpenGLSurface() bool
+	SetWantsBestResolutionOpenGLSurface(value bool)
+	WantsExtendedDynamicRangeOpenGLSurface() bool
+	SetWantsExtendedDynamicRangeOpenGLSurface(value bool)
 }
 
 // A view that displays OpenGL content in a view.

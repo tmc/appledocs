@@ -30,6 +30,40 @@ type _DatePickerClass struct {
 // An interface definition for the [DatePicker] class.
 type IDatePicker interface {
 	IControl
+	BackgroundColor() NSColor
+	SetBackgroundColor(value IColor)
+	Calendar() foundation.Calendar
+	SetCalendar(value foundation.ICalendar)
+	DatePickerElements() unsafe.Pointer
+	SetDatePickerElements(value unsafe.Pointer)
+	DatePickerMode() unsafe.Pointer
+	SetDatePickerMode(value unsafe.Pointer)
+	DatePickerStyle() unsafe.Pointer
+	SetDatePickerStyle(value unsafe.Pointer)
+	DateValue() foundation.Date
+	SetDateValue(value foundation.IDate)
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
+	DrawsBackground() bool
+	SetDrawsBackground(value bool)
+	IsBezeled() bool
+	SetIsBezeled(value bool)
+	IsBordered() bool
+	SetIsBordered(value bool)
+	Locale() foundation.Locale
+	SetLocale(value foundation.ILocale)
+	MaxDate() foundation.Date
+	SetMaxDate(value foundation.IDate)
+	MinDate() foundation.Date
+	SetMinDate(value foundation.IDate)
+	PresentsCalendarOverlay() bool
+	SetPresentsCalendarOverlay(value bool)
+	TextColor() NSColor
+	SetTextColor(value IColor)
+	TimeInterval() unsafe.Pointer
+	SetTimeInterval(value unsafe.Pointer)
+	TimeZone() foundation.TimeZone
+	SetTimeZone(value foundation.ITimeZone)
 }
 
 // A display of a calendar date with controls for editing the date value.

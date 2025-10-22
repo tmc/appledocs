@@ -29,6 +29,20 @@ type _ButtonTouchBarItemClass struct {
 // An interface definition for the [ButtonTouchBarItem] class.
 type IButtonTouchBarItem interface {
 	ITouchBarItem
+	Action() unsafe.Pointer
+	SetAction(value unsafe.Pointer)
+	BezelColor() Color
+	SetBezelColor(value IColor)
+	CustomizationLabel() string
+	SetCustomizationLabel(value string)
+	Image() Image
+	SetImage(value IImage)
+	IsEnabled() bool
+	SetIsEnabled(value bool)
+	Target() unsafe.Pointer
+	SetTarget(value unsafe.Pointer)
+	Title() string
+	SetTitle(value string)
 }
 
 // A bar item that provides a button.

@@ -33,6 +33,35 @@ type IBox interface {
 	SetFrameFromContentFrame(contentFrame coregraphics.CGRect)
 	SetTitleWithMnemonic(stringWithAmpersand string)
 	SizeToFit()
+	BorderColor() NSColor
+	SetBorderColor(value IColor)
+	BorderRect() coregraphics.CGRect
+	BorderType() BorderType
+	SetBorderType(value BorderType)
+	BorderWidth() float64
+	SetBorderWidth(value float64)
+	BoxType() BoxType
+	SetBoxType(value BoxType)
+	ContentView() NSView
+	SetContentView(value IView)
+	ContentViewMargins() coregraphics.CGSize
+	SetContentViewMargins(value coregraphics.CGSize)
+	CornerRadius() float64
+	SetCornerRadius(value float64)
+	FillColor() NSColor
+	SetFillColor(value IColor)
+	Transparent() bool
+	SetTransparent(value bool)
+	Title() string
+	SetTitle(value string)
+	TitleCell() objc.ID
+	TitleFont() NSFont
+	SetTitleFont(value IFont)
+	TitlePosition() TitlePosition
+	SetTitlePosition(value TitlePosition)
+	TitleRect() coregraphics.CGRect
+	IsTransparent() bool
+	SetIsTransparent(value bool)
 }
 
 // A stylized rectangular box with an optional title.

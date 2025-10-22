@@ -30,6 +30,14 @@ type _AccessibilityCustomRotorClass struct {
 // An interface definition for the [AccessibilityCustomRotor] class.
 type IAccessibilityCustomRotor interface {
 	objectivec.IObject
+	ItemLoadingDelegate() unsafe.Pointer
+	SetItemLoadingDelegate(value unsafe.Pointer)
+	ItemSearchDelegate() unsafe.Pointer
+	SetItemSearchDelegate(value unsafe.Pointer)
+	Label() string
+	SetLabel(value string)
+	Type() unsafe.Pointer
+	SetType(value unsafe.Pointer)
 }
 
 // A context-sensitive function that helps VoiceOver users find the next instance of a related accessibility element.

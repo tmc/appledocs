@@ -32,6 +32,40 @@ type ILevelIndicator interface {
 	IControl
 	RectOfTickMarkAtIndex(index int) coregraphics.CGRect
 	TickMarkValueAtIndex(index int) float64
+	CriticalFillColor() NSColor
+	SetCriticalFillColor(value IColor)
+	CriticalValue() float64
+	SetCriticalValue(value float64)
+	DrawsTieredCapacityLevels() bool
+	SetDrawsTieredCapacityLevels(value bool)
+	FillColor() NSColor
+	SetFillColor(value IColor)
+	Editable() bool
+	SetEditable(value bool)
+	LevelIndicatorStyle() LevelIndicatorStyle
+	SetLevelIndicatorStyle(value LevelIndicatorStyle)
+	MaxValue() float64
+	SetMaxValue(value float64)
+	MinValue() float64
+	SetMinValue(value float64)
+	NumberOfMajorTickMarks() int
+	SetNumberOfMajorTickMarks(value int)
+	NumberOfTickMarks() int
+	SetNumberOfTickMarks(value int)
+	PlaceholderVisibility() LevelIndicatorPlaceholderVisibility
+	SetPlaceholderVisibility(value ILevelIndicatorPlaceholderVisibility)
+	RatingImage() Image
+	SetRatingImage(value IImage)
+	RatingPlaceholderImage() Image
+	SetRatingPlaceholderImage(value IImage)
+	TickMarkPosition() unsafe.Pointer
+	SetTickMarkPosition(value unsafe.Pointer)
+	WarningFillColor() NSColor
+	SetWarningFillColor(value IColor)
+	WarningValue() float64
+	SetWarningValue(value float64)
+	IsEditable() bool
+	SetIsEditable(value bool)
 }
 
 // A visual representation of a level or quantity, using discrete values.

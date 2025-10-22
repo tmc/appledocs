@@ -40,6 +40,29 @@ type IImageView interface {
 	RemoveSymbolEffectOfTypeOptionsAnimated(symbolEffect unsafe.Pointer, options unsafe.Pointer, animated bool)
 	SetSymbolImageWithContentTransition(symbolImage IImage, transition unsafe.Pointer)
 	SetSymbolImageWithContentTransitionOptions(symbolImage IImage, transition unsafe.Pointer, options unsafe.Pointer)
+	AllowsCutCopyPaste() bool
+	SetAllowsCutCopyPaste(value bool)
+	Animates() bool
+	SetAnimates(value bool)
+	ContentTintColor() NSColor
+	SetContentTintColor(value IColor)
+	Image() Image
+	SetImage(value IImage)
+	ImageAlignment() unsafe.Pointer
+	SetImageAlignment(value unsafe.Pointer)
+	ImageDynamicRange() ImageDynamicRange
+	ImageFrameStyle() unsafe.Pointer
+	SetImageFrameStyle(value unsafe.Pointer)
+	ImageScaling() ImageScaling
+	SetImageScaling(value ImageScaling)
+	Editable() bool
+	SetEditable(value bool)
+	PreferredImageDynamicRange() ImageDynamicRange
+	SetPreferredImageDynamicRange(value IImageDynamicRange)
+	SymbolConfiguration() ImageSymbolConfiguration
+	SetSymbolConfiguration(value IImageSymbolConfiguration)
+	IsEditable() bool
+	SetIsEditable(value bool)
 }
 
 // A display of image data in a frame.

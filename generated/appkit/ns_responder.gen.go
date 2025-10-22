@@ -94,6 +94,16 @@ type IResponder interface {
 	WantsForwardedScrollEventsForAxis(axis IEventGestureAxis) bool
 	WantsScrollEventsForSwipeTrackingOnAxis(axis IEventGestureAxis) bool
 	WillPresentError(error_ foundation.IError) foundation.Error
+	AcceptsFirstResponder() bool
+	Menu() NSMenu
+	SetMenu(value IMenu)
+	NextResponder() NSResponder
+	SetNextResponder(value IResponder)
+	TouchBar() NSTouchBar
+	SetTouchBar(value ITouchBar)
+	UndoManager() foundation.UndoManager
+	UserActivity() foundation.UserActivity
+	SetUserActivity(value foundation.IUserActivity)
 }
 
 // An abstract class that forms the basis of event and command processing in AppKit.

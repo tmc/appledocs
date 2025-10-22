@@ -29,6 +29,22 @@ type _ActionCellClass struct {
 // An interface definition for the [ActionCell] class.
 type IActionCell interface {
 	ICell
+	Action() objc.SEL
+	SetAction(value objc.SEL)
+	Tag() int
+	SetTag(value int)
+	Target() objc.ID
+	SetTarget(value objc.ID)
+	ControlView() NSView
+	SetControlView(value IView)
+	FloatValue() float32
+	SetFloatValue(value float32)
+	IntValue() unsafe.Pointer
+	SetIntValue(value unsafe.Pointer)
+	IntegerValue() int
+	SetIntegerValue(value int)
+	StringValue() string
+	SetStringValue(value string)
 }
 
 // An active area inside a control.

@@ -40,6 +40,8 @@ type IGradient interface {
 	DrawInBezierPathRelativeCenterPosition(path IBezierPath, relativeCenterPosition coregraphics.CGPoint)
 	GetColorLocationAtIndex(color IColor, location coregraphics.float64, index int)
 	InterpolatedColorAtLocation(location float64) Color
+	ColorSpace() NSColorSpace
+	NumberOfColorStops() int
 }
 
 // An object that can draw gradient fill colors

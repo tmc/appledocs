@@ -30,6 +30,20 @@ type _GridColumnClass struct {
 // An interface definition for the [GridColumn] class.
 type IGridColumn interface {
 	objectivec.IObject
+	LeadingPadding() float64
+	SetLeadingPadding(value float64)
+	TrailingPadding() float64
+	SetTrailingPadding(value float64)
+	XPlacement() unsafe.Pointer
+	SetXPlacement(value unsafe.Pointer)
+	GridView() NSGridView
+	SetGridView(value IGridView)
+	IsHidden() bool
+	SetIsHidden(value bool)
+	NumberOfCells() int
+	SetNumberOfCells(value int)
+	Width() float64
+	SetWidth(value float64)
 }
 
 // A column within a grid view.

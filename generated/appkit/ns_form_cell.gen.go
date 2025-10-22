@@ -30,6 +30,27 @@ type _FormCellClass struct {
 // An interface definition for the [FormCell] class.
 type IFormCell interface {
 	IActionCell
+	Opaque() bool
+	AttributedTitle() foundation.AttributedString
+	SetAttributedTitle(value foundation.IAttributedString)
+	IsOpaque() bool
+	SetIsOpaque(value bool)
+	PlaceholderAttributedString() foundation.AttributedString
+	SetPlaceholderAttributedString(value foundation.IAttributedString)
+	PlaceholderString() string
+	SetPlaceholderString(value string)
+	PreferredTextFieldWidth() float64
+	SetPreferredTextFieldWidth(value float64)
+	Title() string
+	SetTitle(value string)
+	TitleAlignment() TextAlignment
+	SetTitleAlignment(value TextAlignment)
+	TitleBaseWritingDirection() WritingDirection
+	SetTitleBaseWritingDirection(value WritingDirection)
+	TitleFont() NSFont
+	SetTitleFont(value IFont)
+	TitleWidth() float64
+	SetTitleWidth(value float64)
 }
 
 // The class is used to implement text entry fields in a form. The left part of an object contains a title. The right part contains an editable text entry field.

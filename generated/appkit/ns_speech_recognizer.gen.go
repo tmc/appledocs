@@ -32,6 +32,16 @@ type ISpeechRecognizer interface {
 	objectivec.IObject
 	StartListening()
 	StopListening()
+	BlocksOtherRecognizers() bool
+	SetBlocksOtherRecognizers(value bool)
+	Commands() []string
+	SetCommands(value []string)
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	DisplayedCommandsTitle() string
+	SetDisplayedCommandsTitle(value string)
+	ListensInForegroundOnly() bool
+	SetListensInForegroundOnly(value bool)
 }
 
 // The Cocoa interface to speech recognition in macOS.

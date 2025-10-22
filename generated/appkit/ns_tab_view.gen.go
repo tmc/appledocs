@@ -46,6 +46,30 @@ type ITabView interface {
 	TabViewItemAtIndex(index int) TabViewItem
 	TabViewItemAtPoint(point coregraphics.CGPoint) TabViewItem
 	TakeSelectedTabViewItemFromSender(sender objectivec.IObject)
+	AllowsTruncatedLabels() bool
+	SetAllowsTruncatedLabels(value bool)
+	ContentRect() coregraphics.CGRect
+	ControlSize() ControlSize
+	SetControlSize(value IControlSize)
+	ControlTint() ControlTint
+	SetControlTint(value IControlTint)
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	DrawsBackground() bool
+	SetDrawsBackground(value bool)
+	Font() NSFont
+	SetFont(value IFont)
+	MinimumSize() coregraphics.CGSize
+	NumberOfTabViewItems() int
+	SelectedTabViewItem() NSTabViewItem
+	TabPosition() TabPosition
+	SetTabPosition(value TabPosition)
+	TabViewBorderType() TabViewBorderType
+	SetTabViewBorderType(value TabViewBorderType)
+	TabViewItems() []TabViewItem
+	SetTabViewItems(value []TabViewItem)
+	TabViewType() TabViewType
+	SetTabViewType(value TabViewType)
 }
 
 // A multipage interface that displays one page at a time.

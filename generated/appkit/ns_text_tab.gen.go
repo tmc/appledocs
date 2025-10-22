@@ -30,6 +30,14 @@ type _TextTabClass struct {
 // An interface definition for the [TextTab] class.
 type ITextTab interface {
 	objectivec.IObject
+	Alignment() TextAlignment
+	SetAlignment(value TextAlignment)
+	Location() float64
+	SetLocation(value float64)
+	Options() unsafe.Pointer
+	SetOptions(value unsafe.Pointer)
+	TabStopType() unsafe.Pointer
+	SetTabStopType(value unsafe.Pointer)
 }
 
 // A tab in a paragraph.

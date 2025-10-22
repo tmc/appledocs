@@ -31,6 +31,10 @@ type _StringDrawingContextClass struct {
 // An interface definition for the [StringDrawingContext] class.
 type IStringDrawingContext interface {
 	objectivec.IObject
+	ActualScaleFactor() float64
+	MinimumScaleFactor() float64
+	SetMinimumScaleFactor(value float64)
+	TotalBounds() coregraphics.CGRect
 }
 
 // An object that manages metrics for drawing attributed strings.

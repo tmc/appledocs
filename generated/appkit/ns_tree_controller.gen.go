@@ -30,6 +30,40 @@ type _TreeControllerClass struct {
 // An interface definition for the [TreeController] class.
 type ITreeController interface {
 	IObjectController
+	AlwaysUsesMultipleValuesMarker() bool
+	SetAlwaysUsesMultipleValuesMarker(value bool)
+	ArrangedObjects() NSTreeNode
+	SetArrangedObjects(value ITreeNode)
+	AvoidsEmptySelection() bool
+	SetAvoidsEmptySelection(value bool)
+	CanAddChild() bool
+	SetCanAddChild(value bool)
+	CanInsert() bool
+	SetCanInsert(value bool)
+	CanInsertChild() bool
+	SetCanInsertChild(value bool)
+	ChildrenKeyPath() string
+	SetChildrenKeyPath(value string)
+	Content() unsafe.Pointer
+	SetContent(value unsafe.Pointer)
+	CountKeyPath() string
+	SetCountKeyPath(value string)
+	LeafKeyPath() string
+	SetLeafKeyPath(value string)
+	PreservesSelection() bool
+	SetPreservesSelection(value bool)
+	SelectedNodes() NSTreeNode
+	SetSelectedNodes(value ITreeNode)
+	SelectedObjects() unsafe.Pointer
+	SetSelectedObjects(value unsafe.Pointer)
+	SelectionIndexPath() foundation.IndexPath
+	SetSelectionIndexPath(value foundation.IIndexPath)
+	SelectionIndexPaths() foundation.IndexPath
+	SetSelectionIndexPaths(value foundation.IIndexPath)
+	SelectsInsertedObjects() bool
+	SetSelectsInsertedObjects(value bool)
+	SortDescriptors() foundation.SortDescriptor
+	SetSortDescriptors(value foundation.ISortDescriptor)
 }
 
 // A bindings-compatible controller that manages a tree of objects.

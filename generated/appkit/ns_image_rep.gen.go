@@ -36,6 +36,22 @@ type IImageRep interface {
 	DrawAtPoint(point coregraphics.CGPoint) bool
 	DrawInRect(rect coregraphics.CGRect) bool
 	DrawInRectFromRectOperationFractionRespectFlippedHints(dstSpacePortionRect coregraphics.CGRect, srcSpacePortionRect coregraphics.CGRect, op ICompositingOperation, requestedAlpha float64, respectContextIsFlipped bool, hints unsafe.Pointer) bool
+	BitsPerSample() int
+	SetBitsPerSample(value int)
+	ColorSpaceName() ColorSpaceName
+	SetColorSpaceName(value IColorSpaceName)
+	HasAlpha() bool
+	SetHasAlpha(value bool)
+	IsOpaque() bool
+	SetIsOpaque(value bool)
+	LayoutDirection() unsafe.Pointer
+	SetLayoutDirection(value unsafe.Pointer)
+	PixelsHigh() int
+	SetPixelsHigh(value int)
+	PixelsWide() int
+	SetPixelsWide(value int)
+	Size() coregraphics.CGSize
+	SetSize(value coregraphics.CGSize)
 }
 
 // A semiabstract superclass that provides subclasses that you use to draw an image from a particular type of source data.

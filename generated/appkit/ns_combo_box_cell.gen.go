@@ -36,6 +36,31 @@ type IComboBoxCell interface {
 	ItemObjectValueAtIndex(index int) objc.ID
 	RemoveAllItems()
 	RemoveItemAtIndex(index int)
+	DataSource() objc.ID
+	SetDataSource(value objc.ID)
+	IndexOfSelectedItem() int
+	ButtonBordered() bool
+	SetButtonBordered(value bool)
+	ItemHeight() float64
+	SetItemHeight(value float64)
+	NumberOfVisibleItems() int
+	SetNumberOfVisibleItems(value int)
+	Completes() bool
+	SetCompletes(value bool)
+	HasVerticalScroller() bool
+	SetHasVerticalScroller(value bool)
+	IntercellSpacing() coregraphics.CGSize
+	SetIntercellSpacing(value coregraphics.CGSize)
+	IsButtonBordered() bool
+	SetIsButtonBordered(value bool)
+	NumberOfItems() int
+	SetNumberOfItems(value int)
+	ObjectValueOfSelectedItem() unsafe.Pointer
+	SetObjectValueOfSelectedItem(value unsafe.Pointer)
+	ObjectValues() unsafe.Pointer
+	SetObjectValues(value unsafe.Pointer)
+	UsesDataSource() bool
+	SetUsesDataSource(value bool)
 }
 
 // The user interface of a combo box.

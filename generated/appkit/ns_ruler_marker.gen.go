@@ -32,6 +32,25 @@ type _RulerMarkerClass struct {
 type IRulerMarker interface {
 	objectivec.IObject
 	TrackMouseAdding(mouseDownEvent IEvent, isAdding bool) bool
+	Image() Image
+	SetImage(value IImage)
+	Ruler() NSRulerView
+	ImageOrigin() coregraphics.CGPoint
+	SetImageOrigin(value coregraphics.CGPoint)
+	ImageRectInRuler() coregraphics.CGRect
+	SetImageRectInRuler(value coregraphics.CGRect)
+	IsDragging() bool
+	SetIsDragging(value bool)
+	IsMovable() bool
+	SetIsMovable(value bool)
+	IsRemovable() bool
+	SetIsRemovable(value bool)
+	MarkerLocation() float64
+	SetMarkerLocation(value float64)
+	RepresentedObject() unsafe.Pointer
+	SetRepresentedObject(value unsafe.Pointer)
+	ThicknessRequiredInRuler() float64
+	SetThicknessRequiredInRuler(value float64)
 }
 
 // A symbol on a ruler view, indicating a location for the graphics element it represents in the client of the ruler view.

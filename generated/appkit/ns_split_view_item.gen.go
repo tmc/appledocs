@@ -36,6 +36,43 @@ type ISplitViewItem interface {
 	InsertTopAlignedAccessoryViewControllerAtIndex(childViewController ISplitViewItemAccessoryViewController, index int)
 	RemoveBottomAlignedAccessoryViewControllerAtIndex(index int)
 	RemoveTopAlignedAccessoryViewControllerAtIndex(index int)
+	AllowsFullHeightLayout() bool
+	SetAllowsFullHeightLayout(value bool)
+	AutomaticMaximumThickness() float64
+	SetAutomaticMaximumThickness(value float64)
+	AutomaticallyAdjustsSafeAreaInsets() bool
+	SetAutomaticallyAdjustsSafeAreaInsets(value bool)
+	Behavior() SplitViewItemBehavior
+	BottomAlignedAccessoryViewControllers() []SplitViewItemAccessoryViewController
+	SetBottomAlignedAccessoryViewControllers(value []SplitViewItemAccessoryViewController)
+	CanCollapse() bool
+	SetCanCollapse(value bool)
+	CanCollapseFromWindowResize() bool
+	SetCanCollapseFromWindowResize(value bool)
+	CollapseBehavior() SplitViewItemCollapseBehavior
+	SetCollapseBehavior(value SplitViewItemCollapseBehavior)
+	HoldingPriority() LayoutPriority
+	SetHoldingPriority(value LayoutPriority)
+	Collapsed() bool
+	SetCollapsed(value bool)
+	SpringLoaded() bool
+	SetSpringLoaded(value bool)
+	MaximumThickness() float64
+	SetMaximumThickness(value float64)
+	MinimumThickness() float64
+	SetMinimumThickness(value float64)
+	PreferredThicknessFraction() float64
+	SetPreferredThicknessFraction(value float64)
+	TitlebarSeparatorStyle() TitlebarSeparatorStyle
+	SetTitlebarSeparatorStyle(value TitlebarSeparatorStyle)
+	TopAlignedAccessoryViewControllers() []SplitViewItemAccessoryViewController
+	SetTopAlignedAccessoryViewControllers(value []SplitViewItemAccessoryViewController)
+	ViewController() NSViewController
+	SetViewController(value IViewController)
+	IsCollapsed() bool
+	SetIsCollapsed(value bool)
+	IsSpringLoaded() bool
+	SetIsSpringLoaded(value bool)
 }
 
 // An item in a split view controller.

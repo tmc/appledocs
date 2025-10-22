@@ -52,6 +52,28 @@ type IPopUpButton interface {
 	SelectItemWithTitle(title string)
 	SetTitle(string_ string)
 	SynchronizeTitleAndSelectedItem()
+	AltersStateOfSelectedItem() bool
+	SetAltersStateOfSelectedItem(value bool)
+	AutoenablesItems() bool
+	SetAutoenablesItems(value bool)
+	IndexOfSelectedItem() int
+	ItemArray() []MenuItem
+	ItemTitles() []string
+	LastItem() NSMenuItem
+	Menu() NSMenu
+	SetMenu(value IMenu)
+	NumberOfItems() int
+	PreferredEdge() int
+	SetPreferredEdge(value int)
+	PullsDown() bool
+	SetPullsDown(value bool)
+	SelectedItem() NSMenuItem
+	SelectedTag() int
+	TitleOfSelectedItem() string
+	UsesItemFromMenu() bool
+	SetUsesItemFromMenu(value bool)
+	Image() Image
+	SetImage(value IImage)
 }
 
 // A control for selecting an item from a list.

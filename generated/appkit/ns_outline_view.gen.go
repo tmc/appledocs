@@ -29,6 +29,24 @@ type _OutlineViewClass struct {
 // An interface definition for the [OutlineView] class.
 type IOutlineView interface {
 	ITableView
+	IndentationPerLevel() float64
+	SetIndentationPerLevel(value float64)
+	AutoresizesOutlineColumn() bool
+	SetAutoresizesOutlineColumn(value bool)
+	AutosaveExpandedItems() bool
+	SetAutosaveExpandedItems(value bool)
+	DataSource() unsafe.Pointer
+	SetDataSource(value unsafe.Pointer)
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
+	IndentationMarkerFollowsCell() bool
+	SetIndentationMarkerFollowsCell(value bool)
+	OutlineTableColumn() NSTableColumn
+	SetOutlineTableColumn(value ITableColumn)
+	StronglyReferencesItems() bool
+	SetStronglyReferencesItems(value bool)
+	UserInterfaceLayoutDirection() UserInterfaceLayoutDirection
+	SetUserInterfaceLayoutDirection(value UserInterfaceLayoutDirection)
 }
 
 // A view that uses a row-and-column format to display hierarchical data like directories and files that can be expanded and collapsed.

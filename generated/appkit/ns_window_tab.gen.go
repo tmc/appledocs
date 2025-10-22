@@ -31,6 +31,18 @@ type _WindowTabClass struct {
 // An interface definition for the [WindowTab] class.
 type IWindowTab interface {
 	objectivec.IObject
+	AccessoryView() NSView
+	SetAccessoryView(value IView)
+	AttributedTitle() foundation.AttributedString
+	SetAttributedTitle(value foundation.IAttributedString)
+	Title() string
+	SetTitle(value string)
+	ToolTip() string
+	SetToolTip(value string)
+	Tab() NSWindowTab
+	SetTab(value IWindowTab)
+	TabbingIdentifier() unsafe.Pointer
+	SetTabbingIdentifier(value unsafe.Pointer)
 }
 
 // A tab associated with a window that is part of a tabbing group.

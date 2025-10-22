@@ -30,6 +30,28 @@ type _DrawerClass struct {
 // An interface definition for the [Drawer] class.
 type IDrawer interface {
 	IResponder
+	ContentSize() coregraphics.CGSize
+	SetContentSize(value coregraphics.CGSize)
+	ContentView() NSView
+	SetContentView(value IView)
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
+	Edge() int
+	SetEdge(value int)
+	LeadingOffset() float64
+	SetLeadingOffset(value float64)
+	MaxContentSize() coregraphics.CGSize
+	SetMaxContentSize(value coregraphics.CGSize)
+	MinContentSize() coregraphics.CGSize
+	SetMinContentSize(value coregraphics.CGSize)
+	ParentWindow() NSWindow
+	SetParentWindow(value IWindow)
+	PreferredEdge() int
+	SetPreferredEdge(value int)
+	State() int
+	SetState(value int)
+	TrailingOffset() float64
+	SetTrailingOffset(value float64)
 }
 
 // A user interface element that contains and displays text, scroll, and browser views, in addition to other view subclasses.

@@ -37,6 +37,15 @@ type IPersistentDocument interface {
 	ReadFromURLOfTypeError(absoluteURL foundation.IURL, typeName string, error_ unsafe.Pointer) bool
 	RevertToContentsOfURLOfTypeError(inAbsoluteURL foundation.IURL, inTypeName string, outError unsafe.Pointer) bool
 	WriteToURLOfTypeForSaveOperationOriginalContentsURLError(absoluteURL foundation.IURL, typeName string, saveOperation SaveOperationType, absoluteOriginalContentsURL foundation.IURL, error_ unsafe.Pointer) bool
+	ManagedObjectContext() coredata.ManagedObjectContext
+	SetManagedObjectContext(value coredata.IManagedObjectContext)
+	ManagedObjectModel() coredata.ManagedObjectModel
+	HasUndoManager() bool
+	SetHasUndoManager(value bool)
+	IsDocumentEdited() bool
+	SetIsDocumentEdited(value bool)
+	UndoManager() foundation.UndoManager
+	SetUndoManager(value foundation.IUndoManager)
 }
 
 // A document object that can integrate with Core Data.

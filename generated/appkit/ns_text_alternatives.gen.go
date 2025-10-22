@@ -30,6 +30,9 @@ type _TextAlternativesClass struct {
 // An interface definition for the [TextAlternatives] class.
 type ITextAlternatives interface {
 	objectivec.IObject
+	PrimaryString() string
+	AlternativeStrings() string
+	SetAlternativeStrings(value string)
 }
 
 // A list of alternative strings for a piece of text.

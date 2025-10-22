@@ -47,6 +47,59 @@ type IButtonCell interface {
 	SetKeyEquivalentFontSize(fontName string, fontSize float64)
 	SetPeriodicDelayInterval(delay float32, interval float32)
 	SetTitleWithMnemonic(stringWithAmpersand string)
+	AlternateImage() Image
+	SetAlternateImage(value IImage)
+	AlternateTitle() string
+	SetAlternateTitle(value string)
+	AttributedAlternateTitle() foundation.AttributedString
+	SetAttributedAlternateTitle(value foundation.IAttributedString)
+	AttributedTitle() foundation.AttributedString
+	SetAttributedTitle(value foundation.IAttributedString)
+	BackgroundColor() NSColor
+	SetBackgroundColor(value IColor)
+	BezelStyle() BezelStyle
+	SetBezelStyle(value BezelStyle)
+	GradientType() GradientType
+	SetGradientType(value GradientType)
+	HighlightsBy() CellStyleMask
+	SetHighlightsBy(value CellStyleMask)
+	ImageDimsWhenDisabled() bool
+	SetImageDimsWhenDisabled(value bool)
+	ImagePosition() CellImagePosition
+	SetImagePosition(value CellImagePosition)
+	ImageScaling() ImageScaling
+	SetImageScaling(value ImageScaling)
+	Opaque() bool
+	Transparent() bool
+	SetTransparent(value bool)
+	KeyEquivalent() string
+	SetKeyEquivalent(value string)
+	KeyEquivalentFont() NSFont
+	SetKeyEquivalentFont(value IFont)
+	KeyEquivalentModifierMask() EventModifierFlags
+	SetKeyEquivalentModifierMask(value EventModifierFlags)
+	ShowsBorderOnlyWhileMouseInside() bool
+	SetShowsBorderOnlyWhileMouseInside(value bool)
+	ShowsStateBy() CellStyleMask
+	SetShowsStateBy(value CellStyleMask)
+	Sound() NSSound
+	SetSound(value ISound)
+	Title() string
+	SetTitle(value string)
+	IsOpaque() bool
+	SetIsOpaque(value bool)
+	IsTransparent() bool
+	SetIsTransparent(value bool)
+	Font() NSFont
+	SetFont(value IFont)
+	IntValue() unsafe.Pointer
+	SetIntValue(value unsafe.Pointer)
+	ObjectValue() unsafe.Pointer
+	SetObjectValue(value unsafe.Pointer)
+	State() unsafe.Pointer
+	SetState(value unsafe.Pointer)
+	DoubleValue() float64
+	SetDoubleValue(value float64)
 }
 
 // An object that defines the user interface of a button or other clickable region of a view.

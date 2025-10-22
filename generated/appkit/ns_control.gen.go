@@ -57,6 +57,58 @@ type IControl interface {
 	TakeObjectValueFrom(sender objectivec.IObject)
 	TakeStringValueFrom(sender objectivec.IObject)
 	ValidateEditing()
+	Action() objc.SEL
+	SetAction(value objc.SEL)
+	Alignment() TextAlignment
+	SetAlignment(value TextAlignment)
+	AllowsExpansionToolTips() bool
+	SetAllowsExpansionToolTips(value bool)
+	AttributedStringValue() foundation.AttributedString
+	SetAttributedStringValue(value foundation.IAttributedString)
+	BaseWritingDirection() WritingDirection
+	SetBaseWritingDirection(value WritingDirection)
+	ControlSize() ControlSize
+	SetControlSize(value IControlSize)
+	DoubleValue() float64
+	SetDoubleValue(value float64)
+	FloatValue() float32
+	SetFloatValue(value float32)
+	Font() NSFont
+	SetFont(value IFont)
+	Formatter() foundation.Formatter
+	SetFormatter(value foundation.IFormatter)
+	IgnoresMultiClick() bool
+	SetIgnoresMultiClick(value bool)
+	IntValue() int
+	SetIntValue(value int)
+	IntegerValue() int
+	SetIntegerValue(value int)
+	Continuous() bool
+	SetContinuous(value bool)
+	Enabled() bool
+	SetEnabled(value bool)
+	Highlighted() bool
+	SetHighlighted(value bool)
+	LineBreakMode() LineBreakMode
+	SetLineBreakMode(value LineBreakMode)
+	ObjectValue() objc.ID
+	SetObjectValue(value objc.ID)
+	RefusesFirstResponder() bool
+	SetRefusesFirstResponder(value bool)
+	StringValue() string
+	SetStringValue(value string)
+	Tag() int
+	SetTag(value int)
+	Target() objc.ID
+	SetTarget(value objc.ID)
+	UsesSingleLineMode() bool
+	SetUsesSingleLineMode(value bool)
+	IsContinuous() bool
+	SetIsContinuous(value bool)
+	IsEnabled() bool
+	SetIsEnabled(value bool)
+	IsHighlighted() bool
+	SetIsHighlighted(value bool)
 }
 
 // A specialized view, such as a button or text field, that notifies your app of relevant events using the target-action design pattern.

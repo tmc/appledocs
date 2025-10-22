@@ -31,6 +31,20 @@ type _TextFieldCellClass struct {
 type ITextFieldCell interface {
 	IActionCell
 	SetWantsNotificationForMarkedText(flag bool)
+	AllowedInputSourceLocales() []string
+	SetAllowedInputSourceLocales(value []string)
+	BackgroundColor() NSColor
+	SetBackgroundColor(value IColor)
+	BezelStyle() unsafe.Pointer
+	SetBezelStyle(value unsafe.Pointer)
+	PlaceholderAttributedString() foundation.AttributedString
+	SetPlaceholderAttributedString(value foundation.IAttributedString)
+	PlaceholderString() string
+	SetPlaceholderString(value string)
+	TextColor() NSColor
+	SetTextColor(value IColor)
+	DrawsBackground() bool
+	SetDrawsBackground(value bool)
 }
 
 // An object that enhances the text display capabilities of a cell.

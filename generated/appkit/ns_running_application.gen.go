@@ -31,6 +31,36 @@ type _RunningApplicationClass struct {
 // An interface definition for the [RunningApplication] class.
 type IRunningApplication interface {
 	objectivec.IObject
+	ActivationPolicy() unsafe.Pointer
+	SetActivationPolicy(value unsafe.Pointer)
+	BundleIdentifier() string
+	SetBundleIdentifier(value string)
+	BundleURL() foundation.URL
+	SetBundleURL(value foundation.IURL)
+	ExecutableArchitecture() int
+	SetExecutableArchitecture(value int)
+	ExecutableURL() foundation.URL
+	SetExecutableURL(value foundation.IURL)
+	Icon() Image
+	SetIcon(value IImage)
+	IsActive() bool
+	SetIsActive(value bool)
+	IsFinishedLaunching() bool
+	SetIsFinishedLaunching(value bool)
+	IsHidden() bool
+	SetIsHidden(value bool)
+	IsTerminated() bool
+	SetIsTerminated(value bool)
+	LaunchDate() foundation.Date
+	SetLaunchDate(value foundation.IDate)
+	LocalizedName() string
+	SetLocalizedName(value string)
+	OwnsMenuBar() bool
+	SetOwnsMenuBar(value bool)
+	ProcessIdentifier() unsafe.Pointer
+	SetProcessIdentifier(value unsafe.Pointer)
+	RunningApplications() NSRunningApplication
+	SetRunningApplications(value IRunningApplication)
 }
 
 // An object that can manipulate and provide information for a single instance of an app.

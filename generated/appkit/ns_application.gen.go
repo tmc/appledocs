@@ -68,6 +68,50 @@ type IApplication interface {
 	UnregisterForRemoteNotifications()
 	UpdateWindows()
 	ValidRequestorForSendTypeReturnType(sendType PasteboardType, returnType PasteboardType) objc.ID
+	Appearance() NSAppearance
+	SetAppearance(value IAppearance)
+	ApplicationIconImage() Image
+	SetApplicationIconImage(value IImage)
+	CurrentEvent() NSEvent
+	EffectiveAppearance() NSAppearance
+	EnabledRemoteNotificationTypes() RemoteNotificationType
+	AutomaticCustomizeTouchBarMenuItemEnabled() bool
+	SetAutomaticCustomizeTouchBarMenuItemEnabled(value bool)
+	RegisteredForRemoteNotifications() bool
+	ServicesMenu() NSMenu
+	SetServicesMenu(value IMenu)
+	ServicesProvider() objc.ID
+	SetServicesProvider(value objc.ID)
+	NSApp() NSApplication
+	SetNSApp(value IApplication)
+	ApplicationShouldSuppressHighDynamicRangeContent() bool
+	SetApplicationShouldSuppressHighDynamicRangeContent(value bool)
+	CurrentSystemPresentationOptions() unsafe.Pointer
+	SetCurrentSystemPresentationOptions(value unsafe.Pointer)
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
+	DockTile() NSDockTile
+	SetDockTile(value IDockTile)
+	HelpMenu() NSMenu
+	SetHelpMenu(value IMenu)
+	IsActive() bool
+	SetIsActive(value bool)
+	IsFullKeyboardAccessEnabled() bool
+	SetIsFullKeyboardAccessEnabled(value bool)
+	IsRegisteredForRemoteNotifications() bool
+	SetIsRegisteredForRemoteNotifications(value bool)
+	IsRunning() bool
+	SetIsRunning(value bool)
+	OrderedDocuments() NSDocument
+	SetOrderedDocuments(value IDocument)
+	OrderedWindows() NSWindow
+	SetOrderedWindows(value IWindow)
+	PresentationOptions() unsafe.Pointer
+	SetPresentationOptions(value unsafe.Pointer)
+	UserInterfaceLayoutDirection() UserInterfaceLayoutDirection
+	SetUserInterfaceLayoutDirection(value UserInterfaceLayoutDirection)
+	ActivationPolicy() unsafe.Pointer
+	SetActivationPolicy(value unsafe.Pointer)
 }
 
 // An object that manages an app’s main event loop and resources used by all of that app’s objects.

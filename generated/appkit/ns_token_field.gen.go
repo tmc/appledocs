@@ -30,6 +30,14 @@ type _TokenFieldClass struct {
 // An interface definition for the [TokenField] class.
 type ITokenField interface {
 	ITextField
+	TokenizingCharacterSet() foundation.CharacterSet
+	SetTokenizingCharacterSet(value foundation.ICharacterSet)
+	CompletionDelay() unsafe.Pointer
+	SetCompletionDelay(value unsafe.Pointer)
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
+	TokenStyle() TokenStyle
+	SetTokenStyle(value TokenStyle)
 }
 
 // A text field that converts text into visually distinct tokens.

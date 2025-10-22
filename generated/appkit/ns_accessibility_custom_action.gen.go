@@ -30,6 +30,14 @@ type _AccessibilityCustomActionClass struct {
 // An interface definition for the [AccessibilityCustomAction] class.
 type IAccessibilityCustomAction interface {
 	objectivec.IObject
+	Handler() bool
+	SetHandler(value bool)
+	Name() string
+	SetName(value string)
+	Selector() unsafe.Pointer
+	SetSelector(value unsafe.Pointer)
+	Target() unsafe.Pointer
+	SetTarget(value unsafe.Pointer)
 }
 
 // A custom action to perform on an accessible object.

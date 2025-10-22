@@ -30,6 +30,14 @@ type _TextBlockClass struct {
 // An interface definition for the [TextBlock] class.
 type ITextBlock interface {
 	objectivec.IObject
+	BackgroundColor() NSColor
+	SetBackgroundColor(value IColor)
+	ContentWidth() float64
+	SetContentWidth(value float64)
+	ContentWidthValueType() unsafe.Pointer
+	SetContentWidthValueType(value unsafe.Pointer)
+	VerticalAlignment() unsafe.Pointer
+	SetVerticalAlignment(value unsafe.Pointer)
 }
 
 // A block of text laid out in a subregion of the text container.

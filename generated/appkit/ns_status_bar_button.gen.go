@@ -29,6 +29,8 @@ type _StatusBarButtonClass struct {
 // An interface definition for the [StatusBarButton] class.
 type IStatusBarButton interface {
 	IButton
+	AppearsDisabled() bool
+	SetAppearsDisabled(value bool)
 }
 
 // The appearance and behavior of an item in the systemwide menu bar.

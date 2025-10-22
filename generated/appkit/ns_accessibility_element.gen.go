@@ -32,6 +32,8 @@ type _AccessibilityElementClass struct {
 type IAccessibilityElement interface {
 	objectivec.IObject
 	AccessibilityAddChildElement(childElement IAccessibilityElement)
+	AccessibilityFrameInParentSpace() coregraphics.CGRect
+	SetAccessibilityFrameInParentSpace(value coregraphics.CGRect)
 }
 
 // The basic infrastructure necessary for interacting with an assistive app.

@@ -31,6 +31,14 @@ type _PDFImageRepClass struct {
 // An interface definition for the [PDFImageRep] class.
 type IPDFImageRep interface {
 	IImageRep
+	Bounds() coregraphics.CGRect
+	SetBounds(value coregraphics.CGRect)
+	CurrentPage() int
+	SetCurrentPage(value int)
+	PageCount() int
+	SetPageCount(value int)
+	PdfRepresentation() foundation.Data
+	SetPdfRepresentation(value foundation.IData)
 }
 
 // An object that can render an image from a PDF format data stream.

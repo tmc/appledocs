@@ -30,6 +30,34 @@ type _TextStorageClass struct {
 // An interface definition for the [TextStorage] class.
 type ITextStorage interface {
 	IMutableAttributedString
+	Characters() []TextStorage
+	SetCharacters(value []TextStorage)
+	TextStorageObserver() objc.ID
+	SetTextStorageObserver(value objc.ID)
+	AttributeRuns() NSTextStorage
+	SetAttributeRuns(value ITextStorage)
+	ChangeInLength() int
+	SetChangeInLength(value int)
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
+	EditedMask() unsafe.Pointer
+	SetEditedMask(value unsafe.Pointer)
+	EditedRange() foundation.Range
+	SetEditedRange(value foundation.IRange)
+	FixesAttributesLazily() bool
+	SetFixesAttributesLazily(value bool)
+	Font() NSFont
+	SetFont(value IFont)
+	ForegroundColor() NSColor
+	SetForegroundColor(value IColor)
+	LayoutManagers() NSLayoutManager
+	SetLayoutManagers(value ILayoutManager)
+	Paragraphs() NSTextStorage
+	SetParagraphs(value ITextStorage)
+	Words() NSTextStorage
+	SetWords(value ITextStorage)
+	String() string
+	SetString(value string)
 }
 
 // The fundamental storage mechanism of TextKit that contains the text managed by the system.

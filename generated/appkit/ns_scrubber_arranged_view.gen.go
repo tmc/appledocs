@@ -30,6 +30,14 @@ type _ScrubberArrangedViewClass struct {
 type IScrubberArrangedView interface {
 	IView
 	ApplyLayoutAttributes(layoutAttributes IScrubberLayoutAttributes)
+	Highlighted() bool
+	SetHighlighted(value bool)
+	Selected() bool
+	SetSelected(value bool)
+	IsHighlighted() bool
+	SetIsHighlighted(value bool)
+	IsSelected() bool
+	SetIsSelected(value bool)
 }
 
 // An abstract base class for the views whose layout is managed by a scrubber.

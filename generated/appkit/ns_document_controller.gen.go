@@ -76,6 +76,17 @@ type IDocumentController interface {
 	URLsFromRunningOpenPanel() []foundation.URL
 	ValidateUserInterfaceItem(item objectivec.IObject) bool
 	WillPresentError(error_ foundation.IError) foundation.Error
+	AllowsAutomaticShareMenu() bool
+	AutosavingDelay() float64
+	SetAutosavingDelay(value float64)
+	CurrentDirectory() string
+	CurrentDocument() NSDocument
+	DefaultType() string
+	DocumentClassNames() []string
+	Documents() []Document
+	HasEditedDocuments() bool
+	MaximumRecentDocumentCount() uint
+	RecentDocumentURLs() []foundation.URL
 }
 
 // An object that manages an app’s documents.

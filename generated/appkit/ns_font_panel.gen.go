@@ -29,6 +29,12 @@ type _FontPanelClass struct {
 // An interface definition for the [FontPanel] class.
 type IFontPanel interface {
 	IPanel
+	WorksWhenModal() bool
+	SetWorksWhenModal(value bool)
+	AccessoryView() NSView
+	SetAccessoryView(value IView)
+	IsEnabled() bool
+	SetIsEnabled(value bool)
 }
 
 // The Font panel—a user interface object that displays a list of available fonts, letting the user preview them and change the font used to display text.

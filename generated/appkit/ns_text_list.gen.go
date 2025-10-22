@@ -30,6 +30,16 @@ type _TextListClass struct {
 // An interface definition for the [TextList] class.
 type ITextList interface {
 	objectivec.IObject
+	TextLists() NSTextList
+	SetTextLists(value ITextList)
+	IsOrdered() bool
+	SetIsOrdered(value bool)
+	ListOptions() unsafe.Pointer
+	SetListOptions(value unsafe.Pointer)
+	MarkerFormat() unsafe.Pointer
+	SetMarkerFormat(value unsafe.Pointer)
+	StartingItemNumber() int
+	SetStartingItemNumber(value int)
 }
 
 // A section of text that forms a single list.

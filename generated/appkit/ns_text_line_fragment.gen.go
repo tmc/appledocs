@@ -32,6 +32,14 @@ type _TextLineFragmentClass struct {
 // An interface definition for the [TextLineFragment] class.
 type ITextLineFragment interface {
 	objectivec.IObject
+	AttributedString() foundation.AttributedString
+	SetAttributedString(value foundation.IAttributedString)
+	CharacterRange() foundation.Range
+	SetCharacterRange(value foundation.IRange)
+	GlyphOrigin() coregraphics.CGPoint
+	SetGlyphOrigin(value coregraphics.CGPoint)
+	TypographicBounds() coregraphics.CGRect
+	SetTypographicBounds(value coregraphics.CGRect)
 }
 
 // A class that represents a line fragment as a single textual layout and rendering unit inside a text layout fragment.

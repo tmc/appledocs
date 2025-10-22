@@ -32,6 +32,30 @@ type _ObjectControllerClass struct {
 type IObjectController interface {
 	IController
 	PrepareContent()
+	AutomaticallyPreparesContent() bool
+	SetAutomaticallyPreparesContent(value bool)
+	Content() objc.ID
+	SetContent(value objc.ID)
+	ObjectClass() objc.Class
+	SetObjectClass(value objc.Class)
+	CanAdd() bool
+	SetCanAdd(value bool)
+	CanRemove() bool
+	SetCanRemove(value bool)
+	EntityName() string
+	SetEntityName(value string)
+	FetchPredicate() foundation.Predicate
+	SetFetchPredicate(value foundation.IPredicate)
+	IsEditable() bool
+	SetIsEditable(value bool)
+	ManagedObjectContext() coredata.ManagedObjectContext
+	SetManagedObjectContext(value coredata.IManagedObjectContext)
+	SelectedObjects() unsafe.Pointer
+	SetSelectedObjects(value unsafe.Pointer)
+	Selection() unsafe.Pointer
+	SetSelection(value unsafe.Pointer)
+	UsesLazyFetching() bool
+	SetUsesLazyFetching(value bool)
 }
 
 // A controller that can manage an object’s properties referenced by key-value paths.

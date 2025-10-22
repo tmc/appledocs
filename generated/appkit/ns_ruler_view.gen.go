@@ -38,6 +38,35 @@ type IRulerView interface {
 	MoveRulerlineFromLocationToLocation(oldLocation float64, newLocation float64)
 	RemoveMarker(marker IRulerMarker)
 	TrackMarkerWithMouseEvent(marker IRulerMarker, event IEvent) bool
+	AccessoryView() NSView
+	SetAccessoryView(value IView)
+	BaselineLocation() float64
+	ClientView() NSView
+	SetClientView(value IView)
+	Flipped() bool
+	Markers() []RulerMarker
+	SetMarkers(value []RulerMarker)
+	MeasurementUnits() RulerViewUnitName
+	SetMeasurementUnits(value IRulerViewUnitName)
+	Orientation() RulerOrientation
+	SetOrientation(value RulerOrientation)
+	OriginOffset() float64
+	SetOriginOffset(value float64)
+	RequiredThickness() float64
+	ReservedThicknessForAccessoryView() float64
+	SetReservedThicknessForAccessoryView(value float64)
+	ReservedThicknessForMarkers() float64
+	SetReservedThicknessForMarkers(value float64)
+	RuleThickness() float64
+	SetRuleThickness(value float64)
+	ScrollView() NSScrollView
+	SetScrollView(value IScrollView)
+	IsFlipped() bool
+	SetIsFlipped(value bool)
+	HasHorizontalRuler() bool
+	SetHasHorizontalRuler(value bool)
+	HasVerticalRuler() bool
+	SetHasVerticalRuler(value bool)
 }
 
 // A ruler and the markers above or to the side of a scroll view’s document view.

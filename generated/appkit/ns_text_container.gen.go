@@ -31,6 +31,30 @@ type _TextContainerClass struct {
 // An interface definition for the [TextContainer] class.
 type ITextContainer interface {
 	objectivec.IObject
+	LayoutManager() NSLayoutManager
+	SetLayoutManager(value ILayoutManager)
+	ContainerSize() coregraphics.CGSize
+	SetContainerSize(value coregraphics.CGSize)
+	ExclusionPaths() NSBezierPath
+	SetExclusionPaths(value IBezierPath)
+	HeightTracksTextView() bool
+	SetHeightTracksTextView(value bool)
+	IsSimpleRectangularTextContainer() bool
+	SetIsSimpleRectangularTextContainer(value bool)
+	LineBreakMode() LineBreakMode
+	SetLineBreakMode(value LineBreakMode)
+	LineFragmentPadding() float64
+	SetLineFragmentPadding(value float64)
+	MaximumNumberOfLines() int
+	SetMaximumNumberOfLines(value int)
+	Size() coregraphics.CGSize
+	SetSize(value coregraphics.CGSize)
+	TextLayoutManager() NSTextLayoutManager
+	SetTextLayoutManager(value ITextLayoutManager)
+	TextView() NSTextView
+	SetTextView(value ITextView)
+	WidthTracksTextView() bool
+	SetWidthTracksTextView(value bool)
 }
 
 // A region where text layout occurs.

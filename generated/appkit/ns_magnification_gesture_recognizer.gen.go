@@ -29,6 +29,10 @@ type _MagnificationGestureRecognizerClass struct {
 // An interface definition for the [MagnificationGestureRecognizer] class.
 type IMagnificationGestureRecognizer interface {
 	IGestureRecognizer
+	Magnification() float64
+	SetMagnification(value float64)
+	DelaysMagnificationEvents() bool
+	SetDelaysMagnificationEvents(value bool)
 }
 
 // A continuous gesture recognizer that tracks a pinch gesture that magnifies content.

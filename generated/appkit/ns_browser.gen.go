@@ -30,6 +30,76 @@ type _BrowserClass struct {
 // An interface definition for the [Browser] class.
 type IBrowser interface {
 	IControl
+	AllowsBranchSelection() bool
+	SetAllowsBranchSelection(value bool)
+	AllowsEmptySelection() bool
+	SetAllowsEmptySelection(value bool)
+	AllowsMultipleSelection() bool
+	SetAllowsMultipleSelection(value bool)
+	AllowsTypeSelect() bool
+	SetAllowsTypeSelect(value bool)
+	AutohidesScroller() bool
+	SetAutohidesScroller(value bool)
+	BackgroundColor() NSColor
+	SetBackgroundColor(value IColor)
+	CellPrototype() unsafe.Pointer
+	SetCellPrototype(value unsafe.Pointer)
+	ClickedColumn() int
+	SetClickedColumn(value int)
+	ClickedRow() int
+	SetClickedRow(value int)
+	ColumnResizingType() unsafe.Pointer
+	SetColumnResizingType(value unsafe.Pointer)
+	ColumnsAutosaveName() unsafe.Pointer
+	SetColumnsAutosaveName(value unsafe.Pointer)
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
+	DoubleAction() unsafe.Pointer
+	SetDoubleAction(value unsafe.Pointer)
+	FirstVisibleColumn() int
+	SetFirstVisibleColumn(value int)
+	HasHorizontalScroller() bool
+	SetHasHorizontalScroller(value bool)
+	IsLoaded() bool
+	SetIsLoaded(value bool)
+	IsTitled() bool
+	SetIsTitled(value bool)
+	LastColumn() int
+	SetLastColumn(value int)
+	LastVisibleColumn() int
+	SetLastVisibleColumn(value int)
+	MaxVisibleColumns() int
+	SetMaxVisibleColumns(value int)
+	MinColumnWidth() float64
+	SetMinColumnWidth(value float64)
+	NumberOfVisibleColumns() int
+	SetNumberOfVisibleColumns(value int)
+	PathSeparator() string
+	SetPathSeparator(value string)
+	PrefersAllColumnUserResizing() bool
+	SetPrefersAllColumnUserResizing(value bool)
+	ReusesColumns() bool
+	SetReusesColumns(value bool)
+	RowHeight() float64
+	SetRowHeight(value float64)
+	SelectedCells() NSCell
+	SetSelectedCells(value ICell)
+	SelectedColumn() int
+	SetSelectedColumn(value int)
+	SelectionIndexPath() foundation.IndexPath
+	SetSelectionIndexPath(value foundation.IIndexPath)
+	SelectionIndexPaths() foundation.IndexPath
+	SetSelectionIndexPaths(value foundation.IIndexPath)
+	SendsActionOnArrowKeys() bool
+	SetSendsActionOnArrowKeys(value bool)
+	SeparatesColumns() bool
+	SetSeparatesColumns(value bool)
+	TakesTitleFromPreviousColumn() bool
+	SetTakesTitleFromPreviousColumn(value bool)
+	TitleHeight() float64
+	SetTitleHeight(value float64)
+	IsOpaque() bool
+	SetIsOpaque(value bool)
 }
 
 // An interface that displays a hierarchically organized list of data items that can be navigated and selected.

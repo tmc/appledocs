@@ -32,6 +32,11 @@ type ITableHeaderView interface {
 	IView
 	ColumnAtPoint(point coregraphics.CGPoint) int
 	HeaderRectOfColumn(column int) coregraphics.CGRect
+	DraggedColumn() int
+	DraggedDistance() float64
+	ResizedColumn() int
+	TableView() NSTableView
+	SetTableView(value ITableView)
 }
 
 // An object that draws headers over a table view’s columns and handles mouse events in those headers.

@@ -33,6 +33,20 @@ type IPopoverTouchBarItem interface {
 	DismissPopover(sender objectivec.IObject)
 	MakeStandardActivatePopoverGestureRecognizer() GestureRecognizer
 	ShowPopover(sender objectivec.IObject)
+	CollapsedRepresentation() NSView
+	SetCollapsedRepresentation(value IView)
+	CollapsedRepresentationImage() Image
+	SetCollapsedRepresentationImage(value IImage)
+	CollapsedRepresentationLabel() string
+	SetCollapsedRepresentationLabel(value string)
+	CustomizationLabel() string
+	SetCustomizationLabel(value string)
+	PopoverTouchBar() NSTouchBar
+	SetPopoverTouchBar(value ITouchBar)
+	PressAndHoldTouchBar() NSTouchBar
+	SetPressAndHoldTouchBar(value ITouchBar)
+	ShowsCloseButton() bool
+	SetShowsCloseButton(value bool)
 }
 
 // A bar item that provides a two-state control that can expand into its second state, showing the contents of a bar that it owns.

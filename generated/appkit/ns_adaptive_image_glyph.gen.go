@@ -31,6 +31,12 @@ type _AdaptiveImageGlyphClass struct {
 // An interface definition for the [AdaptiveImageGlyph] class.
 type IAdaptiveImageGlyph interface {
 	objectivec.IObject
+	ContentDescription() string
+	SetContentDescription(value string)
+	ContentIdentifier() string
+	SetContentIdentifier(value string)
+	ImageContent() foundation.Data
+	SetImageContent(value foundation.IData)
 }
 
 // A data object for an emoji-like image that can appear in attributed text.

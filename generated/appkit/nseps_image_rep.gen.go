@@ -32,6 +32,10 @@ type _EPSImageRepClass struct {
 type IEPSImageRep interface {
 	IImageRep
 	PrepareGState()
+	BoundingBox() coregraphics.CGRect
+	SetBoundingBox(value coregraphics.CGRect)
+	EpsRepresentation() foundation.Data
+	SetEpsRepresentation(value foundation.IData)
 }
 
 // An object that can render an image from encapsulated PostScript (EPS) code.

@@ -30,6 +30,15 @@ type _PrintPanelClass struct {
 // An interface definition for the [PrintPanel] class.
 type IPrintPanel interface {
 	objectivec.IObject
+	JobStyleHint() unsafe.Pointer
+	SetJobStyleHint(value unsafe.Pointer)
+	PrintInfo() NSPrintInfo
+	AccessoryControllers() NSViewController
+	SetAccessoryControllers(value IViewController)
+	HelpAnchor() unsafe.Pointer
+	SetHelpAnchor(value unsafe.Pointer)
+	Options() unsafe.Pointer
+	SetOptions(value unsafe.Pointer)
 }
 
 // The Print panel that queries the user for information about a print job.

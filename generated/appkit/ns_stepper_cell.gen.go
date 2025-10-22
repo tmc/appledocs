@@ -29,6 +29,16 @@ type _StepperCellClass struct {
 // An interface definition for the [StepperCell] class.
 type IStepperCell interface {
 	IActionCell
+	Autorepeat() bool
+	SetAutorepeat(value bool)
+	Increment() float64
+	SetIncrement(value float64)
+	MaxValue() float64
+	SetMaxValue(value float64)
+	MinValue() float64
+	SetMinValue(value float64)
+	ValueWraps() bool
+	SetValueWraps(value bool)
 }
 
 // An object controls the appearance and behavior of an object.

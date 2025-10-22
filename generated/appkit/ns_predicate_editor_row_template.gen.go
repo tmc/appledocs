@@ -32,6 +32,26 @@ type _PredicateEditorRowTemplateClass struct {
 // An interface definition for the [PredicateEditorRowTemplate] class.
 type IPredicateEditorRowTemplate interface {
 	objectivec.IObject
+	ObjectValue() unsafe.Pointer
+	SetObjectValue(value unsafe.Pointer)
+	RowTemplates() NSPredicateEditorRowTemplate
+	SetRowTemplates(value IPredicateEditorRowTemplate)
+	CompoundTypes() foundation.Number
+	SetCompoundTypes(value foundation.INumber)
+	LeftExpressions() coredata.Expression
+	SetLeftExpressions(value coredata.IExpression)
+	Modifier() unsafe.Pointer
+	SetModifier(value unsafe.Pointer)
+	Operators() foundation.Number
+	SetOperators(value foundation.INumber)
+	Options() int
+	SetOptions(value int)
+	RightExpressionAttributeType() unsafe.Pointer
+	SetRightExpressionAttributeType(value unsafe.Pointer)
+	RightExpressions() coredata.Expression
+	SetRightExpressions(value coredata.IExpression)
+	TemplateViews() NSView
+	SetTemplateViews(value IView)
 }
 
 // A template that describes available predicates and how to display them.

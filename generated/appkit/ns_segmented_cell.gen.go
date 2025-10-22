@@ -29,6 +29,14 @@ type _SegmentedCellClass struct {
 // An interface definition for the [SegmentedCell] class.
 type ISegmentedCell interface {
 	IActionCell
+	SegmentCount() int
+	SetSegmentCount(value int)
+	SegmentStyle() unsafe.Pointer
+	SetSegmentStyle(value unsafe.Pointer)
+	SelectedSegment() int
+	SetSelectedSegment(value int)
+	TrackingMode() unsafe.Pointer
+	SetTrackingMode(value unsafe.Pointer)
 }
 
 // An object implements the appearance and behavior of a horizontal button divided into multiple segments. This class is used in conjunction with the class to implement a segmented control.

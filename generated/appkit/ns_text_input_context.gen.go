@@ -30,6 +30,16 @@ type _TextInputContextClass struct {
 // An interface definition for the [TextInputContext] class.
 type ITextInputContext interface {
 	objectivec.IObject
+	AcceptsGlyphInfo() bool
+	SetAcceptsGlyphInfo(value bool)
+	AllowedInputSourceLocales() string
+	SetAllowedInputSourceLocales(value string)
+	Client() unsafe.Pointer
+	SetClient(value unsafe.Pointer)
+	KeyboardInputSources() unsafe.Pointer
+	SetKeyboardInputSources(value unsafe.Pointer)
+	SelectedKeyboardInputSource() unsafe.Pointer
+	SetSelectedKeyboardInputSource(value unsafe.Pointer)
 }
 
 // An object that represents the Cocoa text input system.

@@ -32,6 +32,36 @@ type _TypesetterClass struct {
 // An interface definition for the [Typesetter] class.
 type ITypesetter interface {
 	objectivec.IObject
+	AttributedString() foundation.AttributedString
+	SetAttributedString(value foundation.IAttributedString)
+	AttributesForExtraLineFragment() coreml.Key
+	SetAttributesForExtraLineFragment(value coreml.IKey)
+	BidiProcessingEnabled() bool
+	SetBidiProcessingEnabled(value bool)
+	CurrentParagraphStyle() NSParagraphStyle
+	SetCurrentParagraphStyle(value NSParagraphStyle)
+	CurrentTextContainer() NSTextContainer
+	SetCurrentTextContainer(value ITextContainer)
+	HyphenationFactor() float32
+	SetHyphenationFactor(value float32)
+	LayoutManager() NSLayoutManager
+	SetLayoutManager(value ILayoutManager)
+	LineFragmentPadding() float64
+	SetLineFragmentPadding(value float64)
+	ParagraphCharacterRange() foundation.Range
+	SetParagraphCharacterRange(value foundation.IRange)
+	ParagraphGlyphRange() foundation.Range
+	SetParagraphGlyphRange(value foundation.IRange)
+	ParagraphSeparatorCharacterRange() foundation.Range
+	SetParagraphSeparatorCharacterRange(value foundation.IRange)
+	ParagraphSeparatorGlyphRange() foundation.Range
+	SetParagraphSeparatorGlyphRange(value foundation.IRange)
+	TextContainers() objc.ID
+	SetTextContainers(value objc.ID)
+	TypesetterBehavior() unsafe.Pointer
+	SetTypesetterBehavior(value unsafe.Pointer)
+	UsesFontLeading() bool
+	SetUsesFontLeading(value bool)
 }
 
 // An abstract class that performs various type layout tasks.

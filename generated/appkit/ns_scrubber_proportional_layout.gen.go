@@ -29,6 +29,8 @@ type _ScrubberProportionalLayoutClass struct {
 // An interface definition for the [ScrubberProportionalLayout] class.
 type IScrubberProportionalLayout interface {
 	IScrubberLayout
+	NumberOfVisibleItems() int
+	SetNumberOfVisibleItems(value int)
 }
 
 // A concrete layout object that sizes each item to some fraction of the scrubber’s visible size.

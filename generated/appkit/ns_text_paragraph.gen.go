@@ -30,6 +30,12 @@ type _TextParagraphClass struct {
 // An interface definition for the [TextParagraph] class.
 type ITextParagraph interface {
 	ITextElement
+	AttributedString() foundation.AttributedString
+	SetAttributedString(value foundation.IAttributedString)
+	ParagraphContentRange() NSTextRange
+	SetParagraphContentRange(value ITextRange)
+	ParagraphSeparatorRange() NSTextRange
+	SetParagraphSeparatorRange(value ITextRange)
 }
 
 // A class that represents a single paragraph backed by an attributed string as the contents.

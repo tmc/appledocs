@@ -30,6 +30,16 @@ type _TextElementClass struct {
 // An interface definition for the [TextElement] class.
 type ITextElement interface {
 	objectivec.IObject
+	ChildElements() NSTextElement
+	SetChildElements(value ITextElement)
+	ElementRange() NSTextRange
+	SetElementRange(value ITextRange)
+	IsRepresentedElement() bool
+	SetIsRepresentedElement(value bool)
+	Parent() NSTextElement
+	SetParent(value ITextElement)
+	TextContentManager() NSTextContentManager
+	SetTextContentManager(value ITextContentManager)
 }
 
 // An abstract base class that represents the smallest units of text layout such as paragraphs or attachments.

@@ -32,6 +32,48 @@ type _TouchBarClass struct {
 type ITouchBar interface {
 	objectivec.IObject
 	ItemForIdentifier(identifier ITouchBarItemIdentifier) TouchBarItem
+	CustomizationAllowedItemIdentifiers() []string
+	SetCustomizationAllowedItemIdentifiers(value []string)
+	CustomizationIdentifier() TouchBarCustomizationIdentifier
+	SetCustomizationIdentifier(value ITouchBarCustomizationIdentifier)
+	CustomizationRequiredItemIdentifiers() []string
+	SetCustomizationRequiredItemIdentifiers(value []string)
+	DefaultItemIdentifiers() []string
+	SetDefaultItemIdentifiers(value []string)
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	EscapeKeyReplacementItemIdentifier() TouchBarItemIdentifier
+	SetEscapeKeyReplacementItemIdentifier(value ITouchBarItemIdentifier)
+	Visible() bool
+	ItemIdentifiers() []string
+	PrincipalItemIdentifier() TouchBarItemIdentifier
+	SetPrincipalItemIdentifier(value ITouchBarItemIdentifier)
+	TemplateItems() unsafe.Pointer
+	SetTemplateItems(value unsafe.Pointer)
+	IsAutomaticCustomizeTouchBarMenuItemEnabled() bool
+	SetIsAutomaticCustomizeTouchBarMenuItemEnabled(value bool)
+	BezelColor() NSColor
+	SetBezelColor(value IColor)
+	AllowedTouchTypes() TouchTypeMask
+	SetAllowedTouchTypes(value TouchTypeMask)
+	GroupTouchBar() NSTouchBar
+	SetGroupTouchBar(value ITouchBar)
+	PopoverTouchBar() NSTouchBar
+	SetPopoverTouchBar(value ITouchBar)
+	PressAndHoldTouchBar() NSTouchBar
+	SetPressAndHoldTouchBar(value ITouchBar)
+	SelectedSegmentBezelColor() NSColor
+	SetSelectedSegmentBezelColor(value IColor)
+	TrackFillColor() NSColor
+	SetTrackFillColor(value IColor)
+	IsVisible() bool
+	SetIsVisible(value bool)
+	CustomizationLabel() string
+	SetCustomizationLabel(value string)
+	TouchBar() NSTouchBar
+	SetTouchBar(value ITouchBar)
+	AcceptsTouchEvents() bool
+	SetAcceptsTouchEvents(value bool)
 }
 
 // An object that provides dynamic contextual controls in the Touch Bar of supported models of MacBook Pro.

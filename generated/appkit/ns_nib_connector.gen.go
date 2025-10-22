@@ -32,6 +32,12 @@ type INibConnector interface {
 	objectivec.IObject
 	EstablishConnection()
 	ReplaceObjectWithObject(oldObject objectivec.IObject, newObject objectivec.IObject)
+	Destination() objc.ID
+	SetDestination(value objc.ID)
+	Label() string
+	SetLabel(value string)
+	Source() objc.ID
+	SetSource(value objc.ID)
 }
 
 // A connection between two nibs.

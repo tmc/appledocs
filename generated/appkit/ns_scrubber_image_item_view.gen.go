@@ -29,6 +29,11 @@ type _ScrubberImageItemViewClass struct {
 // An interface definition for the [ScrubberImageItemView] class.
 type IScrubberImageItemView interface {
 	IScrubberItemView
+	ImageAlignment() unsafe.Pointer
+	SetImageAlignment(value unsafe.Pointer)
+	ImageView() NSImageView
+	Image() Image
+	SetImage(value IImage)
 }
 
 // A concrete view subclass for displaying images in a scrubber items.

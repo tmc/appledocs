@@ -29,6 +29,14 @@ type _ToolbarItemGroupClass struct {
 // An interface definition for the [ToolbarItemGroup] class.
 type IToolbarItemGroup interface {
 	IToolbarItem
+	SelectedIndex() int
+	SetSelectedIndex(value int)
+	ControlRepresentation() unsafe.Pointer
+	SetControlRepresentation(value unsafe.Pointer)
+	SelectionMode() unsafe.Pointer
+	SetSelectionMode(value unsafe.Pointer)
+	Subitems() NSToolbarItem
+	SetSubitems(value IToolbarItem)
 }
 
 // A group of subitems in a toolbar item.

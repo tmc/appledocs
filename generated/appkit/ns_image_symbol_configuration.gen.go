@@ -31,6 +31,8 @@ type _ImageSymbolConfigurationClass struct {
 type IImageSymbolConfiguration interface {
 	objectivec.IObject
 	ConfigurationByApplyingConfiguration(configuration IImageSymbolConfiguration) unsafe.Pointer
+	SymbolConfiguration() ImageSymbolConfiguration
+	SetSymbolConfiguration(value IImageSymbolConfiguration)
 }
 
 // An object that contains the specific font, style, and weight attributes to apply to a symbol image.

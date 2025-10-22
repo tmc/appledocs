@@ -42,6 +42,11 @@ type IPasteboardItem interface {
 	SetPropertyListForType(propertyList objectivec.IObject, type_ PasteboardType) bool
 	SetStringForType(string_ string, type_ PasteboardType) bool
 	StringForType(type_ PasteboardType) foundation.String
+	CollaborationMetadata() unsafe.Pointer
+	SetCollaborationMetadata(value unsafe.Pointer)
+	Types() []string
+	PasteboardItems() NSPasteboardItem
+	SetPasteboardItems(value IPasteboardItem)
 }
 
 // An item on a pasteboard.

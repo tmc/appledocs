@@ -30,6 +30,22 @@ type _OpenPanelClass struct {
 // An interface definition for the [OpenPanel] class.
 type IOpenPanel interface {
 	ISavePanel
+	CanChooseFiles() bool
+	SetCanChooseFiles(value bool)
+	AllowsMultipleSelection() bool
+	SetAllowsMultipleSelection(value bool)
+	CanChooseDirectories() bool
+	SetCanChooseDirectories(value bool)
+	CanDownloadUbiquitousContents() bool
+	SetCanDownloadUbiquitousContents(value bool)
+	CanResolveUbiquitousConflicts() bool
+	SetCanResolveUbiquitousConflicts(value bool)
+	IsAccessoryViewDisclosed() bool
+	SetIsAccessoryViewDisclosed(value bool)
+	ResolvesAliases() bool
+	SetResolvesAliases(value bool)
+	Urls() foundation.URL
+	SetUrls(value foundation.IURL)
 }
 
 // A panel that prompts the user to select a file to open.

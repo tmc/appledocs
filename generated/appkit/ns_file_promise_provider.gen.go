@@ -30,6 +30,12 @@ type _FilePromiseProviderClass struct {
 // An interface definition for the [FilePromiseProvider] class.
 type IFilePromiseProvider interface {
 	objectivec.IObject
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	FileType() string
+	SetFileType(value string)
+	UserInfo() objc.ID
+	SetUserInfo(value objc.ID)
 }
 
 // An object that provides a promise for the pasteboard.

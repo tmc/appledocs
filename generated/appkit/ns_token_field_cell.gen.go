@@ -30,6 +30,14 @@ type _TokenFieldCellClass struct {
 // An interface definition for the [TokenFieldCell] class.
 type ITokenFieldCell interface {
 	ITextFieldCell
+	TokenStyle() TokenStyle
+	SetTokenStyle(value TokenStyle)
+	CompletionDelay() unsafe.Pointer
+	SetCompletionDelay(value unsafe.Pointer)
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
+	TokenizingCharacterSet() foundation.CharacterSet
+	SetTokenizingCharacterSet(value foundation.ICharacterSet)
 }
 
 // A text field cell subclass that enables tokenized editing of an array of objects.

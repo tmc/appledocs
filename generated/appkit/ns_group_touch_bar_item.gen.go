@@ -29,6 +29,20 @@ type _GroupTouchBarItemClass struct {
 // An interface definition for the [GroupTouchBarItem] class.
 type IGroupTouchBarItem interface {
 	ITouchBarItem
+	GroupTouchBar() NSTouchBar
+	SetGroupTouchBar(value ITouchBar)
+	CustomizationLabel() string
+	SetCustomizationLabel(value string)
+	EffectiveCompressionOptions() NSUserInterfaceCompressionOptions
+	SetEffectiveCompressionOptions(value NSUserInterfaceCompressionOptions)
+	GroupUserInterfaceLayoutDirection() UserInterfaceLayoutDirection
+	SetGroupUserInterfaceLayoutDirection(value UserInterfaceLayoutDirection)
+	PreferredItemWidth() float64
+	SetPreferredItemWidth(value float64)
+	PrefersEqualWidths() bool
+	SetPrefersEqualWidths(value bool)
+	PrioritizedCompressionOptions() NSUserInterfaceCompressionOptions
+	SetPrioritizedCompressionOptions(value NSUserInterfaceCompressionOptions)
 }
 
 // A bar item that provides a bar to contain other items.

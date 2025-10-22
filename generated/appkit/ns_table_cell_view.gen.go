@@ -29,6 +29,17 @@ type _TableCellViewClass struct {
 // An interface definition for the [TableCellView] class.
 type ITableCellView interface {
 	IView
+	BackgroundStyle() BackgroundStyle
+	SetBackgroundStyle(value BackgroundStyle)
+	DraggingImageComponents() []DraggingImageComponent
+	ImageView() NSImageView
+	SetImageView(value IImageView)
+	ObjectValue() objc.ID
+	SetObjectValue(value objc.ID)
+	RowSizeStyle() TableViewRowSizeStyle
+	SetRowSizeStyle(value TableViewRowSizeStyle)
+	TextField() NSTextField
+	SetTextField(value ITextField)
 }
 
 // A reusable container view shown for a particular cell in a table view that uses rows for content.

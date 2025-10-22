@@ -30,6 +30,11 @@ type _CustomImageRepClass struct {
 // An interface definition for the [CustomImageRep] class.
 type ICustomImageRep interface {
 	IImageRep
+	Delegate() objc.ID
+	DrawSelector() unsafe.Pointer
+	SetDrawSelector(value unsafe.Pointer)
+	DrawingHandler() bool
+	SetDrawingHandler(value bool)
 }
 
 // An object that uses a delegate object to render an image from a custom format.

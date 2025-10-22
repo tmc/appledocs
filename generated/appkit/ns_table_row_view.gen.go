@@ -35,6 +35,44 @@ type ITableRowView interface {
 	DrawSelectionInRect(dirtyRect coregraphics.CGRect)
 	DrawSeparatorInRect(dirtyRect coregraphics.CGRect)
 	ViewAtColumn(column int) objc.ID
+	BackgroundColor() NSColor
+	SetBackgroundColor(value IColor)
+	DraggingDestinationFeedbackStyle() TableViewDraggingDestinationFeedbackStyle
+	SetDraggingDestinationFeedbackStyle(value TableViewDraggingDestinationFeedbackStyle)
+	IndentationForDropOperation() float64
+	SetIndentationForDropOperation(value float64)
+	InteriorBackgroundStyle() BackgroundStyle
+	Emphasized() bool
+	SetEmphasized(value bool)
+	Floating() bool
+	SetFloating(value bool)
+	GroupRowStyle() bool
+	SetGroupRowStyle(value bool)
+	NextRowSelected() bool
+	SetNextRowSelected(value bool)
+	PreviousRowSelected() bool
+	SetPreviousRowSelected(value bool)
+	Selected() bool
+	SetSelected(value bool)
+	TargetForDropOperation() bool
+	SetTargetForDropOperation(value bool)
+	NumberOfColumns() int
+	SelectionHighlightStyle() unsafe.Pointer
+	SetSelectionHighlightStyle(value unsafe.Pointer)
+	IsEmphasized() bool
+	SetIsEmphasized(value bool)
+	IsFloating() bool
+	SetIsFloating(value bool)
+	IsGroupRowStyle() bool
+	SetIsGroupRowStyle(value bool)
+	IsNextRowSelected() bool
+	SetIsNextRowSelected(value bool)
+	IsPreviousRowSelected() bool
+	SetIsPreviousRowSelected(value bool)
+	IsSelected() bool
+	SetIsSelected(value bool)
+	IsTargetForDropOperation() bool
+	SetIsTargetForDropOperation(value bool)
 }
 
 // The view shown for a row in a table view.

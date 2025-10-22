@@ -30,6 +30,14 @@ type _CollectionLayoutEdgeSpacingClass struct {
 // An interface definition for the [CollectionLayoutEdgeSpacing] class.
 type ICollectionLayoutEdgeSpacing interface {
 	objectivec.IObject
+	Bottom() unsafe.Pointer
+	SetBottom(value unsafe.Pointer)
+	Leading() unsafe.Pointer
+	SetLeading(value unsafe.Pointer)
+	Top() unsafe.Pointer
+	SetTop(value unsafe.Pointer)
+	Trailing() unsafe.Pointer
+	SetTrailing(value unsafe.Pointer)
 }
 
 // An object that defines the space around the edges of items in a collection view.

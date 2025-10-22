@@ -30,6 +30,14 @@ type _TableViewRowActionClass struct {
 // An interface definition for the [TableViewRowAction] class.
 type ITableViewRowAction interface {
 	objectivec.IObject
+	BackgroundColor() NSColor
+	SetBackgroundColor(value IColor)
+	Image() Image
+	SetImage(value IImage)
+	Style() unsafe.Pointer
+	SetStyle(value unsafe.Pointer)
+	Title() string
+	SetTitle(value string)
 }
 
 // A single action to present when the user swipes horizontally on a table row.

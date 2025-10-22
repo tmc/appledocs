@@ -33,6 +33,25 @@ type IWritingToolsCoordinator interface {
 	objectivec.IObject
 	UpdateForReflowedTextInContextWithIdentifier(contextID foundation.IUUID)
 	UpdateRangeWithTextReasonForContextWithIdentifier(range_ foundation.IRange, replacementText foundation.IAttributedString, reason unsafe.Pointer, contextID foundation.IUUID)
+	Behavior() WritingToolsBehavior
+	DecorationContainerView() NSView
+	SetDecorationContainerView(value IView)
+	EffectContainerView() NSView
+	SetEffectContainerView(value IView)
+	PreferredBehavior() WritingToolsBehavior
+	SetPreferredBehavior(value WritingToolsBehavior)
+	PreferredResultOptions() WritingToolsResultOptions
+	SetPreferredResultOptions(value WritingToolsResultOptions)
+	ResultOptions() WritingToolsResultOptions
+	State() WritingToolsCoordinatorState
+	WritingToolsCoordinator() NSWritingToolsCoordinator
+	SetWritingToolsCoordinator(value IWritingToolsCoordinator)
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
+	IncludesTextListMarkers() bool
+	SetIncludesTextListMarkers(value bool)
+	View() NSView
+	SetView(value IView)
 }
 
 // An object that manages interactions between Writing Tools and your custom text view.

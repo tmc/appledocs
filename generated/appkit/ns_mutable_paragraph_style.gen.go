@@ -29,6 +29,50 @@ type _MutableParagraphStyleClass struct {
 // An interface definition for the [MutableParagraphStyle] class.
 type IMutableParagraphStyle interface {
 	IParagraphStyle
+	Alignment() TextAlignment
+	SetAlignment(value TextAlignment)
+	AllowsDefaultTighteningForTruncation() bool
+	SetAllowsDefaultTighteningForTruncation(value bool)
+	BaseWritingDirection() WritingDirection
+	SetBaseWritingDirection(value WritingDirection)
+	DefaultTabInterval() float64
+	SetDefaultTabInterval(value float64)
+	FirstLineHeadIndent() float64
+	SetFirstLineHeadIndent(value float64)
+	HeadIndent() float64
+	SetHeadIndent(value float64)
+	HeaderLevel() int
+	SetHeaderLevel(value int)
+	HyphenationFactor() float32
+	SetHyphenationFactor(value float32)
+	LineBreakMode() LineBreakMode
+	SetLineBreakMode(value LineBreakMode)
+	LineBreakStrategy() LineBreakStrategy
+	SetLineBreakStrategy(value LineBreakStrategy)
+	LineHeightMultiple() float64
+	SetLineHeightMultiple(value float64)
+	LineSpacing() float64
+	SetLineSpacing(value float64)
+	MaximumLineHeight() float64
+	SetMaximumLineHeight(value float64)
+	MinimumLineHeight() float64
+	SetMinimumLineHeight(value float64)
+	ParagraphSpacing() float64
+	SetParagraphSpacing(value float64)
+	ParagraphSpacingBefore() float64
+	SetParagraphSpacingBefore(value float64)
+	TabStops() NSTextTab
+	SetTabStops(value ITextTab)
+	TailIndent() float64
+	SetTailIndent(value float64)
+	TextBlocks() NSTextBlock
+	SetTextBlocks(value ITextBlock)
+	TextLists() NSTextList
+	SetTextLists(value ITextList)
+	TighteningFactorForTruncation() float32
+	SetTighteningFactorForTruncation(value float32)
+	UsesDefaultHyphenation() bool
+	SetUsesDefaultHyphenation(value bool)
 }
 
 // An object for changing the values of the subattributes in a paragraph style attribute.

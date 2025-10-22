@@ -43,6 +43,21 @@ type ISplitView interface {
 	SetHoldingPriorityForSubviewAtIndex(priority LayoutPriority, subviewIndex int)
 	SetIsPaneSplitter(flag bool)
 	SetPositionOfDividerAtIndex(position float64, dividerIndex int)
+	ArrangedSubviews() []View
+	ArrangesAllSubviews() bool
+	SetArrangesAllSubviews(value bool)
+	AutosaveName() SplitViewAutosaveName
+	SetAutosaveName(value ISplitViewAutosaveName)
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	DividerColor() NSColor
+	DividerStyle() SplitViewDividerStyle
+	SetDividerStyle(value SplitViewDividerStyle)
+	DividerThickness() float64
+	Vertical() bool
+	SetVertical(value bool)
+	IsVertical() bool
+	SetIsVertical(value bool)
 }
 
 // A view that arranges two or more views in a linear stack running horizontally or vertically.

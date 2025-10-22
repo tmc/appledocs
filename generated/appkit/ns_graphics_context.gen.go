@@ -37,6 +37,26 @@ type IGraphicsContext interface {
 	RestoreGraphicsState()
 	SaveGraphicsState()
 	SetFocusStack(stack objectivec.IObject)
+	Attributes() unsafe.Pointer
+	CGContext() coregraphics.CGContextRef
+	CIContext() coreimage.Context
+	ColorRenderingIntent() ColorRenderingIntent
+	SetColorRenderingIntent(value IColorRenderingIntent)
+	CompositingOperation() CompositingOperation
+	SetCompositingOperation(value ICompositingOperation)
+	GraphicsPort() unsafe.Pointer
+	ImageInterpolation() ImageInterpolation
+	SetImageInterpolation(value IImageInterpolation)
+	DrawingToScreen() bool
+	Flipped() bool
+	PatternPhase() coregraphics.CGPoint
+	SetPatternPhase(value coregraphics.CGPoint)
+	ShouldAntialias() bool
+	SetShouldAntialias(value bool)
+	IsDrawingToScreen() bool
+	SetIsDrawingToScreen(value bool)
+	IsFlipped() bool
+	SetIsFlipped(value bool)
 }
 
 // An object that represents a graphics context.

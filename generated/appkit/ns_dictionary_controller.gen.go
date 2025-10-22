@@ -29,6 +29,22 @@ type _DictionaryControllerClass struct {
 // An interface definition for the [DictionaryController] class.
 type IDictionaryController interface {
 	IArrayController
+	ArrangedObjects() unsafe.Pointer
+	SetArrangedObjects(value unsafe.Pointer)
+	ExcludedKeys() string
+	SetExcludedKeys(value string)
+	IncludedKeys() string
+	SetIncludedKeys(value string)
+	InitialKey() string
+	SetInitialKey(value string)
+	InitialValue() unsafe.Pointer
+	SetInitialValue(value unsafe.Pointer)
+	LocalizedKeyDictionary() string
+	SetLocalizedKeyDictionary(value string)
+	LocalizedKeyTable() string
+	SetLocalizedKeyTable(value string)
+	Content() unsafe.Pointer
+	SetContent(value unsafe.Pointer)
 }
 
 // A bindings-compatible controller that manages the display and editing of a dictionary of key-value pairs.

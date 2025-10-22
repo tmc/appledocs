@@ -31,6 +31,18 @@ type _DraggingSessionClass struct {
 // An interface definition for the [DraggingSession] class.
 type IDraggingSession interface {
 	objectivec.IObject
+	AnimatesToStartingPositionsOnCancelOrFail() bool
+	SetAnimatesToStartingPositionsOnCancelOrFail(value bool)
+	DraggingFormation() unsafe.Pointer
+	SetDraggingFormation(value unsafe.Pointer)
+	DraggingLeaderIndex() int
+	SetDraggingLeaderIndex(value int)
+	DraggingLocation() coregraphics.CGPoint
+	SetDraggingLocation(value coregraphics.CGPoint)
+	DraggingPasteboard() NSPasteboard
+	SetDraggingPasteboard(value IPasteboard)
+	DraggingSequenceNumber() int
+	SetDraggingSequenceNumber(value int)
 }
 
 // The encapsulation of a drag-and-drop action that supports modification of the drag while in progress.

@@ -29,6 +29,14 @@ type _TextTableClass struct {
 // An interface definition for the [TextTable] class.
 type ITextTable interface {
 	ITextBlock
+	CollapsesBorders() bool
+	SetCollapsesBorders(value bool)
+	HidesEmptyCells() bool
+	SetHidesEmptyCells(value bool)
+	LayoutAlgorithm() unsafe.Pointer
+	SetLayoutAlgorithm(value unsafe.Pointer)
+	NumberOfColumns() int
+	SetNumberOfColumns(value int)
 }
 
 // An object that represents a text table as a whole.

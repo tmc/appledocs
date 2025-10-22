@@ -30,6 +30,8 @@ type _ViewAnimationClass struct {
 // An interface definition for the [ViewAnimation] class.
 type IViewAnimation interface {
 	IAnimation
+	ViewAnimations() coreml.Key
+	SetViewAnimations(value coreml.IKey)
 }
 
 // An animation of an app’s views, limited to changes in frame location and size, and to fade-in and fade-out effects.

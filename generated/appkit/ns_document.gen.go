@@ -129,6 +129,65 @@ type IDocument interface {
 	WriteToURLOfTypeError(url foundation.IURL, typeName string, outError unsafe.Pointer) bool
 	WriteToURLOfTypeForSaveOperationOriginalContentsURLError(url foundation.IURL, typeName string, saveOperation SaveOperationType, absoluteOriginalContentsURL foundation.IURL, outError unsafe.Pointer) bool
 	WriteSafelyToURLOfTypeForSaveOperationError(url foundation.IURL, typeName string, saveOperation SaveOperationType, outError unsafe.Pointer) bool
+	AllowsDocumentSharing() bool
+	AutosavedContentsFileURL() foundation.URL
+	SetAutosavedContentsFileURL(value foundation.IURL)
+	AutosavingFileType() string
+	AutosavingIsImplicitlyCancellable() bool
+	BackupFileURL() foundation.URL
+	DisplayName() string
+	SetDisplayName(value string)
+	FileModificationDate() foundation.NSDate
+	SetFileModificationDate(value foundation.IDate)
+	FileNameExtensionWasHiddenInLastRunSavePanel() bool
+	FileType() string
+	SetFileType(value string)
+	FileTypeFromLastRunSavePanel() string
+	FileURL() foundation.URL
+	SetFileURL(value foundation.IURL)
+	HasUnautosavedChanges() bool
+	HasUndoManager() bool
+	SetHasUndoManager(value bool)
+	BrowsingVersions() bool
+	DocumentEdited() bool
+	Draft() bool
+	SetDraft(value bool)
+	EntireFileLoaded() bool
+	InViewingMode() bool
+	Locked() bool
+	KeepBackupFile() bool
+	LastComponentOfFileName() string
+	SetLastComponentOfFileName(value string)
+	ObjectSpecifier() foundation.ScriptObjectSpecifier
+	ObservedPresentedItemUbiquityAttributes() unsafe.Pointer
+	PDFPrintOperation() NSPrintOperation
+	PresentedItemURL() foundation.URL
+	PreviewRepresentableActivityItems() []objc.ID
+	SetPreviewRepresentableActivityItems(value []objc.ID)
+	PrintInfo() NSPrintInfo
+	SetPrintInfo(value IPrintInfo)
+	SavePanelShowsFileFormatsControl() bool
+	ShouldRunSavePanelWithAccessoryView() bool
+	UndoManager() foundation.UndoManager
+	SetUndoManager(value foundation.IUndoManager)
+	UserActivity() foundation.UserActivity
+	SetUserActivity(value foundation.IUserActivity)
+	WindowControllers() []WindowController
+	WindowForSheet() NSWindow
+	WindowNibName() NibName
+	IsBrowsingVersions() bool
+	SetIsBrowsingVersions(value bool)
+	IsDocumentEdited() bool
+	SetIsDocumentEdited(value bool)
+	IsDraft() bool
+	SetIsDraft(value bool)
+	IsEntireFileLoaded() bool
+	SetIsEntireFileLoaded(value bool)
+	IsInViewingMode() bool
+	SetIsInViewingMode(value bool)
+	IsLocked() bool
+	SetIsLocked(value bool)
+	NSUserActivityDocumentURLKey() string
 }
 
 // An abstract class that defines the interface for macOS documents.

@@ -30,6 +30,10 @@ type _PathComponentCellClass struct {
 // An interface definition for the [PathComponentCell] class.
 type IPathComponentCell interface {
 	ITextFieldCell
+	Image() Image
+	SetImage(value IImage)
+	Url() foundation.URL
+	SetUrl(value foundation.IURL)
 }
 
 // A component of a path.

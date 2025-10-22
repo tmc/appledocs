@@ -33,6 +33,25 @@ type ISearchField interface {
 	RectForCancelButtonWhenCentered(isCentered bool) coregraphics.CGRect
 	RectForSearchButtonWhenCentered(isCentered bool) coregraphics.CGRect
 	RectForSearchTextWhenCentered(isCentered bool) coregraphics.CGRect
+	CancelButtonBounds() coregraphics.CGRect
+	CentersPlaceholder() bool
+	SetCentersPlaceholder(value bool)
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	MaximumRecents() int
+	SetMaximumRecents(value int)
+	RecentSearches() []string
+	SetRecentSearches(value []string)
+	RecentsAutosaveName() SearchFieldRecentsAutosaveName
+	SetRecentsAutosaveName(value ISearchFieldRecentsAutosaveName)
+	SearchButtonBounds() coregraphics.CGRect
+	SearchMenuTemplate() NSMenu
+	SetSearchMenuTemplate(value IMenu)
+	SearchTextBounds() coregraphics.CGRect
+	SendsSearchStringImmediately() bool
+	SetSendsSearchStringImmediately(value bool)
+	SendsWholeSearchString() bool
+	SetSendsWholeSearchString(value bool)
 }
 
 // A text field optimized for performing text-based searches.

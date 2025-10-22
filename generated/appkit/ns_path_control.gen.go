@@ -30,6 +30,30 @@ type _PathControlClass struct {
 // An interface definition for the [PathControl] class.
 type IPathControl interface {
 	IControl
+	AllowedTypes() string
+	SetAllowedTypes(value string)
+	BackgroundColor() NSColor
+	SetBackgroundColor(value IColor)
+	ClickedPathItem() unsafe.Pointer
+	SetClickedPathItem(value unsafe.Pointer)
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
+	DoubleAction() unsafe.Pointer
+	SetDoubleAction(value unsafe.Pointer)
+	IsEditable() bool
+	SetIsEditable(value bool)
+	Menu() NSMenu
+	SetMenu(value IMenu)
+	PathItems() unsafe.Pointer
+	SetPathItems(value unsafe.Pointer)
+	PathStyle() unsafe.Pointer
+	SetPathStyle(value unsafe.Pointer)
+	PlaceholderAttributedString() foundation.AttributedString
+	SetPlaceholderAttributedString(value foundation.IAttributedString)
+	PlaceholderString() string
+	SetPlaceholderString(value string)
+	Url() foundation.URL
+	SetUrl(value foundation.IURL)
 }
 
 // A display of a file system path or virtual path information.

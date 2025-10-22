@@ -30,6 +30,23 @@ type _ItemBadgeClass struct {
 // An interface definition for the [ItemBadge] class.
 type IItemBadge interface {
 	objectivec.IObject
+	Text() string
+	IsBordered() bool
+	SetIsBordered(value bool)
+	IsEnabled() bool
+	SetIsEnabled(value bool)
+	IsHidden() bool
+	SetIsHidden(value bool)
+	IsNavigational() bool
+	SetIsNavigational(value bool)
+	IsVisible() bool
+	SetIsVisible(value bool)
+	Style() unsafe.Pointer
+	SetStyle(value unsafe.Pointer)
+	Tag() int
+	SetTag(value int)
+	VisibilityPriority() unsafe.Pointer
+	SetVisibilityPriority(value unsafe.Pointer)
 }
 
 // represents a badge that can be attached to an .

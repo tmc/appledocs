@@ -30,6 +30,32 @@ type _PathCellClass struct {
 // An interface definition for the [PathCell] class.
 type IPathCell interface {
 	IActionCell
+	ControlSize() ControlSize
+	SetControlSize(value IControlSize)
+	IsEditable() bool
+	SetIsEditable(value bool)
+	IsSelectable() bool
+	SetIsSelectable(value bool)
+	AllowedTypes() string
+	SetAllowedTypes(value string)
+	BackgroundColor() NSColor
+	SetBackgroundColor(value IColor)
+	ClickedPathComponentCell() NSPathComponentCell
+	SetClickedPathComponentCell(value IPathComponentCell)
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
+	DoubleAction() unsafe.Pointer
+	SetDoubleAction(value unsafe.Pointer)
+	PathComponentCells() NSPathComponentCell
+	SetPathComponentCells(value IPathComponentCell)
+	PathStyle() unsafe.Pointer
+	SetPathStyle(value unsafe.Pointer)
+	PlaceholderAttributedString() foundation.AttributedString
+	SetPlaceholderAttributedString(value foundation.IAttributedString)
+	PlaceholderString() string
+	SetPlaceholderString(value string)
+	Url() foundation.URL
+	SetUrl(value foundation.IURL)
 }
 
 // The user interface of a path control object.

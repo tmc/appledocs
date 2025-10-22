@@ -37,6 +37,14 @@ type ISplitViewController interface {
 	ToggleInspector(sender objectivec.IObject)
 	ToggleSidebar(sender objectivec.IObject)
 	ViewDidLoad()
+	MinimumThicknessForInlineSidebars() float64
+	SetMinimumThicknessForInlineSidebars(value float64)
+	SplitView() NSSplitView
+	SetSplitView(value ISplitView)
+	SplitViewItems() []SplitViewItem
+	SetSplitViewItems(value []SplitViewItem)
+	IsVertical() bool
+	SetIsVertical(value bool)
 }
 
 // An object that manages an array of adjacent child views, and has a split view object for managing dividers between those views.

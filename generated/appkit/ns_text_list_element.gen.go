@@ -31,6 +31,18 @@ type _TextListElementClass struct {
 // An interface definition for the [TextListElement] class.
 type ITextListElement interface {
 	ITextParagraph
+	AttributedString() foundation.AttributedString
+	SetAttributedString(value foundation.IAttributedString)
+	ChildElements() NSTextListElement
+	SetChildElements(value ITextListElement)
+	Contents() foundation.AttributedString
+	SetContents(value foundation.IAttributedString)
+	MarkerAttributes() coreml.Key
+	SetMarkerAttributes(value coreml.IKey)
+	Parent() NSTextListElement
+	SetParent(value ITextListElement)
+	TextList() NSTextList
+	SetTextList(value ITextList)
 }
 
 // A class that represents a text list node.

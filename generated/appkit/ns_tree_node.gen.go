@@ -31,6 +31,19 @@ type _TreeNodeClass struct {
 // An interface definition for the [TreeNode] class.
 type ITreeNode interface {
 	objectivec.IObject
+	ChildNodes() []TreeNode
+	Children() NSTreeNode
+	SetChildren(value ITreeNode)
+	IndexPath() foundation.IndexPath
+	SetIndexPath(value foundation.IIndexPath)
+	IsLeaf() bool
+	SetIsLeaf(value bool)
+	MutableChildren() foundation.MutableArray
+	SetMutableChildren(value foundation.IMutableArray)
+	Parent() NSTreeNode
+	SetParent(value ITreeNode)
+	RepresentedObject() unsafe.Pointer
+	SetRepresentedObject(value unsafe.Pointer)
 }
 
 // A node in a tree of nodes.

@@ -31,6 +31,12 @@ type _CollectionViewUpdateItemClass struct {
 // An interface definition for the [CollectionViewUpdateItem] class.
 type ICollectionViewUpdateItem interface {
 	objectivec.IObject
+	IndexPathAfterUpdate() foundation.IndexPath
+	SetIndexPathAfterUpdate(value foundation.IIndexPath)
+	IndexPathBeforeUpdate() foundation.IndexPath
+	SetIndexPathBeforeUpdate(value foundation.IIndexPath)
+	UpdateAction() unsafe.Pointer
+	SetUpdateAction(value unsafe.Pointer)
 }
 
 // A description of a single change to make to an item in a collection view.

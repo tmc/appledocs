@@ -72,6 +72,48 @@ type ICollectionView interface {
 	ToggleSectionCollapse(sender objectivec.IObject)
 	VisibleItems() []CollectionViewItem
 	VisibleSupplementaryViewsOfKind(elementKind CollectionViewSupplementaryElementKind) []View
+	AllowsEmptySelection() bool
+	SetAllowsEmptySelection(value bool)
+	AllowsMultipleSelection() bool
+	SetAllowsMultipleSelection(value bool)
+	BackgroundColors() []Color
+	SetBackgroundColors(value []Color)
+	BackgroundView() NSView
+	SetBackgroundView(value IView)
+	BackgroundViewScrollsWithContent() bool
+	SetBackgroundViewScrollsWithContent(value bool)
+	CollectionViewLayout() NSCollectionViewLayout
+	SetCollectionViewLayout(value ICollectionViewLayout)
+	Content() []objc.ID
+	SetContent(value []objc.ID)
+	DataSource() objc.ID
+	SetDataSource(value objc.ID)
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	FirstResponder() bool
+	Selectable() bool
+	SetSelectable(value bool)
+	ItemPrototype() NSCollectionViewItem
+	SetItemPrototype(value ICollectionViewItem)
+	MaxItemSize() coregraphics.CGSize
+	SetMaxItemSize(value coregraphics.CGSize)
+	MaxNumberOfColumns() uint
+	SetMaxNumberOfColumns(value uint)
+	MaxNumberOfRows() uint
+	SetMaxNumberOfRows(value uint)
+	MinItemSize() coregraphics.CGSize
+	SetMinItemSize(value coregraphics.CGSize)
+	NumberOfSections() int
+	PrefetchDataSource() objc.ID
+	SetPrefetchDataSource(value objc.ID)
+	SelectionIndexPaths() unsafe.Pointer
+	SetSelectionIndexPaths(value unsafe.Pointer)
+	SelectionIndexes() foundation.IndexSet
+	SetSelectionIndexes(value foundation.IIndexSet)
+	IsFirstResponder() bool
+	SetIsFirstResponder(value bool)
+	IsSelectable() bool
+	SetIsSelectable(value bool)
 }
 
 // An ordered collection of data items displayed in a customizable layout.

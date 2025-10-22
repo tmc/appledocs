@@ -29,6 +29,14 @@ type _BrowserCellClass struct {
 // An interface definition for the [BrowserCell] class.
 type IBrowserCell interface {
 	ICell
+	AlternateImage() Image
+	SetAlternateImage(value IImage)
+	Image() Image
+	SetImage(value IImage)
+	IsLeaf() bool
+	SetIsLeaf(value bool)
+	IsLoaded() bool
+	SetIsLoaded(value bool)
 }
 
 // The user interface of a browser.

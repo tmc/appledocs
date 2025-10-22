@@ -32,6 +32,12 @@ type _ShadowClass struct {
 type IShadow interface {
 	objectivec.IObject
 	Set()
+	ShadowBlurRadius() float64
+	SetShadowBlurRadius(value float64)
+	ShadowColor() NSColor
+	SetShadowColor(value IColor)
+	ShadowOffset() coregraphics.CGSize
+	SetShadowOffset(value coregraphics.CGSize)
 }
 
 // An object you use to specify attributes to create and style a drop shadow during drawing operations.

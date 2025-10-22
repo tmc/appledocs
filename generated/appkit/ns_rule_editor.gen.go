@@ -46,6 +46,35 @@ type IRuleEditor interface {
 	SelectRowIndexesByExtendingSelection(indexes foundation.IIndexSet, extend bool)
 	SetCriteriaAndDisplayValuesForRowAtIndex(criteria objectivec.IObject, values objectivec.IObject, rowIndex int)
 	SubrowIndexesForRow(rowIndex int) foundation.IndexSet
+	CanRemoveAllRows() bool
+	SetCanRemoveAllRows(value bool)
+	CriteriaKeyPath() string
+	SetCriteriaKeyPath(value string)
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	DisplayValuesKeyPath() string
+	SetDisplayValuesKeyPath(value string)
+	FormattingDictionary() unsafe.Pointer
+	SetFormattingDictionary(value unsafe.Pointer)
+	FormattingStringsFilename() string
+	SetFormattingStringsFilename(value string)
+	Editable() bool
+	SetEditable(value bool)
+	NestingMode() RuleEditorNestingMode
+	SetNestingMode(value RuleEditorNestingMode)
+	NumberOfRows() int
+	Predicate() foundation.Predicate
+	RowClass() objc.Class
+	SetRowClass(value objc.Class)
+	RowHeight() float64
+	SetRowHeight(value float64)
+	RowTypeKeyPath() string
+	SetRowTypeKeyPath(value string)
+	SelectedRowIndexes() foundation.IndexSet
+	SubrowsKeyPath() string
+	SetSubrowsKeyPath(value string)
+	IsEditable() bool
+	SetIsEditable(value bool)
 }
 
 // An interface for configuring a rule-based list of options.

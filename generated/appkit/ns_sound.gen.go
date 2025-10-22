@@ -38,6 +38,21 @@ type ISound interface {
 	SetChannelMapping(channelMapping objectivec.IObject)
 	Stop() bool
 	WriteToPasteboard(pasteboard IPasteboard)
+	CurrentTime() float64
+	SetCurrentTime(value float64)
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	Duration() float64
+	Playing() bool
+	Loops() bool
+	SetLoops(value bool)
+	Name() SoundName
+	PlaybackDeviceIdentifier() SoundPlaybackDeviceIdentifier
+	SetPlaybackDeviceIdentifier(value ISoundPlaybackDeviceIdentifier)
+	Volume() float32
+	SetVolume(value float32)
+	IsPlaying() bool
+	SetIsPlaying(value bool)
 }
 
 // A simple interface for loading and playing audio files.

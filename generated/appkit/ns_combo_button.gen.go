@@ -29,6 +29,20 @@ type _ComboButtonClass struct {
 // An interface definition for the [ComboButton] class.
 type IComboButton interface {
 	IControl
+	Image() Image
+	SetImage(value IImage)
+	ImageScaling() ImageScaling
+	SetImageScaling(value ImageScaling)
+	Menu() NSMenu
+	SetMenu(value IMenu)
+	Style() unsafe.Pointer
+	SetStyle(value unsafe.Pointer)
+	Title() string
+	SetTitle(value string)
+	Action() unsafe.Pointer
+	SetAction(value unsafe.Pointer)
+	Target() unsafe.Pointer
+	SetTarget(value unsafe.Pointer)
 }
 
 // A button with a pull-down menu and a default action.

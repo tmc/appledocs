@@ -31,6 +31,26 @@ type _SliderCellClass struct {
 type ISliderCell interface {
 	IActionCell
 	KnobRectFlipped(flipped bool) coregraphics.CGRect
+	SliderType() SliderType
+	SetSliderType(value SliderType)
+	AllowsTickMarkValuesOnly() bool
+	SetAllowsTickMarkValuesOnly(value bool)
+	AltIncrementValue() float64
+	SetAltIncrementValue(value float64)
+	IsVertical() bool
+	SetIsVertical(value bool)
+	KnobThickness() float64
+	SetKnobThickness(value float64)
+	MaxValue() float64
+	SetMaxValue(value float64)
+	MinValue() float64
+	SetMinValue(value float64)
+	NumberOfTickMarks() int
+	SetNumberOfTickMarks(value int)
+	TickMarkPosition() unsafe.Pointer
+	SetTickMarkPosition(value unsafe.Pointer)
+	TrackRect() coregraphics.CGRect
+	SetTrackRect(value coregraphics.CGRect)
 }
 
 // The appearance and behavior of an object.

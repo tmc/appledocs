@@ -29,6 +29,8 @@ type _SecureTextFieldCellClass struct {
 // An interface definition for the [SecureTextFieldCell] class.
 type ISecureTextFieldCell interface {
 	ITextFieldCell
+	EchosBullets() bool
+	SetEchosBullets(value bool)
 }
 
 // A text field whose value is hidden from the user.

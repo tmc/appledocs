@@ -30,6 +30,9 @@ type _OpenGLPixelFormatClass struct {
 // An interface definition for the [OpenGLPixelFormat] class.
 type IOpenGLPixelFormat interface {
 	objectivec.IObject
+	CGLPixelFormatObj() unsafe.Pointer
+	NumberOfVirtualScreens() unsafe.Pointer
+	SetNumberOfVirtualScreens(value unsafe.Pointer)
 }
 
 // An object that specifies the types of buffers and other attributes of the OpenGL context.

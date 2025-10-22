@@ -32,6 +32,13 @@ type _ColorListClass struct {
 type IColorList interface {
 	objectivec.IObject
 	WriteToURLError(url foundation.IURL, errPtr unsafe.Pointer) bool
+	Editable() bool
+	AllKeys() unsafe.Pointer
+	SetAllKeys(value unsafe.Pointer)
+	IsEditable() bool
+	SetIsEditable(value bool)
+	Name() unsafe.Pointer
+	SetName(value unsafe.Pointer)
 }
 
 // An ordered list of color objects, identified by keys.

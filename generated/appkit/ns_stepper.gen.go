@@ -29,6 +29,16 @@ type _StepperClass struct {
 // An interface definition for the [Stepper] class.
 type IStepper interface {
 	IControl
+	ValueWraps() bool
+	SetValueWraps(value bool)
+	Autorepeat() bool
+	SetAutorepeat(value bool)
+	Increment() float64
+	SetIncrement(value float64)
+	MaxValue() float64
+	SetMaxValue(value float64)
+	MinValue() float64
+	SetMinValue(value float64)
 }
 
 // An interface with up and down arrow buttons for incrementing or decrementing a value.

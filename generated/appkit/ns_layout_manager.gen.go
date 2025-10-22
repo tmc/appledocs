@@ -35,6 +35,48 @@ type ILayoutManager interface {
 	AddTemporaryAttributeValueForCharacterRange(attrName unsafe.Pointer, value objectivec.IObject, charRange foundation.IRange)
 	AddTemporaryAttributesForCharacterRange(attrs unsafe.Pointer, charRange foundation.IRange)
 	RemoveTemporaryAttributeForCharacterRange(attrName unsafe.Pointer, charRange foundation.IRange)
+	TypesetterBehavior() unsafe.Pointer
+	SetTypesetterBehavior(value unsafe.Pointer)
+	AllowsNonContiguousLayout() bool
+	SetAllowsNonContiguousLayout(value bool)
+	BackgroundLayoutEnabled() bool
+	SetBackgroundLayoutEnabled(value bool)
+	DefaultAttachmentScaling() ImageScaling
+	SetDefaultAttachmentScaling(value ImageScaling)
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
+	ExtraLineFragmentRect() coregraphics.CGRect
+	SetExtraLineFragmentRect(value coregraphics.CGRect)
+	ExtraLineFragmentTextContainer() NSTextContainer
+	SetExtraLineFragmentTextContainer(value ITextContainer)
+	ExtraLineFragmentUsedRect() coregraphics.CGRect
+	SetExtraLineFragmentUsedRect(value coregraphics.CGRect)
+	FirstTextView() NSTextView
+	SetFirstTextView(value ITextView)
+	GlyphGenerator() NSGlyphGenerator
+	SetGlyphGenerator(value IGlyphGenerator)
+	HasNonContiguousLayout() bool
+	SetHasNonContiguousLayout(value bool)
+	LimitsLayoutForSuspiciousContents() bool
+	SetLimitsLayoutForSuspiciousContents(value bool)
+	NumberOfGlyphs() int
+	SetNumberOfGlyphs(value int)
+	ShowsControlCharacters() bool
+	SetShowsControlCharacters(value bool)
+	ShowsInvisibleCharacters() bool
+	SetShowsInvisibleCharacters(value bool)
+	TextContainers() NSTextContainer
+	SetTextContainers(value ITextContainer)
+	TextStorage() NSTextStorage
+	SetTextStorage(value ITextStorage)
+	TextViewForBeginningOfSelection() NSTextView
+	SetTextViewForBeginningOfSelection(value ITextView)
+	Typesetter() NSTypesetter
+	SetTypesetter(value ITypesetter)
+	UsesDefaultHyphenation() bool
+	SetUsesDefaultHyphenation(value bool)
+	UsesFontLeading() bool
+	SetUsesFontLeading(value bool)
 }
 
 // An object that coordinates the layout and display of text characters.

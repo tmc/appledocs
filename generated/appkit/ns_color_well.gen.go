@@ -31,6 +31,26 @@ type _ColorWellClass struct {
 type IColorWell interface {
 	IControl
 	TakeColorFrom(sender objectivec.IObject)
+	ColorWellStyle() ColorWellStyle
+	SetColorWellStyle(value ColorWellStyle)
+	Image() Image
+	SetImage(value IImage)
+	Bordered() bool
+	SetBordered(value bool)
+	PulldownTarget() objc.ID
+	SetPulldownTarget(value objc.ID)
+	SupportsAlpha() bool
+	SetSupportsAlpha(value bool)
+	Color() NSColor
+	SetColor(value IColor)
+	IsActive() bool
+	SetIsActive(value bool)
+	IsBordered() bool
+	SetIsBordered(value bool)
+	MaximumLinearExposure() float64
+	SetMaximumLinearExposure(value float64)
+	PulldownAction() unsafe.Pointer
+	SetPulldownAction(value unsafe.Pointer)
 }
 
 // A control that displays a color value and lets the user change that color value.

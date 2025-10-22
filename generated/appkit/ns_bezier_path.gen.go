@@ -67,6 +67,33 @@ type IBezierPath interface {
 	SetLineDashCountPhase(pattern coregraphics.float64, count int, phase float64)
 	Stroke()
 	TransformUsingAffineTransform(transform coregraphics.IAffineTransform)
+	Bounds() coregraphics.CGRect
+	CGPath() coregraphics.CGPathRef
+	SetCGPath(value coregraphics.CGPathRef)
+	ControlPointBounds() coregraphics.CGRect
+	CurrentPoint() coregraphics.CGPoint
+	ElementCount() int
+	Flatness() float64
+	SetFlatness(value float64)
+	BezierPathByFlatteningPath() NSBezierPath
+	Empty() bool
+	LineCapStyle() LineCapStyle
+	SetLineCapStyle(value LineCapStyle)
+	LineJoinStyle() LineJoinStyle
+	SetLineJoinStyle(value LineJoinStyle)
+	LineWidth() float64
+	SetLineWidth(value float64)
+	MiterLimit() float64
+	SetMiterLimit(value float64)
+	BezierPathByReversingPath() NSBezierPath
+	WindingRule() WindingRule
+	SetWindingRule(value IWindingRule)
+	Flattened() NSBezierPath
+	SetFlattened(value IBezierPath)
+	IsEmpty() bool
+	SetIsEmpty(value bool)
+	Reversed() NSBezierPath
+	SetReversed(value IBezierPath)
 }
 
 // An object that can create paths using PostScript-style commands.

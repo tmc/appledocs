@@ -38,6 +38,52 @@ type ISavePanel interface {
 	Ok(sender objectivec.IObject)
 	RunModal() ModalResponse
 	ValidateVisibleColumns()
+	AccessoryView() NSView
+	SetAccessoryView(value IView)
+	AllowedContentTypes() []uniformtypeidentifiers.UTType
+	SetAllowedContentTypes(value []uniformtypeidentifiers.UTType)
+	AllowsOtherFileTypes() bool
+	SetAllowsOtherFileTypes(value bool)
+	CanCreateDirectories() bool
+	SetCanCreateDirectories(value bool)
+	CanSelectHiddenExtension() bool
+	SetCanSelectHiddenExtension(value bool)
+	CurrentContentType() unsafe.Pointer
+	SetCurrentContentType(value unsafe.Pointer)
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	DirectoryURL() foundation.URL
+	SetDirectoryURL(value foundation.IURL)
+	Identifier() UserInterfaceItemIdentifier
+	SetIdentifier(value IUserInterfaceItemIdentifier)
+	Expanded() bool
+	ExtensionHidden() bool
+	SetExtensionHidden(value bool)
+	Message() string
+	SetMessage(value string)
+	NameFieldLabel() string
+	SetNameFieldLabel(value string)
+	NameFieldStringValue() string
+	SetNameFieldStringValue(value string)
+	Prompt() string
+	SetPrompt(value string)
+	ShowsContentTypes() bool
+	SetShowsContentTypes(value bool)
+	ShowsHiddenFiles() bool
+	SetShowsHiddenFiles(value bool)
+	ShowsTagField() bool
+	SetShowsTagField(value bool)
+	TagNames() []string
+	SetTagNames(value []string)
+	Title() string
+	SetTitle(value string)
+	TreatsFilePackagesAsDirectories() bool
+	SetTreatsFilePackagesAsDirectories(value bool)
+	URL() foundation.URL
+	IsExpanded() bool
+	SetIsExpanded(value bool)
+	IsExtensionHidden() bool
+	SetIsExtensionHidden(value bool)
 }
 
 // A panel that prompts the user for information about where to save a file.

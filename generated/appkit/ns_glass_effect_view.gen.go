@@ -29,6 +29,14 @@ type _GlassEffectViewClass struct {
 // An interface definition for the [GlassEffectView] class.
 type IGlassEffectView interface {
 	IView
+	ContentView() NSView
+	SetContentView(value IView)
+	CornerRadius() float64
+	SetCornerRadius(value float64)
+	Style() GlassEffectViewStyle
+	SetStyle(value GlassEffectViewStyle)
+	TintColor() NSColor
+	SetTintColor(value IColor)
 }
 
 // A view that embeds its content view in a dynamic glass effect.

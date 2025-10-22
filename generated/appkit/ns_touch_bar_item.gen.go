@@ -30,6 +30,29 @@ type _TouchBarItemClass struct {
 // An interface definition for the [TouchBarItem] class.
 type ITouchBarItem interface {
 	objectivec.IObject
+	CustomizationLabel() string
+	View() NSView
+	ViewController() NSViewController
+	VisibilityPriority() TouchBarItemPriority
+	SetVisibilityPriority(value TouchBarItemPriority)
+	IsContinuous() bool
+	SetIsContinuous(value bool)
+	GroupTouchBar() NSTouchBar
+	SetGroupTouchBar(value ITouchBar)
+	CollapsedRepresentation() NSView
+	SetCollapsedRepresentation(value IView)
+	PopoverTouchBar() NSTouchBar
+	SetPopoverTouchBar(value ITouchBar)
+	PressAndHoldTouchBar() NSTouchBar
+	SetPressAndHoldTouchBar(value ITouchBar)
+	TrackingMode() unsafe.Pointer
+	SetTrackingMode(value unsafe.Pointer)
+	PrincipalItemIdentifier() unsafe.Pointer
+	SetPrincipalItemIdentifier(value unsafe.Pointer)
+	Identifier() unsafe.Pointer
+	SetIdentifier(value unsafe.Pointer)
+	IsVisible() bool
+	SetIsVisible(value bool)
 }
 
 // A UI control shown in the Touch Bar on supported models of MacBook Pro.

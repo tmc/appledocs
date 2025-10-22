@@ -34,6 +34,13 @@ type IUserDefaultsController interface {
 	Revert(sender objectivec.IObject)
 	RevertToInitialValues(sender objectivec.IObject)
 	Save(sender objectivec.IObject)
+	AppliesImmediately() bool
+	SetAppliesImmediately(value bool)
+	Defaults() foundation.UserDefaults
+	HasUnappliedChanges() bool
+	InitialValues() unsafe.Pointer
+	SetInitialValues(value unsafe.Pointer)
+	Values() objc.ID
 }
 
 // A controller that accesses user preference information for your app from the user’s defaults database.

@@ -32,6 +32,18 @@ type _DockTileClass struct {
 type IDockTile interface {
 	objectivec.IObject
 	Display()
+	BadgeLabel() string
+	SetBadgeLabel(value string)
+	ContentView() NSView
+	SetContentView(value IView)
+	Owner() objc.ID
+	ShowsApplicationBadge() bool
+	SetShowsApplicationBadge(value bool)
+	Size() coregraphics.CGSize
+	ApplicationIconImage() Image
+	SetApplicationIconImage(value IImage)
+	DockTile() NSDockTile
+	SetDockTile(value IDockTile)
 }
 
 // The visual representation of your app’s miniaturized windows and app icon as they appear in the Dock.

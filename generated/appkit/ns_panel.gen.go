@@ -29,6 +29,14 @@ type _PanelClass struct {
 // An interface definition for the [Panel] class.
 type IPanel interface {
 	IWindow
+	BecomesKeyOnlyIfNeeded() bool
+	SetBecomesKeyOnlyIfNeeded(value bool)
+	FloatingPanel() bool
+	SetFloatingPanel(value bool)
+	WorksWhenModal() bool
+	SetWorksWhenModal(value bool)
+	IsFloatingPanel() bool
+	SetIsFloatingPanel(value bool)
 }
 
 // A special kind of window that typically performs a function that is auxiliary to the main window.

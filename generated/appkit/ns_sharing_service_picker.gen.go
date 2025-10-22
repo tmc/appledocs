@@ -32,6 +32,10 @@ type _SharingServicePickerClass struct {
 type ISharingServicePicker interface {
 	objectivec.IObject
 	ShowRelativeToRectOfViewPreferredEdge(rect coregraphics.CGRect, view IView, preferredEdge int)
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	StandardShareMenuItem() NSMenuItem
+	SetStandardShareMenuItem(value IMenuItem)
 }
 
 // A list of sharing services that the user can choose from.

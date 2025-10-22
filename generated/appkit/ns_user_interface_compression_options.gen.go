@@ -30,6 +30,8 @@ type _UserInterfaceCompressionOptionsClass struct {
 // An interface definition for the [UserInterfaceCompressionOptions] class.
 type IUserInterfaceCompressionOptions interface {
 	objectivec.IObject
+	IsEmpty() bool
+	SetIsEmpty(value bool)
 }
 
 // An object that specifies how user interface elements resize themselves when space is constrained.

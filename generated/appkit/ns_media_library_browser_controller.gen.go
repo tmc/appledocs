@@ -32,6 +32,14 @@ type _MediaLibraryBrowserControllerClass struct {
 type IMediaLibraryBrowserController interface {
 	objectivec.IObject
 	TogglePanel(sender objectivec.IObject)
+	Frame() coregraphics.CGRect
+	SetFrame(value coregraphics.CGRect)
+	Visible() bool
+	SetVisible(value bool)
+	MediaLibraries() MediaLibrary
+	SetMediaLibraries(value IMediaLibrary)
+	IsVisible() bool
+	SetIsVisible(value bool)
 }
 
 // An object that configures and displays a Media Library Browser panel.

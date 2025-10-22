@@ -30,6 +30,20 @@ type _StepperTouchBarItemClass struct {
 // An interface definition for the [StepperTouchBarItem] class.
 type IStepperTouchBarItem interface {
 	ITouchBarItem
+	MaxValue() float64
+	SetMaxValue(value float64)
+	Action() unsafe.Pointer
+	SetAction(value unsafe.Pointer)
+	CustomizationLabel() string
+	SetCustomizationLabel(value string)
+	Increment() float64
+	SetIncrement(value float64)
+	MinValue() float64
+	SetMinValue(value float64)
+	Target() unsafe.Pointer
+	SetTarget(value unsafe.Pointer)
+	Value() float64
+	SetValue(value float64)
 }
 
 // A bar item that provides a stepper control for incrementing or decrementing a value.

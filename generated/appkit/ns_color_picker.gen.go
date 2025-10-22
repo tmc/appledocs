@@ -33,6 +33,12 @@ type IColorPicker interface {
 	objectivec.IObject
 	AttachColorList(colorList IColorList)
 	ViewSizeChanged(sender objectivec.IObject)
+	ColorPanel() NSColorPanel
+	ProvideNewButtonImage() Image
+	ButtonToolTip() string
+	SetButtonToolTip(value string)
+	MinContentSize() coregraphics.CGSize
+	SetMinContentSize(value coregraphics.CGSize)
 }
 
 // An abstract superclass that implements the default color picking protocol.

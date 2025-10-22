@@ -40,6 +40,27 @@ type IWindowController interface {
 	WindowDidLoad()
 	WindowTitleForDocumentDisplayName(displayName string) foundation.String
 	WindowWillLoad()
+	ContentViewController() NSViewController
+	SetContentViewController(value IViewController)
+	Document() objc.ID
+	SetDocument(value objc.ID)
+	WindowLoaded() bool
+	Owner() objc.ID
+	PreviewRepresentableActivityItems() []objc.ID
+	SetPreviewRepresentableActivityItems(value []objc.ID)
+	ShouldCascadeWindows() bool
+	SetShouldCascadeWindows(value bool)
+	ShouldCloseDocument() bool
+	SetShouldCloseDocument(value bool)
+	Storyboard() NSStoryboard
+	Window() NSWindow
+	SetWindow(value IWindow)
+	WindowFrameAutosaveName() WindowFrameAutosaveName
+	SetWindowFrameAutosaveName(value IWindowFrameAutosaveName)
+	WindowNibName() NibName
+	WindowNibPath() string
+	IsWindowLoaded() bool
+	SetIsWindowLoaded(value bool)
 }
 
 // A controller that manages a window, usually a window stored in a nib file.

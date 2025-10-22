@@ -33,6 +33,18 @@ type _ColorSpaceClass struct {
 // An interface definition for the [ColorSpace] class.
 type IColorSpace interface {
 	objectivec.IObject
+	CgColorSpace() ColorSpace
+	SetCgColorSpace(value IColorSpace)
+	ColorSpaceModel() coreml.Model
+	SetColorSpaceModel(value coreml.IModel)
+	ColorSyncProfile() unsafe.Pointer
+	SetColorSyncProfile(value unsafe.Pointer)
+	IccProfileData() foundation.Data
+	SetIccProfileData(value foundation.IData)
+	LocalizedName() string
+	SetLocalizedName(value string)
+	NumberOfColorComponents() int
+	SetNumberOfColorComponents(value int)
 }
 
 // An object that represents a custom color space.

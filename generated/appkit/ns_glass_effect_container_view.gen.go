@@ -29,6 +29,10 @@ type _GlassEffectContainerViewClass struct {
 // An interface definition for the [GlassEffectContainerView] class.
 type IGlassEffectContainerView interface {
 	IView
+	ContentView() NSView
+	SetContentView(value IView)
+	Spacing() float64
+	SetSpacing(value float64)
 }
 
 // A view that efficiently merges descendant glass effect views together when they are within a specified proximity to each other.

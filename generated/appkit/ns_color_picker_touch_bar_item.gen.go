@@ -29,6 +29,24 @@ type _ColorPickerTouchBarItemClass struct {
 // An interface definition for the [ColorPickerTouchBarItem] class.
 type IColorPickerTouchBarItem interface {
 	ITouchBarItem
+	AllowedColorSpaces() []ColorSpace
+	SetAllowedColorSpaces(value []ColorSpace)
+	ColorList() NSColorList
+	SetColorList(value IColorList)
+	Enabled() bool
+	SetEnabled(value bool)
+	Action() unsafe.Pointer
+	SetAction(value unsafe.Pointer)
+	Color() Color
+	SetColor(value IColor)
+	CustomizationLabel() string
+	SetCustomizationLabel(value string)
+	IsEnabled() bool
+	SetIsEnabled(value bool)
+	ShowsAlpha() bool
+	SetShowsAlpha(value bool)
+	Target() unsafe.Pointer
+	SetTarget(value unsafe.Pointer)
 }
 
 // A bar item that provides a system-defined color picker.

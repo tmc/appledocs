@@ -29,6 +29,14 @@ type _TextInsertionIndicatorClass struct {
 // An interface definition for the [TextInsertionIndicator] class.
 type ITextInsertionIndicator interface {
 	IView
+	AutomaticModeOptions() TextInsertionIndicatorAutomaticModeOptions
+	SetAutomaticModeOptions(value TextInsertionIndicatorAutomaticModeOptions)
+	Color() NSColor
+	SetColor(value IColor)
+	DisplayMode() TextInsertionIndicatorDisplayMode
+	SetDisplayMode(value TextInsertionIndicatorDisplayMode)
+	EffectsViewInserter() unsafe.Pointer
+	SetEffectsViewInserter(value unsafe.Pointer)
 }
 
 // A view that represents the insertion indicator in text.

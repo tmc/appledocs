@@ -32,6 +32,31 @@ type ISlider interface {
 	IControl
 	IndexOfTickMarkAtPoint(point coregraphics.CGPoint) int
 	SetTitleFont(fontObj IFont)
+	Vertical() bool
+	SetVertical(value bool)
+	KnobThickness() float64
+	MaxValue() float64
+	SetMaxValue(value float64)
+	TrackFillColor() NSColor
+	SetTrackFillColor(value IColor)
+	AllowsTickMarkValuesOnly() bool
+	SetAllowsTickMarkValuesOnly(value bool)
+	AltIncrementValue() float64
+	SetAltIncrementValue(value float64)
+	IsVertical() bool
+	SetIsVertical(value bool)
+	MinValue() float64
+	SetMinValue(value float64)
+	NeutralValue() float64
+	SetNeutralValue(value float64)
+	NumberOfTickMarks() int
+	SetNumberOfTickMarks(value int)
+	SliderType() SliderType
+	SetSliderType(value SliderType)
+	TickMarkPosition() unsafe.Pointer
+	SetTickMarkPosition(value unsafe.Pointer)
+	TintProminence() TintProminence
+	SetTintProminence(value ITintProminence)
 }
 
 // A display of a bar representing a continuous range of numerical values and a knob representing the currently selected value.

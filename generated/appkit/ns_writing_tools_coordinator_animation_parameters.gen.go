@@ -30,6 +30,14 @@ type _WritingToolsCoordinatorAnimationParametersClass struct {
 // An interface definition for the [WritingToolsCoordinatorAnimationParameters] class.
 type IWritingToolsCoordinatorAnimationParameters interface {
 	objectivec.IObject
+	CompletionHandler() unsafe.Pointer
+	SetCompletionHandler(value unsafe.Pointer)
+	Delay() float64
+	SetDelay(value float64)
+	Duration() float64
+	SetDuration(value float64)
+	ProgressHandler() unsafe.Pointer
+	SetProgressHandler(value unsafe.Pointer)
 }
 
 // An object you use to configure additional tasks or animations to run alongside the Writing Tools animations.

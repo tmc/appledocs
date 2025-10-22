@@ -31,6 +31,14 @@ type _ScrubberLayoutAttributesClass struct {
 // An interface definition for the [ScrubberLayoutAttributes] class.
 type IScrubberLayoutAttributes interface {
 	objectivec.IObject
+	Alpha() float64
+	SetAlpha(value float64)
+	Frame() coregraphics.CGRect
+	SetFrame(value coregraphics.CGRect)
+	ItemIndex() int
+	SetItemIndex(value int)
+	Hash() int
+	SetHash(value int)
 }
 
 // The layout of a scrubber item.

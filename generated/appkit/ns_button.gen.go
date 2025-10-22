@@ -41,6 +41,65 @@ type IButton interface {
 	SetNextState()
 	SetPeriodicDelayInterval(delay float32, interval float32)
 	SetTitleWithMnemonic(stringWithAmpersand string)
+	ActiveCompressionOptions() NSUserInterfaceCompressionOptions
+	AllowsMixedState() bool
+	SetAllowsMixedState(value bool)
+	AlternateImage() Image
+	SetAlternateImage(value IImage)
+	AlternateTitle() string
+	SetAlternateTitle(value string)
+	AttributedAlternateTitle() foundation.AttributedString
+	SetAttributedAlternateTitle(value foundation.IAttributedString)
+	AttributedTitle() foundation.AttributedString
+	SetAttributedTitle(value foundation.IAttributedString)
+	BezelColor() NSColor
+	SetBezelColor(value IColor)
+	BezelStyle() BezelStyle
+	SetBezelStyle(value BezelStyle)
+	BorderShape() ControlBorderShape
+	SetBorderShape(value IControlBorderShape)
+	ContentTintColor() NSColor
+	SetContentTintColor(value IColor)
+	HasDestructiveAction() bool
+	SetHasDestructiveAction(value bool)
+	Image() Image
+	SetImage(value IImage)
+	ImageHugsTitle() bool
+	SetImageHugsTitle(value bool)
+	ImagePosition() CellImagePosition
+	SetImagePosition(value CellImagePosition)
+	ImageScaling() ImageScaling
+	SetImageScaling(value ImageScaling)
+	Bordered() bool
+	SetBordered(value bool)
+	SpringLoaded() bool
+	SetSpringLoaded(value bool)
+	Transparent() bool
+	SetTransparent(value bool)
+	KeyEquivalent() string
+	SetKeyEquivalent(value string)
+	KeyEquivalentModifierMask() EventModifierFlags
+	SetKeyEquivalentModifierMask(value EventModifierFlags)
+	MaxAcceleratorLevel() int
+	SetMaxAcceleratorLevel(value int)
+	ShowsBorderOnlyWhileMouseInside() bool
+	SetShowsBorderOnlyWhileMouseInside(value bool)
+	Sound() NSSound
+	SetSound(value ISound)
+	State() ControlStateValue
+	SetState(value IControlStateValue)
+	SymbolConfiguration() ImageSymbolConfiguration
+	SetSymbolConfiguration(value IImageSymbolConfiguration)
+	TintProminence() TintProminence
+	SetTintProminence(value ITintProminence)
+	Title() string
+	SetTitle(value string)
+	IsBordered() bool
+	SetIsBordered(value bool)
+	IsSpringLoaded() bool
+	SetIsSpringLoaded(value bool)
+	IsTransparent() bool
+	SetIsTransparent(value bool)
 }
 
 // A control that defines an area on the screen that a user clicks to trigger an action.

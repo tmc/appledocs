@@ -31,6 +31,14 @@ type _AnimationContextClass struct {
 // An interface definition for the [AnimationContext] class.
 type IAnimationContext interface {
 	objectivec.IObject
+	AllowsImplicitAnimation() bool
+	SetAllowsImplicitAnimation(value bool)
+	CompletionHandler() unsafe.Pointer
+	SetCompletionHandler(value unsafe.Pointer)
+	Duration() unsafe.Pointer
+	SetDuration(value unsafe.Pointer)
+	TimingFunction() quartzcore.MediaTimingFunction
+	SetTimingFunction(value quartzcore.IMediaTimingFunction)
 }
 
 // An animation context, which contains information about environment and state.

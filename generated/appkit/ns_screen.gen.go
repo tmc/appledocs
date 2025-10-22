@@ -35,6 +35,32 @@ type IScreen interface {
 	CanRepresentDisplayGamut(displayGamut DisplayGamut) bool
 	DisplayLinkWithTargetSelector(target objectivec.IObject, selector objc.SEL) quartzcore.DisplayLink
 	UserSpaceScaleFactor() float64
+	CGDirectDisplayID() unsafe.Pointer
+	ColorSpace() NSColorSpace
+	Depth() WindowDepth
+	DeviceDescription() unsafe.Pointer
+	Frame() coregraphics.CGRect
+	LastDisplayUpdateTimestamp() float64
+	LocalizedName() string
+	MaximumExtendedDynamicRangeColorComponentValue() float64
+	MaximumFramesPerSecond() int
+	MaximumPotentialExtendedDynamicRangeColorComponentValue() float64
+	MaximumReferenceExtendedDynamicRangeColorComponentValue() float64
+	MinimumRefreshInterval() float64
+	SafeAreaInsets() unsafe.Pointer
+	SupportedWindowDepths() NSWindowDepth
+	AuxiliaryTopLeftArea() coregraphics.CGRect
+	SetAuxiliaryTopLeftArea(value coregraphics.CGRect)
+	AuxiliaryTopRightArea() coregraphics.CGRect
+	SetAuxiliaryTopRightArea(value coregraphics.CGRect)
+	BackingScaleFactor() float64
+	SetBackingScaleFactor(value float64)
+	DisplayUpdateGranularity() unsafe.Pointer
+	SetDisplayUpdateGranularity(value unsafe.Pointer)
+	MaximumRefreshInterval() unsafe.Pointer
+	SetMaximumRefreshInterval(value unsafe.Pointer)
+	VisibleFrame() coregraphics.CGRect
+	SetVisibleFrame(value coregraphics.CGRect)
 }
 
 // An object that describes the attributes of a computer’s monitor or screen.

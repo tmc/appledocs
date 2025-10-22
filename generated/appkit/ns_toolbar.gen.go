@@ -36,6 +36,47 @@ type IToolbar interface {
 	RunCustomizationPalette(sender objectivec.IObject)
 	SetConfigurationFromDictionary(configDict unsafe.Pointer)
 	ValidateVisibleItems()
+	AllowsDisplayModeCustomization() bool
+	SetAllowsDisplayModeCustomization(value bool)
+	AllowsExtensionItems() bool
+	SetAllowsExtensionItems(value bool)
+	AllowsUserCustomization() bool
+	SetAllowsUserCustomization(value bool)
+	AutosavesConfiguration() bool
+	SetAutosavesConfiguration(value bool)
+	CenteredItemIdentifier() ToolbarItemIdentifier
+	SetCenteredItemIdentifier(value IToolbarItemIdentifier)
+	CenteredItemIdentifiers() unsafe.Pointer
+	SetCenteredItemIdentifiers(value unsafe.Pointer)
+	ConfigurationDictionary() unsafe.Pointer
+	CustomizationPaletteIsRunning() bool
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	DisplayMode() ToolbarDisplayMode
+	SetDisplayMode(value ToolbarDisplayMode)
+	FullScreenAccessoryView() NSView
+	SetFullScreenAccessoryView(value IView)
+	FullScreenAccessoryViewMaxHeight() float64
+	SetFullScreenAccessoryViewMaxHeight(value float64)
+	FullScreenAccessoryViewMinHeight() float64
+	SetFullScreenAccessoryViewMinHeight(value float64)
+	Identifier() ToolbarIdentifier
+	Visible() bool
+	SetVisible(value bool)
+	ItemIdentifiers() []string
+	SetItemIdentifiers(value []string)
+	Items() []ToolbarItem
+	SelectedItemIdentifier() ToolbarItemIdentifier
+	SetSelectedItemIdentifier(value IToolbarItemIdentifier)
+	ShowsBaselineSeparator() bool
+	SetShowsBaselineSeparator(value bool)
+	SizeMode() ToolbarSizeMode
+	SetSizeMode(value ToolbarSizeMode)
+	VisibleItems() []ToolbarItem
+	Configuration() string
+	SetConfiguration(value string)
+	IsVisible() bool
+	SetIsVisible(value bool)
 }
 
 // An object that manages the space above your app’s custom content and either below or integrated with the window’s title bar.

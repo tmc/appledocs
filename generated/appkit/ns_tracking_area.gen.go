@@ -31,6 +31,12 @@ type _TrackingAreaClass struct {
 // An interface definition for the [TrackingArea] class.
 type ITrackingArea interface {
 	objectivec.IObject
+	Options() TrackingAreaOptions
+	Owner() objc.ID
+	Rect() coregraphics.CGRect
+	UserInfo() unsafe.Pointer
+	VisibleRect() coregraphics.CGRect
+	SetVisibleRect(value coregraphics.CGRect)
 }
 
 // A region of a view that generates mouse-tracking and cursor-update events when the pointer is over that region.

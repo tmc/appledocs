@@ -33,6 +33,10 @@ type IAppearance interface {
 	objectivec.IObject
 	BestMatchFromAppearancesWithNames(appearances []string) AppearanceName
 	PerformAsCurrentDrawingAppearance(block unsafe.Pointer)
+	AllowsVibrancy() bool
+	Name() AppearanceName
+	Appearance() NSAppearance
+	SetAppearance(value IAppearance)
 }
 
 // An object that manages standard appearance attributes for UI elements in an app.

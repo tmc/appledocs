@@ -30,6 +30,12 @@ type _SearchToolbarItemClass struct {
 type ISearchToolbarItem interface {
 	IToolbarItem
 	BeginSearchInteraction()
+	PreferredWidthForSearchField() float64
+	SetPreferredWidthForSearchField(value float64)
+	ResignsFirstResponderWithCancel() bool
+	SetResignsFirstResponderWithCancel(value bool)
+	SearchField() NSSearchField
+	SetSearchField(value ISearchField)
 }
 
 // A toolbar item that contains a search field optimized for performing text-based searches.

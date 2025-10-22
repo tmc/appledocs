@@ -29,6 +29,21 @@ type _CollectionViewItemClass struct {
 // An interface definition for the [CollectionViewItem] class.
 type ICollectionViewItem interface {
 	IViewController
+	CollectionView() NSCollectionView
+	TextField() NSTextField
+	SetTextField(value ITextField)
+	ItemPrototype() NSCollectionViewItem
+	SetItemPrototype(value ICollectionViewItem)
+	DraggingImageComponents() NSDraggingImageComponent
+	SetDraggingImageComponents(value IDraggingImageComponent)
+	HighlightState() unsafe.Pointer
+	SetHighlightState(value unsafe.Pointer)
+	ImageView() NSImageView
+	SetImageView(value IImageView)
+	IsSelected() bool
+	SetIsSelected(value bool)
+	View() NSView
+	SetView(value IView)
 }
 
 // The visual representation for a single data element in a collection view.

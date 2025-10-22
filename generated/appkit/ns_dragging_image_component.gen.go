@@ -31,6 +31,12 @@ type _DraggingImageComponentClass struct {
 // An interface definition for the [DraggingImageComponent] class.
 type IDraggingImageComponent interface {
 	objectivec.IObject
+	Contents() unsafe.Pointer
+	SetContents(value unsafe.Pointer)
+	Frame() coregraphics.CGRect
+	SetFrame(value coregraphics.CGRect)
+	Key() unsafe.Pointer
+	SetKey(value unsafe.Pointer)
 }
 
 // A single object in a dragging item.

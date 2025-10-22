@@ -32,6 +32,8 @@ type _FilePromiseReceiverClass struct {
 type IFilePromiseReceiver interface {
 	objectivec.IObject
 	ReceivePromisedFilesAtDestinationOptionsOperationQueueReader(destinationDir foundation.IURL, options objectivec.IObject, operationQueue foundation.IOperationQueue, reader unsafe.Pointer)
+	FileNames() []string
+	FileTypes() []string
 }
 
 // An object that receives a file promise from the pasteboard.

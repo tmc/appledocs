@@ -35,6 +35,15 @@ type IPageController interface {
 	NavigateForward(sender objectivec.IObject)
 	NavigateForwardToObject(object objectivec.IObject)
 	TakeSelectedIndexFrom(sender objectivec.IObject)
+	ArrangedObjects() objc.ID
+	SetArrangedObjects(value objc.ID)
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	SelectedIndex() int
+	SetSelectedIndex(value int)
+	SelectedViewController() NSViewController
+	TransitionStyle() PageControllerTransitionStyle
+	SetTransitionStyle(value PageControllerTransitionStyle)
 }
 
 // An object that controls swipe navigation and animations between views or view content.

@@ -31,6 +31,28 @@ type _SharingServiceClass struct {
 // An interface definition for the [SharingService] class.
 type ISharingService interface {
 	objectivec.IObject
+	AccountName() string
+	SetAccountName(value string)
+	AlternateImage() Image
+	SetAlternateImage(value IImage)
+	AttachmentFileURLs() foundation.URL
+	SetAttachmentFileURLs(value foundation.IURL)
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
+	Image() Image
+	SetImage(value IImage)
+	MenuItemTitle() string
+	SetMenuItemTitle(value string)
+	MessageBody() string
+	SetMessageBody(value string)
+	PermanentLink() foundation.URL
+	SetPermanentLink(value foundation.IURL)
+	Recipients() string
+	SetRecipients(value string)
+	Subject() string
+	SetSubject(value string)
+	Title() string
+	SetTitle(value string)
 }
 
 // An object that facilitates the sharing of content with social media services, or with apps like Mail or Safari.

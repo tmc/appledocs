@@ -29,6 +29,26 @@ type _CandidateListTouchBarItemClass struct {
 // An interface definition for the [CandidateListTouchBarItem] class.
 type ICandidateListTouchBarItem interface {
 	ITouchBarItem
+	AttributedStringForCandidate() unsafe.Pointer
+	SetAttributedStringForCandidate(value unsafe.Pointer)
+	Collapsed() bool
+	SetCollapsed(value bool)
+	AllowsCollapsing() bool
+	SetAllowsCollapsing(value bool)
+	AllowsTextInputContextCandidates() bool
+	SetAllowsTextInputContextCandidates(value bool)
+	Candidates() unsafe.Pointer
+	SetCandidates(value unsafe.Pointer)
+	Client() unsafe.Pointer
+	SetClient(value unsafe.Pointer)
+	CustomizationLabel() string
+	SetCustomizationLabel(value string)
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
+	IsCandidateListVisible() bool
+	SetIsCandidateListVisible(value bool)
+	IsCollapsed() bool
+	SetIsCollapsed(value bool)
 }
 
 // A bar item that, along with its delegate, provides a list of textual suggestions for the current text view.

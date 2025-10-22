@@ -43,6 +43,17 @@ type ISpeechSynthesizer interface {
 	StopSpeaking()
 	StopSpeakingAtBoundary(boundary ISpeechBoundary)
 	Voice() SpeechSynthesizerVoiceName
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	Speaking() bool
+	Rate() float32
+	SetRate(value float32)
+	UsesFeedbackWindow() bool
+	SetUsesFeedbackWindow(value bool)
+	Volume() float32
+	SetVolume(value float32)
+	IsSpeaking() bool
+	SetIsSpeaking(value bool)
 }
 
 // The Cocoa interface to speech synthesis in macOS.

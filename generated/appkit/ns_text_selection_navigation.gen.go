@@ -30,6 +30,12 @@ type _TextSelectionNavigationClass struct {
 // An interface definition for the [TextSelectionNavigation] class.
 type ITextSelectionNavigation interface {
 	objectivec.IObject
+	AllowsNonContiguousRanges() bool
+	SetAllowsNonContiguousRanges(value bool)
+	RotatesCoordinateSystemForLayoutOrientation() bool
+	SetRotatesCoordinateSystemForLayoutOrientation(value bool)
+	TextSelectionDataSource() unsafe.Pointer
+	SetTextSelectionDataSource(value unsafe.Pointer)
 }
 
 // An interface you use to expose methods for obtaining results from actions performed on text selections.

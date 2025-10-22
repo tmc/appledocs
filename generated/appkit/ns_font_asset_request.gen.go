@@ -31,6 +31,10 @@ type _FontAssetRequestClass struct {
 // An interface definition for the [FontAssetRequest] class.
 type IFontAssetRequest interface {
 	objectivec.IObject
+	DownloadedFontDescriptors() NSFontDescriptor
+	SetDownloadedFontDescriptors(value IFontDescriptor)
+	Progress() foundation.Progress
+	SetProgress(value foundation.IProgress)
 }
 
 //

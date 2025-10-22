@@ -33,6 +33,24 @@ type ITabViewItem interface {
 	objectivec.IObject
 	DrawLabelInRect(shouldTruncateLabel bool, labelRect coregraphics.CGRect)
 	SizeOfLabel(computeMin bool) coregraphics.CGSize
+	Color() NSColor
+	SetColor(value IColor)
+	Identifier() objc.ID
+	SetIdentifier(value objc.ID)
+	Image() Image
+	SetImage(value IImage)
+	InitialFirstResponder() NSView
+	SetInitialFirstResponder(value IView)
+	Label() string
+	SetLabel(value string)
+	TabState() TabState
+	TabView() NSTabView
+	ToolTip() string
+	SetToolTip(value string)
+	View() NSView
+	SetView(value IView)
+	ViewController() NSViewController
+	SetViewController(value IViewController)
 }
 
 // An item in a tab view.

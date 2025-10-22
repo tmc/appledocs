@@ -43,6 +43,56 @@ type IScrubber interface {
 	ReloadItemsAtIndexes(indexes foundation.IIndexSet)
 	RemoveItemsAtIndexes(indexes foundation.IIndexSet)
 	ScrollItemAtIndexToAlignment(index int, alignment ScrubberAlignment)
+	BackgroundColor() NSColor
+	SetBackgroundColor(value IColor)
+	BackgroundView() NSView
+	SetBackgroundView(value IView)
+	DataSource() objc.ID
+	SetDataSource(value objc.ID)
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	FloatsSelectionViews() bool
+	SetFloatsSelectionViews(value bool)
+	HighlightedIndex() int
+	Continuous() bool
+	SetContinuous(value bool)
+	ItemAlignment() ScrubberAlignment
+	SetItemAlignment(value ScrubberAlignment)
+	Mode() ScrubberMode
+	SetMode(value ScrubberMode)
+	NumberOfItems() int
+	ScrubberLayout() NSScrubberLayout
+	SetScrubberLayout(value IScrubberLayout)
+	SelectedIndex() int
+	SetSelectedIndex(value int)
+	SelectionBackgroundStyle() NSScrubberSelectionStyle
+	SetSelectionBackgroundStyle(value NSScrubberSelectionStyle)
+	SelectionOverlayStyle() NSScrubberSelectionStyle
+	SetSelectionOverlayStyle(value NSScrubberSelectionStyle)
+	ShowsAdditionalContentIndicators() bool
+	SetShowsAdditionalContentIndicators(value bool)
+	ShowsArrowButtons() bool
+	SetShowsArrowButtons(value bool)
+	IsContinuous() bool
+	SetIsContinuous(value bool)
+	ImageAlignment() unsafe.Pointer
+	SetImageAlignment(value unsafe.Pointer)
+	ImageView() NSImageView
+	SetImageView(value IImageView)
+	ScrubberContentSize() coregraphics.CGSize
+	SetScrubberContentSize(value coregraphics.CGSize)
+	ShouldInvalidateLayoutForHighlightChange() bool
+	SetShouldInvalidateLayoutForHighlightChange(value bool)
+	ShouldInvalidateLayoutForSelectionChange() bool
+	SetShouldInvalidateLayoutForSelectionChange(value bool)
+	Alpha() float64
+	SetAlpha(value float64)
+	Frame() coregraphics.CGRect
+	SetFrame(value coregraphics.CGRect)
+	ItemIndex() int
+	SetItemIndex(value int)
+	TextField() NSTextField
+	SetTextField(value ITextField)
 }
 
 // A customizable item picker control for the Touch Bar.

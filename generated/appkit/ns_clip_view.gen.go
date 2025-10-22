@@ -37,6 +37,22 @@ type IClipView interface {
 	ScrollToPoint(newOrigin coregraphics.CGPoint)
 	ViewBoundsChanged(notification foundation.INotification)
 	ViewFrameChanged(notification foundation.INotification)
+	AutomaticallyAdjustsContentInsets() bool
+	SetAutomaticallyAdjustsContentInsets(value bool)
+	BackgroundColor() NSColor
+	SetBackgroundColor(value IColor)
+	ContentInsets() unsafe.Pointer
+	SetContentInsets(value unsafe.Pointer)
+	CopiesOnScroll() bool
+	SetCopiesOnScroll(value bool)
+	DocumentCursor() NSCursor
+	SetDocumentCursor(value ICursor)
+	DocumentRect() coregraphics.CGRect
+	DocumentView() NSView
+	SetDocumentView(value IView)
+	DocumentVisibleRect() coregraphics.CGRect
+	DrawsBackground() bool
+	SetDrawsBackground(value bool)
 }
 
 // An object that clips a document view to a scroll view’s frame.

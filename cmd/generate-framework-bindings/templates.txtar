@@ -434,7 +434,26 @@ type I{{$structName}} interface {
 	{{- end}}
 	{{- end}}
 	{{- end}}
+	{{- range .Properties}}
+	{{- if not .IsClassProperty}}
+	{{- $typeToMap := .Type}}{{if .ObjCType}}{{$typeToMap = .ObjCType}}{{end}}
+	{{- $goType := mapObjCTypeToGo $typeToMap $framework}}
+	{{- $capitalizedName := capitalize .Name}}
+	{{- $conflictsWithParent := propertyConflictsWithParent $className $.SuperClass .Name}}
+	{{- if and (ne $goType "") (not $conflictsWithParent)}}
+	{{$capitalizedName}}() {{$goType}}
+	{{- $isReadOnly := contains .Attributes "readonly"}}
+	{{- if not $isReadOnly}}
+	{{- $setterParamType := typeToInterfaceType $goType}}
+	Set{{$capitalizedName}}(value {{$setterParamType}})
+	{{- end}}
+	{{- end}}
+	{{- end}}
+	{{- end}}
+	// DEBUG: {{len .Properties}} properties
 }
+
+
 
 {{if .Abstract -}}
 // {{commentLine .Abstract}}
@@ -654,6 +673,22 @@ type I{{$structName}} interface {
 	{{- $hasValidReturnType := or $isInitMethod (eq .ReturnType "") (eq .ReturnType "void") (ne $goType "")}}
 	{{- if $hasValidReturnType}}
 	{{.Name}}({{formatMethodParams . $framework}}){{if $isInitMethod}} {{$structName}}{{else}}{{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$goType}}{{end}}{{end}}
+	{{- end}}
+	{{- end}}
+	{{- end}}
+	{{- range .Properties}}
+	{{- if not .IsClassProperty}}
+	{{- $typeToMap := .Type}}{{if .ObjCType}}{{$typeToMap = .ObjCType}}{{end}}
+	{{- $goType := mapObjCTypeToGo $typeToMap $framework}}
+	{{- $capitalizedName := capitalize .Name}}
+	{{- $conflictsWithParent := propertyConflictsWithParent $className $.Class.SuperClass .Name}}
+	{{- if and (ne $goType "") (not $conflictsWithParent)}}
+	{{$capitalizedName}}() {{$goType}}
+	{{- $isReadOnly := contains .Attributes "readonly"}}
+	{{- if not $isReadOnly}}
+	{{- $setterParamType := typeToInterfaceType $goType}}
+	Set{{$capitalizedName}}(value {{$setterParamType}})
+	{{- end}}
 	{{- end}}
 	{{- end}}
 	{{- end}}

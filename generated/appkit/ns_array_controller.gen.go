@@ -30,6 +30,37 @@ type _ArrayControllerClass struct {
 // An interface definition for the [ArrayController] class.
 type IArrayController interface {
 	IObjectController
+	AutomaticRearrangementKeyPaths() []string
+	AlwaysUsesMultipleValuesMarker() bool
+	SetAlwaysUsesMultipleValuesMarker(value bool)
+	ArrangedObjects() unsafe.Pointer
+	SetArrangedObjects(value unsafe.Pointer)
+	AutomaticallyRearrangesObjects() bool
+	SetAutomaticallyRearrangesObjects(value bool)
+	AvoidsEmptySelection() bool
+	SetAvoidsEmptySelection(value bool)
+	CanInsert() bool
+	SetCanInsert(value bool)
+	CanSelectNext() bool
+	SetCanSelectNext(value bool)
+	CanSelectPrevious() bool
+	SetCanSelectPrevious(value bool)
+	ClearsFilterPredicateOnInsertion() bool
+	SetClearsFilterPredicateOnInsertion(value bool)
+	FilterPredicate() foundation.Predicate
+	SetFilterPredicate(value foundation.IPredicate)
+	PreservesSelection() bool
+	SetPreservesSelection(value bool)
+	SelectedObjects() unsafe.Pointer
+	SetSelectedObjects(value unsafe.Pointer)
+	SelectionIndex() int
+	SetSelectionIndex(value int)
+	SelectionIndexes() foundation.IndexSet
+	SetSelectionIndexes(value foundation.IIndexSet)
+	SelectsInsertedObjects() bool
+	SetSelectsInsertedObjects(value bool)
+	SortDescriptors() foundation.SortDescriptor
+	SetSortDescriptors(value foundation.ISortDescriptor)
 }
 
 // A bindings-compatible controller that manages a collection of objects.

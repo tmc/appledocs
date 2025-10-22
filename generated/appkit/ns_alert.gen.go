@@ -34,6 +34,29 @@ type IAlert interface {
 	BeginSheetModalForWindowCompletionHandler(sheetWindow IWindow, handler unsafe.Pointer)
 	BeginSheetModalForWindowModalDelegateDidEndSelectorContextInfo(window IWindow, delegate objectivec.IObject, didEndSelector objc.SEL, contextInfo unsafe.Pointer)
 	RunModal() ModalResponse
+	Buttons() []Button
+	Icon() Image
+	SetIcon(value IImage)
+	AccessoryView() NSView
+	SetAccessoryView(value IView)
+	AlertStyle() unsafe.Pointer
+	SetAlertStyle(value unsafe.Pointer)
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
+	HelpAnchor() unsafe.Pointer
+	SetHelpAnchor(value unsafe.Pointer)
+	InformativeText() string
+	SetInformativeText(value string)
+	MessageText() string
+	SetMessageText(value string)
+	ShowsHelp() bool
+	SetShowsHelp(value bool)
+	ShowsSuppressionButton() bool
+	SetShowsSuppressionButton(value bool)
+	SuppressionButton() NSButton
+	SetSuppressionButton(value IButton)
+	Window() NSWindow
+	SetWindow(value IWindow)
 }
 
 // A modal dialog or sheet attached to a document window.

@@ -36,6 +36,30 @@ type ITextLayoutManager interface {
 	ReplaceTextContentManager(textContentManager ITextContentManager)
 	ReplaceContentsInRangeWithAttributedString(range_ ITextRange, attributedString foundation.IAttributedString)
 	ReplaceContentsInRangeWithTextElements(range_ ITextRange, textElements []TextElement)
+	TextContainer() NSTextContainer
+	SetTextContainer(value ITextContainer)
+	TextContentManager() NSTextContentManager
+	TextSelectionNavigation() NSTextSelectionNavigation
+	SetTextSelectionNavigation(value ITextSelectionNavigation)
+	TextSelections() []TextSelection
+	SetTextSelections(value []TextSelection)
+	UsageBoundsForTextContainer() coregraphics.CGRect
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
+	LayoutQueue() foundation.OperationQueue
+	SetLayoutQueue(value foundation.IOperationQueue)
+	LimitsLayoutForSuspiciousContents() bool
+	SetLimitsLayoutForSuspiciousContents(value bool)
+	RenderingAttributesValidator() unsafe.Pointer
+	SetRenderingAttributesValidator(value unsafe.Pointer)
+	ResolvesNaturalAlignmentWithBaseWritingDirection() bool
+	SetResolvesNaturalAlignmentWithBaseWritingDirection(value bool)
+	TextViewportLayoutController() NSTextViewportLayoutController
+	SetTextViewportLayoutController(value ITextViewportLayoutController)
+	UsesFontLeading() bool
+	SetUsesFontLeading(value bool)
+	UsesHyphenation() bool
+	SetUsesHyphenation(value bool)
 }
 
 // The primary class that you use to manage text layout and presentation for custom text displays.

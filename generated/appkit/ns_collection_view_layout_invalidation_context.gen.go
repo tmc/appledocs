@@ -32,6 +32,20 @@ type _CollectionViewLayoutInvalidationContextClass struct {
 // An interface definition for the [CollectionViewLayoutInvalidationContext] class.
 type ICollectionViewLayoutInvalidationContext interface {
 	objectivec.IObject
+	ContentOffsetAdjustment() coregraphics.CGPoint
+	SetContentOffsetAdjustment(value coregraphics.CGPoint)
+	ContentSizeAdjustment() coregraphics.CGSize
+	SetContentSizeAdjustment(value coregraphics.CGSize)
+	InvalidateDataSourceCounts() bool
+	SetInvalidateDataSourceCounts(value bool)
+	InvalidateEverything() bool
+	SetInvalidateEverything(value bool)
+	InvalidatedDecorationIndexPaths() foundation.IndexPath
+	SetInvalidatedDecorationIndexPaths(value foundation.IIndexPath)
+	InvalidatedItemIndexPaths() foundation.IndexPath
+	SetInvalidatedItemIndexPaths(value foundation.IIndexPath)
+	InvalidatedSupplementaryIndexPaths() foundation.IndexPath
+	SetInvalidatedSupplementaryIndexPaths(value foundation.IIndexPath)
 }
 
 // An object that identifies the portions of your layout that need to be updated.

@@ -29,6 +29,14 @@ type _SwitchClass struct {
 // An interface definition for the [Switch] class.
 type ISwitch interface {
 	IControl
+	Action() unsafe.Pointer
+	SetAction(value unsafe.Pointer)
+	Cell() NSCell
+	SetCell(value ICell)
+	IsContinuous() bool
+	SetIsContinuous(value bool)
+	State() unsafe.Pointer
+	SetState(value unsafe.Pointer)
 }
 
 // A control that offers a binary choice.

@@ -32,6 +32,66 @@ type _ToolbarItemClass struct {
 type IToolbarItem interface {
 	objectivec.IObject
 	Validate()
+	Action() objc.SEL
+	SetAction(value objc.SEL)
+	AllowsDuplicatesInToolbar() bool
+	Autovalidates() bool
+	SetAutovalidates(value bool)
+	BackgroundTintColor() NSColor
+	SetBackgroundTintColor(value IColor)
+	Badge() NSItemBadge
+	SetBadge(value IItemBadge)
+	Image() Image
+	SetImage(value IImage)
+	Bordered() bool
+	SetBordered(value bool)
+	Enabled() bool
+	SetEnabled(value bool)
+	Hidden() bool
+	SetHidden(value bool)
+	Navigational() bool
+	SetNavigational(value bool)
+	Visible() bool
+	ItemIdentifier() ToolbarItemIdentifier
+	ItemMenuFormRepresentation() unsafe.Pointer
+	SetItemMenuFormRepresentation(value unsafe.Pointer)
+	Label() string
+	SetLabel(value string)
+	MaxSize() coregraphics.CGSize
+	SetMaxSize(value coregraphics.CGSize)
+	MenuFormRepresentation() NSMenuItem
+	SetMenuFormRepresentation(value IMenuItem)
+	MinSize() coregraphics.CGSize
+	SetMinSize(value coregraphics.CGSize)
+	PaletteLabel() string
+	SetPaletteLabel(value string)
+	PossibleLabels() unsafe.Pointer
+	SetPossibleLabels(value unsafe.Pointer)
+	Style() ToolbarItemStyle
+	SetStyle(value ToolbarItemStyle)
+	Tag() int
+	SetTag(value int)
+	Target() objc.ID
+	SetTarget(value objc.ID)
+	Title() string
+	SetTitle(value string)
+	ToolTip() string
+	SetToolTip(value string)
+	Toolbar() NSToolbar
+	View() NSView
+	SetView(value IView)
+	VisibilityPriority() ToolbarItemVisibilityPriority
+	SetVisibilityPriority(value ToolbarItemVisibilityPriority)
+	IsBordered() bool
+	SetIsBordered(value bool)
+	IsEnabled() bool
+	SetIsEnabled(value bool)
+	IsHidden() bool
+	SetIsHidden(value bool)
+	IsNavigational() bool
+	SetIsNavigational(value bool)
+	IsVisible() bool
+	SetIsVisible(value bool)
 }
 
 // A single item that appears in a window’s toolbar.

@@ -30,6 +30,44 @@ type _ParagraphStyleClass struct {
 // An interface definition for the [ParagraphStyle] class.
 type IParagraphStyle interface {
 	objectivec.IObject
+	AllowsDefaultTighteningForTruncation() bool
+	HyphenationFactor() float32
+	LineBreakMode() LineBreakMode
+	LineBreakStrategy() LineBreakStrategy
+	TighteningFactorForTruncation() float32
+	UsesDefaultHyphenation() bool
+	Alignment() TextAlignment
+	SetAlignment(value TextAlignment)
+	BaseWritingDirection() WritingDirection
+	SetBaseWritingDirection(value WritingDirection)
+	DefaultTabInterval() float64
+	SetDefaultTabInterval(value float64)
+	FirstLineHeadIndent() float64
+	SetFirstLineHeadIndent(value float64)
+	HeadIndent() float64
+	SetHeadIndent(value float64)
+	HeaderLevel() int
+	SetHeaderLevel(value int)
+	LineHeightMultiple() float64
+	SetLineHeightMultiple(value float64)
+	LineSpacing() float64
+	SetLineSpacing(value float64)
+	MaximumLineHeight() float64
+	SetMaximumLineHeight(value float64)
+	MinimumLineHeight() float64
+	SetMinimumLineHeight(value float64)
+	ParagraphSpacing() float64
+	SetParagraphSpacing(value float64)
+	ParagraphSpacingBefore() float64
+	SetParagraphSpacingBefore(value float64)
+	TabStops() NSTextTab
+	SetTabStops(value ITextTab)
+	TailIndent() float64
+	SetTailIndent(value float64)
+	TextBlocks() NSTextBlock
+	SetTextBlocks(value ITextBlock)
+	TextLists() NSTextList
+	SetTextLists(value ITextList)
 }
 
 // The paragraph or ruler attributes for an attributed string.

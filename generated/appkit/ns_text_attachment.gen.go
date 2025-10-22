@@ -32,6 +32,24 @@ type _TextAttachmentClass struct {
 // An interface definition for the [TextAttachment] class.
 type ITextAttachment interface {
 	objectivec.IObject
+	AllowsTextAttachmentView() bool
+	SetAllowsTextAttachmentView(value bool)
+	AttachmentCell() unsafe.Pointer
+	SetAttachmentCell(value unsafe.Pointer)
+	Bounds() coregraphics.CGRect
+	SetBounds(value coregraphics.CGRect)
+	Contents() foundation.Data
+	SetContents(value foundation.IData)
+	FileType() string
+	SetFileType(value string)
+	FileWrapper() foundation.FileWrapper
+	SetFileWrapper(value foundation.IFileWrapper)
+	Image() Image
+	SetImage(value IImage)
+	LineLayoutPadding() float64
+	SetLineLayoutPadding(value float64)
+	UsesTextAttachmentView() bool
+	SetUsesTextAttachmentView(value bool)
 }
 
 // The values for the attachment characteristics of attributed strings and related objects.

@@ -29,6 +29,16 @@ type _PressGestureRecognizerClass struct {
 // An interface definition for the [PressGestureRecognizer] class.
 type IPressGestureRecognizer interface {
 	IGestureRecognizer
+	MinimumPressDuration() float64
+	SetMinimumPressDuration(value float64)
+	DelaysPrimaryMouseButtonEvents() bool
+	SetDelaysPrimaryMouseButtonEvents(value bool)
+	AllowableMovement() float64
+	SetAllowableMovement(value float64)
+	ButtonMask() int
+	SetButtonMask(value int)
+	NumberOfTouchesRequired() int
+	SetNumberOfTouchesRequired(value int)
 }
 
 // A discrete gesture recognizer that tracks whether the user holds down a mouse button for a minimum amount of time before releasing it.

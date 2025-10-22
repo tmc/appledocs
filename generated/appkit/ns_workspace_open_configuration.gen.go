@@ -31,6 +31,34 @@ type _WorkspaceOpenConfigurationClass struct {
 // An interface definition for the [WorkspaceOpenConfiguration] class.
 type IWorkspaceOpenConfiguration interface {
 	objectivec.IObject
+	Activates() bool
+	SetActivates(value bool)
+	AddsToRecentItems() bool
+	SetAddsToRecentItems(value bool)
+	AllowsRunningApplicationSubstitution() bool
+	SetAllowsRunningApplicationSubstitution(value bool)
+	AppleEvent() foundation.AppleEventDescriptor
+	SetAppleEvent(value foundation.IAppleEventDescriptor)
+	Architecture() unsafe.Pointer
+	SetArchitecture(value unsafe.Pointer)
+	Arguments() []string
+	SetArguments(value []string)
+	CreatesNewApplicationInstance() bool
+	SetCreatesNewApplicationInstance(value bool)
+	Environment() unsafe.Pointer
+	SetEnvironment(value unsafe.Pointer)
+	Hides() bool
+	SetHides(value bool)
+	HidesOthers() bool
+	SetHidesOthers(value bool)
+	ForPrinting() bool
+	SetForPrinting(value bool)
+	RequiresUniversalLinks() bool
+	SetRequiresUniversalLinks(value bool)
+	IsForPrinting() bool
+	SetIsForPrinting(value bool)
+	PromptsUserIfNeeded() bool
+	SetPromptsUserIfNeeded(value bool)
 }
 
 // The configuration options for opening URLs or launching apps.

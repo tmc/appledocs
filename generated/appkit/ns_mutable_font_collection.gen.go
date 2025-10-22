@@ -29,6 +29,10 @@ type _MutableFontCollectionClass struct {
 // An interface definition for the [MutableFontCollection] class.
 type IMutableFontCollection interface {
 	IFontCollection
+	ExclusionDescriptors() NSFontDescriptor
+	SetExclusionDescriptors(value IFontDescriptor)
+	QueryDescriptors() NSFontDescriptor
+	SetQueryDescriptors(value IFontDescriptor)
 }
 
 // A mutable collection of font descriptors taken together as a single object.

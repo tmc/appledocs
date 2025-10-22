@@ -29,6 +29,14 @@ type _ImageCellClass struct {
 // An interface definition for the [ImageCell] class.
 type IImageCell interface {
 	ICell
+	ObjectValue() unsafe.Pointer
+	SetObjectValue(value unsafe.Pointer)
+	ImageAlignment() unsafe.Pointer
+	SetImageAlignment(value unsafe.Pointer)
+	ImageFrameStyle() unsafe.Pointer
+	SetImageFrameStyle(value unsafe.Pointer)
+	ImageScaling() ImageScaling
+	SetImageScaling(value ImageScaling)
 }
 
 // An object displays a single image (encapsulated in an object) in a frame. This class provides methods for choosing the frame and for aligning and scaling the image to fit the frame.

@@ -32,6 +32,22 @@ type ITitlebarAccessoryViewController interface {
 	ViewDidAppear()
 	ViewDidDisappear()
 	ViewWillAppear()
+	AutomaticallyAdjustsSize() bool
+	SetAutomaticallyAdjustsSize(value bool)
+	FullScreenMinHeight() float64
+	SetFullScreenMinHeight(value float64)
+	Hidden() bool
+	SetHidden(value bool)
+	LayoutAttribute() LayoutAttribute
+	SetLayoutAttribute(value LayoutAttribute)
+	PreferredScrollEdgeEffectStyle() NSScrollEdgeEffectStyle
+	SetPreferredScrollEdgeEffectStyle(value NSScrollEdgeEffectStyle)
+	IsHidden() bool
+	SetIsHidden(value bool)
+	FullScreenAccessoryView() NSView
+	SetFullScreenAccessoryView(value IView)
+	View() NSView
+	SetView(value IView)
 }
 
 // An object that manages a custom view—known as an accessory view—in the title bar–toolbar area of a window.

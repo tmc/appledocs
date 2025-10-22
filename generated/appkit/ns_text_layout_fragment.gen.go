@@ -33,6 +33,32 @@ type _TextLayoutFragmentClass struct {
 // An interface definition for the [TextLayoutFragment] class.
 type ITextLayoutFragment interface {
 	objectivec.IObject
+	BottomMargin() float64
+	SetBottomMargin(value float64)
+	LayoutFragmentFrame() coregraphics.CGRect
+	SetLayoutFragmentFrame(value coregraphics.CGRect)
+	LayoutQueue() foundation.OperationQueue
+	SetLayoutQueue(value foundation.IOperationQueue)
+	LeadingPadding() float64
+	SetLeadingPadding(value float64)
+	RangeInElement() NSTextRange
+	SetRangeInElement(value ITextRange)
+	RenderingSurfaceBounds() coregraphics.CGRect
+	SetRenderingSurfaceBounds(value coregraphics.CGRect)
+	State() coreml.State
+	SetState(value coreml.State)
+	TextAttachmentViewProviders() NSTextAttachmentViewProvider
+	SetTextAttachmentViewProviders(value ITextAttachmentViewProvider)
+	TextElement() NSTextElement
+	SetTextElement(value ITextElement)
+	TextLayoutManager() NSTextLayoutManager
+	SetTextLayoutManager(value ITextLayoutManager)
+	TextLineFragments() NSTextLineFragment
+	SetTextLineFragments(value ITextLineFragment)
+	TopMargin() float64
+	SetTopMargin(value float64)
+	TrailingPadding() float64
+	SetTrailingPadding(value float64)
 }
 
 // A class that represents the layout fragment typically corresponding to a rendering surface, such as a layer or view subclass.

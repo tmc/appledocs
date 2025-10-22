@@ -32,6 +32,10 @@ type IStatusBar interface {
 	objectivec.IObject
 	RemoveStatusItem(item IStatusItem)
 	StatusItemWithLength(length float64) StatusItem
+	Vertical() bool
+	Thickness() float64
+	IsVertical() bool
+	SetIsVertical(value bool)
 }
 
 // An object that manages a collection of status items displayed within the system-wide menu bar.

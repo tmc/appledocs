@@ -30,6 +30,12 @@ type _OpenGLLayerClass struct {
 // An interface definition for the [OpenGLLayer] class.
 type IOpenGLLayer interface {
 	objectivec.IObject
+	OpenGLContext() NSOpenGLContext
+	SetOpenGLContext(value IOpenGLContext)
+	OpenGLPixelFormat() NSOpenGLPixelFormat
+	SetOpenGLPixelFormat(value NSOpenGLPixelFormat)
+	View() NSView
+	SetView(value IView)
 }
 
 // A subclass of that is suitable for rendering OpenGL into layers.

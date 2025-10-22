@@ -30,6 +30,12 @@ type _TextRangeClass struct {
 // An interface definition for the [TextRange] class.
 type ITextRange interface {
 	objectivec.IObject
+	EndLocation() unsafe.Pointer
+	SetEndLocation(value unsafe.Pointer)
+	IsEmpty() bool
+	SetIsEmpty(value bool)
+	Location() unsafe.Pointer
+	SetLocation(value unsafe.Pointer)
 }
 
 // A class that represents a contiguous range between two locations inside document contents.

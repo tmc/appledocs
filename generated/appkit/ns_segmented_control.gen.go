@@ -30,6 +30,28 @@ type _SegmentedControlClass struct {
 type ISegmentedControl interface {
 	IControl
 	SelectSegmentWithTag(tag int) bool
+	SelectedSegmentBezelColor() NSColor
+	SetSelectedSegmentBezelColor(value IColor)
+	ActiveCompressionOptions() NSUserInterfaceCompressionOptions
+	SetActiveCompressionOptions(value NSUserInterfaceCompressionOptions)
+	BorderShape() unsafe.Pointer
+	SetBorderShape(value unsafe.Pointer)
+	DoubleValueForSelectedSegment() float64
+	SetDoubleValueForSelectedSegment(value float64)
+	IndexOfSelectedItem() int
+	SetIndexOfSelectedItem(value int)
+	IsSpringLoaded() bool
+	SetIsSpringLoaded(value bool)
+	SegmentCount() int
+	SetSegmentCount(value int)
+	SegmentDistribution() unsafe.Pointer
+	SetSegmentDistribution(value unsafe.Pointer)
+	SegmentStyle() unsafe.Pointer
+	SetSegmentStyle(value unsafe.Pointer)
+	SelectedSegment() int
+	SetSelectedSegment(value int)
+	TrackingMode() unsafe.Pointer
+	SetTrackingMode(value unsafe.Pointer)
 }
 
 // Display one or more buttons in a single horizontal group.

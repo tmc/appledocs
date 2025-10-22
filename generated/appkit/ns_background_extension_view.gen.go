@@ -29,6 +29,10 @@ type _BackgroundExtensionViewClass struct {
 // An interface definition for the [BackgroundExtensionView] class.
 type IBackgroundExtensionView interface {
 	IView
+	AutomaticallyPlacesContentView() bool
+	SetAutomaticallyPlacesContentView(value bool)
+	ContentView() NSView
+	SetContentView(value IView)
 }
 
 // A view that extends content to fill its own bounds.

@@ -30,6 +30,31 @@ type _LayoutConstraintClass struct {
 // An interface definition for the [LayoutConstraint] class.
 type ILayoutConstraint interface {
 	objectivec.IObject
+	SecondItem() objc.ID
+	Constant() float64
+	SetConstant(value float64)
+	FirstAnchor() NSLayoutAnchor
+	SetFirstAnchor(value ILayoutAnchor)
+	FirstAttribute() unsafe.Pointer
+	SetFirstAttribute(value unsafe.Pointer)
+	FirstItem() unsafe.Pointer
+	SetFirstItem(value unsafe.Pointer)
+	Identifier() string
+	SetIdentifier(value string)
+	IsActive() bool
+	SetIsActive(value bool)
+	Multiplier() float64
+	SetMultiplier(value float64)
+	Priority() unsafe.Pointer
+	SetPriority(value unsafe.Pointer)
+	Relation() unsafe.Pointer
+	SetRelation(value unsafe.Pointer)
+	SecondAnchor() NSLayoutAnchor
+	SetSecondAnchor(value ILayoutAnchor)
+	SecondAttribute() unsafe.Pointer
+	SetSecondAttribute(value unsafe.Pointer)
+	ShouldBeArchived() bool
+	SetShouldBeArchived(value bool)
 }
 
 // The relationship between two user interface objects that must be satisfied by the constraint-based layout system.

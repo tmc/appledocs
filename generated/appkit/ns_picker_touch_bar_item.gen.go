@@ -30,6 +30,28 @@ type _PickerTouchBarItemClass struct {
 // An interface definition for the [PickerTouchBarItem] class.
 type IPickerTouchBarItem interface {
 	ITouchBarItem
+	CollapsedRepresentationImage() Image
+	SetCollapsedRepresentationImage(value IImage)
+	CollapsedRepresentationLabel() string
+	SetCollapsedRepresentationLabel(value string)
+	Action() unsafe.Pointer
+	SetAction(value unsafe.Pointer)
+	ControlRepresentation() unsafe.Pointer
+	SetControlRepresentation(value unsafe.Pointer)
+	CustomizationLabel() string
+	SetCustomizationLabel(value string)
+	IsEnabled() bool
+	SetIsEnabled(value bool)
+	NumberOfOptions() int
+	SetNumberOfOptions(value int)
+	SelectedIndex() int
+	SetSelectedIndex(value int)
+	SelectionColor() Color
+	SetSelectionColor(value IColor)
+	SelectionMode() unsafe.Pointer
+	SetSelectionMode(value unsafe.Pointer)
+	Target() unsafe.Pointer
+	SetTarget(value unsafe.Pointer)
 }
 
 // A bar item that provides a picker control with multiple options.

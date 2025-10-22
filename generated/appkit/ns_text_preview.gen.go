@@ -32,6 +32,12 @@ type _TextPreviewClass struct {
 // An interface definition for the [TextPreview] class.
 type ITextPreview interface {
 	objectivec.IObject
+	CandidateRects() foundation.Value
+	SetCandidateRects(value foundation.IValue)
+	PresentationFrame() coregraphics.CGRect
+	SetPresentationFrame(value coregraphics.CGRect)
+	PreviewImage() Image
+	SetPreviewImage(value IImage)
 }
 
 // A snapshot of the text in your view, which the system uses to create user-visible effects.

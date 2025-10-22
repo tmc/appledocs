@@ -32,6 +32,38 @@ type _FontClass struct {
 type IFont interface {
 	objectivec.IObject
 	Set()
+	CoveredCharacterSet() foundation.CharacterSet
+	PrinterFont() NSFont
+	NSControlGlyph() int
+	SetNSControlGlyph(value int)
+	DisplayName() string
+	SetDisplayName(value string)
+	FamilyName() string
+	SetFamilyName(value string)
+	FontDescriptor() NSFontDescriptor
+	SetFontDescriptor(value IFontDescriptor)
+	FontName() string
+	SetFontName(value string)
+	IsFixedPitch() bool
+	SetIsFixedPitch(value bool)
+	IsVertical() bool
+	SetIsVertical(value bool)
+	MostCompatibleStringEncoding() uint
+	SetMostCompatibleStringEncoding(value uint)
+	NumberOfGlyphs() int
+	SetNumberOfGlyphs(value int)
+	PointSize() float64
+	SetPointSize(value float64)
+	Printer() NSFont
+	SetPrinter(value IFont)
+	RenderingMode() FontRenderingMode
+	SetRenderingMode(value FontRenderingMode)
+	Screen() NSFont
+	SetScreen(value IFont)
+	Vertical() NSFont
+	SetVertical(value IFont)
+	NSNullGlyph() int
+	SetNSNullGlyph(value int)
 }
 
 // The representation of a font in an app.

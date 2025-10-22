@@ -31,6 +31,12 @@ type _CollectionViewLayoutClass struct {
 // An interface definition for the [CollectionViewLayout] class.
 type ICollectionViewLayout interface {
 	objectivec.IObject
+	CollectionViewLayout() NSCollectionViewLayout
+	SetCollectionViewLayout(value ICollectionViewLayout)
+	CollectionView() NSCollectionView
+	SetCollectionView(value ICollectionView)
+	CollectionViewContentSize() coregraphics.CGSize
+	SetCollectionViewContentSize(value coregraphics.CGSize)
 }
 
 // An abstract base class that you subclass and use to generate layout information for a collection view.

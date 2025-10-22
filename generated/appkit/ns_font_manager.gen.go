@@ -31,6 +31,22 @@ type _FontManagerClass struct {
 type IFontManager interface {
 	objectivec.IObject
 	SetFontMenu(newMenu IMenu)
+	Action() unsafe.Pointer
+	SetAction(value unsafe.Pointer)
+	AvailableFontFamilies() string
+	SetAvailableFontFamilies(value string)
+	AvailableFonts() string
+	SetAvailableFonts(value string)
+	CurrentFontAction() unsafe.Pointer
+	SetCurrentFontAction(value unsafe.Pointer)
+	IsEnabled() bool
+	SetIsEnabled(value bool)
+	IsMultiple() bool
+	SetIsMultiple(value bool)
+	SelectedFont() NSFont
+	SetSelectedFont(value IFont)
+	Target() unsafe.Pointer
+	SetTarget(value unsafe.Pointer)
 }
 
 // The center of activity for the font-conversion system.

@@ -30,6 +30,10 @@ type _SliderAccessoryClass struct {
 // An interface definition for the [SliderAccessory] class.
 type ISliderAccessory interface {
 	objectivec.IObject
+	Behavior() NSSliderAccessoryBehavior
+	SetBehavior(value NSSliderAccessoryBehavior)
+	IsEnabled() bool
+	SetIsEnabled(value bool)
 }
 
 //

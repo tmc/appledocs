@@ -32,6 +32,9 @@ type IPageLayout interface {
 	objectivec.IObject
 	AccessoryView() View
 	AddAccessoryController(accessoryController IViewController)
+	AccessoryControllers() []ViewController
+	PrintInfo() NSPrintInfo
+	SetPrintInfo(value IPrintInfo)
 }
 
 // A panel that queries the user for information such as paper type and orientation.

@@ -36,6 +36,22 @@ type ISearchFieldCell interface {
 	ResetSearchButtonCell()
 	SearchButtonRectForBounds(rect coregraphics.CGRect) coregraphics.CGRect
 	SearchTextRectForBounds(rect coregraphics.CGRect) coregraphics.CGRect
+	CancelButtonCell() NSButtonCell
+	SetCancelButtonCell(value IButtonCell)
+	MaximumRecents() int
+	SetMaximumRecents(value int)
+	RecentSearches() []string
+	SetRecentSearches(value []string)
+	RecentsAutosaveName() SearchFieldRecentsAutosaveName
+	SetRecentsAutosaveName(value ISearchFieldRecentsAutosaveName)
+	SearchButtonCell() NSButtonCell
+	SetSearchButtonCell(value IButtonCell)
+	SearchMenuTemplate() NSMenu
+	SetSearchMenuTemplate(value IMenu)
+	SendsSearchStringImmediately() bool
+	SetSendsSearchStringImmediately(value bool)
+	SendsWholeSearchString() bool
+	SetSendsWholeSearchString(value bool)
 }
 
 // The programmatic interface for text fields that are used for text-based searches.

@@ -33,6 +33,19 @@ type IWindowTabGroup interface {
 	AddWindow(window IWindow)
 	InsertWindowAtIndex(window IWindow, index int)
 	RemoveWindow(window IWindow)
+	Identifier() WindowTabbingIdentifier
+	OverviewVisible() bool
+	SetOverviewVisible(value bool)
+	TabBarVisible() bool
+	SelectedWindow() NSWindow
+	SetSelectedWindow(value IWindow)
+	Windows() []Window
+	TabGroup() NSWindowTabGroup
+	SetTabGroup(value IWindowTabGroup)
+	IsOverviewVisible() bool
+	SetIsOverviewVisible(value bool)
+	IsTabBarVisible() bool
+	SetIsTabBarVisible(value bool)
 }
 
 // A group of windows that display together as a single tabbed window.

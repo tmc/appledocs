@@ -40,6 +40,11 @@ type IPrinter interface {
 	StatusForTable(tableName string) unsafe.Pointer
 	StringForKeyInTable(key string, table string) foundation.String
 	StringListForKeyInTable(key string, table string) foundation.Array
+	DeviceDescription() unsafe.Pointer
+	LanguageLevel() int
+	Type() unsafe.Pointer
+	Name() string
+	SetName(value string)
 }
 
 // An object that describes a printer’s capabilities.

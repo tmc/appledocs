@@ -63,6 +63,59 @@ type IText interface {
 	Underline(sender objectivec.IObject)
 	Unscript(sender objectivec.IObject)
 	WriteRTFDToFileAtomically(path string, flag bool) bool
+	Alignment() TextAlignment
+	SetAlignment(value TextAlignment)
+	BackgroundColor() NSColor
+	SetBackgroundColor(value IColor)
+	BaseWritingDirection() WritingDirection
+	SetBaseWritingDirection(value WritingDirection)
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	DrawsBackground() bool
+	SetDrawsBackground(value bool)
+	Font() NSFont
+	SetFont(value IFont)
+	ImportsGraphics() bool
+	SetImportsGraphics(value bool)
+	Editable() bool
+	SetEditable(value bool)
+	FieldEditor() bool
+	SetFieldEditor(value bool)
+	HorizontallyResizable() bool
+	SetHorizontallyResizable(value bool)
+	RichText() bool
+	SetRichText(value bool)
+	RulerVisible() bool
+	Selectable() bool
+	SetSelectable(value bool)
+	VerticallyResizable() bool
+	SetVerticallyResizable(value bool)
+	MaxSize() coregraphics.CGSize
+	SetMaxSize(value coregraphics.CGSize)
+	MinSize() coregraphics.CGSize
+	SetMinSize(value coregraphics.CGSize)
+	SelectedRange() foundation.Range
+	SetSelectedRange(value foundation.IRange)
+	String() string
+	SetString(value string)
+	TextColor() NSColor
+	SetTextColor(value IColor)
+	UsesFontPanel() bool
+	SetUsesFontPanel(value bool)
+	IsEditable() bool
+	SetIsEditable(value bool)
+	IsFieldEditor() bool
+	SetIsFieldEditor(value bool)
+	IsHorizontallyResizable() bool
+	SetIsHorizontallyResizable(value bool)
+	IsRichText() bool
+	SetIsRichText(value bool)
+	IsRulerVisible() bool
+	SetIsRulerVisible(value bool)
+	IsSelectable() bool
+	SetIsSelectable(value bool)
+	IsVerticallyResizable() bool
+	SetIsVerticallyResizable(value bool)
 }
 
 // The most general programmatic interface for objects that manage text.

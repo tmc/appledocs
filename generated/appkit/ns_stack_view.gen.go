@@ -45,6 +45,29 @@ type IStackView interface {
 	SetVisibilityPriorityForView(priority StackViewVisibilityPriority, view IView)
 	ViewsInGravity(gravity IStackViewGravity) []View
 	VisibilityPriorityForView(view IView) StackViewVisibilityPriority
+	Alignment() LayoutAttribute
+	SetAlignment(value LayoutAttribute)
+	ArrangedSubviews() []View
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	DetachedViews() []View
+	DetachesHiddenViews() bool
+	SetDetachesHiddenViews(value bool)
+	Distribution() StackViewDistribution
+	SetDistribution(value IStackViewDistribution)
+	EdgeInsets() unsafe.Pointer
+	SetEdgeInsets(value unsafe.Pointer)
+	HasEqualSpacing() bool
+	SetHasEqualSpacing(value bool)
+	Orientation() UserInterfaceLayoutOrientation
+	SetOrientation(value UserInterfaceLayoutOrientation)
+	Spacing() float64
+	SetSpacing(value float64)
+	Views() []View
+	IsHidden() bool
+	SetIsHidden(value bool)
+	UserInterfaceLayoutDirection() UserInterfaceLayoutDirection
+	SetUserInterfaceLayoutDirection(value UserInterfaceLayoutDirection)
 }
 
 // A view that arranges an array of views horizontally or vertically and updates their placement and sizing when the window size changes.

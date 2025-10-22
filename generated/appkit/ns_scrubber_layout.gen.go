@@ -37,6 +37,12 @@ type IScrubberLayout interface {
 	LayoutAttributesForItemsInRect(rect coregraphics.CGRect) unsafe.Pointer
 	PrepareLayout()
 	ShouldInvalidateLayoutForChangeFromVisibleRectToVisibleRect(fromVisibleRect coregraphics.CGRect, toVisibleRect coregraphics.CGRect) bool
+	AutomaticallyMirrorsInRightToLeftLayout() bool
+	Scrubber() NSScrubber
+	ScrubberContentSize() coregraphics.CGSize
+	ShouldInvalidateLayoutForHighlightChange() bool
+	ShouldInvalidateLayoutForSelectionChange() bool
+	VisibleRect() coregraphics.CGRect
 }
 
 // An abstract class that describes the layout of items within a scrubber control.

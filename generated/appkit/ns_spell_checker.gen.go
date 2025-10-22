@@ -40,6 +40,22 @@ type ISpellChecker interface {
 	GuessesForWord(word string) foundation.Array
 	RequestCandidatesForSelectedRangeInStringTypesOptionsInSpellDocumentWithTagCompletionHandler(selectedRange foundation.IRange, stringToCheck string, checkingTypes unsafe.Pointer, options unsafe.Pointer, tag int, completionHandler unsafe.Pointer) int
 	RequestCheckingOfStringRangeTypesOptionsInSpellDocumentWithTagCompletionHandler(stringToCheck string, range_ foundation.IRange, checkingTypes unsafe.Pointer, options unsafe.Pointer, tag int, completionHandler unsafe.Pointer) int
+	AccessoryView() NSView
+	SetAccessoryView(value IView)
+	AutomaticallyIdentifiesLanguages() bool
+	SetAutomaticallyIdentifiesLanguages(value bool)
+	AvailableLanguages() string
+	SetAvailableLanguages(value string)
+	SpellingPanel() NSPanel
+	SetSpellingPanel(value IPanel)
+	SubstitutionsPanel() NSPanel
+	SetSubstitutionsPanel(value IPanel)
+	SubstitutionsPanelAccessoryViewController() NSViewController
+	SetSubstitutionsPanelAccessoryViewController(value IViewController)
+	UserPreferredLanguages() string
+	SetUserPreferredLanguages(value string)
+	UserReplacementsDictionary() string
+	SetUserReplacementsDictionary(value string)
 }
 
 // An interface to the Cocoa spell-checking service.

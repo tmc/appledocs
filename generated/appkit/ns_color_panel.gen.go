@@ -34,6 +34,21 @@ type IColorPanel interface {
 	DetachColorList(colorList IColorList)
 	SetAction(selector objc.SEL)
 	SetTarget(target objectivec.IObject)
+	AccessoryView() NSView
+	SetAccessoryView(value IView)
+	Alpha() float64
+	Color() NSColor
+	SetColor(value IColor)
+	Continuous() bool
+	SetContinuous(value bool)
+	MaximumLinearExposure() float64
+	SetMaximumLinearExposure(value float64)
+	Mode() ColorPanelMode
+	SetMode(value ColorPanelMode)
+	ShowsAlpha() bool
+	SetShowsAlpha(value bool)
+	IsContinuous() bool
+	SetIsContinuous(value bool)
 }
 
 // A standard user interface for selecting color in an app.

@@ -29,6 +29,22 @@ type _LevelIndicatorCellClass struct {
 // An interface definition for the [LevelIndicatorCell] class.
 type ILevelIndicatorCell interface {
 	IActionCell
+	CriticalValue() float64
+	SetCriticalValue(value float64)
+	LevelIndicatorStyle() unsafe.Pointer
+	SetLevelIndicatorStyle(value unsafe.Pointer)
+	MaxValue() float64
+	SetMaxValue(value float64)
+	MinValue() float64
+	SetMinValue(value float64)
+	NumberOfMajorTickMarks() int
+	SetNumberOfMajorTickMarks(value int)
+	NumberOfTickMarks() int
+	SetNumberOfTickMarks(value int)
+	TickMarkPosition() unsafe.Pointer
+	SetTickMarkPosition(value unsafe.Pointer)
+	WarningValue() float64
+	SetWarningValue(value float64)
 }
 
 // is a subclass of that provides several level indicator display styles including: capacity, ranking and relevancy. The capacity style provides both continuous and discrete modes.

@@ -32,6 +32,28 @@ type _PopoverClass struct {
 type IPopover interface {
 	IResponder
 	PerformClose(sender objectivec.IObject)
+	Behavior() PopoverBehavior
+	SetBehavior(value PopoverBehavior)
+	ContentViewController() NSViewController
+	SetContentViewController(value IViewController)
+	EffectiveAppearance() NSAppearance
+	HasFullSizeContent() bool
+	SetHasFullSizeContent(value bool)
+	Shown() bool
+	Animates() bool
+	SetAnimates(value bool)
+	Appearance() NSAppearance
+	SetAppearance(value IAppearance)
+	ContentSize() coregraphics.CGSize
+	SetContentSize(value coregraphics.CGSize)
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
+	IsDetached() bool
+	SetIsDetached(value bool)
+	IsShown() bool
+	SetIsShown(value bool)
+	PositioningRect() coregraphics.CGRect
+	SetPositioningRect(value coregraphics.CGRect)
 }
 
 // A means to display additional content related to existing content on the screen.

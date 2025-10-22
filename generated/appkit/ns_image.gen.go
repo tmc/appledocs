@@ -41,6 +41,46 @@ type IImage interface {
 	DrawInRectFromRectOperationFraction(rect coregraphics.CGRect, fromRect coregraphics.CGRect, op ICompositingOperation, delta float64)
 	LayerContentsForContentsScale(layerContentsScale float64) objc.ID
 	ImageWithSymbolConfiguration(configuration IImageSymbolConfiguration) Image
+	AccessibilityDescription() string
+	SetAccessibilityDescription(value string)
+	AlignmentRect() coregraphics.CGRect
+	SetAlignmentRect(value coregraphics.CGRect)
+	CapInsets() unsafe.Pointer
+	SetCapInsets(value unsafe.Pointer)
+	BackgroundColor() NSColor
+	SetBackgroundColor(value IColor)
+	CacheMode() unsafe.Pointer
+	SetCacheMode(value unsafe.Pointer)
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
+	IsTemplate() bool
+	SetIsTemplate(value bool)
+	IsValid() bool
+	SetIsValid(value bool)
+	Locale() foundation.Locale
+	SetLocale(value foundation.ILocale)
+	MatchesOnMultipleResolution() bool
+	SetMatchesOnMultipleResolution(value bool)
+	MatchesOnlyOnBestFittingAxis() bool
+	SetMatchesOnlyOnBestFittingAxis(value bool)
+	PrefersColorMatch() bool
+	SetPrefersColorMatch(value bool)
+	Representations() NSImageRep
+	SetRepresentations(value IImageRep)
+	ResizingMode() unsafe.Pointer
+	SetResizingMode(value unsafe.Pointer)
+	Size() coregraphics.CGSize
+	SetSize(value coregraphics.CGSize)
+	SymbolConfiguration() ImageSymbolConfiguration
+	SetSymbolConfiguration(value IImageSymbolConfiguration)
+	TiffRepresentation() foundation.Data
+	SetTiffRepresentation(value foundation.IData)
+	UsesEPSOnResolutionMismatch() bool
+	SetUsesEPSOnResolutionMismatch(value bool)
+	Contents() unsafe.Pointer
+	SetContents(value unsafe.Pointer)
+	ContentsGravity() unsafe.Pointer
+	SetContentsGravity(value unsafe.Pointer)
 }
 
 // A high-level interface for manipulating image data.

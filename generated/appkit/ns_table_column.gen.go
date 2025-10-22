@@ -31,6 +31,34 @@ type _TableColumnClass struct {
 // An interface definition for the [TableColumn] class.
 type ITableColumn interface {
 	objectivec.IObject
+	DataCell() objc.ID
+	SetDataCell(value objc.ID)
+	Editable() bool
+	SetEditable(value bool)
+	HeaderCell() NSTableHeaderCell
+	SetHeaderCell(value ITableHeaderCell)
+	HeaderToolTip() string
+	SetHeaderToolTip(value string)
+	Identifier() UserInterfaceItemIdentifier
+	SetIdentifier(value IUserInterfaceItemIdentifier)
+	IsEditable() bool
+	SetIsEditable(value bool)
+	IsHidden() bool
+	SetIsHidden(value bool)
+	MaxWidth() float64
+	SetMaxWidth(value float64)
+	MinWidth() float64
+	SetMinWidth(value float64)
+	ResizingMask() unsafe.Pointer
+	SetResizingMask(value unsafe.Pointer)
+	SortDescriptorPrototype() foundation.SortDescriptor
+	SetSortDescriptorPrototype(value foundation.ISortDescriptor)
+	TableView() NSTableView
+	SetTableView(value ITableView)
+	Title() string
+	SetTitle(value string)
+	Width() float64
+	SetWidth(value float64)
 }
 
 // The display characteristics and identifier for a column in a table view.

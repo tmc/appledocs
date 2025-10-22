@@ -41,6 +41,20 @@ type ITabViewController interface {
 	ToolbarDefaultItemIdentifiers(toolbar IToolbar) []string
 	ToolbarSelectableItemIdentifiers(toolbar IToolbar) []string
 	ViewDidLoad()
+	CanPropagateSelectedChildViewControllerTitle() bool
+	SetCanPropagateSelectedChildViewControllerTitle(value bool)
+	SelectedTabViewItemIndex() int
+	SetSelectedTabViewItemIndex(value int)
+	TabStyle() TabViewControllerTabStyle
+	SetTabStyle(value TabViewControllerTabStyle)
+	TabView() NSTabView
+	SetTabView(value ITabView)
+	TabViewItems() []TabViewItem
+	SetTabViewItems(value []TabViewItem)
+	TransitionOptions() ViewControllerTransitionOptions
+	SetTransitionOptions(value ViewControllerTransitionOptions)
+	Children() NSViewController
+	SetChildren(value IViewController)
 }
 
 // A container view controller that manages a tab view interface, which organizes multiple pages of content but displays only one page at a time.

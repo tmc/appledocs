@@ -31,6 +31,36 @@ type _TextFinderClass struct {
 // An interface definition for the [TextFinder] class.
 type ITextFinder interface {
 	objectivec.IObject
+	FindBarPosition() unsafe.Pointer
+	SetFindBarPosition(value unsafe.Pointer)
+	Client() unsafe.Pointer
+	SetClient(value unsafe.Pointer)
+	FindBarContainer() unsafe.Pointer
+	SetFindBarContainer(value unsafe.Pointer)
+	FindIndicatorNeedsUpdate() bool
+	SetFindIndicatorNeedsUpdate(value bool)
+	IncrementalMatchRanges() foundation.Value
+	SetIncrementalMatchRanges(value foundation.IValue)
+	IncrementalSearchingShouldDimContentView() bool
+	SetIncrementalSearchingShouldDimContentView(value bool)
+	IsIncrementalSearchingEnabled() bool
+	SetIsIncrementalSearchingEnabled(value bool)
+	FindBarView() NSView
+	SetFindBarView(value IView)
+	IsFindBarVisible() bool
+	SetIsFindBarVisible(value bool)
+	AllowsMultipleSelection() bool
+	SetAllowsMultipleSelection(value bool)
+	FirstSelectedRange() foundation.Range
+	SetFirstSelectedRange(value foundation.IRange)
+	IsSelectable() bool
+	SetIsSelectable(value bool)
+	SelectedRanges() foundation.Value
+	SetSelectedRanges(value foundation.IValue)
+	VisibleCharacterRanges() foundation.Value
+	SetVisibleCharacterRanges(value foundation.IValue)
+	UsesFindBar() bool
+	SetUsesFindBar(value bool)
 }
 
 // An optional search-and-replace find interface inside a view, usually a scroll view.

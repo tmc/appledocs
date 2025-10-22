@@ -37,6 +37,30 @@ type IWorkspace interface {
 	OpenURLConfigurationCompletionHandler(url foundation.IURL, configuration IWorkspaceOpenConfiguration, completionHandler unsafe.Pointer)
 	OpenURLsWithApplicationAtURLConfigurationCompletionHandler(urls []foundation.IURL, applicationURL foundation.IURL, configuration IWorkspaceOpenConfiguration, completionHandler unsafe.Pointer)
 	RequestAuthorizationOfTypeCompletionHandler(type_ unsafe.Pointer, completionHandler unsafe.Pointer)
+	NotificationCenter() foundation.NotificationCenter
+	RunningApplications() []RunningApplication
+	AccessibilityDisplayShouldDifferentiateWithoutColor() bool
+	SetAccessibilityDisplayShouldDifferentiateWithoutColor(value bool)
+	AccessibilityDisplayShouldIncreaseContrast() bool
+	SetAccessibilityDisplayShouldIncreaseContrast(value bool)
+	AccessibilityDisplayShouldInvertColors() bool
+	SetAccessibilityDisplayShouldInvertColors(value bool)
+	AccessibilityDisplayShouldReduceMotion() bool
+	SetAccessibilityDisplayShouldReduceMotion(value bool)
+	AccessibilityDisplayShouldReduceTransparency() bool
+	SetAccessibilityDisplayShouldReduceTransparency(value bool)
+	FileLabelColors() NSColor
+	SetFileLabelColors(value IColor)
+	FileLabels() string
+	SetFileLabels(value string)
+	FrontmostApplication() NSRunningApplication
+	SetFrontmostApplication(value IRunningApplication)
+	IsSwitchControlEnabled() bool
+	SetIsSwitchControlEnabled(value bool)
+	IsVoiceOverEnabled() bool
+	SetIsVoiceOverEnabled(value bool)
+	MenuBarOwningApplication() NSRunningApplication
+	SetMenuBarOwningApplication(value IRunningApplication)
 }
 
 // A workspace that can launch other apps and perform a variety of file-handling services.

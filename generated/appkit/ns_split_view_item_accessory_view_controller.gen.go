@@ -30,6 +30,14 @@ type _SplitViewItemAccessoryViewControllerClass struct {
 type ISplitViewItemAccessoryViewController interface {
 	IViewController
 	ViewWillDisappear()
+	BottomAlignedAccessoryViewControllers() NSSplitViewItemAccessoryViewController
+	SetBottomAlignedAccessoryViewControllers(value ISplitViewItemAccessoryViewController)
+	TopAlignedAccessoryViewControllers() NSSplitViewItemAccessoryViewController
+	SetTopAlignedAccessoryViewControllers(value ISplitViewItemAccessoryViewController)
+	AutomaticallyAppliesContentInsets() bool
+	SetAutomaticallyAppliesContentInsets(value bool)
+	IsHidden() bool
+	SetIsHidden(value bool)
 }
 
 //

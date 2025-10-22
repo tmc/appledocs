@@ -31,6 +31,22 @@ type _TextSelectionClass struct {
 // An interface definition for the [TextSelection] class.
 type ITextSelection interface {
 	objectivec.IObject
+	Affinity() unsafe.Pointer
+	SetAffinity(value unsafe.Pointer)
+	AnchorPositionOffset() float64
+	SetAnchorPositionOffset(value float64)
+	Granularity() unsafe.Pointer
+	SetGranularity(value unsafe.Pointer)
+	IsLogical() bool
+	SetIsLogical(value bool)
+	IsTransient() bool
+	SetIsTransient(value bool)
+	SecondarySelectionLocation() unsafe.Pointer
+	SetSecondarySelectionLocation(value unsafe.Pointer)
+	TextRanges() NSTextRange
+	SetTextRanges(value ITextRange)
+	TypingAttributes() coreml.Key
+	SetTypingAttributes(value coreml.IKey)
 }
 
 // A class that represents a single logical selection context that corresponds to an insertion point.

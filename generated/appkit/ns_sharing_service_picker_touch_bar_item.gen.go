@@ -29,6 +29,18 @@ type _SharingServicePickerTouchBarItemClass struct {
 // An interface definition for the [SharingServicePickerTouchBarItem] class.
 type ISharingServicePickerTouchBarItem interface {
 	ITouchBarItem
+	ActivityItemsConfiguration() objc.ID
+	SetActivityItemsConfiguration(value objc.ID)
+	Enabled() bool
+	SetEnabled(value bool)
+	ButtonImage() Image
+	SetButtonImage(value IImage)
+	ButtonTitle() string
+	SetButtonTitle(value string)
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
+	IsEnabled() bool
+	SetIsEnabled(value bool)
 }
 
 // A bar item that, along with its delegate, provides a list of objects eligible for sharing.

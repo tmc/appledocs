@@ -35,6 +35,44 @@ type IStatusItem interface {
 	DrawStatusBarBackgroundInRectWithHighlight(rect coregraphics.CGRect, highlight bool)
 	PopUpStatusItemMenu(menu IMenu)
 	SendActionOn(mask EventMask) int
+	Action() objc.SEL
+	SetAction(value objc.SEL)
+	AlternateImage() Image
+	SetAlternateImage(value IImage)
+	AttributedTitle() foundation.AttributedString
+	SetAttributedTitle(value foundation.IAttributedString)
+	AutosaveName() StatusItemAutosaveName
+	SetAutosaveName(value IStatusItemAutosaveName)
+	Behavior() StatusItemBehavior
+	SetBehavior(value StatusItemBehavior)
+	Button() NSStatusBarButton
+	DoubleAction() objc.SEL
+	SetDoubleAction(value objc.SEL)
+	HighlightMode() bool
+	SetHighlightMode(value bool)
+	Image() Image
+	SetImage(value IImage)
+	Enabled() bool
+	SetEnabled(value bool)
+	Visible() bool
+	SetVisible(value bool)
+	Length() float64
+	SetLength(value float64)
+	Menu() NSMenu
+	SetMenu(value IMenu)
+	StatusBar() NSStatusBar
+	Target() objc.ID
+	SetTarget(value objc.ID)
+	Title() string
+	SetTitle(value string)
+	ToolTip() string
+	SetToolTip(value string)
+	View() NSView
+	SetView(value IView)
+	IsEnabled() bool
+	SetIsEnabled(value bool)
+	IsVisible() bool
+	SetIsVisible(value bool)
 }
 
 // An individual element displayed in the system menu bar.

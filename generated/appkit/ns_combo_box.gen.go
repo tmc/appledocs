@@ -42,6 +42,32 @@ type IComboBox interface {
 	ScrollItemAtIndexToTop(index int)
 	ScrollItemAtIndexToVisible(index int)
 	SelectItemWithObjectValue(object objectivec.IObject)
+	DataSource() objc.ID
+	SetDataSource(value objc.ID)
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	ItemHeight() float64
+	SetItemHeight(value float64)
+	NumberOfVisibleItems() int
+	SetNumberOfVisibleItems(value int)
+	UsesDataSource() bool
+	SetUsesDataSource(value bool)
+	Completes() bool
+	SetCompletes(value bool)
+	HasVerticalScroller() bool
+	SetHasVerticalScroller(value bool)
+	IndexOfSelectedItem() int
+	SetIndexOfSelectedItem(value int)
+	IntercellSpacing() coregraphics.CGSize
+	SetIntercellSpacing(value coregraphics.CGSize)
+	IsButtonBordered() bool
+	SetIsButtonBordered(value bool)
+	NumberOfItems() int
+	SetNumberOfItems(value int)
+	ObjectValueOfSelectedItem() unsafe.Pointer
+	SetObjectValueOfSelectedItem(value unsafe.Pointer)
+	ObjectValues() unsafe.Pointer
+	SetObjectValues(value unsafe.Pointer)
 }
 
 // A view that displays a list of values in a pop-up menu where the user selects a value or types in a custom value.

@@ -29,6 +29,16 @@ type _TextTableBlockClass struct {
 // An interface definition for the [TextTableBlock] class.
 type ITextTableBlock interface {
 	ITextBlock
+	ColumnSpan() int
+	SetColumnSpan(value int)
+	RowSpan() int
+	SetRowSpan(value int)
+	StartingColumn() int
+	SetStartingColumn(value int)
+	StartingRow() int
+	SetStartingRow(value int)
+	Table() NSTextTable
+	SetTable(value ITextTable)
 }
 
 // A text block that appears as a cell in a text table.

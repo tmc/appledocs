@@ -31,6 +31,13 @@ type _CollectionLayoutAnchorClass struct {
 // An interface definition for the [CollectionLayoutAnchor] class.
 type ICollectionLayoutAnchor interface {
 	objectivec.IObject
+	IsFractionalOffset() bool
+	Edges() DirectionalRectEdge
+	SetEdges(value IDirectionalRectEdge)
+	IsAbsoluteOffset() bool
+	SetIsAbsoluteOffset(value bool)
+	Offset() coregraphics.CGPoint
+	SetOffset(value coregraphics.CGPoint)
 }
 
 // An object that defines how to attach a supplementary item to an item in a collection view.

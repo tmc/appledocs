@@ -32,6 +32,16 @@ type ITextContentManager interface {
 	objectivec.IObject
 	PerformEditingTransactionUsingBlock(transaction unsafe.Pointer)
 	RecordEditActionInRangeNewTextRange(originalTextRange ITextRange, newTextRange ITextRange)
+	AutomaticallySynchronizesTextLayoutManagers() bool
+	SetAutomaticallySynchronizesTextLayoutManagers(value bool)
+	HasEditingTransaction() bool
+	TextLayoutManagers() []TextLayoutManager
+	AutomaticallySynchronizesToBackingStore() bool
+	SetAutomaticallySynchronizesToBackingStore(value bool)
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
+	PrimaryTextLayoutManager() NSTextLayoutManager
+	SetPrimaryTextLayoutManager(value ITextLayoutManager)
 }
 
 // An abstract class that defines the interface and a default implementation for managing the text document contents.
