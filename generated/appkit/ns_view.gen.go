@@ -129,7 +129,7 @@ type IView interface {
 	LockFocus()
 	LockFocusIfCanDraw() bool
 	LockFocusIfCanDrawInContext(context IGraphicsContext) bool
-	MakeBackingLayer() OpenGLLayer
+	MakeBackingLayer() quartzcore.Layer
 	MenuForEvent(event IEvent) Menu
 	NeedsToDrawRect(rect coregraphics.CGRect) bool
 	NoteFocusRingMaskChanged()
@@ -249,8 +249,8 @@ type IView interface {
 	CenterYAnchor() NSLayoutYAxisAnchor
 	ClipsToBounds() bool
 	SetClipsToBounds(value bool)
-	CompositingFilter() AlignmentFeedbackFilter
-	SetCompositingFilter(value IAlignmentFeedbackFilter)
+	CompositingFilter() coreimage.Filter
+	SetCompositingFilter(value coreimage.IFilter)
 	Constraints() []LayoutConstraint
 	ContentFilters() []coreimage.Filter
 	SetContentFilters(value []coreimage.IFilter)
@@ -291,8 +291,8 @@ type IView interface {
 	SetVerticalContentSizeConstraintActive(value bool)
 	LastBaselineAnchor() NSLayoutYAxisAnchor
 	LastBaselineOffsetFromBottom() float64
-	Layer() OpenGLLayer
-	SetLayer(value IOpenGLLayer)
+	Layer() quartzcore.Layer
+	SetLayer(value quartzcore.ILayer)
 	LayerContentsPlacement() ViewLayerContentsPlacement
 	SetLayerContentsPlacement(value IViewLayerContentsPlacement)
 	LayerContentsRedrawPolicy() ViewLayerContentsRedrawPolicy
@@ -1200,8 +1200,8 @@ func (v_ View) LockFocusIfCanDrawInContext(context IGraphicsContext) bool {
 // Creates the view’s backing layer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/makeBackingLayer()
-func (v_ View) MakeBackingLayer() OpenGLLayer {
-	rv := objc.Send[OpenGLLayer](v_.ID, objc.Sel("makeBackingLayer"))
+func (v_ View) MakeBackingLayer() quartzcore.Layer {
+	rv := objc.Send[quartzcore.Layer](v_.ID, objc.Sel("makeBackingLayer"))
 	return rv
 }
 
@@ -2122,8 +2122,8 @@ func (v_ View) SetClipsToBounds(value bool) {
 // The Core Image filter used to composite the view’s contents with its background.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/compositingFilter
-func (v_ View) CompositingFilter() AlignmentFeedbackFilter {
-	rv := objc.Send[AlignmentFeedbackFilter](v_.ID, objc.Sel("compositingFilter"))
+func (v_ View) CompositingFilter() coreimage.Filter {
+	rv := objc.Send[coreimage.Filter](v_.ID, objc.Sel("compositingFilter"))
 	return rv
 }
 
@@ -2133,7 +2133,7 @@ func (v_ View) CompositingFilter() AlignmentFeedbackFilter {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/compositingFilter
-func (v_ View) SetCompositingFilter(value IAlignmentFeedbackFilter) {
+func (v_ View) SetCompositingFilter(value coreimage.IFilter) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setCompositingFilter:"), value)
 }
 
@@ -2530,8 +2530,8 @@ func (v_ View) LastBaselineOffsetFromBottom() float64 {
 // The Core Animation layer that the view uses as its backing store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/layer
-func (v_ View) Layer() OpenGLLayer {
-	rv := objc.Send[OpenGLLayer](v_.ID, objc.Sel("layer"))
+func (v_ View) Layer() quartzcore.Layer {
+	rv := objc.Send[quartzcore.Layer](v_.ID, objc.Sel("layer"))
 	return rv
 }
 
@@ -2541,7 +2541,7 @@ func (v_ View) Layer() OpenGLLayer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/layer
-func (v_ View) SetLayer(value IOpenGLLayer) {
+func (v_ View) SetLayer(value quartzcore.ILayer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setLayer:"), value)
 }
 

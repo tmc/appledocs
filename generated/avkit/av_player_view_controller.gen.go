@@ -45,20 +45,20 @@ type IPlayerViewController interface {
 	CanBeginTrimming() bool
 	CanStartPictureInPictureAutomaticallyFromInline() bool
 	SetCanStartPictureInPictureAutomaticallyFromInline(value bool)
-	ContentOverlayView() PlayerView
+	ContentOverlayView() appkit.View
 	ContentProposalViewController() AVContentProposalViewController
 	SetContentProposalViewController(value IAVContentProposalViewController)
 	ContextualActions() []unsafe.Pointer
 	SetContextualActions(value []unsafe.IPointer)
-	ContextualActionsInfoView() PlayerView
+	ContextualActionsInfoView() appkit.View
 	ContextualActionsPreviewImage() appkit.Image
 	SetContextualActionsPreviewImage(value appkit.IImage)
-	CustomInfoViewController() ContinuityDevicePickerViewController
-	SetCustomInfoViewController(value IContinuityDevicePickerViewController)
+	CustomInfoViewController() appkit.ViewController
+	SetCustomInfoViewController(value appkit.IViewController)
 	CustomInfoViewControllers() []appkit.ViewController
 	SetCustomInfoViewControllers(value []appkit.IViewController)
-	CustomOverlayViewController() ContinuityDevicePickerViewController
-	SetCustomOverlayViewController(value IContinuityDevicePickerViewController)
+	CustomOverlayViewController() appkit.ViewController
+	SetCustomOverlayViewController(value appkit.IViewController)
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
 	EntersFullScreenWhenPlaybackBegins() bool
@@ -302,8 +302,8 @@ func (p_ PlayerViewController) SetCanStartPictureInPictureAutomaticallyFromInlin
 // A view that displays between the video content and the playback controls.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/contentOverlayView
-func (p_ PlayerViewController) ContentOverlayView() CaptureView {
-	rv := objc.Send[CaptureView](p_.ID, objc.Sel("contentOverlayView"))
+func (p_ PlayerViewController) ContentOverlayView() appkit.View {
+	rv := objc.Send[appkit.View](p_.ID, objc.Sel("contentOverlayView"))
 	return rv
 }
 
@@ -356,8 +356,8 @@ func (p_ PlayerViewController) SetContextualActions(value []unsafe.IPointer) {
 // A view the system shows adjacent to the contextual actions that’s suitable for showing related information.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/contextualActionsInfoView
-func (p_ PlayerViewController) ContextualActionsInfoView() CaptureView {
-	rv := objc.Send[CaptureView](p_.ID, objc.Sel("contextualActionsInfoView"))
+func (p_ PlayerViewController) ContextualActionsInfoView() appkit.View {
+	rv := objc.Send[appkit.View](p_.ID, objc.Sel("contextualActionsInfoView"))
 	return rv
 }
 
@@ -382,8 +382,8 @@ func (p_ PlayerViewController) SetContextualActionsPreviewImage(value appkit.IIm
 // A view controller that provides client-specific content and controls alongside system-provided information and settings panels.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/customInfoViewController
-func (p_ PlayerViewController) CustomInfoViewController() ContinuityDevicePickerViewController {
-	rv := objc.Send[ContinuityDevicePickerViewController](p_.ID, objc.Sel("customInfoViewController"))
+func (p_ PlayerViewController) CustomInfoViewController() appkit.ViewController {
+	rv := objc.Send[appkit.ViewController](p_.ID, objc.Sel("customInfoViewController"))
 	return rv
 }
 
@@ -393,7 +393,7 @@ func (p_ PlayerViewController) CustomInfoViewController() ContinuityDevicePicker
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/customInfoViewController
-func (p_ PlayerViewController) SetCustomInfoViewController(value IContinuityDevicePickerViewController) {
+func (p_ PlayerViewController) SetCustomInfoViewController(value appkit.IViewController) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCustomInfoViewController:"), value)
 }
 
@@ -428,8 +428,8 @@ func (p_ PlayerViewController) SetCustomInfoViewControllers(value []appkit.IView
 // A view controller that presents custom content over the player view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/customOverlayViewController
-func (p_ PlayerViewController) CustomOverlayViewController() PictureInPictureVideoCallViewController {
-	rv := objc.Send[PictureInPictureVideoCallViewController](p_.ID, objc.Sel("customOverlayViewController"))
+func (p_ PlayerViewController) CustomOverlayViewController() appkit.ViewController {
+	rv := objc.Send[appkit.ViewController](p_.ID, objc.Sel("customOverlayViewController"))
 	return rv
 }
 
@@ -439,7 +439,7 @@ func (p_ PlayerViewController) CustomOverlayViewController() PictureInPictureVid
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/customOverlayViewController
-func (p_ PlayerViewController) SetCustomOverlayViewController(value IPictureInPictureVideoCallViewController) {
+func (p_ PlayerViewController) SetCustomOverlayViewController(value appkit.IViewController) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCustomOverlayViewController:"), value)
 }
 

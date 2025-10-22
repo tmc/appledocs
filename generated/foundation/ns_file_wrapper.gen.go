@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -42,8 +41,6 @@ type IFileWrapper interface {
 	SetFileAttributes(value string)
 	FileWrappers() NSFileWrapper
 	SetFileWrappers(value IFileWrapper)
-	Icon() appkit.Image
-	SetIcon(value appkit.IImage)
 	IsDirectory() bool
 	SetIsDirectory(value bool)
 	IsRegularFile() bool
@@ -198,24 +195,6 @@ func (f_ FileWrapper) FileWrappers() NSFileWrapper {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filewrapper/filewrappers
 func (f_ FileWrapper) SetFileWrappers(value IFileWrapper) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setFileWrappers:"), value)
-}
-
-// The icon that represents the file wrapper.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/filewrapper/icon
-func (f_ FileWrapper) Icon() appkit.Image {
-	rv := objc.Send[appkit.Image](f_.ID, objc.Sel("icon"))
-	return rv
-}
-
-
-// SetIcon sets the value of the icon property.
-// The icon that represents the file wrapper.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/filewrapper/icon
-func (f_ FileWrapper) SetIcon(value appkit.IImage) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setIcon:"), value)
 }
 
 // This property contains a boolean value indicating whether the file wrapper is a directory file wrapper.

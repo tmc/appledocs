@@ -30,8 +30,8 @@ type _ExpressionDescriptionClass struct {
 // An interface definition for the [ExpressionDescription] class.
 type IExpressionDescription interface {
 	IPropertyDescription
-	Expression() FetchRequestExpression
-	SetExpression(value IFetchRequestExpression)
+	Expression() Expression
+	SetExpression(value IExpression)
 	ExpressionResultType() AttributeType
 	SetExpressionResultType(value AttributeType)
 	Properties() NSPropertyDescription
@@ -105,8 +105,8 @@ func NewExpressionDescription() ExpressionDescription {
 // The expression to evaluate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSExpressionDescription/expression
-func (e_ ExpressionDescription) Expression() FetchRequestExpression {
-	rv := objc.Send[FetchRequestExpression](e_.ID, objc.Sel("expression"))
+func (e_ ExpressionDescription) Expression() Expression {
+	rv := objc.Send[Expression](e_.ID, objc.Sel("expression"))
 	return rv
 }
 
@@ -116,7 +116,7 @@ func (e_ ExpressionDescription) Expression() FetchRequestExpression {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSExpressionDescription/expression
-func (e_ ExpressionDescription) SetExpression(value IFetchRequestExpression) {
+func (e_ ExpressionDescription) SetExpression(value IExpression) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setExpression:"), value)
 }
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corelocation"
 )
 
 // The class instance for the [MKPlacemark] class.
@@ -39,7 +40,7 @@ type IMKPlacemark interface {
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKPlacemark
 type MKPlacemark struct {
-	Placemark
+	corelocation.Placemark
 }
 
 // MKPlacemarkFrom constructs a [MKPlacemark] from an unsafe.Pointer.
@@ -47,7 +48,7 @@ type MKPlacemark struct {
 // A user-friendly description of a location on the map.
 func MKPlacemarkFrom(ptr unsafe.Pointer) MKPlacemark {
 	return MKPlacemark{
-		Placemark: PlacemarkFrom(ptr),
+		Placemark: corelocation.PlacemarkFrom(ptr),
 	}
 }
 

@@ -7,8 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
-	"github.com/tmc/appledocs/generated/avfoundation"
 	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
@@ -73,14 +71,11 @@ type IImage interface {
 	ContentAverageLightLevel() float32
 	ContentHeadroom() float32
 	Definition() CIFilterShape
-	DepthData() avfoundation.DepthData
 	Extent() coregraphics.CGRect
 	Opaque() bool
 	MetalTexture() objc.ID
 	PixelBuffer() unsafe.Pointer
-	PortraitEffectsMatte() avfoundation.PortraitEffectsMatte
 	Properties() unsafe.Pointer
-	SemanticSegmentationMatte() avfoundation.SemanticSegmentationMatte
 	Url() foundation.URL
 	IsOpaque() bool
 	SetIsOpaque(value bool)
@@ -142,18 +137,6 @@ func NewImage() Image {
 func NewImageWithBitmapDataBytesPerRowSizeFormatColorSpace(data foundation.IData, bytesPerRow Iuintptr, size coregraphics.CGSize, format Format, colorSpace coregraphics.CGColorSpaceRef) Image {
 	instance := getImageClass().Alloc()
 	rv := objc.Send[Image](instance.ID, objc.Sel("initWithBitmapData:bytesPerRow:size:format:colorSpace:"), data, bytesPerRow, size, format, colorSpace)
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// Initializes an image object with the specified bitmap image representation.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(bitmapImageRep:)
-func NewImageWithBitmapImageRep(bitmapImageRep appkit.IBitmapImageRep) Image {
-	instance := getImageClass().Alloc()
-	rv := objc.Send[Image](instance.ID, objc.Sel("initWithBitmapImageRep:"), bitmapImageRep)
 	rv.Autorelease()
 	return rv
 }
@@ -323,24 +306,6 @@ func NewImageWithDataOptions(data foundation.IData, options unsafe.Pointer) Imag
 	return rv
 }
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(depthData:)
-func NewImageWithDepthData(data avfoundation.IDepthData) Image {
-	instance := getImageClass().Alloc()
-	rv := objc.Send[Image](instance.ID, objc.Sel("initWithDepthData:"), data)
-	rv.Autorelease()
-	return rv
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(depthData:options:)
-func NewImageWithDepthDataOptions(data avfoundation.IDepthData, options unsafe.Pointer) Image {
-	instance := getImageClass().Alloc()
-	rv := objc.Send[Image](instance.ID, objc.Sel("initWithDepthData:options:"), data, options)
-	rv.Autorelease()
-	return rv
-}
-
 
 
 // Initializes an image with the contents of an IOSurface.
@@ -421,42 +386,6 @@ func NewImageWithImageProviderSizeFormatColorSpaceOptions(provider objectivec.IO
 func NewImageWithMTLTextureOptions(texture objectivec.IObject, options unsafe.Pointer) Image {
 	instance := getImageClass().Alloc()
 	rv := objc.Send[Image](instance.ID, objc.Sel("initWithMTLTexture:options:"), texture, options)
-	rv.Autorelease()
-	return rv
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(portaitEffectsMatte:)
-func NewImageWithPortaitEffectsMatte(matte avfoundation.IPortraitEffectsMatte) Image {
-	instance := getImageClass().Alloc()
-	rv := objc.Send[Image](instance.ID, objc.Sel("initWithPortaitEffectsMatte:"), matte)
-	rv.Autorelease()
-	return rv
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(portaitEffectsMatte:options:)
-func NewImageWithPortaitEffectsMatteOptions(matte avfoundation.IPortraitEffectsMatte, options unsafe.Pointer) Image {
-	instance := getImageClass().Alloc()
-	rv := objc.Send[Image](instance.ID, objc.Sel("initWithPortaitEffectsMatte:options:"), matte, options)
-	rv.Autorelease()
-	return rv
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(semanticSegmentationMatte:)
-func NewImageWithSemanticSegmentationMatte(matte avfoundation.ISemanticSegmentationMatte) Image {
-	instance := getImageClass().Alloc()
-	rv := objc.Send[Image](instance.ID, objc.Sel("initWithSemanticSegmentationMatte:"), matte)
-	rv.Autorelease()
-	return rv
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(semanticSegmentationMatte:options:)
-func NewImageWithSemanticSegmentationMatteOptions(matte avfoundation.ISemanticSegmentationMatte, options unsafe.Pointer) Image {
-	instance := getImageClass().Alloc()
-	rv := objc.Send[Image](instance.ID, objc.Sel("initWithSemanticSegmentationMatte:options:"), matte, options)
 	rv.Autorelease()
 	return rv
 }
@@ -613,20 +542,6 @@ func (ic _ImageClass) ImageWithDataOptions(data foundation.IData, options unsafe
 	return rv
 }
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/imageWithDepthData:
-func (ic _ImageClass) ImageWithDepthData(data avfoundation.IDepthData) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("imageWithDepthData:"), data)
-	return rv
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/imageWithDepthData:options:
-func (ic _ImageClass) ImageWithDepthDataOptions(data avfoundation.IDepthData, options unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("imageWithDepthData:options:"), data, options)
-	return rv
-}
-
 // Creates and returns an image from the contents of an IOSurface.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/imageWithIOSurface:
@@ -656,34 +571,6 @@ func (ic _ImageClass) ImageWithImageProviderSizeFormatColorSpaceOptions(provider
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/imageWithMTLTexture:options:
 func (ic _ImageClass) ImageWithMTLTextureOptions(texture objectivec.IObject, options unsafe.Pointer) Image {
 	rv := objc.Send[Image](objc.ID(ic.class), objc.Sel("imageWithMTLTexture:options:"), texture, options)
-	return rv
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/imageWithPortaitEffectsMatte:
-func (ic _ImageClass) ImageWithPortaitEffectsMatte(matte avfoundation.IPortraitEffectsMatte) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("imageWithPortaitEffectsMatte:"), matte)
-	return rv
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/imageWithPortaitEffectsMatte:options:
-func (ic _ImageClass) ImageWithPortaitEffectsMatteOptions(matte avfoundation.IPortraitEffectsMatte, options unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("imageWithPortaitEffectsMatte:options:"), matte, options)
-	return rv
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/imageWithSemanticSegmentationMatte:
-func (ic _ImageClass) ImageWithSemanticSegmentationMatte(matte avfoundation.ISemanticSegmentationMatte) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("imageWithSemanticSegmentationMatte:"), matte)
-	return rv
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/imageWithSemanticSegmentationMatte:options:
-func (ic _ImageClass) ImageWithSemanticSegmentationMatteOptions(matte avfoundation.ISemanticSegmentationMatte, options unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("imageWithSemanticSegmentationMatte:options:"), matte, options)
 	return rv
 }
 
@@ -1098,14 +985,6 @@ func (i_ Image) Definition() CIFilterShape {
 	return rv
 }
 
-// Depth data associated with the image.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/depthData
-func (i_ Image) DepthData() avfoundation.DepthData {
-	rv := objc.Send[avfoundation.DepthData](i_.ID, objc.Sel("depthData"))
-	return rv
-}
-
 // A rectangle that specifies the extent of the image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/extent
@@ -1158,14 +1037,6 @@ func (i_ Image) PixelBuffer() unsafe.Pointer {
 	return rv
 }
 
-// The portrait effects matte associated with the image.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/portraitEffectsMatte
-func (i_ Image) PortraitEffectsMatte() avfoundation.PortraitEffectsMatte {
-	rv := objc.Send[avfoundation.PortraitEffectsMatte](i_.ID, objc.Sel("portraitEffectsMatte"))
-	return rv
-}
-
 // Returns the metadata properties dictionary of the image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/properties
@@ -1178,13 +1049,6 @@ func (i_ Image) Properties() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/red
 func (i_ Image) RedImage() CIImage {
 	rv := objc.Send[CIImage](i_.ID, objc.Sel("redImage"))
-	return rv
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/semanticSegmentationMatte
-func (i_ Image) SemanticSegmentationMatte() avfoundation.SemanticSegmentationMatte {
-	rv := objc.Send[avfoundation.SemanticSegmentationMatte](i_.ID, objc.Sel("semanticSegmentationMatte"))
 	return rv
 }
 

@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/coreimage"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -38,7 +39,7 @@ type IGraphicsContext interface {
 	SetFocusStack(stack objectivec.IObject)
 	Attributes() unsafe.Pointer
 	CGContext() coregraphics.CGContextRef
-	CIContext() OpenGLContext
+	CIContext() coreimage.Context
 	ColorRenderingIntent() ColorRenderingIntent
 	SetColorRenderingIntent(value IColorRenderingIntent)
 	CompositingOperation() CompositingOperation
@@ -288,8 +289,8 @@ func (g_ GraphicsContext) CGContext() coregraphics.CGContextRef {
 // A context for Core Image objects that you can use to render into the graphics context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext/ciContext
-func (g_ GraphicsContext) CIContext() TextInputContext {
-	rv := objc.Send[TextInputContext](g_.ID, objc.Sel("CIContext"))
+func (g_ GraphicsContext) CIContext() coreimage.Context {
+	rv := objc.Send[coreimage.Context](g_.ID, objc.Sel("CIContext"))
 	return rv
 }
 

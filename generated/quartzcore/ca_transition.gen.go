@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [Transition] class.
@@ -40,8 +39,6 @@ type ITransition interface {
 	SetSubtype(value ITransitionSubtype)
 	Type() TransitionType
 	SetType(value TransitionType)
-	BackgroundColor() appkit.Color
-	SetBackgroundColor(value appkit.IColor)
 	String() unsafe.Pointer
 	SetString(value unsafe.Pointer)
 }
@@ -184,24 +181,6 @@ func (t_ Transition) Type() TransitionType {
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATransition/type
 func (t_ Transition) SetType(value TransitionType) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setType:"), value)
-}
-
-// The background color of the receiver. Animatable.
-//
-// [Full Topic]: https://developer.apple.com/documentation/quartzcore/calayer/backgroundcolor
-func (t_ Transition) BackgroundColor() appkit.Color {
-	rv := objc.Send[appkit.Color](t_.ID, objc.Sel("backgroundColor"))
-	return rv
-}
-
-
-// SetBackgroundColor sets the value of the backgroundColor property.
-// The background color of the receiver. Animatable.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/quartzcore/calayer/backgroundcolor
-func (t_ Transition) SetBackgroundColor(value appkit.IColor) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setBackgroundColor:"), value)
 }
 
 // The text to be rendered by the receiver.

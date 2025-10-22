@@ -29,7 +29,7 @@ type _QCViewClass struct {
 
 // An interface definition for the [QCView] class.
 type IQCView interface {
-	IView
+	appkit.IView
 	EventForwardingMask() uint
 	OpenGLPixelFormat() appkit.OpenGLPixelFormat
 }
@@ -40,7 +40,7 @@ type IQCView interface {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Quartz/QCView
 type QCView struct {
-	View
+	appkit.View
 }
 
 // QCViewFrom constructs a [QCView] from an unsafe.Pointer.
@@ -48,7 +48,7 @@ type QCView struct {
 // The class is a custom class that loads, plays, and controls Quartz Composer compositions. It is an autonomous view that is driven by an internal timer running on the main thread.
 func QCViewFrom(ptr unsafe.Pointer) QCView {
 	return QCView{
-		View: ViewFrom(ptr),
+		View: appkit.ViewFrom(ptr),
 	}
 }
 

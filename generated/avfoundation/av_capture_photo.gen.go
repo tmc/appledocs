@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,7 +33,7 @@ type _CapturePhotoClass struct {
 type ICapturePhoto interface {
 	objectivec.IObject
 	CGImageRepresentation() coregraphics.CGImageRef
-	FileDataRepresentation() CaptureSynchronizedData
+	FileDataRepresentation() foundation.Data
 	RawPhoto() bool
 	PixelBuffer() unsafe.Pointer
 	BracketSettings() unsafe.Pointer
@@ -130,8 +131,8 @@ func (c_ CapturePhoto) CGImageRepresentation() coregraphics.CGImageRef {
 // Generates and returns a flat data representation of the photo and its attachments.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCapturePhoto/fileDataRepresentation()
-func (c_ CapturePhoto) FileDataRepresentation() CaptureSynchronizedData {
-	rv := objc.Send[CaptureSynchronizedData](c_.ID, objc.Sel("fileDataRepresentation"))
+func (c_ CapturePhoto) FileDataRepresentation() foundation.Data {
+	rv := objc.Send[foundation.Data](c_.ID, objc.Sel("fileDataRepresentation"))
 	return rv
 }
 

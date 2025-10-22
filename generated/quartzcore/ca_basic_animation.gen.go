@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [BasicAnimation] class.
@@ -36,8 +35,6 @@ type IBasicAnimation interface {
 	SetFromValue(value objc.ID)
 	ToValue() objc.ID
 	SetToValue(value objc.ID)
-	BackgroundColor() appkit.Color
-	SetBackgroundColor(value appkit.IColor)
 	Opacity() float32
 	SetOpacity(value float32)
 	Transform() unsafe.Pointer
@@ -146,24 +143,6 @@ func (b_ BasicAnimation) ToValue() objc.ID {
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CABasicAnimation/toValue
 func (b_ BasicAnimation) SetToValue(value objc.ID) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setToValue:"), value)
-}
-
-// The background color of the receiver. Animatable.
-//
-// [Full Topic]: https://developer.apple.com/documentation/quartzcore/calayer/backgroundcolor
-func (b_ BasicAnimation) BackgroundColor() appkit.Color {
-	rv := objc.Send[appkit.Color](b_.ID, objc.Sel("backgroundColor"))
-	return rv
-}
-
-
-// SetBackgroundColor sets the value of the backgroundColor property.
-// The background color of the receiver. Animatable.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/quartzcore/calayer/backgroundcolor
-func (b_ BasicAnimation) SetBackgroundColor(value appkit.IColor) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setBackgroundColor:"), value)
 }
 
 // The opacity of the receiver. Animatable.

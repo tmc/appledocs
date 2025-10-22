@@ -126,7 +126,7 @@ func NewINImageWithNSImage(image appkit.IImage) INImage {
 // Creates an image object from the specified UIKit image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INImage/init(UIImage:)
-func NewINImageWithUIImage(image IImage) INImage {
+func NewINImageWithUIImage(image appkit.IImage) INImage {
 	rv := objc.Send[INImage](objc.ID(getINImageClass().class), objc.Sel("imageWithUIImage:"), image)
 	return rv
 }
@@ -178,7 +178,7 @@ func (ic _INImageClass) ImageWithNSImage(image appkit.IImage) unsafe.Pointer {
 // Creates an image object from the specified UIKit image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INImage/init(UIImage:)
-func (ic _INImageClass) ImageWithUIImage(image IImage) unsafe.Pointer {
+func (ic _INImageClass) ImageWithUIImage(image appkit.IImage) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("imageWithUIImage:"), image)
 	return rv
 }

@@ -178,6 +178,7 @@ var typeRegistry = []TypeMapping{
 	// Foundation date/time types - unqualified within Foundation
 	{ObjCType: "NSTimeInterval", GoType: "TimeInterval", Framework: "Foundation"},
 	{ObjCType: "NSTimeInterval", GoType: "TimeInterval", Framework: "ObjectiveC"},
+	{ObjCType: "NSObject", GoType: "objectivec.IObject", Framework: "*"}, // NSObject should always map to objectivec.IObject
 	// Foundation date/time types for AppKit - as float64 (no darwinkit imports)
 	{ObjCType: "NSTimeInterval", GoType: "float64", Framework: "AppKit"},
 	// Default for all other frameworks - use qualified foundation.TimeInterval

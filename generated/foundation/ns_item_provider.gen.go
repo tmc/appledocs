@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/cloudkit"
 	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -37,7 +36,6 @@ type IItemProvider interface {
 	LoadFileRepresentationForTypeIdentifierCompletionHandler(typeIdentifier string, completionHandler unsafe.Pointer) Progress
 	LoadInPlaceFileRepresentationForTypeIdentifierCompletionHandler(typeIdentifier string, completionHandler unsafe.Pointer) Progress
 	LoadObjectOfClassCompletionHandler(aClass unsafe.Pointer, completionHandler unsafe.Pointer) Progress
-	RegisterCKShareWithContainerAllowedSharingOptionsPreparationHandler(container cloudkit.ICKContainer, allowedOptions cloudkit.CKAllowedSharingOptions, preparationHandler unsafe.Pointer)
 	RegisterFileRepresentationForTypeIdentifierFileOptionsVisibilityLoadHandler(typeIdentifier string, fileOptions ItemProviderFileOptions, visibility IItemProviderRepresentationVisibility, loadHandler unsafe.Pointer)
 	PreferredPresentationStyle() unsafe.Pointer
 	SetPreferredPresentationStyle(value unsafe.Pointer)
@@ -161,13 +159,6 @@ func (i_ ItemProvider) LoadInPlaceFileRepresentationForTypeIdentifierCompletionH
 func (i_ ItemProvider) LoadObjectOfClassCompletionHandler(aClass unsafe.Pointer, completionHandler unsafe.Pointer) Progress {
 	rv := objc.Send[Progress](i_.ID, objc.Sel("loadObjectOfClass:completionHandler:"), aClass, completionHandler)
 	return rv
-}
-
-// Creates and registers a new collaboration object using a collection of records to share.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSItemProvider/registerCKShareWithContainer:allowedSharingOptions:preparationHandler:
-func (i_ ItemProvider) RegisterCKShareWithContainerAllowedSharingOptionsPreparationHandler(container cloudkit.ICKContainer, allowedOptions cloudkit.CKAllowedSharingOptions, preparationHandler unsafe.Pointer) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("registerCKShareWithContainer:allowedSharingOptions:preparationHandler:"), container, allowedOptions, preparationHandler)
 }
 
 // Registers a file-backed representation for an item, specifying file options, item visibility, and a load handler.

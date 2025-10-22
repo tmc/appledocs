@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -41,7 +40,6 @@ type IString interface {
 	StringByAppendingPathExtensionForType(contentType unsafe.Pointer) String
 	StringByApplyingTransformReverse(transform IStringTransform, reverse bool) String
 	BoundingRectWithSizeOptionsAttributes(size ISize, options StringDrawingOptions, attributes unsafe.Pointer) Rect
-	BoundingRectWithSizeOptionsAttributesContext(size coregraphics.CGSize, options StringDrawingOptions, attributes unsafe.Pointer, context appkit.IStringDrawingContext) coregraphics.CGRect
 	CString() unsafe.Pointer
 	CStringUsingEncoding(encoding unsafe.Pointer) unsafe.Pointer
 	CStringLength() uint
@@ -63,14 +61,6 @@ type IString interface {
 	DrawAtPointWithAttributes(point coregraphics.CGPoint, attrs unsafe.Pointer)
 	DrawInRectWithAttributes(rect coregraphics.CGRect, attrs unsafe.Pointer)
 	DrawWithRectOptionsAttributes(rect IRect, options StringDrawingOptions, attributes unsafe.Pointer)
-	DrawWithRectOptionsAttributesContext(rect coregraphics.CGRect, options StringDrawingOptions, attributes unsafe.Pointer, context appkit.IStringDrawingContext)
-	DrawAtPointForWidthWithFontFontSizeLineBreakModeBaselineAdjustment(point coregraphics.CGPoint, width float64, font appkit.IFont, fontSize float64, lineBreakMode unsafe.Pointer, baselineAdjustment unsafe.Pointer) coregraphics.CGSize
-	DrawAtPointForWidthWithFontLineBreakMode(point coregraphics.CGPoint, width float64, font appkit.IFont, lineBreakMode unsafe.Pointer) coregraphics.CGSize
-	DrawAtPointForWidthWithFontMinFontSizeActualFontSizeLineBreakModeBaselineAdjustment(point coregraphics.CGPoint, width float64, font appkit.IFont, minFontSize float64, actualFontSize coregraphics.float64, lineBreakMode unsafe.Pointer, baselineAdjustment unsafe.Pointer) coregraphics.CGSize
-	DrawAtPointWithFont(point coregraphics.CGPoint, font appkit.IFont) coregraphics.CGSize
-	DrawInRectWithFont(rect coregraphics.CGRect, font appkit.IFont) coregraphics.CGSize
-	DrawInRectWithFontLineBreakMode(rect coregraphics.CGRect, font appkit.IFont, lineBreakMode unsafe.Pointer) coregraphics.CGSize
-	DrawInRectWithFontLineBreakModeAlignment(rect coregraphics.CGRect, font appkit.IFont, lineBreakMode unsafe.Pointer, alignment unsafe.Pointer) coregraphics.CGSize
 	EnumerateLinesUsingBlock(block unsafe.Pointer)
 	EnumerateLinguisticTagsInRangeSchemeOptionsOrthographyUsingBlock(range_ IRange, scheme ILinguisticTagScheme, options LinguisticTaggerOptions, orthography IOrthography, block unsafe.Pointer)
 	EnumerateSubstringsInRangeOptionsUsingBlock(range_ IRange, opts StringEnumerationOptions, block unsafe.Pointer)
@@ -118,11 +108,6 @@ type IString interface {
 	StringByReplacingOccurrencesOfStringWithStringOptionsRange(target string, replacement string, options StringCompareOptions, searchRange IRange) String
 	StringByReplacingPercentEscapesUsingEncoding(enc unsafe.Pointer) String
 	SizeWithAttributes(attrs unsafe.Pointer) coregraphics.CGSize
-	SizeWithFont(font appkit.IFont) coregraphics.CGSize
-	SizeWithFontConstrainedToSize(font appkit.IFont, size coregraphics.CGSize) coregraphics.CGSize
-	SizeWithFontConstrainedToSizeLineBreakMode(font appkit.IFont, size coregraphics.CGSize, lineBreakMode unsafe.Pointer) coregraphics.CGSize
-	SizeWithFontForWidthLineBreakMode(font appkit.IFont, width float64, lineBreakMode unsafe.Pointer) coregraphics.CGSize
-	SizeWithFontMinFontSizeActualFontSizeForWidthLineBreakMode(font appkit.IFont, minFontSize float64, actualFontSize coregraphics.float64, width float64, lineBreakMode unsafe.Pointer) coregraphics.CGSize
 	Sr_sensorForDeletionRecordsFromSensor() unsafe.Pointer
 	StringByAppendingFormat(format string) String
 	StringsByAppendingPaths(paths []string) []string
@@ -837,14 +822,6 @@ func (s_ String) BoundingRectWithSizeOptionsAttributes(size ISize, options Strin
 	return rv
 }
 
-// Calculates and returns the bounding rect for the receiver drawn using the given options and display characteristics, within the specified rectangle in the current graphics context.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/boundingRect(with:options:attributes:context:)
-func (s_ String) BoundingRectWithSizeOptionsAttributesContext(size coregraphics.CGSize, options StringDrawingOptions, attributes unsafe.Pointer, context appkit.IStringDrawingContext) coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](s_.ID, objc.Sel("boundingRectWithSize:options:attributes:context:"), size, options, attributes, context)
-	return rv
-}
-
 // Returns a representation of the receiver as a C string in the default C-string encoding.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/cString()
@@ -1008,69 +985,6 @@ func (s_ String) DrawInRectWithAttributes(rect coregraphics.CGRect, attrs unsafe
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/draw(with:options:attributes:)
 func (s_ String) DrawWithRectOptionsAttributes(rect IRect, options StringDrawingOptions, attributes unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("drawWithRect:options:attributes:"), rect, options, attributes)
-}
-
-// Draws the attributed string in the specified bounding rectangle using the provided options.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/draw(with:options:attributes:context:)
-func (s_ String) DrawWithRectOptionsAttributesContext(rect coregraphics.CGRect, options StringDrawingOptions, attributes unsafe.Pointer, context appkit.IStringDrawingContext) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("drawWithRect:options:attributes:context:"), rect, options, attributes, context)
-}
-
-// Draws the string in a single line at the specified point in the current graphics context using the specified font and attributes.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/drawAtPoint:forWidth:withFont:fontSize:lineBreakMode:baselineAdjustment:
-func (s_ String) DrawAtPointForWidthWithFontFontSizeLineBreakModeBaselineAdjustment(point coregraphics.CGPoint, width float64, font appkit.IFont, fontSize float64, lineBreakMode unsafe.Pointer, baselineAdjustment unsafe.Pointer) coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](s_.ID, objc.Sel("drawAtPoint:forWidth:withFont:fontSize:lineBreakMode:baselineAdjustment:"), point, width, font, fontSize, lineBreakMode, baselineAdjustment)
-	return rv
-}
-
-// Draws the string in a single line at the specified point in the current graphics context using the specified font and attributes.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/drawAtPoint:forWidth:withFont:lineBreakMode:
-func (s_ String) DrawAtPointForWidthWithFontLineBreakMode(point coregraphics.CGPoint, width float64, font appkit.IFont, lineBreakMode unsafe.Pointer) coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](s_.ID, objc.Sel("drawAtPoint:forWidth:withFont:lineBreakMode:"), point, width, font, lineBreakMode)
-	return rv
-}
-
-// Draws the string in a single line with the specified font and attributes, adjusting the font attributes as needed to render as much of the text as possible.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/drawAtPoint:forWidth:withFont:minFontSize:actualFontSize:lineBreakMode:baselineAdjustment:
-func (s_ String) DrawAtPointForWidthWithFontMinFontSizeActualFontSizeLineBreakModeBaselineAdjustment(point coregraphics.CGPoint, width float64, font appkit.IFont, minFontSize float64, actualFontSize coregraphics.float64, lineBreakMode unsafe.Pointer, baselineAdjustment unsafe.Pointer) coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](s_.ID, objc.Sel("drawAtPoint:forWidth:withFont:minFontSize:actualFontSize:lineBreakMode:baselineAdjustment:"), point, width, font, minFontSize, actualFontSize, lineBreakMode, baselineAdjustment)
-	return rv
-}
-
-// Draws the string in a single line at the specified point in the current graphics context using the specified font.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/drawAtPoint:withFont:
-func (s_ String) DrawAtPointWithFont(point coregraphics.CGPoint, font appkit.IFont) coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](s_.ID, objc.Sel("drawAtPoint:withFont:"), point, font)
-	return rv
-}
-
-// Draws the string in the current graphics context using the specified bounding rectangle and font.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/drawInRect:withFont:
-func (s_ String) DrawInRectWithFont(rect coregraphics.CGRect, font appkit.IFont) coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](s_.ID, objc.Sel("drawInRect:withFont:"), rect, font)
-	return rv
-}
-
-// Draws the string in the current graphics context using the specified bounding rectangle, font, and attributes.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/drawInRect:withFont:lineBreakMode:
-func (s_ String) DrawInRectWithFontLineBreakMode(rect coregraphics.CGRect, font appkit.IFont, lineBreakMode unsafe.Pointer) coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](s_.ID, objc.Sel("drawInRect:withFont:lineBreakMode:"), rect, font, lineBreakMode)
-	return rv
-}
-
-// Draws the string in the current graphics context using the specified bounding rectangle, font and attributes.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/drawInRect:withFont:lineBreakMode:alignment:
-func (s_ String) DrawInRectWithFontLineBreakModeAlignment(rect coregraphics.CGRect, font appkit.IFont, lineBreakMode unsafe.Pointer, alignment unsafe.Pointer) coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](s_.ID, objc.Sel("drawInRect:withFont:lineBreakMode:alignment:"), rect, font, lineBreakMode, alignment)
-	return rv
 }
 
 // Enumerates all the lines in the string.
@@ -1436,46 +1350,6 @@ func (s_ String) StringByReplacingPercentEscapesUsingEncoding(enc unsafe.Pointer
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/size(withAttributes:)
 func (s_ String) SizeWithAttributes(attrs unsafe.Pointer) coregraphics.CGSize {
 	rv := objc.Send[coregraphics.CGSize](s_.ID, objc.Sel("sizeWithAttributes:"), attrs)
-	return rv
-}
-
-// Returns the size of the string if it were to be rendered with the specified font on a single line.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/sizeWithFont:
-func (s_ String) SizeWithFont(font appkit.IFont) coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](s_.ID, objc.Sel("sizeWithFont:"), font)
-	return rv
-}
-
-// Returns the size of the string if it were rendered and constrained to the specified size.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/sizeWithFont:constrainedToSize:
-func (s_ String) SizeWithFontConstrainedToSize(font appkit.IFont, size coregraphics.CGSize) coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](s_.ID, objc.Sel("sizeWithFont:constrainedToSize:"), font, size)
-	return rv
-}
-
-// Returns the size of the string if it were rendered with the specified constraints.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/sizeWithFont:constrainedToSize:lineBreakMode:
-func (s_ String) SizeWithFontConstrainedToSizeLineBreakMode(font appkit.IFont, size coregraphics.CGSize, lineBreakMode unsafe.Pointer) coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](s_.ID, objc.Sel("sizeWithFont:constrainedToSize:lineBreakMode:"), font, size, lineBreakMode)
-	return rv
-}
-
-// Returns the size of the string if it were to be rendered with the specified font and line attributes on a single line.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/sizeWithFont:forWidth:lineBreakMode:
-func (s_ String) SizeWithFontForWidthLineBreakMode(font appkit.IFont, width float64, lineBreakMode unsafe.Pointer) coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](s_.ID, objc.Sel("sizeWithFont:forWidth:lineBreakMode:"), font, width, lineBreakMode)
-	return rv
-}
-
-// Returns the size of the string if it were rendered with the specified constraints, including a variable font size, on a single line.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/sizeWithFont:minFontSize:actualFontSize:forWidth:lineBreakMode:
-func (s_ String) SizeWithFontMinFontSizeActualFontSizeForWidthLineBreakMode(font appkit.IFont, minFontSize float64, actualFontSize coregraphics.float64, width float64, lineBreakMode unsafe.Pointer) coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](s_.ID, objc.Sel("sizeWithFont:minFontSize:actualFontSize:forWidth:lineBreakMode:"), font, minFontSize, actualFontSize, width, lineBreakMode)
 	return rv
 }
 

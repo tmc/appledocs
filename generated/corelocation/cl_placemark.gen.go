@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/contacts"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -42,7 +41,6 @@ type IPlacemark interface {
 	Location() CLLocation
 	Name() string
 	Ocean() string
-	PostalAddress() contacts.CNPostalAddress
 	PostalCode() string
 	Region() CLRegion
 	SubAdministrativeArea() string
@@ -100,13 +98,6 @@ func NewPlacemark() Placemark {
 }
 
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLPlacemark/init(location:name:postalAddress:)
-func NewPlacemarkWithLocationNamePostalAddress(location ICLLocation, name string, postalAddress contacts.ICNPostalAddress) Placemark {
-	rv := objc.Send[Placemark](objc.ID(getPlacemarkClass().class), objc.Sel("placemarkWithLocation:name:postalAddress:"), location, objc.String(name), postalAddress)
-	return rv
-}
-
 
 
 // Initializes and returns a placemark object from another placemark object.
@@ -119,13 +110,6 @@ func NewPlacemarkWithPlacemark(placemark ICLPlacemark) Placemark {
 	return rv
 }
 
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLPlacemark/init(location:name:postalAddress:)
-func (pc _PlacemarkClass) PlacemarkWithLocationNamePostalAddress(location ICLLocation, name string, postalAddress contacts.ICNPostalAddress) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("placemarkWithLocation:name:postalAddress:"), location, objc.String(name), postalAddress)
-	return rv
-}
 
 // A dictionary containing the Address Book keys and values for the placemark.
 //
@@ -204,14 +188,6 @@ func (p_ Placemark) Name() string {
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLPlacemark/ocean
 func (p_ Placemark) Ocean() string {
 	rv := objc.Send[string](p_.ID, objc.Sel("ocean"))
-	return rv
-}
-
-// The postal address associated with the location, formatted for use with the Contacts framework.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLPlacemark/postalAddress
-func (p_ Placemark) PostalAddress() contacts.CNPostalAddress {
-	rv := objc.Send[contacts.CNPostalAddress](p_.ID, objc.Sel("postalAddress"))
 	return rv
 }
 

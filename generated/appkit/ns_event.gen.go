@@ -31,7 +31,7 @@ type _EventClass struct {
 // An interface definition for the [Event] class.
 type IEvent interface {
 	objectivec.IObject
-	LocationInNode(node ITreeNode) coregraphics.CGPoint
+	LocationInNode(node unsafe.Pointer) coregraphics.CGPoint
 	CGEvent() coregraphics.CGEventRef
 	EventRef() unsafe.Pointer
 	LocationInWindow() coregraphics.CGPoint
@@ -207,7 +207,7 @@ func (ec _EventClass) MouseLocation() coregraphics.CGPoint {
 // Returns the location of the receiver in the coordinate system of the given node.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/location(in:)
-func (e_ Event) LocationInNode(node ITreeNode) coregraphics.CGPoint {
+func (e_ Event) LocationInNode(node unsafe.Pointer) coregraphics.CGPoint {
 	rv := objc.Send[coregraphics.CGPoint](e_.ID, objc.Sel("locationInNode:"), node)
 	return rv
 }

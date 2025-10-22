@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,8 +30,6 @@ type _ConstraintLayoutManagerClass struct {
 // An interface definition for the [ConstraintLayoutManager] class.
 type IConstraintLayoutManager interface {
 	objectivec.IObject
-	LayoutManager() appkit.LayoutManager
-	SetLayoutManager(value appkit.ILayoutManager)
 	Name() string
 	SetName(value string)
 }
@@ -91,24 +88,6 @@ func NewConstraintLayoutManager() ConstraintLayoutManager {
 func (cc _ConstraintLayoutManagerClass) LayoutManager() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("layoutManager"))
 	return rv
-}
-
-// The object responsible for laying out the layer’s sublayers.
-//
-// [Full Topic]: https://developer.apple.com/documentation/quartzcore/calayer/layoutmanager
-func (c_ ConstraintLayoutManager) LayoutManager() appkit.LayoutManager {
-	rv := objc.Send[appkit.LayoutManager](c_.ID, objc.Sel("layoutManager"))
-	return rv
-}
-
-
-// SetLayoutManager sets the value of the layoutManager property.
-// The object responsible for laying out the layer’s sublayers.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/quartzcore/calayer/layoutmanager
-func (c_ ConstraintLayoutManager) SetLayoutManager(value appkit.ILayoutManager) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setLayoutManager:"), value)
 }
 
 // The name of the receiver.

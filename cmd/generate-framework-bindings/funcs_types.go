@@ -32,8 +32,10 @@ func mapCTypeToGoWithFramework(cType, framework string) string {
 func mapObjCTypeToGo(objcType, framework string) string {
 	objcType = strings.TrimSpace(objcType)
 
-	if os.Getenv("DEBUG_TYPEMAP") == "1" && (strings.Contains(objcType, "CellAttribute") || strings.Contains(objcType, "NSApplication") || strings.Contains(objcType, "ErrorDomain")) {
-		fmt.Fprintf(os.Stderr, "DEBUG mapObjCTypeToGo ENTRY: objcType=%s framework=%s\n", objcType, framework)
+	if os.Getenv("DEBUG_TYPEMAP") == "1" {
+		if strings.Contains(objcType, "Hotspot") || (framework == "Foundation" && strings.Contains(objcType, "NE")) {
+			fmt.Fprintf(os.Stderr, "DEBUG mapObjCTypeToGo ENTRY: objcType=%q framework=%s\n", objcType, framework)
+		}
 	}
 
 	// Strip self-package qualifications from Swift documentation
@@ -191,28 +193,31 @@ func mapObjCTypeToGo(objcType, framework string) string {
 		}
 	}
 
-	// Fall back to occ2go mapping
-	goType := occ2go.MapCTypeToGo(objcType, framework)
-	if os.Getenv("DEBUG_TYPEMAP") == "1" && strings.Contains(objcType, "CellAttribute") {
-		fmt.Fprintf(os.Stderr, "DEBUG mapObjCTypeToGo: after occ2go.MapCTypeToGo goType=%q objcType=%s\n", goType, objcType)
-	}
-
-	// If unmapped (empty or unsafe.Pointer), try stripping ObjC prefix for class/enum types
-	// This handles cases like NSCellAttribute, NSTouchBar, NSView, etc.
-	if (goType == "" || goType == "unsafe.Pointer") && objcTypeNoPtr != "" {
-		// Try stripping common Apple prefixes (NS, CG, CF, etc.)
+	//  For pointer types to ObjC classes, try stripping prefix BEFORE falling back to MapCTypeToGo
+	// This allows cross-framework type resolution to work properly
+	goType := ""
+	if isPointer && objcTypeNoPtr != "" {
 		strippedType := stripObjCPrefix(objcTypeNoPtr)
-		if os.Getenv("DEBUG_TYPEMAP") == "1" && (strings.Contains(objcType, "AttributedString") || strings.Contains(objcType, "CellAttribute")) {
-			fmt.Fprintf(os.Stderr, "DEBUG mapObjCTypeToGo: objcType=%s isPointer=%v objcTypeNoPtr=%s strippedType=%s goType=%s\n",
-				objcType, isPointer, objcTypeNoPtr, strippedType, goType)
+		// Debug ALL pointer types when framework is Foundation
+		if os.Getenv("DEBUG_TYPEMAP") == "1" && framework == "Foundation" {
+			fmt.Fprintf(os.Stderr, "DEBUG mapObjCTypeToGo pointer: objcType=%s objcTypeNoPtr=%s strippedType=%s\n",
+				objcType, objcTypeNoPtr, strippedType)
 		}
 		if strippedType != objcTypeNoPtr {
-			// Successfully stripped a prefix - this is likely an ObjC class/enum type
+			// Successfully stripped a prefix - this is likely an ObjC class type
 			// Use the stripped type and let resolveType find the right framework
 			goType = strippedType
-			if os.Getenv("DEBUG_TYPEMAP") == "1" && (strings.Contains(objcType, "AttributedString") || strings.Contains(objcType, "CellAttribute")) {
-				fmt.Fprintf(os.Stderr, "DEBUG mapObjCTypeToGo: set goType=%s\n", goType)
+			if os.Getenv("DEBUG_TYPEMAP") == "1" && framework == "Foundation" {
+				fmt.Fprintf(os.Stderr, "DEBUG mapObjCTypeToGo: set goType=%s from %s\n", goType, objcType)
 			}
+		}
+	}
+
+	// Fall back to occ2go mapping if we haven't resolved it yet
+	if goType == "" {
+		goType = occ2go.MapCTypeToGo(objcType, framework)
+		if os.Getenv("DEBUG_TYPEMAP") == "1" && (strings.Contains(objcType, "Hotspot") || strings.Contains(objcType, "CellAttribute")) {
+			fmt.Fprintf(os.Stderr, "DEBUG mapObjCTypeToGo: after occ2go.MapCTypeToGo goType=%q objcType=%s\n", goType, objcType)
 		}
 	}
 
@@ -228,11 +233,91 @@ func mapObjCTypeToGo(objcType, framework string) string {
 	}
 	goType = resolvedType
 
+	// Check for framework hierarchy violations - if resolved type references a higher-level framework,
+	// map to generic objectivec.IObject instead to avoid import cycles
+	if strings.Contains(goType, ".") && framework != "" {
+		parts := strings.Split(goType, ".")
+		if len(parts) >= 2 {
+			targetFramework := parts[0]
+			currentLevel := getFrameworkLevel(strings.ToLower(framework))
+			targetLevel := getFrameworkLevel(targetFramework)
+
+			if currentLevel >= 0 && targetLevel > currentLevel {
+				// Hierarchy violation - map to objectivec.IObject
+				if os.Getenv("DEBUG_TYPEMAP") == "1" {
+					fmt.Fprintf(os.Stderr, "DEBUG mapObjCTypeToGo: hierarchy violation %s (level %d) -> %s (level %d), mapping to objectivec.IObject\n",
+						framework, currentLevel, targetFramework, targetLevel)
+				}
+				return "objectivec.IObject"
+			}
+		}
+	}
+
 	if os.Getenv("DEBUG_TYPEMAP") == "1" && (strings.Contains(objcType, "NSApplication") || goType == "appkit.string") {
 		fmt.Fprintf(os.Stderr, "DEBUG mapObjCTypeToGo EXIT: objcType=%s framework=%s returning=%s\n", objcType, framework, goType)
 	}
 
 	return goType
+}
+
+// getFrameworkLevel returns the hierarchy level for a framework (0-4), or -1 if unknown
+func getFrameworkLevel(framework string) int {
+	// Access the frameworkLevels map from framework_hierarchy.go
+	// We need to import this or duplicate the levels here
+	// For now, duplicate the essential levels
+	levels := map[string]int{
+		"objc":             0,
+		"objectivec":       0,
+		"coregraphics":     1,
+		"corefoundation":   1,
+		"foundation":       1,
+		"coretext":         1,
+		"iosurface":        1,
+		"coreimage":        2,
+		"quartzcore":       2,
+		"coreaudio":        2,
+		"coremidi":         2,
+		"imageio":          2,
+		"coredata":         2,
+		"corelocation":     2,
+		"corespotlight":    2,
+		"network":          2,
+		"security":         2,
+		"corebluetooth":    2,
+		"corevideo":        2,
+		"coreml":           2,
+		"vision":           2,
+		"naturallanguage":  2,
+		"appkit":           3,
+		"uikit":            3,
+		"webkit":           3,
+		"pdfkit":           3,
+		"networkextension": 3,
+		"avfoundation":     4,
+		"avfaudio":         4,
+		"avkit":            4,
+		"avrouting":        4,
+		"audiotoolbox":     4,
+		"cloudkit":         4,
+		"contacts":         4,
+		"contactsui":       4,
+		"gameplaykit":      4,
+		"intents":          4,
+		"intentsui":        4,
+		"metal":            4,
+		"metalkit":         4,
+		"eventkit":         4,
+		"healthkit":        4,
+		"homekit":          4,
+		"mapkit":           4,
+		"messages":         4,
+		"storekit":         4,
+		"usernotifications": 4,
+	}
+	if level, ok := levels[strings.ToLower(framework)]; ok {
+		return level
+	}
+	return -1
 }
 
 // resolveType resolves a type name to its fully qualified name, handling cross-framework dependencies.

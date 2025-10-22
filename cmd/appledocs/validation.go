@@ -1,3 +1,6 @@
+//go:build ignore
+// +build ignore
+
 package main
 
 import (
@@ -148,9 +151,9 @@ func ValidateCommandLineFlags() ValidationResult {
 	}
 
 	// Validate mode
-	validModes := map[string]bool{"crawl": true, "html": true, "markdown": true, "gentypes": true, "analyze": true, "list-demos": true, "all": true}
+	validModes := map[string]bool{"crawl": true, "html": true, "markdown": true, "gentypes": true, "analyze": true, "list-demos": true, "list-frameworks": true, "summary": true, "all": true}
 	if !validModes[*mode] {
-		result.AddError("mode", "invalid mode, must be one of: crawl, html, markdown, gentypes, analyze, list-demos, all", *mode)
+		result.AddError("mode", "invalid mode, must be one of: crawl, html, markdown, gentypes, analyze, list-demos, list-frameworks, summary, all", *mode)
 	}
 
 	// Validate log level

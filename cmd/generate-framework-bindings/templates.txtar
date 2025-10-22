@@ -71,7 +71,7 @@ package {{.PackageName}}
 {{if .Abstract -}}
 // Package {{.PackageName}} provides Go bindings for the {{.Framework}} framework.
 //
-// {{.Abstract}} [Full Topic]
+// {{.Abstract}}
 {{else -}}
 // Package {{.PackageName}} provides Go bindings for the {{.Framework}} framework.
 {{end -}}
@@ -80,6 +80,7 @@ package {{.PackageName}}
 // provide purego-based access to {{.Framework}} without requiring cgo.
 {{if .DocURL -}}
 //
+// [Full Topic]
 // [Full Topic]: {{convertDocURL .DocURL}}
 {{end -}}
 package {{.PackageName}}
@@ -325,6 +326,7 @@ func init() {
 {{end -}}
 {{if $docData.DocURL -}}
 //
+// [Full Topic]
 // [Full Topic]: {{convertDocURL $docData.DocURL}}
 {{end -}}
 func {{$docData.Name}}({{range $i, $p := $docData.Parameters}}{{if $i}}, {{end}}{{$p.Name}} {{$p.Type}}{{end}}){{if $docData.ReturnType}} {{$docData.ReturnType}}{{end}} {
@@ -521,10 +523,12 @@ func New{{$structName}}() {{$structName}} {
 
 // {{commentLine .Abstract}}{{if not .DocURL}} [Full Topic]{{end}}
 {{if .DocURL}}//
+// [Full Topic]
 // [Full Topic]: {{convertDocURL .DocURL}}
 {{end}}{{end -}}
 {{- if and (not .Abstract) .DocURL}}
 //
+// [Full Topic]
 // [Full Topic]: {{convertDocURL .DocURL}}
 {{end -}}
 func {{$constructorName}}({{formatMethodParams . $framework}}) {{$structName}} {
@@ -544,10 +548,12 @@ func {{$constructorName}}({{formatMethodParams . $framework}}) {{$structName}} {
 {{- if .Abstract}}
 // {{commentLine .Abstract}}{{if not .DocURL}} [Full Topic]{{end}}
 {{if .DocURL}}//
+// [Full Topic]
 // [Full Topic]: {{convertDocURL .DocURL}}
 {{end}}{{end -}}
 {{- if and (not .Abstract) .DocURL}}
 //
+// [Full Topic]
 // [Full Topic]: {{convertDocURL .DocURL}}
 {{end -}}
 func ({{$classReceiver}} {{$classTypeName}}) {{.Name}}({{formatMethodParams . $framework}}){{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$returnType}}{{end}} {
@@ -573,10 +579,12 @@ func ({{$classReceiver}} {{$classTypeName}}) {{.Name}}({{formatMethodParams . $f
 {{- if .Abstract}}
 // {{commentLine .Abstract}}{{if not .DocURL}} [Full Topic]{{end}}
 {{if .DocURL}}//
+// [Full Topic]
 // [Full Topic]: {{convertDocURL .DocURL}}
 {{end}}{{end -}}
 {{- if and (not .Abstract) .DocURL}}
 //
+// [Full Topic]
 // [Full Topic]: {{convertDocURL .DocURL}}
 {{end -}}
 func ({{$classReceiver}} {{$classTypeName}}) {{$capitalizedName}}() {{$returnType}} {
@@ -597,10 +605,12 @@ func ({{$classReceiver}} {{$classTypeName}}) {{$capitalizedName}}() {{$returnTyp
 {{- if .Abstract}}
 // {{commentLine .Abstract}}{{if not .DocURL}} [Full Topic]{{end}}
 {{if .DocURL}}//
+// [Full Topic]
 // [Full Topic]: {{convertDocURL .DocURL}}
 {{end}}{{end -}}
 {{- if and (not .Abstract) .DocURL}}
 //
+// [Full Topic]
 // [Full Topic]: {{convertDocURL .DocURL}}
 {{end -}}
 func ({{$instReceiver}} {{$structName}}) {{.Name}}({{formatMethodParams . $framework}}){{if $isInitMethod}} {{$structName}}{{else}}{{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$goType}}{{end}}{{end}} {
@@ -700,10 +710,12 @@ type I{{$structName}} interface {
 // {{commentLine .Overview}}
 {{end -}}
 {{if .DocURL}}//
+// [Full Topic]
 // [Full Topic]: {{convertDocURL .DocURL}}
 {{end}}{{end -}}
 {{if and (not .Abstract) .DocURL -}}
 //
+// [Full Topic]
 // [Full Topic]: {{convertDocURL .DocURL}}
 {{end -}}
 type {{$structName}} struct {
@@ -760,10 +772,12 @@ func New{{$structName}}() {{$structName}} {
 
 // {{commentLine .Abstract}}{{if not .DocURL}} [Full Topic]{{end}}
 {{if .DocURL}}//
+// [Full Topic]
 // [Full Topic]: {{convertDocURL .DocURL}}
 {{end}}{{end -}}
 {{- if and (not .Abstract) .DocURL}}
 //
+// [Full Topic]
 // [Full Topic]: {{convertDocURL .DocURL}}
 {{end -}}
 func {{$constructorName}}({{formatMethodParams . $framework}}) {{$structName}} {
@@ -783,10 +797,12 @@ func {{$constructorName}}({{formatMethodParams . $framework}}) {{$structName}} {
 {{- if .Abstract}}
 // {{commentLine .Abstract}}{{if not .DocURL}} [Full Topic]{{end}}
 {{if .DocURL}}//
+// [Full Topic]
 // [Full Topic]: {{convertDocURL .DocURL}}
 {{end}}{{end -}}
 {{- if and (not .Abstract) .DocURL}}
 //
+// [Full Topic]
 // [Full Topic]: {{convertDocURL .DocURL}}
 {{end -}}
 func ({{$classReceiver}} {{$classTypeName}}) {{.Name}}({{formatMethodParams . $framework}}){{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$returnType}}{{end}} {

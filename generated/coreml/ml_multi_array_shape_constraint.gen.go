@@ -39,8 +39,8 @@ type IMultiArrayShapeConstraint interface {
 	SetShapeConstraint(value IMLMultiArrayShapeConstraint)
 	EnumeratedShapes() foundation.Number
 	SetEnumeratedShapes(value foundation.INumber)
-	SizeRangeForDimension() ModelStructureProgramValue
-	SetSizeRangeForDimension(value IModelStructureProgramValue)
+	SizeRangeForDimension() foundation.Value
+	SetSizeRangeForDimension(value foundation.IValue)
 	Type() unsafe.Pointer
 	SetType(value unsafe.Pointer)
 }
@@ -166,8 +166,8 @@ func (m_ MultiArrayShapeConstraint) SetEnumeratedShapes(value foundation.INumber
 // The allowable range for a dimention of the multiarray.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmultiarrayshapeconstraint/sizerangefordimension
-func (m_ MultiArrayShapeConstraint) SizeRangeForDimension() ModelStructureProgramValue {
-	rv := objc.Send[ModelStructureProgramValue](m_.ID, objc.Sel("sizeRangeForDimension"))
+func (m_ MultiArrayShapeConstraint) SizeRangeForDimension() foundation.Value {
+	rv := objc.Send[foundation.Value](m_.ID, objc.Sel("sizeRangeForDimension"))
 	return rv
 }
 
@@ -177,7 +177,7 @@ func (m_ MultiArrayShapeConstraint) SizeRangeForDimension() ModelStructureProgra
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmultiarrayshapeconstraint/sizerangefordimension
-func (m_ MultiArrayShapeConstraint) SetSizeRangeForDimension(value IModelStructureProgramValue) {
+func (m_ MultiArrayShapeConstraint) SetSizeRangeForDimension(value foundation.IValue) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSizeRangeForDimension:"), value)
 }
 

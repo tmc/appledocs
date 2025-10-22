@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -37,28 +36,22 @@ type IAttributedString interface {
 	AttributedSubstringFromRange(range_ IRange) AttributedString
 	AttributesAtIndexEffectiveRange(location uint, range_ IRangePointer) unsafe.Pointer
 	AttributesAtIndexLongestEffectiveRangeInRange(location uint, range_ IRangePointer, rangeLimit IRange) unsafe.Pointer
-	BoundingRectWithSizeOptionsContext(size coregraphics.CGSize, options StringDrawingOptions, context appkit.IStringDrawingContext) coregraphics.CGRect
 	ContainsAttachmentsInRange(range_ IRange) bool
 	DataFromRangeDocumentAttributesError(range_ IRange, dict unsafe.Pointer, error_ IError) Data
 	DocFormatFromRangeDocumentAttributes(range_ IRange, dict unsafe.Pointer) Data
 	DoubleClickAtIndex(location uint) Range
 	DrawAtPoint(point coregraphics.CGPoint)
 	DrawInRect(rect coregraphics.CGRect)
-	DrawWithRectOptionsContext(rect coregraphics.CGRect, options StringDrawingOptions, context appkit.IStringDrawingContext)
 	EnumerateAttributeInRangeOptionsUsingBlock(attrName IAttributedStringKey, enumerationRange IRange, opts AttributedStringEnumerationOptions, block unsafe.Pointer)
 	EnumerateAttributesInRangeOptionsUsingBlock(enumerationRange IRange, opts AttributedStringEnumerationOptions, block unsafe.Pointer)
 	FileWrapperFromRangeDocumentAttributesError(range_ IRange, dict unsafe.Pointer, error_ IError) FileWrapper
 	FontAttributesInRange(range_ IRange) unsafe.Pointer
 	AttributedStringByInflectingString() AttributedString
 	IsEqualToAttributedString(other IAttributedString) bool
-	ItemNumberInTextListAtIndex(list appkit.ITextList, location uint) int
 	LineBreakBeforeIndexWithinRange(location uint, aRange IRange) uint
 	LineBreakByHyphenatingBeforeIndexWithinRange(location uint, aRange IRange) uint
 	NextWordFromIndexForward(location uint, isForward bool) uint
 	PrefersRTFDInRange(range_ IRange) bool
-	RangeOfTextBlockAtIndex(block appkit.ITextBlock, location uint) Range
-	RangeOfTextTableAtIndex(table appkit.ITextTable, location uint) Range
-	RangeOfTextListAtIndex(list appkit.ITextList, location uint) Range
 	RTFFromRangeDocumentAttributes(range_ IRange, dict unsafe.Pointer) Data
 	RTFDFromRangeDocumentAttributes(range_ IRange, dict unsafe.Pointer) Data
 	RTFDFileWrapperFromRangeDocumentAttributes(range_ IRange, dict unsafe.Pointer) FileWrapper
@@ -170,14 +163,6 @@ func (a_ AttributedString) AttributesAtIndexLongestEffectiveRangeInRange(locatio
 	return rv
 }
 
-// Returns the bounding rectangle necessary to draw the string.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/boundingRect(with:options:context:)
-func (a_ AttributedString) BoundingRectWithSizeOptionsContext(size coregraphics.CGSize, options StringDrawingOptions, context appkit.IStringDrawingContext) coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](a_.ID, objc.Sel("boundingRectWithSize:options:context:"), size, options, context)
-	return rv
-}
-
 // Returns a Boolean value that indicates if the attributed string contains an attachment in the specified range.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/containsAttachments(in:)
@@ -222,13 +207,6 @@ func (a_ AttributedString) DrawAtPoint(point coregraphics.CGPoint) {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/draw(in:)
 func (a_ AttributedString) DrawInRect(rect coregraphics.CGRect) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("drawInRect:"), rect)
-}
-
-// Draws the attributed string in the specified bounding rectangle using the provided options.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/draw(with:options:context:)
-func (a_ AttributedString) DrawWithRectOptionsContext(rect coregraphics.CGRect, options StringDrawingOptions, context appkit.IStringDrawingContext) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("drawWithRect:options:context:"), rect, options, context)
 }
 
 // Executes the specified closure or block for each range of a particular attribute in the attributed string.
@@ -276,14 +254,6 @@ func (a_ AttributedString) IsEqualToAttributedString(other IAttributedString) bo
 	return rv
 }
 
-// Returns the index of the item at the specified location within the list.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/itemNumber(in:at:)
-func (a_ AttributedString) ItemNumberInTextListAtIndex(list appkit.ITextList, location uint) int {
-	rv := objc.Send[int](a_.ID, objc.Sel("itemNumberInTextList:atIndex:"), list, location)
-	return rv
-}
-
 // Returns the appropriate line break when the character at the index doesn’t fit on the same line as the character at the beginning of the range.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/lineBreak(before:within:)
@@ -313,30 +283,6 @@ func (a_ AttributedString) NextWordFromIndexForward(location uint, isForward boo
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/prefersRTFD(in:)
 func (a_ AttributedString) PrefersRTFDInRange(range_ IRange) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("prefersRTFDInRange:"), range_)
-	return rv
-}
-
-// Returns the range of the individual text block that contains the specified location.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/range(of:at:)-1wrcp
-func (a_ AttributedString) RangeOfTextBlockAtIndex(block appkit.ITextBlock, location uint) Range {
-	rv := objc.Send[Range](a_.ID, objc.Sel("rangeOfTextBlock:atIndex:"), block, location)
-	return rv
-}
-
-// Returns the range of the specified text table that contains the specified location.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/range(of:at:)-3fevu
-func (a_ AttributedString) RangeOfTextTableAtIndex(table appkit.ITextTable, location uint) Range {
-	rv := objc.Send[Range](a_.ID, objc.Sel("rangeOfTextTable:atIndex:"), table, location)
-	return rv
-}
-
-// Returns the range of the specified text list that contains the specified location.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/range(of:at:)-6um0x
-func (a_ AttributedString) RangeOfTextListAtIndex(list appkit.ITextList, location uint) Range {
-	rv := objc.Send[Range](a_.ID, objc.Sel("rangeOfTextList:atIndex:"), list, location)
 	return rv
 }
 

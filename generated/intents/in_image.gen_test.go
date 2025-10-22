@@ -17,11 +17,3 @@ func ExampleNewINImageNamed() {
 	)
 	// Output:
 }
-// ExampleNewINImageWithUIImage demonstrates how to create a INImage instance using NewINImageWithUIImage.
-// Creates an image object from the specified UIKit image.
-func ExampleNewINImageWithUIImage() {
-	_ = intents.NewINImageWithUIImage(
-		intents.Image{}, // image Image
-	)
-	// Output:
-}

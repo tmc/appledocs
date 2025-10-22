@@ -98,8 +98,6 @@ type NSInsertionPosition unsafe.Pointer
 
 type NSLengthFormatterUnit unsafe.Pointer
 
-type NSLineBreakMode unsafe.Pointer
-
 type NSLocaleKey unsafe.Pointer
 
 type NSLocaleLanguageDirection unsafe.Pointer
@@ -131,8 +129,6 @@ type NSStreamPropertyKey unsafe.Pointer
 type NSStringEncoding unsafe.Pointer
 
 type NSTestComparisonOperation unsafe.Pointer
-
-type NSTextAlignment unsafe.Pointer
 
 type NSTextCheckingTypes unsafe.Pointer
 

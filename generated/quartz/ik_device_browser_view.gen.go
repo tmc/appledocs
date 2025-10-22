@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/mlcompute"
 )
 
@@ -29,7 +30,7 @@ type _IKDeviceBrowserViewClass struct {
 
 // An interface definition for the [IKDeviceBrowserView] class.
 type IIKDeviceBrowserView interface {
-	IView
+	appkit.IView
 	Delegate() unsafe.Pointer
 	SetDelegate(value unsafe.Pointer)
 	DisplaysLocalCameras() bool
@@ -52,7 +53,7 @@ type IIKDeviceBrowserView interface {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Quartz/IKDeviceBrowserView
 type IKDeviceBrowserView struct {
-	View
+	appkit.View
 }
 
 // IKDeviceBrowserViewFrom constructs a [IKDeviceBrowserView] from an unsafe.Pointer.
@@ -60,7 +61,7 @@ type IKDeviceBrowserView struct {
 // The allows you to select a camera or scanner from a list of the available devices.
 func IKDeviceBrowserViewFrom(ptr unsafe.Pointer) IKDeviceBrowserView {
 	return IKDeviceBrowserView{
-		View: ViewFrom(ptr),
+		View: appkit.ViewFrom(ptr),
 	}
 }
 

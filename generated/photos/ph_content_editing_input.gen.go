@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/avfoundation"
 	"github.com/tmc/appledocs/generated/corelocation"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
@@ -34,8 +35,8 @@ type _PHContentEditingInputClass struct {
 type IPHContentEditingInput interface {
 	objectivec.IObject
 	AdjustmentData() PHAdjustmentData
-	AudiovisualAsset() Asset
-	AvAsset() Asset
+	AudiovisualAsset() avfoundation.Asset
+	AvAsset() avfoundation.Asset
 	ContentType() unsafe.Pointer
 	CreationDate() foundation.NSDate
 	DisplaySizeImage() appkit.Image
@@ -110,16 +111,16 @@ func (p_ PHContentEditingInput) AdjustmentData() PHAdjustmentData {
 // The video asset, as an object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHContentEditingInput/audiovisualAsset
-func (p_ PHContentEditingInput) AudiovisualAsset() Asset {
-	rv := objc.Send[Asset](p_.ID, objc.Sel("audiovisualAsset"))
+func (p_ PHContentEditingInput) AudiovisualAsset() avfoundation.Asset {
+	rv := objc.Send[avfoundation.Asset](p_.ID, objc.Sel("audiovisualAsset"))
 	return rv
 }
 
 // The video asset, as an object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHContentEditingInput/avAsset
-func (p_ PHContentEditingInput) AvAsset() Asset {
-	rv := objc.Send[Asset](p_.ID, objc.Sel("avAsset"))
+func (p_ PHContentEditingInput) AvAsset() avfoundation.Asset {
+	rv := objc.Send[avfoundation.Asset](p_.ID, objc.Sel("avAsset"))
 	return rv
 }
 

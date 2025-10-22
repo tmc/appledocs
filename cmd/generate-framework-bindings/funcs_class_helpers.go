@@ -25,7 +25,7 @@ func getInterfaceParent(class *occ2go.ParsedClass, framework string) string {
 		if className == "NSObject" {
 			return "objc.IObject"
 		}
-		return "IObject"
+		return "objectivec.IObject"
 	}
 
 	// Check if class has a superclass (other than NSObject)

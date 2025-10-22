@@ -8,7 +8,6 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
-	"github.com/tmc/appledocs/generated/intents"
 	"github.com/tmc/appledocs/generated/objectivec"
 	"github.com/tmc/appledocs/generated/replaykit"
 )
@@ -48,7 +47,6 @@ type IExtensionContext interface {
 	HostedViewMaximumAllowedSize() coregraphics.CGSize
 	HostedViewMinimumAllowedSize() coregraphics.CGSize
 	InputItems() objc.ID
-	Intent() intents.INIntent
 	NotificationActions() []objc.ID
 	SetNotificationActions(value []objc.ID)
 	WidgetActiveDisplayMode() unsafe.Pointer
@@ -208,14 +206,6 @@ func (e_ ExtensionContext) HostedViewMinimumAllowedSize() coregraphics.CGSize {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtensionContext/inputItems
 func (e_ ExtensionContext) InputItems() objc.ID {
 	rv := objc.Send[objc.ID](e_.ID, objc.Sel("inputItems"))
-	return rv
-}
-
-// Metadata for populating your share extensions interface.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtensionContext/intent
-func (e_ ExtensionContext) Intent() intents.INIntent {
-	rv := objc.Send[intents.INIntent](e_.ID, objc.Sel("intent"))
 	return rv
 }
 

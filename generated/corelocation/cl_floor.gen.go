@@ -30,8 +30,8 @@ type _FloorClass struct {
 // An interface definition for the [Floor] class.
 type IFloor interface {
 	objectivec.IObject
-	Level() int
-	SetLevel(value int)
+	Level() unsafe.Pointer
+	SetLevel(value unsafe.Pointer)
 }
 
 // The floor of a building on which the user’s device is located.
@@ -85,8 +85,8 @@ func NewFloor() Floor {
 // The logical floor of the building.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLFloor/level
-func (f_ Floor) Level() int {
-	rv := objc.Send[int](f_.ID, objc.Sel("level"))
+func (f_ Floor) Level() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("level"))
 	return rv
 }
 
@@ -96,7 +96,7 @@ func (f_ Floor) Level() int {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLFloor/level
-func (f_ Floor) SetLevel(value int) {
+func (f_ Floor) SetLevel(value unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setLevel:"), value)
 }
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/imagecapturecore"
 )
@@ -30,7 +31,7 @@ type _IKScannerDeviceViewClass struct {
 
 // An interface definition for the [IKScannerDeviceView] class.
 type IIKScannerDeviceView interface {
-	IView
+	appkit.IView
 	Delegate() unsafe.Pointer
 	SetDelegate(value unsafe.Pointer)
 	DisplaysDownloadsDirectoryControl() bool
@@ -63,7 +64,7 @@ type IIKScannerDeviceView interface {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Quartz/IKScannerDeviceView
 type IKScannerDeviceView struct {
-	View
+	appkit.View
 }
 
 // IKScannerDeviceViewFrom constructs a [IKScannerDeviceView] from an unsafe.Pointer.
@@ -71,7 +72,7 @@ type IKScannerDeviceView struct {
 // The class displays a view that allows scanning. It can be customized by specifying the display mode. The delegate receives the scanned data and must implement the protocol.
 func IKScannerDeviceViewFrom(ptr unsafe.Pointer) IKScannerDeviceView {
 	return IKScannerDeviceView{
-		View: ViewFrom(ptr),
+		View: appkit.ViewFrom(ptr),
 	}
 }
 

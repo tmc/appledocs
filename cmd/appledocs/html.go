@@ -6,6 +6,14 @@ import (
 	"os"
 )
 
+// TreeNode represents a node in the file tree
+type TreeNode struct {
+	Name     string
+	Path     string
+	IsDir    bool
+	Children []*TreeNode
+}
+
 // generateHTMLFile creates the HTML file with the file tree and embedded JavaScript
 func generateHTMLFile(indexPath string, data struct {
 	Root      *TreeNode

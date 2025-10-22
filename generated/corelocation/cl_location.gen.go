@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -51,8 +50,8 @@ type ILocation interface {
 	SetSpeed(value unsafe.Pointer)
 	SpeedAccuracy() unsafe.Pointer
 	SetSpeedAccuracy(value unsafe.Pointer)
-	Timestamp() foundation.Date
-	SetTimestamp(value foundation.IDate)
+	Timestamp() unsafe.Pointer
+	SetTimestamp(value unsafe.Pointer)
 	VerticalAccuracy() unsafe.Pointer
 	SetVerticalAccuracy(value unsafe.Pointer)
 }
@@ -284,8 +283,8 @@ func (l_ Location) SetSpeedAccuracy(value unsafe.Pointer) {
 // The time at which this location was determined.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation/timestamp
-func (l_ Location) Timestamp() foundation.Date {
-	rv := objc.Send[foundation.Date](l_.ID, objc.Sel("timestamp"))
+func (l_ Location) Timestamp() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("timestamp"))
 	return rv
 }
 
@@ -295,7 +294,7 @@ func (l_ Location) Timestamp() foundation.Date {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation/timestamp
-func (l_ Location) SetTimestamp(value foundation.IDate) {
+func (l_ Location) SetTimestamp(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setTimestamp:"), value)
 }
 

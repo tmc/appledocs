@@ -31,7 +31,7 @@ type _IKImageViewClass struct {
 
 // An interface definition for the [IKImageView] class.
 type IIKImageView interface {
-	IView
+	appkit.IView
 	ConvertImageRectToViewRect(imageRect foundation.IRect) foundation.Rect
 	AutohidesScrollers() bool
 	SetAutohidesScrollers(value bool)
@@ -67,7 +67,7 @@ type IIKImageView interface {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Quartz/IKImageView
 type IKImageView struct {
-	View
+	appkit.View
 }
 
 // IKImageViewFrom constructs a [IKImageView] from an unsafe.Pointer.
@@ -75,7 +75,7 @@ type IKImageView struct {
 // A view that allows displaying and minor editing of an image.
 func IKImageViewFrom(ptr unsafe.Pointer) IKImageView {
 	return IKImageView{
-		View: ViewFrom(ptr),
+		View: appkit.ViewFrom(ptr),
 	}
 }
 

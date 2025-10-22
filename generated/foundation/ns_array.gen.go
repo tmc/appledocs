@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/gameplaykit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -71,7 +70,6 @@ type IArray interface {
 	RemoveObserverFromObjectsAtIndexesForKeyPathContext(observer IObject, indexes IIndexSet, keyPath string, context unsafe.Pointer)
 	ReverseObjectEnumerator() unsafe.Pointer
 	ShuffledArray() []objc.ID
-	ShuffledArrayWithRandomSource(randomSource gameplaykit.IRandomSource) []objc.ID
 	SortedArrayUsingFunctionContext(comparator unsafe.Pointer, context unsafe.Pointer) []objc.ID
 	SortedArrayUsingFunctionContextHint(comparator unsafe.Pointer, context unsafe.Pointer, hint IData) []objc.ID
 	SortedArrayUsingComparator(cmptr unsafe.Pointer) []objc.ID
@@ -637,14 +635,6 @@ func (a_ Array) SetValueForKey(value objectivec.IObject, key string) {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/shuffled()
 func (a_ Array) ShuffledArray() []objc.ID {
 	rv := objc.Send[[]objc.ID](a_.ID, objc.Sel("shuffledArray"))
-	return rv
-}
-
-// Returns a new array that lists this array’s elements in a random order, using the specified random source.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/shuffled(using:)
-func (a_ Array) ShuffledArrayWithRandomSource(randomSource gameplaykit.IRandomSource) []objc.ID {
-	rv := objc.Send[[]objc.ID](a_.ID, objc.Sel("shuffledArrayWithRandomSource:"), randomSource)
 	return rv
 }
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [QCCompositionPickerView] class.
@@ -28,7 +29,7 @@ type _QCCompositionPickerViewClass struct {
 
 // An interface definition for the [QCCompositionPickerView] class.
 type IQCCompositionPickerView interface {
-	IView
+	appkit.IView
 	SetSelectedComposition(composition IQCComposition)
 	ShowsCompositionNames() bool
 }
@@ -39,7 +40,7 @@ type IQCCompositionPickerView interface {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Quartz/QCCompositionPickerView
 type QCCompositionPickerView struct {
-	View
+	appkit.View
 }
 
 // QCCompositionPickerViewFrom constructs a [QCCompositionPickerView] from an unsafe.Pointer.
@@ -47,7 +48,7 @@ type QCCompositionPickerView struct {
 // The class allows users to browse compositions that are in the Quartz Composer composition repository, and to preview them. You can set the default input parameters for a composition preview by using the method setDefaultValue:forInputKey:.
 func QCCompositionPickerViewFrom(ptr unsafe.Pointer) QCCompositionPickerView {
 	return QCCompositionPickerView{
-		View: ViewFrom(ptr),
+		View: appkit.ViewFrom(ptr),
 	}
 }
 

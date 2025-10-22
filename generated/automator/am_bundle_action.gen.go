@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
@@ -35,7 +36,7 @@ type IAMBundleAction interface {
 	HasView() bool
 	Parameters() unsafe.Pointer
 	SetParameters(value unsafe.Pointer)
-	View() workflowView
+	View() appkit.View
 }
 
 // An object that represents an Automator action that’s a loadable bundle.
@@ -132,8 +133,8 @@ func (a_ AMBundleAction) SetParameters(value unsafe.Pointer) {
 // The action’s view object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMBundleAction/view
-func (a_ AMBundleAction) View() AMWorkflowView {
-	rv := objc.Send[AMWorkflowView](a_.ID, objc.Sel("view"))
+func (a_ AMBundleAction) View() appkit.View {
+	rv := objc.Send[appkit.View](a_.ID, objc.Sel("view"))
 	return rv
 }
 

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -37,8 +36,6 @@ type IUserNotification interface {
 	AdditionalActions() []UserNotificationAction
 	SetAdditionalActions(value []UserNotificationAction)
 	AdditionalActivationAction() NSUserNotificationAction
-	ContentImage() appkit.Image
-	SetContentImage(value appkit.IImage)
 	DeliveryDate() NSDate
 	SetDeliveryDate(value IDate)
 	InformativeText() string
@@ -185,24 +182,6 @@ func (u_ UserNotification) SetAdditionalActions(value []UserNotificationAction) 
 func (u_ UserNotification) AdditionalActivationAction() NSUserNotificationAction {
 	rv := objc.Send[NSUserNotificationAction](u_.ID, objc.Sel("additionalActivationAction"))
 	return rv
-}
-
-// Image shown in the content of the notification.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/contentImage
-func (u_ UserNotification) ContentImage() appkit.Image {
-	rv := objc.Send[appkit.Image](u_.ID, objc.Sel("contentImage"))
-	return rv
-}
-
-
-// SetContentImage sets the value of the contentImage property.
-// Image shown in the content of the notification.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/contentImage
-func (u_ UserNotification) SetContentImage(value appkit.IImage) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setContentImage:"), value)
 }
 
 // Specifies when the notification should be delivered.

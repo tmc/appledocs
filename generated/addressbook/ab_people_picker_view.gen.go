@@ -49,8 +49,8 @@ type IABPeoplePickerView interface {
 	SelectedIdentifiersForPerson(person IABPerson) foundation.Array
 	SelectedValues() foundation.Array
 	SetColumnTitleForProperty(title string, property string)
-	AccessoryView() ABPeoplePickerView
-	SetAccessoryView(value IABPeoplePickerView)
+	AccessoryView() appkit.View
+	SetAccessoryView(value appkit.IView)
 	AllowsGroupSelection() bool
 	SetAllowsGroupSelection(value bool)
 	AllowsMultipleSelection() bool
@@ -245,8 +245,8 @@ func (a_ ABPeoplePickerView) SetColumnTitleForProperty(title string, property st
 // The view that is placed to the left of the search field.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPeoplePickerView/accessoryView
-func (a_ ABPeoplePickerView) AccessoryView() ABPeoplePickerView {
-	rv := objc.Send[ABPeoplePickerView](a_.ID, objc.Sel("accessoryView"))
+func (a_ ABPeoplePickerView) AccessoryView() appkit.View {
+	rv := objc.Send[appkit.View](a_.ID, objc.Sel("accessoryView"))
 	return rv
 }
 
@@ -256,7 +256,7 @@ func (a_ ABPeoplePickerView) AccessoryView() ABPeoplePickerView {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPeoplePickerView/accessoryView
-func (a_ ABPeoplePickerView) SetAccessoryView(value IABPeoplePickerView) {
+func (a_ ABPeoplePickerView) SetAccessoryView(value appkit.IView) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAccessoryView:"), value)
 }
 

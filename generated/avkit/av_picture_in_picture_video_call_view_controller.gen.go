@@ -32,8 +32,8 @@ type IPictureInPictureVideoCallViewController interface {
 	appkit.IViewController
 	ActiveVideoCallContentViewController() AVPictureInPictureVideoCallViewController
 	SetActiveVideoCallContentViewController(value IAVPictureInPictureVideoCallViewController)
-	ActiveVideoCallSourceView() PlayerView
-	SetActiveVideoCallSourceView(value IPlayerView)
+	ActiveVideoCallSourceView() appkit.View
+	SetActiveVideoCallSourceView(value appkit.IView)
 }
 
 // A view controller that presents content from a video call in Picture in Picture.
@@ -105,8 +105,8 @@ func (p_ PictureInPictureVideoCallViewController) SetActiveVideoCallContentViewC
 // The view that contains the video content of the call.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avpictureinpicturecontroller/contentsource-swift.class/activevideocallsourceview
-func (p_ PictureInPictureVideoCallViewController) ActiveVideoCallSourceView() CaptureView {
-	rv := objc.Send[CaptureView](p_.ID, objc.Sel("activeVideoCallSourceView"))
+func (p_ PictureInPictureVideoCallViewController) ActiveVideoCallSourceView() appkit.View {
+	rv := objc.Send[appkit.View](p_.ID, objc.Sel("activeVideoCallSourceView"))
 	return rv
 }
 
@@ -116,7 +116,7 @@ func (p_ PictureInPictureVideoCallViewController) ActiveVideoCallSourceView() Ca
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avpictureinpicturecontroller/contentsource-swift.class/activevideocallsourceview
-func (p_ PictureInPictureVideoCallViewController) SetActiveVideoCallSourceView(value ICaptureView) {
+func (p_ PictureInPictureVideoCallViewController) SetActiveVideoCallSourceView(value appkit.IView) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setActiveVideoCallSourceView:"), value)
 }
 

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -59,7 +58,6 @@ type IURL interface {
 	SetTemporaryResourceValueForKey(value objectivec.IObject, key IURLResourceKey)
 	StartAccessingSecurityScopedResource() bool
 	StopAccessingSecurityScopedResource()
-	WriteToPasteboard(pasteBoard appkit.IPasteboard)
 	AbsoluteString() string
 	AbsoluteURL() URL
 	BaseURL() URL
@@ -237,16 +235,6 @@ func NewURLFileURLWithPathRelativeToURL(path string, baseURL IURL) URL {
 	return rv
 }
 
-
-
-// Reads an NSURL object off of the specified pasteboard.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(fromPasteboard:)
-func NewURLFromPasteboard(pasteBoard appkit.IPasteboard) URL {
-	rv := objc.Send[URL](objc.ID(getURLClass().class), objc.Sel("URLFromPasteboard:"), pasteBoard)
-	return rv
-}
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(dataRepresentation:relativeTo:)
 func NewURLWithDataRepresentationRelativeToURL(data IData, baseURL IURL) URL {
@@ -402,14 +390,6 @@ func (uc _URLClass) FileURLWithPathRelativeToURL(path string, baseURL IURL) URL 
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/fileURL(withPathComponents:)
 func (uc _URLClass) FileURLWithPathComponents(components []string) URL {
 	rv := objc.Send[URL](objc.ID(uc.class), objc.Sel("fileURLWithPathComponents:"), components)
-	return rv
-}
-
-// Reads an NSURL object off of the specified pasteboard.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(fromPasteboard:)
-func (uc _URLClass) URLFromPasteboard(pasteBoard appkit.IPasteboard) URL {
-	rv := objc.Send[URL](objc.ID(uc.class), objc.Sel("URLFromPasteboard:"), pasteBoard)
 	return rv
 }
 
@@ -654,13 +634,6 @@ func (u_ URL) StartAccessingSecurityScopedResource() bool {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/stopAccessingSecurityScopedResource()
 func (u_ URL) StopAccessingSecurityScopedResource() {
 	objc.Send[objc.ID](u_.ID, objc.Sel("stopAccessingSecurityScopedResource"))
-}
-
-// Writes the URL to the specified pasteboard.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/write(to:)
-func (u_ URL) WriteToPasteboard(pasteBoard appkit.IPasteboard) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("writeToPasteboard:"), pasteBoard)
 }
 
 // The URL string for the receiver as an absolute URL. (read-only)

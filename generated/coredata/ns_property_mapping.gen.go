@@ -34,8 +34,8 @@ type IPropertyMapping interface {
 	SetName(value string)
 	UserInfo() objc.ID
 	SetUserInfo(value objc.ID)
-	ValueExpression() FetchRequestExpression
-	SetValueExpression(value IFetchRequestExpression)
+	ValueExpression() Expression
+	SetValueExpression(value IExpression)
 }
 
 // A mapping instance that specifies in a model how to map from a property in a source entity to a property in a destination entity.
@@ -123,8 +123,8 @@ func (p_ PropertyMapping) SetUserInfo(value objc.ID) {
 // The value expression for the property mapping.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyMapping/valueExpression
-func (p_ PropertyMapping) ValueExpression() FetchRequestExpression {
-	rv := objc.Send[FetchRequestExpression](p_.ID, objc.Sel("valueExpression"))
+func (p_ PropertyMapping) ValueExpression() Expression {
+	rv := objc.Send[Expression](p_.ID, objc.Sel("valueExpression"))
 	return rv
 }
 
@@ -134,7 +134,7 @@ func (p_ PropertyMapping) ValueExpression() FetchRequestExpression {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyMapping/valueExpression
-func (p_ PropertyMapping) SetValueExpression(value IFetchRequestExpression) {
+func (p_ PropertyMapping) SetValueExpression(value IExpression) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setValueExpression:"), value)
 }
 

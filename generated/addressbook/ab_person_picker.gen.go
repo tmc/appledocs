@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,7 +33,7 @@ type _ABPersonPickerClass struct {
 type IABPersonPicker interface {
 	objectivec.IObject
 	Close()
-	ShowRelativeToRectOfViewPreferredEdge(positioningRect foundation.IRect, positioningView IABPeoplePickerView, preferredEdge foundation.IRectEdge)
+	ShowRelativeToRectOfViewPreferredEdge(positioningRect foundation.IRect, positioningView appkit.IView, preferredEdge foundation.IRectEdge)
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
 	Properties() objc.ID
@@ -95,7 +96,7 @@ func (a_ ABPersonPicker) Close() {
 // Shows the picker in a popover relative to a view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPersonPicker/showRelativeToRect:ofView:preferredEdge:
-func (a_ ABPersonPicker) ShowRelativeToRectOfViewPreferredEdge(positioningRect foundation.IRect, positioningView IABPersonView, preferredEdge foundation.IRectEdge) {
+func (a_ ABPersonPicker) ShowRelativeToRectOfViewPreferredEdge(positioningRect foundation.IRect, positioningView appkit.IView, preferredEdge foundation.IRectEdge) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("showRelativeToRect:ofView:preferredEdge:"), positioningRect, positioningView, preferredEdge)
 }
 

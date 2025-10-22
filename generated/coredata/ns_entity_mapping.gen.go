@@ -49,8 +49,8 @@ type IEntityMapping interface {
 	SetSourceEntityName(value string)
 	SourceEntityVersionHash() foundation.NSData
 	SetSourceEntityVersionHash(value foundation.IData)
-	SourceExpression() FetchRequestExpression
-	SetSourceExpression(value IFetchRequestExpression)
+	SourceExpression() Expression
+	SetSourceExpression(value IExpression)
 	UserInfo() objc.ID
 	SetUserInfo(value objc.ID)
 }
@@ -286,8 +286,8 @@ func (e_ EntityMapping) SetSourceEntityVersionHash(value foundation.IData) {
 // The source expression for the entity mapping.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSEntityMapping/sourceExpression
-func (e_ EntityMapping) SourceExpression() FetchRequestExpression {
-	rv := objc.Send[FetchRequestExpression](e_.ID, objc.Sel("sourceExpression"))
+func (e_ EntityMapping) SourceExpression() Expression {
+	rv := objc.Send[Expression](e_.ID, objc.Sel("sourceExpression"))
 	return rv
 }
 
@@ -297,7 +297,7 @@ func (e_ EntityMapping) SourceExpression() FetchRequestExpression {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSEntityMapping/sourceExpression
-func (e_ EntityMapping) SetSourceExpression(value IFetchRequestExpression) {
+func (e_ EntityMapping) SetSourceExpression(value IExpression) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setSourceExpression:"), value)
 }
 

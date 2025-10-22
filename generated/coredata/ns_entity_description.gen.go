@@ -38,8 +38,8 @@ type IEntityDescription interface {
 	SetAttributesByName(value IAttributeDescription)
 	CompoundIndexes() unsafe.Pointer
 	SetCompoundIndexes(value unsafe.Pointer)
-	CoreSpotlightDisplayNameExpression() FetchRequestExpression
-	SetCoreSpotlightDisplayNameExpression(value IFetchRequestExpression)
+	CoreSpotlightDisplayNameExpression() Expression
+	SetCoreSpotlightDisplayNameExpression(value IExpression)
 	Indexes() unsafe.Pointer
 	SetIndexes(value unsafe.Pointer)
 	IsAbstract() bool
@@ -191,8 +191,8 @@ func (e_ EntityDescription) SetCompoundIndexes(value unsafe.Pointer) {
 // The expression that computes the CoreSpotlight display name for instances of the entity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitydescription/corespotlightdisplaynameexpression
-func (e_ EntityDescription) CoreSpotlightDisplayNameExpression() FetchRequestExpression {
-	rv := objc.Send[FetchRequestExpression](e_.ID, objc.Sel("coreSpotlightDisplayNameExpression"))
+func (e_ EntityDescription) CoreSpotlightDisplayNameExpression() Expression {
+	rv := objc.Send[Expression](e_.ID, objc.Sel("coreSpotlightDisplayNameExpression"))
 	return rv
 }
 
@@ -202,7 +202,7 @@ func (e_ EntityDescription) CoreSpotlightDisplayNameExpression() FetchRequestExp
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitydescription/corespotlightdisplaynameexpression
-func (e_ EntityDescription) SetCoreSpotlightDisplayNameExpression(value IFetchRequestExpression) {
+func (e_ EntityDescription) SetCoreSpotlightDisplayNameExpression(value IExpression) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setCoreSpotlightDisplayNameExpression:"), value)
 }
 

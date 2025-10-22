@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [IKFilterUIView] class.
@@ -28,7 +29,7 @@ type _IKFilterUIViewClass struct {
 
 // An interface definition for the [IKFilterUIView] class.
 type IIKFilterUIView interface {
-	IView
+	appkit.IView
 }
 
 // Input parameters for filtering core image filters.
@@ -37,7 +38,7 @@ type IIKFilterUIView interface {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Quartz/IKFilterUIView
 type IKFilterUIView struct {
-	View
+	appkit.View
 }
 
 // IKFilterUIViewFrom constructs a [IKFilterUIView] from an unsafe.Pointer.
@@ -45,7 +46,7 @@ type IKFilterUIView struct {
 // Input parameters for filtering core image filters.
 func IKFilterUIViewFrom(ptr unsafe.Pointer) IKFilterUIView {
 	return IKFilterUIView{
-		View: ViewFrom(ptr),
+		View: appkit.ViewFrom(ptr),
 	}
 }
 

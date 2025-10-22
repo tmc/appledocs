@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/quartzcore"
 )
 
 // The class instance for the [CaptureDeviceRotationCoordinator] class.
@@ -32,8 +33,8 @@ type ICaptureDeviceRotationCoordinator interface {
 	objectivec.IObject
 	Device() AVCaptureDevice
 	SetDevice(value IAVCaptureDevice)
-	PreviewLayer() SynchronizedLayer
-	SetPreviewLayer(value ISynchronizedLayer)
+	PreviewLayer() quartzcore.Layer
+	SetPreviewLayer(value quartzcore.ILayer)
 	VideoRotationAngleForHorizonLevelCapture() float64
 	SetVideoRotationAngleForHorizonLevelCapture(value float64)
 	VideoRotationAngleForHorizonLevelPreview() float64
@@ -93,7 +94,7 @@ func NewCaptureDeviceRotationCoordinator() CaptureDeviceRotationCoordinator {
 // Creates a coordinator that provides separate compensation angles for content your app takes with a capture device, and for your app’s camera preview.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/RotationCoordinator/init(device:previewLayer:)
-func NewCaptureDeviceRotationCoordinatorWithDevicePreviewLayer(device IAVCaptureDevice, previewLayer ISampleBufferDisplayLayer) CaptureDeviceRotationCoordinator {
+func NewCaptureDeviceRotationCoordinatorWithDevicePreviewLayer(device IAVCaptureDevice, previewLayer quartzcore.ILayer) CaptureDeviceRotationCoordinator {
 	instance := getCaptureDeviceRotationCoordinatorClass().Alloc()
 	rv := objc.Send[CaptureDeviceRotationCoordinator](instance.ID, objc.Sel("initWithDevice:previewLayer:"), device, previewLayer)
 	rv.Autorelease()
@@ -122,8 +123,8 @@ func (c_ CaptureDeviceRotationCoordinator) SetDevice(value IAVCaptureDevice) {
 // The layer that displays a camera preview the coordinator calculates a video rotation angle for.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/rotationcoordinator/previewlayer
-func (c_ CaptureDeviceRotationCoordinator) PreviewLayer() PlayerLayer {
-	rv := objc.Send[PlayerLayer](c_.ID, objc.Sel("previewLayer"))
+func (c_ CaptureDeviceRotationCoordinator) PreviewLayer() quartzcore.Layer {
+	rv := objc.Send[quartzcore.Layer](c_.ID, objc.Sel("previewLayer"))
 	return rv
 }
 
@@ -133,7 +134,7 @@ func (c_ CaptureDeviceRotationCoordinator) PreviewLayer() PlayerLayer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/rotationcoordinator/previewlayer
-func (c_ CaptureDeviceRotationCoordinator) SetPreviewLayer(value IPlayerLayer) {
+func (c_ CaptureDeviceRotationCoordinator) SetPreviewLayer(value quartzcore.ILayer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPreviewLayer:"), value)
 }
 

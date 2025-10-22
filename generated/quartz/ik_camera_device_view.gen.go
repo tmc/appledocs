@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/imagecapturecore"
 )
@@ -30,7 +31,7 @@ type _IKCameraDeviceViewClass struct {
 
 // An interface definition for the [IKCameraDeviceView] class.
 type IIKCameraDeviceView interface {
-	IView
+	appkit.IView
 	CameraDevice() imagecapturecore.ICCameraDevice
 	SetCameraDevice(value imagecapturecore.ICCameraDevice)
 	CanDeleteSelectedItems() bool
@@ -71,7 +72,7 @@ type IIKCameraDeviceView interface {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Quartz/IKCameraDeviceView
 type IKCameraDeviceView struct {
-	View
+	appkit.View
 }
 
 // IKCameraDeviceViewFrom constructs a [IKCameraDeviceView] from an unsafe.Pointer.
@@ -79,7 +80,7 @@ type IKCameraDeviceView struct {
 // The class displays the contents of the selected camera.
 func IKCameraDeviceViewFrom(ptr unsafe.Pointer) IKCameraDeviceView {
 	return IKCameraDeviceView{
-		View: ViewFrom(ptr),
+		View: appkit.ViewFrom(ptr),
 	}
 }
 

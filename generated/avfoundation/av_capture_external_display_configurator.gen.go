@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/quartzcore"
 )
 
 // The class instance for the [CaptureExternalDisplayConfigurator] class.
@@ -38,8 +39,8 @@ type ICaptureExternalDisplayConfigurator interface {
 	SetDevice(value IAVCaptureDevice)
 	IsActive() bool
 	SetIsActive(value bool)
-	PreviewLayer() SampleBufferDisplayLayer
-	SetPreviewLayer(value ISampleBufferDisplayLayer)
+	PreviewLayer() quartzcore.Layer
+	SetPreviewLayer(value quartzcore.ILayer)
 }
 
 // A configurator class allowing you to configure properties of an external display to match the camera’s active video format.
@@ -165,8 +166,8 @@ func (c_ CaptureExternalDisplayConfigurator) SetIsActive(value bool) {
 // The layer for which the configurator adjusts display properties to match the device’s state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureexternaldisplayconfigurator/previewlayer
-func (c_ CaptureExternalDisplayConfigurator) PreviewLayer() SynchronizedLayer {
-	rv := objc.Send[SynchronizedLayer](c_.ID, objc.Sel("previewLayer"))
+func (c_ CaptureExternalDisplayConfigurator) PreviewLayer() quartzcore.Layer {
+	rv := objc.Send[quartzcore.Layer](c_.ID, objc.Sel("previewLayer"))
 	return rv
 }
 
@@ -176,7 +177,7 @@ func (c_ CaptureExternalDisplayConfigurator) PreviewLayer() SynchronizedLayer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureexternaldisplayconfigurator/previewlayer
-func (c_ CaptureExternalDisplayConfigurator) SetPreviewLayer(value ISynchronizedLayer) {
+func (c_ CaptureExternalDisplayConfigurator) SetPreviewLayer(value quartzcore.ILayer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPreviewLayer:"), value)
 }
 

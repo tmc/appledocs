@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -33,7 +32,6 @@ type IBundle interface {
 	objectivec.IObject
 	ClassNamed(className string) objc.Class
 	ContextHelpForKey(key unsafe.Pointer) AttributedString
-	ImageForResource(name unsafe.Pointer) appkit.Image
 	LoadAndReturnError(error_ IError) bool
 	LoadAppleScriptObjectiveCScripts()
 	LoadNibNamedOwnerOptions(name string, owner objectivec.IObject, options unsafe.Pointer) Array
@@ -328,14 +326,6 @@ func (b_ Bundle) ClassNamed(className string) objc.Class {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/contextHelp(forKey:)
 func (b_ Bundle) ContextHelpForKey(key unsafe.Pointer) AttributedString {
 	rv := objc.Send[AttributedString](b_.ID, objc.Sel("contextHelpForKey:"), key)
-	return rv
-}
-
-// Returns an instance associated with the specified name, which can be backed by multiple files representing different resolution versions of the image.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/image(forResource:)
-func (b_ Bundle) ImageForResource(name unsafe.Pointer) appkit.Image {
-	rv := objc.Send[appkit.Image](b_.ID, objc.Sel("imageForResource:"), name)
 	return rv
 }
 

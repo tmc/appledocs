@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [IKFilterBrowserView] class.
@@ -28,14 +29,14 @@ type _IKFilterBrowserViewClass struct {
 
 // An interface definition for the [IKFilterBrowserView] class.
 type IIKFilterBrowserView interface {
-	IView
+	appkit.IView
 }
 
 // The class is used as a container for the elements of an object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Quartz/IKFilterBrowserView
 type IKFilterBrowserView struct {
-	View
+	appkit.View
 }
 
 // IKFilterBrowserViewFrom constructs a [IKFilterBrowserView] from an unsafe.Pointer.
@@ -43,7 +44,7 @@ type IKFilterBrowserView struct {
 // The class is used as a container for the elements of an object.
 func IKFilterBrowserViewFrom(ptr unsafe.Pointer) IKFilterBrowserView {
 	return IKFilterBrowserView{
-		View: ViewFrom(ptr),
+		View: appkit.ViewFrom(ptr),
 	}
 }
 

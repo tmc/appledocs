@@ -46,7 +46,7 @@ type IPlayerView interface {
 	AllowsVideoFrameAnalysis() bool
 	SetAllowsVideoFrameAnalysis(value bool)
 	CanBeginTrimming() bool
-	ContentOverlayView() CaptureView
+	ContentOverlayView() appkit.View
 	ControlsStyle() PlayerViewControlsStyle
 	SetControlsStyle(value PlayerViewControlsStyle)
 	Delegate() objc.ID
@@ -243,8 +243,8 @@ func (p_ PlayerView) CanBeginTrimming() bool {
 // A view that adds additional custom views between the video content and the controls.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/contentOverlayView
-func (p_ PlayerView) ContentOverlayView() CaptureView {
-	rv := objc.Send[CaptureView](p_.ID, objc.Sel("contentOverlayView"))
+func (p_ PlayerView) ContentOverlayView() appkit.View {
+	rv := objc.Send[appkit.View](p_.ID, objc.Sel("contentOverlayView"))
 	return rv
 }
 

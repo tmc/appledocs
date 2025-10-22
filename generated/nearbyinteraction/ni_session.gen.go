@@ -33,7 +33,7 @@ type INISession interface {
 	Invalidate()
 	Pause()
 	RunWithConfiguration(configuration INIConfiguration)
-	SetARSession(session ISession)
+	SetARSession(session unsafe.Pointer)
 	Configuration() NIConfiguration
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
@@ -128,7 +128,7 @@ func (n_ NISession) RunWithConfiguration(configuration INIConfiguration) {
 // Provides the framework with an existing AR session to use for Camera Assistance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NISession/setARSession(_:)
-func (n_ NISession) SetARSession(session ISession) {
+func (n_ NISession) SetARSession(session unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setARSession:"), session)
 }
 
