@@ -31,11 +31,11 @@ func generateFiles(outDir, framework, packageName, inputDir string, functions []
 
 	// DEBUG: Check if enums have cases after assignment
 	if verbose {
-		for _, enum := range gen.Enums {
-			if len(enum.Cases) > 0 {
-				fmt.Fprintf(os.Stderr, "DEBUG generateFiles: enum %s has %d cases\n", enum.Name, len(enum.Cases))
-			}
-		}
+		// for _, enum := range gen.Enums {
+		// 	if len(enum.Cases) > 0 {
+		// 		fmt.Fprintf(os.Stderr, "DEBUG generateFiles: enum %s has %d cases\n", enum.Name, len(enum.Cases))
+		// 	}
+		// }
 	}
 
 	// Apply property overrides for undocumented properties

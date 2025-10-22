@@ -455,7 +455,7 @@ type I{{$structName}} interface {
 	{{$capitalizedName}}() {{$goType}}
 	{{- $isReadOnly := contains .Attributes "readonly"}}
 	{{- if not $isReadOnly}}
-	{{- $setterParamType := typeToInterfaceType $goType}}
+	{{- $setterParamType := typeToInterfaceType $ $goType}}
 	Set{{$capitalizedName}}(value {{$setterParamType}})
 	{{- end}}
 	{{- end}}
@@ -669,7 +669,7 @@ type I{{$structName}} interface {
 	{{$capitalizedName}}() {{$goType}}
 	{{- $isReadOnly := contains .Attributes "readonly"}}
 	{{- if not $isReadOnly}}
-	{{- $setterParamType := typeToInterfaceType $goType}}
+	{{- $setterParamType := typeToInterfaceType $ $goType}}
 	Set{{$capitalizedName}}(value {{$setterParamType}})
 	{{- end}}
 	{{- end}}
@@ -830,7 +830,7 @@ func ({{$instReceiver}} {{$structName}}) {{$capitalizedName}}() {{$goType}} {
 }
 {{ $isReadOnly := contains .Attributes "readonly"}}
 {{- if not $isReadOnly}}
-{{- $setterParamType := typeToInterfaceType $goType}}
+{{- $setterParamType := typeToInterfaceType $ $goType}}
 
 {{- if or .Abstract .DocURL}}
 {{template "doc_comment" .}}

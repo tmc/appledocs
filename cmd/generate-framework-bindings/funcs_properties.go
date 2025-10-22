@@ -66,11 +66,20 @@ func isPropertySetter(method MethodInfo) bool {
 	return false
 }
 
-// typeToInterfaceType converts a concrete type to its interface type for setter parameters.
-// For example: "Image" becomes "IImage", "Window" becomes "IWindow".
-// For qualified types: "foundation.Coder" becomes "foundation.ICoder".
-// Types that don't have interfaces (primitives, slices, enums, typedefs, etc.) are returned unchanged.
-func typeToInterfaceType(goType string) string {
+// typeToInterfaceType is a template wrapper function that calls Generator.TypeToInterfaceType.
+// The Generator is expected to be in the template's root context (.).
+// This wrapper extracts the Generator from the template data and delegates to the method.
+func typeToInterfaceType(gen interface{}, goType string) string {
+	if g, ok := gen.(*Generator); ok {
+		return g.TypeToInterfaceType(goType)
+	}
+	// Fallback for cases where Generator isn't available (shouldn't happen in practice)
+	return typeToInterfaceTypeHeuristic(goType)
+}
+
+// typeToInterfaceTypeHeuristic is the old heuristic-based implementation, kept as a fallback.
+// DEPRECATED: Use Generator.TypeToInterfaceType instead for data-driven type checking.
+func typeToInterfaceTypeHeuristic(goType string) string {
 	// Handle qualified types (e.g., "foundation.Coder" -> "foundation.ICoder")
 	if strings.Contains(goType, ".") {
 		parts := strings.SplitN(goType, ".", 2)
@@ -89,7 +98,7 @@ func typeToInterfaceType(goType string) string {
 			}
 
 			// Recursively convert the type part
-			interfaceType := typeToInterfaceType(typeName)
+			interfaceType := typeToInterfaceTypeHeuristic(typeName)
 			return pkg + "." + interfaceType
 		}
 		return goType
@@ -113,13 +122,22 @@ func typeToInterfaceType(goType string) string {
 		return goType
 	}
 
+	// Don't convert Foundation geometry struct types
+	geometryStructs := []string{"Point", "Size", "Rect", "Range"}
+	for _, geom := range geometryStructs {
+		if goType == geom {
+			return goType
+		}
+	}
+
 	// Don't convert enum-like types (these are typically uint-based type aliases)
 	// Common patterns for enums: *Position, *Scaling, *Flags, *Options, *Mask, *State, *Style, *Type, *Mode
+	// Also includes typedefs like TimeInterval, ErrorDomain, URLResourceKey
 	enumSuffixes := []string{
 		"Position", "Scaling", "Flags", "Options", "Mask", "State", "Style",
 		"Type", "Mode", "Direction", "Alignment", "Format", "Status", "Kind",
 		"Level", "Priority", "Policy", "Strategy", "Behavior", "Attribute",
-		"Orientation", "Gamut",
+		"Orientation", "Gamut", "Algorithm", "Domain", "Key", "Interval",
 	}
 	for _, suffix := range enumSuffixes {
 		if strings.HasSuffix(goType, suffix) {

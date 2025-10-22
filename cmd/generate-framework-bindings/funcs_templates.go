@@ -249,7 +249,8 @@ func formatMethodParams(method *occ2go.ParsedMethod, framework string) string {
 			goType = "objectivec.IObject"
 		} else {
 			// For other class types, use interface types
-			goType = typeToInterfaceType(goType)
+			// Note: Using heuristic version since we don't have Generator context here
+			goType = typeToInterfaceTypeHeuristic(goType)
 		}
 
 		parts[i] = fmt.Sprintf("%s %s", paramName, goType)

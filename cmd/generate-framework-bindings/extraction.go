@@ -334,9 +334,7 @@ func extractPropertiesFromClassReferences(fsys *appledocs.FS, framework string, 
 			// Use lowercase for comparison to handle case variations (e.g., x vs X)
 			propertyKey := className + "." + strings.ToLower(name)
 			if propertyFiles[propertyKey] {
-				if verbose {
-					fmt.Fprintf(os.Stderr, "Skipping property %s (has separate JSON file)\n", propertyKey)
-				}
+				// Skip properties that have separate JSON files
 				continue
 			}
 
@@ -372,10 +370,6 @@ func extractPropertiesFromClassReferences(fsys *appledocs.FS, framework string, 
 				}
 			}
 			property.ObjCType = objcType
-
-			if verbose {
-				fmt.Fprintf(os.Stderr, "Extracted property %s.%s from class references\n", className, name)
-			}
 
 			classProperties[className] = append(classProperties[className], property)
 		}

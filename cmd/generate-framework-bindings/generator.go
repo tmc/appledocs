@@ -61,6 +61,106 @@ func (g *Generator) AddError(err error) {
 	}
 }
 
+// IsClassType checks if a given type name (without package prefix) is an ObjC class
+// by looking it up in the Classes list. This is used to determine if a type should
+// be converted to an interface type (IClassName) or left as-is.
+func (g *Generator) IsClassType(typeName string) bool {
+	if typeName == "" {
+		return false
+	}
+
+	// Strip any existing I prefix for lookup
+	lookupName := typeName
+	if strings.HasPrefix(typeName, "I") && len(typeName) > 1 && typeName[1] >= 'A' && typeName[1] <= 'Z' {
+		lookupName = typeName[1:]
+	}
+
+	// Add NS prefix back for lookup since classes are stored with ObjC names
+	nsName := "NS" + lookupName
+
+	for _, class := range g.Classes {
+		structName := classToStructName(class.Name)
+		if structName == lookupName || class.Name == nsName || class.Name == lookupName {
+			return true
+		}
+	}
+	return false
+}
+
+// TypeToInterfaceType converts a struct type name to its interface type name using
+// data-driven type checking. For example: "Data" becomes "IData", "Window" becomes "IWindow".
+// For qualified types: "foundation.Coder" becomes "foundation.ICoder".
+// Types that don't have interfaces (primitives, slices, enums, typedefs, structs) are returned unchanged.
+func (g *Generator) TypeToInterfaceType(goType string) string {
+	// Handle qualified types (e.g., "foundation.Coder" -> "foundation.ICoder")
+	if strings.Contains(goType, ".") {
+		parts := strings.SplitN(goType, ".", 2)
+		if len(parts) == 2 {
+			pkg := parts[0]
+			typeName := parts[1]
+
+			// Don't convert runtime types (objc.ID, unsafe.Pointer, etc.)
+			if pkg == "objc" || pkg == "unsafe" || pkg == "objectivec" {
+				return goType
+			}
+
+			// Don't convert CoreGraphics types (structs and refs)
+			if strings.HasPrefix(typeName, "CG") {
+				return goType
+			}
+
+			// Recursively convert the type part
+			interfaceType := g.TypeToInterfaceType(typeName)
+			return pkg + "." + interfaceType
+		}
+		return goType
+	}
+
+	// Don't convert primitives, slices, pointers, or special types
+	if strings.HasPrefix(goType, "[]") ||
+		strings.HasPrefix(goType, "*") ||
+		strings.HasPrefix(goType, "map[") ||
+		goType == "string" ||
+		goType == "int" ||
+		goType == "int64" ||
+		goType == "uint" ||
+		goType == "uint64" ||
+		goType == "float32" ||
+		goType == "float64" ||
+		goType == "bool" ||
+		goType == "unsafe.Pointer" ||
+		strings.HasPrefix(goType, "CG") || // CoreGraphics types (structs and refs)
+		strings.HasPrefix(goType, "NS") && (strings.HasSuffix(goType, "Integer") || strings.HasSuffix(goType, "UInteger")) {
+		return goType
+	}
+
+	// If it already starts with I and next char is uppercase, it's already an interface
+	if strings.HasPrefix(goType, "I") && len(goType) > 1 && goType[1] >= 'A' && goType[1] <= 'Z' {
+		return goType
+	}
+
+	// DATA-DRIVEN: Check if this is actually a class type by looking it up
+	// If it's not a class, it's likely a struct/enum/typedef - don't convert
+	if !g.IsClassType(goType) {
+		return goType
+	}
+
+	// Convert to interface type: "Data" -> "IData"
+	// This works for class types like Data, String, Array, etc.
+	// If the type still has an ObjC prefix (NS, CG, CA), strip it first
+	// so we get "IAccessibilityElement" not "INSAccessibilityElement"
+	interfaceType := goType
+	if strings.HasPrefix(goType, "NS") && len(goType) > 2 && goType[2] >= 'A' && goType[2] <= 'Z' {
+		interfaceType = goType[2:]
+	} else if strings.HasPrefix(goType, "CG") && len(goType) > 2 && goType[2] >= 'A' && goType[2] <= 'Z' {
+		interfaceType = goType[2:]
+	} else if strings.HasPrefix(goType, "CA") && len(goType) > 2 && goType[2] >= 'A' && goType[2] <= 'Z' {
+		interfaceType = goType[2:]
+	}
+
+	return "I" + interfaceType
+}
+
 // prepare computes cached data needed for generation
 func (g *Generator) prepare() {
 	g.frameworkAbstract, g.frameworkURL, _ = loadFrameworkMetadata(g.InputDir, g.Framework)
