@@ -3,6 +3,25 @@
 package foundation
 
 // Enum types and constants
+// HARDCODED FOUNDATION ENUMS
+// NSEnumerationOptions - Options for block enumeration operations.
+// Defined in NSObjCRuntime.h (not in Apple documentation)
+type NSEnumerationOptions uint
+
+const (
+	NSEnumerationConcurrent NSEnumerationOptions = 1
+	NSEnumerationReverse    NSEnumerationOptions = 2
+)
+
+// NSSortOptions - Options for sorting operations.
+// Defined in NSObjCRuntime.h (not in Apple documentation)
+type NSSortOptions uint
+
+const (
+	NSSortConcurrent NSSortOptions = 1
+	NSSortStable     NSSortOptions = 16
+)
+
 // NSDirectoryEnumerationOptions - Options for enumerating the contents of directories.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/DirectoryEnumerationOptions

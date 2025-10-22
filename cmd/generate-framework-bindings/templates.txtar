@@ -1255,6 +1255,27 @@ func BenchmarkString(b *testing.B) {
 package {{.PackageName}}
 
 // Enum types and constants
+{{if eq .Framework "Foundation" -}}
+// HARDCODED FOUNDATION ENUMS
+// NSEnumerationOptions - Options for block enumeration operations.
+// Defined in NSObjCRuntime.h (not in Apple documentation)
+type NSEnumerationOptions uint
+
+const (
+	NSEnumerationConcurrent NSEnumerationOptions = 1
+	NSEnumerationReverse    NSEnumerationOptions = 2
+)
+
+// NSSortOptions - Options for sorting operations.
+// Defined in NSObjCRuntime.h (not in Apple documentation)
+type NSSortOptions uint
+
+const (
+	NSSortConcurrent NSSortOptions = 1
+	NSSortStable     NSSortOptions = 16
+)
+
+{{end -}}
 {{range $enum := .Enums -}}
 {{if $enum.Abstract -}}
 // {{$enum.Name}} - {{$enum.Abstract}}
