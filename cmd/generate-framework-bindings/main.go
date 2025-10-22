@@ -201,6 +201,9 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 					if len(doc.Abstract) > 0 {
 						enum.Abstract = doc.Abstract[0].Text
 					}
+					if os.Getenv("DEBUG_ENUM_CREATE") == "1" && (strings.Contains(enum.Name, "Base64") || strings.Contains(enum.Name, "Compression")) {
+						fmt.Fprintf(os.Stderr, "DEBUG_CREATE: Creating enum %s with %d initial cases\n", enum.Name, len(enum.Cases))
+					}
 					enums = append(enums, enum)
 				}
 			} else if len(parts) >= 4 {
@@ -208,6 +211,10 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 				enumCase, enumCaseErr := occ2go.ParseEnumCase(doc)
 				if enumCaseErr == nil && enumCase != nil {
 					enumName := parts[2]
+					if os.Getenv("DEBUG_ENUM_CASES") == "1" && (strings.Contains(doc.Metadata.ExternalID, "Base64") || strings.Contains(doc.Metadata.ExternalID, "Compression")) {
+						fmt.Fprintf(os.Stderr, "DEBUG_CASES: Adding case %s to enum %s (from externalID: %s)\n",
+							enumCase.Name, enumName, doc.Metadata.ExternalID)
+					}
 					enumCasesMap[enumName] = append(enumCasesMap[enumName], enumCase)
 				}
 			}
@@ -369,6 +376,8 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 						}
 					}
 				}
+				// Relax parameters that violate hierarchy (map to objectivec.IObject)
+				RelaxMethodParameters(methods, framework)
 				// Filter out methods that would create upward dependency violations
 				originalCount := len(methods)
 				classes[i].Methods = FilterMethodsByHierarchy(methods, framework)
@@ -397,8 +406,19 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 		caseCount := 0
 		for i := range enums {
 			if cases, ok := enumCasesMap[enums[i].Name]; ok {
-				enums[i].Cases = cases
+				// Make a copy of the cases slice to avoid shared slice references
+				// that would cause issues during enum deduplication
+				enumCases := make([]*occ2go.ParsedEnumCase, len(cases))
+				copy(enumCases, cases)
+				enums[i].Cases = enumCases
 				caseCount += len(cases)
+
+				if os.Getenv("DEBUG_ENUM_ATTACH") == "1" && (strings.Contains(enums[i].Name, "Base64") || strings.Contains(enums[i].Name, "Compression")) {
+					fmt.Fprintf(os.Stderr, "DEBUG_ATTACH: Attaching %d cases to enum %s\n", len(cases), enums[i].Name)
+					for _, c := range cases {
+						fmt.Fprintf(os.Stderr, "DEBUG_ATTACH:   - %s\n", c.Name)
+					}
+				}
 			}
 		}
 		if verbose {

@@ -67,7 +67,7 @@ var templateFuncs = template.FuncMap{
 	"receiverName":                        receiverName,
 	"selectorToGoName":                    selectorToGoName,
 	"mapObjCTypeToGo":                     mapObjCTypeToGo,
-	"formatMethodParams":                  formatMethodParams,
+	"formatMethodParams":                  formatMethodParamsAdapter,
 	"formatMethodParamNames":              formatMethodParamNames,
 	"formatMethodParamNamesWithFramework": formatMethodParamNamesWithFramework,
 	"isConstructor":                       isConstructor,

@@ -219,7 +219,15 @@ func extractTypeName(funcName, framework string) string {
 	return typeName
 }
 
-// formatMethodParams formats method parameters for Go function signature.
+// formatMethodParamsAdapter adapts the GeneratorFuncs method for use in templates.
+// Templates call this like: {{formatMethodParams $ .}}
+func formatMethodParamsAdapter(gen *Generator, method *occ2go.ParsedMethod) string {
+	gf := GeneratorFuncs{gen}
+	return gf.formatMethodParams(method)
+}
+
+// formatMethodParams is the old heuristic-based version, kept for backward compatibility.
+// DEPRECATED: Use formatMethodParamsAdapter which calls GeneratorFuncs.FormatMethodParams instead.
 // Returns: "title string, target objectivec.IObject, action objc.Selector"
 func formatMethodParams(method *occ2go.ParsedMethod, framework string) string {
 	if len(method.Parameters) == 0 {

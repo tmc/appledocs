@@ -135,6 +135,7 @@ func typeToInterfaceTypeHeuristic(goType string) string {
 	enumSuffixes := []string{
 		"Options", "Flags", "Mask", "Type", "Mode", "State", "Style", "Status",
 		"Kind", "Level", "Priority", "Policy", "Strategy", "Behavior", "Attribute",
+		"Algorithm", // For NSDataCompressionAlgorithm, etc.
 	}
 	for _, suffix := range enumSuffixes {
 		if strings.HasSuffix(goType, suffix) {

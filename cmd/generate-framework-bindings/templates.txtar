@@ -40,14 +40,14 @@
 {{if gt .ClassCount 0 -}}
 {{- range .Classes}}
 #-- {{classFileName .Name}} --
-{{template "class.gen.go" (dict "Class" . "Framework" $.Framework "PackageName" $.PackageName "OutputModule" $.OutputModule)}}
+{{template "class.gen.go" (dict "Generator" $ "Class" . "Framework" $.Framework "PackageName" $.PackageName "OutputModule" $.OutputModule)}}
 {{if and (classHasInit .Methods) (not (shouldExcludeTestExample $.Framework .Name)) -}}
 #-- {{classTestFileName .Name}} --
-{{template "class_test.gen.go" (dict "Class" . "Framework" $.Framework "PackageName" $.PackageName "OutputModule" $.OutputModule)}}{{end}}{{end}}{{end}}
+{{template "class_test.gen.go" (dict "Generator" $ "Class" . "Framework" $.Framework "PackageName" $.PackageName "OutputModule" $.OutputModule)}}{{end}}{{end}}{{end}}
 {{if gt .ProtocolCount 0 -}}
 {{- range .Protocols}}
 #-- {{protocolFileName .Name}} --
-{{template "protocol.gen.go" (dict "Protocol" . "Framework" $.Framework "PackageName" $.PackageName)}}{{end}}{{end}}
+{{template "protocol.gen.go" (dict "Generator" $ "Protocol" . "Framework" $.Framework "PackageName" $.PackageName)}}{{end}}{{end}}
 {{if .GenerateTests -}}
 #-- functions.gen_test.go --
 {{template "functions.gen_test.go" .}}
@@ -441,7 +441,7 @@ type I{{$structName}} interface {
 	{{- $isInitMethod := hasPrefix .Selector "init"}}
 	{{- $hasValidReturnType := or $isInitMethod (eq .ReturnType "") (eq .ReturnType "void") (ne $goType "")}}
 	{{- if $hasValidReturnType}}
-	{{.Name}}({{formatMethodParams . $framework}}){{if $isInitMethod}} {{$structName}}{{else}}{{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$goType}}{{end}}{{end}}
+	{{.Name}}({{formatMethodParams $.Generator .}}){{if $isInitMethod}} {{$structName}}{{else}}{{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$goType}}{{end}}{{end}}
 	{{- end}}
 	{{- end}}
 	{{- end}}
@@ -527,7 +527,7 @@ func New{{$structName}}() {{$structName}} {
 {{- if or .Abstract .DocURL}}
 {{template "doc_comment" .}}
 {{end -}}
-func {{$constructorName}}({{formatMethodParams . $framework}}) {{$structName}} {
+func {{$constructorName}}({{formatMethodParams $.Generator .}}) {{$structName}} {
 {{getConstructorBody . $structName $paramNames}}
 }
 {{end}}
@@ -544,7 +544,7 @@ func {{$constructorName}}({{formatMethodParams . $framework}}) {{$structName}} {
 {{- if or .Abstract .DocURL}}
 {{template "doc_comment" .}}
 {{end -}}
-func ({{$classReceiver}} {{$classTypeName}}) {{.Name}}({{formatMethodParams . $framework}}){{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$returnType}}{{end}} {
+func ({{$classReceiver}} {{$classTypeName}}) {{.Name}}({{formatMethodParams $.Generator .}}){{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$returnType}}{{end}} {
 	{{- if and (ne .ReturnType "") (ne .ReturnType "void")}}
 	rv := objc.Send[{{$goType}}](objc.ID({{$classReceiver}}.class), objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
 	return rv
@@ -584,7 +584,7 @@ func ({{$classReceiver}} {{$classTypeName}}) {{$capitalizedName}}() {{$returnTyp
 {{- if or .Abstract .DocURL}}
 {{template "doc_comment" .}}
 {{end -}}
-func ({{$instReceiver}} {{$structName}}) {{.Name}}({{formatMethodParams . $framework}}){{if $isInitMethod}} {{$structName}}{{else}}{{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$goType}}{{end}}{{end}} {
+func ({{$instReceiver}} {{$structName}}) {{.Name}}({{formatMethodParams $.Generator .}}){{if $isInitMethod}} {{$structName}}{{else}}{{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$goType}}{{end}}{{end}} {
 	{{- if $isInitMethod}}
 	rv := objc.Send[{{$structName}}]({{$instReceiver}}.ID, objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
 	return rv
@@ -653,7 +653,7 @@ type I{{$structName}} interface {
 	{{- $isInitMethod := hasPrefix .Selector "init"}}
 	{{- $hasValidReturnType := or $isInitMethod (eq .ReturnType "") (eq .ReturnType "void") (ne $goType "")}}
 	{{- if $hasValidReturnType}}
-	{{.Name}}({{formatMethodParams . $framework}}){{if $isInitMethod}} {{$structName}}{{else}}{{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$goType}}{{end}}{{end}}
+	{{.Name}}({{formatMethodParams $.Generator .}}){{if $isInitMethod}} {{$structName}}{{else}}{{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$goType}}{{end}}{{end}}
 	{{- end}}
 	{{- end}}
 	{{- end}}
@@ -736,7 +736,7 @@ func New{{$structName}}() {{$structName}} {
 {{- if or .Abstract .DocURL}}
 {{template "doc_comment" .}}
 {{end -}}
-func {{$constructorName}}({{formatMethodParams . $framework}}) {{$structName}} {
+func {{$constructorName}}({{formatMethodParams $.Generator .}}) {{$structName}} {
 {{getConstructorBody . $structName $paramNames}}
 }
 {{end}}
@@ -753,7 +753,7 @@ func {{$constructorName}}({{formatMethodParams . $framework}}) {{$structName}} {
 {{- if or .Abstract .DocURL}}
 {{template "doc_comment" .}}
 {{end -}}
-func ({{$classReceiver}} {{$classTypeName}}) {{.Name}}({{formatMethodParams . $framework}}){{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$returnType}}{{end}} {
+func ({{$classReceiver}} {{$classTypeName}}) {{.Name}}({{formatMethodParams $.Generator .}}){{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$returnType}}{{end}} {
 	{{- if and (ne .ReturnType "") (ne .ReturnType "void")}}
 	rv := objc.Send[{{$goType}}](objc.ID({{$classReceiver}}.class), objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
 	return rv
@@ -796,7 +796,7 @@ func ({{$classReceiver}} {{$classTypeName}}) {{$capitalizedName}}() {{$returnTyp
 {{- if or .Abstract .DocURL}}
 {{template "doc_comment" .}}
 {{end -}}
-func ({{$instReceiver}} {{$structName}}) {{.Name}}({{formatMethodParams . $framework}}){{if $isInitMethod}} {{$structName}}{{else}}{{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$returnType}}{{end}}{{end}} {
+func ({{$instReceiver}} {{$structName}}) {{.Name}}({{formatMethodParams $.Generator .}}){{if $isInitMethod}} {{$structName}}{{else}}{{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$returnType}}{{end}}{{end}} {
 	{{- if $isInitMethod}}
 	rv := objc.Send[{{$structName}}]({{$instReceiver}}.ID, objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
 	return rv
@@ -1265,15 +1265,15 @@ package {{.PackageName}}
 //
 // [Full Topic]: {{convertDocURL $enum.DocURL}}
 {{end -}}
-type {{stripObjCPrefix $enum.Name}} uint
+type {{$enum.Name}} uint
 
 {{if gt (len $enum.Cases) 0 -}}
 const (
 {{range $i, $case := $enum.Cases -}}
-{{if $case.Abstract}}	// {{stripObjCPrefix $case.Name}} - {{$case.Abstract}}
+{{if $case.Abstract}}	// {{$case.Name}} - {{$case.Abstract}}
 {{end}}{{if $case.DocURL}}	//
 	// [Full Topic]: {{convertDocURL $case.DocURL}}
-{{end}}	{{stripObjCPrefix $case.Name}} {{stripObjCPrefix $enum.Name}} = {{$case.IntValue}}
+{{end}}	{{$case.Name}} {{$enum.Name}} = {{$case.IntValue}}
 {{end -}}
 )
 
