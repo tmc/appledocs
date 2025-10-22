@@ -67,7 +67,7 @@
 {{if .Abstract}}//
 {{end}}// [Full Topic]
 // [Full Topic]: {{convertDocURL .DocURL}}
-{{- end}}
+{{- end -}}
 {{end}}
 
 -- generate.go --
@@ -525,7 +525,6 @@ func New{{$structName}}() {{$structName}} {
 {{- $constructorName := initMethodToConstructorName $className .Selector}}
 {{- $paramNames := formatMethodParamNamesWithFramework . $framework}}
 {{- if or .Abstract .DocURL}}
-
 {{template "doc_comment" .}}
 {{end -}}
 func {{$constructorName}}({{formatMethodParams . $framework}}) {{$structName}} {
@@ -583,7 +582,6 @@ func ({{$classReceiver}} {{$classTypeName}}) {{$capitalizedName}}() {{$returnTyp
 {{- $hasValidReturnType := or $isInitMethod (eq .ReturnType "") (eq .ReturnType "void") (ne $goType "")}}
 {{- if $hasValidReturnType}}
 {{- if or .Abstract .DocURL}}
-
 {{template "doc_comment" .}}
 {{end -}}
 func ({{$instReceiver}} {{$structName}}) {{.Name}}({{formatMethodParams . $framework}}){{if $isInitMethod}} {{$structName}}{{else}}{{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$goType}}{{end}}{{end}} {
@@ -736,7 +734,6 @@ func New{{$structName}}() {{$structName}} {
 {{- $constructorName := initMethodToConstructorName $className .Selector}}
 {{- $paramNames := formatMethodParamNamesWithFramework . $framework}}
 {{- if or .Abstract .DocURL}}
-
 {{template "doc_comment" .}}
 {{end -}}
 func {{$constructorName}}({{formatMethodParams . $framework}}) {{$structName}} {
@@ -797,7 +794,6 @@ func ({{$classReceiver}} {{$classTypeName}}) {{$capitalizedName}}() {{$returnTyp
 {{- $hasValidReturnType := or $isInitMethod (eq .ReturnType "") (eq .ReturnType "void") (ne $goType "")}}
 {{- if $hasValidReturnType}}
 {{- if or .Abstract .DocURL}}
-
 {{template "doc_comment" .}}
 {{end -}}
 func ({{$instReceiver}} {{$structName}}) {{.Name}}({{formatMethodParams . $framework}}){{if $isInitMethod}} {{$structName}}{{else}}{{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$returnType}}{{end}}{{end}} {
