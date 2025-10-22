@@ -130,17 +130,10 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 
 	// Process regular symbols
 	phaseStart = time.Now()
-	for path, doc := range appledocs.Symbols(fsys, framework) {
+	for _, doc := range appledocs.Symbols(fsys, framework) {
 		processedFiles++
 
-		if verbose && strings.Contains(path, "attributedTitle") {
-			fmt.Fprintf(os.Stderr, "DEBUG: Processing file: %s, externalID: %s\n", path, doc.Metadata.ExternalID)
-		}
-
 		fn, cls, proto, err := occ2go.ParseDocument(doc)
-		if verbose && strings.Contains(path, "attributedTitle") {
-			fmt.Fprintf(os.Stderr, "DEBUG: ParseDocument result - err: %v\n", err)
-		}
 		if err == nil {
 			if fn != nil {
 				functions = append(functions, fn)
@@ -156,9 +149,6 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 			}
 		} else if strings.Contains(err.Error(), "property (use ParseProperty)") {
 			// This is a property file, parse it as a property
-			if verbose && strings.Contains(path, "attributedTitle") {
-				fmt.Fprintf(os.Stderr, "DEBUG: Parsing property file: %s\n", path)
-			}
 			property, propErr := occ2go.ParseProperty(doc)
 			if propErr != nil {
 				parseErrors++
@@ -328,15 +318,6 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 							methodKey = "instance:" + methodKey
 						}
 
-						// Debug: Print when we detect duplicates
-						if className == "CKRecord" && method.Selector == "creationDate" {
-							if classSeenSelectors[className][methodKey] {
-								fmt.Fprintf(os.Stderr, "DEBUG: Skipping duplicate method %s.%s from externalID: %s\n", className, method.Selector, externalID)
-							} else {
-								fmt.Fprintf(os.Stderr, "DEBUG: Adding method %s.%s from externalID: %s\n", className, method.Selector, externalID)
-							}
-						}
-
 						// Only add if we haven't seen this exact method before
 						if !classSeenSelectors[className][methodKey] {
 							classMethodsMap[className] = append(classMethodsMap[className], method)
@@ -399,16 +380,6 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 				classes[i].Properties = FilterPropertiesByHierarchy(properties, framework)
 				skippedPropertyCount += (originalCount - len(classes[i].Properties))
 				propertyCount += len(classes[i].Properties)
-
-				// Debug: check Button properties
-				if classes[i].Name == "NSButton" {
-					for _, prop := range properties {
-						if prop.Name == "attributedTitle" {
-							fmt.Fprintf(os.Stderr, "DEBUG: Button.attributedTitle - Type=%s ObjCType=%s\n",
-								prop.Type, prop.ObjCType)
-						}
-					}
-				}
 			}
 		}
 
