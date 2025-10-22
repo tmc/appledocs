@@ -36,6 +36,11 @@ type Generator struct {
 	typeMethods       map[string][]*occ2go.ParsedFunction
 	typeToRef         map[string]string
 
+	// Indexes for O(1) lookups (built in prepare())
+	classIndex   map[string]*occ2go.ParsedClass
+	enumIndex    map[string]*occ2go.ParsedEnum
+	typedefIndex map[string]*occ2go.ParsedTypedef
+
 	// Error collection
 	Errors []error
 }
@@ -63,55 +68,86 @@ func (g *Generator) AddError(err error) {
 }
 
 // IsClassType checks if a given type name (without package prefix) is an ObjC class
-// by looking it up in the Classes list. This is used to determine if a type should
+// by looking it up in the classIndex. This is used to determine if a type should
 // be converted to an interface type (IClassName) or left as-is.
 func (g *Generator) IsClassType(typeName string) bool {
 	if typeName == "" {
 		return false
 	}
 
-	// Strip any existing I prefix for lookup
-	lookupName := typeName
-	if strings.HasPrefix(typeName, "I") && len(typeName) > 1 && typeName[1] >= 'A' && typeName[1] <= 'Z' {
-		lookupName = typeName[1:]
+	// If index not built yet (shouldn't happen after prepare()), use old method
+	if g.classIndex == nil {
+		for _, class := range g.Classes {
+			structName := classToStructName(class.Name)
+			if structName == typeName || class.Name == typeName {
+				return true
+			}
+		}
+		return false
 	}
 
-	// Add NS prefix back for lookup since classes are stored with ObjC names
-	nsName := "NS" + lookupName
+	// O(1) lookup in index
+	if _, ok := g.classIndex[typeName]; ok {
+		return true
+	}
 
-	for _, class := range g.Classes {
-		structName := classToStructName(class.Name)
-		if structName == lookupName || class.Name == nsName || class.Name == lookupName {
+	// Strip I prefix and try again
+	if strings.HasPrefix(typeName, "I") && len(typeName) > 1 && typeName[1] >= 'A' && typeName[1] <= 'Z' {
+		lookupName := typeName[1:]
+		if _, ok := g.classIndex[lookupName]; ok {
 			return true
 		}
 	}
+
+	// Try with NS prefix
+	nsName := "NS" + typeName
+	if _, ok := g.classIndex[nsName]; ok {
+		return true
+	}
+
 	return false
 }
 
-// IsEnumType checks if a given type name is an enum by looking it up in the Enums list.
+// IsEnumType checks if a given type name is an enum by looking it up in the enumIndex.
 func (g *Generator) IsEnumType(typeName string) bool {
 	if typeName == "" {
 		return false
 	}
-	for _, enum := range g.Enums {
-		if enum.Name == typeName {
-			return true
+
+	// If index not built yet, use old method
+	if g.enumIndex == nil {
+		for _, enum := range g.Enums {
+			if enum.Name == typeName {
+				return true
+			}
 		}
+		return false
 	}
-	return false
+
+	// O(1) lookup in index
+	_, ok := g.enumIndex[typeName]
+	return ok
 }
 
-// IsTypedefType checks if a given type name is a typedef by looking it up in the Typedefs list.
+// IsTypedefType checks if a given type name is a typedef by looking it up in the typedefIndex.
 func (g *Generator) IsTypedefType(typeName string) bool {
 	if typeName == "" {
 		return false
 	}
-	for _, typedef := range g.Typedefs {
-		if typedef.Name == typeName {
-			return true
+
+	// If index not built yet, use old method
+	if g.typedefIndex == nil {
+		for _, typedef := range g.Typedefs {
+			if typedef.Name == typeName {
+				return true
+			}
 		}
+		return false
 	}
-	return false
+
+	// O(1) lookup in index
+	_, ok := g.typedefIndex[typeName]
+	return ok
 }
 
 // TypeToInterfaceType converts a struct type name to its interface type name using
@@ -346,6 +382,33 @@ func (g *Generator) prepare() {
 			g.typeToRef[typeName] = refType
 		}
 	}
+
+	// Build indexes for O(1) lookups
+	// This significantly improves performance for IsClassType, IsEnumType, IsTypedefType
+	g.classIndex = make(map[string]*occ2go.ParsedClass, len(g.Classes))
+	for _, class := range g.Classes {
+		g.classIndex[class.Name] = class
+		// Also index by stripped name for easier lookup
+		stripped := classToStructName(class.Name)
+		if stripped != class.Name {
+			g.classIndex[stripped] = class
+		}
+	}
+
+	g.enumIndex = make(map[string]*occ2go.ParsedEnum, len(g.Enums))
+	for _, enum := range g.Enums {
+		g.enumIndex[enum.Name] = enum
+		// Also index by stripped name
+		stripped := stripObjCPrefix(enum.Name)
+		if stripped != enum.Name {
+			g.enumIndex[stripped] = enum
+		}
+	}
+
+	g.typedefIndex = make(map[string]*occ2go.ParsedTypedef, len(g.Typedefs))
+	for _, typedef := range g.Typedefs {
+		g.typedefIndex[typedef.Name] = typedef
+	}
 }
 
 // SortClassesByDependency sorts classes topologically so parent classes come before children.
@@ -534,9 +597,8 @@ func (g *Generator) Count() int {
 }
 
 // GenerateTxtarFromModule generates the entire txtar output using the module template
+// Note: prepare() should be called by the caller before calling this method
 func (g *Generator) GenerateTxtarFromModule(w io.Writer) error {
-	g.prepare()
-
 	// Load all templates as named templates
 	moduleContent, err := getTemplateVariant("module", g.Variant)
 	if err != nil {
