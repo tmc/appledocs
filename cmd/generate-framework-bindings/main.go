@@ -378,13 +378,21 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 
 		// Attach methods and properties to classes
 		propertyCount := 0
+		skippedMethodCount := 0
+		skippedPropertyCount := 0
 		for i := range classes {
 			if methods, ok := classMethodsMap[classes[i].Name]; ok {
-				classes[i].Methods = methods
+				// Filter out methods that would create upward dependency violations
+				originalCount := len(methods)
+				classes[i].Methods = FilterMethodsByHierarchy(methods, framework)
+				skippedMethodCount += (originalCount - len(classes[i].Methods))
 			}
 			if properties, ok := classPropertiesMap[classes[i].Name]; ok {
-				classes[i].Properties = properties
-				propertyCount += len(properties)
+				// Filter out properties that would create upward dependency violations
+				originalCount := len(properties)
+				classes[i].Properties = FilterPropertiesByHierarchy(properties, framework)
+				skippedPropertyCount += (originalCount - len(classes[i].Properties))
+				propertyCount += len(classes[i].Properties)
 
 				// Debug: check Button properties
 				if classes[i].Name == "NSButton" {
@@ -400,6 +408,10 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 
 		if verbose {
 			fmt.Fprintf(os.Stderr, "Found %d methods and %d properties for %d classes\n", methodCount, propertyCount, len(classes))
+			if skippedMethodCount > 0 || skippedPropertyCount > 0 {
+				fmt.Fprintf(os.Stderr, "Skipped %d methods and %d properties due to framework hierarchy violations\n",
+					skippedMethodCount, skippedPropertyCount)
+			}
 		}
 	}
 
