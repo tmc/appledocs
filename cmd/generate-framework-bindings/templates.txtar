@@ -1309,29 +1309,32 @@ package {{.PackageName}}
 {{range $typedef := .Typedefs -}}
 {{if ne $typedef.Name "" -}}
 {{if $typedef.Abstract -}}
-// {{$typedef.Name}} - {{$typedef.Abstract}}
+// {{stripObjCPrefix $typedef.Name}} - {{$typedef.Abstract}}
 {{else -}}
-// {{$typedef.Name}} type alias
+// {{stripObjCPrefix $typedef.Name}} type alias
 {{end -}}
 {{if $typedef.DocURL -}}
 //
 // [Full Topic]: {{convertDocURL $typedef.DocURL}}
 {{end -}}
 {{if eq $typedef.BaseType "int" -}}
-type {{$typedef.Name}} int32
+type {{stripObjCPrefix $typedef.Name}} int32
 {{else if eq $typedef.BaseType "unsigned int" -}}
-type {{$typedef.Name}} uint32
+type {{stripObjCPrefix $typedef.Name}} uint32
 {{else if eq $typedef.BaseType "NSInteger" -}}
-type {{$typedef.Name}} int
+type {{stripObjCPrefix $typedef.Name}} int
 {{else if eq $typedef.BaseType "NSUInteger" -}}
-type {{$typedef.Name}} uint
+type {{stripObjCPrefix $typedef.Name}} uint
+{{else if or (eq $typedef.BaseType "NSString *") (eq $typedef.BaseType "NSString*") -}}
+// {{$typedef.Name}} is a string typedef
+type {{stripObjCPrefix $typedef.Name}} = string
 {{else if strContains $typedef.BaseType "^" -}}
 // {{$typedef.Name}} is a block type: {{$typedef.BaseType}}
 // Block types are not yet fully supported in Go bindings
-type {{$typedef.Name}} uintptr
+type {{stripObjCPrefix $typedef.Name}} uintptr
 {{else -}}
 // {{$typedef.Name}} has base type: {{$typedef.BaseType}}
-type {{$typedef.Name}} uintptr
+type {{stripObjCPrefix $typedef.Name}} uintptr
 {{end -}}
 
 {{end -}}
