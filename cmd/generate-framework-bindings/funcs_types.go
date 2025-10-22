@@ -83,6 +83,16 @@ func mapObjCTypeToGo(objcType, framework string) string {
 
 	// Handle Objective-C generic types (e.g., NSArray<NSString *>, NSArray<SCDisplay *>)
 	if occ2go.IsGenericType(objcType) {
+		// Check if this is NSDictionary - map to IDictionary
+		if strings.Contains(objcType, "NSDictionary") {
+			// NSDictionary<K, V> -> IDictionary
+			// We can't represent the generic key/value types in Go, so use the interface
+			if framework == "Foundation" {
+				return "IDictionary"
+			}
+			return "foundation.IDictionary"
+		}
+
 		// Extract NSArray element type: NSArray<ElementType *> -> []ElementType
 		// Handle both "NSArray<T>" and "NSArray<T> *" patterns
 		elementType := occ2go.ExtractGenericElementType(objcType)
@@ -124,7 +134,7 @@ func mapObjCTypeToGo(objcType, framework string) string {
 			}
 			return "[]" + goElementType
 		}
-		// For other generic types (NSDictionary, etc.), fall back to unsafe.Pointer
+		// For other generic types, fall back to unsafe.Pointer
 		return "unsafe.Pointer"
 	}
 
