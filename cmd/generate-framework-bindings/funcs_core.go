@@ -67,7 +67,9 @@ var templateFuncs = template.FuncMap{
 	"receiverName":                        receiverName,
 	"selectorToGoName":                    selectorToGoName,
 	"mapObjCTypeToGo":                     mapObjCTypeToGo,
-	// formatMethodParams is now provided by GeneratorFuncs.Funcs()
+	// formatMethodParams is provided by GeneratorFuncs.Funcs() at runtime,
+	// but we need a stub here for template parsing in init()
+	"formatMethodParams":                  formatMethodParamsStub,
 	"formatMethodParamNames":              formatMethodParamNames,
 	"formatMethodParamNamesWithFramework": formatMethodParamNamesWithFramework,
 	"isConstructor":                       isConstructor,
@@ -223,4 +225,10 @@ func hasPrefixString(s, prefix string) bool {
 
 func stringsContains(s, substr string) bool {
 	return strings.Contains(s, substr)
+}
+
+// formatMethodParamsStub is a stub for template parsing in init().
+// The real implementation is provided by GeneratorFuncs.formatMethodParams at runtime.
+func formatMethodParamsStub(gen interface{}, method interface{}) string {
+	panic("formatMethodParamsStub called - should be overridden by GeneratorFuncs.Funcs()")
 }

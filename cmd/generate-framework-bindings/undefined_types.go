@@ -38,14 +38,14 @@ func (g *Generator) CollectUndefinedTypes() map[string]*UndefinedType {
 		for _, method := range generatedMethods {
 			// Check return type - use MAPPED type, not raw ObjC type
 			if method.ReturnType != "" && method.ReturnType != "void" {
-				mappedType := resolveType(g.Framework, method.ReturnType)
+				mappedType := mapObjCTypeToGo(method.ReturnType, g.Framework)
 				collectTypeReferences(mappedType, undefined, g.Framework, typedefNames)
 			}
 
 			// Check parameter types - use MAPPED types
 			for _, param := range method.Parameters {
 				if param.Type != "" {
-					mappedType := resolveType(g.Framework, param.Type)
+					mappedType := mapObjCTypeToGo(param.Type, g.Framework)
 					collectTypeReferences(mappedType, undefined, g.Framework, typedefNames)
 				}
 			}
@@ -54,7 +54,7 @@ func (g *Generator) CollectUndefinedTypes() map[string]*UndefinedType {
 		// Check properties - properties are always generated
 		for _, prop := range cls.Properties {
 			if prop.Type != "" {
-				mappedType := resolveType(g.Framework, prop.Type)
+				mappedType := mapObjCTypeToGo(prop.Type, g.Framework)
 				collectTypeReferences(mappedType, undefined, g.Framework, typedefNames)
 			}
 		}
@@ -63,12 +63,12 @@ func (g *Generator) CollectUndefinedTypes() map[string]*UndefinedType {
 	// Collect from functions
 	for _, fn := range g.Functions {
 		if fn.ReturnType != "" && fn.ReturnType != "void" {
-			mappedType := resolveType(g.Framework, fn.ReturnType)
+			mappedType := mapObjCTypeToGo(fn.ReturnType, g.Framework)
 			collectTypeReferences(mappedType, undefined, g.Framework, typedefNames)
 		}
 		for _, param := range fn.Parameters {
 			if param.Type != "" {
-				mappedType := resolveType(g.Framework, param.Type)
+				mappedType := mapObjCTypeToGo(param.Type, g.Framework)
 				collectTypeReferences(mappedType, undefined, g.Framework, typedefNames)
 			}
 		}
