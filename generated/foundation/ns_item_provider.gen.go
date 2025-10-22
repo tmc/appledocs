@@ -33,7 +33,7 @@ type IItemProvider interface {
 	objectivec.IObject
 	CanLoadObjectOfClass(aClass unsafe.Pointer) bool
 	HasItemConformingToTypeIdentifier(typeIdentifier string) bool
-	HasRepresentationConformingToTypeIdentifierFileOptions(typeIdentifier string, fileOptions IItemProviderFileOptions) bool
+	HasRepresentationConformingToTypeIdentifierFileOptions(typeIdentifier string, fileOptions ItemProviderFileOptions) bool
 	LoadDataRepresentationForTypeIdentifierCompletionHandler(typeIdentifier string, completionHandler unsafe.Pointer) Progress
 	LoadDataRepresentationForContentTypeCompletionHandler(contentType unsafe.Pointer, completionHandler unsafe.Pointer) Progress
 	LoadFileRepresentationForTypeIdentifierCompletionHandler(typeIdentifier string, completionHandler unsafe.Pointer) Progress
@@ -45,18 +45,18 @@ type IItemProvider interface {
 	RegisterCloudKitShareWithPreparationHandler(preparationHandler unsafe.Pointer)
 	RegisterDataRepresentationForTypeIdentifierVisibilityLoadHandler(typeIdentifier string, visibility IItemProviderRepresentationVisibility, loadHandler unsafe.Pointer)
 	RegisterDataRepresentationForContentTypeVisibilityLoadHandler(contentType unsafe.Pointer, visibility IItemProviderRepresentationVisibility, loadHandler unsafe.Pointer)
-	RegisterFileRepresentationForTypeIdentifierFileOptionsVisibilityLoadHandler(typeIdentifier string, fileOptions IItemProviderFileOptions, visibility IItemProviderRepresentationVisibility, loadHandler unsafe.Pointer)
+	RegisterFileRepresentationForTypeIdentifierFileOptionsVisibilityLoadHandler(typeIdentifier string, fileOptions ItemProviderFileOptions, visibility IItemProviderRepresentationVisibility, loadHandler unsafe.Pointer)
 	RegisterFileRepresentationForContentTypeVisibilityOpenInPlaceLoadHandler(contentType unsafe.Pointer, visibility IItemProviderRepresentationVisibility, openInPlace bool, loadHandler unsafe.Pointer)
 	RegisterItemForTypeIdentifierLoadHandler(typeIdentifier string, loadHandler unsafe.Pointer)
 	RegisterObjectVisibility(object objectivec.IObject, visibility IItemProviderRepresentationVisibility)
 	RegisterObjectOfClassVisibilityLoadHandler(aClass unsafe.Pointer, visibility IItemProviderRepresentationVisibility, loadHandler unsafe.Pointer)
 	RegisteredContentTypesConformingToContentType(contentType unsafe.Pointer) []UTType
-	RegisteredTypeIdentifiersWithFileOptions(fileOptions IItemProviderFileOptions) []string
+	RegisteredTypeIdentifiersWithFileOptions(fileOptions ItemProviderFileOptions) []string
 	ContainerFrame() Rect
 	PreferredPresentationSize() coregraphics.CGSize
 	SetPreferredPresentationSize(value coregraphics.CGSize)
 	PreferredPresentationStyle() PreferredPresentationStyle
-	SetPreferredPresentationStyle(value IPreferredPresentationStyle)
+	SetPreferredPresentationStyle(value PreferredPresentationStyle)
 	PreviewImageHandler() unsafe.Pointer
 	SetPreviewImageHandler(value unsafe.Pointer)
 	RegisteredContentTypes() []UTType
@@ -212,7 +212,7 @@ func (i_ ItemProvider) HasItemConformingToTypeIdentifier(typeIdentifier string) 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSItemProvider/hasRepresentationConforming(toTypeIdentifier:fileOptions:)
 
-func (i_ ItemProvider) HasRepresentationConformingToTypeIdentifierFileOptions(typeIdentifier string, fileOptions IItemProviderFileOptions) bool {
+func (i_ ItemProvider) HasRepresentationConformingToTypeIdentifierFileOptions(typeIdentifier string, fileOptions ItemProviderFileOptions) bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("hasRepresentationConformingToTypeIdentifier:fileOptions:"), objc.String(typeIdentifier), fileOptions)
 	return rv
 }
@@ -351,7 +351,7 @@ func (i_ ItemProvider) RegisterDataRepresentationForContentTypeVisibilityLoadHan
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSItemProvider/registerFileRepresentation(forTypeIdentifier:fileOptions:visibility:loadHandler:)
 
-func (i_ ItemProvider) RegisterFileRepresentationForTypeIdentifierFileOptionsVisibilityLoadHandler(typeIdentifier string, fileOptions IItemProviderFileOptions, visibility IItemProviderRepresentationVisibility, loadHandler unsafe.Pointer) {
+func (i_ ItemProvider) RegisterFileRepresentationForTypeIdentifierFileOptionsVisibilityLoadHandler(typeIdentifier string, fileOptions ItemProviderFileOptions, visibility IItemProviderRepresentationVisibility, loadHandler unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("registerFileRepresentationForTypeIdentifier:fileOptions:visibility:loadHandler:"), objc.String(typeIdentifier), fileOptions, visibility, loadHandler)
 }
 
@@ -418,7 +418,7 @@ func (i_ ItemProvider) RegisteredContentTypesConformingToContentType(contentType
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSItemProvider/registeredTypeIdentifiers(fileOptions:)
 
-func (i_ ItemProvider) RegisteredTypeIdentifiersWithFileOptions(fileOptions IItemProviderFileOptions) []string {
+func (i_ ItemProvider) RegisteredTypeIdentifiersWithFileOptions(fileOptions ItemProviderFileOptions) []string {
 	rv := objc.Send[[]string](i_.ID, objc.Sel("registeredTypeIdentifiersWithFileOptions:"), fileOptions)
 	return rv
 }
@@ -472,7 +472,7 @@ func (i_ ItemProvider) PreferredPresentationStyle() PreferredPresentationStyle {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSItemProvider/preferredPresentationStyle-swift.property
 
-func (i_ ItemProvider) SetPreferredPresentationStyle(value IPreferredPresentationStyle) {
+func (i_ ItemProvider) SetPreferredPresentationStyle(value PreferredPresentationStyle) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPreferredPresentationStyle:"), value)
 }
 

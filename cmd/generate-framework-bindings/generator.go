@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"fmt"
 	"io"
+	"os"
 	"strings"
 	"text/template"
 
@@ -168,6 +169,11 @@ func (g *Generator) TypeToInterfaceType(goType string) string {
 		return goType
 	}
 
+	// Don't convert Foundation geometry types - these are C structs, not ObjC classes
+	if goType == "Point" || goType == "Size" || goType == "Rect" || goType == "Range" {
+		return goType
+	}
+
 	// If it already starts with I and next char is uppercase, it's already an interface
 	if strings.HasPrefix(goType, "I") && len(goType) > 1 && goType[1] >= 'A' && goType[1] <= 'Z' {
 		return goType
@@ -203,6 +209,126 @@ func (g *Generator) TypeToInterfaceType(goType string) string {
 // prepare computes cached data needed for generation
 func (g *Generator) prepare() {
 	g.frameworkAbstract, g.frameworkURL, _ = loadFrameworkMetadata(g.InputDir, g.Framework)
+
+	// Deduplicate all parsed data structures to prevent duplicate declarations
+	// This handles cases where documentation includes the same symbol multiple times
+
+	// Deduplicate classes by name - keep only the first occurrence
+	classesSeen := make(map[string]bool)
+	deduplicatedClasses := make([]*occ2go.ParsedClass, 0, len(g.Classes))
+	for _, class := range g.Classes {
+		if !classesSeen[class.Name] {
+			classesSeen[class.Name] = true
+			deduplicatedClasses = append(deduplicatedClasses, class)
+		}
+	}
+	g.Classes = deduplicatedClasses
+
+	// Deduplicate protocols by name - keep only the first occurrence
+	protocolsSeen := make(map[string]bool)
+	deduplicatedProtocols := make([]*occ2go.ParsedProtocol, 0, len(g.Protocols))
+	for _, protocol := range g.Protocols {
+		if !protocolsSeen[protocol.Name] {
+			protocolsSeen[protocol.Name] = true
+			deduplicatedProtocols = append(deduplicatedProtocols, protocol)
+		}
+	}
+	g.Protocols = deduplicatedProtocols
+
+	// Deduplicate functions by name - keep only the first occurrence
+	functionsSeen := make(map[string]bool)
+	deduplicatedFunctions := make([]*occ2go.ParsedFunction, 0, len(g.Functions))
+	for _, function := range g.Functions {
+		if !functionsSeen[function.Name] {
+			functionsSeen[function.Name] = true
+			deduplicatedFunctions = append(deduplicatedFunctions, function)
+		}
+	}
+	g.Functions = deduplicatedFunctions
+
+	// Deduplicate constants by name - keep only the first occurrence
+	constantsSeen := make(map[string]bool)
+	deduplicatedConstants := make([]*occ2go.ParsedConstant, 0, len(g.Constants))
+	for _, constant := range g.Constants {
+		if !constantsSeen[constant.Name] {
+			constantsSeen[constant.Name] = true
+			deduplicatedConstants = append(deduplicatedConstants, constant)
+		}
+	}
+	g.Constants = deduplicatedConstants
+
+	// Deduplicate enums by name - merge cases from duplicate enums
+	enumsMap := make(map[string]*occ2go.ParsedEnum)
+	enumsOrder := make([]string, 0, len(g.Enums))
+
+	for _, enum := range g.Enums {
+		if existing, exists := enumsMap[enum.Name]; exists {
+			// Merge cases from duplicate enum into existing enum
+			if os.Getenv("DEBUG_ENUM_DEDUP") == "1" {
+				fmt.Fprintf(os.Stderr, "DEBUG: Merging duplicate enum %s with %d new cases into existing %d cases\n",
+					enum.Name, len(enum.Cases), len(existing.Cases))
+			}
+			for _, newCase := range enum.Cases {
+				// Check if this case already exists
+				isDuplicate := false
+				for _, existingCase := range existing.Cases {
+					if existingCase.Name == newCase.Name {
+						isDuplicate = true
+						if os.Getenv("DEBUG_ENUM_DEDUP") == "1" {
+							fmt.Fprintf(os.Stderr, "DEBUG:   Skipping duplicate case %s\n", newCase.Name)
+						}
+						break
+					}
+				}
+				if !isDuplicate {
+					if os.Getenv("DEBUG_ENUM_DEDUP") == "1" {
+						fmt.Fprintf(os.Stderr, "DEBUG:   Adding new case %s\n", newCase.Name)
+					}
+					existing.Cases = append(existing.Cases, newCase)
+				}
+			}
+		} else {
+			// First time seeing this enum - but also deduplicate its cases
+			if os.Getenv("DEBUG_ENUM_DEDUP") == "1" {
+				fmt.Fprintf(os.Stderr, "DEBUG: First occurrence of enum %s with %d cases\n", enum.Name, len(enum.Cases))
+			}
+
+			// Deduplicate cases within this enum
+			casesSeen := make(map[string]bool)
+			deduplicatedCases := make([]*occ2go.ParsedEnumCase, 0, len(enum.Cases))
+			for _, enumCase := range enum.Cases {
+				if !casesSeen[enumCase.Name] {
+					casesSeen[enumCase.Name] = true
+					deduplicatedCases = append(deduplicatedCases, enumCase)
+				} else if os.Getenv("DEBUG_ENUM_DEDUP") == "1" {
+					fmt.Fprintf(os.Stderr, "DEBUG:   Removing duplicate case %s from first occurrence\n", enumCase.Name)
+				}
+			}
+			enum.Cases = deduplicatedCases
+
+			enumsMap[enum.Name] = enum
+			enumsOrder = append(enumsOrder, enum.Name)
+		}
+	}
+
+	// Build final deduplicated list in original order
+	deduplicatedEnums := make([]*occ2go.ParsedEnum, 0, len(enumsMap))
+	for _, name := range enumsOrder {
+		deduplicatedEnums = append(deduplicatedEnums, enumsMap[name])
+	}
+	g.Enums = deduplicatedEnums
+
+	// Deduplicate typedefs by name - keep only the first occurrence
+	typedefsSeen := make(map[string]bool)
+	deduplicatedTypedefs := make([]*occ2go.ParsedTypedef, 0, len(g.Typedefs))
+	for _, typedef := range g.Typedefs {
+		if !typedefsSeen[typedef.Name] {
+			typedefsSeen[typedef.Name] = true
+			deduplicatedTypedefs = append(deduplicatedTypedefs, typedef)
+		}
+	}
+	g.Typedefs = deduplicatedTypedefs
+
 	// Build typedef names map to exclude from refTypes
 	typedefNames := make(map[string]bool)
 	for _, typedef := range g.Typedefs {

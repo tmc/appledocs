@@ -35,7 +35,7 @@ type IDictionary interface {
 	DescriptionWithLocale(locale objectivec.IObject) String
 	DescriptionWithLocaleIndent(locale objectivec.IObject, level uint) String
 	EnumerateKeysAndObjectsUsingBlock(block unsafe.Pointer)
-	EnumerateKeysAndObjectsWithOptionsUsingBlock(opts IEnumerationOptions, block unsafe.Pointer)
+	EnumerateKeysAndObjectsWithOptionsUsingBlock(opts EnumerationOptions, block unsafe.Pointer)
 	FileCreationDate() Date
 	FileExtensionHidden() bool
 	FileGroupOwnerAccountID() Number
@@ -56,10 +56,10 @@ type IDictionary interface {
 	GetObjectsAndKeysCount(objects unsafe.Pointer, keys unsafe.Pointer, count uint)
 	IsEqualToDictionary(otherDictionary unsafe.Pointer) bool
 	KeyEnumerator() unsafe.Pointer
-	KeysOfEntriesWithOptionsPassingTest(opts IEnumerationOptions, predicate unsafe.Pointer) unsafe.Pointer
+	KeysOfEntriesWithOptionsPassingTest(opts EnumerationOptions, predicate unsafe.Pointer) unsafe.Pointer
 	KeysOfEntriesPassingTest(predicate unsafe.Pointer) unsafe.Pointer
 	KeysSortedByValueUsingComparator(cmptr unsafe.Pointer) []objc.ID
-	KeysSortedByValueWithOptionsUsingComparator(opts ISortOptions, cmptr unsafe.Pointer) []objc.ID
+	KeysSortedByValueWithOptionsUsingComparator(opts SortOptions, cmptr unsafe.Pointer) []objc.ID
 	KeysSortedByValueUsingSelector(comparator objc.SEL) []objc.ID
 	ObjectForKey(aKey unsafe.Pointer) unsafe.Pointer
 	ObjectEnumerator() unsafe.Pointer
@@ -443,7 +443,7 @@ func (d_ Dictionary) EnumerateKeysAndObjectsUsingBlock(block unsafe.Pointer) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/enumerateKeysAndObjects(options:using:)
 
-func (d_ Dictionary) EnumerateKeysAndObjectsWithOptionsUsingBlock(opts IEnumerationOptions, block unsafe.Pointer) {
+func (d_ Dictionary) EnumerateKeysAndObjectsWithOptionsUsingBlock(opts EnumerationOptions, block unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("enumerateKeysAndObjectsWithOptions:usingBlock:"), opts, block)
 }
 
@@ -692,7 +692,7 @@ func (d_ Dictionary) KeyEnumerator() unsafe.Pointer {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/keysOfEntries(options:passingTest:)
 
-func (d_ Dictionary) KeysOfEntriesWithOptionsPassingTest(opts IEnumerationOptions, predicate unsafe.Pointer) unsafe.Pointer {
+func (d_ Dictionary) KeysOfEntriesWithOptionsPassingTest(opts EnumerationOptions, predicate unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("keysOfEntriesWithOptions:passingTest:"), opts, predicate)
 	return rv
 }
@@ -728,7 +728,7 @@ func (d_ Dictionary) KeysSortedByValueUsingComparator(cmptr unsafe.Pointer) []ob
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/keysSortedByValue(options:usingComparator:)
 
-func (d_ Dictionary) KeysSortedByValueWithOptionsUsingComparator(opts ISortOptions, cmptr unsafe.Pointer) []objc.ID {
+func (d_ Dictionary) KeysSortedByValueWithOptionsUsingComparator(opts SortOptions, cmptr unsafe.Pointer) []objc.ID {
 	rv := objc.Send[[]objc.ID](d_.ID, objc.Sel("keysSortedByValueWithOptions:usingComparator:"), opts, cmptr)
 	return rv
 }

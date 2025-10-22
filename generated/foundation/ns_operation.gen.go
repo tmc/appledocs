@@ -50,7 +50,7 @@ type IOperation interface {
 	QualityOfService() QualityOfService
 	SetQualityOfService(value IQualityOfService)
 	QueuePriority() OperationQueuePriority
-	SetQueuePriority(value IOperationQueuePriority)
+	SetQueuePriority(value OperationQueuePriority)
 	ThreadPriority() float64
 	SetThreadPriority(value float64)
 	IsAsynchronous() bool
@@ -343,7 +343,7 @@ func (o_ Operation) QueuePriority() OperationQueuePriority {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/queuePriority-swift.property
 
-func (o_ Operation) SetQueuePriority(value IOperationQueuePriority) {
+func (o_ Operation) SetQueuePriority(value OperationQueuePriority) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setQueuePriority:"), value)
 }
 

@@ -29,12 +29,12 @@ type _MutableCharacterSetClass struct {
 // An interface definition for the [MutableCharacterSet] class.
 type IMutableCharacterSet interface {
 	ICharacterSet
-	AddCharactersInRange(aRange IRange)
+	AddCharactersInRange(aRange Range)
 	AddCharactersInString(aString string)
 	FormIntersectionWithCharacterSet(otherSet ICharacterSet)
 	FormUnionWithCharacterSet(otherSet ICharacterSet)
 	Invert()
-	RemoveCharactersInRange(aRange IRange)
+	RemoveCharactersInRange(aRange Range)
 	RemoveCharactersInString(aString string)
 }
 
@@ -136,7 +136,7 @@ func NewMutableCharacterSetWithContentsOfFile(fName string) MutableCharacterSet 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/init(range:)
 
-func NewMutableCharacterSetWithRange(aRange IRange) MutableCharacterSet {
+func NewMutableCharacterSetWithRange(aRange Range) MutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(getMutableCharacterSetClass().class), objc.Sel("characterSetWithRange:"), aRange)
 	return rv
 }
@@ -247,7 +247,7 @@ func (mc _MutableCharacterSetClass) CharacterSetWithContentsOfFile(fName string)
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/init(range:)
 
-func (mc _MutableCharacterSetClass) CharacterSetWithRange(aRange IRange) MutableCharacterSet {
+func (mc _MutableCharacterSetClass) CharacterSetWithRange(aRange Range) MutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(mc.class), objc.Sel("characterSetWithRange:"), aRange)
 	return rv
 }
@@ -358,7 +358,7 @@ func (mc _MutableCharacterSetClass) WhitespaceAndNewlineCharacterSet() MutableCh
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/addCharacters(in:)-4ppyw
 
-func (m_ MutableCharacterSet) AddCharactersInRange(aRange IRange) {
+func (m_ MutableCharacterSet) AddCharactersInRange(aRange Range) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("addCharactersInRange:"), aRange)
 }
 
@@ -413,7 +413,7 @@ func (m_ MutableCharacterSet) Invert() {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/removeCharacters(in:)-70nqp
 
-func (m_ MutableCharacterSet) RemoveCharactersInRange(aRange IRange) {
+func (m_ MutableCharacterSet) RemoveCharactersInRange(aRange Range) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("removeCharactersInRange:"), aRange)
 }
 

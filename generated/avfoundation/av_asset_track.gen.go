@@ -31,9 +31,9 @@ type _AssetTrackClass struct {
 // An interface definition for the [AssetTrack] class.
 type IAssetTrack interface {
 	objectivec.IObject
-	AssociatedTracksOfType(trackAssociationType ITrackAssociationType) []AssetTrack
+	AssociatedTracksOfType(trackAssociationType TrackAssociationType) []AssetTrack
 	HasMediaCharacteristic(mediaCharacteristic unsafe.Pointer) bool
-	LoadAssociatedTracksOfTypeCompletionHandler(trackAssociationType ITrackAssociationType, completionHandler unsafe.Pointer)
+	LoadAssociatedTracksOfTypeCompletionHandler(trackAssociationType TrackAssociationType, completionHandler unsafe.Pointer)
 	LoadMetadataForFormatCompletionHandler(format IMetadataFormat, completionHandler unsafe.Pointer)
 	LoadSamplePresentationTimeForTrackTimeCompletionHandler(trackTime unsafe.Pointer, completionHandler unsafe.Pointer)
 	LoadSegmentForTrackTimeCompletionHandler(trackTime unsafe.Pointer, completionHandler unsafe.Pointer)
@@ -140,7 +140,7 @@ func NewAssetTrack() AssetTrack {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetTrack/associatedTracks(ofType:)
 
-func (a_ AssetTrack) AssociatedTracksOfType(trackAssociationType ITrackAssociationType) []AssetTrack {
+func (a_ AssetTrack) AssociatedTracksOfType(trackAssociationType TrackAssociationType) []AssetTrack {
 	rv := objc.Send[[]AssetTrack](a_.ID, objc.Sel("associatedTracksOfType:"), trackAssociationType)
 	return rv
 }
@@ -164,7 +164,7 @@ func (a_ AssetTrack) HasMediaCharacteristic(mediaCharacteristic unsafe.Pointer) 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetTrack/loadAssociatedTracks(ofType:completionHandler:)
 
-func (a_ AssetTrack) LoadAssociatedTracksOfTypeCompletionHandler(trackAssociationType ITrackAssociationType, completionHandler unsafe.Pointer) {
+func (a_ AssetTrack) LoadAssociatedTracksOfTypeCompletionHandler(trackAssociationType TrackAssociationType, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("loadAssociatedTracksOfType:completionHandler:"), trackAssociationType, completionHandler)
 }
 

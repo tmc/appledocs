@@ -143,7 +143,7 @@ func NewXPCConnectionWithListenerEndpoint(endpoint IXPCListenerEndpoint) XPCConn
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/init(machServiceName:options:)
 
-func NewXPCConnectionWithMachServiceNameOptions(name string, options IXPCConnectionOptions) XPCConnection {
+func NewXPCConnectionWithMachServiceNameOptions(name string, options XPCConnectionOptions) XPCConnection {
 	instance := getXPCConnectionClass().Alloc()
 	rv := objc.Send[XPCConnection](instance.ID, objc.Sel("initWithMachServiceName:options:"), objc.String(name), options)
 	rv.Autorelease()

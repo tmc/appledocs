@@ -102,7 +102,7 @@ func NewPointerArray() PointerArray {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerArray/init(options:)
 
-func NewPointerArrayWithOptions(options IPointerFunctionsOptions) PointerArray {
+func NewPointerArrayWithOptions(options PointerFunctionsOptions) PointerArray {
 	instance := getPointerArrayClass().Alloc()
 	rv := objc.Send[PointerArray](instance.ID, objc.Sel("initWithOptions:"), options)
 	rv.Autorelease()
@@ -130,7 +130,7 @@ func NewPointerArrayWithPointerFunctions(functions IPointerFunctions) PointerArr
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerArray/pointerArrayWithOptions:
 
-func (pc _PointerArrayClass) PointerArrayWithOptions(options IPointerFunctionsOptions) PointerArray {
+func (pc _PointerArrayClass) PointerArrayWithOptions(options PointerFunctionsOptions) PointerArray {
 	rv := objc.Send[PointerArray](objc.ID(pc.class), objc.Sel("pointerArrayWithOptions:"), options)
 	return rv
 }

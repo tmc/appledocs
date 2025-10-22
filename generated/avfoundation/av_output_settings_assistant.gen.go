@@ -33,7 +33,7 @@ type IOutputSettingsAssistant interface {
 	AudioSettings() string
 	SetAudioSettings(value string)
 	OutputFileType() FileType
-	SetOutputFileType(value IFileType)
+	SetOutputFileType(value FileType)
 	SourceAudioFormat() unsafe.Pointer
 	SetSourceAudioFormat(value unsafe.Pointer)
 	SourceVideoAverageFrameDuration() unsafe.Pointer
@@ -137,7 +137,7 @@ func (o_ OutputSettingsAssistant) OutputFileType() FileType {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avoutputsettingsassistant/outputfiletype
 
-func (o_ OutputSettingsAssistant) SetOutputFileType(value IFileType) {
+func (o_ OutputSettingsAssistant) SetOutputFileType(value FileType) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setOutputFileType:"), value)
 }
 

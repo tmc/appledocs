@@ -30,7 +30,35 @@ type _ConnectionClass struct {
 // An interface definition for the [Connection] class.
 type IConnection interface {
 	objectivec.IObject
+	AddRequestMode(rmode string)
+	AddRunLoop(runloop IRunLoop)
+	DispatchWithComponents(components objectivec.IObject)
 	EnableMultipleThreads()
+	Invalidate()
+	RegisterName(name string) bool
+	RegisterNameWithNameServer(name string, server IPortNameServer) bool
+	RemoveRequestMode(rmode string)
+	RemoveRunLoop(runloop IRunLoop)
+	RunInNewThread()
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	IndependentConversationQueueing() bool
+	SetIndependentConversationQueueing(value bool)
+	LocalObjects() objc.ID
+	MultipleThreadsEnabled() bool
+	ReceivePort() NSPort
+	RemoteObjects() objc.ID
+	ReplyTimeout() TimeInterval
+	SetReplyTimeout(value ITimeInterval)
+	RequestModes() []string
+	RequestTimeout() TimeInterval
+	SetRequestTimeout(value ITimeInterval)
+	RootObject() objc.ID
+	SetRootObject(value objc.ID)
+	RootProxy() NSDistantObject
+	SendPort() NSPort
+	Statistics() unsafe.Pointer
+	Valid() bool
 }
 
 // An object that manages the communication between objects in different threads or between a thread and a process running on a local or remote system.
@@ -87,6 +115,87 @@ func NewConnection() Connection {
 
 
 
+
+// Returns an object initialized with given send and receive ports.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/initWithReceivePort:sendPort:
+
+func NewConnectionWithReceivePortSendPort(receivePort IPort, sendPort IPort) Connection {
+	instance := getConnectionClass().Alloc()
+	rv := objc.Send[Connection](instance.ID, objc.Sel("initWithReceivePort:sendPort:"), receivePort, sendPort)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// Returns all valid objects in the process.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/allConnections
+
+func (cc _ConnectionClass) AllConnections() []Connection {
+	rv := objc.Send[[]Connection](objc.ID(cc.class), objc.Sel("allConnections"))
+	return rv
+}
+
+
+// Returns an object that communicates using given send and receive ports.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/connectionWithReceivePort:sendPort:
+
+func (cc _ConnectionClass) ConnectionWithReceivePortSendPort(receivePort IPort, sendPort IPort) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("connectionWithReceivePort:sendPort:"), receivePort, sendPort)
+	return rv
+}
+
+
+// Returns the object whose send port links it to the object registered with the default under a given name on a given host.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/connectionWithRegisteredName:host:
+
+func (cc _ConnectionClass) ConnectionWithRegisteredNameHost(name string, hostName string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("connectionWithRegisteredName:host:"), objc.String(name), objc.String(hostName))
+	return rv
+}
+
+
+// Returns the object whose send port links it to the object registered under a given name with a given server on a given host.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/connectionWithRegisteredName:host:usingNameServer:
+
+func (cc _ConnectionClass) ConnectionWithRegisteredNameHostUsingNameServer(name string, hostName string, server IPortNameServer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("connectionWithRegisteredName:host:usingNameServer:"), objc.String(name), objc.String(hostName), server)
+	return rv
+}
+
+
+// Returns a token object representing any conversation in progress in the current thread.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/currentConversation
+
+func (cc _ConnectionClass) CurrentConversation() objc.ID {
+	rv := objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("currentConversation"))
+	return rv
+}
+
+
+// Returns the default object for the current thread.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/defaultConnection
+
+func (cc _ConnectionClass) DefaultConnection() Connection {
+	rv := objc.Send[Connection](objc.ID(cc.class), objc.Sel("defaultConnection"))
+	return rv
+}
+
+
 // Returns a proxy for the root object of the object registered with the default under a given name on a given host.
 //
 // [Full Topic]
@@ -95,6 +204,72 @@ func NewConnection() Connection {
 func (cc _ConnectionClass) RootProxyForConnectionWithRegisteredNameHost(name string, hostName string) DistantObject {
 	rv := objc.Send[DistantObject](objc.ID(cc.class), objc.Sel("rootProxyForConnectionWithRegisteredName:host:"), objc.String(name), objc.String(hostName))
 	return rv
+}
+
+
+// Returns a proxy for the root object of the object registered with under on a given host.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/rootProxyForConnectionWithRegisteredName:host:usingNameServer:
+
+func (cc _ConnectionClass) RootProxyForConnectionWithRegisteredNameHostUsingNameServer(name string, hostName string, server IPortNameServer) DistantObject {
+	rv := objc.Send[DistantObject](objc.ID(cc.class), objc.Sel("rootProxyForConnectionWithRegisteredName:host:usingNameServer:"), objc.String(name), objc.String(hostName), server)
+	return rv
+}
+
+
+// Creates and returns a new connection object representing a vended service on the default system port name server.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/serviceConnectionWithName:rootObject:
+
+func (cc _ConnectionClass) ServiceConnectionWithNameRootObject(name string, root objectivec.IObject) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("serviceConnectionWithName:rootObject:"), objc.String(name), root)
+	return rv
+}
+
+
+// Creates and returns a new connection object representing a vended service on the specified port name server.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/serviceConnectionWithName:rootObject:usingNameServer:
+
+func (cc _ConnectionClass) ServiceConnectionWithNameRootObjectUsingNameServer(name string, root objectivec.IObject, server IPortNameServer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("serviceConnectionWithName:rootObject:usingNameServer:"), objc.String(name), root, server)
+	return rv
+}
+
+
+
+// Adds to the set of run-loop input modes that the receiver uses for connection requests.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/addRequestMode:
+
+func (c_ Connection) AddRequestMode(rmode string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("addRequestMode:"), objc.String(rmode))
+}
+
+
+
+// Adds the specified run loop to the list of run loops the receiver monitors and from which it responds to requests.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/addRunLoop:
+
+func (c_ Connection) AddRunLoop(runloop IRunLoop) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("addRunLoop:"), runloop)
+}
+
+
+
+// Allows subclasses to ask a connection object to dispatch component data.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/dispatchWithComponents:
+
+func (c_ Connection) DispatchWithComponents(components objectivec.IObject) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("dispatchWithComponents:"), components)
 }
 
 
@@ -108,5 +283,276 @@ func (c_ Connection) EnableMultipleThreads() {
 	objc.Send[objc.ID](c_.ID, objc.Sel("enableMultipleThreads"))
 }
 
+
+
+// Invalidates the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/invalidate
+
+func (c_ Connection) Invalidate() {
+	objc.Send[objc.ID](c_.ID, objc.Sel("invalidate"))
+}
+
+
+
+// Registers the specified service using with the default system port name server.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/registerName:
+
+func (c_ Connection) RegisterName(name string) bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("registerName:"), objc.String(name))
+	return rv
+}
+
+
+
+// Registers a service with the specified port name server.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/registerName:withNameServer:
+
+func (c_ Connection) RegisterNameWithNameServer(name string, server IPortNameServer) bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("registerName:withNameServer:"), objc.String(name), server)
+	return rv
+}
+
+
+
+// Removes from the set of run-loop input modes the receiver uses for connection requests.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/removeRequestMode:
+
+func (c_ Connection) RemoveRequestMode(rmode string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("removeRequestMode:"), objc.String(rmode))
+}
+
+
+
+// Removes a given object from the list of run loops the receiver monitors and from which it responds to requests.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/removeRunLoop:
+
+func (c_ Connection) RemoveRunLoop(runloop IRunLoop) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("removeRunLoop:"), runloop)
+}
+
+
+
+// Creates and starts a new object and then runs the receiving connection in the new thread.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/runInNewThread
+
+func (c_ Connection) RunInNewThread() {
+	objc.Send[objc.ID](c_.ID, objc.Sel("runInNewThread"))
+}
+
+
+// The receiver’s delegate.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/delegate-c.property
+
+func (c_ Connection) Delegate() objc.ID {
+	rv := objc.Send[objc.ID](c_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+
+// The receiver’s delegate.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/delegate-c.property
+
+func (c_ Connection) SetDelegate(value objc.ID) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setDelegate:"), value)
+}
+
+
+// A Boolean value that indicates whether the receiver handles remote messages atomically.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/independentConversationQueueing
+
+func (c_ Connection) IndependentConversationQueueing() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("independentConversationQueueing"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether the receiver handles remote messages atomically.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/independentConversationQueueing
+
+func (c_ Connection) SetIndependentConversationQueueing(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIndependentConversationQueueing:"), value)
+}
+
+
+// The local objects that have been sent over the connection and still have proxies at the other end.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/localObjects
+
+func (c_ Connection) LocalObjects() objc.ID {
+	rv := objc.Send[objc.ID](c_.ID, objc.Sel("localObjects"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether the receiver supports requests from multiple threads.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/multipleThreadsEnabled
+
+func (c_ Connection) MultipleThreadsEnabled() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("multipleThreadsEnabled"))
+	return rv
+}
+
+
+// The port on which the receiver receives incoming network messages.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/receivePort-c.property
+
+func (c_ Connection) ReceivePort() NSPort {
+	rv := objc.Send[NSPort](c_.ID, objc.Sel("receivePort"))
+	return rv
+}
+
+
+// The local proxies for remote objects that have been received over the connection but not deallocated yet.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/remoteObjects
+
+func (c_ Connection) RemoteObjects() objc.ID {
+	rv := objc.Send[objc.ID](c_.ID, objc.Sel("remoteObjects"))
+	return rv
+}
+
+
+// The timeout interval for replies to outgoing remote messages.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/replyTimeout
+
+func (c_ Connection) ReplyTimeout() TimeInterval {
+	rv := objc.Send[TimeInterval](c_.ID, objc.Sel("replyTimeout"))
+	return rv
+}
+
+
+// The timeout interval for replies to outgoing remote messages.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/replyTimeout
+
+func (c_ Connection) SetReplyTimeout(value ITimeInterval) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setReplyTimeout:"), value)
+}
+
+
+// The set of request modes the receiver’s receive port is registered for with its object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/requestModes-c.property
+
+func (c_ Connection) RequestModes() []string {
+	rv := objc.Send[[]string](c_.ID, objc.Sel("requestModes"))
+	return rv
+}
+
+
+// The timeout interval for outgoing remote messages.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/requestTimeout
+
+func (c_ Connection) RequestTimeout() TimeInterval {
+	rv := objc.Send[TimeInterval](c_.ID, objc.Sel("requestTimeout"))
+	return rv
+}
+
+
+// The timeout interval for outgoing remote messages.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/requestTimeout
+
+func (c_ Connection) SetRequestTimeout(value ITimeInterval) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setRequestTimeout:"), value)
+}
+
+
+// The object that the receiver (or its parent) makes available to other applications or threads.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/rootObject-c.property
+
+func (c_ Connection) RootObject() objc.ID {
+	rv := objc.Send[objc.ID](c_.ID, objc.Sel("rootObject"))
+	return rv
+}
+
+
+// The object that the receiver (or its parent) makes available to other applications or threads.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/rootObject-c.property
+
+func (c_ Connection) SetRootObject(value objc.ID) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setRootObject:"), value)
+}
+
+
+// The proxy for the root object of the receiver’s peer in another application or thread.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/rootProxy
+
+func (c_ Connection) RootProxy() NSDistantObject {
+	rv := objc.Send[NSDistantObject](c_.ID, objc.Sel("rootProxy"))
+	return rv
+}
+
+
+// The port that the connection sends outgoing network messages through.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/sendPort-c.property
+
+func (c_ Connection) SendPort() NSPort {
+	rv := objc.Send[NSPort](c_.ID, objc.Sel("sendPort"))
+	return rv
+}
+
+
+// A dictionary containing various statistics for the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/statistics-c.property
+
+func (c_ Connection) Statistics() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("statistics"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether the receiver is known to be valid.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/valid
+
+func (c_ Connection) Valid() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("valid"))
+	return rv
+}
 
 

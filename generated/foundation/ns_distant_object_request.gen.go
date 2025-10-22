@@ -30,6 +30,10 @@ type _DistantObjectRequestClass struct {
 // An interface definition for the [DistantObjectRequest] class.
 type IDistantObjectRequest interface {
 	objectivec.IObject
+	ReplyWithException(exception IException)
+	Connection() NSConnection
+	Conversation() objc.ID
+	Invocation() NSInvocation
 }
 
 // An object used by the distributed objects system to help handle invocations between different processes.
@@ -84,6 +88,50 @@ func NewDistantObjectRequest() DistantObjectRequest {
 	return getDistantObjectRequestClass().New()
 }
 
+
+
+
+// Sends a reply back to the remote object making the distant object request.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistantObjectRequest/replyWithException:
+
+func (d_ DistantObjectRequest) ReplyWithException(exception IException) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("replyWithException:"), exception)
+}
+
+
+// Returns the object involved in the request.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistantObjectRequest/connection
+
+func (d_ DistantObjectRequest) Connection() NSConnection {
+	rv := objc.Send[NSConnection](d_.ID, objc.Sel("connection"))
+	return rv
+}
+
+
+// Returns the token object representing the conversation in which the receiver was created.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistantObjectRequest/conversation
+
+func (d_ DistantObjectRequest) Conversation() objc.ID {
+	rv := objc.Send[objc.ID](d_.ID, objc.Sel("conversation"))
+	return rv
+}
+
+
+// Returns the object for the request.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistantObjectRequest/invocation
+
+func (d_ DistantObjectRequest) Invocation() NSInvocation {
+	rv := objc.Send[NSInvocation](d_.ID, objc.Sel("invocation"))
+	return rv
+}
 
 
 

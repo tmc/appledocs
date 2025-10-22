@@ -32,7 +32,7 @@ type _CompositionClass struct {
 type IComposition interface {
 	IAsset
 	ChapterMetadataGroupsWithTitleLocaleContainingItemsWithCommonKeys(locale foundation.ILocale, commonKeys []string) []TimedMetadataGroup
-	LoadTracksWithMediaTypeCompletionHandler(mediaType IMediaType, completionHandler unsafe.Pointer)
+	LoadTracksWithMediaTypeCompletionHandler(mediaType MediaType, completionHandler unsafe.Pointer)
 	MetadataForFormat(format IMetadataFormat) []MetadataItem
 	CommonMetadata() AVMetadataItem
 	SetCommonMetadata(value IAVMetadataItem)
@@ -169,7 +169,7 @@ func (c_ Composition) ChapterMetadataGroupsWithTitleLocaleContainingItemsWithCom
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVComposition/loadTracks(withMediaType:completionHandler:)
 
-func (c_ Composition) LoadTracksWithMediaTypeCompletionHandler(mediaType IMediaType, completionHandler unsafe.Pointer) {
+func (c_ Composition) LoadTracksWithMediaTypeCompletionHandler(mediaType MediaType, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("loadTracksWithMediaType:completionHandler:"), mediaType, completionHandler)
 }
 

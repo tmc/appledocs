@@ -97,31 +97,16 @@ const (
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/DirectoryEnumerationOptions/includesDirectoriesPostOrder
 	DirectoryEnumerationIncludesDirectoriesPostOrder DirectoryEnumerationOptions = 2
 	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/DirectoryEnumerationOptions/includesDirectoriesPostOrder
-	DirectoryEnumerationIncludesDirectoriesPostOrder DirectoryEnumerationOptions = 2
-	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/DirectoryEnumerationOptions/producesRelativePathURLs
 	DirectoryEnumerationProducesRelativePathURLs DirectoryEnumerationOptions = 3
 	// DirectoryEnumerationSkipsHiddenFiles - An option to skip hidden files.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/DirectoryEnumerationOptions/skipsHiddenFiles
 	DirectoryEnumerationSkipsHiddenFiles DirectoryEnumerationOptions = 1
-	// DirectoryEnumerationSkipsHiddenFiles - An option to skip hidden files.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/DirectoryEnumerationOptions/skipsHiddenFiles
-	DirectoryEnumerationSkipsHiddenFiles DirectoryEnumerationOptions = 1
 	// DirectoryEnumerationSkipsPackageDescendants - An option to treat packages like files and not descend into their contents.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/DirectoryEnumerationOptions/skipsPackageDescendants
 	DirectoryEnumerationSkipsPackageDescendants DirectoryEnumerationOptions = 1
-	// DirectoryEnumerationSkipsPackageDescendants - An option to treat packages like files and not descend into their contents.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/DirectoryEnumerationOptions/skipsPackageDescendants
-	DirectoryEnumerationSkipsPackageDescendants DirectoryEnumerationOptions = 1
-	// DirectoryEnumerationSkipsSubdirectoryDescendants - An option to perform a shallow enumeration that doesn’t descend into directories.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/DirectoryEnumerationOptions/skipsSubdirectoryDescendants
-	DirectoryEnumerationSkipsSubdirectoryDescendants DirectoryEnumerationOptions = 1
 	// DirectoryEnumerationSkipsSubdirectoryDescendants - An option to perform a shallow enumeration that doesn’t descend into directories.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/DirectoryEnumerationOptions/skipsSubdirectoryDescendants
@@ -138,14 +123,6 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/ItemReplacementOptions/usingNewMetadataOnly
 	FileManagerItemReplacementUsingNewMetadataOnly FileManagerItemReplacementOptions = 1
-	// FileManagerItemReplacementUsingNewMetadataOnly - Only metadata from the new item is used, and metadata from the original item isn’t preserved (default).
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/ItemReplacementOptions/usingNewMetadataOnly
-	FileManagerItemReplacementUsingNewMetadataOnly FileManagerItemReplacementOptions = 1
-	// FileManagerItemReplacementWithoutDeletingBackupItem - The backup item remains in place after a successful replacement.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/ItemReplacementOptions/withoutDeletingBackupItem
-	FileManagerItemReplacementWithoutDeletingBackupItem FileManagerItemReplacementOptions = 1
 	// FileManagerItemReplacementWithoutDeletingBackupItem - The backup item remains in place after a successful replacement.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/ItemReplacementOptions/withoutDeletingBackupItem
@@ -174,22 +151,10 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/SearchPathDirectory/applicationDirectory
 	ApplicationDirectory SearchPathDirectory = 1
-	// ApplicationDirectory - Supported applications ( ).
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/SearchPathDirectory/applicationDirectory
-	ApplicationDirectory SearchPathDirectory = 1
 	// ApplicationScriptsDirectory - The user scripts folder for the calling application ( .
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/SearchPathDirectory/applicationScriptsDirectory
 	ApplicationScriptsDirectory SearchPathDirectory = 23
-	// ApplicationScriptsDirectory - The user scripts folder for the calling application ( .
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/SearchPathDirectory/applicationScriptsDirectory
-	ApplicationScriptsDirectory SearchPathDirectory = 23
-	// ApplicationSupportDirectory - Application support files ( ).
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/SearchPathDirectory/applicationSupportDirectory
-	ApplicationSupportDirectory SearchPathDirectory = 14
 	// ApplicationSupportDirectory - Application support files ( ).
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/SearchPathDirectory/applicationSupportDirectory
@@ -214,10 +179,6 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/SearchPathDirectory/desktopDirectory
 	DesktopDirectory SearchPathDirectory = 12
-	// DesktopDirectory - The user’s desktop directory.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/SearchPathDirectory/desktopDirectory
-	DesktopDirectory SearchPathDirectory = 12
 	// DeveloperApplicationDirectory - Developer applications ( ).
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/SearchPathDirectory/developerApplicationDirectory
@@ -230,14 +191,6 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/SearchPathDirectory/documentDirectory
 	DocumentDirectory SearchPathDirectory = 9
-	// DocumentDirectory - Document directory.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/SearchPathDirectory/documentDirectory
-	DocumentDirectory SearchPathDirectory = 9
-	// DocumentationDirectory - Documentation.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/SearchPathDirectory/documentationDirectory
-	DocumentationDirectory SearchPathDirectory = 8
 	// DocumentationDirectory - Documentation.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/SearchPathDirectory/documentationDirectory
@@ -250,14 +203,6 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/SearchPathDirectory/inputMethodsDirectory
 	InputMethodsDirectory SearchPathDirectory = 16
-	// InputMethodsDirectory - Input Methods  .
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/SearchPathDirectory/inputMethodsDirectory
-	InputMethodsDirectory SearchPathDirectory = 16
-	// ItemReplacementDirectory - The constant used to create a temporary directory.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/SearchPathDirectory/itemReplacementDirectory
-	ItemReplacementDirectory SearchPathDirectory = 24
 	// ItemReplacementDirectory - The constant used to create a temporary directory.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/SearchPathDirectory/itemReplacementDirectory
@@ -310,10 +255,6 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/SearchPathDomainMask/allDomainsMask
 	AllDomainsMask SearchPathDomainMask = 0
-	// AllDomainsMask - All domains.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/SearchPathDomainMask/allDomainsMask
-	AllDomainsMask SearchPathDomainMask = 0
 	// LocalDomainMask - The place to install items available to everyone on this machine.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/SearchPathDomainMask/localDomainMask
@@ -326,10 +267,6 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/SearchPathDomainMask/systemDomainMask
 	SystemDomainMask SearchPathDomainMask = 8
-	// UserDomainMask - The user’s home directory—the place to install user’s personal items ( ).
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/SearchPathDomainMask/userDomainMask
-	UserDomainMask SearchPathDomainMask = 1
 	// UserDomainMask - The user’s home directory—the place to install user’s personal items ( ).
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/SearchPathDomainMask/userDomainMask
@@ -425,10 +362,6 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/InlinePresentationIntent/stronglyEmphasized
 	InlinePresentationIntentStronglyEmphasized InlinePresentationIntent = 1
-	// InlinePresentationIntentStronglyEmphasized - An intent that represents a strongly emphasized presentation.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/InlinePresentationIntent/stronglyEmphasized
-	InlinePresentationIntentStronglyEmphasized InlinePresentationIntent = 1
 )
 
 // NSAttributedStringEnumerationOptions - Options for enumerating attributes.
@@ -463,37 +396,14 @@ const (
 type AttributedStringMarkdownParsingFailurePolicy uint
 
 const (
+	// AttributedStringMarkdownParsingFailureReturnError - A policy to return an error from the initializer if parsing fails.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedStringMarkdownParsingFailurePolicy/NSAttributedStringMarkdownParsingFailureReturnError
 	AttributedStringMarkdownParsingFailureReturnError AttributedStringMarkdownParsingFailurePolicy = 0
+	// AttributedStringMarkdownParsingFailureReturnPartiallyParsedIfPossible - A policy to return a partially parsed string, if possible.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedStringMarkdownParsingFailurePolicy/NSAttributedStringMarkdownParsingFailureReturnPartiallyParsedIfPossible
 	AttributedStringMarkdownParsingFailureReturnPartiallyParsedIfPossible AttributedStringMarkdownParsingFailurePolicy = 1
-	AttributedStringMarkdownInterpretedSyntaxFull AttributedStringMarkdownParsingFailurePolicy = 0
-	AttributedStringMarkdownInterpretedSyntaxInlineOnly AttributedStringMarkdownParsingFailurePolicy = 1
-	AttributedStringMarkdownInterpretedSyntaxInlineOnlyPreservingWhitespace AttributedStringMarkdownParsingFailurePolicy = 2
-	AttributedStringFormattingInsertArgumentAttributesWithoutMerging AttributedStringMarkdownParsingFailurePolicy = 3
-	AttributedStringFormattingApplyReplacementIndexAttribute AttributedStringMarkdownParsingFailurePolicy = 4
-	PresentationIntentKindParagraph AttributedStringMarkdownParsingFailurePolicy = 5
-	PresentationIntentKindHeader AttributedStringMarkdownParsingFailurePolicy = 6
-	PresentationIntentKindOrderedList AttributedStringMarkdownParsingFailurePolicy = 7
-	PresentationIntentKindUnorderedList AttributedStringMarkdownParsingFailurePolicy = 8
-	PresentationIntentKindListItem AttributedStringMarkdownParsingFailurePolicy = 9
-	PresentationIntentKindCodeBlock AttributedStringMarkdownParsingFailurePolicy = 10
-	PresentationIntentKindBlockQuote AttributedStringMarkdownParsingFailurePolicy = 11
-	PresentationIntentKindThematicBreak AttributedStringMarkdownParsingFailurePolicy = 12
-	PresentationIntentKindTable AttributedStringMarkdownParsingFailurePolicy = 13
-	PresentationIntentKindTableHeaderRow AttributedStringMarkdownParsingFailurePolicy = 14
-	PresentationIntentKindTableRow AttributedStringMarkdownParsingFailurePolicy = 15
-	PresentationIntentKindTableCell AttributedStringMarkdownParsingFailurePolicy = 16
-	PresentationIntentTableColumnAlignmentLeft AttributedStringMarkdownParsingFailurePolicy = 17
-	PresentationIntentTableColumnAlignmentCenter AttributedStringMarkdownParsingFailurePolicy = 18
-	PresentationIntentTableColumnAlignmentRight AttributedStringMarkdownParsingFailurePolicy = 19
-	FormattingContextUnknown AttributedStringMarkdownParsingFailurePolicy = 0
-	FormattingContextDynamic AttributedStringMarkdownParsingFailurePolicy = 1
-	FormattingContextStandalone AttributedStringMarkdownParsingFailurePolicy = 2
-	FormattingContextListItem AttributedStringMarkdownParsingFailurePolicy = 3
-	FormattingContextBeginningOfSentence AttributedStringMarkdownParsingFailurePolicy = 4
-	FormattingContextMiddleOfSentence AttributedStringMarkdownParsingFailurePolicy = 5
-	FormattingUnitStyleShort AttributedStringMarkdownParsingFailurePolicy = 1
-	FormattingUnitStyleMedium AttributedStringMarkdownParsingFailurePolicy = 2
-	FormattingUnitStyleLong AttributedStringMarkdownParsingFailurePolicy = 3
 )
 
 // NSBackgroundActivityResult - These constants indicate whether background activity has been completed successfully or whether additional processing should be deferred until a more optimal time.
@@ -502,10 +412,6 @@ const (
 type BackgroundActivityResult uint
 
 const (
-	// BackgroundActivityResultDeferred - System conditions have changed since the time the activity began executing, and deferral of additional work is recommended.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBackgroundActivityScheduler/Result/deferred
-	BackgroundActivityResultDeferred BackgroundActivityResult = 2
 	// BackgroundActivityResultDeferred - System conditions have changed since the time the activity began executing, and deferral of additional work is recommended.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBackgroundActivityScheduler/Result/deferred
@@ -586,14 +492,6 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/Unit/NSCalendarCalendarUnit
 	CalendarCalendarUnit CalendarUnit = 22
-	// CalendarCalendarUnit - Specifies the calendar of the calendar.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/Unit/NSCalendarCalendarUnit
-	CalendarCalendarUnit CalendarUnit = 22
-	// DayCalendarUnit - Specifies the day unit.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/Unit/NSDayCalendarUnit
-	DayCalendarUnit CalendarUnit = 11
 	// DayCalendarUnit - Specifies the day unit.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/Unit/NSDayCalendarUnit
@@ -606,14 +504,6 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/Unit/NSHourCalendarUnit
 	HourCalendarUnit CalendarUnit = 12
-	// HourCalendarUnit - Specifies the hour unit.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/Unit/NSHourCalendarUnit
-	HourCalendarUnit CalendarUnit = 12
-	// MinuteCalendarUnit - Specifies the minute unit.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/Unit/NSMinuteCalendarUnit
-	MinuteCalendarUnit CalendarUnit = 13
 	// MinuteCalendarUnit - Specifies the minute unit.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/Unit/NSMinuteCalendarUnit
@@ -622,22 +512,10 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/Unit/NSMonthCalendarUnit
 	MonthCalendarUnit CalendarUnit = 10
-	// MonthCalendarUnit - Specifies the month unit.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/Unit/NSMonthCalendarUnit
-	MonthCalendarUnit CalendarUnit = 10
 	// QuarterCalendarUnit - Specifies the quarter unit.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/Unit/NSQuarterCalendarUnit
 	QuarterCalendarUnit CalendarUnit = 18
-	// QuarterCalendarUnit - Specifies the quarter unit.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/Unit/NSQuarterCalendarUnit
-	QuarterCalendarUnit CalendarUnit = 18
-	// SecondCalendarUnit - Specifies the second unit.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/Unit/NSSecondCalendarUnit
-	SecondCalendarUnit CalendarUnit = 14
 	// SecondCalendarUnit - Specifies the second unit.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/Unit/NSSecondCalendarUnit
@@ -654,18 +532,10 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/Unit/NSWeekOfMonthCalendarUnit
 	WeekOfMonthCalendarUnit CalendarUnit = 19
-	// WeekOfMonthCalendarUnit - Specifies the original week of a month calendar unit.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/Unit/NSWeekOfMonthCalendarUnit
-	WeekOfMonthCalendarUnit CalendarUnit = 19
 	// WeekOfYearCalendarUnit - Specifies the original week of the year calendar unit.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/Unit/NSWeekOfYearCalendarUnit
 	WeekOfYearCalendarUnit CalendarUnit = 20
-	// WeekdayCalendarUnit - Specifies the weekday unit.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/Unit/NSWeekdayCalendarUnit
-	WeekdayCalendarUnit CalendarUnit = 16
 	// WeekdayCalendarUnit - Specifies the weekday unit.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/Unit/NSWeekdayCalendarUnit
@@ -678,18 +548,10 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/Unit/NSYearCalendarUnit
 	YearCalendarUnit CalendarUnit = 9
-	// YearCalendarUnit - Specifies the year unit.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/Unit/NSYearCalendarUnit
-	YearCalendarUnit CalendarUnit = 9
 	// YearForWeekOfYearCalendarUnit - Specifies the year when the calendar is being interpreted as a week-based calendar.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/Unit/NSYearForWeekOfYearCalendarUnit
 	YearForWeekOfYearCalendarUnit CalendarUnit = 21
-	// CalendarUnitCalendar - Identifier for the calendar of a date components object.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/Unit/calendar
-	CalendarUnitCalendar CalendarUnit = 6
 	// CalendarUnitCalendar - Identifier for the calendar of a date components object.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/Unit/calendar
@@ -713,15 +575,8 @@ const (
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/Unit/isLeapMonth
 	CalendarUnitIsLeapMonth CalendarUnit = 0
 	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/Unit/isLeapMonth
-	CalendarUnitIsLeapMonth CalendarUnit = 0
-	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/Unit/isRepeatedDay
 	CalendarUnitIsRepeatedDay CalendarUnit = 0
-	// CalendarUnitMinute - Identifier for the minute unit.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/Unit/minute
-	CalendarUnitMinute CalendarUnit = 0
 	// CalendarUnitMinute - Identifier for the minute unit.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/Unit/minute
@@ -730,10 +585,6 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/Unit/month
 	CalendarUnitMonth CalendarUnit = 0
-	// CalendarUnitNanosecond - Identifier for the nanosecond unit.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/Unit/nanosecond
-	CalendarUnitNanosecond CalendarUnit = 4
 	// CalendarUnitNanosecond - Identifier for the nanosecond unit.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/Unit/nanosecond
@@ -750,14 +601,6 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/Unit/timeZone
 	CalendarUnitTimeZone CalendarUnit = 7
-	// CalendarUnitTimeZone - Identifier for the time zone of a date components object.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/Unit/timeZone
-	CalendarUnitTimeZone CalendarUnit = 7
-	// CalendarUnitWeekOfMonth - Identifier for the week of the month calendar unit.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/Unit/weekOfMonth
-	CalendarUnitWeekOfMonth CalendarUnit = 1
 	// CalendarUnitWeekOfMonth - Identifier for the week of the month calendar unit.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/Unit/weekOfMonth
@@ -766,14 +609,6 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/Unit/weekOfYear
 	CalendarUnitWeekOfYear CalendarUnit = 2
-	// CalendarUnitWeekOfYear - Identifier for the week of the year calendar unit.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/Unit/weekOfYear
-	CalendarUnitWeekOfYear CalendarUnit = 2
-	// CalendarUnitWeekday - Identifier for the weekday unit.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/Unit/weekday
-	CalendarUnitWeekday CalendarUnit = 0
 	// CalendarUnitWeekday - Identifier for the weekday unit.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/Unit/weekday
@@ -786,10 +621,6 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/Unit/year
 	CalendarUnitYear CalendarUnit = 0
-	// CalendarUnitYearForWeekOfYear - Identifier for the week-counting year unit.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/Unit/yearForWeekOfYear
-	CalendarUnitYearForWeekOfYear CalendarUnit = 3
 	// CalendarUnitYearForWeekOfYear - Identifier for the week-counting year unit.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/Unit/yearForWeekOfYear
@@ -997,9 +828,6 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileCoordinator/ReadingOptions/withoutChanges
 	FileCoordinatorReadingWithoutChanges FileCoordinatorReadingOptions = 1
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileCoordinator/ReadingOptions/withoutChanges
-	FileCoordinatorReadingWithoutChanges FileCoordinatorReadingOptions = 1
 )
 
 // NSFileCoordinatorWritingOptions - Options to use when changing the contents or attributes of a file or directory.
@@ -1016,14 +844,8 @@ const (
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileCoordinator/WritingOptions/forDeleting
 	FileCoordinatorWritingForDeleting FileCoordinatorWritingOptions = 1
 	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileCoordinator/WritingOptions/forDeleting
-	FileCoordinatorWritingForDeleting FileCoordinatorWritingOptions = 1
-	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileCoordinator/WritingOptions/forMerging
 	FileCoordinatorWritingForMerging FileCoordinatorWritingOptions = 1
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileCoordinator/WritingOptions/forMoving
-	FileCoordinatorWritingForMoving FileCoordinatorWritingOptions = 1
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileCoordinator/WritingOptions/forMoving
 	FileCoordinatorWritingForMoving FileCoordinatorWritingOptions = 1
@@ -1109,9 +931,6 @@ const (
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSGrammaticalCase/adessive
 	GrammaticalCaseAdessive GrammaticalCase = 7
 	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSGrammaticalCase/adessive
-	GrammaticalCaseAdessive GrammaticalCase = 7
-	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSGrammaticalCase/allative
 	GrammaticalCaseAllative GrammaticalCase = 8
 	//
@@ -1190,20 +1009,11 @@ const (
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSGrammaticalPerson/first
 	GrammaticalPersonFirst GrammaticalPerson = 1
 	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSGrammaticalPerson/first
-	GrammaticalPersonFirst GrammaticalPerson = 1
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSGrammaticalPerson/notSet
-	GrammaticalPersonNotSet GrammaticalPerson = 0
-	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSGrammaticalPerson/notSet
 	GrammaticalPersonNotSet GrammaticalPerson = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSGrammaticalPerson/second
 	GrammaticalPersonSecond GrammaticalPerson = 2
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSGrammaticalPerson/third
-	GrammaticalPersonThird GrammaticalPerson = 3
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSGrammaticalPerson/third
 	GrammaticalPersonThird GrammaticalPerson = 3
@@ -1222,14 +1032,8 @@ const (
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSGrammaticalPronounType/personal
 	GrammaticalPronounTypePersonal GrammaticalPronounType = 1
 	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSGrammaticalPronounType/personal
-	GrammaticalPronounTypePersonal GrammaticalPronounType = 1
-	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSGrammaticalPronounType/possessive
 	GrammaticalPronounTypePossessive GrammaticalPronounType = 3
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSGrammaticalPronounType/reflexive
-	GrammaticalPronounTypeReflexive GrammaticalPronounType = 2
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSGrammaticalPronounType/reflexive
 	GrammaticalPronounTypeReflexive GrammaticalPronounType = 2
@@ -1270,10 +1074,6 @@ type PreferredPresentationStyle uint
 type ItemProviderFileOptions uint
 
 const (
-	// ItemProviderFileOptionOpenInPlace - A data-access specification declaring that items should open in place, rather than being copied.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSItemProviderFileOptions/openInPlace
-	ItemProviderFileOptionOpenInPlace ItemProviderFileOptions = 1
 	// ItemProviderFileOptionOpenInPlace - A data-access specification declaring that items should open in place, rather than being copied.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSItemProviderFileOptions/openInPlace
@@ -1387,36 +1187,18 @@ const (
 type MachPortOptions uint
 
 const (
+	// MachPortDeallocateReceiveRight - Remove a receive right when the   object is invalidated or destroyed.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMachPort/Options/deallocateReceiveRight
+	MachPortDeallocateReceiveRight MachPortOptions = 0
+	// MachPortDeallocateSendRight - Deallocate a send right when the   object is invalidated or destroyed.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMachPort/Options/deallocateSendRight
+	MachPortDeallocateSendRight MachPortOptions = 0
+	// MachPortDeallocateNone - Do not remove any send or receive rights.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMachPortOptions/NSMachPortDeallocateNone
 	MachPortDeallocateNone MachPortOptions = 0
-	WindowsNTOperatingSystem MachPortOptions = 1
-	Windows95OperatingSystem MachPortOptions = 2
-	SolarisOperatingSystem MachPortOptions = 3
-	HPUXOperatingSystem MachPortOptions = 4
-	MACHOperatingSystem MachPortOptions = 5
-	SunOSOperatingSystem MachPortOptions = 6
-	OSF1OperatingSystem MachPortOptions = 7
-	ActivityAnimationTrackingEnabled MachPortOptions = 8
-	ActivityTrackingEnabled MachPortOptions = 9
-	ActivityBackground MachPortOptions = 0
-	ActivityLatencyCritical MachPortOptions = 0
-	ActivityUserInteractive MachPortOptions = 1
-	ProcessInfoThermalStateNominal MachPortOptions = 2
-	ProcessInfoThermalStateFair MachPortOptions = 3
-	ProcessInfoThermalStateSerious MachPortOptions = 4
-	ProcessInfoThermalStateCritical MachPortOptions = 5
-	TextCheckingTypeOrthography MachPortOptions = 0
-	TextCheckingTypeSpelling MachPortOptions = 0
-	TextCheckingTypeGrammar MachPortOptions = 0
-	TextCheckingTypeDate MachPortOptions = 0
-	TextCheckingTypeAddress MachPortOptions = 0
-	TextCheckingTypeLink MachPortOptions = 0
-	TextCheckingTypeQuote MachPortOptions = 0
-	TextCheckingTypeDash MachPortOptions = 0
-	TextCheckingTypeReplacement MachPortOptions = 0
-	TextCheckingTypeCorrection MachPortOptions = 0
-	TextCheckingTypeRegularExpression MachPortOptions = 1
-	TextCheckingTypePhoneNumber MachPortOptions = 2
-	TextCheckingTypeTransitInformation MachPortOptions = 3
 )
 
 // NSOrderedCollectionDifferenceCalculationOptions - Constants that specify the options to use when creating an ordered collection difference.
@@ -1445,14 +1227,6 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerFunctions/Options/cStringPersonality
 	PointerFunctionsCStringPersonality PointerFunctionsOptions = 9
-	// PointerFunctionsCStringPersonality - Use a string hash and  ; C-string ‘ ’ style description.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerFunctions/Options/cStringPersonality
-	PointerFunctionsCStringPersonality PointerFunctionsOptions = 9
-	// PointerFunctionsCopyIn - Use the memory acquire function to allocate and copy items on input (see  ).
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerFunctions/Options/copyIn
-	PointerFunctionsCopyIn PointerFunctionsOptions = 12
 	// PointerFunctionsCopyIn - Use the memory acquire function to allocate and copy items on input (see  ).
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerFunctions/Options/copyIn
@@ -1461,14 +1235,6 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerFunctions/Options/integerPersonality
 	PointerFunctionsIntegerPersonality PointerFunctionsOptions = 11
-	// PointerFunctionsIntegerPersonality - Use unshifted value as hash and equality.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerFunctions/Options/integerPersonality
-	PointerFunctionsIntegerPersonality PointerFunctionsOptions = 11
-	// PointerFunctionsMachVirtualMemory - Use Mach memory.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerFunctions/Options/machVirtualMemory
-	PointerFunctionsMachVirtualMemory PointerFunctionsOptions = 4
 	// PointerFunctionsMachVirtualMemory - Use Mach memory.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerFunctions/Options/machVirtualMemory
@@ -1477,14 +1243,6 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerFunctions/Options/mallocMemory
 	PointerFunctionsMallocMemory PointerFunctionsOptions = 3
-	// PointerFunctionsMallocMemory - Use   on removal,   on copy in.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerFunctions/Options/mallocMemory
-	PointerFunctionsMallocMemory PointerFunctionsOptions = 3
-	// PointerFunctionsObjectPersonality - Use   and   methods for hashing and equality comparisons, use the   method for a description.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerFunctions/Options/objectPersonality
-	PointerFunctionsObjectPersonality PointerFunctionsOptions = 6
 	// PointerFunctionsObjectPersonality - Use   and   methods for hashing and equality comparisons, use the   method for a description.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerFunctions/Options/objectPersonality
@@ -1493,14 +1251,6 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerFunctions/Options/objectPointerPersonality
 	PointerFunctionsObjectPointerPersonality PointerFunctionsOptions = 8
-	// PointerFunctionsObjectPointerPersonality - Use shifted pointer for the hash value and direct comparison to determine equality; use the   method for a description.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerFunctions/Options/objectPointerPersonality
-	PointerFunctionsObjectPointerPersonality PointerFunctionsOptions = 8
-	// PointerFunctionsOpaqueMemory - Take no action when pointers are deleted.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerFunctions/Options/opaqueMemory
-	PointerFunctionsOpaqueMemory PointerFunctionsOptions = 2
 	// PointerFunctionsOpaqueMemory - Take no action when pointers are deleted.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerFunctions/Options/opaqueMemory
@@ -1509,14 +1259,6 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerFunctions/Options/opaquePersonality
 	PointerFunctionsOpaquePersonality PointerFunctionsOptions = 7
-	// PointerFunctionsOpaquePersonality - Use shifted pointer for the hash value and direct comparison to determine equality.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerFunctions/Options/opaquePersonality
-	PointerFunctionsOpaquePersonality PointerFunctionsOptions = 7
-	// PointerFunctionsStrongMemory - Use strong write-barriers to backing store; use garbage-collected memory on copy-in.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerFunctions/Options/strongMemory
-	PointerFunctionsStrongMemory PointerFunctionsOptions = 0
 	// PointerFunctionsStrongMemory - Use strong write-barriers to backing store; use garbage-collected memory on copy-in.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerFunctions/Options/strongMemory
@@ -1525,22 +1267,10 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerFunctions/Options/structPersonality
 	PointerFunctionsStructPersonality PointerFunctionsOptions = 10
-	// PointerFunctionsStructPersonality - Use a memory hash and   (using a size function that you must set—see  ).
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerFunctions/Options/structPersonality
-	PointerFunctionsStructPersonality PointerFunctionsOptions = 10
 	// PointerFunctionsWeakMemory - Uses weak read and write barriers appropriate for ARC or GC. Using NSPointerFunctionsWeakMemory object references will turn to   on last release.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerFunctions/Options/weakMemory
 	PointerFunctionsWeakMemory PointerFunctionsOptions = 5
-	// PointerFunctionsWeakMemory - Uses weak read and write barriers appropriate for ARC or GC. Using NSPointerFunctionsWeakMemory object references will turn to   on last release.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerFunctions/Options/weakMemory
-	PointerFunctionsWeakMemory PointerFunctionsOptions = 5
-	// PointerFunctionsZeroingWeakMemory - Use weak read and write barriers; use garbage-collected memory on copyIn.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerFunctionsOptions/NSPointerFunctionsZeroingWeakMemory
-	PointerFunctionsZeroingWeakMemory PointerFunctionsOptions = 1
 	// PointerFunctionsZeroingWeakMemory - Use weak read and write barriers; use garbage-collected memory on copyIn.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerFunctionsOptions/NSPointerFunctionsZeroingWeakMemory
@@ -1812,10 +1542,6 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/CheckingType/transitInformation
 	TextCheckingTypeTransitInformation TextCheckingType = 3
-	// TextCheckingTypeTransitInformation - Matches a transit information, for example, flight information.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/CheckingType/transitInformation
-	TextCheckingTypeTransitInformation TextCheckingType = 3
 )
 
 // NSTimeZoneNameStyle - Constants you use to specify a style when presenting time zone names.
@@ -1860,14 +1586,6 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/BookmarkCreationOptions/minimalBookmark
 	URLBookmarkCreationMinimalBookmark URLBookmarkCreationOptions = 0
-	// URLBookmarkCreationMinimalBookmark - Specifies that when creating a bookmark, it includes minimal information.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/BookmarkCreationOptions/minimalBookmark
-	URLBookmarkCreationMinimalBookmark URLBookmarkCreationOptions = 0
-	// URLBookmarkCreationPreferFileIDResolution - Specifies that when creating a bookmark, upon resolution, its embedded file ID takes precedence over other sources of information (file system path, for example) when there’s a conflict.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/BookmarkCreationOptions/preferFileIDResolution
-	URLBookmarkCreationPreferFileIDResolution URLBookmarkCreationOptions = 0
 	// URLBookmarkCreationPreferFileIDResolution - Specifies that when creating a bookmark, upon resolution, its embedded file ID takes precedence over other sources of information (file system path, for example) when there’s a conflict.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/BookmarkCreationOptions/preferFileIDResolution
@@ -1876,22 +1594,10 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/BookmarkCreationOptions/securityScopeAllowOnlyReadAccess
 	URLBookmarkCreationSecurityScopeAllowOnlyReadAccess URLBookmarkCreationOptions = 2
-	// URLBookmarkCreationSecurityScopeAllowOnlyReadAccess - Specifies that when creating a security-scoped bookmark, upon resolution, it provides a security-scoped URL allowing read-only access to a file-system resource.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/BookmarkCreationOptions/securityScopeAllowOnlyReadAccess
-	URLBookmarkCreationSecurityScopeAllowOnlyReadAccess URLBookmarkCreationOptions = 2
 	// URLBookmarkCreationSuitableForBookmarkFile - Specifies that the bookmark data includes the required properties for creating Finder alias files.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/BookmarkCreationOptions/suitableForBookmarkFile
 	URLBookmarkCreationSuitableForBookmarkFile URLBookmarkCreationOptions = 0
-	// URLBookmarkCreationSuitableForBookmarkFile - Specifies that the bookmark data includes the required properties for creating Finder alias files.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/BookmarkCreationOptions/suitableForBookmarkFile
-	URLBookmarkCreationSuitableForBookmarkFile URLBookmarkCreationOptions = 0
-	// URLBookmarkCreationWithSecurityScope - Specifies that when creating a security-scoped bookmark, upon resolution, it provides a security-scoped URL allowing read/write access to a file-system resource.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/BookmarkCreationOptions/withSecurityScope
-	URLBookmarkCreationWithSecurityScope URLBookmarkCreationOptions = 1
 	// URLBookmarkCreationWithSecurityScope - Specifies that when creating a security-scoped bookmark, upon resolution, it provides a security-scoped URL allowing read/write access to a file-system resource.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/BookmarkCreationOptions/withSecurityScope
@@ -1912,10 +1618,6 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/BookmarkResolutionOptions/withSecurityScope
 	URLBookmarkResolutionWithSecurityScope URLBookmarkResolutionOptions = 0
-	// URLBookmarkResolutionWithoutImplicitStartAccessing - A property that specifies that resolution doesn’t implicitly start accessing the ephemeral security-scoped resource.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/BookmarkResolutionOptions/withoutImplicitStartAccessing
-	URLBookmarkResolutionWithoutImplicitStartAccessing URLBookmarkResolutionOptions = 1
 	// URLBookmarkResolutionWithoutImplicitStartAccessing - A property that specifies that resolution doesn’t implicitly start accessing the ephemeral security-scoped resource.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/BookmarkResolutionOptions/withoutImplicitStartAccessing
@@ -2202,14 +1904,6 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/ErrorCode-swift.enum/activityInProgress
 	NetServicesActivityInProgress NetServicesError = -72003
-	// NetServicesActivityInProgress - The net service cannot process the request at this time. No additional information about the network state is known.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/ErrorCode-swift.enum/activityInProgress
-	NetServicesActivityInProgress NetServicesError = -72003
-	// NetServicesBadArgumentError - An invalid argument was used when creating the   object.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/ErrorCode-swift.enum/badArgumentError
-	NetServicesBadArgumentError NetServicesError = -72004
 	// NetServicesBadArgumentError - An invalid argument was used when creating the   object.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/ErrorCode-swift.enum/badArgumentError
@@ -2218,14 +1912,6 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/ErrorCode-swift.enum/cancelledError
 	NetServicesCancelledError NetServicesError = -72005
-	// NetServicesCancelledError - The client canceled the action.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/ErrorCode-swift.enum/cancelledError
-	NetServicesCancelledError NetServicesError = -72005
-	// NetServicesCollisionError - The service could not be published because the name is already in use. The name could be in use locally or on another system.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/ErrorCode-swift.enum/collisionError
-	NetServicesCollisionError NetServicesError = -72001
 	// NetServicesCollisionError - The service could not be published because the name is already in use. The name could be in use locally or on another system.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/ErrorCode-swift.enum/collisionError
@@ -2234,20 +1920,9 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/ErrorCode-swift.enum/invalidError
 	NetServicesInvalidError NetServicesError = -72006
-	// NetServicesInvalidError - The net service was improperly configured.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/ErrorCode-swift.enum/invalidError
-	NetServicesInvalidError NetServicesError = -72006
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/ErrorCode-swift.enum/missingRequiredConfigurationError
 	NetServicesMissingRequiredConfigurationError NetServicesError = -72006
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/ErrorCode-swift.enum/missingRequiredConfigurationError
-	NetServicesMissingRequiredConfigurationError NetServicesError = -72006
-	// NetServicesNotFoundError - The service could not be found on the network.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/ErrorCode-swift.enum/notFoundError
-	NetServicesNotFoundError NetServicesError = -72002
 	// NetServicesNotFoundError - The service could not be found on the network.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/ErrorCode-swift.enum/notFoundError
@@ -2256,14 +1931,6 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/ErrorCode-swift.enum/timeoutError
 	NetServicesTimeoutError NetServicesError = -72007
-	// NetServicesTimeoutError - The net service has timed out.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/ErrorCode-swift.enum/timeoutError
-	NetServicesTimeoutError NetServicesError = -72007
-	// NetServicesUnknownError - An unknown error occurred.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/ErrorCode-swift.enum/unknownError
-	NetServicesUnknownError NetServicesError = -72000
 	// NetServicesUnknownError - An unknown error occurred.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/ErrorCode-swift.enum/unknownError
@@ -2279,13 +1946,6 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/Options/listenForConnections
 	NetServiceListenForConnections NetServiceOptions = 2
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/Options/listenForConnections
-	NetServiceListenForConnections NetServiceOptions = 2
-	// NetServiceNoAutoRename - Specifies that the network service should not rename itself in the event of a name collision.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/Options/noAutoRename
-	NetServiceNoAutoRename NetServiceOptions = 1
 	// NetServiceNoAutoRename - Specifies that the network service should not rename itself in the event of a name collision.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/Options/noAutoRename
@@ -2298,10 +1958,6 @@ const (
 type NotificationCoalescing uint
 
 const (
-	// NotificationNoCoalescing - Do not coalesce notifications in the queue.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NotificationQueue/NotificationCoalescing/none
-	NotificationNoCoalescing NotificationCoalescing = 0
 	// NotificationNoCoalescing - Do not coalesce notifications in the queue.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NotificationQueue/NotificationCoalescing/none
@@ -2411,6 +2067,10 @@ const (
 type OperationQueuePriority uint
 
 const (
+	// OperationQueuePriorityHigh - Operations receive high priority for execution.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/QueuePriority-swift.enum/high
+	OperationQueuePriorityHigh OperationQueuePriority = 4
 	// OperationQueuePriorityLow - Operations receive low priority for execution.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/QueuePriority-swift.enum/low
@@ -2515,29 +2175,14 @@ const (
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/QualityOfService/background
 	QualityOfServiceBackground QualityOfService = 0
 	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/QualityOfService/background
-	QualityOfServiceBackground QualityOfService = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/QualityOfService/default
-	QualityOfServiceDefault QualityOfService = -1
-	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/QualityOfService/default
 	QualityOfServiceDefault QualityOfService = -1
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/QualityOfService/userInitiated
 	QualityOfServiceUserInitiated QualityOfService = 0
 	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/QualityOfService/userInitiated
-	QualityOfServiceUserInitiated QualityOfService = 0
-	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/QualityOfService/userInteractive
 	QualityOfServiceUserInteractive QualityOfService = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/QualityOfService/userInteractive
-	QualityOfServiceUserInteractive QualityOfService = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/QualityOfService/utility
-	QualityOfServiceUtility QualityOfService = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/QualityOfService/utility
 	QualityOfServiceUtility QualityOfService = 0
@@ -2659,33 +2304,47 @@ const (
 type URLSessionResponseDisposition uint
 
 const (
-	URLSessionResponseCancel URLSessionResponseDisposition = 0
+	// URLSessionResponseAllow - Allow the load operation to continue.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/ResponseDisposition/allow
 	URLSessionResponseAllow URLSessionResponseDisposition = 1
+	// URLSessionResponseBecomeDownload - Convert the response for this request to use a  .
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/ResponseDisposition/becomeDownload
 	URLSessionResponseBecomeDownload URLSessionResponseDisposition = 2
+	// URLSessionResponseBecomeStream - Convert the response for this request to use a  .
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/ResponseDisposition/becomeStream
 	URLSessionResponseBecomeStream URLSessionResponseDisposition = 3
-	URLSessionTaskMetricsResourceFetchTypeUnknown URLSessionResponseDisposition = 4
-	URLSessionTaskMetricsResourceFetchTypeNetworkLoad URLSessionResponseDisposition = 5
-	URLSessionTaskMetricsResourceFetchTypeServerPush URLSessionResponseDisposition = 6
-	URLSessionTaskMetricsResourceFetchTypeLocalCache URLSessionResponseDisposition = 7
-	URLSessionTaskMetricsDomainResolutionProtocolUnknown URLSessionResponseDisposition = 8
-	URLSessionTaskMetricsDomainResolutionProtocolUDP URLSessionResponseDisposition = 9
-	URLSessionTaskMetricsDomainResolutionProtocolTCP URLSessionResponseDisposition = 10
-	URLSessionTaskMetricsDomainResolutionProtocolTLS URLSessionResponseDisposition = 11
-	URLSessionTaskMetricsDomainResolutionProtocolHTTPS URLSessionResponseDisposition = 12
-	AffineTransformComponents URLSessionResponseDisposition = 13
-	AffineTransform URLSessionResponseDisposition = 14
-	BackgroundActivityResultFinished URLSessionResponseDisposition = 1
-	BackgroundActivityResultDeferred URLSessionResponseDisposition = 2
-	NotificationSuspensionBehaviorDrop URLSessionResponseDisposition = 1
-	NotificationSuspensionBehaviorCoalesce URLSessionResponseDisposition = 2
-	NotificationSuspensionBehaviorHold URLSessionResponseDisposition = 3
-	NotificationSuspensionBehaviorDeliverImmediately URLSessionResponseDisposition = 4
+	// URLSessionResponseCancel - Cancel the load.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/ResponseDisposition/cancel
+	URLSessionResponseCancel URLSessionResponseDisposition = 0
 )
 
 // NSURLSessionMultipathServiceType - Constants that specify the type of service that Multipath TCP uses.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/MultipathServiceType-swift.enum
 type URLSessionMultipathServiceType uint
+
+const (
+	// URLSessionMultipathServiceTypeAggregate - A service that aggregates the capacities of other Multipath options in an attempt to increase throughput and minimize latency.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/MultipathServiceType-swift.enum/aggregate
+	URLSessionMultipathServiceTypeAggregate URLSessionMultipathServiceType = 0
+	// URLSessionMultipathServiceTypeHandover - A Multipath TCP service that provides seamless handover between Wi-Fi and cellular in order to preserve the connection.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/MultipathServiceType-swift.enum/handover
+	URLSessionMultipathServiceTypeHandover URLSessionMultipathServiceType = 0
+	// URLSessionMultipathServiceTypeInteractive - A service whereby Multipath TCP attempts to use the lowest-latency interface.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/MultipathServiceType-swift.enum/interactive
+	URLSessionMultipathServiceTypeInteractive URLSessionMultipathServiceType = 0
+	// URLSessionMultipathServiceTypeNone - The default service type indicating that Multipath TCP should not be used.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/MultipathServiceType-swift.enum/none
+	URLSessionMultipathServiceTypeNone URLSessionMultipathServiceType = 0
+)
 
 // NSURLSessionTaskState - Constants for determining the current state of a task.
 //
@@ -2741,10 +2400,82 @@ const (
 type XMLDTDNodeKind uint
 
 const (
+	// XMLElementDeclarationAnyKind - Identifies an   element declaration.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTDNode/DTDKind-swift.enum/anyDeclaration
+	XMLElementDeclarationAnyKind XMLDTDNodeKind = 18
+	// XMLAttributeCDATAKind - Identifies an attribute-list declaration with a   (character data) value type.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTDNode/DTDKind-swift.enum/cdataAttribute
+	XMLAttributeCDATAKind XMLDTDNodeKind = 6
+	// XMLElementDeclarationElementKind - Identifies a declaration of an element with child elements.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTDNode/DTDKind-swift.enum/elementDeclaration
+	XMLElementDeclarationElementKind XMLDTDNodeKind = 20
+	// XMLElementDeclarationEmptyKind - Identifies a declaration ( ) of an empty element.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTDNode/DTDKind-swift.enum/emptyDeclaration
+	XMLElementDeclarationEmptyKind XMLDTDNodeKind = 17
+	// XMLAttributeEntitiesKind - Identifies an attribute-list declaration with an   value type (refers to multiple unparsed entities declared elsewhere in document).
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTDNode/DTDKind-swift.enum/entitiesAttribute
+	XMLAttributeEntitiesKind XMLDTDNodeKind = 11
+	// XMLAttributeEntityKind - Identifies an attribute-list declaration with an   value type (refers to unparsed entity declared in document).
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTDNode/DTDKind-swift.enum/entityAttribute
+	XMLAttributeEntityKind XMLDTDNodeKind = 10
+	// XMLAttributeEnumerationKind - Identifies an attribute-list declaration with an enumeration value type (list of all possible values).
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTDNode/DTDKind-swift.enum/enumerationAttribute
+	XMLAttributeEnumerationKind XMLDTDNodeKind = 14
+	// XMLEntityGeneralKind - Identifies a general entity declaration.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTDNode/DTDKind-swift.enum/general
+	XMLEntityGeneralKind XMLDTDNodeKind = 1
+	// XMLAttributeIDKind - Identifies an attribute-list declaration with an   value type (per-document unique element name).
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTDNode/DTDKind-swift.enum/idAttribute
+	XMLAttributeIDKind XMLDTDNodeKind = 7
+	// XMLAttributeIDRefKind - Identifies an attribute-list declaration with an   value type (refers to element   type).
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTDNode/DTDKind-swift.enum/idRefAttribute
+	XMLAttributeIDRefKind XMLDTDNodeKind = 8
+	// XMLAttributeIDRefsKind - Identifies an attribute-list declaration with an   value type (refers to multiple elements of   type).
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTDNode/DTDKind-swift.enum/idRefsAttribute
+	XMLAttributeIDRefsKind XMLDTDNodeKind = 9
+	// XMLElementDeclarationMixedKind - Identifies a declaration of an element with mixed content ( ).
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTDNode/DTDKind-swift.enum/mixedDeclaration
+	XMLElementDeclarationMixedKind XMLDTDNodeKind = 19
+	// XMLAttributeNMTokenKind - Identifies an attribute-list declaration with a   value type (name token).
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTDNode/DTDKind-swift.enum/nmTokenAttribute
+	XMLAttributeNMTokenKind XMLDTDNodeKind = 12
+	// XMLAttributeNMTokensKind - Identifies an attribute-list declaration with a   value type (multiple name tokens)
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTDNode/DTDKind-swift.enum/nmTokensAttribute
+	XMLAttributeNMTokensKind XMLDTDNodeKind = 13
+	// XMLAttributeNotationKind - Identifies an attribute-list declaration with a   value type (name of declared notation).
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTDNode/DTDKind-swift.enum/notationAttribute
+	XMLAttributeNotationKind XMLDTDNodeKind = 15
 	// XMLEntityParameterKind - Identifies a parameter entity declaration.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTDNode/DTDKind-swift.enum/parameter
 	XMLEntityParameterKind XMLDTDNodeKind = 4
+	// XMLEntityParsedKind - Identifies a parsed entity declaration.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTDNode/DTDKind-swift.enum/parsed
+	XMLEntityParsedKind XMLDTDNodeKind = 2
+	// XMLEntityPredefined - Identifies a predefined entity declaration.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTDNode/DTDKind-swift.enum/predefined
+	XMLEntityPredefined XMLDTDNodeKind = 5
+	// XMLElementDeclarationUndefinedKind - Identifies an undefined element declaration.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTDNode/DTDKind-swift.enum/undefinedDeclaration
+	XMLElementDeclarationUndefinedKind XMLDTDNodeKind = 16
 	// XMLEntityUnparsedKind - Identifies an unparsed entity declaration.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTDNode/DTDKind-swift.enum/unparsed
@@ -2765,22 +2496,10 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/Kind-swift.enum/attribute
 	XMLAttributeKind XMLNodeKind = 3
-	// XMLAttributeKind - Specifies an attribute node
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/Kind-swift.enum/attribute
-	XMLAttributeKind XMLNodeKind = 3
 	// XMLAttributeDeclarationKind - Specifies an attribute-list declaration node.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/Kind-swift.enum/attributeDeclaration
 	XMLAttributeDeclarationKind XMLNodeKind = 10
-	// XMLAttributeDeclarationKind - Specifies an attribute-list declaration node.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/Kind-swift.enum/attributeDeclaration
-	XMLAttributeDeclarationKind XMLNodeKind = 10
-	// XMLCommentKind - Specifies a comment node.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/Kind-swift.enum/comment
-	XMLCommentKind XMLNodeKind = 6
 	// XMLCommentKind - Specifies a comment node.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/Kind-swift.enum/comment
@@ -2793,10 +2512,6 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/Kind-swift.enum/element
 	XMLElementKind XMLNodeKind = 2
-	// XMLElementKind - Specifies an element node.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/Kind-swift.enum/element
-	XMLElementKind XMLNodeKind = 2
 	// XMLElementDeclarationKind - Specifies an element declaration node.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/Kind-swift.enum/elementDeclaration
@@ -2805,14 +2520,6 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/Kind-swift.enum/entityDeclaration
 	XMLEntityDeclarationKind XMLNodeKind = 9
-	// XMLEntityDeclarationKind - Specifies an entity-declaration node.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/Kind-swift.enum/entityDeclaration
-	XMLEntityDeclarationKind XMLNodeKind = 9
-	// XMLInvalidKind - Indicates a node object created without a valid kind being specified (as returned by the   method).
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/Kind-swift.enum/invalid
-	XMLInvalidKind XMLNodeKind = 0
 	// XMLInvalidKind - Indicates a node object created without a valid kind being specified (as returned by the   method).
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/Kind-swift.enum/invalid
@@ -2821,22 +2528,10 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/Kind-swift.enum/namespace
 	XMLNamespaceKind XMLNodeKind = 4
-	// XMLNamespaceKind - Specifies a namespace node.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/Kind-swift.enum/namespace
-	XMLNamespaceKind XMLNodeKind = 4
 	// XMLNotationDeclarationKind - Specifies a notation declaration node.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/Kind-swift.enum/notationDeclaration
 	XMLNotationDeclarationKind XMLNodeKind = 12
-	// XMLNotationDeclarationKind - Specifies a notation declaration node.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/Kind-swift.enum/notationDeclaration
-	XMLNotationDeclarationKind XMLNodeKind = 12
-	// XMLProcessingInstructionKind - Specifies a processing-instruction node.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/Kind-swift.enum/processingInstruction
-	XMLProcessingInstructionKind XMLNodeKind = 5
 	// XMLProcessingInstructionKind - Specifies a processing-instruction node.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/Kind-swift.enum/processingInstruction
@@ -2857,6 +2552,18 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXMLNodeOptions/NSXMLNodeOptionsNone
 	XMLNodeOptionsNone XMLNodeOptions = 0
+	// XMLNodePreserveDTD - Specifies that declarations in a DTD should be preserved until it the DTD is modified. For example, parameter entities are by default expanded; with this option, they are written out as they originally occur in the DTD.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/Options/nodePreserveDTD
+	XMLNodePreserveDTD XMLNodeOptions = 1
+	// XMLNodePreserveQuotes - Specifies that the quoting style used in the input XML (single or double quotes) be preserved.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/Options/nodePreserveQuotes
+	XMLNodePreserveQuotes XMLNodeOptions = 0
+	// XMLNodeUseSingleQuotes - Requests that NSXML use single quotes for the value of an attribute or namespace node.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/Options/nodeUseSingleQuotes
+	XMLNodeUseSingleQuotes XMLNodeOptions = 1
 )
 
 // NSXMLParserExternalEntityResolvingPolicy enum type

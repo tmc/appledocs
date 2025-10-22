@@ -30,8 +30,8 @@ type _NetServiceBrowserClass struct {
 // An interface definition for the [NetServiceBrowser] class.
 type INetServiceBrowser interface {
 	objectivec.IObject
-	RemoveFromRunLoopForMode(aRunLoop IRunLoop, mode IRunLoopMode)
-	ScheduleInRunLoopForMode(aRunLoop IRunLoop, mode IRunLoopMode)
+	RemoveFromRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode)
+	ScheduleInRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode)
 	SearchForBrowsableDomains()
 	SearchForRegistrationDomains()
 	SearchForServicesOfTypeInDomain(type_ string, domainString string)
@@ -103,7 +103,7 @@ func NewNetServiceBrowser() NetServiceBrowser {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetServiceBrowser/remove(from:forMode:)
 
-func (n_ NetServiceBrowser) RemoveFromRunLoopForMode(aRunLoop IRunLoop, mode IRunLoopMode) {
+func (n_ NetServiceBrowser) RemoveFromRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("removeFromRunLoop:forMode:"), aRunLoop, mode)
 }
 
@@ -114,7 +114,7 @@ func (n_ NetServiceBrowser) RemoveFromRunLoopForMode(aRunLoop IRunLoop, mode IRu
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetServiceBrowser/schedule(in:forMode:)
 
-func (n_ NetServiceBrowser) ScheduleInRunLoopForMode(aRunLoop IRunLoop, mode IRunLoopMode) {
+func (n_ NetServiceBrowser) ScheduleInRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("scheduleInRunLoop:forMode:"), aRunLoop, mode)
 }
 

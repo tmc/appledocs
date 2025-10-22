@@ -32,12 +32,11 @@ type IHashTable interface {
 	objectivec.IObject
 	AddObject(object unsafe.Pointer)
 	Count() uint
+	PointerFunctions() NSPointerFunctions
 	AllObjects() unsafe.Pointer
 	SetAllObjects(value unsafe.Pointer)
 	AnyObject() unsafe.Pointer
 	SetAnyObject(value unsafe.Pointer)
-	PointerFunctions() NSPointerFunctions
-	SetPointerFunctions(value IPointerFunctions)
 	SetRepresentation() unsafe.Pointer
 	SetSetRepresentation(value unsafe.Pointer)
 }
@@ -102,7 +101,7 @@ func NewHashTable() HashTable {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHashTable/init(options:)
 
-func NewHashTableWithOptions(options IPointerFunctionsOptions) HashTable {
+func NewHashTableWithOptions(options PointerFunctionsOptions) HashTable {
 	rv := objc.Send[HashTable](objc.ID(getHashTableClass().class), objc.Sel("hashTableWithOptions:"), options)
 	return rv
 }
@@ -125,7 +124,7 @@ func (hc _HashTableClass) HashTableWithWeakObjects() objc.ID {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHashTable/init(options:)
 
-func (hc _HashTableClass) HashTableWithOptions(options IPointerFunctionsOptions) unsafe.Pointer {
+func (hc _HashTableClass) HashTableWithOptions(options PointerFunctionsOptions) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("hashTableWithOptions:"), options)
 	return rv
 }
@@ -149,6 +148,17 @@ func (h_ HashTable) AddObject(object unsafe.Pointer) {
 
 func (h_ HashTable) Count() uint {
 	rv := objc.Send[uint](h_.ID, objc.Sel("count"))
+	return rv
+}
+
+
+// The pointer functions for the hash table.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHashTable/pointerFunctions
+
+func (h_ HashTable) PointerFunctions() NSPointerFunctions {
+	rv := objc.Send[NSPointerFunctions](h_.ID, objc.Sel("pointerFunctions"))
 	return rv
 }
 
@@ -192,27 +202,6 @@ func (h_ HashTable) AnyObject() unsafe.Pointer {
 
 func (h_ HashTable) SetAnyObject(value unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setAnyObject:"), value)
-}
-
-
-// The pointer functions for the hash table.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nshashtable/pointerfunctions
-
-func (h_ HashTable) PointerFunctions() NSPointerFunctions {
-	rv := objc.Send[NSPointerFunctions](h_.ID, objc.Sel("pointerFunctions"))
-	return rv
-}
-
-
-// The pointer functions for the hash table.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nshashtable/pointerfunctions
-
-func (h_ HashTable) SetPointerFunctions(value IPointerFunctions) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setPointerFunctions:"), value)
 }
 
 

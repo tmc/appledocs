@@ -127,6 +127,17 @@ func (uc _UnarchiverClass) UnarchiveObjectWithData(data IData) objc.ID {
 }
 
 
+// Decodes and returns the object archived in the file .
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUnarchiver/unarchiveObject(withFile:)
+
+func (uc _UnarchiverClass) UnarchiveObjectWithFile(path string) objc.ID {
+	rv := objc.Send[objc.ID](objc.ID(uc.class), objc.Sel("unarchiveObjectWithFile:"), objc.String(path))
+	return rv
+}
+
+
 // A Boolean value that indicates whether the receiver has reached the end of the encoded data while decoding.
 //
 // [Full Topic]

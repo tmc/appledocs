@@ -7,7 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/corefoundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [KeyedArchiver] class.
@@ -31,14 +31,14 @@ type _KeyedArchiverClass struct {
 type IKeyedArchiver interface {
 	ICoder
 	EncodeDoubleForKey(value float64, key string)
-	Delegate() unsafe.Pointer
-	SetDelegate(value unsafe.Pointer)
-	EncodedData() Data
-	SetEncodedData(value IData)
-	OutputFormat() corefoundation.PropertyListFormat
-	SetOutputFormat(value corefoundation.IPropertyListFormat)
+	FinishEncoding()
+	EncodedData() NSData
+	OutputFormat() unsafe.Pointer
+	SetOutputFormat(value unsafe.Pointer)
 	RequiresSecureCoding() bool
 	SetRequiresSecureCoding(value bool)
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
 }
 
 // An encoder that stores an object’s data to an archive referenced by keys.
@@ -97,6 +97,39 @@ func NewKeyedArchiver() KeyedArchiver {
 
 
 
+// Archives an object graph rooted at a given object to a file at a given path.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedArchiver/archiveRootObject(_:toFile:)
+
+func (kc _KeyedArchiverClass) ArchiveRootObjectToFile(rootObject objectivec.IObject, path string) bool {
+	rv := objc.Send[bool](objc.ID(kc.class), objc.Sel("archiveRootObject:toFile:"), rootObject, objc.String(path))
+	return rv
+}
+
+
+// Returns a data object that contains the encoded form of the object graph formed by the given root object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedArchiver/archivedData(withRootObject:)
+
+func (kc _KeyedArchiverClass) ArchivedDataWithRootObject(rootObject objectivec.IObject) Data {
+	rv := objc.Send[Data](objc.ID(kc.class), objc.Sel("archivedDataWithRootObject:"), rootObject)
+	return rv
+}
+
+
+// Encodes an object graph with the given root object into a data representation, optionally requiring secure coding.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedArchiver/archivedData(withRootObject:requiringSecureCoding:)
+
+func (kc _KeyedArchiverClass) ArchivedDataWithRootObjectRequiringSecureCodingError(object objectivec.IObject, requiresSecureCoding bool, error_ IError) Data {
+	rv := objc.Send[Data](objc.ID(kc.class), objc.Sel("archivedDataWithRootObject:requiringSecureCoding:error:"), object, requiresSecureCoding, error_)
+	return rv
+}
+
+
 
 // Encodes a given value and associates it with a key.
 //
@@ -105,6 +138,70 @@ func NewKeyedArchiver() KeyedArchiver {
 
 func (k_ KeyedArchiver) EncodeDoubleForKey(value float64, key string) {
 	objc.Send[objc.ID](k_.ID, objc.Sel("encodeDouble:forKey:"), value, objc.String(key))
+}
+
+
+
+// Instructs the receiver to construct the final data stream.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedArchiver/finishEncoding()
+
+func (k_ KeyedArchiver) FinishEncoding() {
+	objc.Send[objc.ID](k_.ID, objc.Sel("finishEncoding"))
+}
+
+
+// The encoded data for the archiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedArchiver/encodedData
+
+func (k_ KeyedArchiver) EncodedData() NSData {
+	rv := objc.Send[NSData](k_.ID, objc.Sel("encodedData"))
+	return rv
+}
+
+
+// The format in which the receiver encodes its data.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedArchiver/outputFormat
+
+func (k_ KeyedArchiver) OutputFormat() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](k_.ID, objc.Sel("outputFormat"))
+	return rv
+}
+
+
+// The format in which the receiver encodes its data.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedArchiver/outputFormat
+
+func (k_ KeyedArchiver) SetOutputFormat(value unsafe.Pointer) {
+	objc.Send[objc.ID](k_.ID, objc.Sel("setOutputFormat:"), value)
+}
+
+
+// Indicates whether the archiver requires all archived classes to resist object substitution attacks.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedArchiver/requiresSecureCoding
+
+func (k_ KeyedArchiver) RequiresSecureCoding() bool {
+	rv := objc.Send[bool](k_.ID, objc.Sel("requiresSecureCoding"))
+	return rv
+}
+
+
+// Indicates whether the archiver requires all archived classes to resist object substitution attacks.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedArchiver/requiresSecureCoding
+
+func (k_ KeyedArchiver) SetRequiresSecureCoding(value bool) {
+	objc.Send[objc.ID](k_.ID, objc.Sel("setRequiresSecureCoding:"), value)
 }
 
 
@@ -126,69 +223,6 @@ func (k_ KeyedArchiver) Delegate() unsafe.Pointer {
 
 func (k_ KeyedArchiver) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](k_.ID, objc.Sel("setDelegate:"), value)
-}
-
-
-// The encoded data for the archiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nskeyedarchiver/encodeddata
-
-func (k_ KeyedArchiver) EncodedData() Data {
-	rv := objc.Send[Data](k_.ID, objc.Sel("encodedData"))
-	return rv
-}
-
-
-// The encoded data for the archiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nskeyedarchiver/encodeddata
-
-func (k_ KeyedArchiver) SetEncodedData(value IData) {
-	objc.Send[objc.ID](k_.ID, objc.Sel("setEncodedData:"), value)
-}
-
-
-// The format in which the receiver encodes its data.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nskeyedarchiver/outputformat
-
-func (k_ KeyedArchiver) OutputFormat() corefoundation.PropertyListFormat {
-	rv := objc.Send[corefoundation.PropertyListFormat](k_.ID, objc.Sel("outputFormat"))
-	return rv
-}
-
-
-// The format in which the receiver encodes its data.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nskeyedarchiver/outputformat
-
-func (k_ KeyedArchiver) SetOutputFormat(value corefoundation.IPropertyListFormat) {
-	objc.Send[objc.ID](k_.ID, objc.Sel("setOutputFormat:"), value)
-}
-
-
-// Indicates whether the archiver requires all archived classes to resist object substitution attacks.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nskeyedarchiver/requiressecurecoding
-
-func (k_ KeyedArchiver) RequiresSecureCoding() bool {
-	rv := objc.Send[bool](k_.ID, objc.Sel("requiresSecureCoding"))
-	return rv
-}
-
-
-// Indicates whether the archiver requires all archived classes to resist object substitution attacks.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nskeyedarchiver/requiressecurecoding
-
-func (k_ KeyedArchiver) SetRequiresSecureCoding(value bool) {
-	objc.Send[objc.ID](k_.ID, objc.Sel("setRequiresSecureCoding:"), value)
 }
 
 

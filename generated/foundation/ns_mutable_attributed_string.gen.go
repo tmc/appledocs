@@ -32,7 +32,7 @@ type IMutableAttributedString interface {
 	AppendAttributedString(attrString IAttributedString)
 	AppendLocalizedFormat(format IAttributedString)
 	InsertAttributedStringAtIndex(attrString IAttributedString, loc uint)
-	ReplaceCharactersInRangeWithAttributedString(range_ IRange, attrString IAttributedString)
+	ReplaceCharactersInRangeWithAttributedString(range_ Range, attrString IAttributedString)
 	SetAttributedString(attrString IAttributedString)
 	MutableString() NSMutableString
 	SetMutableString(value IMutableString)
@@ -131,7 +131,7 @@ func (m_ MutableAttributedString) InsertAttributedStringAtIndex(attrString IAttr
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableAttributedString/replaceCharacters(in:with:)-1uaw7
 
-func (m_ MutableAttributedString) ReplaceCharactersInRangeWithAttributedString(range_ IRange, attrString IAttributedString) {
+func (m_ MutableAttributedString) ReplaceCharactersInRangeWithAttributedString(range_ Range, attrString IAttributedString) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("replaceCharactersInRange:withAttributedString:"), range_, attrString)
 }
 

@@ -30,22 +30,22 @@ type _TimeZoneClass struct {
 // An interface definition for the [TimeZone] class.
 type ITimeZone interface {
 	objectivec.IObject
+	AbbreviationForDate(aDate IDate) String
 	IsDaylightSavingTimeForDate(aDate IDate) bool
 	IsEqualToTimeZone(aTimeZone ITimeZone) bool
 	NextDaylightSavingTimeTransitionAfterDate(aDate IDate) Date
+	SecondsFromGMTForDate(aDate IDate) int
+	Abbreviation() string
 	Data() NSData
 	Description() string
 	Name() string
-	Abbreviation() string
-	SetAbbreviation(value string)
+	SecondsFromGMT() int
 	DaylightSavingTimeOffset() TimeInterval
 	SetDaylightSavingTimeOffset(value ITimeInterval)
 	IsDaylightSavingTime() bool
 	SetIsDaylightSavingTime(value bool)
 	NextDaylightSavingTimeTransition() Date
 	SetNextDaylightSavingTimeTransition(value IDate)
-	SecondsFromGMT() int
-	SetSecondsFromGMT(value int)
 }
 
 // Information about standard time conventions associated with a specific geopolitical region.
@@ -224,6 +224,28 @@ func (tc _TimeZoneClass) SystemTimeZone() TimeZone {
 	return rv
 }
 
+// Returns the time zone data version.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/timeZoneDataVersion
+
+func (tc _TimeZoneClass) TimeZoneDataVersion() string {
+	rv := objc.Send[string](objc.ID(tc.class), objc.Sel("timeZoneDataVersion"))
+	return rv
+}
+
+
+// Returns the abbreviation for the receiver at a given date.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/abbreviation(for:)
+
+func (t_ TimeZone) AbbreviationForDate(aDate IDate) String {
+	rv := objc.Send[String](t_.ID, objc.Sel("abbreviationForDate:"), aDate)
+	return rv
+}
+
+
 
 // Indicates whether the receiver uses daylight saving time on a given date.
 //
@@ -256,6 +278,29 @@ func (t_ TimeZone) IsEqualToTimeZone(aTimeZone ITimeZone) bool {
 
 func (t_ TimeZone) NextDaylightSavingTimeTransitionAfterDate(aDate IDate) Date {
 	rv := objc.Send[Date](t_.ID, objc.Sel("nextDaylightSavingTimeTransitionAfterDate:"), aDate)
+	return rv
+}
+
+
+
+// Returns the difference in seconds between the receiver and Greenwich Mean Time at a given date.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/secondsFromGMT(for:)
+
+func (t_ TimeZone) SecondsFromGMTForDate(aDate IDate) int {
+	rv := objc.Send[int](t_.ID, objc.Sel("secondsFromGMTForDate:"), aDate)
+	return rv
+}
+
+
+// The abbreviation for the receiver, such as “EDT” (Eastern Daylight Time).
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/abbreviation
+
+func (t_ TimeZone) Abbreviation() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("abbreviation"))
 	return rv
 }
 
@@ -346,6 +391,17 @@ func (t_ TimeZone) Name() string {
 }
 
 
+// The current difference in seconds between the receiver and Greenwich Mean Time.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/secondsFromGMT
+
+func (t_ TimeZone) SecondsFromGMT() int {
+	rv := objc.Send[int](t_.ID, objc.Sel("secondsFromGMT"))
+	return rv
+}
+
+
 // The time zone currently used by the system.
 //
 // [Full Topic]
@@ -357,24 +413,14 @@ func (t_ TimeZone) SystemTimeZone() NSTimeZone {
 }
 
 
-// The abbreviation for the receiver, such as “EDT” (Eastern Daylight Time).
+// Returns the time zone data version.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nstimezone/abbreviation
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/timeZoneDataVersion
 
-func (t_ TimeZone) Abbreviation() string {
-	rv := objc.Send[string](t_.ID, objc.Sel("abbreviation"))
+func (t_ TimeZone) TimeZoneDataVersion() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("timeZoneDataVersion"))
 	return rv
-}
-
-
-// The abbreviation for the receiver, such as “EDT” (Eastern Daylight Time).
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nstimezone/abbreviation
-
-func (t_ TimeZone) SetAbbreviation(value string) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setAbbreviation:"), objc.String(value))
 }
 
 
@@ -438,27 +484,6 @@ func (t_ TimeZone) NextDaylightSavingTimeTransition() Date {
 
 func (t_ TimeZone) SetNextDaylightSavingTimeTransition(value IDate) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setNextDaylightSavingTimeTransition:"), value)
-}
-
-
-// The current difference in seconds between the receiver and Greenwich Mean Time.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nstimezone/secondsfromgmt
-
-func (t_ TimeZone) SecondsFromGMT() int {
-	rv := objc.Send[int](t_.ID, objc.Sel("secondsFromGMT"))
-	return rv
-}
-
-
-// The current difference in seconds between the receiver and Greenwich Mean Time.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nstimezone/secondsfromgmt
-
-func (t_ TimeZone) SetSecondsFromGMT(value int) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setSecondsFromGMT:"), value)
 }
 
 

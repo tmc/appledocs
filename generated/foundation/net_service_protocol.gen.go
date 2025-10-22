@@ -8,9 +8,9 @@ import "github.com/ebitengine/purego/objc"
 //
 // Availability:
 //   - Mac Catalyst 13.1+
-//   - iOS 2.0+
-//   - iPadOS 2.0+
-//   - macOS 10.2+
+//   - iOS 7.0+
+//   - iPadOS 7.0+
+//   - macOS 10.9+
 //   - tvOS 9.0+
 //   - visionOS 1.0+
 //

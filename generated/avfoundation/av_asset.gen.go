@@ -39,7 +39,7 @@ type IAsset interface {
 	LoadTracksWithMediaCharacteristicCompletionHandler(mediaCharacteristic unsafe.Pointer, completionHandler unsafe.Pointer)
 	MetadataForFormat(format IMetadataFormat) []MetadataItem
 	TrackWithTrackID(trackID unsafe.Pointer) AssetTrack
-	TracksWithMediaType(mediaType IMediaType) []AssetTrack
+	TracksWithMediaType(mediaType MediaType) []AssetTrack
 	UnusedTrackID() unsafe.Pointer
 	AllMediaSelections() []MediaSelection
 	AvailableChapterLocales() []foundation.Locale
@@ -235,7 +235,7 @@ func (a_ Asset) TrackWithTrackID(trackID unsafe.Pointer) AssetTrack {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAsset/tracks(withMediaType:)
 
-func (a_ Asset) TracksWithMediaType(mediaType IMediaType) []AssetTrack {
+func (a_ Asset) TracksWithMediaType(mediaType MediaType) []AssetTrack {
 	rv := objc.Send[[]AssetTrack](a_.ID, objc.Sel("tracksWithMediaType:"), mediaType)
 	return rv
 }

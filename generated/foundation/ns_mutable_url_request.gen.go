@@ -30,7 +30,7 @@ type _MutableURLRequestClass struct {
 type IMutableURLRequest interface {
 	IURLRequest
 	CachePolicy() URLRequestCachePolicy
-	SetCachePolicy(value IURLRequestCachePolicy)
+	SetCachePolicy(value URLRequestCachePolicy)
 	HTTPMethod() string
 	SetHTTPMethod(value string)
 	URL() URL
@@ -143,7 +143,7 @@ func (m_ MutableURLRequest) CachePolicy() URLRequestCachePolicy {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableURLRequest/cachePolicy
 
-func (m_ MutableURLRequest) SetCachePolicy(value IURLRequestCachePolicy) {
+func (m_ MutableURLRequest) SetCachePolicy(value URLRequestCachePolicy) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCachePolicy:"), value)
 }
 

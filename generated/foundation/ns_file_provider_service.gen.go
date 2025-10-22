@@ -30,8 +30,8 @@ type _FileProviderServiceClass struct {
 // An interface definition for the [FileProviderService] class.
 type IFileProviderService interface {
 	objectivec.IObject
+	GetFileProviderConnectionWithCompletionHandler(completionHandler unsafe.Pointer)
 	Name() FileProviderServiceName
-	SetName(value IFileProviderServiceName)
 }
 
 // A service that provides a custom communication channel between your app and a File Provider extension.
@@ -88,24 +88,25 @@ func NewFileProviderService() FileProviderService {
 
 
 
-// The File Provider service’s name.
+
+// Asynchronously returns the service’s connection object.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileproviderservice/name
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileProviderService/getFileProviderConnection(completionHandler:)
 
-func (f_ FileProviderService) Name() FileProviderServiceName {
-	rv := objc.Send[FileProviderServiceName](f_.ID, objc.Sel("name"))
-	return rv
+func (f_ FileProviderService) GetFileProviderConnectionWithCompletionHandler(completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("getFileProviderConnectionWithCompletionHandler:"), completionHandler)
 }
 
 
 // The File Provider service’s name.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileproviderservice/name
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileProviderService/name
 
-func (f_ FileProviderService) SetName(value IFileProviderServiceName) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setName:"), value)
+func (f_ FileProviderService) Name() FileProviderServiceName {
+	rv := objc.Send[FileProviderServiceName](f_.ID, objc.Sel("name"))
+	return rv
 }
 
 

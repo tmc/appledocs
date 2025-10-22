@@ -47,7 +47,7 @@ type ICoder interface {
 	DecodeObjectOfClassForKey(aClass objc.Class, key string) objc.ID
 	DecodePoint() Point
 	EncodeDataObject(data IData)
-	EncodePoint(point IPoint)
+	EncodePoint(point Point)
 	EncodeObjectForKey(object objectivec.IObject, key string)
 	EncodeIntegerForKey(value int, key string)
 	EncodeInt32ForKey(value unsafe.Pointer, key string)
@@ -64,6 +64,8 @@ type ICoder interface {
 	RequiresSecureCoding() bool
 	AllowedClasses() unsafe.Pointer
 	SetAllowedClasses(value unsafe.Pointer)
+	Error() Error
+	SetError(value IError)
 	SystemVersion() unsafe.Pointer
 	SetSystemVersion(value unsafe.Pointer)
 	NSCoderErrorMaximum() int
@@ -339,7 +341,7 @@ func (c_ Coder) EncodeDataObject(data IData) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCoder/encode(_:)-75jv4
 
-func (c_ Coder) EncodePoint(point IPoint) {
+func (c_ Coder) EncodePoint(point Point) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("encodePoint:"), point)
 }
 
@@ -516,6 +518,27 @@ func (c_ Coder) AllowedClasses() unsafe.Pointer {
 
 func (c_ Coder) SetAllowedClasses(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAllowedClasses:"), value)
+}
+
+
+// An error in the top-level encode.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscoder/error
+
+func (c_ Coder) Error() Error {
+	rv := objc.Send[Error](c_.ID, objc.Sel("error"))
+	return rv
+}
+
+
+// An error in the top-level encode.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscoder/error
+
+func (c_ Coder) SetError(value IError) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setError:"), value)
 }
 
 

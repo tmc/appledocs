@@ -9,6 +9,14 @@ import (
 // Suppress unused import errors
 var _ = foundation.NewXMLParser
 
+// ExampleNewXMLParserWithContentsOfURL demonstrates how to create a XMLParser instance using NewXMLParserWithContentsOfURL.
+// Initializes a parser with the XML content referenced by the given URL.
+func ExampleNewXMLParserWithContentsOfURL() {
+	_ = foundation.NewXMLParserWithContentsOfURL(
+		foundation.URL{}, // url URL
+	)
+	// Output:
+}
 // ExampleNewXMLParserWithData demonstrates how to create a XMLParser instance using NewXMLParserWithData.
 // Initializes a parser with the XML contents encapsulated in a given data object.
 func ExampleNewXMLParserWithData() {

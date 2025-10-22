@@ -116,7 +116,7 @@ func NewXMLElement() XMLElement {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLElement/init(kind:options:)
 
-func NewXMLElementWithKindOptions(kind IXMLNodeKind, options IXMLNodeOptions) XMLElement {
+func NewXMLElementWithKindOptions(kind XMLNodeKind, options XMLNodeOptions) XMLElement {
 	instance := getXMLElementClass().Alloc()
 	rv := objc.Send[XMLElement](instance.ID, objc.Sel("initWithKind:options:"), kind, options)
 	rv.Autorelease()

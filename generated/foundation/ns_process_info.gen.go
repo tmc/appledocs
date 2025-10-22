@@ -30,15 +30,16 @@ type _ProcessInfoClass struct {
 // An interface definition for the [ProcessInfo] class.
 type IProcessInfo interface {
 	objectivec.IObject
-	BeginActivityWithOptionsReason(options IActivityOptions, reason string) objc.ID
+	BeginActivityWithOptionsReason(options ActivityOptions, reason string) objc.ID
 	DisableAutomaticTermination(reason string)
 	EnableAutomaticTermination(reason string)
 	EnableSuddenTermination()
 	EndActivity(activity objectivec.IObject)
 	IsDeviceCertifiedFor(performanceTier unsafe.Pointer) bool
 	IsOperatingSystemAtLeastVersion(version unsafe.Pointer) bool
+	OperatingSystem() uint
 	OperatingSystemName() String
-	PerformActivityWithOptionsReasonUsingBlock(options IActivityOptions, reason string, block unsafe.Pointer)
+	PerformActivityWithOptionsReasonUsingBlock(options ActivityOptions, reason string, block unsafe.Pointer)
 	PerformExpiringActivityWithReasonUsingBlock(reason string, block unsafe.Pointer)
 	ActiveProcessorCount() uint
 	Arguments() []string
@@ -147,7 +148,7 @@ func (pc _ProcessInfoClass) ProcessInfo() ProcessInfo {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/beginActivity(options:reason:)
 
-func (p_ ProcessInfo) BeginActivityWithOptionsReason(options IActivityOptions, reason string) objc.ID {
+func (p_ ProcessInfo) BeginActivityWithOptionsReason(options ActivityOptions, reason string) objc.ID {
 	rv := objc.Send[objc.ID](p_.ID, objc.Sel("beginActivityWithOptions:reason:"), options, objc.String(reason))
 	return rv
 }
@@ -222,6 +223,18 @@ func (p_ ProcessInfo) IsOperatingSystemAtLeastVersion(version unsafe.Pointer) bo
 
 
 
+// Returns a constant to indicate the operating system on which the process is executing.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/operatingSystem()
+
+func (p_ ProcessInfo) OperatingSystem() uint {
+	rv := objc.Send[uint](p_.ID, objc.Sel("operatingSystem"))
+	return rv
+}
+
+
+
 // Returns a string containing the name of the operating system on which the process is executing.
 //
 // [Full Topic]
@@ -239,7 +252,7 @@ func (p_ ProcessInfo) OperatingSystemName() String {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/performActivity(options:reason:using:)
 
-func (p_ ProcessInfo) PerformActivityWithOptionsReasonUsingBlock(options IActivityOptions, reason string, block unsafe.Pointer) {
+func (p_ ProcessInfo) PerformActivityWithOptionsReasonUsingBlock(options ActivityOptions, reason string, block unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("performActivityWithOptions:reason:usingBlock:"), options, objc.String(reason), block)
 }
 

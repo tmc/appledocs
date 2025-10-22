@@ -35,7 +35,7 @@ type ICaptureSystemPressureState interface {
 	Level() unsafe.Pointer
 	SetLevel(value unsafe.Pointer)
 	SystemPressureState() AVCaptureSystemPressureState
-	SetSystemPressureState(value IAVCaptureSystemPressureState)
+	SetSystemPressureState(value AVCaptureSystemPressureState)
 	AVCaptureSessionInterruptionSystemPressureStateKey() string
 }
 
@@ -151,7 +151,7 @@ func (c_ CaptureSystemPressureState) SystemPressureState() AVCaptureSystemPressu
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/systempressurestate-swift.property
 
-func (c_ CaptureSystemPressureState) SetSystemPressureState(value IAVCaptureSystemPressureState) {
+func (c_ CaptureSystemPressureState) SetSystemPressureState(value AVCaptureSystemPressureState) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSystemPressureState:"), value)
 }
 

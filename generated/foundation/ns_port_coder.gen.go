@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [PortCoder] class.
@@ -29,6 +30,12 @@ type _PortCoderClass struct {
 // An interface definition for the [PortCoder] class.
 type IPortCoder interface {
 	ICoder
+	Connection() Connection
+	DecodePortObject() Port
+	Dispatch()
+	EncodePortObject(aport IPort)
+	IsBycopy() bool
+	IsByref() bool
 }
 
 // A coder used to transmit object proxies (and sometimes objects themselves) between connections.
@@ -86,5 +93,100 @@ func NewPortCoder() PortCoder {
 }
 
 
+
+
+// Initializes and returns an object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPortCoder/initWithReceivePort:sendPort:components:
+
+func NewPortCoderWithReceivePortSendPortComponents(rcvPort IPort, sndPort IPort, comps objectivec.IObject) PortCoder {
+	instance := getPortCoderClass().Alloc()
+	rv := objc.Send[PortCoder](instance.ID, objc.Sel("initWithReceivePort:sendPort:components:"), rcvPort, sndPort, comps)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// Creates and returns a new object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPortCoder/portCoderWithReceivePort:sendPort:components:
+
+func (pc _PortCoderClass) PortCoderWithReceivePortSendPortComponents(rcvPort IPort, sndPort IPort, comps objectivec.IObject) objc.ID {
+	rv := objc.Send[objc.ID](objc.ID(pc.class), objc.Sel("portCoderWithReceivePort:sendPort:components:"), rcvPort, sndPort, comps)
+	return rv
+}
+
+
+
+// Returns the object that uses the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPortCoder/connection
+
+func (p_ PortCoder) Connection() Connection {
+	rv := objc.Send[Connection](p_.ID, objc.Sel("connection"))
+	return rv
+}
+
+
+
+// Decodes and returns an object that was previously encoded with any of the general messages.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPortCoder/decodePortObject
+
+func (p_ PortCoder) DecodePortObject() Port {
+	rv := objc.Send[Port](p_.ID, objc.Sel("decodePortObject"))
+	return rv
+}
+
+
+
+// Processes and acts upon the distributed object message with which the receiver was initialized.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPortCoder/dispatch
+
+func (p_ PortCoder) Dispatch() {
+	objc.Send[objc.ID](p_.ID, objc.Sel("dispatch"))
+}
+
+
+
+// Encodes a given port so it can be properly reconstituted in the receiving process or thread.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPortCoder/encodePortObject:
+
+func (p_ PortCoder) EncodePortObject(aport IPort) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("encodePortObject:"), aport)
+}
+
+
+
+// Returns a Boolean value that indicates whether the receiver is encoding an object by copying it.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPortCoder/isBycopy
+
+func (p_ PortCoder) IsBycopy() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isBycopy"))
+	return rv
+}
+
+
+
+// Returns a Boolean value that indicates whether the receiver is encoding an object by reference.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPortCoder/isByref
+
+func (p_ PortCoder) IsByref() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("isByref"))
+	return rv
+}
 
 

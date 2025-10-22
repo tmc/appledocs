@@ -52,7 +52,7 @@ type IAssetWriterInput interface {
 	MediaTimeScale() unsafe.Pointer
 	SetMediaTimeScale(value unsafe.Pointer)
 	MediaType() MediaType
-	SetMediaType(value IMediaType)
+	SetMediaType(value MediaType)
 	Metadata() AVMetadataItem
 	SetMetadata(value IAVMetadataItem)
 	NaturalSize() coregraphics.CGSize
@@ -135,7 +135,7 @@ func NewAssetWriterInput() AssetWriterInput {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriterInput/init(mediaType:outputSettings:)
 
-func NewAssetWriterInputWithMediaTypeOutputSettings(mediaType IMediaType, outputSettings unsafe.Pointer) AssetWriterInput {
+func NewAssetWriterInputWithMediaTypeOutputSettings(mediaType MediaType, outputSettings unsafe.Pointer) AssetWriterInput {
 	instance := getAssetWriterInputClass().Alloc()
 	rv := objc.Send[AssetWriterInput](instance.ID, objc.Sel("initWithMediaType:outputSettings:"), mediaType, outputSettings)
 	rv.Autorelease()
@@ -149,7 +149,7 @@ func NewAssetWriterInputWithMediaTypeOutputSettings(mediaType IMediaType, output
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriterInput/init(mediaType:outputSettings:sourceFormatHint:)
 
-func NewAssetWriterInputWithMediaTypeOutputSettingsSourceFormatHint(mediaType IMediaType, outputSettings unsafe.Pointer, sourceFormatHint unsafe.Pointer) AssetWriterInput {
+func NewAssetWriterInputWithMediaTypeOutputSettingsSourceFormatHint(mediaType MediaType, outputSettings unsafe.Pointer, sourceFormatHint unsafe.Pointer) AssetWriterInput {
 	instance := getAssetWriterInputClass().Alloc()
 	rv := objc.Send[AssetWriterInput](instance.ID, objc.Sel("initWithMediaType:outputSettings:sourceFormatHint:"), mediaType, outputSettings, sourceFormatHint)
 	rv.Autorelease()
@@ -375,7 +375,7 @@ func (a_ AssetWriterInput) MediaType() MediaType {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriterinput/mediatype
 
-func (a_ AssetWriterInput) SetMediaType(value IMediaType) {
+func (a_ AssetWriterInput) SetMediaType(value MediaType) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMediaType:"), value)
 }
 

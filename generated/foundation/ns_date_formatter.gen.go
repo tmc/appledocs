@@ -36,7 +36,7 @@ type IDateFormatter interface {
 	DateFormat() string
 	SetDateFormat(value string)
 	DateStyle() DateFormatterStyle
-	SetDateStyle(value IDateFormatterStyle)
+	SetDateStyle(value DateFormatterStyle)
 	EraSymbols() []string
 	SetEraSymbols(value []string)
 	FormatterBehavior() unsafe.Pointer
@@ -47,16 +47,30 @@ type IDateFormatter interface {
 	SetGregorianStartDate(value IDate)
 	Locale() NSLocale
 	SetLocale(value ILocale)
+	MonthSymbols() []string
+	SetMonthSymbols(value []string)
 	QuarterSymbols() []string
 	SetQuarterSymbols(value []string)
+	ShortMonthSymbols() []string
+	SetShortMonthSymbols(value []string)
+	ShortStandaloneMonthSymbols() []string
+	SetShortStandaloneMonthSymbols(value []string)
+	ShortStandaloneWeekdaySymbols() []string
+	SetShortStandaloneWeekdaySymbols(value []string)
+	ShortWeekdaySymbols() []string
+	SetShortWeekdaySymbols(value []string)
+	StandaloneMonthSymbols() []string
+	SetStandaloneMonthSymbols(value []string)
 	StandaloneWeekdaySymbols() []string
 	SetStandaloneWeekdaySymbols(value []string)
 	TimeStyle() DateFormatterStyle
-	SetTimeStyle(value IDateFormatterStyle)
+	SetTimeStyle(value DateFormatterStyle)
 	TimeZone() NSTimeZone
 	SetTimeZone(value ITimeZone)
 	VeryShortMonthSymbols() []string
 	SetVeryShortMonthSymbols(value []string)
+	WeekdaySymbols() []string
+	SetWeekdaySymbols(value []string)
 	AmSymbol() string
 	SetAmSymbol(value string)
 	DefaultDate() Date
@@ -69,24 +83,12 @@ type IDateFormatter interface {
 	SetIsLenient(value bool)
 	LongEraSymbols() string
 	SetLongEraSymbols(value string)
-	MonthSymbols() string
-	SetMonthSymbols(value string)
 	PmSymbol() string
 	SetPmSymbol(value string)
-	ShortMonthSymbols() string
-	SetShortMonthSymbols(value string)
 	ShortQuarterSymbols() string
 	SetShortQuarterSymbols(value string)
-	ShortStandaloneMonthSymbols() string
-	SetShortStandaloneMonthSymbols(value string)
 	ShortStandaloneQuarterSymbols() string
 	SetShortStandaloneQuarterSymbols(value string)
-	ShortStandaloneWeekdaySymbols() string
-	SetShortStandaloneWeekdaySymbols(value string)
-	ShortWeekdaySymbols() string
-	SetShortWeekdaySymbols(value string)
-	StandaloneMonthSymbols() string
-	SetStandaloneMonthSymbols(value string)
 	StandaloneQuarterSymbols() string
 	SetStandaloneQuarterSymbols(value string)
 	TwoDigitStartDate() Date
@@ -97,8 +99,6 @@ type IDateFormatter interface {
 	SetVeryShortStandaloneWeekdaySymbols(value string)
 	VeryShortWeekdaySymbols() string
 	SetVeryShortWeekdaySymbols(value string)
-	WeekdaySymbols() string
-	SetWeekdaySymbols(value string)
 }
 
 // A formatter that converts between dates and their textual representations.
@@ -263,7 +263,7 @@ func (d_ DateFormatter) DateStyle() DateFormatterStyle {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/dateStyle
 
-func (d_ DateFormatter) SetDateStyle(value IDateFormatterStyle) {
+func (d_ DateFormatter) SetDateStyle(value DateFormatterStyle) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDateStyle:"), value)
 }
 
@@ -404,6 +404,37 @@ func (d_ DateFormatter) SetLocale(value ILocale) {
 }
 
 
+// The month symbols for the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/monthSymbols
+
+func (d_ DateFormatter) MonthSymbols() []string {
+	rv := objc.Send[[]string](d_.ID, objc.Sel("monthSymbols"))
+	return rv
+}
+
+
+// The month symbols for the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/monthSymbols
+
+func (d_ DateFormatter) SetMonthSymbols(value []string) {
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](d_.ID, objc.Sel("setMonthSymbols:"), nsArray)
+}
+
+
 // The quarter symbols for the receiver.
 //
 // [Full Topic]
@@ -432,6 +463,161 @@ func (d_ DateFormatter) SetQuarterSymbols(value []string) {
 		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
 	}
 	objc.Send[objc.ID](d_.ID, objc.Sel("setQuarterSymbols:"), nsArray)
+}
+
+
+// The array of short month symbols for the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/shortMonthSymbols
+
+func (d_ DateFormatter) ShortMonthSymbols() []string {
+	rv := objc.Send[[]string](d_.ID, objc.Sel("shortMonthSymbols"))
+	return rv
+}
+
+
+// The array of short month symbols for the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/shortMonthSymbols
+
+func (d_ DateFormatter) SetShortMonthSymbols(value []string) {
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](d_.ID, objc.Sel("setShortMonthSymbols:"), nsArray)
+}
+
+
+// The short standalone month symbols for the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/shortStandaloneMonthSymbols
+
+func (d_ DateFormatter) ShortStandaloneMonthSymbols() []string {
+	rv := objc.Send[[]string](d_.ID, objc.Sel("shortStandaloneMonthSymbols"))
+	return rv
+}
+
+
+// The short standalone month symbols for the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/shortStandaloneMonthSymbols
+
+func (d_ DateFormatter) SetShortStandaloneMonthSymbols(value []string) {
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](d_.ID, objc.Sel("setShortStandaloneMonthSymbols:"), nsArray)
+}
+
+
+// The array of short standalone weekday symbols for the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/shortStandaloneWeekdaySymbols
+
+func (d_ DateFormatter) ShortStandaloneWeekdaySymbols() []string {
+	rv := objc.Send[[]string](d_.ID, objc.Sel("shortStandaloneWeekdaySymbols"))
+	return rv
+}
+
+
+// The array of short standalone weekday symbols for the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/shortStandaloneWeekdaySymbols
+
+func (d_ DateFormatter) SetShortStandaloneWeekdaySymbols(value []string) {
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](d_.ID, objc.Sel("setShortStandaloneWeekdaySymbols:"), nsArray)
+}
+
+
+// The array of short weekday symbols for the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/shortWeekdaySymbols
+
+func (d_ DateFormatter) ShortWeekdaySymbols() []string {
+	rv := objc.Send[[]string](d_.ID, objc.Sel("shortWeekdaySymbols"))
+	return rv
+}
+
+
+// The array of short weekday symbols for the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/shortWeekdaySymbols
+
+func (d_ DateFormatter) SetShortWeekdaySymbols(value []string) {
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](d_.ID, objc.Sel("setShortWeekdaySymbols:"), nsArray)
+}
+
+
+// The standalone month symbols for the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/standaloneMonthSymbols
+
+func (d_ DateFormatter) StandaloneMonthSymbols() []string {
+	rv := objc.Send[[]string](d_.ID, objc.Sel("standaloneMonthSymbols"))
+	return rv
+}
+
+
+// The standalone month symbols for the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/standaloneMonthSymbols
+
+func (d_ DateFormatter) SetStandaloneMonthSymbols(value []string) {
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](d_.ID, objc.Sel("setStandaloneMonthSymbols:"), nsArray)
 }
 
 
@@ -482,7 +668,7 @@ func (d_ DateFormatter) TimeStyle() DateFormatterStyle {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/timeStyle
 
-func (d_ DateFormatter) SetTimeStyle(value IDateFormatterStyle) {
+func (d_ DateFormatter) SetTimeStyle(value DateFormatterStyle) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setTimeStyle:"), value)
 }
 
@@ -536,6 +722,37 @@ func (d_ DateFormatter) SetVeryShortMonthSymbols(value []string) {
 		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
 	}
 	objc.Send[objc.ID](d_.ID, objc.Sel("setVeryShortMonthSymbols:"), nsArray)
+}
+
+
+// The array of weekday symbols for the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/weekdaySymbols
+
+func (d_ DateFormatter) WeekdaySymbols() []string {
+	rv := objc.Send[[]string](d_.ID, objc.Sel("weekdaySymbols"))
+	return rv
+}
+
+
+// The array of weekday symbols for the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/weekdaySymbols
+
+func (d_ DateFormatter) SetWeekdaySymbols(value []string) {
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](d_.ID, objc.Sel("setWeekdaySymbols:"), nsArray)
 }
 
 
@@ -665,27 +882,6 @@ func (d_ DateFormatter) SetLongEraSymbols(value string) {
 }
 
 
-// The month symbols for the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/monthsymbols
-
-func (d_ DateFormatter) MonthSymbols() string {
-	rv := objc.Send[string](d_.ID, objc.Sel("monthSymbols"))
-	return rv
-}
-
-
-// The month symbols for the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/monthsymbols
-
-func (d_ DateFormatter) SetMonthSymbols(value string) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setMonthSymbols:"), objc.String(value))
-}
-
-
 // The PM symbol for the receiver.
 //
 // [Full Topic]
@@ -704,27 +900,6 @@ func (d_ DateFormatter) PmSymbol() string {
 
 func (d_ DateFormatter) SetPmSymbol(value string) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setPmSymbol:"), objc.String(value))
-}
-
-
-// The array of short month symbols for the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/shortmonthsymbols
-
-func (d_ DateFormatter) ShortMonthSymbols() string {
-	rv := objc.Send[string](d_.ID, objc.Sel("shortMonthSymbols"))
-	return rv
-}
-
-
-// The array of short month symbols for the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/shortmonthsymbols
-
-func (d_ DateFormatter) SetShortMonthSymbols(value string) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setShortMonthSymbols:"), objc.String(value))
 }
 
 
@@ -749,27 +924,6 @@ func (d_ DateFormatter) SetShortQuarterSymbols(value string) {
 }
 
 
-// The short standalone month symbols for the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/shortstandalonemonthsymbols
-
-func (d_ DateFormatter) ShortStandaloneMonthSymbols() string {
-	rv := objc.Send[string](d_.ID, objc.Sel("shortStandaloneMonthSymbols"))
-	return rv
-}
-
-
-// The short standalone month symbols for the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/shortstandalonemonthsymbols
-
-func (d_ DateFormatter) SetShortStandaloneMonthSymbols(value string) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setShortStandaloneMonthSymbols:"), objc.String(value))
-}
-
-
 // The short standalone quarter symbols for the receiver.
 //
 // [Full Topic]
@@ -788,69 +942,6 @@ func (d_ DateFormatter) ShortStandaloneQuarterSymbols() string {
 
 func (d_ DateFormatter) SetShortStandaloneQuarterSymbols(value string) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setShortStandaloneQuarterSymbols:"), objc.String(value))
-}
-
-
-// The array of short standalone weekday symbols for the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/shortstandaloneweekdaysymbols
-
-func (d_ DateFormatter) ShortStandaloneWeekdaySymbols() string {
-	rv := objc.Send[string](d_.ID, objc.Sel("shortStandaloneWeekdaySymbols"))
-	return rv
-}
-
-
-// The array of short standalone weekday symbols for the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/shortstandaloneweekdaysymbols
-
-func (d_ DateFormatter) SetShortStandaloneWeekdaySymbols(value string) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setShortStandaloneWeekdaySymbols:"), objc.String(value))
-}
-
-
-// The array of short weekday symbols for the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/shortweekdaysymbols
-
-func (d_ DateFormatter) ShortWeekdaySymbols() string {
-	rv := objc.Send[string](d_.ID, objc.Sel("shortWeekdaySymbols"))
-	return rv
-}
-
-
-// The array of short weekday symbols for the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/shortweekdaysymbols
-
-func (d_ DateFormatter) SetShortWeekdaySymbols(value string) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setShortWeekdaySymbols:"), objc.String(value))
-}
-
-
-// The standalone month symbols for the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/standalonemonthsymbols
-
-func (d_ DateFormatter) StandaloneMonthSymbols() string {
-	rv := objc.Send[string](d_.ID, objc.Sel("standaloneMonthSymbols"))
-	return rv
-}
-
-
-// The standalone month symbols for the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/standalonemonthsymbols
-
-func (d_ DateFormatter) SetStandaloneMonthSymbols(value string) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setStandaloneMonthSymbols:"), objc.String(value))
 }
 
 
@@ -956,27 +1047,6 @@ func (d_ DateFormatter) VeryShortWeekdaySymbols() string {
 
 func (d_ DateFormatter) SetVeryShortWeekdaySymbols(value string) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setVeryShortWeekdaySymbols:"), objc.String(value))
-}
-
-
-// The array of weekday symbols for the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/weekdaysymbols
-
-func (d_ DateFormatter) WeekdaySymbols() string {
-	rv := objc.Send[string](d_.ID, objc.Sel("weekdaySymbols"))
-	return rv
-}
-
-
-// The array of weekday symbols for the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/weekdaysymbols
-
-func (d_ DateFormatter) SetWeekdaySymbols(value string) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setWeekdaySymbols:"), objc.String(value))
 }
 
 

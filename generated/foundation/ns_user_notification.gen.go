@@ -39,6 +39,10 @@ type IUserNotification interface {
 	AdditionalActivationAction() NSUserNotificationAction
 	DeliveryDate() NSDate
 	SetDeliveryDate(value IDate)
+	DeliveryRepeatInterval() NSDateComponents
+	SetDeliveryRepeatInterval(value IDateComponents)
+	DeliveryTimeZone() NSTimeZone
+	SetDeliveryTimeZone(value ITimeZone)
 	InformativeText() string
 	SetInformativeText(value string)
 	Presented() bool
@@ -46,12 +50,10 @@ type IUserNotification interface {
 	OtherButtonTitle() string
 	SetOtherButtonTitle(value string)
 	Response() NSAttributedString
+	SoundName() string
+	SetSoundName(value string)
 	Title() string
 	SetTitle(value string)
-	DeliveryRepeatInterval() DateComponents
-	SetDeliveryRepeatInterval(value IDateComponents)
-	DeliveryTimeZone() TimeZone
-	SetDeliveryTimeZone(value ITimeZone)
 	HasActionButton() bool
 	SetHasActionButton(value bool)
 	HasReplyButton() bool
@@ -64,8 +66,6 @@ type IUserNotification interface {
 	SetIsRemote(value bool)
 	ResponsePlaceholder() string
 	SetResponsePlaceholder(value string)
-	SoundName() string
-	SetSoundName(value string)
 	Subtitle() string
 	SetSubtitle(value string)
 	UserInfo() string
@@ -233,6 +233,48 @@ func (u_ UserNotification) SetDeliveryDate(value IDate) {
 }
 
 
+// Specifies the date components that control how often a user notification is repeated.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/deliveryRepeatInterval
+
+func (u_ UserNotification) DeliveryRepeatInterval() NSDateComponents {
+	rv := objc.Send[NSDateComponents](u_.ID, objc.Sel("deliveryRepeatInterval"))
+	return rv
+}
+
+
+// Specifies the date components that control how often a user notification is repeated.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/deliveryRepeatInterval
+
+func (u_ UserNotification) SetDeliveryRepeatInterval(value IDateComponents) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setDeliveryRepeatInterval:"), value)
+}
+
+
+// Specify the time zone to interpret the delivery date in.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/deliveryTimeZone
+
+func (u_ UserNotification) DeliveryTimeZone() NSTimeZone {
+	rv := objc.Send[NSTimeZone](u_.ID, objc.Sel("deliveryTimeZone"))
+	return rv
+}
+
+
+// Specify the time zone to interpret the delivery date in.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/deliveryTimeZone
+
+func (u_ UserNotification) SetDeliveryTimeZone(value ITimeZone) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setDeliveryTimeZone:"), value)
+}
+
+
 // The body text of the notification.
 //
 // [Full Topic]
@@ -308,6 +350,27 @@ func (u_ UserNotification) Response() NSAttributedString {
 }
 
 
+// Specifies the name of the sound to play when the notification is delivered.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/soundName
+
+func (u_ UserNotification) SoundName() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("soundName"))
+	return rv
+}
+
+
+// Specifies the name of the sound to play when the notification is delivered.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/soundName
+
+func (u_ UserNotification) SetSoundName(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setSoundName:"), objc.String(value))
+}
+
+
 // Specifies the title of the notification.
 //
 // [Full Topic]
@@ -326,48 +389,6 @@ func (u_ UserNotification) Title() string {
 
 func (u_ UserNotification) SetTitle(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setTitle:"), objc.String(value))
-}
-
-
-// Specifies the date components that control how often a user notification is repeated.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/deliveryrepeatinterval
-
-func (u_ UserNotification) DeliveryRepeatInterval() DateComponents {
-	rv := objc.Send[DateComponents](u_.ID, objc.Sel("deliveryRepeatInterval"))
-	return rv
-}
-
-
-// Specifies the date components that control how often a user notification is repeated.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/deliveryrepeatinterval
-
-func (u_ UserNotification) SetDeliveryRepeatInterval(value IDateComponents) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setDeliveryRepeatInterval:"), value)
-}
-
-
-// Specify the time zone to interpret the delivery date in.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/deliverytimezone
-
-func (u_ UserNotification) DeliveryTimeZone() TimeZone {
-	rv := objc.Send[TimeZone](u_.ID, objc.Sel("deliveryTimeZone"))
-	return rv
-}
-
-
-// Specify the time zone to interpret the delivery date in.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/deliverytimezone
-
-func (u_ UserNotification) SetDeliveryTimeZone(value ITimeZone) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setDeliveryTimeZone:"), value)
 }
 
 
@@ -494,27 +515,6 @@ func (u_ UserNotification) ResponsePlaceholder() string {
 
 func (u_ UserNotification) SetResponsePlaceholder(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setResponsePlaceholder:"), objc.String(value))
-}
-
-
-// Specifies the name of the sound to play when the notification is delivered.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/soundname
-
-func (u_ UserNotification) SoundName() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("soundName"))
-	return rv
-}
-
-
-// Specifies the name of the sound to play when the notification is delivered.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/soundname
-
-func (u_ UserNotification) SetSoundName(value string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setSoundName:"), objc.String(value))
 }
 
 

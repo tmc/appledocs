@@ -7,13 +7,8 @@ import "github.com/ebitengine/purego/objc"
 // connectionProtocol is the connection: protocol.
 //
 // Availability:
-//   - Mac Catalyst 13.1+
-//   - iOS 2.0+
-//   - iPadOS 2.0+
-//   - macOS 10.2+
-//   - tvOS 9.0+
-//   - visionOS 1.0+
-//   - watchOS 2.0+
+//   - Mac Catalyst 13.1+ (Deprecated in 13.1)
+//   - macOS 10.0+ (Deprecated in 10.13)
 //
 // Use this protocol when registering custom classes that conform to connection:.
 var connectionProtocol *objc.Protocol

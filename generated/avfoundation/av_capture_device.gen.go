@@ -35,10 +35,10 @@ type ICaptureDevice interface {
 	LockForConfiguration(outError unsafe.Pointer) bool
 	RampToVideoZoomFactorWithRate(factor float64, rate float32)
 	SetCameraLensSmudgeDetectionEnabledDetectionInterval(cameraLensSmudgeDetectionEnabled bool, detectionInterval unsafe.Pointer)
-	SetCinematicVideoFixedFocusAtPointFocusMode(point coregraphics.CGPoint, focusMode ICaptureCinematicVideoFocusMode)
-	SetCinematicVideoTrackingFocusAtPointFocusMode(point coregraphics.CGPoint, focusMode ICaptureCinematicVideoFocusMode)
+	SetCinematicVideoFixedFocusAtPointFocusMode(point coregraphics.CGPoint, focusMode CaptureCinematicVideoFocusMode)
+	SetCinematicVideoTrackingFocusAtPointFocusMode(point coregraphics.CGPoint, focusMode CaptureCinematicVideoFocusMode)
 	SetDynamicAspectRatioCompletionHandler(dynamicAspectRatio unsafe.Pointer, handler unsafe.Pointer)
-	SetPrimaryConstituentDeviceSwitchingBehaviorRestrictedSwitchingBehaviorConditions(switchingBehavior ICapturePrimaryConstituentDeviceSwitchingBehavior, restrictedSwitchingBehaviorConditions ICapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions)
+	SetPrimaryConstituentDeviceSwitchingBehaviorRestrictedSwitchingBehaviorConditions(switchingBehavior CapturePrimaryConstituentDeviceSwitchingBehavior, restrictedSwitchingBehaviorConditions ICapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions)
 	SetWhiteBalanceModeLockedWithDeviceWhiteBalanceGainsCompletionHandler(whiteBalanceGains unsafe.Pointer, handler unsafe.Pointer)
 	UnlockForConfiguration()
 	ActiveDepthDataMinFrameDuration() unsafe.Pointer
@@ -100,7 +100,7 @@ type ICaptureDevice interface {
 	ActivePrimaryConstituent() AVCaptureDevice
 	SetActivePrimaryConstituent(value IAVCaptureDevice)
 	CinematicVideoCaptureSceneMonitoringStatuses() CaptureSceneMonitoringStatus
-	SetCinematicVideoCaptureSceneMonitoringStatuses(value ICaptureSceneMonitoringStatus)
+	SetCinematicVideoCaptureSceneMonitoringStatuses(value CaptureSceneMonitoringStatus)
 	DeviceType() unsafe.Pointer
 	SetDeviceType(value unsafe.Pointer)
 	IsAutoVideoFrameRateEnabled() bool
@@ -210,7 +210,7 @@ func NewCaptureDeviceWithUniqueID(deviceUniqueID string) CaptureDevice {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/authorizationStatus(for:)
 
-func (cc _CaptureDeviceClass) AuthorizationStatusForMediaType(mediaType IMediaType) AuthorizationStatus {
+func (cc _CaptureDeviceClass) AuthorizationStatusForMediaType(mediaType MediaType) AuthorizationStatus {
 	rv := objc.Send[AuthorizationStatus](objc.ID(cc.class), objc.Sel("authorizationStatusForMediaType:"), mediaType)
 	return rv
 }
@@ -221,7 +221,7 @@ func (cc _CaptureDeviceClass) AuthorizationStatusForMediaType(mediaType IMediaTy
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/default(_:for:position:)
 
-func (cc _CaptureDeviceClass) DefaultDeviceWithDeviceTypeMediaTypePosition(deviceType unsafe.Pointer, mediaType IMediaType, position ICaptureDevicePosition) CaptureDevice {
+func (cc _CaptureDeviceClass) DefaultDeviceWithDeviceTypeMediaTypePosition(deviceType unsafe.Pointer, mediaType MediaType, position ICaptureDevicePosition) CaptureDevice {
 	rv := objc.Send[CaptureDevice](objc.ID(cc.class), objc.Sel("defaultDeviceWithDeviceType:mediaType:position:"), deviceType, mediaType, position)
 	return rv
 }
@@ -232,7 +232,7 @@ func (cc _CaptureDeviceClass) DefaultDeviceWithDeviceTypeMediaTypePosition(devic
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/default(for:)
 
-func (cc _CaptureDeviceClass) DefaultDeviceWithMediaType(mediaType IMediaType) CaptureDevice {
+func (cc _CaptureDeviceClass) DefaultDeviceWithMediaType(mediaType MediaType) CaptureDevice {
 	rv := objc.Send[CaptureDevice](objc.ID(cc.class), objc.Sel("defaultDeviceWithMediaType:"), mediaType)
 	return rv
 }
@@ -243,7 +243,7 @@ func (cc _CaptureDeviceClass) DefaultDeviceWithMediaType(mediaType IMediaType) C
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/devices(for:)
 
-func (cc _CaptureDeviceClass) DevicesWithMediaType(mediaType IMediaType) []CaptureDevice {
+func (cc _CaptureDeviceClass) DevicesWithMediaType(mediaType MediaType) []CaptureDevice {
 	rv := objc.Send[[]CaptureDevice](objc.ID(cc.class), objc.Sel("devicesWithMediaType:"), mediaType)
 	return rv
 }
@@ -265,7 +265,7 @@ func (cc _CaptureDeviceClass) DeviceWithUniqueID(deviceUniqueID string) CaptureD
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/requestAccess(for:completionHandler:)
 
-func (cc _CaptureDeviceClass) RequestAccessForMediaTypeCompletionHandler(mediaType IMediaType, handler unsafe.Pointer) {
+func (cc _CaptureDeviceClass) RequestAccessForMediaTypeCompletionHandler(mediaType MediaType, handler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("requestAccessForMediaType:completionHandler:"), mediaType, handler)
 }
 
@@ -362,7 +362,7 @@ func (c_ CaptureDevice) SetCameraLensSmudgeDetectionEnabledDetectionInterval(cam
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/setCinematicVideoFixedFocus(at:focusMode:)
 
-func (c_ CaptureDevice) SetCinematicVideoFixedFocusAtPointFocusMode(point coregraphics.CGPoint, focusMode ICaptureCinematicVideoFocusMode) {
+func (c_ CaptureDevice) SetCinematicVideoFixedFocusAtPointFocusMode(point coregraphics.CGPoint, focusMode CaptureCinematicVideoFocusMode) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCinematicVideoFixedFocusAtPoint:focusMode:"), point, focusMode)
 }
 
@@ -373,7 +373,7 @@ func (c_ CaptureDevice) SetCinematicVideoFixedFocusAtPointFocusMode(point coregr
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/setCinematicVideoTrackingFocus(at:focusMode:)
 
-func (c_ CaptureDevice) SetCinematicVideoTrackingFocusAtPointFocusMode(point coregraphics.CGPoint, focusMode ICaptureCinematicVideoFocusMode) {
+func (c_ CaptureDevice) SetCinematicVideoTrackingFocusAtPointFocusMode(point coregraphics.CGPoint, focusMode CaptureCinematicVideoFocusMode) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCinematicVideoTrackingFocusAtPoint:focusMode:"), point, focusMode)
 }
 
@@ -395,7 +395,7 @@ func (c_ CaptureDevice) SetDynamicAspectRatioCompletionHandler(dynamicAspectRati
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/setPrimaryConstituentDeviceSwitchingBehavior(_:restrictedSwitchingBehaviorConditions:)
 
-func (c_ CaptureDevice) SetPrimaryConstituentDeviceSwitchingBehaviorRestrictedSwitchingBehaviorConditions(switchingBehavior ICapturePrimaryConstituentDeviceSwitchingBehavior, restrictedSwitchingBehaviorConditions ICapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions) {
+func (c_ CaptureDevice) SetPrimaryConstituentDeviceSwitchingBehaviorRestrictedSwitchingBehaviorConditions(switchingBehavior CapturePrimaryConstituentDeviceSwitchingBehavior, restrictedSwitchingBehaviorConditions ICapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPrimaryConstituentDeviceSwitchingBehavior:restrictedSwitchingBehaviorConditions:"), switchingBehavior, restrictedSwitchingBehaviorConditions)
 }
 
@@ -1127,7 +1127,7 @@ func (c_ CaptureDevice) CinematicVideoCaptureSceneMonitoringStatuses() CaptureSc
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/cinematicvideocapturescenemonitoringstatuses
 
-func (c_ CaptureDevice) SetCinematicVideoCaptureSceneMonitoringStatuses(value ICaptureSceneMonitoringStatus) {
+func (c_ CaptureDevice) SetCinematicVideoCaptureSceneMonitoringStatuses(value CaptureSceneMonitoringStatus) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCinematicVideoCaptureSceneMonitoringStatuses:"), value)
 }
 

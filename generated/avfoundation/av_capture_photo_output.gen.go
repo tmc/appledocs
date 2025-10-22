@@ -38,17 +38,17 @@ type ICapturePhotoOutput interface {
 	PortraitEffectsMatte() AVPortraitEffectsMatte
 	SetPortraitEffectsMatte(value IAVPortraitEffectsMatte)
 	AvailableLivePhotoVideoCodecTypes() VideoCodecType
-	SetAvailableLivePhotoVideoCodecTypes(value IVideoCodecType)
+	SetAvailableLivePhotoVideoCodecTypes(value VideoCodecType)
 	AvailablePhotoCodecTypes() VideoCodecType
-	SetAvailablePhotoCodecTypes(value IVideoCodecType)
+	SetAvailablePhotoCodecTypes(value VideoCodecType)
 	AvailablePhotoFileTypes() FileType
-	SetAvailablePhotoFileTypes(value IFileType)
+	SetAvailablePhotoFileTypes(value FileType)
 	AvailablePhotoPixelFormatTypes() unsafe.Pointer
 	SetAvailablePhotoPixelFormatTypes(value unsafe.Pointer)
 	AvailableRawPhotoCodecTypes() VideoCodecType
-	SetAvailableRawPhotoCodecTypes(value IVideoCodecType)
+	SetAvailableRawPhotoCodecTypes(value VideoCodecType)
 	AvailableRawPhotoFileTypes() FileType
-	SetAvailableRawPhotoFileTypes(value IFileType)
+	SetAvailableRawPhotoFileTypes(value FileType)
 	AvailableRawPhotoPixelFormatTypes() unsafe.Pointer
 	SetAvailableRawPhotoPixelFormatTypes(value unsafe.Pointer)
 	AvailableSemanticSegmentationMatteTypes() unsafe.Pointer
@@ -289,7 +289,7 @@ func (c_ CapturePhotoOutput) AvailableLivePhotoVideoCodecTypes() VideoCodecType 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/availablelivephotovideocodectypes
 
-func (c_ CapturePhotoOutput) SetAvailableLivePhotoVideoCodecTypes(value IVideoCodecType) {
+func (c_ CapturePhotoOutput) SetAvailableLivePhotoVideoCodecTypes(value VideoCodecType) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAvailableLivePhotoVideoCodecTypes:"), value)
 }
 
@@ -310,7 +310,7 @@ func (c_ CapturePhotoOutput) AvailablePhotoCodecTypes() VideoCodecType {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/availablephotocodectypes
 
-func (c_ CapturePhotoOutput) SetAvailablePhotoCodecTypes(value IVideoCodecType) {
+func (c_ CapturePhotoOutput) SetAvailablePhotoCodecTypes(value VideoCodecType) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAvailablePhotoCodecTypes:"), value)
 }
 
@@ -331,7 +331,7 @@ func (c_ CapturePhotoOutput) AvailablePhotoFileTypes() FileType {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/availablephotofiletypes
 
-func (c_ CapturePhotoOutput) SetAvailablePhotoFileTypes(value IFileType) {
+func (c_ CapturePhotoOutput) SetAvailablePhotoFileTypes(value FileType) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAvailablePhotoFileTypes:"), value)
 }
 
@@ -369,7 +369,7 @@ func (c_ CapturePhotoOutput) AvailableRawPhotoCodecTypes() VideoCodecType {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/availablerawphotocodectypes
 
-func (c_ CapturePhotoOutput) SetAvailableRawPhotoCodecTypes(value IVideoCodecType) {
+func (c_ CapturePhotoOutput) SetAvailableRawPhotoCodecTypes(value VideoCodecType) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAvailableRawPhotoCodecTypes:"), value)
 }
 
@@ -390,7 +390,7 @@ func (c_ CapturePhotoOutput) AvailableRawPhotoFileTypes() FileType {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/availablerawphotofiletypes
 
-func (c_ CapturePhotoOutput) SetAvailableRawPhotoFileTypes(value IFileType) {
+func (c_ CapturePhotoOutput) SetAvailableRawPhotoFileTypes(value FileType) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAvailableRawPhotoFileTypes:"), value)
 }
 

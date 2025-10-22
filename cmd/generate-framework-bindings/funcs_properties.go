@@ -104,6 +104,11 @@ func typeToInterfaceTypeHeuristic(goType string) string {
 		return goType
 	}
 
+	// Don't convert Foundation geometry types - these are C structs, not ObjC classes
+	if goType == "Point" || goType == "Size" || goType == "Rect" || goType == "Range" {
+		return goType
+	}
+
 	// Don't convert primitives, slices, pointers, or special types
 	if strings.HasPrefix(goType, "[]") ||
 		strings.HasPrefix(goType, "*") ||
@@ -125,6 +130,17 @@ func typeToInterfaceTypeHeuristic(goType string) string {
 	// DEPRECATED HEURISTIC: This fallback function is only used when Generator context
 	// isn't available. The hardcoded lists have been removed - use Generator.TypeToInterfaceType()
 	// instead for data-driven type checking that queries actual Enums, Typedefs, and Classes.
+
+	// Heuristic: types ending with common enum suffixes are likely enums, not classes
+	enumSuffixes := []string{
+		"Options", "Flags", "Mask", "Type", "Mode", "State", "Style", "Status",
+		"Kind", "Level", "Priority", "Policy", "Strategy", "Behavior", "Attribute",
+	}
+	for _, suffix := range enumSuffixes {
+		if strings.HasSuffix(goType, suffix) {
+			return goType
+		}
+	}
 
 	// If it already starts with I and next char is uppercase, it's already an interface
 	if strings.HasPrefix(goType, "I") && len(goType) > 1 && goType[1] >= 'A' && goType[1] <= 'Z' {

@@ -30,6 +30,8 @@ type _FileVersionClass struct {
 // An interface definition for the [FileVersion] class.
 type IFileVersion interface {
 	objectivec.IObject
+	RemoveAndReturnError(outError IError) bool
+	ReplaceItemAtURLOptionsError(url IURL, options FileVersionReplacingOptions, error_ IError) URL
 	HasLocalContents() bool
 	PersistentIdentifier() objc.ID
 	URL() URL
@@ -103,6 +105,41 @@ func NewFileVersion() FileVersion {
 	return getFileVersionClass().New()
 }
 
+
+
+// Removes all versions of a file, except the current one, from the version store.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileVersion/removeOtherVersionsOfItem(at:)
+
+func (fc _FileVersionClass) RemoveOtherVersionsOfItemAtURLError(url IURL, outError IError) bool {
+	rv := objc.Send[bool](objc.ID(fc.class), objc.Sel("removeOtherVersionsOfItemAtURL:error:"), url, outError)
+	return rv
+}
+
+
+
+// Remove this version object and its associated file from the version store.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileVersion/remove()
+
+func (f_ FileVersion) RemoveAndReturnError(outError IError) bool {
+	rv := objc.Send[bool](f_.ID, objc.Sel("removeAndReturnError:"), outError)
+	return rv
+}
+
+
+
+// Replace the contents of the specified file with the contents of the current version’s file.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileVersion/replaceItem(at:options:)
+
+func (f_ FileVersion) ReplaceItemAtURLOptionsError(url IURL, options FileVersionReplacingOptions, error_ IError) URL {
+	rv := objc.Send[URL](f_.ID, objc.Sel("replaceItemAtURL:options:error:"), url, options, error_)
+	return rv
+}
 
 
 // [Full Topic]

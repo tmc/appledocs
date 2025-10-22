@@ -30,7 +30,10 @@ type _PortNameServerClass struct {
 // An interface definition for the [PortNameServer] class.
 type IPortNameServer interface {
 	objectivec.IObject
+	PortForName(name string) Port
+	PortForNameHost(name string, host string) Port
 	RegisterPortName(port IPort, name string) bool
+	RemovePortForName(name string) bool
 }
 
 // An object-oriented interface to the port registration service used by the distributed objects system.
@@ -87,6 +90,41 @@ func NewPortNameServer() PortNameServer {
 
 
 
+// Returns the single instance of for the application.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPortNameServer/systemDefaultPortNameServer
+
+func (pc _PortNameServerClass) SystemDefaultPortNameServer() PortNameServer {
+	rv := objc.Send[PortNameServer](objc.ID(pc.class), objc.Sel("systemDefaultPortNameServer"))
+	return rv
+}
+
+
+
+// Looks up and returns the port registered under the specified name on the local host.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPortNameServer/portForName:
+
+func (p_ PortNameServer) PortForName(name string) Port {
+	rv := objc.Send[Port](p_.ID, objc.Sel("portForName:"), objc.String(name))
+	return rv
+}
+
+
+
+// Looks up and returns the port registered under the specified name on a specified host.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPortNameServer/portForName:host:
+
+func (p_ PortNameServer) PortForNameHost(name string, host string) Port {
+	rv := objc.Send[Port](p_.ID, objc.Sel("portForName:host:"), objc.String(name), objc.String(host))
+	return rv
+}
+
+
 
 // Makes a given port available on the network under a specified name.
 //
@@ -95,6 +133,18 @@ func NewPortNameServer() PortNameServer {
 
 func (p_ PortNameServer) RegisterPortName(port IPort, name string) bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("registerPort:name:"), port, objc.String(name))
+	return rv
+}
+
+
+
+// Unregisters the port for a given name on the local host.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPortNameServer/removePortForName:
+
+func (p_ PortNameServer) RemovePortForName(name string) bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("removePortForName:"), objc.String(name))
 	return rv
 }
 

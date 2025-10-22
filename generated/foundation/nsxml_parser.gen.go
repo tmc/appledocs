@@ -107,6 +107,20 @@ func NewXMLParser() XMLParser {
 
 
 
+// Initializes a parser with the XML content referenced by the given URL.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/init(contentsOf:)
+
+func NewXMLParserWithContentsOfURL(url IURL) XMLParser {
+	instance := getXMLParserClass().Alloc()
+	rv := objc.Send[XMLParser](instance.ID, objc.Sel("initWithContentsOfURL:"), url)
+	rv.Autorelease()
+	return rv
+}
+
+
+
 // Initializes a parser with the XML contents encapsulated in a given data object.
 //
 // [Full Topic]

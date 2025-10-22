@@ -34,6 +34,8 @@ type IURLAuthenticationChallenge interface {
 	PreviousFailureCount() int
 	ProposedCredential() NSURLCredential
 	Sender() objc.ID
+	Error() Error
+	SetError(value IError)
 	ProtectionSpace() NSURLProtectionSpace
 	SetProtectionSpace(value IURLProtectionSpace)
 }
@@ -133,6 +135,27 @@ func (u_ URLAuthenticationChallenge) ProposedCredential() NSURLCredential {
 func (u_ URLAuthenticationChallenge) Sender() objc.ID {
 	rv := objc.Send[objc.ID](u_.ID, objc.Sel("sender"))
 	return rv
+}
+
+
+// The error object representing the last authentication failure.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlauthenticationchallenge/error
+
+func (u_ URLAuthenticationChallenge) Error() Error {
+	rv := objc.Send[Error](u_.ID, objc.Sel("error"))
+	return rv
+}
+
+
+// The error object representing the last authentication failure.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlauthenticationchallenge/error
+
+func (u_ URLAuthenticationChallenge) SetError(value IError) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setError:"), value)
 }
 
 

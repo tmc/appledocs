@@ -34,11 +34,11 @@ type ICapturePhotoSettings interface {
 	PortraitEffectsMatteDeliveryEnabled() bool
 	SetPortraitEffectsMatteDeliveryEnabled(value bool)
 	AvailableEmbeddedThumbnailPhotoCodecTypes() VideoCodecType
-	SetAvailableEmbeddedThumbnailPhotoCodecTypes(value IVideoCodecType)
+	SetAvailableEmbeddedThumbnailPhotoCodecTypes(value VideoCodecType)
 	AvailablePreviewPhotoPixelFormatTypes() unsafe.Pointer
 	SetAvailablePreviewPhotoPixelFormatTypes(value unsafe.Pointer)
 	AvailableRawEmbeddedThumbnailPhotoCodecTypes() VideoCodecType
-	SetAvailableRawEmbeddedThumbnailPhotoCodecTypes(value IVideoCodecType)
+	SetAvailableRawEmbeddedThumbnailPhotoCodecTypes(value VideoCodecType)
 	EmbeddedThumbnailPhotoFormat() string
 	SetEmbeddedThumbnailPhotoFormat(value string)
 	EmbedsDepthDataInPhoto() bool
@@ -86,7 +86,7 @@ type ICapturePhotoSettings interface {
 	LivePhotoMovieMetadata() AVMetadataItem
 	SetLivePhotoMovieMetadata(value IAVMetadataItem)
 	LivePhotoVideoCodecType() VideoCodecType
-	SetLivePhotoVideoCodecType(value IVideoCodecType)
+	SetLivePhotoVideoCodecType(value VideoCodecType)
 	MaxPhotoDimensions() unsafe.Pointer
 	SetMaxPhotoDimensions(value unsafe.Pointer)
 	Metadata() string
@@ -96,13 +96,13 @@ type ICapturePhotoSettings interface {
 	PreviewPhotoFormat() string
 	SetPreviewPhotoFormat(value string)
 	ProcessedFileType() FileType
-	SetProcessedFileType(value IFileType)
+	SetProcessedFileType(value FileType)
 	RawEmbeddedThumbnailPhotoFormat() string
 	SetRawEmbeddedThumbnailPhotoFormat(value string)
 	RawFileFormat() string
 	SetRawFileFormat(value string)
 	RawFileType() FileType
-	SetRawFileType(value IFileType)
+	SetRawFileType(value FileType)
 	RawPhotoPixelFormatType() unsafe.Pointer
 	SetRawPhotoPixelFormatType(value unsafe.Pointer)
 	UniqueID() unsafe.Pointer
@@ -202,7 +202,7 @@ func (c_ CapturePhotoSettings) AvailableEmbeddedThumbnailPhotoCodecTypes() Video
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotosettings/availableembeddedthumbnailphotocodectypes
 
-func (c_ CapturePhotoSettings) SetAvailableEmbeddedThumbnailPhotoCodecTypes(value IVideoCodecType) {
+func (c_ CapturePhotoSettings) SetAvailableEmbeddedThumbnailPhotoCodecTypes(value VideoCodecType) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAvailableEmbeddedThumbnailPhotoCodecTypes:"), value)
 }
 
@@ -244,7 +244,7 @@ func (c_ CapturePhotoSettings) AvailableRawEmbeddedThumbnailPhotoCodecTypes() Vi
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotosettings/availablerawembeddedthumbnailphotocodectypes
 
-func (c_ CapturePhotoSettings) SetAvailableRawEmbeddedThumbnailPhotoCodecTypes(value IVideoCodecType) {
+func (c_ CapturePhotoSettings) SetAvailableRawEmbeddedThumbnailPhotoCodecTypes(value VideoCodecType) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAvailableRawEmbeddedThumbnailPhotoCodecTypes:"), value)
 }
 
@@ -748,7 +748,7 @@ func (c_ CapturePhotoSettings) LivePhotoVideoCodecType() VideoCodecType {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotosettings/livephotovideocodectype
 
-func (c_ CapturePhotoSettings) SetLivePhotoVideoCodecType(value IVideoCodecType) {
+func (c_ CapturePhotoSettings) SetLivePhotoVideoCodecType(value VideoCodecType) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setLivePhotoVideoCodecType:"), value)
 }
 
@@ -853,7 +853,7 @@ func (c_ CapturePhotoSettings) ProcessedFileType() FileType {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotosettings/processedfiletype
 
-func (c_ CapturePhotoSettings) SetProcessedFileType(value IFileType) {
+func (c_ CapturePhotoSettings) SetProcessedFileType(value FileType) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setProcessedFileType:"), value)
 }
 
@@ -912,7 +912,7 @@ func (c_ CapturePhotoSettings) RawFileType() FileType {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotosettings/rawfiletype
 
-func (c_ CapturePhotoSettings) SetRawFileType(value IFileType) {
+func (c_ CapturePhotoSettings) SetRawFileType(value FileType) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRawFileType:"), value)
 }
 

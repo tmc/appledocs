@@ -39,7 +39,7 @@ type ICaptureInputPort interface {
 	IsEnabled() bool
 	SetIsEnabled(value bool)
 	MediaType() MediaType
-	SetMediaType(value IMediaType)
+	SetMediaType(value MediaType)
 	SourceDevicePosition() unsafe.Pointer
 	SetSourceDevicePosition(value unsafe.Pointer)
 	SourceDeviceType() unsafe.Pointer
@@ -202,7 +202,7 @@ func (c_ CaptureInputPort) MediaType() MediaType {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureinput/port/mediatype
 
-func (c_ CaptureInputPort) SetMediaType(value IMediaType) {
+func (c_ CaptureInputPort) SetMediaType(value MediaType) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMediaType:"), value)
 }
 

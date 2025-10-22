@@ -106,6 +106,20 @@ func NewUnitConverterLinearWithCoefficient(coefficient float64) UnitConverterLin
 
 
 
+// Creates a unit converter with the coefficient and constant you specify.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitConverterLinear/init(coefficient:constant:)
+
+func NewUnitConverterLinearWithCoefficientConstant(coefficient float64, constant float64) UnitConverterLinear {
+	instance := getUnitConverterLinearClass().Alloc()
+	rv := objc.Send[UnitConverterLinear](instance.ID, objc.Sel("initWithCoefficient:constant:"), coefficient, constant)
+	rv.Autorelease()
+	return rv
+}
+
+
+
 // The coefficient to use in the linear unit conversion calculation.
 //
 // [Full Topic]

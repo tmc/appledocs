@@ -43,7 +43,7 @@ type IAssetExportSession interface {
 	FileLengthLimit() unsafe.Pointer
 	SetFileLengthLimit(value unsafe.Pointer)
 	OutputFileType() FileType
-	SetOutputFileType(value IFileType)
+	SetOutputFileType(value FileType)
 	OutputURL() foundation.URL
 	SetOutputURL(value foundation.IURL)
 	ShouldOptimizeForNetworkUse() bool
@@ -290,7 +290,7 @@ func (a_ AssetExportSession) OutputFileType() FileType {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetExportSession/outputFileType
 
-func (a_ AssetExportSession) SetOutputFileType(value IFileType) {
+func (a_ AssetExportSession) SetOutputFileType(value FileType) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setOutputFileType:"), value)
 }
 

@@ -17,3 +17,12 @@ func ExampleNewUnitConverterLinearWithCoefficient() {
 	)
 	// Output:
 }
+// ExampleNewUnitConverterLinearWithCoefficientConstant demonstrates how to create a UnitConverterLinear instance using NewUnitConverterLinearWithCoefficientConstant.
+// Creates a unit converter with the coefficient and constant you specify.
+func ExampleNewUnitConverterLinearWithCoefficientConstant() {
+	_ = foundation.NewUnitConverterLinearWithCoefficientConstant(
+		0.0, // coefficient float64
+		0.0, // constant float64
+	)
+	// Output:
+}

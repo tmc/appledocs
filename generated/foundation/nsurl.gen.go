@@ -36,7 +36,7 @@ type IURL interface {
 	URLByAppendingPathComponentIsDirectory(pathComponent string, isDirectory bool) URL
 	URLByAppendingPathExtension(pathExtension string) URL
 	URLByAppendingPathExtensionForType(contentType unsafe.Pointer) URL
-	BookmarkDataWithOptionsIncludingResourceValuesForKeysRelativeToURLError(options IURLBookmarkCreationOptions, keys []string, relativeURL IURL, error_ IError) Data
+	BookmarkDataWithOptionsIncludingResourceValuesForKeysRelativeToURLError(options URLBookmarkCreationOptions, keys []string, relativeURL IURL, error_ IError) Data
 	CheckPromisedItemIsReachableAndReturnError(error_ IError) bool
 	CheckResourceIsReachableAndReturnError(error_ IError) bool
 	FileReferenceURL() URL
@@ -174,7 +174,7 @@ func NewURLAbsoluteURLWithDataRepresentationRelativeToURL(data IData, baseURL IU
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(resolvingAliasFileAt:options:)
 
-func NewURLByResolvingAliasFileAtURLOptionsError(url IURL, options IURLBookmarkResolutionOptions, error_ IError) URL {
+func NewURLByResolvingAliasFileAtURLOptionsError(url IURL, options URLBookmarkResolutionOptions, error_ IError) URL {
 	rv := objc.Send[URL](objc.ID(getURLClass().class), objc.Sel("URLByResolvingAliasFileAtURL:options:error:"), url, options, error_)
 	return rv
 }
@@ -186,7 +186,7 @@ func NewURLByResolvingAliasFileAtURLOptionsError(url IURL, options IURLBookmarkR
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(resolvingBookmarkData:options:relativeTo:bookmarkDataIsStale:)
 
-func NewURLByResolvingBookmarkDataOptionsRelativeToURLBookmarkDataIsStaleError(bookmarkData IData, options IURLBookmarkResolutionOptions, relativeURL IURL, isStale unsafe.Pointer, error_ IError) URL {
+func NewURLByResolvingBookmarkDataOptionsRelativeToURLBookmarkDataIsStaleError(bookmarkData IData, options URLBookmarkResolutionOptions, relativeURL IURL, isStale unsafe.Pointer, error_ IError) URL {
 	instance := getURLClass().Alloc()
 	rv := objc.Send[URL](instance.ID, objc.Sel("initByResolvingBookmarkData:options:relativeToURL:bookmarkDataIsStale:error:"), bookmarkData, options, relativeURL, isStale, error_)
 	rv.Autorelease()
@@ -334,7 +334,7 @@ func NewURLWithStringRelativeToURL(URLString string, baseURL IURL) URL {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/URLByResolvingBookmarkData:options:relativeToURL:bookmarkDataIsStale:error:
 
-func (uc _URLClass) URLByResolvingBookmarkDataOptionsRelativeToURLBookmarkDataIsStaleError(bookmarkData IData, options IURLBookmarkResolutionOptions, relativeURL IURL, isStale unsafe.Pointer, error_ IError) unsafe.Pointer {
+func (uc _URLClass) URLByResolvingBookmarkDataOptionsRelativeToURLBookmarkDataIsStaleError(bookmarkData IData, options URLBookmarkResolutionOptions, relativeURL IURL, isStale unsafe.Pointer, error_ IError) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("URLByResolvingBookmarkData:options:relativeToURL:bookmarkDataIsStale:error:"), bookmarkData, options, relativeURL, isStale, error_)
 	return rv
 }
@@ -469,7 +469,7 @@ func (uc _URLClass) FileURLWithPathComponents(components []string) URL {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(resolvingAliasFileAt:options:)
 
-func (uc _URLClass) URLByResolvingAliasFileAtURLOptionsError(url IURL, options IURLBookmarkResolutionOptions, error_ IError) unsafe.Pointer {
+func (uc _URLClass) URLByResolvingAliasFileAtURLOptionsError(url IURL, options URLBookmarkResolutionOptions, error_ IError) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("URLByResolvingAliasFileAtURL:options:error:"), url, options, error_)
 	return rv
 }
@@ -491,7 +491,7 @@ func (uc _URLClass) ResourceValuesForKeysFromBookmarkData(keys []string, bookmar
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/writeBookmarkData(_:to:options:)
 
-func (uc _URLClass) WriteBookmarkDataToURLOptionsError(bookmarkData IData, bookmarkFileURL IURL, options IURLBookmarkFileCreationOptions, error_ IError) bool {
+func (uc _URLClass) WriteBookmarkDataToURLOptionsError(bookmarkData IData, bookmarkFileURL IURL, options URLBookmarkFileCreationOptions, error_ IError) bool {
 	rv := objc.Send[bool](objc.ID(uc.class), objc.Sel("writeBookmarkData:toURL:options:error:"), bookmarkData, bookmarkFileURL, options, error_)
 	return rv
 }
@@ -575,7 +575,7 @@ func (u_ URL) URLByAppendingPathExtensionForType(contentType unsafe.Pointer) URL
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/bookmarkData(options:includingResourceValuesForKeys:relativeTo:)
 
-func (u_ URL) BookmarkDataWithOptionsIncludingResourceValuesForKeysRelativeToURLError(options IURLBookmarkCreationOptions, keys []string, relativeURL IURL, error_ IError) Data {
+func (u_ URL) BookmarkDataWithOptionsIncludingResourceValuesForKeysRelativeToURLError(options URLBookmarkCreationOptions, keys []string, relativeURL IURL, error_ IError) Data {
 	rv := objc.Send[Data](u_.ID, objc.Sel("bookmarkDataWithOptions:includingResourceValuesForKeys:relativeToURL:error:"), options, keys, relativeURL, error_)
 	return rv
 }

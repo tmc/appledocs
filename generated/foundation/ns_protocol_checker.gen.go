@@ -31,9 +31,7 @@ type _ProtocolCheckerClass struct {
 type IProtocolChecker interface {
 	IProxy
 	Protocol() objectivec.Protocol
-	SetProtocol(value objectivec.Protocol)
 	Target() objectivec.IObject
-	SetTarget(value objectivec.IObject)
 }
 
 // An object that restricts the messages that can be sent to another object (referred to as the checker’s delegate).
@@ -92,10 +90,36 @@ func NewProtocolChecker() ProtocolChecker {
 
 
 
+
+// Initializes a newly allocated instance that will forward any messages in to , the protocol checker’s target.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSProtocolChecker/init(target:protocol:)
+
+func NewProtocolCheckerWithTargetProtocol(anObject objectivec.IObject, aProtocol objectivec.Protocol) ProtocolChecker {
+	instance := getProtocolCheckerClass().Alloc()
+	rv := objc.Send[ProtocolChecker](instance.ID, objc.Sel("initWithTarget:protocol:"), anObject, aProtocol)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// Allocates and initializes an instance that will forward any messages in to , the protocol checker’s target.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSProtocolChecker/protocolCheckerWithTarget:protocol:
+
+func (pc _ProtocolCheckerClass) ProtocolCheckerWithTargetProtocol(anObject objectivec.IObject, aProtocol objectivec.Protocol) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("protocolCheckerWithTarget:protocol:"), anObject, aProtocol)
+	return rv
+}
+
+
 // Returns the protocol object the receiver uses.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsprotocolchecker/protocol
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSProtocolChecker/protocol
 
 func (p_ ProtocolChecker) Protocol() objectivec.Protocol {
 	rv := objc.Send[objectivec.Protocol](p_.ID, objc.Sel("protocol"))
@@ -103,35 +127,14 @@ func (p_ ProtocolChecker) Protocol() objectivec.Protocol {
 }
 
 
-// Returns the protocol object the receiver uses.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsprotocolchecker/protocol
-
-func (p_ ProtocolChecker) SetProtocol(value objectivec.Protocol) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setProtocol:"), value)
-}
-
-
 // Returns the target of the receiver.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsprotocolchecker/target
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSProtocolChecker/target
 
 func (p_ ProtocolChecker) Target() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](p_.ID, objc.Sel("target"))
 	return rv
 }
-
-
-// Returns the target of the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsprotocolchecker/target
-
-func (p_ ProtocolChecker) SetTarget(value objectivec.IObject) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setTarget:"), value)
-}
-
 
 

@@ -31,11 +31,11 @@ type _CaptureVideoDataOutputClass struct {
 // An interface definition for the [CaptureVideoDataOutput] class.
 type ICaptureVideoDataOutput interface {
 	ICaptureOutput
-	AvailableVideoCodecTypesForAssetWriterWithOutputFileType(outputFileType IFileType) []string
-	RecommendedMovieMetadataForVideoCodecTypeAssetWriterOutputFileType(videoCodecType IVideoCodecType, outputFileType IFileType) []MetadataItem
-	RecommendedVideoSettingsForVideoCodecTypeAssetWriterOutputFileType(videoCodecType IVideoCodecType, outputFileType IFileType) unsafe.Pointer
-	RecommendedVideoSettingsForVideoCodecTypeAssetWriterOutputFileTypeOutputFileURL(videoCodecType IVideoCodecType, outputFileType IFileType, outputFileURL foundation.IURL) unsafe.Pointer
-	RecommendedVideoSettingsForAssetWriterWithOutputFileType(outputFileType IFileType) unsafe.Pointer
+	AvailableVideoCodecTypesForAssetWriterWithOutputFileType(outputFileType FileType) []string
+	RecommendedMovieMetadataForVideoCodecTypeAssetWriterOutputFileType(videoCodecType VideoCodecType, outputFileType FileType) []MetadataItem
+	RecommendedVideoSettingsForVideoCodecTypeAssetWriterOutputFileType(videoCodecType VideoCodecType, outputFileType FileType) unsafe.Pointer
+	RecommendedVideoSettingsForVideoCodecTypeAssetWriterOutputFileTypeOutputFileURL(videoCodecType VideoCodecType, outputFileType FileType, outputFileURL foundation.IURL) unsafe.Pointer
+	RecommendedVideoSettingsForAssetWriterWithOutputFileType(outputFileType FileType) unsafe.Pointer
 	SetSampleBufferDelegateQueue(sampleBufferDelegate objectivec.IObject, sampleBufferCallbackQueue unsafe.Pointer)
 	AlwaysDiscardsLateVideoFrames() bool
 	SetAlwaysDiscardsLateVideoFrames(value bool)
@@ -122,7 +122,7 @@ func NewCaptureVideoDataOutput() CaptureVideoDataOutput {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureVideoDataOutput/availableVideoCodecTypesForAssetWriter(writingTo:)
 
-func (c_ CaptureVideoDataOutput) AvailableVideoCodecTypesForAssetWriterWithOutputFileType(outputFileType IFileType) []string {
+func (c_ CaptureVideoDataOutput) AvailableVideoCodecTypesForAssetWriterWithOutputFileType(outputFileType FileType) []string {
 	rv := objc.Send[[]string](c_.ID, objc.Sel("availableVideoCodecTypesForAssetWriterWithOutputFileType:"), outputFileType)
 	return rv
 }
@@ -134,7 +134,7 @@ func (c_ CaptureVideoDataOutput) AvailableVideoCodecTypesForAssetWriterWithOutpu
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureVideoDataOutput/recommendedMovieMetadata(forVideoCodecType:assetWriterOutputFileType:)
 
-func (c_ CaptureVideoDataOutput) RecommendedMovieMetadataForVideoCodecTypeAssetWriterOutputFileType(videoCodecType IVideoCodecType, outputFileType IFileType) []MetadataItem {
+func (c_ CaptureVideoDataOutput) RecommendedMovieMetadataForVideoCodecTypeAssetWriterOutputFileType(videoCodecType VideoCodecType, outputFileType FileType) []MetadataItem {
 	rv := objc.Send[[]MetadataItem](c_.ID, objc.Sel("recommendedMovieMetadataForVideoCodecType:assetWriterOutputFileType:"), videoCodecType, outputFileType)
 	return rv
 }
@@ -146,7 +146,7 @@ func (c_ CaptureVideoDataOutput) RecommendedMovieMetadataForVideoCodecTypeAssetW
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureVideoDataOutput/recommendedVideoSettings(forVideoCodecType:assetWriterOutputFileType:)
 
-func (c_ CaptureVideoDataOutput) RecommendedVideoSettingsForVideoCodecTypeAssetWriterOutputFileType(videoCodecType IVideoCodecType, outputFileType IFileType) unsafe.Pointer {
+func (c_ CaptureVideoDataOutput) RecommendedVideoSettingsForVideoCodecTypeAssetWriterOutputFileType(videoCodecType VideoCodecType, outputFileType FileType) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("recommendedVideoSettingsForVideoCodecType:assetWriterOutputFileType:"), videoCodecType, outputFileType)
 	return rv
 }
@@ -158,7 +158,7 @@ func (c_ CaptureVideoDataOutput) RecommendedVideoSettingsForVideoCodecTypeAssetW
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureVideoDataOutput/recommendedVideoSettings(forVideoCodecType:assetWriterOutputFileType:outputFileURL:)
 
-func (c_ CaptureVideoDataOutput) RecommendedVideoSettingsForVideoCodecTypeAssetWriterOutputFileTypeOutputFileURL(videoCodecType IVideoCodecType, outputFileType IFileType, outputFileURL foundation.IURL) unsafe.Pointer {
+func (c_ CaptureVideoDataOutput) RecommendedVideoSettingsForVideoCodecTypeAssetWriterOutputFileTypeOutputFileURL(videoCodecType VideoCodecType, outputFileType FileType, outputFileURL foundation.IURL) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("recommendedVideoSettingsForVideoCodecType:assetWriterOutputFileType:outputFileURL:"), videoCodecType, outputFileType, outputFileURL)
 	return rv
 }
@@ -170,7 +170,7 @@ func (c_ CaptureVideoDataOutput) RecommendedVideoSettingsForVideoCodecTypeAssetW
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureVideoDataOutput/recommendedVideoSettingsForAssetWriter(writingTo:)
 
-func (c_ CaptureVideoDataOutput) RecommendedVideoSettingsForAssetWriterWithOutputFileType(outputFileType IFileType) unsafe.Pointer {
+func (c_ CaptureVideoDataOutput) RecommendedVideoSettingsForAssetWriterWithOutputFileType(outputFileType FileType) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("recommendedVideoSettingsForAssetWriterWithOutputFileType:"), outputFileType)
 	return rv
 }

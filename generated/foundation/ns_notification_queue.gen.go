@@ -31,8 +31,8 @@ type _NotificationQueueClass struct {
 type INotificationQueue interface {
 	objectivec.IObject
 	DequeueNotificationsMatchingCoalesceMask(notification INotification, coalesceMask uint)
-	EnqueueNotificationPostingStyle(notification INotification, postingStyle IPostingStyle)
-	EnqueueNotificationPostingStyleCoalesceMaskForModes(notification INotification, postingStyle IPostingStyle, coalesceMask INotificationCoalescing, modes []string)
+	EnqueueNotificationPostingStyle(notification INotification, postingStyle PostingStyle)
+	EnqueueNotificationPostingStyleCoalesceMaskForModes(notification INotification, postingStyle PostingStyle, coalesceMask INotificationCoalescing, modes []string)
 }
 
 // A notification center buffer.
@@ -131,7 +131,7 @@ func (n_ NotificationQueue) DequeueNotificationsMatchingCoalesceMask(notificatio
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NotificationQueue/enqueue(_:postingStyle:)
 
-func (n_ NotificationQueue) EnqueueNotificationPostingStyle(notification INotification, postingStyle IPostingStyle) {
+func (n_ NotificationQueue) EnqueueNotificationPostingStyle(notification INotification, postingStyle PostingStyle) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("enqueueNotification:postingStyle:"), notification, postingStyle)
 }
 
@@ -142,7 +142,7 @@ func (n_ NotificationQueue) EnqueueNotificationPostingStyle(notification INotifi
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NotificationQueue/enqueue(_:postingStyle:coalesceMask:forModes:)
 
-func (n_ NotificationQueue) EnqueueNotificationPostingStyleCoalesceMaskForModes(notification INotification, postingStyle IPostingStyle, coalesceMask INotificationCoalescing, modes []string) {
+func (n_ NotificationQueue) EnqueueNotificationPostingStyleCoalesceMaskForModes(notification INotification, postingStyle PostingStyle, coalesceMask INotificationCoalescing, modes []string) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("enqueueNotification:postingStyle:coalesceMask:forModes:"), notification, postingStyle, coalesceMask, modes)
 }
 

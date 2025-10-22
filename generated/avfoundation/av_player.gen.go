@@ -63,7 +63,7 @@ type IPlayer interface {
 	SetAudioOutputDeviceUniqueID(value string)
 	AudioOutputSuppressedDueToNonMixableAudioRoute() bool
 	AudiovisualBackgroundPlaybackPolicy() PlayerAudiovisualBackgroundPlaybackPolicy
-	SetAudiovisualBackgroundPlaybackPolicy(value IPlayerAudiovisualBackgroundPlaybackPolicy)
+	SetAudiovisualBackgroundPlaybackPolicy(value PlayerAudiovisualBackgroundPlaybackPolicy)
 	AutomaticallyWaitsToMinimizeStalling() bool
 	SetAutomaticallyWaitsToMinimizeStalling(value bool)
 	CurrentItem() AVPlayerItem
@@ -84,7 +84,7 @@ type IPlayer interface {
 	MasterClock() unsafe.Pointer
 	SetMasterClock(value unsafe.Pointer)
 	NetworkResourcePriority() PlayerNetworkResourcePriority
-	SetNetworkResourcePriority(value IPlayerNetworkResourcePriority)
+	SetNetworkResourcePriority(value PlayerNetworkResourcePriority)
 	PlaybackCoordinator() AVPlayerPlaybackCoordinator
 	PreferredVideoDecoderGPURegistryID() uint64
 	SetPreferredVideoDecoderGPURegistryID(value uint64)
@@ -603,7 +603,7 @@ func (p_ Player) AudiovisualBackgroundPlaybackPolicy() PlayerAudiovisualBackgrou
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/audiovisualBackgroundPlaybackPolicy
 
-func (p_ Player) SetAudiovisualBackgroundPlaybackPolicy(value IPlayerAudiovisualBackgroundPlaybackPolicy) {
+func (p_ Player) SetAudiovisualBackgroundPlaybackPolicy(value PlayerAudiovisualBackgroundPlaybackPolicy) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAudiovisualBackgroundPlaybackPolicy:"), value)
 }
 
@@ -869,7 +869,7 @@ func (p_ Player) NetworkResourcePriority() PlayerNetworkResourcePriority {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/networkResourcePriority-swift.property
 
-func (p_ Player) SetNetworkResourcePriority(value IPlayerNetworkResourcePriority) {
+func (p_ Player) SetNetworkResourcePriority(value PlayerNetworkResourcePriority) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setNetworkResourcePriority:"), value)
 }
 

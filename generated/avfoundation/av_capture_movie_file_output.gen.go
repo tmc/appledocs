@@ -30,9 +30,9 @@ type _CaptureMovieFileOutputClass struct {
 type ICaptureMovieFileOutput interface {
 	ICaptureFileOutput
 	RecordsVideoOrientationAndMirroringChangesAsMetadataTrackForConnection(connection IAVCaptureConnection) bool
-	SetPrimaryConstituentDeviceSwitchingBehaviorForRecordingRestrictedSwitchingBehaviorConditions(switchingBehavior ICapturePrimaryConstituentDeviceSwitchingBehavior, restrictedSwitchingBehaviorConditions ICapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions)
+	SetPrimaryConstituentDeviceSwitchingBehaviorForRecordingRestrictedSwitchingBehaviorConditions(switchingBehavior CapturePrimaryConstituentDeviceSwitchingBehavior, restrictedSwitchingBehaviorConditions ICapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions)
 	AvailableVideoCodecTypes() VideoCodecType
-	SetAvailableVideoCodecTypes(value IVideoCodecType)
+	SetAvailableVideoCodecTypes(value VideoCodecType)
 	IsPrimaryConstituentDeviceSwitchingBehaviorForRecordingEnabled() bool
 	SetIsPrimaryConstituentDeviceSwitchingBehaviorForRecordingEnabled(value bool)
 	IsSpatialVideoCaptureEnabled() bool
@@ -123,7 +123,7 @@ func (c_ CaptureMovieFileOutput) RecordsVideoOrientationAndMirroringChangesAsMet
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureMovieFileOutput/setPrimaryConstituentDeviceSwitchingBehaviorForRecording(_:restrictedSwitchingBehaviorConditions:)
 
-func (c_ CaptureMovieFileOutput) SetPrimaryConstituentDeviceSwitchingBehaviorForRecordingRestrictedSwitchingBehaviorConditions(switchingBehavior ICapturePrimaryConstituentDeviceSwitchingBehavior, restrictedSwitchingBehaviorConditions ICapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions) {
+func (c_ CaptureMovieFileOutput) SetPrimaryConstituentDeviceSwitchingBehaviorForRecordingRestrictedSwitchingBehaviorConditions(switchingBehavior CapturePrimaryConstituentDeviceSwitchingBehavior, restrictedSwitchingBehaviorConditions ICapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPrimaryConstituentDeviceSwitchingBehaviorForRecording:restrictedSwitchingBehaviorConditions:"), switchingBehavior, restrictedSwitchingBehaviorConditions)
 }
 
@@ -144,7 +144,7 @@ func (c_ CaptureMovieFileOutput) AvailableVideoCodecTypes() VideoCodecType {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemoviefileoutput/availablevideocodectypes
 
-func (c_ CaptureMovieFileOutput) SetAvailableVideoCodecTypes(value IVideoCodecType) {
+func (c_ CaptureMovieFileOutput) SetAvailableVideoCodecTypes(value VideoCodecType) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAvailableVideoCodecTypes:"), value)
 }
 

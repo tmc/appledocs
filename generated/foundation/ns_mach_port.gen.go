@@ -31,8 +31,8 @@ type _MachPortClass struct {
 type IMachPort interface {
 	IPort
 	Delegate() objc.ID
-	RemoveFromRunLoopForMode(runLoop IRunLoop, mode IRunLoopMode)
-	ScheduleInRunLoopForMode(runLoop IRunLoop, mode IRunLoopMode)
+	RemoveFromRunLoopForMode(runLoop IRunLoop, mode RunLoopMode)
+	ScheduleInRunLoopForMode(runLoop IRunLoop, mode RunLoopMode)
 	SetDelegate(anObject objectivec.IObject)
 	MachPort() uint32
 }
@@ -113,7 +113,7 @@ func NewMachPortWithMachPort(machPort Iuint32) MachPort {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMachPort/init(machPort:options:)
 
-func NewMachPortWithMachPortOptions(machPort Iuint32, f IMachPortOptions) MachPort {
+func NewMachPortWithMachPortOptions(machPort Iuint32, f MachPortOptions) MachPort {
 	instance := getMachPortClass().Alloc()
 	rv := objc.Send[MachPort](instance.ID, objc.Sel("initWithMachPort:options:"), machPort, f)
 	rv.Autorelease()
@@ -138,7 +138,7 @@ func (mc _MachPortClass) PortWithMachPort(machPort Iuint32) Port {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMachPort/port(withMachPort:options:)
 
-func (mc _MachPortClass) PortWithMachPortOptions(machPort Iuint32, f IMachPortOptions) Port {
+func (mc _MachPortClass) PortWithMachPortOptions(machPort Iuint32, f MachPortOptions) Port {
 	rv := objc.Send[Port](objc.ID(mc.class), objc.Sel("portWithMachPort:options:"), machPort, f)
 	return rv
 }
@@ -162,7 +162,7 @@ func (m_ MachPort) Delegate() objc.ID {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMachPort/remove(from:forMode:)
 
-func (m_ MachPort) RemoveFromRunLoopForMode(runLoop IRunLoop, mode IRunLoopMode) {
+func (m_ MachPort) RemoveFromRunLoopForMode(runLoop IRunLoop, mode RunLoopMode) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("removeFromRunLoop:forMode:"), runLoop, mode)
 }
 
@@ -173,7 +173,7 @@ func (m_ MachPort) RemoveFromRunLoopForMode(runLoop IRunLoop, mode IRunLoopMode)
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMachPort/schedule(in:forMode:)
 
-func (m_ MachPort) ScheduleInRunLoopForMode(runLoop IRunLoop, mode IRunLoopMode) {
+func (m_ MachPort) ScheduleInRunLoopForMode(runLoop IRunLoop, mode RunLoopMode) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("scheduleInRunLoop:forMode:"), runLoop, mode)
 }
 

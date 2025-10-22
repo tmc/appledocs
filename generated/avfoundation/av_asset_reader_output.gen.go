@@ -33,7 +33,7 @@ type IAssetReaderOutput interface {
 	AlwaysCopiesSampleData() bool
 	SetAlwaysCopiesSampleData(value bool)
 	MediaType() MediaType
-	SetMediaType(value IMediaType)
+	SetMediaType(value MediaType)
 	SupportsRandomAccess() bool
 	SetSupportsRandomAccess(value bool)
 }
@@ -129,7 +129,7 @@ func (a_ AssetReaderOutput) MediaType() MediaType {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreaderoutput/mediatype
 
-func (a_ AssetReaderOutput) SetMediaType(value IMediaType) {
+func (a_ AssetReaderOutput) SetMediaType(value MediaType) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMediaType:"), value)
 }
 

@@ -109,7 +109,7 @@ func NewXMLDTD() XMLDTD {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTD/init(contentsOf:options:)
 
-func NewXMLDTDWithContentsOfURLOptionsError(url IURL, mask IXMLNodeOptions, error_ IError) XMLDTD {
+func NewXMLDTDWithContentsOfURLOptionsError(url IURL, mask XMLNodeOptions, error_ IError) XMLDTD {
 	instance := getXMLDTDClass().Alloc()
 	rv := objc.Send[XMLDTD](instance.ID, objc.Sel("initWithContentsOfURL:options:error:"), url, mask, error_)
 	rv.Autorelease()
@@ -123,7 +123,7 @@ func NewXMLDTDWithContentsOfURLOptionsError(url IURL, mask IXMLNodeOptions, erro
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTD/init(data:options:)
 
-func NewXMLDTDWithDataOptionsError(data IData, mask IXMLNodeOptions, error_ IError) XMLDTD {
+func NewXMLDTDWithDataOptionsError(data IData, mask XMLNodeOptions, error_ IError) XMLDTD {
 	instance := getXMLDTDClass().Alloc()
 	rv := objc.Send[XMLDTD](instance.ID, objc.Sel("initWithData:options:error:"), data, mask, error_)
 	rv.Autorelease()
@@ -135,7 +135,7 @@ func NewXMLDTDWithDataOptionsError(data IData, mask IXMLNodeOptions, error_ IErr
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXMLDTD/initWithKind:options:
 
-func NewXMLDTDWithKindOptions(kind IXMLNodeKind, options IXMLNodeOptions) XMLDTD {
+func NewXMLDTDWithKindOptions(kind XMLNodeKind, options XMLNodeOptions) XMLDTD {
 	instance := getXMLDTDClass().Alloc()
 	rv := objc.Send[XMLDTD](instance.ID, objc.Sel("initWithKind:options:"), kind, options)
 	rv.Autorelease()

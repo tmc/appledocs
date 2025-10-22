@@ -355,7 +355,7 @@ func NewValueWithObjCType(value unsafe.Pointer, type_ unsafe.Pointer) Value {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSValue/init(point:)
 
-func NewValueWithPoint(point IPoint) Value {
+func NewValueWithPoint(point Point) Value {
 	rv := objc.Send[Value](objc.ID(getValueClass().class), objc.Sel("valueWithPoint:"), point)
 	return rv
 }
@@ -379,7 +379,7 @@ func NewValueWithPointer(pointer unsafe.Pointer) Value {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSValue/init(range:)
 
-func NewValueWithRange(range_ IRange) Value {
+func NewValueWithRange(range_ Range) Value {
 	rv := objc.Send[Value](objc.ID(getValueClass().class), objc.Sel("valueWithRange:"), range_)
 	return rv
 }
@@ -391,7 +391,7 @@ func NewValueWithRange(range_ IRange) Value {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSValue/init(rect:)
 
-func NewValueWithRect(rect IRect) Value {
+func NewValueWithRect(rect Rect) Value {
 	rv := objc.Send[Value](objc.ID(getValueClass().class), objc.Sel("valueWithRect:"), rect)
 	return rv
 }
@@ -439,7 +439,7 @@ func NewValueWithSCNVector4(v unsafe.Pointer) Value {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSValue/init(size:)
 
-func NewValueWithSize(size ISize) Value {
+func NewValueWithSize(size Size) Value {
 	rv := objc.Send[Value](objc.ID(getValueClass().class), objc.Sel("valueWithSize:"), size)
 	return rv
 }
@@ -709,7 +709,7 @@ func (vc _ValueClass) ValueWithNonretainedObject(anObject objectivec.IObject) Va
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSValue/init(point:)
 
-func (vc _ValueClass) ValueWithPoint(point IPoint) Value {
+func (vc _ValueClass) ValueWithPoint(point Point) Value {
 	rv := objc.Send[Value](objc.ID(vc.class), objc.Sel("valueWithPoint:"), point)
 	return rv
 }
@@ -731,7 +731,7 @@ func (vc _ValueClass) ValueWithPointer(pointer unsafe.Pointer) Value {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSValue/init(range:)
 
-func (vc _ValueClass) ValueWithRange(range_ IRange) Value {
+func (vc _ValueClass) ValueWithRange(range_ Range) Value {
 	rv := objc.Send[Value](objc.ID(vc.class), objc.Sel("valueWithRange:"), range_)
 	return rv
 }
@@ -742,7 +742,7 @@ func (vc _ValueClass) ValueWithRange(range_ IRange) Value {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSValue/init(rect:)
 
-func (vc _ValueClass) ValueWithRect(rect IRect) Value {
+func (vc _ValueClass) ValueWithRect(rect Rect) Value {
 	rv := objc.Send[Value](objc.ID(vc.class), objc.Sel("valueWithRect:"), rect)
 	return rv
 }
@@ -753,7 +753,7 @@ func (vc _ValueClass) ValueWithRect(rect IRect) Value {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSValue/init(size:)
 
-func (vc _ValueClass) ValueWithSize(size ISize) Value {
+func (vc _ValueClass) ValueWithSize(size Size) Value {
 	rv := objc.Send[Value](objc.ID(vc.class), objc.Sel("valueWithSize:"), size)
 	return rv
 }

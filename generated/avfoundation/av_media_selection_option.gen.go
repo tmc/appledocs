@@ -46,7 +46,7 @@ type IMediaSelectionOption interface {
 	MediaSubTypes() foundation.Number
 	SetMediaSubTypes(value foundation.INumber)
 	MediaType() MediaType
-	SetMediaType(value IMediaType)
+	SetMediaType(value MediaType)
 }
 
 // An object that represents a specific option for the presentation of media within a group of options.
@@ -264,7 +264,7 @@ func (m_ MediaSelectionOption) MediaType() MediaType {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselectionoption/mediatype
 
-func (m_ MediaSelectionOption) SetMediaType(value IMediaType) {
+func (m_ MediaSelectionOption) SetMediaType(value MediaType) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMediaType:"), value)
 }
 

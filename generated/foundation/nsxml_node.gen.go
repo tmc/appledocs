@@ -32,7 +32,7 @@ type IXMLNode interface {
 	objectivec.IObject
 	ChildAtIndex(index uint) XMLNode
 	SetStringValueResolvingEntities(string_ string, resolve bool)
-	XMLStringWithOptions(options IXMLNodeOptions) String
+	XMLStringWithOptions(options XMLNodeOptions) String
 	Kind() XMLNodeKind
 	Level() uint
 	Name() string
@@ -132,7 +132,7 @@ func NewXMLNode() XMLNode {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/init(kind:)
 
-func NewXMLNodeWithKind(kind IXMLNodeKind) XMLNode {
+func NewXMLNodeWithKind(kind XMLNodeKind) XMLNode {
 	instance := getXMLNodeClass().Alloc()
 	rv := objc.Send[XMLNode](instance.ID, objc.Sel("initWithKind:"), kind)
 	rv.Autorelease()
@@ -146,7 +146,7 @@ func NewXMLNodeWithKind(kind IXMLNodeKind) XMLNode {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/init(kind:options:)
 
-func NewXMLNodeWithKindOptions(kind IXMLNodeKind, options IXMLNodeOptions) XMLNode {
+func NewXMLNodeWithKindOptions(kind XMLNodeKind, options XMLNodeOptions) XMLNode {
 	instance := getXMLNodeClass().Alloc()
 	rv := objc.Send[XMLNode](instance.ID, objc.Sel("initWithKind:options:"), kind, options)
 	rv.Autorelease()
@@ -338,7 +338,7 @@ func (x_ XMLNode) SetStringValueResolvingEntities(string_ string, resolve bool) 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/xmlString(options:)
 
-func (x_ XMLNode) XMLStringWithOptions(options IXMLNodeOptions) String {
+func (x_ XMLNode) XMLStringWithOptions(options XMLNodeOptions) String {
 	rv := objc.Send[String](x_.ID, objc.Sel("XMLStringWithOptions:"), options)
 	return rv
 }

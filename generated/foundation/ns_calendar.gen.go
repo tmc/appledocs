@@ -33,18 +33,18 @@ type ICalendar interface {
 	CompareDateToDateToUnitGranularity(date1 IDate, date2 IDate, unit ICalendarUnit) ComparisonResult
 	ComponentFromDate(unit ICalendarUnit, date IDate) int
 	ComponentsFromDate(unitFlags ICalendarUnit, date IDate) DateComponents
-	ComponentsFromDateComponentsToDateComponentsOptions(unitFlags ICalendarUnit, startingDateComp IDateComponents, resultDateComp IDateComponents, options ICalendarOptions) DateComponents
-	ComponentsFromDateToDateOptions(unitFlags ICalendarUnit, startingDate IDate, resultDate IDate, opts ICalendarOptions) DateComponents
+	ComponentsFromDateComponentsToDateComponentsOptions(unitFlags ICalendarUnit, startingDateComp IDateComponents, resultDateComp IDateComponents, options CalendarOptions) DateComponents
+	ComponentsFromDateToDateOptions(unitFlags ICalendarUnit, startingDate IDate, resultDate IDate, opts CalendarOptions) DateComponents
 	ComponentsInTimeZoneFromDate(timezone ITimeZone, date IDate) DateComponents
 	DateMatchesComponents(date IDate, components IDateComponents) bool
-	DateByAddingComponentsToDateOptions(comps IDateComponents, date IDate, opts ICalendarOptions) Date
-	DateByAddingUnitValueToDateOptions(unit ICalendarUnit, value int, date IDate, options ICalendarOptions) Date
-	DateBySettingHourMinuteSecondOfDateOptions(h int, m int, s int, date IDate, opts ICalendarOptions) Date
-	DateBySettingUnitValueOfDateOptions(unit ICalendarUnit, v int, date IDate, opts ICalendarOptions) Date
+	DateByAddingComponentsToDateOptions(comps IDateComponents, date IDate, opts CalendarOptions) Date
+	DateByAddingUnitValueToDateOptions(unit ICalendarUnit, value int, date IDate, options CalendarOptions) Date
+	DateBySettingHourMinuteSecondOfDateOptions(h int, m int, s int, date IDate, opts CalendarOptions) Date
+	DateBySettingUnitValueOfDateOptions(unit ICalendarUnit, v int, date IDate, opts CalendarOptions) Date
 	DateWithEraYearMonthDayHourMinuteSecondNanosecond(eraValue int, yearValue int, monthValue int, dayValue int, hourValue int, minuteValue int, secondValue int, nanosecondValue int) Date
 	DateWithEraYearForWeekOfYearWeekOfYearWeekdayHourMinuteSecondNanosecond(eraValue int, yearValue int, weekValue int, weekdayValue int, hourValue int, minuteValue int, secondValue int, nanosecondValue int) Date
 	DateFromComponents(comps IDateComponents) Date
-	EnumerateDatesStartingAfterDateMatchingComponentsOptionsUsingBlock(start IDate, comps IDateComponents, opts ICalendarOptions, block unsafe.Pointer)
+	EnumerateDatesStartingAfterDateMatchingComponentsOptionsUsingBlock(start IDate, comps IDateComponents, opts CalendarOptions, block unsafe.Pointer)
 	GetEraYearMonthDayFromDate(eraValuePointer unsafe.Pointer, yearValuePointer unsafe.Pointer, monthValuePointer unsafe.Pointer, dayValuePointer unsafe.Pointer, date IDate)
 	GetEraYearForWeekOfYearWeekOfYearWeekdayFromDate(eraValuePointer unsafe.Pointer, yearValuePointer unsafe.Pointer, weekValuePointer unsafe.Pointer, weekdayValuePointer unsafe.Pointer, date IDate)
 	GetHourMinuteSecondNanosecondFromDate(hourValuePointer unsafe.Pointer, minuteValuePointer unsafe.Pointer, secondValuePointer unsafe.Pointer, nanosecondValuePointer unsafe.Pointer, date IDate)
@@ -56,10 +56,10 @@ type ICalendar interface {
 	IsDateInYesterday(date IDate) bool
 	MaximumRangeOfUnit(unit ICalendarUnit) Range
 	MinimumRangeOfUnit(unit ICalendarUnit) Range
-	NextDateAfterDateMatchingComponentsOptions(date IDate, comps IDateComponents, options ICalendarOptions) Date
-	NextDateAfterDateMatchingUnitValueOptions(date IDate, unit ICalendarUnit, value int, options ICalendarOptions) Date
-	NextDateAfterDateMatchingHourMinuteSecondOptions(date IDate, hourValue int, minuteValue int, secondValue int, options ICalendarOptions) Date
-	NextWeekendStartDateIntervalOptionsAfterDate(datep IDate, tip ITimeInterval, options ICalendarOptions, date IDate) bool
+	NextDateAfterDateMatchingComponentsOptions(date IDate, comps IDateComponents, options CalendarOptions) Date
+	NextDateAfterDateMatchingUnitValueOptions(date IDate, unit ICalendarUnit, value int, options CalendarOptions) Date
+	NextDateAfterDateMatchingHourMinuteSecondOptions(date IDate, hourValue int, minuteValue int, secondValue int, options CalendarOptions) Date
+	NextWeekendStartDateIntervalOptionsAfterDate(datep IDate, tip ITimeInterval, options CalendarOptions, date IDate) bool
 	OrdinalityOfUnitInUnitForDate(smaller ICalendarUnit, larger ICalendarUnit, date IDate) uint
 	RangeOfUnitInUnitForDate(smaller ICalendarUnit, larger ICalendarUnit, date IDate) Range
 	RangeOfUnitStartDateIntervalForDate(unit ICalendarUnit, datep IDate, tip ITimeInterval, date IDate) bool
@@ -250,7 +250,7 @@ func (c_ Calendar) ComponentsFromDate(unitFlags ICalendarUnit, date IDate) DateC
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/components(_:from:to:options:)-49lo8
 
-func (c_ Calendar) ComponentsFromDateComponentsToDateComponentsOptions(unitFlags ICalendarUnit, startingDateComp IDateComponents, resultDateComp IDateComponents, options ICalendarOptions) DateComponents {
+func (c_ Calendar) ComponentsFromDateComponentsToDateComponentsOptions(unitFlags ICalendarUnit, startingDateComp IDateComponents, resultDateComp IDateComponents, options CalendarOptions) DateComponents {
 	rv := objc.Send[DateComponents](c_.ID, objc.Sel("components:fromDateComponents:toDateComponents:options:"), unitFlags, startingDateComp, resultDateComp, options)
 	return rv
 }
@@ -262,7 +262,7 @@ func (c_ Calendar) ComponentsFromDateComponentsToDateComponentsOptions(unitFlags
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/components(_:from:to:options:)-84y5w
 
-func (c_ Calendar) ComponentsFromDateToDateOptions(unitFlags ICalendarUnit, startingDate IDate, resultDate IDate, opts ICalendarOptions) DateComponents {
+func (c_ Calendar) ComponentsFromDateToDateOptions(unitFlags ICalendarUnit, startingDate IDate, resultDate IDate, opts CalendarOptions) DateComponents {
 	rv := objc.Send[DateComponents](c_.ID, objc.Sel("components:fromDate:toDate:options:"), unitFlags, startingDate, resultDate, opts)
 	return rv
 }
@@ -298,7 +298,7 @@ func (c_ Calendar) DateMatchesComponents(date IDate, components IDateComponents)
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/date(byAdding:to:options:)
 
-func (c_ Calendar) DateByAddingComponentsToDateOptions(comps IDateComponents, date IDate, opts ICalendarOptions) Date {
+func (c_ Calendar) DateByAddingComponentsToDateOptions(comps IDateComponents, date IDate, opts CalendarOptions) Date {
 	rv := objc.Send[Date](c_.ID, objc.Sel("dateByAddingComponents:toDate:options:"), comps, date, opts)
 	return rv
 }
@@ -310,7 +310,7 @@ func (c_ Calendar) DateByAddingComponentsToDateOptions(comps IDateComponents, da
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/date(byAdding:value:to:options:)
 
-func (c_ Calendar) DateByAddingUnitValueToDateOptions(unit ICalendarUnit, value int, date IDate, options ICalendarOptions) Date {
+func (c_ Calendar) DateByAddingUnitValueToDateOptions(unit ICalendarUnit, value int, date IDate, options CalendarOptions) Date {
 	rv := objc.Send[Date](c_.ID, objc.Sel("dateByAddingUnit:value:toDate:options:"), unit, value, date, options)
 	return rv
 }
@@ -322,7 +322,7 @@ func (c_ Calendar) DateByAddingUnitValueToDateOptions(unit ICalendarUnit, value 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/date(bySettingHour:minute:second:of:options:)
 
-func (c_ Calendar) DateBySettingHourMinuteSecondOfDateOptions(h int, m int, s int, date IDate, opts ICalendarOptions) Date {
+func (c_ Calendar) DateBySettingHourMinuteSecondOfDateOptions(h int, m int, s int, date IDate, opts CalendarOptions) Date {
 	rv := objc.Send[Date](c_.ID, objc.Sel("dateBySettingHour:minute:second:ofDate:options:"), h, m, s, date, opts)
 	return rv
 }
@@ -334,7 +334,7 @@ func (c_ Calendar) DateBySettingHourMinuteSecondOfDateOptions(h int, m int, s in
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/date(bySettingUnit:value:of:options:)
 
-func (c_ Calendar) DateBySettingUnitValueOfDateOptions(unit ICalendarUnit, v int, date IDate, opts ICalendarOptions) Date {
+func (c_ Calendar) DateBySettingUnitValueOfDateOptions(unit ICalendarUnit, v int, date IDate, opts CalendarOptions) Date {
 	rv := objc.Send[Date](c_.ID, objc.Sel("dateBySettingUnit:value:ofDate:options:"), unit, v, date, opts)
 	return rv
 }
@@ -382,7 +382,7 @@ func (c_ Calendar) DateFromComponents(comps IDateComponents) Date {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/enumerateDates(startingAfter:matching:options:using:)
 
-func (c_ Calendar) EnumerateDatesStartingAfterDateMatchingComponentsOptionsUsingBlock(start IDate, comps IDateComponents, opts ICalendarOptions, block unsafe.Pointer) {
+func (c_ Calendar) EnumerateDatesStartingAfterDateMatchingComponentsOptionsUsingBlock(start IDate, comps IDateComponents, opts CalendarOptions, block unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("enumerateDatesStartingAfterDate:matchingComponents:options:usingBlock:"), start, comps, opts, block)
 }
 
@@ -522,7 +522,7 @@ func (c_ Calendar) MinimumRangeOfUnit(unit ICalendarUnit) Range {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/nextDate(after:matching:options:)
 
-func (c_ Calendar) NextDateAfterDateMatchingComponentsOptions(date IDate, comps IDateComponents, options ICalendarOptions) Date {
+func (c_ Calendar) NextDateAfterDateMatchingComponentsOptions(date IDate, comps IDateComponents, options CalendarOptions) Date {
 	rv := objc.Send[Date](c_.ID, objc.Sel("nextDateAfterDate:matchingComponents:options:"), date, comps, options)
 	return rv
 }
@@ -534,7 +534,7 @@ func (c_ Calendar) NextDateAfterDateMatchingComponentsOptions(date IDate, comps 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/nextDate(after:matching:value:options:)
 
-func (c_ Calendar) NextDateAfterDateMatchingUnitValueOptions(date IDate, unit ICalendarUnit, value int, options ICalendarOptions) Date {
+func (c_ Calendar) NextDateAfterDateMatchingUnitValueOptions(date IDate, unit ICalendarUnit, value int, options CalendarOptions) Date {
 	rv := objc.Send[Date](c_.ID, objc.Sel("nextDateAfterDate:matchingUnit:value:options:"), date, unit, value, options)
 	return rv
 }
@@ -546,7 +546,7 @@ func (c_ Calendar) NextDateAfterDateMatchingUnitValueOptions(date IDate, unit IC
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/nextDate(after:matchingHour:minute:second:options:)
 
-func (c_ Calendar) NextDateAfterDateMatchingHourMinuteSecondOptions(date IDate, hourValue int, minuteValue int, secondValue int, options ICalendarOptions) Date {
+func (c_ Calendar) NextDateAfterDateMatchingHourMinuteSecondOptions(date IDate, hourValue int, minuteValue int, secondValue int, options CalendarOptions) Date {
 	rv := objc.Send[Date](c_.ID, objc.Sel("nextDateAfterDate:matchingHour:minute:second:options:"), date, hourValue, minuteValue, secondValue, options)
 	return rv
 }
@@ -558,7 +558,7 @@ func (c_ Calendar) NextDateAfterDateMatchingHourMinuteSecondOptions(date IDate, 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/nextWeekendStart(_:interval:options:after:)
 
-func (c_ Calendar) NextWeekendStartDateIntervalOptionsAfterDate(datep IDate, tip ITimeInterval, options ICalendarOptions, date IDate) bool {
+func (c_ Calendar) NextWeekendStartDateIntervalOptionsAfterDate(datep IDate, tip ITimeInterval, options CalendarOptions, date IDate) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("nextWeekendStartDate:interval:options:afterDate:"), datep, tip, options, date)
 	return rv
 }

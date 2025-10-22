@@ -8,16 +8,6 @@ package foundation
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileAttributeKey
 // NSFileAttributeKey has base type: NSString *
 type NSFileAttributeKey uintptr
-// NSFileAttributeKey - Keys in dictionaries used to get and set file attributes.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileAttributeKey
-// NSFileAttributeKey has base type: NSString *
-type NSFileAttributeKey uintptr
-// NSFileAttributeType - Values representing a file’s type attribute.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileAttributeType
-// NSFileAttributeType has base type: NSString *
-type NSFileAttributeType uintptr
 // NSFileAttributeType - Values representing a file’s type attribute.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileAttributeType
@@ -28,16 +18,6 @@ type NSFileAttributeType uintptr
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileProtectionType
 // NSFileProtectionType has base type: NSString *
 type NSFileProtectionType uintptr
-// NSFileProtectionType - Protection level values that can be associated with a file attribute key.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileProtectionType
-// NSFileProtectionType has base type: NSString *
-type NSFileProtectionType uintptr
-// NSAttributedStringKey - The attributes you apply to ranges of characters in an attributed string.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/Key
-// NSAttributedStringKey has base type: NSString *
-type NSAttributedStringKey uintptr
 // NSAttributedStringKey - The attributes you apply to ranges of characters in an attributed string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/Key
@@ -73,11 +53,6 @@ type NSExceptionName uintptr
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileProviderServiceName
 // NSFileProviderServiceName has base type: NSString *
 type NSFileProviderServiceName uintptr
-// NSFileProviderServiceName - The name used to identify a File Provider service.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileProviderServiceName
-// NSFileProviderServiceName has base type: NSString *
-type NSFileProviderServiceName uintptr
 // NSKeyValueChangeKey - The keys that can appear in the change dictionary.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyValueChangeKey
@@ -98,11 +73,6 @@ type NSLinguisticTag uintptr
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLinguisticTagScheme
 // NSLinguisticTagScheme has base type: NSString *
 type NSLinguisticTagScheme uintptr
-// NSNotificationName - A structure that defines the name of a notification.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNotification/Name-swift.struct
-// NSNotificationName has base type: NSString *
-type NSNotificationName uintptr
 // NSNotificationName - A structure that defines the name of a notification.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNotification/Name-swift.struct
@@ -137,11 +107,6 @@ type NSURLBookmarkFileCreationOptions uint
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUncaughtExceptionHandler
 // NSUncaughtExceptionHandler has base type: void (NSException *)
 type NSUncaughtExceptionHandler uintptr
-// NSUserActivityPersistentIdentifier - The type that defines a persistent identifier value for a user activity.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivityPersistentIdentifier
-// NSUserActivityPersistentIdentifier has base type: NSString *
-type NSUserActivityPersistentIdentifier uintptr
 // NSUserActivityPersistentIdentifier - The type that defines a persistent identifier value for a user activity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivityPersistentIdentifier
@@ -191,11 +156,6 @@ type NSTimeInterval uintptr
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLFileProtection
 // NSURLFileProtectionType has base type: NSString *
 type NSURLFileProtectionType uintptr
-// NSURLFileProtectionType - Protection-level values for a URL resource key.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLFileProtection
-// NSURLFileProtectionType has base type: NSString *
-type NSURLFileProtectionType uintptr
 // NSURLFileResourceType - Possible values for the type of file resource.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLFileResourceType
@@ -206,16 +166,6 @@ type NSURLFileResourceType uintptr
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLResourceKey
 // NSURLResourceKey has base type: NSString *
 type NSURLResourceKey uintptr
-// NSURLResourceKey - Keys that apply to file system URLs.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLResourceKey
-// NSURLResourceKey has base type: NSString *
-type NSURLResourceKey uintptr
-// NSURLThumbnailDictionaryItem - Possible keys for the   dictionary.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLThumbnailDictionaryItem
-// NSURLThumbnailDictionaryItem has base type: NSString *
-type NSURLThumbnailDictionaryItem uintptr
 // NSURLThumbnailDictionaryItem - Possible keys for the   dictionary.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLThumbnailDictionaryItem
@@ -226,11 +176,6 @@ type NSURLThumbnailDictionaryItem uintptr
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLUbiquitousItemDownloadingStatus
 // NSURLUbiquitousItemDownloadingStatus has base type: NSString *
 type NSURLUbiquitousItemDownloadingStatus uintptr
-// NSURLUbiquitousSharedItemPermissions - The key for the permissions of a shared item.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLUbiquitousSharedItemPermissions
-// NSURLUbiquitousSharedItemPermissions has base type: NSString *
-type NSURLUbiquitousSharedItemPermissions uintptr
 // NSURLUbiquitousSharedItemPermissions - The key for the permissions of a shared item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLUbiquitousSharedItemPermissions

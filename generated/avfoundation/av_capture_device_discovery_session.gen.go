@@ -95,7 +95,7 @@ func NewCaptureDeviceDiscoverySession() CaptureDeviceDiscoverySession {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/DiscoverySession/init(deviceTypes:mediaType:position:)
 
-func NewCaptureDeviceDiscoverySessionWithDeviceTypesMediaTypePosition(deviceTypes []string, mediaType IMediaType, position ICaptureDevicePosition) CaptureDeviceDiscoverySession {
+func NewCaptureDeviceDiscoverySessionWithDeviceTypesMediaTypePosition(deviceTypes []string, mediaType MediaType, position ICaptureDevicePosition) CaptureDeviceDiscoverySession {
 	rv := objc.Send[CaptureDeviceDiscoverySession](objc.ID(getCaptureDeviceDiscoverySessionClass().class), objc.Sel("discoverySessionWithDeviceTypes:mediaType:position:"), deviceTypes, mediaType, position)
 	return rv
 }
@@ -107,7 +107,7 @@ func NewCaptureDeviceDiscoverySessionWithDeviceTypesMediaTypePosition(deviceType
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/DiscoverySession/init(deviceTypes:mediaType:position:)
 
-func (cc _CaptureDeviceDiscoverySessionClass) DiscoverySessionWithDeviceTypesMediaTypePosition(deviceTypes []string, mediaType IMediaType, position ICaptureDevicePosition) unsafe.Pointer {
+func (cc _CaptureDeviceDiscoverySessionClass) DiscoverySessionWithDeviceTypesMediaTypePosition(deviceTypes []string, mediaType MediaType, position ICaptureDevicePosition) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("discoverySessionWithDeviceTypes:mediaType:position:"), deviceTypes, mediaType, position)
 	return rv
 }

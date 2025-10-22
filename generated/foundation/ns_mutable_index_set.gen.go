@@ -32,7 +32,7 @@ type IMutableIndexSet interface {
 	AddIndex(value uint)
 	RemoveIndexes(indexSet IIndexSet)
 	RemoveIndex(value uint)
-	RemoveIndexesInRange(range_ IRange)
+	RemoveIndexesInRange(range_ Range)
 }
 
 // A mutable collection of unique integer values that represent indexes in another collection.
@@ -130,7 +130,7 @@ func (m_ MutableIndexSet) RemoveIndex(value uint) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableIndexSet/remove(in:)
 
-func (m_ MutableIndexSet) RemoveIndexesInRange(range_ IRange) {
+func (m_ MutableIndexSet) RemoveIndexesInRange(range_ Range) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("removeIndexesInRange:"), range_)
 }
 

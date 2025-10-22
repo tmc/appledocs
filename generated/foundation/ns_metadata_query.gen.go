@@ -33,7 +33,7 @@ type IMetadataQuery interface {
 	DisableUpdates()
 	EnableUpdates()
 	EnumerateResultsUsingBlock(block unsafe.Pointer)
-	EnumerateResultsWithOptionsUsingBlock(opts IEnumerationOptions, block unsafe.Pointer)
+	EnumerateResultsWithOptionsUsingBlock(opts EnumerationOptions, block unsafe.Pointer)
 	IndexOfResult(result objectivec.IObject) uint
 	ResultAtIndex(idx uint) objc.ID
 	StartQuery() bool
@@ -165,7 +165,7 @@ func (m_ MetadataQuery) EnumerateResultsUsingBlock(block unsafe.Pointer) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQuery/enumerateResults(options:using:)
 
-func (m_ MetadataQuery) EnumerateResultsWithOptionsUsingBlock(opts IEnumerationOptions, block unsafe.Pointer) {
+func (m_ MetadataQuery) EnumerateResultsWithOptionsUsingBlock(opts EnumerationOptions, block unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("enumerateResultsWithOptions:usingBlock:"), opts, block)
 }
 
